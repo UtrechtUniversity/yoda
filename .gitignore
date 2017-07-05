@@ -1,0 +1,9 @@
+# Editor swapfiles
+*~
+
+# Ansible stuff
+*.retry
+.vaultpw
+
+# Vagrant stuff
+/.vagrant
