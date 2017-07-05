@@ -7,3 +7,10 @@
 
   roles:
     - common
+
+- name: provision portal server
+  hosts: portal
+  become: yes
+
+  roles:
+    - apache

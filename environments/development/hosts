@@ -1,3 +1,4 @@
+# Development instance
 [dev-portal]
 portal
 
@@ -14,4 +15,18 @@ resource
 dev-portal
 dev-database
 dev-icat
+dev-resource
+
+
+# All hosts
+[portal:children]
+dev-portal
+
+[database:children]
+dev-database
+
+[icat:children]
+dev-icat
+
+[resource:children]
 dev-resource

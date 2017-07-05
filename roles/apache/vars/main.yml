@@ -1,0 +1,6 @@
+---
+# ansible vars for this role
+# copyright Utrecht University
+
+rolename: apache
+

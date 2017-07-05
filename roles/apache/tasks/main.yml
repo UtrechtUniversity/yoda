@@ -1,0 +1,8 @@
+---
+# ansible tasks within this role
+# copyright Utrecht University
+
+- name: install Apache webserver
+  yum: 
+    name=httpd
+    state=present
