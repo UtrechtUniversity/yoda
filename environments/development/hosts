@@ -1,4 +1,17 @@
-portal   ansible_user=vagrant ansible_host=127.0.0.1 ansible_port=2222 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-database ansible_user=vagrant ansible_host=127.0.0.1 ansible_port=2200 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-icat     ansible_user=vagrant ansible_host=127.0.0.1 ansible_port=2201 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-resource ansible_user=vagrant ansible_host=127.0.0.1 ansible_port=2202 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+[dev-portal]
+portal
+
+[dev-database]
+database
+
+[dev-icat]
+icat
+
+[dev-resource]
+resource
+
+[dev:children]
+dev-portal
+dev-database
+dev-icat
+dev-resource
