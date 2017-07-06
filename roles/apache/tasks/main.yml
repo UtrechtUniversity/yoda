@@ -2,7 +2,15 @@
 # ansible tasks within this role
 # copyright Utrecht University
 
-- name: install Apache webserver
-  yum: 
-    name=httpd
+- name: Ensure Apache webserver is installed.
+  yum:
+    name='{{item}}'
     state=present
+  with_items:
+  - httpd
+  - mod_ssl
+  - openssl
+
+
+- name: Ensure Apache is started and enabled on boot.
+  service: name=httpd state=started enabled=yes
