@@ -1,4 +1,6 @@
+##############################
 # Development instance
+##############################
 [dev-portal]
 portal
 
@@ -18,7 +20,9 @@ dev-icat
 dev-resource
 
 
+##############################
 # All hosts
+##############################
 [portal:children]
 dev-portal
 
