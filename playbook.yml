@@ -20,4 +20,4 @@
   hosts: database
   become: yes
   roles:
-    - postgresql
+    - irods-database
