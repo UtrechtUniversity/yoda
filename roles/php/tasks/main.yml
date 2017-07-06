@@ -1,0 +1,45 @@
+---
+# ansible tasks within this role
+# copyright Utrecht University
+
+- name: Ensure PHP is installed
+  yum:
+    name='{{item}}'
+    state=present
+  with_items:
+  - php
+  - php-xml
+
+
+- name: Allow PHP to open TCP sockets in SELinux config
+  command: 'setsebool -P httpd_can_network_connect 1'
+
+
+- name: Set PHP timezone
+  lineinfile: 
+    dest=/etc/php.ini
+    create=no
+    insertafter='^;date.timezone\s*=.*$'
+    state=present
+    line='date.timezone = Europe/Amsterdam'
+    backup=yes
+
+
+- name: Limit exposure of PHP version
+  lineinfile:
+     dest=/etc/php.ini
+     create=no
+     regexp='^expose_php\s*=.*$'
+     state=present
+     line='expose_php = Off'
+     backup=no
+
+
+- name: Extend max execution time of PHP
+  lineinfile:
+     dest=/etc/php.ini
+     create=no
+     regexp='^max_execution_time\s*=.*$'
+     state=present
+     line='max_execution_time = 120'
+     backup=no
