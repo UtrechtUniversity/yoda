@@ -36,9 +36,18 @@
 - name: "Add md5 authentication for icat server(s)"
   lineinfile:
     dest: /var/lib/pgsql/data/pg_hba.conf
-    line: 'host all all {{ hostvars[item].ansible_host }} md5'
+    line: "host all all {{ hostvars[item].ansible_host }}/32 md5"
   with_items: "{{ groups['icat'] }}"
   notify: Restart PostgreSQL
+
+- name: "Listen on all interfaces"
+  lineinfile:
+    dest: /var/lib/pgsql/data/postgresql.conf
+    line: "listen_addresses = '*'"
+  notify: Restart PostgreSQL
+
+- name: "Allow access to port 5432 in firewall"
+  firewalld: port=5432/tcp permanent=true state=enabled immediate=yes
 
 - name: "Create ICAT database"
   become_user: postgres
@@ -55,4 +64,5 @@
     db: ICAT
     name: "{{ irods_database_user }}"
     password: "{{ irods_database_password }}"
-    priv: "ALL"
+    priv: ALL
+
