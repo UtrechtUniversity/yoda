@@ -2,7 +2,7 @@
 # ansible tasks within this role
 # copyright Utrecht University
 
-- name: Ensure Apache webserver is installed.
+- name: Ensure Apache webserver is installed
   yum:
     name='{{item}}'
     state=present
@@ -12,5 +12,17 @@
   - openssl
 
 
-- name: Ensure Apache is started and enabled on boot.
+- name: Allow public to port 80 in firewall
+  firewalld: port=80/tcp permanent=true state=enabled immediate=yes
+
+
+- name: Allow public to port 443 in firewall
+  firewalld: port=443/tcp permanent=true state=enabled immediate=yes
+
+
+- name: Restart firewall
+  service: name=firewalld state=restarted
+
+
+- name: Ensure Apache is running and enabled on boot
   service: name=httpd state=started enabled=yes

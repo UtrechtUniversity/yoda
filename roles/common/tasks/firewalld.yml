@@ -1,0 +1,10 @@
+---
+# ansible tasks within this role
+# copyright Utrecht University
+
+- name: Install firewall
+  yum: name=firewalld state=present
+  
+
+- name: Ensure firewall is started
+  service: name=firewalld state=started enabled=yes
