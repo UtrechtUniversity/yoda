@@ -14,3 +14,10 @@
 
   roles:
     - apache
+     
+- name: provision database server
+  hosts: database
+  become: yes
+
+  roles:
+    - postgresql

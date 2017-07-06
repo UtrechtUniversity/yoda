@@ -1,0 +1,58 @@
+---
+
+- name: "Install PostgreSQL"
+  package: name={{ item }} state=present
+  with_items:
+    - postgresql-server
+    - postgresql-contrib
+
+- name: "Install ansible postgres modules prerequisites"
+  package: name={{ item }} state=present
+  with_items:
+    - postgresql-devel
+    - python-psycopg2
+
+- name: "Initiate database"
+  command: postgresql-setup initdb
+           creates=/var/lib/pgsql/data/postgresql.conf
+
+- name: "Ensure PostgreSQL is enabled and started"
+  service: name=postgresql enabled=yes state=started
+
+- name: "Set authentication to md5 for local connections (IPv4)"
+  lineinfile:
+    dest: /var/lib/pgsql/data/pg_hba.conf
+    regexp: 'host\s+all\s+all\s+127.0.0.1/32'
+    line: 'host all all 127.0.0.1/32 md5'
+  notify: Restart PostgreSQL
+
+- name: "Set authentication to md5 for local connections (IPv6)"
+  lineinfile:
+    dest: /var/lib/pgsql/data/pg_hba.conf
+    regexp: 'host\s+all\s+all\s+::1/128'
+    line: 'host all all ::1/128 md5'
+  notify: Restart PostgreSQL
+
+- name: "Add md5 authentication for icat server(s)"
+  lineinfile:
+    dest: /var/lib/pgsql/data/pg_hba.conf
+    line: 'host all all {{ hostvars[item].ansible_host }} md5'
+  with_items: "{{ groups['icat'] }}"
+  notify: Restart PostgreSQL
+
+- name: "Create ICAT database"
+  become_user: postgres
+  become: yes
+  postgresql_db:
+    name: ICAT
+    encoding: UTF-8
+    template: template0
+    
+- name: "Create irodsdb user"
+  become_user: postgres
+  become: yes
+  postgresql_user:
+    db: ICAT
+    name: "{{ irods_database_user }}"
+    password: "{{ irods_database_password }}"
+    priv: "ALL"

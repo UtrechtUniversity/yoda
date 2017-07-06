@@ -8,6 +8,7 @@
 - name: Install common dependencies
   yum: name={{ item }} state=installed
   with_items:
+   - vim
    - libselinux-python
    - libsemanage-python
    - firewalld
