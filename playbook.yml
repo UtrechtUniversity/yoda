@@ -22,8 +22,9 @@
   roles:
     - irods-database
 
+
 - name: Provision iCAT server
-  hosts: database
+  hosts: icat
   become: yes
   roles:
     - irods-icat

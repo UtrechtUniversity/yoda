@@ -14,7 +14,7 @@
     dest='{{rpm_dest_dir}}/'
 
 
-- name: Install iRODS icat iCAT server dependencies
+- name: Install iRODS iCAT server dependencies
   yum:
     name='{{item}}'
     state=present
@@ -29,3 +29,13 @@
   with_items:
     - '{{rpm_dest_dir}}/{{irods_icat_rpm}}'
     - '{{rpm_dest_dir}}/{{irods_db_rpm}}'
+
+
+- name: Copy responses for setup_irods.sh
+  template: src=setup_irods.j2 dest=/home/{{ ansible_ssh_user }}/setup_irods
+  run_once: true
+
+- name: Configure iRODS iCAT server
+  shell:
+    /var/lib/irods/packaging/setup_irods.sh < /home/{{ ansible_ssh_user }}/setup_irods
+  run_once: true
