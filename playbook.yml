@@ -4,14 +4,20 @@
 - name: apply common configuration to all nodes
   hosts: all
   become: yes
-
   roles:
     - common
 
-- name: provision portal server
+
+- name: Provision portal server
   hosts: portal
   become: yes
-
   roles:
     - apache
     - php
+
+
+- name: Provision database server
+  hosts: database
+  become: yes
+  roles:
+    - postgresql
