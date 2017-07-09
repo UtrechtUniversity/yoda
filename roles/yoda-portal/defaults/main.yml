@@ -1,0 +1,5 @@
+---
+rolename: yoda-portal
+yoda_version: master
+irods_php_version: master
+codeigniter_version: master

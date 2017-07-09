@@ -1,0 +1,55 @@
+---
+- name: Ensure yodadeployment user exists
+  user:
+    name: yodadeployment
+    home: /var/www/yoda
+
+- name: Checkout CodeIgniter
+  become_user: yodadeployment
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/CodeIgniter.git"
+    dest: /var/www/yoda/CodeIgniter
+    version: "{{ codeigniter_version }}"
+
+- name: Checkout irods-php
+  become_user: yodadeployment
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/irods-php.git"
+    dest: /var/www/yoda/irods-php
+    version: "{{ irods_php_version }}"
+
+- name: Checkout yoda-portal
+  become_user: yodadeployment
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
+    dest: /var/www/yoda/yoda-portal
+    version: "{{ yoda_version }}"
+
+- name: Checkout yoda-portal-group-manager
+  become_user: yodadeployment
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
+    dest: /var/www/yoda/yoda-portal/modules/group-manager
+    version: "{{ yoda_version }}"
+
+- name: Checkout yoda-portal-research
+  become_user: yodadeployment
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
+    dest: /var/www/yoda/yoda-portal/modules/research
+    version: "{{ yoda_version }}"
+
+- name: Checkout yoda-portal-statistics
+  become_user: yodadeployment
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
+    dest: /var/www/yoda/yoda-portal/modules/statistics
+    version: "{{ yoda_version }}"
+
+
