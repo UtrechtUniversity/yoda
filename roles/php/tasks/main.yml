@@ -20,6 +20,7 @@
   - php-mcrypt
   - libsemanage-python
   - libselinux-python
+  notify: Restart Apache
 
 
 - name: Allow PHP to open TCP sockets in SELinux config
