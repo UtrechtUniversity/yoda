@@ -1,0 +1,15 @@
+{% raw %}
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+// Yoda Portal configuration {{{
+error_reporting(0);
+// NOTE: The encryption key must be set to a random value in config_local.php,
+//       like this:
+//$config['encryption_key'] = '12345678901234567890123456789012';
+{% endraw %}
+
+$config['rodsServerAddress']   = '{{ icat_fqdn }}';
+$config['rodsServerPort']      = 1247;
+$config['rodsServerZone']      = '{{ irods_zone }}';
+$config['rodsDefaultResource'] = '{{ irods_default_resource }}';
+$config['rodsAuthType']        = '{{ irods_auth_type }}'; // Either STANDARD or PAM.
+$config['encryption_key']      = '{{ portal_encryption_key }}';

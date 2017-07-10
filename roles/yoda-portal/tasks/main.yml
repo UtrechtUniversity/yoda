@@ -1,0 +1,111 @@
+---
+- name: Ensure yodadeployment user exists
+  user:
+    name: "{{ yoda_deployment_user }}"
+    home: /var/www/yoda
+
+- name: Checkout CodeIgniter
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/CodeIgniter.git"
+    dest: /var/www/yoda/CodeIgniter
+    version: "{{ codeigniter_version }}"
+    update: "{{ update_portal }}"
+
+- name: Checkout irods-php
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/irods-php.git"
+    dest: /var/www/yoda/irods-php
+    version: "{{ irods_php_version }}"
+    update: "{{ update_portal }}"
+
+- name: Checkout yoda-portal
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
+    dest: /var/www/yoda/yoda-portal
+    version: "{{ yoda_version }}"
+    update: "{{ update_portal }}"
+
+- name: Link yoda-portal public directory
+  file:
+    src: /var/www/yoda/yoda-portal/public
+    dest: /var/www/yoda/public
+    state: link
+
+- name: Checkout yoda-portal-group-manager
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
+    dest: /var/www/yoda/yoda-portal/modules/group-manager
+    version: "{{ yoda_version }}"
+    update: "{{ update_portal }}"
+
+- name: Link yoda-portal-group-manager public directory
+  file:
+    src: /var/www/yoda/yoda-portal/modules/group-manager/public
+    dest: /var/www/yoda/yoda-portal/public/group-manager
+    state: link
+
+- name: Checkout yoda-portal-research
+  become_user: "{{ yoda_deployment_user }}"
+
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
+    dest: /var/www/yoda/yoda-portal/modules/research
+    version: "{{ yoda_version }}"
+    update: "{{ update_portal }}"
+
+- name: Link yoda-portal-group-research public directory
+  file:
+    src: /var/www/yoda/yoda-portal/modules/research/public
+    dest: /var/www/yoda/yoda-portal/public/research
+    state: link
+
+- name: Checkout yoda-portal-statistics
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
+    dest: /var/www/yoda/yoda-portal/modules/statistics
+    version: "{{ yoda_version }}"
+    update: "{{ update_portal }}"
+
+- name: Link yoda-portal-group-statistics public directory
+  file:
+    src: /var/www/yoda/yoda-portal/modules/statistics/public
+    dest: /var/www/yoda/yoda-portal/public/statistics
+    state: link
+
+- name: Create config_local.php
+  template:
+    src: config_local.php.j2
+    dest: /var/www/yoda/yoda-portal/config/config_local.php
+    owner: "{{ yoda_deployment_user }}"
+
+- name: Create .htaccess
+  command: cp /var/www/yoda/yoda-portal/public/.htaccess.template /var/www/yoda/yoda-portal/public/.htaccess creates=/var/www/yoda/yoda-portal/public/.htaccess
+
+- name: Link portal into /var/www/html
+  file:
+    src: /var/www/yoda/yoda-portal/public
+    dest: /var/www/html/public
+    state: link
+
+- name: Ensure yoda home is executable
+  file:
+    path: /var/www/yoda
+    mode: 0755
+
+- name: 
+  template:
+    src: "yoda-portal.conf.j2"
+    dest: "/etc/httpd/conf.d/yoda-portal.conf"
+  notify: Restart Apache webserver
+

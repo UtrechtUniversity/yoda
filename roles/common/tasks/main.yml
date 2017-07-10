@@ -4,3 +4,4 @@
 
 - include: ntp.yml
 - include: firewalld.yml
+- include: git.yml
