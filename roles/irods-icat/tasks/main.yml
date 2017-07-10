@@ -34,7 +34,10 @@
 - name: Copy responses for setup_irods.sh
   template: src=setup_irods.j2 dest=/home/{{ ansible_ssh_user }}/setup_irods
 
+
 - name: Configure iRODS iCAT server
   shell:
     /var/lib/irods/packaging/setup_irods.sh < /home/{{ ansible_ssh_user }}/setup_irods
+  args:
+    creates: /etc/irods/service_account.config
   run_once: true

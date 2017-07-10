@@ -70,7 +70,7 @@
     template: template0
 
 
-- name: Create iRods database  user
+- name: Create iRods database user
   become_user: postgres
   become: yes
   postgresql_user:

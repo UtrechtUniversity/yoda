@@ -13,7 +13,7 @@
 {{ irods_admin }}
 {{ irods_passwd }}
 yes
-192.168.50.11
+{{ hostvars['database']['ansible_eth1']['ipv4']['address'] }}
 5432
 {{ irods_database }}
 {{ irods_database_user }}
