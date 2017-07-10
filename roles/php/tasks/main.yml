@@ -9,10 +9,15 @@
   with_items:
   - php
   - php-xml
+  - libsemanage-python
+  - libselinux-python
 
 
 - name: Allow PHP to open TCP sockets in SELinux config
-  command: 'setsebool -P httpd_can_network_connect 1'
+  seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
 
 
 - name: Set PHP timezone
