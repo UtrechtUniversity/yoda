@@ -1,5 +1,0 @@
----
-irods_admin: irods
-irods_database: ICAT
-irods_database_user: irodsdb
-irods_database_password: irodsdev

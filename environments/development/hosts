@@ -23,14 +23,14 @@ dev-resource
 ##############################
 # All hosts
 ##############################
-[portal:children]
+[portals:children]
 dev-portal
 
-[database:children]
+[databases:children]
 dev-database
 
-[icat:children]
+[icats:children]
 dev-icat
 
-[resource:children]
+[resources:children]
 dev-resource
