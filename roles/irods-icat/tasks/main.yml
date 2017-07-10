@@ -6,12 +6,14 @@
   get_url: 
     url='{{irods_rpm_ftp}}/{{irods_icat_rpm}}'
     dest='{{rpm_dest_dir}}/'
+    checksum='{{irods_icat_rpm_sha256}}'
 
 
 - name: Download iRODS database plugin rpm
   get_url: 
     url='{{irods_rpm_ftp}}/{{irods_db_rpm}}'
     dest='{{rpm_dest_dir}}/'
+    checksum='{{irods_db_rpm_sha256}}'
 
 
 - name: Install iRODS iCAT server dependencies
