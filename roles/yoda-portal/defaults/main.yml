@@ -1,5 +1,16 @@
 ---
 rolename: yoda-portal
-yoda_version: master
+yoda_deployment_user: yodadeployment
+
+yoda_version: development
 irods_php_version: master
-codeigniter_version: master
+codeigniter_version: 2.2-uu 
+
+icat_fqdn: localhost
+irods_zone: nluu1dev
+irods_default_resource: irodsResc
+irods_auth_type: STANDARD
+
+portal_encryption_key: RANDOM_KEY9999
+portal_server_name: portal.yoda.dev
+update_portal: yes
