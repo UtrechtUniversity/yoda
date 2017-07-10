@@ -13,6 +13,6 @@
   notify: Restart ntp
 
 
-- name: Start the ntp service
+- name: Ensure the ntp service is running and enabled
   service: name=ntpd state=started enabled=yes
   tags: ntp

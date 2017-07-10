@@ -4,7 +4,8 @@
 
 - name: Install firewall
   yum: name=firewalld state=present
-  
+  notify: Restart firewall
 
-- name: Ensure firewall is started
+
+- name: Ensure firewall is running and enabled
   service: name=firewalld state=started enabled=yes

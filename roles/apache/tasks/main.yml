@@ -14,15 +14,13 @@
 
 - name: Allow public to port 80 in firewall
   firewalld: port=80/tcp permanent=true state=enabled immediate=yes
+  notify: Restart firewall
 
 
 - name: Allow public to port 443 in firewall
   firewalld: port=443/tcp permanent=true state=enabled immediate=yes
+  notify: Restart firewall
 
 
-- name: Restart firewall
-  service: name=firewalld state=restarted
-
-
-- name: Ensure Apache is running and enabled on boot
+- name: Ensure Apache is running and enabled
   service: name=httpd state=started enabled=yes
