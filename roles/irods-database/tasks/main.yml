@@ -58,6 +58,7 @@
 
 - name: Allow access to port 5432 in firewall
   firewalld: port=5432/tcp permanent=true state=enabled immediate=yes
+  notify: Restart firewall
 
 
 - name: Create iCAT database
