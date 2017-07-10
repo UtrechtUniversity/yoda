@@ -9,7 +9,7 @@
 
 
 - name: Provision portal server
-  hosts: portal
+  hosts: portals
   become: yes
   roles:
     - apache
@@ -18,14 +18,14 @@
 
 
 - name: Provision database server
-  hosts: database
+  hosts: databases
   become: yes
   roles:
     - irods-database
 
 
 - name: Provision iCAT server
-  hosts: icat
+  hosts: icats
   become: yes
   roles:
     - irods-icat

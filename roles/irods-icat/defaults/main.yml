@@ -11,21 +11,26 @@ irods_icat_rpm_sha256: sha256:ea4b0ec21d1ba186062382ea6ecdb25e9f9299434ddaad1086
 irods_db_rpm: irods-database-plugin-postgres-1.8-centos7-x86_64.rpm
 irods_db_rpm_sha256: sha256:1d42fddaf243890aad03fb9da47cb259cd13cb0539a8fc81f3af0610d08b9c6d
 
-irods_admin: irods
-irods_database: ICAT
-irods_database_user: irodsdb
-irods_database_password: irodsdev
-irods_passwd: rods
-icatzone: tempZone
 account_user: irods
 account_group: irods
+
+icat_zone: tempZone
 icat_port: 1247
+
 port_range_begin: 20000
 port_range_end: 20199
+
 vault_directory: /var/lib/irods/Vault
 zone_key: jdgEp5fqdGw4YcDbGrUttC5TenRMKpGN
 negotiation_key: bhQQK4euWGDPHmtyvHtUycLAHTBNv6Rw
-control_plane_key: uiw3SC3ZfaP9TaWLLQQgw5MyhKQC5SUF
 control_plane_port: 1248
+control_plane_key: uiw3SC3ZfaP9TaWLLQQgw5MyhKQC5SUF
 schema_uri: https://schemas.irods.org/configuration
-admin_host: master
+
+irods_admin: irods
+irods_passwd: rods
+
+irods_database_port: 5432
+irods_database: ICAT
+irods_database_user: irodsdb
+irods_database_password: irodsdev
