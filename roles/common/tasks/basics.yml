@@ -1,6 +1,13 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure Ansible dependencies are installed
+  yum: name={{ item }} state=present
+  with_items:
+  - libsemanage-python
+  - libselinux-python
+
+
 - name: Ensure basics (vim, bind-utils, etc.) are installed
   yum: name={{ item }} state=present
   with_items:
@@ -8,3 +15,4 @@
     - vim
     - htop
     - git
+
