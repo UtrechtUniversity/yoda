@@ -1,0 +1,6 @@
+---
+# copyright Utrecht University
+
+rpm_dest_dir: /tmp
+irods_rpm_ftp: ftp://ftp.renci.org/pub/irods/releases/4.1.8/centos7
+irods_runtime_rpm: irods-runtime-4.1.8-centos7-x86_64.rpm

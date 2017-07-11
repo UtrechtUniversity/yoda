@@ -16,6 +16,7 @@
     - php
     - yoda-portal
     - irods-icommands
+    - irods-runtime
 
 
 - name: Provision database server
