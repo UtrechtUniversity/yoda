@@ -16,14 +16,6 @@
     checksum='{{ irods_db_rpm_sha256 }}'
 
 
-- name: Install iRODS iCAT server dependencies
-  yum:
-    name='{{ item }}'
-    state=present
-  with_items:
-    - epel-release
-
-
 - name: Install iRODS iCAT server and database plugin
   yum:
     name='{{ item }}'
@@ -82,3 +74,18 @@
   args:
     creates: /etc/irods/service_account.config
   run_once: true
+
+
+- name: Enable icat port in firewall
+  firewalld: port={{ icat_port }}/tcp permanent=true state=enabled immediate=yes
+  notify: Restart firewall
+
+
+- name: Enable control plane port in firewall
+  firewalld: port={{ control_plane_port }}/tcp permanent=true state=enabled immediate=yes
+  notify: Restart firewall
+
+- name: Enable irods transfer port range in firewall
+  firewalld: port={{ port_range_begin }}-{{ port_range_end }}/tcp permanent=true state=enabled immediate=yes
+  notify: Restart firewall
+
