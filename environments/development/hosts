@@ -1,36 +1,36 @@
 ##############################
-# Development instance
+# Development instance 1
 ##############################
-[dev-portal]
+[instance1-portal]
 portal
 
-[dev-database]
+[instance1-database]
 database
 
-[dev-icat]
+[instance1-icat]
 icat
 
-[dev-resource]
+[instance1-resource]
 resource
 
-[dev:children]
-dev-portal
-dev-database
-dev-icat
-dev-resource
+[instance1:children]
+instance1-portal
+instance1-database
+instance1-icat
+instance1-resource
 
 
 ##############################
 # All hosts
 ##############################
 [portals:children]
-dev-portal
+instance1-portal
 
 [databases:children]
-dev-database
+instance1-database
 
 [icats:children]
-dev-icat
+instance1-icat
 
 [resources:children]
-dev-resource
+instance1-resource
