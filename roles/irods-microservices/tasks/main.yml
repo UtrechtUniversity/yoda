@@ -3,6 +3,7 @@
   get_url:
     url: "{{ item.value.url }}"
     dest: "{{ rpm_dest_dir }}/{{ item.value.filename }}"
+    checksum: "{{ item.value.checksum }}"
   with_dict: "{{ microservices }}"
 
 
