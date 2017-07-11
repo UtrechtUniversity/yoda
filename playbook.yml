@@ -32,3 +32,10 @@
   become: yes
   roles:
     - irods-icat
+
+
+- name: Provision resource server
+  hosts: resources
+  become: yes
+  roles:
+    - irods-resource

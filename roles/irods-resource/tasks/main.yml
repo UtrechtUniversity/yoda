@@ -1,0 +1,23 @@
+---
+# copyright Utrecht University
+
+- name: Download iRODS resource server rpm
+  get_url:
+    url='{{irods_rpm_ftp}}/{{irods_resource_rpm}}'
+    dest='{{rpm_dest_dir}}/{{irods_resource_rpm}}'
+
+
+- name: Install iRODS resource server dependencies
+  yum:
+    name='{{item}}'
+    state=present
+  with_items:
+    - epel-release
+
+
+- name: Ensure iRODS resource server is installed
+  yum:
+    name='{{item}}'
+    state=present
+  with_items:
+    - '{{rpm_dest_dir}}/{{irods_resource_rpm}}'
