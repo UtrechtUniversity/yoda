@@ -25,6 +25,8 @@
   become: yes
   roles:
     - irods-icat
+    - irods-runtime
+    - irods-microservices
 
 
 - name: Provision resource server
@@ -32,6 +34,8 @@
   become: yes
   roles:
     - irods-resource
+    - irods-runtime
+    - irods-microservices
 
 
 - name: Add hosts entries to development instances

@@ -1,0 +1,25 @@
+---
+- name: Download microservice packages
+  get_url:
+    url: "{{ item.value.url }}"
+    dest: "{{ rpm_dest_dir }}/{{ item.value.filename }}"
+  with_dict: "{{ microservices }}"
+
+
+- name: Install microservice packages
+  yum:
+    name: "{{ rpm_dest_dir }}/{{ item.value.filename }}"
+    state: present
+  with_dict: "{{ microservices }}"
+
+- name: Undo the ownership modifications by the sudo microservices
+  file:
+    path: "{{ item }}"
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    mode: 0755
+  with_items:
+    - /etc/irods
+    - /var/lib/irods
+    - /var/lib/irods/plugins
+    - /var/lib/irods/plugins/microservices
