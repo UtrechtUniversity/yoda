@@ -4,3 +4,4 @@
 rpm_dest_dir: /tmp
 irods_rpm_ftp: ftp://ftp.renci.org/pub/irods/releases/4.1.8/centos7
 irods_runtime_rpm: irods-runtime-4.1.8-centos7-x86_64.rpm
+irods_runtime_rpm_sha256: sha256:45436801408a909595f8d2cf2b196819614728fc44bbcae5d2ff330c4d2bb9ee
