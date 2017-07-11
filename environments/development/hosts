@@ -34,3 +34,6 @@ instance1-icat
 
 [resources:children]
 instance1-resource
+
+[development:children]
+instance1

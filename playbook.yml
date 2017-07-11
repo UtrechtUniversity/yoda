@@ -1,11 +1,12 @@
 ---
 # This playbook deploys the whole application stack in this site.
 
-- name: apply common configuration to all nodes
+- name: Apply common configuration to all nodes
   hosts: all
   become: yes
   roles:
     - common
+
 
 - name: Provision portal server
   hosts: portals
@@ -40,8 +41,8 @@
     - irods-resource
 
 
-- name: Add hosts entries to dev instances
-  hosts: dev
+- name: Add hosts entries to development instances
+  hosts: development
   become: yes
   roles:
     - hostentries
