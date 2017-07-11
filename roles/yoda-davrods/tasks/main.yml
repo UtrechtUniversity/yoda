@@ -3,12 +3,12 @@
 
 - name: Download davrods rpm
   get_url:
-    url='{{davrods_rpm_https}}/{{davrods_rpm}}'
-    dest='{{rpm_dest_dir}}/{{davrods_rpm}}'
+    url='{{ davrods_rpm_https }}/{{ davrods_rpm }}'
+    dest='{{ rpm_dest_dir }}/{{ davrods_rpm }}'
 
 
 - name: Install davrods rpm
-  yum: name='{{rpm_dest_dir}}/{{davrods_rpm}}' state=present
+  yum: name='{{ rpm_dest_dir }}/{{ davrods_rpm }}' state=present
   notify: Restart Apache webserver
 
 
@@ -20,7 +20,7 @@
 
 - name: Copy irods_enviroment.json to /etc/httpd/irods/irods_environment.json
   template:
-    src: irods_environment.json
+    src: irods_environment.j2
     dest: /etc/httpd/irods/irods_environment.json
     owner: apache
     group: apache

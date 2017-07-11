@@ -8,15 +8,15 @@
 
 - name: Download iRODS iCommands rpm
   get_url:
-    url='{{irods_rpm_ftp}}/{{irods_icommand_rpm}}'
-    dest='{{rpm_dest_dir}}/{{irods_icommand_rpm}}'
+    url='{{ irods_rpm_ftp }}/{{ irods_icommand_rpm }}'
+    dest='{{ rpm_dest_dir }}/{{ irods_icommand_rpm }}'
   when: irods_server.stat.exists == false
 
 
 - name: Ensure iRODS iCommands is installed
   yum:
-    name='{{item}}'
+    name='{{ item }}'
     state=present
   with_items:
-    - '{{rpm_dest_dir}}/{{irods_icommand_rpm}}'
+    - '{{ rpm_dest_dir }}/{{ irods_icommand_rpm }}'
   when: irods_server.stat.exists == false

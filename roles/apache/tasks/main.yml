@@ -1,10 +1,9 @@
 ---
-# ansible tasks within this role
 # copyright Utrecht University
 
 - name: Ensure Apache webserver is installed
   yum:
-    name='{{item}}'
+    name='{{ item }}'
     state=present
   with_items:
   - httpd

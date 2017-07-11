@@ -4,7 +4,7 @@
 
 - name: Add EPEL repository for php-mcrypt
   yum:
-    name='{{item}}'
+    name='{{ item }}'
     state=present
   with_items:
     - epel-release
@@ -12,7 +12,7 @@
 
 - name: Ensure PHP is installed
   yum:
-    name='{{item}}'
+    name='{{ item }}'
     state=present
   with_items:
   - php

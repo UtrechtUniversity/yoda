@@ -107,7 +107,7 @@
 
 
 - name: Store encryption key in variable
-  set_fact: 
+  set_fact:
     yoda_php_encryption_key: '{{ random_key.stdout }}'
   when: config_local.stat.exists == False
 
@@ -144,4 +144,3 @@
     src: "yoda-portal.conf.j2"
     dest: "/etc/httpd/conf.d/yoda-portal.conf"
   notify: Restart Apache webserver
-
