@@ -1,2 +1,3 @@
 ---
 ansible_host: 192.168.50.10
+icat_fqdn: icat.yoda.dev
