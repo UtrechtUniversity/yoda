@@ -2,14 +2,6 @@
 # ansible tasks within this role
 # copyright Utrecht University
 
-- name: Add EPEL repository for php-mcrypt
-  yum:
-    name='{{ item }}'
-    state=present
-  with_items:
-    - epel-release
-
-
 - name: Ensure PHP is installed
   yum:
     name='{{ item }}'
@@ -18,8 +10,6 @@
   - php
   - php-xml
   - php-mcrypt
-  - libsemanage-python
-  - libselinux-python
   notify: Restart Apache webserver
 
 

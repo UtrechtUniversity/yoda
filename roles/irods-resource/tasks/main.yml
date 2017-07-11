@@ -7,14 +7,6 @@
     dest='{{ rpm_dest_dir }}/{{ irods_resource_rpm }}'
 
 
-- name: Install iRODS resource server dependencies
-  yum:
-    name='{{ item }}'
-    state=present
-  with_items:
-    - epel-release
-
-
 - name: Ensure iRODS resource server is installed
   yum:
     name='{{ item }}'
