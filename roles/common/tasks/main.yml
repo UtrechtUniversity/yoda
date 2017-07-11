@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
+- include: epel.yml
 - include: ntp.yml
 - include: firewalld.yml
-- include: git.yml
 - include: basics.yml
