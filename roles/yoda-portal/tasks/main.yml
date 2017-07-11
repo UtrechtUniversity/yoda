@@ -102,6 +102,7 @@
     src: config_local.php.j2
     dest: /var/www/yoda/yoda-portal/config/config_local.php
     owner: "{{ yoda_deployment_user }}"
+    force: no
 
 - name: Create .htaccess
   command: cp /var/www/yoda/yoda-portal/public/.htaccess.template /var/www/yoda/yoda-portal/public/.htaccess creates=/var/www/yoda/yoda-portal/public/.htaccess
