@@ -1,0 +1,7 @@
+---
+# copyright Utrecht University
+
+dependencies:
+- apache
+- irods-icommands
+- irods-runtime

@@ -1,0 +1,39 @@
+---
+# copyright Utrecht University
+
+- name: Download davrods rpm
+  get_url:
+    url='{{davrods_rpm_https}}/{{davrods_rpm}}'
+    dest='{{rpm_dest_dir}}/{{davrods_rpm}}'
+
+
+- name: Install davrods rpm
+  yum: name='{{rpm_dest_dir}}/{{davrods_rpm}}' state=present
+  notify: Restart Apache webserver
+
+
+- name: Allow Apache to execute davrods module
+  file:
+    path: /etc/httpd/modules/mod_davrods.so
+    setype: httpd_sys_script_exec_t
+
+
+- name: Copy irods_enviroment.json to /etc/httpd/irods/irods_environment.json
+  template:
+    src: irods_environment.json
+    dest: /etc/httpd/irods/irods_environment.json
+    owner: apache
+    group: apache
+    mode: 0644
+
+
+- name: Allow Apache to execute iRODS network tcp plugin
+  file:
+    path: /var/lib/irods/plugins/network/libtcp.so
+    setype: httpd_sys_script_exec_t
+
+
+- name: Allow Apache to execute iRODS network ssl plugin
+  file:
+    path: /var/lib/irods/plugins/network/libssl.so
+    setype: httpd_sys_script_exec_t

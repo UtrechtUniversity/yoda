@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+rpm_dest_dir: /tmp
+davrods_rpm_https: https://github.com/UtrechtUniversity/davrods/releases/download/4.1_1.1.1
+davrods_rpm: davrods-4.1_1.1.1-1.el7.centos.x86_64.rpm
+
+irods_port: 1247
+irods_default_resource: demoResc

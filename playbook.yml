@@ -17,6 +17,7 @@
     - yoda-portal
     - irods-icommands
     - irods-runtime
+    - yoda-davrods
 
 
 - name: Provision database server
