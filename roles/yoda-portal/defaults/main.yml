@@ -13,7 +13,6 @@ irods_zone: tempZone
 irods_default_resource: demoResc
 irods_auth_type: STANDARD
 
-portal_encryption_key: RANDOM_KEY9999
 portal_server_name: portal.yoda.dev
 update_portal: yes
 
