@@ -7,7 +7,6 @@
   roles:
     - common
 
-
 - name: Provision portal server
   hosts: portals
   become: yes
@@ -29,3 +28,9 @@
   become: yes
   roles:
     - irods-icat
+
+- name: Add hosts entries to dev instances
+  hosts: dev
+  become: yes
+  roles:
+    - hostentries
