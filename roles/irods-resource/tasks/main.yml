@@ -14,3 +14,32 @@
     state=present
   with_items:
     - '{{ rpm_dest_dir }}/{{ irods_resource.filename }}'
+
+
+- name: Create iRODS service account group
+  group:
+    name=irods
+    state=present
+
+
+- name: Create iRODS service account user
+  user:
+    name=irods
+    group=irods
+    comment='iRODS Administrator'
+    home=/var/lib/irods
+    shell=/bin/bash
+    password='!locked!'
+    update_password=on_create
+    state=present
+
+
+- name: Make iRODS service account owner of iRODS directories
+  file:
+    group=irods
+    owner=irods
+    recurse=yes
+    path='{{ item }}'
+  with_items:
+  - /var/lib/irods
+  - /etc/irods
