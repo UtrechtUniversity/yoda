@@ -1,8 +1,12 @@
 ---
+# copyright Utrecht University
 
 rolename: irods-microservices
 
+# Temporary directory to store downloaded rpm files.
 rpm_dest_dir: /tmp
+
+# iRODS microservices rpm locations and checksums
 microservices:
   irods_json_microservices:
     url: https://github.com/UtrechtUniversity/irods-json-microservices/releases/download/v0.3.0/rit-irods-microservices-0.3.0-centos7.rpm

@@ -1,4 +1,6 @@
 ---
+# copyright Utrecht University
+
 - name: Download microservice packages
   get_url:
     url: "{{ item.value.url }}"
@@ -12,6 +14,7 @@
     name: "{{ rpm_dest_dir }}/{{ item.value.filename }}"
     state: present
   with_dict: "{{ microservices }}"
+
 
 - name: Undo the ownership modifications by the sudo microservices
   file:
