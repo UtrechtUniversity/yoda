@@ -36,6 +36,8 @@
 - name: Generate zone key
   command: 'openssl rand -hex 16'
   register: zone_key
+  args:
+    creates: /home/{{ ansible_ssh_user }}/setup_irods
 
 
 - name: Store zone key in variable
@@ -46,6 +48,8 @@
 - name: Generate negotiation key
   command: 'openssl rand -hex 16'
   register: negotiation_key
+  args:
+    creates: /home/{{ ansible_ssh_user }}/setup_irods
 
 
 - name: Store negotiation key in variable
@@ -56,6 +60,8 @@
 - name: Generate control plane key
   command: 'openssl rand -hex 16'
   register: control_plane_key
+  args:
+    creates: /home/{{ ansible_ssh_user }}/setup_irods
 
 
 - name: Store control plane key in variable
@@ -64,7 +70,10 @@
 
 
 - name: Copy responses for setup_irods.sh
-  template: src=setup_irods.j2 dest=/home/{{ ansible_ssh_user }}/setup_irods
+  template:
+    src: setup_irods.j2
+    dest: /home/{{ ansible_ssh_user }}/setup_irods
+    force: no
 
 
 - name: Configure iRODS iCAT server
