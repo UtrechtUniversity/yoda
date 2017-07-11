@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Install firewall
-  yum: name=firewalld state=present
+  package: name=firewalld state=present
   notify: Restart firewall
 
 

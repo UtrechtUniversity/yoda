@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Install ntp
-  yum: name=ntp state=present
+  package: name=ntp state=present
   tags: ntp
 
 

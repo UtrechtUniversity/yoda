@@ -3,7 +3,7 @@
 # copyright Utrecht University
 
 - name: Ensure PHP is installed
-  yum:
+  package:
     name='{{ item }}'
     state=present
   with_items:

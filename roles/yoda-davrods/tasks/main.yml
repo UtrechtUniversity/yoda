@@ -8,7 +8,7 @@
 
 
 - name: Install davrods rpm
-  yum: name='{{ rpm_dest_dir }}/{{ davrods_rpm }}' state=present
+  package: name='{{ rpm_dest_dir }}/{{ davrods_rpm }}' state=present
   notify: Restart Apache webserver
 
 
