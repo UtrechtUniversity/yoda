@@ -1,8 +1,11 @@
 ---
+# copyright Utrecht University
+
 - name: Ensure yodadeployment user exists
   user:
     name: "{{ yoda_deployment_user }}"
     home: /var/www/yoda
+
 
 - name: Checkout CodeIgniter
   become_user: "{{ yoda_deployment_user }}"
@@ -13,6 +16,7 @@
     version: "{{ codeigniter_version }}"
     update: "{{ update_portal }}"
 
+
 - name: Checkout irods-php
   become_user: "{{ yoda_deployment_user }}"
   become: yes
@@ -21,6 +25,7 @@
     dest: /var/www/yoda/irods-php
     version: "{{ irods_php_version }}"
     update: "{{ update_portal }}"
+
 
 - name: Checkout yoda-portal
   become_user: "{{ yoda_deployment_user }}"
@@ -31,11 +36,13 @@
     version: "{{ yoda_version }}"
     update: "{{ update_portal }}"
 
+
 - name: Link yoda-portal public directory
   file:
     src: /var/www/yoda/yoda-portal/public
     dest: /var/www/yoda/public
     state: link
+
 
 - name: Checkout yoda-portal-group-manager
   become_user: "{{ yoda_deployment_user }}"
@@ -46,15 +53,16 @@
     version: "{{ yoda_version }}"
     update: "{{ update_portal }}"
 
+
 - name: Link yoda-portal-group-manager public directory
   file:
     src: /var/www/yoda/yoda-portal/modules/group-manager/public
     dest: /var/www/yoda/yoda-portal/public/group-manager
     state: link
 
+
 - name: Checkout yoda-portal-research
   become_user: "{{ yoda_deployment_user }}"
-
   become: yes
   git:
     repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
@@ -62,11 +70,13 @@
     version: "{{ yoda_version }}"
     update: "{{ update_portal }}"
 
+
 - name: Link yoda-portal-group-research public directory
   file:
     src: /var/www/yoda/yoda-portal/modules/research/public
     dest: /var/www/yoda/yoda-portal/public/research
     state: link
+
 
 - name: Checkout yoda-portal-statistics
   become_user: "{{ yoda_deployment_user }}"
@@ -77,11 +87,13 @@
     version: "{{ yoda_version }}"
     update: "{{ update_portal }}"
 
+
 - name: Link yoda-portal-group-statistics public directory
   file:
     src: /var/www/yoda/yoda-portal/modules/statistics/public
     dest: /var/www/yoda/yoda-portal/public/statistics
     state: link
+
 
 - name: Create config_local.php
   template:
@@ -89,8 +101,10 @@
     dest: /var/www/yoda/yoda-portal/config/config_local.php
     owner: "{{ yoda_deployment_user }}"
 
+
 - name: Create .htaccess
   command: cp /var/www/yoda/yoda-portal/public/.htaccess.template /var/www/yoda/yoda-portal/public/.htaccess creates=/var/www/yoda/yoda-portal/public/.htaccess
+
 
 - name: Link portal into /var/www/html
   file:
@@ -98,14 +112,15 @@
     dest: /var/www/html/public
     state: link
 
-- name: Ensure yoda home is executable
+
+- name: Ensure YoDa home is executable
   file:
     path: /var/www/yoda
     mode: 0755
 
-- name: 
+
+- name: Copy YoDa Portal config for Apache
   template:
     src: "yoda-portal.conf.j2"
     dest: "/etc/httpd/conf.d/yoda-portal.conf"
   notify: Restart Apache webserver
-

@@ -1,3 +1,5 @@
 ---
+# copyright Utrecht University
+
 - name: Install git
   yum: name=git state=present

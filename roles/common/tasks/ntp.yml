@@ -1,5 +1,4 @@
 ---
-# ansible tasks within this role
 # copyright Utrecht University
 
 - name: Install ntp

@@ -31,7 +31,7 @@
 
 
 - name: Set PHP timezone
-  lineinfile: 
+  lineinfile:
     dest=/etc/php.ini
     create=no
     insertafter='^;date.timezone\s*=.*$'
