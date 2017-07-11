@@ -3,12 +3,13 @@
 
 - name: Download davrods rpm
   get_url:
-    url='{{ davrods_rpm_https }}/{{ davrods_rpm }}'
-    dest='{{ rpm_dest_dir }}/{{ davrods_rpm }}'
+    url='{{ davrods.url }}/{{ davrods.filename }}'
+    dest='{{ rpm_dest_dir }}/{{ davrods.filename }}'
+    checksum='{{ davrods.checksum }}'
 
 
 - name: Install davrods rpm
-  package: name='{{ rpm_dest_dir }}/{{ davrods_rpm }}' state=present
+  package: name='{{ rpm_dest_dir }}/{{ davrods.filename }}' state=present
   notify: Restart Apache webserver
 
 

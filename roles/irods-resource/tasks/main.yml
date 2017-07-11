@@ -3,8 +3,9 @@
 
 - name: Download iRODS resource server rpm
   get_url:
-    url='{{ irods_rpm_ftp }}/{{ irods_resource_rpm }}'
-    dest='{{ rpm_dest_dir }}/{{ irods_resource_rpm }}'
+    url='{{ irods_resource.url }}/{{ irods_resource.filename }}'
+    dest='{{ rpm_dest_dir }}/{{ irods_resource.filename }}'
+    checksum='{{ irods_resource.checksum }}'
 
 
 - name: Ensure iRODS resource server is installed
@@ -12,4 +13,4 @@
     name='{{ item }}'
     state=present
   with_items:
-    - '{{ rpm_dest_dir }}/{{ irods_resource_rpm }}'
+    - '{{ rpm_dest_dir }}/{{ irods_resource.filename }}'

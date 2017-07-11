@@ -8,9 +8,9 @@
 
 - name: Download iRODS iCommands rpm
   get_url:
-    url='{{ irods_rpm_ftp }}/{{ irods_icommand_rpm }}'
-    dest='{{ rpm_dest_dir }}/{{ irods_icommand_rpm }}'
-    checksum='{{ irods_icommand_rpm_sha256 }}'
+    url='{{ irods_icommands.url }}/{{ irods_icommands.filename }}'
+    dest='{{ rpm_dest_dir }}/{{ irods_icommands.filename }}'
+    checksum='{{ irods_icommands.checksum }}'
   when: irods_server.stat.exists == false
 
 
@@ -19,5 +19,5 @@
     name='{{ item }}'
     state=present
   with_items:
-    - '{{ rpm_dest_dir }}/{{ irods_icommand_rpm }}'
+    - '{{ rpm_dest_dir }}/{{ irods_icommands.filename }}'
   when: irods_server.stat.exists == false

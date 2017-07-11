@@ -3,14 +3,10 @@
 
 - name: Download iRODS runtime rpm
   get_url:
-    url='{{ irods_rpm_ftp }}/{{ irods_runtime_rpm }}'
-    dest='{{ rpm_dest_dir }}/{{ irods_runtime_rpm }}'
-    checksum='{{ irods_runtime_rpm_sha256 }}'
+    url='{{ irods_runtime.url }}/{{ irods_runtime.filename }}'
+    dest='{{ rpm_dest_dir }}/{{ irods_runtime.filename }}'
+    checksum='{{ irods_runtime.checksum }}'
 
 
 - name: Ensure iRODS runtime is installed
-  package:
-    name='{{ item }}'
-    state=present
-  with_items:
-    - '{{ rpm_dest_dir }}/{{ irods_runtime_rpm }}'
+  package: name='{{ rpm_dest_dir }}/{{ irods_runtime.filename }}' state=present

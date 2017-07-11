@@ -1,2 +1,4 @@
 ---
-yoda_version: development
+# copyright Utrecht University
+
+yoda_version: development # The YoDa version to be deployed.

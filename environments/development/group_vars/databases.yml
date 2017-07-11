@@ -1,5 +1,7 @@
 ---
-irods_admin: irods
-irods_database: ICAT
-irods_database_user: irodsdb
-irods_database_password: irodsdev
+# copyright Utrecht University
+
+irods_admin: irods                # The iRODS admin.
+irods_database: ICAT              # The iRODS database name.
+irods_database_user: irodsdb      # The iRODS database user.
+irods_database_password: irodsdev # The iRODS database password.

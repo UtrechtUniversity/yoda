@@ -1,15 +1,22 @@
 ---
-# ansible vars for this role
 # copyright Utrecht University
 
 rolename: irods-icat
 
+# Temporary directory to store downloaded rpm files.
 rpm_dest_dir: /tmp
-irods_rpm_ftp: ftp://ftp.renci.org/pub/irods/releases/4.1.8/centos7
-irods_icat_rpm: irods-icat-4.1.8-centos7-x86_64.rpm
-irods_icat_rpm_sha256: sha256:ea4b0ec21d1ba186062382ea6ecdb25e9f9299434ddaad1086eb3cd8b22a8719
-irods_db_rpm: irods-database-plugin-postgres-1.8-centos7-x86_64.rpm
-irods_db_rpm_sha256: sha256:1d42fddaf243890aad03fb9da47cb259cd13cb0539a8fc81f3af0610d08b9c6d
+
+# iRODS iCAT rpm location and checksum
+irods_icat:
+  url: ftp://ftp.renci.org/pub/irods/releases/4.1.8/centos7
+  filename: irods-icat-4.1.8-centos7-x86_64.rpm
+  checksum: sha256:ea4b0ec21d1ba186062382ea6ecdb25e9f9299434ddaad1086eb3cd8b22a8719
+
+# iRODS database plugin rpm location and checksum
+irods_db:
+  url: ftp://ftp.renci.org/pub/irods/releases/4.1.8/centos7
+  filename: irods-database-plugin-postgres-1.8-centos7-x86_64.rpm
+  checksum: sha256:1d42fddaf243890aad03fb9da47cb259cd13cb0539a8fc81f3af0610d08b9c6d
 
 account_user: irods
 account_group: irods
@@ -27,8 +34,8 @@ schema_uri: https://schemas.irods.org/configuration
 irods_admin: irods
 irods_passwd: rods
 
-irods_database_port: 5432
-irods_database: ICAT
-irods_database_user: irodsdb
-irods_database_password: irodsdev
+irods_database_port: 5432         # The iRODS database port.
+irods_database: ICAT              # The iRODS database name.
+irods_database_user: irodsdb      # The iRODS database user.
+irods_database_password: irodsdev # The iRODS database password.
 
