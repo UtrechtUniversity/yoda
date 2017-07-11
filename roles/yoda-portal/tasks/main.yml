@@ -119,6 +119,7 @@
     owner: "{{ yoda_deployment_user }}"
     mode: 0644
     force: no
+  when: config_local.stat.exists == False
 
 
 - name: Create .htaccess
