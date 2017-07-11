@@ -1,0 +1,10 @@
+---
+# copyright Utrecht University
+
+- name: Ensure basics (vim, bind-utils, etc.) are installed
+  yum: name={{ item }} state=present
+  with_items:
+    - bind-utils
+    - vim
+    - htop
+    - git
