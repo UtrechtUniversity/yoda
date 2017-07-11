@@ -27,6 +27,7 @@
     - irods-icat
     - irods-runtime
     - irods-microservices
+    - yoda-rulesets
 
 
 - name: Provision resource server

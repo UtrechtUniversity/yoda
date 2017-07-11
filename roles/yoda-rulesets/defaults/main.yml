@@ -1,0 +1,16 @@
+---
+update_rulesets: no
+rulesets:
+  - name: irods-ruleset-uu
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
+    ruleset_name: rules-uu
+    version: master
+  - name: irods-ruleset-research
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-research.git
+    ruleset_name: rules-ii
+    version: master
+  - name: irods-ruleset-i-lab
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-i-lab.git
+    ruleset_name: rules-i-lab
+    version: master
+
