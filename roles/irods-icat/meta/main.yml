@@ -1,5 +1,4 @@
 ---
-# ansible meta definitions for this role
 # copyright Utrecht University
 
 dependencies:

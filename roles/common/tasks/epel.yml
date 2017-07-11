@@ -1,5 +1,5 @@
 ---
 # copyright Utrecht University
 
-- name: Enable EPEL repository 
+- name: Enable EPEL repository
   yum: name=epel-release state=present

@@ -76,16 +76,29 @@
   run_once: true
 
 
-- name: Enable icat port in firewall
-  firewalld: port={{ icat_port }}/tcp permanent=true state=enabled immediate=yes
+- name: Enable iCAT port in firewall
+  firewalld:
+    port: '{{ icat_port }}/tcp'
+    permanent: true
+    state: enabled
+    immediate: yes
   notify: Restart firewall
 
 
 - name: Enable control plane port in firewall
-  firewalld: port={{ control_plane_port }}/tcp permanent=true state=enabled immediate=yes
+  firewalld:
+    port: '{{ control_plane_port }}/tcp'
+    permanent: true
+    state: enabled
+    immediate: yes
   notify: Restart firewall
 
-- name: Enable irods transfer port range in firewall
-  firewalld: port={{ port_range_begin }}-{{ port_range_end }}/tcp permanent=true state=enabled immediate=yes
+
+- name: Enable iRODS transfer port range in firewall
+  firewalld:
+    port: '{{ port_range_begin }}-{{ port_range_end }}/tcp'
+    permanent: true
+    state: enabled
+    immediate: yes
   notify: Restart firewall
 
