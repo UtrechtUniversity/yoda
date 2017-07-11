@@ -3,14 +3,14 @@
 # copyright Utrecht University
 
 - name: Download iRODS iCAT server rpm
-  get_url: 
+  get_url:
     url='{{irods_rpm_ftp}}/{{irods_icat_rpm}}'
     dest='{{rpm_dest_dir}}/{{irods_icat_rpm}}'
     checksum='{{irods_icat_rpm_sha256}}'
 
 
 - name: Download iRODS database plugin rpm
-  get_url: 
+  get_url:
     url='{{irods_rpm_ftp}}/{{irods_db_rpm}}'
     dest='{{rpm_dest_dir}}/{{irods_db_rpm}}'
     checksum='{{irods_db_rpm_sha256}}'
@@ -22,15 +22,45 @@
     state=present
   with_items:
     - epel-release
-    
-    
+
+
 - name: Install iRODS iCAT server and database plugin
-  yum: 
+  yum:
     name='{{item}}'
     state=present
   with_items:
     - '{{rpm_dest_dir}}/{{irods_icat_rpm}}'
     - '{{rpm_dest_dir}}/{{irods_db_rpm}}'
+
+
+- name: Generate zone key
+  command: 'openssl rand -hex 16'
+  register: zone_key
+
+
+- name: Store zone key in variable
+  set_fact:
+    irods_zone_key: '{{ zone_key.stdout }}'
+
+
+- name: Generate negotiation key
+  command: 'openssl rand -hex 16'
+  register: negotiation_key
+
+
+- name: Store negotiation key in variable
+  set_fact:
+    irods_negotiation_key: '{{ negotiation_key.stdout }}'
+
+
+- name: Generate control plane key
+  command: 'openssl rand -hex 16'
+  register: control_plane_key
+
+
+- name: Store control plane key in variable
+  set_fact:
+    irods_control_plane_key: '{{ control_plane_key.stdout }}'
 
 
 - name: Copy responses for setup_irods.sh

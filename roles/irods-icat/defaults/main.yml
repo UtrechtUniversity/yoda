@@ -21,10 +21,7 @@ port_range_begin: 20000
 port_range_end: 20199
 
 vault_directory: /var/lib/irods/Vault
-zone_key: jdgEp5fqdGw4YcDbGrUttC5TenRMKpGN
-negotiation_key: bhQQK4euWGDPHmtyvHtUycLAHTBNv6Rw
 control_plane_port: 1248
-control_plane_key: uiw3SC3ZfaP9TaWLLQQgw5MyhKQC5SUF
 schema_uri: https://schemas.irods.org/configuration
 
 irods_admin: irods
