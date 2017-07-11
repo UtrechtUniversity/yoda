@@ -83,6 +83,20 @@
     dest: /var/www/yoda/yoda-portal/public/statistics
     state: link
 
+- name: Check if config_local.php exists
+  stat: path=/var/www/yoda/yoda-portal/config/config_local.php
+  register: config_local
+
+- name: Generate php session encryption key
+  command: 'openssl rand -base64 32'
+  register: random_key
+  when: config_local.stat.exists == False
+
+- name: Store encryption key in variable
+  set_fact: 
+    yoda_php_encryption_key: '{{ random_key.stdout }}'
+  when: config_local.stat.exists == False
+
 - name: Create config_local.php
   template:
     src: config_local.php.j2

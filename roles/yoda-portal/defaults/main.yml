@@ -6,9 +6,9 @@ yoda_version: development
 irods_php_version: master
 codeigniter_version: 2.2-uu 
 
-icat_fqdn: localhost
-irods_zone: nluu1dev
-irods_default_resource: irodsResc
+icat_fqdn: icat.yoda.dev
+irods_zone: tempZone
+irods_default_resource: demoResc
 irods_auth_type: STANDARD
 
 portal_encryption_key: RANDOM_KEY9999
