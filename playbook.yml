@@ -15,6 +15,7 @@
     - apache
     - php
     - yoda-portal
+    - irods-icommands
 
 
 - name: Provision database server
