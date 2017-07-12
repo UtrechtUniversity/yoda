@@ -18,24 +18,22 @@ irods_db:
   filename: irods-database-plugin-postgres-1.8-centos7-x86_64.rpm
   checksum: sha256:1d42fddaf243890aad03fb9da47cb259cd13cb0539a8fc81f3af0610d08b9c6d
 
-account_user: irods
-account_group: irods
-
-icat_zone: tempZone
-icat_port: 1247
-
-port_range_begin: 20000
-port_range_end: 20199
-
-vault_directory: /var/lib/irods/Vault
-control_plane_port: 1248
-schema_uri: https://schemas.irods.org/configuration
-
-irods_admin: irods
-irods_passwd: rods
-
-irods_database_port: 5432         # The iRODS database port.
-irods_database: ICAT              # The iRODS database name.
-irods_database_user: irodsdb      # The iRODS database user.
-irods_database_password: irodsdev # The iRODS database password.
-
+# iRODS configuration.
+irods:
+  admin: irods
+  password: rods
+  database:
+    name: ICAT
+    port: 5432
+    user: irodsdb
+    password: irodsdev
+  port_range:
+    begin: 20000
+    end: 20199
+  icat:
+    zone: tempZone
+    port: 1247
+  service_account: irods
+  vault_directory: /var/lib/irods/Vault
+  control_plane_port: 1248
+  schema_uri: https://schemas.irods.org/configuration

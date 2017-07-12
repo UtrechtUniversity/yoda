@@ -69,7 +69,7 @@
 
 
 - name: Configure iRODS iCAT server
-  command:
+  shell:
     /var/lib/irods/packaging/setup_irods.sh < /home/{{ ansible_ssh_user }}/setup_irods
   args:
     creates: /etc/irods/service_account.config
@@ -78,7 +78,7 @@
 
 - name: Enable iCAT port in firewall
   firewalld:
-    port: '{{ icat_port }}/tcp'
+    port: '{{ irods.icat.port }}/tcp'
     permanent: true
     state: enabled
     immediate: yes
@@ -87,7 +87,7 @@
 
 - name: Enable control plane port in firewall
   firewalld:
-    port: '{{ control_plane_port }}/tcp'
+    port: '{{ irods.control_plane_port }}/tcp'
     permanent: true
     state: enabled
     immediate: yes
@@ -96,7 +96,7 @@
 
 - name: Enable iRODS transfer port range in firewall
   firewalld:
-    port: '{{ port_range_begin }}-{{ port_range_end }}/tcp'
+    port: '{{ irods.port_range.begin }}-{{ irods.port_range.end }}/tcp'
     permanent: true
     state: enabled
     immediate: yes

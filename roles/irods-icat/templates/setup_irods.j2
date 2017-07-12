@@ -1,21 +1,21 @@
-{{ account_user }}
-{{ account_group }}
-{{ icat_zone }}
-{{ icat_port }}
-{{ port_range_begin }}
-{{ port_range_end }}
-{{ vault_directory }}
+{{ irods.service_account }}
+{{ irods.service_account }}
+{{ irods.icat.zone }}
+{{ irods.icat.port }}
+{{ irods.port_range.begin }}
+{{ irods.port_range.end }}
+{{ irods.vault_directory }}
 {{ irods_zone_key }}
 {{ irods_negotiation_key }}
-{{ control_plane_port }}
+{{ irods.control_plane_port }}
 {{ irods_control_plane_key }}
-{{ schema_uri }}
-{{ irods_admin }}
-{{ irods_passwd }}
+{{ irods.schema_uri }}
+{{ irods.admin }}
+{{ irods.password }}
 yes
 {{ hostvars['database']['ansible_eth1']['ipv4']['address'] }}
-{{ irods_database_port }}
-{{ irods_database }}
-{{ irods_database_user }}
-{{ irods_database_password }}
+{{ irods.database.port }}
+{{ irods.database.name }}
+{{ irods.database.user }}
+{{ irods.database.password }}
 yes
