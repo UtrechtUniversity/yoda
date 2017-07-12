@@ -8,13 +8,16 @@
     version: "{{ item.version }}"
     update: "{{ update_rulesets }}"
   with_items: "{{ rulesets }}"
+  register: repochanges
 
 - name: Run make install for each ruleset
   become_user: irods
   become: yes
   shell: make install
   args:
-    chdir: "/etc/irods/{{ item.name }}"
-    creates: "/etc/irods/{{ item.ruleset_name }}.re"
-  with_items: "{{ rulesets }}"
+    chdir: "/etc/irods/{{ item.0.name }}"
+  when: item.1.changed
+  with_together:
+    - "{{ rulesets }}"
+    - "{{ repochanges.results }}"
 
