@@ -1,4 +1,6 @@
 ---
+# copyright Utrecht University
+
 update_rulesets: no
 rulesets:
   - name: irods-ruleset-uu

@@ -1,4 +1,5 @@
 ---
+# copyright Utrecht University
 # This playbook deploys the whole application stack in this site.
 
 - name: Provision portal server

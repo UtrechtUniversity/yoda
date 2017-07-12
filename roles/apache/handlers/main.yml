@@ -1,4 +1,5 @@
 ---
+# copyright Utrecht University
 
 - name: Restart Apache webserver
   service: name=httpd state=restarted

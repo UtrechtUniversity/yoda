@@ -1,4 +1,6 @@
 ---
+# copyright Utrecht University
+
 - name: Checkout rulesets from github
   become_user: irods
   become: yes
@@ -9,6 +11,7 @@
     update: "{{ update_rulesets }}"
   with_items: "{{ rulesets }}"
   register: repochanges
+
 
 - name: Run make install for each ruleset
   become_user: irods
