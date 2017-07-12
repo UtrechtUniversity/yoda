@@ -10,5 +10,13 @@ davrods:
   filename: davrods-4.1_1.1.1-1.el7.centos.x86_64.rpm
   checksum: sha256:571cb1bf10e60443374d3d7cb5496563c1bbc1a140b782297425bd20976cfd2f
 
-irods_port: 1247
-irods_default_resource: demoResc
+# authentication is either "Pam"  or "Native" 
+yoda_davrods_authentication: Pam
+yoda_disk_vhost: data
+
+irods:
+  icat:
+    host: icat
+  default_resource: demoResc
+  zone: tempZone
+  port: 1247

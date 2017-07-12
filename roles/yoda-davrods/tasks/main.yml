@@ -10,7 +10,6 @@
 
 - name: Install davrods rpm
   package: name='{{ rpm_dest_dir }}/{{ davrods.filename }}' state=present
-  notify: Restart Apache webserver
 
 
 - name: Allow Apache to execute davrods module
@@ -26,6 +25,17 @@
     owner: apache
     group: apache
     mode: 0644
+  notify: Restart Apache webserver
+
+
+# - name: Copy davrods Apache configuration to /etc/httpd/conf.d/davrods-vhost.conf
+#   template:
+#     src: davrods-vhost.conf
+#     dest: /etc/httpd/conf.d/davrods-vhost.conf
+#     owner: root
+#     group: root
+#     mode: 0644
+#   notify: Restart Apache webserver
 
 
 - name: Allow Apache to execute iRODS network tcp plugin
