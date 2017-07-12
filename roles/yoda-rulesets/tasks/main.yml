@@ -34,5 +34,8 @@
 
 - name: Add rulesets to server config
   shell:
-    /home/{{ ansible_ssh_user }}/configure_rulesets.py /etc/irods/server_config.json {{ item.ruleset_name }}
-  with_items: "{{ rulesets }}"
+    /home/{{ ansible_ssh_user }}/configure_rulesets.py /etc/irods/server_config.json {{ item.0.ruleset_name }}
+  when: item.1.changed
+  with_together:
+    - "{{ rulesets }}"
+    - "{{ repochanges.results }}"
