@@ -18,6 +18,7 @@
   hosts: databases
   become: yes
   roles:
+    - postgresql
     - irods-database
 
 

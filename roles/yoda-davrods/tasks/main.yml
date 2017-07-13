@@ -28,7 +28,7 @@
   notify: Restart Apache webserver
 
 
-# - name: Copy davrods Apache configuration to /etc/httpd/conf.d/davrods-vhost.conf
+# - name: Copy davrods Apache configuration
 #   template:
 #     src: davrods-vhost.conf
 #     dest: /etc/httpd/conf.d/davrods-vhost.conf

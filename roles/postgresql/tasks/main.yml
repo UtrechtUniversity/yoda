@@ -1,0 +1,51 @@
+---
+# copyright Utrecht University
+
+- name: Ensure PostgreSQL database is installed
+  package: name={{ item }} state=present
+  with_items:
+    - postgresql-server
+    - postgresql-contrib
+
+
+- name: Ensure dependencies for Ansible module are installed
+  package: name={{ item }} state=present
+  with_items:
+    - python-psycopg2
+
+
+- name: Initialize PostgreSQL database
+  command: postgresql-setup initdb
+           creates=/var/lib/pgsql/data/postgresql.conf
+
+
+- name: Ensure PostgreSQL is enabled and started
+  service: name=postgresql enabled=yes state=started
+
+
+- name: Password protect loopback IPv4 connections
+  lineinfile:
+    dest: /var/lib/pgsql/data/pg_hba.conf
+    regexp: 'host\s+all\s+all\s+127.0.0.1/32'
+    line: 'host all all 127.0.0.1/32 md5'
+  notify: Restart PostgreSQL
+
+
+- name: Password protect loopback IPv6 connections
+  lineinfile:
+    dest: /var/lib/pgsql/data/pg_hba.conf
+    regexp: 'host\s+all\s+all\s+::1/128'
+    line: 'host all all ::1/128 md5'
+  notify: Restart PostgreSQL
+
+
+- name: Listen on all interfaces
+  lineinfile:
+    dest: /var/lib/pgsql/data/postgresql.conf
+    line: "listen_addresses = '*'"
+  notify: Restart PostgreSQL
+
+
+- name: Allow access to port 5432 in firewall
+  firewalld: port=5432/tcp permanent=true state=enabled immediate=yes
+  notify: Restart firewall
