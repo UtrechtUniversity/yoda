@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 yoda_version: development
-update_rulesets: no
+update_rulesets: yes
 rulesets:
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
@@ -10,7 +10,7 @@ rulesets:
     version: "{{ yoda_version }}"
   - name: irods-ruleset-research
     repo: https://github.com/UtrechtUniversity/irods-ruleset-research.git
-    ruleset_name: rules-ii
+    ruleset_name: rules-research
     version: "{{ yoda_version }}"
   - name: irods-ruleset-i-lab
     repo: https://github.com/UtrechtUniversity/irods-ruleset-i-lab.git
