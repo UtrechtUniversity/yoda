@@ -15,7 +15,13 @@
     checksum='{{ irods_db.checksum }}'
 
 
-- name: Install iRODS iCAT server and database plugin
+- name: Ensure iRODS iCommands are absent
+  package:
+    name='irods-icommands'
+    state=absent
+
+
+- name: Ensure iRODS iCAT server and database plugin are present
   package:
     name='{{ item }}'
     state=present
@@ -100,4 +106,3 @@
     state: enabled
     immediate: yes
   notify: Restart firewall
-
