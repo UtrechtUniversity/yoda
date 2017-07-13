@@ -21,6 +21,7 @@ irods_db:
 # iRODS configuration.
 irods_admin: irods
 irods_password: rods
+irods_database_fqdn: database.yoda.dev
 irods_database_name: ICAT
 irods_database_port: 5432
 irods_database_user: irodsdb
