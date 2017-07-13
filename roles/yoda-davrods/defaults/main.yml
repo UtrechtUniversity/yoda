@@ -14,9 +14,8 @@ davrods:
 yoda_davrods_authentication: Pam
 yoda_disk_vhost: data
 
-irods:
-  icat:
-    host: icat
-  default_resource: demoResc
-  zone: tempZone
-  port: 1247
+# iRODS configuration.
+irods_icat_host: icat
+irods_default_resource: demoResc
+irods_zone: tempZone
+irods_port: 1247

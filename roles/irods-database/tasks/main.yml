@@ -13,7 +13,7 @@
   become_user: postgres
   become: yes
   postgresql_db:
-    name: "{{ irods.database.name }}"
+    name: "{{ irods_database_name }}"
     encoding: UTF-8
     template: template0
 
@@ -22,7 +22,7 @@
   become_user: postgres
   become: yes
   postgresql_user:
-    db: "{{ irods.database.name }}"
-    name: "{{ irods.database.user }}"
-    password: "{{ irods.database.password }}"
+    db: "{{ irods_database_name }}"
+    name: "{{ irods_database_user }}"
+    password: "{{ irods_database_password }}"
     priv: ALL

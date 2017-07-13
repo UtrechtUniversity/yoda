@@ -21,4 +21,5 @@ microservices:
     filename: irods-microservice-plugins-loadmeta-1.6-centos7.rpm
     checksum: sha256:bb4872bbb5d0884a90553bbc67202e991efce5dbdb76f89453c6e22522ea13c7
 
+# iRODS configuration.
 irods_service_account: irods

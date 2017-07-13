@@ -83,7 +83,7 @@
 
 - name: Enable iCAT port in firewall
   firewalld:
-    port: '{{ irods.icat.port }}/tcp'
+    port: '{{ irods_icat_port }}/tcp'
     permanent: true
     state: enabled
     immediate: yes
@@ -92,7 +92,7 @@
 
 - name: Enable control plane port in firewall
   firewalld:
-    port: '{{ irods.control_plane_port }}/tcp'
+    port: '{{ irods_control_plane_port }}/tcp'
     permanent: true
     state: enabled
     immediate: yes
@@ -101,7 +101,7 @@
 
 - name: Enable iRODS transfer port range in firewall
   firewalld:
-    port: '{{ irods.port_range.begin }}-{{ irods.port_range.end }}/tcp'
+    port: '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
     permanent: true
     state: enabled
     immediate: yes
