@@ -8,7 +8,7 @@ rpm_dest_dir: /tmp
 
 # iRODS iCAT rpm location and checksum
 irods_icat:
-  url: ftp://ftp.renci.or/pub/irods/releases/4.1.8/centos7
+  url: ftp://ftp.renci.org/pub/irods/releases/4.1.8/centos7
   filename: irods-icat-4.1.8-centos7-x86_64.rpm
   checksum: sha256:ea4b0ec21d1ba186062382ea6ecdb25e9f9299434ddaad1086eb3cd8b22a8719
 
