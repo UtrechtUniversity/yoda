@@ -2,6 +2,13 @@
 # copyright Utrecht University
 # This playbook deploys the whole application stack in this site.
 
+- name: Add hosts entries to development instances
+  hosts: development
+  become: yes
+  roles:
+    - hostentries
+
+
 - name: Provision portal server
   hosts: portals
   become: yes
@@ -39,10 +46,3 @@
     - irods-resource
     - irods-runtime
     - irods-microservices
-
-
-- name: Add hosts entries to development instances
-  hosts: development
-  become: yes
-  roles:
-    - hostentries
