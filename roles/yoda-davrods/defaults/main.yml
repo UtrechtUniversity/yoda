@@ -11,11 +11,11 @@ davrods:
   checksum: sha256:571cb1bf10e60443374d3d7cb5496563c1bbc1a140b782297425bd20976cfd2f
 
 # authentication is either "Pam"  or "Native" 
-yoda_davrods_authentication: Pam
+yoda_davrods_authentication: Native
 yoda_disk_vhost: data
 
 # iRODS configuration.
-irods_icat_host: icat
+irods_icat_host: icat.yoda.dev
 irods_default_resource: demoResc
 irods_zone: tempZone
 irods_port: 1247

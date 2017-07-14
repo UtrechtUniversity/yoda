@@ -1,6 +1,15 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure davrods prerequisites are installed
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+  - boost
+  - jansson
+
+
 - name: Download davrods rpm
   get_url:
     url: '{{ davrods.url }}/{{ davrods.filename }}'
@@ -8,7 +17,7 @@
     checksum: '{{ davrods.checksum }}'
 
 
-- name: Install davrods rpm
+- name: Ensure davrods rpm is installed
   package:
     name: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     state: present
@@ -30,14 +39,14 @@
   notify: Restart Apache webserver
 
 
-# - name: Copy davrods Apache configuration
-#   template:
-#     src: davrods-vhost.conf
-#     dest: /etc/httpd/conf.d/davrods-vhost.conf
-#     owner: root
-#     group: root
-#     mode: 0644
-#   notify: Restart Apache webserver
+- name: Copy davrods Apache configuration
+  template:
+    src: davrods-vhost.conf.j2
+    dest: /etc/httpd/conf.d/davrods-vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Apache webserver
 
 
 - name: Allow Apache to execute iRODS network tcp plugin
