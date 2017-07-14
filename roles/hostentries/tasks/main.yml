@@ -4,6 +4,8 @@
 - name: Insert host entries for every dev server
   lineinfile:
     dest: /etc/hosts
-    line: "{{ hostvars[item].ansible_host }} {{ hostvars[item].ansible_fqdn }} {{ hostvars[item].ansible_hostname }}"
+    line: "{{ hostvars[item].ansible_host }}
+      {{ hostvars[item].ansible_fqdn }}
+      {{ hostvars[item].ansible_hostname }}"
     state: present
   with_items: "{{ groups.development }}"

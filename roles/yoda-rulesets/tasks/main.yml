@@ -33,8 +33,8 @@
 
 
 - name: Reset server config rulesets
-  shell:
-    /home/{{ ansible_ssh_user }}/configure_rulesets.py /etc/irods/server_config.json 0 1
+  shell: /home/{{ ansible_ssh_user }}/configure_rulesets.py
+    /etc/irods/server_config.json 0 1
   when: item.1.changed
   with_together:
     - "{{ rulesets }}"
@@ -42,8 +42,8 @@
 
 
 - name: Add rulesets to server config
-  shell:
-    /home/{{ ansible_ssh_user }}/configure_rulesets.py /etc/irods/server_config.json {{ item.0.ruleset_name }}
+  shell: /home/{{ ansible_ssh_user }}/configure_rulesets.py
+    /etc/irods/server_config.json {{ item.0.ruleset_name }}
   when: item.1.changed
   with_together:
     - "{{ rulesets }}"

@@ -123,7 +123,9 @@
 
 
 - name: Create .htaccess
-  command: cp /var/www/yoda/yoda-portal/public/.htaccess.template /var/www/yoda/yoda-portal/public/.htaccess creates=/var/www/yoda/yoda-portal/public/.htaccess
+  command: cp /var/www/yoda/yoda-portal/public/.htaccess.template
+    /var/www/yoda/yoda-portal/public/.htaccess
+    creates=/var/www/yoda/yoda-portal/public/.htaccess
 
 
 - name: Link portal into /var/www/html
