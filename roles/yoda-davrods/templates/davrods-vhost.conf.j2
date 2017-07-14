@@ -6,7 +6,7 @@
 # Below we provide an example vhost configuration that enables davrods using
 # its default options.
 #
-<VirtualHost *:8080>
+<VirtualHost *:443>
 
     # Enter your server name here.
     ServerName {{ yoda_disk_vhost }}
@@ -128,42 +128,16 @@
         #DavRodsLockDB          /var/lib/davrods/lockdb_locallock
 
     </Location>
-</VirtualHost>
-    # To avoid cleartext password communication we strongly recommend to
-    # enable davrods only over SSL.
-    # For HTTPS-only access, change the port at the start of the vhost block
-    # from 80 to 443 and add your SSL options below.
 
-<VirtualHost *:443>
-  ServerName {{ yoda_disk_vhost }}
+    SSLEngine on
 
-  <Location />
-    DirectoryIndex disabled
-#
-Dav davrods-locallock
-#
-    AuthType Basic
-    AuthName DAV
-    AuthBasicProvider irods
-    Require valid-user
+    SSLProtocol all -SSLv2 -SSLv3
 
-    DavRodsEnvFile         /etc/httpd/irods/irods_environment.json
-    DavRodsServer          {{ irods_icat_host }} {{ irods_port }}
-    DavRodsZone            {{ irods_zone }}
-    DavRodsAuthScheme      {{ yoda_davrods_authentication }}
-    DavRodsExposedRoot     Home
-  </Location>
+    SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
 
-  SSLEngine on
+    SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+    SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
 
-  SSLProtocol all -SSLv2 -SSLv3
-
-  SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
-
-  SSLCertificateFile /etc/pki/tls/certs/localhost.crt
-  SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
-
-  CustomLog logs/ssl_request_log \
-            "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
-
+    CustomLog logs/ssl_request_log \
+              "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
 </VirtualHost>
