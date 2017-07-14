@@ -3,28 +3,28 @@
 
 - name: Download iRODS iCAT server rpm
   get_url:
-    url='{{ irods_icat.url }}/{{ irods_icat.filename }}'
-    dest='{{ rpm_dest_dir }}/{{ irods_icat.filename }}'
-    checksum='{{ irods_icat.checksum }}'
+    url: '{{ irods_icat.url }}/{{ irods_icat.filename }}'
+    dest: '{{ rpm_dest_dir }}/{{ irods_icat.filename }}'
+    checksum: '{{ irods_icat.checksum }}'
 
 
 - name: Download iRODS database plugin rpm
   get_url:
-    url='{{ irods_db.url }}/{{ irods_db.filename }}'
-    dest='{{ rpm_dest_dir }}/{{ irods_db.filename }}'
-    checksum='{{ irods_db.checksum }}'
+    url: '{{ irods_db.url }}/{{ irods_db.filename }}'
+    dest: '{{ rpm_dest_dir }}/{{ irods_db.filename }}'
+    checksum: '{{ irods_db.checksum }}'
 
 
 - name: Ensure iRODS iCommands are absent
   package:
-    name='irods-icommands'
-    state=absent
+    name: 'irods-icommands'
+    state: absent
 
 
 - name: Ensure iRODS iCAT server and database plugin are present
   package:
-    name='{{ item }}'
-    state=present
+    name: '{{ item }}'
+    state: present
   with_items:
     - '{{ rpm_dest_dir }}/{{ irods_icat.filename }}'
     - '{{ rpm_dest_dir }}/{{ irods_db.filename }}'

@@ -3,13 +3,15 @@
 
 - name: Download davrods rpm
   get_url:
-    url='{{ davrods.url }}/{{ davrods.filename }}'
-    dest='{{ rpm_dest_dir }}/{{ davrods.filename }}'
-    checksum='{{ davrods.checksum }}'
+    url: '{{ davrods.url }}/{{ davrods.filename }}'
+    dest: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
+    checksum: '{{ davrods.checksum }}'
 
 
 - name: Install davrods rpm
-  package: name='{{ rpm_dest_dir }}/{{ davrods.filename }}' state=present
+  package:
+    name: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
+    state: present
 
 
 - name: Allow Apache to execute davrods module

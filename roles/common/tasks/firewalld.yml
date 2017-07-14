@@ -1,10 +1,15 @@
 ---
 # copyright Utrecht University
 
-- name: Install firewall
-  package: name=firewalld state=present
+- name: Ensure firewall is installed
+  package:
+    name: firewalld
+    state: present
   notify: Restart firewall
 
 
 - name: Ensure firewall is running and enabled
-  service: name=firewalld state=started enabled=yes
+  service:
+    name: firewalld
+    state: started
+    enabled: yes

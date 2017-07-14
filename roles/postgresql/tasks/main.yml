@@ -2,25 +2,32 @@
 # copyright Utrecht University
 
 - name: Ensure PostgreSQL database is installed
-  package: name={{ item }} state=present
+  package:
+    name: '{{ item }}'
+    state: present
   with_items:
     - postgresql-server
     - postgresql-contrib
 
 
 - name: Ensure dependencies for Ansible module are installed
-  package: name={{ item }} state=present
+  package:
+    name: '{{ item }}'
+    state: present
   with_items:
     - python-psycopg2
 
 
 - name: Initialize PostgreSQL database
   command: postgresql-setup initdb
-           creates=/var/lib/pgsql/data/postgresql.conf
+    creates=/var/lib/pgsql/data/postgresql.conf
 
 
 - name: Ensure PostgreSQL is enabled and started
-  service: name=postgresql enabled=yes state=started
+  service:
+    name: postgresql
+    enabled: yes
+    state: started
 
 
 - name: Password protect loopback IPv4 connections
@@ -47,5 +54,9 @@
 
 
 - name: Allow access to port 5432 in firewall
-  firewalld: port=5432/tcp permanent=true state=enabled immediate=yes
+  firewalld:
+    port: 5432/tcp
+    permanent: true
+    state: enabled
+    immediate: yes
   notify: Restart firewall

@@ -1,17 +1,21 @@
 ---
 # copyright Utrecht University
 
-- name: Install ntp
-  package: name=ntp state=present
-  tags: ntp
-
-
-- name: Configure ntp file
-  template: src=ntp.conf.j2 dest=/etc/ntp.conf
-  tags: ntp
-  notify: Restart ntp
+- name: Ensure ntp is installed
+  package:
+    name: ntp
+    state: present
 
 
 - name: Ensure the ntp service is running and enabled
-  service: name=ntpd state=started enabled=yes
-  tags: ntp
+  service:
+    name: ntpd
+    state: started
+    enabled: yes
+
+
+- name: Configure ntp.conf file
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+  notify: Restart ntp
