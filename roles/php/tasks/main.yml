@@ -19,31 +19,18 @@
     persistent: yes
 
 
-- name: Configure PHP timezone
+- name: Configure PHP in php.ini
   ini_file:
     path: /etc/php.ini
     section: Date
-    option: date.timezone
-    value: Europe/Amsterdam
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
     mode: 0600
-  notify: Restart Apache webserver
-
-
-- name: Configure the exposure of PHP version
-  ini_file:
-    path: /etc/php.ini
-    section: PHP
-    option: expose_php
-    value: Off
-    mode: 0600
-  notify: Restart Apache webserver
-
-
-- name: Configure the max execution time of PHP
-  ini_file:
-    path: /etc/php.ini
-    section: PHP
-    option: max_execution_time
-    value: 120
-    mode: 0600
+  with_items:
+    - option: date.timezone
+      value: Europe/Amsterdam
+    - option: expose_php
+      value: Off
+    - option: max_execution_time
+      value: 120
   notify: Restart Apache webserver

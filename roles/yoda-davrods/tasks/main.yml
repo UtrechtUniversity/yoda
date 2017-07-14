@@ -49,13 +49,10 @@
   notify: Restart Apache webserver
 
 
-- name: Allow Apache to execute iRODS network tcp plugin
+- name: Allow Apache to execute iRODS network plugins
   file:
-    path: /var/lib/irods/plugins/network/libtcp.so
+    path: '{{ item }}'
     setype: httpd_sys_script_exec_t
-
-
-- name: Allow Apache to execute iRODS network ssl plugin
-  file:
-    path: /var/lib/irods/plugins/network/libssl.so
-    setype: httpd_sys_script_exec_t
+  with_items:
+    - /var/lib/irods/plugins/network/libtcp.so
+    - /var/lib/irods/plugins/network/libssl.so

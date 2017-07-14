@@ -4,13 +4,33 @@
 yoda_deployment_user: yodadeployment
 
 yoda_version: development
-irods_php_version: master
+irods_php_version: development
 codeigniter_version: 2.2-uu
 
 portal_server_name: portal.yoda.dev
-update_portal: yes
-
+update_portal: no
 yoda_php_encryption_key: dummy
+
+# YoDa portal sources
+portal_sources:
+  - repo: "https://github.com/UtrechtUniversity/CodeIgniter.git"
+    dest: /var/www/yoda/CodeIgniter
+    version: "{{ codeigniter_version }}"
+  - repo: "https://github.com/UtrechtUniversity/irods-php.git"
+    dest: /var/www/yoda/irods-php
+    version: "{{ irods_php_version }}"
+  - repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
+    dest: /var/www/yoda/yoda-portal
+    version: "{{ yoda_version }}"
+  - repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
+    dest: /var/www/yoda/yoda-portal/modules/group-manager
+    version: "{{ yoda_version }}"
+  - repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
+    dest: /var/www/yoda/yoda-portal/modules/research
+    version: "{{ yoda_version }}"
+  - repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
+    dest: /var/www/yoda/yoda-portal/modules/statistics
+    version: "{{ yoda_version }}"
 
 # iRODS configuration.
 irods_default_resource: demoResc

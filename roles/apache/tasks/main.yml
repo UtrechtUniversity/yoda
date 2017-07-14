@@ -11,21 +11,15 @@
   - openssl
 
 
-- name: Allow public to port 80 in firewall
+- name: Allow public to ports for Apache in firewall
   firewalld:
-    port: 80/tcp
+    port: '{{ item }}/tcp'
     permanent: true
     state: enabled
     immediate: yes
-  notify: Restart firewall
-
-
-- name: Allow public to port 443 in firewall
-  firewalld:
-    port: 443/tcp
-    permanent: true
-    state: enabled
-    immediate: yes
+  with_items:
+    - 80
+    - 443
   notify: Restart firewall
 
 
