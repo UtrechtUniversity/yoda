@@ -46,6 +46,7 @@
     - irods-runtime
     - irods-microservices
     - yoda-rulesets
+    - composable-resources
 
 
 - name: Provision resource server

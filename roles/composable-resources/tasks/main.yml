@@ -1,0 +1,14 @@
+---
+- name: Install pip
+  yum:
+    name: python-pip
+
+- name: Install python-irodsclient
+  pip:
+    name: python-irodsclient
+
+- name: Test resource
+  become_user: irods
+  become: yes
+  irods_resource:
+    name: irodsResc
