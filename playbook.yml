@@ -2,6 +2,15 @@
 # copyright Utrecht University
 # This playbook deploys the whole application stack in this site.
 
+- hosts: all
+  pre_tasks:
+    - name: Verify Ansible version meets requirements
+      assert:
+        that: "ansible_version.full | version_compare('2.3', '>=')"
+        msg: >
+          "You must update Ansible to at least 2.3 to deploy YoDa."
+
+
 - name: Add hosts entries to development instances
   hosts: development
   become: yes
