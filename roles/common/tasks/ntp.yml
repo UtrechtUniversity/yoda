@@ -14,8 +14,22 @@
     enabled: yes
 
 
+- name: Configure timezone for ntp
+  timezone:
+    name: '{{ ntp_timezone }}'
+
+
 - name: Configure ntp.conf file
   template:
     src: ntp.conf.j2
     dest: /etc/ntp.conf
   notify: Restart ntp
+
+
+- name: Allow ntp on port 123 in firewall
+  firewalld:
+    port: 123/udp
+    permanent: true
+    state: enabled
+    immediate: yes
+  notify: Restart firewall
