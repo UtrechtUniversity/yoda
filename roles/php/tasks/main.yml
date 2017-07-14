@@ -19,31 +19,31 @@
     persistent: yes
 
 
-- name: Set PHP timezone
-  lineinfile:
-    dest: /etc/php.ini
-    create: no
-    insertafter: '^;date.timezone\s*=.*$'
-    state: present
-    line: 'date.timezone = Europe/Amsterdam'
-    backup: yes
+- name: Configure PHP timezone
+  ini_file:
+    path: /etc/php.ini
+    section: Date
+    option: date.timezone
+    value: Europe/Amsterdam
+    mode: 0600
+  notify: Restart Apache webserver
 
 
-- name: Limit exposure of PHP version
-  lineinfile:
-     dest: /etc/php.ini
-     create: no
-     regexp: '^expose_php\s*=.*$'
-     state: present
-     line: 'expose_php = Off'
-     backup: no
+- name: Configure the exposure of PHP version
+  ini_file:
+    path: /etc/php.ini
+    section: PHP
+    option: expose_php
+    value: Off
+    mode: 0600
+  notify: Restart Apache webserver
 
 
-- name: Extend max execution time of PHP
-  lineinfile:
-     dest: /etc/php.ini
-     create: no
-     regexp: '^max_execution_time\s*=.*$'
-     state: present
-     line: 'max_execution_time = 120'
-     backup: no
+- name: Configure the max execution time of PHP
+  ini_file:
+    path: /etc/php.ini
+    section: PHP
+    option: max_execution_time
+    value: 120
+    mode: 0600
+  notify: Restart Apache webserver
