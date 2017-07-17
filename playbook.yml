@@ -56,3 +56,5 @@
     - irods-resource
     - irods-runtime
     - irods-microservices
+    - yoda-rulesets
+

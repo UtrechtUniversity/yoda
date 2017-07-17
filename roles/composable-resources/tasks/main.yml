@@ -7,39 +7,14 @@
   pip:
     name: python-irodsclient
 
-- name: Ensure dev001_1 exists
+- name: Ensure all resources exist
   become_user: irods
   become: yes
   irods_resource:
-    name: dev001_1
-    host: icat.local.dev
-    vault_path: /var/lib/irods/iRODS/dev001/Vault
-    resource_type: unixfilesystem
-
-- name: Ensure dev001_p1 exists
-  become_user: irods
-  become: yes
-  irods_resource:
-    name: dev001_p1
-    resource_type: passthru
-    children:
-      - dev001_1
-
-- name: Ensure dev001 exists
-  become_user: irods
-  become: yes
-  irods_resource:
-    name: dev001
-    resource_type: random
-    children:
-      - dev001_p1
-
-- name: Ensure irodsResc exists
-  become_user: irods
-  become: yes
-  irods_resource:
-    name: irodsResc
-    resource_type: random
-    children:
-      - dev001
+    name: "{{ item.name }}"
+    resource_type: "{{ item.resource_type }}"
+    host: "{{ item.host | default('EMPTY_RESC_HOST') }}"
+    vault_path: "{{ item.vault_path | default('EMPTY_RESC_PATH')}}"
+    children: "{{ item.children | default([]) }}"
+  with_items: "{{ irods_resources }}"
 
