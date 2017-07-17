@@ -3,13 +3,13 @@ ansible_host: 192.168.50.12
 
 irods_resources:
   - name: dev001_1
-    host: icat.local.dev
+    host: icat.yoda.dev
     vault_path: /var/lib/irods/iRODS/dev001_1/Vault
     resource_type: unixfilesystem
 
   - name: dev001_2
     resource_type: unixfilesystem
-    host: icat.local.dev
+    host: icat.yoda.dev
     vault_path: /var/lib/irods/iRODS/dev001_2/Vault
 
   - name: dev001_p1
@@ -35,7 +35,7 @@ irods_resources:
 
   - name: dev002_1
     resource_type: unixfilesystem
-    host: resource.local.dev
+    host: resource.yoda.dev
     vault_path: /var/lib/irods/iRODS/dev001_1/Vault 
 
   - name: dev002_p1
