@@ -4,9 +4,9 @@ Ansible scripts for automatic deployment of YoDa: a system for reliable, long-te
 
 Requirements
 ------------
-* [Ansible](https://docs.ansible.com/ansible/intro_installation.html)
-* [VirtualBox](https://www.virtualbox.org/manual/ch02.html)
-* [Vagrant](https://www.vagrantup.com/docs/installation/)
+* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.3)
+* [VirtualBox](https://www.virtualbox.org/manual/ch02.html) (>= 5.1)
+* [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 1.9)
 
 Usage
 -----
