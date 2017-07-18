@@ -23,3 +23,9 @@
     vault_path: "{{ item.vault_path | default('EMPTY_RESC_PATH')}}"
     children: "{{ item.children | default([]) }}"
   with_items: "{{ irods_resources }}"
+
+- name: Set default resource in core.re
+  lineinfile:
+    path: /etc/irods/core.re
+    regexp: "^acSetRescSchemeForCreate"
+    line: "acSetRescSchemeForCreate {msiSetDefaultResc(\"{{ irods_default_resc }}\",\"null\"); }"

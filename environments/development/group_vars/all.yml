@@ -13,16 +13,19 @@ irods_database_password: irodsdev
 irods_zone: tempZone
 irods_icat_fqdn: icat.yoda.dev
 irods_database_fqdn: database.yoda.dev
+irods_resource_fqdn: resource.yoda.dev
+irods_default_resc: irodsResc
+
 irods_resources:
   - name: dev001_1
-    host: icat.yoda.dev
-    vault_path: /var/lib/irods/iRODS/dev001_1/Vault
+    host: "{{ irods_icat_fqdn }}"
+    vault_path: /var/lib/irods/Vault1_1
     resource_type: unixfilesystem
 
   - name: dev001_2
     resource_type: unixfilesystem
-    host: icat.yoda.dev
-    vault_path: /var/lib/irods/iRODS/dev001_2/Vault
+    host: "{{ irods_icat_fqdn }}"
+    vault_path: /var/lib/irods/Vault1_2
 
   - name: dev001_p1
     resource_type: passthru
@@ -47,8 +50,8 @@ irods_resources:
 
   - name: dev002_1
     resource_type: unixfilesystem
-    host: resource.yoda.dev
-    vault_path: /var/lib/irods/iRODS/dev001_1/Vault 
+    host: "{{ irods_resource_fqdn }}"
+    vault_path: /var/lib/irods/Vault2_1
 
   - name: dev002_p1
     resource_type: passthru
