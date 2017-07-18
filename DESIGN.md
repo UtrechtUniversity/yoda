@@ -4,6 +4,7 @@ Design
 Content Organization
 --------------------
 Our Ansible playbook for automated deployment of YoDa is organised like this:
+```
 environments/
    development/
       hosts               # inventory file for development environment
@@ -75,6 +76,7 @@ roles/
     yoda-davrods/         # ""
     yoda-portal/          # ""
     yoda-rulesets/        # ""
+```
 
 Master Playbook
 ---------------
