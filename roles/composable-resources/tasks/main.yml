@@ -18,3 +18,7 @@
     children: "{{ item.children | default([]) }}"
   with_items: "{{ irods_resources }}"
 
+- name: Set default resource in core.re
+  lineinfile:
+    regexp: "^acSetRescSchemeForCreate"
+    line: "acSetRescSchemeForCreate {msiSetDefaultResc(\"{{ irods_default_resc }}\",\"null\"); }"

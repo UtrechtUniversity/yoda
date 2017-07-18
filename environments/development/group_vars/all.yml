@@ -10,6 +10,7 @@ irods_database_password: irodsdev
 irods_zone: tempZone
 irods_icat_fqdn: icat.yoda.dev
 irods_database_fqdn: database.yoda.dev
+irods_default_resc: irodsResc
 
 # YoDa configuration.
 yoda_version: development
