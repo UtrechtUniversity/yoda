@@ -25,26 +25,9 @@
     - "{{ repochanges.results }}"
 
 
-- name: Copy script to add rulesets to server config
-  template:
-    src: configure_rulesets.py.j2
-    dest: /home/{{ ansible_ssh_user }}/configure_rulesets.py
-    mode: a+x
-
-
-- name: Reset server config rulesets
-  shell: /home/{{ ansible_ssh_user }}/configure_rulesets.py
-    /etc/irods/server_config.json 0 1
-  when: item.1.changed
-  with_together:
-    - "{{ rulesets }}"
-    - "{{ repochanges.results }}"
-
-
-- name: Add rulesets to server config
-  shell: /home/{{ ansible_ssh_user }}/configure_rulesets.py
-    /etc/irods/server_config.json {{ item.0.ruleset_name }}
-  when: item.1.changed
-  with_together:
-    - "{{ rulesets }}"
-    - "{{ repochanges.results }}"
+- name: Ensure all rulesets are in server config
+  become_user: irods
+  become: yes
+  irods_rulesets:
+    config_path: "/etc/irods/server_config.json"
+    rulesets: "{{ active_rulesets }}"
