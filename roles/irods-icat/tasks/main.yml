@@ -37,21 +37,11 @@
     creates: /home/{{ ansible_ssh_user }}/setup_irods
 
 
-- name: Store zone key in variable
-  set_fact:
-    irods_zone_key: '{{ zone_key.stdout }}'
-
-
 - name: Generate negotiation key
   command: 'openssl rand -hex 16'
   register: negotiation_key
   args:
     creates: /home/{{ ansible_ssh_user }}/setup_irods
-
-
-- name: Store negotiation key in variable
-  set_fact:
-    irods_negotiation_key: '{{ negotiation_key.stdout }}'
 
 
 - name: Generate control plane key
@@ -61,9 +51,16 @@
     creates: /home/{{ ansible_ssh_user }}/setup_irods
 
 
-- name: Store control plane key in variable
+- name: Store iCAT keys in variables
   set_fact:
-    irods_control_plane_key: '{{ control_plane_key.stdout }}'
+    '{{ item.fact }}': '{{ item.key }}'
+  with_items:
+    - fact: irods_zone_key
+      key: '{{ zone_key.stdout }}'
+    - fact: irods_negotiation_key
+      key: '{{ negotiation_key.stdout }}'
+    - fact: irods_control_plane_key
+      key: '{{ control_plane_key.stdout }}'
 
 
 - name: Copy responses for setup_irods.sh
@@ -81,28 +78,14 @@
   run_once: true
 
 
-- name: Enable iCAT port in firewall
+- name: Enable ports for iCAT in firewall
   firewalld:
-    port: '{{ irods_icat_port }}/tcp'
+    port: '{{ item }}'
     permanent: true
     state: enabled
     immediate: yes
-  notify: Restart firewall
-
-
-- name: Enable control plane port in firewall
-  firewalld:
-    port: '{{ irods_control_plane_port }}/tcp'
-    permanent: true
-    state: enabled
-    immediate: yes
-  notify: Restart firewall
-
-
-- name: Enable iRODS transfer port range in firewall
-  firewalld:
-    port: '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
-    permanent: true
-    state: enabled
-    immediate: yes
+  with_items:
+    - '{{ irods_icat_port }}/tcp'
+    - '{{ irods_control_plane_port }}/tcp'
+    - '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
   notify: Restart firewall

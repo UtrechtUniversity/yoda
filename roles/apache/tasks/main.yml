@@ -13,13 +13,13 @@
 
 - name: Allow public to ports for Apache in firewall
   firewalld:
-    port: '{{ item }}/tcp'
+    port: '{{ item }}'
     permanent: true
     state: enabled
     immediate: yes
   with_items:
-    - 80
-    - 443
+    - 80/tcp
+    - 443/tcp
   notify: Restart firewall
 
 

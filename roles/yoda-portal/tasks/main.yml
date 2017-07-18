@@ -36,21 +36,15 @@
       dest: /var/www/html/public
 
 
-- name: Check if config_local.php exists
-  stat: path=/var/www/yoda/yoda-portal/config/config_local.php
-  register: config_local
-
-
 - name: Generate php session encryption key
-  command: 'openssl rand -base64 32'
+  command: openssl rand -base64 32
+    creates=/var/www/yoda/yoda-portal/config/config_local.php
   register: random_key
-  when: config_local.stat.exists == False
 
 
 - name: Store encryption key in variable
   set_fact:
     yoda_php_encryption_key: '{{ random_key.stdout }}'
-  when: config_local.stat.exists == False
 
 
 - name: Create config_local.php
@@ -60,7 +54,6 @@
     owner: "{{ yoda_deployment_user }}"
     mode: 0644
     force: no
-  when: config_local.stat.exists == False
 
 
 - name: Create .htaccess
