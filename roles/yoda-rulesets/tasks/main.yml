@@ -16,9 +16,9 @@
 - name: Run make install for each ruleset
   become_user: irods
   become: yes
-  shell: make install
-  args:
+  make:
     chdir: "/etc/irods/{{ item.0.name }}"
+    target: install
   when: item.1.changed
   with_together:
     - "{{ rulesets }}"
