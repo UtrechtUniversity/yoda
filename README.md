@@ -15,39 +15,6 @@ vagrant up
 ansible-playbook playbook.yml
 ```
 
-Documentation
--------------
-
-The main [playbook](playbook.yml) consists of four tiers:
-* portal
-* database
-* iCAT
-* resource
-
-### portal tier
-The portal tier provisions the host with the following:
-* Apache webserver
-* PHP
-* iRODS iCommands & runtime
-* YoDa portal and davrods
-
-### database tier
-The portal tier provisions the host with the following:
-* PostgreSQL database
-* iRODS database plugin
-
-### iCAT tier
-The portal tier provisions the host with the following:
-* iRODS iCAT server & runtime
-* iRODS microservices
-* YoDa rulesets
-
-### resource tier
-The portal tier provisions the host with the following:
-* iRODS resource server & runtime
-* iRODS microservices
-* YoDa rulesets
-
 License
 -------
 This project is licensed under the GPL-v3 licence
