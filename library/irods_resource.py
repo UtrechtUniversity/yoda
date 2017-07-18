@@ -19,6 +19,7 @@ except:
 else:
     IRODSCLIENT_AVAILABLE = True
 
+
 def get_session():
     env_file = os.path.expanduser('~/.irods/irods_environment.json')
     with open(env_file) as data_file:
@@ -57,19 +58,22 @@ def main():
         try:
             session, ienv = get_session()
         except:
-            module.fail_json(msg="Could not establish irods connection. Please check ~/.irods/irods_environment.json")
+            module.fail_json(
+                msg="Could not establish irods connection. Please check ~/.irods/irods_environment.json"
+            )
     else:
         module.fail_json(msg="python-irodsclient needs to be installed")
 
-
     changed = False
-
 
     try:
         resource = session.resources.get(name)
     except ResourceDoesNotExist:
         if state == 'present' and not module.check_mode:
-            resource = session.resources.create(name, resource_type, host=host, path=vault_path, context=context, resource_class=resource_class)
+            resource = session.resources.create(
+                name, resource_type, host=host,
+                path=vault_path, context=context,
+                resource_class=resource_class)
             changed = True
         elif state == 'absent':
             module.exit_json(changed=False, msg="Resource {} is not present".format(name))
@@ -85,7 +89,6 @@ def main():
                 module.fail_json(msg="iRODSException while adding {} as a child to {}".format(child, name))
             changed = True
 
-
     module.exit_json(
             changed=changed,
             resource=dict(
@@ -95,6 +98,7 @@ def main():
                 context=resource.context,
                 status=resource.status),
             irods_environment=ienv)
+
 
 from ansible.module_utils.basic import *
 if __name__ == '__main__':

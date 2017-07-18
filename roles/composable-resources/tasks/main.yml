@@ -1,11 +1,17 @@
 ---
-- name: Install pip
-  yum:
-    name: python-pip
+# copyright Utrecht University
 
-- name: Install python-irodsclient
+- name: Ensure pip is installed
+  package:
+    name: python-pip
+    state: present
+
+
+- name: Ensure python-irodsclient is installed
   pip:
     name: python-irodsclient
+    state: present
+
 
 - name: Ensure all resources exist
   become_user: irods
@@ -17,4 +23,3 @@
     vault_path: "{{ item.vault_path | default('EMPTY_RESC_PATH')}}"
     children: "{{ item.children | default([]) }}"
   with_items: "{{ irods_resources }}"
-
