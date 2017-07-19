@@ -8,7 +8,7 @@ irods_php_version: development
 codeigniter_version: 2.2-uu
 
 yoda_portal_fqdn: portal.yoda.dev
-update_portal: no
+update_portal: yes
 yoda_php_encryption_key: dummy
 
 # YoDa portal sources

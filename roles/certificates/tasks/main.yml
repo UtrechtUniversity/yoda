@@ -1,18 +1,21 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure dependencies for Ansible OpenSSL module are installed
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - pyOpenSSL
+
+
 - name: Ensure an OpenSSL 4096 bits RSA private key is present
-  command: 'openssl genrsa -out yoda_selfsigned.pem 4096'
-  args:
-    chdir: '{{ openssl_private_dir }}'
-    creates: '{{ openssl_private_key }}'
-
-
-- name: Ensure private key is protected
-  file:
+  openssl_privatekey:
     path: '{{ openssl_private_dir }}/{{ openssl_private_key }}'
-    mode: 0400
-    state: file
+    size: 4096
+    type: RSA
+    force: False
+    state: present
 
 
 - name: Ensure an OpenSSL certificate signing request is present

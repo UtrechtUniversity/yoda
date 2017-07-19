@@ -10,7 +10,7 @@
     - postgresql-contrib
 
 
-- name: Ensure dependencies for Ansible module are installed
+- name: Ensure dependencies for Ansible PostgreSQL module are installed
   package:
     name: '{{ item }}'
     state: present
