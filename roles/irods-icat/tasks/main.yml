@@ -86,6 +86,5 @@
     immediate: yes
   with_items:
     - '{{ irods_icat_port }}/tcp'
-    - '{{ irods_control_plane_port }}/tcp'
     - '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
   notify: Restart firewall
