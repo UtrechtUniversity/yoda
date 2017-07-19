@@ -6,6 +6,8 @@
 # Below we provide an example vhost configuration that enables davrods using
 # its default options.
 #
+Listen 8080
+
 <VirtualHost *:8080>
 
     # Enter your server name here.
@@ -130,14 +132,15 @@
     </Location>
 
     SSLEngine on
+    SSLCertificateFile      /etc/pki/tls/certs/yoda_selfsigned.crt
+    SSLCertificateKeyFile   /etc/pki/tls/private/yoda_selfsigned.pem
 
-    SSLProtocol all -SSLv2 -SSLv3
+    # HSTS (mod_headers is required) (15768000 seconds = 6 months).
+    Header always set Strict-Transport-Security "max-age=15768000"
 
-    SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
-
-    SSLCertificateFile /etc/pki/tls/certs/localhost.crt
-    SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
-
-    CustomLog logs/ssl_request_log \
-              "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+    # Modern configuration.
+    SSLProtocol             all -SSLv3 -TLSv1 -TLSv1.1
+    SSLCipherSuite          ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256
+    SSLHonorCipherOrder     on
+    SSLCompression          off
 </VirtualHost>

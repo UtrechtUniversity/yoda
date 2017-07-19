@@ -56,3 +56,14 @@
   with_items:
     - /var/lib/irods/plugins/network/libtcp.so
     - /var/lib/irods/plugins/network/libssl.so
+
+
+- name: Allow public to ports for davrods in firewall
+  firewalld:
+    port: '{{ item }}'
+    permanent: true
+    state: enabled
+    immediate: yes
+  with_items:
+    - 8080/tcp
+  notify: Restart firewall

@@ -3,5 +3,6 @@
 
 dependencies:
 - apache
+- certificates
 - irods-icommands
 - irods-runtime
