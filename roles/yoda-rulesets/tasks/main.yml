@@ -31,3 +31,35 @@
   irods_rulesets:
     config_path: "/etc/irods/server_config.json"
     rulesets: "{{ active_rulesets }}"
+
+
+- name: Find out if group-manager privilige groups are created
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 'iadmin lg'
+  register: priv_groups
+  changed_when: priv_groups.stdout.find('priv-group-add') == -1
+
+
+- name: Configure group-manager privilige groups in iCAT database
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/etc/irods/irods-ruleset-uu/tools/group-manager-setup.sh'
+  when: priv_groups.stdout.find('priv-group-add') == -1
+
+
+- name: Ensure default XML for metadata is installed
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 'irule -F /etc/irods/irods-ruleset-research/tools/install-default-xml-for-metadata.r'
+  register: default_xml
+  changed_when: default_xml.stdout.find('exists') == -1
+
+
+- name: Configure cronjob to copy datapackages to the vault
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  cron:
+    name: 'copy-accepted-folders-to-vault.r'
+    minute: '*/2'
+    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/copy-accepted-folders-to-vault.r >>$HOME/iRODS/server/log/job_copy-accepted-folder-to-vault.r 2>&1'
