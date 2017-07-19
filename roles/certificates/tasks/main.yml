@@ -22,8 +22,8 @@
   command: >
     openssl req -new
     -key '{{ openssl_private_dir }}/{{ openssl_private_key }}'
-    -out '{{ openssl_csr }}' -batch
-    -subj '/commonName={{ yoda_portal_fqdn }}'
+    -out '{{ openssl_csr }}' -batch -subj
+    '/O={{ openssl_o }}/C={{ openssl_c }}/localityName={{ openssl_localityName }}/commonName={{ yoda_portal_fqdn }}'
   args:
     chdir: '{{ openssl_certs_dir }}'
     creates: '{{ openssl_csr }}'

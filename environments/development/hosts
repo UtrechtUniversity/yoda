@@ -5,10 +5,10 @@
 portal
 
 [instance1-database]
-database
+portal
 
 [instance1-icat]
-icat
+portal
 
 [instance1-resource]
 resource

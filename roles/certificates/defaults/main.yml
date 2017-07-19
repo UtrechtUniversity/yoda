@@ -7,3 +7,7 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 
 openssl_csr: yoda_selfsigned.csr
 openssl_crt: yoda_selfsigned.crt
+
+openssl_o: 'Utrecht University'
+openssl_c: 'NL'
+openssl_localityName: 'Utrecht'
