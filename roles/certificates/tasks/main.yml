@@ -1,0 +1,37 @@
+---
+# copyright Utrecht University
+
+- name: Ensure an OpenSSL 4096 bits RSA private key is present
+  command: 'openssl genrsa -out yoda_selfsigned.pem 4096'
+  args:
+    chdir: '/etc/pki/tls/private'
+    creates: 'yoda_selfsigned.pem'
+
+
+- name: Ensure private key is protected
+  file:
+    path: '/etc/pki/tls/private/yoda_selfsigned.pem'
+    mode: 0400
+    state: file
+
+
+- name: Ensure an OpenSSL certificate signing request is present
+  command: >
+    openssl req -new
+    -key /etc/pki/tls/private/yoda_selfsigned.pem
+    -out yoda_selfsigned.csr -batch
+    -subj '/commonName={{ yoda_portal_fqdn }}'
+  args:
+    chdir: '/etc/pki/tls/certs'
+    creates: 'yoda_selfsigned.csr'
+
+
+- name: Ensure an OpenSSL self signed public key is present
+  command: >
+    openssl x509 -req -days 365
+    -in yoda_selfsigned.csr
+    -signkey /etc/pki/tls/private/yoda_selfsigned.pem
+    -out yoda_selfsigned.crt
+  args:
+    chdir: '/etc/pki/tls/certs'
+    creates: 'yoda_selfsigned.crt'

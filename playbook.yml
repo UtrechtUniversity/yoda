@@ -28,6 +28,7 @@
     - irods-icommands
     - irods-runtime
     - yoda-davrods
+    - certificates
 
 
 - name: Provision database server

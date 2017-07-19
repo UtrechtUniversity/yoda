@@ -68,8 +68,8 @@
     mode: 0755
 
 
-- name: Copy YoDa Portal config for Apache
+- name: Copy YoDa Portal virtual host config for Apache
   template:
-    src: "yoda-portal.conf.j2"
-    dest: "/etc/httpd/conf.d/yoda-portal.conf"
+    src: "yoda-portal-vhost.conf.j2"
+    dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
   notify: Restart Apache webserver

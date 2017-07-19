@@ -24,6 +24,7 @@
     children: "{{ item.children | default([]) }}"
   with_items: "{{ irods_resources }}"
 
+
 - name: Set default resource in core.re
   lineinfile:
     path: /etc/irods/core.re

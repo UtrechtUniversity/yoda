@@ -3,6 +3,7 @@
 
 # YoDa configuration.
 yoda_version: development
+yoda_portal_fqdn: portal.yoda.dev
 
 # iRODS configuration.
 irods_admin: irods

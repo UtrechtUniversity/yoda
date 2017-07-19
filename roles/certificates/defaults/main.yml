@@ -1,0 +1,13 @@
+---
+# copyright Utrecht University
+
+ntp_timezone: Europe/Amsterdam
+
+# NTP server area configuration (leave empty for 'Worldwide').
+# See: http://support.ntp.org/bin/view/Servers/NTPPoolServers
+ntp_area: 'Europe'
+ntp_servers:
+  - "0.{{ ntp_area }}.pool.ntp.org iburst"
+  - "1.{{ ntp_area }}.pool.ntp.org iburst"
+  - "2.{{ ntp_area }}.pool.ntp.org iburst"
+  - "3.{{ ntp_area }}.pool.ntp.org iburst"
