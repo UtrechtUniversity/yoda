@@ -15,6 +15,8 @@
   postgresql_db:
     name: "{{ irods_database_name }}"
     encoding: UTF-8
+    lc_collate: en_US.UTF-8
+    lc_ctype: en_US.UTF-8
     template: template0
 
 
