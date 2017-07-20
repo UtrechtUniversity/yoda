@@ -54,3 +54,10 @@
     '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
   args:
     creates: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
+
+
+- name: Ensure Diffie-Hellman parameters are generated
+  command: openssl dhparam -2 -out {{ openssl_dhparams }} 2048
+  args:
+    chdir: '{{ openssl_private_dir }}'
+    creates: '{{ openssl_private_dir }}/{{ openssl_dhparams }}'
