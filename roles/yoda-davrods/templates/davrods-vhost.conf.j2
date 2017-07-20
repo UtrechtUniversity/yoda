@@ -132,8 +132,8 @@ Listen 8080
     </Location>
 
     SSLEngine on
-    SSLCertificateFile      /etc/pki/tls/certs/yoda_selfsigned.crt
-    SSLCertificateKeyFile   /etc/pki/tls/private/yoda_selfsigned.pem
+    SSLCertificateFile      /etc/pki/tls/certs/yoda_signed.crt
+    SSLCertificateKeyFile   /etc/pki/tls/private/yoda_signed.pem
 
     # HSTS (mod_headers is required) (15768000 seconds = 6 months).
     Header always set Strict-Transport-Security "max-age=15768000"

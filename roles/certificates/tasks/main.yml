@@ -29,7 +29,7 @@
     creates: '{{ openssl_csr }}'
 
 
-- name: Ensure an OpenSSL self signed public key is present
+- name: Ensure an OpenSSL self signed certificate is present
   command: >
     openssl x509 -req -days 365
     -in '{{ openssl_csr }}'
@@ -38,3 +38,15 @@
   args:
     chdir: '{{ openssl_certs_dir }}'
     creates: '{{ openssl_crt }}'
+
+
+- name: Ensure signed private key is present
+  command: cp '{{ openssl_private_dir }}/{{ openssl_private_key }}' '{{ openssl_private_dir }}/yoda_signed.pem'
+  args:
+    creates: '{{ openssl_private_dir }}/yoda_signed.pem'
+
+
+- name: Ensure signed certificate is present
+  command: cp '{{ openssl_certs_dir }}/{{ openssl_crt }}' '{{ openssl_certs_dir }}/yoda_signed.crt'
+  args:
+    creates: '{{ openssl_certs_dir }}/yoda_signed.crt'
