@@ -6,7 +6,7 @@ yoda_version: development
 yoda_portal_fqdn: portal.yoda.dev
 
 # iRODS configuration.
-irods_admin: irods
+irods_admin: rods
 irods_password: rods
 irods_database_name: ICAT
 irods_database_user: irodsdb

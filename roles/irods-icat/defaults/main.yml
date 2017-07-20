@@ -19,7 +19,7 @@ irods_db:
   checksum: sha256:1d42fddaf243890aad03fb9da47cb259cd13cb0539a8fc81f3af0610d08b9c6d
 
 # iRODS configuration.
-irods_admin: irods
+irods_admin: rods
 irods_password: rods
 irods_database_fqdn: database.yoda.dev
 irods_database_name: ICAT
