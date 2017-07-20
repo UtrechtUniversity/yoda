@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# (c) Paul Frederiks <paul.frederiks@gmail.com>
+# copyright Utrecht University
 #
 # license: GPL v3
 #

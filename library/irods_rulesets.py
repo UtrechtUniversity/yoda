@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# (c) Lazlo Westerhof <l.r.westerhof@uu.nl>
+# copyright Utrecht University
 #
 # license: GPL v3
 #
