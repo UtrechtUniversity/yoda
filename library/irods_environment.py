@@ -30,13 +30,18 @@ def main():
     with open(path, 'r+') as data_file:
         irods_environment = json.load(data_file)
 
-        # Set iRODS environment variable.
-        irods_environment[key] = value
+        if key in irods_environment:
+            changed = True
+            if irods_environment[key] == value:
+                changed = False
+        else:
+            # Set iRODS environment variable.
+            irods_environment[key] = value
 
-        data_file.seek(0)
-        json.dump(irods_environment, data_file, indent=4, sort_keys=True)
-        data_file.truncate()
-        changed = True
+            data_file.seek(0)
+            json.dump(irods_environment, data_file, indent=4, sort_keys=True)
+            data_file.truncate()
+            changed = True
 
     module.exit_json(
             changed=changed,
