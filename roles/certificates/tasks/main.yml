@@ -11,7 +11,7 @@
 
 - name: Ensure an OpenSSL 4096 bits RSA private key is present
   openssl_privatekey:
-    path: '{{ openssl_private_dir }}/{{ openssl_private_key }}'
+    path: '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
     size: 4096
     type: RSA
     force: False
@@ -21,32 +21,36 @@
 - name: Ensure an OpenSSL certificate signing request is present
   command: >
     openssl req -new
-    -key '{{ openssl_private_dir }}/{{ openssl_private_key }}'
-    -out '{{ openssl_csr }}' -batch -subj
+    -key '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
+    -out '{{ openssl_csr_selfsigned }}' -batch -subj
     '/O={{ openssl_o }}/C={{ openssl_c }}/localityName={{ openssl_localityName }}/commonName={{ yoda_portal_fqdn }}'
   args:
     chdir: '{{ openssl_certs_dir }}'
-    creates: '{{ openssl_csr }}'
+    creates: '{{ openssl_csr_selfsigned }}'
 
 
 - name: Ensure an OpenSSL self signed certificate is present
   command: >
     openssl x509 -req -days 365
-    -in '{{ openssl_csr }}'
-    -signkey '{{ openssl_private_dir }}/{{ openssl_private_key }}'
-    -out '{{ openssl_crt }}'
+    -in '{{ openssl_csr_selfsigned }}'
+    -signkey '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
+    -out '{{ openssl_crt_selfsigned }}'
   args:
     chdir: '{{ openssl_certs_dir }}'
-    creates: '{{ openssl_crt }}'
+    creates: '{{ openssl_crt_selfsigned }}'
 
 
 - name: Ensure signed private key is present
-  command: cp '{{ openssl_private_dir }}/{{ openssl_private_key }}' '{{ openssl_private_dir }}/yoda_signed.pem'
+  command: >
+    cp '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
+    '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
   args:
-    creates: '{{ openssl_private_dir }}/yoda_signed.pem'
+    creates: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
 
 
 - name: Ensure signed certificate is present
-  command: cp '{{ openssl_certs_dir }}/{{ openssl_crt }}' '{{ openssl_certs_dir }}/yoda_signed.crt'
+  command: >
+    cp '{{ openssl_certs_dir }}/{{ openssl_crt_selfsigned }}'
+    '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
   args:
-    creates: '{{ openssl_certs_dir }}/yoda_signed.crt'
+    creates: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'

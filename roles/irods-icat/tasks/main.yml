@@ -88,3 +88,19 @@
     - '{{ irods_icat_port }}/tcp'
     - '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
   notify: Restart firewall
+
+
+- name: Ensure iRODS is configured to use SSL
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_environment:
+    path: '/var/lib/irods/.irods/irods_environment.json'
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_items:
+    - key: 'irods_ssl_certificate_chain_file'
+      value: '/etc/irods/chain.pem'
+    - key: 'irods_ssl_certificate_key_file'
+      value: '/etc/irods/server.key'
+    - key: 'irods_ssl_dh_params_file'
+      value: '/etc/irods/dhparams.pem'

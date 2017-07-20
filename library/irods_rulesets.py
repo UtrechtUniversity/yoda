@@ -40,10 +40,10 @@ def main():
             server_config['re_rulebase_set'] = []
             for ruleset in rulesets:
                 server_config['re_rulebase_set'].append({'filename': ruleset})
-                data_file.seek(0)
-                json.dump(server_config, data_file, indent=4, sort_keys=True)
-                data_file.truncate()
-                changed = True
+            data_file.seek(0)
+            json.dump(server_config, data_file, indent=4, sort_keys=True)
+            data_file.truncate()
+            changed = True
 
     module.exit_json(
             changed=changed,
