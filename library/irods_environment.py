@@ -24,24 +24,27 @@ def main():
     key = module.params["key"]
     value = module.params["value"]
     state = module.params["state"]
-    changed = False
+    changed = True
 
     # Retrieve iRODS environment.
     with open(path, 'r+') as data_file:
         irods_environment = json.load(data_file)
 
+        # Check if iRODS environment variable already exists.
         if key in irods_environment:
-            changed = True
+            # Check if iRODS environment variable has correct value.
             if irods_environment[key] == value:
                 changed = False
+            else:
+                # Set iRODS environment variable.
+                irods_environment[key] = value
         else:
             # Set iRODS environment variable.
             irods_environment[key] = value
 
-            data_file.seek(0)
-            json.dump(irods_environment, data_file, indent=4, sort_keys=True)
-            data_file.truncate()
-            changed = True
+        data_file.seek(0)
+        json.dump(irods_environment, data_file, indent=4, sort_keys=True)
+        data_file.truncate()
 
     module.exit_json(
             changed=changed,
