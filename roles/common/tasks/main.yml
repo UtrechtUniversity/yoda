@@ -1,6 +1,7 @@
 ---
 # copyright Utrecht University
 
+- include: hostname.yml
 - include: epel.yml
 - include: firewalld.yml
 - include: ntp.yml

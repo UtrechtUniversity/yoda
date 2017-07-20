@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-- name: Insert host entries for every dev server
+- name: Insert host entries for every development server
   lineinfile:
     dest: /etc/hosts
     line: "{{ hostvars[item].ansible_host }}
