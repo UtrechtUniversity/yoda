@@ -10,9 +10,33 @@ Requirements
 
 Usage
 -----
+
+### GNU/Linux or macOS host
+Configure the virtual machines for development:
 ```bash
 vagrant up
+```
+
+Deploy YoDa to development virtual machines:
+```bash
 ansible-playbook playbook.yml
+```
+
+### Windows host
+Configure the virtual machines for development:
+```bash
+vagrant up
+```
+
+Deploy YoDa to development virtual machines:
+```
+vagrant provision controller
+```
+or
+```
+vagrant ssh controller
+$ cd /vagrant
+$ ansible-playbook playbook.yml
 ```
 
 License
