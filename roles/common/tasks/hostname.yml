@@ -13,6 +13,6 @@
     regexp: '^127.0.0.1\s+localhost(.*)$'
     state: present
     backrefs: yes
-    line: '127.0.0.1\t{{ansible_fqdn}} \1'
+    line: '127.0.0.1\t{{ ansible_fqdn }} \1'
     backup: yes
   when: hostname.stdout == 'localhost'

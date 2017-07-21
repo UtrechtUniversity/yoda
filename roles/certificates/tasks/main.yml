@@ -61,3 +61,14 @@
   args:
     chdir: '{{ openssl_private_dir }}'
     creates: '{{ openssl_private_dir }}/{{ openssl_dhparams }}'
+
+
+- name: Ensure PKI files are available for other hosts
+  slurp:
+    src: '{{ item }}'
+  with_items:
+    - '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
+    - '{{ openssl_private_dir }}/{{ openssl_dhparams }}'
+    - '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
+  register: pki_certs
+  run_once: true
