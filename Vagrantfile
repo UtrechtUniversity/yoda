@@ -46,12 +46,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Provision controller for Ansible on Windows host.
-  # if Vagrant::Util::Platform.windows? then
+  if Vagrant::Util::Platform.windows? then
     config.vm.define "controller" do |controller|
       controller.vm.box = BOX
       controller.vm.hostname = "controller"
       controller.vm.network :private_network, ip: "192.168.50.5", netmask: NETMASK
       controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh"
-  # end
+    end
   end
 end
