@@ -8,6 +8,9 @@ if ! command -v ansible >/dev/null; then
     sudo yum install ansible -y
 fi
 
+# Set file permissions on SSH key to 0600.
+chmod 0600 /vagrant/vagrant/ssh/vagrant
+
 # Run YoDa playbook.
 cd /vagrant
 ansible-playbook playbook.yml
