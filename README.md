@@ -15,6 +15,7 @@ Usage
 Configure the virtual machines for development:
 ```bash
 vagrant up
+chmod 0600 vagrant/ssh/vagrant
 ```
 
 Deploy YoDa to development virtual machines:
