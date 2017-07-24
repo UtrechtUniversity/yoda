@@ -4,7 +4,7 @@
 yoda_deployment_user: yodadeployment
 
 yoda_version: development
-irods_php_version: development
+irods_php_version: master
 codeigniter_version: 2.2-uu
 
 yoda_portal_fqdn: portal.yoda.dev
