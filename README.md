@@ -35,9 +35,9 @@ vagrant provision controller
 ```
 or
 ```
-chmod 0600 vagrant/ssh/vagrant
 vagrant ssh controller
 $ cd /vagrant
+$ chmod 0600 vagrant/ssh/vagrant
 $ ansible-playbook playbook.yml
 ```
 
