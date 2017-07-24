@@ -5,7 +5,8 @@
   lineinfile:
     dest: /var/lib/pgsql/data/pg_hba.conf
     line: "host all all {{ hostvars[item].ansible_host }}/32 md5"
-  with_items: "{{ groups['icats'] }}"
+  with_inventory_hostnames:
+    - 'icats:&{{ instance }}'
   notify: Restart PostgreSQL
 
 
