@@ -15,7 +15,7 @@ yoda_davrods_authentication: Native
 yoda_disk_vhost: data
 
 # iRODS configuration.
-irods_icat_host: icat.yoda.dev
+irods_icat_fqdn: icat.yoda.dev
 irods_default_resource: demoResc
 irods_zone: tempZone
-irods_port: 1247
+irods_icat_port: 1247
