@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-ntp_timezone: Europe/Amsterdam
+timezone: Europe/Amsterdam
 
 # NTP server area configuration (leave empty for 'Worldwide').
 # See: http://support.ntp.org/bin/view/Servers/NTPPoolServers

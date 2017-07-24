@@ -16,7 +16,7 @@
 
 - name: Configure timezone for ntp
   timezone:
-    name: '{{ ntp_timezone }}'
+    name: '{{ timezone }}'
 
 
 - name: Configure ntp.conf file

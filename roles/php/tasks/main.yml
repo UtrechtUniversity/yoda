@@ -28,7 +28,7 @@
     mode: 0600
   with_items:
     - option: date.timezone
-      value: Europe/Amsterdam
+      value: '{{ timezone }}'
     - option: expose_php
       value: Off
     - option: max_execution_time
