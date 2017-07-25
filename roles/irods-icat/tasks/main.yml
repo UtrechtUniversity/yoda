@@ -160,7 +160,7 @@
 - name: Ensure iRODS is configured to use SSL
   become_user: '{{ irods_service_account }}'
   become: yes
-  irods_environment:
+  irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: '{{ item.key }}'
     value: '{{ item.value }}'

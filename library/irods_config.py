@@ -28,22 +28,22 @@ def main():
 
     # Retrieve iRODS environment.
     with open(path, 'r+') as data_file:
-        irods_environment = json.load(data_file)
+        irods_config = json.load(data_file)
 
-        # Check if iRODS environment variable already exists.
-        if key in irods_environment:
-            # Check if iRODS environment variable has correct value.
-            if irods_environment[key] == value:
+        # Check if iRODS config variable already exists.
+        if key in irods_config:
+            # Check if iRODS config variable has correct value.
+            if irods_config[key] == value:
                 changed = False
             else:
-                # Set iRODS environment variable.
-                irods_environment[key] = value
+                # Set iRODS config variable.
+                irods_config[key] = value
         else:
-            # Set iRODS environment variable.
-            irods_environment[key] = value
+            # Set iRODS config variable.
+            irods_config[key] = value
 
         data_file.seek(0)
-        json.dump(irods_environment, data_file, indent=4, sort_keys=True)
+        json.dump(irods_config, data_file, indent=4, sort_keys=True)
         data_file.truncate()
 
     module.exit_json(

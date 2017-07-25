@@ -37,7 +37,7 @@
 - name: Ensure iRODS default resource is set in irods_environment.json
   become_user: '{{ irods_service_account }}'
   become: yes
-  irods_environment:
+  irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: 'irods_default_resource'
     value: '{{ irods_default_resc }}'
@@ -46,7 +46,7 @@
 - name: Ensure iRODS default resource is set in server_config.json
   become_user: '{{ irods_service_account }}'
   become: yes
-  irods_environment:
+  irods_config:
     path: '/etc/irods/server_config.json'
     key: 'default_resource_name'
     value: '{{ irods_default_resc }}'
