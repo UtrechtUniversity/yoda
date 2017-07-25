@@ -4,18 +4,25 @@
 yoda_version: development
 update_rulesets: yes
 rulesets:
-  - name: irods-ruleset-uu
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
-    ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
-  - name: irods-ruleset-research
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-research.git
-    ruleset_name: rules-research
-    version: "{{ yoda_version }}"
   - name: irods-ruleset-i-lab
     repo: https://github.com/UtrechtUniversity/irods-ruleset-i-lab.git
     ruleset_name: rules-i-lab
     version: "{{ yoda_version }}"
+    install_scripts: no
+  - name: irods-ruleset-research
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-research.git
+    ruleset_name: rules-research
+    version: "{{ yoda_version }}"
+    install_scripts: yes
+  - name: irods-ruleset-uu
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
+    ruleset_name: rules-uu
+    version: "{{ yoda_version }}"
+    install_scripts: yes
+  - name: core
+    ruleset_name: core
+    path: /etc/irods/core.re
+    install_scripts: no
 
 active_rulesets: ['rules-i-lab','rules-research','rules-uu','core']
 
