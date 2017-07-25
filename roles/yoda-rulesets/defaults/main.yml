@@ -24,8 +24,6 @@ rulesets:
     path: /etc/irods/core.re
     install_scripts: no
 
-active_rulesets: ['rules-i-lab','rules-research','rules-uu','core']
-
 default_yoda_schema: ilab
 enable_revisions: 1
 revision_strategy: A

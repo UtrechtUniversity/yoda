@@ -27,6 +27,19 @@
         and enable_revisions == 1)
       changed_when: create_system_collections.stdout.find('Creating') >= 0
 
+    - name: Check for existence of storage statistics script
+      stat:
+        path: /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r
+      register: monthly_storage_statistics
+
+    - name: Enable storage statistics gathering cronjob
+      cron:
+        name: 'monthly-storage-statistics'
+        day: 15
+        job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthtly-storage-statistics.r >> $HOME/iRODS/server/log/job_monthly-storage-statistics.log'
+      when: monthly_storage_statistics.stat.exists == True
+      
+
   become_user: "{{ irods_service_account }}"
   become: yes 
 

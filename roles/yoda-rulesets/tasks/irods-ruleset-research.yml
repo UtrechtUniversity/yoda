@@ -11,7 +11,7 @@
     - name: Ensure default XML for metadata is installed
       command: "irule -F /etc/irods/irods-ruleset-research/tools/install-default-xml-for-metadata.r '*resc=\"{{ irods_default_resc }}\"' '*default=\"{{ default_yoda_schema }}\"'"
       register: default_xml
-      when: default_xsd.stderr.find('Does not exist') >= 0
+      when: default_xsd.stderr.find('does not exist') >= 0
       changed_when: default_xml.stdout.find('Creating') >= 0
 
     - name: Configure cronjob to copy datapackages to the vault

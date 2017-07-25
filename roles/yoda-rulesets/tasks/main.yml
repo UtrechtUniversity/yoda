@@ -10,7 +10,7 @@
         version: "{{ item.version }}"
         update: "{{ update_rulesets }}"
       with_items: "{{ rulesets }}"
-      when: "{{ 'repo' in item }}"
+      when: "'repo' in item"
       register: repochanges
 
 
@@ -36,3 +36,4 @@
 - include: "{{ item.name }}.yml"
   with_items: "{{ rulesets }}"
   when: item.install_scripts
+
