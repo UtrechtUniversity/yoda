@@ -34,21 +34,25 @@
       register: priv_groups
       changed_when: priv_groups.stdout.find('priv-group-add') == -1
 
+
     - name: Configure group-manager privilige groups in iCAT database
       command: '/etc/irods/irods-ruleset-uu/tools/group-manager-setup.sh'
       when: priv_groups.stdout.find('priv-group-add') == -1
+
 
     - name: Find out which system collections are present
       command: 'ils /{{ irods_zone }}/yoda'
       ignore_errors: True
       register: system_collections
       changed_when: False
-      
+
+
     - name: Ensure yoda system collections are present
       command: "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
       register: create_system_collections
       when: (system_collections.stderr.find('does not exist') >= 0) or (system_collections.stdout.find('revisions') == -1 and enable_revisions == 1)
       changed_when: create_system_collections.stdout.find('Creating') >= 0
+
 
     - name: Ensure default XML for metadata is installed
       command: "irule -F /etc/irods/irods-ruleset-research/tools/install-default-xml-for-metadata.r '*resc=\"{{ irods_default_resc }}\"' '*default=\"{{ default_yoda_schema }}\"'"
@@ -56,12 +60,14 @@
       when: system_collections.stdout.find('xsd') == -1
       changed_when: default_xml.stdout.find('Creating') >= 0
 
+
     - name: Configure cronjob to copy datapackages to the vault
       cron:
         name: 'copy-accepted-folders-to-vault.r'
         minute: '*/2'
         job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/copy-accepted-folders-to-vault.r >>$HOME/iRODS/server/log/job_copy-accepted-folder-to-vault.r 2>&1'
-   
+
+
     - name: Install script for revision clean up
       template:
         src: cronjob-revision-cleanup.sh.j2
@@ -78,4 +84,3 @@
 
   become_user: "{{ irods_service_account }}"
   become: yes
-
