@@ -33,7 +33,7 @@ portal_sources:
     version: "{{ yoda_version }}"
 
 # iRODS configuration.
-irods_default_resource: demoResc
+irods_default_resc: irodsResc
 irods_auth_type: STANDARD
 irods_zone: tempZone
 irods_icat_fqdn: icat.yoda.dev
