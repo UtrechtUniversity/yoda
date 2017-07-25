@@ -1,0 +1,43 @@
+---
+# Copyright Utrecht University
+
+- block:
+    - name: Find out if default XSD is installed
+      command: 'ils /{{ irods_zone }}/yoda/xsd/default.xsd'
+      ignore_errors: True
+      register: default_xsd
+      changed_when: False
+
+
+    - name: Ensure default XML for metadata is installed
+      command: "irule -F /etc/irods/irods-ruleset-research/tools/install-default-xml-for-metadata.r '*resc=\"{{ irods_default_resc }}\"' '*default=\"{{ default_yoda_schema }}\"'"
+      register: default_xml
+      when: default_xsd.stderr.find('does not exist') >= 0
+      changed_when: default_xml.stdout.find('Creating') >= 0
+
+
+    - name: Configure cronjob to copy datapackages to the vault
+      cron:
+        name: 'copy-accepted-folders-to-vault.r'
+        minute: '*/2'
+        job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/copy-accepted-folders-to-vault.r >>$HOME/iRODS/server/log/job_copy-accepted-folder-to-vault.r 2>&1'
+
+
+    - name: Install script for revision clean up
+      template:
+        src: cronjob-revision-cleanup.sh.j2
+        dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
+        owner: '{{ irods_service_account }}'
+        group: '{{ irods_service_account }}'
+
+
+    - name: Configure cronjob to clean up revisions
+      cron:
+        name: 'cronjob-revision-cleanup.sh'
+        hour: 0
+        job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/iRODS/server/log/cronjob-revision-cleanup.log 2> /dev/null'
+
+
+  become_user: "{{ irods_service_account }}"
+  become: yes
+
