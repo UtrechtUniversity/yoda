@@ -51,8 +51,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.box = BOX
       controller.vm.hostname = "controller"
       controller.vm.network :private_network, ip: "192.168.50.5", netmask: NETMASK
+      controller.vm.provision "file", source: "./", destination: "/tmp/"
       controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh"
-      config.vm.synced_folder ".", "/vagrant", type: "smb"
+      controller.vm.synced_folder ".", "/vagrant", disabled: true
     end
   end
 end

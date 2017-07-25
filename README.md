@@ -33,13 +33,6 @@ Deploy YoDa to development virtual machines:
 ```
 vagrant provision controller
 ```
-or
-```
-vagrant ssh controller
-$ cd /vagrant
-$ chmod 0600 vagrant/ssh/vagrant
-$ ansible-playbook playbook.yml
-```
 
 License
 -------
