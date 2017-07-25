@@ -1,39 +1,39 @@
 ---
 # copyright Utrecht University
 
-- block:
-
-    - name: Checkout rulesets from github
-      git:
-        repo: "{{ item.repo }}"
-        dest: "/etc/irods/{{ item.name }}"
-        version: "{{ item.version }}"
-        update: "{{ update_rulesets }}"
-      with_items: "{{ rulesets }}"
-      when: "'repo' in item"
-      register: repochanges
-
-
-    - name: Run make install for each ruleset
-      make:
-        chdir: "/etc/irods/{{ item.0.name }}"
-        target: install
-      when: item.1.changed
-      with_together:
-        - "{{ rulesets }}"
-        - "{{ repochanges.results }}"
-
-
-    - name: Ensure all rulesets are in server config
-      irods_rulesets:
-        config_path: "/etc/irods/server_config.json"
-        rulesets: "{{ rulesets| map(attribute='ruleset_name')| list  }}"
-
-
+- name: Checkout rulesets from github
   become_user: "{{ irods_service_account }}"
   become: yes
+  git:
+    repo: "{{ item.repo }}"
+    dest: "/etc/irods/{{ item.name }}"
+    version: "{{ item.version }}"
+    update: "{{ update_rulesets }}"
+  with_items: "{{ rulesets }}"
+  when: "'repo' in item"
+  register: repochanges
+
+
+- name: Run make install for each ruleset
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  make:
+    chdir: "/etc/irods/{{ item.0.name }}"
+    target: install
+  when: item.1.changed
+  with_together:
+    - "{{ rulesets }}"
+    - "{{ repochanges.results }}"
+
+
+- name: Ensure all rulesets are in server config
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  irods_rulesets:
+    config_path: "/etc/irods/server_config.json"
+    rulesets: "{{ rulesets | map(attribute='ruleset_name') | list  }}"
+
 
 - include: "{{ item.name }}.yml"
   with_items: "{{ rulesets }}"
   when: item.install_scripts
-

@@ -26,9 +26,9 @@ irods_database_name: ICAT
 irods_database_port: 5432
 irods_database_user: irodsdb
 irods_database_password: irodsdev
+irods_zone: tempZone
 irods_port_range_begin: 20000
 irods_port_range_end: 20199
-irods_icat_zone: tempZone
 irods_icat_port: 1247
 irods_service_account: irods
 irods_vault_directory: /var/lib/irods/Vault
