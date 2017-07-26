@@ -35,5 +35,7 @@
 
 
 - include: "{{ item.name }}.yml"
+  become_user: "{{ irods_service_account }}"
+  become: yes
   with_items: "{{ rulesets }}"
   when: item.install_scripts
