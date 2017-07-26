@@ -22,15 +22,18 @@
 - name: Configure PHP in php.ini
   ini_file:
     path: /etc/php.ini
-    section: Date
+    section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
     mode: 0600
   with_items:
-    - option: date.timezone
-      value: '{{ timezone }}'
-    - option: expose_php
+    - section: PHP
+      option: expose_php
       value: Off
-    - option: max_execution_time
+    - section: PHP
+      option: max_execution_time
       value: 120
+    - section: Date
+      option: date.timezone
+      value: '{{ timezone }}'
   notify: Restart Apache webserver
