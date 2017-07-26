@@ -1,18 +1,12 @@
 ---
 # copyright Utrecht University
 
-- name: Read the current hostname
+- name: Read the current hostname configured in /etc/hosts
   command: 'hostname --fqdn'
   register: hostname
-  changed_when: hostname.stdout == 'localhost'
+  changed_when: hostname.stdout != inventory_hostname
 
 
 - name: Ensure FQDN is defined as hostname in /etc/hosts
-  lineinfile:
-    dest: /etc/hosts
-    regexp: '^127.0.0.1\s+localhost(.*)$'
-    state: present
-    backrefs: yes
-    line: '127.0.0.1\t{{ ansible_fqdn }} \1'
-    backup: yes
-  when: hostname.stdout == 'localhost'
+  command: hostnamectl set-hostname {{ inventory_hostname }}
+  when: hostname.stdout != inventory_hostname
