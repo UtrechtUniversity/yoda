@@ -10,7 +10,7 @@
     DocumentRoot "/var/www/yoda/public"
     ServerName {{ yoda_portal_fqdn }}
     <Directory /var/www/yoda>
-        Options Indexes FollowSymLinks MultiViews
+        Options FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny
         allow from all
