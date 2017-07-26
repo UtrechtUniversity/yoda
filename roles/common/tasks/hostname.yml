@@ -4,9 +4,9 @@
 - name: Read the current hostname configured in /etc/hosts
   command: 'hostname --fqdn'
   register: hostname
-  changed_when: hostname.stdout != inventory_hostname
+  changed_when: hostname.stdout.find(inventory_hostname) == -1
 
 
 - name: Ensure FQDN is defined as hostname in /etc/hosts
   command: hostnamectl set-hostname {{ inventory_hostname }}
-  when: hostname.stdout != inventory_hostname
+  changed_when: hostname.stdout.find(inventory_hostname) == -1
