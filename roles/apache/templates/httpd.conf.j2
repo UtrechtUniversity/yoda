@@ -22,6 +22,14 @@
 # Configures the Server HTTP response header
 ServerTokens ProductOnly
 
+# TraceEnable Directive
+# Determines the behaviour on TRACE requests
+TraceEnable off
+
+# X-Frame-Options
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
+Header always append X-Frame-Options DENY
+
 #
 # ServerRoot: The top of the directory tree under which the server's
 # configuration, error, and log files are kept.
