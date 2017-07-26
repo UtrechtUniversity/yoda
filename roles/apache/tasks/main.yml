@@ -23,11 +23,20 @@
   notify: Restart firewall
 
 
-- name: Ensure customized httpd SSL config is present
+- name: Ensure customized httpd config is present
   template:
-    src='ssl.conf.j2'
-    dest='/etc/httpd/conf.d/ssl.conf'
-    mode=0600
+    src: 'httpd.conf.j2'
+    dest: '/etc/httpd/conf/httpd.conf'
+    mode: 0600
+  notify: Restart Apache webserver
+
+
+- name: Ensure customized SSL config is present
+  template:
+    src: 'ssl.conf.j2'
+    dest: '/etc/httpd/conf.d/ssl.conf'
+    mode: 0600
+  notify: Restart Apache webserver
 
 
 - name: Ensure Apache is running and enabled
