@@ -1,49 +1,44 @@
 Design
 ======
 
-Content Organization
---------------------
-Our Ansible playbook for automated deployment of YoDa is organised like this:
+Playbook
+--------
+The master playbook for automated deployment of YoDa can be found in [playbook](playbook.yml).
+It consists of four tier which implements four distinct functional roles:
+* YoDa webportal
+* iCAT database
+* iCAT server
+* iRODS resource server
+
+### YoDa webportal tier
+The YoDa webportal tier provisions the host with the following:
+* Apache webserver
+* PHP
+* iRODS iCommands & runtime
+* YoDa portal and davrods
+
+### iCAT database tier
+The iCAT database tier provisions the host with the following:
+* PostgreSQL database
+* iRODS database plugin
+
+### iCAT server
+The iCAT server tier provisions the host with the following:
+* iRODS iCAT server & runtime
+* iRODS microservices
+* iRODS resource configuration
+* YoDa rulesets
+
+### iRODS resource server
+The iRODS resource server tier provisions the host with the following:
+* iRODS resource server & runtime
+* iRODS microservices
+
+
+Roles
+-----
+All the roles can be found in the roles directory using the following content organization:
 ```
-environments/
-   development/
-      hosts               # inventory file for development environment
-      group_vars/
-         group1           # here we assign variables to particular groups
-         group2           # ""
-      host_vars/
-         hostname1       # if systems need specific variables, put them here
-         hostname2       # ""
-
-   testing/
-      hosts               # inventory file for testing environment
-      group_vars/
-         group1           # here we assign variables to particular groups
-         group2           # ""
-      host_vars/
-         hostname1       # if systems need specific variables, put them here
-         hostname2       # ""
-
-   acceptance/
-      hosts               # inventory file for acceptance environment
-      group_vars/
-         group1           # here we assign variables to particular groups
-         group2           # ""
-      host_vars/
-         hostname1       # if systems need specific variables, put them here
-         hostname2       # ""
-
-   production/
-      hosts               # inventory file for production environment
-      group_vars/
-         group1           # here we assign variables to particular groups
-         group2           # ""
-      host_vars/
-         hostname1        # if systems need specific variables, put them here
-         hostname2        # ""
-
-playbook.yml              # master playbook
-
 roles/
     common/               # this hierarchy represents a "role"
         tasks/            #
@@ -55,14 +50,13 @@ roles/
         files/            #
             bar.txt       #  files for use with the copy resource
             foo.sh        #  script files for use with the script resource
-        vars/             #
-            main.yml      #  variables associated with this role
         defaults/         #
-            main.yml      #  default lower priority variables for this role
+            main.yml      #  default variables for this role
         meta/             #
             main.yml      #  role dependencies
 
     apache/               # same kind of structure as "common" was above, done for the apache role
+    certificates/         # ""
     composable-resources/ # ""
     hostentries/          # ""
     irods-database/       # ""
@@ -78,34 +72,48 @@ roles/
     yoda-rulesets/        # ""
 ```
 
-Master Playbook
----------------
-The master [playbook](playbook.yml) consists of four tiers:
-* portal
-* database
-* iCAT
-* resource
 
-### portal tier
-The portal tier provisions the host with the following:
-* Apache webserver
-* PHP
-* iRODS iCommands & runtime
-* YoDa portal and davrods
+Environments
+------------
+The playbook can be used with different environments.
+Each environment has its own inventory (hosts) with all instances.
+Each instance is configured in group variables (group_vars).
+Host specific variables (host_vars) may exist for each host.
+```
+environments/
+   development/
+      hosts              # inventory file for development environment
+      group_vars/
+         group1          # here we assign variables to particular groups
+         group2          # ""
+      host_vars/
+         hostname1       # if systems need specific variables, put them here
+         hostname2       # ""
 
-### database tier
-The portal tier provisions the host with the following:
-* PostgreSQL database
-* iRODS database plugin
+   testing/
+      hosts              # inventory file for testing environment
+      group_vars/
+         group1          # here we assign variables to particular groups
+         group2          # ""
+      host_vars/
+         hostname1       # if systems need specific variables, put them here
+         hostname2       # ""
 
-### iCAT tier
-The portal tier provisions the host with the following:
-* iRODS iCAT server & runtime
-* iRODS microservices
-* YoDa rulesets
+   acceptance/
+      hosts              # inventory file for acceptance environment
+      group_vars/
+         group1          # here we assign variables to particular groups
+         group2          # ""
+      host_vars/
+         hostname1       # if systems need specific variables, put them here
+         hostname2       # ""
 
-### resource tier
-The portal tier provisions the host with the following:
-* iRODS resource server & runtime
-* iRODS microservices
-* YoDa rulesets
+   production/
+      hosts              # inventory file for production environment
+      group_vars/
+         group1          # here we assign variables to particular groups
+         group2          # ""
+      host_vars/
+         hostname1       # if systems need specific variables, put them here
+         hostname2       # ""
+```
