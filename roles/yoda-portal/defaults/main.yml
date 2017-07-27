@@ -5,7 +5,7 @@ yoda_deployment_user: yodadeployment
 
 yoda_version: development
 irods_php_version: master
-codeigniter_version: 2.2-uu
+codeigniter_version: 3.1-uu
 
 yoda_portal_fqdn: portal.yoda.dev
 update_portal: yes
@@ -21,16 +21,16 @@ portal_sources:
     version: "{{ irods_php_version }}"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: /var/www/yoda/yoda-portal
-    version: "{{ yoda_version }}"
+    version: "feature/codeigniter3"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
     dest: /var/www/yoda/yoda-portal/modules/group-manager
-    version: "{{ yoda_version }}"
+    version: "feature/codeigniter3"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
     version: "{{ yoda_version }}"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
-    version: "{{ yoda_version }}"
+    version: "feature/codeigniter3"
 
 # iRODS configuration.
 irods_default_resc: irodsResc
