@@ -78,6 +78,12 @@
   run_once: true
 
 
+- name: Ensure all users have iRODS read access on /zone/public
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 'ichmod -M read public /{{irods_zone}}/home'
+
+
 - name: Enable ports for iCAT in firewall
   firewalld:
     port: '{{ item }}'
