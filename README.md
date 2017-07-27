@@ -10,7 +10,7 @@ Requirements
 * [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 1.9)
 
 ### Managed node requirements
-* CentOS 7.3
+* [CentOS](https://www.centos.org/) (>= 7.3)
 
 Usage
 -----
