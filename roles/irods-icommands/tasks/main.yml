@@ -7,18 +7,11 @@
   register: irods_server
 
 
-- name: Download iRODS iCommands rpm
-  get_url:
-    url: '{{ irods_icommands.url }}/{{ irods_icommands.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ irods_icommands.filename }}'
-    checksum: '{{ irods_icommands.checksum }}'
-  when: irods_server.stat.exists == false
-
-
 - name: Ensure iRODS iCommands is installed
-  package:
+  yum:
     name: '{{ item }}'
     state: present
+    skip_broken: yes
   with_items:
-    - '{{ rpm_dest_dir }}/{{ irods_icommands.filename }}'
+    - irods-icommands-4.2.1-1
   when: irods_server.stat.exists == false

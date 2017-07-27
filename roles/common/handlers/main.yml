@@ -11,9 +11,3 @@
   service:
     name: firewalld
     state: restarted
-
-
-- name: Clean yum metadata cache
-  command: yum clean metadata
-  args:
-    warn: no

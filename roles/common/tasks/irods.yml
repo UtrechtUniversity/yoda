@@ -3,9 +3,8 @@
 
 - name: Ensure iRODS packages repository is enabled
   yum_repository:
-    name: iRODS Packages
+    name: iRODS-packages
     description: YUM repositories for the iRODS Consortium
-    baseurl: https://packages.irods.org/renci-irods.yum.repo
+    baseurl: https://packages.irods.org/yum/pool/centos7/x86_64/
     gpgkey: https://packages.irods.org/irods-signing-key.asc
     gpgcheck: yes
-  notify: Clean yum metadata cache

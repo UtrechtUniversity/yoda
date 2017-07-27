@@ -9,6 +9,7 @@
 
 
 - name: Ensure iRODS runtime is installed
-  package:
-    name: '{{ rpm_dest_dir }}/{{ irods_runtime.filename }}'
+  yum:
+    name: irods-runtime-4.2.1-1
     state: present
+    skip_broken: yes
