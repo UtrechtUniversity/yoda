@@ -1,0 +1,11 @@
+---
+# copyright Utrecht University
+
+- name: Ensure iRODS packages repository is enabled
+  yum_repository:
+    name: iRODS Packages
+    description: YUM repositories for the iRODS Consortium
+    baseurl: https://packages.irods.org/renci-irods.yum.repo
+    gpgkey: https://packages.irods.org/irods-signing-key.asc
+    gpgcheck: yes
+  notify: Clean yum metadata cache

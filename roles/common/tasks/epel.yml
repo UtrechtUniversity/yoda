@@ -5,3 +5,4 @@
   package:
     name: epel-release
     state: present
+  notify: Clean yum metadata cache

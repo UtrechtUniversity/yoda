@@ -3,6 +3,7 @@
 
 - include: hostname.yml
 - include: epel.yml
+- include: irods.yml
 - include: firewalld.yml
 - include: ntp.yml
 - include: basics.yml
