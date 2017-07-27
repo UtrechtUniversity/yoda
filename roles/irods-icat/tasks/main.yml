@@ -84,6 +84,7 @@
   shell: 'ils -A /{{ irods_zone }}/home | grep "g:public#"'
   register: read_access
   ignore_errors: true
+  changed_when: read_access | failed
 
 
 - name: Provide iRODS read access for all users on /zone/public
