@@ -27,7 +27,7 @@ portal_sources:
     version: "feature/codeigniter3"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
-    version: "{{ yoda_version }}"
+    version: "feature/codeigniter3"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
     version: "feature/codeigniter3"
