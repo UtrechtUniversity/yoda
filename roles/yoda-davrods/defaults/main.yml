@@ -6,9 +6,9 @@ rpm_dest_dir: /tmp
 
 # davrods rpm location and checksum
 davrods:
-  url: https://github.com/UtrechtUniversity/davrods/releases/download/4.1_1.1.1
-  filename: davrods-4.1_1.1.1-1.el7.centos.x86_64.rpm
-  checksum: sha256:571cb1bf10e60443374d3d7cb5496563c1bbc1a140b782297425bd20976cfd2f
+  url: https://github.com/UtrechtUniversity/davrods/releases/download/4.2.1_1.1.1
+  filename: davrods-4.2.1_1.1.1-1.rpm
+  checksum: sha256:3beb6f4bd08c2e775fdc9002474f0771de327b7712972abf6ce6f6fa54dff562
 
 # authentication is either "Pam"  or "Native" 
 yoda_davrods_authentication: Native

@@ -49,15 +49,6 @@
   notify: Restart Apache webserver
 
 
-- name: Allow Apache to execute iRODS network plugins
-  file:
-    path: '{{ item }}'
-    setype: httpd_sys_script_exec_t
-  with_items:
-    - /var/lib/irods/plugins/network/libtcp.so
-    - /var/lib/irods/plugins/network/libssl.so
-
-
 - name: Allow public to ports for davrods in firewall
   firewalld:
     port: '{{ item }}'

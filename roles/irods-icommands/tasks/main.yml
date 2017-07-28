@@ -7,11 +7,19 @@
   register: irods_server
 
 
+- name: Ensure iRODS 4.1 packages are absent
+  package:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - irods-runtime-4.1.8-0
+    - irods-icommands-4.1.8-0
+
+
 - name: Ensure iRODS iCommands is installed
   yum:
     name: '{{ item }}'
     state: present
-    skip_broken: yes
   with_items:
     - irods-icommands-4.2.1-1
   when: irods_server.stat.exists == false

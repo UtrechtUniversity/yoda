@@ -1,15 +1,15 @@
 ---
 # copyright Utrecht University
 
-- name: Download iRODS runtime rpm
-  get_url:
-    url: '{{ irods_runtime.url }}/{{ irods_runtime.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ irods_runtime.filename }}'
-    checksum: '{{ irods_runtime.checksum }}'
+- name: Ensure iRODS 4.1 packages are absent
+  package:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - irods-runtime-4.1.8-0
 
 
 - name: Ensure iRODS runtime is installed
-  yum:
+  package:
     name: irods-runtime-4.2.1-1
     state: present
-    skip_broken: yes
