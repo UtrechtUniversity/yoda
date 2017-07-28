@@ -3,10 +3,8 @@
 
 - name: Ensure dependencies for Ansible OpenSSL module are installed
   package:
-    name: '{{ item }}'
+    name: pyOpenSSL
     state: present
-  with_items:
-    - pyOpenSSL
 
 
 - name: Ensure an OpenSSL 4096 bits RSA private key is present

@@ -12,10 +12,8 @@
 
 - name: Ensure dependencies for Ansible PostgreSQL module are installed
   package:
-    name: '{{ item }}'
+    name: python-psycopg2
     state: present
-  with_items:
-    - python-psycopg2
 
 
 - name: Initialize PostgreSQL database
