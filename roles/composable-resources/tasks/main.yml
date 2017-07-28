@@ -31,7 +31,8 @@
   lineinfile:
     path: /etc/irods/core.re
     regexp: "^acSetRescSchemeForCreate"
-    line: "acSetRescSchemeForCreate {msiSetDefaultResc(\"{{ irods_default_resc }}\",\"null\"); }"
+    line: "acSetRescSchemeForCreate {msiSetDefaultResc(\"\
+           {{ irods_default_resc }}\",\"null\"); }"
 
 
 - name: Ensure iRODS default resource is set in irods_environment.json
