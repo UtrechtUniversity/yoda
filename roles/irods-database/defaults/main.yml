@@ -1,0 +1,6 @@
+---
+# copyright Utrecht University
+
+irods_database_name: ICAT
+irods_database_user: irodsdb
+irods_database_password: irodsdev

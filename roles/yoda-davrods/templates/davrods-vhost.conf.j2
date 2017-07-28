@@ -6,12 +6,15 @@
 # Below we provide an example vhost configuration that enables davrods using
 # its default options.
 #
-Listen 8080
 
-<VirtualHost *:8080>
+{% if yoda_davrods_port != 443 %}
+Listen {{ yoda_davrods_port }}
+{% endif %}
+
+<VirtualHost *:{{ yoda_davrods_port }}>
 
     # Enter your server name here.
-    ServerName {{ yoda_disk_vhost }}
+    ServerName {{ yoda_davrods_fqdn }}
 
     # NB: Some webdav clients expect the server to implement webdav at the root
     # location (they execute an OPTIONS request to verify existence of webdav
@@ -19,7 +22,7 @@ Listen 8080
 
     <Location />
 
-        # Options needed to enable davrods. 
+        # Options needed to enable davrods.
         # =================================
 
         # Disable built-in directory listings.
@@ -45,9 +48,9 @@ Listen 8080
         #
         Dav davrods-locallock
 
-        # 
+        #
 
-        # davrods configuration directives. 
+        # davrods configuration directives.
         # =================================
 
         # Location of the iRODS environment file that specifies the iRODS

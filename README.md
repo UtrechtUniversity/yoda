@@ -26,6 +26,12 @@ Deploy YoDa to development virtual machines:
 ansible-playbook playbook.yml
 ```
 
+Adding following to /etc/hosts:
+```
+192.168.50.10 portal.yoda.dev
+192.168.50.10 data.yoda.dev
+```
+
 ### Windows host
 Configure the virtual machines for development:
 ```bash
@@ -35,6 +41,12 @@ vagrant up
 Deploy YoDa to development virtual machines:
 ```
 vagrant provision controller
+```
+
+Adding following to %SystemRoot%\System32\drivers\etc\hosts:
+```
+192.168.50.10 portal.yoda.dev
+192.168.50.10 data.yoda.dev
 ```
 
 License

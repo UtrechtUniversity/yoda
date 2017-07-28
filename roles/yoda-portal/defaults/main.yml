@@ -5,13 +5,14 @@ yoda_deployment_user: yodadeployment
 
 yoda_version: development
 irods_php_version: master
-codeigniter_version: 3.1-uu
+codeigniter_version: 2.2-uu
 
 yoda_portal_fqdn: portal.yoda.dev
 update_portal: yes
 yoda_php_encryption_key: dummy
+yoda_public_dir: /var/www/yoda/yoda-portal/public
 
-# YoDa portal sources
+# YoDa portal source
 portal_sources:
   - repo: "https://github.com/UtrechtUniversity/CodeIgniter.git"
     dest: /var/www/yoda/CodeIgniter
@@ -21,16 +22,22 @@ portal_sources:
     version: "{{ irods_php_version }}"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: /var/www/yoda/yoda-portal
-    version: "feature/codeigniter3"
-  - repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
+    version: "{{ yoda_version }}"
+
+# YoDa modules
+modules:
+  - name: group-manager
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
     dest: /var/www/yoda/yoda-portal/modules/group-manager
-    version: "feature/codeigniter3"
-  - repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
+    version: "{{ yoda_version }}"
+  - name: research
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
-    version: "feature/codeigniter3"
-  - repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
+    version: "{{ yoda_version }}"
+  - name: statistics
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
-    version: "feature/codeigniter3"
+    version: "{{ yoda_version }}"
 
 # iRODS configuration.
 irods_default_resc: irodsResc
