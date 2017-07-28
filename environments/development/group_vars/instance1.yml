@@ -4,18 +4,16 @@
 # Ansible configuration.
 ansible_user: vagrant
 ansible_ssh_private_key_file: vagrant/ssh/vagrant
-instance: instance1
 
 # YoDa configuration.
+instance: instance1
 yoda_version: development
 yoda_portal_fqdn: portal.yoda.dev
 yoda_davrods_fqdn: data.yoda.dev
-timezone: Europe/Amsterdam
 
 # iRODS configuration.
 irods_admin: rods
 irods_password: rods
-irods_database_name: ICAT
 irods_database_user: irodsdb
 irods_database_password: irodsdev
 irods_zone: tempZone
