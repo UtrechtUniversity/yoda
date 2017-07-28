@@ -9,6 +9,7 @@ instance: instance1
 # YoDa configuration.
 yoda_version: development
 yoda_portal_fqdn: portal.yoda.dev
+yoda_davrods_fqdn: data.yoda.dev
 timezone: Europe/Amsterdam
 
 # iRODS configuration.
