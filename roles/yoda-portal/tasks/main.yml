@@ -7,7 +7,7 @@
     home: /var/www/yoda
 
 
-- name: Checkout YoDa sources
+- name: Checkout YoDa portal source
   become_user: "{{ yoda_deployment_user }}"
   become: yes
   git:
@@ -18,22 +18,35 @@
   with_items: "{{ portal_sources }}"
 
 
-- name: Link portal public directories
+- name: Link public directories of YoDa portal
   file:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
     state: link
   with_items:
-    - src: /var/www/yoda/yoda-portal/public
+    - src: '{{ yoda_public_dir }}'
       dest: /var/www/yoda/public
-    - src: /var/www/yoda/yoda-portal/modules/group-manager/public
-      dest: /var/www/yoda/yoda-portal/public/group-manager
-    - src: /var/www/yoda/yoda-portal/modules/research/public
-      dest: /var/www/yoda/yoda-portal/public/research
-    - src: /var/www/yoda/yoda-portal/modules/statistics/public
-      dest: /var/www/yoda/yoda-portal/public/statistics
-    - src: /var/www/yoda/yoda-portal/public
+    - src: '{{ yoda_public_dir }}'
       dest: /var/www/html/public
+
+
+- name: Checkout YoDa modules
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    version: "{{ item.version }}"
+    update: "{{ update_portal }}"
+  with_items: "{{ modules }}"
+
+
+- name: Link public directories of YoDa modules
+  file:
+    src: '{{ item.dest }}/public'
+    dest: '{{ yoda_public_dir }}/{{ item.name }}'
+    state: link
+  with_items: "{{ modules }}"
 
 
 - name: Generate php session encryption key
