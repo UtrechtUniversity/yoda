@@ -47,6 +47,7 @@
       key: '{{ negotiation_key.stdout }}'
     - fact: irods_control_plane_key
       key: '{{ control_plane_key.stdout }}'
+  when: not ansible_check_mode
 
 
 - name: Copy responses for setup_irods.sh
@@ -54,6 +55,7 @@
     src: setup_irods.j2
     dest: /home/{{ ansible_ssh_user }}/setup_irods
     force: no
+  when: not ansible_check_mode
 
 
 - name: Configure iRODS iCAT server
