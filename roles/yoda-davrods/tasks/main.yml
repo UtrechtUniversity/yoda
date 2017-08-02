@@ -60,10 +60,8 @@
 
 - name: Allow public to ports for davrods in firewall
   firewalld:
-    port: '{{ item }}'
+    port: '{{ yoda_davrods_port }}/tcp'
     permanent: true
     state: enabled
     immediate: yes
-  with_items:
-    - 8080/tcp
   notify: Restart firewall

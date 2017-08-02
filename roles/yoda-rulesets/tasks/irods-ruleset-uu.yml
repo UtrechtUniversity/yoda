@@ -5,6 +5,7 @@
   command: 'iadmin lg'
   register: priv_groups
   changed_when: priv_groups.stdout.find('priv-group-add') == -1
+  check_mode: no
 
 
 - name: Configure group-manager privilige groups in iCAT database
@@ -17,6 +18,7 @@
   ignore_errors: True
   register: system_collections
   changed_when: False
+  check_mode: no
 
 
 - name: Ensure yoda system collections are present
