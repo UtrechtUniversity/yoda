@@ -14,7 +14,6 @@
     type: RSA
     force: False
     state: present
-  when: not ansible_check_mode
 
 
 - name: Ensure an OpenSSL certificate signing request is present
@@ -27,7 +26,6 @@
   args:
     chdir: '{{ openssl_certs_dir }}'
     creates: '{{ openssl_csr_selfsigned }}'
-  when: not ansible_check_mode
 
 
 - name: Ensure an OpenSSL self signed certificate is present
@@ -39,7 +37,6 @@
   args:
     chdir: '{{ openssl_certs_dir }}'
     creates: '{{ openssl_crt_selfsigned }}'
-  when: not ansible_check_mode
 
 
 - name: Ensure signed private key is present
@@ -48,7 +45,6 @@
     '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
   args:
     creates: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
-  when: not ansible_check_mode
 
 
 - name: Ensure signed certificate is present
@@ -57,7 +53,6 @@
     '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
   args:
     creates: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
-  when: not ansible_check_mode
 
 
 - name: Ensure Diffie-Hellman parameters are generated
@@ -65,7 +60,6 @@
   args:
     chdir: '{{ openssl_private_dir }}'
     creates: '{{ openssl_private_dir }}/{{ openssl_dhparams }}'
-  when: not ansible_check_mode
 
 
 - name: Ensure PKI files are available for other hosts
@@ -77,4 +71,3 @@
     - '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
   register: pki_certs
   run_once: true
-  when: not ansible_check_mode
