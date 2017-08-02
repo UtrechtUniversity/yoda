@@ -13,9 +13,9 @@ microservices:
     filename: rit-irods-microservices-0.3.0-centos7.rpm
     checksum: sha256:888281f41701b86a5769060c299c57452a7a2c82a09a0943ffd2c940548e2f75
   irods_sudo_microservices:
-    url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/0.2/irods-sudo-microservices-0.2-Linux.rpm
-    filename: irods-sudo-microservices-0.2-Linux.rpm
-    checksum: sha256:5f19879f643d498a1a44c5c9c524495962cb5cb37620a98813223aec3eabbbca
+    url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/4.2.1_1.0.0/irods-sudo-microservices-4.2.1_1.0.0-1.rpm
+    filename: irods-sudo-microservices-4.2.1_1.0.0-1.rpm
+    checksum: sha256:29469b0abfc3b32df38308e54d4b13e3c23402577b9f74138f58102b2e28636d
   irods_xml_microservices:
     url: https://github.com/UtrechtUniversity/irods-xml-microservices/releases/download/1.6/irods-microservice-plugins-loadmeta-1.6-centos7.rpm
     filename: irods-microservice-plugins-loadmeta-1.6-centos7.rpm
