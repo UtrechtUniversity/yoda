@@ -88,7 +88,7 @@ rulesets:
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "feature/case-insensitive-search"
     install_scripts: yes
   - name: core
     ruleset_name: core
