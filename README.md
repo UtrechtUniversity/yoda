@@ -14,16 +14,21 @@ Requirements
 
 Usage
 -----
+There are two example instances availabe for deployment
+in the development [environment](environment/development).
+Instance 'full' deploys all functional roles to seperate VM's.
+Instance 'allinone' deploys all functional roles to one VM's.
+
 ### GNU/Linux or macOS host
 Configure the virtual machines for development:
 ```bash
-vagrant up
+vagrant --instance=allinone up
 chmod 0600 vagrant/ssh/vagrant
 ```
 
 Deploy YoDa to development virtual machines:
 ```bash
-ansible-playbook playbook.yml
+ansible-playbook playbook.yml --limit=allinone
 ```
 
 Adding following to /etc/hosts:
@@ -35,12 +40,12 @@ Adding following to /etc/hosts:
 ### Windows host
 Configure the virtual machines for development:
 ```bash
-vagrant up
+vagrant --instance=allinone up
 ```
 
 Deploy YoDa to development virtual machines:
 ```
-vagrant provision controller
+vagrant --instance=allinone provision controller
 ```
 
 Adding following to %SystemRoot%\System32\drivers\etc\hosts:

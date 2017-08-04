@@ -1,0 +1,102 @@
+---
+# copyright Utrecht University
+
+# Ansible configuration.
+ansible_user: vagrant
+ansible_ssh_private_key_file: vagrant/ssh/vagrant
+
+# YoDa configuration.
+instance: allinone
+yoda_version: development          # Git branch
+yoda_portal_fqdn: portal.yoda.dev
+yoda_davrods_fqdn: data.yoda.dev
+
+# iRODS configuration.
+irods_admin: rods
+irods_password: rods
+irods_database_user: irodsdb
+irods_database_password: irodsdev
+irods_authentication_scheme: Native        # "Native" or "Pam"
+irods_zone: tempZone
+irods_icat_fqdn: combined.yoda.dev
+irods_database_fqdn: combined.yoda.dev
+irods_resource_fqdn: combined.yoda.dev
+irods_default_resc: irodsResc
+irods_resources:
+  - name: dev001_1
+    host: "{{ irods_icat_fqdn }}"
+    vault_path: /var/lib/irods/Vault1_1
+    resource_type: unixfilesystem
+
+  - name: dev001_2
+    resource_type: unixfilesystem
+    host: "{{ irods_icat_fqdn }}"
+    vault_path: /var/lib/irods/Vault1_2
+
+  - name: dev001_p1
+    resource_type: passthru
+    children:
+      - dev001_1
+
+  - name: dev001_p2
+    resource_type: passthru
+    children:
+      - dev001_2
+
+  - name: dev001
+    resource_type: random
+    children:
+      - dev001_p1
+      - dev001_p2
+
+  - name: irodsResc
+    resource_type: random
+    children:
+      - dev001
+
+  - name: dev002_1
+    resource_type: unixfilesystem
+    host: "{{ irods_resource_fqdn }}"
+    vault_path: /var/lib/irods/Vault2_1
+
+  - name: dev002_p1
+    resource_type: passthru
+    children:
+      - dev002_1
+
+  - name: dev002
+    resource_type: random
+    children:
+      - dev002_p1
+
+  - name: irodsRescRepl
+    resource_type: random
+    children:
+      - dev002
+
+# Ruleset configuration.
+rulesets:
+  - name: irods-ruleset-i-lab
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-i-lab.git
+    ruleset_name: rules-i-lab
+    version: "{{ yoda_version }}"
+    install_scripts: no
+  - name: irods-ruleset-research
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-research.git
+    ruleset_name: rules-research
+    version: "{{ yoda_version }}"
+    install_scripts: yes
+  - name: irods-ruleset-uu
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
+    ruleset_name: rules-uu
+    version: "{{ yoda_version }}"
+    install_scripts: yes
+  - name: core
+    ruleset_name: core
+    path: /etc/irods/core.re
+    install_scripts: no
+
+# Research module specific configuration.
+default_yoda_schema: ilab
+enable_revisions: 1
+revision_strategy: A

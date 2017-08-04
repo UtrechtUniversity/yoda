@@ -22,4 +22,4 @@ chmod 0600 ~/yoda-ansible/vagrant/ssh/vagrant
 
 # Run YoDa playbook.
 cd ~/yoda-ansible
-ansible-playbook playbook.yml
+ansible-playbook playbook.yml --limit=$1

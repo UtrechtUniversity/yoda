@@ -6,7 +6,7 @@ ansible_user: vagrant
 ansible_ssh_private_key_file: vagrant/ssh/vagrant
 
 # YoDa configuration.
-instance: instance1
+instance: full
 yoda_version: development          # Git branch
 yoda_portal_fqdn: portal.yoda.dev
 yoda_davrods_fqdn: data.yoda.dev
