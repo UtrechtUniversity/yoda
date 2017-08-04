@@ -98,7 +98,7 @@
   copy:
     dest: "{{ hostvars[item]['pki_certs']['results'][0]['item'] }}"
     content: >
-      "{{ hostvars[item]['pki_certs']['results'][0]['content'] | b64decode }}"
+      {{ hostvars[item]['pki_certs']['results'][0]['content'] | b64decode }}
     owner: root
     group: root
     mode: 0600
@@ -110,7 +110,7 @@
   copy:
     dest: "{{ hostvars[item]['pki_certs']['results'][1]['item'] }}"
     content: >
-      "{{ hostvars[item]['pki_certs']['results'][1]['content'] | b64decode }}"
+      {{ hostvars[item]['pki_certs']['results'][1]['content'] | b64decode }}
     owner: root
     group: root
     mode: 0600
@@ -122,7 +122,7 @@
   copy:
     dest: "{{ hostvars[item]['pki_certs']['results'][2]['item'] }}"
     content: >
-      "{{ hostvars[item]['pki_certs']['results'][2]['content'] | b64decode }}"
+      {{ hostvars[item]['pki_certs']['results'][2]['content'] | b64decode }}
     owner: root
     group: root
     mode: 0600
@@ -178,3 +178,7 @@
       value: '/etc/irods/yoda_key_signed.pem'
     - key: 'irods_ssl_dh_params_file'
       value: '/etc/irods/yoda_dhparams.pem'
+
+
+- include: setup_pam_radius.yml
+  when: irods_authentication_scheme == "Pam"
