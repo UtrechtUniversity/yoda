@@ -1,0 +1,19 @@
+---
+# copyright Utrecht University
+
+- name: Ensure PAM radius is installed
+  package:
+    name: pam_radius
+    state: present
+
+
+- name: Ensure /etc/pam.d/irods is configured
+  template:
+    src='irods_pam.j2'
+    dest='/etc/pam.d/irods'
+
+
+- name: Ensure /etc/pam_radius.conf is configured
+  template:
+    src='pam_radius.conf.j2'
+    dest='/etc/pam_radius.conf'

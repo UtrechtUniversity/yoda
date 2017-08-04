@@ -15,7 +15,7 @@ Requirements
 Usage
 -----
 There are two example instances availabe for deployment
-in the development [environment](environment/development).
+in the development [environment](environments/development/).
 Instance 'full' deploys all functional roles to seperate VM's.
 Instance 'allinone' deploys all functional roles to one VM's.
 
