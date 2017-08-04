@@ -11,7 +11,7 @@ fi
 # Remove current version.
 rm -rf ~/yoda-ansible
 
-# Copy reopistory to home directory.
+# Copy repository to home directory.
 cp -R /tmp/yoda-ansible ~
 
 # Remove temporary directory.

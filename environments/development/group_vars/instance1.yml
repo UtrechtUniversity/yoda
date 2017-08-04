@@ -7,7 +7,7 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant
 
 # YoDa configuration.
 instance: instance1
-yoda_version: development
+yoda_version: development          # Git branch
 yoda_portal_fqdn: portal.yoda.dev
 yoda_davrods_fqdn: data.yoda.dev
 
@@ -16,6 +16,7 @@ irods_admin: rods
 irods_password: rods
 irods_database_user: irodsdb
 irods_database_password: irodsdev
+irods_authentication_scheme: Native        # "Native" or "Pam"
 irods_zone: tempZone
 irods_icat_fqdn: icat.yoda.dev
 irods_database_fqdn: database.yoda.dev
