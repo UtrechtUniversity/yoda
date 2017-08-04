@@ -1,39 +1,65 @@
-##############################
-# Development instance 1
-##############################
-[instance1-portal]
+################################
+# Development instance full
+################################
+[full-portal]
 portal
 
-[instance1-database]
+[full-database]
 database
 
-[instance1-icat]
+[full-icat]
 icat
 
-[instance1-resource]
+[full-resource]
 resource
 
-[instance1:children]
-instance1-portal
-instance1-database
-instance1-icat
-instance1-resource
+[full:children]
+full-portal
+full-database
+full-icat
+full-resource
+
+
+################################
+# Development instance allinone
+################################
+[allinone-portal]
+combined
+
+[allinone-database]
+combined
+
+[allinone-icat]
+combined
+
+[allinone-resource]
+
+
+[allinone:children]
+allinone-portal
+allinone-database
+allinone-icat
+allinone-resource
 
 
 ##############################
 # All hosts
 ##############################
 [portals:children]
-instance1-portal
+full-portal
+allinone-portal
 
 [databases:children]
-instance1-database
+full-database
+allinone-database
 
 [icats:children]
-instance1-icat
+full-icat
+allinone-icat
 
 [resources:children]
-instance1-resource
+full-resource
+allinone-resource
 
 [development:children]
-instance1
+full

@@ -4,7 +4,15 @@
 - name: Ensure yodadeployment user exists
   user:
     name: "{{ yoda_deployment_user }}"
-    home: /var/www/yoda
+
+
+- name: Ensure yodadeployment has access to /var/www/yoda
+  file:
+    path: /var/www/yoda
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0755
 
 
 - name: Checkout YoDa portal source

@@ -48,8 +48,6 @@ Listen {{ yoda_davrods_port }}
         #
         Dav davrods-locallock
 
-        #
-
         # davrods configuration directives.
         # =================================
 
@@ -70,19 +68,19 @@ Listen {{ yoda_davrods_port }}
 
         # Hostname and port of the iRODS server to connect to.
         #
-        #DavRodsServer localhost 1247
         DavRodsServer          {{ irods_icat_fqdn }} {{ irods_icat_port }}
+
         # Data grid zone id of the iRODS server.
         #
-        #DavRodsZone tempZone
         DavRodsZone            {{ irods_zone }}
+
         # Authentication type to use when connecting to iRODS.
         #
         # Supported authentication types are 'Native' and 'Pam'.
         # ('Native' corresponds to what was formerly called 'Standard' auth in iRODS).
         #
-        #DavRodsAuthScheme Native
-        DavRodsAuthScheme      {{ yoda_davrods_authentication }}
+        DavRodsAuthScheme      {{ irods_authentication_scheme }}
+
         # iRODS default resource to use for file uploads.
         #
         # Leave this empty to let the server decide.
@@ -102,8 +100,8 @@ Listen {{ yoda_davrods_port }}
         # - 'User'      (collection /zone-name/home/logged-in-username)
         # - full-path   (named collection, must be absolute path, starts with /)
         #
-        #DavRodsExposedRoot  User
         DavRodsExposedRoot     Home
+
         # Size of the buffers used for file transfer to/from the iRODS server.
         #
         # The default values optimize performance for regular configurations.
@@ -131,7 +129,6 @@ Listen {{ yoda_davrods_port }}
         # lock database.
         #
         #DavRodsLockDB          /var/lib/davrods/lockdb_locallock
-
     </Location>
 
     SSLEngine on

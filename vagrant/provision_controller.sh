@@ -11,7 +11,7 @@ fi
 # Remove current version.
 rm -rf ~/yoda-ansible
 
-# Copy reopistory to home directory.
+# Copy repository to home directory.
 cp -R /tmp/yoda-ansible ~
 
 # Remove temporary directory.
@@ -22,4 +22,4 @@ chmod 0600 ~/yoda-ansible/vagrant/ssh/vagrant
 
 # Run YoDa playbook.
 cd ~/yoda-ansible
-ansible-playbook playbook.yml
+ansible-playbook playbook.yml --limit=$1

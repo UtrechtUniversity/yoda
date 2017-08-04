@@ -26,6 +26,7 @@ irods_database_name: ICAT
 irods_database_port: 5432
 irods_database_user: irodsdb
 irods_database_password: irodsdev
+irods_authentication_scheme: Native        # "Native" or "Pam"
 irods_zone: tempZone
 irods_port_range_begin: 20000
 irods_port_range_end: 20199
