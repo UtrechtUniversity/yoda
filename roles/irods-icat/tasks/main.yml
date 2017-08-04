@@ -192,3 +192,7 @@
       value: '/etc/irods/yoda_key_signed.pem'
     - key: 'irods_ssl_dh_params_file'
       value: '/etc/irods/yoda_dhparams.pem'
+
+
+- include: setup_pam_radius.yml
+  when: irods_authentication_scheme == "Pam"
