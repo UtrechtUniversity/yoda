@@ -17,3 +17,15 @@
   template:
     src='pam_radius.conf.j2'
     dest='/etc/pam_radius.conf'
+
+
+- name: Ensure iRODS is configured to use PAM
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_config:
+    path: '/var/lib/irods/.irods/irods_environment.json'
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_items:
+    - key: 'irods_authentication_scheme'
+      value: '{{ irods_authentication_scheme }}'
