@@ -18,9 +18,9 @@ irods_database_user: irodsdb
 irods_database_password: irodsdev
 irods_authentication_scheme: Native        # "Native" or "PAM"
 irods_zone: tempZone
-irods_icat_fqdn: portal.yoda.dev
-irods_database_fqdn: portal.yoda.dev
-irods_resource_fqdn: portal.yoda.dev
+irods_icat_fqdn: combined.yoda.dev
+irods_database_fqdn: combined.yoda.dev
+irods_resource_fqdn: combined.yoda.dev
 irods_default_resc: irodsResc
 irods_resources:
   - name: dev001_1
