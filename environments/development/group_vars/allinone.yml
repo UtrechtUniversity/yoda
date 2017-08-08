@@ -100,3 +100,8 @@ rulesets:
 default_yoda_schema: ilab
 enable_revisions: 1
 revision_strategy: A
+
+# PAM Radius configuration.
+pam_radius_config: |
+  127.0.0.1     secret         1
+  other-server  other-secret   3
