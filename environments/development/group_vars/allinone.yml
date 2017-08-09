@@ -16,7 +16,7 @@ irods_admin: rods
 irods_password: rods
 irods_database_user: irodsdb
 irods_database_password: irodsdev
-irods_authentication_scheme: Native        # "Native" or "Pam"
+irods_authentication_scheme: Native        # "Native" or "PAM"
 irods_zone: tempZone
 irods_icat_fqdn: combined.yoda.dev
 irods_database_fqdn: combined.yoda.dev
@@ -100,3 +100,8 @@ rulesets:
 default_yoda_schema: ilab
 enable_revisions: 1
 revision_strategy: A
+
+# PAM Radius configuration.
+pam_radius_config: |
+  127.0.0.1     secret         1
+  other-server  other-secret   3

@@ -65,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Provision controller for Ansible on Windows host.
-  #if Vagrant::Util::Platform.windows? then
+  if Vagrant::Util::Platform.windows? then
     config.vm.define "controller" do |controller|
       controller.vm.box = BOX
       controller.vm.hostname = "controller"
@@ -73,6 +73,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.provision "file", source: "./", destination: "/tmp/"
       controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh", args: instance
       controller.vm.synced_folder ".", "/vagrant", disabled: true
-   #end
+    end
   end
 end
