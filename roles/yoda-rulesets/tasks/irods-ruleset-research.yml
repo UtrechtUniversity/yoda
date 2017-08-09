@@ -8,6 +8,7 @@
   changed_when: False
   check_mode: no
 
+
 - name: Ensure default XML for metadata is installed
   command: "irule -F /etc/irods/irods-ruleset-research/tools/install-default-xml-for-metadata.r '*resc=\"{{ irods_default_resc }}\"' '*default=\"{{ default_yoda_schema }}\"'"
   register: default_xml
