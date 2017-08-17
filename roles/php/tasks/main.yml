@@ -19,7 +19,7 @@
     persistent: yes
 
 
-- name: Configure PHP in php.ini
+- name: Ensure PHP is configured
   ini_file:
     path: /etc/php.ini
     section: '{{ item.section }}'

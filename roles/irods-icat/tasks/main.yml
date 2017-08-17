@@ -184,5 +184,14 @@
       value: 'none'
 
 
+- name: Ensure iRODS is configured to use SSL connection to database
+  ini_file:
+    path: /var/lib/irods/.odbc.ini
+    section: postgres
+    option: 'sslmode'
+    value: 'require'
+    mode: 0600
+
+
 - include: setup_pam_radius.yml
   when: irods_authentication_scheme == "PAM"

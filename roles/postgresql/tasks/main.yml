@@ -21,13 +21,6 @@
     creates=/var/lib/pgsql/data/postgresql.conf
 
 
-- name: Ensure PostgreSQL is enabled and started
-  service:
-    name: postgresql
-    enabled: yes
-    state: started
-
-
 - name: Password protect loopback IPv4 connections
   lineinfile:
     dest: /var/lib/pgsql/data/pg_hba.conf
@@ -59,3 +52,79 @@
     immediate: yes
   notify: Restart firewall
   when: (ansible_fqdn != irods_icat_fqdn)
+
+
+- name: Ensure host has private key file
+  copy:
+    dest: "{{ hostvars[item]['pki_certs']['results'][0]['item'] }}"
+    content: >
+      {{ hostvars[item]['pki_certs']['results'][0]['content'] | b64decode }}
+    owner: root
+    group: root
+    mode: 0600
+  with_inventory_hostnames:
+    - 'portals:&{{ instance }}'
+
+
+- name: Ensure host has certificate file
+  copy:
+    dest: "{{ hostvars[item]['pki_certs']['results'][2]['item'] }}"
+    content: >
+      {{ hostvars[item]['pki_certs']['results'][2]['content'] | b64decode }}
+    owner: root
+    group: root
+    mode: 0600
+  with_inventory_hostnames:
+    - 'portals:&{{ instance }}'
+
+
+- name: Ensure private key file is available for PostgreSQL
+  command: 'cp /etc/pki/tls/private/yoda_key_signed.pem yoda_key_signed.pem'
+  args:
+    chdir: '/var/lib/pgsql/data'
+    creates: 'yoda_key_signed.pem'
+
+
+- name: Ensure certificate file is available for PostgreSQL
+  command: 'cp /etc/pki/tls/certs/yoda_signed.crt yoda_signed.crt'
+  args:
+    chdir: '/var/lib/pgsql/data'
+    creates: 'yoda_signed.crt'
+
+
+- name: Ensure PostgreSQL has access to PKI files
+  file:
+    path: '{{ item }}'
+    mode: 0600
+    group: 'postgres'
+    owner: 'postgres'
+    state: file
+  with_items:
+    - /var/lib/pgsql/data/yoda_key_signed.pem
+    - /var/lib/pgsql/data/yoda_signed.crt
+
+
+- name: Ensure PostgreSQL is configured to use SSL
+  ini_file:
+    path: /var/lib/pgsql/data/postgresql.conf
+    section: null
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    mode: 0600
+  with_items:
+    - option: ssl
+      value: "on"
+    - option: ssl_cert_file
+      value: "'yoda_signed.crt'"
+    - option: ssl_key_file
+      value: "'yoda_key_signed.pem'"
+    - option: ssl_ciphers
+      value: "'AES128+EECDH:AES128+EDH'"
+  notify: Restart PostgreSQL
+
+
+- name: Ensure PostgreSQL is enabled and started
+  service:
+    name: postgresql
+    enabled: yes
+    state: started

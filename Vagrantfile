@@ -9,7 +9,7 @@ opts = GetoptLong.new(
   [ '--instance', GetoptLong::OPTIONAL_ARGUMENT ]
 )
 
-instance='dummy'
+instance='combined'
 opts.each do |opt, arg|
   case opt
     when '--instance'

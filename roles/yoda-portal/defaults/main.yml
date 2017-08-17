@@ -5,7 +5,7 @@ yoda_deployment_user: yodadeployment
 
 yoda_version: development
 irods_php_version: master
-codeigniter_version: 2.2-uu
+codeigniter_version: 3.1-uu
 
 yoda_portal_fqdn: portal.yoda.dev
 update_portal: yes
