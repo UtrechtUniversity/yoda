@@ -7,17 +7,17 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant
 
 # YoDa configuration.
 instance: allinone
-yoda_version: development          # Git branch
+yoda_version: development                  # Git branch
 yoda_portal_fqdn: portal.yoda.dev
 yoda_davrods_fqdn: data.yoda.dev
 
 # iRODS configuration.
 irods_admin: rods
 irods_password: rods
-irods_database_user: irodsdb
-irods_database_password: irodsdev
-irods_authentication_scheme: Native        # "Native" or "PAM"
-irods_zone: tempZone
+irods_database_user: irodsdb               # The iRODS database username
+irods_database_password: irodsdev          # The password for the iRODS database username
+irods_authentication_scheme: Native        # iRODS authentication method: "Native" or "PAM"
+irods_zone: tempZone                       # The name of the iRODS Zone
 irods_icat_fqdn: combined.yoda.dev
 irods_database_fqdn: combined.yoda.dev
 irods_resource_fqdn: combined.yoda.dev
@@ -97,11 +97,11 @@ rulesets:
     install_scripts: no
 
 # Research module specific configuration.
-default_yoda_schema: ilab
+default_yoda_schema: ilab    # ilab or dc
 enable_revisions: 1
-revision_strategy: B        # A, B, J or Simple
+revision_strategy: B         # A, B, J or Simple
 
-# PAM Radius configuration.
+# PAM Radius configuration (server, shared secret, timeout (s)).
 pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
