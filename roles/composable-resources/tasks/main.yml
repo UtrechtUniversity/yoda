@@ -9,18 +9,9 @@
 
 - name: Ensure python-irodsclient is installed
   pip:
-    name: python-irodsclient
+    name: git+https://github.com/irods/python-irodsclient.git
+    editable: False
     state: present
-
-
-- name: Temporary workaround for authentication bug in iRODS Python client
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
-    key: 'irods_authentication_scheme'
-    value: 'password'
-  changed_when: False
 
 
 - name: Ensure all resources exist
@@ -33,16 +24,6 @@
     vault_path: "{{ item.vault_path | default('EMPTY_RESC_PATH')}}"
     children: "{{ item.children | default([]) }}"
   with_items: "{{ irods_resources }}"
-
-
-- name: Ensure correct iRODS authentication scheme is configured
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
-    key: 'irods_authentication_scheme'
-    value: '{{ irods_authentication_scheme }}'
-  changed_when: False
 
 
 - name: Ensure iRODS default resource is set in core.re
