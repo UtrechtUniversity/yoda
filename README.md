@@ -13,8 +13,8 @@ Ansible scripts for automatic deployment of YoDa: a system for reliable, long-te
 ##Usage
 There are two example instances available for deployment
 in the development [environment](environments/development/).
-Instance 'full' deploys all functional roles to separate VM's.
-Instance 'allinone' deploys all functional roles to one VM's.
+Instance 'full' deploys all functional roles to separate virtual machines.
+Instance 'allinone' deploys all functional roles to one virtual machine.
 
 ### GNU/Linux or macOS host
 Configure the virtual machines for development:
@@ -44,15 +44,19 @@ Configure the virtual machines for development:
 vagrant --instance=allinone up
 ```
 
-Deploy YoDa to development virtual machines:
+SSH to Ansible controller virtual machine:
 ```bash
 vagrant ssh controller
+cd ~/yoda-ansible
+```
+
+Deploy YoDa to development virtual machines:
+```bash
 ansible-playbook playbook.yml --limit=allinone
 ```
 
 Provision YoDa with test data:
 ```bash
-vagrant ssh controller
 ansible-playbook test.yml --limit=allinone
 ```
 
