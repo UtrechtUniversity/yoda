@@ -1,6 +1,6 @@
 ---
 # copyright Utrecht University
-# This playbook deploys the whole application stack in this site.
+# This playbook deploys a complete Yoda instance.
 
 - hosts: all
   pre_tasks:
