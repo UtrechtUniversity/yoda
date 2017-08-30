@@ -67,5 +67,5 @@ Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
 ```
 
 ## License
-This project is licensed under the GPL-v3 licence
+This project is licensed under the GPL-v3 license.
 The full license can be found in [LICENSE](LICENSE).
