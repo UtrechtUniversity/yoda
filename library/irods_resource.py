@@ -5,9 +5,12 @@
 #
 # license: GPL v3
 #
+from ansible.module_utils.basic import *
+
 ANSIBLE_METADATA = {'metadata_version': '1.0',
                     'status': ['preview'],
                     'supported_by': 'community'}
+
 
 IRODSCLIENT_AVAILABLE = False
 try:
@@ -100,6 +103,5 @@ def main():
             irods_environment=ienv)
 
 
-from ansible.module_utils.basic import *
 if __name__ == '__main__':
     main()
