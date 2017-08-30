@@ -17,7 +17,7 @@ try:
     from irods.session import iRODSSession
     from irods.models import Resource
     from irods.exception import ResourceDoesNotExist, iRODSException
-except:
+except ImportError:
     pass
 else:
     IRODSCLIENT_AVAILABLE = True
@@ -60,7 +60,7 @@ def main():
     if IRODSCLIENT_AVAILABLE:
         try:
             session, ienv = get_session()
-        except:
+        except iRODSException:
             module.fail_json(
                 msg="Could not establish irods connection. Please check ~/.irods/irods_environment.json"
             )
