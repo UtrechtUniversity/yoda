@@ -66,6 +66,6 @@ Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
 192.168.50.10 data.yoda.dev
 ```
 
-##License
+## License
 This project is licensed under the GPL-v3 licence
 The full license can be found in [LICENSE](LICENSE).
