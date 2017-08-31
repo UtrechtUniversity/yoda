@@ -70,8 +70,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.box = BOX
       controller.vm.hostname = "controller"
       controller.vm.network :private_network, ip: "192.168.50.5", netmask: NETMASK
-      controller.vm.provision "file", source: "./", destination: "/tmp/yoda-ansible"
-      controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh", args: instance
+      controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh"
       controller.vm.synced_folder ".", "/vagrant", disabled: true
     end
   end

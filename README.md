@@ -10,7 +10,7 @@ Ansible scripts for automatic deployment of YoDa: a system for reliable, long-te
 ### Managed node requirements
 * [CentOS](https://www.centos.org/) (>= 7.3)
 
-## Usage
+## Deploying Yoda instance
 There are two example instances available for deployment
 in the development [environment](environments/development/).
 Instance 'full' deploys all functional roles to separate virtual machines.
@@ -64,6 +64,37 @@ Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
 ```
 192.168.50.10 portal.yoda.dev
 192.168.50.10 data.yoda.dev
+```
+
+## Upgrading Yoda instance
+Upgrading Yoda to the latest version can be done by running the Ansible playbooks again.
+
+### GNU/Linux or macOS host
+Upgrade Ansible scripts:
+```bash
+git pull
+```
+
+Upgrade YoDa instance:
+```bash
+ansible-playbook playbook.yml --limit=allinone
+```
+
+### Windows host
+SSH to Ansible controller virtual machine:
+```bash
+vagrant ssh controller
+cd ~/yoda-ansible
+```
+
+Upgrade Ansible scripts:
+```bash
+git pull
+```
+
+Upgrade YoDa instance:
+```bash
+ansible-playbook playbook.yml --limit=allinone
 ```
 
 ## License
