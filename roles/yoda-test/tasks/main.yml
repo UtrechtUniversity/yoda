@@ -63,6 +63,15 @@
   with_items: '{{ test_groupusers }}'
 
 
+- name: Ensure test data directory exists
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  file:
+    path: ~/test_data
+    state: directory
+    mode: 0755
+
+
 - name: Ensure test data is available for iRODS
   become_user: '{{ irods_service_account }}'
   become: yes
