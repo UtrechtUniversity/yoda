@@ -10,7 +10,7 @@ Ansible scripts for automatic deployment of YoDa: a system for reliable, long-te
 ### Managed node requirements
 * [CentOS](https://www.centos.org/) (>= 7.3)
 
-##Usage
+## Usage
 There are two example instances available for deployment
 in the development [environment](environments/development/).
 Instance 'full' deploys all functional roles to separate virtual machines.
