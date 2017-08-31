@@ -18,6 +18,9 @@ test_users:
   - name: groupmanager
     password: '{{ test_password }}'
     type: rodsuser
+  - name: datamanager
+    password: '{{ test_password }}'
+    type: rodsuser
   - name: functionaladmingroup
     password: '{{ test_password }}'
     type: rodsuser
