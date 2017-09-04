@@ -23,11 +23,18 @@
     job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/copy-accepted-folders-to-vault.r >>$HOME/iRODS/server/log/job_copy-accepted-folder-to-vault.log 2>&1'
 
 
-- name: Configure cronjob to ingest datamanager metadata into vault
+- name: Configure cronjob to ingest changes into vault
   cron:
-    name: 'ingest-datamanager-metadata-into-vault.r'
+    name: 'ingest-changes-into-vault.r'
     minute: '*'
-    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/ingest-datamanager-metadata-into-vault.r >>$HOME/iRODS/server/log/job_ingest-datamanager-metadata-into-vault.log 2>&1'
+    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/ingest-changes-into-vault.r >>$HOME/iRODS/server/log/job_ingest-changes-into-vault.log 2>&1'
+
+
+- name: Configure cronjob to process vault actions
+  cron:
+    name: 'process-vault-status-transitions.r'
+    minute: '*'
+    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/process-vault-status-transitions.r >>$HOME/iRODS/server/log/job_process-vault-status-transitions.log 2>&1'
 
 
 - name: Install script for revision clean up
