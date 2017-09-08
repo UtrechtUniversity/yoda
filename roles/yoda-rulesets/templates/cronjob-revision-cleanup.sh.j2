@@ -1,3 +1,4 @@
+# {{ ansible_managed }}
 #!/bin/bash
 TIMESTAMP=`date +%s`
 OFFSET={{ (ansible_date_time.tz_offset|int / 100)|int }}

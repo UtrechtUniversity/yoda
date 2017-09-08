@@ -1,0 +1,11 @@
+---
+# copyright Utrecht University
+# This playbook provisions Yoda instance with test data.
+
+- name: Provision instance with test data
+  hosts: test
+  become: yes
+  roles:
+    - yoda-test
+  tags:
+    - test

@@ -1,65 +1,83 @@
-################################
-# Development instance full
-################################
-[full-portal]
-portal
-
-[full-database]
-database
-
-[full-icat]
-icat
-
-[full-resource]
-resource
-
+###############
+# Full instance
+###############
+# Define all hosts in instance here:
 [full:children]
 full-portal
 full-database
 full-icat
 full-resource
 
+# Define portal host here:
+[full-portal]
+portal
 
-################################
-# Development instance allinone
-################################
-[allinone-portal]
-combined
+# Define database host here:
+[full-database]
+database
 
-[allinone-database]
-combined
+# Define icat host here:
+[full-icat]
+icat
 
-[allinone-icat]
-combined
-
-[allinone-resource]
+# Define resource host here:
+[full-resource]
+resource
 
 
+###################
+# Allinone instance
+###################
+# Define all hosts in instance here:
 [allinone:children]
 allinone-portal
 allinone-database
 allinone-icat
 allinone-resource
 
+# Define portal host here:
+[allinone-portal]
+combined
 
-##############################
-# All hosts
-##############################
+# Define database host here:
+[allinone-database]
+combined
+
+# Define icat host here:
+[allinone-icat]
+combined
+
+# Define resource host here:
+[allinone-resource]
+
+
+###############
+# All instances
+###############
+# Define all portal hosts here:
 [portals:children]
 full-portal
 allinone-portal
 
+# Define all database hosts here:
 [databases:children]
 full-database
 allinone-database
 
+# Define all icat hosts here:
 [icats:children]
 full-icat
 allinone-icat
 
+# Define all resource hosts here:
 [resources:children]
 full-resource
 allinone-resource
+
+
+# Provision instances with test data:
+[test:children]
+allinone
 
 [development:children]
 full

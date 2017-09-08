@@ -1,6 +1,6 @@
 ---
 # copyright Utrecht University
-# This playbook deploys the whole application stack in this site.
+# This playbook deploys a complete Yoda instance.
 
 - hosts: all
   pre_tasks:
@@ -22,12 +22,15 @@
   hosts: portals
   become: yes
   roles:
+    - { role: certificates, tags: [ 'icat', 'database' ] }
     - apache
     - php
     - yoda-portal
     - irods-icommands
     - irods-runtime
     - yoda-davrods
+  tags:
+    - portal
 
 
 - name: Provision database server
@@ -36,6 +39,8 @@
   roles:
     - postgresql
     - irods-database
+  tags:
+    - database
 
 
 - name: Provision iCAT server
@@ -47,6 +52,8 @@
     - irods-microservices
     - composable-resources
     - yoda-rulesets
+  tags:
+    - icat
 
 
 - name: Provision resource server
@@ -56,3 +63,5 @@
     - irods-resource
     - irods-runtime
     - irods-microservices
+  tags:
+    - resource

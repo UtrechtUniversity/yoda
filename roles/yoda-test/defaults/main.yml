@@ -1,0 +1,75 @@
+---
+# copyright Utrecht University
+
+# iRODS configuration.
+irods_service_account: irods
+irods_zone: tempZone                       # The name of the iRODS Zone
+
+# Test configuration.
+test_password: test
+
+test_users:
+  - name: researcher
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: viewer
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: groupmanager
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: datamanager
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: functionaladmingroup
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: functionaladmincategory
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: functionaladminpriv
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: technicaladmin
+    password: '{{ test_password }}'
+    type: rodsadmin
+
+test_groups:
+  - groupName: research-initial
+    category: initial
+    subcategory: initial
+  - groupName: datamanager-initial
+    category: initial
+    subcategory: initial
+
+test_groupusers:
+  - groupName: priv-category-add
+    user: functionaladminpriv
+    role: manager
+  - groupName: priv-category-add
+    user: functionaladmincategory
+    role: manager
+  - groupName: priv-group-add
+    user: functionaladminpriv
+    role: manager
+  - groupName: priv-group-add
+    user: functionaladmingroup
+    role: manager
+  - groupName: research-initial
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-initial
+    user: groupmanager
+    role: manager
+  - groupName: research-initial
+    user: researcher
+    role: normal
+  - groupName: research-initial
+    user: viewer
+    role: reader
+  - groupName: datamanager-initial
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-initial
+    user: datamanager
+    role: normal

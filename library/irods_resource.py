@@ -5,16 +5,19 @@
 #
 # license: GPL v3
 #
+from ansible.module_utils.basic import *
+
 ANSIBLE_METADATA = {'metadata_version': '1.0',
                     'status': ['preview'],
                     'supported_by': 'community'}
+
 
 IRODSCLIENT_AVAILABLE = False
 try:
     from irods.session import iRODSSession
     from irods.models import Resource
     from irods.exception import ResourceDoesNotExist, iRODSException
-except:
+except ImportError:
     pass
 else:
     IRODSCLIENT_AVAILABLE = True
@@ -57,7 +60,7 @@ def main():
     if IRODSCLIENT_AVAILABLE:
         try:
             session, ienv = get_session()
-        except:
+        except iRODSException:
             module.fail_json(
                 msg="Could not establish irods connection. Please check ~/.irods/irods_environment.json"
             )
@@ -100,6 +103,5 @@ def main():
             irods_environment=ienv)
 
 
-from ansible.module_utils.basic import *
 if __name__ == '__main__':
     main()
