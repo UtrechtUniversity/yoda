@@ -61,30 +61,3 @@
     user: '{{ item.user }}'
     role: '{{ item.role }}'
   with_items: '{{ test_groupusers }}'
-
-
-- name: Ensure test data directory exists
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  file:
-    path: ~/test_data
-    state: directory
-    mode: 0755
-
-
-- name: Ensure test data is available for iRODS
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  copy:
-    src: '{{ item }}'
-    dest: '~/test_data/{{ item }}'
-  with_items:
-    - 'yoda-metadata.xml'
-
-
-- name: Ensure test data is in YoDa
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: 'iput -f ~/test_data/{{ item }} /{{ irods_zone }}/home/research-initial/'
-  with_items:
-    - 'yoda-metadata.xml'
