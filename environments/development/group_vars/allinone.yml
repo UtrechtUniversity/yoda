@@ -1,28 +1,34 @@
 ---
 # copyright Utrecht University
 
-# Ansible configuration.
-ansible_user: vagrant
-ansible_ssh_private_key_file: vagrant/ssh/vagrant
+########################
+# Ansible configuration
+########################
+ansible_user: vagrant                             # Administrative user on instance for Ansible
+ansible_ssh_private_key_file: vagrant/ssh/vagrant # Private key file of administrative user
 
-# YoDa configuration.
+#####################
+# YoDa configuration
+#####################
 instance: allinone                         # Name of Yoda instance, as defined in hosts
 yoda_version: development                  # Git branch
 codeigniter_environment: development       # CodeIgniter environment: development, testing, acceptance or production
-yoda_portal_fqdn: portal.yoda.dev
-yoda_davrods_fqdn: data.yoda.dev
+yoda_portal_fqdn: portal.yoda.dev          # Yoda Portal fully qualified domain name (FQDN)
+yoda_davrods_fqdn: data.yoda.dev           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 
-# iRODS configuration.
-irods_admin: rods
-irods_password: rods
+######################
+# iRODS configuration
+######################
+irods_admin: rods                          # iRODS admin username
+irods_password: rods                       # iRODS admin password
 irods_database_user: irodsdb               # The iRODS database username
 irods_database_password: irodsdev          # The password for the iRODS database username
 irods_authentication_scheme: Native        # iRODS authentication method: "Native" or "PAM"
 irods_zone: tempZone                       # The name of the iRODS Zone
-irods_icat_fqdn: combined.yoda.dev
-irods_database_fqdn: combined.yoda.dev
-irods_resource_fqdn: combined.yoda.dev
-irods_default_resc: irodsResc
+irods_icat_fqdn: combined.yoda.dev         # iRODS iCAT fully qualified domain name (FQDN)
+irods_database_fqdn: combined.yoda.dev     # iRODS database fully qualified domain name (FQDN)
+irods_resource_fqdn: combined.yoda.dev     # iRODS resource fully qualified domain name (FQDN)
+irods_default_resc: irodsResc              # iRODS default resource name
 irods_resources:
   - name: dev001_1
     host: "{{ irods_icat_fqdn }}"
@@ -75,7 +81,9 @@ irods_resources:
     children:
       - dev002
 
-# Ruleset configuration.
+########################
+# Ruleset configuration
+########################
 rulesets:
   - name: irods-ruleset-i-lab
     repo: https://github.com/UtrechtUniversity/irods-ruleset-i-lab.git
@@ -97,12 +105,17 @@ rulesets:
     path: /etc/irods/core.re
     install_scripts: no
 
-# Research module specific configuration.
+################################
+# Research module configuration
+################################
 default_yoda_schema: ilab    # Default Yoda XML scheme: ilab or dc
 enable_revisions: 1          # Enable revisions: yes (1) or no (0)
-revision_strategy: B         # A, B, J or Simple
+revision_strategy: B         # Revision strategy: A, B, J or Simple
 
-# PAM Radius configuration (server, shared secret, timeout (s)).
+###########################
+# PAM Radius configuration
+###########################
+# server, shared secret, timeout (s)
 pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
