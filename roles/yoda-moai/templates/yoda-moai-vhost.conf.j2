@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+# yoda-moai-vhost.conf
+
+{% if yoda_moai_port != 80 %}
+Listen {{ yoda_moai_port }}
+{% endif %}
+
+<VirtualHost *:{{ yoda_moai_port }}>
+    ServerName {{ yoda_moai_fqdn }}
+    DocumentRoot /var/www/yoda/moai
+
+    WSGIScriptAlias / /var/www/yoda/moai/src/moai/moai.wsgi
+
+    <Directory /var/www/yoda/moai>
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>

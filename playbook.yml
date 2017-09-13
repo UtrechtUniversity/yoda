@@ -29,6 +29,7 @@
     - irods-icommands
     - irods-runtime
     - yoda-davrods
+    - yoda-moai
   tags:
     - portal
 

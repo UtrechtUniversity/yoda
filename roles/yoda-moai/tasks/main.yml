@@ -1,0 +1,52 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Yoda MOAI prerequisites are installed
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+  - python-pip
+  - mod_wsgi
+
+
+- name: Ensure virtualenv is installed
+  pip:
+    name: '{{ item }}'
+    state: present
+  with_items:
+  - virtualenv
+
+
+- name: Ensure yodadeployment has access to /var/www/yoda
+  file:
+    path: /var/www/yoda
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0755
+
+
+- name: Ensure YoDa MOAI is installed
+  pip:
+    name: git+https://github.com/UtrechtUniversity/yoda-moai.git#egg=moai
+    virtualenv: /var/www/yoda/moai
+    extra_args: -e
+  notify: Restart Apache webserver
+
+
+- name: Copy Yoda MOAI Apache configuration
+  template:
+    src: yoda-moai-vhost.conf.j2
+    dest: /etc/httpd/conf.d/yoda-moai-vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Apache webserver
+
+
+- name: Configure cronjob to update MOAI database
+  cron:
+    name: 'cronjob-update-moai'
+    minute: '*/5'
+    job: '/var/www/yoda/moai/bin/update_moai --config src/moai/settings.ini --config /var/www/yoda/moai/src/moai/settings.ini moai_example> /dev/null'
