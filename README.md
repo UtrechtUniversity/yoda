@@ -1,5 +1,6 @@
 # yoda-ansible
 Ansible scripts for automatic deployment of YoDa: a system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.
+Design overview can be found in [DESIGN.md](DESIGN.md).
 
 ## Requirements
 ### Control machine requirements

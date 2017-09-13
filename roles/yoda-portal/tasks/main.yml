@@ -80,7 +80,7 @@
 
 
 - name: Create .htaccess
-  command: cp /var/www/yoda/yoda-portal/public/.htaccess.template
+  command: cp /var/www/yoda/yoda-portal/public/.htaccess.template-{{ codeigniter_environment }}
     /var/www/yoda/yoda-portal/public/.htaccess
     creates=/var/www/yoda/yoda-portal/public/.htaccess
 
