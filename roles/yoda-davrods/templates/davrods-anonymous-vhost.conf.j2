@@ -9,13 +9,13 @@
 #
 
 {% if yoda_davrods_port != 443 %}
-Listen {{ yoda_davrods_port }}
+Listen {{ yoda_davrods_anonymous_port }}
 {% endif %}
 
-<VirtualHost *:{{ yoda_davrods_port }}>
+<VirtualHost *:{{ yoda_davrods_anonymous_port }}>
 
     # Enter your server name here.
-    ServerName {{ yoda_davrods_fqdn }}
+    ServerName {{ yoda_davrods_anonymous_fqdn }}
 
     # NB: Some webdav clients expect the server to implement webdav at the root
     # location (they execute an OPTIONS request to verify existence of webdav

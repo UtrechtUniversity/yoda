@@ -49,6 +49,16 @@
   notify: Restart Apache webserver
 
 
+- name: Copy davrods anonymous Apache configuration
+  template:
+    src: davrods-anonymous-vhost.conf.j2
+    dest: /etc/httpd/conf.d/davrods-anonymous-vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Apache webserver
+
+
 - name: Allow Apache to execute iRODS network plugins
   file:
     path: '{{ item }}'

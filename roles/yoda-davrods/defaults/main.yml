@@ -13,6 +13,9 @@ davrods:
 yoda_davrods_fqdn: data.yoda.dev
 yoda_davrods_port: 443
 
+yoda_davrods_anonymous_fqdn: public.data.yoda.dev
+yoda_davrods_anonymous_port: 443
+
 # iRODS configuration.
 irods_icat_fqdn: icat.yoda.dev
 irods_authentication_scheme: Native        # "Native" or "PAM"
