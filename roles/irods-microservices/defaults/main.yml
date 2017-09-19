@@ -21,9 +21,9 @@ microservices:
     filename: irods-microservice-plugins-loadmeta-1.6-centos7.rpm
     checksum: sha256:bb4872bbb5d0884a90553bbc67202e991efce5dbdb76f89453c6e22522ea13c7
   irods_uu_microservices:
-    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.1.0/irods-uu-microservices-4.1.10_0.1.0-1.rpm
-    filename: irods-uu-microservices-4.1.10_0.1.0-1.rpm
-    checksum: sha256:ece1b31d17c2e0594059e912aaa1aeff4bcb87efb078e3da509ce2dca727cde0
+    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/0.1.1/irods-uu-microservices-4.1.10_0.1.1-1.rpm
+    filename: irods-uu-microservices-4.1.10_0.1.1-1.rpm
+    checksum: sha256:944b077847e9686ffb30f6b3a931959873ec2942deb55d288e9c17af8791987b
 
 # iRODS configuration.
 irods_service_account: irods
