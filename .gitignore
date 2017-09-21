@@ -4,6 +4,7 @@
 # Ansible stuff
 *.retry
 .vaultpw
+development_credentials.yml
 
 # Vagrant stuff
 /.vagrant
