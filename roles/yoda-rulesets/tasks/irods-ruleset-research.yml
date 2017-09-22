@@ -22,7 +22,6 @@
         (default_datacite_xsl.stderr.find('does not exist') >= 0)
   changed_when: default_xml.stdout.find('Created') >= 0
 
-
 - name: Configure cronjob to copy datapackages to the vault
   cron:
     name: 'copy-accepted-folders-to-vault.r'
@@ -51,9 +50,29 @@
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
 
-
 - name: Configure cronjob to clean up revisions
   cron:
     name: 'cronjob-revision-cleanup.sh'
     hour: 0
     job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/iRODS/server/log/cronjob-revision-cleanup.log 2> /dev/null'
+
+- name: Find out if DataCite username is set
+  command: 'imeta -C ls /{{ irods_zone }}/yoda org_datacite_username'
+  register: current_datacite_username
+  changed_when: false
+
+- name: Set DataCite username
+  command: 'imeta -C set /{{ irods_zone }}/yoda org_datacite_username {{ datacite_username }}'
+  when: current_datacite_username.stdout.find(datacite_username) == -1
+  check_mode: no
+  
+- name: Find out if DataCite password is set
+  command: 'imeta -C ls /{{ irods_zone }}/yoda org_datacite_password'
+  register: current_datacite_password
+  changed_when: false
+
+- name: Set DataCite password
+  command: 'imeta -C set /{{ irods_zone }}/yoda org_datacite_password {{ datacite_password }}'
+  when:  current_datacite_password.stdout.find(datacite_password) == -1
+  check_mode: no
+
