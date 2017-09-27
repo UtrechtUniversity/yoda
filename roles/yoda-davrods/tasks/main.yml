@@ -24,9 +24,10 @@
 
 
 - name: Allow Apache to execute davrods module
-  file:
-    path: /etc/httpd/modules/mod_davrods.so
+  sefcontext:
+    target: /etc/httpd/modules/mod_davrods.so
     setype: httpd_sys_script_exec_t
+    state: present
 
 
 - name: Copy irods_enviroment.json to /etc/httpd/irods/irods_environment.json
@@ -50,9 +51,10 @@
 
 
 - name: Allow Apache to execute iRODS network plugins
-  file:
-    path: '{{ item }}'
+  sefcontext:
+    target: '{{ item }}'
     setype: httpd_sys_script_exec_t
+    state: present
   with_items:
     - /var/lib/irods/plugins/network/libtcp.so
     - /var/lib/irods/plugins/network/libssl.so
