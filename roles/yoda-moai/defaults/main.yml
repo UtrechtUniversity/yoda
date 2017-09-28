@@ -5,3 +5,8 @@ yoda_deployment_user: yodadeployment
 
 yoda_moai_fqdn: moai.yoda.dev
 yoda_moai_port: 80
+yoda_moai_database_connection_string: sqlite:////var/www/yoda/moai/moai.db
+yoda_moai_settings_ini: /var/www/yoda/moai/settings.ini
+yoda_moai_virtualenv: /var/www/yoda/moai/venv
+
+yoda_metadata_inbox: /var/www/yoda/moai/metadata

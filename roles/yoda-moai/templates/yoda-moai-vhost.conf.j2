@@ -8,8 +8,11 @@ Listen {{ yoda_moai_port }}
 <VirtualHost *:{{ yoda_moai_port }}>
     ServerName {{ yoda_moai_fqdn }}
     DocumentRoot /var/www/yoda/moai
-
-    WSGIScriptAlias / /var/www/yoda/moai/src/moai/moai.wsgi
+    
+    WSGIDaemonProcess moai user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} processes=2 threads=1 python-home=/var/www/yoda/moai/venv
+    WSGIProcessGroup moai
+    WSGIScriptAlias / /var/www/yoda/moai/moai.wsgi
+    WSGIScriptReloading On
 
     <Directory /var/www/yoda/moai>
         AllowOverride All

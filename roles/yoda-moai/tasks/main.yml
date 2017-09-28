@@ -7,16 +7,10 @@
     state: present
   with_items:
   - python-pip
+  - python-virtualenv
   - python-lxml
+  - python-sqlalchemy
   - mod_wsgi
-
-
-- name: Ensure virtualenv is installed
-  pip:
-    name: '{{ item }}'
-    state: present
-  with_items:
-  - virtualenv
 
 
 - name: Ensure yodadeployment has access to /var/www/yoda
@@ -28,11 +22,19 @@
     mode: 0755
 
 
-- name: Ensure YoDa MOAI is installed
+- name: Check out YoDa MOAI from github
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: https://github.com/UtrechtUniversity/yoda-moai.git
+    dest: /var/www/yoda/moai/yoda-moai
+
+
+- name: Install YoDA MOAI in virtualenv
   pip:
-    name: git+https://github.com/UtrechtUniversity/yoda-moai.git#egg=moai
-    virtualenv: /var/www/yoda/moai
+    name: /var/www/yoda/moai/yoda-moai/
     extra_args: -e
+    virtualenv: "{{ yoda_moai_virtualenv }}"
     virtualenv_site_packages: yes
   notify: Restart Apache webserver
 
@@ -47,8 +49,35 @@
   notify: Restart Apache webserver
 
 
+- name: Install moai.wsgi
+  template:
+    src: moai.wsgi.j2
+    dest: /var/www/yoda/moai/moai.wsgi
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0644
+  notify: Restart Apache webserver
+
+
+- name: Install settings.ini for MOAI
+  template:
+    src: moai-settings.ini.j2
+    dest: "{{ yoda_moai_settings_ini }}"
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0644
+  notify: Restart Apache webserver
+ 
+- name: Set SELinux context for moai directory
+  sefcontext:
+    target: '/var/www/yoda/moai'
+    setype: httpd_sys_rw_content_t
+    state: present
+
+
 - name: Configure cronjob to update MOAI database
   cron:
+    user: "{{ yoda_deployment_user }}"
     name: 'cronjob-update-moai'
     minute: '*/5'
-    job: '/var/www/yoda/moai/bin/update_moai --config src/moai/settings.ini --config /var/www/yoda/moai/src/moai/settings.ini moai_example> /dev/null'
+    job: '{{ yoda_moai_virtualenv }}/bin/update_moai  --config {{ yoda_moai_settings_ini }} yoda >> /var/www/yoda/update_moai.log'

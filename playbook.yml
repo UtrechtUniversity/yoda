@@ -29,10 +29,17 @@
     - irods-icommands
     - irods-runtime
     - yoda-davrods
-    - yoda-moai
   tags:
     - portal
 
+- name: Provision public server
+  hosts: publics
+  become: yes
+  roles:
+    - yoda-moai
+  tags:
+    - public
+  
 
 - name: Provision database server
   hosts: databases
