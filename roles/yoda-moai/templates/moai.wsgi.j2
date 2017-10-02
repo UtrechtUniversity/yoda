@@ -1,5 +1,4 @@
-python_venv = '{{ yoda_moai_virtualenv }}'
-activate_this = python_venv + '/bin/activate_this.py'
+activate_this = '{{ yoda_moai_home }}/venv/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
 
 import sys
@@ -17,7 +16,7 @@ if sys.version_info >= (2, 6):
 else:
     from paste.script.util.logging_config import fileConfig
 
-config_file = '{{ yoda_moai_settings_ini }}'
+config_file = '{{ yoda_moai_home }}/settings.ini'
 
 try:
     fileConfig(config_file)

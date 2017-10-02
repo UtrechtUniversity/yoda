@@ -7,14 +7,14 @@ Listen {{ yoda_moai_port }}
 
 <VirtualHost *:{{ yoda_moai_port }}>
     ServerName {{ yoda_moai_fqdn }}
-    DocumentRoot /var/www/yoda/moai
+    DocumentRoot {{ yoda_moai_home }}
     
-    WSGIDaemonProcess moai user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} processes=2 threads=1 python-home=/var/www/yoda/moai/venv
+    WSGIDaemonProcess moai user={{ yoda_moai_user }} group={{ yoda_moai_user }} processes=2 threads=1
     WSGIProcessGroup moai
-    WSGIScriptAlias / /var/www/yoda/moai/moai.wsgi
+    WSGIScriptAlias / {{ yoda_moai_home }}/moai.wsgi
     WSGIScriptReloading On
 
-    <Directory /var/www/yoda/moai>
+    <Directory {{ yoda_moai_home }}>
         AllowOverride All
         Require all granted
     </Directory>

@@ -13,28 +13,45 @@
   - mod_wsgi
 
 
-- name: Ensure yodadeployment has access to /var/www/yoda
-  file:
-    path: /var/www/yoda
-    state: directory
-    owner: "{{ yoda_deployment_user }}"
-    group: "{{ yoda_deployment_user }}"
-    mode: 0755
+- name: Ensure moai user exists
+  user:
+    name: '{{ yoda_moai_user }}'
+    home: '{{ yoda_moai_home }}'
 
+
+- name: Ensure inbox user exists
+  user:
+    name: '{{ yoda_inbox_user }}'
+
+
+- name: Add upload user pub key to authorized_keys of inbox
+  authorized_key:
+    user: '{{ yoda_inbox_user }}'
+    key: '{{ upload_pub_key }}'
+    state: present
+
+
+- name: Ensure metadata inbox exists and is readable for moai
+  file:
+    path: '{{ yoda_metadata_inbox }}'
+    owner: '{{ yoda_inbox_user }}'
+    group: '{{ yoda_moai_user }}'
+    mode: 02750
+    state: directory
 
 - name: Check out YoDa MOAI from github
-  become_user: "{{ yoda_deployment_user }}"
+  become_user: '{{ yoda_moai_user }}'
   become: yes
   git:
     repo: https://github.com/UtrechtUniversity/yoda-moai.git
-    dest: /var/www/yoda/moai/yoda-moai
+    dest: '{{ yoda_moai_home }}/yoda-moai'
 
 
 - name: Install YoDA MOAI in virtualenv
   pip:
-    name: /var/www/yoda/moai/yoda-moai/
+    name: '{{ yoda_moai_home }}/yoda-moai'
     extra_args: -e
-    virtualenv: "{{ yoda_moai_virtualenv }}"
+    virtualenv: '{{ yoda_moai_home }}/venv'
     virtualenv_site_packages: yes
   notify: Restart Apache webserver
 
@@ -52,9 +69,9 @@
 - name: Install moai.wsgi
   template:
     src: moai.wsgi.j2
-    dest: /var/www/yoda/moai/moai.wsgi
-    owner: "{{ yoda_deployment_user }}"
-    group: "{{ yoda_deployment_user }}"
+    dest: '{{ yoda_moai_home }}/moai.wsgi'
+    owner: '{{ yoda_moai_user }}'
+    group: '{{ yoda_moai_user }}'
     mode: 0644
   notify: Restart Apache webserver
 
@@ -62,22 +79,30 @@
 - name: Install settings.ini for MOAI
   template:
     src: moai-settings.ini.j2
-    dest: "{{ yoda_moai_settings_ini }}"
-    owner: "{{ yoda_deployment_user }}"
-    group: "{{ yoda_deployment_user }}"
+    dest: '{{ yoda_moai_home }}/settings.ini'
+    owner: '{{ yoda_moai_user }}'
+    group: '{{ yoda_moai_user }}'
     mode: 0644
   notify: Restart Apache webserver
- 
-- name: Set SELinux context for moai directory
+
+
+- name: Initialize moai.db
+  command: '{{ yoda_moai_home }}/venv/bin/update_moai --config {{ yoda_moai_home }}/settings.ini yoda_moai >> {{ yoda_moai_home }}/update_moai.log'
+  args:
+    creates: '{{ yoda_moai_home }}/moai.db'
+
+
+- name: Set SELinux context for moai.db
   sefcontext:
-    target: '/var/www/yoda/moai'
+    target: '{{ yoda_moai_home }}/moai.db'
     setype: httpd_sys_rw_content_t
     state: present
 
 
 - name: Configure cronjob to update MOAI database
   cron:
-    user: "{{ yoda_deployment_user }}"
+    user: '{{ yoda_moai_user }}'
     name: 'cronjob-update-moai'
     minute: '*/5'
-    job: '{{ yoda_moai_virtualenv }}/bin/update_moai  --config {{ yoda_moai_settings_ini }} yoda >> /var/www/yoda/update_moai.log'
+    job: '{{ yoda_moai_home }}/venv/bin/update_moai --config {{ yoda_moai_home }}/settings.ini yoda_moai >> {{ yoda_moai_home }}/update_moai.log'
+
