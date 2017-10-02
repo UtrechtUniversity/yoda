@@ -76,7 +76,6 @@
     dest: /var/www/yoda/yoda-portal/config/config_local.php
     owner: "{{ yoda_deployment_user }}"
     mode: 0644
-    force: no
 
 
 - name: Create .htaccess
