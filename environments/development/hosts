@@ -81,7 +81,7 @@ allinone-icat
 full-resource
 allinone-resource
 
-# Defina all public hosts here:
+# Define all public hosts here:
 [publics:children]
 full-public
 allinone-public

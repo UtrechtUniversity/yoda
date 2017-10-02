@@ -221,9 +221,18 @@
   become: yes
   copy:
     content: '{{ upload_priv_key }}'
-    dest: '/var/lib/irods/.ssh/id_upload'
+    dest: '/var/lib/irods/.ssh/id_ed25119'
     owner: '{{ irods_service_account }}'
     mode: 0600
+
+- name: Scan public host pub key
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'ssh-keyscan {{ hostvars[item]['ansible_host'] }} >> ~/.ssh/known_hosts'
+  args:
+    creates: '/var/lib/irods/.ssh/known_hosts'
+  with_inventory_hostnames:
+    - publics
 
 
 - include: setup_pam_radius.yml

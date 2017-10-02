@@ -35,6 +35,8 @@ if instance == "full" then
     "database" => [NETWORK+"11", CPU, RAM, GUI, BOX],
     "icat"     => [NETWORK+"12", CPU, RAM, GUI, BOX],
     "resource" => [NETWORK+"13", CPU, RAM, GUI, BOX],
+    "public"   => [NETWORK+"14", CPU, RAM, GUI, BOX],
+
   }
 else
   HOSTS = {
