@@ -228,7 +228,7 @@
 - name: Scan public host pub key
   become_user: '{{ irods_service_account }}'
   become: yes
-  shell: 'ssh-keyscan {{ hostvars[item]['ansible_host'] }} >> ~/.ssh/known_hosts'
+  shell: "ssh-keyscan {{ hostvars[item]['ansible_host'] }} >> ~/.ssh/known_hosts"
   args:
     creates: '/var/lib/irods/.ssh/known_hosts'
   with_inventory_hostnames:
