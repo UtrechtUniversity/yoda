@@ -125,4 +125,8 @@ pam_radius_config: |
 ##########################
 yoda_moai_fqdn: moai.yoda.dev
 yoda_moai_port: 80
-yoda_moai_database_string: sqlite:///var/www/yoda/moai.db
+
+###########################
+# Public host configuration
+###########################
+yoda_public_host: combined.yoda.dev
