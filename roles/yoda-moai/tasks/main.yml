@@ -89,7 +89,7 @@
 - name: Initialize moai.db
   become_user: '{{ yoda_moai_user }}'
   become: yes
-  command: '{{ yoda_moai_home }}/venv/bin/update_moai --config {{ yoda_moai_home }}/settings.ini yoda_moai >> {{ yoda_moai_home }}/update_moai.log'
+  command: '{{ yoda_moai_home }}/venv/bin/update_moai --config {{ yoda_moai_home }}/settings.ini yoda_moai &>> {{ yoda_moai_home }}/update_moai.log'
   args:
     creates: '{{ yoda_moai_home }}/moai.db'
 
@@ -106,5 +106,5 @@
     user: '{{ yoda_moai_user }}'
     name: 'cronjob-update-moai'
     minute: '*/5'
-    job: '{{ yoda_moai_home }}/venv/bin/update_moai --config {{ yoda_moai_home }}/settings.ini yoda_moai >> {{ yoda_moai_home }}/update_moai.log'
+    job: '{{ yoda_moai_home }}/venv/bin/update_moai --config {{ yoda_moai_home }}/settings.ini yoda_moai &>> {{ yoda_moai_home }}/update_moai.log'
 
