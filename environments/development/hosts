@@ -24,6 +24,8 @@ icat
 [full-resource]
 resource
 
+[full-public]
+public
 
 ###################
 # Allinone instance
@@ -34,6 +36,7 @@ allinone-portal
 allinone-database
 allinone-icat
 allinone-resource
+allinone-public
 
 # Define portal host here:
 [allinone-portal]
@@ -45,6 +48,10 @@ combined
 
 # Define icat host here:
 [allinone-icat]
+combined
+
+# Define public host here:
+[allinone-public]
 combined
 
 # Define resource host here:
@@ -74,6 +81,10 @@ allinone-icat
 full-resource
 allinone-resource
 
+# Define all public hosts here:
+[publics:children]
+full-public
+allinone-public
 
 # Provision instances with test data:
 [test:children]

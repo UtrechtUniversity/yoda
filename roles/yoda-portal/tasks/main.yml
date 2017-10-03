@@ -95,3 +95,4 @@
     src: "yoda-portal-vhost.conf.j2"
     dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
   notify: Restart Apache webserver
+

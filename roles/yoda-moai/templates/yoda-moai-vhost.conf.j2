@@ -1,0 +1,21 @@
+# {{ ansible_managed }}
+# yoda-moai-vhost.conf
+
+{% if yoda_moai_port != 80 %}
+Listen {{ yoda_moai_port }}
+{% endif %}
+
+<VirtualHost *:{{ yoda_moai_port }}>
+    ServerName {{ yoda_moai_fqdn }}
+    DocumentRoot {{ yoda_moai_home }}
+    
+    WSGIDaemonProcess moai user={{ yoda_moai_user }} group={{ yoda_moai_user }} processes=2 threads=1
+    WSGIProcessGroup moai
+    WSGIScriptAlias / {{ yoda_moai_home }}/moai.wsgi
+    WSGIScriptReloading On
+
+    <Directory {{ yoda_moai_home }}>
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>

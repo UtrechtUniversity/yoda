@@ -37,6 +37,7 @@ Add following hosts to /etc/hosts:
 ```
 192.168.50.10 portal.yoda.dev
 192.168.50.10 data.yoda.dev
+192.168.50.10 moai.yoda.dev
 ```
 
 ### Windows host
@@ -65,6 +66,7 @@ Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
 ```
 192.168.50.10 portal.yoda.dev
 192.168.50.10 data.yoda.dev
+192.168.50.10 moai.yoda.dev
 ```
 
 ## Upgrading Yoda instance

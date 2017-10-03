@@ -76,3 +76,13 @@
   when:  current_datacite_password.stdout.find(datacite_password) == -1
   check_mode: no
 
+- name: Find out if public host is set
+  command: 'imeta -C ls /{{ irods_zone }}/yoda org_public_host'
+  register: current_public_host
+  changed_when: false
+  
+- name: Set public host
+  command: 'imeta -C set /{{ irods_zone }}/yoda org_public_host {{ yoda_public_host }}'
+  when: current_public_host.stdout.find(yoda_public_host) == -1
+  check_mode: no
+
