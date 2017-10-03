@@ -18,6 +18,14 @@
     name: '{{ yoda_moai_user }}'
     home: '{{ yoda_moai_home }}'
 
+- name: Ensure moai home is world readable
+  file:
+    path: '{{ yoda_moai_home }}'
+    mode: 0755
+    owner: '{{ yoda_moai_user }}'
+    group: '{{ yoda_moai_user }}'
+    state: directory
+
 
 - name: Ensure inbox user exists
   user:
@@ -89,7 +97,7 @@
 - name: Initialize moai.db
   become_user: '{{ yoda_moai_user }}'
   become: yes
-  command: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai'
+  command: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
   args:
     creates: '{{ yoda_moai_home }}/moai.db'
 
@@ -106,5 +114,5 @@
     user: '{{ yoda_moai_user }}'
     name: 'cronjob-update-moai'
     minute: '*/5'
-    job: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai'
+    job: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
 
