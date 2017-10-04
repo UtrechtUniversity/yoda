@@ -66,6 +66,7 @@
 - name: Read Yoda PHP encryption key
   command: cat /var/www/yoda/yoda-portal/config/yoda_php_encryption_key
   register: random_key
+  changed_when: false
   when: not ansible_check_mode
 
 
