@@ -1,13 +1,11 @@
 ---
 # copyright Utrecht University
 
-- name: Password protect iCAT connections
-  lineinfile:
-    dest: /var/lib/pgsql/data/pg_hba.conf
-    line: "host all all {{ hostvars[item]['ansible_default_ipv4']['address'] }}/32 md5"
+- include_tasks: password_protect.yml
   with_inventory_hostnames:
     - 'icats:&{{ instance }}'
-  notify: Restart PostgreSQL
+  loop_control:
+    loop_var: icat_host
 
 
 - name: Create iCAT database

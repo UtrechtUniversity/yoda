@@ -58,9 +58,15 @@
 
 
 - name: Generate php session encryption key
-  command: openssl rand -base64 32
-    creates=/var/www/yoda/yoda-portal/config/config_local.php
+  shell: openssl rand -base64 32 > /var/www/yoda/yoda-portal/config/yoda_php_encryption_key
+    creates=/var/www/yoda/yoda-portal/config/yoda_php_encryption_key
+  when: not ansible_check_mode
+
+
+- name: Read Yoda PHP encryption key
+  command: cat /var/www/yoda/yoda-portal/config/yoda_php_encryption_key
   register: random_key
+  changed_when: false
   when: not ansible_check_mode
 
 
@@ -76,6 +82,7 @@
     dest: /var/www/yoda/yoda-portal/config/config_local.php
     owner: "{{ yoda_deployment_user }}"
     mode: 0644
+  when: not ansible_check_mode
 
 
 - name: Create .htaccess

@@ -88,7 +88,8 @@ allinone-public
 
 # Provision instances with test data:
 [test:children]
-allinone
+allinone-icat
+full-icat
 
 [development:children]
 full
