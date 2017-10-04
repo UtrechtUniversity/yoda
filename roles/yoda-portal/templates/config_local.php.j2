@@ -13,5 +13,9 @@ $config['rodsServerAddress']   = '{{ irods_icat_fqdn }}';
 $config['rodsServerPort']      = 1247;
 $config['rodsServerZone']      = '{{ irods_zone }}';
 $config['rodsDefaultResource'] = '{{ irods_default_resc }}';
-$config['rodsAuthType']        = '{{ irods_auth_type }}'; // Either STANDARD or PAM.
 $config['encryption_key']      = '{{ yoda_php_encryption_key }}';
+{% if irods_authentication_scheme == 'PAM' %}
+$config['rodsAuthType']        = 'PAM'; // Either STANDARD or PAM.
+{% else %}
+$config['rodsAuthType']        = 'STANDARD'; // Either STANDARD or PAM.
+{% endif %}
