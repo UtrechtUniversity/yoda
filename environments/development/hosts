@@ -74,10 +74,10 @@ allinone-icat
 full-resource
 allinone-resource
 
-
 # Provision instances with test data:
 [test:children]
-allinone
+allinone-icat
+full-icat
 
 [development:children]
 full
