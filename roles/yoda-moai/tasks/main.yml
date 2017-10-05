@@ -13,12 +13,13 @@
   - mod_wsgi
 
 
-- name: Ensure moai user exists
+- name: Ensure Yoda MOAI user exists
   user:
     name: '{{ yoda_moai_user }}'
     home: '{{ yoda_moai_home }}'
 
-- name: Ensure moai home is world readable
+
+- name: Ensure Yoda MOAI home is world readable
   file:
     path: '{{ yoda_moai_home }}'
     mode: 0755
@@ -47,7 +48,8 @@
     mode: 02750
     state: directory
 
-- name: Check out YoDa MOAI from github
+
+- name: Check out YoDa MOAI from Github
   become_user: '{{ yoda_moai_user }}'
   become: yes
   git:
@@ -84,7 +86,7 @@
   notify: Restart Apache webserver
 
 
-- name: Install settings.ini for MOAI
+- name: Install settings.ini for Yoda MOAI
   template:
     src: moai-settings.ini.j2
     dest: '{{ yoda_moai_home }}/settings.ini'
@@ -94,7 +96,7 @@
   notify: Restart Apache webserver
 
 
-- name: Initialize moai.db
+- name: Initialize Yoda MOAI database
   become_user: '{{ yoda_moai_user }}'
   become: yes
   command: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
@@ -102,7 +104,7 @@
     creates: '{{ yoda_moai_home }}/moai.db'
 
 
-- name: Set SELinux context for moai.db
+- name: Set SELinux context for Yoda MOAI database
   sefcontext:
     target: '{{ yoda_moai_home }}/moai.db'
     setype: httpd_sys_rw_content_t
@@ -115,4 +117,3 @@
     name: 'cronjob-update-moai'
     minute: '*/5'
     job: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
-

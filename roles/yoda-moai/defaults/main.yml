@@ -2,7 +2,6 @@
 # copyright Utrecht University
 
 yoda_moai_user: moai
-yoda_inbox_user: inbox
 
 yoda_moai_fqdn: moai.yoda.dev
 yoda_moai_port: 80
