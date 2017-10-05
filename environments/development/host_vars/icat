@@ -1,14 +1,2 @@
 ---
 ansible_host: 192.168.50.12
-
-upload_priv_key: |
-  -----BEGIN OPENSSH PRIVATE KEY-----
-  b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
-  QyNTUxOQAAACBBX4soIGW4UL6CpHmabQn5k/21uK8J4a5x+mEr6nKRwgAAAJi+/uH0vv7h
-  9AAAAAtzc2gtZWQyNTUxOQAAACBBX4soIGW4UL6CpHmabQn5k/21uK8J4a5x+mEr6nKRwg
-  AAAEArZx/rjguU89Cnnfzy5bUKJImIBl+25gPgfGlNhaSx40FfiyggZbhQvoKkeZptCfmT
-  /bW4rwnhrnH6YSvqcpHCAAAADmlyb2RzQGNvbWJpbmVkAQIDBAUGBw==
-  -----END OPENSSH PRIVATE KEY-----
-
-upload_pub_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFfiyggZbhQvoKkeZptCfmT/bW4rwnhrnH6YSvqcpHC irods@icat.yoda.dev
-
