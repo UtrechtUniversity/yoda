@@ -108,9 +108,11 @@ rulesets:
 ################################
 # Research module configuration
 ################################
-default_yoda_schema: ilab    # Default Yoda XML scheme: ilab or dc
-enable_revisions: 1          # Enable revisions: yes (1) or no (0)
-revision_strategy: B         # Revision strategy: A, B, J or Simple
+default_yoda_schema: ilab      # Default Yoda XML scheme: ilab or dc
+enable_revisions: 1            # Enable revisions: yes (1) or no (0)
+revision_strategy: B           # Revision strategy: A, B, J or Simple
+datacite_username: PLACEHOLDER # DataCite username
+datacite_password: PLACEHOLDER # DataCite password
 
 ###########################
 # PAM Radius configuration

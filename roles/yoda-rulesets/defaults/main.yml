@@ -31,6 +31,6 @@ default_yoda_schema: ilab
 enable_revisions: 1
 revision_strategy: A
 
-# DataCite credentials
+# DataCite credentials.
 datacite_username: PLACEHOLDER
 datacite_password: PLACEHOLDER
