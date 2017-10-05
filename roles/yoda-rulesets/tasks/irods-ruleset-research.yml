@@ -102,4 +102,5 @@
   command: 'imeta -C set /{{ irods_zone }}/yoda org_public_host {{ yoda_public_host }}'
   when: 
     - current_public_host.stdout.find(yoda_public_host) == -1
+    - upload_priv_key is defined
     - not ansible_check_mode
