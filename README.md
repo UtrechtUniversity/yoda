@@ -4,14 +4,14 @@ Design overview can be found in [DESIGN.md](DESIGN.md).
 
 ## Requirements
 ### Control machine requirements
-* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.3)
+* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.4)
 * [VirtualBox](https://www.virtualbox.org/manual/ch02.html) (>= 5.1)
 * [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 1.9)
 
 ### Managed node requirements
 * [CentOS](https://www.centos.org/) (>= 7.3)
 
-## Deploying Yoda instance
+## Deploying Yoda development instance
 There are two example instances available for deployment
 in the development [environment](environments/development/).
 Instance 'full' deploys all functional roles to separate virtual machines.
@@ -69,7 +69,7 @@ Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
 192.168.50.10 moai.yoda.dev
 ```
 
-## Upgrading Yoda instance
+## Upgrading Yoda development instance
 Upgrading Yoda to the latest version can be done by running the Ansible playbooks again.
 
 ### GNU/Linux or macOS host
