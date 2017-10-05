@@ -224,6 +224,8 @@
     dest: '/var/lib/irods/.ssh/id_ed25119'
     owner: '{{ irods_service_account }}'
     mode: 0600
+  when: upload_priv_key is defined
+
 
 - name: Scan public host pub key
   become_user: '{{ irods_service_account }}'
@@ -233,6 +235,7 @@
     creates: '/var/lib/irods/.ssh/known_hosts'
   with_inventory_hostnames:
     - publics
+  when: upload_priv_key is defined
 
 
 - include: setup_pam_radius.yml
