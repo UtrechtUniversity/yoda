@@ -1,6 +1,3 @@
 ---
 ansible_host: 192.168.50.14
 
-upload_pub_key: |
-  c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUVGZml5Z2daYmhRdm9La2VacHRDZm1U
-  L2JXNHJ3bmhybkg2WVN2cWNwSEMgaXJvZHNAaWNhdC55b2RhLmRldgo=
