@@ -50,39 +50,56 @@
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
 
+
+- name: Copy securecopy.sh to ExecCmd dir
+  copy:
+    remote_src: yes
+    src: /etc/irods/irods-ruleset-research/tools/securecopy.sh
+    dest: /var/lib/irods/iRODS/server/bin/cmd/securecopy.sh
+    mode: 0755
+
+
 - name: Configure cronjob to clean up revisions
   cron:
     name: 'cronjob-revision-cleanup.sh'
     hour: 0
     job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/iRODS/server/log/cronjob-revision-cleanup.log 2> /dev/null'
 
+
 - name: Find out if DataCite username is set
   command: 'imeta -C ls /{{ irods_zone }}/yoda org_datacite_username'
   register: current_datacite_username
   changed_when: false
 
+
 - name: Set DataCite username
   command: 'imeta -C set /{{ irods_zone }}/yoda org_datacite_username {{ datacite_username }}'
-  when: current_datacite_username.stdout.find(datacite_username) == -1
-  check_mode: no
+  when: 
+    - current_datacite_username.stdout.find(datacite_username) == -1
+    - not ansible_check_mode
   
+
 - name: Find out if DataCite password is set
   command: 'imeta -C ls /{{ irods_zone }}/yoda org_datacite_password'
   register: current_datacite_password
   changed_when: false
 
+
 - name: Set DataCite password
   command: 'imeta -C set /{{ irods_zone }}/yoda org_datacite_password {{ datacite_password }}'
-  when:  current_datacite_password.stdout.find(datacite_password) == -1
-  check_mode: no
+  when:
+    - current_datacite_password.stdout.find(datacite_password) == -1
+    - not ansible_check_mode
+
 
 - name: Find out if public host is set
   command: 'imeta -C ls /{{ irods_zone }}/yoda org_public_host'
   register: current_public_host
   changed_when: false
   
+
 - name: Set public host
   command: 'imeta -C set /{{ irods_zone }}/yoda org_public_host {{ yoda_public_host }}'
-  when: current_public_host.stdout.find(yoda_public_host) == -1
-  check_mode: no
-
+  when: 
+    - current_public_host.stdout.find(yoda_public_host) == -1
+    - not ansible_check_mode
