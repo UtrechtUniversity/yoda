@@ -68,8 +68,10 @@ roles/
     php/                  # ""
     postgresql/           # ""
     yoda-davrods/         # ""
+    yoda-moai/            # ""
     yoda-portal/          # ""
     yoda-rulesets/        # ""
+    yoda-test/            # ""
 ```
 
 
