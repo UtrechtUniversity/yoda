@@ -55,6 +55,7 @@
   git:
     repo: https://github.com/UtrechtUniversity/yoda-moai.git
     dest: '{{ yoda_moai_home }}/yoda-moai'
+  register: repochanges
 
 
 - name: Install YoDA MOAI in virtualenv
@@ -63,6 +64,7 @@
     extra_args: -e
     virtualenv: '{{ yoda_moai_home }}/venv'
     virtualenv_site_packages: yes
+  when: repochanges.changed
   notify: Restart Apache webserver
 
 
