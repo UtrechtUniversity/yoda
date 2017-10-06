@@ -221,7 +221,7 @@
   become: yes
   copy:
     content: '{{ upload_priv_key | b64decode }}'
-    dest: '/var/lib/irods/.ssh/id_ed25119'
+    dest: '/var/lib/irods/.ssh/id_ed25519'
     owner: '{{ irods_service_account }}'
     mode: 0600
   when: upload_priv_key is defined
