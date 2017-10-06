@@ -1,6 +1,6 @@
 # yoda-ansible
-Ansible scripts for automatic deployment of YoDa: a system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.
-Design overview can be found in [DESIGN.md](DESIGN.md).
+[Ansible](https://docs.ansible.com) scripts for automatic deployment of Yoda:
+a system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.
 
 ## Requirements
 ### Control machine requirements
@@ -16,6 +16,7 @@ There are two example instances available for deployment
 in the development [environment](environments/development/).
 Instance 'full' deploys all functional roles to separate virtual machines.
 Instance 'allinone' deploys all functional roles to one virtual machine.
+The guide below will deploy the 'allinone' instance with the default [configuration](CONFIGURATION.md).
 
 ### GNU/Linux or macOS host
 Configure the virtual machines for development:
@@ -23,12 +24,12 @@ Configure the virtual machines for development:
 vagrant --instance=allinone up
 ```
 
-Deploy YoDa to development virtual machines:
+Deploy Yoda to development virtual machines:
 ```bash
 ansible-playbook playbook.yml --limit=allinone
 ```
 
-Provision YoDa with test data:
+Provision Yoda with test data:
 ```bash
 ansible-playbook test.yml --limit=allinone
 ```
@@ -52,7 +53,7 @@ vagrant ssh controller
 cd ~/yoda-ansible
 ```
 
-Deploy YoDa to development virtual machines:
+Deploy Yoda to development virtual machines:
 ```bash
 ansible-playbook playbook.yml --limit=allinone
 ```
@@ -70,7 +71,7 @@ Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
 ```
 
 ## Upgrading Yoda development instance
-Upgrading Yoda to the latest version can be done by running the Ansible playbooks again.
+Upgrading the Yoda development instance to the latest version can be done by running the Ansible playbooks again.
 
 ### GNU/Linux or macOS host
 Upgrade Ansible scripts:
@@ -99,6 +100,11 @@ Upgrade YoDa instance:
 ```bash
 ansible-playbook playbook.yml --limit=allinone
 ```
+
+## Documentation
+* [design overview of the Ansible scripts](DESIGN.md).
+* [configuration of Yoda](CONFIGURATION.md)
+* [deployment of Yoda](DEPLOYMENT.md)
 
 ## License
 This project is licensed under the GPL-v3 license.
