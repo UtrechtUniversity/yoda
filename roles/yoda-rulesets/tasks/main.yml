@@ -34,8 +34,11 @@
     rulesets: "{{ rulesets | map(attribute='ruleset_name') | list  }}"
 
 
-- include: "{{ item.name }}.yml"
+- include: "{{ ruleset.name }}.yml"
   become_user: "{{ irods_service_account }}"
   become: yes
   with_items: "{{ rulesets }}"
-  when: item.install_scripts
+  loop_control:
+    loop_var: ruleset
+  when: ruleset.install_scripts
+
