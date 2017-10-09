@@ -1,0 +1,35 @@
+---
+# copyright Utrecht University
+
+
+- name: Ensure Yoda landingpages root is world readable
+  file:
+    path: '{{ landingpages_root }}'
+    mode: 0755
+    owner: '{{ yoda_inbox_user }}'
+    group: 'apache'
+    state: directory
+    
+
+- name: Ensure inbox user exists
+  user:
+    name: '{{ yoda_inbox_user }}'
+
+
+- name: Add upload user pub key to authorized_keys of inbox
+  authorized_key:
+    user: '{{ yoda_inbox_user }}'
+    key: '{{ upload_pub_key | b64decode }}'
+    state: present
+
+
+- name: Copy Yoda landingpages Apache configuration
+  template:
+    src: landingpages-vhost.conf.j2
+    dest: /etc/httpd/conf.d/landingpages-vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Apache webserver
+
+

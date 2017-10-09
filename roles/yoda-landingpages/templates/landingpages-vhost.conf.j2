@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+# landingpages_vhost.conf
+
+<VirtualHost *:80>
+    ServerName {{ yoda_public_vhost }}
+    DocumentRoot {{ landingpages_root }}
+    
+    <Directory {{ landingpages_root }}>
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
