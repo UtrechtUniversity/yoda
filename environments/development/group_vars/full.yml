@@ -108,11 +108,20 @@ rulesets:
 ################################
 # Research module configuration
 ################################
+yoda_instance: i-lab
 default_yoda_schema: ilab      # Default Yoda XML scheme: ilab or dc
 enable_revisions: 1            # Enable revisions: yes (1) or no (0)
 revision_strategy: B           # Revision strategy: A, B, J or Simple
+yoda_random_id_length: 6
+yoda_prefix: UU01
+
+################################
+# DataCite Configuration
+# #############################
 datacite_username: PLACEHOLDER # DataCite username
 datacite_password: PLACEHOLDER # DataCite password
+datacite_prefix: 10.5072
+datacite_server: mds.test.datacite.org
 
 ###########################
 # PAM Radius configuration
@@ -125,6 +134,7 @@ pam_radius_config: |
 ##########################
 # MOAI configuration
 ##########################
+yoda_moai_host: moai.yoda.dev
 yoda_moai_fqdn: moai.yoda.dev   # Yoda MOAI fully qualified domain name (FQDN)
 yoda_moai_port: 80              # Yoda MOAI port
 
@@ -132,6 +142,7 @@ yoda_moai_port: 80              # Yoda MOAI port
 # Public host configuration
 ###########################
 yoda_public_host: public.yoda.dev    # Yoda public fully qualified domain name (FQDN)
+yoda_public_vhost: public.yoda.dev
 
 # Yoda public upload private key
 upload_priv_key: |

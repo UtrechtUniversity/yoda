@@ -68,6 +68,7 @@ def main():
         module.fail_json(msg="python-irodsclient needs to be installed")
 
     changed = False
+    warnings = []
 
     try:
         resource = session.resources.get(name)
@@ -83,6 +84,28 @@ def main():
     else:
         if state == 'absent':
             module.fail_json(msg="python-irodsclient fails to remove resources in version 0.6")
+        elif state == 'present':
+            if host != resource.location:
+                warnings.append(
+                        "Resource {name} has location set to '{resource.location}' instead of '{host}'"
+                        .format(**locals()))
+            if vault_path != resource.vault_path:
+                warnings.append(
+                        "Resource {name} has vault_path set to '{resource.vault_path}' instead of '{vault_path}'"
+                        .format(**locals()))
+            if resource_type != resource.type:
+                warnings.append("Resource {name} has resource_type set to '{resource.type}' instead of '{resource_type}'"
+                        .format(**locals()))
+            if resource_class != resource.class_name:
+                warnings.append(
+                        "Resource {name} has resource_class set to '{resource.class_name}' instead of '{resource_class}'"
+                        .format(**locals()))
+            if context != resource.context:
+                warnings.append(
+                        "Resource {name} has context set to '{resource.context}' instead of '{context}'"
+                        .format(**locals()))
+
+
 
     for child in children:
         if resource.children is None or child not in resource.children:
@@ -100,6 +123,7 @@ def main():
                 parent=resource.parent,
                 context=resource.context,
                 status=resource.status),
+            warnings=warnings,
             irods_environment=ienv)
 
 
