@@ -30,6 +30,10 @@
     state: present
 
 
+- name: Use restorecon to enforce SELinux context on davrods module
+  command: restorecon /etc/httpd/modules/mod_davrods.so
+
+
 - name: Copy irods_enviroment.json to /etc/httpd/irods/irods_environment.json
   template:
     src: irods_environment.j2
@@ -58,6 +62,10 @@
   with_items:
     - /var/lib/irods/plugins/network/libtcp.so
     - /var/lib/irods/plugins/network/libssl.so
+
+
+- name: Use restorecon to force selinux context on iRODS network plugins
+  command: restorecon -r /var/lib/irods/plugins/network
 
 
 - name: Allow public to ports for davrods in firewall

@@ -113,6 +113,10 @@
     state: present
 
 
+- name: User restorecon to enforce SELinux context for Yoda MOAI database
+  command: restorecon "/{{ yoda_moai_home}}/moai.db"
+
+
 - name: Configure cronjob to update MOAI database
   cron:
     user: '{{ yoda_moai_user }}'
