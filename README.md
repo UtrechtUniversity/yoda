@@ -39,6 +39,7 @@ Add following hosts to /etc/hosts:
 192.168.50.10 portal.yoda.dev
 192.168.50.10 data.yoda.dev
 192.168.50.10 moai.yoda.dev
+192.168.50.10 public.yoda.dev
 ```
 
 ### Windows host
