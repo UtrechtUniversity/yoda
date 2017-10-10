@@ -2,7 +2,7 @@
 # landingpages_vhost.conf
 
 <VirtualHost *:80>
-    ServerName {{ yoda_public_vhost }}
+    ServerName {{ yoda_public_fqdn }}
     DocumentRoot {{ landingpages_root }}
 
     <Directory {{ landingpages_root }}>

@@ -90,7 +90,7 @@
     - attribute: org_yoda_prefix
       value: "{{ yoda_prefix }}"
     - attribute: org_public_vhost
-      value: "{{ yoda_public_vhost }}"
+      value: "{{ yoda_public_fqdn }}"
     - attribute: org_public_host
       value: "{{ yoda_public_host }}"
   loop_control:
