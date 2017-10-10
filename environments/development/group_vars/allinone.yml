@@ -10,7 +10,7 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant # Private key file of administ
 #####################
 # Yoda configuration
 #####################
-instance: allinone                         # Name of Yoda instance, as defined in hosts
+instance: allinone                         # Name of Yoda instance, as defined in hosts file
 yoda_version: development                  # Git branch, for example: development or release-0.9.7
 codeigniter_environment: development       # CodeIgniter environment: development, testing, acceptance or production
 yoda_portal_fqdn: portal.yoda.dev          # Yoda Portal fully qualified domain name (FQDN)
@@ -108,7 +108,6 @@ rulesets:
 ################################
 # Research module configuration
 ################################
-yoda_instance: i-lab
 default_yoda_schema: ilab      # Default Yoda XML scheme: ilab or dc
 enable_revisions: 1            # Enable revisions: yes (1) or no (0)
 revision_strategy: B           # Revision strategy: A, B, J or Simple
@@ -118,10 +117,10 @@ yoda_prefix: UU01              # Prefix for internal portion of persistent ident
 #########################
 # DataCite Configuration
 #########################
-datacite_username: PLACEHOLDER # DataCite username
-datacite_password: PLACEHOLDER # DataCite password
-datacite_prefix: 10.5072
-datacite_server: mds.test.datacite.org
+datacite_username: PLACEHOLDER          # DataCite username
+datacite_password: PLACEHOLDER          # DataCite password
+datacite_prefix: 10.5072                # DataCite DOI prefix
+datacite_server: mds.test.datacite.org  # Datacite server URI
 
 ###########################
 # PAM Radius configuration
@@ -131,18 +130,19 @@ pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
 
-##########################
+#####################
 # MOAI configuration
-##########################
-yoda_moai_host: localhost
+#####################
+yoda_moai_host: localhost       # Yoda MOAI host
 yoda_moai_fqdn: moai.yoda.dev   # Yoda MOAI fully qualified domain name (FQDN)
 yoda_moai_port: 80              # Yoda MOAI port
 
-###########################
+############################
 # Public host configuration
-###########################
-yoda_public_host: combined.yoda.dev  # Yoda public fully qualified domain name (FQDN)
-yoda_public_vhost: public.yoda.dev
+############################
+yoda_public_host: combined.yoda.dev   # Yoda public host
+yoda_public_vhost: public.yoda.dev    # Yoda public fully qualified domain name (FQDN)
+
 # Yoda public upload private key
 upload_priv_key: |
   LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFB
@@ -153,8 +153,8 @@ upload_priv_key: |
   SU92TUJkZy85SnhZdUpwd3dJNlU2RGVJZGZ4VEJmek5WRQp5NmsrOXh5c3p0OEFLRzQ1WGIvaEFB
   QUFEbWx5YjJSelFHTnZiV0pwYm1Wa0FRSURCQVVHQnc9PQotLS0tLUVORCBPUEVOU1NIIFBSSVZB
   VEUgS0VZLS0tLS0K
+
 # Yoda public upload public key
 upload_pub_key: |
   c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUl1SnB3d0k2VTZEZUlkZnhUQmZ6
   TlZFeTZrKzl4eXN6dDhBS0c0NVhiL2ggaXJvZHNAY29tYmluZWQK
-

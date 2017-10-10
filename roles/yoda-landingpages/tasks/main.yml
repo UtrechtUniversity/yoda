@@ -1,7 +1,6 @@
 ---
 # copyright Utrecht University
 
-
 - name: Ensure Yoda landingpages root is world readable
   file:
     path: '{{ landingpages_root }}'
@@ -9,7 +8,7 @@
     owner: '{{ yoda_inbox_user }}'
     group: 'apache'
     state: directory
-    
+
 
 - name: Ensure inbox user exists
   user:
@@ -31,5 +30,3 @@
     group: root
     mode: 0644
   notify: Restart Apache webserver
-
-
