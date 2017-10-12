@@ -23,8 +23,7 @@ Configure the virtual machines for development:
 vagrant --instance=allinone up
 ```
 
-On a Windows host first SSH into the Ansible controller virtual machine:
-(Skip this step on GNU/Linux or macOS)
+On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
 ```bash
 vagrant ssh controller
 cd ~/yoda-ansible
@@ -51,8 +50,7 @@ Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32
 ## Upgrading Yoda development instance
 Upgrading the Yoda development instance to the latest version can be done by running the Ansible playbooks again.
 
-On a Windows host first SSH into the Ansible controller virtual machine:
-(Skip this step on GNU/Linux or macOS)
+On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
 ```bash
 vagrant ssh controller
 cd ~/yoda-ansible
