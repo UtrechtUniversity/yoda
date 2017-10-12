@@ -18,10 +18,16 @@ Instance '[full](environments/development/full/)' deploys all functional roles t
 Instance '[allinone](environments/development/allinone/) deploys all functional roles to one virtual machine.
 The guide below will deploy the 'allinone' instance with the default [configuration](CONFIGURATION.md).
 
-### GNU/Linux or macOS host
 Configure the virtual machines for development:
 ```bash
 vagrant --instance=allinone up
+```
+
+On a Windows host first SSH into the Ansible controller virtual machine:
+(Skip this step on GNU/Linux or macOS)
+```bash
+vagrant ssh controller
+cd ~/yoda-ansible
 ```
 
 Deploy Yoda to development virtual machines:
@@ -34,37 +40,7 @@ Provision Yoda with test data:
 ansible-playbook -i environments/development/allinone/ test.yml
 ```
 
-Add following hosts to /etc/hosts:
-```
-192.168.50.10 portal.yoda.dev
-192.168.50.10 data.yoda.dev
-192.168.50.10 moai.yoda.dev
-192.168.50.10 public.yoda.dev
-```
-
-### Windows host
-Configure the virtual machines for development:
-```bash
-vagrant --instance=allinone up
-```
-
-SSH to Ansible controller virtual machine:
-```bash
-vagrant ssh controller
-cd ~/yoda-ansible
-```
-
-Deploy Yoda to development virtual machines:
-```bash
-ansible-playbook -i environments/development/allinone/ playbook.yml
-```
-
-Provision YoDa with test data:
-```bash
-ansible-playbook -i environments/development/allinone/ test.yml
-```
-
-Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
+Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32\drivers\etc\hosts (Windows):
 ```
 192.168.50.10 portal.yoda.dev
 192.168.50.10 data.yoda.dev
@@ -75,19 +51,8 @@ Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
 ## Upgrading Yoda development instance
 Upgrading the Yoda development instance to the latest version can be done by running the Ansible playbooks again.
 
-### GNU/Linux or macOS host
-Upgrade Ansible scripts:
-```bash
-git pull
-```
-
-Upgrade YoDa instance:
-```bash
-ansible-playbook -i environments/development/allinone/ playbook.yml
-```
-
-### Windows host
-SSH to Ansible controller virtual machine:
+On a Windows host first SSH into the Ansible controller virtual machine:
+(Skip this step on GNU/Linux or macOS)
 ```bash
 vagrant ssh controller
 cd ~/yoda-ansible
