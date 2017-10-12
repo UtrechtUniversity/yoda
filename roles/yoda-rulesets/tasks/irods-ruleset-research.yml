@@ -22,7 +22,6 @@
         (default_datacite_xsl.stderr.find('does not exist') >= 0)
   changed_when: default_xml.stdout.find('Created') >= 0
 
-
 - name: Configure cronjob to copy datapackages to the vault
   cron:
     name: 'copy-accepted-folders-to-vault.r'
@@ -52,8 +51,48 @@
     group: '{{ irods_service_account }}'
 
 
+- name: Copy securecopy.sh to ExecCmd dir
+  copy:
+    remote_src: yes
+    src: /etc/irods/irods-ruleset-research/tools/securecopy.sh
+    dest: /var/lib/irods/iRODS/server/bin/cmd/securecopy.sh
+    mode: 0755
+
+
 - name: Configure cronjob to clean up revisions
   cron:
     name: 'cronjob-revision-cleanup.sh'
     hour: 0
     job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/iRODS/server/log/cronjob-revision-cleanup.log 2> /dev/null'
+
+
+- name: Set configuration AVUs to system collection
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda"
+    irods_type: Collection
+    attribute: "{{ avu.attribute }}"
+    value: "{{ avu.value }}"
+  with_items:
+    - attribute: org_datacite_username
+      value: "{{ datacite_username }}"
+    - attribute: org_datacite_password
+      value: "{{ datacite_password }}"
+    - attribute: org_datacite_prefix
+      value: "{{ datacite_prefix }}"
+    - attribute: org_datacite_server
+      value: "{{ datacite_server }}"
+    - attribute: org_yoda_instance
+      value: "{{ yoda_instance }}"
+    - attribute: org_moai_host
+      value: "{{ yoda_moai_host }}"
+    - attribute: org_random_id_length
+      value: "{{ yoda_random_id_length }}"
+    - attribute: org_yoda_prefix
+      value: "{{ yoda_prefix }}"
+    - attribute: org_public_vhost
+      value: "{{ yoda_public_fqdn }}"
+    - attribute: org_public_host
+      value: "{{ yoda_public_host }}"
+  loop_control:
+    loop_var: avu
+
