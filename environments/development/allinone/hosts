@@ -1,35 +1,3 @@
-###############
-# Full instance
-###############
-# Define all hosts in instance here:
-[full:children]
-full-portal
-full-database
-full-icat
-full-resource
-full-public
-
-# Define portal host here:
-[full-portal]
-portal
-
-# Define database host here:
-[full-database]
-database
-
-# Define icat host here:
-[full-icat]
-icat
-
-# Define resource host here:
-[full-resource]
-resource
-
-# Define public host here:
-[full-public]
-public
-
-
 ###################
 # Allinone instance
 ###################
@@ -66,33 +34,27 @@ combined
 ###############
 # Define all portal hosts here:
 [portals:children]
-full-portal
 allinone-portal
 
 # Define all database hosts here:
 [databases:children]
-full-database
 allinone-database
 
 # Define all icat hosts here:
 [icats:children]
-full-icat
 allinone-icat
 
 # Define all resource hosts here:
 [resources:children]
-full-resource
 allinone-resource
 
 # Define all public hosts here:
 [publics:children]
-full-public
 allinone-public
 
 # Provision instances with test data:
 [test:children]
 allinone-icat
-full-icat
 
 [development:children]
-full
+

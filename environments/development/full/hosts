@@ -1,0 +1,60 @@
+###############
+# Full instance
+###############
+# Define all hosts in instance here:
+[full:children]
+full-portal
+full-database
+full-icat
+full-resource
+full-public
+
+# Define portal host here:
+[full-portal]
+portal
+
+# Define database host here:
+[full-database]
+database
+
+# Define icat host here:
+[full-icat]
+icat
+
+# Define resource host here:
+[full-resource]
+resource
+
+# Define public host here:
+[full-public]
+public
+
+###############
+# All instances
+###############
+# Define all portal hosts here:
+[portals:children]
+full-portal
+
+# Define all database hosts here:
+[databases:children]
+full-database
+
+# Define all icat hosts here:
+[icats:children]
+full-icat
+
+# Define all resource hosts here:
+[resources:children]
+full-resource
+
+# Define all public hosts here:
+[publics:children]
+full-public
+
+# Provision instances with test data:
+[test:children]
+full-icat
+
+[development:children]
+full

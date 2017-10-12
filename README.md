@@ -13,9 +13,9 @@ a system for reliable, long-term storing and archiving large amounts of research
 
 ## Deploying Yoda development instance
 There are two example instances available for deployment
-in the development [environment](environments/development/).
-Instance 'full' deploys all functional roles to separate virtual machines.
-Instance 'allinone' deploys all functional roles to one virtual machine.
+in the development environment.
+Instance '[full](environments/development/full/)' deploys all functional roles to separate virtual machines.
+Instance '[allinone](environments/development/allinone/) deploys all functional roles to one virtual machine.
 The guide below will deploy the 'allinone' instance with the default [configuration](CONFIGURATION.md).
 
 ### GNU/Linux or macOS host
@@ -26,12 +26,12 @@ vagrant --instance=allinone up
 
 Deploy Yoda to development virtual machines:
 ```bash
-ansible-playbook playbook.yml --limit=allinone
+ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
 Provision Yoda with test data:
 ```bash
-ansible-playbook test.yml --limit=allinone
+ansible-playbook -i environments/development/allinone/ test.yml
 ```
 
 Add following hosts to /etc/hosts:
@@ -56,12 +56,12 @@ cd ~/yoda-ansible
 
 Deploy Yoda to development virtual machines:
 ```bash
-ansible-playbook playbook.yml --limit=allinone
+ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
 Provision YoDa with test data:
 ```bash
-ansible-playbook test.yml --limit=allinone
+ansible-playbook -i environments/development/allinone/ test.yml
 ```
 
 Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
@@ -69,6 +69,7 @@ Add following hosts to %SystemRoot%\System32\drivers\etc\hosts:
 192.168.50.10 portal.yoda.dev
 192.168.50.10 data.yoda.dev
 192.168.50.10 moai.yoda.dev
+192.168.50.10 public.yoda.dev
 ```
 
 ## Upgrading Yoda development instance
@@ -82,7 +83,7 @@ git pull
 
 Upgrade YoDa instance:
 ```bash
-ansible-playbook playbook.yml --limit=allinone
+ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
 ### Windows host
@@ -99,7 +100,7 @@ git pull
 
 Upgrade YoDa instance:
 ```bash
-ansible-playbook playbook.yml --limit=allinone
+ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
 ## Documentation

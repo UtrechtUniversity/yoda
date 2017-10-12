@@ -84,13 +84,22 @@ Host specific variables (host_vars) may exist for each host.
 ```
 environments/
    development/
-      hosts              # inventory file for development environment
-      group_vars/
-         group1          # here we assign variables to particular groups
-         group2          # ""
-      host_vars/
-         hostname1       # if systems need specific variables, put them here
-         hostname2       # ""
+      allinone/
+         hosts              # inventory file for allinone instance
+         group_vars/
+            allinone.yml    # here we assign variables to particular groups
+         host_vars/
+            combined        # if systems need specific variables, put them here
+      full/
+         hosts              # inventory file for full instance
+         group_vars/
+            full.yml        # here we assign variables to particular groups
+         host_vars/
+            portal         # if systems need specific variables, put them here
+            database       # ""
+            icat           # ""
+            resource       # ""
+            public         # ""
 
    testing/
       hosts              # inventory file for testing environment
