@@ -6,7 +6,7 @@
     ServerName {{ yoda_public_fqdn }}
 
     # Always redirect to https.
-    Redirect / https://{{ yoda_portal_fqdn }}/
+    Redirect / https://{{ yoda_public_fqdn }}/
 </VirtualHost>
 
 <VirtualHost *:443>
