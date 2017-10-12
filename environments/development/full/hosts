@@ -1,37 +1,23 @@
 ###############
 # Full instance
 ###############
-# Define all hosts in instance here:
-[full:children]
-full-portal
-full-database
-full-icat
-full-resource
-full-public
-
-# Define portal host here:
+# Define portal hosts here:
 [full-portal]
 portal
 
-# Define database host here:
 [full-database]
 database
 
-# Define icat host here:
 [full-icat]
 icat
 
-# Define resource host here:
 [full-resource]
 resource
 
-# Define public host here:
 [full-public]
 public
 
-###############
-# All instances
-###############
+
 # Define all portal hosts here:
 [portals:children]
 full-portal

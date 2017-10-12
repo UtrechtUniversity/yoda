@@ -1,60 +1,33 @@
 ###################
 # Allinone instance
 ###################
-# Define all hosts in instance here:
-[allinone:children]
-allinone-portal
-allinone-database
-allinone-icat
-allinone-resource
-allinone-public
-
-# Define portal host here:
-[allinone-portal]
+# Define hosts here:
+[allinone]
 combined
 
-# Define database host here:
-[allinone-database]
-combined
 
-# Define icat host here:
-[allinone-icat]
-combined
-
-# Define public host here:
-[allinone-public]
-combined
-
-# Define resource host here:
-[allinone-resource]
-
-
-###############
-# All instances
-###############
 # Define all portal hosts here:
 [portals:children]
-allinone-portal
+allinone
 
 # Define all database hosts here:
 [databases:children]
-allinone-database
+allinone
 
 # Define all icat hosts here:
 [icats:children]
-allinone-icat
+allinone
 
 # Define all resource hosts here:
 [resources:children]
-allinone-resource
+
 
 # Define all public hosts here:
 [publics:children]
-allinone-public
+allinone
 
 # Provision instances with test data:
 [test:children]
-allinone-icat
+allinone
 
 [development:children]
-
