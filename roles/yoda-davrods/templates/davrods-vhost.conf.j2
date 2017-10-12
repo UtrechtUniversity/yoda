@@ -100,7 +100,7 @@ Listen {{ yoda_davrods_port }}
         # This allows users to access Davrods without being prompted
         # for a login, making public access and embedding in web pages
         # easier.
-        DavRodsAnonymousMode On
+        #DavRodsAnonymousMode Off
 
         # iRODS authentication options for Davrods anonymous mode.
         #
@@ -114,7 +114,7 @@ Listen {{ yoda_davrods_port }}
         # The special 'anonymous' iRODS user normally requires the
         # DavRodsAuthScheme to be set to Native.
         #
-        DavRodsAnonymousLogin "anonymous" ""
+        #DavRodsAnonymousLogin "anonymous" ""
 
         # iRODS default resource to use for file uploads.
         #
