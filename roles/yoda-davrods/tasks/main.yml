@@ -85,3 +85,10 @@
     state: enabled
     immediate: yes
   notify: Restart firewall
+
+
+- name: Ensure Yoda anonymous user exists
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_mkuser:
+    name: anonymous
