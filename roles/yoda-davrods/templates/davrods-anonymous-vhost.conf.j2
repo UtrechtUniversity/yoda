@@ -31,8 +31,8 @@ Listen {{ yoda_davrods_anonymous_port }}
 	DirectoryIndex disabled
 
         # Restrict access to authenticated users.
-        AuthType Basic
-        Require valid-user
+        AuthType None
+        Require all granted
 
         # The realm name that will be shown to clients upon authentication
         AuthName DAV
