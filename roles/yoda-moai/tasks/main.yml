@@ -111,10 +111,14 @@
     target: '{{ yoda_moai_home }}/moai.db'
     setype: httpd_sys_rw_content_t
     state: present
+  register: filecontext
 
 
-- name: User restorecon to enforce SELinux context for Yoda MOAI database
-  command: restorecon "/{{ yoda_moai_home}}/moai.db"
+- name: Ensure selinux context is enforced on Yoda MOAI database
+  shell: 'restorecon {{ yoda_moai_home }}/{{ item.target }}'
+  when: filecontext|changed
+  with_items:
+  - { index: 0, target: 'moai.db' }
 
 
 - name: Configure cronjob to update MOAI database

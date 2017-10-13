@@ -236,5 +236,25 @@
   when: upload_priv_key is defined
 
 
+- name: Ensure pip is installed
+  package:
+    name: python-pip
+    state: present
+
+
+- name: Ensure python-irodsclient is installed
+  pip:
+    name: git+https://github.com/irods/python-irodsclient.git
+    editable: False
+    state: present
+
+
+- name: Ensure Yoda anonymous user exists
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_mkuser:
+    name: anonymous
+
+
 - include: setup_pam_radius.yml
   when: irods_authentication_scheme == "PAM"

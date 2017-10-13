@@ -28,10 +28,14 @@
     target: /etc/httpd/modules/mod_davrods.so
     setype: httpd_sys_script_exec_t
     state: present
+  register: filecontext
 
 
-- name: Use restorecon to enforce SELinux context on davrods module
-  command: restorecon /etc/httpd/modules/mod_davrods.so
+- name: Ensure selinux context is enforced on davrods module
+  shell: restorecon /etc/httpd/modules/{{ item.target }}
+  when: filecontext|changed
+  with_items:
+  - { index: 0, target: 'mod_davrods.so' }
 
 
 - name: Copy irods_enviroment.json to /etc/httpd/irods/irods_environment.json
@@ -69,13 +73,18 @@
     target: '{{ item }}'
     setype: httpd_sys_script_exec_t
     state: present
+  register: filecontext
   with_items:
     - /var/lib/irods/plugins/network/libtcp.so
     - /var/lib/irods/plugins/network/libssl.so
 
 
-- name: Use restorecon to force selinux context on iRODS network plugins
-  command: restorecon -r /var/lib/irods/plugins/network
+- name: Ensure selinux context is enforced on iRODS network plugins
+  shell: restorecon /var/lib/irods/plugins/network/{{ item.target }}
+  when: filecontext.results[item.index]|changed
+  with_items:
+  - { index: 0, target: 'libtcp.so' }
+  - { index: 1, target: 'libssl.so' }
 
 
 - name: Allow public to ports for davrods in firewall
@@ -85,10 +94,3 @@
     state: enabled
     immediate: yes
   notify: Restart firewall
-
-
-- name: Ensure Yoda anonymous user exists
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  irods_mkuser:
-    name: anonymous
