@@ -164,6 +164,28 @@ Listen {{ yoda_davrods_anonymous_port }}
         # lock database.
         #
         #DavRodsLockDB          /var/lib/davrods/lockdb_locallock
+
+        # Davrods provides read-only HTML directory listings for web browser access.
+        # The UI is basic and unstyled by default, but can be modified with three
+        # theming directives.
+        #
+        # Each of these directives points to a local HTML file that must be readable
+        # by the apache user.
+        #
+        # The default value for each of these is "", which disables the option.
+        #
+        # - DavRodsHtmlHead   is inserted in the HEAD tag of the listing.
+        # - DavRodsHtmlHeader is inserted at the top of the listing's BODY tag.
+        # - DavRodsHtmlFooter is inserted at the bottom of the listing's BODY tag.
+        #
+        # Example HTML files are provided in /etc/httpd/irods. You should edit these
+        # before enabling them.
+        #
+        # To see an example, uncomment the following three lines:
+        #
+        DavRodsHtmlHead   "/etc/httpd/irods/head.html"
+        DavRodsHtmlHeader "/etc/httpd/irods/header.html"
+        DavRodsHtmlFooter "/etc/httpd/irods/footer.html"
     </Location>
 
     SSLEngine on
