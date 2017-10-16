@@ -80,7 +80,7 @@
   run_once: true
 
 
-- name: Ensure all users have iRODS read access on /zone/public
+- name: Ensure all users have iRODS read access on /zone/home
   become_user: '{{ irods_service_account }}'
   become: yes
   shell: 'ils -A /{{ irods_zone }}/home | grep "g:public#"'
@@ -89,7 +89,7 @@
   changed_when: read_access | failed
 
 
-- name: Provide iRODS read access for all users on /zone/public
+- name: Provide iRODS read access for all users on /zone/home
   become_user: '{{ irods_service_account }}'
   become: yes
   command: 'ichmod -M read public /{{ irods_zone }}/home'
@@ -254,6 +254,22 @@
   become: yes
   irods_mkuser:
     name: anonymous
+
+
+- name: Ensure anonymous user has iRODS read access on /zone/home
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'ils -A /{{ irods_zone }}/home | grep "anonymous#"'
+  register: read_access
+  ignore_errors: true
+  changed_when: read_access | failed
+
+
+- name: Provide iRODS read access for anonymous user on /zone/home
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 'ichmod -M read anonymous /{{ irods_zone }}/home'
+  when: read_access | failed
 
 
 - include: setup_pam_radius.yml
