@@ -1,14 +1,6 @@
 # {{ ansible_managed }}
 # landingpages-vhost.conf
 
-<VirtualHost *:80>
-    DocumentRoot {{ landingpages_root }}
-    ServerName {{ yoda_public_fqdn }}
-
-    # Always redirect to https.
-    Redirect / https://{{ yoda_public_fqdn }}/
-</VirtualHost>
-
 <VirtualHost *:443>
     DocumentRoot {{ landingpages_root }}
     ServerName {{ yoda_public_fqdn }}
