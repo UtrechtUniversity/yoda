@@ -15,6 +15,7 @@ yoda_version: development                  # Git branch, for example: developmen
 codeigniter_environment: development       # CodeIgniter environment: development, testing, acceptance or production
 yoda_portal_fqdn: portal.yoda.dev          # Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn: data.yoda.dev           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_davrods_anonymous_fqdn: public.data.yoda.dev
 
 ######################
 # iRODS configuration

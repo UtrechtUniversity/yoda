@@ -10,15 +10,17 @@ davrods:
   filename: davrods-4.1_1.3.0-1.el7.centos.x86_64.rpm
   checksum: sha256:440ac5f23ec31c3f73188858f9faed4b95c5b24f0fc4d5fda14ca1c87834b76c
 
-yoda_davrods_fqdn: data.yoda.dev
+yoda_davrods_fqdn: data.yoda.dev           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_port: 443
 
 yoda_davrods_anonymous_fqdn: public.data.yoda.dev
 yoda_davrods_anonymous_port: 443
 
+yoda_portal_fqdn: portal.yoda.dev          # Yoda Portal fully qualified domain name (FQDN)
+
 # iRODS configuration.
 irods_icat_fqdn: icat.yoda.dev
-irods_authentication_scheme: Native        # "Native" or "PAM"
-irods_default_resc: irodsResc
-irods_zone: tempZone
+irods_authentication_scheme: Native        # iRODS authentication method: "Native" or "PAM"
+irods_zone: tempZone                       # The name of the iRODS Zone
+irods_default_resc: irodsResc              # iRODS default resource name
 irods_icat_port: 1247
