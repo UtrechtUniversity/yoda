@@ -9,6 +9,6 @@
 
 
 - name: Ensure iRODS runtime is installed
-  package:
+  yum:
     name: '{{ rpm_dest_dir }}/{{ irods_runtime.filename }}'
     state: present
