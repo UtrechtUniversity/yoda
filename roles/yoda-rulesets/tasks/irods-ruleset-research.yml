@@ -93,7 +93,7 @@
       value: "{{ yoda_public_fqdn }}"
     - attribute: org_public_host
       value: "{{ yoda_public_host }}"
-    - attribute: davrods_anonymous_vhost
+    - attribute: org_davrods_anonymous_vhost
       value: "{{ yoda_davrods_anonymous_fqdn }}"
   loop_control:
     loop_var: avu
