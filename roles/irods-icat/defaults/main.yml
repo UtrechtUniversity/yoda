@@ -8,15 +8,15 @@ rpm_dest_dir: /tmp
 
 # iRODS iCAT rpm location and checksum
 irods_icat:
-  url: ftp://ftp.renci.org/pub/irods/releases/4.1.8/centos7
-  filename: irods-icat-4.1.8-centos7-x86_64.rpm
-  checksum: sha256:ea4b0ec21d1ba186062382ea6ecdb25e9f9299434ddaad1086eb3cd8b22a8719
+  url: ftp://ftp.renci.org/pub/irods/releases/4.1.11/centos7
+  filename: irods-icat-4.1.11-centos7-x86_64.rpm
+  checksum: sha1:cd6a450477c9db51a6d1cc1dcc565c5eecf3d58d
 
 # iRODS database plugin rpm location and checksum
 irods_db:
-  url: ftp://ftp.renci.org/pub/irods/releases/4.1.8/centos7
-  filename: irods-database-plugin-postgres-1.8-centos7-x86_64.rpm
-  checksum: sha256:1d42fddaf243890aad03fb9da47cb259cd13cb0539a8fc81f3af0610d08b9c6d
+  url: ftp://ftp.renci.org/pub/irods/releases/4.1.11/centos7
+  filename: irods-database-plugin-postgres-1.11-centos7-x86_64.rpm
+  checksum: sha1:5872b49bd75b6ff882a7e265cf5a502b9ca51a74
 
 # iRODS configuration.
 irods_admin: rods
