@@ -1,26 +1,52 @@
 ---
 # Copyright Utrecht University
 
-- name: Find out if default XSD is installed
-  command: 'ils /{{ irods_zone }}/yoda/xsd/default.xsd'
+- name: Find out if default XSD, formelements and stylesheets are installed
+  command: 'ils /{{ irods_zone }}/yoda/{{ item.collection }}/{{ item.file }}'
   ignore_errors: True
-  register: default_xsd
+  register: installed_defaults
   changed_when: False
-  check_mode: no
+  with_items:
+    - { collection: 'formelements', file: 'default.xml' }
+    - { collection: 'xsd', file: 'default.xsd' }
+    - { collection: 'xsl', file: 'default.xsl' }
+    - { collection: 'xsl', file: 'default2datacite.xsl' }
+    - { collection: 'xsl', file: 'default2landingpage.xsl' }
 
-- name: Find out if default2datacite.xsl is installed
-  command: 'ils /{{ irods_zone }}/yoda/xsl/default2datacite.xsl'
+
+- name: Ensure default schemas, formelements and stylesheets are installed
+  command: >
+    irule -F /etc/irods/irods-ruleset-research/tools/install-default-xml-for-metadata.r
+    '*resc="{{ irods_default_resc }}"'
+    '*default="{{ default_yoda_schema }}"'
+    '*update={{ update_schemas }}'
+  register: install_default_xml_for_metadata
+  when: (update_schemas == 1) or
+        (installed_defaults|json_query('results[*].stderr')|join(' ')|search('does not exist'))
+  changed_when: install_default_xml_for_metadata.stdout|search('(Installed|Updated)')
+
+
+- name: List installed or updated schemas, formelements or stylesheets
+  debug:
+    var: item
+  when: item|search('(Installed|Updated)')
+  with_items: "{{ install_default_xml_for_metadata.stdout_lines|default('Script did not run') }}"
+
+
+- name: Find out if terms and conditions system collection exists
+  command: 'ils /{{ irods_zone }}/yoda/terms'
   ignore_errors: True
-  register: default_datacite_xsl
+  register: terms_installed
   changed_when: False
-  check_mode: no
 
-- name: Ensure default XML for metadata is installed
-  command: "irule -F /etc/irods/irods-ruleset-research/tools/install-default-xml-for-metadata.r '*resc=\"{{ irods_default_resc }}\"' '*default=\"{{ default_yoda_schema }}\"'"
-  register: default_xml
-  when: (default_xsd.stderr.find('does not exist') >= 0) or
-        (default_datacite_xsl.stderr.find('does not exist') >= 0)
-  changed_when: default_xml.stdout.find('Created') >= 0
+
+- name: Install terms and conditions
+  shell: |
+    iput -r /etc/irods/irods-ruleset-research/tools/terms /{{ irods_zone }}/yoda
+    ichmod -rM inherit /{{ irods_zone }}/yoda/terms
+    ichmod -rM read public /{{ irods_zone }}/yoda/terms
+  when: (terms_installed.stderr.find('does not exist') >= 0)
+
 
 - name: Configure cronjob to copy datapackages to the vault
   cron:
@@ -94,6 +120,6 @@
     - attribute: org_public_host
       value: "{{ yoda_public_host }}"
     - attribute: org_davrods_anonymous_vhost
-      value: "{{ yoda_davrods_anonymous_fqdn }}"
+      value: "{{ yoda_davrods_anonymous_fqdn }}{% if (yoda_davrods_anonymous_port is defined) %}:{{ yoda_davrods_anonymous_port }}{% endif %}"
   loop_control:
     loop_var: avu
