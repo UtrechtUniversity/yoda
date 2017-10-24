@@ -9,17 +9,17 @@ rpm_dest_dir: /tmp
 # iRODS microservices rpm locations and checksums
 microservices:
   irods_json_microservices:
-    package: rit-irods-microservices-0.3.0
+    package: rit-irods-microservices-0.3.0-0
     url: https://github.com/UtrechtUniversity/irods-json-microservices/releases/download/v0.3.0/rit-irods-microservices-0.3.0-centos7.rpm
     filename: rit-irods-microservices-0.3.0-centos7.rpm
     checksum: sha256:888281f41701b86a5769060c299c57452a7a2c82a09a0943ffd2c940548e2f75
   irods_sudo_microservices:
-    package: irods-sudo-microservices-0.2
+    package: irods-sudo-microservices-0.2-1
     url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/0.2/irods-sudo-microservices-0.2-Linux.rpm
     filename: irods-sudo-microservices-0.2-Linux.rpm
     checksum: sha256:5f19879f643d498a1a44c5c9c524495962cb5cb37620a98813223aec3eabbbca
   irods_xml_microservices:
-    package: irods-microservice-plugins-loadmeta-1.6
+    package: irods-microservice-plugins-loadmeta-1.6-0
     url: https://github.com/UtrechtUniversity/irods-xml-microservices/releases/download/1.6/irods-microservice-plugins-loadmeta-1.6-centos7.rpm
     filename: irods-microservice-plugins-loadmeta-1.6-centos7.rpm
     checksum: sha256:bb4872bbb5d0884a90553bbc67202e991efce5dbdb76f89453c6e22522ea13c7

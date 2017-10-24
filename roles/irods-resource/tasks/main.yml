@@ -26,7 +26,7 @@
   package:
     name: '{{ irods_resource.package }}'
     state: present
-  when: irods_runtime_repo.results
+  when: irods_resource_repo.results
 
 
 - name: Create iRODS service account group
