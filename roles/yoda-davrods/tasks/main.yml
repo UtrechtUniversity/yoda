@@ -9,18 +9,32 @@
   - boost
   - jansson
 
+- name: Check if davrods is installable from repository
+  yum:
+    list: '{{ davrods.package }}'
+  register: davrods_repo
+  
 
 - name: Download davrods rpm
   get_url:
     url: '{{ davrods.url }}/{{ davrods.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     checksum: '{{ davrods.checksum }}'
+  when: not davrods_repo.results
+
+
+- name: Install davrods from downloaded rpm
+  package:
+    name: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
+    state: present
+  when: not davrods_repo.results
 
 
 - name: Ensure davrods rpm is installed
   package:
-    name: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
+    name: '{{ davrods.package }}'
     state: present
+  when: davrods_repo.results
 
 
 - name: Allow Apache to execute davrods module

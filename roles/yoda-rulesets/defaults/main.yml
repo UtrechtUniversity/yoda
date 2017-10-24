@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 yoda_version: development
-update_rulesets: yes
+update_rulesets: no
 
 # Ruleset configuration.
 rulesets:
@@ -31,3 +31,4 @@ default_yoda_schema: ilab
 enable_revisions: 1
 revision_strategy: A
 yoda_instance: "{{ instance }}"
+update_schemas: 0

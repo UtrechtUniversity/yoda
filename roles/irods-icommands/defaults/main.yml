@@ -6,6 +6,7 @@ rpm_dest_dir: /tmp
 
 # iRODS iCommands rpm location and checksum
 irods_icommands:
+  package: irods-icommands-4.1.11
   url: ftp://ftp.renci.org/pub/irods/releases/4.1.11/centos7
   filename: irods-icommands-4.1.11-centos7-x86_64.rpm
   checksum: sha1:e76615e8f56629e77135a54089abc5432e4b0432
