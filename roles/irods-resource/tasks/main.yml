@@ -1,19 +1,32 @@
 ---
 # copyright Utrecht University
 
+- name: Check if iRODS resource server is installable from repository
+  yum:
+    list: '{{ irods_resource.package }}'
+  register: irods_resource_repo
+
+
 - name: Download iRODS resource server rpm
   get_url:
     url: '{{ irods_resource.url }}/{{ irods_resource.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ irods_resource.filename }}'
     checksum: '{{ irods_resource.checksum }}'
+  when: not irods_resource_repo.results
+
+
+- name: Install iRODS resource server from downloaded rpm
+  package:
+    name: '{{ rpm_dest_dir }}/{{ irods_resource.filename }}'
+    state: present
+  when: not irods_resource_repo.results
 
 
 - name: Ensure iRODS resource server is installed
   package:
-    name: '{{ item }}'
+    name: '{{ irods_resource.package }}'
     state: present
-  with_items:
-    - '{{ rpm_dest_dir }}/{{ irods_resource.filename }}'
+  when: irods_runtime_repo.results
 
 
 - name: Create iRODS service account group

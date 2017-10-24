@@ -6,6 +6,7 @@ rpm_dest_dir: /tmp
 
 # iRODS resource server rpm location and checksum
 irods_resource:
+  package: irods-resource-4.1.8
   url: ftp://ftp.renci.org/pub/irods/releases/4.1.8/centos7
   filename: irods-resource-4.1.8-centos7-x86_64.rpm
   checksum: sha256:2b052acd856886755f2adce8703d60e80a418eefaadd0662ecb9c714e462b69f
