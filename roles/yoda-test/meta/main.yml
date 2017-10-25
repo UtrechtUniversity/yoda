@@ -2,5 +2,4 @@
 # copyright Utrecht University
 
 dependencies:
-- common
 - python-irodsclient

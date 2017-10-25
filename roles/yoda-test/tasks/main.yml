@@ -1,19 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure pip is installed
-  package:
-    name: python-pip
-    state: present
-
-
-- name: Ensure python-irodsclient is installed
-  pip:
-    name: git+https://github.com/irods/python-irodsclient.git
-    editable: False
-    state: present
-
-
 - name: Ensure test users exists
   user:
     name: '{{ item.name }}'
