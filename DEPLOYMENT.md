@@ -14,12 +14,12 @@ To upgrade an existing Yoda instance update your Yoda Ansible repository to incl
 git pull
 ```
 
-Then run the Yoda playbook:
+Upgrade the [configuration](CONFIGURATION.md) of the Yoda Instance and then run the Yoda playbook:
 ```bash
-ansible-playbook -i environments/development playbook.yml --limit=yoda -K
+ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -K
 ```
 
 You may want to run the Yoda playbook in check mode first to see the changes it will make:
 ```bash
-ansible-playbook -i environments/development playbook.yml --limit=yoda -CDK
+ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -CDK
 ```
