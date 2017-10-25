@@ -292,5 +292,5 @@
   when: read_access | failed
 
 
-- include: setup_pam_radius.yml
+- include_tasks: setup_pam_radius.yml
   when: irods_authentication_scheme == "PAM"

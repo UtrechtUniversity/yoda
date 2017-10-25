@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-- include: password_protect.yml
+- include_tasks: password_protect.yml
   with_inventory_hostnames:
     - 'icats:&{{ instance }}'
   loop_control:
