@@ -12,16 +12,21 @@ For example a production environment:
 mkdir environments/production
 ```
 
-In this new environment two directories are needed, on for the Yoda instance variables (group_vars) and one for host specific variables (host_vars).
+We call our new instance 'yoda', so create a new instance directory:
 ```bash
-mkdir environments/production/group_vars
-mkdir environments/production/host_vars
+mkdir environments/production/yoda
+```
+
+In this new instance directory two directories are needed, on for the Yoda instance variables (group_vars) and one for host specific variables (host_vars).
+```bash
+mkdir environments/production/yoda/group_vars
+mkdir environments/production/yoda/host_vars
 ```
 
 ## 2. Add hosts of new Yoda instance
 
 Hosts of a Yoda instance are defined in the [Ansible inventory](https://docs.ansible.com/ansible/latest/intro_inventory.html) file 'hosts'.
-For the development environment this inventory can be found in [environments/development/hosts](environments/development/hosts).
+For the development instance 'full' this inventory can be found in [environments/development/full/hosts](environments/development/full/hosts).
 In the inventory the hosts of an instance are defined, their functional roles and to which groups they belong.
 
 Example configuration defining the and functional roles of an instance called 'yoda':
@@ -81,7 +86,7 @@ ansible_host: host1.yoda.dev
 
 ## 3. Configure (new) Yoda instance
 To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars).
-In case of a new Yoda instance we can copy a [configuration](environments/development/group_vars/full.yml) of a development instance as base.
+In case of a new Yoda instance we can copy a [configuration](environments/development/full/group_vars/full.yml) of a development instance as base.
 
 ### Ansible configuration
 Fill in the administrative user on the Yoda instance for Ansible 'ansible_user' and the location of the private key file of this administrative user 'ansible_ssh_private_key_file'.
