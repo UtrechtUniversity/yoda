@@ -5,16 +5,17 @@
 # Ansible configuration
 ########################
 ansible_user: vagrant                             # Administrative user on instance for Ansible
-ansible_ssh_private_key_file: vagrant/ssh/vagrant # Private key file of administrative user
+ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of administrative user
 
 #####################
 # Yoda configuration
 #####################
-instance: full                             # Name of Yoda instance, as defined in hosts file
-yoda_version: development                  # Git branch, for example: development or release-0.9.7
-codeigniter_environment: development       # CodeIgniter environment: development, testing, acceptance or production
-yoda_portal_fqdn: portal.yoda.dev          # Yoda Portal fully qualified domain name (FQDN)
-yoda_davrods_fqdn: data.yoda.dev           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
+instance: full                                    # Name of Yoda instance, as defined in hosts file
+yoda_version: development                         # Git branch, for example: development or release-0.9.7
+codeigniter_environment: development              # CodeIgniter environment: development, testing, acceptance or production
+yoda_portal_fqdn: portal.yoda.dev                 # Yoda Portal fully qualified domain name (FQDN)
+yoda_davrods_fqdn: data.yoda.dev                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_davrods_anonymous_fqdn: public.data.yoda.dev # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
 ######################
 # iRODS configuration
@@ -145,7 +146,7 @@ yoda_moai_port: 80              # Yoda MOAI port
 yoda_public_host: public.yoda.dev     # Yoda public host
 yoda_public_fqdn: public.yoda.dev     # Yoda public fully qualified domain name (FQDN)
 
-# Yoda public upload private key
+# Yoda public upload private key (base64 encoded)
 upload_priv_key: |
   LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFB
   QUFBQkc1dmJtVUFBQUFFYm05dVpRQUFBQUFBQUFBQkFBQUFNd0FBQUF0emMyZ3RaVwpReU5UVXhP
@@ -156,7 +157,7 @@ upload_priv_key: |
   QUFEbWx5YjJSelFHTnZiV0pwYm1Wa0FRSURCQVVHQnc9PQotLS0tLUVORCBPUEVOU1NIIFBSSVZB
   VEUgS0VZLS0tLS0K
 
-# Yoda public upload public key
+# Yoda public upload public key (base64 encoded)
 upload_pub_key: |
   c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUl1SnB3d0k2VTZEZUlkZnhUQmZ6
   TlZFeTZrKzl4eXN6dDhBS0c0NVhiL2ggaXJvZHNAY29tYmluZWQK
