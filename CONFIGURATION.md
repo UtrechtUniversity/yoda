@@ -87,15 +87,76 @@ ansible_host: host1.yoda.dev
 ## 3. Configure (new) Yoda instance
 To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars).
 In case of a new Yoda instance we can copy a [configuration](environments/development/full/group_vars/full.yml) of a development instance as base.
+The configuration isplit in several parts. Below an overview of these parts and the configuration options available.
 
 ### Ansible configuration
-Fill in the administrative user on the Yoda instance for Ansible 'ansible_user' and the location of the private key file of this administrative user 'ansible_ssh_private_key_file'.
-If these users and/or private key file is different for each host then define these in the corresponding host specific variables (host_vars).
+Variable                     | Description                                     |
+-----------------------------|-------------------------------------------------|
+ansible_user                 | Administrative user on instance for Ansible     |
+ansible_ssh_private_key_file | Path to private key file of administrative user |
+
+Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars).
 
 ### Yoda configuration
-Fill in the name of the Yoda instance 'instance', the version you want to deploy 'yoda_version', the Yoda Portal fully qualified domain name 'yoda_portal_fqdn' and  Yoda Davrods WebDAV fully qualified domain name 'yoda_davrods_fqdn'.
+Variable                     | Description                                                             |
+-----------------------------|-------------------------------------------------------------------------|
+instance                     | Name of Yoda instance, as defined in hosts file                         |
+yoda_version                 | Git branch, for example: development or release-0.9.7                   |
+codeigniter_environment      | CodeIgniter environment: development, testing, acceptance or production |
+yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)                          |
+yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)                  |
+yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)        |
 
 ### iRODS configuration
-Set iRODS admin username 'irods_admin' / password 'irods_password' and iRODS database username 'irods_database_user' / password 'irods_database_password'.
-Set the name of the iRODS zone 'irods_zone' and the fully qualified domain names of the icat server 'irods_icat_fqdn', database server 'irods_database_fqdn' and resource server 'irods_resource_fqdn'.
-Finish iRODS configuration by defining the default resource name 'irods_default_resc' and resource configuration 'irods_resources'.
+Variable                     | Description                                                             |
+-----------------------------|-------------------------------------------------------------------------|
+irods_admin                  | iRODS admin username                                                    |
+irods_password               | iRODS admin password                                                    |
+irods_database_user          | The iRODS database username                                             |
+irods_database_password      | The password for the iRODS database username                            |
+irods_authentication_scheme  | iRODS authentication method: "Native" or "PAM"                          |
+irods_zone                   | The name of the iRODS Zone                                              |
+irods_icat_fqdn              | iRODS iCAT fully qualified domain name (FQDN)                           |
+irods_database_fqdn          | iRODS database fully qualified domain name (FQDN)                       |
+irods_resource_fqdn          | iRODS resource fully qualified domain name (FQDN)                       |
+irods_default_resc           | iRODS default resource name                                             |
+irods_resources              | Definition of iRODS resources of this Yoda instance                     |
+
+### Research module configuration
+Variable                     | Description                                                                       |
+-----------------------------|-----------------------------------------------------------------------------------|
+default_yoda_schema          | Default Yoda XML scheme: ilab or dc                                               |
+enable_revisions             | Enable revisions: yes (1) or no (0)                                               |
+revision_strategy            | Revision strategy: A, B, J or Simple                                              |
+yoda_random_id_length        | Length of random ID to add to persistent identifier                               |
+yoda_prefix                  | Prefix for internal portion of persistent identifier                              |
+update_rulesets              | Update already installed rulesets with git                                        |
+update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0) |
+
+### DataCite Configuration
+Variable                     | Description                                                             |
+-----------------------------|-------------------------------------------------------------------------|
+datacite_username            | DataCite username                                                       |
+datacite_password            | DataCite password                                                       |
+datacite_prefix              | DataCite DOI prefix                                                     |
+datacite_server              | Datacite server URI                                                     |
+
+### PAM Radius configuration
+Variable                     | Description                                                             |
+-----------------------------|-------------------------------------------------------------------------|
+pam_radius_config:           | server, shared secret, timeout (s)                                      |
+
+
+### MOAI configuration
+Variable                     | Description                                                             |
+-----------------------------|-------------------------------------------------------------------------|
+yoda_moai_host               | Yoda MOAI host                                                          |
+yoda_moai_fqdn               | Yoda MOAI fully qualified domain name (FQDN)                            |
+
+### Public host configuration
+Variable                     | Description                                                             |
+-----------------------------|-------------------------------------------------------------------------|
+yoda_public_host             | Yoda public host                                                        |
+yoda_public_fqdn             | Yoda public fully qualified domain name (FQDN)                          |
+upload_priv_key              | Yoda public upload private key (base64 encoded)                         |
+upload_pub_key               | Yoda public upload public key (base64 encoded)                          |
