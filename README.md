@@ -44,7 +44,6 @@ Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32
 192.168.50.10 portal.yoda.dev
 192.168.50.10 data.yoda.dev
 192.168.50.10 public.data.yoda.dev
-192.168.50.10 moai.yoda.dev
 192.168.50.10 public.yoda.dev
 ```
 
