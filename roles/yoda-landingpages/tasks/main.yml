@@ -22,10 +22,16 @@
     state: present
 
 
+- name: Check if index page is present
+  stat: path='{{ landingpages_root }}/index.html'
+  register: index
+
+
 - name: Ensure empty index page is present
   file:
     path: '{{ landingpages_root }}/index.html'
     state: touch
+  when: index.stat.exists == False
 
 
 - name: Ensure old  Yoda landingpages Apache configuration is absent
