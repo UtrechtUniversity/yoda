@@ -1,0 +1,8 @@
+---
+# copyright Utrecht University
+
+dependencies:
+- apache
+- certificates
+- yoda-moai
+- yoda-landingpages
