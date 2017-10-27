@@ -73,6 +73,7 @@
   roles:
     - yoda-moai
     - yoda-landingpages
+    - yoda-public
   tags:
     - public
  

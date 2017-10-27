@@ -133,12 +133,6 @@ pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
 
-#####################
-# MOAI configuration
-#####################
-yoda_moai_host: localhost       # Yoda MOAI host
-yoda_moai_fqdn: moai.yoda.dev   # Yoda MOAI fully qualified domain name (FQDN)
-
 ############################
 # Public host configuration
 ############################

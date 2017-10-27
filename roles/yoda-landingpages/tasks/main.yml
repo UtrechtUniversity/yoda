@@ -22,11 +22,13 @@
     state: present
 
 
-- name: Copy Yoda landingpages Apache configuration
-  template:
-    src: landingpages-vhost.conf.j2
-    dest: /etc/httpd/conf.d/landingpages-vhost.conf
-    owner: root
-    group: root
-    mode: 0644
-  notify: Restart Apache webserver
+- name: Ensure empty index page is present
+  file:
+    path: '{{ landingpages_root }}/index.html'
+    state: touch
+
+
+- name: Ensure old  Yoda landingpages Apache configuration is absent
+  file:
+    path: /etc/httpd/conf.d/landingpages-vhost.conf
+    state: absent

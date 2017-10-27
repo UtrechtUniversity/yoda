@@ -110,7 +110,7 @@
     - attribute: org_yoda_instance
       value: "{{ yoda_instance }}"
     - attribute: org_moai_host
-      value: "{{ yoda_moai_host }}"
+      value: "{{ yoda_public_host }}"
     - attribute: org_random_id_length
       value: "{{ yoda_random_id_length }}"
     - attribute: org_yoda_prefix
