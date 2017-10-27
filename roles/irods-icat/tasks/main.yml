@@ -178,24 +178,24 @@
 
 
 - name: Ensure private key file is available for iRODS
-  command: 'cp /etc/pki/tls/private/yoda_key_signed.pem yoda_key_signed.pem'
+  command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
   args:
     chdir: '/etc/irods'
-    creates: 'yoda_key_signed.pem'
+    creates: '{{ openssl_key_signed }}'
 
 
 - name: Ensure Diffie-Hellman parameters are available for iRODS
-  command: 'cp /etc/pki/tls/private/yoda_dhparams.pem yoda_dhparams.pem'
+  command: 'cp {{ openssl_private_dir }}/{{ openssl_dhparams }} {{ openssl_dhparams }}'
   args:
     chdir: '/etc/irods'
-    creates: 'yoda_dhparams.pem'
+    creates: '{{ openssl_dhparams }}'
 
 
 - name: Ensure certificate file is available for iRODS
-  command: 'cp /etc/pki/tls/certs/yoda_signed.crt yoda_signed.crt'
+  command: 'cp {{ openssl_certs_dir }}/{{ openssl_crt_signed }} {{ openssl_crt_signed }}'
   args:
     chdir: '/etc/irods'
-    creates: 'yoda_signed.crt'
+    creates: '{{ openssl_crt_signed }}'
 
 
 - name: Ensure iRODS has access to PKI files
@@ -206,9 +206,9 @@
     owner: '{{ irods_service_account }}'
     state: file
   with_items:
-    - /etc/irods/yoda_key_signed.pem
-    - /etc/irods/yoda_dhparams.pem
-    - /etc/irods/yoda_signed.crt
+    - '/etc/irods/{{ openssl_key_signed }}'
+    - '/etc/irods/{{ openssl_dhparams }}'
+    - '/etc/irods/{{ openssl_crt_signed }}'
 
 
 - name: Ensure iRODS is configured to use SSL
@@ -220,11 +220,11 @@
     value: '{{ item.value }}'
   with_items:
     - key: 'irods_ssl_certificate_chain_file'
-      value: '/etc/irods/yoda_signed.crt'
+      value: '/etc/irods/{{ openssl_crt_signed }}'
     - key: 'irods_ssl_certificate_key_file'
-      value: '/etc/irods/yoda_key_signed.pem'
+      value: '/etc/irods/{{ openssl_key_signed }}'
     - key: 'irods_ssl_dh_params_file'
-      value: '/etc/irods/yoda_dhparams.pem'
+      value: '/etc/irods/{{ openssl_dhparams }}'
     - key: 'irods_client_server_policy'
       value: 'CS_NEG_REQUIRE'
     - key: 'irods_ssl_verify_server'

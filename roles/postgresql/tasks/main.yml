@@ -79,17 +79,17 @@
 
 
 - name: Ensure private key file is available for PostgreSQL
-  command: 'cp /etc/pki/tls/private/yoda_key_signed.pem yoda_key_signed.pem'
+  command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
   args:
     chdir: '/var/lib/pgsql/data'
-    creates: 'yoda_key_signed.pem'
+    creates: '{{ openssl_key_signed }}'
 
 
 - name: Ensure certificate file is available for PostgreSQL
-  command: 'cp /etc/pki/tls/certs/yoda_signed.crt yoda_signed.crt'
+  command: 'cp {{ openssl_certs_dir }}/{{ openssl_crt_signed }} {{ openssl_crt_signed }}'
   args:
     chdir: '/var/lib/pgsql/data'
-    creates: 'yoda_signed.crt'
+    creates: '{{ openssl_crt_signed }}'
 
 
 - name: Ensure PostgreSQL has access to PKI files
@@ -100,8 +100,8 @@
     owner: 'postgres'
     state: file
   with_items:
-    - /var/lib/pgsql/data/yoda_key_signed.pem
-    - /var/lib/pgsql/data/yoda_signed.crt
+    - '/var/lib/pgsql/data/{{ openssl_key_signed }}'
+    - '/var/lib/pgsql/data/{{ openssl_crt_signed }}'
 
 
 - name: Ensure PostgreSQL is configured to use SSL
@@ -115,9 +115,9 @@
     - option: ssl
       value: "on"
     - option: ssl_cert_file
-      value: "'yoda_signed.crt'"
+      value: "'{{ openssl_crt_signed }}'"
     - option: ssl_key_file
-      value: "'yoda_key_signed.pem'"
+      value: "'{{ openssl_key_signed }}'"
     - option: ssl_ciphers
       value: "'AES128+EECDH:AES128+EDH'"
   notify: Restart PostgreSQL

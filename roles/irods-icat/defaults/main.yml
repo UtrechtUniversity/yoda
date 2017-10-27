@@ -43,3 +43,9 @@ pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
 
+# OpenSSL configuration
+openssl_private_dir: '/etc/pki/tls/private'
+openssl_certs_dir: '/etc/pki/tls/certs'
+openssl_dhparams: dhparams.pem
+openssl_key_signed: localhost.key
+openssl_crt_signed: localhost.crt
