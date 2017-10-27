@@ -4,7 +4,7 @@
 yoda_moai_user: moai
 
 yoda_moai_fqdn: moai.yoda.dev
-yoda_moai_port: 80
+yoda_moai_port: 443
 yoda_moai_home: /var/www/moai
 yoda_moai_database_connection_string: "sqlite:///{{ yoda_moai_home }}/moai.db"
 

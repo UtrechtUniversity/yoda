@@ -138,7 +138,6 @@ pam_radius_config: |
 #####################
 yoda_moai_host: moai.yoda.dev   # Yoda MOAI host
 yoda_moai_fqdn: moai.yoda.dev   # Yoda MOAI fully qualified domain name (FQDN)
-yoda_moai_port: 80              # Yoda MOAI port
 
 ############################
 # Public host configuration
