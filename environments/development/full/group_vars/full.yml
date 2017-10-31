@@ -123,7 +123,7 @@ update_schemas: 1              # Update already installed schemas, formelements 
 datacite_username: PLACEHOLDER          # DataCite username
 datacite_password: PLACEHOLDER          # DataCite password
 datacite_prefix: 10.5072                # DataCite DOI prefix
-datacite_server: mds.test.datacite.org  # Datacite server URI
+datacite_server: mds.test.datacite.org  # DataCite server URI
 
 ###########################
 # PAM Radius configuration

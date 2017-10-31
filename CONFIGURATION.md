@@ -139,7 +139,7 @@ Variable                     | Description                                      
 datacite_username            | DataCite username                                                       |
 datacite_password            | DataCite password                                                       |
 datacite_prefix              | DataCite DOI prefix                                                     |
-datacite_server              | Datacite server URI                                                     |
+datacite_server              | DatacCite server URI                                                     |
 
 ### PAM Radius configuration
 Variable                     | Description                                                             |
