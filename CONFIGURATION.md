@@ -146,13 +146,6 @@ Variable                     | Description                                      
 -----------------------------|-------------------------------------------------------------------------|
 pam_radius_config:           | server, shared secret, timeout (s)                                      |
 
-
-### MOAI configuration
-Variable                     | Description                                                             |
------------------------------|-------------------------------------------------------------------------|
-yoda_moai_host               | Yoda MOAI host                                                          |
-yoda_moai_fqdn               | Yoda MOAI fully qualified domain name (FQDN)                            |
-
 ### Public host configuration
 Variable                     | Description                                                             |
 -----------------------------|-------------------------------------------------------------------------|
