@@ -58,7 +58,7 @@
   with_items:
     - src: 'yoda-landingpage.css'
       dest: '{{ landingpages_root }}/static/css/yoda-landingpage.css'
-    - src: 'logo-uu.png'
+    - src: 'logo-uu.svg'
       dest: '{{ landingpages_root }}/static/img/logo-uu.svg'
     - src: 'logo_footer.svg'
       dest: '{{ landingpages_root }}/static/img/logo_footer.svg'
