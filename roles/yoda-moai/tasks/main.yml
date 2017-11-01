@@ -55,6 +55,7 @@
   git:
     repo: https://github.com/UtrechtUniversity/yoda-moai.git
     dest: '{{ yoda_moai_home }}/yoda-moai'
+    version: "{{ yoda_moai_version }}"
   register: repochanges
 
 
