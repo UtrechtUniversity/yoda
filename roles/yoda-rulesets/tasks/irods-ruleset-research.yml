@@ -45,7 +45,7 @@
     iput -r /etc/irods/irods-ruleset-research/tools/terms /{{ irods_zone }}/yoda
     ichmod -rM inherit /{{ irods_zone }}/yoda/terms
     ichmod -rM read public /{{ irods_zone }}/yoda/terms
-  when: (terms_installed.stderr.find('does not exist') >= 0)
+  when: (not ansible_check_mode) and (terms_installed.stderr.find('does not exist') >= 0)
 
 
 - name: Configure cronjob to copy datapackages to the vault
@@ -110,7 +110,7 @@
     - attribute: org_yoda_instance
       value: "{{ yoda_instance }}"
     - attribute: org_moai_host
-      value: "{{ yoda_moai_host }}"
+      value: "{{ yoda_public_host }}"
     - attribute: org_random_id_length
       value: "{{ yoda_random_id_length }}"
     - attribute: org_yoda_prefix

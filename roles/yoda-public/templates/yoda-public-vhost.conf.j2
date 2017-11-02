@@ -1,10 +1,24 @@
 # {{ ansible_managed }}
-# landingpages-vhost.conf
+# yoda-public-vhost.conf
 
-<VirtualHost *:443>
+{% if yoda_public_port != 443 %}
+Listen {{ yoda_public_port }}
+{% endif %}
+
+<VirtualHost *:{{ yoda_public_port }}>
     DocumentRoot {{ landingpages_root }}
     ServerName {{ yoda_public_fqdn }}
     <Directory {{ landingpages_root }}>
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    WSGIDaemonProcess moai user={{ yoda_moai_user }} group={{ yoda_moai_user }} processes=2 threads=1
+    WSGIProcessGroup moai
+    WSGIScriptAlias /oai {{ yoda_moai_home }}/moai.wsgi
+    WSGIScriptReloading On
+
+    <Directory {{ yoda_moai_home }}>
         AllowOverride All
         Require all granted
     </Directory>
@@ -28,12 +42,12 @@
     # the certificate is encrypted, then you will be prompted for a
     # pass phrase.  Note that a kill -HUP will prompt again.  A new
     # certificate can be generated using the genkey(1) command.
-    SSLCertificateFile      /etc/pki/tls/certs/yoda_signed.crt
+    SSLCertificateFile      {{ openssl_certs_dir }}/{{ openssl_crt_signed }}
 
     #   Server Private Key:
     #   If the key is not combined with the certificate, use this
     #   directive to point at the key file.  Keep in mind that if
     #   you've both a RSA and a DSA private key you can configure
     #   both in parallel (to also allow the use of DSA ciphers, etc.)
-    SSLCertificateKeyFile   /etc/pki/tls/private/yoda_key_signed.pem
+    SSLCertificateKeyFile   {{ openssl_private_dir }}/{{ openssl_key_signed }}
 </VirtualHost>

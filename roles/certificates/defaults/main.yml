@@ -3,15 +3,15 @@
 
 openssl_private_dir: '/etc/pki/tls/private'
 openssl_certs_dir: '/etc/pki/tls/certs'
-openssl_dhparams: yoda_dhparams.pem
+openssl_dhparams: dhparams.pem
 
-openssl_key_selfsigned: yoda_key_selfsigned.pem
-openssl_csr_selfsigned: yoda_selfsigned.csr
-openssl_crt_selfsigned: yoda_selfsigned.crt
+openssl_key_selfsigned: selfsigned_localhost.key
+openssl_csr_selfsigned: selfsigned_localhost.csr
+openssl_crt_selfsigned: selfsigned_localhost.crt
 
-openssl_key_signed: yoda_key_signed.pem
-openssl_csr_signed: yoda_signed.csr
-openssl_crt_signed: yoda_signed.crt
+openssl_key_signed: localhost.key
+openssl_csr_signed: localhost.csr
+openssl_crt_signed: localhost.crt
 
 openssl_o: 'Utrecht University'
 openssl_c: 'NL'

@@ -39,7 +39,6 @@ def main():
             vault_path=dict(default="EMPTY_RESC_PATH", type="path"),
             children=dict(default=None, type="list"),
             resource_type=dict(default=None),
-            resource_class=dict(default=None),
             context=dict(default=None),
             state=dict(default="present")
             ),
@@ -53,7 +52,6 @@ def main():
         children = []
 
     resource_type = module.params["resource_type"]
-    resource_class = module.params["resource_class"]
     context = module.params["context"]
     state = module.params["state"]
 
@@ -76,8 +74,7 @@ def main():
         if state == 'present' and not module.check_mode:
             resource = session.resources.create(
                 name, resource_type, host=host,
-                path=vault_path, context=context,
-                resource_class=resource_class)
+                path=vault_path, context=context)
             changed = True
         elif state == 'absent':
             module.exit_json(changed=False, msg="Resource {} is not present".format(name))
@@ -95,10 +92,6 @@ def main():
                         .format(**locals()))
             if resource_type != resource.type:
                 warnings.append("Resource {name} has resource_type set to '{resource.type}' instead of '{resource_type}'"
-                        .format(**locals()))
-            if resource_class != resource.class_name:
-                warnings.append(
-                        "Resource {name} has resource_class set to '{resource.class_name}' instead of '{resource_class}'"
                         .format(**locals()))
             if context != resource.context:
                 warnings.append(

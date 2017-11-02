@@ -206,12 +206,12 @@ LogLevel warn
     # The following directives define some format nicknames for use with
     # a CustomLog directive (see below).
     #
-    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
-    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+    LogFormat "%h %l %u %v %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "%h %l %u %v %t \"%r\" %>s %b" common
 
     <IfModule logio_module>
       # You need to enable mod_logio.c to use %I and %O
-      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
+      LogFormat "%h %l %u %v %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
     </IfModule>
 
     #

@@ -42,5 +42,5 @@
   cron:
     name: 'monthly-storage-statistics'
     day: 15
-    job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthtly-storage-statistics.r >> $HOME/iRODS/server/log/job_monthly-storage-statistics.log'
+    job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r >> $HOME/iRODS/server/log/job_monthly-storage-statistics.log'
   when: monthly_storage_statistics.stat.exists == True

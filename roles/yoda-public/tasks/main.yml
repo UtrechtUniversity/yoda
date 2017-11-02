@@ -1,0 +1,11 @@
+---
+# copyright Utrecht University
+
+- name: Copy Yoda Public Apache configuration
+  template:
+    src: yoda-public-vhost.conf.j2
+    dest: /etc/httpd/conf.d/yoda-public-vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Apache webserver

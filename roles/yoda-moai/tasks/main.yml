@@ -55,6 +55,7 @@
   git:
     repo: https://github.com/UtrechtUniversity/yoda-moai.git
     dest: '{{ yoda_moai_home }}/yoda-moai'
+    version: "{{ yoda_moai_version }}"
   register: repochanges
 
 
@@ -68,14 +69,10 @@
   notify: Restart Apache webserver
 
 
-- name: Copy Yoda MOAI Apache configuration
-  template:
-    src: yoda-moai-vhost.conf.j2
-    dest: /etc/httpd/conf.d/yoda-moai-vhost.conf
-    owner: root
-    group: root
-    mode: 0644
-  notify: Restart Apache webserver
+- name: Ensure old  Yoda MOAI Apache configuration is absent
+  file:
+    path: /etc/httpd/conf.d/yoda-moai-vhost.conf
+    state: absent
 
 
 - name: Install moai.wsgi

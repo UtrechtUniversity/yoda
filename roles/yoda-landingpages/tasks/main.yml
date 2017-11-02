@@ -22,11 +22,43 @@
     state: present
 
 
-- name: Copy Yoda landingpages Apache configuration
-  template:
-    src: landingpages-vhost.conf.j2
-    dest: /etc/httpd/conf.d/landingpages-vhost.conf
-    owner: root
-    group: root
+- name: Check if index page is present
+  stat: path='{{ landingpages_root }}/index.html'
+  register: index
+
+
+- name: Ensure empty index page is present
+  file:
+    path: '{{ landingpages_root }}/index.html'
+    state: touch
+  when: index.stat.exists == False
+
+
+- name: Ensure old Yoda landingpages Apache configuration is absent
+  file:
+    path: /etc/httpd/conf.d/landingpages-vhost.conf
+    state: absent
+
+
+- name: Ensure Yoda landingpage static file directories are present
+  file:
+    path: '{{ item }}'
+    state: directory
+    mode: 0755
+  with_items:
+    - '{{ landingpages_root }}/static/css/'
+    - '{{ landingpages_root }}/static/img/'
+
+
+- name: Ensure Yoda landingpage static files are present
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
     mode: 0644
-  notify: Restart Apache webserver
+  with_items:
+    - src: 'yoda-landingpage.css'
+      dest: '{{ landingpages_root }}/static/css/yoda-landingpage.css'
+    - src: 'logo-uu.svg'
+      dest: '{{ landingpages_root }}/static/img/logo-uu.svg'
+    - src: 'logo_footer.svg'
+      dest: '{{ landingpages_root }}/static/img/logo_footer.svg'

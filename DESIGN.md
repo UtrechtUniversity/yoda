@@ -67,7 +67,9 @@ roles/
     irods-runtime/        # ""
     php/                  # ""
     postgresql/           # ""
+    python-irodsclient/   # ""
     yoda-davrods/         # ""
+    yoda-landingpages/    # ""
     yoda-moai/            # ""
     yoda-portal/          # ""
     yoda-rulesets/        # ""
@@ -85,15 +87,15 @@ Host specific variables (host_vars) may exist for each host.
 environments/
    development/
       allinone/
-         hosts              # inventory file for allinone instance
+         hosts             # inventory file for allinone instance
          group_vars/
-            allinone.yml    # here we assign variables to particular groups
+            allinone.yml   # here we assign variables to particular groups
          host_vars/
-            combined        # if systems need specific variables, put them here
+            combined       # if systems need specific variables, put them here
       full/
-         hosts              # inventory file for full instance
+         hosts             # inventory file for full instance
          group_vars/
-            full.yml        # here we assign variables to particular groups
+            full.yml       # here we assign variables to particular groups
          host_vars/
             portal         # if systems need specific variables, put them here
             database       # ""
@@ -102,29 +104,29 @@ environments/
             public         # ""
 
    testing/
-      hosts              # inventory file for testing environment
-      group_vars/
-         group1          # here we assign variables to particular groups
-         group2          # ""
-      host_vars/
-         hostname1       # if systems need specific variables, put them here
-         hostname2       # ""
+      instance/
+         hosts             # inventory file for testing environment
+         group_vars/
+            instance.yml   # here we assign variables to particular groups
+         host_vars/
+            hostname1      # if systems need specific variables, put them here
+            hostname2      # ""
 
    acceptance/
-      hosts              # inventory file for acceptance environment
-      group_vars/
-         group1          # here we assign variables to particular groups
-         group2          # ""
-      host_vars/
-         hostname1       # if systems need specific variables, put them here
-         hostname2       # ""
+      instance/
+         hosts             # inventory file for acceptance environment
+         group_vars/
+            instance.yml   # here we assign variables to particular groups
+         host_vars/
+            hostname1      # if systems need specific variables, put them here
+            hostname2      # ""
 
    production/
-      hosts              # inventory file for production environment
-      group_vars/
-         group1          # here we assign variables to particular groups
-         group2          # ""
-      host_vars/
-         hostname1       # if systems need specific variables, put them here
-         hostname2       # ""
+      instance/
+         hosts             # inventory file for production environment
+         group_vars/
+            instance.yml   # here we assign variables to particular groups
+         host_vars/
+            hostname1      # if systems need specific variables, put them here
+            hostname2      # ""
 ```

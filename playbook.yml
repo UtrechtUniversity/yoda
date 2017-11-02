@@ -6,9 +6,9 @@
   pre_tasks:
     - name: Verify Ansible version meets requirements
       assert:
-        that: "ansible_version.full | version_compare('2.3', '>=')"
+        that: "ansible_version.full | version_compare('2.4', '>=')"
         msg: >
-          "You must update Ansible to at least 2.3 to deploy YoDa."
+          "You must update Ansible to at least 2.4 to deploy YoDa."
 
 
 - name: Add hosts entries to development instances
@@ -73,6 +73,7 @@
   roles:
     - yoda-moai
     - yoda-landingpages
+    - yoda-public
   tags:
     - public
  
