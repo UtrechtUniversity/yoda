@@ -1,12 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Restart ntp
-  service:
-    name: ntpd
-    state: restarted
-
-
 - name: Restart firewall
   service:
     name: firewalld

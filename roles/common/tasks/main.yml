@@ -4,5 +4,4 @@
 - import_tasks: hostname.yml
 - import_tasks: epel.yml
 - import_tasks: firewalld.yml
-- import_tasks: ntp.yml
 - import_tasks: basics.yml
