@@ -22,7 +22,7 @@
     -out '{{ openssl_csr_selfsigned }}' -batch -subj \
     '/O={{ openssl_o }}/C={{ openssl_c }}\
      /localityName={{ openssl_localityName }}\
-     /commonName={{ yoda_portal_fqdn }}'"
+     /commonName={{ ansible_fqdn }}'"
   args:
     chdir: '{{ openssl_certs_dir }}'
     creates: '{{ openssl_csr_selfsigned }}'
