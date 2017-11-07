@@ -1,24 +1,26 @@
 ---
 # copyright Utrecht University
 
+rpm_dest_dir: /tmp
+
 yoda_moai_packages:
   MOAI:
-    package: MOAI-2.0.0-1
+    package: MOAI
     url: https://github.com/UtrechtUniversity/yoda-moai/releases/download/yoda-1.0b
     filename: MOAI-2.0.0-1.noarch.rpm
     checksum: sha256:115ba8c8a9a91f4d26a1dba089e579c899530cc7789b739a7cfdd0cfc031e3a1
   pyoai:
-    package: python-pyoai-2.5.0-2
+    package: python-pyoai
     url: https://github.com/UtrechtUniversity/yoda-moai/releases/download/yoda-1.0b
     filename: python-pyoai-2.5.0-2.el7.centos.noarch.rpm
     checksum: sha256:e90e47fa0c9ac5a2737eac8883fd9928b911998e0a63c93d5c256c7086c8897e
   wsgi_intercept:
-    package: python-wsgi_intercept-1.5.1-1
+    package: python-wsgi_intercept
     url: https://github.com/UtrechtUniversity/yoda-moai/releases/download/yoda-1.0b
     filename: python-wsgi_intercept-1.5.1-1.el7.centos.noarch.rpm
     checksum: sha256:2384da699f3932992facfd2e7f89f25fbcb6e261f598d19dd6b33e5e7c91c672
   WSGIUtils:
-    package: python-WSGIUtils-0.7-1
+    package: python-WSGIUtils
     url: https://github.com/UtrechtUniversity/yoda-moai/releases/download/yoda-1.0b
     filename: python-WSGIUtils-0.7-1.el7.centos.noarch.rpm
     checksum: sha256:0f00236b96e7a3c80485aa0be62e885561314d1f071da946cdfb987c4a6b4e49 

@@ -1,5 +1,5 @@
 # copyright Utrecht University
-
+rpm_dest_dir: /tmp
 python_irodsclient:
   package: python-irodsclient
   url: https://github.com/UtrechtUniversity/yoda-ansible/releases/download/1.0rc1

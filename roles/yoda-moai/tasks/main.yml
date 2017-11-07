@@ -18,20 +18,20 @@
 - name: Check if yoda-moai packages are available in repository
   yum:
     list: '{{ item.value.package }}'
-  with_dict: yoda_moai_packages
+  with_dict: "{{ yoda_moai_packages }}"
   register: yoda_moai_packages_repo
 
 
 - name: Download yoda-moai packages if not in repository
   get_url:
-    url: "{{ item.item.value.url }}"
+    url: "{{ item.item.value.url }}/{{ item.item.value.filename }}"
     dest: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
     checksum: "{{ item.item.value.checksum }}"
   when: not item.results
   with_items: "{{ yoda_moai_packages_repo.results }}"
 
 
-- name: Ensure yoda-moai packages are installed from downloaded rpm
+- name: Ensure yoda-moai packages are installed from downloaded rpm's
   yum:
     name: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
     state: present
@@ -39,11 +39,11 @@
   with_items: "{{ yoda_moai_packages_repo.results }}"
 
 
-- name: Ensure yoda-moai packages are installed from repo
+- name: Ensure yoda-moai packages are already installed or install from repo
   package:
     name: "{{ item.value.package }}"
     state: present
-  with_dict: yoda_moai_packages
+  with_dict: "{{ yoda_moai_packages }}"
 
 
 - name: Ensure Yoda MOAI user exists
