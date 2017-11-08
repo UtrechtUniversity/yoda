@@ -48,6 +48,7 @@
     state: present
   with_dict: "{{ microservices }}"
 
+
 - name: Undo the ownership modifications by the sudo microservices
   file:
     path: "{{ item }}"
