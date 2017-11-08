@@ -120,6 +120,14 @@
     path: '/etc/irods/server_config.json'
     key: 'icat_host'
     value: '{{ irods_icat_fqdn }}'
+  register: host_changed
+
+
+- name: Restart iRODS server after iCAT host change for 4.1.11
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/var/lib/irods/iRODS/irodsctl start'
+  when: host_changed.changed
 
 
 - name: Ensure all users have iRODS read access on /zone/home
