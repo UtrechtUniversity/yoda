@@ -1,0 +1,9 @@
+# copyright Utrecht University
+rpm_dest_dir: /tmp
+
+python_irodsclient:
+  package: python-irodsclient-0.6.1uu1-1.noarch.rpm
+  url: https://github.com/UtrechtUniversity/yoda-ansible/releases/download/1.0rc1
+  filename: python-irodsclient-0.6.1uu1-1.noarch.rpm
+  checksum: sha256:787d3ad1751e970beb5b0cb370f7658d812c531ab51a652f8e7b34c9dcd72c96
+

@@ -6,11 +6,44 @@
     name: '{{ item }}'
     state: present
   with_items:
-  - python-pip
-  - python-virtualenv
   - python-lxml
   - python-sqlalchemy
+  - python-webob
+  - python-paste
+  - python-paste-deploy
+  - python-paste-script
   - mod_wsgi
+
+
+- name: Check if yoda-moai packages are available in repository
+  yum:
+    list: '{{ item.value.package }}'
+  with_dict: "{{ yoda_moai_packages }}"
+  register: yoda_moai_packages_repo
+
+
+- name: Download yoda-moai packages if not in repository
+  get_url:
+    url: "{{ item.item.value.url }}/{{ item.item.value.filename }}"
+    dest: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
+    checksum: "{{ item.item.value.checksum }}"
+  when: not item.results
+  with_items: "{{ yoda_moai_packages_repo.results }}"
+
+
+- name: Ensure yoda-moai packages are installed from downloaded rpm's
+  yum:
+    name: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
+    state: present
+  when: not item.results
+  with_items: "{{ yoda_moai_packages_repo.results }}"
+
+
+- name: Ensure yoda-moai packages are already installed or install from repo
+  package:
+    name: "{{ item.value.package }}"
+    state: present
+  with_dict: "{{ yoda_moai_packages }}"
 
 
 - name: Ensure Yoda MOAI user exists
@@ -49,26 +82,6 @@
     state: directory
 
 
-- name: Check out YoDa MOAI from Github
-  become_user: '{{ yoda_moai_user }}'
-  become: yes
-  git:
-    repo: https://github.com/UtrechtUniversity/yoda-moai.git
-    dest: '{{ yoda_moai_home }}/yoda-moai'
-    version: "{{ yoda_moai_version }}"
-  register: repochanges
-
-
-- name: Install YoDA MOAI in virtualenv
-  pip:
-    name: '{{ yoda_moai_home }}/yoda-moai'
-    extra_args: -e
-    virtualenv: '{{ yoda_moai_home }}/venv'
-    virtualenv_site_packages: yes
-  when: repochanges.changed
-  notify: Restart Apache webserver
-
-
 - name: Ensure old  Yoda MOAI Apache configuration is absent
   file:
     path: /etc/httpd/conf.d/yoda-moai-vhost.conf
@@ -98,7 +111,7 @@
 - name: Initialize Yoda MOAI database
   become_user: '{{ yoda_moai_user }}'
   become: yes
-  command: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
+  command: '/usr/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
   args:
     creates: '{{ yoda_moai_home }}/moai.db'
 
@@ -123,4 +136,4 @@
     user: '{{ yoda_moai_user }}'
     name: 'cronjob-update-moai'
     minute: '*/5'
-    job: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
+    job: '/usr/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
