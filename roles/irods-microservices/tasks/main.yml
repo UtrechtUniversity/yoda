@@ -1,6 +1,15 @@
 ---
 # copyright Utrecht University
 
+- name: Remove old json and xml microservice packages
+  package:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - rit-irods-microservices
+    - irods-microservice-plugins-loadmeta
+
+
 - name: Check if iRODS microservices are installable from repository
   yum:
     list: "{{ item.value.package }}"
@@ -31,6 +40,13 @@
     state: present
   when: not item.results
   with_items: "{{ irods_microservices_repo.results }}"
+
+
+- name: Ensure available microservices are installed from repository
+  package:
+    name: "{{ item.value.package }}"
+    state: present
+  with_dict: "{{ microservices }}"
 
 
 - name: Undo the ownership modifications by the sudo microservices
