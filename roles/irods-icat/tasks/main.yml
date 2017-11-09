@@ -130,9 +130,14 @@
   when: host_changed.changed
 
 
-- name: Pause to let iRODS server come up after iCAT host change for 4.1.11
-  pause:
-    seconds: 5
+- name: Ensure iRODS server is up after iCAT host change for 4.1.11
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'ils /{{ irods_zone }}/home'
+  register: ils
+  until: ils | succeeded
+  retries: 5
+  delay: 10
   when: host_changed.changed
 
 
