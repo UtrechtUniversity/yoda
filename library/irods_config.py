@@ -44,9 +44,10 @@ def main():
             # Set iRODS config variable.
             irods_config[key] = value
 
-        data_file.seek(0)
-        json.dump(irods_config, data_file, indent=4, sort_keys=True)
-        data_file.truncate()
+        if not module.check_mode:
+            data_file.seek(0)
+            json.dump(irods_config, data_file, indent=4, sort_keys=True)
+            data_file.truncate()
 
     module.exit_json(
             changed=changed,

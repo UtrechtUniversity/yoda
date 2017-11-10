@@ -56,7 +56,8 @@ def main():
     changed = False
 
     try:
-        resource = session.users.modify(name, option, value)
+        if not module.check_mode:
+            resource = session.users.modify(name, option, value)
     except UserDoesNotExist:
         module.fail_json(msg="User does not exist.")
     else:

@@ -73,9 +73,10 @@ def main():
     output = 'ruleExecOut'
 
     # Execute rule.
-    myrule = Rule(session, body=rule_body,
-                  params=input_params, output=output)
-    myrule.execute()
+    if not module.check_mode:
+        myrule = Rule(session, body=rule_body,
+                      params=input_params, output=output)
+        myrule.execute()
 
     changed = True
 
