@@ -1,3 +1,4 @@
+# coding: utf-8
 # copyright Utrecht University
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -58,6 +59,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vbox.cpus   = cpu
         vbox.memory = ram
         vbox.name   = name
+        vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
       end
 
       machine.vm.hostname = name + DOMAIN
@@ -69,6 +71,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Provision controller for Ansible on Windows host.
   if Vagrant::Util::Platform.windows? then
     config.vm.define "controller" do |controller|
+      controller.vm.provider "virtualbox" do |vbox|
+        vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+      end
       controller.vm.box = BOX
       controller.vm.hostname = "controller"
       controller.vm.network :private_network, ip: "192.168.50.5", netmask: NETMASK
