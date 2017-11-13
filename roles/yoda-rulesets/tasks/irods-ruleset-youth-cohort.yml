@@ -1,8 +1,0 @@
----
-# Copyright Utrecht University
-
-- name: Enable intake move to vault cronjob
-  cron:
-    name: 'job_movetovault.re'
-    minute: '*/5'
-    job: '/bin/irule -F /etc/irods/irods-ruleset-youth-chohort/job_movetovault.re >> $HOME/iRODS/server/log/job_move-to-vault.log'
