@@ -11,7 +11,7 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of 
 # Yoda configuration
 #####################
 instance: allinone                                # Name of Yoda instance, as defined in hosts file
-yoda_version: release-1.0                         # Git branch, for example: development or release-0.9.7
+yoda_version: development                         # Git branch, for example: development or release-0.9.7
 codeigniter_environment: development              # CodeIgniter environment: development, testing, acceptance or production
 yoda_portal_fqdn: portal.yoda.dev                 # Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn: data.yoda.dev                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
@@ -86,6 +86,11 @@ irods_resources:
 # Ruleset configuration
 ########################
 rulesets:
+  - name: irods-ruleset-youth-cohort
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
+    ruleset_name: rules-yc
+    version: "{{ yoda_version }}"
+    install_scripts: no
   - name: irods-ruleset-i-lab
     repo: https://github.com/UtrechtUniversity/irods-ruleset-i-lab.git
     ruleset_name: rules-i-lab
