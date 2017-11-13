@@ -90,7 +90,7 @@ rulesets:
     repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
     ruleset_name: rules-yc
     version: "{{ yoda_version }}"
-    install_scripts: no
+    install_scripts: yes
   - name: irods-ruleset-i-lab
     repo: https://github.com/UtrechtUniversity/irods-ruleset-i-lab.git
     ruleset_name: rules-i-lab
