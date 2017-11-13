@@ -49,14 +49,13 @@
   with_dict: "{{ microservices }}"
 
 
-- name: Undo the ownership modifications by the sudo microservices
+- name: Undo the ownership modifications by the microservices installation
   file:
-    path: "{{ item }}"
+    path: "{{ item.directory }}"
+    recurse: "{{ item.recursive }}"
     owner: "{{ irods_service_account }}"
     group: "{{ irods_service_account }}"
-    mode: 0755
   with_items:
-    - /etc/irods
-    - /var/lib/irods
-    - /var/lib/irods/plugins
-    - /var/lib/irods/plugins/microservices
+    - { directory: '/etc/irods', recursive: 'yes' }
+    - { directory: '/var/lib/irods', recursive: 'no' }
+    - { directory: '/var/lib/irods/plugins', recursive: 'yes' }
