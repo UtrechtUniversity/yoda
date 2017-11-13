@@ -41,6 +41,9 @@ test_groups:
   - groupName: datamanager-initial
     category: initial
     subcategory: initial
+  - groupName: grp-intake-initial
+    category: intake-intake
+    subcategory: intake-intake
 
 test_groupusers:
   - groupName: priv-category-add
@@ -72,4 +75,7 @@ test_groupusers:
     role: manager
   - groupName: datamanager-initial
     user: datamanager
+    role: normal
+  - groupName: grp-intake-initial
+    user: researcher
     role: normal
