@@ -19,6 +19,8 @@ rm -rf ~/yoda-ansible
 
 # Clone yoda-ansible.
 git clone https://github.com/UtrechtUniversity/yoda-ansible.git
+cd ~/yoda-ansible
+git checkout development
 
 # Set file permissions on SSH key to 0600.
 chmod 0600 ~/yoda-ansible/vagrant/ssh/vagrant
