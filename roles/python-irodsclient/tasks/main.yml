@@ -9,6 +9,7 @@
     - python-six
     - python-prettytable
 
+
 - name: Check if python-irodsclient is installable from repository
   yum:
     list: '{{ python_irodsclient.package }}'
