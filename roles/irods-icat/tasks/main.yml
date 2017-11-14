@@ -25,7 +25,6 @@
   package:
     name: '{{ rpm_dest_dir }}/{{ irods_icat.filename }}'
     state: present
-  register: icat_changed
   when: not irods_icat_repo.results
 
 
@@ -33,7 +32,6 @@
   package:
     name: '{{ irods_icat.package }}'
     state: present
-  register: icat_changed
   when: irods_icat_repo.results
 
 
@@ -124,14 +122,23 @@
     value: '{{ irods_icat_fqdn }}'
 
 
-- name: Restart iRODS server after iCAT host change for 4.1.11
+- name: Ensure iRODS server is up
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'ils /{{ irods_zone }}/home'
+  register: ils
+  ignore_errors: true
+  changed_when: ils | failed
+
+
+- name: Start iRODS server
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/var/lib/irods/iRODS/irodsctl start'
-  when: icat_changed.changed
+  when: ils | failed
 
 
-- name: Ensure iRODS server is up after iCAT host change for 4.1.11
+- name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
   become: yes
   shell: 'ils /{{ irods_zone }}/home'
@@ -139,7 +146,7 @@
   until: ils | succeeded
   retries: 5
   delay: 10
-  when: icat_changed.changed
+  when: ils | failed
 
 
 - name: Ensure all users have iRODS read access on /zone/home
