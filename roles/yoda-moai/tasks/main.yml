@@ -12,6 +12,7 @@
   - python-paste
   - python-paste-deploy
   - python-paste-script
+  - python-six
   - mod_wsgi
 
 

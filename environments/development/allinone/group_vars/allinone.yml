@@ -11,7 +11,7 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of 
 # Yoda configuration
 #####################
 instance: allinone                                # Name of Yoda instance, as defined in hosts file
-yoda_version: development                         # Git branch, for example: development or release-0.9.7
+yoda_version: development                         # Git branch, for example: development or release-1.0
 codeigniter_environment: development              # CodeIgniter environment: development, testing, acceptance or production
 yoda_portal_fqdn: portal.yoda.dev                 # Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn: data.yoda.dev                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)

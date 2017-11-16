@@ -39,6 +39,15 @@
   notify: Restart Apache webserver
 
 
+- name: Ensure autoindex.conf is absent
+  file:
+    path: '{{ item }}'
+    state: absent
+  notify: Restart Apache webserver
+  with_items:
+  - /etc/httpd/conf.d/autoindex.conf
+
+
 - name: Ensure Apache is running and enabled
   service:
     name: httpd

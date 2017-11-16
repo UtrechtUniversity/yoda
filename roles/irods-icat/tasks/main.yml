@@ -120,17 +120,25 @@
     path: '/etc/irods/server_config.json'
     key: 'icat_host'
     value: '{{ irods_icat_fqdn }}'
-  register: host_changed
 
 
-- name: Restart iRODS server after iCAT host change for 4.1.11
+- name: Ensure iRODS server is up
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'ils /{{ irods_zone }}/home'
+  register: ils
+  ignore_errors: true
+  changed_when: ils | failed
+
+
+- name: Start iRODS server
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/var/lib/irods/iRODS/irodsctl start'
-  when: host_changed.changed
+  when: ils | failed
 
 
-- name: Ensure iRODS server is up after iCAT host change for 4.1.11
+- name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
   become: yes
   shell: 'ils /{{ irods_zone }}/home'
@@ -138,7 +146,7 @@
   until: ils | succeeded
   retries: 5
   delay: 10
-  when: host_changed.changed
+  when: ils | failed
 
 
 - name: Ensure all users have iRODS read access on /zone/home

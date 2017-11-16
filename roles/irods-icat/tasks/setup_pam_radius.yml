@@ -19,3 +19,9 @@
     dest='/etc/pam_radius.conf'
 
 
+- name: Ensure correct file ownership and mode on PamAuthCheck
+  file:
+    path: /var/lib/irods/iRODS/server/bin/PamAuthCheck
+    owner: root
+    group: root
+    mode: 2755
