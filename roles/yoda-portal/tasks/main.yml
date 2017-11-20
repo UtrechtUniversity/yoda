@@ -15,7 +15,7 @@
     mode: 0755
 
 
-- name: Checkout YoDa portal source
+- name: Checkout Yoda portal source
   become_user: "{{ yoda_deployment_user }}"
   become: yes
   git:
@@ -26,19 +26,14 @@
   with_items: "{{ portal_sources }}"
 
 
-- name: Link public directories of YoDa portal
+- name: Link public directories of Yoda portal
   file:
-    src: '{{ item.src }}'
-    dest: '{{ item.dest }}'
+    src: '{{ yoda_public_dir }}'
+    dest: /var/www/yoda/public
     state: link
-  with_items:
-    - src: '{{ yoda_public_dir }}'
-      dest: /var/www/yoda/public
-    - src: '{{ yoda_public_dir }}'
-      dest: /var/www/html/public
 
 
-- name: Checkout YoDa modules
+- name: Checkout Yoda modules
   become_user: "{{ yoda_deployment_user }}"
   become: yes
   git:
@@ -49,7 +44,7 @@
   with_items: "{{ modules }}"
 
 
-- name: Link public directories of YoDa modules
+- name: Link public directories of Yoda modules
   file:
     src: '{{ item.dest }}/public'
     dest: '{{ yoda_public_dir }}/{{ item.name }}'
@@ -91,15 +86,14 @@
     creates=/var/www/yoda/yoda-portal/public/.htaccess
 
 
-- name: Ensure YoDa home is executable
+- name: Ensure Yoda home is executable
   file:
     path: /var/www/yoda
     mode: 0755
 
 
-- name: Copy YoDa Portal virtual host config for Apache
+- name: Copy Yoda Portal virtual host config for Apache
   template:
     src: "yoda-portal-vhost.conf.j2"
     dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
   notify: Restart Apache webserver
-
