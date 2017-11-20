@@ -88,8 +88,9 @@
 - name: Configure cronjob to clean up revisions
   cron:
     name: 'cronjob-revision-cleanup.sh'
-    hour: 0
-    job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/iRODS/server/log/cronjob-revision-cleanup.log 2> /dev/null'
+    minute: 0
+    hour: 2
+    job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/iRODS/server/log/cronjob-revision-cleanup.log 2>&1'
 
 
 - name: Set configuration AVUs to system collection
