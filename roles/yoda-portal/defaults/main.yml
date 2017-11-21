@@ -13,7 +13,7 @@ update_portal: yes
 yoda_php_encryption_key: dummy
 yoda_public_dir: /var/www/yoda/yoda-portal/public
 
-# YoDa portal source
+# Yoda portal source
 portal_sources:
   - repo: "https://github.com/UtrechtUniversity/CodeIgniter.git"
     dest: /var/www/yoda/CodeIgniter
@@ -25,7 +25,7 @@ portal_sources:
     dest: /var/www/yoda/yoda-portal
     version: "{{ yoda_version }}"
 
-# YoDa modules
+# Yoda modules
 modules:
   - name: group-manager
     repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
@@ -45,6 +45,7 @@ irods_default_resc: irodsResc              # iRODS default resource name
 irods_authentication_scheme: Native        # iRODS authentication method: "Native" or "PAM"
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_icat_fqdn: icat.yoda.dev             # iRODS iCAT fully qualified domain name (FQDN)
+irods_icat_port: 1247
 
 # OpenSSL configuration.
 openssl_private_dir: '/etc/pki/tls/private'
