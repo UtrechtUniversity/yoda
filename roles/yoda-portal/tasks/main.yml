@@ -86,12 +86,6 @@
     creates=/var/www/yoda/yoda-portal/public/.htaccess
 
 
-- name: Ensure Yoda home is executable
-  file:
-    path: /var/www/yoda
-    mode: 0755
-
-
 - name: Copy Yoda Portal virtual host config for Apache
   template:
     src: "yoda-portal-vhost.conf.j2"
