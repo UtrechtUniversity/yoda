@@ -111,6 +111,7 @@
   args:
     creates: /etc/irods/service_account.config
   run_once: true
+  when: not ansible_check_mode
 
 
 - name: Ensure iRODS iCAT host is a FQDN for iRODS 4.1.11
