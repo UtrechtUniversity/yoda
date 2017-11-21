@@ -21,15 +21,15 @@ irods_db:
   checksum: sha1:5872b49bd75b6ff882a7e265cf5a502b9ca51a74
 
 # iRODS configuration.
-irods_admin: rods
-irods_password: rods
+irods_admin: rods                          # iRODS admin username
+irods_password: rods                       # iRODS admin password
 irods_database_fqdn: database.yoda.dev
 irods_database_name: ICAT
 irods_database_port: 5432
-irods_database_user: irodsdb
-irods_database_password: irodsdev
-irods_authentication_scheme: Native        # "Native" or "Pam"
-irods_zone: tempZone
+irods_database_user: irodsdb               # The iRODS database username
+irods_database_password: irodsdev          # The password for the iRODS database username
+irods_authentication_scheme: Native        # iRODS authentication method: "Native" or "PAM"
+irods_zone: tempZone                       # The name of the iRODS Zone
 irods_port_range_begin: 20000
 irods_port_range_end: 20199
 irods_icat_port: 1247
