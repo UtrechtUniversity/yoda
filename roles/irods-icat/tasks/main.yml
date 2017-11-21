@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure iRODS iCommands are absent
+- name: Ensure iRODS iCommands are absent, are included in the iCAT server
   package:
     name: 'irods-icommands'
     state: absent
