@@ -71,6 +71,7 @@
   become: yes
   shell:
     imkdir /{{ irods_zone }}/home/research-initial/testdata
+  ignore_errors: true
 
 
 - name: Ensure Yoda test files are present
@@ -89,7 +90,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   shell:
-    iput -r ~/testdata/{{ item }} /{{ irods_zone }}/home/research-initial/testdata
+    iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-initial/testdata
   with_items:
     - 'lorem.txt'
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
