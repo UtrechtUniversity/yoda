@@ -116,7 +116,6 @@ test_groupusers:
     user: groupmanager
     role: manager
   - groupName: research-deletegroup
-  - groupName: datamanager-initial
     user: datamanager
     role: normal
   - groupName: grp-intake-initial

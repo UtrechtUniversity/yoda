@@ -18,6 +18,27 @@ yoda_davrods_fqdn: data.yoda.dev                  # Yoda Davrods WebDAV fully qu
 yoda_davrods_anonymous_fqdn: public.data.yoda.dev # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
 ######################
+# Yoda Portal modules
+######################
+modules:
+  - name: group-manager
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
+    dest: /var/www/yoda/yoda-portal/modules/group-manager
+    version: "{{ yoda_version }}"
+  - name: research
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
+    dest: /var/www/yoda/yoda-portal/modules/research
+    version: "{{ yoda_version }}"
+  - name: statistics
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
+    dest: /var/www/yoda/yoda-portal/modules/statistics
+    version: "{{ yoda_version }}"
+  - name: intake
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
+    dest: /var/www/yoda/yoda-portal/modules/intake
+    version: "{{ yoda_version }}"
+
+######################
 # iRODS configuration
 ######################
 irods_admin: rods                          # iRODS admin username
