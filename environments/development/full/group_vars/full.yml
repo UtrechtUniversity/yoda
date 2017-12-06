@@ -140,6 +140,7 @@ yoda_public_host: public.yoda.dev     # Yoda public host
 yoda_public_fqdn: public.yoda.dev     # Yoda public fully qualified domain name (FQDN)
 
 # Yoda public upload private key (base64 encoded)
+# ssh-keygen -t ed25519 -> base64
 upload_priv_key: |
   LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFB
   QUFBQkc1dmJtVUFBQUFFYm05dVpRQUFBQUFBQUFBQkFBQUFNd0FBQUF0emMyZ3RaVwpReU5UVXhP
