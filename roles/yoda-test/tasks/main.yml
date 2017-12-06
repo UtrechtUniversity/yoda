@@ -55,3 +55,42 @@
     user: '{{ item.user }}'
     role: '{{ item.role }}'
   with_items: '{{ test_groupusers }}'
+
+
+- name: Ensure Yoda test data directory is present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  file:
+    path: '~/testdata/'
+    state: directory
+    mode: 0755
+
+
+- name: Ensure Yoda test data directory is present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell:
+    imkdir /{{ irods_zone }}/home/research-initial/testdata
+  ignore_errors: true
+
+
+- name: Ensure Yoda test files are present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  copy:
+    src: '{{ item }}'
+    dest: '~/testdata/{{ item }}'
+    mode: 0644
+  with_items:
+    - 'lorem.txt'
+    - 'SIPI_Jelly_Beans_4.1.07.tiff'
+
+
+- name: Ensure Yoda test files are present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell:
+    iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-initial/testdata
+  with_items:
+    - 'lorem.txt'
+    - 'SIPI_Jelly_Beans_4.1.07.tiff'

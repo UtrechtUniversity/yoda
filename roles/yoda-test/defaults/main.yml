@@ -33,6 +33,12 @@ test_users:
   - name: technicaladmin
     password: '{{ test_password }}'
     type: rodsadmin
+  - name: testuseradd
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: testuserdel
+    password: '{{ test_password }}'
+    type: rodsuser
 
 test_groups:
   - groupName: research-initial
@@ -44,6 +50,30 @@ test_groups:
   - groupName: grp-intake-initial
     category: intake-intake
     subcategory: intake-intake
+  - groupName: research-deletegroup
+    category: initial
+    subcategory: initial
+  - groupName: research-updateproperties
+    category: initial
+    subcategory: initial
+  - groupName: research-mdtest
+    category: initial
+    subcategory: initial
+  - groupName: research-process1
+    category: initial
+    subcategory: initial
+  - groupName: research-process2
+    category: initial
+    subcategory: initial
+  - groupName: research-process3
+    category: initial
+    subcategory: initial
+  - groupName: research-revisions
+    category: initial
+    subcategory: initial
+  - groupName: research-search
+    category: initial
+    subcategory: initial
 
 test_groupusers:
   - groupName: priv-category-add
@@ -70,12 +100,112 @@ test_groupusers:
   - groupName: research-initial
     user: viewer
     role: reader
+  - groupName: research-initial
+    user: testuserdel
+    role: normal
   - groupName: datamanager-initial
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-initial
     user: datamanager
     role: normal
+  - groupName: research-deletegroup
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-deletegroup
+    user: groupmanager
+    role: manager
+  - groupName: research-deletegroup
+  - groupName: datamanager-initial
+    user: datamanager
+    role: normal
   - groupName: grp-intake-initial
     user: researcher
     role: normal
+  - groupName: research-deletegroup
+    user: viewer
+    role: reader
+  - groupName: research-updateproperties
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-updateproperties
+    user: groupmanager
+    role: manager
+  - groupName: research-updateproperties
+    user: researcher
+    role: normal
+  - groupName: research-updateproperties
+    user: viewer
+    role: reader
+  - groupName: research-mdtest
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-mdtest
+    user: groupmanager
+    role: manager
+  - groupName: research-mdtest
+    user: researcher
+    role: normal
+  - groupName: research-mdtest
+    user: viewer
+    role: reader
+  - groupName: research-process1
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-process1
+    user: groupmanager
+    role: manager
+  - groupName: research-process1
+    user: researcher
+    role: normal
+  - groupName: research-process1
+    user: viewer
+    role: reader
+  - groupName: research-process2
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-process2
+    user: groupmanager
+    role: manager
+  - groupName: research-process2
+    user: researcher
+    role: normal
+  - groupName: research-process2
+    user: viewer
+    role: reader
+  - groupName: research-process3
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-process3
+    user: groupmanager
+    role: manager
+  - groupName: research-process3
+    user: researcher
+    role: normal
+  - groupName: research-process3
+    user: viewer
+    role: reader
+  - groupName: research-revisions
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-revisions
+    user: groupmanager
+    role: manager
+  - groupName: research-revisions
+    user: researcher
+    role: normal
+  - groupName: research-revisions
+    user: viewer
+    role: reader
+  - groupName: research-search
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-search
+    user: groupmanager
+    role: manager
+  - groupName: research-search
+    user: researcher
+    role: normal
+  - groupName: research-search
+    user: viewer
+    role: reader

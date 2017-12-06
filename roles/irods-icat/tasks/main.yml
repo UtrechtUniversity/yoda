@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure iRODS iCommands are absent
+- name: Ensure iRODS iCommands are absent, are included in the iCAT server
   package:
     name: 'irods-icommands'
     state: absent
@@ -111,6 +111,7 @@
   args:
     creates: /etc/irods/service_account.config
   run_once: true
+  when: not ansible_check_mode
 
 
 - name: Ensure iRODS iCAT host is a FQDN for iRODS 4.1.11

@@ -83,12 +83,6 @@
     state: directory
 
 
-- name: Ensure old  Yoda MOAI Apache configuration is absent
-  file:
-    path: /etc/httpd/conf.d/yoda-moai-vhost.conf
-    state: absent
-
-
 - name: Install moai.wsgi
   template:
     src: moai.wsgi.j2

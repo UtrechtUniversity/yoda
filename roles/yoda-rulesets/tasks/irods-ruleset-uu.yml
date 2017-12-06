@@ -41,6 +41,8 @@
 - name: Enable storage statistics gathering cronjob
   cron:
     name: 'monthly-storage-statistics'
+    minute: 0
+    hour: 6
     day: 15
-    job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r >> $HOME/iRODS/server/log/job_monthly-storage-statistics.log'
+    job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r >> $HOME/iRODS/server/log/job_monthly-storage-statistics.log 2>&1'
   when: monthly_storage_statistics.stat.exists == True

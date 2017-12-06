@@ -10,7 +10,7 @@ error_reporting(0);
 $config['base_url']            = 'https://{{ yoda_portal_fqdn }}';
 
 $config['rodsServerAddress']   = '{{ irods_icat_fqdn }}';
-$config['rodsServerPort']      = 1247;
+$config['rodsServerPort']      = '{{ irods_icat_port }}';
 $config['rodsServerZone']      = '{{ irods_zone }}';
 $config['rodsDefaultResource'] = '{{ irods_default_resc }}';
 $config['encryption_key']      = '{{ yoda_php_encryption_key }}';
@@ -18,4 +18,11 @@ $config['encryption_key']      = '{{ yoda_php_encryption_key }}';
 $config['rodsAuthType']        = 'PAM'; // Either STANDARD or PAM.
 {% else %}
 $config['rodsAuthType']        = 'STANDARD'; // Either STANDARD or PAM.
+{% endif %}
+{% if codeigniter_environment == 'development' %}
+$config['log_threshold']       = 4;
+{% elif codeigniter_environment == 'testing' %}
+$config['log_threshold']       = 4;
+{% else %}
+$config['log_threshold']       = 1;
 {% endif %}

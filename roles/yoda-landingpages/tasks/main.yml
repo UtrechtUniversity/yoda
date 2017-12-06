@@ -34,12 +34,6 @@
   when: index.stat.exists == False
 
 
-- name: Ensure old Yoda landingpages Apache configuration is absent
-  file:
-    path: /etc/httpd/conf.d/landingpages-vhost.conf
-    state: absent
-
-
 - name: Ensure Yoda landingpage static file directories are present
   file:
     path: '{{ item }}'
