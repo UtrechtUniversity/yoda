@@ -6,8 +6,8 @@ landingpages_root: /var/www/landingpages
 yoda_moai_user: moai
 yoda_moai_home: /var/www/moai
 
-yoda_public_host: combined.yoda.dev   # Yoda public host
-yoda_public_fqdn: public.yoda.dev     # Yoda public fully qualified domain name (FQDN)
+yoda_public_host: combined.yoda.test   # Yoda public host
+yoda_public_fqdn: public.yoda.test     # Yoda public fully qualified domain name (FQDN)
 yoda_public_port: 443
 
 # OpenSSL configuration.
