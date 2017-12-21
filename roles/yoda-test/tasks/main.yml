@@ -57,6 +57,28 @@
   with_items: '{{ test_groupusers }}'
 
 
+- name: Ensure Yoda intake datamanager has read access to grp-vault folders
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: ichmod -M read grp-datamanager-initial /tempZone/home/grp-vault-initial
+  ignore_errors: true
+
+
+- name: Ensure Yoda intake datamanager has read access to grp-vault folders
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: ichmod -M read grp-datamanager-test /tempZone/home/grp-vault-test
+  ignore_errors: true
+
+
+- name: Ensure Yoda test data directory is present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell:
+    imkdir /{{ irods_zone }}/home/research-initial/testdata
+  ignore_errors: true
+
+
 - name: Ensure Yoda test data directory is present
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -94,3 +116,33 @@
   with_items:
     - 'lorem.txt'
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
+
+
+- name: Ensure intake module cronjob rules are present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  copy:
+    src: '{{ item }}'
+    dest: '~/.irods/{{ item }}'
+    mode: 0644
+  with_items:
+    - 'job_movetovault.r'
+    - 'job_checksums.r'
+
+
+- name: Configure cronjob to move grp-intake-* datapackages to the grp-vault-*
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  cron:
+    name: 'job_movetovault.r'
+    minute: '*'
+    job: '/bin/irule -F /var/lib/irods/.irods/job_movetovault.r >>$HOME/iRODS/server/log/job_movetovault.log 2>&1'
+
+
+- name: Configure cronjob to make checksums of datapackages in grp-vault-*
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  cron:
+    name: 'job_checksums.r'
+    minute: '*'
+    job: '/bin/irule -F /var/lib/irods/.irods/job_checksums.r >>$HOME/iRODS/server/log/job_checksums.log 2>&1'

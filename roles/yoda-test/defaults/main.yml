@@ -50,6 +50,21 @@ test_groups:
   - groupName: grp-intake-initial
     category: intake-intake
     subcategory: intake-intake
+  - groupName: grp-datamanager-initial
+    category: intake-intake
+    subcategory: intake-intake
+  - groupName: grp-vault-initial
+    category: intake-intake
+    subcategory: intake-intake
+  - groupName: grp-intake-test
+    category: intake-intake
+    subcategory: intake-intake
+  - groupName: grp-datamanager-test
+    category: intake-intake
+    subcategory: intake-intake
+  - groupName: grp-vault-test
+    category: intake-intake
+    subcategory: intake-intake
   - groupName: research-deletegroup
     category: initial
     subcategory: initial
@@ -121,6 +136,27 @@ test_groupusers:
   - groupName: grp-intake-initial
     user: researcher
     role: normal
+  - groupName: grp-intake-initial
+    user: groupmanager
+    role: manager
+  - groupName: grp-intake-initial
+    user: datamanager
+    role: normal
+  - groupName: grp-datamanager-initial
+    user: datamanager
+    role: manager
+  - groupName: grp-intake-test
+    user: researcher
+    role: normal
+  - groupName: grp-intake-test
+    user: groupmanager
+    role: manager
+  - groupName: grp-intake-test
+    user: datamanager
+    role: normal
+  - groupName: grp-datamanager-test
+    user: datamanager
+    role: manager
   - groupName: research-deletegroup
     user: viewer
     role: reader
