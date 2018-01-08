@@ -54,30 +54,6 @@
   when: (ansible_fqdn != irods_icat_fqdn)
 
 
-- name: Ensure host has private key file
-  copy:
-    dest: "{{ hostvars[item]['pki_certs']['results'][0]['item'] }}"
-    content: >
-      {{ hostvars[item]['pki_certs']['results'][0]['content'] | b64decode }}
-    owner: root
-    group: root
-    mode: 0600
-  with_inventory_hostnames:
-    - 'portals:&{{ instance }}'
-
-
-- name: Ensure host has certificate file
-  copy:
-    dest: "{{ hostvars[item]['pki_certs']['results'][2]['item'] }}"
-    content: >
-      {{ hostvars[item]['pki_certs']['results'][2]['content'] | b64decode }}
-    owner: root
-    group: root
-    mode: 0600
-  with_inventory_hostnames:
-    - 'portals:&{{ instance }}'
-
-
 - name: Ensure private key file is available for PostgreSQL
   command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
   args:
