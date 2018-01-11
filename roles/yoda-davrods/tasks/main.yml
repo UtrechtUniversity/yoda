@@ -108,25 +108,3 @@
     state: enabled
     immediate: yes
   notify: Restart firewall
-
-
-- name: Allow public to ports for anonymous davrods in firewall
-  firewalld:
-    port: '{{ yoda_davrods_anonymous_port }}/tcp'
-    permanent: true
-    state: enabled
-    immediate: yes
-  notify: Restart firewall
-
-
-- name: Ensure styling of davrods directory listing is present
-  template:
-    src: '{{ item.src }}'
-    dest: '/etc/httpd/irods/{{ item.dest }}'
-    owner: root
-    group: root
-    mode: 0644
-  with_items:
-  - { src: head.html.j2, dest: 'head.html' }
-  - { src: header.html.j2, dest: 'header.html' }
-  - { src: footer.html.j2, dest: 'footer.html' }

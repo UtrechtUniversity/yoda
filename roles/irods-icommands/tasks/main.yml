@@ -7,29 +7,19 @@
   register: irods_server
 
 
-- name: Check if iRODS runtime is installable from repository
-  yum:
-    list: '{{ irods_icommands.package }}'
-  register: irods_icommands_repo
-
-
-- name: Download iRODS iCommands rpm
-  get_url:
-    url: '{{ irods_icommands.url }}/{{ irods_icommands.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ irods_icommands.filename }}'
-    checksum: '{{ irods_icommands.checksum }}'
-  when: (irods_server.stat.exists == false) and (not irods_icommands_repo.results)
-
-
-- name: Install iRODS iCommands from downloaded rpm
+- name: Ensure iRODS 4.1 packages are absent
   package:
-    name: '{{ rpm_dest_dir }}/{{ irods_icommands.filename }}'
-    state: present
-  when: (irods_server.stat.exists == false) and (not irods_icommands_repo.results)
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - irods-runtime-4.1.8-0
+    - irods-icommands-4.1.8-0
 
 
 - name: Ensure iRODS iCommands is installed
-  package:
-    name: '{{ irods_icommands.package }}'
+  yum:
+    name: '{{ item }}'
     state: present
-  when: (irods_server.stat.exists == false) and (irods_icommands_repo.results)
+  with_items:
+    - irods-icommands-4.2.1-1
+  when: irods_server.stat.exists == false

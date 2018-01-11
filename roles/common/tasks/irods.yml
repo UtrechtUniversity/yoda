@@ -1,0 +1,10 @@
+---
+# copyright Utrecht University
+
+- name: Ensure iRODS packages repository is enabled
+  yum_repository:
+    name: iRODS-packages
+    description: YUM repositories for the iRODS Consortium
+    baseurl: https://packages.irods.org/yum/pool/centos7/x86_64/
+    gpgkey: https://packages.irods.org/irods-signing-key.asc
+    gpgcheck: yes

@@ -56,11 +56,13 @@
   when: not irods_db_repo.results
 
 
-- name: Ensure iRODS database plugin is installed
+- name: Ensure iRODS iCAT server and database plugin are present
   package:
-    name: '{{ irods_db.package }}'
+    name: '{{ item }}'
     state: present
-  when: irods_db_repo.results
+  with_items:
+    - irods-server-4.2.1-1
+    - irods-database-plugin-postgres-4.2.1-1
 
 
 - name: Generate zone key
