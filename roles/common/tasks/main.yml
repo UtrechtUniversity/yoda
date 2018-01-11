@@ -1,8 +1,8 @@
 ---
 # copyright Utrecht University
 
-- include: hostname.yml
-- include: epel.yml
-- include: irods.yml
-- include: firewalld.yml
-- include: basics.yml
+- import_tasks: hostname.yml
+- import_tasks: epel.yml
+- import_tasks: irods.yml
+- import_tasks: firewalld.yml
+- import_tasks: basics.yml

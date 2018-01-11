@@ -7,53 +7,13 @@
     state: absent
 
 
-- name: Check if iRODS iCAT is installable from repository
-  yum:
-    list: '{{ irods_icat.package }}'
-  register: irods_icat_repo
-
-
-- name: Download iRODS iCAT server rpm
-  get_url:
-    url: '{{ irods_icat.url }}/{{ irods_icat.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ irods_icat.filename }}'
-    checksum: '{{ irods_icat.checksum }}'
-  when: not irods_icat_repo.results
-
-
-- name: Install iRODS iCAT from downloaded rpm
+- name: Ensure iRODS 4.1 packages are absent
   package:
-    name: '{{ rpm_dest_dir }}/{{ irods_icat.filename }}'
-    state: present
-  when: not irods_icat_repo.results
-
-
-- name: Ensure iRODS iCAT server is installed
-  package:
-    name: '{{ irods_icat.package }}'
-    state: present
-  when: irods_icat_repo.results
-
-
-- name: Check if iRODS database plugin is installable from repository
-  yum:
-    list: '{{ irods_db.package }}'
-  register: irods_db_repo
-
-
-- name: Download iRODS database plugin rpm
-  get_url:
-    url: '{{ irods_db.url }}/{{ irods_db.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ irods_db.filename }}'
-    checksum: '{{ irods_db.checksum }}'
-  when: not irods_db_repo.results
-
-
-- name: Install iRODS database plugin from downloaded rpm
-  package:
-    name: '{{ rpm_dest_dir }}/{{ irods_db.filename }}'
-    state: present
-  when: not irods_db_repo.results
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - irods-server-4.1.11
+    - irods-database-plugin-postgres-4.1.11
 
 
 - name: Ensure iRODS iCAT server and database plugin are present
@@ -116,15 +76,6 @@
   when: not ansible_check_mode
 
 
-- name: Ensure iRODS iCAT host is a FQDN for iRODS 4.1.11
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  irods_config:
-    path: '/etc/irods/server_config.json'
-    key: 'icat_host'
-    value: '{{ irods_icat_fqdn }}'
-
-
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -137,7 +88,7 @@
 - name: Start iRODS server
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: '/var/lib/irods/iRODS/irodsctl start'
+  command: '/var/lib/irods/irodsctl start'
   when: ils | failed
 
 

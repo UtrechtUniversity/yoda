@@ -26,12 +26,13 @@
     - "{{ repochanges.results }}"
 
 
-- name: Ensure all rulesets are in server config
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  irods_rulesets:
-    config_path: "/etc/irods/server_config.json"
-    rulesets: "{{ rulesets | map(attribute='ruleset_name') | list  }}"
+# TODO fix irods_rulesets module for 4.2
+#- name: Ensure all rulesets are in server config
+#  become_user: "{{ irods_service_account }}"
+#  become: yes
+#  irods_rulesets:
+#    config_path: "/etc/irods/server_config.json"
+#    rulesets: "{{ rulesets | map(attribute='ruleset_name') | list  }}"
 
 
 - include_tasks: "{{ ruleset.name }}.yml"

@@ -12,8 +12,8 @@
     name: '{{ item }}'
     state: absent
   with_items:
-    - irods-runtime-4.1.8-0
-    - irods-icommands-4.1.8-0
+    - irods-runtime-4.1.11-0
+    - irods-icommands-4.1.11-0
 
 
 - name: Ensure iRODS iCommands is installed

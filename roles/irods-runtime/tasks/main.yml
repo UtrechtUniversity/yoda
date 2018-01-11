@@ -6,7 +6,8 @@
     name: '{{ item }}'
     state: absent
   with_items:
-    - irods-runtime-4.1.8-0
+    - irods-runtime-4.1.11-0
+    - davrods-4.1_1.3.0-1
 
 
 - name: Ensure iRODS runtime is installed
