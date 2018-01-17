@@ -41,7 +41,7 @@ if instance == "full" then
   }
 else
   HOSTS = {
-    "combined" => [NETWORK+"10", 2, 1024, GUI, BOX],
+    "combined" => [NETWORK+"10", 2, 2048, GUI, BOX],
   }
 end
 
