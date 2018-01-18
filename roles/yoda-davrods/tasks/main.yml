@@ -81,24 +81,24 @@
     mode: 0644
   notify: Restart Apache webserver
 
-
-- name: Allow Apache to execute iRODS network plugins
-  sefcontext:
-    target: '{{ item }}'
-    setype: httpd_sys_script_exec_t
-    state: present
-  register: filecontext
-  with_items:
-    - /var/lib/irods/plugins/network/libtcp.so
-    - /var/lib/irods/plugins/network/libssl.so
-
-
-- name: Ensure selinux context is enforced on iRODS network plugins
-  shell: restorecon /var/lib/irods/plugins/network/{{ item.target }}
-  when: filecontext.results[item.index]|changed
-  with_items:
-  - { index: 0, target: 'libtcp.so' }
-  - { index: 1, target: 'libssl.so' }
+# TODO fix for iRODS 4.2 compatibility
+# - name: Allow Apache to execute iRODS network plugins
+#   sefcontext:
+#     target: '{{ item }}'
+#     setype: httpd_sys_script_exec_t
+#     state: present
+#   register: filecontext
+#   with_items:
+#     - /var/lib/irods/plugins/network/libtcp.so
+#     - /var/lib/irods/plugins/network/libssl.so
+#
+#
+# - name: Ensure selinux context is enforced on iRODS network plugins
+#   shell: restorecon /var/lib/irods/plugins/network/{{ item.target }}
+#   when: filecontext.results[item.index]|changed
+#   with_items:
+#   - { index: 0, target: 'libtcp.so' }
+#   - { index: 1, target: 'libssl.so' }
 
 
 - name: Allow public to ports for davrods in firewall
