@@ -46,6 +46,13 @@
     creates: /etc/irods/setup_irods
 
 
+- name: Generate password salt
+  command: 'openssl rand -hex 16'
+  register: password_salt
+  args:
+    creates: /etc/irods/setup_irods
+
+
 - name: Store iCAT keys in variables
   set_fact:
     '{{ item.fact }}': '{{ item.key }}'
@@ -56,6 +63,8 @@
       key: '{{ negotiation_key.stdout }}'
     - fact: irods_control_plane_key
       key: '{{ control_plane_key.stdout }}'
+    - fact: irods_password_salt
+      key: '{{ password_salt.stdout }}'
   when: not ansible_check_mode
 
 
@@ -68,7 +77,7 @@
 
 
 - name: Configure iRODS iCAT server
-  shell: /var/lib/irods/packaging/setup_irods.sh
+  shell: sudo python /var/lib/irods/scripts/setup_irods.py
     < /etc/irods/setup_irods
   args:
     creates: /etc/irods/service_account.config
