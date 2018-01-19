@@ -225,7 +225,7 @@
     - key: 'irods_ssl_dh_params_file'
       value: '/etc/irods/{{ openssl_dhparams }}'
     - key: 'irods_client_server_policy'
-      value: 'CS_NEG_REQUIRE'
+      value: 'CS_NEG_REFUSE'
     - key: 'irods_ssl_verify_server'
       value: 'none'
 
@@ -267,18 +267,12 @@
     creates: '/var/lib/irods/.ssh/known_hosts'
   when: upload_priv_key is defined
 
-# TODO fix for iRODS 4.2 compatibility
-# - name: Ensure Yoda anonymous user exists
-#   become_user: '{{ irods_service_account }}'
-#   become: yes
-#   irods_mkuser:
-#     name: anonymous
-#
-#
-# - name: Ensure Yoda anonymous user exists
-#   become_user: '{{ irods_service_account }}'
-#   become: yes
-#   command: 'iadmin mkuser anonymous rodsuser'
+
+- name: Ensure Yoda anonymous user exists
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_mkuser:
+    name: anonymous
 
 
 - name: Ensure anonymous user has iRODS read access on /zone/home

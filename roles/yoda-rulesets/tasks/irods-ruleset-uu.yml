@@ -8,10 +8,9 @@
   check_mode: no
 
 
-# TODO fix for iRODS 4.2 compatibility
-# - name: Configure group-manager privilige groups in iCAT database
-#   command: '/etc/irods/irods-ruleset-uu/tools/group-manager-setup.sh'
-#   when: priv_groups.stdout.find('priv-group-add') == -1
+- name: Configure group-manager privilige groups in iCAT database
+  command: '/etc/irods/irods-ruleset-uu/tools/group-manager-setup.sh'
+  when: priv_groups.stdout.find('priv-group-add') == -1
 
 
 - name: Find out which system collections are present
@@ -21,16 +20,16 @@
   changed_when: False
   check_mode: no
 
-# TODO fix for iRODS 4.2 compatibility
-# - name: Ensure yoda system collections are present
-#   command: "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
-#   register: create_system_collections
-#   when: >
-#     (system_collections.stderr.find('does not exist') >= 0)
-#     or
-#     (system_collections.stdout.find('revisions') == -1
-#     and enable_revisions == 1)
-#   changed_when: create_system_collections.stdout.find('Creating') >= 0
+
+- name: Ensure yoda system collections are present
+  command: "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
+  register: create_system_collections
+  when: >
+    (system_collections.stderr.find('does not exist') >= 0)
+    or
+    (system_collections.stdout.find('revisions') == -1
+    and enable_revisions == 1)
+  changed_when: create_system_collections.stdout.find('Creating') >= 0
 
 
 - name: Check for existence of storage statistics script
