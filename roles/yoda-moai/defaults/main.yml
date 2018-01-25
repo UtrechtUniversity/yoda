@@ -4,11 +4,11 @@
 rpm_dest_dir: /tmp
 
 yoda_moai_packages:
-  Yoda-MOAI:
-    package: Yoda-MOAI
+  MOAI:
+    package: MOAI
     url: https://github.com/UtrechtUniversity/yoda-moai/releases/download/yoda-1.0b/
-    filename: Yoda-MOAI-2.1.0-1.noarch.rpm
-    checksum: sha256:0f80cbe2ef05a9c0b8e413ce1069ebcc00889a427a9d193cca410751c0f0bf1d
+    filename: MOAI-2.1.0-1.noarch.rpm
+    checksum: sha256:afc11cb8aa411cecd837502251a36bbf5d3b98a84ed5cb97c64e8583836a4127
   pyoai:
     package: python-pyoai
     url: https://github.com/UtrechtUniversity/yoda-moai/releases/download/yoda-1.0b
