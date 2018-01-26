@@ -24,6 +24,7 @@
   with_together:
     - "{{ rulesets }}"
     - "{{ repochanges.results }}"
+  notify: Restart iRODS server
 
 
 # TODO fix irods_rulesets module for 4.2
