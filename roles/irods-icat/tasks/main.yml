@@ -268,11 +268,11 @@
   when: upload_priv_key is defined
 
 
-  - name: Ensure Yoda anonymous user exists
-    become_user: '{{ irods_service_account }}'
-    become: yes
-    irods_mkuser:
-      name: anonymous
+- name: Ensure Yoda anonymous user exists
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_mkuser:
+    name: anonymous
 
 
 - name: Ensure anonymous user has iRODS read access on /zone/home
