@@ -27,7 +27,7 @@ rulesets:
     install_scripts: no
 
 # Research module specific configuration.
-default_yoda_schema: ilab
+default_yoda_schema: default
 enable_revisions: 1
 revision_strategy: A
 yoda_instance: "{{ instance }}"
