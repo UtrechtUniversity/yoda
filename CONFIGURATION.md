@@ -125,7 +125,7 @@ irods_resources              | Definition of iRODS resources of this Yoda instan
 ### Research module configuration
 Variable                     | Description                                                                       |
 -----------------------------|-----------------------------------------------------------------------------------|
-default_yoda_schema          | Default Yoda XML scheme: ilab or dc                                               |
+default_yoda_schema          | Default Yoda XML scheme: default or ilab                                          |
 enable_revisions             | Enable revisions: yes (1) or no (0)                                               |
 revision_strategy            | Revision strategy: A, B, J or Simple                                              |
 yoda_random_id_length        | Length of random ID to add to persistent identifier                               |
@@ -139,7 +139,7 @@ Variable                     | Description                                      
 datacite_username            | DataCite username                                                       |
 datacite_password            | DataCite password                                                       |
 datacite_prefix              | DataCite DOI prefix                                                     |
-datacite_server              | DatacCite server URI                                                     |
+datacite_server              | DataCite server URI                                                     |
 
 ### PAM Radius configuration
 Variable                     | Description                                                             |
