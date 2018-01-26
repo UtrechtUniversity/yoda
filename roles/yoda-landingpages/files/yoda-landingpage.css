@@ -51,3 +51,8 @@
 h1, h2, h3, a, a:visited {
     color: #c00a35;
 }
+
+.google-maps {
+	width: 200px;
+	height: 200px;
+}
