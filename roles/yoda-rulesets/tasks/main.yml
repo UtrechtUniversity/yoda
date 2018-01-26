@@ -24,6 +24,7 @@
   with_together:
     - "{{ rulesets }}"
     - "{{ repochanges.results }}"
+  notify: Restart iRODS server
 
 
 - name: Ensure all rulesets are in server config

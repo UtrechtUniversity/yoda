@@ -1,0 +1,17 @@
+---
+# copyright Utrecht University
+
+- name: Restart iRODS server
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/var/lib/irods/iRODS/irodsctl start'
+
+
+- name: Wait until iRODS server is ready to receive requests
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'ils /{{ irods_zone }}/home'
+  register: ils
+  until: ils | succeeded
+  retries: 5
+  delay: 10

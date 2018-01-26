@@ -1,7 +1,5 @@
 ---
 # copyright Utrecht University
 
-- name: Restart iRODS
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: '/var/lib/irods/iRODS/irodsctl restart'
+- name: Restart iRODS server
+  include_tasks: restart_irods.yml
