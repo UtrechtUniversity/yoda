@@ -17,7 +17,7 @@
 
 
 - name: Ensure an OpenSSL certificate signing request is present
-  command: "openssl req -new \
+  command: "openssl req -new -sha256 \
     -key '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}' \
     -out '{{ openssl_csr_selfsigned }}' -batch -subj \
     '/O={{ openssl_o }}/C={{ openssl_c }}\
