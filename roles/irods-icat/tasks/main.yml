@@ -263,7 +263,7 @@
     - key: 'irods_ssl_dh_params_file'
       value: '/etc/irods/{{ openssl_dhparams }}'
     - key: 'irods_client_server_policy'
-      value: 'CS_NEG_REFUSE'
+      value: 'CS_NEG_REQUIRE'
     - key: 'irods_ssl_verify_server'
       value: 'none'
 

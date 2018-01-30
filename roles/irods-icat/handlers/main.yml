@@ -2,4 +2,4 @@
 # copyright Utrecht University
 
 - name: Restart iRODS server
-  include_tasks: restart_irods.yml
+  include_tasks: "restart_irods.yml"
