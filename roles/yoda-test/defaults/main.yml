@@ -129,7 +129,7 @@ test_groupusers:
     role: manager
   - groupName: research-deletegroup
     user: researcher
-    role: reader
+    role: normal
   - groupName: research-deletegroup
     user: viewer
     role: reader
