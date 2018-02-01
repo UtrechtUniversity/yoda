@@ -79,7 +79,7 @@
 
 - name: Generate control plane key
   command: 'openssl rand -hex 16'
-  register: control_plane_key
+  register: server_control_plane_key
   args:
     creates: /etc/irods/setup_irods
 
@@ -93,7 +93,7 @@
     - fact: irods_negotiation_key
       key: '{{ negotiation_key.stdout }}'
     - fact: irods_control_plane_key
-      key: '{{ control_plane_key.stdout }}'
+      key: '{{ server_control_plane_key.stdout }}'
   when: not ansible_check_mode
 
 
@@ -266,6 +266,27 @@
       value: 'CS_NEG_REQUIRE'
     - key: 'irods_ssl_verify_server'
       value: 'none'
+
+
+- name: Retrieve iRODS server zone key
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: "grep -oP '(?<=\"zone_key\": \")[^\"]*' /etc/irods/server_config.json"
+  register: zone_key
+
+
+- name: Retrieve iRODS server negotiation key
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: "grep -oP '(?<=\"negotiation_key\": \")[^\"]*' /etc/irods/server_config.json"
+  register: negotiation_key
+
+
+- name: Retrieve iRODS server control plane key
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: "grep -oP '(?<=\"server_control_plane_key\": \")[^\"]*' /etc/irods/server_config.json"
+  register: server_control_plane_key
 
 
 - name: Ensure iRODS is configured to use SSL connection to database
