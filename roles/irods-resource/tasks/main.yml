@@ -70,38 +70,16 @@
   notify: Restart firewall
 
 
-- name: Generate zone key
-  command: 'openssl rand -hex 16'
-  register: zone_key
-  args:
-    creates: /etc/irods/setup_irods
-
-
-- name: Generate negotiation key
-  command: 'openssl rand -hex 16'
-  register: negotiation_key
-  args:
-    creates: /etc/irods/setup_irods
-
-
-- name: Generate control plane key
-  command: 'openssl rand -hex 16'
-  register: server_control_plane_key
-  args:
-    creates: /etc/irods/setup_irods
-
-
-- name: Store resource keys in variables
+- name: Store iRODS server keys in variables
   set_fact:
     '{{ item.fact }}': '{{ item.key }}'
   with_items:
     - fact: irods_zone_key
-      key: '{{ zone_key.stdout }}'
+      key: "{{ hostvars[irods_icat]['zone_key']['stdout'] }}"
     - fact: irods_negotiation_key
-      key: '{{ negotiation_key.stdout }}'
+      key: "{{ hostvars[irods_icat]['negotiation_key']['stdout'] }}"
     - fact: irods_control_plane_key
-      key: '{{ server_control_plane_key.stdout }}'
-  when: not ansible_check_mode
+      key: "{{ hostvars[irods_icat]['server_control_plane_key']['stdout'] }}"
 
 
 - name: Copy responses for setup_irods.sh
