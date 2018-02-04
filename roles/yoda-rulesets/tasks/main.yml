@@ -24,7 +24,6 @@
   with_together:
     - "{{ rulesets }}"
     - "{{ repochanges.results }}"
-  notify: Restart iRODS server
 
 
 - name: Ensure all rulesets are in server config
@@ -41,5 +40,4 @@
   with_items: "{{ rulesets }}"
   loop_control:
     loop_var: ruleset
-  when: ruleset.install_scripts
-
+  when: ruleset.install_scripts == "yes" and install_rulesets == "yes"

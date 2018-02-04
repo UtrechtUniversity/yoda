@@ -43,3 +43,157 @@
   with_items:
   - /var/lib/irods
   - /etc/irods
+
+
+- name: Enable ports for resource in firewall
+  firewalld:
+    port: '{{ item }}'
+    permanent: true
+    state: enabled
+    immediate: yes
+  with_items:
+    - '{{ irods_icat_port }}/tcp'
+    - '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
+  notify: Restart firewall
+
+
+- name: Store iRODS server keys in variables
+  set_fact:
+    '{{ item.fact }}': '{{ item.key }}'
+  with_items:
+    - fact: irods_zone_key
+      key: "{{ hostvars[irods_icat]['zone_key']['stdout'] }}"
+    - fact: irods_negotiation_key
+      key: "{{ hostvars[irods_icat]['negotiation_key']['stdout'] }}"
+    - fact: irods_control_plane_key
+      key: "{{ hostvars[irods_icat]['server_control_plane_key']['stdout'] }}"
+
+
+- name: Copy responses for setup_irods.sh
+  template:
+    src: setup_irods.j2
+    dest: /etc/irods/setup_irods
+    force: no
+  when: not ansible_check_mode
+
+
+- name: Configure iRODS resource server
+  shell: /var/lib/irods/packaging/setup_irods.sh
+    < /etc/irods/setup_irods
+  args:
+    creates: /etc/irods/service_account.config
+  run_once: true
+  when: not ansible_check_mode
+
+
+- name: Ensure host has private key file
+  copy:
+    dest: "{{ hostvars[item]['pki_certs']['results'][0]['item'] }}"
+    content: >
+      {{ hostvars[item]['pki_certs']['results'][0]['content'] | b64decode }}
+    owner: root
+    group: root
+    mode: 0600
+  with_inventory_hostnames:
+    - 'portals:&{{ instance }}'
+
+
+- name: Ensure host has Diffie-Hellman parameters
+  copy:
+    dest: "{{ hostvars[item]['pki_certs']['results'][1]['item'] }}"
+    content: >
+      {{ hostvars[item]['pki_certs']['results'][1]['content'] | b64decode }}
+    owner: root
+    group: root
+    mode: 0600
+  with_inventory_hostnames:
+    - 'portals:&{{ instance }}'
+
+
+- name: Ensure host has certificate file
+  copy:
+    dest: "{{ hostvars[item]['pki_certs']['results'][2]['item'] }}"
+    content: >
+      {{ hostvars[item]['pki_certs']['results'][2]['content'] | b64decode }}
+    owner: root
+    group: root
+    mode: 0600
+  with_inventory_hostnames:
+    - 'portals:&{{ instance }}'
+
+
+- name: Ensure private key file is available for iRODS
+  command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
+  args:
+    chdir: '/etc/irods'
+    creates: '{{ openssl_key_signed }}'
+
+
+- name: Ensure Diffie-Hellman parameters are available for iRODS
+  command: 'cp {{ openssl_private_dir }}/{{ openssl_dhparams }} {{ openssl_dhparams }}'
+  args:
+    chdir: '/etc/irods'
+    creates: '{{ openssl_dhparams }}'
+
+
+- name: Ensure certificate file is available for iRODS
+  command: 'cp {{ openssl_certs_dir }}/{{ openssl_crt_signed }} {{ openssl_crt_signed }}'
+  args:
+    chdir: '/etc/irods'
+    creates: '{{ openssl_crt_signed }}'
+
+
+- name: Ensure iRODS has access to PKI files
+  file:
+    path: '{{ item }}'
+    mode: 0600
+    group: '{{ irods_service_account }}'
+    owner: '{{ irods_service_account }}'
+    state: file
+  with_items:
+    - '/etc/irods/{{ openssl_key_signed }}'
+    - '/etc/irods/{{ openssl_dhparams }}'
+    - '/etc/irods/{{ openssl_crt_signed }}'
+
+
+- name: Ensure iRODS is configured to use SSL
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_config:
+    path: '/var/lib/irods/.irods/irods_environment.json'
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_items:
+    - key: 'irods_ssl_certificate_chain_file'
+      value: '/etc/irods/{{ openssl_crt_signed }}'
+    - key: 'irods_ssl_certificate_key_file'
+      value: '/etc/irods/{{ openssl_key_signed }}'
+    - key: 'irods_ssl_dh_params_file'
+      value: '/etc/irods/{{ openssl_dhparams }}'
+    - key: 'irods_client_server_policy'
+      value: 'CS_NEG_REQUIRE'
+    - key: 'irods_ssl_verify_server'
+      value: 'none'
+
+
+- name: Retrieve iRODS iCAT server
+  set_fact:
+    'irods_icat': '{{ item }}'
+  with_inventory_hostnames:
+    - 'icats:&{{ instance }}'
+
+
+- name: Ensure iRODS server keys are synced
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_config:
+    path: '/etc/irods/server_config.json'
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_items:
+    - key: 'zone_key'
+      value: "{{ hostvars[irods_icat]['zone_key']['stdout'] }}"
+    - key: 'server_control_plane_key'
+      value: "{{ hostvars[irods_icat]['server_control_plane_key']['stdout'] }}"
+    - key: 'negotiation_key'
+      value: "{{ hostvars[irods_icat]['negotiation_key']['stdout'] }}"

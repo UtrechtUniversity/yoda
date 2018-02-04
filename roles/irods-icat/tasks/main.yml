@@ -41,7 +41,7 @@
 
 - name: Generate control plane key
   command: 'openssl rand -hex 16'
-  register: control_plane_key
+  register: server_control_plane_key
   args:
     creates: /etc/irods/setup_irods
 
@@ -62,7 +62,7 @@
     - fact: irods_negotiation_key
       key: '{{ negotiation_key.stdout }}'
     - fact: irods_control_plane_key
-      key: '{{ control_plane_key.stdout }}'
+      key: '{{ server_control_plane_key.stdout }}'
     - fact: irods_password_salt
       key: '{{ password_salt.stdout }}'
   when: not ansible_check_mode
@@ -83,6 +83,15 @@
     creates: /etc/irods/service_account.config
   run_once: true
   when: not ansible_check_mode
+
+
+- name: Ensure iRODS iCAT host is a FQDN for iRODS 4.1.11
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_config:
+    path: '/etc/irods/server_config.json'
+    key: 'icat_host'
+    value: '{{ irods_icat_fqdn }}'
 
 
 - name: Ensure iRODS server is up
@@ -228,6 +237,27 @@
       value: 'CS_NEG_REQUIRE'
     - key: 'irods_ssl_verify_server'
       value: 'none'
+
+
+- name: Retrieve iRODS server zone key
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: "grep -oP '(?<=\"zone_key\": \")[^\"]*' /etc/irods/server_config.json"
+  register: zone_key
+
+
+- name: Retrieve iRODS server negotiation key
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: "grep -oP '(?<=\"negotiation_key\": \")[^\"]*' /etc/irods/server_config.json"
+  register: negotiation_key
+
+
+- name: Retrieve iRODS server control plane key
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: "grep -oP '(?<=\"server_control_plane_key\": \")[^\"]*' /etc/irods/server_config.json"
+  register: server_control_plane_key
 
 
 - name: Ensure iRODS is configured to use SSL connection to database

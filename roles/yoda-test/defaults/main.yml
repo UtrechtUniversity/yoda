@@ -128,6 +128,12 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
   - groupName: research-deletegroup
+    user: researcher
+    role: normal
+  - groupName: research-deletegroup
+    user: viewer
+    role: reader
+  - groupName: research-deletegroup
     user: groupmanager
     role: manager
   - groupName: research-deletegroup
@@ -157,9 +163,6 @@ test_groupusers:
   - groupName: grp-datamanager-test
     user: datamanager
     role: manager
-  - groupName: research-deletegroup
-    user: viewer
-    role: reader
   - groupName: research-updateproperties
     user: functionaladminpriv
     role: manager

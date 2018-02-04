@@ -51,7 +51,8 @@
     - irods-runtime
     - irods-microservices
     - composable-resources
-    - yoda-rulesets
+    - role: yoda-rulesets
+      install_rulesets: yes
   tags:
     - icat
 
@@ -63,6 +64,8 @@
     - irods-resource
     - irods-runtime
     - irods-microservices
+    - role: yoda-rulesets
+      install_rulesets: no
   tags:
     - resource
 
