@@ -17,6 +17,7 @@
     name: httpd_can_network_connect
     state: yes
     persistent: yes
+  when: ansible_selinux
 
 
 - name: Ensure PHP is configured

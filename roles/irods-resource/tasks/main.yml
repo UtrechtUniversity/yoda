@@ -57,6 +57,13 @@
   notify: Restart firewall
 
 
+- name: Retrieve iRODS iCAT server
+  set_fact:
+    'irods_icat': '{{ item }}'
+  with_inventory_hostnames:
+    - 'icats:&{{ instance }}'
+
+
 - name: Store iRODS server keys in variables
   set_fact:
     '{{ item.fact }}': '{{ item.key }}'
@@ -174,13 +181,6 @@
       value: 'CS_NEG_REQUIRE'
     - key: 'irods_ssl_verify_server'
       value: 'none'
-
-
-- name: Retrieve iRODS iCAT server
-  set_fact:
-    'irods_icat': '{{ item }}'
-  with_inventory_hostnames:
-    - 'icats:&{{ instance }}'
 
 
 - name: Ensure iRODS server keys are synced

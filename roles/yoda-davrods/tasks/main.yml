@@ -47,7 +47,7 @@
 
 - name: Ensure selinux context is enforced on davrods module
   shell: restorecon /etc/httpd/modules/{{ item.target }}
-  when: filecontext|changed
+  when: filecontext|changed and ansible_selinux
   with_items:
   - { index: 0, target: 'mod_davrods.so' }
 
@@ -97,7 +97,7 @@
 
 - name: Ensure selinux context is enforced on iRODS network plugins
   shell: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
-  when: filecontext.results[item.index]|changed
+  when: filecontext.results[item.index] | changed and ansible_selinux
   with_items:
   - { index: 0, target: 'libtcp_client.so' }
   - { index: 1, target: 'libssl_client.so' }
