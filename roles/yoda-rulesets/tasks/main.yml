@@ -40,4 +40,4 @@
   with_items: "{{ rulesets }}"
   loop_control:
     loop_var: ruleset
-  when: ruleset.install_scripts == "yes" and install_rulesets == "yes"
+  when: ruleset.install_scripts and install_rulesets
