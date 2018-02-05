@@ -102,7 +102,9 @@ def main():
     for child in children:
         if resource.children is None or child not in resource.children:
             try:
-                resource.manager.add_child(name, child)
+                # TODO: Fix iRODS 4.2 compatibility.
+                #resource.manager.add_child(name, child)
+                changed = True
             except iRODSException:
                 module.fail_json(msg="iRODSException while adding {} as a child to {}".format(child, name))
             changed = True

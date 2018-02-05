@@ -81,7 +81,7 @@
     mode: 0644
   notify: Restart Apache webserver
 
-# TODO fix for iRODS 4.2 compatibility
+
 - name: Allow Apache to execute iRODS network plugins
   sefcontext:
     target: '{{ item }}'
