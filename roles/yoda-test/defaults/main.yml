@@ -44,6 +44,9 @@ test_groups:
   - groupName: research-initial
     category: initial
     subcategory: initial
+  - groupName: research-initial1
+    category: initial
+    subcategory: initial
   - groupName: datamanager-initial
     category: initial
     subcategory: initial
@@ -97,12 +100,14 @@ test_groupusers:
   - groupName: priv-category-add
     user: functionaladmincategory
     role: manager
+
   - groupName: priv-group-add
     user: functionaladminpriv
     role: manager
   - groupName: priv-group-add
     user: functionaladmingroup
     role: manager
+
   - groupName: research-initial
     user: functionaladminpriv
     role: manager
@@ -118,12 +123,27 @@ test_groupusers:
   - groupName: research-initial
     user: testuserdel
     role: normal
+
+  - groupName: research-initial1
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-initial1
+    user: groupmanager
+    role: manager
+  - groupName: research-initial1
+    user: researcher
+    role: normal
+  - groupName: research-initial1
+    user: viewer
+    role: reader
+
   - groupName: datamanager-initial
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-initial
     user: datamanager
     role: normal
+
   - groupName: research-deletegroup
     user: functionaladminpriv
     role: manager
@@ -139,6 +159,7 @@ test_groupusers:
   - groupName: research-deletegroup
     user: datamanager
     role: normal
+
   - groupName: grp-intake-initial
     user: researcher
     role: normal
@@ -148,9 +169,11 @@ test_groupusers:
   - groupName: grp-intake-initial
     user: datamanager
     role: normal
+
   - groupName: grp-datamanager-initial
     user: datamanager
     role: manager
+
   - groupName: grp-intake-test
     user: researcher
     role: normal
@@ -160,9 +183,11 @@ test_groupusers:
   - groupName: grp-intake-test
     user: datamanager
     role: normal
+
   - groupName: grp-datamanager-test
     user: datamanager
     role: manager
+
   - groupName: research-updateproperties
     user: functionaladminpriv
     role: manager
@@ -175,6 +200,7 @@ test_groupusers:
   - groupName: research-updateproperties
     user: viewer
     role: reader
+
   - groupName: research-mdtest
     user: functionaladminpriv
     role: manager
@@ -187,6 +213,7 @@ test_groupusers:
   - groupName: research-mdtest
     user: viewer
     role: reader
+
   - groupName: research-process1
     user: functionaladminpriv
     role: manager
@@ -199,6 +226,7 @@ test_groupusers:
   - groupName: research-process1
     user: viewer
     role: reader
+
   - groupName: research-process2
     user: functionaladminpriv
     role: manager
@@ -211,6 +239,7 @@ test_groupusers:
   - groupName: research-process2
     user: viewer
     role: reader
+
   - groupName: research-process3
     user: functionaladminpriv
     role: manager
@@ -223,6 +252,7 @@ test_groupusers:
   - groupName: research-process3
     user: viewer
     role: reader
+
   - groupName: research-revisions
     user: functionaladminpriv
     role: manager
@@ -235,6 +265,7 @@ test_groupusers:
   - groupName: research-revisions
     user: viewer
     role: reader
+
   - groupName: research-search
     user: functionaladminpriv
     role: manager
