@@ -65,6 +65,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine.vm.hostname = name + DOMAIN
       machine.vm.network 'private_network', ip: ipaddr, netmask: NETMASK
       machine.vm.synced_folder ".", "/vagrant", disabled: true
+      machine.vm.provision "shell",
+        inline: "sudo timedatectl set-timezone Europe/Amsterdam"
     end
   end
 
@@ -79,6 +81,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.network :private_network, ip: "192.168.50.5", netmask: NETMASK
       controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh"
       controller.vm.synced_folder ".", "/vagrant", disabled: true
+      controller.vm.provision "shell",
+        inline: "sudo timedatectl set-timezone Europe/Amsterdam"
     end
   end
 end
