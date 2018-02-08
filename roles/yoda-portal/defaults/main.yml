@@ -8,7 +8,7 @@ irods_php_version: master
 codeigniter_version: 3.1-uu
 codeigniter_environment: development
 
-yoda_portal_fqdn: portal.yoda.dev
+yoda_portal_fqdn: portal.yoda.test
 update_portal: yes
 yoda_php_encryption_key: dummy
 yoda_public_dir: /var/www/yoda/yoda-portal/public
@@ -44,7 +44,7 @@ modules:
 irods_default_resc: irodsResc              # iRODS default resource name
 irods_authentication_scheme: Native        # iRODS authentication method: "Native" or "PAM"
 irods_zone: tempZone                       # The name of the iRODS Zone
-irods_icat_fqdn: icat.yoda.dev             # iRODS iCAT fully qualified domain name (FQDN)
+irods_icat_fqdn: icat.yoda.test             # iRODS iCAT fully qualified domain name (FQDN)
 
 # OpenSSL configuration.
 openssl_private_dir: '/etc/pki/tls/private'

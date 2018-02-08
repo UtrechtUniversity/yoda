@@ -32,24 +32,24 @@ In the inventory the hosts of an instance are defined, their functional roles an
 Example configuration defining the and functional roles of an instance called 'yoda':
 ```bash
 [yoda:children]
-host1.yoda.dev
-host2.yoda.dev
-host3.yoda.dev
+host1.yoda.test
+host2.yoda.test
+host3.yoda.test
 
 [yoda-portal]
-host1.yoda.dev
+host1.yoda.test
 
 [yoda-database]
-host1.yoda.dev
+host1.yoda.test
 
 [yoda-icat]
-host1.yoda.dev
+host1.yoda.test
 
 [yoda-resource]
-host2.yoda.dev
+host2.yoda.test
 
 [yoda-public]
-host3.yoda.dev
+host3.yoda.test
 ```
 
 Add the new functional roles of the instance to the corresponding groups.
@@ -73,15 +73,15 @@ yoda-public
 
 Last step to add the hosts of a new Yoda instance is to create configuration files for every new host.
 In development environment these configuration files are placed in [environments/development/hosts](environments/development/host_vars).
-For example, for host 'host1.yoda.dev' a configuration file is created:
+For example, for host 'host1.yoda.test' a configuration file is created:
 ```bash
-touch environments/development/host_vars/host1.yoda.dev
+touch environments/development/host_vars/host1.yoda.test
 ```
 
 And place the basic host configuration in the new file:
 ```bash
 ---
-ansible_host: host1.yoda.dev
+ansible_host: host1.yoda.test
 ```
 
 ## 3. Configure (new) Yoda instance

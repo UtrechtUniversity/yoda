@@ -26,7 +26,7 @@ GUI = false
 CPU = 1
 RAM = 512
 
-DOMAIN  = ".yoda.dev"
+DOMAIN  = ".yoda.test"
 NETWORK = "192.168.50."
 NETMASK = "255.255.255.0"
 
