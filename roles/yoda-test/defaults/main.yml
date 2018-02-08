@@ -129,13 +129,13 @@ test_groupusers:
     role: manager
   - groupName: research-initial1
     user: groupmanager
-    role: manager
+    role: normal
   - groupName: research-initial1
     user: researcher
     role: normal
   - groupName: research-initial1
     user: viewer
-    role: reader
+    role: normal
 
   - groupName: datamanager-initial
     user: functionaladminpriv

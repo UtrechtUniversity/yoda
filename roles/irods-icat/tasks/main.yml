@@ -94,6 +94,15 @@
     value: '{{ irods_icat_fqdn }}'
 
 
+- name: Ensure iRODS host is defined
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_config:
+    path: '/var/lib/irods/.irods/irods_environment.json'
+    key: 'irods_host'
+    value: '{{ irods_icat_fqdn }}'
+
+
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes
