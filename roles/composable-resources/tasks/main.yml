@@ -1,7 +1,6 @@
 ---
 # copyright Utrecht University
 
-# TODO fix for iRODS 4.2 compatibility
 - name: Ensure all resources exist
   become_user: irods
   become: yes

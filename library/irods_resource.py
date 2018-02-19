@@ -97,12 +97,14 @@ def main():
                         "Resource {name} has context set to '{resource.context}' instead of '{context}'"
                         .format(**locals()))
 
-
+    # Build list of resource children names.
+    names = []
+    for child in resource.children:
+        names.append(child.name)
 
     for child in children:
-        if resource.children is None or child not in resource.children:
+        if resource.children is None or child not in names:
             try:
-                # TODO: Fix iRODS 4.2 compatibility.
                 resource.manager.add_child(name, child)
                 changed = True
             except iRODSException:
