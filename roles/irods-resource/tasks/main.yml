@@ -13,7 +13,7 @@
     name: '{{ item }}'
     state: present
   with_items:
-    - irods-server-4.2.1-1
+    - irods-server-4.2.2-1
 
 
 - name: Create iRODS service account group
