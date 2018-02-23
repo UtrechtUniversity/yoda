@@ -1,0 +1,11 @@
+---
+# copyright Utrecht University
+# This playbook provisions Yoda instance with the Zabbix agent.
+
+- name: Provision instance with zabbix agent
+  hosts: icats
+  become: yes
+  roles:
+    - yoda-zabbix
+  tags:
+    - zabbix
