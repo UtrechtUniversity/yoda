@@ -13,3 +13,4 @@ zabbix_agent:
 
 # Zabbix configuration
 zabbix_server: 192.168.50.20
+zabbix_hostname: yoda.development

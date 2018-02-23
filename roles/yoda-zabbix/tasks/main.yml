@@ -61,7 +61,13 @@
   notify: Restart firewall
 
 
-- name: "Configure zabbix-agent"
+- name: Generate Zabbix agent PSK
+  shell: openssl rand -hex 256 > /etc/zabbix/zabbix_agentd.psk
+    creates=/etc/zabbix/zabbix_agentd.psk
+  when: not ansible_check_mode
+
+
+- name: Configure Zabbix agent
   template:
     src: zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
