@@ -1,15 +1,14 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
-#
-# copyright Utrecht University
-#
-# license: GPL v3
-#
-from ansible.module_utils.basic import *
+# Copyright (c) 2017-2018 Utrecht University
+# GNU General Public License v3.0
 
-ANSIBLE_METADATA = {'metadata_version': '1.0',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
+ANSIBLE_METADATA = {
+    'metadata_version': '1.1',
+    'supported_by': 'community',
+    'status': ['preview']
+}
+
+from ansible.module_utils.basic import *
 
 
 IRODSCLIENT_AVAILABLE = False
@@ -98,12 +97,16 @@ def main():
                         "Resource {name} has context set to '{resource.context}' instead of '{context}'"
                         .format(**locals()))
 
-
+    # Build list of resource children names.
+    names = []
+    for child in resource.children:
+        names.append(child.name)
 
     for child in children:
-        if resource.children is None or child not in resource.children:
+        if resource.children is None or child not in names:
             try:
                 resource.manager.add_child(name, child)
+                changed = True
             except iRODSException:
                 module.fail_json(msg="iRODSException while adding {} as a child to {}".format(child, name))
             changed = True
