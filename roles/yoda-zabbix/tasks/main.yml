@@ -59,3 +59,13 @@
     state: enabled
     immediate: yes
   notify: Restart firewall
+
+
+- name: "Configure zabbix-agent"
+  template:
+    src: zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Zabbix agent
