@@ -97,6 +97,19 @@
     imkdir /{{ irods_zone }}/home/research-initial/testdata
   ignore_errors: true
 
+- name: Ensure Yoda test data directory is present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/home/research-mdtest/nomdpresent
+  ignore_errors: true
+  
+- name: Ensure Yoda test data directory is present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/home/research-mdtest/copyfromparent
+  ignore_errors: true
 
 - name: Ensure Yoda test files are present
   become_user: '{{ irods_service_account }}'
