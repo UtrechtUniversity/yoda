@@ -14,6 +14,14 @@
   with_items:
     - irods-server-4.1.11
     - irods-database-plugin-postgres-4.1.11
+  register: deinstalled
+
+
+- name: Stop iRODS server
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/var/lib/irods/iRODS/irodsctl stop'
+  when: deinstalled | changed
 
 
 - name: Ensure iRODS iCAT server and database plugin are present
