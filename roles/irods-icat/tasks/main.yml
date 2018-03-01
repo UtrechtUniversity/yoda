@@ -7,26 +7,17 @@
     state: absent
 
 
-- name: Ensure iRODS 4.1 packages are absent
-  package:
-    name: '{{ item }}'
-    state: absent
-  with_items:
-    - irods-server-4.1.11
-    - irods-database-plugin-postgres-4.1.11
-
-
 - name: Check if iRODS 4.2 is installed
   stat:
     path: /var/lib/irods/irodsctl
   register: irods
 
 
-- name: Stop iRODS server
+- name: Stop iRODS server before upgrade
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/var/lib/irods/iRODS/irodsctl stop'
-  when: irods.stat.islnk is defined
+  when: irods.stat.islnk is not defined
 
 
 - name: Ensure iRODS iCAT server and database plugin are present
