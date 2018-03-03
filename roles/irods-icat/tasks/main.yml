@@ -1,16 +1,21 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure iRODS iCommands are absent, are included in the iCAT server
-  package:
-    name: 'irods-icommands'
-    state: absent
-
-
 - name: Check if iRODS 4.2 is installed
   stat:
     path: /var/lib/irods/irodsctl
   register: irods
+
+
+- name: Check if iRODS delayed rule queue is empty
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'iqstat -a | wc -l'
+  register: wc
+  until: wc.stdout > 0
+  retries: 5
+  delay: 10
+  when: irods.stat.islnk is not defined
 
 
 - name: Stop iRODS server before upgrade

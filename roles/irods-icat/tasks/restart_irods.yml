@@ -4,7 +4,7 @@
 - name: Restart iRODS server
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: '/var/lib/irods/iRODS/irodsctl restart'
+  command: '/var/lib/irods/irodsctl restart'
 
 
 - name: Wait until iRODS server is ready to receive requests
