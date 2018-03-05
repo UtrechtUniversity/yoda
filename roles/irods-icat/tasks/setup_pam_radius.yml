@@ -24,4 +24,4 @@
     path: /var/lib/irods/iRODS/server/bin/PamAuthCheck
     owner: root
     group: root
-    mode: 4755
+    mode: 04755
