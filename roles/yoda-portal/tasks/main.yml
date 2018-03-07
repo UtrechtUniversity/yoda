@@ -80,10 +80,10 @@
   when: not ansible_check_mode
 
 
-- name: Create .htaccess
+- name: Ensure .htaccess is configured
   command: cp /var/www/yoda/yoda-portal/public/.htaccess.template-{{ codeigniter_environment }}
     /var/www/yoda/yoda-portal/public/.htaccess
-    creates=/var/www/yoda/yoda-portal/public/.htaccess
+  notify: Restart Apache webserver
 
 
 - name: Copy Yoda Portal virtual host config for Apache
