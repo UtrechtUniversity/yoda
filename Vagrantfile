@@ -24,7 +24,7 @@ VAGRANTFILE_API_VERSION = "2"
 BOX = 'centos/7'
 GUI = false
 CPU = 1
-RAM = 512
+RAM = 1024
 
 DOMAIN  = ".yoda.test"
 NETWORK = "192.168.50."
@@ -37,11 +37,10 @@ if instance == "full" then
     "icat"     => [NETWORK+"12", CPU, RAM, GUI, BOX],
     "resource" => [NETWORK+"13", CPU, RAM, GUI, BOX],
     "public"   => [NETWORK+"14", CPU, RAM, GUI, BOX],
-
   }
 else
   HOSTS = {
-    "combined" => [NETWORK+"10", 2, 2048, GUI, BOX],
+    "combined" => [NETWORK+"10", 2, 4096, GUI, BOX],
   }
 end
 
