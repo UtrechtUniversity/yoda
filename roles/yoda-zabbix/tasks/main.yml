@@ -75,3 +75,12 @@
     group: root
     mode: 0644
   notify: Restart Zabbix agent
+
+
+- name: Checkout Yoda Zabbix scripts and rules
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-zabbix.git"
+    dest: "/etc/irods/yoda-zabbix"
+    version: "{{ yoda_version }}"
