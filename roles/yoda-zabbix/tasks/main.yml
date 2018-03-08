@@ -67,13 +67,21 @@
   when: not ansible_check_mode
 
 
+- name: Ensure right file ownership on zabbix_agentd.psk
+  file:
+    path: /etc/zabbix/zabbix_agentd.psk
+    owner: zabbix
+    group: zabbix
+    mode: 0600
+
+
 - name: Configure Zabbix agent
   template:
     src: zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
-    owner: root
-    group: root
-    mode: 0644
+    owner: zabbix
+    group: zabbix
+    mode: 0600
   notify: Restart Zabbix agent
 
 
@@ -82,5 +90,78 @@
   become: yes
   git:
     repo: "https://github.com/UtrechtUniversity/yoda-zabbix.git"
-    dest: "/etc/irods/yoda-zabbix"
+    dest: "/etc/irods/yoda-zabbix/src"
     version: "{{ yoda_version }}"
+  register: zabbix_repo
+
+
+- name: Ensure zabbix_agentd.userparams.conf exists
+  stat: path=/etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
+  register: zabbix_agentd
+
+
+- name: Copy zabbix_agentd.userparams.conf to right place
+  command: cp /etc/irods/yoda-zabbix/src/zabbix_agentd.userparams.conf /etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
+  when: not zabbix_agentd.stat.exists or zabbix_repo.changed
+
+
+- name: Ensure right file ownership on zabbix_agentd.userparams.conf
+  file:
+    path: /etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0600
+
+
+- name: Ensure yoda-zabbix-sudoers exists
+  stat: path=/etc/sudoers.d/yoda-zabbix-sudoers
+  register: zabbix_sudoers
+
+
+- name: Copy yoda-zabbix-sudoers to right place
+  command: cp /etc/irods/yoda-zabbix/src/yoda-zabbix-sudoers /etc/sudoers.d/yoda-zabbix-sudoers
+  when: not zabbix_sudoers.stat.exists or zabbix_repo.changed
+
+
+- name: Ensure right file ownership on zabbix_agentd.userparams.conf
+  file:
+    path: /etc/sudoers.d/yoda-zabbix-sudoers
+    owner: root
+    group: root
+    mode: 0440
+
+
+- name: Copy Yoda Zabbix rules
+  shell: "cp /etc/irods/yoda-zabbix/src/*.r /etc/irods/yoda-zabbix/"
+  when: zabbix_repo.changed
+
+
+- name: Copy Yoda Zabbix scripts
+  shell: "cp /etc/irods/yoda-zabbix/src/*.sh /etc/irods/yoda-zabbix/"
+  when: zabbix_repo.changed
+
+
+- name: Ensure right file ownership on Yoda Zabbix rules
+  file:
+    path: "/etc/irods/yoda-zabbix/{{ item }}"
+    owner: irods	
+    group: irods
+    mode: 0700
+  with_items:
+    - monitorDelayedRules.r
+    - monitorPublicationsPending.r
+
+
+- name: Ensure right file ownership on Yoda Zabbix scripts
+  file:
+    path: "/etc/irods/yoda-zabbix/{{ item }}"
+    owner: zabbix
+    group: zabbix
+    mode: 0700
+  with_items:
+    - externalUsersCount.sh
+    - internalUsersCount.sh
+    - irodsGroupsCount.sh
+    - monitorDelayedRules.sh
+    - monitorPublicationsPending.sh
+    - mostRecentReCheck.sh
