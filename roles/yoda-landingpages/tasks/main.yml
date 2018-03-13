@@ -22,18 +22,6 @@
     state: present
 
 
-- name: Check if index page is present
-  stat: path='{{ landingpages_root }}/index.html'
-  register: index
-
-
-- name: Ensure empty index page is present
-  file:
-    path: '{{ landingpages_root }}/index.html'
-    state: touch
-  when: index.stat.exists == False
-
-
 - name: Ensure Yoda landingpage static file directories are present
   file:
     path: '{{ item }}'
@@ -51,6 +39,8 @@
     dest: '{{ item.dest }}'
     mode: 0644
   with_items:
+    - src: 'index.html'
+      dest: '{{ landingpages_root }}/index.html'  
     - src: 'yoda-landingpage.css'
       dest: '{{ landingpages_root }}/static/css/yoda-landingpage.css'
     - src: 'logo-uu.svg'
