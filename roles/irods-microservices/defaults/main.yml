@@ -14,10 +14,10 @@ microservices:
     filename: irods-sudo-microservices-4.1.11_0.2.1-1.rpm
     checksum: sha256:de6ee84607812b96f3ab233e2d9e041d917f5a0e438a9772983b9eeb65a9d479
   irods_uu_microservices:
-    package: irods-uu-microservices-4.1.11_0.5.4-1
-    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/0.5.4/irods-uu-microservices-4.1.11_0.5.4-1.rpm
-    filename: irods-uu-microservices-4.1.11_0.5.4-1.rpm
-    checksum: sha256:c03cdeee5af084e407f73d485250131e74d5cc10f045f3c6bee513cf26aef03c
+    package: irods-uu-microservices-4.1.11_0.6.0-1
+    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/0.2.2/irods-uu-microservices-4.1.11_0.6.0-1.rpm
+    filename: irods-uu-microservices-4.1.11_0.6.0-1.rpm
+    checksum: sha256:5ad9a4d5908a164bcf749e0bf91570e00e1d1453a95c3c79f71cd5aa2a016099
 
 
 # iRODS configuration.
