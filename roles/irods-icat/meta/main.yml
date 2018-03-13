@@ -3,4 +3,5 @@
 
 dependencies:
 - common
+- certificates
 - python-irodsclient
