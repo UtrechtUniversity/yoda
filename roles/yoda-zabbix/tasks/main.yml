@@ -135,7 +135,7 @@
 - name: Ensure right file ownership on Yoda Zabbix rules
   file:
     path: "/etc/irods/yoda-zabbix/{{ item }}"
-    owner: irods	
+    owner: irods
     group: irods
     mode: 0700
   with_items:
@@ -156,3 +156,4 @@
     - monitorDelayedRules.sh
     - monitorPublicationsPending.sh
     - mostRecentReCheck.sh
+    - testUserParam.sh
