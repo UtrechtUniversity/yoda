@@ -43,15 +43,6 @@
   when: ansible_selinux
 
 
-- name: Allow access to port 10050 (Zabbix active checks) in firewall
-  firewalld:
-    port: 10050/tcp
-    permanent: true
-    state: enabled
-    immediate: yes
-  notify: Restart firewall
-
-
 - name: Allow access to port 10051 (Zabbix passive checks) in firewall
   firewalld:
     port: 10051/tcp
