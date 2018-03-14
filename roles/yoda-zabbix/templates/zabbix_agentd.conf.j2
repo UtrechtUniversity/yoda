@@ -43,6 +43,8 @@ LogFile=/var/log/zabbix/zabbix_agentd.log
 # Default:
 # LogFileSize=1
 
+LogFileSize=0
+
 ### Option: DebugLevel
 #	Specifies debug level:
 #	0 - basic information about starting and stopping of Zabbix processes
@@ -94,7 +96,6 @@ LogFile=/var/log/zabbix/zabbix_agentd.log
 # Mandatory: no
 # Default:
 # Server=
-
 ### Option: ListenPort
 #	Agent will listen on this port for connections from the server.
 #
@@ -147,15 +148,13 @@ ServerActive={{ zabbix_server }}
 # Default:
 # Hostname=
 
-Hostname=system.hostname
-
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined. Ignored if Hostname is defined.
 #	Does not support UserParameters or aliases.
 #
 # Mandatory: no
 # Default:
-# HostnameItem=system.hostname
+HostnameItem=system.hostname
 
 ### Option: HostMetadata
 #	Optional parameter that defines host metadata.
@@ -186,8 +185,6 @@ Hostname=system.hostname
 # Range: 60-3600
 # Default:
 # RefreshActiveChecks=120
-
-RefreshActiveChecks=60
 
 ### Option: BufferSend
 #	Do not keep data longer than N seconds in buffer.
@@ -330,7 +327,6 @@ Include=/etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
 # Mandatory: yes, if TLS certificate or PSK parameters are defined (even for 'unencrypted' connection)
 # Default:
 # TLSConnect=unencrypted
-
 TLSConnect=psk
 
 ### Option: TLSAccept
@@ -343,7 +339,6 @@ TLSConnect=psk
 # Mandatory: yes, if TLS certificate or PSK parameters are defined (even for 'unencrypted' connection)
 # Default:
 # TLSAccept=unencrypted
-
 TLSAccept=psk
 
 ### Option: TLSCAFile
@@ -395,7 +390,6 @@ TLSAccept=psk
 # Mandatory: no
 # Default:
 # TLSPSKIdentity=
-
 TLSPSKIdentity=PSK-{{ ansible_fqdn }}
 
 ### Option: TLSPSKFile
@@ -404,5 +398,4 @@ TLSPSKIdentity=PSK-{{ ansible_fqdn }}
 # Mandatory: no
 # Default:
 # TLSPSKFile=
-
 TLSPSKFile=/etc/zabbix/zabbix_agentd.psk
