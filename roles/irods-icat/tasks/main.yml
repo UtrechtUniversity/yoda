@@ -12,9 +12,9 @@
   become: yes
   shell: 'iqstat -a | wc -l'
   register: wc
-  until: wc.stdout > 0
+  until: wc.stdout == "1"
   retries: 5
-  delay: 10
+  delay: 60
   when: irods.stat.islnk is not defined
 
 
