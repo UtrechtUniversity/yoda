@@ -137,7 +137,7 @@
     path: "/etc/irods/yoda-zabbix/{{ item }}"
     owner: irods
     group: irods
-    mode: 0700
+    mode: 0500
   with_items:
     - monitorDelayedRules.r
     - monitorPublicationsPending.r
@@ -148,7 +148,7 @@
     path: "/etc/irods/yoda-zabbix/{{ item }}"
     owner: zabbix
     group: zabbix
-    mode: 0700
+    mode: 0500
   with_items:
     - externalUsersCount.sh
     - internalUsersCount.sh
