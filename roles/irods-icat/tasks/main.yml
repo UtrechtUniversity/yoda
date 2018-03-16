@@ -1,10 +1,16 @@
 ---
 # copyright Utrecht University
 
+- name: Check if iRODS 4.1.11 is installed
+  stat:
+    path: /var/lib/irods/iRODS/irodsctl
+  register: irods_old
+
+
 - name: Check if iRODS 4.2 is installed
   stat:
     path: /var/lib/irods/irodsctl
-  register: irods
+  register: irods_new
 
 
 - name: Check if iRODS delayed rule queue is empty
@@ -15,14 +21,14 @@
   until: wc.stdout == "1"
   retries: 5
   delay: 60
-  when: irods.stat.islnk is not defined
+  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
 - name: Stop iRODS server before upgrade
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/var/lib/irods/iRODS/irodsctl stop'
-  when: irods.stat.islnk is not defined
+  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
 - name: Ensure iRODS iCAT server and database plugin are present
