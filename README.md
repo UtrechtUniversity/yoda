@@ -61,7 +61,7 @@ Upgrade Ansible scripts:
 git pull
 ```
 
-Upgrade YoDa instance:
+Upgrade Yoda instance:
 ```bash
 ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
