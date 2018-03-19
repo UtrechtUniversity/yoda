@@ -3,19 +3,19 @@ Design
 
 Playbook
 --------
-The master playbook for automated deployment of YoDa can be found in [playbook](playbook.yml).
+The master playbook for automated deployment of Yoda can be found in [playbook](playbook.yml).
 It consists of four tier which implements four distinct functional roles:
-* YoDa webportal
+* Yoda webportal
 * iCAT database
 * iCAT server
 * iRODS resource server
 
-### YoDa webportal tier
-The YoDa webportal tier provisions the host with the following:
+### Yoda webportal tier
+The Yoda webportal tier provisions the host with the following:
 * Apache webserver
 * PHP
 * iRODS iCommands & runtime
-* YoDa portal and davrods
+* Yoda portal and davrods
 
 ### iCAT database tier
 The iCAT database tier provisions the host with the following:
@@ -27,7 +27,7 @@ The iCAT server tier provisions the host with the following:
 * iRODS iCAT server & runtime
 * iRODS microservices
 * iRODS resource configuration
-* YoDa rulesets
+* Yoda rulesets
 
 ### iRODS resource server
 The iRODS resource server tier provisions the host with the following:
