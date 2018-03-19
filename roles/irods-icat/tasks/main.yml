@@ -92,7 +92,8 @@
 
 
 - name: Configure iRODS iCAT server
-  shell: sudo python /var/lib/irods/scripts/setup_irods.py
+  become: yes
+  shell: python /var/lib/irods/scripts/setup_irods.py
     < /etc/irods/setup_irods
   args:
     creates: /etc/irods/service_account.config
