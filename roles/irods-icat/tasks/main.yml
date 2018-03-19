@@ -261,7 +261,7 @@
     mode: 0600
 
 
-- name: Ensure irods .ssh directory has strict permissions
+- name: Ensure iRODS .ssh directory has strict permissions
   file:
     path: /var/lib/irods/.ssh
     state: directory
