@@ -101,7 +101,7 @@
     path: /etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
     owner: zabbix
     group: zabbix
-    mode: 0600
+    mode: 0400
 
 
 - name: Ensure yoda-zabbix-sudoers exists
