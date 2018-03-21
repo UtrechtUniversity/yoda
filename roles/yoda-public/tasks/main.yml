@@ -9,3 +9,12 @@
     group: root
     mode: 0644
   notify: Restart Apache webserver
+
+
+- name: Allow public to port for Yoda Public in firewall
+  firewalld:
+    port: '{{ yoda_public_port }}/tcp'
+    permanent: true
+    state: enabled
+    immediate: yes
+  notify: Restart firewall
