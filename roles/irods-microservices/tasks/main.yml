@@ -56,6 +56,5 @@
     owner: "{{ irods_service_account }}"
     group: "{{ irods_service_account }}"
   with_items:
-    - { directory: '/etc/irods', recursive: 'yes' }
     - { directory: '/var/lib/irods', recursive: 'no' }
     - { directory: '/var/lib/irods/plugins', recursive: 'yes' }

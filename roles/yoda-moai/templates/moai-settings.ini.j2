@@ -5,7 +5,11 @@ use = egg:Paste#urlmap
 [app:yoda_moai]
 use = egg:moai
 name = Yoda MOAI Feed
+{% if yoda_public_port != 443 %}
+url = https://{{ yoda_public_fqdn }}:{{ yoda_public_port }}/oai/oai
+{% else %}
 url = https://{{ yoda_public_fqdn }}/oai/oai
+{% endif %}
 admin_email = fb-yoda@uu.nl
 formats = oai_dc mods
 disallow_sets = private
