@@ -31,6 +31,13 @@
   when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
+- name: Stop cron service before iRODS upgrade
+  service:
+    name: crond
+    state: stopped
+  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
+
+
 - name: Ensure iRODS iCAT server and database plugin are present
   package:
     name: '{{ item }}'
@@ -144,6 +151,13 @@
   retries: 5
   delay: 10
   when: ils | failed
+
+
+- name: Start cron service after iRODS upgrade
+  service:
+    name: crond
+    state: started
+  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
 - name: Ensure all users have iRODS read access on /zone/home
