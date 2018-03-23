@@ -118,6 +118,7 @@
       value: "{{ yoda_prefix }}"
     - attribute: org_public_vhost
       value: "{{ yoda_public_fqdn }}"
+      value: "{{ yoda_public_fqdn }}{% if (yoda_public_port is defined) %}:{{ yoda_public_port }}{% endif %}"
     - attribute: org_public_host
       value: "{{ yoda_public_host }}"
     - attribute: org_davrods_anonymous_vhost
