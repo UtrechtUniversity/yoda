@@ -6,10 +6,10 @@ rpm_dest_dir: /tmp
 
 # davrods rpm location and checksum
 davrods:
-  package: davrods-4.2.2_1.3.0-1
-  url: https://github.com/UtrechtUniversity/yoda-ansible/releases/download/1.0rc1/
-  filename: davrods-4.2.2_1.3.0-1.rpm
-  checksum: sha256:9686d3118ec34050a087823d4bccb52a3807d95031ea79f2af5b7e9d70586e24
+  package: davrods-4.2.2_1.4.0-1
+  url: https://github.com/UtrechtUniversity/davrods/releases/download/4.2.2_1.4.0/
+  filename: davrods-4.2.2_1.4.0-1.rpm
+  checksum: sha256:d1ffd5dc56d61bbbae2177d414e48136344eebbe69d47fa9bbc50cc521688c0e
 
 yoda_davrods_fqdn: data.yoda.test           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_port: 443
