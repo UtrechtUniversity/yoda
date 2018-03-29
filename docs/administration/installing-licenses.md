@@ -8,14 +8,14 @@ needs to be pure ASCII to assure it will be displayed correctly on every Operati
 disk. UTF-8 is not an option because browsers will display a .txt file wih the windows-1252 encoding. The ANSI subset of
 the windows-1252 encoding is not an option, because MAC and linux will not correctly detect ANSI in a .txt file if opened
 from the web disk. In irods-ruleset-research/tools/licenses you will find three licenses with URIs as an example. To put
-these into irods the first time do the following:
+these into iRODS the first time do the following:
 
 ```bash
 iput -r /etc/irods/irods-ruleset-research/tools/licenses /${RODSZONE}/yoda
 ```
 
 To add extra licenses you will need to upload the .txt and .uri seperately. Replace ${LICENSE} with the name of the license
-as it is defined in the XSD and ${RODSZONE} with the name of the irods zone.
+as it is defined in the XSD and ${RODSZONE} with the name of the iRODS zone.
 
 ```bash
 iput "${LICENSE}.txt" "/${RODSZONE}/yoda/licenses/${LICENSE}.txt"

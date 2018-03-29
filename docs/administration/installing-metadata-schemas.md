@@ -48,7 +48,7 @@ irule -F install-default-xml-for-metadata.r '*resc="demoResc"' '*src="/tmp/xml"'
 
 If you want to install individual files without the script then you can use the iput command. If you install the file as
 the name of a category it will become the schema for that category and that category alone. To update existing files
-use the force flag "-f". See the example below. Please substitute ${RODSZONE} for the current irods Zone and ${CATEGORY} for
+use the force flag "-f". See the example below. Please substitute ${RODSZONE} for the current iRODS Zone and ${CATEGORY} for
 the category you want to install. This is legal bash if you define the CATEGORY and RODSZONE environment variables.
 
 ```bash

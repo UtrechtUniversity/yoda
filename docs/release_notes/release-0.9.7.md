@@ -67,7 +67,7 @@ crontab like the example below.
 ```
 To workaround a memory leak in the irodsReServer iRODS needs to be restarted
 regularly. The restartifirodsisidle.sh script from the irods-ruleset-uu/tools
-directory is meant to restart irods only if no jobs are running. It could be
+directory is meant to restart iRODS only if no jobs are running. It could be
 included in a cronjob or invoked by monit using irodsReServer.monit also found
 in the irods-ruleset-uu/tools directory.
 

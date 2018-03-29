@@ -27,6 +27,6 @@
 
 ## Known Issues
 - when the datamanager saves updated metadata in the vault, the portal shows the old metadata. Saving the changes in the vault takes at most 1 minute. Close and re-open the metadata to see if your changes are shown, before taking further actions (e.g. approve for publication)
-- The irods server will get slower over time due to a memory leak. A workaround is suggested above in the upgrade section. iRods 4.1.11 (included is yoda 1.0) may have solved this problem.
+- The iRODS server will get slower over time due to a memory leak. A workaround is suggested above in the upgrade section. iRODS 4.1.11 (included is yoda 1.0) may have solved this problem.
 - When storage data is available, different tiers are assigned, and all resources are then reset to the same tier, the statistics module may show a blank page
 - Ordering of data in tables is not working. Clicking column sort headers have been disabled and are not shown.
