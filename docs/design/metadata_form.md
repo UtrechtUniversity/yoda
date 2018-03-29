@@ -576,3 +576,386 @@ To add an overall label to a subproperty level compound field add <label> tag ju
       </Properties>
     </Creator>
 ```
+
+## Technical implementation
+metadata_form_model contains all required functionality.
+
+The main function is: getFormElements
+It collects all required data and organises in one resulting array $this->presentationElements
+
+This array forms the basis for all further actions like presentation, validation and completeness checking.
+
+### Steps:
+Depending on category, load:
+1. corresponding xsd
+Data held in one dimensonal array, flattened copy of the hierarchical data, to be indexed by 'CONTRIBUTOR_PROPERTIES_'
+(which can be easily accomplished when stepping through the formelements)
+
+2. corresponding formelements
+This forms the base for all steps.
+Formelements lays down the structure of the elements
+
+3. yoda-metadata.xml
+The actual data as entered by a researcher.
+
+Each element shown/required in the front-end is represented as an element class in the array fed to the front end.
+
+**key =>**
+Name of the element that is used in the attribute "name" for an input element in the metadata form.
+
+The name of an element is fully prefabricated for the frontend by the backend.
+This is done to be able to control the structural integrity as, on different levels in a element structure, multiplication can take place within the frontend (see frontend handling as well)
+
+The following example shows two levels of multiplicity:
+![Image of creator of datapackage with subproperties (ORCID and identifier  12345)](http://via.placeholder.com/750x150)
+
+A ‘Creator’ structure can be cloned in its entirity
+Within that structure ‘Person identifier’ information can be cloned as well.
+All configured within the corresponding XSD.
+
+The backend prefabricates the name-attributes of the elements, i.e. the key, conform their hierarchical place in this structure, like:
+
+```Creator[0][Properties][Person_Identifier][0][Name_Identifier]```
+
+A second structure would be:
+
+```Creator[1][Properties][Person_Identifier][0][Name_Identifier]```
+
+And a second Person Identifier compound within that second structure would be:
+
+```Creator[1][Properties][Person_Identifier][1][Name_Identifier]```
+
+*Why is the name of an element even important?*
+
+The name attribute of an element is used to define the structure of data that is posted to the backend.
+In setting this right initially, and after cloning keeping this correct, the backend is fed with a representation of the data as entered by the user it can process.
+This will eventually lead to a correctly filled yoda-metadata.xml and metadata
+
+**value =>** value for the element
+
+**label =>** title for the element
+
+**helpText =>** tooltip for the element
+
+**type => **
+- Data input types:
+  - date
+  - text
+  - numeric
+  - date
+  - etc.
+
+- Open/close tags
+The open/close tags are indicators for the frontend for designating blocks of data. These do not become interactive elements but the sole purpose is formatting
+1. for designating properties of a subproperty structure.
+2. for designating a compound structure.
+
+
+**mandatory =>**
+indicates whether the given element is mandatory for submission to vault.
+
+**multipleAllowed =>**
+indicates whether element can be recorded multiple times
+
+**elementSpecifics =**>
+- Placeholder for options when element is a select.
+- maxLength of a text field
+Created in a open way so future additions can be accommodated easily in here
+
+#### Regarding subproperties:
+- **subPropertiesRole**
+the role of current element in the subproperty structure
+{subPropertyStartStructure, subPropertyStartStructure, subProperty}
+This for the frontend to be able to distinghuish actual supProperties (i.e. Elements) from indicators that merely support the frontend displaying and functioning correctly
+
+- **subPropertiesBase**
+the name of the highest level key of the struct
+
+- **subPropertiesStructID**
+an ID so the frontend can distinguish structs
+To be able to have the frontend minimize or maximize a specific structure
+
+#### Regarding compounds:
+- **compoundMultipleAllowed**
+This inidicates whether given element is part of a compound that is cloneable.
+
+- **compoundFieldCount**
+The total amount of fields that are part of this compound
+
+- **compoundFieldPosition**
+The M-th element in a range of N.
+This is mainly for the front end to know which element is first and last. Mainly in order to be able to do some ‘esthetics’.
+Position is zero
+
+- **compoundBackendArrayLevel**
+This is useful for the frontend to know which level cloning takes place.
+It is the level on which the counter has to be changed in order to keep track of cloning in the name-attribute of a cloned element.
+Cloning (a frontend action) can be done where multiplicity is allowed.
+The backend relies on the names of the elements in the frontend for knowing how data is linked together.
+The frontend is aided in the complex task of deriving element-names when determining a new (increased) element name for a cloned element by the use of  compoundBackendArrayLevel:
+
+*Frontend management of counters*
+The frontend holds one global counter.
+This counter is incremented each time it is used. I.e each time a user performs a clone action.
+
+There is no required logic in using the numbers. Not on any level.
+Main principal is that the next to be used number is unique on that level.
+
+```php
+Related_Datapackage[0]Compound[0]Name = Test
+Related_Datapackage[0]Compound[0]ID = 1
+```
+
+Both levels are multiple.
+There can be N Related datapackages present as metadata.
+And within each datapackage multiple compounds, holding name and id, can exist.
+
+The indicator compoundBackendArrayLevel on start-combination level, ie Compound level, indicates how deep (i.e. Which counter) has to be changes when cloning on that level.
+
+
+- **elementRouting**
+In array form gives the preceding elements required to get to current element hierarchy wise.
+This is a represention in array form where:
+```
+[0] = root element
+[...] =
+[n] = actual element
+```
+
+This is useful for being able to construct the keyname (required to be used as index in xsdElements array) of hierarchically upper elements.
+Knowing this order can assist investigating mandatory-indications of parents.
+
+For instance to get to element 'name' in a given structure the following elements are passed:
+
+- Preceding_Datapackage
+- Properties
+- Combination
+- Name
+
+Which will lead to: Preceding_Datapackage_Properties_Combination_Name
+
+#### Derived/implicit indications:
+
+Is a compound?
+```compoundFieldCount > 0```
+
+Is a subproperty structure?
+```subPropertiesBase is gevuld ```
+
+Is a compound within a subpropertyStructure?
+```subpropertiesBase is gevuld && compoundFieldCount > 0```
+
+### Presentation
+The array of element classes holds an element for all elements as defined in formelements-file.
+However, when an element has multiple values, it is present within the array n times as well.
+So each value is represented by an entry.
+Thus making it easy to validate for completeness in all its forms. (see further)
+
+It also creates the possibility in such a way that it is easy for the frontend to accommodate cloning and all that is involved cloning in such a way that it is easy for the backend to retrieve regarding all cloneable levels of data.
+As structures can be cloned in full, but also partly like for instance elements within the structure. Or compounds within the structure.
+This requires effective preparation beforehand so the backend gets fed with posted data properly.
+
+### Presentation read-only
+The data in yoda-metadata.xml can be presented in readonly mode.
+This occurs when
+- current folder is locked
+- a parent folder is locked
+- current folder is submitted for the vault
+- The current user has readonly access
+
+#### In vault
+When looking at the metadata in the vault, in fact the same functionality is used to present the contents the metadata for a datapackage.
+
+## Processing of posted metadata
+
+### Processing of posted metadata in the research workspace by the researcher
+
+There are two steps involved when the researcher submits the data package to the vault
+
+1. save data in yoda-metadata.xml for the datapackage
+Based upon the form definition in formelements.xml the posted metadata is matched and saved into yoda-metadata.xml in the corresponding folder.
+
+  - Data that is not 'known', i.e. not defined in formelements.xml is NOT saved.
+  - Incomplete subproperty structures are NOT saved in this situation.
+
+  - Data that is sent as empty strings will not be saved.
+    This to keep the metadata that is registered in iCat as effective as possible and not be fully drained with empty metadata values
+
+2. save data from yoda-metadata.xml into AVU's for the datapackage
+   Writing the metadata-xml file triggers an iRODS-policy to process the content of the file (in XML format), via a stylesheet, into AVU's.
+   The stylesheet 'flattens' the hierarchical XML formatted data so all values have an attribute like where all xml tags are places on one line, like:
+   *Contributor_Properties_Identifier_Person_Identifier_Scheme
+    elaborated with numeric indexes if multiplicity is involved*
+
+    This derived from hierarchical structure:
+    ```
+<Contributor>
+     <Properties>
+          <Identifier_Person>
+                 <Identifier_Scheme>
+    ```
+   First all the previous user metadata is removed, then the new metadata is indexed. After this process the user can use the search function to find the data package using its metadata.
+
+   Step 2 also occurs when a researcher places a yoda-metadata.xml file on the web disk.
+
+### Processing of posted metadata in the vault workspace by the datamanager
+The metadata form is also used for editing of metadata when the data package has been accepted and copied to the vault.
+
+A datamanager, a yoda-user that is member of a datamanager-group for the same category, can still edit metadata for the package that is already in the vault.
+However, the data as originally entered by the researcher and accepted for the vault by a datamanager
+is never compromised.
+
+The presented metadata form within the vault uses the same technique as in the dynamic storage space.
+Difference is that the newly added data is not overwriting the data in yoda-metadata.xml.
+The metadata form saves its data in the vault in the corresponding folder but always with a unique name. Thus safeguarding earlier or original metadata.
+
+## Validation of metadata before acceptance in vault
+
+When placing a request to submit a datapackage to the vault, all corresponding metadata is validated first:
+
+1. validated against the XSD for the category (or default)
+   This ensures correctness of data types, options etc.
+
+2. Checked for completeness as configured in the formelements xml (of the current category)
+   - All mandatory lead elements must be present
+   - Check completeness of subproperty and compound structures
+
+*Completeness of a subproperty structure*
+
+Subproperties cannot exist without a lead/main property being present.
+I.e. A subproperty structure without lead information is regarded as incomplete information.
+As a result the corresponding datapackage will not be accepted for the vault.
+
+*A subproperty can be configured as being mandatory.*
+
+However, this rule is only valid when the corresponding lead element is filled.
+In other words, eventhough a mandatory rule exists on a subproperty, the actual subproperty-structure could still be configured as being none-mandatory for the vault.
+
+*Completeness of a compound field*
+
+Compound are constructed of separate fields but can be regarded as one element.
+If one element of a compound field holds a value the other n fields should hold a value as well.
+
+* Completeness of a compound field as a subproperty*
+Compound fields within a subproperty structure follow the same rules as on highest level.
+I.e. when one element is filled, all elements must be filled.
+
+
+## Mapping of yoda-metadata.xml
+
+When a datapackage with yoda-metadata.xml is published it will be processed and converted to three different forms. If changes are made to the Xsd or manditoriness in the formelements, these processes could fail.
+
+### XSLT for landing page
+The landing page is generated with a extensible stylesheet. Every new or changed element needs a template definition and a place in the group definition. This stylesheet is named default2landingpage.xsl or named after category it applies to. For example: ilab2landingpages.xsl.  This stylesheet should be put in the /zone/yoda/xsl collection.
+
+###XSLT for DataCite
+For DataCite a XML conforming to the DataCite Schema v4 is generated with an extensible stylesheet. The mapping is documented outside this document. This stylesheet is named default2datacite.xsl or named after the category it applies to. For example: ilab2datacite.xsl. This stylesheet should be put in the /zone/yoda/xsl collection.
+
+### OAI-PMH importer
+The OAI-PMH stream is updated by loading the yoda-metadata.xml with a python script. This python script only looks for a couple of elements that map to Dublin core. Any changes to these fields will omit this metadata from the stream. The mapping is documented outside of this document.
+
+
+## Purpose of flexdates
+###The metadata form
+
+‘Flexdate’ controls in the medataform allow for flexible addition of a date.
+This type of control no longer rigidly accepts ```YYYY-MM-DD``` patterns only.
+For this moment the accepted patters are:
+```
+YYYY
+YYYY-MM
+YYYY-MM-DD
+```
+Hence the name ‘flexdate’.
+
+In the frontend a ‘flexdatepicker’ will allow for dates to be added with the following pattern:
+
+```YYYY(-MM(-DD))```
+
+![Image of collection process field with start date and end date](http://via.placeholder.com/750x150)
+
+In the frontend the date picker is an input text field with class ‘flexdate’.
+This will invoke allowing for the mentioned patterns only.
+
+#### Conditions
+A year must always be present.
+This may be followed by month or month/day.
+
+### Formelements
+Flexdate is considered a special configuration of a date field.
+As it is not a datatype that can be directly derived from xsd, this configuration resides in formelements
+This special occurrence of a datepicker requires an extra parameter to be added ‘flexdata=”true”’
+
+Formelements:
+```xml
+<Embargo_End_Date flexdate='true'>
+    <label>Embargo End Date</label>
+    <help>If there is an embargo on the data package; when will it end?</help>
+</Embargo_End_Date>
+```
+
+For flexdates the patterns allowed are defined within the xsd for the corresponding field.
+
+#### Determining the datatype of a control
+Form control types could always be determined directly by the type definition in the xsd.
+For a flexdate there is no direct element type in the XSD that can represent a flex date including the wanted validation requirements.
+In order to make flexdates work it is required to add the wanted data types as extra elements on a deeper level by adding an extra complexType level.
+Within the xsd validation of data entered by researcher is dealt with by creating a complexType element consisting of 3 (for this moment) elements.
+Each of these element is of the type that coincides with the three allowed date formats:
+```
+xs:date – full date value (YYYY-MM-DD)
+xs:gYear – date value only holding a year (YYYY)
+xs:gYearMonth  - date value only holding year and month (YYYY-MM)
+```
+
+**XSD:**
+```xml
+<xs:element name="Embargo_End_Date" minOccurs="0" maxOccurs="1">
+  <xs:complexType>
+    <xs:choice>
+     <xs:element name="Embargo_End_Date_YYYY_MM_DD" type="xs:date" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Embargo_End_Date_YYYY" type="xs:gYear" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Embargo_End_Date_YYYY_MM" type="xs:gYearMonth" minOccurs="0" maxOccurs="1"/>
+    </xs:choice>
+  </xs:complexType>
+</xs:element>
+```
+
+Each datefield can have its own definition regarding the allowed patterns.
+At this moment the patterns are restricted to the patterns:
+```
+YYYY-MM-DD
+YYYY-MM
+YYYY
+```
+
+To be able to handle other patterns the software has to be adjusted!
+This as the backend of the portal determines how to save the data in yoda-metadata.xml
+
+*xs:choice instead of xs:sequence*
+
+The nature of the solution is that only one pattern is allowed.
+To be able to achieve this the xsd uses xs:choice in which a list resides of possible patterns.
+Only one can be used.
+This as opposed to xs:sequence which will allow for n elements of data to be used.
+xs:choice
+
+*No generically defined complex type in XSD*
+
+It would have been logical to define 1 complex type to be used for each date requiring flexibility.
+For instance:
+```xml
+<xs:element name="YYYY_MM_DD" type="xs:date" minOccurs="0" maxOccurs="1"/>
+<xs:element name="YYYY" type="xs:gYear" minOccurs="0" maxOccurs="1"/>
+<xs:element name="YYYY_MM" type="xs:gYearMonth" minOccurs="0" maxOccurs="1"/>
+```
+However, when validating yoda-metadata.xml within the portal against the xsd, if a value is not corresponding to the set xsd-schema, the error message is not fully qualifying the origin.
+Therefore, for a researcher, it is not clear where the actual error is taking place. I.e. the error message from the portal is not informative.
+
+*Extra level in XSD where flexdates are concerned, not in formelements*
+
+Formelements and XSD were always in sync regarding presence of elements in both files. Each element in formelements corresponded to an element in the corresponding xsd.
+
+*Flexdates require an extra level within the XSD.*
+
+In a way this level consists of a declaration of date pattern options where effectively only one will be used (by the portal).This implies n (where n=3 at the moment) elements within XSD where only one counterpart (the corresponding date element) exists within formelements.
