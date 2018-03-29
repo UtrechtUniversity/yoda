@@ -53,7 +53,7 @@ To allow different communities to share the same Yoda implementation the concept
 To enable ordinary rodsusers to create groups and manage members in groups, without promoting them to rodsadmin, the sudo microservices have been developed. They give temporary admin privileges when an action meets all criteria set in policies. Technically this means that a sudo microservice will set the AUTH flags in the iRODS rei structure to run an action as admin. Care is taken to prevent the use of these services outside of the proper context.
 
 
-## How are the roles in yoda implemented on top of the iRODS permission system?
+## How are the roles in Yoda implemented on top of the iRODS permission system?
 *Normal* users are added to a group with the same name as its workspace. Example: normal users of *research-breakthrough* are added to the rodsgroup *research-breakthrough*. During group creation by the group-manager this group will get permission 'own' on the /{rodsZone}/home/research-breakthrough workspace and inheritance is enabled.
 
 A *reader* cannot be added to the main group, because that will grant them 'own' permissions. Instead a shadow group is created prefixed with 'read-'. This group gets read permissions on the 'research-' or 'intake-' group of the same basename. Inheritance is enabled

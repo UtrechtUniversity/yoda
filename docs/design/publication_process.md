@@ -15,7 +15,7 @@ Step 1: Load configuration from UUSYSTEMCOLLECTION
 - DataCite server
 - public server
 - moai server
-- yoda prefix
+- Yoda prefix
 - DataCite prefix
 
 Step 2: Generate Yoda DOI
@@ -46,7 +46,7 @@ Step 6: Check if DOI is in use
 	- Add DOI to metadata of Vault Package
 
 Step 7: Send DataCite XML
-- API request to metadata endpoint with Datacite XML
+- API request to metadata endpoint with DataCite XML
 - put result in state
 - On request failure:
 	- Flag package for retry
@@ -73,7 +73,7 @@ Step 10: Secure copy landing page to public server
 	- Flag package for retry
 
 
-Step 11: Secure copy metadata for YODA MOAI server
+Step 11: Secure copy metadata for Yoda MOAI server
 - Use secure copy to push combi XML to MOAI server
 - On failure:
 	- Flag package for retry

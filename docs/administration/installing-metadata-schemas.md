@@ -8,7 +8,7 @@ ilab.xsd
   A schema describing the elements and their type of a yoda-metadata.xml
 
 ilab.xml
-  An xml file describing the formelements and grouping of elements corresponding to the elements in the XSD
+  An XML file describing the formelements and grouping of elements corresponding to the elements in the XSD
 
 ilab.xsl
   A stylesheet to convert a yoda-metadata.xml to a AVU XML that can be loaded into iRODS with msiLoadMetadataFromXML(Buf)
@@ -35,7 +35,7 @@ Parameter  Default value                                Description
 resc	   irodsResc	                                Default resource to put the files into
 src        /etc/irods/irods-ruleset-research/tools/xml  Source directory of files
 default    ilab                                         Category to use as default.
-update     0                                            Update existing xsd, xml, xsl (1) or keep existing files (0)
+update     0                                            Update existing XSD, XML, XSL (1) or keep existing files (0)
 =========  ===========================================  ============================================================
 
 
@@ -60,4 +60,4 @@ iput -f ${CATEGORY}2landingpage.xsl /${RODSZONE}/yoda/xsl/${CATEGORY}2landingpag
 ```
 
 There is a lot of opportunity for mistakes as the commands are so similar, but different. One letter difference could
-put an xsl in the xsd collection for example.
+put an XSL in the XSD collection for example.

@@ -35,8 +35,8 @@ A metadata form is constructed with the contents of following files.
 
 **formelements.xml**
 
-An xml file that mainly holds the structural definition of the metadata form as well as mandatoriness.
-This file has been designed for the yoda implementation and is not based on any standard apart from XML.
+An XML file that mainly holds the structural definition of the metadata form as well as mandatoriness.
+This file has been designed for the Yoda implementation and is not based on any standard apart from XML.
 
 **an XSD file**
 
@@ -211,7 +211,7 @@ Location: /zone/yoda/xsd
 
 ### Element types
 Any form consists of input elements or fields.  
-In yoda the metadata form is comprised of the following elements:
+In Yoda the metadata form is comprised of the following elements:
 
 - text elements: simple length restricted input elements for text, numeric and uri’s
 - multiline text elements also known as text area’s
@@ -587,7 +587,7 @@ This array forms the basis for all further actions like presentation, validation
 
 ### Steps:
 Depending on category, load:
-1. corresponding xsd
+1. corresponding XSD
 Data held in one dimensonal array, flattened copy of the hierarchical data, to be indexed by 'CONTRIBUTOR_PROPERTIES_'
 (which can be easily accomplished when stepping through the formelements)
 
@@ -783,7 +783,7 @@ Based upon the form definition in formelements.xml the posted metadata is matche
 
 2. save data from yoda-metadata.xml into AVU's for the datapackage
    Writing the metadata-xml file triggers an iRODS-policy to process the content of the file (in XML format), via a stylesheet, into AVU's.
-   The stylesheet 'flattens' the hierarchical XML formatted data so all values have an attribute like where all xml tags are places on one line, like:
+   The stylesheet 'flattens' the hierarchical XML formatted data so all values have an attribute like where all XML tags are places on one line, like:
    *Contributor_Properties_Identifier_Person_Identifier_Scheme
     elaborated with numeric indexes if multiplicity is involved*
 
@@ -816,7 +816,7 @@ When placing a request to submit a datapackage to the vault, all corresponding m
 1. validated against the XSD for the category (or default)
    This ensures correctness of data types, options etc.
 
-2. Checked for completeness as configured in the formelements xml (of the current category)
+2. Checked for completeness as configured in the formelements XML (of the current category)
    - All mandatory lead elements must be present
    - Check completeness of subproperty and compound structures
 
@@ -883,7 +883,7 @@ This may be followed by month or month/day.
 
 ### Formelements
 Flexdate is considered a special configuration of a date field.
-As it is not a datatype that can be directly derived from xsd, this configuration resides in formelements
+As it is not a datatype that can be directly derived from XSD, this configuration resides in formelements
 This special occurrence of a datepicker requires an extra parameter to be added ‘flexdata=”true”’
 
 Formelements:
@@ -894,13 +894,13 @@ Formelements:
 </Embargo_End_Date>
 ```
 
-For flexdates the patterns allowed are defined within the xsd for the corresponding field.
+For flexdates the patterns allowed are defined within the XSD for the corresponding field.
 
 #### Determining the datatype of a control
-Form control types could always be determined directly by the type definition in the xsd.
+Form control types could always be determined directly by the type definition in the XSD.
 For a flexdate there is no direct element type in the XSD that can represent a flex date including the wanted validation requirements.
 In order to make flexdates work it is required to add the wanted data types as extra elements on a deeper level by adding an extra complexType level.
-Within the xsd validation of data entered by researcher is dealt with by creating a complexType element consisting of 3 (for this moment) elements.
+Within the XSD validation of data entered by researcher is dealt with by creating a complexType element consisting of 3 (for this moment) elements.
 Each of these element is of the type that coincides with the three allowed date formats:
 ```
 xs:date – full date value (YYYY-MM-DD)
@@ -935,7 +935,7 @@ This as the backend of the portal determines how to save the data in yoda-metada
 *xs:choice instead of xs:sequence*
 
 The nature of the solution is that only one pattern is allowed.
-To be able to achieve this the xsd uses xs:choice in which a list resides of possible patterns.
+To be able to achieve this the XSD uses xs:choice in which a list resides of possible patterns.
 Only one can be used.
 This as opposed to xs:sequence which will allow for n elements of data to be used.
 xs:choice
@@ -949,12 +949,12 @@ For instance:
 <xs:element name="YYYY" type="xs:gYear" minOccurs="0" maxOccurs="1"/>
 <xs:element name="YYYY_MM" type="xs:gYearMonth" minOccurs="0" maxOccurs="1"/>
 ```
-However, when validating yoda-metadata.xml within the portal against the xsd, if a value is not corresponding to the set xsd-schema, the error message is not fully qualifying the origin.
+However, when validating yoda-metadata.xml within the portal against the XSD, if a value is not corresponding to the set XSD-schema, the error message is not fully qualifying the origin.
 Therefore, for a researcher, it is not clear where the actual error is taking place. I.e. the error message from the portal is not informative.
 
 *Extra level in XSD where flexdates are concerned, not in formelements*
 
-Formelements and XSD were always in sync regarding presence of elements in both files. Each element in formelements corresponded to an element in the corresponding xsd.
+Formelements and XSD were always in sync regarding presence of elements in both files. Each element in formelements corresponded to an element in the corresponding XSD.
 
 *Flexdates require an extra level within the XSD.*
 

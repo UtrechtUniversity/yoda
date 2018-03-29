@@ -23,10 +23,10 @@
 - ansible can be used for deployment and updates
 - terms and agreement text files (html) have to be installed by the administrator. The most recent file will be used
 - license files (e.g. CC-BY.txt), with the license text and uri files (e.g. "https://creativecommons.org/licenses/by/4.0/legalcode" have to be installed by the administrator
-- default xsd, schema-for-formelements.xsd, schema-for-xsd.xsd, xml, default.xsl, default2landingpage.xsl and default2datacite.xsl have to be installed by the administrator
+- default XSD, schema-for-formelements.xsd, schema-for-xsd.xsd, XML, default.xsl, default2landingpage.xsl and default2datacite.xsl have to be installed by the administrator
 
 ## Known Issues
 - when the datamanager saves updated metadata in the vault, the portal shows the old metadata. Saving the changes in the vault takes at most 1 minute. Close and re-open the metadata to see if your changes are shown, before taking further actions (e.g. approve for publication)
-- The iRODS server will get slower over time due to a memory leak. A workaround is suggested above in the upgrade section. iRODS 4.1.11 (included is yoda 1.0) may have solved this problem.
+- The iRODS server will get slower over time due to a memory leak. A workaround is suggested above in the upgrade section. iRODS 4.1.11 (included is Yoda 1.0) may have solved this problem.
 - When storage data is available, different tiers are assigned, and all resources are then reset to the same tier, the statistics module may show a blank page
 - Ordering of data in tables is not working. Clicking column sort headers have been disabled and are not shown.
