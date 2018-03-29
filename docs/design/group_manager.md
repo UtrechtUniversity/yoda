@@ -21,7 +21,7 @@ datamanager
 
 
 ## Yoda workspaces
-Within a Yoda community multiple workspaces can be created of different types. They are prefixed to indicate this type. Every workspace is located in the /{rodsZone}/home collection. Davrods and the research browser have this location as start location.
+Within a Yoda community multiple workspaces can be created of different types. They are prefixed to indicate this type. Every workspace is located in the `/{rodsZone}/home` collection. Davrods and the research browser have this location as start location.
 
 research
 > Collaboration workspace for a research group. No restrictions on the organization of data in folders. Metadata can be added to a folder. When all required metadata has been added a folder can be archived.
@@ -54,7 +54,7 @@ To enable ordinary rodsusers to create groups and manage members in groups, with
 
 
 ## How are the roles in Yoda implemented on top of the iRODS permission system?
-*Normal* users are added to a group with the same name as its workspace. Example: normal users of *research-breakthrough* are added to the rodsgroup *research-breakthrough*. During group creation by the group-manager this group will get permission 'own' on the /{rodsZone}/home/research-breakthrough workspace and inheritance is enabled.
+*Normal* users are added to a group with the same name as its workspace. Example: normal users of *research-breakthrough* are added to the rodsgroup *research-breakthrough*. During group creation by the group-manager this group will get permission 'own' on the `/{rodsZone}/home/research-breakthrough` workspace and inheritance is enabled.
 
 A *reader* cannot be added to the main group, because that will grant them 'own' permissions. Instead a shadow group is created prefixed with 'read-'. This group gets read permissions on the 'research-' or 'intake-' group of the same basename. Inheritance is enabled
 

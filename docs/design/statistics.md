@@ -20,7 +20,7 @@ org_storage_data_month12
 ```
 Thus creating a full year cyclic buffer.
 
-Per entry, i.e. for a group every month, each metadata-entry holds category, tier and  storage information in a JSON format ['Categoryname', 'Tiername', '100'].
+Per entry, i.e. for a group every month, each metadata-entry holds category, tier and  storage information in a JSON format ``['Categoryname', 'Tiername', '100']``.
 The frontend steps into this cyclic buffer starting from current month backward.
 Per month the front end gets tiername and storage data in a total array divided in
 tiername, months and storage.
