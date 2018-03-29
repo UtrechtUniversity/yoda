@@ -1,7 +1,7 @@
 # Folder Locking mechanism
 To prevent modification of a folder in the research area, a researcher can use the lock function. This will catch attempts to write or remove data to that folder
 until the folder is unlocked again. The same mechanism is used to prevent modification during the status transitions needed to put a folder in to the vault. The
-iRODS ACL system could not be used, because researcher should be able to lock/unlock a folder themselves and not rely on an admin to do so. This document describes
+iRODS ACL system could not be used, because researcher should be able to lock/unlock a folder themselves and not rely on an administrator to do so. This document describes
 the technical implementation of the locking mechanism in the research ruleset.
 
 
@@ -22,10 +22,9 @@ users from putting new files into a locked collection the files are removed in t
 
 
 ## Setting and removing locks
-The locks are set and removed with the iiFolderLockChange rule in the iiFolderStatusTransition.r file. This rule should not be directly run, but triggered from folder status transitions. Please refer to the folder status design document for details on which transition should lock the folder. The rules in iiFolderStatusTransitions.r called by the frontend to initiate a status change will attempt a metadata change on the org_status attribute. This will trigger an metadata PEP, which will run the lock change when the current user is allowed to. Every folder status transition is checked for preconditions by the iiCanModifyFolderStatus rule in iiPolicyChecks.r. The flow chart below shows this process.
+The locks are set and removed with the iiFolderLockChange rule in the iiFolderStatusTransition.r file. This rule should not be directly run, but triggered from folder status transitions. Please refer to the folder status design document for details on which transition should lock the folder. The rules in iiFolderStatusTransitions.r called by the front-end to initiate a status change will attempt a metadata change on the org_status attribute. This will trigger an metadata PEP, which will run the lock change when the current user is allowed to. Every folder status transition is checked for preconditions by the iiCanModifyFolderStatus rule in iiPolicyChecks.r. The flow chart below shows this process.
 
 
 .. image:: iiFolderLock.png
 
-
-When the locking fails, the modification of the org_status change will be interrupted by calling msiOprDisallowed. For the rules called by the frontend the errors are catched and returned with statusInfo.
+When the locking fails, the modification of the org_status change will be interrupted by calling msiOprDisallowed. For the rules called by the front-end the errors are caught and returned with statusInfo.
