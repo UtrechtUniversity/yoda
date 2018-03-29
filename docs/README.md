@@ -10,8 +10,10 @@ In this repository you can find documentation on [administration tasks](administ
 ## Software design
 - [Group manager](design/group_manager.md)
 - [Locking mechanism](design/locking_mechanism.md)
+- [Metadata form](design/metadata_form.md)
 - [Publication process](design/publication_process.md)
 - [Vault process](design/vault_process.md)
+- [Statistics](design/statistics.md)
 
 ## Release notes
 - [release 1.2](release_notes/release-1.2.md)
