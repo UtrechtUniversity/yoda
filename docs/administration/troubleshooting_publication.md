@@ -1,17 +1,15 @@
-How to deal with hanging publications
-=====================================
+# How to deal with hanging publications
 
 When a publication stays in Approved status for an extended period of time (longer than cronjob interval) something probably went
 wrong. Here are some troubleshooting hints.
-
 
 First look at `job_process-vault-status-transitions.log` in `/var/lib/irods/iRODS/server/log`. It will list the output of the cronjob. Unless the irodsAgent segfaulted it should show a line of the status returned of the iiProcessPublication rule.
 
 
 - When a publication succeeds it will return status OK.
 - When the publication process has catched an error, but has no recovery process it will return "Unrecoverable" as status.
-- When the whole process was interrupted at a time the error could not be catched, the status will stay at "Processing".
-- When the publication process encountered a DOI collission it will set status to "Retry" and reset the generated random ID.
+- When the whole process was interrupted at a time the error could not be caught, the status will stay at "Processing".
+- When the publication process encountered a DOI collision it will set status to "Retry" and reset the generated random ID.
 - When the publication process encounters connectivity problems with datacite or the public server it will set the status to Retry
 
 
@@ -29,7 +27,7 @@ When the problem is caused by invalid metadata, check the value of org_publicati
 
 When the org_publication_status is "Retry" the publication process will be retried until success. Check status.datacite.org if you
 suspect a datacite problem. Publications will fail if the API servers are down.  Check the ability of the rods user to set up a ssh
-connection with the inbox user on the public yoda server. When troubleshooting was successful the publication process will skip the subtasks
+connection with the inbox user on the public Yoda server. When troubleshooting was successful the publication process will skip the subtasks
 before the failure and continue.
 
 
