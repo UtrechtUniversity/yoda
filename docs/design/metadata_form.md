@@ -860,7 +860,7 @@ When a datapackage with yoda-metadata.xml is published it will be processed and 
 ### XSLT for landing page
 The landing page is generated with a extensible stylesheet. Every new or changed element needs a template definition and a place in the group definition. This stylesheet is named default2landingpage.xsl or named after category it applies to. For example: ilab2landingpages.xsl.  This stylesheet should be put in the /zone/yoda/xsl collection.
 
-###XSLT for DataCite
+### XSLT for DataCite
 For DataCite a XML conforming to the DataCite Schema v4 is generated with an extensible stylesheet. The mapping is documented outside this document. This stylesheet is named default2datacite.xsl or named after the category it applies to. For example: ilab2datacite.xsl. This stylesheet should be put in the /zone/yoda/xsl collection.
 
 ### OAI-PMH importer
