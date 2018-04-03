@@ -125,11 +125,13 @@
 - name: Copy Yoda Zabbix rules
   shell: "cp /etc/irods/yoda-zabbix/src/*.r /etc/irods/yoda-zabbix/"
   when: zabbix_repo.changed
+  notify: Restart Zabbix agent
 
 
 - name: Copy Yoda Zabbix scripts
   shell: "cp /etc/irods/yoda-zabbix/src/*.sh /etc/irods/yoda-zabbix/"
   when: zabbix_repo.changed
+  notify: Restart Zabbix agent
 
 
 - name: Ensure right file ownership on Yoda Zabbix rules
