@@ -85,6 +85,7 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 
 **Step 13:** the vault package is given ```PUBLISHED``` status.
 
+![Publication flow](img/publication-flow.png)
 
 # Depublication process
 This is very similar to the publication process. The DOI and URLs were preserved in the ```UUSYSTEMCOLLECTION``` metadata, and are reused by the depublication process.   
