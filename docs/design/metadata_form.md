@@ -105,7 +105,7 @@ formelements should be put in the following iRODS collection:
 
 **1. Declaration of groups of elements**
 
-![Image metadata form Descriptive group](http://via.placeholder.com/750x150)
+![Metadata form Descriptive group](img/metadata_descriptive.png)
 
 ElementGroups such as ‘Descriptive’ make a form more readable and understandable. Especially when the form is elaborate.
 
@@ -162,7 +162,7 @@ The help text will become visible when hovering over the label of the field.
 When opening the form and no corresponding yoda-metadata.xml exists, the metadataform will present the default value. If configured.
 In below example the default value for Retention Period in this metadata form is 10.
 
-![Image of filled in Retention Period field](http://via.placeholder.com/750x150)
+![Retention Period field](img/metadata_retention_period.png)
 
 ```xml
 		<Retention_Period>
@@ -187,12 +187,12 @@ If a mandatory field  holds no value, the request will not be accepted by the sy
 		</Retention_Period>
 ```
 
-![Image of empty Retention Period field](http://via.placeholder.com/750x150)
+![Retention Period field](img/metadata_retention_period_empty.png)
 
-![Image of red lock](http://via.placeholder.com/150x150)
+![Empty mandatory metadata field](img/metadata_lock.png)
 signifies that the corresponding field is mandatory for the vault.
 
-![Image of red lock with green mark](http://via.placeholder.com/150x150)
+![Filled mandatory metadata field](img/metadata_lock_checked.png)
 signifies that the field is mandatory and the field is filled out correctly
 
 These indications are actual directly after saving or showing the metadata form.
@@ -318,7 +318,7 @@ This is a test on the basis of mandatory-settings for each element in formelemen
 
 ## Example of a metadata field XSD and formelements
 
-![Image of locations covered metadata field](http://via.placeholder.com/750x150)
+![Locations covered field](img/metadata_locations_covered.png)
 
 Location(s) covered can be entered multiple times.
 The XSD holds:
@@ -399,7 +399,7 @@ They are considered to belong together and in that sense treated in that manner.
 In order to distinguish combination fields from other elements a compound element is created by adding class=compound to the given element required to be a compound element.
 In the next example License and Link webpage belong together (one license has one related webpage):
 
-![Image of license and webpage link metadata field](http://via.placeholder.com/750x150)
+![Compound license field](img/metadata_license_compound.png)
 
 Formelements.xml for the above example could look like the following:
 ```xml
@@ -443,7 +443,7 @@ Partly filling a compound is not accepted as being valid information
 
 
 #### Label for compound field main level
-![Image of collection process with start date and end date](http://via.placeholder.com/750x150)
+![Collection process metadata field](img/metadata_collection_process.png)
 
 To add an overall label to a main level compound field add <label> tag just within the designating compound tag in formelements:
 ```xml
@@ -469,7 +469,7 @@ A compound field can be regarded as being a single element. Therefore, it can al
 This is especially useful when the need exists to save the relation of one leading element and a set of information that belongs together.
 For instance the relationship between a person (lead element) and the ID and type of ID that always go together.
 
-![Image of contributors to data package with subproperties](http://via.placeholder.com/750x150)
+![Contributors to data package with subproperties](img/metadata_contributors.png)
 
 Type of persistent identifier and persistent identifier are a compound field in this subproperty structure.
 
@@ -544,7 +544,7 @@ As a compound is constructed with normal elements it is possible to add cloning 
 
 ### Label for compound field as subproperty
 
-![Image of creator of datapackage with subproperties](http://via.placeholder.com/750x150)
+![Creator of datapackage with subproperties](img/metadata_creator.png)
 
 To add an overall label to a subproperty level compound field add <label> tag just within the designating compound tag in formelements:
 
@@ -607,7 +607,7 @@ The name of an element is fully prefabricated for the frontend by the backend.
 This is done to be able to control the structural integrity as, on different levels in a element structure, multiplication can take place within the frontend (see frontend handling as well)
 
 The following example shows two levels of multiplicity:
-![Image of creator of datapackage with subproperties (ORCID and identifier  12345)](http://via.placeholder.com/750x150)
+![Creator of datapackage with subproperties (ORCID and identifier  12345)](img/metadata_creator_identifier.png)
 
 A ‘Creator’ structure can be cloned in its entirity
 Within that structure ‘Person identifier’ information can be cloned as well.
@@ -615,15 +615,21 @@ All configured within the corresponding XSD.
 
 The backend prefabricates the name-attributes of the elements, i.e. the key, conform their hierarchical place in this structure, like:
 
-```Creator[0][Properties][Person_Identifier][0][Name_Identifier]```
+```
+Creator[0][Properties][Person_Identifier][0][Name_Identifier]
+```
 
 A second structure would be:
 
-```Creator[1][Properties][Person_Identifier][0][Name_Identifier]```
+```
+Creator[1][Properties][Person_Identifier][0][Name_Identifier]
+```
 
 And a second Person Identifier compound within that second structure would be:
 
-```Creator[1][Properties][Person_Identifier][1][Name_Identifier]```
+```
+Creator[1][Properties][Person_Identifier][1][Name_Identifier]
+```
 
 *Why is the name of an element even important?*
 
@@ -737,13 +743,19 @@ Which will lead to: Preceding_Datapackage_Properties_Combination_Name
 #### Derived/implicit indications:
 
 Is a compound?
-```compoundFieldCount > 0```
+```
+compoundFieldCount > 0
+```
 
 Is a subproperty structure?
-```subPropertiesBase is gevuld ```
+```
+subPropertiesBase is gevuld
+```
 
 Is a compound within a subpropertyStructure?
-```subpropertiesBase is gevuld && compoundFieldCount > 0```
+```
+subpropertiesBase is gevuld && compoundFieldCount > 0
+```
 
 ### Presentation
 The array of element classes holds an element for all elements as defined in formelements-file.
@@ -856,7 +868,7 @@ The OAI-PMH stream is updated by loading the yoda-metadata.xml with a python scr
 
 
 ## Purpose of flexdates
-###The metadata form
+### The metadata form
 
 ‘Flexdate’ controls in the medataform allow for flexible addition of a date.
 This type of control no longer rigidly accepts ```YYYY-MM-DD``` patterns only.
@@ -870,9 +882,11 @@ Hence the name ‘flexdate’.
 
 In the frontend a ‘flexdatepicker’ will allow for dates to be added with the following pattern:
 
-```YYYY(-MM(-DD))```
+```
+YYYY(-MM(-DD))
+```
 
-![Image of collection process field with start date and end date](http://via.placeholder.com/750x150)
+![Image of collection process field with start date and end date](img/metadata_collection_process_filled.png)
 
 In the frontend the date picker is an input text field with class ‘flexdate’.
 This will invoke allowing for the mentioned patterns only.
