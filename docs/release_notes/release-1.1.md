@@ -1,6 +1,6 @@
 # Release notes Yoda version 1.1
 
-## New features since Yoda version 1.0.2
+## New features since Yoda version 1.0
 - Update metadata of published packages in the vault
 - Copying data packages from vault to research area
 - Add support for flexible date fields to metadata form
@@ -12,7 +12,7 @@
 - Fix incorrect creator name in intake module
 - Upgrade CodeIgniter to 3.1.7
 
-## Upgrading from 1.0.1 or 1.0.2
+## Upgrading from 1.0 or 1.0
 - Upgrade is supported by Ansible. No migrations required
 
 ## Known Issues
