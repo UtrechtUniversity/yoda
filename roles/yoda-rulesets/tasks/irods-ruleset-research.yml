@@ -83,6 +83,7 @@
     src: /etc/irods/irods-ruleset-research/tools/securecopy.sh
     dest: /var/lib/irods/msiExecCmd_bin/securecopy.sh
     mode: 0755
+  when: not ansible_check_mode
 
 
 - name: Configure cronjob to clean up revisions

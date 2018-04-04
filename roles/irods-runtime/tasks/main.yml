@@ -14,3 +14,4 @@
   package:
     name: irods-runtime-4.2.2-1
     state: present
+  when: not ansible_check_mode

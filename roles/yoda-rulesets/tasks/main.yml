@@ -38,6 +38,7 @@
   irods_rulesets:
     config_path: "/etc/irods/server_config.json"
     rulesets: "{{ rulesets | map(attribute='ruleset_name') | list  }}"
+  when: not ansible_check_mode
 
 
 - name: Wait until iRODS server is ready to receive requests

@@ -30,7 +30,7 @@
   yum:
     name: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
     state: present
-  when: not item.results
+  when: not item.results and not ansible_check_mode
   with_items: "{{ irods_microservices_repo.results }}"
 
 
@@ -38,7 +38,7 @@
   yum:
     name: "{{ item.item.value.package }}"
     state: present
-  when: not item.results
+  when: not item.results and not ansible_check_mode
   with_items: "{{ irods_microservices_repo.results }}"
 
 
@@ -46,6 +46,7 @@
   package:
     name: "{{ item.value.package }}"
     state: present
+  when: not ansible_check_mode    
   with_dict: "{{ microservices }}"
 
 

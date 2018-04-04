@@ -27,14 +27,14 @@
   package:
     name: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     state: present
-  when: not davrods_repo.results
+  when: not davrods_repo.results and not ansible_check_mode
 
 
 - name: Ensure davrods rpm is installed
   package:
     name: '{{ davrods.package }}'
     state: present
-  when: davrods_repo.results
+  when: davrods_repo.results and not ansible_check_mode
 
 
 - name: Allow Apache to execute davrods module
