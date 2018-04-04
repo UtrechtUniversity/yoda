@@ -118,7 +118,7 @@ Step 12 is skipped, the DOI at DataCite has already been minted.
 The republication process is very similar to the publication process.  The DOI and URLs were preserved in the ```UUSYSTEMCOLLECTION``` metadata, and are reused by the republication process.
 
 Precondition:
-- Vault package has ```PENDING_DEPUBLICATION``` status
+- Vault package has ```PENDING_REPUBLICATION``` status
 - Actor is rodsadmin
 
-Step 13: the vault package is given ```REPUBLISHED``` status.
+Step 13: the vault package is given ```PUBLISHED``` status.
