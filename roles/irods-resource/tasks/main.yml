@@ -1,11 +1,23 @@
 ---
 # copyright Utrecht University
 
-- name: Download iRODS resource server rpm
-  get_url:
-    url: '{{ irods_resource.url }}/{{ irods_resource.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ irods_resource.filename }}'
-    checksum: '{{ irods_resource.checksum }}'
+- name: Check if iRODS 4.1.11 is installed
+  stat:
+    path: /var/lib/irods/iRODS/irodsctl
+  register: irods_old
+
+
+- name: Check if iRODS 4.2 is installed
+  stat:
+    path: /var/lib/irods/irodsctl
+  register: irods_new
+
+
+- name: Stop iRODS server before upgrade
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/var/lib/irods/iRODS/irodsctl stop'
+  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
 - name: Ensure iRODS resource server is installed
@@ -15,6 +27,33 @@
   with_items:
     - irods-server-4.2.2-1
   when: not ansible_check_mode
+
+
+- name: Ensure iRODS server is up
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'ils /{{ irods_zone }}/home'
+  register: ils
+  ignore_errors: true
+  changed_when: ils | failed
+
+
+- name: Start iRODS server
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/var/lib/irods/irodsctl start'
+  when: ils | failed
+
+
+- name: Wait until iRODS server is ready to receive requests
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'ils /{{ irods_zone }}/home'
+  register: ils
+  until: ils | succeeded
+  retries: 5
+  delay: 10
+  when: ils | failed
 
 
 - name: Create iRODS service account group
