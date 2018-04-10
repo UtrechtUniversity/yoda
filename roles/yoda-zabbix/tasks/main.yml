@@ -161,5 +161,6 @@
     - concurrentiRodsClientConnections.sh
     - concurrentiRodsUsers.sh
     - dailyRodslogErrors.sh
-    - hourlyRodslogErrors.sh    
+    - hourlyRodslogErrors.sh
+    - monitorKilledProcesses.sh
     - testUserParam.sh
