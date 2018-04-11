@@ -46,7 +46,7 @@
   become: yes
   shell: 'ils /{{ irods_zone }}/home'
   register: ils
-  until: ils | succeeded
+  until: ils is succeeded
   retries: 5
   delay: 10
 

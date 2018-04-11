@@ -133,14 +133,14 @@
   shell: 'ils /{{ irods_zone }}/home'
   register: ils
   ignore_errors: true
-  changed_when: ils | failed
+  changed_when: ils is failed
 
 
 - name: Start iRODS server
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/var/lib/irods/irodsctl start'
-  when: ils | failed
+  when: ils is failed
 
 
 - name: Wait until iRODS server is ready to receive requests
@@ -148,10 +148,10 @@
   become: yes
   shell: 'ils /{{ irods_zone }}/home'
   register: ils
-  until: ils | succeeded
+  until: ils is succeeded
   retries: 5
   delay: 10
-  when: ils | failed
+  when: ils is failed
 
 
 - name: Start cron service after iRODS upgrade
@@ -167,14 +167,14 @@
   shell: 'ils -A /{{ irods_zone }}/home | grep "g:public#"'
   register: read_access
   ignore_errors: true
-  changed_when: read_access | failed
+  changed_when: read_access is failed
 
 
 - name: Provide iRODS read access for all users on /zone/home
   become_user: '{{ irods_service_account }}'
   become: yes
   command: 'ichmod -M read public /{{ irods_zone }}/home'
-  when: read_access | failed
+  when: read_access is failed
 
 
 - name: Enable ports for iCAT in firewall
@@ -318,14 +318,14 @@
   shell: 'ils -A /{{ irods_zone }}/home | grep "anonymous#"'
   register: read_access
   ignore_errors: true
-  changed_when: read_access | failed
+  changed_when: read_access is failed
 
 
 - name: Provide iRODS read access for anonymous user on /zone/home
   become_user: '{{ irods_service_account }}'
   become: yes
   command: 'ichmod -M read anonymous /{{ irods_zone }}/home'
-  when: read_access | failed
+  when: read_access is failed
 
 
 - include_tasks: setup_pam_radius.yml
