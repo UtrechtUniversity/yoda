@@ -2,6 +2,8 @@
 # Copyright Utrecht University
 
 - name: Find out if group-manager privilige groups are created
+  become_user: "{{ irods_service_account }}"
+  become: yes
   command: 'iadmin lg'
   register: priv_groups
   changed_when: priv_groups.stdout.find('priv-group-add') == -1
@@ -9,11 +11,15 @@
 
 
 - name: Configure group-manager privilige groups in iCAT database
+  become_user: "{{ irods_service_account }}"
+  become: yes
   command: '/etc/irods/irods-ruleset-uu/tools/group-manager-setup.sh'
   when: priv_groups.stdout.find('priv-group-add') == -1
 
 
 - name: Find out which system collections are present
+  become_user: "{{ irods_service_account }}"
+  become: yes
   command: 'ils /{{ irods_zone }}/yoda'
   ignore_errors: True
   register: system_collections
@@ -22,6 +28,8 @@
 
 
 - name: Ensure yoda system collections are present
+  become_user: "{{ irods_service_account }}"
+  become: yes
   command: "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
   register: create_system_collections
   when: >
@@ -33,12 +41,16 @@
 
 
 - name: Check for existence of storage statistics script
+  become_user: "{{ irods_service_account }}"
+  become: yes
   stat:
     path: /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r
   register: monthly_storage_statistics
 
 
 - name: Enable storage statistics gathering cronjob
+  become_user: "{{ irods_service_account }}"
+  become: yes
   cron:
     name: 'monthly-storage-statistics'
     minute: 0
