@@ -4,7 +4,7 @@ Instructions on how to configure a (new) Yoda instance.
 ## 1. Create new environment
 This first step is optional.
 You can configure a (new) Yoda instance in an existing environment or create a new environment.
-A [environment](environments/development/) environment is available with two example instances.
+A [development](environments/development/) environment is available with two example instances.
 
 To create a new environment make a new directory under [environment](environments/).
 For example a production environment:
