@@ -55,7 +55,23 @@
     creates: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
 
 
-- name: Ensure Diffie-Hellman parameters are generated
+- name: Ensure CA chain is present
+  command: >
+    cp '{{ openssl_certs_dir }}/{{ openssl_crt_selfsigned }}'
+    '{{ openssl_certs_dir }}/{{ openssl_chain }}'
+  args:
+    creates: '{{ openssl_certs_dir }}/{{ openssl_chain }}'
+
+
+- name: Ensure CA chain with signed certificate is present
+  command: >
+    cp '{{ openssl_certs_dir }}/{{ openssl_crt_selfsigned }}'
+    '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
+  args:
+    creates: '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
+
+
+- name: Ensure Diffie-Hellman parameters are present
   command: openssl dhparam -2 -out {{ openssl_dhparams }} 2048
   args:
     chdir: '{{ openssl_private_dir }}'
