@@ -12,6 +12,8 @@ openssl_crt_selfsigned: selfsigned_localhost.crt
 openssl_key_signed: localhost.key
 openssl_csr_signed: localhost.csr
 openssl_crt_signed: localhost.crt
+openssl_chain: chain.crt
+openssl_crt_signed_and_chain: localhost_and_chain.crt
 
 openssl_o: 'Utrecht University'
 openssl_c: 'NL'

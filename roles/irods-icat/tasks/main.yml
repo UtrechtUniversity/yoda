@@ -196,18 +196,18 @@
     creates: '{{ openssl_key_signed }}'
 
 
+- name: Ensure CA chain with signed certificate is present
+  command: 'cp {{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }} {{ openssl_crt_signed_and_chain }}'
+  args:
+    chdir: '/etc/irods'
+    creates: '{{ openssl_crt_signed_and_chain }}'
+
+
 - name: Ensure Diffie-Hellman parameters are available for iRODS
   command: 'cp {{ openssl_private_dir }}/{{ openssl_dhparams }} {{ openssl_dhparams }}'
   args:
     chdir: '/etc/irods'
     creates: '{{ openssl_dhparams }}'
-
-
-- name: Ensure certificate file is available for iRODS
-  command: 'cp {{ openssl_certs_dir }}/{{ openssl_crt_signed }} {{ openssl_crt_signed }}'
-  args:
-    chdir: '/etc/irods'
-    creates: '{{ openssl_crt_signed }}'
 
 
 - name: Ensure iRODS has access to PKI files
@@ -220,7 +220,7 @@
   with_items:
     - '/etc/irods/{{ openssl_key_signed }}'
     - '/etc/irods/{{ openssl_dhparams }}'
-    - '/etc/irods/{{ openssl_crt_signed }}'
+    - '/etc/irods/{{ openssl_crt_signed_and_chain }}'
 
 
 - name: Ensure iRODS is configured to use SSL
@@ -232,7 +232,7 @@
     value: '{{ item.value }}'
   with_items:
     - key: 'irods_ssl_certificate_chain_file'
-      value: '/etc/irods/{{ openssl_crt_signed }}'
+      value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
     - key: 'irods_ssl_certificate_key_file'
       value: '/etc/irods/{{ openssl_key_signed }}'
     - key: 'irods_ssl_dh_params_file'
