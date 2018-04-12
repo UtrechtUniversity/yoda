@@ -77,11 +77,26 @@
     group: '{{ irods_service_account }}'
 
 
+- name: Remove insecure securecopy.sh
+  file:
+    path: /var/lib/irods/iRODS/server/bin/cmd/securecopy.sh
+    state: absent
+
+
+- name: Ensure that secure ExecCmd dir exists
+  file:
+    path: /var/lib/irods/iRODS/server/bin/cmd1
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0755
+    state: directory
+
+
 - name: Copy securecopy.sh to ExecCmd dir
   copy:
     remote_src: yes
     src: /etc/irods/irods-ruleset-research/tools/securecopy.sh
-    dest: /var/lib/irods/iRODS/server/bin/cmd/securecopy.sh
+    dest: /var/lib/irods/iRODS/server/bin/cmd1/securecopy.sh
     mode: 0755
 
 
