@@ -39,6 +39,11 @@ Provision Yoda with test data:
 ansible-playbook -i environments/development/allinone/ test.yml
 ```
 
+Provision Yoda with zabbix agent and yoda monitoring scripts:
+```bash
+ansible-playbook -i environments/development/allinone/ zabbix.yml
+```
+
 Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32\drivers\etc\hosts (Windows):
 ```
 192.168.50.10 portal.yoda.test
