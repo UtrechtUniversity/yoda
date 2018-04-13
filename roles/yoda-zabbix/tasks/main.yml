@@ -157,7 +157,6 @@
     - irodsGroupsCount.sh
     - monitorDelayedRules.sh
     - monitorPublicationsPending.sh
-    - mostRecentReCheck.sh
     - concurrentiRodsClientConnections.sh
     - concurrentiRodsUsers.sh
     - dailyRodslogErrors.sh
