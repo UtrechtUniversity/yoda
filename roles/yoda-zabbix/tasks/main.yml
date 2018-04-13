@@ -43,7 +43,7 @@
   when: ansible_selinux
 
 
-- name: Allow access to port 10051 (Zabbix passive checks) in firewall
+- name: Allow access to port 10051 (Zabbix active checks) in firewall
   firewalld:
     port: 10051/tcp
     permanent: true
