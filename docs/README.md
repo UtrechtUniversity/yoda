@@ -13,7 +13,8 @@ In this repository you can find documentation on [administration tasks](administ
 - [Metadata form](design/metadata_form.md)
 - [Publication process](design/publication_process.md)
 - [Vault process](design/vault_process.md)
-- [Statistics](design/statistics.md)
+- [Revision management](design/revisions.md)
+- [Statistics module](design/statistics.md)
 
 ## Release notes
 - [release 1.2](release_notes/release-1.2.md)
