@@ -95,13 +95,28 @@
     group: '{{ irods_service_account }}'
 
 
+- name: Remove insecure securecopy.sh
+  file:
+    path: /var/lib/irods/msiExecCmd_bin/securecopy.sh
+    state: absent
+
+
+- name: Ensure that secure ExecCmd dir exists
+  file:
+    path: /var/lib/irods/msiExecCmd_bin1
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0755
+    state: directory
+
+
 - name: Copy securecopy.sh to ExecCmd dir
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:
     remote_src: yes
     src: /etc/irods/irods-ruleset-research/tools/securecopy.sh
-    dest: /var/lib/irods/msiExecCmd_bin/securecopy.sh
+    dest: /var/lib/irods/msiExecCmd_bin1/securecopy.sh
     mode: 0755
   when: not ansible_check_mode
 
