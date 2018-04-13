@@ -46,6 +46,7 @@
   with_items:
     - irods-server-4.2.2-1
     - irods-database-plugin-postgres-4.2.2-1
+  when: not ansible_check_mode
 
 
 - name: Generate zone key
@@ -221,6 +222,7 @@
     - '/etc/irods/{{ openssl_key_signed }}'
     - '/etc/irods/{{ openssl_dhparams }}'
     - '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+  when: not ansible_check_mode
 
 
 - name: Ensure iRODS is configured to use SSL

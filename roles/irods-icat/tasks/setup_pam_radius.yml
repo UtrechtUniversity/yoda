@@ -25,3 +25,4 @@
     owner: root
     group: root
     mode: 04755
+  when: not ansible_check_mode

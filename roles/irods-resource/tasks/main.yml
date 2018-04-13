@@ -166,6 +166,7 @@
     - '/etc/irods/{{ openssl_key_signed }}'
     - '/etc/irods/{{ openssl_dhparams }}'
     - '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+  when: not ansible_check_mode
 
 
 - name: Ensure iRODS is configured to use SSL
