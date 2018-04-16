@@ -143,6 +143,7 @@
   with_items:
     - monitorDelayedRules.r
     - monitorPublicationsPending.r
+    - listOrphanedGroups.r
 
 
 - name: Ensure right file ownership on Yoda Zabbix scripts
@@ -162,4 +163,5 @@
     - dailyRodslogErrors.sh
     - hourlyRodslogErrors.sh
     - monitorKilledProcesses.sh
+    - listOrphanedGroups.sh
     - testUserParam.sh
