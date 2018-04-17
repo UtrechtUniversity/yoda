@@ -58,31 +58,28 @@
   when: (not ansible_check_mode) and (terms_installed.stderr.find('does not exist') >= 0)
 
 
-- name: Configure cronjob to copy datapackages to the vault
+- name: Remove cronjob to copy datapackages to the vault
   become_user: "{{ irods_service_account }}"
   become: yes
   cron:
     name: 'copy-accepted-folders-to-vault.r'
-    minute: '*/2'
-    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/copy-accepted-folders-to-vault.r >>$HOME/log/job_copy-accepted-folder-to-vault.log 2>&1'
+    state: absent
 
 
-- name: Configure cronjob to ingest changes into vault
+- name: Remove cronjob to ingest changes into vault
   become_user: "{{ irods_service_account }}"
   become: yes
   cron:
     name: 'ingest-changes-into-vault.r'
-    minute: '*'
-    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/ingest-changes-into-vault.r >>$HOME/log/job_ingest-changes-into-vault.log 2>&1'
+    state: absent
 
 
-- name: Configure cronjob to process vault actions
+- name: Remove cronjob to process vault actions
   become_user: "{{ irods_service_account }}"
   become: yes
   cron:
     name: 'process-vault-status-transitions.r'
-    minute: '*'
-    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/process-vault-status-transitions.r >>$HOME/log/job_process-vault-status-transitions.log 2>&1'
+    state: absent
 
 
 - name: Install script for revision clean up
@@ -117,6 +114,39 @@
     remote_src: yes
     src: /etc/irods/irods-ruleset-research/tools/securecopy.sh
     dest: /var/lib/irods/msiExecCmd_bin1/securecopy.sh
+    mode: 0755
+  when: not ansible_check_mode
+
+
+- name: Copy scheduled-copytovault.sh to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    remote_src: yes
+    src: /etc/irods/irods-ruleset-research/tools/scheduled-copytovault.sh
+    dest: /var/lib/irods/msiExecCmd_bin1/scheduled-copytovault.sh
+    mode: 0755
+  when: not ansible_check_mode
+
+
+- name: Copy scheduled-vaultactions.sh to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    remote_src: yes
+    src: /etc/irods/irods-ruleset-research/tools/scheduled-vaultactions.sh
+    dest: /var/lib/irods/msiExecCmd_bin1/scheduled-vaultactions.sh
+    mode: 0755
+  when: not ansible_check_mode
+
+
+- name: Copy scheduled-vaultingest.sh to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    remote_src: yes
+    src: /etc/irods/irods-ruleset-research/tools/scheduled-vaultingest.sh
+    dest: /var/lib/irods/msiExecCmd_bin1/scheduled-vaultingest.sh
     mode: 0755
   when: not ansible_check_mode
 
