@@ -42,16 +42,7 @@
     permissive: true
   when: ansible_selinux
 
-
-- name: Allow access to port 10051 (Zabbix active checks) in firewall
-  firewalld:
-    port: 10051/tcp
-    permanent: true
-    state: enabled
-    immediate: yes
-  notify: Restart firewall
-
-
+  
 - name: Generate Zabbix agent PSK
   shell: openssl rand -hex 256 > /etc/zabbix/zabbix_agentd.psk
     creates=/etc/zabbix/zabbix_agentd.psk
