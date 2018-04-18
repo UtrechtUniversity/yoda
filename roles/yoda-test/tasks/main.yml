@@ -343,7 +343,7 @@
   become: yes
   cron:
     name: 'job_movetovault.r'
-    minute: '*'
+    minute: '*/5'
     job: '/bin/irule -F /var/lib/irods/.irods/job_movetovault.r >>$HOME/log/job_movetovault.log 2>&1'
 
 
@@ -352,7 +352,7 @@
   become: yes
   cron:
     name: 'job_checksums.r'
-    minute: '*'
+    minute: '*/5'
     job: '/bin/irule -F /var/lib/irods/.irods/job_checksums.r >>$HOME/log/job_checksums.log 2>&1'
 
 
