@@ -92,6 +92,12 @@
     group: '{{ irods_service_account }}'
 
 
+- name: Remove outdated ExecCmd dir
+  file:
+    path: /var/lib/irods/iRODS/server/bin/cmd1/
+    state: absent
+
+
 - name: Remove insecure securecopy.sh
   file:
     path: /var/lib/irods/msiExecCmd_bin/securecopy.sh
