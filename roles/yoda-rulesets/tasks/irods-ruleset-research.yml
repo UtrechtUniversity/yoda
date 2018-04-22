@@ -26,8 +26,8 @@
     '*update={{ update_schemas }}'
   register: install_default_xml_for_metadata
   when: (update_schemas == 1) or
-        (installed_defaults|json_query('results[*].stderr')|join(' ')|search('does not exist'))
-  changed_when: install_default_xml_for_metadata.stdout|search('(Installed|Updated)')
+        (installed_defaults|json_query('results[*].stderr')|join(' ') is search('does not exist'))
+  changed_when: install_default_xml_for_metadata.stdout is search('(Installed|Updated)')
 
 
 - name: List installed or updated schemas, formelements or stylesheets
@@ -35,7 +35,7 @@
   become: yes
   debug:
     var: item
-  when: item|search('(Installed|Updated)')
+  when: item is search('(Installed|Updated)')
   with_items: "{{ install_default_xml_for_metadata.stdout_lines|default('Script did not run') }}"
 
 
@@ -90,6 +90,12 @@
     dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
+
+
+- name: Remove outdated ExecCmd dir
+  file:
+    path: /var/lib/irods/iRODS/server/bin/cmd1/
+    state: absent
 
 
 - name: Remove insecure securecopy.sh
