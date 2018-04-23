@@ -155,4 +155,5 @@
     - hourlyRodslogErrors.sh
     - monitorKilledProcesses.sh
     - listOrphanedGroups.sh
+    - replicationErrors.sh
     - testUserParam.sh
