@@ -108,6 +108,7 @@
     group: '{{ irods_service_account }}'
     mode: 0755
     state: directory
+  when: not ansible_check_mode
 
 
 - name: Copy securecopy.sh to ExecCmd dir
