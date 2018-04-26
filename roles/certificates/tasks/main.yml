@@ -76,3 +76,14 @@
   args:
     chdir: '{{ openssl_private_dir }}'
     creates: '{{ openssl_private_dir }}/{{ openssl_dhparams }}'
+
+
+- name: Ensure certificate files have correct permissions
+  file:
+    path: '{{ item }}'
+    mode: 0644
+    state: file
+  with_items:
+    - '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
+    - '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
+  when: not ansible_check_mode
