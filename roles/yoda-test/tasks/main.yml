@@ -79,7 +79,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r -f '{{ item }}'
+    irm -r '{{ item }}'
   ignore_errors: true
   with_items:
     - /tempZone/home/vault-deletegroup
@@ -185,7 +185,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irmtrash -r '{{ item }}'
+    irmtrash -rM '{{ item }}'
   ignore_errors: true
   with_items:
     - /tempZone/trash/home/research-deletegroup
