@@ -198,14 +198,14 @@
 
 
 - name: Ensure CA chain with signed certificate is present
-  command: 'cp {{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }} {{ openssl_crt_signed_and_chain }}'
+  command: 'ln -s {{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }} {{ openssl_crt_signed_and_chain }}'
   args:
     chdir: '/etc/irods'
     creates: '{{ openssl_crt_signed_and_chain }}'
 
 
-- name: Ensure Diffie-Hellman parameters are available for iRODS
-  command: 'cp {{ openssl_private_dir }}/{{ openssl_dhparams }} {{ openssl_dhparams }}'
+- name: Ensure Diffie-Hellman parameters are present
+  command: openssl dhparam -2 -out {{ openssl_dhparams }} 2048
   args:
     chdir: '/etc/irods'
     creates: '{{ openssl_dhparams }}'
@@ -221,6 +221,17 @@
   with_items:
     - '/etc/irods/{{ openssl_key_signed }}'
     - '/etc/irods/{{ openssl_dhparams }}'
+  when: not ansible_check_mode
+
+
+- name: Ensure iRODS has access to PKI files
+  file:
+    path: '{{ item }}'
+    mode: 0600
+    group: '{{ irods_service_account }}'
+    owner: '{{ irods_service_account }}'
+    state: link
+  with_items:
     - '/etc/irods/{{ openssl_crt_signed_and_chain }}'
   when: not ansible_check_mode
 
