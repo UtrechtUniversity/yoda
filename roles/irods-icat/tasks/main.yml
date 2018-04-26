@@ -226,13 +226,15 @@
 
 - name: Ensure iRODS has access to PKI files
   file:
-    path: '{{ item }}'
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
     mode: 0600
     group: '{{ irods_service_account }}'
     owner: '{{ irods_service_account }}'
     state: link
   with_items:
-    - '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+    - src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
+      dest: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
   when: not ansible_check_mode
 
 
