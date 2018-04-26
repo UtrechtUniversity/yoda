@@ -41,17 +41,6 @@
     - /tempZone/home/research-revisions
     - /tempZone/home/research-search
     - /tempZone/home/research-updateproperties
-    - /tempZone/trash/home/research-deletegroup
-    - /tempZone/trash/home/research-initial
-    - /tempZone/trash/home/research-initial1
-    - /tempZone/trash/home/research-mdtest
-    - /tempZone/trash/home/research-process1
-    - /tempZone/trash/home/research-process2
-    - /tempZone/trash/home/research-process3
-    - /tempZone/trash/home/research-r1
-    - /tempZone/trash/home/research-revisions
-    - /tempZone/trash/home/research-search
-    - /tempZone/trash/home/research-updateproperties
     - /tempZone/yoda/revisions/research-deletegroup
     - /tempZone/yoda/revisions/research-initial
     - /tempZone/yoda/revisions/research-initial1
@@ -63,7 +52,28 @@
     - /tempZone/yoda/revisions/research-revisions
     - /tempZone/yoda/revisions/research-search
     - /tempZone/yoda/revisions/research-updateproperties
-
+    - /tempZone/trash/home/research-deletegroup
+    - /tempZone/trash/home/research-initial
+    - /tempZone/trash/home/research-initial1
+    - /tempZone/trash/home/research-mdtest
+    - /tempZone/trash/home/research-process1
+    - /tempZone/trash/home/research-process2
+    - /tempZone/trash/home/research-process3
+    - /tempZone/trash/home/research-r1
+    - /tempZone/trash/home/research-revisions
+    - /tempZone/trash/home/research-search
+    - /tempZone/trash/home/research-updateproperties
+    - /tempZone/trash/home/technicaladmin
+    - /tempZone/trash/home/functionaladmincategory
+    - /tempZone/trash/home/functionaladmingroup
+    - /tempZone/trash/home/functionaladminpriv
+    - /tempZone/trash/home/groupmanager
+    - /tempZone/trash/home/datamanager
+    - /tempZone/trash/home/researcher
+    - /tempZone/trash/home/viewer
+    - /tempZone/trash/home/testuseradd
+    - /tempZone/trash/home/testuserdel
+    - /tempZone/trash/home/rods
 
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
@@ -105,17 +115,6 @@
     - /tempZone/home/research-revisions
     - /tempZone/home/research-search
     - /tempZone/home/research-updateproperties
-    - /tempZone/trash/home/research-deletegroup
-    - /tempZone/trash/home/research-initial
-    - /tempZone/trash/home/research-initial1
-    - /tempZone/trash/home/research-mdtest
-    - /tempZone/trash/home/research-process1
-    - /tempZone/trash/home/research-process2
-    - /tempZone/trash/home/research-process3
-    - /tempZone/trash/home/research-r1
-    - /tempZone/trash/home/research-revisions
-    - /tempZone/trash/home/research-search
-    - /tempZone/trash/home/research-updateproperties
     - /tempZone/yoda/revisions/research-deletegroup
     - /tempZone/yoda/revisions/research-initial
     - /tempZone/yoda/revisions/research-initial1
@@ -127,7 +126,6 @@
     - /tempZone/yoda/revisions/research-revisions
     - /tempZone/yoda/revisions/research-search
     - /tempZone/yoda/revisions/research-updateproperties
-
 
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
@@ -183,6 +181,35 @@
     - read-i1
     - read-test
 
+- name: Remove trash data
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r '{{ item }}'
+  ignore_errors: true
+  with_items:
+    - /tempZone/trash/home/research-deletegroup
+    - /tempZone/trash/home/research-initial
+    - /tempZone/trash/home/research-initial1
+    - /tempZone/trash/home/research-mdtest
+    - /tempZone/trash/home/research-process1
+    - /tempZone/trash/home/research-process2
+    - /tempZone/trash/home/research-process3
+    - /tempZone/trash/home/research-r1
+    - /tempZone/trash/home/research-revisions
+    - /tempZone/trash/home/research-search
+    - /tempZone/trash/home/research-updateproperties
+    - /tempZone/trash/home/technicaladmin
+    - /tempZone/trash/home/functionaladmincategory
+    - /tempZone/trash/home/functionaladmingroup
+    - /tempZone/trash/home/functionaladminpriv
+    - /tempZone/trash/home/groupmanager
+    - /tempZone/trash/home/datamanager
+    - /tempZone/trash/home/researcher
+    - /tempZone/trash/home/viewer
+    - /tempZone/trash/home/testuseradd
+    - /tempZone/trash/home/testuserdel
+    - /tempZone/trash/home/rods
 
 - name: Remove test users
   become_user: '{{ irods_service_account }}'
