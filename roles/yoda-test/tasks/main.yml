@@ -30,6 +30,7 @@
     - /tempZone/home/intake-i1
     - /tempZone/home/datamanager-frontendtest
     - /tempZone/home/datamanager-initial
+    - /tempZone/home/datamanager-teststatistics
     - /tempZone/home/research-deletegroup
     - /tempZone/home/research-initial
     - /tempZone/home/research-initial1
@@ -52,6 +53,8 @@
     - /tempZone/yoda/revisions/research-revisions
     - /tempZone/yoda/revisions/research-search
     - /tempZone/yoda/revisions/research-updateproperties
+    - /tempZone/yoda/revisions/research-teststatistics1
+    - /tempZone/yoda/revisions/research-teststatistics2
     - /tempZone/trash/home/research-deletegroup
     - /tempZone/trash/home/research-initial
     - /tempZone/trash/home/research-initial1
@@ -63,6 +66,8 @@
     - /tempZone/trash/home/research-revisions
     - /tempZone/trash/home/research-search
     - /tempZone/trash/home/research-updateproperties
+    - /tempZone/trash/home/research-teststatistics1
+    - /tempZone/trash/home/research-teststatistics2
     - /tempZone/trash/home/technicaladmin
     - /tempZone/trash/home/functionaladmincategory
     - /tempZone/trash/home/functionaladmingroup
@@ -94,6 +99,8 @@
     - /tempZone/home/vault-revisions
     - /tempZone/home/vault-search
     - /tempZone/home/vault-updateproperties
+    - /tempZone/home/vault-teststatistics1
+    - /tempZone/home/vault-teststatistics2
     - /tempZone/home/grp-datamanager-initial
     - /tempZone/home/grp-datamanager-test
     - /tempZone/home/grp-g1
@@ -104,6 +111,7 @@
     - /tempZone/home/intake-i1
     - /tempZone/home/datamanager-frontendtest
     - /tempZone/home/datamanager-initial
+    - /tempZone/home/datamanager-teststatistics   
     - /tempZone/home/research-deletegroup
     - /tempZone/home/research-initial
     - /tempZone/home/research-initial1
@@ -115,6 +123,8 @@
     - /tempZone/home/research-revisions
     - /tempZone/home/research-search
     - /tempZone/home/research-updateproperties
+    - /tempZone/home/research-teststatistics1
+    - /tempZone/home/research-teststatistics2
     - /tempZone/yoda/revisions/research-deletegroup
     - /tempZone/yoda/revisions/research-initial
     - /tempZone/yoda/revisions/research-initial1
@@ -126,6 +136,8 @@
     - /tempZone/yoda/revisions/research-revisions
     - /tempZone/yoda/revisions/research-search
     - /tempZone/yoda/revisions/research-updateproperties
+    - /tempZone/yoda/revisions/research-teststatistics1
+    - /tempZone/yoda/revisions/research-teststatistics2
 
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
@@ -146,6 +158,8 @@
     - vault-revisions
     - vault-search
     - vault-updateproperties
+    - vault-teststatistics1
+    - vault-teststatistics2
     - research-deletegroup
     - research-initial
     - research-initial1
@@ -157,6 +171,8 @@
     - research-revisions
     - research-search
     - research-updateproperties
+    - research-teststatistics1
+    - research-teststatistics2
     - read-deletegroup
     - read-initial
     - read-initial1
@@ -168,8 +184,11 @@
     - read-revisions
     - read-search
     - read-updateproperties
+    - read-teststatistics1
+    - read-teststatistics2
     - datamanager-frontendtest
     - datamanager-initial
+    - datamanager-teststatistics
     - grp-datamanager-initial
     - grp-datamanager-test
     - grp-intake-initial
@@ -199,6 +218,8 @@
     - /tempZone/trash/home/research-revisions
     - /tempZone/trash/home/research-search
     - /tempZone/trash/home/research-updateproperties
+    - /tempZone/trash/home/research-teststatistics1
+    - /tempZone/trash/home/research-teststatistics2
     - /tempZone/trash/home/technicaladmin
     - /tempZone/trash/home/functionaladmincategory
     - /tempZone/trash/home/functionaladmingroup
