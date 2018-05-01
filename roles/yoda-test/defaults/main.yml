@@ -92,7 +92,13 @@ test_groups:
   - groupName: research-search
     category: initial
     subcategory: initial
-
+  - groupName: research-teststatistics1
+    category: teststatistics
+    subcategory: teststatistics
+  - groupName: research-teststatistics2
+    category: teststatistics
+    subcategory: teststatistics
+    
 test_groupusers:
   - groupName: priv-category-add
     user: functionaladminpriv
@@ -278,3 +284,11 @@ test_groupusers:
   - groupName: research-search
     user: viewer
     role: reader
+    
+  - groupName: research-teststatistics1
+    user: functionaladminpriv
+    role: manager
+    
+  - groupName: research-teststatistics2
+    user: functionaladminpriv
+    role: manager
