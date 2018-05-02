@@ -254,7 +254,7 @@
 - name: Remove trash data users
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: |
+  command:
     irmtrash -rM /tempZone/trash/home/'{{ item.name }}'
   ignore_errors: true
   with_items:
@@ -263,12 +263,9 @@
 - name: Remove trash data users
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: |
+  command: 
     irmtrash -rM /tempZone/trash/home/rods
   ignore_errors: true
-
-
-
 
 
 

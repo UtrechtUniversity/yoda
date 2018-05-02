@@ -92,7 +92,16 @@ test_groups:
   - groupName: research-search
     category: initial
     subcategory: initial
-
+  - groupName: research-teststatistics1
+    category: teststatistics
+    subcategory: teststatistics
+  - groupName: research-teststatistics2
+    category: teststatistics
+    subcategory: teststatistics
+  - groupName: datamanager-teststatistics
+    category: teststatistics
+    subcategory: teststatistics
+    
 test_groupusers:
   - groupName: priv-category-add
     user: functionaladminpriv
@@ -279,6 +288,19 @@ test_groupusers:
     user: viewer
     role: reader
 
+  - groupName: research-teststatistics1
+    user: functionaladminpriv
+    role: manager
+
+  - groupName: research-teststatistics2
+    user: functionaladminpriv
+    role: manager
+
+  - groupName: datamanager-teststatistics
+    user: functionaladminpriv
+    role: manager
+
+
 deletion_research_groups:
   - research: deletegroup
   - research: initial
@@ -291,6 +313,8 @@ deletion_research_groups:
   - research: revisions
   - research: search
   - research: updateproperties
+  - research: teststatistics1
+  - research: teststatistics2
 deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
