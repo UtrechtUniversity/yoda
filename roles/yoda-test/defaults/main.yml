@@ -278,3 +278,30 @@ test_groupusers:
   - groupName: research-search
     user: viewer
     role: reader
+
+deletion_research_groups:
+  - research: deletegroup
+  - research: initial
+  - research: initial1
+  - research: mdtest
+  - research: process1
+  - research: process2
+  - research: process3
+  - research: r1
+  - research: revisions
+  - research: search
+  - research: updateproperties
+deletion_datamanager_groups:
+  - datamanager: frontendtest
+  - datamanager: initial
+  - datamanager: teststatistics
+deletion_grp_groups: 
+  - grp: datamanager-initial
+  - grp: datamanager-test
+  - grp: g1
+  - grp: intake-initial
+  - grp: intake-test
+  - grp: vault-initial  
+  - grp: vault-test
+deletion_intake_groups:
+  - intake: i1

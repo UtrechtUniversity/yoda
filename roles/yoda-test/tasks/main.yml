@@ -5,183 +5,273 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -rM own rods '{{ item }}'
+    ichmod -rM own rods /tempZone/home/research-'{{ item.research }}'
   ignore_errors: true
   with_items:
-    - /tempZone/home/vault-deletegroup
-    - /tempZone/home/vault-i1
-    - /tempZone/home/vault-initial
-    - /tempZone/home/vault-initial1
-    - /tempZone/home/vault-mdtest
-    - /tempZone/home/vault-process1
-    - /tempZone/home/vault-process2
-    - /tempZone/home/vault-process3
-    - /tempZone/home/vault-r1
-    - /tempZone/home/vault-revisions
-    - /tempZone/home/vault-search
-    - /tempZone/home/vault-updateproperties
-    - /tempZone/home/grp-datamanager-initial
-    - /tempZone/home/grp-datamanager-test
-    - /tempZone/home/grp-g1
-    - /tempZone/home/grp-intake-initial
-    - /tempZone/home/grp-intake-test
-    - /tempZone/home/grp-vault-initial
-    - /tempZone/home/grp-vault-test
-    - /tempZone/home/intake-i1
-    - /tempZone/home/datamanager-frontendtest
-    - /tempZone/home/datamanager-initial
-    - /tempZone/home/research-deletegroup
-    - /tempZone/home/research-initial
-    - /tempZone/home/research-initial1
-    - /tempZone/home/research-mdtest
-    - /tempZone/home/research-process1
-    - /tempZone/home/research-process2
-    - /tempZone/home/research-process3
-    - /tempZone/home/research-r1
-    - /tempZone/home/research-revisions
-    - /tempZone/home/research-search
-    - /tempZone/home/research-updateproperties
-    - /tempZone/trash/home/research-deletegroup
-    - /tempZone/trash/home/research-initial
-    - /tempZone/trash/home/research-initial1
-    - /tempZone/trash/home/research-mdtest
-    - /tempZone/trash/home/research-process1
-    - /tempZone/trash/home/research-process2
-    - /tempZone/trash/home/research-process3
-    - /tempZone/trash/home/research-r1
-    - /tempZone/trash/home/research-revisions
-    - /tempZone/trash/home/research-search
-    - /tempZone/trash/home/research-updateproperties
-    - /tempZone/yoda/revisions/research-deletegroup
-    - /tempZone/yoda/revisions/research-initial
-    - /tempZone/yoda/revisions/research-initial1
-    - /tempZone/yoda/revisions/research-mdtest
-    - /tempZone/yoda/revisions/research-process1
-    - /tempZone/yoda/revisions/research-process2
-    - /tempZone/yoda/revisions/research-process3
-    - /tempZone/yoda/revisions/research-r1
-    - /tempZone/yoda/revisions/research-revisions
-    - /tempZone/yoda/revisions/research-search
-    - /tempZone/yoda/revisions/research-updateproperties
+    - "{{ deletion_research_groups }}"
+
+- name: Prepare test data for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /tempZone/home/vault-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+- name: Prepare test data for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /tempZone/home/datamanager-'{{ item.datamanager }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_datamanager_groups }}"
+
+- name: Prepare test data for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /tempZone/home/intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+- name: Prepare test data for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /tempZone/home/vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+- name: Prepare test data for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /tempZone/home/grp-'{{ item.grp }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_grp_groups }}"
+
+- name: Prepare test data for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /tempZone/yoda/revisions/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+- name: Prepare test data for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /tempZone/trash/home/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+- name: Prepare trash data for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: |
+    ichmod -rM own rods /tempZone/trash/home/'{{ item.name }}'
+  ignore_errors: true
+  with_items:
+    - "{{ test_users }}"
+
+
+
+
 
 
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r '{{ item }}'
+    irm -r /tempZone/home/research-'{{ item.research }}'
   ignore_errors: true
   with_items:
-    - /tempZone/home/vault-deletegroup
-    - /tempZone/home/vault-i1
-    - /tempZone/home/vault-initial
-    - /tempZone/home/vault-initial1
-    - /tempZone/home/vault-mdtest
-    - /tempZone/home/vault-process1
-    - /tempZone/home/vault-process2
-    - /tempZone/home/vault-process3
-    - /tempZone/home/vault-r1
-    - /tempZone/home/vault-revisions
-    - /tempZone/home/vault-search
-    - /tempZone/home/vault-updateproperties
-    - /tempZone/home/grp-datamanager-initial
-    - /tempZone/home/grp-datamanager-test
-    - /tempZone/home/grp-g1
-    - /tempZone/home/grp-intake-initial
-    - /tempZone/home/grp-intake-test
-    - /tempZone/home/grp-vault-initial
-    - /tempZone/home/grp-vault-test
-    - /tempZone/home/intake-i1
-    - /tempZone/home/datamanager-frontendtest
-    - /tempZone/home/datamanager-initial
-    - /tempZone/home/research-deletegroup
-    - /tempZone/home/research-initial
-    - /tempZone/home/research-initial1
-    - /tempZone/home/research-mdtest
-    - /tempZone/home/research-process1
-    - /tempZone/home/research-process2
-    - /tempZone/home/research-process3
-    - /tempZone/home/research-r1
-    - /tempZone/home/research-revisions
-    - /tempZone/home/research-search
-    - /tempZone/home/research-updateproperties
-    - /tempZone/trash/home/research-deletegroup
-    - /tempZone/trash/home/research-initial
-    - /tempZone/trash/home/research-initial1
-    - /tempZone/trash/home/research-mdtest
-    - /tempZone/trash/home/research-process1
-    - /tempZone/trash/home/research-process2
-    - /tempZone/trash/home/research-process3
-    - /tempZone/trash/home/research-r1
-    - /tempZone/trash/home/research-revisions
-    - /tempZone/trash/home/research-search
-    - /tempZone/trash/home/research-updateproperties
-    - /tempZone/yoda/revisions/research-deletegroup
-    - /tempZone/yoda/revisions/research-initial
-    - /tempZone/yoda/revisions/research-initial1
-    - /tempZone/yoda/revisions/research-mdtest
-    - /tempZone/yoda/revisions/research-process1
-    - /tempZone/yoda/revisions/research-process2
-    - /tempZone/yoda/revisions/research-process3
-    - /tempZone/yoda/revisions/research-r1
-    - /tempZone/yoda/revisions/research-revisions
-    - /tempZone/yoda/revisions/research-search
-    - /tempZone/yoda/revisions/research-updateproperties
+    - "{{ deletion_research_groups }}"
+
+- name: Remove test data
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /tempZone/home/vault-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+- name: Remove test data
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /tempZone/home/datamanager-'{{ item.datamanager }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_datamanager_groups }}"
+
+- name: Remove test data
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /tempZone/home/intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+- name: Remove test data
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /tempZone/home/vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+- name: Remove test data
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /tempZone/home/grp-'{{ item.grp }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_grp_groups }}"
+
+- name: Remove test data
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /tempZone/trash/home/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+- name: Remove test data
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /tempZone/yoda/revisions/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"  
+
+
+
+
+
+
 
 
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    iadmin rmgroup '{{ item }}'
+    iadmin rmgroup research-'{{ item.research }}'
   ignore_errors: true
   with_items:
-    - vault-deletegroup
-    - vault-i1
-    - vault-initial
-    - vault-initial1
-    - vault-mdtest
-    - vault-process1
-    - vault-process2
-    - vault-process3
-    - vault-r1
-    - vault-revisions
-    - vault-search
-    - vault-updateproperties
-    - research-deletegroup
-    - research-initial
-    - research-initial1
-    - research-mdtest
-    - research-process1
-    - research-process2
-    - research-process3
-    - research-r1
-    - research-revisions
-    - research-search
-    - research-updateproperties
-    - read-deletegroup
-    - read-initial
-    - read-initial1
-    - read-mdtest
-    - read-process1
-    - read-process2
-    - read-process3
-    - read-r1
-    - read-revisions
-    - read-search
-    - read-updateproperties
-    - datamanager-frontendtest
-    - datamanager-initial
-    - grp-datamanager-initial
-    - grp-datamanager-test
-    - grp-intake-initial
-    - grp-intake-test
-    - grp-vault-initial
-    - grp-vault-test
-    - grp-g1
-    - intake-i1
-    - read-i1
-    - read-test
+    - "{{ deletion_research_groups }}"
+
+- name: Remove test groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup vault-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+- name: Remove test groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup read-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+- name: Remove test groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+- name: Remove test groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+- name: Remove test groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup read-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+        
+- name: Remove test groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup datamanager-'{{ item.datamanager }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_datamanager_groups }}"  
+    
+- name: Remove test groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup grp-'{{ item.grp }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_grp_groups }}"
+
+    
+
+
+
+- name: Remove trash data
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irmtrash -rM /tempZone/trash/home/'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+- name: Remove trash data users
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: |
+    irmtrash -rM /tempZone/trash/home/'{{ item.name }}'
+  ignore_errors: true
+  with_items:
+    - "{{ test_users }}"
+
+- name: Remove trash data users
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: |
+    irmtrash -rM /tempZone/trash/home/rods
+  ignore_errors: true
+
+
+
+
+
+
 
 
 - name: Remove test users
@@ -376,3 +466,5 @@
     - "Creative Commons Attribution-ShareAlike 4.0 International Public License.uri"
     - "Open Data Commons Attribution License (ODC-By) v1.0.txt"
     - "Open Data Commons Attribution License (ODC-By) v1.0.uri"
+
+
