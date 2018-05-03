@@ -33,3 +33,13 @@ revision_strategy: A
 yoda_instance: "{{ instance }}"
 update_schemas: 0
 irods_default_resc: irodsResc
+
+#####################
+# Mail notifications
+#####################
+send_notifications: 0               # Enable notifications: yes (1) or no (0)
+sender_email: noreply@yoda.test     # Sender email address
+sender_name: "Yoda system"          # Sender name
+smtp_server: PLACEHOLDER            # SMTP server to send mail to
+smtp_username: PLACEHOLDER          # SMTP server username
+smtp_password: PLACEHOLDER          # SMTP server password

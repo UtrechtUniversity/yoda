@@ -141,7 +141,16 @@ revision_strategy: B           # Revision strategy: A, B, J or Simple
 yoda_random_id_length: 6       # Length of random ID to add to persistent identifier
 yoda_prefix: UU01              # Prefix for internal portion of persistent identifier
 update_rulesets: yes           # Update already installed rulesets with git
-update_schemas: 1              # Update already installed schemas, formelements and stylesheets: yes (1) or no (0) 
+update_schemas: 1              # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
+
+#####################
+# Mail notifications
+#####################
+send_notifications: 0               # Enable notifications: yes (1) or no (0)
+sender_email: noreply@yoda.test     # Sender email address
+smtp_server: PLACEHOLDER            # SMTP server to send mail to
+smtp_username: PLACEHOLDER          # SMTP server username
+smtp_password: PLACEHOLDER          # SMTP server password
 
 #########################
 # DataCite Configuration

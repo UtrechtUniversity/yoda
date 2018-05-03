@@ -143,6 +143,15 @@ yoda_prefix: UU01              # Prefix for internal portion of persistent ident
 update_rulesets: yes           # Update already installed rulesets with git
 update_schemas: 1              # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 
+#####################
+# Mail notifications
+#####################
+send_notifications: 0               # Enable notifications: yes (1) or no (0)
+sender_email: noreply@yoda.test     # Sender email address
+smtp_server: PLACEHOLDER            # SMTP server to send mail to
+smtp_username: PLACEHOLDER          # SMTP server username
+smtp_password: PLACEHOLDER          # SMTP server password
+
 #########################
 # DataCite Configuration
 #########################

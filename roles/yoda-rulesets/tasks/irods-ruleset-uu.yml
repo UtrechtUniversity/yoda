@@ -58,3 +58,28 @@
     day: 15
     job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r >> $HOME/log/job_monthly-storage-statistics.log 2>&1'
   when: monthly_storage_statistics.stat.exists == True
+
+
+- name: Set configuration AVUs for UU ruleset to system collection
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda"
+    irods_type: Collection
+    attribute: "{{ avu.attribute }}"
+    value: "{{ avu.value }}"
+  with_items:
+    - attribute: org_send_notifications
+      value: "{{ send_notifications }}"
+    - attribute: org_sender_email
+      value: "{{ sender_email }}"
+    - attribute: org_sender_name
+      value: "{{ sender_name }}"
+    - attribute: org_smtp_server
+      value: "{{ smtp_server }}"
+    - attribute: org_smtp_username
+      value: "{{ smtp_username }}"
+    - attribute: org_smtp_password
+      value: "{{ smtp_password }}"
+  loop_control:
+    loop_var: avu

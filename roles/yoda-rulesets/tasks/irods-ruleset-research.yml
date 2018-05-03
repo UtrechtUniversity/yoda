@@ -185,7 +185,7 @@
     job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/log/cronjob-revision-cleanup.log 2>&1'
 
 
-- name: Set configuration AVUs to system collection
+- name: Set configuration AVUs for research ruleset to system collection
   become_user: "{{ irods_service_account }}"
   become: yes
   irods_setavu:
