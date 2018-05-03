@@ -82,6 +82,15 @@
     state: absent
 
 
+- name: Configure cronjob to process publications
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'process-publication.r'
+    minute: '*'
+    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/process-publication.r >>$HOME/log/job_process-publication.log 2>&1'
+
+
 - name: Install script for revision clean up
   become_user: "{{ irods_service_account }}"
   become: yes
