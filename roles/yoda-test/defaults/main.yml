@@ -74,6 +74,9 @@ test_groups:
   - groupName: research-updateproperties
     category: initial
     subcategory: initial
+  - groupName: research-epicpid
+    category: initial
+    subcategory: initial
   - groupName: research-mdtest
     category: initial
     subcategory: initial
@@ -92,7 +95,16 @@ test_groups:
   - groupName: research-search
     category: initial
     subcategory: initial
-
+  - groupName: research-teststatistics1
+    category: teststatistics
+    subcategory: teststatistics
+  - groupName: research-teststatistics2
+    category: teststatistics
+    subcategory: teststatistics
+  - groupName: datamanager-teststatistics
+    category: teststatistics
+    subcategory: teststatistics
+    
 test_groupusers:
   - groupName: priv-category-add
     user: functionaladminpriv
@@ -201,6 +213,19 @@ test_groupusers:
     user: viewer
     role: reader
 
+  - groupName: research-epicpid
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-epicpid
+    user: groupmanager
+    role: manager
+  - groupName: research-epicpid
+    user: researcher
+    role: normal
+  - groupName: research-epicpid
+    user: viewer
+    role: reader
+
   - groupName: research-mdtest
     user: functionaladminpriv
     role: manager
@@ -278,3 +303,46 @@ test_groupusers:
   - groupName: research-search
     user: viewer
     role: reader
+
+  - groupName: research-teststatistics1
+    user: functionaladminpriv
+    role: manager
+
+  - groupName: research-teststatistics2
+    user: functionaladminpriv
+    role: manager
+
+  - groupName: datamanager-teststatistics
+    user: functionaladminpriv
+    role: manager
+
+
+deletion_research_groups:
+  - research: deletegroup
+  - research: initial
+  - research: initial1
+  - research: epicpid
+  - research: mdtest
+  - research: process1
+  - research: process2
+  - research: process3
+  - research: r1
+  - research: revisions
+  - research: search
+  - research: updateproperties
+  - research: teststatistics1
+  - research: teststatistics2
+deletion_datamanager_groups:
+  - datamanager: frontendtest
+  - datamanager: initial
+  - datamanager: teststatistics
+deletion_grp_groups: 
+  - grp: datamanager-initial
+  - grp: datamanager-test
+  - grp: g1
+  - grp: intake-initial
+  - grp: intake-test
+  - grp: vault-initial  
+  - grp: vault-test
+deletion_intake_groups:
+  - intake: i1
