@@ -74,6 +74,9 @@ test_groups:
   - groupName: research-updateproperties
     category: initial
     subcategory: initial
+  - groupName: research-epicpid
+    category: initial
+    subcategory: initial
   - groupName: research-mdtest
     category: initial
     subcategory: initial
@@ -210,6 +213,19 @@ test_groupusers:
     user: viewer
     role: reader
 
+  - groupName: research-epicpid
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-epicpid
+    user: groupmanager
+    role: manager
+  - groupName: research-epicpid
+    user: researcher
+    role: normal
+  - groupName: research-epicpid
+    user: viewer
+    role: reader
+
   - groupName: research-mdtest
     user: functionaladminpriv
     role: manager
@@ -305,6 +321,7 @@ deletion_research_groups:
   - research: deletegroup
   - research: initial
   - research: initial1
+  - research: epicpid
   - research: mdtest
   - research: process1
   - research: process2
