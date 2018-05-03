@@ -58,6 +58,14 @@
   when: (not ansible_check_mode) and (terms_installed.stderr.find('does not exist') >= 0)
 
 
+- name: Ensure that Yoda publication directory is present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/yoda/publication
+  ignore_errors: true
+
+
 - name: Remove cronjob to copy datapackages to the vault
   become_user: "{{ irods_service_account }}"
   become: yes
