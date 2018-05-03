@@ -88,7 +88,7 @@
   cron:
     name: 'process-publication.r'
     minute: '*'
-    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/process-publication.r >>$HOME/log/job_process-publication.log 2>&1'
+    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/process-publication.r >/dev/null 2>&1'
 
 
 - name: Install script for revision clean up
