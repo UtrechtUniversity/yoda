@@ -281,13 +281,6 @@
     - createnewuser
 
 
-- name: Ensure test users exists
-  user:
-    name: '{{ item.name }}'
-    password: "{{ item.password | password_hash('sha512') }}"
-  with_items: '{{ test_users }}'
-
-
 - name: Ensure Yoda test users exists
   become_user: '{{ irods_service_account }}'
   become: yes
