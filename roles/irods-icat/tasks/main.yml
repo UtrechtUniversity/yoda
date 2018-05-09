@@ -255,7 +255,7 @@
     - key: 'irods_client_server_policy'
       value: 'CS_NEG_REQUIRE'
     - key: 'irods_ssl_verify_server'
-      value: 'none'
+      value: '{{ irods_ssl_verify_server }}'
 
 
 - name: Retrieve iRODS server zone key
