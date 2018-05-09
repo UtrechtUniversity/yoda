@@ -25,5 +25,5 @@
     "irods_ssl_certificate_key_file": "/etc/irods/{{ openssl_key_signed }}",
     "irods_ssl_dh_params_file": "/etc/irods/{{ openssl_dhparams }}",
     "irods_client_server_policy": "CS_NEG_REQUIRE",
-    "irods_ssl_verify_server": "none"
+    "irods_ssl_verify_server": "{{ irods_ssl_verify_server }}"
 }

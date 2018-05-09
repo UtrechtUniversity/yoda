@@ -10,9 +10,9 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of 
 #####################
 # Yoda configuration
 #####################
-instance: allinone                                # Name of Yoda instance, as defined in hosts file
-yoda_version: release-1.2                         # Git branch, for example: development or release-1.0
-codeigniter_environment: development              # CodeIgniter environment: development, testing, acceptance or production
+instance: allinone                                 # Name of Yoda instance, as defined in hosts file
+yoda_version: release-1.2                          # Git branch, for example: development or release-1.0
+codeigniter_environment: development               # CodeIgniter environment: development, testing, acceptance or production
 yoda_portal_fqdn: portal.yoda.test                 # Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
@@ -47,10 +47,11 @@ irods_database_user: irodsdb               # The iRODS database username
 irods_database_password: irodsdev          # The password for the iRODS database username
 irods_authentication_scheme: Native        # iRODS authentication method: "Native" or "PAM"
 irods_zone: tempZone                       # The name of the iRODS Zone
-irods_icat_fqdn: combined.yoda.test         # iRODS iCAT fully qualified domain name (FQDN)
-irods_database_fqdn: combined.yoda.test     # iRODS database fully qualified domain name (FQDN)
-irods_resource_fqdn: combined.yoda.test     # iRODS resource fully qualified domain name (FQDN)
+irods_icat_fqdn: combined.yoda.test        # iRODS iCAT fully qualified domain name (FQDN)
+irods_database_fqdn: combined.yoda.test    # iRODS database fully qualified domain name (FQDN)
+irods_resource_fqdn: combined.yoda.test    # iRODS resource fully qualified domain name (FQDN)
 irods_default_resc: irodsResc              # iRODS default resource name
+irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources:
   - name: dev001_1
     host: "{{ irods_icat_fqdn }}"
