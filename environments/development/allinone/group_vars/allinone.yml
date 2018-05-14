@@ -169,6 +169,11 @@ pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
 
+#######################
+# Zabbix configuration
+#######################
+zabbix_server: PLACEHOLDER
+
 ############################
 # Public host configuration
 ############################
