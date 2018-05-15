@@ -353,3 +353,6 @@ reset_tiers:
   - dev001_2
   - dev001_p1
   - dev001_p2
+  - irodsResc
+  - irodsRescRepl
+  - bundleResc

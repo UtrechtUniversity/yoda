@@ -11,6 +11,8 @@
     - "{{ reset_tiers }}"
 
 
+
+
 - name: Prepare test data for removal
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -94,9 +96,6 @@
 
 
 
-
-
-
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -168,10 +167,6 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"  
-
-
-
-
 
 
 
@@ -248,7 +243,6 @@
   with_items:
     - "{{ deletion_grp_groups }}"
 
-    
 
 
 
@@ -280,7 +274,6 @@
 
 
 
-
 - name: Remove test users
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -289,6 +282,8 @@
   ignore_errors: true
   with_items:
     - createnewuser
+
+
 
 
 - name: Ensure Yoda test users exists
