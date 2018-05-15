@@ -1,6 +1,16 @@
 ---
 # copyright Utrecht University
 
+- name: Set tiers to Standard
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 
+    imeta set -R '{{ item }}' org_storage_tier Standard
+  ignore_errors: true
+  with_items:
+    - "{{ reset_tiers }}"
+
+
 - name: Prepare test data for removal
   become_user: '{{ irods_service_account }}'
   become: yes
