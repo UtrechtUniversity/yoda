@@ -104,7 +104,10 @@ test_groups:
   - groupName: datamanager-teststatistics
     category: teststatistics
     subcategory: teststatistics
-    
+  - groupName: research-nodmprocess
+    category: initialnodm
+    subcategory: initialnodm
+  
 test_groupusers:
   - groupName: priv-category-add
     user: functionaladminpriv
@@ -316,6 +319,18 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
 
+  - groupName: research-nodmprocess
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-nodmprocess
+    user: groupmanager
+    role: manager
+  - groupName: research-nodmprocess
+    user: researcher
+    role: normal
+  - groupName: research-nodmprocess
+    user: viewer
+    role: reader
 
 deletion_research_groups:
   - research: deletegroup
@@ -332,6 +347,7 @@ deletion_research_groups:
   - research: updateproperties
   - research: teststatistics1
   - research: teststatistics2
+  - research: nodmprocess
 deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
