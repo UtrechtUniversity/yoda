@@ -19,7 +19,7 @@ Then look at the rodsLog around the time of the problem. Error messages could gi
 The publication process saves its state in metadata on the vault package. You can use imeta to list the details. See an example below.
 
 ```bash
-imeta -C lsw /tempZone/home/vault-test/testpackage[123456789] org_publication%
+imeta lsw -C /tempZone/home/vault-test/research-test[123456789] org_publication%
 ```
 
 When the problem is caused by invalid metadata, check the value of `org_publication_combiXmlPath` and `org_publication_dataCiteXmlPath`. You can use iget to download the generated metadata at these paths and check for XML/XSLT related problems.
