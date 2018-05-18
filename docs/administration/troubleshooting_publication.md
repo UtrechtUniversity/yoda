@@ -34,6 +34,11 @@ before the failure and continue.
 
 When the `org_publication_status` is `Processing` and the root cause of the crash looks to be incidental, you could set the status to `Retry` with  imeta on the `org_publication_status`. The publication will be retried the next time the cronjob runs.
 
+```bash
+imeta set -C /tempZone/home/vault-test/research-test[123456789] org_publication_status Retry
+```
+
+
 When the `org_publication_status` is `Unrecoverable` then one of XSLT conversion steps have produced invalid metadata.
 You could use a third party XSLT processor on the metadata in the previously mentioned source XML files with the used XSL's from the current category.
 This could tell you the problem.
