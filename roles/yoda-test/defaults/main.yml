@@ -352,6 +352,7 @@ deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
   - datamanager: teststatistics
+  - datamanager: nodmprocess
 deletion_grp_groups: 
   - grp: datamanager-initial
   - grp: datamanager-test
