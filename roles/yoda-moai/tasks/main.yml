@@ -38,6 +38,7 @@
     state: present
   when: not item.results
   with_items: "{{ yoda_moai_packages_repo.results }}"
+  notify: Restart Apache webserver
 
 
 - name: Ensure yoda-moai packages are already installed or install from repo
@@ -45,6 +46,7 @@
     name: "{{ item.value.package }}"
     state: present
   with_dict: "{{ yoda_moai_packages }}"
+  notify: Restart Apache webserver
 
 
 - name: Ensure Yoda MOAI user exists
