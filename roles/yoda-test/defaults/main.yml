@@ -105,8 +105,8 @@ test_groups:
     category: teststatistics
     subcategory: teststatistics
   - groupName: research-nodmprocess
-    category: initialnodm
-    subcategory: initialnodm
+    category: nodminitial
+    subcategory: nodminitial
   
 test_groupusers:
   - groupName: priv-category-add
