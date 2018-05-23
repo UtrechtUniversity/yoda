@@ -75,6 +75,8 @@
       value: "{{ sender_email }}"
     - attribute: org_sender_name
       value: "{{ sender_name }}"
+    - attribute: org_reply_to
+      value: "{{ reply_to }}"      
     - attribute: org_smtp_server
       value: "{{ smtp_server }}"
     - attribute: org_smtp_username
