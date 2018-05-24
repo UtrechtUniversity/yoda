@@ -22,16 +22,14 @@ To address thece concerns, we made the following decisions:
 
 We identified the following constructs to provide privileged and/or asynchronous execution:
 
-(@Felix, can you describe these in more detail?)
-
-1.	PHP Call ‘change state to x’, triggering an ExecCmd
-2.	Cronjob. This allows a job to be 'picked up' and executed within the system environment. Drawback: cronjobs can only be scheduled at minute-granularity, so certain jobs require ~1m to start, which implies asynchrounous execution. Requires Mutex to ensure that jobs are not picked up twice.
-3.	Delayed Rule. Bug: output-params.
+1.	ExecCmd for privileged execution.
+2.	Cronjob for asynchronous AND privileged execution. This allows a job to be 'picked up' and executed within the system environment. Drawback: asynchronous, cronjobs can only be scheduled at minute-granularity, so certain jobs require ~1m to start.
+3.	Delayed Rule for asynchronous execution. Currently this does not work in all cases, due to a bug with for delayed rules with output parameters in the top-level call.
 
 De decided to apply the following:
 
 * **Decision: Apply delayed rule and ExecCmd for resp. asynchronous and system execution**. The delayed rule is applied for executing tasks with (possibly) long execution time 
-  in asynchronously, and ExecCmd is applied to have the (privileged/non-interactive) system user perform write action in the vault. Tasks that require vault privileges and asynchronous execution apply both the delayed rule and ExecCmd.  
+  asynchronously, and ExecCmd is applied to have the (privileged/non-interactive) system user perform write action in the vault. Tasks that require vault privileges and asynchronous execution apply both the delayed rule and ExecCmd.  Where delayed rules don't work, fall back to using crontab.
   **Rationale**:   
   **Impact**:  
   
