@@ -71,17 +71,5 @@
   with_items:
     - attribute: org_send_notifications
       value: "{{ send_notifications }}"
-    - attribute: org_sender_email
-      value: "{{ sender_email }}"
-    - attribute: org_sender_name
-      value: "{{ sender_name }}"
-    - attribute: org_reply_to
-      value: "{{ reply_to }}"      
-    - attribute: org_smtp_server
-      value: "{{ smtp_server }}"
-    - attribute: org_smtp_username
-      value: "{{ smtp_username }}"
-    - attribute: org_smtp_password
-      value: "{{ smtp_password }}"
   loop_control:
     loop_var: avu
