@@ -42,7 +42,7 @@ test_users:
 
 test_groups:
   - groupName: research-initial
-    category: initial
+    category: initialusers
     subcategory: initial
   - groupName: research-initial1
     category: initial
@@ -363,6 +363,8 @@ deletion_grp_groups:
   - grp: vault-test
 deletion_intake_groups:
   - intake: i1
+
+remove_users_with_domain: '@nwytg.com'
 
 reset_tiers:
   - dev001

@@ -283,6 +283,23 @@
   with_items:
     - createnewuser
 
+- name: Create list of users to remove
+  become_user: '{{irods_service_account}}'
+  become: yes
+  shell: 
+    iadmin lu | grep '{{ remove_users_with_domain }}'
+  register: command_output
+  ignore_errors: true
+
+- name: Remove test users
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmuser '{{ item }}'
+  ignore_errors: true
+  with_items:
+    - "{{ command_output.stdout_lines }}"
+
 
 
 
