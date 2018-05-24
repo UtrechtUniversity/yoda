@@ -1,0 +1,21 @@
+---
+# copyright Utrecht University
+
+- name: Ensure that credentials store exists
+  file:
+    path: /var/lib/irods/.credentials_store
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0700
+    state: directory
+  when: not ansible_check_mode
+
+
+- name: Configure credentials in credential store
+  template:
+    src: store_config.j2
+    dest: /var/lib/irods/.credentials_store/store_config.json
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0600
+  when: not ansible_check_mode
