@@ -22,9 +22,9 @@ To address thece concerns, we made the following decisions:
 
 We identified the following constructs to provide privileged and/or asynchronous execution:
 
-1.	ExecCmd for privileged execution.
-2.	Cronjob for asynchronous AND privileged execution. This allows a job to be 'picked up' and executed within the system environment. Drawback: asynchronous, cronjobs can only be scheduled at minute-granularity, so certain jobs require ~1m to start.
-3.	Delayed Rule for asynchronous execution. Currently this does not work in all cases, due to a bug with for delayed rules with output parameters in the top-level call.
+1.	ExecCmd-of-irule for privileged execution.
+2.	Delayed Rule for asynchronous execution. Currently this does not work in all cases, due to a bug with for delayed rules with output parameters in the top-level call.
+3.	Cronjob for asynchronous AND privileged execution. This allows a job to be 'picked up' and executed within the system environment. Drawback: asynchronous, cronjobs can only be scheduled at minute-granularity, so certain jobs require ~1m to start.  We use cronjobs as a fallback when we cannot use delayed rules due to a bug in irods.
 
 De decided to apply the following:
 
