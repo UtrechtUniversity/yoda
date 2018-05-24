@@ -94,7 +94,7 @@ def main():
         message="set {}: {}".format(avu.name, avu.value)
         if not module.check_mode:
             session.metadata.set(model, name, avu)
-    elif not found and state == 'absent':
+    elif found and state == 'absent':
         changed=True
         message="remove {}: {}".format(avu.name, avu.value)
         if not module.check_mode:
