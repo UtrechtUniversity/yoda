@@ -1,16 +1,14 @@
 ---
 # copyright Utrecht University
 
-- name: Set tiers to Standard
+- name: Set storage tiers to Standard
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: 
+  command:
     imeta set -R '{{ item }}' org_storage_tier Standard
   ignore_errors: true
   with_items:
     - "{{ reset_tiers }}"
-
-
 
 
 - name: Prepare test data for removal
@@ -22,6 +20,7 @@
   with_items:
     - "{{ deletion_research_groups }}"
 
+
 - name: Prepare test data for removal
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -30,6 +29,7 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
+
 
 - name: Prepare test data for removal
   become_user: '{{ irods_service_account }}'
@@ -40,6 +40,7 @@
   with_items:
     - "{{ deletion_datamanager_groups }}"
 
+
 - name: Prepare test data for removal
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -48,6 +49,7 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_intake_groups }}"
+
 
 - name: Prepare test data for removal
   become_user: '{{ irods_service_account }}'
@@ -58,6 +60,7 @@
   with_items:
     - "{{ deletion_intake_groups }}"
 
+
 - name: Prepare test data for removal
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -66,6 +69,7 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_grp_groups }}"
+
 
 - name: Prepare test data for removal
   become_user: '{{ irods_service_account }}'
@@ -76,6 +80,7 @@
   with_items:
     - "{{ deletion_research_groups }}"
 
+
 - name: Prepare test data for removal
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -84,6 +89,7 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
+
 
 - name: Prepare trash data for removal
   become_user: '{{ irods_service_account }}'
@@ -95,7 +101,6 @@
     - "{{ test_users }}"
 
 
-
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -104,6 +109,7 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
+
 
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
@@ -114,6 +120,7 @@
   with_items:
     - "{{ deletion_research_groups }}"
 
+
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -122,6 +129,7 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_datamanager_groups }}"
+
 
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
@@ -132,6 +140,7 @@
   with_items:
     - "{{ deletion_intake_groups }}"
 
+
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -140,6 +149,7 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_intake_groups }}"
+
 
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
@@ -150,6 +160,7 @@
   with_items:
     - "{{ deletion_grp_groups }}"
 
+
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -159,6 +170,7 @@
   with_items:
     - "{{ deletion_research_groups }}"
 
+
 - name: Remove test data
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -166,9 +178,7 @@
     irm -r /tempZone/yoda/revisions/research-'{{ item.research }}'
   ignore_errors: true
   with_items:
-    - "{{ deletion_research_groups }}"  
-
-
+    - "{{ deletion_research_groups }}"
 
 
 - name: Remove test groups
@@ -180,6 +190,7 @@
   with_items:
     - "{{ deletion_research_groups }}"
 
+
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -188,6 +199,7 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
+
 
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
@@ -198,6 +210,7 @@
   with_items:
     - "{{ deletion_research_groups }}"
 
+
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -206,6 +219,7 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_intake_groups }}"
+
 
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
@@ -216,6 +230,7 @@
   with_items:
     - "{{ deletion_intake_groups }}"
 
+
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -224,7 +239,8 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_intake_groups }}"
-        
+
+
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -232,8 +248,9 @@
     iadmin rmgroup datamanager-'{{ item.datamanager }}'
   ignore_errors: true
   with_items:
-    - "{{ deletion_datamanager_groups }}"  
-    
+    - "{{ deletion_datamanager_groups }}"
+
+
 - name: Remove test groups
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -242,8 +259,6 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_grp_groups }}"
-
-
 
 
 - name: Remove trash data
@@ -255,6 +270,7 @@
   with_items:
     - "{{ deletion_research_groups }}"
 
+
 - name: Remove trash data users
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -264,14 +280,13 @@
   with_items:
     - "{{ test_users }}"
 
+
 - name: Remove trash data users
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: 
+  command:
     irmtrash -rM /tempZone/trash/home/rods
   ignore_errors: true
-
-
 
 
 - name: Remove test users
@@ -283,13 +298,15 @@
   with_items:
     - createnewuser
 
+
 - name: Create list of users to remove
   become_user: '{{irods_service_account}}'
   become: yes
-  shell: 
+  shell:
     iadmin lu | grep '{{ remove_users_with_domain }}'
   register: command_output
   ignore_errors: true
+
 
 - name: Remove test users
   become_user: '{{ irods_service_account }}'
@@ -299,8 +316,6 @@
   ignore_errors: true
   with_items:
     - "{{ command_output.stdout_lines }}"
-
-
 
 
 - name: Ensure Yoda test users exists
@@ -392,12 +407,14 @@
     imkdir /{{ irods_zone }}/home/research-mdtest/nomdpresent
   ignore_errors: true
 
+
 - name: Ensure Yoda test data directory is present in Yoda
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
     imkdir /{{ irods_zone }}/home/research-mdtest/copyfromparent
   ignore_errors: true
+
 
 - name: Ensure Yoda test files are present
   become_user: '{{ irods_service_account }}'
@@ -471,5 +488,3 @@
     - "Creative Commons Attribution-ShareAlike 4.0 International Public License.uri"
     - "Open Data Commons Attribution License (ODC-By) v1.0.txt"
     - "Open Data Commons Attribution License (ODC-By) v1.0.uri"
-
-
