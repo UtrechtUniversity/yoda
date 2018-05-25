@@ -42,7 +42,7 @@ test_users:
 
 test_groups:
   - groupName: research-initial
-    category: initialusers
+    category: initial
     subcategory: initial
   - groupName: research-initial1
     category: initial
