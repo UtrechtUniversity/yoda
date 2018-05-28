@@ -80,6 +80,9 @@ test_groups:
   - groupName: research-mdtest
     category: initial
     subcategory: initial
+  - groupName: research-mdtestvault
+    category: initial
+    subcategory: initial
   - groupName: research-process1
     category: initial
     subcategory: initial
@@ -241,6 +244,19 @@ test_groupusers:
   - groupName: research-mdtest
     user: viewer
     role: reader
+    
+  - groupName: research-mdtestvault
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-mdtestvault
+    user: groupmanager
+    role: manager
+  - groupName: research-mdtestvault
+    user: researcher
+    role: normal
+  - groupName: research-mdtestvault
+    user: viewer
+    role: reader
 
   - groupName: research-process1
     user: functionaladminpriv
@@ -338,6 +354,7 @@ deletion_research_groups:
   - research: initial1
   - research: epicpid
   - research: mdtest
+  - research: mdtestvault
   - research: process1
   - research: process2
   - research: process3
