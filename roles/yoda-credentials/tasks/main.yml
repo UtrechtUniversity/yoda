@@ -29,8 +29,8 @@
     group: '{{ irods_service_account }}'
     mode: 0600
   with_items:
-    - src: 'epic_key.pem'
+    - src: '{{ credential_files }}/epic_key.pem'
       dest: '{{ credentials_store }}/epic_key.pem'
-    - src: 'epic_cert.pem'
+    - src: '{{ credential_files }}/epic_cert.pem'
       dest: '{{ credentials_store }}/epic_cert.pem'
   when: not ansible_check_mode

@@ -6,6 +6,7 @@ irods_service_account: irods
 
 # Yoda configuration
 credentials_store: /var/lib/irods/.credentials_store
+credential_files: PLACEHOLDER
 
 notifications_sender_email: noreply@yoda.test # Notifiations sender email address
 notifications_sender_name: "Yoda system"      # Notifiations sender name
