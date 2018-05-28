@@ -5,6 +5,8 @@
 irods_service_account: irods
 
 # Yoda configuration
+credentials_store: /var/lib/irods/.credentials_store
+
 notifications_sender_email: noreply@yoda.test # Notifiations sender email address
 notifications_sender_name: "Yoda system"      # Notifiations sender name
 notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email address
@@ -16,3 +18,6 @@ smtp_password: PLACEHOLDER                    # SMTP server password
 datacite_server: mds.test.datacite.org  # DataCite server URI
 datacite_username: PLACEHOLDER          # DataCite username
 datacite_password: PLACEHOLDER          # DataCite password
+
+epic_url: PLACEHOLDER                   # EPIC PID server URL
+epic_handle_prefix: PLACEHOLDER         # EPIC PID handle prefix
