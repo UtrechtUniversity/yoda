@@ -208,7 +208,7 @@
     - attribute: org_reply_to
       value: "{{ reply_to }}"
     - attribute: org_send_notifications
-      value: "{{ send_notiffications }}"
+      value: "{{ send_notifications }}"
     - attribute: org_smtp_server
       value: "{{ smtp_server }}"
     - attribute: org_smtp_username
