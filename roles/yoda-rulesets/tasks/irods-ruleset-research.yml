@@ -240,6 +240,8 @@
       value: "{{ yoda_public_fqdn }}{% if (yoda_public_port is defined) %}:{{ yoda_public_port }}{% endif %}"
     - attribute: org_public_host
       value: "{{ yoda_public_host }}"
+    - attribute: org_davrods_vhost
+      value: "{{ yoda_davrods_fqdn }}{% if (yoda_davrods_port is defined) %}:{{ yoda_davrods_port }}{% endif %}"
     - attribute: org_davrods_anonymous_vhost
       value: "{{ yoda_davrods_anonymous_fqdn }}{% if (yoda_davrods_anonymous_port is defined) %}:{{ yoda_davrods_anonymous_port }}{% endif %}"
   loop_control:
