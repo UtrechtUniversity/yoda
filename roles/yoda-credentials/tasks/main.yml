@@ -33,4 +33,4 @@
       dest: '{{ credentials_store }}/epic_key.pem'
     - src: '{{ credential_files }}/epic_cert.pem'
       dest: '{{ credentials_store }}/epic_cert.pem'
-  when: not ansible_check_mode
+  when: (credential_files != "PLACEHOLDER") and not ansible_check_mode
