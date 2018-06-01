@@ -280,6 +280,9 @@ test_groupusers:
     user: yodaresearcher@gmail.com
     role: normal
   - groupName: research-notification
+    user: researcher
+    role: normal
+  - groupName: research-notification
     user: viewer
     role: reader
 
