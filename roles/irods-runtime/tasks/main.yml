@@ -10,6 +10,16 @@
     - davrods-4.1_1.3.0-1
 
 
+- name: Ensure iRODS 4.2.2 packages are absent
+  package:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - davrods-4.2.2_1.4.0-1
+    - irods-sudo-microservices-4.2.2_1.0.0-1
+    - irods-uu-microservices-4.2.2_0.7.5-1
+
+
 - name: Ensure iRODS runtime is installed
   package:
     name: irods-runtime-4.2.3-1
