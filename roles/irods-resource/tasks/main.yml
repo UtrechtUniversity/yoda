@@ -25,7 +25,7 @@
     name: '{{ item }}'
     state: present
   with_items:
-    - irods-server-4.2.2-1
+    - irods-server-4.2.3-1
   when: not ansible_check_mode
 
 
