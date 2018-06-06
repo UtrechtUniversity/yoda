@@ -29,6 +29,38 @@
   when: zabbix_agent_repo.results
 
 
+- name: Download Zabbix postgres rpm
+  get_url:
+    url: '{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}'
+    dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
+    checksum: '{{ zabbix_postgres.checksum }}'
+  when: not zabbix_postgres_repo.results
+
+
+- name: Install Zabbix postgres from downloaded rpm
+  package:
+    name: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
+    state: present
+  when: not zabbix_postgres_repo.results
+
+
+- name: Ensure Zabbix postgres rpm is installed
+  package:
+    name: '{{ zabbix_postgres.package }}'
+    state: present
+  when: zabbix_postgres_repo.results
+
+
+- name: Create zabbix database user
+  become_user: postgres
+  become: yes
+  postgresql_user:
+    db: "{{ zabbix_database_name }}"
+    name: "{{ zabbix_database_user }}"
+    priv: CONNECT ON DATABASE "{{ zabbix_database_name}}"
+    role_attr_flags: NOSUPERUSER, NOCREATEDB, NOCREATEROLE
+
+
 - name: Enable the Zabbix agent service
   service:
     name: zabbix-agent
@@ -42,7 +74,7 @@
     permissive: true
   when: ansible_selinux
 
-  
+
 - name: Generate Zabbix agent PSK
   shell: openssl rand -hex 256 > /etc/zabbix/zabbix_agentd.psk
     creates=/etc/zabbix/zabbix_agentd.psk
