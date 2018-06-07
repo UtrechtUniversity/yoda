@@ -29,38 +29,6 @@
   when: zabbix_agent_repo.results
 
 
-- name: Download Zabbix postgres rpm
-  get_url:
-    url: '{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
-    checksum: '{{ zabbix_postgres.checksum }}'
-  when: not zabbix_postgres_repo.results
-
-
-- name: Install Zabbix postgres from downloaded rpm
-  package:
-    name: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
-    state: present
-  when: not zabbix_postgres_repo.results
-
-
-- name: Ensure Zabbix postgres rpm is installed
-  package:
-    name: '{{ zabbix_postgres.package }}'
-    state: present
-  when: zabbix_postgres_repo.results
-
-
-- name: Create zabbix database user
-  become_user: postgres
-  become: yes
-  postgresql_user:
-    db: "{{ zabbix_database_name }}"
-    name: "{{ zabbix_database_user }}"
-    priv: CONNECT ON DATABASE "{{ zabbix_database_name}}"
-    role_attr_flags: NOSUPERUSER, NOCREATEDB, NOCREATEROLE
-
-
 - name: Enable the Zabbix agent service
   service:
     name: zabbix-agent
@@ -189,3 +157,36 @@
     - listOrphanedGroups.sh
     - replicationErrors.sh
     - testUserParam.sh
+
+
+- name: Ensure postgresql monitoring package exists
+  stat: path=/etc/irods/yoda-zabbix/libzbxpgsql-1.1.0-1.el7.x86_64.rpm
+  register: zabbix_postgresql
+
+
+- name: Install Zabbix postgresql package
+  package:libzbxpgsql-1.1.0-1
+    name: /etc/irods/yoda-zabbix/libzbxpgsql-1.1.0-1.el7.x86_64.rpm'
+    state: present
+  when: not zabbix_postgresql_repo.results
+  notify: Restart Zabbix agent 
+
+
+- name: Ensure Zabbix postgres rpm is installed
+  package:
+    name: libzbxpgsql-1.1.0-1
+    state: present
+  when: zabbix_postgres_repo.results
+
+
+- name: Create zabbix database user
+  become_user: postgres
+  become: yes
+  postgresql_user:
+    db: "{{ zabbix_database_name }}"
+    name: "{{ zabbix_database_user }}"
+    priv: CONNECT ON DATABASE "{{ zabbix_database_name}}"
+    role_attr_flags: NOSUPERUSER, NOCREATEDB, NOCREATEROLE
+    notify: Restart Zabbix agent 
+
+
