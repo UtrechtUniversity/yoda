@@ -159,24 +159,30 @@
     - testUserParam.sh
 
 
+- name: Check if Zabbix postgresql rpm is installable from repository
+  yum:
+    list: '{{ zabbix_postgres.package }}'
+  register: zabbix_postgres_repo
+
+
 - name: Ensure postgresql monitoring package exists
   stat: path=/etc/irods/yoda-zabbix/src/libzbxpgsql-1.1.0-1.el7.x86_64.rpm
-  register: zabbix_postgresql.results
+  register: zabbix_postgres.results
 
 
 - name: Install Zabbix postgresql package
   package:
     name: /etc/irods/yoda-zabbix/src/libzbxpgsql-1.1.0-1.el7.x86_64.rpm
     state: present
-  when: not zabbix_postgresql.results
+  when: not zabbix_postgres.results
   notify: Restart Zabbix agent 
 
 
 - name: Ensure Zabbix postgres rpm is installed
   package:
-    name: libzbxpgsql-1.1.0-1
+    name: '{{ zabbix_postgres.package }}'
     state: present
-  when: zabbix_postgresql.results
+  when: zabbix_postgres.results
 
 
 - name: Create zabbix database user
