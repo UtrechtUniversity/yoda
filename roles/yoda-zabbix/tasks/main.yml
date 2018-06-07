@@ -161,7 +161,7 @@
 
 - name: Ensure postgresql monitoring package exists
   stat: path=/etc/irods/yoda-zabbix/src/libzbxpgsql-1.1.0-1.el7.x86_64.rpm
-  register: zabbix_postgresql
+  register: zabbix_postgresql.results
 
 
 - name: Install Zabbix postgresql package
