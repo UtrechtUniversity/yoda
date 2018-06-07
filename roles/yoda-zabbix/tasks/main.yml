@@ -186,14 +186,3 @@
   when: zabbix_postgres_repo.results
 
 
-- name: Create zabbix database user
-  become_user: postgres
-  become: yes
-  postgresql_user:
-    db: "{{ zabbix_database_name }}"
-    name: "{{ zabbix_database_user }}"
-    priv: "CONNECT"
-    role_attr_flags: NOSUPERUSER,NOCREATEDB,NOCREATEROLE
-  notify: Restart Zabbix agent 
-
-
