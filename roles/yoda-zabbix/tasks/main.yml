@@ -192,7 +192,7 @@
   postgresql_user:
     db: "{{ zabbix_database_name }}"
     name: "{{ zabbix_database_user }}"
-    priv: "CONNECT ON DATABASE {{ zabbix_database_name}} TO zabbix"
+    priv: "GRANT CONNECT ON DATABASE {{ zabbix_database_name}} TO zabbix"
     role_attr_flags: NOSUPERUSER,NOCREATEDB,NOCREATEROLE
   notify: Restart Zabbix agent 
 
