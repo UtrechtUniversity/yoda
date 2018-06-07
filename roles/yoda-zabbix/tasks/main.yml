@@ -192,8 +192,8 @@
   postgresql_user:
     db: "{{ zabbix_database_name }}"
     name: "{{ zabbix_database_user }}"
-    priv: CONNECT ON DATABASE "{{ zabbix_database_name}}"
-    role_attr_flags: NOSUPERUSER, NOCREATEDB, NOCREATEROLE
+    priv: "CONNECT ON DATABASE {{ zabbix_database_name}}"
+    role_attr_flags: NOSUPERUSER,NOCREATEDB,NOCREATEROLE
     notify: Restart Zabbix agent 
 
 
