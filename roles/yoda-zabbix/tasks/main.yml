@@ -166,7 +166,7 @@
 
 - name: Install Zabbix postgresql package
   package:libzbxpgsql-1.1.0-1
-    name: /etc/irods/yoda-zabbix/libzbxpgsql-1.1.0-1.el7.x86_64.rpm'
+    name: '/etc/irods/yoda-zabbix/libzbxpgsql-1.1.0-1.el7.x86_64.rpm'
     state: present
   when: not zabbix_postgresql_repo.results
   notify: Restart Zabbix agent 
