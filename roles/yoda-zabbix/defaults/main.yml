@@ -22,10 +22,5 @@ zabbix_postgres:
   filename: libzbxpgsql-1.1.0-1.el7.x86_64.rpm
   checksum: sha256:b6e7051bb41aceec9edfaa20189e83ab5403ae4cd8d5b67bfffe20f30d93fb23
 
-# Zabbix postgres database user (CREATE ROLE zabbix WITH LOGIN NOSUPERUSER, NOCREATEDB, NOCREATEROLE
-# GRANT CONNECT ON DATABASE "ICAT" TO zabbix
-# Zabbix configuration
-zabbix_database_name: ICAT
-zabbix_database_user: zabbix
 
 zabbix_server: 192.168.50.20
