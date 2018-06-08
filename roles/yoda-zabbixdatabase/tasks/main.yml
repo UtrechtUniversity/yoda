@@ -13,6 +13,7 @@
     dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
     checksum: '{{ zabbix_postgres.checksum }}'
   when: not zabbix_postgres_repo.results
+  notify: Restart Zabbix agent
 
 
 - name: Install Zabbix postgres monitoring from downloaded rpm
