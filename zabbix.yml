@@ -20,7 +20,8 @@
   hosts: icats
   become: yes
   roles:
-    - yoda-zabbix
+    - yoda-zabbixagent  
+    - yoda-zabbixyodaitems
   tags:
     - zabbix
     
@@ -29,6 +30,7 @@
   hosts: databases
   become: yes
   roles:
-    - yoda-zabbixuser
+    - yoda-zabbixagent
+    - yoda-zabbixdatabase
   tags:
     - database
