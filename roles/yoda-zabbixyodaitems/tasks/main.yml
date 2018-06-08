@@ -18,13 +18,13 @@
 
 
 - name: Copy zabbix_agentd.userparams.conf to right place
-  command: cp /etc/irods/yoda-zabbix/src/zabbix_agentd.userparams.conf /etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
+  command: cp /etc/irods/yoda-zabbix/src/zabbix_agentd.userparams.conf /etc/zabbix/zabbix_agentd.d/zabbix_agentd.userparams.conf
   when: not zabbix_agentd.stat.exists or zabbix_repo.changed
 
 
 - name: Ensure right file ownership on zabbix_agentd.userparams.conf
   file:
-    path: /etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
+    path: /etc/zabbix/zabbix_agentd.d/zabbix_agentd.userparams.conf
     owner: zabbix
     group: zabbix
     mode: 0400
@@ -49,20 +49,20 @@
 
 
 - name: Copy Yoda Zabbix rules
-  shell: "cp /etc/irods/yoda-zabbix/src/*.r /etc/irods/yoda-zabbix/"
+  shell: "cp /etc/irods/yoda-zabbix/src/*.r /etc/zabbix/zabbix_agentd.d/"
   when: zabbix_repo.changed
   notify: Restart Zabbix agent
 
 
 - name: Copy Yoda Zabbix scripts
-  shell: "cp /etc/irods/yoda-zabbix/src/*.sh /etc/irods/yoda-zabbix/"
+  shell: "cp /etc/irods/yoda-zabbix/src/*.sh /etc/zabbix/zabbix_agentd.d/"
   when: zabbix_repo.changed
   notify: Restart Zabbix agent
 
 
 - name: Ensure right file ownership on Yoda Zabbix rules
   file:
-    path: "/etc/irods/yoda-zabbix/{{ item }}"
+    path: "/etc/zabbix/zabbix_agentd.d/{{ item }}"
     owner: irods
     group: irods
     mode: 0500
@@ -74,7 +74,7 @@
 
 - name: Ensure right file ownership on Yoda Zabbix scripts
   file:
-    path: "/etc/irods/yoda-zabbix/{{ item }}"
+    path: "//etc/zabbix/zabbix_agentd.d/{{ item }}"
     owner: zabbix
     group: zabbix
     mode: 0500
