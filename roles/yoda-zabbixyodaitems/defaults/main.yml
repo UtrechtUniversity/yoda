@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+# defaults
+
+yoda_version: development
+irods_service_account: irods
+
+
+zabbix_server: 192.168.50.20

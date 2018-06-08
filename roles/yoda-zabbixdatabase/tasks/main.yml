@@ -1,0 +1,51 @@
+---
+# copyright Utrecht University
+
+# Temporary directory to store downloaded rpm files.
+rpm_dest_dir: /tmp
+
+# Zabbix postgres rpm location and checksum
+zabbix_postgres:
+  package: libzbxpgsql-1.1.0-1
+  url: https://github.com/UtrechtUniversity/yoda-zabbix/releases/download/1.3-beta/
+  filename: libzbxpgsql-1.1.0-1.el7.x86_64.rpm
+  checksum: sha256:b6e7051bb41aceec9edfaa20189e83ab5403ae4cd8d5b67bfffe20f30d93fb23
+
+
+- name: Check if postgres monitoring rpm is installable from repository
+  yum:
+    list: '{{ zabbix_postgres.package }}'
+  register: zabbix_postgres_repo
+
+- name: Download Zabbix progres monitoring rpm
+  get_url:
+    url: '{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}'
+    dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
+    checksum: '{{ zabbix_postgres.checksum }}'
+  when: not zabbix_postgres_repo.results
+
+
+- name: Install Zabbix postgres monitoring from downloaded rpm
+  package:
+    name: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
+    state: present
+  when: not zabbix_postgres_repo.results
+
+
+- name: Ensure Zabbix postgres monitoring rpm is installed
+  package:
+    name: '{{ zabbix_postgres.package }}'
+    state: present
+  when: zabbix_postgres_repo.results
+
+
+- name: Create zabbix database user
+  become_user: postgres
+  become: yes
+  postgresql_user:
+    db: "{{ zabbix_database_name }}"
+    name: "{{ zabbix_database_user }}"
+    priv: "CONNECT"
+    role_attr_flags: NOSUPERUSER,NOCREATEDB,NOCREATEROLE
+
+
