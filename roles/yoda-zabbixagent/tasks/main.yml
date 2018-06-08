@@ -67,7 +67,4 @@
     mode: 0600
   notify: Restart Zabbix agent
 
-- name: Restart Zabbix agent
-..notify: Restart Zabbix agent
-
 

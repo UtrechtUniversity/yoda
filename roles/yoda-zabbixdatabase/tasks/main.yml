@@ -27,6 +27,7 @@
     name: '{{ zabbix_postgres.package }}'
     state: present
   when: zabbix_postgres_repo.results
+  notify: Restart Zabbix agent
 
 
 - name: Create zabbix database user
