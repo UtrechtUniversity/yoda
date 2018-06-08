@@ -7,7 +7,7 @@
     list: '{{ zabbix_postgres.package }}'
   register: zabbix_postgres_repo
 
-- name: Download Zabbix progres monitoring rpm
+- name: Download Zabbix postgres monitoring rpm
   get_url:
     url: '{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
