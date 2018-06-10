@@ -1,11 +1,36 @@
 ---
 # copyright Utrecht University
-# This playbook provisions Yoda instance with the Zabbix agent.
+# This playbook provisions Yoda instance with the Zabbix agent, postgresql monitoring and zabbix user access to the database.
 
-- name: Provision instance with Zabbix agent
+- hosts: all
+  pre_tasks:
+    - name: Verify Ansible version meets requirements
+      assert:
+        that: "ansible_version.full is version_compare('2.4', '>=')"
+        msg: >
+          "You must update Ansible to at least 2.4 to deploy Yoda."
+
+- name: Add hosts entries to development instances
+  hosts: development
+  become: yes
+  roles:
+    - hostentries
+
+- name: Provision instance with Zabbix agent and postgresql monitoring
   hosts: icats
   become: yes
   roles:
-    - yoda-zabbix
+    - yoda-zabbixagent  
+    - yoda-zabbixyodaitems
   tags:
     - zabbix
+    
+
+- name: Provision instance with Zabbix agent
+  hosts: databases
+  become: yes
+  roles:
+    - yoda-zabbixagent
+    - yoda-zabbixdatabase
+  tags:
+    - database

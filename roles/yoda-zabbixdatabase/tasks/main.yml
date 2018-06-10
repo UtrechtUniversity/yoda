@@ -1,0 +1,43 @@
+---
+# copyright Utrecht University
+# tasks role yoda-zabbixdatabase
+
+- name: Check if postgres monitoring rpm is installable from repository
+  yum:
+    list: '{{ zabbix_postgres.package }}'
+  register: zabbix_postgres_repo
+
+- name: Download Zabbix postgres monitoring rpm
+  get_url:
+    url: '{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}'
+    dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
+    checksum: '{{ zabbix_postgres.checksum }}'
+  when: not zabbix_postgres_repo.results
+  notify: Restart Zabbix agent
+
+
+- name: Install Zabbix postgres monitoring from downloaded rpm
+  package:
+    name: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
+    state: present
+  when: not zabbix_postgres_repo.results
+
+
+- name: Ensure Zabbix postgres monitoring rpm is installed
+  package:
+    name: '{{ zabbix_postgres.package }}'
+    state: present
+  when: zabbix_postgres_repo.results
+  notify: Restart Zabbix agent
+
+
+- name: Create zabbix database user
+  become_user: postgres
+  become: yes
+  postgresql_user:
+    db: "{{ zabbix_database_name }}"
+    name: "{{ zabbix_database_user }}"
+    priv: "CONNECT"
+    role_attr_flags: NOSUPERUSER,NOCREATEDB,NOCREATEROLE
+
+

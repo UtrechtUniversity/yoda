@@ -73,7 +73,10 @@ roles/
     yoda-moai/            # ""
     yoda-portal/          # ""
     yoda-rulesets/        # ""
-    yoda-test/            # ""
+    yoda-test/            # used in the test.yml playbook
+    yoda-zabbixagent      # used in the zabbix.yml playbook
+    yoda-zabbixdatabase   # used in the zabbix.yml playbook
+    yoda-zabbixyodaitems  # used in the zabbix.yml playbook
 ```
 
 
