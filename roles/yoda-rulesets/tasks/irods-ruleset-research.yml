@@ -2,6 +2,8 @@
 # Copyright Utrecht University
 
 - name: Find out if default XSD, formelements and stylesheets are installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
   command: 'ils /{{ irods_zone }}/yoda/{{ item.collection }}/{{ item.file }}'
   ignore_errors: True
   register: installed_defaults
@@ -15,6 +17,8 @@
 
 
 - name: Ensure default schemas, formelements and stylesheets are installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
   command: >
     irule -F /etc/irods/irods-ruleset-research/tools/install-default-xml-for-metadata.r
     '*resc="{{ irods_default_resc }}"'
@@ -27,6 +31,8 @@
 
 
 - name: List installed or updated schemas, formelements or stylesheets
+  become_user: "{{ irods_service_account }}"
+  become: yes
   debug:
     var: item
   when: item|search('(Installed|Updated)')
@@ -34,6 +40,8 @@
 
 
 - name: Find out if terms and conditions system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: yes
   command: 'ils /{{ irods_zone }}/yoda/terms'
   ignore_errors: True
   register: terms_installed
@@ -41,6 +49,8 @@
 
 
 - name: Install terms and conditions
+  become_user: "{{ irods_service_account }}"
+  become: yes
   shell: |
     iput -r /etc/irods/irods-ruleset-research/tools/terms /{{ irods_zone }}/yoda
     ichmod -rM inherit /{{ irods_zone }}/yoda/terms
@@ -49,6 +59,8 @@
 
 
 - name: Configure cronjob to copy datapackages to the vault
+  become_user: "{{ irods_service_account }}"
+  become: yes
   cron:
     name: 'copy-accepted-folders-to-vault.r'
     minute: '*/2'
@@ -56,6 +68,8 @@
 
 
 - name: Configure cronjob to ingest changes into vault
+  become_user: "{{ irods_service_account }}"
+  become: yes
   cron:
     name: 'ingest-changes-into-vault.r'
     minute: '*'
@@ -63,6 +77,8 @@
 
 
 - name: Configure cronjob to process vault actions
+  become_user: "{{ irods_service_account }}"
+  become: yes
   cron:
     name: 'process-vault-status-transitions.r'
     minute: '*'
@@ -78,6 +94,8 @@
 
 
 - name: Copy securecopy.sh to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
   copy:
     remote_src: yes
     src: /etc/irods/irods-ruleset-research/tools/securecopy.sh
@@ -86,6 +104,8 @@
 
 
 - name: Configure cronjob to clean up revisions
+  become_user: "{{ irods_service_account }}"
+  become: yes
   cron:
     name: 'cronjob-revision-cleanup.sh'
     hour: 0
@@ -93,6 +113,8 @@
 
 
 - name: Set configuration AVUs to system collection
+  become_user: "{{ irods_service_account }}"
+  become: yes
   irods_setavu:
     name: "/{{ irods_zone }}/yoda"
     irods_type: Collection
