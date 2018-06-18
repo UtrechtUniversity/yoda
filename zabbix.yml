@@ -16,7 +16,7 @@
   roles:
     - hostentries
 
-- name: Provision instance with Zabbix agent and postgresql monitoring
+- name: Provision instance with Zabbix agent and yodaitems
   hosts: icats
   become: yes
   roles:
@@ -26,7 +26,7 @@
     - zabbix
     
 
-- name: Provision instance with Zabbix agent
+- name: Provision instance with Zabbix agent and postgresqlmonitoring
   hosts: databases
   become: yes
   roles:
