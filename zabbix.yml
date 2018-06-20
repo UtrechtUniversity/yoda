@@ -16,6 +16,14 @@
   roles:
     - hostentries
 
+- name: Provision portal server
+  hosts: portals
+  become: yes
+  roles:
+   - yoda-zabbixagent
+  tags:
+    - portal
+ 
 - name: Provision instance with Zabbix agent and postgresql monitoring
   hosts: icats
   become: yes
@@ -34,3 +42,21 @@
     - yoda-zabbixdatabase
   tags:
     - database
+
+
+- name: Provision resource server
+  hosts: resources
+  become: yes
+  roles:
+    - yoda-zabbixagent
+  tags:
+    - resource
+
+
+- name: Provision public server
+  hosts: publics
+  become: yes
+  roles:
+    - yoda-zabbixagent
+  tags:
+    - 
