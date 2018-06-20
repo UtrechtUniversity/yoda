@@ -45,7 +45,6 @@
     state: present
   with_items:
     - irods-server-4.2.2-1
-    - irods-icommands-4.2.2-1
     - irods-runtime-4.2.2-1
     - irods-database-plugin-postgres-4.2.2-1
   when: not ansible_check_mode
