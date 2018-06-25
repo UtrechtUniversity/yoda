@@ -92,6 +92,9 @@ test_groups:
   - groupName: research-notification
     category: initial
     subcategory: initial
+  - groupName: research-oaipmh
+    category: initial
+    subcategory: initial
   - groupName: research-process1
     category: initial
     subcategory: initial
@@ -286,6 +289,19 @@ test_groupusers:
     user: viewer
     role: reader
 
+  - groupName: research-oaipmh
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-oaipmh
+    user: groupmanager
+    role: manager
+  - groupName: research-oaipmh
+    user: researcher
+    role: normal
+  - groupName: research-oaipmh
+    user: viewer
+    role: reader
+
   - groupName: research-process1
     user: functionaladminpriv
     role: manager
@@ -384,6 +400,7 @@ deletion_research_groups:
   - research: mdtest
   - research: mdtestvault
   - research: notification
+  - research: oaipmh
   - research: process1
   - research: process2
   - research: process3

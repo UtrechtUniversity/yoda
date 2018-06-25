@@ -18,3 +18,5 @@ openssl_crt_signed_and_chain: localhost_and_chain.crt
 openssl_o: 'Utrecht University'
 openssl_c: 'NL'
 openssl_localityName: 'Utrecht'
+
+certificate_domain: "{{ ansible_fqdn }}"

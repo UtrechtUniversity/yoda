@@ -16,7 +16,15 @@
   roles:
     - hostentries
 
-- name: Provision instance with Zabbix agent and yodaitems
+- name: Provision portal server with Zabbix agent
+  hosts: portals
+  become: yes
+  roles:
+   - yoda-zabbixagent
+  tags:
+    - portal
+ 
+- name: Provision instance with Zabbix agent and postgresql monitoring
   hosts: icats
   become: yes
   roles:
@@ -24,7 +32,6 @@
     - yoda-zabbixyodaitems
   tags:
     - zabbix
-    
 
 - name: Provision instance with Zabbix agent and postgresqlmonitoring
   hosts: databases
@@ -34,3 +41,20 @@
     - yoda-zabbixdatabase
   tags:
     - database
+
+- name: Provision resource server with Zabbix agent
+  hosts: resources
+  become: yes
+  roles:
+    - yoda-zabbixagent
+  tags:
+    - resource
+
+
+- name: Provision public server with Zabbix agent
+  hosts: publics
+  become: yes
+  roles:
+    - yoda-zabbixagent
+  tags:
+    - 

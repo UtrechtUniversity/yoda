@@ -16,6 +16,7 @@ codeigniter_environment: development               # CodeIgniter environment: de
 yoda_portal_fqdn: portal.yoda.test                 # Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+certificate_domain: '*.yoda.test'                  # Host certificate
 
 ######################
 # Yoda Portal modules
