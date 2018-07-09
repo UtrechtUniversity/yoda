@@ -1,6 +1,5 @@
 ---
 # copyright Utrecht University
-# zabbixagent tasks
 
 - name: Check if Zabbix agent is installable from repository
   yum:
@@ -66,5 +65,3 @@
     group: zabbix
     mode: 0600
   notify: Restart Zabbix agent
-
-

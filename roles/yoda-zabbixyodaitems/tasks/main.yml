@@ -1,6 +1,5 @@
 ---
 # copyright Utrecht University
-# tasks zabbixyodaitems
 
 - name: Checkout Yoda Zabbix scripts and rules
   become_user: "{{ irods_service_account }}"
@@ -92,5 +91,3 @@
     - listOrphanedGroups.sh
     - replicationErrors.sh
     - testUserParam.sh
-
-
