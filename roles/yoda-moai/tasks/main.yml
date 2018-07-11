@@ -6,45 +6,29 @@
     name: '{{ item }}'
     state: present
   with_items:
+  - python-pip
+  - python-virtualenv
   - python-lxml
   - python-sqlalchemy
+  - mod_wsgi
+
+
+- name: Ensure old Yoda MOAI prerequisites are absent
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
   - python-webob
   - python-paste
   - python-paste-deploy
   - python-paste-script
   - python-six
-  - mod_wsgi
 
 
-- name: Check if yoda-moai packages are available in repository
-  yum:
-    list: '{{ item.value.package }}'
-  with_dict: "{{ yoda_moai_packages }}"
-  register: yoda_moai_packages_repo
-
-
-- name: Download yoda-moai packages if not in repository
-  get_url:
-    url: "{{ item.item.value.url }}/{{ item.item.value.filename }}"
-    dest: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
-    checksum: "{{ item.item.value.checksum }}"
-  when: not item.results
-  with_items: "{{ yoda_moai_packages_repo.results }}"
-
-
-- name: Ensure yoda-moai packages are installed from downloaded rpm's
-  yum:
-    name: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
-    state: present
-  when: not item.results
-  with_items: "{{ yoda_moai_packages_repo.results }}"
-  notify: Restart Apache webserver
-
-
-- name: Ensure yoda-moai packages are already installed or install from repo
+- name: Ensure yoda-moai packages are absent
   package:
     name: "{{ item.value.package }}"
-    state: present
+    state: absent
   with_dict: "{{ yoda_moai_packages }}"
   notify: Restart Apache webserver
 
@@ -53,6 +37,26 @@
   user:
     name: '{{ yoda_moai_user }}'
     home: '{{ yoda_moai_home }}'
+
+
+- name: Check out YoDa MOAI from Github
+  become_user: '{{ yoda_moai_user }}'
+  become: yes
+  git:
+    repo: https://github.com/UtrechtUniversity/yoda-moai.git
+    dest: '{{ yoda_moai_home }}/yoda-moai'
+    version: "{{ yoda_moai_version }}"
+  register: repochanges
+
+
+- name: Install YoDA MOAI in virtualenv
+  pip:
+    name: '{{ yoda_moai_home }}/yoda-moai'
+    extra_args: -e
+    virtualenv: '{{ yoda_moai_home }}/venv'
+    virtualenv_site_packages: yes
+  when: repochanges.changed
+  notify: Restart Apache webserver
 
 
 - name: Ensure Yoda MOAI home is world readable
@@ -108,7 +112,7 @@
 - name: Initialize Yoda MOAI database
   become_user: '{{ yoda_moai_user }}'
   become: yes
-  command: '/usr/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
+  command: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
   args:
     creates: '{{ yoda_moai_home }}/moai.db'
 
@@ -134,4 +138,4 @@
     user: '{{ yoda_moai_user }}'
     name: 'cronjob-update-moai'
     minute: '*/5'
-    job: '/usr/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &>/dev/null'
+    job: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
