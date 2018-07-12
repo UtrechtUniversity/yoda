@@ -93,10 +93,10 @@
   when: not ansible_check_mode
 
 
-- name: Copy responses for setup_irods.sh
+- name: Copy responses for setup_irods.py
   template:
-    src: setup_irods.j2
-    dest: /etc/irods/setup_irods
+    src: setup_irods_provider.j2
+    dest: /etc/irods/setup_irods_provider
     force: no
   when: not ansible_check_mode
 
@@ -104,7 +104,7 @@
 - name: Configure iRODS iCAT server
   become: yes
   shell: python /var/lib/irods/scripts/setup_irods.py
-    < /etc/irods/setup_irods
+    < /etc/irods/setup_irods_provider
   args:
     creates: /etc/irods/service_account.config
   run_once: true

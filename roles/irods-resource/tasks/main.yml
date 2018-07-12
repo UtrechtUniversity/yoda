@@ -30,6 +30,61 @@
   when: not ansible_check_mode
 
 
+- name: Retrieve iRODS iCAT server
+  set_fact:
+    'irods_icat': '{{ item }}'
+  with_inventory_hostnames:
+    - 'icats:&{{ instance }}'
+
+
+- name: Check if connection to iCAT server can be established
+  wait_for:
+    host: '{{ irods_icat }}'
+    port: 1247
+
+
+- name: Store iRODS server keys in variables
+  set_fact:
+    '{{ item.fact }}': '{{ item.key }}'
+  with_items:
+    - fact: irods_zone_key
+      key: "{{ hostvars[irods_icat]['zone_key']['stdout'] }}"
+    - fact: irods_negotiation_key
+      key: "{{ hostvars[irods_icat]['negotiation_key']['stdout'] }}"
+    - fact: irods_control_plane_key
+      key: "{{ hostvars[irods_icat]['server_control_plane_key']['stdout'] }}"
+  when: not ansible_check_mode
+
+
+- name: Copy responses for setup_irods.py
+  template:
+    src: setup_irods_consumer.j2
+    dest: /etc/irods/setup_irods_consumer
+    force: no
+  when: not ansible_check_mode
+
+
+- name: Configure iRODS resource server
+  become: yes
+  shell: python /var/lib/irods/scripts/setup_irods.py
+    < /etc/irods/setup_irods_consumer
+  args:
+    creates: /etc/irods/service_account.config
+  run_once: true
+  when: not ansible_check_mode
+
+
+- name: Make iRODS service account owner of iRODS directories
+  file:
+    group: '{{ irods_service_account }}'
+    owner: '{{ irods_service_account }}'
+    recurse: yes
+    path: '{{ item }}'
+  with_items:
+  - /var/lib/irods
+  - /etc/irods
+
+
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -57,35 +112,6 @@
   when: ils is failed
 
 
-- name: Create iRODS service account group
-  group:
-    name: '{{ irods_service_account }}'
-    state: present
-
-
-- name: Create iRODS service account user
-  user:
-    name: '{{ irods_service_account }}'
-    group: '{{ irods_service_account }}'
-    comment: 'iRODS Administrator'
-    home: /var/lib/irods
-    shell: /bin/bash
-    password: '!locked!'
-    update_password: on_create
-    state: present
-
-
-- name: Make iRODS service account owner of iRODS directories
-  file:
-    group: '{{ irods_service_account }}'
-    owner: '{{ irods_service_account }}'
-    recurse: yes
-    path: '{{ item }}'
-  with_items:
-  - /var/lib/irods
-  - /etc/irods
-
-
 - name: Enable ports for resource in firewall
   firewalld:
     port: '{{ item }}'
@@ -96,43 +122,6 @@
     - '{{ irods_icat_port }}/tcp'
     - '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
   notify: Restart firewall
-
-
-- name: Retrieve iRODS iCAT server
-  set_fact:
-    'irods_icat': '{{ item }}'
-  with_inventory_hostnames:
-    - 'icats:&{{ instance }}'
-
-
-- name: Store iRODS server keys in variables
-  set_fact:
-    '{{ item.fact }}': '{{ item.key }}'
-  with_items:
-    - fact: irods_zone_key
-      key: "{{ hostvars[irods_icat]['zone_key']['stdout'] }}"
-    - fact: irods_negotiation_key
-      key: "{{ hostvars[irods_icat]['negotiation_key']['stdout'] }}"
-    - fact: irods_control_plane_key
-      key: "{{ hostvars[irods_icat]['server_control_plane_key']['stdout'] }}"
-  when: not ansible_check_mode
-
-
-- name: Copy responses for setup_irods.sh
-  template:
-    src: setup_irods.j2
-    dest: /etc/irods/setup_irods
-    force: no
-  when: not ansible_check_mode
-
-
-- name: Configure iRODS resource server
-  shell: /var/lib/irods/packaging/setup_irods.sh
-    < /etc/irods/setup_irods
-  args:
-    creates: /etc/irods/service_account.config
-  run_once: true
-  when: not ansible_check_mode
 
 
 - name: Ensure private key file is available for iRODS
