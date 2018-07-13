@@ -54,28 +54,28 @@
   command: 'openssl rand -hex 16'
   register: zone_key
   args:
-    creates: /etc/irods/setup_irods
+    creates: /etc/irods/setup_irods_provider
 
 
 - name: Generate negotiation key
   command: 'openssl rand -hex 16'
   register: negotiation_key
   args:
-    creates: /etc/irods/setup_irods
+    creates: /etc/irods/setup_irods_provider
 
 
 - name: Generate control plane key
   command: 'openssl rand -hex 16'
   register: server_control_plane_key
   args:
-    creates: /etc/irods/setup_irods
+    creates: /etc/irods/setup_irods_provider
 
 
 - name: Generate password salt
   command: 'openssl rand -hex 16'
   register: password_salt
   args:
-    creates: /etc/irods/setup_irods
+    creates: /etc/irods/setup_irods_provider
 
 
 - name: Store iCAT keys in variables
