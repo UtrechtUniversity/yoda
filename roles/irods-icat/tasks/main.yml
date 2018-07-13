@@ -39,7 +39,7 @@
   when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
-- name: Ensure iRODS iCAT server and database plugin are present
+- name: Ensure iRODS iCAT server, Python rule engine plugin and database plugin are present
   package:
     name: '{{ item }}'
     state: present
@@ -47,6 +47,7 @@
     - irods-server-4.2.3-1
     - irods-runtime-4.2.3-1
     - irods-database-plugin-postgres-4.2.3-1
+    - irods-rule-engine-plugin-python-4.2.3-1
   when: not ansible_check_mode
 
 
