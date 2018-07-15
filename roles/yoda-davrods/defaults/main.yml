@@ -6,10 +6,10 @@ rpm_dest_dir: /tmp
 
 # davrods RPM location and checksum
 davrods:
-  package: davrods-4.2.3_1.4.0-1
-  url: https://github.com/UtrechtUniversity/davrods/releases/download/4.2.3_1.4.0/
-  filename: davrods-4.2.3_1.4.0-1.rpm
-  checksum: sha256:02fa3b0bd4735b6f8d843cb9b0b5c25bd11d3cd13ff6d4bc6e60ab40bad0cc35
+  package: davrods-4.2.3_1.4.1-1
+  url: https://github.com/UtrechtUniversity/davrods/releases/download/4.2.3_1.4.1
+  filename: davrods-4.2.3_1.4.1-1.rpm
+  checksum: sha256:e80982ec9b000316abb4246eb185f862997004872aca49244ce281b7ca502344
 
 yoda_davrods_fqdn: data.yoda.test           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_port: 443
