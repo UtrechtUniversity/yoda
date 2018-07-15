@@ -6,10 +6,10 @@ rpm_dest_dir: /tmp
 
 # davrods rpm location and checksum
 davrods:
-  package: davrods-4.1_1.3.0-1.el7.centos
-  url: https://github.com/UtrechtUniversity/davrods/releases/download/4.1_1.3.0
-  filename: davrods-4.1_1.3.0-1.el7.centos.x86_64.rpm
-  checksum: sha256:440ac5f23ec31c3f73188858f9faed4b95c5b24f0fc4d5fda14ca1c87834b76c
+  package: davrods-4.1_1.4.1-1.el7.centos
+  url: https://github.com/UtrechtUniversity/davrods/releases/download/4.1_1.4.1
+  filename: davrods-4.1_1.4.1-1.el7.centos.x86_64.rpm
+  checksum: sha256:fca6c1dc5c2e14fbeaf41e15968257cb76644f176b18432f5ddf674a0de1f172
 
 yoda_davrods_fqdn: data.yoda.test           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_port: 443
