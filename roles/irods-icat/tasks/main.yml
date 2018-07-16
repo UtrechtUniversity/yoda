@@ -130,6 +130,23 @@
     value: '{{ irods_icat_fqdn }}'
 
 
+- name: Ensure python plugin is configured
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_python:
+    config_path: '/etc/irods/server_config.json'
+  when: not ansible_check_mode
+
+
+- name: Ensure core python rules are present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: "core.py"
+    dest: "/etc/irods/core.py"
+    mode: 0644
+
+
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes
