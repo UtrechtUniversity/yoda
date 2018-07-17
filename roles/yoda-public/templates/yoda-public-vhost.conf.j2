@@ -30,6 +30,9 @@ Listen {{ yoda_public_port }}
     SSLHonorCipherOrder     on
     SSLCompression          off
 
+    # HSTS (mod_headers is required) (31536000 seconds = 1 year)
+    Header always set Strict-Transport-Security "max-age=31536000"
+
     #   Server Certificate:
     #   Point SSLCertificateFile at a PEM encoded certificate.  If
     #   the certificate is encrypted, then you will be prompted for a
