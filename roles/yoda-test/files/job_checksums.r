@@ -5,13 +5,14 @@
 # \license   GPLv3, see LICENSE
 
 job_checksums {
-  *root = "/tempZone/home/grp-vault-initial";
+  *zone = $rodsZoneClient;
+  *root = "/*zone/home/grp-vault-initial";
 # NB: logfile location for test purpose, requires new position upon production!
-  *logfile = "/tempZone/home/grp-datamanager-initial/checksums.txt";
+  *logfile = "/*zone/home/grp-datamanager-initial/checksums.txt";
   uuYcGenerateDatasetsIndex(*root, *logfile, *status);
   writeLine("stdout","return status is *status");
-  *root = "/tempZone/home/grp-vault-test";
-  *logfile = "/tempZone/home/grp-datamanager-test/checksums.txt";
+  *root = "/*zone/home/grp-vault-test";
+  *logfile = "/*zone/home/grp-datamanager-test/checksums.txt";
   uuYcGenerateDatasetsIndex(*root, *logfile, *status);
   writeLine("stdout","return status is *status");
 }
