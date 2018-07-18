@@ -15,7 +15,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -rM own rods /tempZone/home/research-'{{ item.research }}'
+    ichmod -rM own rods /{{ irods_zone }}/home/research-'{{ item.research }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
@@ -25,7 +25,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -rM own rods /tempZone/home/vault-'{{ item.research }}'
+    ichmod -rM own rods /{{ irods_zone }}/home/vault-'{{ item.research }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
@@ -35,7 +35,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -rM own rods /tempZone/home/datamanager-'{{ item.datamanager }}'
+    ichmod -rM own rods /{{ irods_zone }}/home/datamanager-'{{ item.datamanager }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_datamanager_groups }}"
@@ -45,7 +45,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -rM own rods /tempZone/home/intake-'{{ item.intake }}'
+    ichmod -rM own rods /{{ irods_zone }}/home/intake-'{{ item.intake }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_intake_groups }}"
@@ -55,7 +55,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -rM own rods /tempZone/home/vault-'{{ item.intake }}'
+    ichmod -rM own rods /{{ irods_zone }}/home/vault-'{{ item.intake }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_intake_groups }}"
@@ -65,7 +65,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -rM own rods /tempZone/home/grp-'{{ item.grp }}'
+    ichmod -rM own rods /{{ irods_zone }}/home/grp-'{{ item.grp }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_grp_groups }}"
@@ -75,7 +75,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -rM own rods /tempZone/yoda/revisions/research-'{{ item.research }}'
+    ichmod -rM own rods /{{ irods_zone }}/yoda/revisions/research-'{{ item.research }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
@@ -85,7 +85,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -rM own rods /tempZone/trash/home/research-'{{ item.research }}'
+    ichmod -rM own rods /{{ irods_zone }}/trash/home/research-'{{ item.research }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
@@ -95,7 +95,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command: |
-    ichmod -rM own rods /tempZone/trash/home/'{{ item.name }}'
+    ichmod -rM own rods /{{ irods_zone }}/trash/home/'{{ item.name }}'
   ignore_errors: true
   with_items:
     - "{{ test_users }}"
@@ -105,7 +105,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r /tempZone/home/research-'{{ item.research }}'
+    irm -r /{{ irods_zone }}/home/research-'{{ item.research }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
@@ -115,7 +115,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r /tempZone/home/vault-'{{ item.research }}'
+    irm -r /{{ irods_zone }}/home/vault-'{{ item.research }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
@@ -125,7 +125,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r /tempZone/home/datamanager-'{{ item.datamanager }}'
+    irm -r /{{ irods_zone }}/home/datamanager-'{{ item.datamanager }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_datamanager_groups }}"
@@ -135,7 +135,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r /tempZone/home/intake-'{{ item.intake }}'
+    irm -r /{{ irods_zone }}/home/intake-'{{ item.intake }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_intake_groups }}"
@@ -145,7 +145,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r /tempZone/home/vault-'{{ item.intake }}'
+    irm -r /{{ irods_zone }}/home/vault-'{{ item.intake }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_intake_groups }}"
@@ -155,7 +155,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r /tempZone/home/grp-'{{ item.grp }}'
+    irm -r /{{ irods_zone }}/home/grp-'{{ item.grp }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_grp_groups }}"
@@ -165,7 +165,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r /tempZone/trash/home/research-'{{ item.research }}'
+    irm -r /{{ irods_zone }}/trash/home/research-'{{ item.research }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
@@ -175,7 +175,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r /tempZone/yoda/revisions/research-'{{ item.research }}'
+    irm -r /{{ irods_zone }}/yoda/revisions/research-'{{ item.research }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
@@ -265,7 +265,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irmtrash -rM /tempZone/trash/home/'{{ item.research }}'
+    irmtrash -rM /{{ irods_zone }}/trash/home/'{{ item.research }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
@@ -275,7 +275,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irmtrash -rM /tempZone/trash/home/'{{ item.name }}'
+    irmtrash -rM /{{ irods_zone }}/trash/home/'{{ item.name }}'
   ignore_errors: true
   with_items:
     - "{{ test_users }}"
@@ -285,7 +285,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irmtrash -rM /tempZone/trash/home/rods
+    irmtrash -rM /{{ irods_zone }}/trash/home/rods
   ignore_errors: true
 
 
@@ -371,7 +371,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -M read grp-datamanager-initial /tempZone/home/grp-vault-initial
+    ichmod -M read grp-datamanager-initial /{{ irods_zone }}/home/grp-vault-initial
   ignore_errors: true
 
 
@@ -379,7 +379,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -M read grp-datamanager-test /tempZone/home/grp-vault-test
+    ichmod -M read grp-datamanager-test /{{ irods_zone }}/home/grp-vault-test
   ignore_errors: true
 
 
