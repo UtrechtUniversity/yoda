@@ -51,6 +51,17 @@
   when: not ansible_check_mode
 
 
+- name: Ensure default msiExecCmd binaries are absent
+  file:
+    path: '{{ item }}'
+    state: absent
+  with_items:
+    - /var/lib/irods/msiExecCmd_bin/hello
+    - /var/lib/irods/msiExecCmd_bin/irodsServerMonPerf
+    - /var/lib/irods/msiExecCmd_bin/test_execstream.py
+    - /var/lib/irods/msiExecCmd_bin/univMSSInterface.sh
+
+
 - name: Generate zone key
   command: 'openssl rand -hex 16'
   register: zone_key
