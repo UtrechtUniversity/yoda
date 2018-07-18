@@ -62,6 +62,25 @@
     - /var/lib/irods/msiExecCmd_bin/univMSSInterface.sh
 
 
+- name: Ensure default iRODS specific queries are absent
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 'iadmin rsq {{ item }}'
+  ignore_errors: yes
+  with_items:
+    - lsl
+    - ShowCollAcls
+    - listQueryByAliasLike
+    - findQueryByAlias
+    - ilsLACollections
+    - ilsLADataObjects
+    - listSharedCollectionsOwnedByUser
+    - listSharedCollectionsSharedWithUser
+    - listUserACLForDataObjViaGroup
+    - listUserACLForCollectionViaGroup
+    - DataObjInCollReCur
+
+
 - name: Generate zone key
   command: 'openssl rand -hex 16'
   register: zone_key
