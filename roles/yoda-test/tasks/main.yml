@@ -11,7 +11,7 @@
     - "{{ reset_tiers }}"
 
 
-- name: Prepare test data for removal
+- name: Prepare test data research-groups for removal
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -21,7 +21,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Prepare test data for removal
+- name: Prepare test data vault-groups for removal
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -31,7 +31,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Prepare test data for removal
+- name: Prepare test data datamanager-groups for removal
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -41,27 +41,7 @@
     - "{{ deletion_datamanager_groups }}"
 
 
-- name: Prepare test data for removal
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    ichmod -rM own rods /{{ irods_zone }}/home/intake-'{{ item.intake }}'
-  ignore_errors: true
-  with_items:
-    - "{{ deletion_intake_groups }}"
-
-
-- name: Prepare test data for removal
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    ichmod -rM own rods /{{ irods_zone }}/home/vault-'{{ item.intake }}'
-  ignore_errors: true
-  with_items:
-    - "{{ deletion_intake_groups }}"
-
-
-- name: Prepare test data for removal
+- name: Prepare test data grp-groups for removal
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -71,7 +51,7 @@
     - "{{ deletion_grp_groups }}"
 
 
-- name: Prepare test data for removal
+- name: Prepare test data revisions research-groups for removal
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -81,7 +61,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Prepare test data for removal
+- name: Prepare test data trash research-groups for removal
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -91,7 +71,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Prepare trash data for removal
+- name: Prepare trash test users for removal
   become_user: '{{ irods_service_account }}'
   become: yes
   command: |
@@ -101,7 +81,7 @@
     - "{{ test_users }}"
 
 
-- name: Remove test data
+- name: Remove test research-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -111,7 +91,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test data
+- name: Remove test data research-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -121,7 +101,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test data
+- name: Remove test data datamanager-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -131,27 +111,7 @@
     - "{{ deletion_datamanager_groups }}"
 
 
-- name: Remove test data
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    irm -r /{{ irods_zone }}/home/intake-'{{ item.intake }}'
-  ignore_errors: true
-  with_items:
-    - "{{ deletion_intake_groups }}"
-
-
-- name: Remove test data
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    irm -r /{{ irods_zone }}/home/vault-'{{ item.intake }}'
-  ignore_errors: true
-  with_items:
-    - "{{ deletion_intake_groups }}"
-
-
-- name: Remove test data
+- name: Remove test data grp-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -161,7 +121,7 @@
     - "{{ deletion_grp_groups }}"
 
 
-- name: Remove test data
+- name: Remove test data trash research-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -171,7 +131,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test data
+- name: Remove test data revisions research-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -181,7 +141,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test groups
+- name: Remove test research-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -191,7 +151,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test groups
+- name: Remove test vault-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -201,7 +161,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test groups
+- name: Remove test read-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -211,37 +171,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test groups
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    iadmin rmgroup intake-'{{ item.intake }}'
-  ignore_errors: true
-  with_items:
-    - "{{ deletion_intake_groups }}"
-
-
-- name: Remove test groups
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    iadmin rmgroup vault-'{{ item.intake }}'
-  ignore_errors: true
-  with_items:
-    - "{{ deletion_intake_groups }}"
-
-
-- name: Remove test groups
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    iadmin rmgroup read-'{{ item.intake }}'
-  ignore_errors: true
-  with_items:
-    - "{{ deletion_intake_groups }}"
-
-
-- name: Remove test groups
+- name: Remove test datamanager-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -251,7 +181,7 @@
     - "{{ deletion_datamanager_groups }}"
 
 
-- name: Remove test groups
+- name: Remove test grp-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -261,7 +191,7 @@
     - "{{ deletion_grp_groups }}"
 
 
-- name: Remove trash data
+- name: Remove trash data research-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -271,7 +201,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove trash data users
+- name: Remove test trash data user-homes
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -281,7 +211,7 @@
     - "{{ test_users }}"
 
 
-- name: Remove trash data users
+- name: Remove trash data rods-home
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -297,25 +227,6 @@
   ignore_errors: true
   with_items:
     - createnewuser
-
-
-- name: Create list of users to remove
-  become_user: '{{irods_service_account}}'
-  become: yes
-  shell:
-    iadmin lu | grep '{{ remove_users_with_domain }}'
-  register: command_output
-  ignore_errors: true
-
-
-- name: Remove test users
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    iadmin rmuser '{{ item }}'
-  ignore_errors: true
-  with_items:
-    - "{{ command_output.stdout_lines }}"
 
 
 - name: Ensure Yoda test users exists
@@ -367,7 +278,7 @@
   with_items: '{{ test_groupusers }}'
 
 
-- name: Ensure Yoda intake datamanager has read access to grp-vault folders
+- name: Ensure Yoda intake datamanager has read access to grp-vault-initial folder
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -375,7 +286,7 @@
   ignore_errors: true
 
 
-- name: Ensure Yoda intake datamanager has read access to grp-vault folders
+- name: Ensure Yoda intake datamanager has read access to grp-vault-test folder
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -383,7 +294,7 @@
   ignore_errors: true
 
 
-- name: Ensure Yoda test data directory is present in Yoda
+- name: Ensure Yoda test data directory research-initial/testdata is present in Yoda
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -400,7 +311,7 @@
     mode: 0755
 
 
-- name: Ensure Yoda test data directory is present in Yoda
+- name: Ensure Yoda test data directory research-mdtest/nomdpresent is present in Yoda
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -408,7 +319,7 @@
   ignore_errors: true
 
 
-- name: Ensure Yoda test data directory is present in Yoda
+- name: Ensure Yoda test data directory research-mdtest/copyfromparent is present in Yoda
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -416,7 +327,7 @@
   ignore_errors: true
 
 
-- name: Ensure Yoda test files are present
+- name: Ensure Yoda test files are present in 
   become_user: '{{ irods_service_account }}'
   become: yes
   copy:
@@ -428,7 +339,7 @@
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
 
 
-- name: Ensure Yoda test files are present in Yoda
+- name: Ensure Yoda test files are present in Yoda directory research-initial/testdata
   become_user: '{{ irods_service_account }}'
   become: yes
   shell:
