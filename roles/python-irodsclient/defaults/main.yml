@@ -2,7 +2,7 @@
 rpm_dest_dir: /tmp
 
 python_irodsclient:
-  package: python-irodsclient-0.7.1_uu-1
+  package: python-irodsclient-0.8.0_uu-1
   url: https://github.com/UtrechtUniversity/yoda-ansible/releases/download/1.0rc1
-  filename: python-irodsclient-0.7.1_uu-1.noarch.rpm
-  checksum: sha256:455e423ecc0fd7deeb44ba5e1a0add7c9f313dd724518b4139b024a155476993
+  filename: python-irodsclient-0.8.0_uu-1.noarch.rpm
+  checksum: sha256:9a0fc8bd25a050252668d12846cd465117b4ce3b52053a810dd0777ba708ce0a
