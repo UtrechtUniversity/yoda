@@ -99,6 +99,15 @@
     job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/process-publication.r >/dev/null 2>&1'
 
 
+- name: Configure cronjob to retry copy-to-vault
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'retry-copy-to-vault.r'
+    minute: '*'
+    job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/retry-copy-to-vault.r >/dev/null 2>&1'
+
+
 - name: Install script for revision clean up
   become_user: "{{ irods_service_account }}"
   become: yes
