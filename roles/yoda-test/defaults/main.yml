@@ -104,6 +104,9 @@ test_groups:
   - groupName: research-process3
     category: initial
     subcategory: initial
+  - groupName: research-processfordatacite
+    category: initial
+    subcategory: initial
   - groupName: research-revisions
     category: initial
     subcategory: initial
@@ -341,6 +344,19 @@ test_groupusers:
     user: viewer
     role: reader
 
+  - groupName: research-processfordatacite
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-processfordatacite
+    user: groupmanager
+    role: manager
+  - groupName: research-processfordatacite
+    user: researcher
+    role: normal
+  - groupName: research-processfordatacite
+    user: viewer
+    role: reader
+
   - groupName: research-revisions
     user: functionaladminpriv
     role: manager
@@ -405,6 +421,7 @@ deletion_research_groups:
   - research: process1
   - research: process2
   - research: process3
+  - research: processfordatacite
   - research: revisions
   - research: search
   - research: updateproperties
