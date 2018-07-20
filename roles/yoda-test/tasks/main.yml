@@ -42,22 +42,22 @@
 
 
 - name: Prepare test data intake-groups for removal
-  become_user: '{{ irods_service_account }}'	
-  become: yes	
-  command:	
-    ichmod -rM own rods /{{ irods_zone }}/home/intake-'{{ item.intake }}'	
-  ignore_errors: true	
-  with_items:	
-    - "{{ deletion_intake_groups }}"	
-	
-	
-- name: Prepare test data intake-vault-groups for removal	
-  become_user: '{{ irods_service_account }}'	
-  become: yes	
-  command:	
-    ichmod -rM own rods /{{ irods_zone }}/home/vault-'{{ item.intake }}'	
-  ignore_errors: true	
-  with_items:	
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Prepare test data intake-vault-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
     - "{{ deletion_intake_groups }}"
 
 
@@ -132,22 +132,22 @@
 
 
 - name: Remove test data intake-groups
-  become_user: '{{ irods_service_account }}'	
-  become: yes	
-  command:	
-    irm -r /{{ irods_zone }}/home/intake-'{{ item.intake }}'	
-  ignore_errors: true	
-  with_items:	
-    - "{{ deletion_intake_groups }}"	
-	
-	
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
 - name: Remove test data intake-vault-groups
-  become_user: '{{ irods_service_account }}'	
-  become: yes	
-  command:	
-    irm -r /{{ irods_zone }}/home/vault-'{{ item.intake }}'	
-  ignore_errors: true	
-  with_items:	
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
     - "{{ deletion_intake_groups }}"
 
 
@@ -211,33 +211,33 @@
     - "{{ deletion_research_groups }}"
 
 
- name: Remove test intake-groups
-  become_user: '{{ irods_service_account }}'	
-  become: yes	
-  command:	
-    iadmin rmgroup intake-'{{ item.intake }}'	
-  ignore_errors: true	
-  with_items:	
-    - "{{ deletion_intake_groups }}"	
-	
-	
-- name: Remove test intake-vault-groups	
-  become_user: '{{ irods_service_account }}'	
-  become: yes	
-  command:	
-    iadmin rmgroup vault-'{{ item.intake }}'	
-  ignore_errors: true	
- with_items:	
-    - "{{ deletion_intake_groups }}"	
-	
-	
-- name: Remove test intake-read-groups	
-  become_user: '{{ irods_service_account }}'	
-  become: yes	
-  command:	
-    iadmin rmgroup read-'{{ item.intake }}'	
-  ignore_errors: true	
-  with_items:	
+- name: Remove test intake-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test intake-vault-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test intake-read-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup read-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
     - "{{ deletion_intake_groups }}"
 
 
