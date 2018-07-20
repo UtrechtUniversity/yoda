@@ -41,6 +41,26 @@
     - "{{ deletion_datamanager_groups }}"
 
 
+- name: Prepare test data intake-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Prepare test data intake-vault-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
 - name: Prepare test data grp-groups for removal
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -81,7 +101,7 @@
     - "{{ test_users }}"
 
 
-- name: Remove test research-groups
+- name: Remove test data research-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -91,7 +111,7 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test data research-groups
+- name: Remove test data vault-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -109,6 +129,26 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_datamanager_groups }}"
+
+
+- name: Remove test data intake-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test data intake-vault-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
 
 
 - name: Remove test data grp-groups
@@ -169,6 +209,36 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
+
+
+- name: Remove test intake-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test intake-vault-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test intake-read-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup read-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
 
 
 - name: Remove test datamanager-groups
@@ -327,7 +397,7 @@
   ignore_errors: true
 
 
-- name: Ensure Yoda test files are present in 
+- name: Ensure Yoda test files are present in VM
   become_user: '{{ irods_service_account }}'
   become: yes
   copy:
