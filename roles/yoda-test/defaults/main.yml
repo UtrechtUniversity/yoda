@@ -396,6 +396,7 @@ deletion_research_groups:
   - research: deletegroup
   - research: initial
   - research: initial1
+  - research: r1
   - research: epicpid
   - research: mdtest
   - research: mdtestvault
@@ -418,10 +419,13 @@ deletion_datamanager_groups:
 deletion_grp_groups: 
   - grp: datamanager-initial
   - grp: datamanager-test
+  - grp: g1
   - grp: intake-initial
   - grp: intake-test
   - grp: vault-initial  
   - grp: vault-test
+deletion_intake_groups:	
+  - intake: i1 
 
 reset_tiers:
   - dev001
