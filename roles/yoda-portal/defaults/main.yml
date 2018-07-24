@@ -4,7 +4,7 @@
 yoda_deployment_user: yodadeployment
 
 yoda_version: development
-irods_php_version: master
+irods_php_version: "{{ yoda_version }}"
 codeigniter_version: "{{ yoda_version }}"
 codeigniter_environment: development
 
