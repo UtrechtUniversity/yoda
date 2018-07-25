@@ -124,15 +124,15 @@
     state: absent
 
 
-- name: Remove insecure securecopy.sh
+- name: Remove outdated ExecCmd dir
   file:
-    path: /var/lib/irods/msiExecCmd_bin/securecopy.sh
+    path: /var/lib/irods/msiExecCmd_bin1
     state: absent
 
 
-- name: Ensure that secure ExecCmd dir exists
+- name: Ensure that ExecCmd dir exists
   file:
-    path: /var/lib/irods/msiExecCmd_bin1
+    path: /var/lib/irods/msiExecCmd_bin
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: 0755
@@ -146,7 +146,7 @@
   copy:
     remote_src: yes
     src: /etc/irods/irods-ruleset-research/tools/securecopy.sh
-    dest: /var/lib/irods/msiExecCmd_bin1/securecopy.sh
+    dest: /var/lib/irods/msiExecCmd_bin/securecopy.sh
     mode: 0755
   when: not ansible_check_mode
 
@@ -157,7 +157,7 @@
   copy:
     remote_src: yes
     src: /etc/irods/irods-ruleset-research/tools/scheduled-copytovault.sh
-    dest: /var/lib/irods/msiExecCmd_bin1/scheduled-copytovault.sh
+    dest: /var/lib/irods/msiExecCmd_bin/scheduled-copytovault.sh
     mode: 0755
   when: not ansible_check_mode
 
@@ -168,7 +168,7 @@
   copy:
     remote_src: yes
     src: /etc/irods/irods-ruleset-research/tools/scheduled-vaultactions.sh
-    dest: /var/lib/irods/msiExecCmd_bin1/scheduled-vaultactions.sh
+    dest: /var/lib/irods/msiExecCmd_bin/scheduled-vaultactions.sh
     mode: 0755
   when: not ansible_check_mode
 
@@ -179,7 +179,7 @@
   copy:
     remote_src: yes
     src: /etc/irods/irods-ruleset-research/tools/scheduled-vaultingest.sh
-    dest: /var/lib/irods/msiExecCmd_bin1/scheduled-vaultingest.sh
+    dest: /var/lib/irods/msiExecCmd_bin/scheduled-vaultingest.sh
     mode: 0755
   when: not ansible_check_mode
 
