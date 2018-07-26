@@ -62,7 +62,7 @@
     - /var/lib/irods/msiExecCmd_bin/univMSSInterface.sh
 
 
-- name: Ensure default iRODS specific queries are absent
+- name: Ensure unneeded iRODS specific queries are absent
   become_user: '{{ irods_service_account }}'
   become: yes
   command: 'iadmin rsq {{ item }}'
@@ -78,7 +78,6 @@
     - listSharedCollectionsSharedWithUser
     - listUserACLForDataObjViaGroup
     - listUserACLForCollectionViaGroup
-    - DataObjInCollReCur
 
 
 - name: Generate zone key
