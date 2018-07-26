@@ -87,7 +87,7 @@ ansible_host: host1.yoda.test
 ## 3. Configure (new) Yoda instance
 To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars).
 In case of a new Yoda instance we can copy a [configuration](environments/development/full/group_vars/full.yml) of a development instance as base.
-The configuration isplit in several parts. Below an overview of these parts and the configuration options available.
+The configuration is split in several parts. Below an overview of these parts and the configuration options available.
 
 ### Ansible configuration
 Variable                     | Description                                     |
