@@ -6,11 +6,17 @@
 
 ## Upgrading from 1.2
 Upgrade is supported by Ansible. No migrations required.
-Add the following fields to the Ansible environment files:
-- EPIC pid credentials
-- mail configuration
-- etc
-- etc
+Add the following fields to the Ansible environment files
+(see [yoda-ansible/CONFIGURATION.md](https://github.com/UtrechtUniversity/yoda-ansible/blob/development/CONFIGURATION.md) for description):
+- credential_files
+- send_notifications
+- notifications_sender_email
+- notifications_reply_to
+- smtp_server
+- smtp_username
+- smtp_password
+- epic_url
+- epic_handle_prefix
 
 ## Known Issues
 - Ordering of data in tables is not working. Clicking column sort headers have been disabled and are not shown.
