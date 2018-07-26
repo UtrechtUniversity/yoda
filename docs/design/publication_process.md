@@ -1,6 +1,7 @@
 # Publication Process
 All state is kept in key-value-pair ``*publicationState`` and persisted into metadata after each step.
 Configuration is pulled from metadata on the ``UUSYSTEMCOLLECTION`` iRODS collection and kept in ``*publicationConfig``.
+Credentials are pulled from the Yoda credential store (store_config.json).
 Each step has a rule with the configuration and state as arguments.
 Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publish``.
 
@@ -11,8 +12,6 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 **Step 0:** Set publicationState.status to PROCESSING
 
 **Step 1:** Load configuration from UUSYSTEMCOLLECTION
-- DataCite credentials
-- DataCite server
 - public server
 - moai server
 - Yoda prefix
@@ -46,6 +45,7 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 	- Add DOI to metadata of Vault Package
 
 **Step 7:** Send DataCite XML
+- Retrieve DataCite url and DataCite credentials from credentials store
 - API request to metadata endpoint with DataCite XML
 - put result in state
 - On request failure:
@@ -71,7 +71,6 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 - Use secure copy to push landing page
 - On failure:
 	- Flag package for retry
-
 
 **Step 11:** Secure copy metadata for Yoda MOAI server
 - Use secure copy to push combi XML to MOAI server
@@ -102,6 +101,7 @@ Step 2 of the publication process above is skipped. A DOI has already been gener
 Step 5 and 6 of the publication process above are skipped.
 
 **Step 7:** Remove DataCite metadata
+- Retrieve DataCite url and DataCite credentials from credentials store
 - API request to remove metadata from Datacite
 - put result in state
 - On request failure:
