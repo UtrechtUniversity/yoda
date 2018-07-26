@@ -47,7 +47,7 @@ irule -F install-default-xml-for-metadata.r '*resc="irodsResc"' '*src="/etc/irod
 If you want to install individual files without the script then you can use the iput command.
 If you install the file as the name of a category it will become the schema for that category and that category alone.
 To update existing files use the force flag "-f".
-See the example below. Please replace `${RODSZONE}` with the current iRODS Zone and `${CATEGORY}` with the category you want to install. This is legal bash if you define the `CATEGORY` and `RODSZONE` environment variables.
+See the example below. Please replace `${RODSZONE}` with the current iRODS Zone and `${CATEGORY}` with the category you want to install.
 
 ```bash
 iput -f ${CATEGORY}.xml /${RODSZONE}/yoda/formelements/${CATEGORY}.xml
@@ -55,6 +55,13 @@ iput -f ${CATEGORY}.xsd /${RODSZONE}/yoda/xsd/${CATEGORY}.xsd
 iput -f ${CATEGORY}.xsl /${RODSZONE}/yoda/xsl/${CATEGORY}.xsl
 iput -f ${CATEGORY}2datacite.xsl /${RODSZONE}/yoda/xsl/${CATEGORY}2datacite.xsl
 iput -f ${CATEGORY}2landingpage.xsl /${RODSZONE}/yoda/xsl/${CATEGORY}2landingpage.xsl
+```
+
+The above is legal bash if you define the `CATEGORY` and `RODSZONE` environment variables, for example:
+
+```bash
+export CATEGORY=default
+export RODSZONE=tempZone
 ```
 
 Mistakes are easily made as the commands are so similar, but different.
