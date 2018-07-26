@@ -16,7 +16,6 @@ codeigniter_environment: development               # CodeIgniter environment: de
 yoda_portal_fqdn: portal.yoda.test                 # Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
-certificate_domain: '*.yoda.test'                  # Host certificate
 
 ######################
 # Yoda Portal modules
@@ -144,6 +143,7 @@ yoda_random_id_length: 6       # Length of random ID to add to persistent identi
 yoda_prefix: UU01              # Prefix for internal portion of persistent identifier
 update_rulesets: yes           # Update already installed rulesets with git
 update_schemas: 1              # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
+credential_files: PLACEHOLDER  # Location of Yoda credentials files
 
 #####################
 # Mail notifications
@@ -162,6 +162,12 @@ datacite_server: mds.test.datacite.org  # DataCite server URI
 datacite_username: PLACEHOLDER          # DataCite username
 datacite_password: PLACEHOLDER          # DataCite password
 datacite_prefix: 10.5072                # DataCite DOI prefix
+
+#########################
+# EPIC PID Configuration
+#########################
+epic_url: PLACEHOLDER              # EPIC PID server URI
+epic_handle_prefix: PLACEHOLDER    # EPIC PID prefix
 
 ###########################
 # PAM Radius configuration

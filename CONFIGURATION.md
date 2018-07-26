@@ -120,6 +120,7 @@ irods_icat_fqdn              | iRODS iCAT fully qualified domain name (FQDN)    
 irods_database_fqdn          | iRODS database fully qualified domain name (FQDN)                       |
 irods_resource_fqdn          | iRODS resource fully qualified domain name (FQDN)                       |
 irods_default_resc           | iRODS default resource name                                             |
+irods_ssl_verify_server      | Verify TLS certificate, use 'cert' for acceptance and production        |
 irods_resources              | Definition of iRODS resources of this Yoda instance                     |
 
 ### Research module configuration
@@ -132,6 +133,17 @@ yoda_random_id_length        | Length of random ID to add to persistent identifi
 yoda_prefix                  | Prefix for internal portion of persistent identifier                              |
 update_rulesets              | Update already installed rulesets with git                                        |
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0) |
+credential_files             | Location of Yoda credentials files                                                |
+
+### Mail notifications
+Variable                     | Description                                                             |
+-----------------------------|-------------------------------------------------------------------------|
+send_notifications           | Enable notifications: yes (1) or no (0)
+notifications_sender_email   | Notifiations sender email address
+notifications_reply_to       | Notifiations Reply-To email address
+smtp_server                  | SMTP server to send mail to
+smtp_username                | SMTP server username
+smtp_password                | SMTP server password
 
 ### DataCite Configuration
 Variable                     | Description                                                             |
@@ -140,6 +152,12 @@ datacite_username            | DataCite username                                
 datacite_password            | DataCite password                                                       |
 datacite_prefix              | DataCite DOI prefix                                                     |
 datacite_server              | DataCite server URI                                                     |
+
+# EPIC PID Configuration
+Variable                     | Description                                                             |
+-----------------------------|-------------------------------------------------------------------------|
+epic_url                     | EPIC PID server URI                                                     |
+epic_handle_prefix           | EPIC PID prefix                                                         |
 
 ### PAM Radius configuration
 Variable                     | Description                                                             |
