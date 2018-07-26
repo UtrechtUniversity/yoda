@@ -1,23 +1,23 @@
 # Installing metadata schemas, formelements and stylesheets
-For a fully functional research module, a number of XML schema's and stylesheets are required. Currently we only have a
-complete set for the i-lab program. These can be found along the irods-ruleset-research in `tools/xml/`. Below a
-description of the needed files:
+For a fully functional research module, a number of XML schema's and stylesheets are required.
+Currently we only have a default schame (currently the same as the I-lab schema) and a test schema.
+These can be found in the irods-ruleset-research in `tools/xml/`.
+Below a description of the needed files (using the default schema as example):
 
-
-**ilab.xsd**
+**default.xsd**
   A schema describing the elements and their type of a yoda-metadata.xml
 
-**ilab.xml**
+**default.xml**
   An XML file describing the formelements and grouping of elements corresponding to the elements in the XSD
 
-**ilab.xsl**
+**default.xsl**
   A stylesheet to convert a yoda-metadata.xml to a AVU XML that can be loaded into iRODS with msiLoadMetadataFromXML(Buf)
 
-**ilab2datacite.xsl**
+**default2datacite.xsl**
   A stylesheet to convert a combi.xml consisting of user metadata from a yoda-metadata.xml file and system metadata into
   the DataCite XML format
 
-**ilab2landingpage.xsl**
+**default2landingpage.xsl**
   A stylesheet to convert a combi.xml into a landing page html file
 
 **schema-for-formelements.xsd**
@@ -34,20 +34,20 @@ Parameter  | Default value                               | Description
 -----------|---------------------------------------------|------------
 resc	     | irodsResc	                                 | Default resource to put the files into
 src        | /etc/irods/irods-ruleset-research/tools/xml | Source directory of files
-default    | ilab                                        | Category to use as default.
+default    | default                                     | Category to use as default (default or test).
 update     | 0                                           | Update existing XSD, XML, XSL (1) or keep existing files (0)
 
-In the default situation every `ilab{.xsd,.xml,.xsl}` file will become `default{.xsd,.xml,.xsd}` file in the right collection.
+In the default situation every schema name, for example `custom{.xsd,.xml,.xsl}` file will become `default{.xsd,.xml,.xsd}` file in the right collection.
 
 Example invocation:
 ```bash
-irule -F install-default-xml-for-metadata.r '*resc="demoResc"' '*src="/tmp/xml"' '*default="dc"' '*update=1'
+irule -F install-default-xml-for-metadata.r '*resc="irodsResc"' '*src="/etc/irods/irods-ruleset-research/tools/xml/"' '*default="default"' '*update=1'
 ```
 
-If you want to install individual files without the script then you can use the iput command. If you install the file as
-the name of a category it will become the schema for that category and that category alone. To update existing files
-use the force flag "-f". See the example below. Please replace `${RODSZONE}` with the current iRODS Zone and `${CATEGORY}` with
-the category you want to install. This is legal bash if you define the `CATEGORY` and `RODSZONE` environment variables.
+If you want to install individual files without the script then you can use the iput command.
+If you install the file as the name of a category it will become the schema for that category and that category alone.
+To update existing files use the force flag "-f".
+See the example below. Please replace `${RODSZONE}` with the current iRODS Zone and `${CATEGORY}` with the category you want to install. This is legal bash if you define the `CATEGORY` and `RODSZONE` environment variables.
 
 ```bash
 iput -f ${CATEGORY}.xml /${RODSZONE}/yoda/formelements/${CATEGORY}.xml
