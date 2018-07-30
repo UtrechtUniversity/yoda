@@ -71,19 +71,21 @@ Note that in the latter case, python functions in core.py are not available.
 
 ## Calling microservices from python code
 
-Use ```irods_types``` to create output parameters of the proper type, and obtain the output values from ```ret_val["arguments"][0]```.
+Use ```irods_types``` to create output parameters of the proper type, and obtain the output values from ```ret_val["arguments"][N]```.
 
 **Example code:**
 
 ```
 def uuGetGroups(rule_args, callback, rei):
+    import json
+
     groups = []
     ret_val = callback.msiMakeGenQuery("USER_GROUP_NAME", "USER_TYPE = 'rodsgroup'", irods_types.GenQueryInp())
-    query = ret_val["arguments"][2]
+    query = ret_val["arguments"][2]        # output parameter type GenQueryInp
 
     ret_val = callback.msiExecGenQuery(query, irods_types.GenQueryOut())
     while True:
-        result = ret_val["arguments"][1]
+        result = ret_val["arguments"][1]   # output parameter type GenQueryOut
         for row in range(result.rowCnt):
             name = result.sqlResult[0].row(row)
             groups.append(name)
@@ -93,5 +95,5 @@ def uuGetGroups(rule_args, callback, rei):
             break
         ret_val = callback.msiGetMoreRows(query, result, 0)
 
-    callback.writeString("stdout", json.dumps(groups.values()))
+    callback.writeString("stdout", json.dumps(groups))
 ```
