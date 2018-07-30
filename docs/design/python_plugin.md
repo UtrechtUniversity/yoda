@@ -1,5 +1,7 @@
 # The iRODS python plugin
 
+## Defining python code
+
 Python code can be included in core.py or defined in an external rule, in the following form:
 ```
 def pythonFunction(rule_args, callback, rei):
@@ -24,12 +26,14 @@ Static python functions must be defined in core.py.  There are three different t
   INPUT *arg="some argument"
   OUTPUT ruleExecOut
   ```
-  Note that global_vars is only available to pythin functions in core.py, not to functions imported by core.py.
+  Note that global_vars is only available to python functions defined in core.py, not to functions imported by core.py.
 - ordinary python functions which are not called by iRODS or externally, but only by other python code, accept arguments normally and can return a value
   ```
   def concat(str1, str2):
       return str1 + str2
   ```
+
+## Calling python code
 
 Python functions can be called with irule:
 ```
