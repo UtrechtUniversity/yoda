@@ -171,8 +171,8 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:
-    src: "core.py"
-    dest: "/etc/irods/core.py"
+    src: "core.py.template"
+    dest: "/etc/irods/core.py.template"
     mode: 0644
 
 
