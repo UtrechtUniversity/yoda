@@ -52,7 +52,7 @@ Python functions can be called with irule:
 ```
 irule -r irods_rule_engine_plugin-python-instance pythonFunction '*arg="some argument"' ruleExecOut
 ```
-
+or
 ```
 irule -r irods_rule_engine_plugin-python-instance -F pythonfunc.r
 ```
