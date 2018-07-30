@@ -9,7 +9,6 @@ Include the following in ```server_config.json```, in the ```rule_engines``` arr
     "plugin_name": "irods_rule_engine_plugin-python",
     "plugin_specific_configuration": {}
 }
-
 ```
 We use the python plugin as the second in the array, after the iRODS rule language plugin, so that we can combine our existing rule language code with new python code.
 
