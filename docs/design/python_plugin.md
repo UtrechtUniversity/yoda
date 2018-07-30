@@ -30,7 +30,7 @@ Static python functions must be defined in core.py.  There are three different t
 - Rules called with irule or from the frontend have access to ```global_vars```, in which named parameters are passed as strings including the quotes:
   ```
   def pythonFunction(rule_args, callback, rei):
-      arg = global_vars['*arg'][1:-1]                # strip the quotes
+      arg = global_vars["*arg"][1:-1]                # strip the quotes
       callback.writeLine("stdout", "arg = " + arg)
   ```
   Output cannot be passed back through named parameters, but has to be handled with writeString/writeLine:
@@ -59,7 +59,7 @@ irule -r irods_rule_engine_plugin-python-instance -F pythonfunc.r
 **pythonfunc.r**:
 ```
 def dynamicPythonFunction(rule_args, callback, rei):
-    arg = global_vars['*arg'][1:-1]     # strip the quotes
+    arg = global_vars["*arg"][1:-1]                # strip the quotes
     callback.writeLine("stdout", "arg = " + arg)
 
 INPUT *arg="some argument"
