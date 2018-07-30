@@ -1,5 +1,18 @@
 # The iRODS python plugin
 
+## Configuring the python rule plugin
+
+Include the following in ```server_config.json```, in the ```rule_engines``` array:
+```
+{
+    "instance_name": "irods_rule_engine_plugin-python-instance",
+    "plugin_name": "irods_rule_engine_plugin-python",
+    "plugin_specific_configuration": {}
+}
+
+```
+We use the python plugin as the second in the array, after the iRODS rule language plugin, so that we can combine our existing rule language code with new python code.
+
 ## Defining python code
 
 Python code can be included in core.py, in the following form:
