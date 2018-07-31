@@ -38,7 +38,7 @@ Static python functions must be defined in core.py.  There are three different t
   INPUT *arg="some argument"
   OUTPUT ruleExecOut
   ```
-  Note that global_vars is only available to python functions defined in core.py, not to functions imported by core.py.
+  Note that ```global_vars``` is only available to python functions defined in core.py, not to functions imported by core.py.
 - Ordinary python functions which are not called by iRODS or externally, but only by other python code, accept arguments normally and can return a value:
   ```
   def concat(str1, str2):
@@ -47,7 +47,9 @@ Static python functions must be defined in core.py.  There are three different t
 
 ## Calling python code
 
-Python functions can be called with irule:
+Python functions can be called from iRODS rule language rules, as long as the call has no parameters.
+
+Python functions can also be called with irule:
 ```
 irule -r irods_rule_engine_plugin-python-instance pythonFunction '*arg="some argument"' ruleExecOut
 ```
