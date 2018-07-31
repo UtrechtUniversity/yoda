@@ -73,3 +73,24 @@
       value: "{{ send_notifications }}"
   loop_control:
     loop_var: avu
+
+
+- name: Ensure that ExecCmd dir exists
+  file:
+    path: /var/lib/irods/msiExecCmd_bin
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0755
+    state: directory
+  when: not ansible_check_mode
+
+
+- name: Copy admin-groupdata.sh to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    remote_src: yes
+    src: /etc/irods/irods-ruleset-uu/tools/admin-groupdata.sh
+    dest: /var/lib/irods/msiExecCmd_bin/admin-groupdata.sh
+    mode: 0755
+  when: not ansible_check_mode
