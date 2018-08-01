@@ -1,0 +1,35 @@
+---
+# copyright Utrecht University
+
+- name: Import RPM key for NodeSource
+  rpm_key:
+    key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
+    state: present
+
+
+- name: Add NodeSource repositories for Node.js
+  package:
+    name: "https://rpm.nodesource.com/pub_8.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm"
+    state: present
+
+
+- name: Ensure Node.js and npm are installed
+  package:
+    name: nodejs-8*
+    state: present
+
+
+- name: Install metadata-form and dependencies
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  npm:
+    path: /var/www/yoda/yoda-portal/modules/research
+
+
+- name: Webpack metadata-form and dependencies
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  command: ./node_modules/.bin/webpack -d
+  args:
+    chdir: /var/www/yoda/yoda-portal/modules/research
+  when: not ansible_check_mode

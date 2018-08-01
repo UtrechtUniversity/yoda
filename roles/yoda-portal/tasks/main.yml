@@ -41,6 +41,7 @@
     dest: "{{ item.dest }}"
     version: "{{ item.version }}"
     update: "{{ update_portal }}"
+    force: yes
   with_items: "{{ modules }}"
 
 
@@ -91,3 +92,10 @@
     src: "yoda-portal-vhost.conf.j2"
     dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
   notify: Restart Apache webserver
+
+
+- include_tasks: "setup-{{ module.name }}-module.yml"
+  with_items: "{{ modules }}"
+  loop_control:
+    loop_var: module
+  when: module.install_scripts

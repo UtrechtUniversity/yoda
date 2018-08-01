@@ -25,18 +25,22 @@ modules:
     repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
     dest: /var/www/yoda/yoda-portal/modules/group-manager
     version: "{{ yoda_version }}"
+    install_scripts: no
   - name: research
     repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
-    version: "{{ yoda_version }}"
+    version: "feature/json-metadata"
+    install_scripts: yes
   - name: statistics
     repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
     version: "{{ yoda_version }}"
+    install_scripts: no
   - name: intake
     repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
     dest: /var/www/yoda/yoda-portal/modules/intake
     version: "{{ yoda_version }}"
+    install_scripts: no
 
 ######################
 # iRODS configuration
