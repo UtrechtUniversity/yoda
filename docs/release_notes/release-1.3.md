@@ -2,12 +2,14 @@
 
 ## New features since Yoda version 1.2
 - Upgrade from iRODS 4.1.11 to 4.2.3
+- Performance improvements in the Group Manager
 -
 
 ## Upgrading from 1.2
 Upgrade is supported by Ansible. No migrations required.
 Add the following fields to the Ansible environment files
 (see [yoda-ansible/CONFIGURATION.md](https://github.com/UtrechtUniversity/yoda-ansible/blob/development/CONFIGURATION.md) for description):
+- yoda_environment (replaces codeigniter_environment)
 - credential_files
 - send_notifications
 - notifications_sender_email
