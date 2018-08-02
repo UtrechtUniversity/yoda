@@ -6,7 +6,7 @@ yoda_deployment_user: yodadeployment
 yoda_version: development
 irods_php_version: "{{ yoda_version }}"
 codeigniter_version: "{{ yoda_version }}"
-codeigniter_environment: development
+codeigniter_environment: "{{ yoda_environment }}"
 
 yoda_portal_fqdn: portal.yoda.test
 update_portal: yes

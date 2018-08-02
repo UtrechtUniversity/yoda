@@ -102,7 +102,7 @@ Variable                     | Description                                      
 -----------------------------|-------------------------------------------------------------------------|
 instance                     | Name of Yoda instance, as defined in hosts file                         |
 yoda_version                 | Git branch, for example: development or release-0.9.7                   |
-codeigniter_environment      | CodeIgniter environment: development, testing, acceptance or production |
+yoda_environment             | Yoda environment: development, testing, acceptance or production        |
 yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)                          |
 yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)                  |
 yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)        |
