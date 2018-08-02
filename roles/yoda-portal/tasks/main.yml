@@ -98,4 +98,4 @@
   with_items: "{{ modules }}"
   loop_control:
     loop_var: module
-  when: module.install_scripts
+  when: module.install_scripts and yoda_environment == "development"
