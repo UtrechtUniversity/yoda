@@ -159,7 +159,7 @@
     value: '{{ irods_icat_fqdn }}'
 
 
-- name: Ensure python plugin is configured
+- name: Ensure Python plugin is configured
   become_user: '{{ irods_service_account }}'
   become: yes
   irods_python:
@@ -167,12 +167,12 @@
   when: not ansible_check_mode
 
 
-- name: Ensure core python rules are present
+- name: Ensure core Python rules are present
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:
     src: "core.py.template"
-    dest: "/etc/irods/core.py.template"
+    dest: "/etc/irods/core.py"
     mode: 0644
 
 
