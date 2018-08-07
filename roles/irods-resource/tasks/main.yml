@@ -27,6 +27,7 @@
   with_items:
     - irods-server-4.2.3-1
     - irods-runtime-4.2.3-1
+    - irods-rule-engine-plugin-python-4.2.3-1    
   when: not ansible_check_mode
 
 
@@ -83,6 +84,33 @@
   with_items:
   - /var/lib/irods
   - /etc/irods
+
+
+- name: Ensure Python plugin is configured
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_python:
+    config_path: '/etc/irods/server_config.json'
+  when: not ansible_check_mode
+
+
+- name: Ensure core Python rules template is present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: "core.py.template"
+    dest: "/etc/irods/core.py.template"
+    mode: 0644
+
+
+- name: Ensure core Python rules are present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: "core.py.template"
+    dest: "/etc/irods/core.py"
+    mode: 0644
+    force: no
 
 
 - name: Ensure iRODS server is up
