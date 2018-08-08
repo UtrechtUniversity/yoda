@@ -3,7 +3,6 @@
 # GNU General Public License v3.0
 
 ANSIBLE_METADATA = {
-    'metadata_version': '1.1',
     'supported_by': 'community',
     'status': ['preview']
 }
@@ -28,19 +27,19 @@ def main():
         server_config = json.load(data_file)
 
         # Find python plugin in server config.
-	found = False
+        found = False
         plugins = server_config["plugin_configuration"]["rule_engines"]
         for plugin in plugins:
-	    if plugin["plugin_name"] == "irods_rule_engine_plugin-python":
-		found = True
+            if plugin["plugin_name"] == "irods_rule_engine_plugin-python":
+                found = True
 
-	if not found:
-	    plugins.insert(1, {
-		"instance_name": "irods_rule_engine_plugin-python-instance",
-		"plugin_name": "irods_rule_engine_plugin-python",
-		"plugin_specific_configuration": {}
-	    })
-	    changed = True
+        if not found:
+            plugins.insert(1, {
+                "instance_name": "irods_rule_engine_plugin-python-instance",
+                "plugin_name": "irods_rule_engine_plugin-python",
+                "plugin_specific_configuration": {}
+            })
+            changed = True
 
             if not module.check_mode:
                 data_file.seek(0)
