@@ -2,8 +2,11 @@
 
 ## New features since Yoda version 1.2
 - Upgrade from iRODS 4.1.11 to 4.2.3
+- New metadata form
+- EPIC PID for vault packages
+- CSV export in Statistics module
 - Performance improvements in the Group Manager
--
+- Several security fixed
 
 ## Upgrading from 1.2
 Upgrade is supported by Ansible. No migrations required.
