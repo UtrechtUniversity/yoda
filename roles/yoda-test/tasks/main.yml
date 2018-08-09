@@ -419,6 +419,28 @@
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
 
 
+- name: Ensure Yoda licenses directory is present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/yoda/licenses
+  ignore_errors: true
+
+
+- name: Ensure licenses are present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iput -f '/etc/irods/irods-ruleset-research/tools/licenses/{{ item }}' '/{{ irods_zone }}/yoda/licenses/{{ item }}'
+  with_items:
+    - "Creative Commons Attribution 4.0 International Public License.txt"
+    - "Creative Commons Attribution 4.0 International Public License.uri"
+    - "Creative Commons Attribution-ShareAlike 4.0 International Public License.txt"
+    - "Creative Commons Attribution-ShareAlike 4.0 International Public License.uri"
+    - "Open Data Commons Attribution License (ODC-By) v1.0.txt"
+    - "Open Data Commons Attribution License (ODC-By) v1.0.uri"
+
+
 - name: Ensure intake module cronjob rules are present
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -449,23 +471,9 @@
     job: '/bin/irule -F /var/lib/irods/.irods/job_checksums.r >>$HOME/log/job_checksums.log 2>&1'
 
 
-- name: Ensure Yoda licenses directory is present
+- name: Run monthly storage statistics job
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    imkdir /{{ irods_zone }}/yoda/licenses
+    irule -F /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r
   ignore_errors: true
-
-
-- name: Ensure licenses are present in Yoda
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    iput -f '/etc/irods/irods-ruleset-research/tools/licenses/{{ item }}' '/{{ irods_zone }}/yoda/licenses/{{ item }}'
-  with_items:
-    - "Creative Commons Attribution 4.0 International Public License.txt"
-    - "Creative Commons Attribution 4.0 International Public License.uri"
-    - "Creative Commons Attribution-ShareAlike 4.0 International Public License.txt"
-    - "Creative Commons Attribution-ShareAlike 4.0 International Public License.uri"
-    - "Open Data Commons Attribution License (ODC-By) v1.0.txt"
-    - "Open Data Commons Attribution License (ODC-By) v1.0.uri"
