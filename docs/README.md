@@ -1,5 +1,5 @@
 # Yoda documentation
-In this repository you can find documentation on [administration tasks](administration/), [software design](design) and [release notes](release_notes) of Yoda.
+In this repository you can find documentation on administration tasks, software design and release notes of Yoda.
 
 ## Administration tasks
 - [Installing licenses](administration/installing-licenses.md)
@@ -8,13 +8,15 @@ In this repository you can find documentation on [administration tasks](administ
 - [Troubleshooting publication](administration/troubleshooting_publication.md)
 
 ## Software design
+- [Asynchronous and privileged Execution](design/async_system_execution.md)
 - [Group manager](design/group_manager.md)
 - [Locking mechanism](design/locking_mechanism.md)
 - [Metadata form](design/metadata_form.md)
 - [Publication process](design/publication_process.md)
-- [Vault process](design/vault_process.md)
-- [Revision management](design/revisions.md)
+- [Python plugin](design/python_plugin.md)
 - [Statistics module](design/statistics.md)
+- [Revision management](design/revisions.md)
+- [Vault process](design/vault_process.md)
 
 ## Release notes
 - [release 1.2](release_notes/release-1.2.md)

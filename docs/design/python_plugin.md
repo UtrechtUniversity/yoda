@@ -1,6 +1,6 @@
-# The iRODS python plugin
+# Yoda and the iRODS python plugin
 
-## Configuring the python rule plugin
+## Configuring the Python rule plugin
 
 Include the following in ```server_config.json```, in the ```rule_engines``` array:
 ```
@@ -47,7 +47,7 @@ Static python functions must be defined in core.py.  There are three different t
 
 ## Calling python code
 
-Python functions can be called from iRODS rule language rules, as long as the call has no parameters.
+Python functions can be called from iRODS rule language rules.
 
 Python functions can also be called with irule:
 ```
