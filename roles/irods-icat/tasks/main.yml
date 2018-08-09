@@ -316,28 +316,24 @@
       value: '{{ irods_ssl_verify_server }}'
 
 
+- name: Retrieve iRODS server config file
+  command: cat /etc/irods/server_config.json
+  register: server_config
+
+
 - name: Retrieve iRODS server zone key
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: "grep -oP '(?<=\"zone_key\": \")[^\"]*' /etc/irods/server_config.json"
-  register: zone_key
-  changed_when: false
+  set_fact:
+    zone_key: "{{ (server_config.stdout | from_json).zone_key }}"
 
 
 - name: Retrieve iRODS server negotiation key
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: "grep -oP '(?<=\"negotiation_key\": \")[^\"]*' /etc/irods/server_config.json"
-  register: negotiation_key
-  changed_when: false
+  set_fact:
+    negotiation_key: "{{ (server_config.stdout | from_json).negotiation_key }}"
 
 
 - name: Retrieve iRODS server control plane key
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: "grep -oP '(?<=\"server_control_plane_key\": \")[^\"]*' /etc/irods/server_config.json"
-  register: server_control_plane_key
-  changed_when: false
+  set_fact:
+    server_control_plane_key: "{{ (server_config.stdout | from_json).server_control_plane_key }}"
 
 
 - name: Ensure iRODS is configured to use SSL connection to database

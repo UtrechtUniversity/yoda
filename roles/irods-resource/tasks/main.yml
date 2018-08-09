@@ -49,11 +49,11 @@
     '{{ item.fact }}': '{{ item.key }}'
   with_items:
     - fact: irods_zone_key
-      key: "{{ hostvars[irods_icat]['zone_key']['stdout'] }}"
+      key: "{{ hostvars[irods_icat]['zone_key'] }}"
     - fact: irods_negotiation_key
-      key: "{{ hostvars[irods_icat]['negotiation_key']['stdout'] }}"
+      key: "{{ hostvars[irods_icat]['negotiation_key'] }}"
     - fact: irods_control_plane_key
-      key: "{{ hostvars[irods_icat]['server_control_plane_key']['stdout'] }}"
+      key: "{{ hostvars[irods_icat]['server_control_plane_key'] }}"
   when: not ansible_check_mode
 
 
@@ -229,9 +229,9 @@
     value: '{{ item.value }}'
   with_items:
     - key: 'zone_key'
-      value: "{{ hostvars[irods_icat]['zone_key']['stdout'] }}"
+      value: "{{ irods_zone_key }}"
     - key: 'server_control_plane_key'
-      value: "{{ hostvars[irods_icat]['server_control_plane_key']['stdout'] }}"
+      value: "{{ irods_control_plane_key }}"
     - key: 'negotiation_key'
-      value: "{{ hostvars[irods_icat]['negotiation_key']['stdout'] }}"
+      value: "{{ irods_negotiation_key }}"
   when: not ansible_check_mode
