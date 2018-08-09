@@ -1,6 +1,6 @@
 # Installing metadata schemas, formelements and stylesheets
 For a fully functional research module, a number of XML schema's and stylesheets are required.
-Currently we only have a default schame (currently the same as the I-lab schema) and a test schema.
+Currently we only have a default schema (currently the same as the I-lab schema) and a test schema.
 These can be found in the irods-ruleset-research in `tools/xml/`.
 Below a description of the needed files (using the default schema as example):
 
