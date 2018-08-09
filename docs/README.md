@@ -1,6 +1,12 @@
 # Yoda documentation
 In this repository you can find documentation on administration tasks, software design and release notes of Yoda.
 
+## Release notes
+- [release 1.2](release_notes/release-1.2.md)
+- [release 1.1](release_notes/release-1.1.md)
+- [release 1.0](release_notes/release-1.0.md)
+- [release 0.9.7](release_notes/release-0.9.7.md)
+
 ## Administration tasks
 - [Installing licenses](administration/installing-licenses.md)
 - [Installing metadata schemas](administration/installing-metadata-schemas.md)
@@ -8,7 +14,7 @@ In this repository you can find documentation on administration tasks, software 
 - [Troubleshooting publication](administration/troubleshooting_publication.md)
 
 ## Software design
-- [Asynchronous and privileged Execution](design/async_system_execution.md)
+- [Asynchronous and privileged execution](design/async_system_execution.md)
 - [Group manager](design/group_manager.md)
 - [Locking mechanism](design/locking_mechanism.md)
 - [Metadata form](design/metadata_form.md)
@@ -17,12 +23,6 @@ In this repository you can find documentation on administration tasks, software 
 - [Statistics module](design/statistics.md)
 - [Revision management](design/revisions.md)
 - [Vault process](design/vault_process.md)
-
-## Release notes
-- [release 1.2](release_notes/release-1.2.md)
-- [release 1.1](release_notes/release-1.1.md)
-- [release 1.0](release_notes/release-1.0.md)
-- [release 0.9.7](release_notes/release-0.9.7.md)
 
 ## Documentation style
 All documentation is styled using [Markdown](https://guides.github.com/features/mastering-markdown/).
