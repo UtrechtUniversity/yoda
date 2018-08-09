@@ -324,16 +324,19 @@
 - name: Retrieve iRODS server zone key
   set_fact:
     zone_key: "{{ (server_config.stdout | from_json).zone_key }}"
+  when: not ansible_check_mode
 
 
 - name: Retrieve iRODS server negotiation key
   set_fact:
     negotiation_key: "{{ (server_config.stdout | from_json).negotiation_key }}"
+  when: not ansible_check_mode
 
 
 - name: Retrieve iRODS server control plane key
   set_fact:
     server_control_plane_key: "{{ (server_config.stdout | from_json).server_control_plane_key }}"
+  when: not ansible_check_mode
 
 
 - name: Ensure iRODS is configured to use SSL connection to database
