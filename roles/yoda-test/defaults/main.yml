@@ -454,11 +454,14 @@ deletion_research_groups:
   - research: teststatistics1
   - research: teststatistics2
   - research: nodmprocess
+  - research: tovaultnodm
+  - research: tovaultwithdm
 deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
   - datamanager: teststatistics
   - datamanager: nodminitial
+  - datamanager: newtovault
 deletion_grp_groups: 
   - grp: datamanager-initial
   - grp: datamanager-test
