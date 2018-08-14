@@ -85,12 +85,12 @@
   when: not ansible_check_mode
 
 
-- name: Copy unauthorized-remove-orphan-vault-if-empty.sh to ExecCmd dir
+- name: Copy admin-remove-orphan-vault-if-empty.sh to ExecCmd dir
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:
     remote_src: yes
-    src: /etc/irods/irods-ruleset-uu/tools/unauthorized-remove-orphan-vault-if-empty.sh
-    dest: /var/lib/irods/msiExecCmd_bin/unauthorized-remove-orphan-vault-if-empty.sh
+    src: /etc/irods/irods-ruleset-uu/tools/admin-remove-orphan-vault-if-empty.sh
+    dest: /var/lib/irods/msiExecCmd_bin/admin-remove-orphan-vault-if-empty.sh
     mode: 0755
   when: not ansible_check_mode
