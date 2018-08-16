@@ -3,12 +3,11 @@
 ## New features since Yoda version 1.2
 - Upgrade from iRODS 4.1.11 to 4.2.3
 - Persistent identifier (EPIC-PID) for vault packages
-- CSV export in Statistics module
-- Data classification for groups
-- Performance improvements in the Group Manager
-- DataCite support for the OAI-PMH service
-- Notifications when a package is published
-- Several security fixes
+- CSV export in Statistics module for Yoda admin
+- Data classification for groups added to the Group Manager
+- DataCite format support for the OAI-PMH service
+- Email notifications when a package is published
+- Several performance and security improvements
 
 ## Upgrading from Yoda version 1.2
 Upgrade is supported by Ansible. No migrations required.

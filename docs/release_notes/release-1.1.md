@@ -12,7 +12,7 @@
 - Fix incorrect creator name in intake module
 - Upgrade CodeIgniter to 3.1.7
 
-## Upgrading from 1.0 or 1.0
+## Upgrading from 1.0
 - Upgrade is supported by Ansible. No migrations required.
 
 ## Known Issues
