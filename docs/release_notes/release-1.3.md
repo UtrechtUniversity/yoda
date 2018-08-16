@@ -7,6 +7,7 @@
 - Data classification for groups
 - Performance improvements in the Group Manager
 - DataCite support for the OAI-PMH service
+- Notifications when a package is published
 - Several security fixes
 
 ## Upgrading from Yoda version 1.2
