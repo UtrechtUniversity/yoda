@@ -2,13 +2,14 @@
 
 ## New features since Yoda version 1.2
 - Upgrade from iRODS 4.1.11 to 4.2.3
-- New metadata form
-- EPIC PID for vault packages
+- Persistent identifier (EPIC-PID) for vault packages
 - CSV export in Statistics module
+- Data classification for groups
 - Performance improvements in the Group Manager
-- Several security fixed
+- DataCite support for the OAI-PMH service
+- Several security fixes
 
-## Upgrading from 1.2
+## Upgrading from Yoda version 1.2
 Upgrade is supported by Ansible. No migrations required.
 Add the following fields to the Ansible environment files
 (see [yoda-ansible/CONFIGURATION.md](https://github.com/UtrechtUniversity/yoda-ansible/blob/development/CONFIGURATION.md) for description):
@@ -22,6 +23,3 @@ Add the following fields to the Ansible environment files
 - smtp_password
 - epic_url
 - epic_handle_prefix
-
-## Known Issues
-- Ordering of data in tables is not working. Clicking column sort headers have been disabled and are not shown.
