@@ -17,6 +17,7 @@
   package:
     name: nodejs-8*
     state: present
+  when: not ansible_check_mode
 
 
 - name: Install metadata-form and dependencies
@@ -24,6 +25,7 @@
   become: yes
   npm:
     path: /var/www/yoda/yoda-portal/modules/research
+  when: not ansible_check_mode
 
 
 - name: Webpack metadata-form and dependencies
