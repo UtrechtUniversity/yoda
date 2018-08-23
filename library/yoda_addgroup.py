@@ -36,6 +36,7 @@ def main():
             category=dict(default=None, required=True),
             subcategory=dict(default=None, required=True),
             description=dict(default=None, required=True),
+            dataClassification=dict(default=None, required=True),            
             state=dict(default="present")
         ),
         supports_check_mode=True)
@@ -44,6 +45,7 @@ def main():
     category = module.params["category"]
     subcategory = module.params["subcategory"]
     description = module.params["description"]
+    dataClassification = module.params["dataClassification"]    
     state = module.params["state"]
 
     if IRODSCLIENT_AVAILABLE:
@@ -61,7 +63,7 @@ def main():
     # Rule to add a group to Yoda.
     rule_body = textwrap.dedent('''\
         test {{
-            uuGroupAdd(*groupName, *category, *subcategory, *description, *status, *message);
+            uuGroupAdd(*groupName, *category, *subcategory, *description, *dataClassification, *status, *message);
         }}''')
 
     # Rule parameters.
@@ -69,7 +71,8 @@ def main():
         '*groupName': '"{groupName}"'.format(**locals()),
         '*category': '"{category}"'.format(**locals()),
         '*subcategory': '"{subcategory}"'.format(**locals()),
-        '*description': '"{description}"'.format(**locals())
+        '*description': '"{description}"'.format(**locals()),
+        '*dataClassification': '"{dataClassification}"'.format(**locals())
     }
     output = 'ruleExecOut'
 

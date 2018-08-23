@@ -25,11 +25,21 @@
   - python-six
 
 
-- name: Ensure yoda-moai packages are absent
+- name: Ensure old Yoda MOAI packages are absent
   package:
     name: "{{ item.value.package }}"
     state: absent
   with_dict: "{{ yoda_moai_packages }}"
+  notify: Restart Apache webserver
+
+
+- name: Ensure old Yoda MOAI install is absent
+  file:
+    path: '{{ item }}'
+    state: absent
+  with_items:
+    - /usr/lib/python2.7/site-packages/MOAI-2.1.3-py2.7.egg-info/
+    - /usr/lib/python2.7/site-packages/moai/
   notify: Restart Apache webserver
 
 

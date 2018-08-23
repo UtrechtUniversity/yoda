@@ -28,11 +28,11 @@
   package:
     name: '{{ rpm_dest_dir }}/{{ python_irodsclient.filename }}'
     state: present
-  when: not python_irodsclient_repo.results
+  when: not python_irodsclient_repo.results and not ansible_check_mode
 
 
 - name: Ensure python-irodsclient is installed from repository
   package:
     name: '{{ python_irodsclient.package }}'
     state: present
-  when: python_irodsclient_repo.results
+  when: python_irodsclient_repo.results and not ansible_check_mode

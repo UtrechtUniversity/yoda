@@ -159,33 +159,6 @@
     value: '{{ irods_icat_fqdn }}'
 
 
-- name: Ensure Python plugin is configured
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  irods_python:
-    config_path: '/etc/irods/server_config.json'
-  when: not ansible_check_mode
-
-
-- name: Ensure core Python rules template is present
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    src: "core.py.template"
-    dest: "/etc/irods/core.py.template"
-    mode: 0644
-
-
-- name: Ensure core Python rules are present
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    src: "core.py.template"
-    dest: "/etc/irods/core.py"
-    mode: 0644
-    force: no
-
-
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -218,6 +191,33 @@
     name: crond
     state: started
   when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
+
+
+- name: Ensure Python plugin is configured
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_python:
+    config_path: '/etc/irods/server_config.json'
+  when: not ansible_check_mode
+
+
+- name: Ensure core Python rules template is present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: "core.py.template"
+    dest: "/etc/irods/core.py.template"
+    mode: 0644
+
+
+- name: Ensure core Python rules are present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: "core.py.template"
+    dest: "/etc/irods/core.py"
+    mode: 0644
+    force: no
 
 
 - name: Ensure all users have iRODS read access on /zone/home
