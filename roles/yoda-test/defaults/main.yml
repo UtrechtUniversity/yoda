@@ -456,6 +456,7 @@ deletion_research_groups:
   - research: nodmprocess
   - research: tovaultnodm
   - research: tovaultwithdm
+  - research: recreateresearch
 deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
