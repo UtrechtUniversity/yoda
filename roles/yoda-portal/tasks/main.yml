@@ -94,8 +94,5 @@
   notify: Restart Apache webserver
 
 
-- include_tasks: "setup-{{ module.name }}-module.yml"
-  with_items: "{{ modules }}"
-  loop_control:
-    loop_var: module
-  when: module.install_scripts and yoda_environment == "development"
+- include_tasks: setup-nodejs-development-environment.yml
+  when: yoda_environment == "development"
