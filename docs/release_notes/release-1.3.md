@@ -1,4 +1,4 @@
-# Release notes Yoda version 1.3 (to be released)
+# Release notes Yoda version 1.3
 
 ## New features since Yoda version 1.2
 - Upgrade from iRODS 4.1.11 to 4.2.3
