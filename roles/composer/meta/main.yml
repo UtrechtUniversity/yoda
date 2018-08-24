@@ -2,7 +2,4 @@
 # copyright Utrecht University
 
 dependencies:
-- certificates
-- apache
 - php
-- composer
