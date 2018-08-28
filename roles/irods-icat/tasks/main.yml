@@ -84,28 +84,28 @@
   command: 'openssl rand -hex 16'
   register: zone_key
   args:
-    creates: /etc/irods/setup_irods_provider
+    creates: /etc/irods/service_account.config
 
 
 - name: Generate negotiation key
   command: 'openssl rand -hex 16'
   register: negotiation_key
   args:
-    creates: /etc/irods/setup_irods_provider
+    creates: /etc/irods/service_account.config
 
 
 - name: Generate control plane key
   command: 'openssl rand -hex 16'
   register: server_control_plane_key
   args:
-    creates: /etc/irods/setup_irods_provider
+    creates: /etc/irods/service_account.config
 
 
 - name: Generate password salt
   command: 'openssl rand -hex 16'
   register: password_salt
   args:
-    creates: /etc/irods/setup_irods_provider
+    creates: /etc/irods/service_account.config
 
 
 - name: Store iCAT keys in variables
@@ -123,12 +123,19 @@
   when: not ansible_check_mode
 
 
+- name: Check if iRODS config file exists
+  stat:
+    path: /etc/irods/service_account.config
+  ignore_errors: true
+  register: irods_config
+
+
 - name: Copy responses for setup_irods.py
   template:
     src: setup_irods_provider.j2
     dest: /etc/irods/setup_irods_provider
     force: no
-  when: not ansible_check_mode
+  when: irods_config.stat.exists == false and not ansible_check_mode
 
 
 - name: Configure iRODS iCAT server
@@ -139,6 +146,18 @@
     creates: /etc/irods/service_account.config
   run_once: true
   when: not ansible_check_mode
+
+
+- name: Ensure old iRODS setup file is absent
+  file:
+    path: /etc/irods/setup_irods
+    state: absent
+
+
+- name: Ensure iRODS setup file is absent
+  file:
+    path: /etc/irods/setup_irods_provider
+    state: absent
 
 
 - name: Ensure iRODS iCAT host is a FQDN for iRODS 4.1.11
