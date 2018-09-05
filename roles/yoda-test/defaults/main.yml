@@ -473,7 +473,8 @@ deletion_grp_groups:
   - grp: vault-test
 deletion_intake_groups:	
   - intake: i1 
-
+  - intake: recreateintake 
+  
 reset_tiers:
   - dev001
   - dev001_1
