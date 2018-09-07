@@ -288,8 +288,15 @@
     irmtrash -rM /{{ irods_zone }}/trash/home/rods
   ignore_errors: true
 
-
 - name: Remove test users
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmuser '{{ item }}'
+  ignore_errors: true
+  with_items: '{{ test_users }}'
+
+- name: Remove test user created by automated test
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
