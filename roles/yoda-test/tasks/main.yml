@@ -288,6 +288,7 @@
     irmtrash -rM /{{ irods_zone }}/trash/home/rods
   ignore_errors: true
 
+
 - name: Remove test users
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -295,6 +296,7 @@
     iadmin rmuser '{{ item }}'
   ignore_errors: true
   with_items: '{{ test_users }}'
+
 
 - name: Remove test user created by automated test
   become_user: '{{ irods_service_account }}'
@@ -304,6 +306,21 @@
   ignore_errors: true
   with_items:
     - createnewuser
+
+
+- name: Remove test users
+  user:
+    name: '{{ item.name }}'
+    password: "{{ item.password | password_hash('sha512') }}"
+    state: absent
+  with_items: '{{ test_users }}'
+
+
+- name: Ensure test users exists
+  user:
+    name: '{{ item.name }}'
+    password: "{{ item.password | password_hash('sha512') }}"
+  with_items: '{{ test_users }}'
 
 
 - name: Ensure Yoda test users exists
