@@ -39,14 +39,15 @@ Parameter  | Default value                                   | Description
 -----------|-------------------------------------------------|------------
 resc	     | irodsResc	                                     | Default resource to put the files into
 src        | /etc/irods/irods-ruleset-research/tools/schemas | Source directory of files
-default    | default                                         | Category to use as default (default or test).
+schema     | default                                         | Schema to install
+category   | default                                         | Category to install schema (category name or default)
 update     | 0                                               | Update existing schema (1) or keep existing files (0)
 
 In the default situation the default schema is installed in ``/${RODSZONE}/yoda/schemas/default`.
 
 Example invocation:
 ```bash
-irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/irods-ruleset-research/tools/schemas/"' '*default="default"' '*update=1'
+irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/irods-ruleset-research/tools/schemas/"' '*schema="default"' *category="default" '*update=1'
 ```
 
 If you want to install individual files without the script then you can use the iput command.
