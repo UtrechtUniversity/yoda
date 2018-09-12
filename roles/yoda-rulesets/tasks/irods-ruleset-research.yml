@@ -1,26 +1,27 @@
 ---
 # Copyright Utrecht University
 
-- name: Find out if default XSD, formelements and stylesheets are installed
+- name: Find out if default metadata schema is installed
   become_user: "{{ irods_service_account }}"
   become: yes
-  command: 'ils /{{ irods_zone }}/yoda/{{ item.collection }}/{{ item.file }}'
+  command: 'ils /{{ irods_zone }}/yoda/schemas/default/{{ item }}'
   ignore_errors: True
   register: installed_defaults
   changed_when: False
   with_items:
-    - { collection: 'formelements', file: 'default.xml' }
-    - { collection: 'xsd', file: 'default.xsd' }
-    - { collection: 'xsl', file: 'default.xsl' }
-    - { collection: 'xsl', file: 'default2datacite.xsl' }
-    - { collection: 'xsl', file: 'default2landingpage.xsl' }
+    - metadata.json
+    - research.xsd
+    - vault.xsd
+    - avu.xsl
+    - datacite.xsl
+    - landingpage.xsl
 
 
-- name: Ensure default schemas, formelements and stylesheets are installed
+- name: Ensure default metadata schema is installed
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-research/tools/install-default-xml-for-metadata.r
+    irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
     '*default="{{ default_yoda_schema }}"'
     '*update={{ update_schemas }}'
