@@ -12,9 +12,6 @@ test_users:
   - name: researcher
     password: '{{ test_password }}'
     type: rodsuser
-  - name: yodaresearcher@gmail.com
-    password: '{{ test_password }}'
-    type: rodsuser
   - name: viewer
     password: '{{ test_password }}'
     type: rodsuser
@@ -22,9 +19,6 @@ test_users:
     password: '{{ test_password }}'
     type: rodsuser
   - name: datamanager
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: yodadatamanager@gmail.com
     password: '{{ test_password }}'
     type: rodsuser
   - name: functionaladmingroup
@@ -45,6 +39,12 @@ test_users:
   - name: testuserdel
     password: '{{ test_password }}'
     type: rodsuser
+  # - name: yodaresearcher@gmail.com
+  #   password: '{{ test_password }}'
+  #   type: rodsuser
+  # - name: yodadatamanager@gmail.com
+  #   password: '{{ test_password }}'
+  #   type: rodsuser
 
 test_groups:
   - groupName: research-initial
