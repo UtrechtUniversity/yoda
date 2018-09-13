@@ -15,7 +15,7 @@ irods_resource:
 irods_admin: rods                          # iRODS admin username
 irods_password: rods                       # iRODS admin password
 irods_icat_fqdn: icat.yoda.test
-irods_authentication_scheme: Native        # iRODS authentication method: "Native" or "PAM"
+irods_authentication_scheme: PAM           # iRODS authentication method: "Native" or "PAM"
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_port_range_begin: 20000
 irods_port_range_end: 20199
