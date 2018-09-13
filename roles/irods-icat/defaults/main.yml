@@ -28,7 +28,7 @@ irods_database_name: ICAT
 irods_database_port: 5432
 irods_database_user: irodsdb               # The iRODS database username
 irods_database_password: irodsdev          # The password for the iRODS database username
-irods_authentication_scheme: Native        # iRODS authentication method: "Native" or "PAM"
+irods_authentication_scheme: PAM           # iRODS authentication method: "Native" or "PAM"
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_port_range_begin: 20000
 irods_port_range_end: 20199

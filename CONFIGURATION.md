@@ -114,7 +114,6 @@ irods_admin                  | iRODS admin username                             
 irods_password               | iRODS admin password                                                    |
 irods_database_user          | The iRODS database username                                             |
 irods_database_password      | The password for the iRODS database username                            |
-irods_authentication_scheme  | iRODS authentication method: "Native" or "PAM"                          |
 irods_zone                   | The name of the iRODS Zone                                              |
 irods_icat_fqdn              | iRODS iCAT fully qualified domain name (FQDN)                           |
 irods_database_fqdn          | iRODS database fully qualified domain name (FQDN)                       |

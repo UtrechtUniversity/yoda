@@ -58,7 +58,6 @@ irods_admin: rods                          # iRODS admin username
 irods_password: rods                       # iRODS admin password
 irods_database_user: irodsdb               # The iRODS database username
 irods_database_password: irodsdev          # The password for the iRODS database username
-irods_authentication_scheme: PAM           # iRODS authentication method: "Native" or "PAM"
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_icat_fqdn: combined.yoda.test        # iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn: combined.yoda.test    # iRODS database fully qualified domain name (FQDN)
