@@ -12,6 +12,6 @@
 
 - name: Ensure iRODS runtime is installed
   package:
-    name: irods-runtime-4.2.3-1
+    name: irods-runtime-4.2.4-1
     state: present
   when: not ansible_check_mode
