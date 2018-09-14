@@ -1,15 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure iRODS 4.1 packages are absent
-  package:
-    name: '{{ item }}'
-    state: absent
-  with_items:
-    - irods-runtime-4.1.11-0
-    - davrods-4.1_1.3.0-1
-
-
 - name: Ensure iRODS runtime is installed
   package:
     name: irods-runtime-4.2.3-1

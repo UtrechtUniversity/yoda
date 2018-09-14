@@ -1,23 +1,10 @@
 ---
 # copyright Utrecht University
 
-- name: Check if iRODS 4.1.11 is installed
-  stat:
-    path: /var/lib/irods/iRODS/irodsctl
-  register: irods_old
-
-
-- name: Check if iRODS 4.2 is installed
-  stat:
-    path: /var/lib/irods/irodsctl
-  register: irods_new
-
-
 - name: Stop iRODS server before upgrade
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/var/lib/irods/iRODS/irodsctl stop'
-  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
 - name: Ensure iRODS resource server is installed
@@ -80,12 +67,6 @@
     creates: /etc/irods/service_account.config
   run_once: true
   when: not ansible_check_mode
-
-
-- name: Ensure old iRODS setup file is absent
-  file:
-    path: /etc/irods/setup_irods
-    state: absent
 
 
 - name: Ensure iRODS setup file is absent

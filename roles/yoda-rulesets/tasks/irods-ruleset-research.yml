@@ -66,30 +66,6 @@
   ignore_errors: true
 
 
-- name: Remove cronjob to copy datapackages to the vault
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  cron:
-    name: 'copy-accepted-folders-to-vault.r'
-    state: absent
-
-
-- name: Remove cronjob to ingest changes into vault
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  cron:
-    name: 'ingest-changes-into-vault.r'
-    state: absent
-
-
-- name: Remove cronjob to process vault actions
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  cron:
-    name: 'process-vault-status-transitions.r'
-    state: absent
-
-
 - name: Configure cronjob to process publications
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -116,27 +92,6 @@
     dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-
-
-- name: Remove outdated ExecCmd dir
-  file:
-    path: /var/lib/irods/iRODS/server/bin/cmd1/
-    state: absent
-
-
-- name: Remove outdated ExecCmd dir
-  file:
-    path: /var/lib/irods/msiExecCmd_bin1
-    state: absent
-
-
-- name: Remove outdated scripts from ExecCmd dir
-  file:
-    path: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    state: absent
-  with_items:
-    - "scheduled-vaultactions.sh"
-    - "scheduled-vaultingest.sh"
 
 
 - name: Ensure that ExecCmd dir exists
@@ -201,38 +156,6 @@
     minute: 0
     hour: 2
     job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/log/cronjob-revision-cleanup.log 2>&1'
-
-
-- name: Remove deprecated configuration AVUs for research ruleset from system collection
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  irods_setavu:
-    name: "/{{ irods_zone }}/yoda"
-    irods_type: Collection
-    attribute: "{{ avu.attribute }}"
-    value: "{{ avu.value }}"
-    state: absent
-  with_items:
-    - attribute: org_datacite_server
-      value: "{{ datacite_server }}"
-    - attribute: org_datacite_username
-      value: "{{ datacite_username }}"
-    - attribute: org_datacite_password
-      value: "{{ datacite_password }}"
-    - attribute: org_sender_email
-      value: "{{ sender_email }}"
-    - attribute: org_sender_name
-      value: "{{ sender_name }}"
-    - attribute: org_reply_to
-      value: "{{ reply_to }}"
-    - attribute: org_smtp_server
-      value: "{{ smtp_server }}"
-    - attribute: org_smtp_username
-      value: "{{ smtp_username }}"
-    - attribute: org_smtp_password
-      value: "{{ smtp_password }}"
-  loop_control:
-    loop_var: avu
 
 
 - name: Set configuration AVUs for research ruleset to system collection
