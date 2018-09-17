@@ -5,7 +5,7 @@ These can be found in the irods-ruleset-research in `tools/schemas/`.
 Below a description of the needed files per schema (using the default schema as example):
 
 **metadata.json**
-  An JSON file describing the metadata form
+  A JSON file describing the metadata form
 
 **research.xsd**
   A schema describing the elements and their type of a yoda-metadata.xml
@@ -31,8 +31,8 @@ Below a description of the other needed files:
 **emptylandingpage.xsl**
   A stylesheet to convert a combi.xml into a empty landingpage html file
 
-You can install this set with the `tools/install-metadata-schema.r` script. This script accepts four parameters:
-resc, src, default and update.
+You can install this set with the `tools/install-metadata-schema.r` script. This script accepts five parameters:
+resc, src, schema, category and update.
 
 
 Parameter  | Default value                                   | Description
@@ -40,7 +40,7 @@ Parameter  | Default value                                   | Description
 resc	     | irodsResc	                                     | Name of default resource to put the files into
 src        | /etc/irods/irods-ruleset-research/tools/schemas | Source directory of files
 schema     | default                                         | Schema to install
-category   | default                                         | Install schema to all categories ('default') or install to a single category (category name, category must already exist)
+category   | default                                         | Install schema to all categories ('default') or install to a single category (category must already exist)
 update     | 0                                               | Update existing schema (1) or keep existing files (0)
 
 In the default situation the default schema is installed in ``/${RODSZONE}/yoda/schemas/default``.
