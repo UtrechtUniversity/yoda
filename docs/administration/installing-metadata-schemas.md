@@ -40,7 +40,7 @@ Parameter  | Default value                                   | Description
 resc	     | irodsResc	                                     | Name of default resource to put the files into
 src        | /etc/irods/irods-ruleset-research/tools/schemas | Source directory of files
 schema     | default                                         | Schema to install
-category   | default                                         | Install schema to all categories ('default') or install to a single category (category must already exist)
+category   | default                                         | Install schema to all categories ('default') or install to a single category (category name)
 update     | 0                                               | Update existing schema (1) or keep existing files (0)
 
 In the default situation the default schema is installed in ``/${RODSZONE}/yoda/schemas/default``.
