@@ -51,8 +51,6 @@
     - irods-runtime
     - irods-microservices
     - composable-resources
-    - role: yoda-rulesets
-      install_rulesets: yes
   tags:
     - icat
 
@@ -64,10 +62,29 @@
     - irods-resource
     - irods-runtime
     - irods-microservices
+  tags:
+    - resource
+
+
+- name: Provision rulesets on iCAT server
+  hosts: icats
+  become: yes
+  roles:
+    - role: yoda-rulesets
+      install_rulesets: yes
+  tags:
+    - icat
+
+
+- name: Provision rulesets on resource server
+  hosts: resources
+  become: yes
+  roles:
     - role: yoda-rulesets
       install_rulesets: no
   tags:
     - resource
+
 
 
 - name: Provision public server
