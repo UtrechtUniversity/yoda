@@ -12,9 +12,6 @@ test_users:
   - name: researcher
     password: '{{ test_password }}'
     type: rodsuser
-  - name: yodaresearcher@gmail.com
-    password: '{{ test_password }}'
-    type: rodsuser
   - name: viewer
     password: '{{ test_password }}'
     type: rodsuser
@@ -22,9 +19,6 @@ test_users:
     password: '{{ test_password }}'
     type: rodsuser
   - name: datamanager
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: yodadatamanager@gmail.com
     password: '{{ test_password }}'
     type: rodsuser
   - name: functionaladmingroup
@@ -45,6 +39,12 @@ test_users:
   - name: testuserdel
     password: '{{ test_password }}'
     type: rodsuser
+  # - name: yodaresearcher@gmail.com
+  #   password: '{{ test_password }}'
+  #   type: rodsuser
+  # - name: yodadatamanager@gmail.com
+  #   password: '{{ test_password }}'
+  #   type: rodsuser
 
 test_groups:
   - groupName: research-initial
@@ -457,12 +457,14 @@ deletion_research_groups:
   - research: tovaultnodm
   - research: tovaultwithdm
   - research: recreateresearch
+  - research: escapecharsinfolders
 deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
   - datamanager: teststatistics
   - datamanager: nodminitial
   - datamanager: newtovault
+  - datamanager: charescaping
 deletion_grp_groups: 
   - grp: datamanager-initial
   - grp: datamanager-test
@@ -473,7 +475,8 @@ deletion_grp_groups:
   - grp: vault-test
 deletion_intake_groups:	
   - intake: i1 
-
+  - intake: recreateintake 
+  
 reset_tiers:
   - dev001
   - dev001_1
