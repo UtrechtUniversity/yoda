@@ -12,9 +12,9 @@
     name: '{{ item }}'
     state: present
   with_items:
-    - irods-server-4.2.3-1
-    - irods-runtime-4.2.3-1
-    - irods-rule-engine-plugin-python-4.2.3-1
+    - irods-server-4.2.4-1
+    - irods-runtime-4.2.4-1
+    - irods-rule-engine-plugin-python-4.2.4-1
   when: not ansible_check_mode
 
 

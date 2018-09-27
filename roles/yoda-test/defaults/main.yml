@@ -457,12 +457,14 @@ deletion_research_groups:
   - research: tovaultnodm
   - research: tovaultwithdm
   - research: recreateresearch
+  - research: escapecharsinfolders
 deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
   - datamanager: teststatistics
   - datamanager: nodminitial
   - datamanager: newtovault
+  - datamanager: charescaping
 deletion_grp_groups: 
   - grp: datamanager-initial
   - grp: datamanager-test
