@@ -14,10 +14,10 @@ microservices:
     filename: irods-sudo-microservices-4.2.4_1.0.0-1.rpm
     checksum: sha256:6281a3ba8b490e798f748413896afacd54eed6990082494a439437bc106f4774
   irods_uu_microservices:
-    package: irods-uu-microservices-4.2.4_0.7.8-1
-    url: https://github.com/UtrechtUniversity/yoda-ansible/releases/download/v1.3.0/irods-uu-microservices-4.2.4_0.7.8-1.rpm
-    filename: irods-uu-microservices-4.2.4_0.7.8-1.rpm
-    checksum: sha256:074aa6833b614473edbd39fbe2af8a06143e386533b5e52e9f9ff6a2fa4c5121
+    package: irods-uu-microservices-4.2.4_0.7.9-1
+    url: https://github.com/UtrechtUniversity/yoda-ansible/releases/download/v1.3.0/irods-uu-microservices-4.2.4_0.7.9-1.rpm
+    filename: irods-uu-microservices-4.2.4_0.7.9-1.rpm
+    checksum: sha256:6f7dac9a84ef24371d14e64cd870aa84fec89f77ee4c6cd88cdf82370e7bd25e
 
 # iRODS configuration.
 irods_service_account: irods
