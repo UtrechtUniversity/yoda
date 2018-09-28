@@ -78,7 +78,6 @@
     < /etc/irods/setup_irods_consumer
   args:
     creates: /etc/irods/service_account.config
-  run_once: true
   when: not ansible_check_mode
 
 
