@@ -1,0 +1,71 @@
+---
+# copyright Utrecht University
+
+- name: Install Yoda External User Service dependencies
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - php-pdo
+    - php-pgsql
+    - php-password-compat
+    - php-PHPMailer
+    - python-requests
+
+
+- name: Ensure yodadeployment user exists
+  user:
+    name: "{{ yoda_deployment_user }}"
+
+
+- name: Ensure yodadeployment has access to /var/www/extuser
+  file:
+    path: /var/www/extuser
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0711
+
+
+- name: Checkout Yoda External User Service source
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-external-user-service.git"
+    dest: "/var/www/extuser/yoda-external-user-service"
+    version: "master"
+
+
+- name: Link public directories of Yoda External User Service
+  file:
+    src: '/var/www/extuser/yoda-external-user-service/public'
+    dest: /var/www/extuser/public
+    state: link
+
+
+- name: Create Yoda External User Service database
+  become_user: postgres
+  become: yes
+  postgresql_db:
+    name: "extuser"
+    encoding: UTF-8
+    lc_collate: en_US.UTF-8
+    lc_ctype: en_US.UTF-8
+    template: template0
+
+
+- name: Create Yoda External User Service database user
+  become_user: postgres
+  become: yes
+  postgresql_user:
+    db: "extuser"
+    name: "extuser"
+    password: "extuser"
+    priv: ALL
+
+
+- name: Copy Yoda External User Service virtual host config for Apache
+  template:
+    src: "yoda-external-user-service-vhost.conf.j2"
+    dest: "/etc/httpd/conf.d/yoda-external-user-service-vhost.conf"
+  notify: Restart Apache webserver
