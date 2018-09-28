@@ -19,7 +19,7 @@
     home: '{{ yoda_moai_home }}'
 
 
-- name: Check out YoDa MOAI from Github
+- name: Check out Yoda MOAI from Github
   become_user: '{{ yoda_moai_user }}'
   become: yes
   git:
