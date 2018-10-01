@@ -33,75 +33,50 @@ The file that can be edited via web disk as well by users with sufficient permis
 
 A metadata form is constructed with the contents of following files.
 
-**formelements.xml**
+**metadata.json**
 
-An XML file that mainly holds the structural definition of the metadata form as well as mandatoriness.
-This file has been designed for the Yoda implementation and is not based on any standard apart from XML.
-
-**an XSD file**
-
-The XSD holds requirements and restrictions for the actual data in the form
-This file complies to the XSD standard as used for validating data in XML structures.
-Each Yoda-instance has a default set called default.xsd and default.xml
-Category dependency is introduced by adding an XSD and XML file with the category name.
-ilab.xsd and ilab.xml could be the constructing files for a metadata schema for a category call ilab.
-
-The researcher, nor any other user, can see or change the formelements or XSD files.
-This is done by an administrator.
+An JSON file that mainly holds the structural definition of the metadata form as well as mandatoriness.
+This file has been designed for the Yoda implementation and is based on the [JSON schema specification](https://json-schema.org/).
 
 **yoda-metadata.xml**
 
-A third file holds the actual metadata as entered by the researcher and is kept within the corresponding datapackage.
+A XML file holds the actual metadata as entered by the researcher and is kept within the corresponding datapackage.
 The file is editable for the researcher in dynamic storage area when not in a locked state. It is editable by any user that is not limited to readonly-rights.
-The structure of the file must comply to the XSD that applies.
-If not, the metadata form cannot be loaded.
+The structure of the file must comply to the metadata.json that applies.
 
 ### Getting the correct file paths
-All three files are required for the generic functionality to work correctly.
-iRods offers the specific situational filenames for correct configuration of the metadata form.
+Both files are required for the generic functionality to work correctly.
+iRODS offers the specific situational filenames for correct configuration of the metadata form.
 The situation (dynamic storage, vault etc) is passed and based upon the full pathname of a datapackage which gives iRODS the required insight:
 
 $formConfig = $this->filesystem->metadataFormPaths($rodsaccount, $fullPath);
 This returns a number of parameters but the three of importance are:
-
-**xsdPath**
-
-Holds the path to the XSD to be used.
-Either the category specific or the default XSD.
-
-**formelementsPath**
-
-Holds the formelements file involved.
-Either the category specific or the default formelements.
 
 **metadataXmlPath**
 
 Holds the path to the metadata file that holds the data as entered by a Yoda user.
 In the dynamic storage this would be yoda-metadata.xml file.
 
-## formelements.xml explanation
+## metadata.json explanation
 
-Formelements.xml mainly holds information relevant for the ‘user experience’.
-In XML format formelements.xml holds:
+The metadata.json file mainly holds all information for the metadata form:
 1. Declaration of groups of elements
 2. Element names corresponding to the XSD
 3. Element specifics intended for the researcher, like
   - Label of the input element
   - tooltips when hovering over the field
   - Default value when no metadata has been saved yet
-
 4. Mandatoriness of metadata
 Metadata fields can be configured as being mandatory when requested to be accepted in the vault.
 
 Subproperties can be made mandatory for the vault.
-Compounds cannot be made mandatory.
 Implicit rules apply for subproperties/compounds in special structures as will become clear further on.
 
 ### File location
-formelements should be put in the following iRODS collection:
-/zone/yoda/formelements
+metadata.json should be put in the following iRODS collection:
+/tempZone/yoda/schemas/default/
 
-### Formelements examples
+### Metadata JSON examples
 
 **1. Declaration of groups of elements**
 
@@ -851,21 +826,6 @@ If one element of a compound field holds a value the other n fields should hold 
 * Completeness of a compound field as a subproperty*
 Compound fields within a subproperty structure follow the same rules as on highest level.
 I.e. when one element is filled, all elements must be filled.
-
-
-## Mapping of yoda-metadata.xml
-
-When a datapackage with yoda-metadata.xml is published it will be processed and converted to three different forms. If changes are made to the Xsd or manditoriness in the formelements, these processes could fail.
-
-### XSLT for landing page
-The landing page is generated with a extensible stylesheet. Every new or changed element needs a template definition and a place in the group definition. This stylesheet is named default2landingpage.xsl or named after category it applies to. For example: ilab2landingpages.xsl.  This stylesheet should be put in the /zone/yoda/xsl collection.
-
-### XSLT for DataCite
-For DataCite a XML conforming to the DataCite Schema v4 is generated with an extensible stylesheet. The mapping is documented outside this document. This stylesheet is named default2datacite.xsl or named after the category it applies to. For example: ilab2datacite.xsl. This stylesheet should be put in the /zone/yoda/xsl collection.
-
-### OAI-PMH importer
-The OAI-PMH stream is updated by loading the yoda-metadata.xml with a python script. This python script only looks for a couple of elements that map to Dublin core. Any changes to these fields will omit this metadata from the stream. The mapping is documented outside of this document.
-
 
 ## Purpose of flexdates
 ### The metadata form
