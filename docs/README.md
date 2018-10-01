@@ -19,6 +19,7 @@ In this repository you can find documentation on administration tasks, software 
 - [Group manager](design/group_manager.md)
 - [Locking mechanism](design/locking_mechanism.md)
 - [Metadata form](design/metadata_form.md)
+- [Metadata mappings](design/metadata_mappings.md)
 - [Publication process](design/publication_process.md)
 - [Python plugin](design/python_plugin.md)
 - [Statistics module](design/statistics.md)
