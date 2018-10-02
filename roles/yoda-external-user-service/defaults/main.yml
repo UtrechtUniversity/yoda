@@ -6,7 +6,15 @@ yoda_version: development
 yoda_eus_fqdn: eus.yoda.test
 
 # External User Service configuration
+eus_db_host: localhost
+eus_db_port: 5432
+eus_db_name: extuser
+eus_db_user: extuser
+eus_db_password: PLACEHOLDER
+eus_db_user_table: users
+
 eus_api_secret: PLACEHOLDER
+
 eus_mail_template: uu
 
 # OpenSSL configuration.

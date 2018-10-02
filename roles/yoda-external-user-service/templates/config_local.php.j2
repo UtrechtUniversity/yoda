@@ -1,12 +1,12 @@
 <?php
-config('db_host', 'localhost');
-config('db_port', 5432);
-config('db_name', 'extuser');
-config('db_user', 'extuser');
-config('db_password', 'extuser');
-config('db_user_table', 'users');
+config('db_host',       '{{ eus_db_host }}');
+config('db_port',        {{ eus_db_port }});
+config('db_name',       '{{ eus_db_name }}');
+config('db_user',       '{{ eus_db_user }}');
+config('db_password',   '{{ eus_db_password }}');
+config('db_user_table', '{{ eus_db_user_table }}');
 
-config('api_secret', '{{ eus_api_secret }}');
+config('api_secret',    '{{ eus_api_secret }}');
 
 config('smtp_host', '<INSERT SMTP ADDRESS>');
 config('smtp_port', 587);
