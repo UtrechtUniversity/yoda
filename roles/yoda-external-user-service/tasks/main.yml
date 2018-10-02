@@ -64,6 +64,35 @@
     priv: ALL
 
 
+- name: Select all from example table
+  become_user: postgres
+  become: yes
+  command: "psql -c \"SELECT 1 FROM {{ eus_db_user_table }}\" {{ eus_db_name }}"
+  ignore_errors: true
+  changed_when: false
+  register: table_exists
+
+
+- name: Create external users table
+  become_user: postgres
+  become: yes
+  command: "psql -d {{ eus_db_name }} -f /var/www/extuser/yoda-external-user-service/aux/db.sql"
+  when: table_exists.stderr
+
+
+- name: Make sure database user has permissions on table
+  become_user: postgres
+  become: yes
+  postgresql_privs:
+    database: "{{ eus_db_name }}"
+    state: present
+    privs: SELECT,INSERT,UPDATE
+    type: table
+    roles: "{{ eus_db_user }}"
+    objs: "{{ eus_db_user_table }}"
+    grant_option: yes
+
+
 - name: Create config_local.php
   template:
     src: config_local.php.j2
