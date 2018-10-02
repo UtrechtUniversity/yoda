@@ -73,6 +73,12 @@
   when: not ansible_check_mode
 
 
+- name: Ensure .htaccess is configured
+  command: cp /var/www/extuser/yoda-external-user-service/public/.htaccess.template-{{ yoda_environment }}
+    /var/www/extuser/yoda-external-user-service/public/.htaccess
+  notify: Restart Apache webserver
+
+
 - name: Copy Yoda External User Service virtual host config for Apache
   template:
     src: "yoda-external-user-service-vhost.conf.j2"
