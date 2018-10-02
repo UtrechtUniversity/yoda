@@ -8,13 +8,13 @@ config('db_user_table', '{{ eus_db_user_table }}');
 
 config('api_secret',    '{{ eus_api_secret }}');
 
-config('smtp_host', '<INSERT SMTP ADDRESS>');
-config('smtp_port', 587);
-config('smtp_user', '<INSERT MAIL USERNAME>');
-config('smtp_password', '<INSERT MAIL PASSWORD>');
-config('smtp_from_name', 'Yoda External User Service');
-config('smtp_from_address', '<INSERT FROM ADDRESS>');
-config('smtp_replyto_name', '<INSERT HELPFUL REPLY-TO NAME>');
-config('smtp_replyto_address', '<INSERT REPLY-TO_ADDRESS>');
+config('smtp_host',            '{{ eus_smtp_host }}');
+config('smtp_port',            '{{ eus_smtp_port }}');
+config('smtp_user',            '{{ eus_smtp_user }}');
+config('smtp_password',        '{{ eus_smtp_password }}');
+config('smtp_from_name',       '{{ eus_smtp_from_name }}');
+config('smtp_from_address',    '{{ eus_smtp_from_address }}');
+config('smtp_replyto_name',    '{{ eus_smtp_replyto_name }}');
+config('smtp_replyto_address', '{{ eus_smtp_replyto_address }}');
 
-config('mail_template',      {{ eus_mail_template }});
+config('mail_template',         {{ eus_mail_template }});

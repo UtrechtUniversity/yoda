@@ -15,6 +15,15 @@ eus_db_user_table: users
 
 eus_api_secret: PLACEHOLDER
 
+eus_smtp_host: PLACEHOLDER
+eus_smtp_port: 587
+eus_smtp_user: PLACEHOLDER
+eus_smtp_password: PLACEHOLDER
+eus_smtp_from_name: Yoda External User Service
+eus_smtp_from_address: PLACEHOLDER
+eus_smtp_replyto_name: PLACEHOLDER
+eus_smtp_replyto_address: PLACEHOLDER
+
 eus_mail_template: uu
 
 # OpenSSL configuration.
