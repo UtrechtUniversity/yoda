@@ -39,6 +39,15 @@
   when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
+- name: Ensure iRODS 4.2.3 packages are absent
+  package:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - irods-uu-microservices-4.2.3_0.7.8-1
+    - irods-sudo-microservices-4.2.3_1.0.0-1
+
+
 - name: Ensure iRODS iCAT server, Python rule engine plugin and database plugin are present
   package:
     name: '{{ item }}'

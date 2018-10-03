@@ -16,6 +16,16 @@
     - irods-icommands-4.1.11-0
 
 
+- name: Ensure iRODS 4.2.3 packages are absent
+  package:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - irods-uu-microservices-4.2.3_0.7.8-1
+    - irods-sudo-microservices-4.2.3_1.0.0-1
+    - davrods-4.2.3_1.4.1-1
+
+
 - name: Ensure iRODS iCommands is installed
   yum:
     name: '{{ item }}'
