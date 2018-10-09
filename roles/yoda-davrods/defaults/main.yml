@@ -7,7 +7,7 @@ rpm_dest_dir: /tmp
 # davrods RPM location and checksum
 davrods:
   package: davrods-4.2.4_1.4.1-1
-  url: https://github.com/UtrechtUniversity/yoda-ansible/releases/download/v1.3.0
+  url: https://github.com/UtrechtUniversity/yoda-ansible/releases/download/v1.3.1
   filename: davrods-4.2.4_1.4.1-1.rpm
   checksum: sha256:df316df1c490e3e45ac51510ebca2dc2ec0baeb998f2f00d73bdfdde780c4535
 
