@@ -86,7 +86,7 @@
   postgresql_privs:
     database: "{{ eus_db_name }}"
     state: present
-    privs: SELECT,INSERT,UPDATE
+    privs: SELECT,INSERT,UPDATE,DELETE
     type: table
     roles: "{{ eus_db_user }}"
     objs: "{{ eus_db_user_table }}"
