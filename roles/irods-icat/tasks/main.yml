@@ -1,12 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Check if iRODS 4.1.11 is installed
-  stat:
-    path: /var/lib/irods/iRODS/irodsctl
-  register: irods_old
-
-
 - name: Check if iRODS 4.2 is installed
   stat:
     path: /var/lib/irods/irodsctl
@@ -22,21 +16,19 @@
   retries: 5
   delay: 60
   check_mode: no
-  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
+  when: irods_new.stat.islnk is not defined
 
 
 - name: Stop iRODS server before upgrade
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: '/var/lib/irods/iRODS/irodsctl stop'
-  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
+  command: '/var/lib/irods/irodsctl stop'
 
 
 - name: Stop cron service before iRODS upgrade
   service:
     name: crond
     state: stopped
-  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
 - name: Ensure iRODS iCAT server, Python rule engine plugin and database plugin are present
@@ -209,7 +201,6 @@
   service:
     name: crond
     state: started
-  when: irods_old.stat.islnk is defined and irods_new.stat.islnk is not defined
 
 
 - name: Ensure Python plugin is configured

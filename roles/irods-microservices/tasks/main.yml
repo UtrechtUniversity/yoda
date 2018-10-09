@@ -1,15 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Remove old json and xml microservice packages
-  package:
-    name: "{{ item }}"
-    state: absent
-  with_items:
-    - rit-irods-microservices
-    - irods-microservice-plugins-loadmeta
-
-
 - name: Check if iRODS microservices are installable from repository
   yum:
     list: "{{ item.value.package }}"
