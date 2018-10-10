@@ -8,6 +8,7 @@ full-database
 full-icat
 full-resource
 full-public
+full-eus
 
 # Define portal host here:
 [full-portal]
@@ -28,6 +29,10 @@ resource
 # Define public host here:
 [full-public]
 public
+
+# Define external user service host here:
+[full-eus]
+eus
 
 ###############
 # All instances
@@ -51,6 +56,10 @@ full-resource
 # Define all public hosts here:
 [publics:children]
 full-public
+
+# Define external user service host here:
+[eus:children]
+full-eus
 
 # Provision instances with test data:
 [test:children]
