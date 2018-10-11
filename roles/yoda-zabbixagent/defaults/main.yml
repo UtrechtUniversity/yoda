@@ -10,7 +10,7 @@ rpm_dest_dir: /tmp
 # Zabbix agent rpm location and checksum
 zabbix_agent:
   package: zabbix-agent-3.4.14-1
-  url: http://repo.zabbix.com/zabbix/3.4.14-1/rhel/7/x86_64/
+  url: http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/
   filename: zabbix-agent-3.4.14-1.el7.x86_64.rpm
   checksum: sha256:855d63da9d7bb8a29c03794f831f4d374289a6a47fab5c0b71fc185c62642162
 
