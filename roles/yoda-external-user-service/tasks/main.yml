@@ -1,0 +1,115 @@
+---
+# copyright Utrecht University
+
+- name: Install Yoda External User Service dependencies
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - php-pdo
+    - php-pgsql
+    - php-password-compat
+    - php-PHPMailer
+    - python-requests
+
+
+- name: Ensure yodadeployment user exists
+  user:
+    name: "{{ yoda_deployment_user }}"
+
+
+- name: Ensure yodadeployment has access to /var/www/extuser
+  file:
+    path: /var/www/extuser
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0711
+
+
+- name: Checkout Yoda External User Service source
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "https://github.com/UtrechtUniversity/yoda-external-user-service.git"
+    dest: "/var/www/extuser/yoda-external-user-service"
+    version: "master"
+
+
+- name: Link public directories of Yoda External User Service
+  file:
+    src: '/var/www/extuser/yoda-external-user-service/public'
+    dest: /var/www/extuser/public
+    state: link
+
+
+- name: Create Yoda External User Service database
+  become_user: postgres
+  become: yes
+  postgresql_db:
+    name: "{{ eus_db_name }}"
+    encoding: UTF-8
+    lc_collate: en_US.UTF-8
+    lc_ctype: en_US.UTF-8
+    template: template0
+
+
+- name: Create Yoda External User Service database user
+  become_user: postgres
+  become: yes
+  postgresql_user:
+    db: "{{ eus_db_name }}"
+    name: "{{ eus_db_user }}"
+    password: "{{ eus_db_password }}"
+    priv: ALL
+
+
+- name: Select all from example table
+  become_user: postgres
+  become: yes
+  command: "psql -c \"SELECT 1 FROM {{ eus_db_user_table }}\" {{ eus_db_name }}"
+  ignore_errors: true
+  changed_when: false
+  register: table_exists
+
+
+- name: Create external users table
+  become_user: postgres
+  become: yes
+  command: "psql -d {{ eus_db_name }} -f /var/www/extuser/yoda-external-user-service/aux/db.sql"
+  when: table_exists.stderr
+
+
+- name: Make sure database user has permissions on table
+  become_user: postgres
+  become: yes
+  postgresql_privs:
+    database: "{{ eus_db_name }}"
+    state: present
+    privs: SELECT,INSERT,UPDATE,DELETE
+    type: table
+    roles: "{{ eus_db_user }}"
+    objs: "{{ eus_db_user_table }}"
+    grant_option: yes
+
+
+- name: Create config_local.php
+  template:
+    src: config_local.php.j2
+    dest: /var/www/extuser/yoda-external-user-service/config_local.php
+    owner: "{{ yoda_deployment_user }}"
+    mode: 0644
+  when: not ansible_check_mode
+
+
+- name: Ensure .htaccess is configured
+  command: cp /var/www/extuser/yoda-external-user-service/public/.htaccess.template-{{ yoda_environment }}
+    /var/www/extuser/yoda-external-user-service/public/.htaccess
+  notify: Restart Apache webserver
+
+
+- name: Copy Yoda External User Service virtual host config for Apache
+  template:
+    src: "yoda-external-user-service-vhost.conf.j2"
+    dest: "/etc/httpd/conf.d/yoda-external-user-service-vhost.conf"
+  notify: Restart Apache webserver

@@ -1,36 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Check if iRODS 4.2 is installed
-  stat:
-    path: /var/lib/irods/irodsctl
-  register: irods_new
-
-
-- name: Check if iRODS delayed rule queue is empty
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  shell: 'iqstat -a | wc -l'
-  register: wc
-  until: wc.stdout == "1"
-  retries: 5
-  delay: 60
-  check_mode: no
-  when: irods_new.stat.islnk is not defined
-
-
-- name: Stop iRODS server before upgrade
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: '/var/lib/irods/irodsctl stop'
-
-
-- name: Stop cron service before iRODS upgrade
-  service:
-    name: crond
-    state: stopped
-
-
 - name: Ensure iRODS iCAT server, Python rule engine plugin and database plugin are present
   package:
     name: '{{ item }}'
@@ -195,12 +165,6 @@
   retries: 5
   delay: 10
   when: ils is failed
-
-
-- name: Start cron service after iRODS upgrade
-  service:
-    name: crond
-    state: started
 
 
 - name: Ensure Python plugin is configured

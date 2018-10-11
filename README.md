@@ -50,6 +50,7 @@ Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32
 192.168.50.10 data.yoda.test
 192.168.50.10 public.data.yoda.test
 192.168.50.10 public.yoda.test
+192.168.50.10 eus.yoda.test
 ```
 
 ## Upgrading Yoda development instance

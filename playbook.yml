@@ -86,7 +86,6 @@
     - resource
 
 
-
 - name: Provision public server
   hosts: publics
   become: yes
@@ -96,3 +95,12 @@
     - yoda-public
   tags:
     - public
+
+
+- name: Provision extrnal user service server
+  hosts: eus
+  become: yes
+  roles:
+    - yoda-external-user-service
+  tags:
+    - eus

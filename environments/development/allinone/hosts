@@ -8,6 +8,7 @@ allinone-database
 allinone-icat
 allinone-resource
 allinone-public
+allinone-eus
 
 # Define portal host here:
 [allinone-portal]
@@ -21,13 +22,16 @@ combined
 [allinone-icat]
 combined
 
+# Define resource host here:
+[allinone-resource]
+
 # Define public host here:
 [allinone-public]
 combined
 
-# Define resource host here:
-[allinone-resource]
-
+# Define external user service host here:
+[allinone-eus]
+combined
 
 ###############
 # All instances
@@ -51,6 +55,10 @@ allinone-resource
 # Define all public hosts here:
 [publics:children]
 allinone-public
+
+# Define external user service host here:
+[eus:children]
+allinone-eus
 
 # Provision instances with test data:
 [test:children]
