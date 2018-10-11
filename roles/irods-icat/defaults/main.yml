@@ -39,7 +39,8 @@ irods_control_plane_port: 1248
 irods_schema_uri: https://schemas.irods.org/configuration
 irods_ssl_verify_server: cert
 
-# PAM Radius configuration.
+# PAM configuration.
+pam_fail_delay: 1000000                    # PAM fail delay in micro-seconds
 pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
