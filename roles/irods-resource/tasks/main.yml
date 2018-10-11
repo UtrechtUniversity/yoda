@@ -1,12 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Stop iRODS server before upgrade
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: '/var/lib/irods/iRODS/irodsctl stop'
-
-
 - name: Ensure iRODS resource server is installed
   package:
     name: '{{ item }}'
