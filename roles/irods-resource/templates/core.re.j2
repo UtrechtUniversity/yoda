@@ -699,12 +699,12 @@ acPreProcForExecCmd(*cmd, *args, *addr, *hint) { }
 acPreProcForServerPortal(*oprType, *lAddr, *lPort, *pAddr, *pPort, *load) { }
 acPostProcForServerPortal(*oprType, *lAddr, *lPort, *pAddr, *pPort, *load) { }
 acPreProcForWriteSessionVariable(*var) {
-	on(*var == "status") {
-		succeed;
-	}
-	or {
-		failmsg(-1, "Update session variable $*var not allowed!");
-	}
+    on(*var == "status") {
+        succeed;
+    }
+    or {
+        failmsg(-1, "Update session variable $*var not allowed!");
+    }
 }
 
 getSessionVar(*name, *output) {
