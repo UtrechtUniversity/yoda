@@ -13,7 +13,7 @@
   yum:
     list: '{{ davrods.package }}'
   register: davrods_repo
-  
+
 
 - name: Download davrods rpm
   get_url:
@@ -134,4 +134,3 @@
   - { src: head.html.j2, dest: 'head.html' }
   - { src: header.html.j2, dest: 'header.html' }
   - { src: footer.html.j2, dest: 'footer.html' }
-
