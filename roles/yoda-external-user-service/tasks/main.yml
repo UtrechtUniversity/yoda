@@ -103,8 +103,10 @@
 
 
 - name: Ensure .htaccess is configured
-  command: cp /var/www/extuser/yoda-external-user-service/public/.htaccess.template-{{ yoda_environment }}
-    /var/www/extuser/yoda-external-user-service/public/.htaccess
+  copy:
+    src: /var/www/extuser/yoda-external-user-service/public/.htaccess.template-{{ yoda_environment }}
+    dest: /var/www/extuser/yoda-external-user-service/public/.htaccess
+    remote_src: yes
   notify: Restart Apache webserver
 
 

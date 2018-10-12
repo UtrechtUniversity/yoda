@@ -81,8 +81,10 @@
 
 
 - name: Ensure .htaccess is configured
-  command: cp /var/www/yoda/yoda-portal/public/.htaccess.template-{{ codeigniter_environment }}
-    /var/www/yoda/yoda-portal/public/.htaccess
+  copy:
+    src: /var/www/yoda/yoda-portal/public/.htaccess.template-{{ codeigniter_environment }}
+    dest: /var/www/yoda/yoda-portal/public/.htaccess
+    remote_src: yes
   notify: Restart Apache webserver
 
 

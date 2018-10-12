@@ -300,25 +300,29 @@
 
 
 - name: Retrieve iRODS server config file
-  command: cat /etc/irods/server_config.json
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  slurp:
+    src: /etc/irods/server_config.json
   register: server_config
+  when: not ansible_check_mode
 
 
 - name: Retrieve iRODS server zone key
   set_fact:
-    zone_key: "{{ (server_config.stdout | from_json).zone_key }}"
+    zone_key: "{{ (server_config['content'] | b64decode | from_json).zone_key }}"
   when: not ansible_check_mode
 
 
 - name: Retrieve iRODS server negotiation key
   set_fact:
-    negotiation_key: "{{ (server_config.stdout | from_json).negotiation_key }}"
+    negotiation_key: "{{ (server_config['content'] | b64decode | from_json).negotiation_key }}"
   when: not ansible_check_mode
 
 
 - name: Retrieve iRODS server control plane key
   set_fact:
-    server_control_plane_key: "{{ (server_config.stdout | from_json).server_control_plane_key }}"
+    server_control_plane_key: "{{ (server_config['content'] | b64decode | from_json).server_control_plane_key }}"
   when: not ansible_check_mode
 
 
