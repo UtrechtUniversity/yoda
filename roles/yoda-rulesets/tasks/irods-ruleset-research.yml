@@ -66,6 +66,16 @@
   ignore_errors: true
 
 
+- name: Install script for revision clean up
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  template:
+    src: cronjob-revision-cleanup.sh.j2
+    dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+
+
 - name: Configure cronjob to process publications
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -84,14 +94,14 @@
     job: '/bin/irule -F /etc/irods/irods-ruleset-research/tools/retry-copy-to-vault.r >/dev/null 2>&1'
 
 
-- name: Install script for revision clean up
+- name: Configure cronjob to clean up revisions
   become_user: "{{ irods_service_account }}"
   become: yes
-  template:
-    src: cronjob-revision-cleanup.sh.j2
-    dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
-    owner: '{{ irods_service_account }}'
-    group: '{{ irods_service_account }}'
+  cron:
+    name: 'cronjob-revision-cleanup.sh'
+    minute: 0
+    hour: 2
+    job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/log/cronjob-revision-cleanup.log 2>&1'
 
 
 - name: Ensure that ExecCmd dir exists
@@ -104,58 +114,20 @@
   when: not ansible_check_mode
 
 
-- name: Copy securecopy.sh to ExecCmd dir
+- name: Copy scripts to ExecCmd dir
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:
     remote_src: yes
-    src: /etc/irods/irods-ruleset-research/tools/securecopy.sh
-    dest: /var/lib/irods/msiExecCmd_bin/securecopy.sh
+    src: "/etc/irods/irods-ruleset-research/tools/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
     mode: 0755
   when: not ansible_check_mode
-
-
-- name: Copy scheduled-copytovault.sh to ExecCmd dir
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    remote_src: yes
-    src: /etc/irods/irods-ruleset-research/tools/scheduled-copytovault.sh
-    dest: /var/lib/irods/msiExecCmd_bin/scheduled-copytovault.sh
-    mode: 0755
-  when: not ansible_check_mode
-
-
-- name: Copy admin-vaultactions.sh to ExecCmd dir
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    remote_src: yes
-    src: /etc/irods/irods-ruleset-research/tools/admin-vaultactions.sh
-    dest: /var/lib/irods/msiExecCmd_bin/admin-vaultactions.sh
-    mode: 0755
-  when: not ansible_check_mode
-
-
-- name: Copy admin-vaultingest.sh to ExecCmd dir
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    remote_src: yes
-    src: /etc/irods/irods-ruleset-research/tools/admin-vaultingest.sh
-    dest: /var/lib/irods/msiExecCmd_bin/admin-vaultingest.sh
-    mode: 0755
-  when: not ansible_check_mode
-
-
-- name: Configure cronjob to clean up revisions
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  cron:
-    name: 'cronjob-revision-cleanup.sh'
-    minute: 0
-    hour: 2
-    job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/log/cronjob-revision-cleanup.log 2>&1'
+  with_items:
+    - securecopy.sh
+    - scheduled-copytovault.sh
+    - admin-vaultactions.sh
+    - admin-vaultingest.sh
 
 
 - name: Set configuration AVUs for research ruleset to system collection
