@@ -44,7 +44,7 @@
 - name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
   become: yes
-  shell: 'ils /{{ irods_zone }}/home'
+  command: 'ils /{{ irods_zone }}/home'
   register: ils
   until: ils is succeeded
   retries: 5

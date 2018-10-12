@@ -107,10 +107,8 @@
 
 
 - name: Ensure selinux context is enforced on Yoda MOAI database
-  shell: 'restorecon {{ yoda_moai_home }}/{{ item.target }}'
+  command: 'restorecon {{ yoda_moai_home }}/moai.db'
   when: filecontext is changed and ansible_selinux
-  with_items:
-  - { index: 0, target: 'moai.db' }
 
 
 - name: Configure cronjob to update MOAI database
