@@ -1,0 +1,22 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam dpi 200
+
+actor       "External user" as user
+participant "Yoda portal" as portal
+participant "External user service & DB" as eus
+
+user    -> portal : Request password reset
+portal  -> eus    : Redirect
+user    <- eus    : Request e-mail address
+user    -> eus    : Provide e-mail address
+user    <- eus    : Send password reset link by mail
+user    -> eus    : Visit password reset link
+user    <- eus    : Request new password
+user    -> eus    : Provide password
+user   <-- eus    : Ok
+
+@enduml
