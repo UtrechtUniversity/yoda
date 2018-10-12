@@ -140,6 +140,15 @@
     value: '{{ irods_icat_fqdn }}'
 
 
+- name: Ensure core.re is configured
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  template:
+    src: core.re.j2
+    dest: /etc/irods/core.re
+    force: no
+
+
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes

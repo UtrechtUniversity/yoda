@@ -13,16 +13,6 @@
   with_items: "{{ irods_resources }}"
 
 
-- name: Ensure iRODS default resource is set in core.re
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  lineinfile:
-    path: /etc/irods/core.re
-    regexp: "^acSetRescSchemeForCreate"
-    line: "acSetRescSchemeForCreate {msiSetDefaultResc(\"\
-           {{ irods_default_resc }}\",\"null\"); }"
-
-
 - name: Ensure iRODS default resource is set in irods_environment.json
   become_user: '{{ irods_service_account }}'
   become: yes

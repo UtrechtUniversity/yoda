@@ -39,12 +39,12 @@ test_users:
   - name: testuserdel
     password: '{{ test_password }}'
     type: rodsuser
-  # - name: yodaresearcher@gmail.com
-  #   password: '{{ test_password }}'
-  #   type: rodsuser
-  # - name: yodadatamanager@gmail.com
-  #   password: '{{ test_password }}'
-  #   type: rodsuser
+ # - name: yodaresearcher@gmail.com
+ #   password: '{{ test_password }}'
+ #   type: rodsuser
+ # - name: yodadatamanager@gmail.com
+ #   password: '{{ test_password }}'
+ #   type: rodsuser
 
 test_groups:
   - groupName: research-initial
@@ -54,11 +54,11 @@ test_groups:
   - groupName: research-initial1
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: datamanager-initial
     category: initial
     subcategory: initial
-    dataClassification:     
+    dataClassification:
   - groupName: grp-intake-initial
     category: intake-intake
     subcategory: intake-intake
@@ -70,88 +70,88 @@ test_groups:
   - groupName: grp-vault-initial
     category: intake-intake
     subcategory: intake-intake
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: grp-intake-test
     category: intake-intake
     subcategory: intake-intake
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: grp-datamanager-test
     category: intake-intake
     subcategory: intake-intake
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: grp-vault-test
     category: intake-intake
     subcategory: intake-intake
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-deletegroup
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-updateproperties
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-epicpid
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-mdtest
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-mdtestvault
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-notification
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-oaipmh
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-process1
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-process2
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-process3
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-processfordatacite
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-revisions
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-search
     category: initial
     subcategory: initial
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-teststatistics1
     category: teststatistics
     subcategory: teststatistics
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-teststatistics2
     category: teststatistics
     subcategory: teststatistics
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: datamanager-teststatistics
     category: teststatistics
     subcategory: teststatistics
-    dataClassification:    
+    dataClassification:
   - groupName: research-nodmprocess
     category: nodminitial
     subcategory: nodminitial
     dataClassification: unspecified
-  
+
 test_groupusers:
   - groupName: priv-category-add
     user: functionaladminpriv
@@ -288,7 +288,7 @@ test_groupusers:
   - groupName: research-mdtest
     user: viewer
     role: reader
-    
+
   - groupName: research-mdtestvault
     user: functionaladminpriv
     role: manager
@@ -301,7 +301,7 @@ test_groupusers:
   - groupName: research-mdtestvault
     user: viewer
     role: reader
-  
+
   - groupName: research-notification
     user: functionaladminpriv
     role: manager
@@ -465,18 +465,18 @@ deletion_datamanager_groups:
   - datamanager: nodminitial
   - datamanager: newtovault
   - datamanager: charescaping
-deletion_grp_groups: 
+deletion_grp_groups:
   - grp: datamanager-initial
   - grp: datamanager-test
   - grp: g1
   - grp: intake-initial
   - grp: intake-test
-  - grp: vault-initial  
+  - grp: vault-initial
   - grp: vault-test
-deletion_intake_groups:	
-  - intake: i1 
-  - intake: recreateintake 
-  
+deletion_intake_groups:
+  - intake: i1
+  - intake: recreateintake
+
 reset_tiers:
   - dev001
   - dev001_1
