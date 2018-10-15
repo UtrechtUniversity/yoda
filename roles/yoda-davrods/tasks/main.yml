@@ -13,7 +13,7 @@
   yum:
     list: '{{ davrods.package }}'
   register: davrods_repo
-  
+
 
 - name: Download davrods rpm
   get_url:
@@ -46,7 +46,7 @@
 
 
 - name: Ensure selinux context is enforced on davrods module
-  shell: restorecon /etc/httpd/modules/{{ item.target }}
+  command: restorecon /etc/httpd/modules/{{ item.target }}
   when: filecontext is changed and ansible_selinux
   with_items:
   - { index: 0, target: 'mod_davrods.so' }
@@ -96,7 +96,7 @@
 
 
 - name: Ensure selinux context is enforced on iRODS network plugins
-  shell: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
+  command: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
   when: filecontext.results[item.index] is changed and ansible_selinux
   with_items:
   - { index: 0, target: 'libtcp_client.so' }
@@ -134,4 +134,3 @@
   - { src: head.html.j2, dest: 'head.html' }
   - { src: header.html.j2, dest: 'header.html' }
   - { src: footer.html.j2, dest: 'footer.html' }
-

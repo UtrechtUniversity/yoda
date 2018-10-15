@@ -37,7 +37,7 @@
   package:
     name: "{{ item.value.package }}"
     state: present
-  when: not ansible_check_mode    
+  when: not ansible_check_mode
   with_dict: "{{ microservices }}"
 
 

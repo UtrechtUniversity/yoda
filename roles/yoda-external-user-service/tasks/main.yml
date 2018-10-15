@@ -41,6 +41,7 @@
     src: '/var/www/extuser/yoda-external-user-service/public'
     dest: /var/www/extuser/public
     state: link
+  when: not ansible_check_mode
 
 
 - name: Create Yoda External User Service database
@@ -62,6 +63,7 @@
     name: "{{ eus_db_user }}"
     password: "{{ eus_db_password }}"
     priv: ALL
+  when: not ansible_check_mode
 
 
 - name: Select all from example table
@@ -91,6 +93,7 @@
     roles: "{{ eus_db_user }}"
     objs: "{{ eus_db_user_table }}"
     grant_option: yes
+  when: not ansible_check_mode
 
 
 - name: Create config_local.php
@@ -99,13 +102,15 @@
     dest: /var/www/extuser/yoda-external-user-service/config_local.php
     owner: "{{ yoda_deployment_user }}"
     mode: 0644
-  when: not ansible_check_mode
 
 
 - name: Ensure .htaccess is configured
-  command: cp /var/www/extuser/yoda-external-user-service/public/.htaccess.template-{{ yoda_environment }}
-    /var/www/extuser/yoda-external-user-service/public/.htaccess
+  copy:
+    src: /var/www/extuser/yoda-external-user-service/public/.htaccess.template-{{ yoda_environment }}
+    dest: /var/www/extuser/yoda-external-user-service/public/.htaccess
+    remote_src: yes
   notify: Restart Apache webserver
+  when: not ansible_check_mode
 
 
 - name: Copy Yoda External User Service virtual host config for Apache

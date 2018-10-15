@@ -40,7 +40,7 @@
     mode: 0644
   with_items:
     - src: 'index.html'
-      dest: '{{ landingpages_root }}/index.html'  
+      dest: '{{ landingpages_root }}/index.html'
     - src: 'yoda-landingpage.css'
       dest: '{{ landingpages_root }}/static/css/yoda-landingpage.css'
     - src: 'logo-uu.svg'

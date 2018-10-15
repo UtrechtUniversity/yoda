@@ -55,7 +55,7 @@
 
 - name: Configure iRODS resource server
   become: yes
-  shell: python /var/lib/irods/scripts/setup_irods.py
+  command: python /var/lib/irods/scripts/setup_irods.py
     < /etc/irods/setup_irods_consumer
   args:
     creates: /etc/irods/service_account.config
@@ -91,7 +91,7 @@
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes
-  shell: 'ils /{{ irods_zone }}/home'
+  command: 'ils /{{ irods_zone }}/home'
   register: ils
   ignore_errors: true
   changed_when: ils is failed
@@ -107,7 +107,7 @@
 - name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
   become: yes
-  shell: 'ils /{{ irods_zone }}/home'
+  command: 'ils /{{ irods_zone }}/home'
   register: ils
   until: ils is succeeded
   retries: 5
@@ -162,10 +162,10 @@
 
 
 - name: Ensure CA chain with signed certificate is present
-  command: 'ln -s {{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }} {{ openssl_crt_signed_and_chain }}'
-  args:
-    chdir: '/etc/irods'
-    creates: '{{ openssl_crt_signed_and_chain }}'
+  file:
+    src: "{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}"
+    dest: "/etc/irods/{{ openssl_crt_signed_and_chain }}"
+    state: link
 
 
 - name: Ensure Diffie-Hellman parameters are present

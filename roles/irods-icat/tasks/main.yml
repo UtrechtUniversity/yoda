@@ -102,7 +102,7 @@
 
 - name: Configure iRODS iCAT server
   become: yes
-  shell: python /var/lib/irods/scripts/setup_irods.py
+  command: python /var/lib/irods/scripts/setup_irods.py
     < /etc/irods/setup_irods_provider
   args:
     creates: /etc/irods/service_account.config
@@ -152,7 +152,7 @@
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes
-  shell: 'ils /{{ irods_zone }}/home'
+  command: 'ils /{{ irods_zone }}/home'
   register: ils
   ignore_errors: true
   changed_when: ils is failed
@@ -168,7 +168,7 @@
 - name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
   become: yes
-  shell: 'ils /{{ irods_zone }}/home'
+  command: 'ils /{{ irods_zone }}/home'
   register: ils
   until: ils is succeeded
   retries: 5
@@ -239,10 +239,10 @@
 
 
 - name: Ensure CA chain with signed certificate is present
-  command: 'ln -s {{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }} {{ openssl_crt_signed_and_chain }}'
-  args:
-    chdir: '/etc/irods'
-    creates: '{{ openssl_crt_signed_and_chain }}'
+  file:
+    src: "{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}"
+    dest: "/etc/irods/{{ openssl_crt_signed_and_chain }}"
+    state: link
 
 
 - name: Ensure Diffie-Hellman parameters are present
@@ -300,25 +300,29 @@
 
 
 - name: Retrieve iRODS server config file
-  command: cat /etc/irods/server_config.json
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  slurp:
+    src: /etc/irods/server_config.json
   register: server_config
+  when: not ansible_check_mode
 
 
 - name: Retrieve iRODS server zone key
   set_fact:
-    zone_key: "{{ (server_config.stdout | from_json).zone_key }}"
+    zone_key: "{{ (server_config['content'] | b64decode | from_json).zone_key }}"
   when: not ansible_check_mode
 
 
 - name: Retrieve iRODS server negotiation key
   set_fact:
-    negotiation_key: "{{ (server_config.stdout | from_json).negotiation_key }}"
+    negotiation_key: "{{ (server_config['content'] | b64decode | from_json).negotiation_key }}"
   when: not ansible_check_mode
 
 
 - name: Retrieve iRODS server control plane key
   set_fact:
-    server_control_plane_key: "{{ (server_config.stdout | from_json).server_control_plane_key }}"
+    server_control_plane_key: "{{ (server_config['content'] | b64decode | from_json).server_control_plane_key }}"
   when: not ansible_check_mode
 
 
