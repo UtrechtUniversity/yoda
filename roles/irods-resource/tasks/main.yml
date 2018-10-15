@@ -162,10 +162,10 @@
 
 
 - name: Ensure CA chain with signed certificate is present
-  command: 'ln -s {{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }} {{ openssl_crt_signed_and_chain }}'
-  args:
-    chdir: '/etc/irods'
-    creates: '{{ openssl_crt_signed_and_chain }}'
+  file:
+    src: "{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}"
+    dest: "/etc/irods/{{ openssl_crt_signed_and_chain }}"
+    state: link
 
 
 - name: Ensure Diffie-Hellman parameters are present
