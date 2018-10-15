@@ -110,6 +110,7 @@
     dest: /var/www/extuser/yoda-external-user-service/public/.htaccess
     remote_src: yes
   notify: Restart Apache webserver
+  when: not ansible_check_mode
 
 
 - name: Copy Yoda External User Service virtual host config for Apache
