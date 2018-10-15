@@ -7,6 +7,26 @@
     state: present
 
 
+- name: Ensure external user check is present
+  template:
+    src: is-user-external.sh.j2
+    dest: /usr/local/bin/is-user-external.sh
+    owner: root
+    group: irods
+    mode: 0750
+  when: external_users
+
+
+- name: Ensure external user authentication is present
+  template:
+    src: external-auth.py.j2
+    dest: /usr/local/bin/external-auth.py
+    owner: root
+    group: irods
+    mode: 0750
+  when: external_users
+
+
 - name: Ensure /etc/pam.d/irods is configured
   template:
     src='irods_pam.j2'
