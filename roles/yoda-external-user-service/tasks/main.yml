@@ -41,6 +41,7 @@
     src: '/var/www/extuser/yoda-external-user-service/public'
     dest: /var/www/extuser/public
     state: link
+  when: not ansible_check_mode
 
 
 - name: Create Yoda External User Service database
