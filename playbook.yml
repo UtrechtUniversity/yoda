@@ -97,7 +97,7 @@
     - public
 
 
-- name: Provision extrnal user service server
+- name: Provision external user service server
   hosts: eus
   become: yes
   roles:
