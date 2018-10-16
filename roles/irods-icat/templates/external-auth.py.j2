@@ -5,9 +5,9 @@ import os
 import sys
 
 r = requests.post('https://{{ yoda_eus_fqdn }}/api/user/auth-check',
-                  headers={'X-Yoda-External-User-Secret':
-                           '{{ eus_api_secret }}'},
-                  auth=(os.getenv('PAM_USER'), sys.stdin.readline()))
+                  headers={'X-Yoda-External-User-Secret': '{{ eus_api_secret }}'},
+                  auth=(os.getenv('PAM_USER'), sys.stdin.readline()),
+                  verify=False)
 
 if r.status_code == 200 and r.text == 'Authenticated':
     sys.exit(0)

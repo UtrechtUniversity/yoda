@@ -1,11 +1,12 @@
 # {{ ansible_managed }}
 #%PAM-1.0
 
+auth        optional      pam_faildelay.so delay={{ pam_fail_delay }}
+
 {% if external_users %}
 auth [success=ignore default=1] pam_exec.so /usr/local/bin/is-user-external.sh
 auth [success=done default=die] pam_exec.so expose_authtok /usr/local/bin/external-auth.py
 {% endif %}
 
-auth        optional      pam_faildelay.so delay={{ pam_fail_delay }}
 auth        sufficient    pam_unix.so
 auth        required      pam_radius_auth.so
