@@ -55,7 +55,7 @@
 
 - name: Configure iRODS resource server
   become: yes
-  command: python /var/lib/irods/scripts/setup_irods.py
+  shell: python /var/lib/irods/scripts/setup_irods.py
     < /etc/irods/setup_irods_consumer
   args:
     creates: /etc/irods/service_account.config

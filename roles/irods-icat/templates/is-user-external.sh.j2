@@ -1,0 +1,4 @@
+#!/bin/bash
+# {{ ansible_managed }}
+
+[[ "$PAM_USER" =~ .*@.* ]] && [[ ! "$PAM_USER" =~ [.@]uu.nl$ ]]

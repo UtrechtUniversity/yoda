@@ -102,7 +102,7 @@
 
 - name: Configure iRODS iCAT server
   become: yes
-  command: python /var/lib/irods/scripts/setup_irods.py
+  shell: python /var/lib/irods/scripts/setup_irods.py
     < /etc/irods/setup_irods_provider
   args:
     creates: /etc/irods/service_account.config
@@ -387,5 +387,5 @@
   when: read_access is failed
 
 
-- include_tasks: setup_pam_radius.yml
+- include_tasks: setup_pam.yml
   when: irods_authentication_scheme == "PAM"

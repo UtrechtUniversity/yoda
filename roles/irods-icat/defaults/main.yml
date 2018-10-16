@@ -45,6 +45,11 @@ pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
 
+# External Users configuration
+external_users: True
+yoda_eus_fqdn: eus.yoda.test
+eus_api_secret: PLACEHOLDER
+
 # OpenSSL configuration
 openssl_private_dir: '/etc/pki/tls/private'
 openssl_certs_dir: '/etc/pki/tls/certs'
