@@ -102,7 +102,7 @@
 
 - name: Configure iRODS iCAT server
   become: yes
-  command: python /var/lib/irods/scripts/setup_irods.py
+  shell: python /var/lib/irods/scripts/setup_irods.py
     < /etc/irods/setup_irods_provider
   args:
     creates: /etc/irods/service_account.config
