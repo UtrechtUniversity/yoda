@@ -22,3 +22,6 @@ datacite_password: PLACEHOLDER          # DataCite password
 
 epic_url: PLACEHOLDER                   # EPIC PID server URL
 epic_handle_prefix: PLACEHOLDER         # EPIC PID handle prefix
+
+yoda_eus_fqdn: eus.yoda.test            # External User Service FQDN
+eus_api_secret: PLACEHOLDER             # External User Service API secret
