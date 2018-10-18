@@ -36,16 +36,11 @@ user does not create a password within 5 days.
 An external user must be able to authenticate themselves via any
 available iRODS interface that offers PAM login.
 
-### Changing the password of an external user
-An external user must be able to change their password. They must
-provide their old password and type their new password twice. Password
-restrictions based on information security guidelines must be applied.
-
-### Resetting the password of an external user
+### Resetting or changing the password of an external user
 An external user must be able to reset their password. When a user
 submits their e-mail address to the external user service, they will
 receive a password reset link. Password restrictions based on
-information security guidelines must be applied.
+information security guidelines are applied.
 
 ### Removing external users
 > *NOTE: How removal of external user accounts should work is not yet
@@ -67,15 +62,16 @@ The external user database contains the following tables:
 
 **users:**
 
-Col. name     | Type              | Description
---------------|-------------------|-----------------------------------------------------------
-`id`     		  | INTEGER     	    | Numerical (autoincremented) ID  used for internal purposes
-`username` 	  | VARCHAR(64)       | The e-mail address of the external user case-insensitive)
-`password`    | CHAR(60) NULL     | A hashed password (`NULL` indicates non-activated account)
-`hash`        | CHAR(64) NULL     | A unique hash, used for activation and password reset
-`hash_time`   | TIMESTAMP NULL    | The creation time of the hash, used to invalidate hashes
-`creator_user`|  VARCHAR(255)     | The username of the group manager that had this external user 'created'
-`creator_zone`|  VARCHAR(255)     | The zone the groupmananger is inviting the user from
+Col. name     | Type                  | Description
+--------------|-----------------------|-----------------------------------------------------------
+`id`          | SERIAL                | Numerical (autoincremented) ID  used for internal purposes
+`username`    | VARCHAR(64) NOT NULL  | The e-mail address of the external user case-insensitive)
+`password`    | CHAR(60) NULL         | A hashed password (`NULL` indicates non-activated account)
+`hash`        | CHAR(64) NULL         | A unique hash, used for activation and password reset
+`hash_time`   | TIMESTAMP NULL        | The creation time of the hash, used to invalidate hashes
+`creator_time`| TIMESTAMP NOT NULL    | The creation time of the user
+`creator_user`| VARCHAR(255) NOT NULL | The username of the group manager that had this external user 'created'
+`creator_zone`| VARCHAR(255) NOT NULL | The zone the groupmananger is inviting the user from
 
 Index      | Type
 -----------|---------       
@@ -87,11 +83,12 @@ The 64-char username limit is prescribed by the iCAT (`DB_USERNAME_LEN`).
 
 **user_zones:**
 
-Col. name      | Type              | Description
----------------|-------------------|--------------------------------------------
-`user_id`      | INTEGER     	 	   | ID of the user involved
-`inviter_user` | VARCHAR(255)      | The groupmanager that invited the external user
-`inviter_zone` | VARCHAR(255)      | The zone the groupmanager invited the external user from
+Col. name      | Type                  | Description
+---------------|-----------------------|--------------------------------------------
+`user_id`      | INTEGER               | ID of the user involved
+`inviter_user` | VARCHAR(255) NOT NULL | The groupmanager that invited the external user
+`inviter_zone` | VARCHAR(255) NOT NULL | The zone the groupmanager invited the external user from
+`inviter_time` | TIMESTAMP NOT NULL    | The invitation time of the user
 
 Index                   | Type     | Description
 ------------------------|----------|--------------------------------------------
@@ -99,13 +96,10 @@ Index                   | Type     | Description
 
 
 ## Yoda portal
-The Yoda portal login page needs to be modified to show a "Forgot
-password" button. On click, it should show the user where they can
-reset their password. That is, <https://uu.nl/wachtwoord> for internal
-users, and the "Forgot password" page on the external user service for
-external users.
-
-Similar information should be presented by a "Change password" button.
+The Yoda portal login page shows a "Forgot / change password" button.
+On click, the "Forgot password" page on the external user service for
+external users is displayed.
+When entering an internal email the internal user should be pointed to the correct location.
 
 ### Group manager
 The Group manager portal module does not need to be changed to allow for
@@ -158,7 +152,7 @@ user service to create and remove external user accounts. These requests
 must be authenticated with an API key, which must be available to the
 iRODS service account, but not accessible to user-submitted rules.
 
-A Python rule will be used to fetch the secret from a local file and
+A Python rule is used to fetch the secret from a local file and
 make requests to the external user service. Since Python rules can be
 called from anywhere in iRODS, the rule itself will need to perform
 authorization checks, using existing Group manager policy check
