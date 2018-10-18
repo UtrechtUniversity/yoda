@@ -151,6 +151,19 @@ test_groups:
     category: nodminitial
     subcategory: nodminitial
     dataClassification: unspecified
+    
+  - groupName: research-placeholderpythonbug1
+    category: placeholder
+    subcategory: placeholder
+    dataClassification: unspecified    
+  - groupName: research-placeholderpythonbug2
+    category: placeholder
+    subcategory: placeholder
+    dataClassification: unspecified    
+  - groupName: research-placeholderpythonbug3
+    category: placeholder
+    subcategory: placeholder
+    dataClassification: unspecified 
 
 test_groupusers:
   - groupName: priv-category-add
@@ -458,6 +471,9 @@ deletion_research_groups:
   - research: tovaultwithdm
   - research: recreateresearch
   - research: escapecharsinfolders
+  - research: placeholderpythonbug1
+  - research: placeholderpythonbug2
+  - research: placeholderpythonbug3
 deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
