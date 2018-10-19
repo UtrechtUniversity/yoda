@@ -217,13 +217,17 @@ POST parameters, if any, are supplied in the request body in JSON
 format, for example:
 
 ``` {.example}
-{ "username": "piet", "creator": "henk" }
+{
+  "username": "piet@example.com",
+  "creator_user": "gm@example.com",
+  "creator_zone": "tempZone"
+}
 ```
 
 Endpoint           | Method           | Description
 -------------------|------------------|--------------------------------------------------------
 `/api/auth-check`  | POST             | User authentication: Credentials supplied via HTTP Basic `Authorization` header..  Response: On failure: 401. On success: 200, with body text `Authenticated`
-`/api/user/add`    | POST             | User creation: Creates the given user in the external user database. Generates and stores an activation hash for that username. Sends an invitation e-mail to the new user. Parameters are `username` and `creator`.
+`/api/user/add`    | POST             | User creation: Creates the given user in the external user database. Generates and stores an activation hash for that username. Sends an invitation e-mail to the new user. Parameters are `username`, `creator_user` and `creator_zone`.
 `/api/user/remove` | POST            | User removal: Removes the given user from the external user database. The only parameter is `username`.
 
 ## External user → HTTP UI → External user service
