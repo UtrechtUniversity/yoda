@@ -30,8 +30,6 @@
   command: 'iadmin rsq {{ item }}'
   ignore_errors: yes
   with_items:
-    - lsl
-    - ShowCollAcls
     - listQueryByAliasLike
     - findQueryByAlias
     - ilsLACollections
