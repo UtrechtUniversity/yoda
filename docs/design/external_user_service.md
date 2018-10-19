@@ -190,14 +190,11 @@ resets.
 ### Enrollment of an external user not known to EUS
 ![](img/eus/seq-enroll.png)
 
-### Invitation of external user known to EUS - not known to Yoda instance
-![](img/eus/seq-invite-known-eus-user.png)
+### Invitation of external user known to EUS
+![](img/eus/seq-invite.png)
 
 ### Password reset
 ![](img/eus/seq-pwreset.png)
-
-### Password change
-![](img/eus/seq-pwchange.png)
 
 ## Interfaces
 
@@ -248,8 +245,6 @@ Endpoint                               | Method | Description
 ---------------------------------------|--------|-----------------
 `/user/:username/activate/:hash`       | GET    | User activation page. Allows the user confirm the creation of their account.
 `/user/:username/activate/:hash`       | POST   | Confirms user activation, sets a password. Also sends an e-mail to the creator of the account. The user's hash is cleared in the database upon use. The only parameter is `password`.
-`/user/change-password`                | GET    | "Change password" page. Allows the user to change their password by filling in their username, old and new password.
-`/user/:username/change-password`      | POST   | Confirms "Change password". Changes the user's password. Parameters are `password` and `new_password`.
 `/user/forgot-password`                | GET    | "Forgot password" page. Allows the user to request a password reset link by filling in their username
 `/user/:username/forgot-password`      | POST   | Confirms "forgot password". Generates a hash and sends a password reset link to the given username, if it exists. The only parameter is `username`.
 `/user/:username/reset-password/:hash` | GET    | Password reset page. Allows the user to enter a new password
