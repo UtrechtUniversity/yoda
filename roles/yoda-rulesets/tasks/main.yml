@@ -14,12 +14,6 @@
   register: repochanges
 
 
-- name: Stop cron service before installing Yoda rulesets
-  service:
-    name: crond
-    state: stopped
-
-
 - name: Run make install for each ruleset
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -39,22 +33,6 @@
     config_path: "/etc/irods/server_config.json"
     rulesets: "{{ rulesets | map(attribute='ruleset_name') | list  }}"
   when: not ansible_check_mode
-
-
-- name: Wait until iRODS server is ready to receive requests
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: 'ils /{{ irods_zone }}/home'
-  register: ils
-  until: ils is succeeded
-  retries: 5
-  delay: 10
-
-
-- name: Start cron service after installing Yoda rulesets
-  service:
-    name: crond
-    state: started
 
 
 - include_tasks: "{{ ruleset.name }}.yml"

@@ -9,9 +9,11 @@ codeigniter_version: "{{ yoda_version }}"
 codeigniter_environment: "{{ yoda_environment }}"
 
 yoda_portal_fqdn: portal.yoda.test
+yoda_eus_fqdn: eus.yoda.test
 update_portal: yes
 yoda_php_encryption_key: dummy
 yoda_public_dir: /var/www/yoda/yoda-portal/public
+
 
 # Yoda portal source
 portal_sources:

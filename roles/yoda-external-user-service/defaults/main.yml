@@ -14,6 +14,8 @@ eus_db_name: extuser
 eus_db_user: extuser
 eus_db_password: PLACEHOLDER
 eus_db_user_table: users
+eus_db_user_zones_table: user_zones
+eus_db_users_id_seq: users_id_seq
 
 eus_smtp_host: PLACEHOLDER
 eus_smtp_port: 587
