@@ -31,7 +31,7 @@ note right of HTTP_API
     iRODS service account can:
     - Authenticate external user
     - Create external user
-    - Remove external user
+    - Delete external user
 end note
 
 rectangle "Yoda iRODS server" {

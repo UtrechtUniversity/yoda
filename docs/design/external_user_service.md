@@ -43,8 +43,8 @@ receive a password reset link. Password restrictions based on
 information security guidelines are applied.
 
 ### Removing external users
-> *NOTE: How removal of external user accounts should work is not yet
-> decided.*
+An Yoda admin can remove an external user.
+After user deletion the external user service is notified and deletes the user.
 
 ## General architecture
 ### Component view
@@ -196,6 +196,9 @@ resets.
 ### Password reset
 ![](img/eus/seq-pwreset.png)
 
+### Deletion of an external user
+![](img/eus/seq-delete.png)
+
 ## Interfaces
 
 ### Yoda portal → iRODS
@@ -228,14 +231,11 @@ Endpoint           | Method           | Description
 -------------------|------------------|--------------------------------------------------------
 `/api/auth-check`  | POST             | User authentication: Credentials supplied via HTTP Basic `Authorization` header..  Response: On failure: 401. On success: 200, with body text `Authenticated`
 `/api/user/add`    | POST             | User creation: Creates the given user in the external user database. Generates and stores an activation hash for that username. Sends an invitation e-mail to the new user. Parameters are `username`, `creator_user` and `creator_zone`.
-`/api/user/remove` | POST            | User removal: Removes the given user from the external user database. The only parameter is `username`.
+`/api/user/delete` | POST            | User removal: Removes the given user from the external user database. Parameters are `username` and `userzone`.
 
 ## External user → HTTP UI → External user service
 The HTTP UI is used by the external user to activate their account, and
 to change or reset their password.
-
-*TBD: The user should (conforming to GDPR etc.) be able to request for
-the removal of their own account, how will they initiate this action?*
 
 All POST parameters are sent in `x-www-form-urlencoded` format.
 
