@@ -16,6 +16,7 @@ In this repository you can find documentation on administration tasks, software 
 
 ## Software design
 - [Asynchronous and privileged execution](design/async_system_execution.md)
+- [External user service](design/external_user_service.md)
 - [Group manager](design/group_manager.md)
 - [Locking mechanism](design/locking_mechanism.md)
 - [Metadata form](design/metadata_form.md)
