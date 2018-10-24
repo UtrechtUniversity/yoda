@@ -24,4 +24,5 @@ epic_url: PLACEHOLDER                   # EPIC PID server URL
 epic_handle_prefix: PLACEHOLDER         # EPIC PID handle prefix
 
 yoda_eus_fqdn: eus.yoda.test            # External User Service FQDN
+yoda_eus_port: 8443                     # External User Service port
 eus_api_secret: PLACEHOLDER             # External User Service API secret
