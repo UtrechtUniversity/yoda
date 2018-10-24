@@ -1,0 +1,20 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam dpi 200
+
+actor       "External user" as user
+participant "iRODS" as irods
+participant "External user service" as eus
+database    "External user DB" as eudb
+
+user   -> irods    : Login (username/password)
+irods  -> eus    : PAM / HTTPS Basic auth
+eus    -> eudb   : SELECT ...
+eus   <-- eudb   : { password_hash ... }
+irods <-- eus    : Authenticated
+user  <-- irods    : Ok
+
+@enduml
