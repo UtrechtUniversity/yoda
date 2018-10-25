@@ -4,7 +4,7 @@ import requests
 import os
 import sys
 
-r = requests.post('https://{{ yoda_eus_fqdn }}/api/user/auth-check',
+r = requests.post('https://{{ yoda_eus_fqdn }}:{{ yoda_eus_port }}/api/user/auth-check',
                   headers={'X-Yoda-External-User-Secret': '{{ eus_api_secret }}'},
                   auth=(os.getenv('PAM_USER'), sys.stdin.readline()),
                   verify=False)

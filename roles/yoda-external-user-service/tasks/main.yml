@@ -38,10 +38,22 @@
 
 - name: Link public directories of Yoda External User Service
   file:
-    src: '/var/www/extuser/yoda-external-user-service/public'
-    dest: /var/www/extuser/public
+    src: "/var/www/extuser/yoda-external-user-service/{{ item }}"
+    dest: "/var/www/extuser/{{ item }}"
     state: link
   when: not ansible_check_mode
+  with_items:
+    - public
+    - api
+
+
+- name: Allow public to API port for External User Service in firewall
+  firewalld:
+    port: '8443/tcp'
+    permanent: true
+    state: enabled
+    immediate: yes
+  notify: Restart firewall
 
 
 - name: Create Yoda External User Service database
@@ -121,10 +133,19 @@
     mode: 0644
 
 
-- name: Ensure .htaccess is configured
+- name: Ensure public .htaccess is configured
   copy:
     src: /var/www/extuser/yoda-external-user-service/public/.htaccess.template-{{ yoda_environment }}
     dest: /var/www/extuser/yoda-external-user-service/public/.htaccess
+    remote_src: yes
+  notify: Restart Apache webserver
+  when: not ansible_check_mode
+
+
+- name: Ensure API .htaccess is configured
+  copy:
+    src: /var/www/extuser/yoda-external-user-service/api/.htaccess.template-{{ yoda_environment }}
+    dest: /var/www/extuser/yoda-external-user-service/api/.htaccess
     remote_src: yes
   notify: Restart Apache webserver
   when: not ansible_check_mode

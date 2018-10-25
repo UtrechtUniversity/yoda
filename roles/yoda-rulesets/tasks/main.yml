@@ -1,6 +1,14 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure Python dependencies are installed
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+  - python-enum34
+
+
 - name: Checkout rulesets from github
   become_user: "{{ irods_service_account }}"
   become: yes

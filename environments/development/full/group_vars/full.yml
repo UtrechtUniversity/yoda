@@ -203,3 +203,17 @@ upload_priv_key: |
 upload_pub_key: |
   c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUl1SnB3d0k2VTZEZUlkZnhUQmZ6
   TlZFeTZrKzl4eXN6dDhBS0c0NVhiL2ggaXJvZHNAY29tYmluZWQK
+
+######################################
+# External user service configuration
+######################################
+yoda_eus_fqdn: eus.yoda.test
+eus_api_secret: PLACEHOLDER
+eus_db_password: PLACEHOLDER
+eus_smtp_host: PLACEHOLDER
+eus_smtp_port: 587
+eus_smtp_user: PLACEHOLDER
+eus_smtp_password: PLACEHOLDER
+eus_smtp_from_address: PLACEHOLDER
+eus_smtp_replyto_address: PLACEHOLDER
+eus_mail_template: uu
