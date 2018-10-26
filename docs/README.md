@@ -1,5 +1,5 @@
-# Yoda documentation
-In this repository you can find documentation on administration tasks, software design and release notes of Yoda.
+# Yoda technical documentation
+In this repository you can find technical documentation on administration tasks, software design and release notes of Yoda.
 
 ## Release notes
 - [release 1.4](release-notes/release-1.4.md)
@@ -31,6 +31,7 @@ In this repository you can find documentation on administration tasks, software 
 
 ## Documentation style
 All documentation is styled using [Markdown](https://guides.github.com/features/mastering-markdown/).
+All UML diagrams are generated with [PlantUML](http://plantuml.com/).
 
 ## License
 This project is licensed under the GPLv3 license.
