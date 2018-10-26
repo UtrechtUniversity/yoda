@@ -33,7 +33,7 @@
   git:
     repo: "https://github.com/UtrechtUniversity/yoda-external-user-service.git"
     dest: "/var/www/extuser/yoda-external-user-service"
-    version: "master"
+    version: "{{ yoda_version }}"
 
 
 - name: Link public directories of Yoda External User Service
