@@ -16,7 +16,11 @@ rectangle "Yoda instance" {
             }		    
 	}
 
+        rectangle "iRODS iCommands" as icommands {	    
+	}
+	
         portalweb .d.> provider
+        icommands .d.> provider	
     }
 
     package "Yoda databse" {
@@ -100,7 +104,7 @@ rectangle "Yoda External User service" {
 HTTPS -- portalweb
 HTTPS -- publicweb
 HTTPS -- extweb
-iCommands -- provider
+iCommands -- icommands
 provider .d.> [XML storage] : SCP
 provider .d.> extweb : HTTPS
 
