@@ -1,0 +1,107 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam padding 2
+skinparam shadowing false
+skinparam dpi 200
+
+rectangle "Yoda instance" {
+
+    package "Yoda portal" {
+        rectangle "Apache webserver" as portalweb {
+            rectangle "PHP" as portalphp {
+            }
+            rectangle "davrods" as davrods {
+            }		    
+	}
+
+        portalweb .d.> provider
+    }
+
+    package "Yoda databse" {
+        database "PostgreSQL" as icatdb{
+            rectangle "iRODS database" as iCAT {
+            }
+        }
+    }
+
+    package "Yoda iCAT" {
+        rectangle "iRODS iCAT" as provider {
+            rectangle "iRODS rules" as icatrules {
+            }
+            rectangle "iRODS microservices" as icatmicroservices {
+            }	    
+        }
+    }
+
+    package "Yoda resource" {
+        rectangle "iRODS resource" as consumer {
+            rectangle "iRODS rules" as rescrules {
+            }
+            rectangle "iRODS microservices" as rescmicroservices {
+            }
+        }
+
+        cloud {
+          [Storage 1]
+        }
+
+        cloud {
+          [Storage 2]
+        }
+
+        cloud {
+          [Storage ...]
+        }
+
+        consumer -- provider
+	consumer -- [Storage 1]
+	consumer -- [Storage 2]
+	consumer -- [Storage ...]		
+    }
+
+    provider .d.> iCAT : use
+    
+}
+
+rectangle "Yoda Public server" {
+    rectangle "Apache webserver" as publicweb {
+        rectangle "OAI-PMH service" as moai {
+        }    
+    }
+
+    cloud {
+      [XML storage]
+    }
+
+    cloud {
+      [Landingpages]
+    }
+
+    publicweb .d.> [Landingpages] : use
+    moai .d.> [XML storage] : use
+}
+
+rectangle "Yoda External User service" {
+    rectangle "Apache webserver" as extweb {
+        rectangle "PHP" as extphp {
+        }      
+    }
+
+    database "PostgreSQL" as extdb {
+        rectangle "External users" as extusers {
+        }
+    }
+
+    extweb .d.> extusers : use
+}
+
+HTTPS -- portalweb
+HTTPS -- publicweb
+HTTPS -- extweb
+iCommands -- provider
+provider .d.> [XML storage] : SCP
+provider .d.> extweb : HTTPS
+
+@enduml

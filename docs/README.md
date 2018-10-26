@@ -16,6 +16,7 @@ In this repository you can find documentation on administration tasks, software 
 - [Troubleshooting publication](administration/troubleshooting_publication.md)
 
 ## Software design
+- [System overview](design/system_overview.md)
 - [Asynchronous and privileged execution](design/async_system_execution.md)
 - [External user service](design/external_user_service.md)
 - [Group manager](design/group_manager.md)
