@@ -12,3 +12,11 @@ Add the following fields to the Ansible environment files
 (see [yoda-ansible/CONFIGURATION.md](https://github.com/UtrechtUniversity/yoda-ansible/blob/development/CONFIGURATION.md) for description):
 - yoda_eus_fqdn
 - eus_api_secret
+- eus_db_password
+- eus_smtp_host
+- eus_smtp_port
+- eus_smtp_user
+- eus_smtp_password
+- eus_smtp_from_address
+- eus_smtp_replyto_address
+- eus_mail_template
