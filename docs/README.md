@@ -2,6 +2,7 @@
 In this repository you can find documentation on administration tasks, software design and release notes of Yoda.
 
 ## Release notes
+- [release 1.4](release_notes/release-1.4.md)
 - [release 1.3](release_notes/release-1.3.md)
 - [release 1.2](release_notes/release-1.2.md)
 - [release 1.1](release_notes/release-1.1.md)
