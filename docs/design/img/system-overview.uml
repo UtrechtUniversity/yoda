@@ -59,7 +59,7 @@ rectangle "Yoda instance" {
           [Storage ...]
         }
 
-        consumer .d-- provider
+        consumer .r-- provider
 	consumer .d.> [Storage 1]
 	consumer .d.> [Storage 2]
 	consumer .d.> [Storage ...]		
@@ -102,8 +102,8 @@ rectangle "Yoda External User service" {
 }
 
 HTTPS -- portalweb
-HTTPS -- publicweb
-HTTPS -- extweb
+HTTPS -r- publicweb
+HTTPS -r- extweb
 iCommands -- icommands
 provider .d.> [XML storage] : SCP
 provider .d.> [Landingpages] : SCP
