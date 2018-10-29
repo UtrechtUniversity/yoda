@@ -59,10 +59,10 @@ rectangle "Yoda instance" {
           [Storage ...]
         }
 
-        consumer -- provider
-	consumer -- [Storage 1]
-	consumer -- [Storage 2]
-	consumer -- [Storage ...]		
+        consumer .d-- provider
+	consumer .d.> [Storage 1]
+	consumer .d.> [Storage 2]
+	consumer .d.> [Storage ...]		
     }
 
     provider .d.> iCAT : use
@@ -83,8 +83,8 @@ rectangle "Yoda Public server" {
       [Landingpages]
     }
 
-    publicweb .d.> [Landingpages] : use
-    moai .d.> [XML storage] : use
+    publicweb .d.> [Landingpages]
+    moai .d.> [XML storage]
 }
 
 rectangle "Yoda External User service" {
@@ -106,6 +106,7 @@ HTTPS -- publicweb
 HTTPS -- extweb
 iCommands -- icommands
 provider .d.> [XML storage] : SCP
-provider .d.> extweb : HTTPS
+provider .d.> [Landingpages] : SCP
+provider .d.> extweb : HTTPS-ALT
 
 @enduml
