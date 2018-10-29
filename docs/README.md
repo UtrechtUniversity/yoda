@@ -14,6 +14,7 @@ In this repository you can find technical documentation on administration tasks,
 - [Installing metadata schemas](administration/installing-metadata-schemas.md)
 - [Installing terms](administration/installing-terms.md)
 - [Troubleshooting publication](administration/troubleshooting-publication.md)
+- [Restore collection](administration/restore-collection.md)
 
 ## Software design
 - [System overview](design/system-overview.md)
