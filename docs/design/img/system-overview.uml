@@ -109,4 +109,7 @@ provider .d.> [XML storage] : SCP
 provider .d.> [Landingpages] : SCP
 provider .d.> extweb : HTTPS-ALT
 
+provider .d.> SMTP
+extphp .d.> SMTP
+
 @enduml
