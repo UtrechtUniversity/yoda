@@ -66,6 +66,7 @@
   command:
     imkdir /{{ irods_zone }}/yoda/publication
   ignore_errors: true
+  changed_when: False
 
 
 - name: Install script for revision clean up

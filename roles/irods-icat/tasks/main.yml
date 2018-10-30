@@ -38,6 +38,7 @@
     - listSharedCollectionsSharedWithUser
     - listUserACLForDataObjViaGroup
     - listUserACLForCollectionViaGroup
+  changed_when: False
 
 
 - name: Generate zone key
