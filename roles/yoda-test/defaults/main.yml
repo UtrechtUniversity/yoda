@@ -215,9 +215,9 @@ test_groupusers:
   - groupName: datamanager-initial
     user: datamanager
     role: normal
-  - groupName: datamanager-initial
-    user: yodadatamanager@gmail.com
-    role: normal
+#  - groupName: datamanager-initial
+#    user: yodadatamanager@gmail.com
+#    role: normal
 
   - groupName: research-deletegroup
     user: functionaladminpriv
@@ -321,9 +321,9 @@ test_groupusers:
   - groupName: research-notification
     user: groupmanager
     role: manager
-  - groupName: research-notification
-    user: yodaresearcher@gmail.com
-    role: normal
+#  - groupName: research-notification
+#    user: yodaresearcher@gmail.com
+#    role: normal
   - groupName: research-notification
     user: researcher
     role: normal
