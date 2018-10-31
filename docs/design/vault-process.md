@@ -9,25 +9,29 @@ Each folder in the research area is initialized without any status information. 
 by the metadata field *org_status* on the collection. The valid statuses and transitions are defined in iiConstant like below.
 
 ```
-	 # \brief all STATES
-	 FOLDER = "";
-	 LOCKED = "LOCKED";
-	 SUBMITTED = "SUBMITTED";
-	 ACCEPTED = "ACCEPTED";
-	 REJECTED = "REJECTED";
-	 SECURED = "SECURED";
+# \brief All research folder states.
+FOLDER = "";
+LOCKED = "LOCKED";
+SUBMITTED = "SUBMITTED";
+ACCEPTED = "ACCEPTED";
+REJECTED = "REJECTED";
+SECURED = "SECURED";
 
-	 # \constant IIFOLDERTRANSITIONS
-	 IIFOLDERTRANSITIONS = list((FOLDER, LOCKED),
-				    (FOLDER, SUBMITTED),
-				    (LOCKED, FOLDER),
-				    (LOCKED, SUBMITTED),
-				    (SUBMITTED, LOCKED),
-				    (SUBMITTED, ACCEPTED),
-				    (SUBMITTED, REJECTED),
-				    (REJECTED, FOLDER),
-				    (ACCEPTED, SECURED),
-				    (SECURED, FOLDER))
+# \constant IIFOLDERTRANSITIONS
+IIFOLDERTRANSITIONS = list((FOLDER, LOCKED),
+			   (FOLDER, SUBMITTED),
+			   (LOCKED, FOLDER),
+			   (LOCKED, SUBMITTED),
+			   (SUBMITTED, FOLDER),
+			   (SUBMITTED, ACCEPTED),
+			   (SUBMITTED, REJECTED),
+			   (REJECTED, LOCKED),
+			   (REJECTED, FOLDER),
+			   (REJECTED, SUBMITTED),
+			   (ACCEPTED, SECURED),
+			   (SECURED, LOCKED),
+			   (SECURED, FOLDER),
+			   (SECURED, SUBMITTED))
 ```
 
 ## Status Policies
@@ -62,4 +66,4 @@ The datamanager is allowed to use the sudo microservice msiSudoObjAclSet to gran
 allowed to do is set permissions starting from the root of a vault package to read for the research group with the same basename as the vault.
 
 ## No datamanager
-When there is no datamanager is present the permissions can only be managed by the rodsadmin. Read-only for the research group by default could be implemented. 
+When there is no datamanager is present the permissions can only be managed by the rodsadmin. Read-only for the research group by default could be implemented.

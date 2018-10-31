@@ -1,0 +1,55 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam padding 2
+skinparam shadowing false
+skinparam dpi 200
+
+rectangle "Yoda instance" {
+    rectangle "iRODS ruleset" {
+        [Generate Yoda DOI] --> [Generate DataCite XML]
+        [Generate DataCite XML] --> [Send DataCite XML]
+        [Send DataCite XML] --> [Create landingpage HTML]
+        [Send DataCite XML] --> [Generate Yoda DOI] : DOI already exists
+        [Create landingpage HTML] --> [Send Yoda metadata XML]
+        [Send Yoda metadata XML] -d-> [Mint Yoda DOI]
+    }
+
+interface "Approved for publication" as approved
+interface "Published" as published
+
+approved -r-> [Generate Yoda DOI] : Wait for delayed rule
+[Mint Yoda DOI] -r-> published : Datapackage state change
+}
+
+rectangle "Yoda Public server" {
+    rectangle "Apache webserver" as publicweb {
+        rectangle "OAI-PMH service" as moai {
+        }    
+    }
+
+    cloud {
+      [XML storage]
+    }
+
+    cloud {
+      [Landingpages]
+    }
+
+    publicweb .d.> [Landingpages]
+    moai .d.> [XML storage] : Update MOAI database
+}
+
+rectangle "DataCite Metadata Store" {
+    rectangle "DataCite API v2" as dataciteapi {    
+    }
+}
+
+[Create landingpage HTML] ..> [Landingpages] : SCP
+[Send Yoda metadata XML] ..> [XML storage] : SCP
+
+[Send DataCite XML] ..> dataciteapi : HTTPS
+[Mint Yoda DOI] ..> dataciteapi : HTTPS
+
+@enduml
