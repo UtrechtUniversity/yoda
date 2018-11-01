@@ -2,7 +2,8 @@
 
 ## New features since Yoda version 1.3
 - Support for external users through the External User Service
-- Data package access right published to DataCite and OAI-PMH
+- Data package access rights published to DataCite and OAI-PMH
+- Performance improvements for the Intake module
 - UX improvements to the login form
 - Several performance and security improvements
 
