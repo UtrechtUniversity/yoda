@@ -145,7 +145,7 @@
   template:
     src: core.re.j2
     dest: /etc/irods/core.re
-    force: no
+    mode: 0644
 
 
 - name: Ensure iRODS server is up
