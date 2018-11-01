@@ -8,6 +8,7 @@ irods_zone: tempZone                       # The name of the iRODS Zone
 # Test configuration.
 test_password: test
 
+# Following users are created by ansible as irods and linux users
 test_users:
   - name: researcher
     password: '{{ test_password }}'
@@ -39,12 +40,16 @@ test_users:
   - name: testuserdel
     password: '{{ test_password }}'
     type: rodsuser
-#  - name: yodaresearcher@gmail.com
-#    password: '{{ test_password }}'
-#    type: rodsuser
-#  - name: yodadatamanager@gmail.com
-#    password: '{{ test_password }}'
-#    type: rodsuser
+
+# Following users are created as irods users only
+eus_test_users:
+  - name: yodaresearcher@gmail.com
+  - name: yodadatamanager@gmail.com
+
+# Following users are created in the regressiontest and need to be removed only
+created_by_ta_users:
+  - name: createnewuser
+  - name: yodaexternaluser@gmail.com
 
 test_groups:
   - groupName: research-initial
@@ -191,8 +196,6 @@ test_groups:
     dataClassification: unspecified   
 
 
-
-
 test_groupusers:
   - groupName: priv-category-add
     user: functionaladminpriv
@@ -243,9 +246,9 @@ test_groupusers:
   - groupName: datamanager-initial
     user: datamanager
     role: normal
-#  - groupName: datamanager-initial
-#    user: yodadatamanager@gmail.com
-#    role: normal
+  - groupName: datamanager-initial
+    user: yodadatamanager@gmail.com
+    role: normal
 
   - groupName: research-deletegroup
     user: functionaladminpriv
@@ -349,9 +352,9 @@ test_groupusers:
   - groupName: research-notification
     user: groupmanager
     role: manager
-#  - groupName: research-notification
-#    user: yodaresearcher@gmail.com
-#    role: normal
+  - groupName: research-notification
+    user: yodaresearcher@gmail.com
+    role: normal
   - groupName: research-notification
     user: researcher
     role: normal
