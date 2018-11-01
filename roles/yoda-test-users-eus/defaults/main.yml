@@ -1,0 +1,23 @@
+---
+# copyright Utrecht University
+
+# iRODS configuration.
+irods_service_account: irods
+irods_zone: tempZone                       # The name of the iRODS Zone
+
+# Test configuration.
+test_password: test
+
+delete_ext_test_users:
+  - name: yodadatamanager@gmail.com
+  - name: yodaresearcher@gmail.com
+  - name: yodaexternaluser@gmail.com
+
+create_ext_test_users:
+  - name: yodaresearcher@gmail.com
+    id: 9000
+    hash: $2y$10$TcC8/1aMEar4rRxwj6/uYeMa3aiEuJj8DIRp7PaHicBgAv1djOSyi
+  - name: yodadatamanager@gmail.com
+    id: 9001
+    hash: $2y$10$TcC8/1aMEar4rRxwj6/uYeMa3aiEuJj8DIRp7PaHicBgAv1djOSyi
+
