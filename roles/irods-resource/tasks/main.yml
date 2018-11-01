@@ -139,7 +139,6 @@
     src: "core.py.template"
     dest: "/etc/irods/core.py"
     mode: 0644
-    force: no
 
 
 - name: Enable ports for resource in firewall

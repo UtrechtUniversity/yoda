@@ -39,12 +39,12 @@ test_users:
   - name: testuserdel
     password: '{{ test_password }}'
     type: rodsuser
- # - name: yodaresearcher@gmail.com
- #   password: '{{ test_password }}'
- #   type: rodsuser
- # - name: yodadatamanager@gmail.com
- #   password: '{{ test_password }}'
- #   type: rodsuser
+#  - name: yodaresearcher@gmail.com
+#    password: '{{ test_password }}'
+#    type: rodsuser
+#  - name: yodadatamanager@gmail.com
+#    password: '{{ test_password }}'
+#    type: rodsuser
 
 test_groups:
   - groupName: research-initial
@@ -152,6 +152,7 @@ test_groups:
     subcategory: nodminitial
     dataClassification: unspecified
     
+
   - groupName: research-placeholderpythonbug1
     category: placeholder
     subcategory: placeholder
@@ -164,6 +165,33 @@ test_groups:
     category: placeholder
     subcategory: placeholder
     dataClassification: unspecified 
+  - groupName: research-placeholderpythonbug4
+    category: placeholder
+    subcategory: placeholder
+    dataClassification: unspecified    
+  - groupName: research-placeholderpythonbug5
+    category: placeholder
+    subcategory: placeholder
+    dataClassification: unspecified    
+  - groupName: research-placeholderpythonbug6
+    category: placeholder
+    subcategory: placeholder
+    dataClassification: unspecified 
+  - groupName: research-placeholderpythonbug7
+    category: placeholder
+    subcategory: placeholder
+    dataClassification: unspecified   
+  - groupName: research-placeholderpythonbug8
+    category: placeholder
+    subcategory: placeholder
+    dataClassification: unspecified   
+  - groupName: research-placeholderpythonbug9
+    category: placeholder
+    subcategory: placeholder
+    dataClassification: unspecified   
+
+
+
 
 test_groupusers:
   - groupName: priv-category-add
@@ -474,6 +502,12 @@ deletion_research_groups:
   - research: placeholderpythonbug1
   - research: placeholderpythonbug2
   - research: placeholderpythonbug3
+  - research: placeholderpythonbug4
+  - research: placeholderpythonbug5
+  - research: placeholderpythonbug6
+  - research: placeholderpythonbug7
+  - research: placeholderpythonbug8
+  - research: placeholderpythonbug9
 deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
