@@ -1,7 +1,6 @@
 ---
 # copyright Utrecht University
 
-#DELETE FROM user_zones WHERE user_id in (SELECT id FROM users WHERE username = '{{ item.id }}' )
 - name: Remove users of table user_zones
   become_user: postgres
   become: yes
