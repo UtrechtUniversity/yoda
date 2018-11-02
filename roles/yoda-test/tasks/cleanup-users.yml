@@ -1,0 +1,18 @@
+---
+# copyright Utrecht University
+
+- name: Remove all test users in irods
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmuser '{{ item.name }}'
+  ignore_errors: true
+  with_items:
+    - '{{ test_users + created_by_ta_users + eus_test_users }}'
+
+- name: Remove test users
+  user:
+    name: '{{ item.name }}'
+    password: "{{ item.password | password_hash('sha512') }}"
+    state: absent
+  with_items: '{{ test_users }}'

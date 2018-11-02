@@ -1,0 +1,289 @@
+---
+# copyright Utrecht University
+
+- name: Set storage tiers to Standard
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imeta set -R '{{ item }}' org_storage_tier Standard
+  ignore_errors: true
+  with_items:
+    - "{{ reset_tiers }}"
+
+
+- name: Prepare test data research-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Prepare test data vault-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/vault-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Prepare test data datamanager-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/datamanager-'{{ item.datamanager }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_datamanager_groups }}"
+
+
+- name: Prepare test data intake-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Prepare test data intake-vault-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Prepare test data grp-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/grp-'{{ item.grp }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_grp_groups }}"
+
+
+- name: Prepare test data revisions research-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/yoda/revisions/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Prepare test data trash research-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/trash/home/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Prepare trash test users for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: |
+    ichmod -rM own rods /{{ irods_zone }}/trash/home/'{{ item.name }}'
+  ignore_errors: true
+  with_items:
+    - "{{ test_users + created_by_ta_users + eus_test_users }}"
+
+
+- name: Remove test data research-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Remove test data vault-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/vault-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Remove test data datamanager-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/datamanager-'{{ item.datamanager }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_datamanager_groups }}"
+
+
+- name: Remove test data intake-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test data intake-vault-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test data grp-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/grp-'{{ item.grp }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_grp_groups }}"
+
+
+- name: Remove test data trash research-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/trash/home/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Remove test data revisions research-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/yoda/revisions/research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Remove test research-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup research-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Remove test vault-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup vault-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Remove test read-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup read-'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Remove test intake-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup intake-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test intake-vault-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup vault-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test intake-read-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup read-'{{ item.intake }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_intake_groups }}"
+
+
+- name: Remove test datamanager-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup datamanager-'{{ item.datamanager }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_datamanager_groups }}"
+
+
+- name: Remove test grp-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup grp-'{{ item.grp }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_grp_groups }}"
+
+
+- name: Remove trash data research-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irmtrash -rM /{{ irods_zone }}/trash/home/'{{ item.research }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_research_groups }}"
+
+
+- name: Remove test trash data user-homes
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irmtrash -rM /{{ irods_zone }}/trash/home/'{{ item.name }}'
+  ignore_errors: true
+  with_items:
+    - '{{ test_users + created_by_ta_users + eus_test_users }}'
+
+
+- name: Remove trash data rods-home
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irmtrash -rM /{{ irods_zone }}/trash/home/rods
+  ignore_errors: true
