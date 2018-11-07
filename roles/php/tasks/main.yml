@@ -1,14 +1,37 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure PHP is installed
+- name: Ensure PHP 5.4 is absent
+  package:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+  - php
+  - php-cli
+  - mod_php
+  - php-common
+  notify: Restart Apache webserver
+
+
+- name: Add repository for PHP 7.2
+  yum_repository:
+    name: remi-php72
+    description: Remi's PHP 7.2 RPM repository for Enterprise Linux 7
+    mirrorlist: http://rpms.remirepo.net/enterprise/7/php72/mirror
+    enabled: yes
+    gpgcheck: 1
+    gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+
+
+- name: Ensure PHP 7.2 is installed
   package:
     name: '{{ item }}'
     state: present
   with_items:
-  - php
-  - php-xml
-  - php-mcrypt
+  - php72-php
+  - php72-php-cli
+  - php72-php-xml
+  - php72-php-mcrypt
   notify: Restart Apache webserver
 
 
