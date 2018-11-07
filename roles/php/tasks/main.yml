@@ -7,6 +7,16 @@
     state: present
 
 
+- name: Enable repository for PHP 7.2
+  yum_repository:
+    name: remi-php72
+    description: Remi's PHP 7.2 RPM repository for Enterprise Linux 7
+    mirrorlist: http://rpms.remirepo.net/enterprise/7/php72/mirror
+    enabled: yes
+    gpgcheck: 1
+    gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+
+
 - name: Ensure PHP packages are installed
   package:
     name: '{{ item }}'
