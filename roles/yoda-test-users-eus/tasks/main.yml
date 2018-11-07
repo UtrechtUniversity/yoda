@@ -1,6 +1,12 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure Python pip is installed
+  package:
+    name: python-pip
+    state: present
+
+
 - name: Install passlib and dependencies
   pip:
     name: "{{ item }}"
