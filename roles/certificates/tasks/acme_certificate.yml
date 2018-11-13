@@ -1,0 +1,38 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Certbot for Let's Encrypt is installed
+  package:
+    name: python-certbot-apache
+    state: present
+
+
+- name: Check if certificate already exists
+  stat:
+    path: "/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem"
+  register: letsencrypt_fullchain
+
+
+- name: Generate certificate if it  doesn't exist yet
+  shell: "certbot certonly --standalone --noninteractive --agree-tos --email l.r.westerhof@uu.nl -d {{ yoda_portal_fqdn }}"
+  when: not letsencrypt_fullchain.stat.exists
+
+
+- name: Add cronjob for Certbot renewal
+  cron:
+    name: Certbot automatic renewal
+    job: "certbot renew --quiet --no-self-upgrade"
+    minute: 25
+    hour: 5
+
+
+- name: Ensure new certificate is used
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    remote_src: yes
+  with_items:
+    - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem'
+      dest: '/etc/pki/tls/certs/localhost_and_chain.crt'
+    - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/privkey.pem'
+      dest: '/etc/pki/tls/private/localhost.key'
