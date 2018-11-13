@@ -36,3 +36,4 @@
       dest: '/etc/pki/tls/certs/localhost_and_chain.crt'
     - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/privkey.pem'
       dest: '/etc/pki/tls/private/localhost.key'
+  when: not ansible_check_mode
