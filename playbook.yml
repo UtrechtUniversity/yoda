@@ -22,7 +22,8 @@
   hosts: portals
   become: yes
   roles:
-    - { role: certificates, tags: [ 'icat', 'database' ] }
+    - common
+    - certificates
     - apache
     - php
     - yoda-portal
@@ -37,6 +38,7 @@
   hosts: databases
   become: yes
   roles:
+    - common
     - postgresql
     - irods-database
   tags:
@@ -47,6 +49,8 @@
   hosts: icats
   become: yes
   roles:
+    - common
+    - certificates
     - irods-icat
     - irods-runtime
     - irods-microservices
@@ -59,6 +63,8 @@
   hosts: resources
   become: yes
   roles:
+    - common
+    - certificates
     - irods-resource
     - irods-runtime
     - irods-microservices
@@ -90,6 +96,9 @@
   hosts: publics
   become: yes
   roles:
+    - common
+    - certificates
+    - apache
     - yoda-moai
     - yoda-landingpages
     - yoda-public
@@ -101,6 +110,10 @@
   hosts: eus
   become: yes
   roles:
+    - common
+    - certificates
+    - apache
+    - php
     - yoda-external-user-service
   tags:
     - eus
