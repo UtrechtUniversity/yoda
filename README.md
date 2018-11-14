@@ -4,12 +4,12 @@ a system for reliable, long-term storing and archiving large amounts of research
 
 ## Requirements
 ### Control machine requirements
-* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.5)
-* [VirtualBox](https://www.virtualbox.org/manual/ch02.html) (>= 5.1)
-* [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 1.9)
+* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.6)
+* [VirtualBox](https://www.virtualbox.org/manual/ch02.html) (>= 5.2)
+* [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 2.2)
 
 ### Managed node requirements
-* [CentOS](https://www.centos.org/) (>= 7.3)
+* [CentOS](https://www.centos.org/) (>= 7.4)
 
 ## Deploying Yoda development instance
 There are two example instances available for deployment
