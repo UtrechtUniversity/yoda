@@ -21,23 +21,6 @@
   when: not ansible_check_mode
 
 
-- name: Configure EPIC in credentials store
-  irods_config:
-    path: '{{ credentials_store }}/store_config.json'
-    key: '{{ item.key }}'
-    value: '{{ item.value }}'
-  with_items:
-    - key: 'epic_url'
-      value: '{{ epic_url }}'
-    - key: 'epic_handle_prefix'
-      value: '{{ epic_handle_prefix }}'
-    - key: 'epic_key'
-      value: '{{ credentials_store }}/epic_key.pem'
-    - key: 'epic_certificate'
-      value: '{{ credentials_store }}/epic_cert.pem'
-  when: (epic_url != "PLACEHOLDER") and not ansible_check_mode
-
-
 - name: Ensure EPIC credentials are present in credentials store
   copy:
     src: '{{ item.src }}'
