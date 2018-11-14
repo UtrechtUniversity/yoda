@@ -9,3 +9,12 @@
     - yoda-test
   tags:
     - test
+
+- name: Provision eus with testdata
+  hosts: eus
+  become: yes
+  roles:
+    - yoda-test-users-eus
+  tags:
+    - eus
+

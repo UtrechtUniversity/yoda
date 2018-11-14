@@ -39,6 +39,7 @@ host3.yoda.test
 [yoda-portal]
 host1.yoda.test
 
+# leave this out when using an existing database for ICAT
 [yoda-database]
 host1.yoda.test
 
@@ -58,6 +59,7 @@ For example:
 [portals:children]
 yoda-portal
 
+# leave this out when using an existing database for ICAT
 [databases:children]
 yoda-database
 

@@ -8,6 +8,7 @@ irods_zone: tempZone                       # The name of the iRODS Zone
 # Test configuration.
 test_password: test
 
+# Following users are created by Ansible as iRODS and UNIX users.
 test_users:
   - name: researcher
     password: '{{ test_password }}'
@@ -39,12 +40,16 @@ test_users:
   - name: testuserdel
     password: '{{ test_password }}'
     type: rodsuser
-#  - name: yodaresearcher@gmail.com
-#    password: '{{ test_password }}'
-#    type: rodsuser
-#  - name: yodadatamanager@gmail.com
-#    password: '{{ test_password }}'
-#    type: rodsuser
+
+# Following users are created as iRODS users only.
+eus_test_users:
+  - name: yodaresearcher@gmail.com
+  - name: yodadatamanager@gmail.com
+
+# Following users are created in the regressiontest and need to be removed only.
+created_by_ta_users:
+  - name: createnewuser
+  - name: yodaexternaluser@gmail.com
 
 test_groups:
   - groupName: research-initial
@@ -151,46 +156,43 @@ test_groups:
     category: nodminitial
     subcategory: nodminitial
     dataClassification: unspecified
-    
 
   - groupName: research-placeholderpythonbug1
     category: placeholder
     subcategory: placeholder
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-placeholderpythonbug2
     category: placeholder
     subcategory: placeholder
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-placeholderpythonbug3
     category: placeholder
     subcategory: placeholder
-    dataClassification: unspecified 
+    dataClassification: unspecified
   - groupName: research-placeholderpythonbug4
     category: placeholder
     subcategory: placeholder
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-placeholderpythonbug5
     category: placeholder
     subcategory: placeholder
-    dataClassification: unspecified    
+    dataClassification: unspecified
   - groupName: research-placeholderpythonbug6
     category: placeholder
     subcategory: placeholder
-    dataClassification: unspecified 
+    dataClassification: unspecified
   - groupName: research-placeholderpythonbug7
     category: placeholder
     subcategory: placeholder
-    dataClassification: unspecified   
+    dataClassification: unspecified
   - groupName: research-placeholderpythonbug8
     category: placeholder
     subcategory: placeholder
-    dataClassification: unspecified   
+    dataClassification: unspecified
   - groupName: research-placeholderpythonbug9
     category: placeholder
     subcategory: placeholder
-    dataClassification: unspecified   
-
-
+    dataClassification: unspecified
 
 
 test_groupusers:
@@ -243,9 +245,9 @@ test_groupusers:
   - groupName: datamanager-initial
     user: datamanager
     role: normal
-#  - groupName: datamanager-initial
-#    user: yodadatamanager@gmail.com
-#    role: normal
+  - groupName: datamanager-initial
+    user: yodadatamanager@gmail.com
+    role: normal
 
   - groupName: research-deletegroup
     user: functionaladminpriv
@@ -349,9 +351,9 @@ test_groupusers:
   - groupName: research-notification
     user: groupmanager
     role: manager
-#  - groupName: research-notification
-#    user: yodaresearcher@gmail.com
-#    role: normal
+  - groupName: research-notification
+    user: yodaresearcher@gmail.com
+    role: normal
   - groupName: research-notification
     user: researcher
     role: normal

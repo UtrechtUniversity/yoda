@@ -99,6 +99,13 @@
   when: irods_config.stat.exists == false and not ansible_check_mode
 
 
+- name: Ensure connection to database is possible
+  wait_for:
+    host: "{{ irods_database_fqdn }}"
+    port: "{{ irods_database_port }}"
+    timeout: 30
+
+
 - name: Configure iRODS iCAT server
   become: yes
   shell: python /var/lib/irods/scripts/setup_irods.py
