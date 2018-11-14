@@ -87,7 +87,3 @@
     - '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
     - '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
   when: not ansible_check_mode
-
-
-- include_tasks: acme_certificate.yml
-  when: yoda_environment == "testing"

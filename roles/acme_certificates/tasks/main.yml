@@ -13,8 +13,22 @@
   register: letsencrypt_fullchain
 
 
+- name: Ensure Apache is stopped
+  service:
+    name: httpd
+    state: stopped
+  when: not letsencrypt_fullchain.stat.exists
+
+
 - name: Generate certificate if it  doesn't exist yet
   shell: "certbot certonly --standalone --noninteractive --agree-tos --email l.r.westerhof@uu.nl -d {{ yoda_portal_fqdn }}"
+  when: not letsencrypt_fullchain.stat.exists
+
+
+- name: Ensure Apache is started
+  service:
+    name: httpd
+    state: started
   when: not letsencrypt_fullchain.stat.exists
 
 

@@ -24,6 +24,7 @@
   roles:
     - common
     - certificates
+    - { role: acme_certificates, when: yoda_environment == "testing" }
     - apache
     - php
     - yoda-portal
@@ -39,6 +40,7 @@
   become: yes
   roles:
     - common
+    - certificates
     - postgresql
     - irods-database
   tags:
