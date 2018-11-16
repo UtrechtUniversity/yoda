@@ -77,6 +77,8 @@
 
 
 - name: Configure cronjob to process vault actions
+  become_user: "{{ irods_service_account }}"
+  become: yes
   cron:
     name: 'process-vault-status-transitions.r'
     minute: '*'
