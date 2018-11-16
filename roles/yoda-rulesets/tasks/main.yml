@@ -35,8 +35,6 @@
 
 
 - include_tasks: "{{ ruleset.name }}.yml"
-  become_user: "{{ irods_service_account }}"
-  become: yes
   with_items: "{{ rulesets }}"
   loop_control:
     loop_var: ruleset
