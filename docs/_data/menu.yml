@@ -3,3 +3,7 @@ main:
     subitems:
       - page: Installing Licenses
         url: /administration/installing-licenses.html
+  - title: Design
+    subitems:
+      - page: Revisions
+        url: /design/revisions.html
