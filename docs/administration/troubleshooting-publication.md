@@ -3,8 +3,7 @@
 When a publication stays in Approved status for an extended period of time (longer than cronjob interval) something probably went
 wrong. Here are some troubleshooting hints.
 
-First look at `job_process-vault-status-transitions.log` in `/var/lib/irods/iRODS/server/log`. It will list the output of the cronjob. Unless the irodsAgent segfaulted it should show a line of the status returned of the iiProcessPublication rule.
-
+First look for `iiProcessPublication` in `/var/lib/irods/iRODS/log/rodsLog`. It will show the processing of the publication.
 
 - When a publication succeeds it will return status OK.
 - When the publication process has caught an error, but has no recovery process it will return `Unrecoverable` as status.

@@ -1,7 +1,7 @@
 # Release notes Yoda version 1.3
 
 ## New features since Yoda version 1.2
-- Upgrade from iRODS 4.1.11 to 4.2.3
+- Upgrade from iRODS 4.1.11 to 4.2.4
 - Persistent identifier (EPIC-PID) for vault packages
 - Data folder is now unlocked after securing it in in the vault
 - CSV export in Statistics module for Yoda admin
