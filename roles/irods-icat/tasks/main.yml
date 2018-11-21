@@ -312,9 +312,9 @@
   file:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
-    mode: 0600
-    group: '{{ irods_service_account }}'
-    owner: '{{ irods_service_account }}'
+    mode: 0644
+    group: 'root'
+    owner: 'root'
     state: link
   with_items:
     - src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'

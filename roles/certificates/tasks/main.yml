@@ -81,7 +81,9 @@
 - name: Ensure certificate files have correct permissions
   file:
     path: '{{ item }}'
-    mode: 0600
+    mode: 0644
+    group: 'root'
+    owner: 'root'
     state: file
   with_items:
     - '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
