@@ -6,3 +6,5 @@ python_irodsclient:
   url: https://github.com/UtrechtUniversity/yoda-ansible/releases/download/1.0rc1
   filename: python-irodsclient-0.8.0_uu-1.noarch.rpm
   checksum: sha256:9a0fc8bd25a050252668d12846cd465117b4ce3b52053a810dd0777ba708ce0a
+
+repo_only: no  # Only download packages from repos.

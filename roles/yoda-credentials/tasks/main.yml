@@ -33,4 +33,19 @@
       dest: '{{ credentials_store }}/epic_key.pem'
     - src: '{{ credential_files }}/epic_cert.pem'
       dest: '{{ credentials_store }}/epic_cert.pem'
-  when: (credential_files != "PLACEHOLDER") and (epic_url != "PLACEHOLDER") and not ansible_check_mode
+  when: (credential_files != "PLACEHOLDER") and (epic_url != "PLACEHOLDER") and (epic_key == "PLACEHOLDER") and (epic_cert == "PLACEHOLDER") and not ansible_check_mode
+
+
+- name: Ensure EPIC credentials are present in credentials store
+  copy:
+    content: '{{ item.src | b64decode }}'
+    dest: '{{ item.dest }}'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0600
+  with_items:
+    - src: '{{ epic_key }}'
+      dest: '{{ credentials_store }}/epic_key.pem'
+    - src: '{{ epic_cert }}'
+      dest: '{{ credentials_store }}/epic_cert.pem'
+  when: (epic_url != "PLACEHOLDER") and (epic_key != "PLACEHOLDER") and (epic_cert != "PLACEHOLDER") and not ansible_check_mode

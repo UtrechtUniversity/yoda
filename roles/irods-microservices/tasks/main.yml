@@ -13,7 +13,7 @@
     url: "{{ item.item.value.url }}"
     dest: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
     checksum: "{{ item.item.value.checksum }}"
-  when: not item.results
+  when: not item.results and not repo_only
   with_items: "{{ irods_microservices_repo.results }}"
 
 
@@ -21,7 +21,7 @@
   yum:
     name: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
     state: present
-  when: not item.results and not ansible_check_mode
+  when: not item.results and not ansible_check_mode and not repo_only
   with_items: "{{ irods_microservices_repo.results }}"
 
 

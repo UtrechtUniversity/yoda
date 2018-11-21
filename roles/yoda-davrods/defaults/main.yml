@@ -33,3 +33,5 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
 openssl_dhparams: dhparams.pem
+
+repo_only: no  # Only download packages from repos.
