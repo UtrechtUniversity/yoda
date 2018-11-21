@@ -1,5 +1,5 @@
 # Yoda technical documentation
-In this repository you can find technical documentation on administration tasks, software design and release notes of Yoda.
+On this website you can find technical documentation on administration tasks, software design and release notes of Yoda.
 
 ## Release notes
 - [release 1.4](release-notes/release-1.4.md)
