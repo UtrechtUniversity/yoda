@@ -22,6 +22,14 @@
   register: repochanges
 
 
+- name: Remove temporary rule files left behind
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command:
+    /bin/rm -f /etc/irods/*.re.*
+  ignore_errors: true
+
+
 - name: Run make install for each ruleset
   become_user: "{{ irods_service_account }}"
   become: yes
