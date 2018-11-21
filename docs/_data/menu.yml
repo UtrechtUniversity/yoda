@@ -1,9 +1,7 @@
 main:
+  - title: Release notes
+    url: /release-notes/index.html
   - title: Administration
-    subitems:
-      - page: Installing Licenses
-        url: /administration/installing-licenses.html
-  - title: Design
-    subitems:
-      - page: Revisions
-        url: /design/revisions.html
+    url: /administration/index.html
+  - title: Software design
+    url: /design/index.html
