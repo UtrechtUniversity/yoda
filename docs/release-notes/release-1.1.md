@@ -1,4 +1,4 @@
-# Release notes Yoda version 1.1
+# Release notes Yoda version 1.1 (March 2018)
 
 ## New features since Yoda version 1.0
 - Update metadata of published packages in the vault

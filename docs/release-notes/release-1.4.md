@@ -1,4 +1,4 @@
-# Release notes Yoda version 1.4
+# Release notes Yoda version 1.4 (tba)
 
 ## New features since Yoda version 1.3
 - Support for external users through the External User Service

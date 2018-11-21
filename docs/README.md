@@ -3,14 +3,13 @@ On this website you can find release notes and technical documentation on admini
 
 ![Logo Yoda](yoda.png)
 
-
 ## Release notes
-- [release 1.4](release-notes/release-1.4.md)
-- [release 1.3](release-notes/release-1.3.md)
-- [release 1.2](release-notes/release-1.2.md)
-- [release 1.1](release-notes/release-1.1.md)
-- [release 1.0](release-notes/release-1.0.md)
-- [release 0.9.7](release-notes/release-0.9.7.md)
+- [release 1.4](release-notes/release-1.4.md) (tba)
+- [release 1.3](release-notes/release-1.3.md) (November 2018)
+- [release 1.2](release-notes/release-1.2.md) (May 2018)
+- [release 1.1](release-notes/release-1.1.md) (March 2018)
+- [release 1.0](release-notes/release-1.0.md) (November 2017)
+- [release 0.9.7](release-notes/release-0.9.7.md) (August 2017)
 
 ## Administration tasks
 - [Installing licenses](administration/installing-licenses.md)
