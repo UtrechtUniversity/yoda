@@ -1,0 +1,13 @@
+# Software design
+- [System overview](design/system-overview.md)
+- [State model](design/state-model.md)
+- [Asynchronous and privileged execution](design/async-system-execution.md)
+- [External user service](design/external-user-service.md)
+- [Group manager](design/group-manager.md)
+- [Locking mechanism](design/locking-mechanism.md)
+- [Metadata form](design/metadata-form.md)
+- [Publication process](design/publication-process.md)
+- [Python plugin](design/python-plugin.md)
+- [Statistics module](design/statistics.md)
+- [Revision management](design/revisions.md)
+- [Vault process](design/vault-process.md)
