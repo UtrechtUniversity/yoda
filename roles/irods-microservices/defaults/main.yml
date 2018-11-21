@@ -21,3 +21,5 @@ microservices:
 
 # iRODS configuration.
 irods_service_account: irods
+
+repo_only: no  # Only download packages from repos.

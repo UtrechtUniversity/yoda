@@ -21,14 +21,14 @@
     url: '{{ python_irodsclient.url }}/{{ python_irodsclient.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ python_irodsclient.filename }}'
     checksum: '{{ python_irodsclient.checksum }}'
-  when: not python_irodsclient_repo.results
+  when: not python_irodsclient_repo.results and not repo_only
 
 
 - name: Install python-irodsclient from downloaded rpm
   package:
     name: '{{ rpm_dest_dir }}/{{ python_irodsclient.filename }}'
     state: present
-  when: not python_irodsclient_repo.results and not ansible_check_mode
+  when: not python_irodsclient_repo.results and not ansible_check_mode and not repo_only
 
 
 - name: Ensure python-irodsclient is installed from repository
