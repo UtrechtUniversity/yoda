@@ -1,5 +1,8 @@
 # Yoda technical documentation
-On this website you can find technical documentation on administration tasks, software design and release notes of Yoda.
+On this website you can find release notes and technical documentation on administration tasks and software design of Yoda (Your data).
+
+![Logo Yoda](yoda.png)
+
 
 ## Release notes
 - [release 1.4](release-notes/release-1.4.md)
