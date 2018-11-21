@@ -18,9 +18,11 @@
 - All members of a group can view the groups storage consumption and trends using the statistics module
 
 ## Upgrading from 0.9.7
-- yoda-metadata.xsd is changed. Existing 0.9.7 metadata is not supported and need to be updated manually
+Upgrade is supported by Ansible (2.4.x). No migrations required.
+
+- yoda-metadata.xsd is changed. Existing 0.9.7 metadata is not supported and needs to be updated manually
 - publication functionality requires a datamanager group and datamanager user for a category and the datamanager group folder must exist
-- ansible can be used for deployment and updates
+- Ansible can be used for deployment and updates
 - terms and agreement text files (html) have to be installed by the administrator. The most recent file will be used
 - license files (e.g. CC-BY.txt), with the license text and uri files (e.g. "https://creativecommons.org/licenses/by/4.0/legalcode" have to be installed by the administrator
 - default XSD, schema-for-formelements.xsd, schema-for-xsd.xsd, XML, default.xsl, default2landingpage.xsl and default2datacite.xsl have to be installed by the administrator

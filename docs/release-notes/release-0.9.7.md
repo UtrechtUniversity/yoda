@@ -28,7 +28,6 @@ Run the following migration scripts as rodsadmin to enable new features:
 irule -F createSystemCollections.r "*enableRevisions=1"
 ```
 
-
 */etc/irods/irods-ruleset-uu/set-vault-permissions.r*
     This scripts makes the vault collections belonging to a research group
     visible and allows a datamanager to manage read-only access.

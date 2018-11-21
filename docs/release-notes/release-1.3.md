@@ -12,7 +12,8 @@
 - Several performance and security improvements
 
 ## Upgrading from Yoda version 1.2
-Upgrade is supported by Ansible. No migrations required.
+Upgrade is supported by Ansible (2.7.x). No migrations required.
+
 Make sure the delayed rule queue is empty before upgrading.
 Add the following fields to the Ansible environment files
 (see [yoda-ansible/CONFIGURATION.md](https://github.com/UtrechtUniversity/yoda-ansible/blob/development/CONFIGURATION.md) for description):
