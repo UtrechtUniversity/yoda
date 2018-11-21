@@ -56,3 +56,11 @@
     - yoda-zabbixagent
   tags:
     -
+
+- name: Provision external user service server with Zabbix agent
+  hosts: eus
+  become: yes
+  roles:
+    - yoda-zabbixagent
+  tags:
+    - eus
