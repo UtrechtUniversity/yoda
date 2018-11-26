@@ -7,30 +7,41 @@ Setting up a Yoda development environment is easy, you only need the following:
 On GNU/Linux or macOS you also need:
 * [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.7)
 
-The guide below will deploy an 'allinone' instance (all functional roles in one virtual machine) with the default [configuration](CONFIGURATION.md).
+The guide below will deploy an 'allinone' instance (all functional roles in one virtual machine) with the default configuration.
 
-1. Configure the virtual machines for development:
+1. Clone the yoda-ansible repository and checkout the development branch:
+```bash
+git clone https://github.com/UtrechtUniversity/yoda-ansible.git
+cd ~/yoda-ansible
+git checkout development
+```
+
+2. Configure the virtual machines for development:
 ```bash
 vagrant --instance=allinone up
 ```
 
-2. On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
+3. On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
 ```bash
 vagrant ssh controller
 cd ~/yoda-ansible
 ```
+On a GNU/Linux or macOS host make sure the SSH keys have the right permissions (skip this step on Windows):
+```bash
+chmod 0600 ~/yoda-ansible/vagrant/ssh/vagrant
+```
 
-3. Deploy Yoda to the virtual machines:
+4. Deploy Yoda to the virtual machines:
 ```bash
 ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
-4. Provision Yoda with test data:
+5. Provision Yoda with test data:
 ```bash
 ansible-playbook -i environments/development/allinone/ test.yml
 ```
 
-5. Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32\drivers\etc\hosts (Windows):
+6. Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32\drivers\etc\hosts (Windows):
 ```
 192.168.50.10 portal.yoda.test
 192.168.50.10 data.yoda.test
