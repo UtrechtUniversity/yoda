@@ -17,6 +17,8 @@ On this website you can find release notes and technical documentation on admini
 - [Installing terms](administration/installing-terms.md)
 - [Troubleshooting publication](administration/troubleshooting-publication.md)
 - [Restore collection](administration/restore-collection.md)
+
+## Development
 - [Setting up development environment](administration/setting-up-development-environment.md)
 
 ## Software design
