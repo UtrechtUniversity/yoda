@@ -19,7 +19,8 @@ On this website you can find release notes and technical documentation on admini
 - [Restore collection](administration/restore-collection.md)
 
 ## Development
-- [Setting up development environment](administration/setting-up-development-environment.md)
+- [Setting up development environment](development/setting-up-development-environment.md)
+- [Development environment test users and data](development/development-test-data.md)
 
 ## Software design
 - [System overview](design/system-overview.md)

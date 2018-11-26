@@ -36,7 +36,7 @@ chmod 0600 ~/yoda-ansible/vagrant/ssh/vagrant
 ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
-5. Provision Yoda with test data:
+5. Provision Yoda with [test data](development-test-data.md):
 ```bash
 ansible-playbook -i environments/development/allinone/ test.yml
 ```
