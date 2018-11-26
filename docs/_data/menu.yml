@@ -3,5 +3,7 @@ main:
     url: /release-notes/index.html
   - title: Administration
     url: /administration/index.html
+  - title: Development
+    url: /development/index.html
   - title: Software design
     url: /design/index.html
