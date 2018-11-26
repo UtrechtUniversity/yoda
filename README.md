@@ -12,7 +12,7 @@ a system for reliable, long-term storing and archiving large amounts of research
 * [CentOS](https://www.centos.org/) (>= 7.3)
 
 ## Documentation
-* [Setting up development environment](https://utrechtuniversity.github.io/yoda-docs/administration/setting-up-development-environment.html)
+* [Setting up development environment](https://utrechtuniversity.github.io/yoda-docs/development/setting-up-development-environment.html)
 * [design overview of the Ansible scripts](DESIGN.md).
 * [configuration of Yoda](CONFIGURATION.md)
 * [deployment of Yoda](DEPLOYMENT.md)
