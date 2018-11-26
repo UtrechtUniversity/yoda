@@ -47,6 +47,7 @@ ansible-playbook -i environments/development/allinone/ test.yml
 192.168.50.10 data.yoda.test
 192.168.50.10 public.data.yoda.test
 192.168.50.10 public.yoda.test
+192.168.50.10 eus.yoda.test
 ```
 
 ## Upgrading your Yoda development environment
