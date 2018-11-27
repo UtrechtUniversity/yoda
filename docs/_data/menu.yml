@@ -7,6 +7,21 @@ main:
     url: /development/index.html
   - title: Software design
     url: /design/index.html
+
+releases-notes:
+  - title: Release 1.4
+    url: /release-notes/release-1.4.html
+  - title: Release 1.3
+    url: /release-notes/release-1.3.html
+  - title: Release 1.2
+    url: /release-notes/release-1.2.html
+  - title: Release 1.1
+    url: /release-notes/release-1.1.html
+  - title: Release 1.0
+    url: /release-notes/release-1.0.html
+  - title: Release 0.9.7
+    url: /release-notes/release-0.9.7.html
+
 administration:
   - page: Installing Licenses
     url: /administration/installing-licenses.html
@@ -18,11 +33,13 @@ administration:
     url: /administration/troubleshooting-publication.html
   - page: Restore collection
     url: /administration/restore-collection.html
+
 development:
   - page: Setting up development environment
     url: /development/setting-up-development-environment.html
   - page: Development environment test users and data
     url: /development/development-test-data.html
+
 design:
   - page: System overview
     url: /design/system-overview.html
