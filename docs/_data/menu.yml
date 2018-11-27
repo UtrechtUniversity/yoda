@@ -8,7 +8,7 @@ main:
   - title: Software design
     url: /design/index.html
 
-releases-notes:
+release-notes:
   - title: Release 1.4
     url: /release-notes/release-1.4.html
   - title: Release 1.3
