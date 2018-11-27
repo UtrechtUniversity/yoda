@@ -22,10 +22,10 @@ portal_sources:
     version: "{{ codeigniter_version }}"
   - repo: "https://github.com/UtrechtUniversity/irods-php.git"
     dest: /var/www/yoda/irods-php
-    version: "feature/php7"
+    version: "{{ yoda_version }}"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: /var/www/yoda/yoda-portal
-    version: "feature/php7"
+    version: "{{ yoda_version }}"
 
 # Yoda modules
 modules:
