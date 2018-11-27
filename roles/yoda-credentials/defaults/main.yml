@@ -22,6 +22,8 @@ datacite_password: PLACEHOLDER          # DataCite password
 
 epic_url: PLACEHOLDER                   # EPIC PID server URL
 epic_handle_prefix: PLACEHOLDER         # EPIC PID handle prefix
+epic_key: PLACEHOLDER			# inline EPIC key (optional)
+epic_cert: PLACEHOLDER			# inline EPIC cert (optional)
 
 yoda_eus_fqdn: eus.yoda.test            # External User Service FQDN
 yoda_eus_port: 8443                     # External User Service port
