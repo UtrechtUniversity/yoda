@@ -7,3 +7,44 @@ main:
     url: /development/index.html
   - title: Software design
     url: /design/index.html
+administration:
+  - page: Installing Licenses
+    url: /administration/installing-licenses.html
+  - page: Installing metadata schemas
+    url: /administration/installing-metadata-schemas.html
+  - page: Installing terms
+    url: /administration/installing-terms.html
+  - page: Troubleshooting publication
+    url: /administration/troubleshooting-publication.html
+  - page: Restore collection
+    url: /administration/restore-collection.html
+development:
+  - page: Setting up development environment
+    url: /development/setting-up-development-environment.html
+  - page: Development environment test users and data
+    url: /development/development-test-data.html
+design:
+  - page: System overview
+    url: /design/system-overview.html
+  - page: State model
+    url: /design/state-model.html
+  - page: Asynchronous and privileged execution
+    url: /design/async-system-execution.html
+  - page: External user service
+    url: /design/external-user-service.html
+  - page: Group manager
+    url: /design/group-manager.html
+  - page: Locking mechanism
+    url: /design/locking-mechanism.html
+  - page: Metadata form
+    url: /design/metadata-form.html
+  - page: Publication process
+    url: /design/publication-process.html
+  - page: Python plugin
+    url: /design/python-plugin.html
+  - page: Statistics module
+    url: /design/statistics.html
+  - page: Revision management
+    url: /design/revisions.html
+  - page: Vault process
+    url: /design/vault-process.html
