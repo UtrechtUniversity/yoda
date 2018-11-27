@@ -22,3 +22,4 @@ Add the following fields to the Ansible environment files
 - eus_smtp_from_address
 - eus_smtp_replyto_address
 - eus_mail_template
+- repo_only (optional)
