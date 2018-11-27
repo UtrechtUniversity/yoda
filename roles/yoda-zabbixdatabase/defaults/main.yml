@@ -21,3 +21,5 @@ zabbix_database_name: ICAT
 zabbix_database_user: zabbix
 
 zabbix_server: 192.168.50.20
+
+repo_only: no  # Only download packages from repos.

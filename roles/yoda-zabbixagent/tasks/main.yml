@@ -12,14 +12,14 @@
     url: '{{ zabbix_agent.url }}/{{ zabbix_agent.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
     checksum: '{{ zabbix_agent.checksum }}'
-  when: not zabbix_agent_repo.results
+  when: not zabbix_agent_repo.results and not repo_only
 
 
 - name: Install Zabbix agent from downloaded rpm
   package:
     name: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
     state: present
-  when: not zabbix_agent_repo.results
+  when: not zabbix_agent_repo.results and not repo_only
 
 
 - name: Ensure Zabbix agent rpm is installed

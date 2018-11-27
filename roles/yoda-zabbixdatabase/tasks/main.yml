@@ -12,7 +12,7 @@
     url: '{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
     checksum: '{{ zabbix_postgres.checksum }}'
-  when: not zabbix_postgres_repo.results
+  when: not zabbix_postgres_repo.results and not repo_only
   notify: Restart Zabbix agent
 
 
@@ -20,7 +20,7 @@
   package:
     name: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
     state: present
-  when: not zabbix_postgres_repo.results
+  when: not zabbix_postgres_repo.results and not repo_only
 
 
 - name: Ensure Zabbix PostgreSQL monitoring RPM is installed

@@ -9,6 +9,7 @@
   - boost
   - jansson
 
+
 - name: Check if davrods is installable from repository
   yum:
     list: '{{ davrods.package }}'
@@ -20,14 +21,14 @@
     url: '{{ davrods.url }}/{{ davrods.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     checksum: '{{ davrods.checksum }}'
-  when: not davrods_repo.results
+  when: not davrods_repo.results and not repo_only
 
 
 - name: Install davrods from downloaded rpm
   package:
     name: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     state: present
-  when: not davrods_repo.results and not ansible_check_mode
+  when: not davrods_repo.results and not ansible_check_mode and not repo_only
 
 
 - name: Ensure davrods rpm is installed

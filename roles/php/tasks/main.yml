@@ -1,14 +1,31 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure PHP is installed
+- name: Add repository for PHP 7.2
+  yum: 
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: present
+
+
+- name: Enable repository for PHP 7.2
+  yum_repository:
+    name: remi-php72
+    description: Remi's PHP 7.2 RPM repository for Enterprise Linux 7
+    mirrorlist: http://rpms.remirepo.net/enterprise/7/php72/mirror
+    enabled: yes
+    gpgcheck: 1
+    gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+
+
+- name: Ensure PHP packages are installed
   package:
     name: '{{ item }}'
-    state: present
+    state: latest
   with_items:
   - php
+  - php-cli
   - php-xml
-  - php-mcrypt
+  - php-pecl-mcrypt
   notify: Restart Apache webserver
 
 

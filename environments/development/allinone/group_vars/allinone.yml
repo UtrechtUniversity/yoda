@@ -178,7 +178,7 @@ datacite_prefix: 10.5072                # DataCite DOI prefix
 #########################
 # EPIC PID Configuration
 #########################
-epic_url: PLACEHOLDER              # EPIC PID server URI
+epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
 epic_handle_prefix: PLACEHOLDER    # EPIC PID prefix
 
 ###########################
