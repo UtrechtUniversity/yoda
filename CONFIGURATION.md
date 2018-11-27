@@ -154,11 +154,13 @@ datacite_password            | DataCite password                                
 datacite_prefix              | DataCite DOI prefix                                                     |
 datacite_server              | DataCite server URI                                                     |
 
-# EPIC PID Configuration
+### EPIC PID Configuration
 Variable                     | Description                                                             |
 -----------------------------|-------------------------------------------------------------------------|
 epic_url                     | EPIC PID server URI (undefined disables EPIC PID)                       |
 epic_handle_prefix           | EPIC PID prefix                                                         |
+epic_key                     | EPIC PID key (base64 encoded)                                           |
+epic_cert                    | EPIC PID cert (base64 encoded)                                          |
 
 ### PAM Radius configuration
 Variable                     | Description                                                             |
