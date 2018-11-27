@@ -9,17 +9,17 @@ main:
     url: /design/index.html
 
 release-notes:
-  - title: Release 1.4
+  - page: Release 1.4
     url: /release-notes/release-1.4.html
-  - title: Release 1.3
+  - page: Release 1.3
     url: /release-notes/release-1.3.html
-  - title: Release 1.2
+  - page: Release 1.2
     url: /release-notes/release-1.2.html
-  - title: Release 1.1
+  - page: Release 1.1
     url: /release-notes/release-1.1.html
-  - title: Release 1.0
+  - page: Release 1.0
     url: /release-notes/release-1.0.html
-  - title: Release 0.9.7
+  - page: Release 0.9.7
     url: /release-notes/release-0.9.7.html
 
 administration:
