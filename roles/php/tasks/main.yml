@@ -26,6 +26,7 @@
   - php-cli
   - php-xml
   - php-pecl-mcrypt
+  when: not ansible_check_mode
   notify: Restart Apache webserver
 
 
