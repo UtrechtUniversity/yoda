@@ -28,7 +28,7 @@ modules:
   - name: research
     repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
-    version: "feature/php7"
+    version: "{{ yoda_version }}"
   - name: statistics
     repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
@@ -36,7 +36,7 @@ modules:
   - name: intake
     repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
     dest: /var/www/yoda/yoda-portal/modules/intake
-    version: "feature/php7"
+    version: "{{ yoda_version }}"
 
 ######################
 # iRODS configuration
