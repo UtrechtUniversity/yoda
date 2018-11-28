@@ -29,9 +29,6 @@ create a password and activate their account.
 The link must be invalidated either after activation, or if the external
 user does not create a password within 5 days.
 
-> *NOTE: How cleanup of unactivated external user accounts should work
-> is not yet decided.*
-
 ### Authenticating an external user
 An external user must be able to authenticate themselves via any
 available iRODS interface that offers PAM login.
