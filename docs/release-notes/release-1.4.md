@@ -1,6 +1,7 @@
 # Release notes Yoda version 1.4 (tba)
 
 Version: 1.4
+
 Released: tba
 
 ## New features since Yoda version 1.3

@@ -1,6 +1,7 @@
 # Release notes Yoda version 0.9.7 (August 2017)
 
 Version: 0.9.7
+
 Released: August 2017
 
 ## New features
