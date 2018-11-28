@@ -123,21 +123,22 @@
   when: not ansible_check_mode
 
 
-- name: Ensure core Python rules template is present
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    src: "core.py.template"
-    dest: "/etc/irods/core.py"
-    mode: 0644
-
-
 - name: Ensure core Python rules are present
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:
     src: "core.py.template"
     dest: "/etc/irods/core.py"
+    mode: 0644
+    force: no
+
+
+- name: Ensure Python UU rules exist
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    content: ""
+    dest: "/etc/irods/rules_uu.py"
     mode: 0644
 
 
