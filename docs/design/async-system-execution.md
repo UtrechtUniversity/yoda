@@ -1,4 +1,5 @@
 # Asynchronous and Privileged Execution
+
 Yoda uses delayed- and remote rule execution.
 There are different reasons to apply these constructs, and different ways to use these.
 Currently there is a bug in iRods whereby output parameters are not passed to delayed- or remote rules.
@@ -47,8 +48,7 @@ The table below describes the ideal application of the above constructs. For now
 * Create state model for updating metadata.
 
 
-
-# Appendix: Overview of rules and solutions
+## Appendix: Overview of rules and solutions
 
 The image below shows the state model, and indicates the actions that require asynchronous execution and/or privileges. The table below described the individual actions.
 ![Actions in State Model](./img/ExecutionInStateModel.png)
@@ -80,7 +80,7 @@ The image below shows the state model, and indicates the actions that require as
 | 11b | Update Vault Metadata (execution) | sync | **system** |  | Create metadata updates and trigger publication actions |
 | 11c | Update Vault Metadata (publishing)| **async** | **system** | | Update/register DOI, PMH, etc.|
 
-Note that all  actions that require async/system execution are preceded by a synchronous user action that registers the action, and triggers the async/system action: 1, 2, 3, 4, , 6, 7, 8. **Overweeg deze regels weg te laten!**
+Note that all  actions that require async/system execution are preceded by a synchronous user action that registers the action, and triggers the async/system action: 1, 2, 3, 4, , 6, 7, 8.
 
 Actions are registered(in principle) in iCat, in provenance (user actions) and in system log.
-Registration in system log not always consequently...
+Registration in system log not always consequently.
