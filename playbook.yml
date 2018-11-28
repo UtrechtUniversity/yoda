@@ -19,7 +19,7 @@
 
     - fail:
         msg: "Make sure your yoda-ansible repository is on branch {{ yoda_version}}. (git checkout {{ yoda_version }})"
-      when: "yoda_version not in git_branch.stdout"
+      when: yoda_version not in git_branch.stdout and yoda_environment != "development"
 
 
 - name: Add hosts entries to development instances
