@@ -1,5 +1,8 @@
 # Release notes Yoda version 1.4 (tba)
 
+Version: 1.4
+Released: tba
+
 ## New features since Yoda version 1.3
 - Support for external users through the External User Service
 - Data package access rights published to DataCite and OAI-PMH

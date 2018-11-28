@@ -1,5 +1,8 @@
 # Release notes Yoda version 1.0 (November 2017)
 
+Version: 1.0
+Released: November 2017
+
 ## New features since Yoda version 0.9.7
 - Researchers can submit a datapackage in the vault for publication after confirming the terms and agreements
 - Datamanagers can approve the submit for publication

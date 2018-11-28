@@ -1,5 +1,8 @@
 # Release notes Yoda version 1.3 (November 2018)
 
+Version: 1.3
+Released: November 2018
+
 ## New features since Yoda version 1.2
 - Upgrade from iRODS 4.1.11 to 4.2.4
 - Persistent identifier (EPIC-PID) for vault packages
