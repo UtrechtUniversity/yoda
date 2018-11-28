@@ -255,7 +255,8 @@ Validation will take place against the community XSD. If this does not exists, v
 ![OVerview MOAI-CKAN](img/to_vault.png)
 
 The XSD is a transformation of the JSON schema's that are maintained by the YoDa development team.   
-The YoDa team wrote a program to be able to do so. The documentation of this conversion tool can be found here: 
+The Yoda team wrote a program to be able to do so. 
+The documentation of this conversion tool can be found here:
 
 
 
@@ -270,8 +271,12 @@ Difference is that the newly added data is not actually overwriting the data in 
 The metadata form saves ithe older data in the vault in the corresponding folder but always with a unique name, based upon timestamps.  
 Thus safeguarding earlier or original metadata.
 
-## Example of complex structure including representation of multiple lead/subproperty structure and mutliple compound being part of the subproperties
+## Example of complex structure including representation of multiple lead/subproperty structure and mutliple compound being part of the subproperties  
+
 CONTRIBUTOR field  
+
+Internal PHP representation of contributor field as read from JSON schema.  
+The import and export functionality within the portal software use this structure to be able to determine 
 
 ```
  [type] = array
