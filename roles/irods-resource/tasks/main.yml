@@ -128,7 +128,7 @@
   become: yes
   copy:
     src: "core.py.template"
-    dest: "/etc/irods/core.py.template"
+    dest: "/etc/irods/core.py"
     mode: 0644
 
 
