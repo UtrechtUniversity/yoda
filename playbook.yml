@@ -10,6 +10,17 @@
         msg: >
           "You must update Ansible to at least 2.7 to deploy Yoda."
 
+    - name: Verify Yoda Ansible repository is on correct branch
+      local_action:
+        module: shell
+        _raw_params: git branch | grep \* | cut -d ' ' -f2
+      changed_when: False
+      register: git_branch
+
+    - fail:
+        msg: "Make sure your yoda-ansible repository is on branch {{ yoda_version}}. (git checkout {{ yoda_version }})"
+      when: "yoda_version not in git_branch.stdout"
+
 
 - name: Add hosts entries to development instances
   hosts: development
