@@ -4,7 +4,7 @@ a system for reliable, long-term storing and archiving large amounts of research
 
 ## Requirements
 ### Control machine requirements
-* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.5)
+* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.7)
 * [VirtualBox](https://www.virtualbox.org/manual/ch02.html) (>= 5.1)
 * [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 1.9)
 
