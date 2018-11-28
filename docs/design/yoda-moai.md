@@ -1,7 +1,7 @@
 # Provisioning CKAN CATALOGS #
 
 ## Overview
-![OVerview MOAI-CKAN](img/publication-flow.png)
+![OVerview MOAI-CKAN](img/moai-ckan.png)
 
 
 ## MOAI
@@ -69,7 +69,7 @@ A generic component that currently is used for catalog applications iLAB and EPO
 It allows for harvesting through the OAI-PMH standard.  
 CKANEXT-OAIPMH processes the harvested data that was collected at the endpoint within the harvest source.
 
-Driven by the parameters as stated in the CKAN **harvest source** that initiated the harvest process, CKANEXT-OAIPMH module can be configured to treat data differently corresponding to the active configration.
+Driven by the parameters as stated in the CKAN **harvest source** that initiated the harvest process, CKANEXT-OAIPMH module can be configured to treat data differently corresponding to the active configuration. Thus, supporting the possibility for totally different applications.  
 
 In our case this component handles two entirey different sources for entirely different applications:  
 1) EPOS, and  
@@ -105,12 +105,18 @@ Main differentation is the application. Currently EPOS and iLAB.
 # Application specific handling
 
 ## iLAB
-metadataPrefix = datacite  
+metadataPrefix = **datacite**  
 The organisation linked to the harvest source is added to each datapackage as being the owning organisation (owner_org: see further CKAN fields).
+
+Example ckan harvest source configuration:  
+{  
+&nbsp;&nbsp;"metadata_prefix": "datacite",  
+&nbsp;&nbsp;"application": "ILAB"  
+}
 
 
 ## EPOS
-metadataPrefix = ISO
+metadataPrefix = **ISO**
 
 *-Owner organisation is determined from within harvested data*  
 NO new organisations are added programmatically when processing the harvested data.  
@@ -122,16 +128,18 @@ Thus, organization ‘Other lab’ is an indicator of datapackages from unkown o
 
 
 
-*-Maintainer is hardcoded*  
-Currently, the maintainer is hardcoded in the source.  
-This as it was not clear how to actually get this dymanically.
+*-Maintainer is derived from harvest source organisation*  
+Similarly like in iLAB the harvest source organisation is used.
+For iLAB the harvest source organisation is used as owner organisation of a datapackage.
+FOr EPOS however, the harvest source organisation is used maintainer of the datapackage.
+Consequence of this is that maintainer organisations need to be added to CKAN as organisations. Otherwise, it is not possible to add the organisation to a harvest source. And consequently use it as maintainer regarding the harvested datapackage.
 
-        self.package_dict['maintainer'] = 'GFZ Potzdam'
-        self.package_dict['maintainer_email'] = 'info@gfz.de'
+        self.package_dict['maintainer'] = harvest_source.organisation
+        self.package_dict['maintainer_email'] = harvest_source.organisation.email
 
 
 
-*-Special 'package reference' handling *  
+*-Specific EPOS 'package reference' handling *  
 Within the EPOS application there are 3 types of references regarding a package:
 
 -supplement to  
@@ -148,6 +156,40 @@ Example:
 http://dataservices.gfz-potsdam.de/getcitationinfo.php?doi=http://dx.doi.org/10.1007/s11214-010-9693-4
 
 Based upon the received citation info, the CKAN package can be filled with more elaborate information.
+
+This extra provisioning was deliberately created for EPOS handling - GFZ specifically.
+In order run this functionality, it must be added to the corresponding harvest source configuration.
+
+
+example configuration for harvest source where extra information will be recovered for citations.
+
+{  
+&nbsp;&nbsp;&nbsp;"metadata_prefix": "iso19139",  
+&nbsp;&nbsp;&nbsp;"application": "EPOS",  
+&nbsp;&nbsp;&nbsp;**"collect_extra_info_from_gfz"**:"http://dataservices.gfz-potsdam.de/getcitationinfo.php?doi=http://dx.doi.org/",  
+&nbsp;&nbsp;&nbsp;"set":"~P3E9c3ViamVjdCUzQSUyMm11bHRpLXNjYWxlK2xhYm9yYXRvcmllcyUyMg"  
+}
+
+when 'collect extra info' is left out, there will be not retrieval for this information and a simple list of doi's will be presented.
+
+
+
+*Email addresses for maintainers*   
+Organisations (labs in CKAN) that will be used as maintainers, will have to have an email address as well.   
+Within CKAN this can only be done by adding extra fields. It is not a standard field on organization level.  
+Therefore use extra fields on organization level:
+
+extras: [  
+&nbsp;{  
+  &nbsp;&nbsp;&nbsp;**value: "hdr@hdr.nl"**,  
+  &nbsp;&nbsp;&nbsp;state: "active",  
+  &nbsp;&nbsp;&nbsp;**key: "email"**,  
+  &nbsp;&nbsp;&nbsp;revision_id: "b2356692-7f95-475e-88d3-1390451ccec7",  
+  &nbsp;&nbsp;&nbsp;group_id: "7ad73491-aec5-4379-ae2c-44e03d05eaf4",  
+  &nbsp;&nbsp;&nbsp;id: "2426a9b8-bfa3-4790-b5f9-f78d0d3eb2ee"  
+&nbsp;}  
+]
+
 
 
 ## Standard CKAN fields

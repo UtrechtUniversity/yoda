@@ -270,8 +270,12 @@ Difference is that the newly added data is not actually overwriting the data in 
 The metadata form saves ithe older data in the vault in the corresponding folder but always with a unique name, based upon timestamps.  
 Thus safeguarding earlier or original metadata.
 
-## Example of complex structure including representation of multiple lead/subproperty structure and mutliple compound being part of the subproperties
+## Example of complex structure including representation of multiple lead/subproperty structure and mutliple compound being part of the subproperties  
+
 CONTRIBUTOR field  
+
+Internal PHP representation of contributor field as read from JSON schema.  
+The import and export functionality within the portal software use this structure to be able to determine 
 
 ```
  [type] = array
