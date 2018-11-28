@@ -5,32 +5,23 @@ The Yoda group-manager is a central tool for all Yoda implementations. The group
 The main goal of the group-manager is to enable the distribution of access rights to data within Yoda with minimal aid of the Yoda administrators. All data within Yoda belongs to a group within a community and access is granted by group membership and roles.
 
 ## Yoda roles
-normal
-> Has read and write access to the data of the group it belongs to. Most researchers will be assigned this role.
+***normal*** Has read and write access to the data of the group it belongs to. Most researchers will be assigned this role.
 
-reader
-> Has read access to the data. This role could be assigned to users with interest in the data like master students.
+***reader*** Has read access to the data. This role could be assigned to users with interest in the data like master students.
 
-groupmanager
+***groupmanager*** Can add users to a group and assign them roles. Every group should have at least one groupmanager. This role is typically assigned to a principal investigator.
 
-> Can add users to a group and assign them roles. Every group should have at least one groupmanager. This role is typically assigned to a principal investigator.
-
-
-datamanager
-> Has read access to data belonging to his/her community and the ability to manage archival process and metadata quality.
+***datamanager*** Has read access to data belonging to his/her community and the ability to manage archival process and metadata quality.
 
 
 ## Yoda workspaces
 Within a Yoda community multiple workspaces can be created of different types. They are prefixed to indicate this type. Every workspace is located in the `/{rodsZone}/home` collection. Davrods and the research browser have this location as start location.
 
-research
-> Collaboration workspace for a research group. No restrictions on the organization of data in folders. Metadata can be added to a folder. When all required metadata has been added a folder can be archived.
+***research*** Collaboration workspace for a research group. No restrictions on the organization of data in folders. Metadata can be added to a folder. When all required metadata has been added a folder can be archived.
 
-intake
-> A strict folder structure and filename structure is required to extract metadata and archive data in an intake workspace.
+***intake***A strict folder structure and filename structure is required to extract metadata and archive data in an intake workspace.
 
-grp
-> Legacy workspaces are prefixed with grp-. They were created before the development of research workspaces. The current group-manager will prohibit the creation of new grp groups, but supports managing existing ones.
+***grp*** Legacy workspaces are prefixed with grp-. They were created before the development of research workspaces. The current group-manager will prohibit the creation of new grp groups, but supports managing existing ones.
 
 
 ## Category and subcategories
@@ -70,17 +61,13 @@ A *datamanager* is not a member of a group belonging to a workspace. Instead a s
 ## iRODS ruleset
 The following files in the irods-ruleset-uu support the groupmanager.
 
-uuSudoPolicies
-> Set of policies for every sudo action. Every action is denied by default.
+***uuSudoPolicies*** Set of policies for every sudo action. Every action is denied by default.
 
-uuGroupPolicies
-> Policies specific for actions related to the group manager. They have been specified seperately so the rules in uuSudoPolicies can be kept as simple as possible
+***uuGroupPolicies*** Policies specific for actions related to the group manager. They have been specified seperately so the rules in uuSudoPolicies can be kept as simple as possible
 
-uuGroupPolicyChecks
-> Can be used by the portal and by rules. Queries related to policies
+***uuGroupPolicyChecks*** Can be used by the portal and by rules. Queries related to policies
 
-uuGroup
-> Can be used by the portal and by policies. It contains the queries used directly by th Group Manager. Policies should not be used directly by the group manager.
+***uuGroup*** Can be used by the portal and by policies. It contains the queries used directly by th Group Manager. Policies should not be used directly by the group manager.
 
 The files represent layers when calling functions.
 
@@ -88,10 +75,8 @@ uuSudoPolicies -> uuGroupPolicies -> uuGroupPolicyChecks -> uuGroup
 
 uuGroup (Group manager portal functions) -> uuGroupPolicyChecks
 
-
 ## Users and groups
 Users and groups are in same namespace, so checks are in place to prevent creating a group with the same name as a user.
-
 
 ## Vault
 The vault group has only rods as member. the base group should get read-only access. Removal of a vault group through the group-manager is impossible.
