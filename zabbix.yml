@@ -62,5 +62,6 @@
   become: yes
   roles:
     - yoda-zabbixagent
+    - yoda-zabbixdatabase
   tags:
     - eus
