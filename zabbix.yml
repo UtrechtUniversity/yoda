@@ -2,13 +2,27 @@
 # copyright Utrecht University
 # This playbook provisions Yoda instance with the Zabbix agent, PostgreSQL monitoring and Zabbix user access to the database.
 
-- hosts: all
+- hosts: localhost
+  gather_facts: False
   pre_tasks:
     - name: Verify Ansible version meets requirements
       assert:
-        that: "ansible_version.full is version_compare('2.4', '>=')"
+        that: "ansible_version.full is version('2.7', '>=')"
         msg: >
-          "You must update Ansible to at least 2.4 to deploy Yoda."
+          "You must update Ansible to at least 2.7 to deploy Yoda."
+
+
+- hosts: all
+  pre_tasks:
+    - name: Verify Yoda Ansible repository is on correct branch
+      shell: git branch | grep \* | cut -d ' ' -f2
+      register: git_branch
+      changed_when: False
+      delegate_to: localhost
+
+    - fail:
+        msg: "Make sure your yoda-ansible repository is on branch {{ yoda_version}}. (git checkout {{ yoda_version }})"
+      when: yoda_version not in git_branch.stdout and yoda_environment != "development"
 
 
 - name: Provision portal server with Zabbix agent
@@ -35,7 +49,8 @@
   become: yes
   roles:
     - yoda-zabbixagent
-    - yoda-zabbixdatabase
+    - role: yoda-zabbixdatabase
+      zabbix_database_name: "{{ irods_database_name }}"
   tags:
     - database
 
@@ -55,13 +70,15 @@
   roles:
     - yoda-zabbixagent
   tags:
-    -
+    - public
+
 
 - name: Provision external user service server with Zabbix agent
   hosts: eus
   become: yes
   roles:
     - yoda-zabbixagent
-    - yoda-zabbixdatabase
+    - role: yoda-zabbixdatabase
+      zabbix_database_name: "{{ eus_db_name }}"
   tags:
     - eus
