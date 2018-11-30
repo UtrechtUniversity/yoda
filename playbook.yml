@@ -15,11 +15,10 @@
 - hosts: all
   pre_tasks:
     - name: Verify Yoda Ansible repository is on correct branch
-      local_action:
-        module: shell
-        _raw_params: git branch | grep \* | cut -d ' ' -f2
-      changed_when: False
+      shell: git branch | grep \* | cut -d ' ' -f2
       register: git_branch
+      changed_when: False
+      delegate_to: localhost
 
     - fail:
         msg: "Make sure your yoda-ansible repository is on branch {{ yoda_version}}. (git checkout {{ yoda_version }})"
