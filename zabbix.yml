@@ -35,7 +35,8 @@
   become: yes
   roles:
     - yoda-zabbixagent
-    - yoda-zabbixdatabase
+    - role: yoda-zabbixdatabase
+      zabbix_database_name: "{{ irods_database_name }}"
   tags:
     - database
 
@@ -55,13 +56,15 @@
   roles:
     - yoda-zabbixagent
   tags:
-    -
+    - public
+
 
 - name: Provision external user service server with Zabbix agent
   hosts: eus
   become: yes
   roles:
     - yoda-zabbixagent
-    - yoda-zabbixdatabase
+    - role: yoda-zabbixdatabase
+      zabbix_database_name: "{{ eus_db_name }}"
   tags:
     - eus
