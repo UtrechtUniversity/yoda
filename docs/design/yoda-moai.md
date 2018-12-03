@@ -21,6 +21,21 @@ Any OAI-PMH harvester, able to ‘read’ datacite format, is able to harvest Yo
 *python -> yoda.py*  
 The  script reads all yoda-metadata.xml files that have been published and are placed in a specific folder. After processing it puts the found content into the MOAI SQLITE database.
 
+*Collection name as metadata for a dataset*  
+A collection name defines an umbrella for different datasets to belong togehter.
+It   
+By exposing collection names through MOAI, it us possible for a harvester to draw conclusions regarding datasets from the same data supplier about datasets that belong together.  
+Thus, multple datasets can setup a collection having the same 'purpose'.  
+The nature of this purpose can be defined by the researchers/datamanagers themselves.  
+
+In theory, equivalent collection names can exist over multiple YoDa instances.
+Even within the same YoDa instance.  
+No validation is performed by YoDa software itself.
+So there is nog formal safeguarding/protection of the content of collection name.  
+Harvesters should be (made) aware of that.  
+Initially they should combine collections endpoint/collection 
+
+
 select * from sets;  
 select * from records;
 
