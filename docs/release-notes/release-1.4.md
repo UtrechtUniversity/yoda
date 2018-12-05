@@ -17,6 +17,7 @@ Upgrade is supported by Ansible (2.7.x). No migrations required.
 Add the following fields to the Ansible environment files
 (see [yoda-ansible/CONFIGURATION.md](https://github.com/UtrechtUniversity/yoda-ansible/blob/development/CONFIGURATION.md) for description):
 - yoda_eus_fqdn
+- eus_api_fqdn
 - eus_api_secret
 - eus_db_password
 - eus_smtp_host
