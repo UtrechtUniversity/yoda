@@ -178,6 +178,8 @@ upload_pub_key               | Yoda public upload public key (base64 encoded)   
 Variable                     | Description                                                             |
 -----------------------------|-------------------------------------------------------------------------|
 yoda_eus_fqdn                | Yoda External User Service fully qualified domain name (FQDN)           |
+eus_api_fqdn                 | External User Service API fully qualified domain name (FQDN)            |
+eus_api_port                 | External User Service API port                                          |
 eus_api_secret               | External User Service API secret                                        |
 eus_db_password              | External User Service database password                                 |
 eus_smtp_host                | External User Service SMTP host                                         |
