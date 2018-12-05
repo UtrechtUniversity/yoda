@@ -208,6 +208,7 @@ upload_pub_key: |
 # External user service configuration
 ######################################
 yoda_eus_fqdn: eus.yoda.test
+eus_api_fqdn: api.eus.yoda.test
 eus_api_secret: PLACEHOLDER
 eus_db_password: PLACEHOLDER
 eus_smtp_host: PLACEHOLDER
