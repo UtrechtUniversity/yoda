@@ -67,7 +67,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine.vm.provision "shell",
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
       machine.vm.provision "shell",
-        inline: "sudo echo \"192.168.50.10 eus.yoda.test\" | sudo tee -a /etc/hosts"      
+        inline: "sudo echo \"192.168.50.10 api.eus.yoda.test\" | sudo tee -a /etc/hosts"
     end
   end
 
