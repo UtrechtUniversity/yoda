@@ -42,10 +42,10 @@
     SSLCertificateKeyFile   {{ openssl_private_dir }}/{{ openssl_key_signed }}
 </VirtualHost>
 
-Listen {{ yoda_eus_port }}
-<VirtualHost *:{{ yoda_eus_port }}>
+Listen {{ eus_api_port }}
+<VirtualHost *:{{ eus_api_port }}>
     DocumentRoot "/var/www/extuser/api"
-    ServerName {{ yoda_eus_fqdn }}
+    ServerName {{ eus_api_fqdn }}
     <Directory /var/www/extuser>
         AllowOverride All
         Require all granted

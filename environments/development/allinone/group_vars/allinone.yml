@@ -138,7 +138,7 @@ rulesets:
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "feature/split-eus"
     install_scripts: yes
   - name: core
     ruleset_name: core
@@ -221,6 +221,7 @@ upload_pub_key: |
 # External user service configuration
 ######################################
 yoda_eus_fqdn: eus.yoda.test
+eus_api_fqdn: api.eus.yoda.test
 eus_api_secret: PLACEHOLDER
 eus_db_password: PLACEHOLDER
 eus_smtp_host: PLACEHOLDER
