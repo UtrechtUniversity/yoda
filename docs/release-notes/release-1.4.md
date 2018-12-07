@@ -1,8 +1,8 @@
-# Release notes Yoda version 1.4 (tba)
+# Release notes Yoda version 1.4 (December 2018)
 
 Version: 1.4
 
-Released: tba
+Released: December 2018
 
 ## New features since Yoda version 1.3
 - Support for external users through the External User Service
