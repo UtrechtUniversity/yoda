@@ -117,6 +117,8 @@
 
 
 - name: Run Composer on Yoda Research module
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
   composer:
     command: install
     working_dir: /var/www/yoda/yoda-portal/modules/research
