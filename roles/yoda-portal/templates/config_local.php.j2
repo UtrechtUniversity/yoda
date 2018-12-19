@@ -1,10 +1,13 @@
 {% raw %}
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 // Yoda Portal configuration {{{
+{% if codeigniter_environment == 'development' %}
 error_reporting(E_ALL);
-// ini_set('display_errors', FALSE);
-// ini_set('log_errors', TRUE);
-// ini_set('error_log', APPPATH.'/logs/all_errors');
+ini_set('display_errors', TRUE);
+ini_set('log_errors', FALSE);
+{% else %}
+error_reporting(0);
+{% endif %}
 
 // NOTE: The encryption key must be set to a random value in config_local.php,
 //       like this:
