@@ -56,7 +56,7 @@ irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/irods-r
 ```
 
 If you want to install individual files without the script then you can use the iput command.
-If you install the files in a directory with the same name as the name of a category it will become the schema for that category and that category alone.
+If you install the files in a directory with the same name as the name of a category it will become the schema for that category and that category alone, when the category is created afterwards. Existing categories without a specific schema will still use the default schema.
 To update existing files use the force flag "-f".
 See the example below. Please replace `${RODSZONE}` with the current iRODS Zone and `${CATEGORY}` with the category you want to install.
 
