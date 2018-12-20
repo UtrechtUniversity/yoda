@@ -52,7 +52,7 @@ irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/irods-r
 
 Example invocation to install (or update) schema 'test' for category 'experimental':
 ```bash
-irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/irods-ruleset-research/tools/schemas/"' '*schema="test"' ' '*category="experimental"' '*update=1'
+irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/irods-ruleset-research/tools/schemas/"' '*schema="test"' '*category="experimental"' '*update=1'
 ```
 
 If you want to install individual files without the script then you can use the iput command.
