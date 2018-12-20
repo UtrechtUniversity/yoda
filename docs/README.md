@@ -2,6 +2,7 @@
 On this website you can find release notes and technical documentation on administration tasks and software design of Yoda (Your data).
 
 ## Release notes
+- [release 1.5](release-notes/release-1.5.md) (tba)
 - [release 1.4](release-notes/release-1.4.md) (December 2018)
 - [release 1.3](release-notes/release-1.3.md) (November 2018)
 - [release 1.2](release-notes/release-1.2.md) (May 2018)
