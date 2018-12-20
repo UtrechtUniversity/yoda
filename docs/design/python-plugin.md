@@ -45,6 +45,43 @@ Static python functions must be defined in core.py.  There are three different t
       return str1 + str2
   ```
 
+##  Simple code example roundtrip irods -> python -> irods ##
+
+  Essence of the example is that **rule_args** both serves as input and as output parameters
+
+  iRODS:
+  ```
+  # \brief Front end rule to retrieve XSD location
+  #
+  # \param[in]  folder        Path of the folder
+  # \param[out] schemaLocation Location of XSD
+  # \param[out] status        Status of the action
+  # \param[out] statusInfo    Information message when action was not successful
+
+  iiFrontGetSchemaLocation(*folder, *schemaLocation, *status, *statusInfo)
+  {
+          *status = "Success";
+          *statusInfo = "";
+
+          *schema = '';
+
+          iiRuleGetLocation(*folder, *schema); # it is not possible to directly use *schemaLocation here
+          writeLine('serverLog', 'schema: ' ++ *schema);
+
+          *schemaLocation =  *schema; # again, does not work when passing schemaLocation direcly in iiRuleGetLocation
+  }
+  ```
+
+  PYTHON:
+  ```
+  # \brief Nonsense function that returns 'enriched' text based on rule_args[0]
+  # rule_args serves both as input and output parametes
+
+  def iiRuleGetLocation(rule_args, callback, rei):
+      rule_args[1] = 'You passed  the  folder: ' + rule_args[0]
+
+```
+
 ## Calling python code
 
 Python functions can be called from iRODS rule language rules.
