@@ -101,6 +101,15 @@
   when: not ansible_check_mode
 
 
+- name: Ensure logs directory is present
+  file:
+    path: /var/www/yoda/yoda-portal/logs
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0711
+
+
 - name: Ensure .htaccess is configured
   copy:
     src: /var/www/yoda/yoda-portal/public/.htaccess.template-{{ codeigniter_environment }}
