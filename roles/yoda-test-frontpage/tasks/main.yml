@@ -1,0 +1,28 @@
+---
+# copyright Utrecht University
+
+- name: Ensure frontpage is present
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  copy:
+    src: 'static_frontpage.html'
+    dest: '/var/www/yoda/yoda-portal/public/static/static_frontpage.html'
+    mode: 0644
+  with_items:
+    - 'job_movetovault.r'
+
+
+- name: Ensure frontpage images are present
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  copy:
+    src: '{{ item }}'
+    dest: '/var/www/yoda/yoda-portal/public/static/img/{{ item }}'
+    mode: 0644
+  with_items:
+    - 'header_480.jpg'
+    - 'header_800.jpg'
+    - 'header_1200.jpg'
+    - 'header_1600.jpg'
+    
+ 

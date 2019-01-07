@@ -59,35 +59,34 @@
   notify: Restart Zabbix agent
 
 
+- name: Find Yoda Zabbix rules
+  find:
+    paths: /etc/zabbix/zabbix_agentd.d
+    patterns: "*.r"
+  register: yoda_zabbix_rules
+
+
 - name: Ensure right file ownership on Yoda Zabbix rules
   file:
-    path: "/etc/zabbix/zabbix_agentd.d/{{ item }}"
+    path: "{{ item.path }}"
     owner: irods
     group: irods
     mode: 0500
-  with_items:
-    - monitorDelayedRules.r
-    - monitorPublicationsPending.r
-    - listOrphanedGroups.r
+  with_items: "{{ yoda_zabbix_rules.files }}"
+
+
+- name: Find Yoda Zabbix scripts
+  find:
+    paths: /etc/zabbix/zabbix_agentd.d
+    patterns: "*.sh"
+  register: yoda_zabbix_scripts
 
 
 - name: Ensure right file ownership on Yoda Zabbix scripts
   file:
-    path: "//etc/zabbix/zabbix_agentd.d/{{ item }}"
+    path: "{{ item.path }}"
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items:
-    - externalUsersCount.sh
-    - internalUsersCount.sh
-    - irodsGroupsCount.sh
-    - monitorDelayedRules.sh
-    - monitorPublicationsPending.sh
-    - concurrentiRodsClientConnections.sh
-    - concurrentiRodsUsers.sh
-    - dailyRodslogErrors.sh
-    - hourlyRodslogErrors.sh
-    - monitorKilledProcesses.sh
-    - listOrphanedGroups.sh
-    - replicationErrors.sh
-    - testUserParam.sh
+  with_items: "{{ yoda_zabbix_scripts.files }}"
+

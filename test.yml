@@ -10,6 +10,14 @@
   tags:
     - test
 
+- name: Provision portal with test data
+  hosts: portals
+  become: yes
+  roles:
+    - yoda-test-frontpage
+  tags:
+    - portal
+
 - name: Provision eus with testdata
   hosts: eus
   become: yes
@@ -17,4 +25,3 @@
     - yoda-test-users-eus
   tags:
     - eus
-
