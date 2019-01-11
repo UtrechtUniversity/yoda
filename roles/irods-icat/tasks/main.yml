@@ -184,6 +184,16 @@
     force: no
 
 
+- name: Ensure Python research rules exist
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    content: ""
+    dest: "/etc/irods/rules_research.py"
+    mode: 0644
+    force: no
+
+
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes
