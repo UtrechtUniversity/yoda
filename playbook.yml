@@ -38,8 +38,8 @@
   roles:
     - common
     - certificates
-    - { role: acme_certificates, when: yoda_environment == "testing" }
     - apache
+    - { role: acme_certificates, when: yoda_environment == "testing" }
     - php
     - yoda-portal
     - irods-icommands
