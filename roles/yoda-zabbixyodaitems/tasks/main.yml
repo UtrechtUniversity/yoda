@@ -7,7 +7,7 @@
   git:
     repo: "https://github.com/UtrechtUniversity/yoda-zabbix.git"
     dest: "/etc/irods/yoda-zabbix/src"
-    version: "{{ yoda_version }}"
+    version: "{{ zabbix_version }}"
   register: zabbix_repo
 
 
