@@ -171,7 +171,6 @@
     src: "core.py.template"
     dest: "/etc/irods/core.py"
     mode: 0644
-    force: no
 
 
 - name: Ensure Python UU rules exist
