@@ -45,6 +45,7 @@
   become: yes
   roles:
     - yoda-zabbixagent
+    - yoda-zabbixyodaitems
   tags:
     - resource
 
