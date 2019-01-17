@@ -1,7 +1,6 @@
 ---
 # copyright Utrecht University
 
-yoda_version: development
 irods_service_account: irods
 
 # Temporary directory to store downloaded rpm files.
@@ -14,5 +13,6 @@ zabbix_agent:
   filename: zabbix-agent-3.4.7-1.el7.x86_64.rpm
   checksum: sha256:910e2f5e04272db67f556b3dd03fc445d4f7e29c7654faca2b926ed3838bb7c7
 
-
 zabbix_server: 192.168.50.20
+
+repo_only: no  # Only download packages from repos.
