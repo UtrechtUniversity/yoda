@@ -53,4 +53,5 @@ For publication purposes to DataCite an XML conforming to the DataCite Schema v4
 
 ### - avu.XSLT ##
 This XSLT is used to add  AVU representations within iCat equal to yoda-metadata.xml.
-This is used for search functionality eg.
+This is used for search functionality eg.  
+In order to make a clear distinction between user-entered data and system data, the user data is prefixed with 'usr_' when added as an AVU to iCat.
