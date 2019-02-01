@@ -91,7 +91,6 @@
     group: root
     mode: 0644
   notify: Restart Apache webserver
-  when: not /var/log/httpd/webdav_access.log.stat.exists
 
 
 - name: Copy webdav_anon_access.log if not exist
@@ -102,7 +101,6 @@
     group: root
     mode: 0644
   notify: Restart Apache webserver
-  when: not /var/log/httpd/webdav_anon_access.log.stat.exists
 
 
 - name: Allow Apache to execute iRODS network plugins

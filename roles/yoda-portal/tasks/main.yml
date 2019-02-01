@@ -133,7 +133,7 @@
     group: root
     mode: 0644
   notify: Restart Apache webserver
-  when: not /var/log/httpd/portal_access.stat.exists
+  when: not "/var/log/httpd/portal_access.log".stat.exists
 
 
 - name: Run Composer on Yoda Research module
