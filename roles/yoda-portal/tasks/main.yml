@@ -101,17 +101,6 @@
   when: not ansible_check_mode
 
 
-- name: Copy portal_access.log
-  template:
-    src: "portal_access.log"
-    dest: "/var/log/httpd/portal_access.log"
-    owner: root
-    group: root
-    mode: 0644
-  notify: Restart Apache webserver
-  when: not /var/log/httpd/portal_access.log.stat.exists
-
-
 - name: Ensure logs directory is present
   file:
     path: /var/www/yoda/yoda-portal/logs
@@ -136,11 +125,13 @@
   notify: Restart Apache webserver
 
 
-- name: Create portal_access.log if not exist
-  command: touch /var/log/httpd/portal_access.log
-  owner: root
-  group: root
-  mode: 0644
+- name: Copy portal_access.log if not exist
+  template:
+    src: "portal_access.log"
+    dest: "/var/log/httpd/portal_access.log"
+    owner: root
+    group: root
+    mode: 0644
   notify: Restart Apache webserver
   when: not /var/log/httpd/portal_access.stat.exists
 
