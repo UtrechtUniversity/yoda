@@ -101,6 +101,17 @@
   when: not ansible_check_mode
 
 
+- name: Copy portal_access.log
+  template:
+    src: "portal_access.log"
+    dest: "/var/log/httpd/portal_access.log"
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Apache webserver
+  when: not /var/log/httpd/portal_access.log.stat.exists
+
+
 - name: Ensure logs directory is present
   file:
     path: /var/www/yoda/yoda-portal/logs
@@ -124,6 +135,7 @@
     dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
   notify: Restart Apache webserver
 
+
 - name: Create portal_access.log if not exist
   command: touch /var/log/httpd/portal_access.log
   owner: root
@@ -131,6 +143,7 @@
   mode: 0644
   notify: Restart Apache webserver
   when: not /var/log/httpd/portal_access.stat.exists
+
 
 - name: Run Composer on Yoda Research module
   become_user: "{{ yoda_deployment_user }}"
