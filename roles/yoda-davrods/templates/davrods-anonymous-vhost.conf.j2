@@ -195,6 +195,12 @@ Listen {{ yoda_davrods_anonymous_port }}
     SSLHonorCipherOrder     on
     SSLCompression          off
 
+    # Logging of access to webdav
+    SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
+    SetEnvIf Request_URI "^/favicon\.ico$" dontlog
+    SetEnvIf Request_Method "^OPTIONS$" dontlog
+    CustomLog /var/log/httpd/webdav_anon_access.log common env=!dontlog
+
     # HSTS (mod_headers is required) (31536000 seconds = 1 year)
     Header always set Strict-Transport-Security "max-age=31536000"
 

@@ -83,6 +83,24 @@
   notify: Restart Apache webserver
 
 
+- name: Create webdav_access.log if not exist
+  command: touch /var/log/httpd/portal_access.log
+  owner: root
+  group: root
+  mode: 0644
+  notify: Restart Apache webserver
+  when: not /var/log/httpd/webdav_access.stat.exists
+
+
+- name: Create portal_access.log if not exist
+  command: touch /var/log/httpd/portal_access.log
+  owner: root
+  group: root
+  mode: 0644
+  notify: Restart Apache webserver
+  when: not /var/log/httpd/portal_access.stat.exists
+
+
 - name: Allow Apache to execute iRODS network plugins
   sefcontext:
     target: '{{ item }}'
