@@ -3,11 +3,10 @@
 
 - name: Ensure davrods prerequisites are installed
   package:
-    name: '{{ item }}'
+    name:
+      - boost
+      - jansson
     state: present
-  with_items:
-  - boost
-  - jansson
 
 
 - name: Check if davrods is installable from repository

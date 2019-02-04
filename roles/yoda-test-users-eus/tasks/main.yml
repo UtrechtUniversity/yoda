@@ -9,11 +9,10 @@
 
 - name: Install passlib and dependencies
   pip:
-    name: "{{ item }}"
+    name:
+      - bcrypt
+      - passlib
     state: latest
-  with_items:
-    - bcrypt
-    - passlib
 
 
 - name: Remove users of table user_zones

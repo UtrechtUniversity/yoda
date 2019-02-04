@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Add repository for PHP 7.2
-  yum: 
+  yum:
     name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
     state: present
 
@@ -19,13 +19,12 @@
 
 - name: Ensure PHP packages are installed
   package:
-    name: '{{ item }}'
+    name:
+      - php
+      - php-cli
+      - php-xml
+      - php-pecl-mcrypt
     state: latest
-  with_items:
-  - php
-  - php-cli
-  - php-xml
-  - php-pecl-mcrypt
   when: not ansible_check_mode
   notify: Restart Apache webserver
 

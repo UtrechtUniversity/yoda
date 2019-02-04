@@ -3,13 +3,12 @@
 
 - name: Ensure iRODS iCAT server, Python rule engine plugin and database plugin are present
   package:
-    name: '{{ item }}'
+    name:
+      - irods-server-4.2.4-1
+      - irods-runtime-4.2.4-1
+      - irods-database-plugin-postgres-4.2.4-1
+      - irods-rule-engine-plugin-python-4.2.4-1
     state: present
-  with_items:
-    - irods-server-4.2.4-1
-    - irods-runtime-4.2.4-1
-    - irods-database-plugin-postgres-4.2.4-1
-    - irods-rule-engine-plugin-python-4.2.4-1
   when: not ansible_check_mode
 
 

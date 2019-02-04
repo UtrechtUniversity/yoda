@@ -1,18 +1,12 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure PostgreSQL database is installed
+- name: Ensure PostgreSQL database and dependencies are installed
   package:
-    name: '{{ item }}'
-    state: present
-  with_items:
-    - postgresql-server
-    - postgresql-contrib
-
-
-- name: Ensure dependencies for Ansible PostgreSQL module are installed
-  package:
-    name: python-psycopg2
+    name:
+      - postgresql-server
+      - postgresql-contrib
+      - python-psycopg2
     state: present
 
 

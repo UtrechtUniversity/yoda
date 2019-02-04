@@ -3,14 +3,13 @@
 
 - name: Install Yoda External User Service dependencies
   package:
-    name: '{{ item }}'
+    name:
+      - php-pdo
+      - php-pgsql
+      - php-password-compat
+      - php-PHPMailer
+      - python-requests
     state: present
-  with_items:
-    - php-pdo
-    - php-pgsql
-    - php-password-compat
-    - php-PHPMailer
-    - python-requests
 
 
 - name: Ensure yodadeployment user exists
