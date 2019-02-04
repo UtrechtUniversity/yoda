@@ -84,9 +84,9 @@
 
 
 - name: check if webdav_access.log exists
-    stat:
-      path: "/var/log/httpd/webdav_access.log"
-    register: webdav_access
+  stat:
+    path: "/var/log/httpd/webdav_access.log"
+  register: webdav_access
 
 
 - name: Copy webdav_access.log if not exist
@@ -101,8 +101,8 @@
 
 
 - name: check if webdav_anon_access.log exists
-    stat:
-      path: "/var/log/httpd/webdav_anon_access.log"
+  stat:
+    path: "/var/log/httpd/webdav_anon_access.log"
   register: webdav_anon_access
 
 
