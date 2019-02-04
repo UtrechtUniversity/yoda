@@ -83,13 +83,13 @@
   notify: Restart Apache webserver
 
 
-- name: check if webdav_access.log exists
+- name: Check if webdav_access.log exists
   stat:
-    path: "/var/log/httpd/webdav_access.log"
-  register: webdav_access
+    path: /var/log/httpd/webdav_access.log
+  register: webdavlog
 
 
-- name: Copy webdav_access.log if not exist
+- name: Copy webdav_access.log if not exists
   template:
     src: "webdav_access.log"
     dest: "/var/log/httpd/webdav_access.log"
@@ -97,16 +97,16 @@
     group: root
     mode: 0644
   notify: Restart Apache webserver
-  when: webdav_access.stat.exists == false
+  when: webdavlog.stat.exists == false
 
 
-- name: check if webdav_anon_access.log exists
+- name: Check if webdav_anon_access.log exists
   stat:
-    path: "/var/log/httpd/webdav_anon_access.log"
-  register: webdav_anon_access
+    path: /var/log/httpd/webdav_anon_access.log
+  register: webdavanonlog
 
 
-- name: Copy webdav_anon_access.log if not exist
+- name: Copy webdav_anon_access.log if not exists
   template:
     src: "webdav_anon_access.log"
     dest: "/var/log/httpd/webdav_anon_access.log"
@@ -114,7 +114,7 @@
     group: root
     mode: 0644
   notify: Restart Apache webserver
-  when: webdav_anon_access.stat.exists == false
+  when: webdavanonlog.stat.exists != True
 
 
 - name: Allow Apache to execute iRODS network plugins
