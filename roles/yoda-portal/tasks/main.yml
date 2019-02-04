@@ -127,7 +127,7 @@
 
 - name: Check if portal_access.log exists
   stat:
-    path: "var/log/httpd/portal_access.log"
+    path: "/var/log/httpd/portal_access.log"
   register: portallog
 
 
