@@ -196,8 +196,6 @@ Listen {{ yoda_davrods_port }}
     SSLCompression          off
 
     # Logging of access to webdav
-    RemoteIPHeader X-Forwarded-For
-    LogFormat "%a %l %u %t \"%r\" %>s %b"
     SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
     SetEnvIf Request_URI "^/favicon\.ico$" dontlog
     SetEnvIf Request_Method "^OPTIONS$" dontlog
