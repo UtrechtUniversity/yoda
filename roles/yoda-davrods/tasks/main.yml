@@ -83,38 +83,18 @@
   notify: Restart Apache webserver
 
 
-- name: Check if webdav_access.log exists
-  stat:
-    path: "/var/log/httpd/webdav_access.log"
-  register: webdavlog
-
-
-- name: Copy webdav_access.log if not exists
-  template:
-    src: "webdav_access.log"
-    dest: "/var/log/httpd/webdav_access.log"
+- name: Ensure webdav logfiles exist
+  copy:
+    content: ""
+    dest: '{{ item }}'
+    mode: 0644
     owner: root
     group: root
-    mode: 0644
+    force: no
+  with_items:
+    -/var/log/httpd/webdav_access.log
+    -/var/log/httpd/webdav_anon_access.log
   notify: Restart Apache webserver
-  when: webdavlog.stat.exists == false
-
-
-- name: Check if webdav_anon_access.log exists
-  stat:
-    path: "/var/log/httpd/webdav_anon_access.log"
-  register: webdavanonlog
-
-
-- name: Copy webdav_anon_access.log if not exists
-  template:
-    src: "webdav_anon_access.log"
-    dest: "/var/log/httpd/webdav_anon_access.log"
-    owner: root
-    group: root
-    mode: 0644
-  notify: Restart Apache webserver
-  when: webdavanonlog.stat.exists != True
 
 
 - name: Allow Apache to execute iRODS network plugins

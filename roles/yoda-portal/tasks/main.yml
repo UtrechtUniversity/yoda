@@ -125,21 +125,15 @@
   notify: Restart Apache webserver
 
 
-- name: Check if portal_access.log exists
-  stat:
-    path: "/var/log/httpd/portal_access.log"
-  register: portallog
-
-
-- name: Copy portal_access.log if not exists
-  template:
-    src: "portal_access.log"
+- name: Ensure portal logfile exists
+  copy:
+    content: ""
     dest: "/var/log/httpd/portal_access.log"
+    mode: 0644
     owner: root
     group: root
-    mode: 0644
+    force: no
   notify: Restart Apache webserver
-  when: portallog.stat.exists != True
 
 
 - name: Run Composer on Yoda Research module
