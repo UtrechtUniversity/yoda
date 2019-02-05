@@ -91,8 +91,8 @@
     group: root
     force: no
   with_items:
-    -/var/log/httpd/webdav_access.log
-    -/var/log/httpd/webdav_anon_access.log
+    - /var/log/httpd/webdav_access.log
+    - /var/log/httpd/webdav_anon_access.log
   notify: Restart Apache webserver
 
 
