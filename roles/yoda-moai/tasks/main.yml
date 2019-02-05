@@ -3,14 +3,13 @@
 
 - name: Ensure Yoda MOAI prerequisites are installed
   package:
-    name: '{{ item }}'
+    name:
+      - python-pip
+      - python-virtualenv
+      - python-lxml
+      - python-sqlalchemy
+      - mod_wsgi    
     state: present
-  with_items:
-  - python-pip
-  - python-virtualenv
-  - python-lxml
-  - python-sqlalchemy
-  - mod_wsgi
 
 
 - name: Ensure Yoda MOAI user exists

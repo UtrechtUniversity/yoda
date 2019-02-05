@@ -3,12 +3,11 @@
 
 - name: Ensure iRODS resource server is installed
   package:
-    name: '{{ item }}'
+    name:
+      - irods-server-4.2.4-1
+      - irods-runtime-4.2.4-1
+      - irods-rule-engine-plugin-python-4.2.4-1
     state: present
-  with_items:
-    - irods-server-4.2.4-1
-    - irods-runtime-4.2.4-1
-    - irods-rule-engine-plugin-python-4.2.4-1
   when: not ansible_check_mode
 
 

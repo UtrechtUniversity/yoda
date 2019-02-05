@@ -3,11 +3,10 @@
 
 - name: Install python-irodsclient dependencies
   package:
-    name: '{{ item }}'
+    name:
+      - python-six
+      - python-prettytable
     state: present
-  with_items:
-    - python-six
-    - python-prettytable
 
 
 - name: Check if python-irodsclient is installable from repository

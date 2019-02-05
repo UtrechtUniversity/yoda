@@ -3,12 +3,11 @@
 
 - name: Ensure Apache webserver is installed
   package:
-    name: '{{ item }}'
+    name:
+      - httpd
+      - mod_ssl
+      - openssl
     state: present
-  with_items:
-  - httpd
-  - mod_ssl
-  - openssl
 
 
 - name: Allow public to ports for Apache in firewall
