@@ -112,6 +112,10 @@ test_groups:
     category: initial
     subcategory: initial
     dataClassification: unspecified
+  - groupName: research-notpreservable
+    category: initial
+    subcategory: initial
+    dataClassification: unspecified
   - groupName: research-oaipmh
     category: initial
     subcategory: initial
@@ -324,6 +328,22 @@ test_groupusers:
     user: viewer
     role: reader
 
+  - groupName: research-notpreservable
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-notpreservable
+    user: groupmanager
+    role: manager
+  - groupName: research-notpreservable
+    user: yodaresearcher@gmail.com
+    role: normal
+  - groupName: research-notpreservable
+    user: researcher
+    role: normal
+  - groupName: research-notpreservable
+    user: viewer
+    role: reader
+
   - groupName: research-oaipmh
     user: functionaladminpriv
     role: manager
@@ -449,6 +469,7 @@ deletion_research_groups:
   - research: mdtest
   - research: mdtestvault
   - research: notification
+  - research: notpreservable
   - research: oaipmh
   - research: process1
   - research: process2
