@@ -102,7 +102,19 @@
   shell:
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-notpreservable
   with_items:
+    - 'lorem.txt'
+    - 'SIPI_Jelly_Beans_4.1.07.tiff'
     - 'extension_not_preservable.123'
+
+
+- name: Ensure Yoda test files are present in Yoda directory research-notpreservable/testdata
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell:
+    iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-notpreservable/testdata
+  with_items:
+    - 'lorem.txt'
+    - 'SIPI_Jelly_Beans_4.1.07.tiff'
     - 'extension_not_preservable.456'
 
 
