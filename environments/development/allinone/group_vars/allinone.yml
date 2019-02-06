@@ -28,7 +28,7 @@ modules:
   - name: research
     repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
-    version: "{{ yoda_version }}"
+    version: "feature/roy-transform-metadata"
   - name: statistics
     repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
@@ -128,7 +128,7 @@ rulesets:
   - name: irods-ruleset-research
     repo: https://github.com/UtrechtUniversity/irods-ruleset-research.git
     ruleset_name: rules-research
-    version: "{{ yoda_version }}"
+    version: "feature/roy-xml-version-transformation"
     install_scripts: yes
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git

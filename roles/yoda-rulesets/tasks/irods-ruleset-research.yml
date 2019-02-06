@@ -23,6 +23,7 @@
   command: >
     irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
+    '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
     '*schema="{{ default_yoda_schema }}"'
     '*category="default"'
     '*update={{ update_schemas }}'
