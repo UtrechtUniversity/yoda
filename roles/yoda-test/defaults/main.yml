@@ -140,6 +140,10 @@ test_groups:
     category: initial
     subcategory: initial
     dataClassification: unspecified
+  - groupName: research-datarequest
+    category: initial
+    subcategory: initial
+    dataClassification: unspecified
   - groupName: research-teststatistics1
     category: teststatistics
     subcategory: teststatistics
@@ -156,7 +160,6 @@ test_groups:
     category: nodminitial
     subcategory: nodminitial
     dataClassification: unspecified
-
 
 test_groupusers:
   - groupName: priv-category-add
@@ -439,6 +442,16 @@ test_groupusers:
   - groupName: research-nodmprocess
     user: viewer
     role: reader
+
+  - groupName: research-datarequest
+    user: datamanager
+    role: reader
+  - groupName: research-datarequest
+    user: groupmanager
+    role: manager
+  - groupName: research-datarequest
+    user: researcher
+    role: normal
 
 deletion_research_groups:
   - research: deletegroup
