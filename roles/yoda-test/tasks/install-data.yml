@@ -64,6 +64,22 @@
   ignore_errors: true
 
 
+- name: Ensure Yoda test data directory research-mdtest/transformation is present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/home/research-mdtest/transformation
+  ignore_errors: true
+
+
+- name: Ensure Yoda test data directory research-mdtest/invalidmetadata is present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/home/research-mdtest/invalidmetadata
+  ignore_errors: true
+
+
 - name: Ensure Yoda test data directory research-notpreservable/testdata is present in Yoda
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -90,8 +106,6 @@
   with_items:
     - 'lorem.txt'
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
-    - 'extension_not_preservable.123'
-    - 'extension_not_preservable.456'
 
 
 - name: Ensure Yoda test files are present in Yoda directory research-initial/testdata
@@ -102,28 +116,6 @@
   with_items:
     - 'lorem.txt'
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
-
-
-- name: Ensure Yoda test files are present in Yoda directory research-notpreservable
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  shell:
-    iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-notpreservable
-  with_items:
-    - 'lorem.txt'
-    - 'SIPI_Jelly_Beans_4.1.07.tiff'
-    - 'extension_not_preservable.123'
-
-
-- name: Ensure Yoda test files are present in Yoda directory research-notpreservable/testdata
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  shell:
-    iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-notpreservable/testdata
-  with_items:
-    - 'lorem.txt'
-    - 'SIPI_Jelly_Beans_4.1.07.tiff'
-    - 'extension_not_preservable.456'
 
 
 - name: Ensure Yoda licenses directory is present
