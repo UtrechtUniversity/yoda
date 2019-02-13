@@ -3,7 +3,9 @@
 
 - name: Ensure Python dependencies are installed
   package:
-    name: python-enum34
+    name:
+      - python-enum34
+      - python-lxml
     state: present
 
 
