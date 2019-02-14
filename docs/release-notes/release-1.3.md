@@ -18,7 +18,7 @@ Released: November 2018
 ## Upgrading from Yoda version 1.2
 Upgrade is supported by Ansible (2.7.x). No migrations required.
 
-Make sure the delayed rule queue is empty before upgrading.
+Make sure the delayed rule queue is empty before upgrading (`iqstat -a`).
 Add the following fields to the Ansible environment files
 (see [yoda-ansible/CONFIGURATION.md](https://github.com/UtrechtUniversity/yoda-ansible/blob/development/CONFIGURATION.md) for description):
 - yoda_environment (replaces codeigniter_environment)
