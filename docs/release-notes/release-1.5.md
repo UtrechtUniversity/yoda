@@ -6,9 +6,19 @@ Released: tba
 
 ## New features since Yoda version 1.4
 - New metadata form based on JSON schema
-- Metadata schema versioning
+- Support for metadata schema identifiers
+- Check for unpreservable files in your datasets
+- Several UX improvements to the research space
 
 ## Upgrading from Yoda version 1.4
-Upgrade is supported by Ansible (2.7.x). No migrations required.
+Upgrade is supported by Ansible (2.7.x).
 
 Instance specific rulesets (e.g. i-lab) are merged with irods-ruleset-uu and can be removed from the configuration (rulesets).
+
+All metadata on the system needs to be migrated to add a schema identifier after the upgrade.
+This can be one by running the following command:
+```bash
+irule -F check-metadata-for-schema-updates.r
+```
+
+When all metadata has a schema identifier the system default schema can be [upgraded](upgrading-metadata-schemas.md).
