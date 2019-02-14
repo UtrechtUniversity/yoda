@@ -13,7 +13,7 @@ Each 5 minutes (configurable) the indicated folder is scanned and newly publishe
 The data is prepared in the database as such that it is able to provide output in XML form, on request of a harvester.
 Any OAI-PMH harvester able to read the Dublin Core and DataCite format is able to harvest Yoda through the endpoint serviced by MOAI.
 
-## Yoda MOAI Technical##
+## Yoda MOAI Technical
 ### Provision from Yoda  
 *Python -> yoda.py*  
 The  script reads all yoda-metadata.xml files that have been published and are placed in a specific folder.
