@@ -9,6 +9,7 @@ Released: tba
 - Support for metadata schema identifiers
 - Check for unpreservable files in your datasets
 - Several UX improvements to the research space
+- Script to check vault integrity
 
 ## Upgrading from Yoda version 1.4
 Upgrade is supported by Ansible (2.7.x).
