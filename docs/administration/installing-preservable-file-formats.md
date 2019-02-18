@@ -14,7 +14,7 @@ ichmod -rM read public /${RODSZONE}/yoda/file_formats
 To add a new list of preservable file formats just put a JSON file in the `/${RODSZONE}/yoda/file_formats` collection with a new name.
 
 ```bash
-iput "${TERMS}.txt" "/${RODSZONE}/yoda/file_formats/${FILE_FORMATS}.json"
+iput "${FILE_FORMATS}.txt" "/${RODSZONE}/yoda/file_formats/${FILE_FORMATS}.json"
 ```
 
 JSON schema for preservable file formats:
