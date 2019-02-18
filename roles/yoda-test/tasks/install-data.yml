@@ -64,6 +64,30 @@
   ignore_errors: true
 
 
+- name: Ensure Yoda test data directory research-mdtest/transformation is present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/home/research-mdtest/transformation
+  ignore_errors: true
+
+
+- name: Ensure Yoda test data directory research-mdtest/invalidmetadata is present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/home/research-mdtest/invalidmetadata
+  ignore_errors: true
+
+
+- name: Ensure Yoda test data directory research-notpreservable/testdata is present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/home/research-notpreservable/testdata
+  ignore_errors: true
+
+
 - name: Ensure Yoda test data directory research-mdtest/copyfromparent is present in Yoda
   become_user: '{{ irods_service_account }}'
   become: yes
