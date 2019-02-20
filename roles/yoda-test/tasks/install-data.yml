@@ -140,6 +140,24 @@
     - "Open Data Commons Attribution License (ODC-By) v1.0.uri"
 
 
+- name: Ensure Yoda preservable file formats directory is present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/yoda/file_formats
+  ignore_errors: true
+
+
+- name: Ensure preservable file formats are present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iput -f '/etc/irods/irods-ruleset-research/tools/file_formats//{{ item }}' '/{{ irods_zone }}/yoda/file_formats/{{ item }}'
+  with_items:
+    - "DANS.json"
+    - "4TU.json"
+
+
 - name: Ensure intake module cronjob rules are present
   become_user: '{{ irods_service_account }}'
   become: yes
