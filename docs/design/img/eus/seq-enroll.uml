@@ -12,8 +12,8 @@ participant "External user service & DB" as eus
 actor       "External user" as user
 
 gm      -> portal : Add user to group
+portal  -> eus    : Create user
 portal  -> irods  : Add user to group
-irods   -> eus    : Create user
 eus     -> user   : Invite with hash URL by mail
 gm      <- eus    : Confirm invitation sent by mail
 irods  <-- eus    : Ok

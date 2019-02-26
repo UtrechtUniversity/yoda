@@ -156,12 +156,8 @@ authorization checks, using existing Group manager policy check
 functions `uuGroupPolicyCanGroupUserAdd` and
 `uuGroupPolicyCanGroupUserRemove`.
 
-For the **removal** of external users, new functionality must be added,
-as user removal is currently not supported in Yoda at all. *How this
-will work is still TBD.* Possible solutions include: Automatically
-removing the user when they are removed from the last group, and having
-a separate user management page for administrators. A periodic cleanup
-job may be implemented to automate external user removal.
+External users are removed when they are removed from the last Yoda instance.
+A periodic cleanup job may be implemented to automate external user removal.
 
 ## External user service
 
