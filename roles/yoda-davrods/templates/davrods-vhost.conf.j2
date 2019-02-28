@@ -186,6 +186,9 @@ Listen {{ yoda_davrods_port }}
         DavRodsHtmlHead   "/etc/httpd/irods/head.html"
         DavRodsHtmlHeader "/etc/httpd/irods/header.html"
         DavRodsHtmlFooter "/etc/httpd/irods/footer.html"
+
+        # Set the timeout to a day to permit large uploads.
+        TimeOut 86400
     </Location>
 
     # intermediate TLS configuration
