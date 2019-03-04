@@ -134,16 +134,3 @@
     group: root
     force: no
   notify: Restart Apache webserver
-
-
-- name: Run Composer on Yoda Research module
-  become_user: "{{ yoda_deployment_user }}"
-  become: yes
-  composer:
-    command: install
-    working_dir: /var/www/yoda/yoda-portal/modules/research
-  when: not ansible_check_mode
-
-
-- include_tasks: setup-nodejs-development-environment.yml
-  when: yoda_environment == "development"
