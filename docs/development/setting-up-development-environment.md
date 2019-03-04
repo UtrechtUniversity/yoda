@@ -50,10 +50,16 @@ ansible-playbook -i environments/development/allinone/ playbook.yml
 ansible-playbook -i environments/development/allinone/ test.yml
 ```
 
-7. [OPTIONAL] Provision Yoda with [Zabbix](https://www.zabbix.com/) agent and monitoring scripts
-```
-ansible-playbook -i environments/development/allinone/ zabbix.yml
-```
+7. [OPTIONAL] Provision Yoda with [Zabbix](https://www.zabbix.com/) agent and monitoring scripts:
+
+    Configure Zabbix server in `environments/development/allinone/group_vars/allinone.yml) and make sure a Zabbix server is running on this address, you could use a [Zabbix appliance](https://www.zabbix.com/download_appliance) in Virtualbox.
+    ```yaml
+    zabbix_server: 192.168.50.20
+    ```
+    Run the Zabbix playbook
+    ```
+    ansible-playbook -i environments/development/allinone/ zabbix.yml
+    ```
 
 ## Upgrading your Yoda development environment
 Upgrading the Yoda development environment to the latest version can be done by running the Ansible playbooks again.
