@@ -36,18 +36,23 @@ chmod 0600 ~/yoda-ansible/vagrant/ssh/vagrant
 ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
-5. Provision Yoda with [test data](development-test-data.md):
-```bash
-ansible-playbook -i environments/development/allinone/ test.yml
-```
-
-6. Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32\drivers\etc\hosts (Windows):
+5. Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32\drivers\etc\hosts (Windows):
 ```
 192.168.50.10 portal.yoda.test
 192.168.50.10 data.yoda.test
 192.168.50.10 public.data.yoda.test
 192.168.50.10 public.yoda.test
 192.168.50.10 eus.yoda.test
+```
+
+6. [OPTIONAL] Provision Yoda with [test data](development-test-data.md):
+```bash
+ansible-playbook -i environments/development/allinone/ test.yml
+```
+
+7. [OPTIONAL] Provision Yoda with [Zabbix](https://www.zabbix.com/) agent and monitoring scripts
+```
+ansible-playbook -i environments/development/allinone/ zabbix.yml
 ```
 
 ## Upgrading your Yoda development environment
