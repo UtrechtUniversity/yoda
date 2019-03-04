@@ -3,11 +3,10 @@
 
 - name: Ensure davrods prerequisites are installed
   package:
-    name: '{{ item }}'
+    name:
+      - boost
+      - jansson
     state: present
-  with_items:
-  - boost
-  - jansson
 
 
 - name: Check if davrods is installable from repository
@@ -80,6 +79,20 @@
     owner: root
     group: root
     mode: 0644
+  notify: Restart Apache webserver
+
+
+- name: Ensure webdav logfiles exist
+  copy:
+    content: ""
+    dest: '{{ item }}'
+    mode: 0644
+    owner: root
+    group: root
+    force: no
+  with_items:
+    - /var/log/httpd/webdav_access.log
+    - /var/log/httpd/webdav_anon_access.log
   notify: Restart Apache webserver
 
 

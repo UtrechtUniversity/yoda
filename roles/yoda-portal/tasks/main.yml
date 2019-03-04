@@ -42,6 +42,7 @@
     dest: "{{ item.dest }}"
     version: "{{ item.version }}"
     update: "{{ update_portal }}"
+    force: yes
   with_items: "{{ modules }}"
   register: modulechanges
 
@@ -100,6 +101,15 @@
   when: not ansible_check_mode
 
 
+- name: Ensure logs directory is present
+  file:
+    path: /var/www/yoda/yoda-portal/logs
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0711
+
+
 - name: Ensure .htaccess is configured
   copy:
     src: /var/www/yoda/yoda-portal/public/.htaccess.template-{{ codeigniter_environment }}
@@ -113,3 +123,27 @@
     src: "yoda-portal-vhost.conf.j2"
     dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
   notify: Restart Apache webserver
+
+
+- name: Ensure portal logfile exists
+  copy:
+    content: ""
+    dest: "/var/log/httpd/portal_access.log"
+    mode: 0644
+    owner: root
+    group: root
+    force: no
+  notify: Restart Apache webserver
+
+
+- name: Run Composer on Yoda Research module
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  composer:
+    command: install
+    working_dir: /var/www/yoda/yoda-portal/modules/research
+  when: not ansible_check_mode
+
+
+- include_tasks: setup-nodejs-development-environment.yml
+  when: yoda_environment == "development"

@@ -24,6 +24,14 @@
     SSLHonorCipherOrder     on
     SSLCompression          off
 
+    # Logging of access to portal
+    SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
+    SetEnvIf Request_URI "favicon\.ico$" dontlog
+    SetEnvIf Request_URI "\.woff$" dontlog
+    SetEnvIf Request_URI "\.woff2$" dontlog
+    SetEnvIf Request_Method "^OPTIONS$" dontlog
+    CustomLog /var/log/httpd/portal_access.log common env=!dontlog
+
     # HSTS (mod_headers is required) (31536000 seconds = 1 year)
     Header always set Strict-Transport-Security "max-age=31536000"
 

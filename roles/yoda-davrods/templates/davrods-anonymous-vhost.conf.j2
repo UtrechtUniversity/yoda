@@ -90,7 +90,7 @@ Listen {{ yoda_davrods_anonymous_port }}
         # Davrods. AuthType must be set to 'Basic' and AuthBasicProvider
         # must be set to 'irods'. There must also be a 'Require valid-user'
         # line.
-        # 
+        #
         # When 'On', Davrods will log into iRODS with a preset
         # username and password (See options DavRodsAnonymousLogin and
         # DavRodsAuthScheme). AuthType must be unset, or set to None,
@@ -194,6 +194,12 @@ Listen {{ yoda_davrods_anonymous_port }}
     SSLCipherSuite          ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:!DSS
     SSLHonorCipherOrder     on
     SSLCompression          off
+
+    # Logging of access to webdav
+    SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
+    SetEnvIf Request_URI "^/favicon\.ico$" dontlog
+    SetEnvIf Request_Method "^OPTIONS$" dontlog
+    CustomLog /var/log/httpd/webdav_anon_access.log common env=!dontlog
 
     # HSTS (mod_headers is required) (31536000 seconds = 1 year)
     Header always set Strict-Transport-Security "max-age=31536000"
