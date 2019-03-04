@@ -188,6 +188,9 @@ Listen {{ yoda_davrods_port }}
         DavRodsHtmlFooter "/etc/httpd/irods/footer.html"
     </Location>
 
+    # Set the timeout to a day to permit large uploads.
+    TimeOut 86400
+
     # intermediate TLS configuration
     SSLEngine               on
     SSLProtocol             all -SSLv3
