@@ -4,8 +4,10 @@
 - name: Ensure iRODS 4.2.4 packages are absent
   package:
     name:
+      - irods-uu-microservices-4.2.4_0.7.10-1
       - irods-uu-microservices-4.2.4_0.7.11-1
       - irods-sudo-microservices-4.2.4_1.0.0-1
+      - davrods-4.2.4_1.4.1-1
       - davrods-4.2.4_1.4.2-1
     state: absent
 
