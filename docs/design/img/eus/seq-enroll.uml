@@ -13,10 +13,11 @@ actor       "External user" as user
 
 gm      -> portal : Add user to group
 portal  -> eus    : Create user
-portal  -> irods  : Add user to group
 eus     -> user   : Invite with hash URL by mail
 gm      <- eus    : Confirm invitation sent by mail
 irods  <-- eus    : Ok
+portal <-- irods  : Ok
+portal  -> irods  : Add user to iRODS
 portal <-- irods  : Ok
 gm     <-- portal : Ok
 eus     <- user   : Visit invitation URL
