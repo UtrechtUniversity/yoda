@@ -462,12 +462,14 @@ test_groupusers:
 
 deletion_research_groups:
   - research: deletegroup
+  - research: escapecharsinfolders
+  - research: i1
   - research: initial
   - research: initial1
-  - research: r1
   - research: epicpid
   - research: mdtest
   - research: mdtestvault
+  - research: nodmprocess
   - research: notification
   - research: notpreservable
   - research: oaipmh
@@ -475,16 +477,18 @@ deletion_research_groups:
   - research: process2
   - research: process3
   - research: processfordatacite
+  - research: r1
+  - research: research
+  - research: recreateresearch
+  - research: recreateresearch3
   - research: revisions
   - research: search
-  - research: updateproperties
   - research: teststatistics1
   - research: teststatistics2
-  - research: nodmprocess
   - research: tovaultnodm
   - research: tovaultwithdm
-  - research: recreateresearch
-  - research: escapecharsinfolders
+  - research: updateproperties
+
 deletion_datamanager_groups:
   - datamanager: frontendtest
   - datamanager: initial
@@ -503,6 +507,7 @@ deletion_grp_groups:
 deletion_intake_groups:
   - intake: i1
   - intake: recreateintake
+  - intake: researchintake
 
 reset_tiers:
   - dev001
