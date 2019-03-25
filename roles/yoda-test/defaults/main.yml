@@ -10,6 +10,9 @@ test_password: test
 
 # Following users are created by Ansible as iRODS and UNIX users.
 test_users:
+  - name: bodmember
+    password: '{{ test_password }}'
+    type: rodsuser
   - name: researcher
     password: '{{ test_password }}'
     type: rodsuser
@@ -52,6 +55,14 @@ created_by_ta_users:
   - name: yodaexternaluser@gmail.com
 
 test_groups:
+  - groupName: datarequests-research-board-of-directors
+    category: datarequests
+    subcategory: research
+    dataClassification: unspecified
+  - groupName: datarequests-research-datamanagers
+    category: datarequests
+    subcategory: research
+    dataClassification: unspecified
   - groupName: research-initial
     category: initial
     subcategory: initial
@@ -166,6 +177,13 @@ test_groups:
     dataClassification: unspecified
 
 test_groupusers:
+  - groupName: datarequests-research-board-of-directors
+    user: bodmember
+    role: manager
+  - groupName: datarequests-research-datamanagers
+    user: datamanager
+    role: manager
+
   - groupName: priv-category-add
     user: functionaladminpriv
     role: manager
