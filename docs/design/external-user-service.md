@@ -199,7 +199,7 @@ The interface between the Yoda portal and iRODS is unchanged.
 
 ### iRODS → HTTP API → External user service
 The external user service\'s HTTP API is used by iRODS to authenticate
-external user and enroll and remove external users.
+external users and enroll and remove external users.
 
 All requests from iRODS to the external user service must contain the
 header `X-Yoda-External-User-Secret`, containing a secret API key.
