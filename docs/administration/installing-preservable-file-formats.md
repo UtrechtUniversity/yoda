@@ -40,6 +40,20 @@ JSON schema for preservable file formats:
       ],
       "pattern": "^(.*)$"
     },
+    "help": {
+      "$id": "#/properties/help",
+      "type": "string",
+      "title": "File formats list help text",
+      "default": "",
+      "pattern": "^(.*)$"
+    },
+    "advice": {
+      "$id": "#/properties/advice",
+      "type": "string",
+      "title": "File formats list advice text",
+      "default": "",
+      "pattern": "^(.*)$"
+    },
     "formats": {
       "$id": "#/properties/formats",
       "type": "array",
