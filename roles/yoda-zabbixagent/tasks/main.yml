@@ -42,6 +42,11 @@
     permissive: true
   when: ansible_selinux
 
+- name: Allow Zabbix agent to sudo
+  seboolean:
+    name: zabbix_run_sudo
+    state: yes
+    persistent: yes
 
 - name: Generate Zabbix agent PSK
   shell: openssl rand -hex 256 > /etc/zabbix/zabbix_agentd.psk
