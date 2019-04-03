@@ -52,6 +52,9 @@ created_by_ta_users:
   - name: yodaexternaluser@gmail.com
 
 test_groups:
+  - groupName: research-browse
+    category: initial
+    subcategory: initial
   - groupName: research-initial
     category: initial
     subcategory: initial
@@ -176,6 +179,13 @@ test_groupusers:
   - groupName: priv-group-add
     user: functionaladmingroup
     role: manager
+
+  - groupName: research-browse
+    user: functionaladminpriv
+    role: manager
+  - groupname: research-browse
+    user: researcher
+    role: normal
 
   - groupName: research-initial
     user: functionaladminpriv
@@ -461,6 +471,7 @@ test_groupusers:
     role: reader
 
 deletion_research_groups:
+  - research: browse
   - research: deletegroup
   - research: escapecharsinfolders
   - research: i1
