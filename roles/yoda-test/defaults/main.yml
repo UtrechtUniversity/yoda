@@ -55,6 +55,7 @@ test_groups:
   - groupName: research-browse
     category: initial
     subcategory: initial
+    dataClassification: unspecified
   - groupName: research-initial
     category: initial
     subcategory: initial
