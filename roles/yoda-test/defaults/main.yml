@@ -184,7 +184,7 @@ test_groupusers:
   - groupName: research-browse
     user: functionaladminpriv
     role: manager
-  - groupname: research-browse
+  - groupName: research-browse
     user: researcher
     role: normal
 
