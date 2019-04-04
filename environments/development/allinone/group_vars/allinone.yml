@@ -115,7 +115,7 @@ rulesets:
     repo: https://github.com/UtrechtUniversity/irods-ruleset-datarequest.git
     ruleset_name: rules-dr
     version: "{{ yoda_version }}"
-    install_scripts: no
+    install_scripts: yes
   - name: irods-ruleset-youth-cohort
     repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
     ruleset_name: rules-yc
@@ -129,7 +129,7 @@ rulesets:
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "feature/datarequest-module"
     install_scripts: yes
   - name: core
     ruleset_name: core
