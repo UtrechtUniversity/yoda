@@ -14,6 +14,7 @@ On this website you can find release notes and technical documentation on admini
 - [Installing licenses](administration/installing-licenses.md)
 - [Installing metadata schemas](administration/installing-metadata-schemas.md)
 - [Installing terms](administration/installing-terms.md)
+- [Background jobs](administration/background-jobs.md)
 - [Troubleshooting publication](administration/troubleshooting-publication.md)
 - [Restore collection](administration/restore-collection.md)
 
