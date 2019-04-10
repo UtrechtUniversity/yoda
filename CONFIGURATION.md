@@ -128,7 +128,7 @@ irods_resources              | Definition of iRODS resources of this Yoda instan
 ### Research module configuration
 Variable                     | Description                                                                       |
 -----------------------------|-----------------------------------------------------------------------------------|
-default_yoda_schema          | Default Yoda XML scheme: default or test                                          |
+default_yoda_schema          | Default Yoda XML scheme: default-0 or default-1                                   |
 enable_revisions             | Enable revisions: yes (1) or no (0)                                               |
 revision_strategy            | Revision strategy: A, B, J or Simple                                              |
 yoda_random_id_length        | Length of random ID to add to persistent identifier                               |
