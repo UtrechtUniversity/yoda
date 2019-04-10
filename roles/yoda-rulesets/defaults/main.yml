@@ -23,7 +23,7 @@ rulesets:
     install_scripts: no
 
 # Research module specific configuration.
-default_yoda_schema: default
+default_yoda_schema: defaulta-0
 enable_revisions: 1
 revision_strategy: A
 yoda_instance: "{{ instance }}"
