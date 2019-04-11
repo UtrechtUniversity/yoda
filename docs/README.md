@@ -14,6 +14,7 @@ On this website you can find release notes and technical documentation on admini
 - [Installing licenses](administration/installing-licenses.md)
 - [Installing metadata schemas](administration/installing-metadata-schemas.md)
 - [Installing terms](administration/installing-terms.md)
+- [Installing preservable file formats](administration/installing-preservable-file-formats.md)
 - [Background jobs](administration/background-jobs.md)
 - [Troubleshooting publication](administration/troubleshooting-publication.md)
 - [Restore collection](administration/restore-collection.md)
@@ -35,6 +36,7 @@ On this website you can find release notes and technical documentation on admini
 - [Statistics module](design/statistics.md)
 - [Revision management](design/revisions.md)
 - [Vault process](design/vault-process.md)
+- [Yoda OAI-PMH endpoint](design/yoda-moai.md)
 
 ## Documentation style
 All documentation is styled using [Markdown](https://guides.github.com/features/mastering-markdown/).
