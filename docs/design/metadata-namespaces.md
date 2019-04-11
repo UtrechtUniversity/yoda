@@ -1,22 +1,20 @@
-# Namespaces within YoDa #
+# Namespaces within Yoda
 
-## XML standards for yoda-metadata.xml ##
+## XML standards for yoda-metadata.xml
 To comply with xml standards, yoda-metadata.xml is equipped with a default namespace.
 Furthermore, yoda-metadata.xml is extended with the reference of its schemalocation.   
 I.e. the location of the its validation schema.
 This, so any user knows to what schema the data is validated.
 
-This validation schema is dependent on the area/space within YoDa, vault or research.
+This validation schema is dependent on the space within Yoda, research or vault.
 In the example below, the data within yoda-metadata.xml lives in research area and will be validated agains research.xsd.
 
-The schemas are publically accessible and stored in github.
-
-
+The schemas are publically accessible and stored in Github.
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
- xmlns="https://utrechtuniversity.github.io/yoda-schemas/default"   
- xsi:schemaLocation="https://utrechtuniversity.github.io/yoda-schemas/default research.xsd">
+ xmlns="https://yoda.uu.nl/schemas/default-0"   
+ xsi:schemaLocation="https://yoda.uu.nl/schemas/default-0 research.xsd">
   <Title>1</Title>
   <Description>2</Description>
   <Version>3</Version>
@@ -38,16 +36,13 @@ The schemas are publically accessible and stored in github.
 </metadata>
 ```
 
-
-## Using XSL with yoda-metadata.xml ##
+## Using XSL with yoda-metadata.xml
 
 Given that yoda-metadata.xml lives within a certain namespace, to be able to retrieve data from it when using XPath statements, a corresponding namespace must be added to the stylesheet.
-
-
 ```
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:yoda="https://utrechtuniversity.github.io/yoda-schemas/default"
+    xmlns:yoda="https://yoda.uu.nl/schemas/default-0"
     exclude-result-prefixes="yoda">
 
   <xsl:template match="/">
@@ -55,4 +50,4 @@ Given that yoda-metadata.xml lives within a certain namespace, to be able to ret
   </xsl:template>
 ```
 
-Above the namespace alias 'yoda' (xmlns:yoda="https://utrechtuniversity.github.io/yoda-schemas/default") makes sure that, if both namespaces are equal, XPath selection actually retrieves data.
+Above the namespace alias 'yoda' (xmlns:yoda="https://yoda.uu.nl/schemas/default-0") makes sure that, if both namespaces are equal, XPath selection actually retrieves data.
