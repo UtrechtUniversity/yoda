@@ -14,12 +14,18 @@ Released: tba
 ## Upgrading from Yoda version 1.4
 Upgrade is supported by Ansible (2.7.x).
 
-Instance specific rulesets (e.g. i-lab) are merged with irods-ruleset-uu and can be removed from the configuration (rulesets).
+1. Instance specific rulesets (e.g. `irods-ruleset-i-lab`) are merged with `irods-ruleset-uu` and should be removed from the configuration (rulesets).
 
-All metadata on the system needs to be migrated to add a schema identifier after the upgrade.
+2. Rename default metadata schema from `default` to `default-0` in configuration.
+
+3. Run the Ansible upgrade in check mode.
+
+4. Run the Ansible upgrade.
+
+5. After the upgrade all metadata on the system needs to be migrated to add a schema identifier.
 This can be one by running the following command:
 ```bash
 irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-schema-updates.r
 ```
 
-When all metadata has a schema identifier the system default schema can be [upgraded](upgrading-metadata-schemas.md).
+When all metadata has a schema identifier the system default or community schema can be [upgraded](upgrading-metadata-schemas.md).
