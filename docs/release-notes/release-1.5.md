@@ -16,7 +16,7 @@ Upgrade is supported by Ansible (2.7.x).
 
 1. Instance specific rulesets (e.g. `irods-ruleset-i-lab`) are merged with `irods-ruleset-uu` and should be removed from the configuration (rulesets).
 
-2. Rename default metadata schema from `default` to `default-0` in configuration.
+2. Rename default metadata schema from `default` to `default-0` in the configuration (ensure `update_schemas` is enabled).
 
 3. Run the Ansible upgrade in check mode.
 
