@@ -14,7 +14,7 @@ Released: August 2017
 - Introduction of the statistics module
 - Integration of the youth intake module
 
-## Upgrading from 0.9.6
+## Upgrading from Yoda version 0.9.6
 Install the 0.9.7 version of at least irods-ruleset-uu and
 irods-ruleset-research.
 

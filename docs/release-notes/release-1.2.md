@@ -13,7 +13,7 @@ Released: May 2018
 - Fix multiple X-Frame-Options headers
 - Fix flexdate client side validation
 
-## Upgrading from 1.1
+## Upgrading from Yoda version 1.1
 Upgrade is supported by Ansible (2.5.x). No migrations required.
 
 ## Known Issues

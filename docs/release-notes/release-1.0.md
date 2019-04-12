@@ -22,7 +22,7 @@ Released: November 2017
 - Searching is no longer case sensitive
 - All members of a group can view the groups storage consumption and trends using the statistics module
 
-## Upgrading from 0.9.7
+## Upgrading from Yoda version 0.9.7
 Upgrade is supported by Ansible (2.4.x). No migrations required.
 
 - yoda-metadata.xsd is changed. Existing 0.9.7 metadata is not supported and needs to be updated manually

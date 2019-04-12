@@ -17,9 +17,8 @@ Released: March 2018
 - Fix incorrect creator name in intake module
 - Upgrade CodeIgniter to 3.1.7
 
-## Upgrading from 1.0
+## Upgrading from Yoda version 1.0
 Upgrade is supported by Ansible (2.5.x). No migrations required.
-
 
 ## Known Issues
 - When storage data is available, different tiers are assigned, and all resources are then reset to the same tier, the statistics module may show a blank page
