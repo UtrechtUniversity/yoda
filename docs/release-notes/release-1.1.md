@@ -4,7 +4,8 @@ Version: 1.1
 
 Released: March 2018
 
-## New features since Yoda version 1.0
+## What's new in Yoda version 1.1
+### Features
 - Update metadata of published packages in the vault
 - Copying data packages from vault to research area
 - Add support for flexible date fields to metadata form

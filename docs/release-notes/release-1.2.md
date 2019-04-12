@@ -4,7 +4,8 @@ Version: 1.2
 
 Released: May 2018
 
-## New features since Yoda version 1.1
+## What's new in Yoda version 1.2
+### Features
 - Depublication of published packages in the vault
 - Republication of depublished packages in the vault
 - New frontpage for Yoda Data Publication platform

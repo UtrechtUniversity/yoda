@@ -4,7 +4,8 @@ Version: 1.4
 
 Released: December 2018
 
-## New features since Yoda version 1.3
+## What's new in Yoda version 1.4
+### Features
 - Upgrade to iRODS 4.2.5
 - Support for external users through the External User Service
 - Data package access rights published to DataCite and OAI-PMH

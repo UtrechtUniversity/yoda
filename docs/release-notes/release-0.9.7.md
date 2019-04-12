@@ -4,9 +4,8 @@ Version: 0.9.7
 
 Released: August 2017
 
-## New features
-Highlights of this new release are:
-
+## What's new in Yoda version 0.9.7
+### Features
 - Folders in the research area can be secured in the vault
 - A datamanager per category can approve packages for the vault and control
   read access within the vault

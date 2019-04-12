@@ -17,7 +17,7 @@ Released: tba
 
 ### Bug Fixes
 - Fixed: CSV exports start with an empty row
-- Fixed: unsubmit after submit failed in some cases
+- Fixed: unsubmit after submit fails in some cases
 
 ## Upgrading from Yoda version 1.4
 Upgrade is supported by Ansible (2.7.x).
