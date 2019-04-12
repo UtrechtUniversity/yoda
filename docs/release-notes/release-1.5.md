@@ -4,12 +4,20 @@ Version: 1.5
 
 Released: tba
 
-## New features since Yoda version 1.4
+## What's new in Yoda version 1.5
+### Features
 - New metadata form based on JSON schema
-- Support for metadata schema identifiers
-- Check for unpreservable files in your datasets
+- Support for metadata schema identifiers and schema migrations
+- Check for unpreservable file formats in your datasets
+- Configurable number of records in file browser
 - Several UX improvements to the research space
-- Script to check vault integrity
+- Portal performance improvements (upgrade to PHP 7.2)
+- Additional monitoring items for Zabbix
+- Script to check vault data integrity
+
+### Bug Fixes
+- Fixed: CSV exports start with an empty row
+- Fixed: unsubmit after submit failed in some cases
 
 ## Upgrading from Yoda version 1.4
 Upgrade is supported by Ansible (2.7.x).
