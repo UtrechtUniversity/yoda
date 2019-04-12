@@ -9,6 +9,8 @@ main:
     url: /design/index.html
 
 release-notes:
+  - page: Release 1.5
+    url: /release-notes/release-1.5.html
   - page: Release 1.4
     url: /release-notes/release-1.4.html
   - page: Release 1.3
