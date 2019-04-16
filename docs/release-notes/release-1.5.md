@@ -36,4 +36,4 @@ This can be one by running the following command:
 irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-schema-updates.r
 ```
 
-When all metadata has a schema identifier the system default or community schema can be [upgraded](upgrading-metadata-schemas.md).
+When all metadata has a schema identifier the system default or community schema can be [upgraded](/administration/upgrading-metadata-schemas.md).
