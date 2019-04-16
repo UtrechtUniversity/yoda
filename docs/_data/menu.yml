@@ -27,10 +27,14 @@ release-notes:
 administration:
   - page: Installing Licenses
     url: /administration/installing-licenses.html
-  - page: Installing metadata schemas
-    url: /administration/installing-metadata-schemas.html
   - page: Installing terms
     url: /administration/installing-terms.html
+  - page: Installing metadata schemas
+    url: /administration/installing-metadata-schemas.html
+  - page: Upgrading metadata schemas
+    url: /administration/upgrading-metadata-schemas.md
+  - page: Background jobs
+    url: /administration/background-jobs.md
   - page: Troubleshooting publication
     url: /administration/troubleshooting-publication.html
   - page: Restore collection
