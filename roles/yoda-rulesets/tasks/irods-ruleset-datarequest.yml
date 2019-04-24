@@ -1,0 +1,7 @@
+---
+# Copyright Utrecht University
+
+- name: Ensure Yoda data requests data directory is present in Yoda and has the right ACLs set
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/etc/irods/irods-ruleset-datarequest/tools/create-data-directory.sh'
