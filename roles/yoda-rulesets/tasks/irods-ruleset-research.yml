@@ -124,7 +124,7 @@
     name: 'cronjob-revision-cleanup.sh'
     minute: 0
     hour: 2
-    job: '/bin/bash $HOME/.irods/cronjob-revision-cleanup.sh >> $HOME/log/cronjob-revision-cleanup.log 2>&1'
+    job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
 
 
 - name: Ensure that ExecCmd dir exists

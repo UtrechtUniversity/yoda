@@ -176,7 +176,7 @@
   cron:
     name: 'job_movetovault.r'
     minute: '*/5'
-    job: '/bin/irule -F /var/lib/irods/.irods/job_movetovault.r >>$HOME/log/job_movetovault.log 2>&1'
+    job: '/bin/irule -F /var/lib/irods/.irods/job_movetovault.r >> /var/lib/irods/log/job_movetovault.log 2>&1'
 
 
 - name: Configure cronjob to make checksums of datapackages in grp-vault-*
@@ -185,7 +185,7 @@
   cron:
     name: 'job_checksums.r'
     minute: '*/5'
-    job: '/bin/irule -F /var/lib/irods/.irods/job_checksums.r >>$HOME/log/job_checksums.log 2>&1'
+    job: '/bin/irule -F /var/lib/irods/.irods/job_checksums.r >> /var/lib/irods/log/job_checksums.log 2>&1'
 
 
 - name: Run monthly storage statistics job
