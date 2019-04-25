@@ -38,20 +38,10 @@
 
 
 - name: Ensure PHP is configured
-  ini_file:
-    path: /etc/php.ini
-    section: '{{ item.section }}'
-    option: '{{ item.option }}'
-    value: '{{ item.value }}'
+  template:
+    src: php.ini.j2
+    dest: "/etc/php.ini"
+    owner: root
+    group: root
     mode: 0600
-  with_items:
-    - section: PHP
-      option: expose_php
-      value: Off
-    - section: PHP
-      option: max_execution_time
-      value: 120
-    - section: Date
-      option: date.timezone
-      value: '{{ timezone }}'
   notify: Restart Apache webserver
