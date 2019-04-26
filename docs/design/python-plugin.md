@@ -135,3 +135,17 @@ def uuGetGroups(rule_args, callback, rei):
 
     callback.writeString("stdout", json.dumps(groups))
 ```
+
+## Setting AVU's from Python
+
+**Example code:**
+
+```
+import irods_types
+
+def uuMetaAdd(callback, objType, objName, attribute, value):
+    keyValPair  = callback.msiString2KeyValPair(attribute + "=" + value, irods_types.KeyValPair())['arguments'][1]
+    retval = callback.msiAssociateKeyValuePairsToObj(keyValPair, objName, objType)
+
+def addCollectionStatus(rule_args, callback, rei):
+    uuMetaAdd(callback, "-C", "/tempZone/home/research-initial", "status", "PUBLISHED")
