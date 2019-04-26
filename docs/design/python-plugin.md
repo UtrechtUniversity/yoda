@@ -3,7 +3,7 @@
 ## Configuring the Python rule plugin
 
 Include the following in ```server_config.json```, in the ```rule_engines``` array:
-```
+```json
 {
     "instance_name": "irods_rule_engine_plugin-python-instance",
     "plugin_name": "irods_rule_engine_plugin-python",
@@ -15,20 +15,20 @@ We use the python plugin as the second in the array, after the iRODS rule langua
 ## Defining python code
 
 Python code can be included in core.py, in the following form:
-```
+```python
 def pythonFunction(rule_args, callback, rei):
     callback.writeLine("stdout", "python rule called")
 ```
 
 Static python functions must be defined in core.py.  There are three different types of functions, each with its own way of handling arguments and return values.
 - Rules called directly by iRODS have numbered parameters passed through ```rule_args```:
-  ```
+  ```python
   def acPythonPEP(rule_args, callback, rei):
       callback.writeLine("stdout", "arg = " + rule_args[0])
   ```
   Such rules can also return values through numbered output parameters.
 - Rules called with irule or from the frontend have access to ```global_vars```, in which named parameters are passed as strings including the quotes:
-  ```
+  ```python
   def main(rule_args, callback, rei):
       arg = global_vars["*arg"][1:-1]                # strip the quotes
       callback.writeLine("stdout", "arg = " + arg)
@@ -40,7 +40,7 @@ Static python functions must be defined in core.py.  There are three different t
   ```
   Note that ```global_vars``` is only available to python functions defined in core.py, not to functions imported by core.py.
 - Ordinary python functions which are not called by iRODS or externally, but only by other python code, accept arguments normally and can return a value:
-  ```
+  ```python
   def concat(str1, str2):
       return str1 + str2
   ```
@@ -73,7 +73,7 @@ Static python functions must be defined in core.py.  There are three different t
   ```
 
   PYTHON:
-  ```
+  ```python
   # \brief Nonsense function that returns 'enriched' text based on rule_args[0]
   # rule_args serves both as input and output parametes
 
@@ -96,7 +96,7 @@ irule -r irods_rule_engine_plugin-python-instance -F pythonfunc.r
 ```
 
 **pythonfunc.r**:
-```
+```python
 def main(rule_args, callback, rei):
     arg = global_vars["*arg"][1:-1]                # strip the quotes
     callback.writeLine("stdout", "arg = " + arg)
@@ -113,7 +113,7 @@ Use ```irods_types``` to create output parameters of the proper type, and obtain
 
 **Example code:**
 
-```
+```python
 def uuGetGroups(rule_args, callback, rei):
     import json
 
@@ -140,7 +140,7 @@ def uuGetGroups(rule_args, callback, rei):
 
 **Example code:**
 
-```
+```python
 import irods_types
 
 def uuMetaAdd(callback, objType, objName, attribute, value):
@@ -149,3 +149,4 @@ def uuMetaAdd(callback, objType, objName, attribute, value):
 
 def addCollectionStatus(rule_args, callback, rei):
     uuMetaAdd(callback, "-C", "/tempZone/home/research-initial", "status", "PUBLISHED")
+```
