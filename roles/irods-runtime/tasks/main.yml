@@ -28,6 +28,4 @@
 
 # TEMPORARY: Install iRODS runtime 4.2.6 preview with hot fix.
 - name: Install iRODS runtime 4.2.6 preview release with hot fix
-  package:
-    name: '/tmp/irods-runtime-4.2.5-1.x86_64.rpm'
-    state: present
+  command: rpm -i https://people.renci.org/~alanking/utrecht-4.2.6-preview/irods-runtime-4.2.5-1.x86_64.rpm --force
