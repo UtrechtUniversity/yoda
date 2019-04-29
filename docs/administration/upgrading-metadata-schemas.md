@@ -4,7 +4,7 @@ Metadata schemas of an Yoda instance can be migrated to newer version or other m
 Only metadata in the vault space is upgraded using the steps below.
 For all metadata in the research space the systems requests the user to transform the metadata to the new metadata schema.
 
-1. Upgrade default metadata schema using Ansible or [manually](../administration/installing-metadata-schemas.html)
+1. Upgrade default metadata schema using Ansible or [manually](../administration/installing-metadata-schemas.md)
 
 2. After the upgrade all metadata on the system needs to be migrated, this can be done by running the following command:
 ```bash
