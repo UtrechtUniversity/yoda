@@ -21,6 +21,36 @@
   when: not ansible_check_mode
 
 
+# TEMPORARY: Download iRODS server 4.2.6 preview with hot fix.
+- name: Download iRODS server 4.2.6 preview release with hot fix
+  get_url:
+    url: 'https://people.renci.org/~alanking/utrecht-4.2.6-preview/irods-server-4.2.5-1.x86_64.rpm'
+    dest: '/tmp/irods-server-4.2.5-1.x86_64.rpm'
+    checksum: 'sha256:e7c5d8083942de07f82deba72b1df9612845a82799d5782f33fe44b44696e086'
+
+
+# TEMPORARY: Install iRODS server 4.2.6 preview with hot fix.
+- name: Install iRODS server 4.2.6 preview release with hot fix
+  package:
+    name: '/tmp/irods-server-4.2.5-1.x86_64.rpm'
+    state: present
+
+
+# TEMPORARY: Download iRODS runtime 4.2.6 preview with hot fix.
+- name: Download iRODS runtime 4.2.6 preview release with hot fix
+  get_url:
+    url: 'https://people.renci.org/~alanking/utrecht-4.2.6-preview/irods-runtime-4.2.5-1.x86_64.rpm'
+    dest: '/tmp/irods-runtime-4.2.5-1.x86_64.rpm'
+    checksum: 'sha256:7fdf063695ce40d2efbdec0cfc94efa885c3abe75cdd4a45a3936b562e47be95'
+
+
+# TEMPORARY: Install iRODS runtime 4.2.6 preview with hot fix.
+- name: Install iRODS runtime 4.2.6 preview release with hot fix
+  package:
+    name: '/tmp/irods-runtime-4.2.5-1.x86_64.rpm'
+    state: present
+
+
 - name: Ensure default msiExecCmd binaries are absent
   file:
     path: '{{ item }}'
