@@ -14,3 +14,18 @@
   package:
     name: irods-runtime-4.2.5-1
     state: present
+
+
+# TEMPORARY: Download iRODS runtime 4.2.6 preview with hot fix.
+- name: Download iRODS runtime 4.2.6 preview release with hot fix
+  get_url:
+    url: 'https://people.renci.org/~alanking/utrecht-4.2.6-preview/irods-runtime-4.2.5-1.x86_64.rpm'
+    dest: '/tmp/irods-runtime-4.2.5-1.x86_64.rpm'
+    checksum: 'sha256:7fdf063695ce40d2efbdec0cfc94efa885c3abe75cdd4a45a3936b562e47be95'
+
+
+# TEMPORARY: Install iRODS runtime 4.2.6 preview with hot fix.
+- name: Install iRODS runtime 4.2.6 preview release with hot fix
+  package:
+    name: '/tmp/irods-runtime-4.2.5-1.x86_64.rpm'
+    state: present
