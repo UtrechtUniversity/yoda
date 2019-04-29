@@ -11,6 +11,10 @@ Currently there are two such jobs:
 
   Check with: `iqstat -a | grep iiCheckMetadataXmlForSchemaUpdates`
 
+  All metadata touched will be logged in the rodsLog.
+
+  Adding the schema identifiers can take some time, the batch script adds 256 jobs per 60 seconds to the rule queue.
+
 * uuCheckVaultIntegrity
 
   started by: `irods-ruleset-uu/tools/check-vault-integrity.r`
@@ -18,3 +22,9 @@ Currently there are two such jobs:
   Verify the checksums of all stored data.
 
   Check with: `iqstat -a | grep uuCheckVaultIntegrity`
+
+  All data objects with data itegrity issues are logged in the rodsLog.
+
+  Checking the vault integrity takes a lot of time.
+
+  To add minimal load on the system, the batch script adds 256 jobs per 60 seconds to the rule queue.

@@ -1,4 +1,4 @@
-# Release notes Yoda version 1.5 (tba)
+# Release notes Yoda version 1.5 (May 2019)
 
 Version: 1.5
 
@@ -21,6 +21,7 @@ Released: tba
 
 ## Upgrading from Yoda version 1.4
 Upgrade is supported by Ansible (2.7.x).
+Requires Yoda public server and external user service to be on version 1.4.x or higher.
 
 1. Instance specific rulesets (e.g. `irods-ruleset-i-lab`) are merged with `irods-ruleset-uu` and should be removed from the configuration (rulesets).
 
@@ -30,10 +31,16 @@ Upgrade is supported by Ansible (2.7.x).
 
 4. Run the Ansible upgrade.
 
-5. After the upgrade all metadata on the system needs to be migrated to add a schema identifier.
-This can be one by running the following command:
+5. Add a schema identifier to all metadata on the system:
 ```bash
 irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-schema-updates.r
+```
+All metadata touched will be logged in the rodsLog.
+Adding the schema identifiers can take some time, the batch script adds 256 jobs per 60 seconds to the rule queue.
+
+6. Check if all metadata on the system has a schema identifier:
+```bash
+irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-identifier.r
 ```
 
 When all metadata has a schema identifier the system default or community schema can be [upgraded](../administration/upgrading-metadata-schemas.html).

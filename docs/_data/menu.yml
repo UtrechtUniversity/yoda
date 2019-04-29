@@ -32,9 +32,9 @@ administration:
   - page: Installing metadata schemas
     url: /administration/installing-metadata-schemas.html
   - page: Upgrading metadata schemas
-    url: /administration/upgrading-metadata-schemas.md
+    url: /administration/upgrading-metadata-schemas.html
   - page: Background jobs
-    url: /administration/background-jobs.md
+    url: /administration/background-jobs.html
   - page: Troubleshooting publication
     url: /administration/troubleshooting-publication.html
   - page: Restore collection
