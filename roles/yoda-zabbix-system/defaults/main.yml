@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 # Temporary directory to store downloaded rpm files.
-rpm_dest_dir: /tmp
+rpm_dest_dir: /etc/zabbix/agent
 
 # Zabbix agent rpm location and checksum
 zabbix_agent:

@@ -25,58 +25,10 @@
       when: yoda_version not in git_branch.stdout and yoda_environment != "development"
 
 
-- name: Provision portal server with Zabbix agent
-  hosts: portals
-  become: yes
-  roles:
-   - yoda-zabbix-portal
-  tags:
-    - portal
-
-
-- name: Provision iCAT server with Zabbix agent and Yoda monitoring
-  hosts: icats
-  become: yes
-  roles:
-    - yoda-zabbix-icat
-    - yoda-zabbix-irodscommon
-  tags:
-    - zabbix
-
-
-- name: Provision database server with Zabbix agent and PostgreSQL monitoring
-  hosts: databases
-  become: yes
-  roles:
-    - role: yoda-zabbix-database
-      zabbix_database_name: "{{ irods_database_name }}"
-  tags:
-    - database
-
-
-- name: Provision resource server with Zabbix agent
-  hosts: resources
-  become: yes
-  roles:
-    - yoda-zabbix-irodscommon
-  tags:
-    - resource
-
-
-- name: Provision public server with Zabbix agent
+- name: provision public server with Zabbix
   hosts: publics
   become: yes
   roles:
     - yoda-zabbix-system
   tags:
     - public
-
-
-- name: Provision external user service server with Zabbix agent
-  hosts: eus
-  become: yes
-  roles:
-    - role: yoda-zabbix-database
-      zabbix_database_name: "{{ eus_db_name }}"
-  tags:
-    - eus

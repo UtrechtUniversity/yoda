@@ -1,0 +1,8 @@
+---
+# copyright Utrecht University
+
+- name: Restart Zabbix agent
+  service:
+    name: zabbix-agent
+    state: restarted
+    enabled: yes

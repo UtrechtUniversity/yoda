@@ -1,0 +1,82 @@
+---
+# copyright Utrecht University
+
+- name: Ensure yoda-icat.userparams.conf exists
+  stat: path=/etc/zabbix/yoda-zabbix/zabbix-icat/yoda-icat.userparams.conf
+  register: icat_zabbix_agentd
+
+
+- name: Copy yoda-icat.userparams.conf to right place
+  command: cp /etc/zabbix/yoda-zabbix/zabbix-icat/yoda-icat.userparams.conf /etc/zabbix/zabbix_agentd.d/yoda-icat.userparams.conf
+  when: not icat_zabbix_agentd.stat.exists or yoda_zabbix_repo.changed
+
+
+- name: Ensure right file ownership on yoda-icat.userparams.conf
+  file:
+    path: /etc/zabbix/zabbix_agentd.d/yoda-icat.userparams.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0400
+
+
+- name: Ensure yoda-zabbix-icat-sudoers exists
+  stat: path=/etc/sudoers.d/yoda-zabbix-icat-sudoers
+  register: icat_zabbix_sudoers
+
+
+- name: Copy yoda-zabbix-icat-sudoers to right place
+  command: cp /etc/zabbix/yoda-zabbix/zabbix-icat/yoda-zabbix-icat-sudoers /etc/sudoers.d/yoda-zabbix-icat-sudoers
+  when: not icat_zabbix_sudoers.stat.exists or yoda_zabbix_repo.changed
+
+
+- name: Ensure right file ownership on yoda-zabbix-icat-sudoers
+  file:
+    path: /etc/sudoers.d/yoda-zabbix-icat-sudoers
+    owner: root
+    group: root
+    mode: 0440
+
+
+- name: Copy Yoda Zabbix rules
+  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-icat/*.r /etc/zabbix/zabbix_agentd.d/"
+  when: yoda_zabbix_repo.changed
+  notify: Restart Zabbix agent
+
+
+- name: Copy Yoda Zabbix scripts
+  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-icat/*.sh /etc/zabbix/zabbix_agentd.d/"
+  when: yoda_zabbix_repo.changed
+  notify: Restart Zabbix agent
+
+
+- name: Find Yoda Zabbix rules
+  find:
+    paths: /etc/zabbix/zabbix_agentd.d
+    patterns: "*.r"
+  register: icat_zabbix_rules
+
+
+- name: Ensure right file ownership on Yoda Zabbix rules
+  file:
+    path: "{{ item.path }}"
+    owner: irods
+    group: irods
+    mode: 0500
+  with_items: "{{ icat_zabbix_rules.files }}"
+
+
+- name: Find Yoda Zabbix scripts
+  find:
+    paths: /etc/zabbix/zabbix_agentd.d
+    patterns: "*.sh"
+  register: icat_zabbix_scripts
+
+
+- name: Ensure right file ownership on Yoda Zabbix scripts
+  file:
+    path: "{{ item.path }}"
+    owner: zabbix
+    group: zabbix
+    mode: 0500
+  with_items: "{{ icat_zabbix_scripts.files }}"
+
