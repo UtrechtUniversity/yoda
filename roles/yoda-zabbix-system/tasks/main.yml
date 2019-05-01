@@ -82,13 +82,13 @@
   register: yoda_zabbix_repo
 
 
-- name: Ensure yoda-system.userparams.conf exists
+- name: Ensure yoda_system.userparams.conf exists
   stat: path=/etc/zabbix/yoda-zabbix/zabbix-system/yoda_system.userparams.conf
   register: system_zabbix_agentd
 
 
-- name: Copy yoda-system.userparams.conf to right place
-  command: cp /etc/zabbix/yoda-zabbix/zabbix-system/yoda-system.userparams.conf /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
+- name: Copy yoda_system.userparams.conf to right place
+  command: cp /etc/zabbix/yoda-zabbix/zabbix-system/yoda_system.userparams.conf /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
   when: not system_zabbix_agentd.stat.exists or yoda_zabbix_repo.changed
 
 
