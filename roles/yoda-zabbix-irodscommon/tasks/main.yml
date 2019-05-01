@@ -9,7 +9,7 @@
 
 - name: Copy yoda_irodscommon.userparams.conf to right place
   command: cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda_irodscommon.userparams.conf /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
-  when: not irodscommon_zabbix_agentd.stat.exists or zabbix_repo.changed
+  when: not irodscommon_zabbix_agentd.stat.exists or yoda-zabbix_repo.changed
 
 
 - name: Ensure right file ownership on yoda_irodscommon.userparams.conf

@@ -1,19 +1,19 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure yoda-icat.userparams.conf exists
-  stat: path=/etc/zabbix/yoda-zabbix/zabbix-icat/yoda-icat.userparams.conf
+- name: Ensure yoda_icat.userparams.conf exists
+  stat: path=/etc/zabbix/yoda-zabbix/zabbix-icat/yoda_icat.userparams.conf
   register: icat_zabbix_agentd
 
 
-- name: Copy yoda-icat.userparams.conf to right place
-  command: cp /etc/zabbix/yoda-zabbix/zabbix-icat/yoda-icat.userparams.conf /etc/zabbix/zabbix_agentd.d/yoda-icat.userparams.conf
+- name: Copy yoda_icat.userparams.conf to right place
+  command: cp /etc/zabbix/yoda-zabbix/zabbix-icat/yoda_icat.userparams.conf /etc/zabbix/zabbix_agentd.d/yoda_icat.userparams.conf
   when: not icat_zabbix_agentd.stat.exists or yoda_zabbix_repo.changed
 
 
-- name: Ensure right file ownership on yoda-icat.userparams.conf
+- name: Ensure right file ownership on yoda_icat.userparams.conf
   file:
-    path: /etc/zabbix/zabbix_agentd.d/yoda-icat.userparams.conf
+    path: /etc/zabbix/zabbix_agentd.d/yoda_icat.userparams.conf
     owner: zabbix
     group: zabbix
     mode: 0400
