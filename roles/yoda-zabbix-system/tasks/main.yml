@@ -79,7 +79,6 @@
     repo: "https://github.com/UtrechtUniversity/yoda-zabbix.git"
     dest: "/etc/zabbix/yoda-zabbix"
     version: "{{ zabbix_version }}"
-  register: yoda_zabbix_repo
 
 
 - name: Copy yoda_system.userparams.conf to right place
@@ -96,7 +95,6 @@
 
 - name: Copy yoda-zabbix-system-sudoers to right place
   command: cp /etc/zabbix/yoda-zabbix/zabbix-system/yoda-zabbix-system-sudoers /etc/sudoers.d/yoda-zabbix-system-sudoers
-  when: not system_zabbix_sudoers.stat.exists or yoda_zabbix_repo.changed
 
 
 - name: Ensure right file ownership on yoda-zabbix-system-sudoers
