@@ -2,14 +2,8 @@
 # copyright Utrecht University
 
 
-- name: Ensure yoda_irodscommon.userparams.conf exists
-  stat: path=/etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda_irodscommon.userparams.conf
-  register: irodscommon_zabbix_agentd
-
-
 - name: Copy yoda_irodscommon.userparams.conf to right place
   command: cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda_irodscommon.userparams.conf /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
-  when: not irodscommon_zabbix_agentd.stat.exists or yoda-zabbix_repo.changed
 
 
 - name: Ensure right file ownership on yoda_irodscommon.userparams.conf
@@ -20,14 +14,8 @@
     mode: 0400
 
 
-- name: Ensure yoda-zabbix-irodscommon-sudoers exists
-  stat: path=/etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
-  register: irodscommon_zabbix_sudoers
-
-
 - name: Copy yoda-zabbix-irodscommon.sudoers to right place
   command: cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda-zabbix-irodscommon-sudoers /etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
-  when: not irodscommon_zabbix_sudoers.stat.exists or yoda_zabbix_repo.changed
 
 
 - name: Ensure right file ownership on yoda-zabbix-irodscommon-sudoers
@@ -40,13 +28,11 @@
 
 - name: Copy Yoda Zabbix rules
   shell: "cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/*.r /etc/zabbix/zabbix_agentd.d/"
-  when: yoda_zabbix_repo.changed
   notify: Restart Zabbix agent
 
 
 - name: Copy Yoda Zabbix scripts
   shell: "cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/*.sh /etc/zabbix/zabbix_agentd.d/"
-  when: yoda_zabbix_repo.changed
   notify: Restart Zabbix agent
 
 

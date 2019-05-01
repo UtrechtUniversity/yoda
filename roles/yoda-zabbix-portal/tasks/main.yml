@@ -2,14 +2,8 @@
 # copyright Utrecht University
 
 
-- name: Ensure yoda_portal.userparams.conf exists
-  stat: path=/etc/zabbix/yoda-zabbix/zabbix-portal/yoda_portal.userparams.conf
-  register: portal_zabbix_agentd
-
-
 - name: Copy yoda_portal.userparams.conf to right place
   command: cp /etc/zabbix/yoda-zabbix/zabbix-portal/yoda_portal.userparams.conf /etc/zabbix/zabbix_agentd.d/yoda_portal.userparams.conf
-  when: not portal_zabbix_agentd.stat.exists or yoda_zabbix_repo.changed
 
 
 - name: Ensure right file ownership on yoda_portal.userparams.conf
@@ -20,14 +14,8 @@
     mode: 0400
 
 
-- name: Ensure yoda-zabbix-portal-sudoers exists
-  stat: path=/etc/sudoers.d/yoda-zabbix-portal-sudoers
-  register: portal_zabbix_sudoers
-
-
 - name: Copy yoda-zabbix-portal-sudoers to right place
   command: cp /etc/zabbix/yoda-zabbix/zabbix-portal/yoda-zabbix-portal-sudoers /etc/sudoers.d/yoda-zabbix-portal-sudoers
-  when: not portal_zabbix_sudoers.stat.exists or yoda_zabbix_repo.changed
 
 
 - name: Ensure right file ownership on zabbix_agentd.userparams.conf
@@ -40,7 +28,6 @@
 
 - name: Copy Yoda zabbix scripts
   shell: "cp /etc/zabbix/yoda-zabbix/zabbix-portal/*.sh /etc/zabbix/zabbix_agentd.d/"
-  when: yoda_zabbix_repo.changed
   notify: Restart Zabbix agent
 
 
