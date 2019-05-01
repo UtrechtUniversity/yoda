@@ -6,7 +6,13 @@
     name:
       - python-enum34
       - python-lxml
+      - python-pip
     state: present
+
+
+- name: Install Python JSON to AVU module
+  pip:
+    name: git+https://github.com/MaastrichtUniversity/irods_avu_json.git
 
 
 - name: Checkout rulesets from github
