@@ -39,7 +39,7 @@
 
 
 - name: Copy Yoda zabbix scripts
-  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-portal/*.sh /etc/zabbix/abbix_agentd.d/"
+  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-portal/*.sh /etc/zabbix/zabbix_agentd.d/"
   when: yoda_zabbix_repo.changed
   notify: Restart Zabbix agent
 
