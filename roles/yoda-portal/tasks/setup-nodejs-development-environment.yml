@@ -24,14 +24,19 @@
   become_user: "{{ yoda_deployment_user }}"
   become: yes
   npm:
-    path: /var/www/yoda/yoda-portal/modules/research
+    path: "{{ item }}"
   when: not ansible_check_mode
-
+  with_items:
+    - /var/www/yoda/yoda-portal/modules/research
+    - /var/www/yoda/yoda-portal/modules/vault
 
 - name: Webpack metadata-form and dependencies
   become_user: "{{ yoda_deployment_user }}"
   become: yes
   command: ./node_modules/.bin/webpack -d
   args:
-    chdir: /var/www/yoda/yoda-portal/modules/research
+    chdir: "{{ item }}"
   when: not ansible_check_mode
+  with_items:
+    - /var/www/yoda/yoda-portal/modules/research
+    - /var/www/yoda/yoda-portal/modules/vault

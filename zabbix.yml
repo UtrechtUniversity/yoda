@@ -22,7 +22,7 @@
 
     - fail:
         msg: "Make sure your yoda-ansible repository is on branch {{ yoda_version}}. (git checkout {{ yoda_version }})"
-      when: yoda_version not in git_branch.stdout and yoda_environment != "development"
+      when: not ansible_check_mode and yoda_version not in git_branch.stdout and yoda_environment != "development"
 
 
 - name: Provision portal server with Zabbix agent

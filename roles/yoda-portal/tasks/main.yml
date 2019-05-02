@@ -136,13 +136,16 @@
   notify: Restart Apache webserver
 
 
-- name: Run Composer on Yoda Research module
+- name: Run Composer on Yoda Research and Vault module
   become_user: "{{ yoda_deployment_user }}"
   become: yes
   composer:
     command: install
-    working_dir: /var/www/yoda/yoda-portal/modules/research
+    working_dir: "{{ item }}"
   when: not ansible_check_mode
+  with_items:
+    - /var/www/yoda/yoda-portal/modules/research
+    - /var/www/yoda/yoda-portal/modules/vault
 
 
 - include_tasks: setup-nodejs-development-environment.yml
