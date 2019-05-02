@@ -26,30 +26,9 @@
     mode: 0440
 
 
-- name: Copy Yoda Zabbix rules
-  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/*.r /etc/zabbix/zabbix_agentd.d/"
-  notify: Restart Zabbix agent
-
-
 - name: Copy Yoda Zabbix scripts
   shell: "cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/*.sh /etc/zabbix/zabbix_agentd.d/"
   notify: Restart Zabbix agent
-
-
-- name: Find Yoda Zabbix rules
-  find:
-    paths: /etc/zabbix/zabbix_agentd.d
-    patterns: "*.r"
-  register: irodscommon_zabbix_rules
-
-
-- name: Ensure right file ownership on Yoda Zabbix rules
-  file:
-    path: "{{ item.path }}"
-    owner: irods
-    group: irods
-    mode: 0500
-  with_items: "{{ irodscommon_zabbix_rules.files }}"
 
 
 - name: Find Yoda Zabbix scripts
