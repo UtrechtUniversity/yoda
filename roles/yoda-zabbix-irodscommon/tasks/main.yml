@@ -35,7 +35,7 @@
   find:
     paths: /etc/zabbix/zabbix_agentd.d
     patterns: "*.sh"
-  register: irodscommon_zabbix_scripts
+  register: zabbix-irodscommon-scripts
 
 
 - name: Ensure right file ownership on Yoda Zabbix scripts
@@ -44,5 +44,5 @@
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items: "{{ irodscommon_zabbix_scripts.files }}"
+  with_items: "{{ zabbix-irodscommon-scripts.files }}"
 
