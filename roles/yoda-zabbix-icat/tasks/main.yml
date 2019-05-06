@@ -45,7 +45,7 @@
   find:
     paths: /etc/zabbix/zabbix_agentd.d
     patterns: "*.r"
-  register: zabbix-icat-rules
+  register: zabbix_icat_rules
 
 
 - name: Ensure right file ownership on Yoda Zabbix rules
@@ -54,14 +54,14 @@
     owner: irods
     group: irods
     mode: 0500
-  with_items: "{{ zabbix-icat-rules.files }}"
+  with_items: "{{ zabbix_icat_rules.files }}"
 
 
 - name: Find Yoda Zabbix scripts
   find:
     paths: /etc/zabbix/zabbix_agentd.d
     patterns: "*.sh"
-  register: zabbix-icat-scripts
+  register: zabbix_icat_scripts
 
 
 - name: Ensure right file ownership on Yoda Zabbix scripts
@@ -70,5 +70,5 @@
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items: "{{ zabbix-icat-scripts.files }}"
+  with_items: "{{ zabbix_icat_scripts.files }}"
 

@@ -35,7 +35,7 @@
   find:
     paths: /etc/zabbix/zabbix_agentd.d
     patterns: "*.sh"
-  register: zabbix-portal-scripts
+  register: zabbix_portal_scripts
 
 
 - name: Ensure right file ownership on Yoda Zabbix scripts
@@ -44,5 +44,5 @@
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items: "{{ zabbix-portal-scripts.files }}"
+  with_items: "{{ zabbix_portal_scripts.files }}"
 
