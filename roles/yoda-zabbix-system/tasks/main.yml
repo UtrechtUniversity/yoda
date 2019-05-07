@@ -17,6 +17,14 @@
   ignore_errors: yes
 
 
+- name: Remove manual created yoda_checks.usrparams.conf
+  become: yes
+  command: rm /etc/zabbix/zabbix_agentd.d/yoda_checks.userparams.conf
+  args:
+    warn: false
+  ignore_errors: yes
+
+
 - name: Remove old yoda-zabbix-sudoers file from /etc/sudoers.d
   become: yes
   command: rm /etc/sudoers.d/yoda-zabbix-sudoers
