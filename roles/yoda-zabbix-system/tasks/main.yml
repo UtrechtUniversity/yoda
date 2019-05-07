@@ -1,6 +1,24 @@
 ---
 # copyright Utrecht University
 
+- name: Remove old yoda-zabbix repo from /etc/irods
+  become: yes
+  command: rm -r /etc/irods/yoda-zabbix
+  ignore_errors: yes
+
+
+- name: Remove old zabbix_agentd.userparams.conf from zabbix_agentd.d
+  become: yes
+  command: rm /etc/zabbix/zabbix_agentd.d/zabbix_agentd.userparams.conf
+  ignore_errors: yes
+
+
+- name: Remove old yoda-zabbix-sudoers file from /etc/sudoers.d
+  become: yes
+  ignore_errors: yes
+  command: rm /etc/sudoers.d/yoda-zabbix-sudoers
+
+
 - name: Check if Zabbix agent is installable from repository
   yum:
     list: '{{ zabbix_agent.package }}'
