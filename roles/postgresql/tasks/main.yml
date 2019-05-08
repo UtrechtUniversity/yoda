@@ -31,13 +31,6 @@
   notify: Restart PostgreSQL
 
 
-- name: Listen on all interfaces
-  lineinfile:
-    dest: /var/lib/pgsql/data/postgresql.conf
-    line: "listen_addresses = '*'"
-  notify: Restart PostgreSQL
-
-
 - name: Allow access to port 5432 in firewall
   firewalld:
     port: 5432/tcp
@@ -74,22 +67,13 @@
     - '/var/lib/pgsql/data/{{ openssl_crt_signed }}'
 
 
-- name: Ensure PostgreSQL is configured to use SSL
-  ini_file:
-    path: /var/lib/pgsql/data/postgresql.conf
-    section: null
-    option: '{{ item.option }}'
-    value: '{{ item.value }}'
+- name: Ensure PostgreSQL is configured
+  template:
+    src: postgresql.conf.j2
+    dest: "/var/lib/pgsql/data/postgresql.conf"
+    owner: postgres
+    group: postgres
     mode: 0600
-  with_items:
-    - option: ssl
-      value: "on"
-    - option: ssl_cert_file
-      value: "'{{ openssl_crt_signed }}'"
-    - option: ssl_key_file
-      value: "'{{ openssl_key_signed }}'"
-    - option: ssl_ciphers
-      value: "'AES128+EECDH:AES128+EDH'"
   notify: Restart PostgreSQL
 
 
