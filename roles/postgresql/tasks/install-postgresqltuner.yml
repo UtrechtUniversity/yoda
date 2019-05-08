@@ -1,0 +1,16 @@
+---
+# copyright Utrecht University
+
+- name: Ensure postgresqltuner.pl dependencies are present
+  package:
+    name: perl-DBD-Pg
+    state: latest
+
+
+- name: Ensure postgresqltuner.pl is present
+  copy:
+    src: 'postgresqltuner.pl'
+    dest: '/var/lib/pgsql/postgresqltuner.pl'
+    group: 'postgres'
+    owner: 'postgres'
+    mode: u=rwx,g=rx,o=rx
