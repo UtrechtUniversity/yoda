@@ -142,3 +142,4 @@
     group: zabbix
     mode: 0500
   with_items: "{{ zabbix_system_scripts.files }}"
+
