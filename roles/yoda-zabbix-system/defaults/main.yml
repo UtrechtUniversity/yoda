@@ -4,6 +4,8 @@
 # Temporary directory to store downloaded rpm files.
 rpm_dest_dir: /tmp
 
+zabbix_version: "{{ yoda_version }}"
+
 # Zabbix agent rpm location and checksum
 zabbix_agent:
   package: zabbix-agent-3.4.15-1
