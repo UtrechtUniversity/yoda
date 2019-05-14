@@ -11,6 +11,7 @@ The guide below will deploy an 'allinone' instance (all functional roles in one 
 
 1. Clone the yoda-ansible repository and checkout the development branch:
 ```bash
+cd
 git clone https://github.com/UtrechtUniversity/yoda-ansible.git
 cd ~/yoda-ansible
 git checkout development
