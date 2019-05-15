@@ -1,6 +1,16 @@
 ---
 # copyright Utrecht University
 
+galaxy_info:
+  author: Lazlo Westerhof
+  description: Install and configure Yoda davrods
+  license: GPLv3
+  min_ansible_version: 2.7
+  platforms:
+  - name: CentOS
+    version: 7
+
+
 dependencies:
 - apache
 - certificates

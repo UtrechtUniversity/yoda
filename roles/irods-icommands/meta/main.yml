@@ -3,13 +3,9 @@
 
 galaxy_info:
   author: Lazlo Westerhof
-  description: Install composer
+  description: Install iRODS iCommands
   license: GPLv3
   min_ansible_version: 2.7
   platforms:
   - name: CentOS
     version: 7
-
-
-dependencies:
-- php
