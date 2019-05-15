@@ -1,6 +1,0 @@
----
-# copyright Utrecht University
-
-- name: Generate PHP assets version
-  shell: date +%s > /var/www/yoda/yoda-portal/config/yoda_php_assets_version
-  when: not ansible_check_mode
