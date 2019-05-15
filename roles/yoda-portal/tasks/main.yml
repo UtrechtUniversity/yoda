@@ -24,7 +24,7 @@
     version: "{{ item.version }}"
     update: "{{ update_portal }}"
   with_items: "{{ portal_sources }}"
-  register: portalchanges
+  notify: Generate PHP assets version
 
 
 - name: Link public directories of Yoda portal
@@ -44,7 +44,7 @@
     update: "{{ update_portal }}"
     force: yes
   with_items: "{{ modules }}"
-  register: modulechanges
+  notify: Generate PHP assets version
 
 
 - name: Link public directories of Yoda modules
@@ -72,11 +72,6 @@
   set_fact:
     yoda_php_encryption_key: "{{ php_encryption_key['content'] | b64decode }}"
   when: not ansible_check_mode
-
-
-- name: Generate PHP assets version
-  shell: date +%s > /var/www/yoda/yoda-portal/config/yoda_php_assets_version
-  when: not ansible_check_mode and (portalchanges.changed or modulechanges.changed)
 
 
 - name: Retrieve PHP assets version
