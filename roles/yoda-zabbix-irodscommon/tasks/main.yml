@@ -1,9 +1,11 @@
 ---
 # copyright Utrecht University
 
-
-- name: Copy yoda_irodscommon.userparams.conf to right place
-  command: cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda_irodscommon.userparams.conf /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
+- name: Ensure yoda_irodscommon.userparams.conf is present
+  copy:
+    src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda_irodscommon.userparams.conf
+    dest: /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
+    remote_src: yes
 
 
 - name: Ensure right file ownership on yoda_irodscommon.userparams.conf
@@ -14,8 +16,11 @@
     mode: 0400
 
 
-- name: Copy yoda-zabbix-irodscommon.sudoers to right place
-  command: cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda-zabbix-irodscommon-sudoers /etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
+- name: Ensure yoda-zabbix-irodscommon.sudoers is present
+  copy:
+    src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda-zabbix-irodscommon-sudoers
+    dest: /etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
+    remote_src: yes
 
 
 - name: Ensure right file ownership on yoda-zabbix-irodscommon-sudoers
@@ -45,4 +50,3 @@
     group: zabbix
     mode: 0500
   with_items: "{{ zabbix_irodscommon_scripts.files }}"
-
