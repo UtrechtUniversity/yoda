@@ -8,7 +8,7 @@
       - python-virtualenv
       - python-lxml
       - python-sqlalchemy
-      - mod_wsgi    
+      - mod_wsgi
     state: present
 
 
