@@ -4,7 +4,7 @@
 - name: Ensure postgresqltuner.pl dependencies are present
   package:
     name: perl-DBD-Pg
-    state: latest
+    state: present
 
 
 - name: Ensure postgresqltuner.pl is present

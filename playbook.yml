@@ -14,14 +14,17 @@
 
 - hosts: all
   pre_tasks:
-    - name: Verify Yoda Ansible repository is on correct branch
-      shell: git branch | grep \* | cut -d ' ' -f2
+    - name: Retrieve Yoda Ansible repository branch
+      shell: |
+        set -o pipefail
+        git branch | grep \* | cut -d ' ' -f2
       register: git_branch
       changed_when: False
       delegate_to: localhost
 
-    - fail:
-        msg: "Make sure your yoda-ansible repository is on branch {{ yoda_version}}. (git checkout {{ yoda_version }})"
+    - name: Verify Yoda Ansible repository is on correct branch
+      fail:
+        msg: "Make sure your yoda-ansible repository is on branch {{ yoda_version }}. (git checkout {{ yoda_version }})"
       when: not ansible_check_mode and yoda_version not in git_branch.stdout and yoda_environment != "development"
 
 
