@@ -1,0 +1,52 @@
+---
+# copyright Utrecht University
+
+- name: Ensure yoda_irodscommon.userparams.conf is present
+  copy:
+    src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda_irodscommon.userparams.conf
+    dest: /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
+    remote_src: yes
+
+
+- name: Ensure right file ownership on yoda_irodscommon.userparams.conf
+  file:
+    path: /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0400
+
+
+- name: Ensure yoda-zabbix-irodscommon.sudoers is present
+  copy:
+    src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda-zabbix-irodscommon-sudoers
+    dest: /etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
+    remote_src: yes
+
+
+- name: Ensure right file ownership on yoda-zabbix-irodscommon-sudoers
+  file:
+    path: /etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
+    owner: root
+    group: root
+    mode: 0440
+
+
+- name: Copy Yoda Zabbix scripts
+  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-irodscommon/*.sh /etc/zabbix/zabbix_agentd.d/"
+  notify: Restart Zabbix agent
+
+
+- name: Find Yoda Zabbix scripts
+  find:
+    paths: /etc/zabbix/zabbix_agentd.d
+    patterns: "*.sh"
+  register: zabbix_irodscommon_scripts
+
+
+- name: Ensure right file ownership on Yoda Zabbix scripts
+  file:
+    path: "{{ item.path }}"
+    owner: zabbix
+    group: zabbix
+    mode: 0500
+  with_items: "{{ zabbix_irodscommon_scripts.files }}"
