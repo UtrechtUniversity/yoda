@@ -14,18 +14,20 @@ update_portal: yes
 yoda_php_encryption_key: dummy
 yoda_public_dir: /var/www/yoda/yoda-portal/public
 
-
-# Yoda portal source
-portal_sources:
+# Yoda portal prerequisites
+portal_prerequisites:
   - repo: "https://github.com/UtrechtUniversity/CodeIgniter.git"
     dest: /var/www/yoda/CodeIgniter
     version: "{{ codeigniter_version }}"
   - repo: "https://github.com/UtrechtUniversity/irods-php.git"
     dest: /var/www/yoda/irods-php
     version: "{{ yoda_version }}"
-  - repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
-    dest: /var/www/yoda/yoda-portal
-    version: "{{ yoda_version }}"
+
+# Yoda portal source
+portal_source:
+  repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
+  dest: /var/www/yoda/yoda-portal
+  version: "{{ yoda_version }}"
 
 # Yoda modules
 modules:

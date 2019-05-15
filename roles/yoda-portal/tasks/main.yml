@@ -15,7 +15,7 @@
     mode: 0711
 
 
-- name: Checkout Yoda portal source
+- name: Checkout Yoda portal prerequisites
   become_user: "{{ yoda_deployment_user }}"
   become: yes
   git:
@@ -23,7 +23,17 @@
     dest: "{{ item.dest }}"
     version: "{{ item.version }}"
     update: "{{ update_portal }}"
-  with_items: "{{ portal_sources }}"
+  with_items: "{{ portal_prerequisites }}"
+
+
+- name: Checkout Yoda portal source
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "{{ portal_source.repo }}"
+    dest: "{{ portal_source.dest }}"
+    version: "{{ portal_source.version }}"
+    update: "{{ update_portal }}"
   register: portalchanges
 
 
