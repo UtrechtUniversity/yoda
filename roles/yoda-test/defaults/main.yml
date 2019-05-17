@@ -201,7 +201,7 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
 
-  - groupname: datamanager-default-0
+  - groupName: datamanager-default-0
     user: functionaladminpriv
     role: manager
 
@@ -209,7 +209,7 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
 
-  - groupname: datamanager-default-1
+  - groupName: datamanager-default-1
     user: functionaladminpriv
     role: manager
 
