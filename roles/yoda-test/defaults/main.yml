@@ -55,6 +55,22 @@ created_by_ta_users:
   - name: yodaexternaluser@gmail.com
 
 test_groups:
+  - groupName: research-default-0
+    category: default-0
+    subcategory: default-0
+    dataClassification: unspecified
+  - groupName: datamanager-default-0
+    category: default-0
+    subcategory: default-0
+    dataClassification:
+  - groupName: research-default-1
+    category: default-1
+    subcategory: default-1
+    dataClassification: unspecified
+  - groupName: datamanager-default-1
+    category: default-1
+    subcategory: default-1
+    dataClassification:
   - groupName: research-browse
     category: initial
     subcategory: initial
@@ -171,7 +187,6 @@ test_groups:
     category: nodminitial
     subcategory: nodminitial
     dataClassification: unspecified
-
   - groupName: datarequests-research-board-of-directors
     category: datarequests
     subcategory: research
@@ -182,9 +197,26 @@ test_groups:
     dataClassification: unspecified
 
 test_groupusers:
+  - groupName: research-default-0
+    user: functionaladminpriv
+    role: manager
+
+  - groupname: datamanager-default-0
+    user: functionaladminpriv
+    role: manager
+
+  - groupName: research-default-1
+    user: functionaladminpriv
+    role: manager
+
+  - groupname: datamanager-default-1
+    user: functionaladminpriv
+    role: manager
+
   - groupName: datarequests-research-board-of-directors
     user: bodmember
     role: manager
+
   - groupName: datarequests-research-datamanagers
     user: datamanager
     role: manager

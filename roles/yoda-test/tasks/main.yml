@@ -1,7 +1,8 @@
 ---
 # copyright Utrecht University
 
-- include: cleanup-data.yml
-- include: cleanup-users.yml
-- include: install-users.yml
-- include: install-data.yml
+#- include: cleanup-data.yml
+#- include: cleanup-users.yml
+- include: install-schemas.yml
+#- include: install-users.yml
+#- include: install-data.yml
