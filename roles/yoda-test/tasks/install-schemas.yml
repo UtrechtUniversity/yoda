@@ -24,7 +24,7 @@
     irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
     '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
-    '*schema="{{ default-0 }}"'
+    '*schema="default-0"'
     '*category="default-0"'
     '*update={{ update_schemas }}'
   register: install_default_0_xml_for_metadata
@@ -41,10 +41,10 @@
   when: item is search('(Installed|Updated)')
   with_items: "{{ install_default_0_xml_for_metadata.stdout_lines|default('Script did not run') }}"
 
-- name: Find out if default metadata schema is installed
+- name: Find out if default-1 metadata schema is installed
   become_user: "{{ irods_service_account }}"
   become: yes
-  command: 'ils /{{ irods_zone }}/yoda/schemas/default/{{ item }}'
+  command: 'ils /{{ irods_zone }}/yoda/schemas/default-1/{{ item }}'
   ignore_errors: True
   register: installed_defaults
   changed_when: False
@@ -64,7 +64,7 @@
     irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
     '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
-    '*schema="{{ default-1 }}"'
+    '*schema="default-1"'
     '*category="default-1"'
     '*update={{ update_schemas }}'
   register: install_default_1_xml_for_metadata
