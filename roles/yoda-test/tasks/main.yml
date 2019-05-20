@@ -4,5 +4,6 @@
 - include: cleanup-data.yml
 - include: cleanup-users.yml
 - include: install-schemas.yml
+- include: datarequest-data.yml
 - include: install-users.yml
 - include: install-data.yml
