@@ -537,6 +537,7 @@ test_groupusers:
 
 deletion_research_groups:
   - research: browse
+  - research: datarequest
   - research: deletegroup
   - research: escapecharsinfolders
   - research: i1
