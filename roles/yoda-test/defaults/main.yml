@@ -167,10 +167,6 @@ test_groups:
     category: initial
     subcategory: initial
     dataClassification: unspecified
-  - groupName: research-datarequest
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
   - groupName: research-teststatistics1
     category: teststatistics
     subcategory: teststatistics
@@ -525,19 +521,8 @@ test_groupusers:
     user: viewer
     role: reader
 
-  - groupName: research-datarequest
-    user: datamanager
-    role: reader
-  - groupName: research-datarequest
-    user: groupmanager
-    role: manager
-  - groupName: research-datarequest
-    user: researcher
-    role: normal
-
 deletion_research_groups:
   - research: browse
-  - research: datarequest
   - research: deletegroup
   - research: escapecharsinfolders
   - research: i1
