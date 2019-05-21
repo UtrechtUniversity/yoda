@@ -43,6 +43,9 @@ test_users:
   - name: bodmember
     password: '{{ test_password }}'
     type: rodsuser
+  - name: dmcmember
+    password: '{{ test_password }}'
+    type: rodsuser
 
 # Following users are created as iRODS users only.
 eus_test_users:
@@ -187,6 +190,10 @@ test_groups:
     category: datarequests
     subcategory: research
     dataClassification: unspecified
+  - groupName: datarequests-research-data-management-committee
+    category: datarequests
+    subcategory: research
+    dataClassification: unspecified
   - groupName: datarequests-research-datamanagers
     category: datarequests
     subcategory: research
@@ -212,7 +219,9 @@ test_groupusers:
   - groupName: datarequests-research-board-of-directors
     user: bodmember
     role: manager
-
+  - groupName: datarequests-research-data-management-committee
+    user: dmcmember
+    role: manager
   - groupName: datarequests-research-datamanagers
     user: datamanager
     role: manager
