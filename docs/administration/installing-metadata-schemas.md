@@ -61,12 +61,12 @@ To update existing files use the force flag "-f".
 See the example below. Please replace `${RODSZONE}` with the current iRODS Zone and `${CATEGORY}` with the category you want to install.
 
 ```bash
-iput -f ${CATEGORY}/metadata.json /${RODSZONE}/yoda/schemas/${CATEGORY}/metadata.json
-iput -f ${CATEGORY}/research.xsd /${RODSZONE}/yoda/schemas/${CATEGORY}/research.xsd
-iput -f ${CATEGORY}/vault.xsd /${RODSZONE}/yoda/schemas/${CATEGORY}/vault.xsd
-iput -f ${CATEGORY}/avu.xsl /${RODSZONE}/yoda/schemas/${CATEGORY}/avu.xsl
-iput -f ${CATEGORY}/datacite.xsl /${RODSZONE}/yoda/schemas/${CATEGORY}/datacite.xsl
-iput -f ${CATEGORY}/landingpage.xsl /${RODSZONE}/yoda/schemas/${CATEGORY}/landingpage.xsl
+iput -f metadata.json /${RODSZONE}/yoda/schemas/${CATEGORY}/metadata.json
+iput -f research.xsd /${RODSZONE}/yoda/schemas/${CATEGORY}/research.xsd
+iput -f vault.xsd /${RODSZONE}/yoda/schemas/${CATEGORY}/vault.xsd
+iput -f avu.xsl /${RODSZONE}/yoda/schemas/${CATEGORY}/avu.xsl
+iput -f datacite.xsl /${RODSZONE}/yoda/schemas/${CATEGORY}/datacite.xsl
+iput -f landingpage.xsl /${RODSZONE}/yoda/schemas/${CATEGORY}/landingpage.xsl
 ```
 
 The above is legal bash if you define the `CATEGORY` and `RODSZONE` environment variables, for example:
