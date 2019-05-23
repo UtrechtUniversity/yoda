@@ -531,6 +531,8 @@ test_groupusers:
     role: reader
 
 deletion_research_groups:
+  - research: default-0
+  - research: default-1
   - research: browse
   - research: deletegroup
   - research: escapecharsinfolders
@@ -561,12 +563,15 @@ deletion_research_groups:
   - research: updateproperties
 
 deletion_datamanager_groups:
+  - datamanager: default-0
+  - datamanager: default-1
   - datamanager: frontendtest
   - datamanager: initial
   - datamanager: teststatistics
   - datamanager: nodminitial
   - datamanager: newtovault
   - datamanager: charescaping
+
 deletion_grp_groups:
   - grp: datamanager-initial
   - grp: datamanager-test
@@ -575,6 +580,7 @@ deletion_grp_groups:
   - grp: intake-test
   - grp: vault-initial
   - grp: vault-test
+
 deletion_intake_groups:
   - intake: i1
   - intake: recreateintake
