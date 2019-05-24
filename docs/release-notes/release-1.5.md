@@ -44,5 +44,3 @@ Adding the schema identifiers can take some time, the batch script adds 256 jobs
 ```bash
 irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-identifier.r
 ```
-
-When all metadata has a schema identifier the system default or community schema can be [upgraded](../administration/upgrading-metadata-schemas.md).
