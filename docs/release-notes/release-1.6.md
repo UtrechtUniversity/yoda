@@ -18,7 +18,7 @@ Released: TBA
 ## Upgrading from Yoda version 1.5
 Upgrade is supported by Ansible (2.7.x).
 
-1. Set Yoda release to release-1.5 in configuration.
+1. Set Yoda release to release-1.6 in configuration.
 
 2. Add vault module to portal modules configuration.
 
