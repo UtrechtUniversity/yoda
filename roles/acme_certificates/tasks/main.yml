@@ -35,9 +35,9 @@
 - name: Add cronjob for Certbot renewal
   cron:
     name: Certbot automatic renewal
-    job: "certbot renew --quiet --no-self-upgrade"
+    job: "sudo certbot renew --quiet --pre-hook 'systemctl stop httpd' --post-hook 'systemctl start httpd'"
     minute: 25
-    hour: 5
+    hour: 0,12
 
 
 - name: Ensure new certificate is used
