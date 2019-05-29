@@ -55,7 +55,7 @@ header .header-title h1 {
     font-size: 21px;
     margin-top: 25px;
     margin-bottom: 10px;
-    font-family: 'Open Sans', sans-serif; 	
+    font-family: 'Open Sans', sans-serif;
 }
 
 .content {
@@ -67,20 +67,20 @@ header .header-title h1 {
     font-weight: 400;
     font-style: normal;
     font-size: 32px;
-    text-align: left; 
+    text-align: left;
 }
 .content .meta label {
 	font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 14px;    
+    font-size: 14px;
 }
-.content .meta span { 
+.content .meta span {
 	margin-right: 35px;
     font-family: 'Merriweather', serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 14px;    
+    font-size: 14px;
 
 }
 .content .meta span.date {
@@ -90,7 +90,7 @@ header .header-title h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 200;
     font-style: normal;
-    font-size: 16px;    
+    font-size: 16px;
 }
 .content .tags label {
 	width: 100%;
@@ -113,13 +113,13 @@ header .header-title h1 {
     display: inline-block;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 16px;    
+    font-size: 16px;
 }
 
-.content hr { 
-	background-color: #999999; 
-	height: 1px; 
-	border: 0; 
+.content hr {
+	background-color: #999999;
+	height: 1px;
+	border: 0;
 }
 
 .content .access-btn {
@@ -127,7 +127,7 @@ header .header-title h1 {
 	text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 15px;	
+    font-size: 15px;
 }
 
 .metadata {
@@ -135,7 +135,7 @@ header .header-title h1 {
 	padding-left: 5%;
 	padding-right: 5%;
 	padding-top: 4%;
-	background: #ffcd00;	
+	background: #ffcd00;
 }
 .metadata h2 {
     font-family: 'Merriweather', serif;
@@ -173,7 +173,7 @@ header .header-title h1 {
 	font-family: 'Merriweather', serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 18px;	
+    font-size: 18px;
 }
 .metadata .list span a {
 	color: #333333;
@@ -216,4 +216,99 @@ footer .logo {
 footer .logo img {
 	width: 377px;
     height: 111px
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN_r8OXOhpOqc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN_r8OUuhp.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v16/mem8YaGs126MiZpBA-UFW50bbck.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v16/mem8YaGs126MiZpBA-UFVZ0b.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Merriweather Regular'), local('Merriweather-Regular'), url(https://fonts.gstatic.com/s/merriweather/v20/u-440qyriQwlOrhSvowK_l5-ciZMZ-Y.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Merriweather Regular'), local('Merriweather-Regular'), url(https://fonts.gstatic.com/s/merriweather/v20/u-440qyriQwlOrhSvowK_l5-fCZM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Merriweather Bold'), local('Merriweather-Bold'), url(https://fonts.gstatic.com/s/merriweather/v20/u-4n0qyriQwlOrhSvowK_l52xwNZVsf6lvg.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Merriweather Bold'), local('Merriweather-Bold'), url(https://fonts.gstatic.com/s/merriweather/v20/u-4n0qyriQwlOrhSvowK_l52xwNZWMf6.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN7rgOXOhpOqc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN7rgOUuhp.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
