@@ -33,6 +33,16 @@
     - '{{ landingpages_root }}/static/js/'
 
 
+- name: Ensure old Yoda landingpage static files are absent
+  file:
+    path: '{{ item }}'
+    state: absent
+  with_items:
+    - '{{ landingpages_root }}/static/css/yoda-landingpage.css'
+    - '{{ landingpages_root }}/static/js/jquery-3.2.1.min.js'
+    - '{{ landingpages_root }}/static/js/main.js'
+
+
 - name: Ensure Yoda landingpage static files are present
   copy:
     src: '{{ item.src }}'
@@ -41,13 +51,11 @@
   with_items:
     - src: 'index.html'
       dest: '{{ landingpages_root }}/index.html'
-    - src: 'yoda-landingpage.css'
-      dest: '{{ landingpages_root }}/static/css/yoda-landingpage.css'
-    - src: 'logo-uu.svg'
-      dest: '{{ landingpages_root }}/static/img/logo-uu.svg'
-    - src: 'logo_footer.svg'
+    - src: 'css/bootstrap.min.css'
+      dest: '{{ landingpages_root }}/static/css/bootstrap.min.css'
+    - src: 'css/uu.css'
+      dest: '{{ landingpages_root }}/static/css/uu.css'
+    - src: 'img/logo.svg'
+      dest: '{{ landingpages_root }}/static/img/logo.svg'
+    - src: 'img/logo_footer.svg'
       dest: '{{ landingpages_root }}/static/img/logo_footer.svg'
-    - src: 'jquery-3.2.1.min.js'
-      dest: '{{ landingpages_root }}/static/js/jquery-3.2.1.min.js'
-    - src: 'main.js'
-      dest: '{{ landingpages_root }}/static/js/main.js'
