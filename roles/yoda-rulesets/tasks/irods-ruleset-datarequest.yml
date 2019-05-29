@@ -5,3 +5,26 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/etc/irods/irods-ruleset-datarequest/tools/create-data-directory.sh'
+
+
+- name: Ensure that ExecCmd dir exists
+  file:
+    path: /var/lib/irods/msiExecCmd_bin
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0755
+    state: directory
+  when: not ansible_check_mode
+
+
+- name: Copy scripts to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    remote_src: yes
+    src: "/etc/irods/irods-ruleset-datarequest/tools/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: 0755
+  when: not ansible_check_mode
+  with_items:
+    - admin-proposalactions.sh
