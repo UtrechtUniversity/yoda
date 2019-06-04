@@ -168,7 +168,7 @@ smtp_password: PLACEHOLDER          # SMTP server password
 datacite_server: mds.test.datacite.org  # DataCite server URI
 datacite_username: PLACEHOLDER          # DataCite username
 datacite_password: PLACEHOLDER          # DataCite password
-datacite_prefix: 10.5072                # DataCite DOI prefix
+datacite_prefix: 10.00012               # DataCite DOI prefix
 
 #########################
 # EPIC PID Configuration
