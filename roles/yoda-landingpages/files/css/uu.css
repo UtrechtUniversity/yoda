@@ -55,7 +55,7 @@ header .header-title h1 {
     font-size: 21px;
     margin-top: 25px;
     margin-bottom: 10px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif; 	
 }
 
 .content {
@@ -67,20 +67,20 @@ header .header-title h1 {
     font-weight: 400;
     font-style: normal;
     font-size: 32px;
-    text-align: left;
+    text-align: left; 
 }
 .content .meta label {
 	font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 14px;
+    font-size: 14px;    
 }
-.content .meta span {
+.content .meta span { 
 	margin-right: 35px;
     font-family: 'Merriweather', serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 14px;
+    font-size: 14px;    
 
 }
 .content .meta span.date {
@@ -90,7 +90,7 @@ header .header-title h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 200;
     font-style: normal;
-    font-size: 16px;
+    font-size: 16px;    
 }
 .content .tags label {
 	width: 100%;
@@ -113,13 +113,13 @@ header .header-title h1 {
     display: inline-block;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 16px;    
 }
 
-.content hr {
-	background-color: #999999;
-	height: 1px;
-	border: 0;
+.content hr { 
+	background-color: #999999; 
+	height: 1px; 
+	border: 0; 
 }
 
 .content .access-btn {
@@ -127,15 +127,13 @@ header .header-title h1 {
 	text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 15px;	
 }
 
 .metadata {
 	margin-top: 75px;
-	padding-left: 5%;
-	padding-right: 5%;
-	padding-top: 4%;
 	background: #ffcd00;
+  padding: 4% 5%;
 }
 .metadata h2 {
     font-family: 'Merriweather', serif;
@@ -173,7 +171,7 @@ header .header-title h1 {
 	font-family: 'Merriweather', serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 18px;
+    font-size: 18px;	
 }
 .metadata .list span a {
 	color: #333333;
@@ -215,7 +213,45 @@ footer .logo {
 }
 footer .logo img {
 	width: 377px;
-    height: 111px
+  height: 111px
+}
+
+.btn-secondary {
+  border: 2px solid black;
+  padding: 8px 14px;
+  transition: color .1s ease-in-out;
+  color: black;
+  background-color: white;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  font-family: 'Open Sans';
+}
+.btn-secondary:hover,
+.btn-secondary:active {
+  background: black!important;
+  color: white!important;
+  border-color: black!important;
+}
+
+.btn-primary {
+  background-color: #ffcd00;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 19px;
+  font-family: 'Open Sans';
+  border: none;
+}
+.btn-primary:hover,
+.btn-primary:active {
+  text-decoration: none!important;
+  color: #000!important;
+  background-color: #ffcd00!important;
+  border: none!important;
 }
 
 /* latin-ext */
