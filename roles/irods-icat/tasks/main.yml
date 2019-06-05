@@ -456,5 +456,20 @@
   when: read_access is failed
 
 
+- name: Check if public collection exists
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell: 'ils /{{ irods_zone }}/home/public'
+  register: public_coll
+  ignore_errors: true
+
+
+- name: Remove public collection provided that it is empty
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 'irmdir /{{ irods_zone }}/home/public'
+  when: public_coll is not failed
+
+
 - include_tasks: setup_pam.yml
   when: irods_authentication_scheme == "PAM"
