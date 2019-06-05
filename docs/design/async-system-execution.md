@@ -12,7 +12,7 @@ The following concerns need to be dealt with:
 3. Scalability: tasks with long execution time should not block other processes.
 4. Tracability: it should be tracable who was responsible for certain changes.
 
-To address thece concerns, we made the following decisions:
+To address these concerns, we made the following decisions:
 
 * **Decision: asynchronous execution of tasks with long- or uncertain execution time**.  Tasks that require long (say: more than 2 sec) or uncertain execution must be executed asynchronous from the interactive session.  
   **Rationale**: this allows the interactive session to continue (Concern 2), and these jobs to be scheduled/prioritized (Concern 3).  
@@ -82,5 +82,5 @@ The image below shows the state model, and indicates the actions that require as
 
 Note that all  actions that require async/system execution are preceded by a synchronous user action that registers the action, and triggers the async/system action: 1, 2, 3, 4, , 6, 7, 8.
 
-Actions are registered(in principle) in iCat, in provenance (user actions) and in system log.
+Actions are registered (in principle) in iCat, in provenance (user actions) and in system log.
 Registration in system log not always consequently.
