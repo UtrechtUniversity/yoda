@@ -7,17 +7,18 @@
   register: irods_server
 
 
-- name: Ensure iRODS 4.2.4 packages are absent
+- name: Ensure iRODS 4.2.5 packages are absent
   package:
     name:
-      - irods-uu-microservices-4.2.4_0.7.11-1
-      - irods-sudo-microservices-4.2.4_1.0.0-1
-      - davrods-4.2.4_1.4.2-1
+      - irods-uu-microservices-4.2.5_0.8.0-1
+      - irods-sudo-microservices-4.2.5_1.0.0-1
+      - davrods-4.2.5_1.4.2-1
+      - irods-uu-microservices-4.2.5_0.7.11-1
     state: absent
 
 
 - name: Ensure iRODS iCommands is installed
   yum:
-    name: irods-icommands-4.2.5-1
+    name: irods-icommands-4.2.6-1
     state: present
   when: irods_server.stat.exists == false and not ansible_check_mode

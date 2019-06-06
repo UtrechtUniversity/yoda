@@ -1,21 +1,22 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure iRODS 4.2.4 packages are absent
+- name: Ensure iRODS 4.2.5 packages are absent
   package:
     name:
-      - irods-uu-microservices-4.2.4_0.7.11-1
-      - irods-sudo-microservices-4.2.4_1.0.0-1
-      - davrods-4.2.4_1.4.2-1
+      - irods-uu-microservices-4.2.5_0.8.0-1
+      - irods-sudo-microservices-4.2.5_1.0.0-1
+      - davrods-4.2.5_1.4.2-1
+      - irods-uu-microservices-4.2.5_0.7.11-1
     state: absent
 
 
 - name: Ensure iRODS resource server is installed
   package:
     name:
-      - irods-server-4.2.5-1
-      - irods-runtime-4.2.5-1
-      - irods-rule-engine-plugin-python-4.2.5-1
+      - irods-server-4.2.6-1
+      - irods-runtime-4.2.6-1
+      - irods-rule-engine-plugin-python-4.2.6-1
     state: present
   when: not ansible_check_mode
 

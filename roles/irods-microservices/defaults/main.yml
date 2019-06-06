@@ -9,15 +9,15 @@ rpm_dest_dir: /tmp
 # iRODS microservices rpm locations and checksums
 microservices:
   irods_sudo_microservices:
-    package: irods-sudo-microservices-4.2.5_1.0.0-1
-    url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/4.2.5_1.0.0/irods-sudo-microservices-4.2.5_1.0.0-1.rpm
-    filename: irods-sudo-microservices-4.2.5_1.0.0-1.rpm
-    checksum: sha256:569c98b580f7e61185fbedf8945865a53dd852034d2d0b63745ecc6577c7045c
+    package: irods-sudo-microservices-4.2.6_1.0.0-1
+    url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/4.2.6_1.0.0/irods-sudo-microservices-4.2.6_1.0.0-1.rpm
+    filename: irods-sudo-microservices-4.2.6_1.0.0-1.rpm
+    checksum: sha256:c382ee2b84b0b3bf037f8e6f9e2736ef764014d96fec80baed8b5221b437c535
   irods_uu_microservices:
-    package: irods-uu-microservices-4.2.5_0.8.0-1
-    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.0/irods-uu-microservices-4.2.5_0.8.0-1.rpm
-    filename: irods-uu-microservices-4.2.5_0.8.0-1.rpm
-    checksum: sha256:78a5bffdb0f1736a5e9b0ef0adf64d885f75ebee5157037d0c78a4001b6f3c7b
+    package: irods-uu-microservices-4.2.6_0.8.0-1
+    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.0/irods-uu-microservices-4.2.6_0.8.0-1.rpm
+    filename: irods-uu-microservices-4.2.6_0.8.0-1.rpm
+    checksum: sha256:825b456f8a4b03cdfe800fbf449309d309ae2fc3373b9957e037557acc1ee663
 
 # iRODS configuration.
 irods_service_account: irods
