@@ -31,9 +31,11 @@
 - name: Remove temporary rule files left behind
   become_user: "{{ irods_service_account }}"
   become: yes
-  command:
-    /bin/rm -f /etc/irods/*.re.*
-  ignore_errors: true
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_fileglob:
+    - /etc/irods/*.re.*
 
 
 - name: Run make install for each ruleset
