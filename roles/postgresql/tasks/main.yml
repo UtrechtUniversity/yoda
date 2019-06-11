@@ -42,29 +42,23 @@
 
 
 - name: Ensure private key file is available for PostgreSQL
-  command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
-  args:
-    chdir: '/var/lib/pgsql/data'
-    creates: '{{ openssl_key_signed }}'
+  copy:
+    src: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
+    dest: '/var/lib/pgsql/data/{{ openssl_key_signed }}'
+    group: 'postgres'
+    owner: 'postgres'
+    mode: 0600
+    remote_src: yes
 
 
 - name: Ensure certificate file is available for PostgreSQL
-  command: 'cp {{ openssl_certs_dir }}/{{ openssl_crt_signed }} {{ openssl_crt_signed }}'
-  args:
-    chdir: '/var/lib/pgsql/data'
-    creates: '{{ openssl_crt_signed }}'
-
-
-- name: Ensure PostgreSQL has access to PKI files
-  file:
-    path: '{{ item }}'
-    mode: 0600
+  copy:
+    src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
+    dest: '/var/lib/pgsql/data/{{ openssl_crt_signed }}'
     group: 'postgres'
     owner: 'postgres'
-    state: file
-  with_items:
-    - '/var/lib/pgsql/data/{{ openssl_key_signed }}'
-    - '/var/lib/pgsql/data/{{ openssl_crt_signed }}'
+    mode: 0600
+    remote_src: yes
 
 
 - name: Ensure PostgreSQL is configured
