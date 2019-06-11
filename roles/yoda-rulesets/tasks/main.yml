@@ -28,14 +28,21 @@
   register: repochanges
 
 
+- name: Find temporary rule files left behind
+  find:
+    paths: /etc/irods
+    patterns: '*.re.*'
+  register: temporary_rules
+
+
 - name: Remove temporary rule files left behind
   become_user: "{{ irods_service_account }}"
   become: yes
   file:
-    path: "{{ item }}"
+    path: "{{ item.path }}"
     state: absent
-  with_fileglob:
-    - /etc/irods/*.re.*
+  with_items:
+    - "{{ temporary_rules.files }}"
 
 
 - name: Run make install for each ruleset
