@@ -436,14 +436,15 @@
   become: yes
   shell: 'ils /{{ irods_zone }}/home/public'
   register: public_coll
-  ignore_errors: true
+  changed_when: false
+  failed_when: false
 
 
 - name: Remove public collection provided that it is empty
   become_user: '{{ irods_service_account }}'
   become: yes
   command: 'irmdir /{{ irods_zone }}/home/public'
-  when: public_coll is not failed
+  when: (not ansible_check_mode) and (public_coll.stderr.find('does not exist') >= 0)
 
 
 - include_tasks: setup_pam.yml

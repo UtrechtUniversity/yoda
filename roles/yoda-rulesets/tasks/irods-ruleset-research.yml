@@ -5,9 +5,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: 'ils /{{ irods_zone }}/yoda/schemas/default/{{ item }}'
-  ignore_errors: True
+  ignore_errors: true
   register: installed_defaults
-  changed_when: False
+  changed_when: false
   with_items:
     - metadata.json
     - research.xsd
@@ -85,8 +85,8 @@
   become: yes
   command:
     imkdir /{{ irods_zone }}/yoda/publication
-  ignore_errors: true
   changed_when: False
+  failed_when: False
 
 
 - name: Install script for revision clean up

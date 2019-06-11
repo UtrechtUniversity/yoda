@@ -1,10 +1,20 @@
 ---
 # Copyright Utrecht University
 
-- name: Ensure Yoda data requests data directory is present in Yoda and has the right ACLs set
+- name: Find out if Yoda data requests data directory is present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/home/datarequests-research'
+  ignore_errors: true
+  register: data_requests
+  changed_when: false
+
+
+- name: Ensure Yoda data requests data directory is present
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/etc/irods/irods-ruleset-datarequest/tools/create-data-directory.sh'
+  when: (not ansible_check_mode) and (data_requests.stderr.find('does not exist') >= 0)
 
 
 - name: Ensure that ExecCmd dir exists
