@@ -444,7 +444,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command: 'irmdir /{{ irods_zone }}/home/public'
-  when: (not ansible_check_mode) and (public_coll.stderr.find('does not exist') >= 0)
+  when: (not ansible_check_mode) and (public_coll.stdout.find('/home/public') >= 0)
 
 
 - include_tasks: setup_pam.yml
