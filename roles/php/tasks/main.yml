@@ -1,29 +1,48 @@
 ---
 # copyright Utrecht University
 
-- name: Add repository for PHP 7.2
+- name: Remove REMI release repository
   yum:
-    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-    state: present
+    name: remi-release
+    state: absent
 
 
-- name: Enable repository for PHP 7.2
+- name: Remove repository for PHP 7.2
   yum_repository:
     name: remi-php72
     description: Remi's PHP 7.2 RPM repository for Enterprise Linux 7
     mirrorlist: http://rpms.remirepo.net/enterprise/7/php72/mirror
+    enabled: no
+    gpgcheck: 1
+    gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+    state: absent
+
+
+- name: Enable repository for PHP 7.3
+  yum_repository:
+    name: remi-php73
+    description: Remi's PHP 7.3 RPM repository for Enterprise Linux 7
+    mirrorlist: http://rpms.remirepo.net/enterprise/7/php73/mirror
     enabled: yes
     gpgcheck: 1
     gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+  register: php_repo
+
+
+- name: Clean package headers for PHP 7.3
+  command: yum clean all
+  args:
+    warn: false
+  when: not ansible_check_mode and php_repo.changed
 
 
 - name: Ensure PHP packages are installed
-  package:
+  yum:
     name:
-      - php
-      - php-cli
-      - php-xml
-      - php-pecl-mcrypt
+      - php-7.3.6-3*
+      - php-cli-7.3.6-3*
+      - php-xml-7.3.6-3*
+      - php-pecl-mcrypt-1.0.2-2*
     state: present
   when: not ansible_check_mode
   notify: Restart Apache webserver
