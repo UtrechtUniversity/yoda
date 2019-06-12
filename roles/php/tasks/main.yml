@@ -36,13 +36,13 @@
   when: not ansible_check_mode and php_repo.changed
 
 
-- name: Ensure PHP packages are installed
+- name: Ensure PHP 7.3 packages are installed
   yum:
     name:
-      - php-7.3.6-3*
-      - php-cli-7.3.6-3*
-      - php-xml-7.3.6-3*
-      - php-pecl-mcrypt-1.0.2-2*
+      - php-7.3*
+      - php-cli-7.3*
+      - php-xml-7.3*
+      - php-pecl-mcrypt
     state: present
   when: not ansible_check_mode
   notify: Restart Apache webserver
