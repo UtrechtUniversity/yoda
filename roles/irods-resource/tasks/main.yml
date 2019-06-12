@@ -94,7 +94,7 @@
   template:
     src: core.re.j2
     dest: /etc/irods/core.re
-    force: no
+    mode: 0644
 
 
 - name: Ensure core Python rules are present
@@ -104,7 +104,6 @@
     src: "core.py.template"
     dest: "/etc/irods/core.py"
     mode: 0644
-    force: no
 
 
 - name: Ensure Python UU rules exist
@@ -113,6 +112,26 @@
   copy:
     content: ""
     dest: "/etc/irods/rules_uu.py"
+    mode: 0644
+    force: no
+
+
+- name: Ensure Python research rules exist
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    content: ""
+    dest: "/etc/irods/rules_research.py"
+    mode: 0644
+    force: no
+
+
+- name: Ensure Python datarequest rules exist
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    content: ""
+    dest: "/etc/irods/rules_dr.py"
     mode: 0644
     force: no
 
