@@ -64,11 +64,11 @@
   ignore_errors: true
 
 
-- name: Ensure Yoda test data directory research-mdtest/transformation is present in Yoda
+- name: Ensure Yoda test data directory research-default-1/transformation is present in Yoda
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    imkdir /{{ irods_zone }}/home/research-mdtest/transformation
+    imkdir /{{ irods_zone }}/home/research-default-1/transformation
   ignore_errors: true
 
 
