@@ -37,4 +37,4 @@
     mode: 0755
   when: not ansible_check_mode
   with_items:
-    - admin-proposalactions.sh
+    - admin-datarequestactions.sh
