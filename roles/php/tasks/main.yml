@@ -1,12 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Remove REMI release repository
-  yum:
-    name: remi-release
-    state: absent
-
-
 - name: Remove repository for PHP 7.2
   yum_repository:
     name: remi-php72
@@ -16,6 +10,12 @@
     gpgcheck: 1
     gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
     state: absent
+
+
+- name: Add repository for PHP 7.3
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: present
 
 
 - name: Enable repository for PHP 7.3
