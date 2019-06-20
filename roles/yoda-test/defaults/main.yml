@@ -82,7 +82,7 @@ test_groups:
     category: default-1
     subcategory: default-1
     dataClassification:
-  - groupName: geo
+  - groupName: research-geo
     category: geo
     subcategory: geo
     dataClasification: unspecified
@@ -219,24 +219,19 @@ test_groupusers:
   - groupName: research-default-0
     user: functionaladminpriv
     role: manager
-
   - groupName: datamanager-default-0
     user: functionaladminpriv
     role: manager
-
   - groupName: research-default-1
     user: functionaladminpriv
     role: manager
-
   - groupName: datamanager-default-1
     user: functionaladminpriv
     role: manager
-
-  -groupName: research-geo
+  - groupName: research-geo
     user: functionaladminpriv
     role: manager
-
-  -groupName: datamanager-geo
+  - groupName: datamanager-geo
     user: functionaladminpriv
     role: manager
 
