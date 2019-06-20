@@ -70,27 +70,22 @@ test_groups:
     category: default-0
     subcategory: default-0
     dataClassification: unspecified
-
   - groupName: datamanager-default-0
     category: default-0
     subcategory: default-0
     dataClassification:
-  
   - groupName: research-default-1
     category: default-1
     subcategory: default-1
     dataClassification: unspecified
-  
   - groupName: datamanager-default-1
     category: default-1
     subcategory: default-1
     dataClassification:
-  
   - groupName: research-geo
     category: geo
     subcategory: geo
-    dataClasification: unspecified
-
+    dataClassification: unspecified
   - groupName: datamanager-geo
     category: geo
     subcategory: geo
