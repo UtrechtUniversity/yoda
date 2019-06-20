@@ -5,6 +5,14 @@
 irods_service_account: irods
 irods_zone: tempZone                       # The name of the iRODS Zone
 
+schemas:
+  - schema: default-0
+    category: default-0
+  - schema: default-1
+    category: default-1
+  - schema: geo
+    category: geo
+
 # Test configuration.
 test_password: test
 
@@ -73,6 +81,14 @@ test_groups:
   - groupName: datamanager-default-1
     category: default-1
     subcategory: default-1
+    dataClassification:
+  - groupName: geo
+    category: geo
+    subcategory: geo
+    dataClasification: unspecified
+  - groupName: datamanager-geo
+    category: geo
+    subcategory: geo
     dataClassification:
   - groupName: research-browse
     category: initial
@@ -213,6 +229,14 @@ test_groupusers:
     role: manager
 
   - groupName: datamanager-default-1
+    user: functionaladminpriv
+    role: manager
+
+  -groupName: research-geo
+    user: functionaladminpriv
+    role: manager
+
+  -groupName: datamanager-geo
     user: functionaladminpriv
     role: manager
 
@@ -533,6 +557,7 @@ test_groupusers:
 deletion_research_groups:
   - research: default-0
   - research: default-1
+  - research: geo
   - research: browse
   - research: deletegroup
   - research: escapecharsinfolders
@@ -565,6 +590,7 @@ deletion_research_groups:
 deletion_datamanager_groups:
   - datamanager: default-0
   - datamanager: default-1
+  - datamanager: geo
   - datamanager: frontendtest
   - datamanager: initial
   - datamanager: teststatistics
