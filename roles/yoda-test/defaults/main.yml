@@ -10,9 +10,11 @@ schemas:
     category: default-0
   - schema: default-1
     category: default-1
-  - schema: geo
-    category: geo
-
+  - schema: hptlab-0
+    category: hptlab-0
+  - schema: teclab-0
+    category: teclab-0
+    
 # Test configuration.
 test_password: test
 
@@ -82,13 +84,21 @@ test_groups:
     category: default-1
     subcategory: default-1
     dataClassification:
-  - groupName: research-geo
-    category: geo
-    subcategory: geo
+  - groupName: research-hptlab-0
+    category: hptlab-0
+    subcategory: hptlab-0
     dataClassification: unspecified
-  - groupName: datamanager-geo
-    category: geo
-    subcategory: geo
+  - groupName: datamanager-hptlab-0
+    category: hptlab-0
+    subcategory: hptlab-0
+    dataClassification:
+  - groupName: research-teclab-0
+    category: teclab-0
+    subcategory: teclab-0
+    dataClassification: unspecified
+  - groupName: datamanager-teclab-0
+    category: tectab-0
+    subcategory: teclab-0
     dataClassification:
 
   - groupName: research-browse
@@ -229,10 +239,16 @@ test_groupusers:
   - groupName: datamanager-default-1
     user: functionaladminpriv
     role: manager
-  - groupName: research-geo
+  - groupName: research-hptlab-0
     user: functionaladminpriv
     role: manager
-  - groupName: datamanager-geo
+  - groupName: datamanager-hptlab-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-teclab-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-teclab-0
     user: functionaladminpriv
     role: manager
 
@@ -553,7 +569,8 @@ test_groupusers:
 deletion_research_groups:
   - research: default-0
   - research: default-1
-  - research: geo
+  - research: hptlab-0
+  - research: teclab-0
   - research: browse
   - research: deletegroup
   - research: escapecharsinfolders
@@ -586,7 +603,8 @@ deletion_research_groups:
 deletion_datamanager_groups:
   - datamanager: default-0
   - datamanager: default-1
-  - datamanager: geo
+  - datamanager: hptlab-0
+  - datamanager: teclab-0
   - datamanager: frontendtest
   - datamanager: initial
   - datamanager: teststatistics
