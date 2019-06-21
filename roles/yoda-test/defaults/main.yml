@@ -97,7 +97,7 @@ test_groups:
     subcategory: teclab-0
     dataClassification: unspecified
   - groupName: datamanager-teclab-0
-    category: tectab-0
+    category: teclab-0
     subcategory: teclab-0
     dataClassification:
 
