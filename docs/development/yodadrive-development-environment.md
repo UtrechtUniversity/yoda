@@ -6,19 +6,22 @@ A Windows development environment, if not already available, can be installed on
 
 ## Visual Studio
 [Visual Studio Community 2019](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community) is sufficient for development of YodaDrive, since YodaDrive is open source.
+
 Make sure that the following components are included for installation:
 * .NET Desktop Development
 * .NET Framework 4.6.1 development tools
 
 ## WinFsp
 [WinFsp](https://github.com/billziss-gh/winfsp/releases) is a FUSE-like driver for Windows, which is required by YodaDrive.  The version to install is `2019.3 B2` or later, and must match the version used by YodaDrive.
+
 WinFsp must be installed manually. Installing it as part of YodaDrive is not sufficient, since the `Developer` option must be selected during installation.
 
 ## YodaDrive
 Within VS2019, clone from [https://github.com/UtrechtUniversity/YodaDrive.git](https://github.com/UtrechtUniversity/YodaDrive).  Then open the `KS2Drive.sln` solution.
 
 ## Development
-YodaDrive is an open source project, which inherits from (KS2.Drive)[https://github.com/FrKaram/KS2.Drive).  Main development takes part on the `development` branch. Everything specific to YodaDrive is on the `feature/yoda-rebranding' branch.
+YodaDrive is an open source project, which inherits from (KS2.Drive)[https://github.com/FrKaram/KS2.Drive).  Main development takes part on the `development` branch. Everything specific to YodaDrive is on the `feature/yoda-rebranding` branch.
+
 When buiding a YodaDrive release, switch to the `feature/yoda-rebranding` branch, merge the latest changes from the `development` branch if needed, and update the version number in `About/About.xaml`.
 
 ## WinFsp dependency files for YodaDrive distributable
