@@ -20,7 +20,7 @@ WinFsp must be installed manually. Installing it as part of YodaDrive is not suf
 Within VS2019, clone from [https://github.com/UtrechtUniversity/YodaDrive.git](https://github.com/UtrechtUniversity/YodaDrive).  Then open the `KS2Drive.sln` solution.
 
 ## Development
-YodaDrive is an open source project, which inherits from (KS2.Drive)[https://github.com/FrKaram/KS2.Drive).  Main development takes part on the `development` branch. Everything specific to YodaDrive is on the `feature/yoda-rebranding` branch.
+YodaDrive is an open source project, which inherits from [KS2.Drive](https://github.com/FrKaram/KS2.Drive).  Main development takes part on the `development` branch. Everything specific to YodaDrive is on the `feature/yoda-rebranding` branch.
 
 When buiding a YodaDrive release, switch to the `feature/yoda-rebranding` branch, merge the latest changes from the `development` branch if needed, and update the version number in `About/About.xaml`.
 
