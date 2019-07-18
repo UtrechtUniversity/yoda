@@ -25,7 +25,7 @@ YodaDrive is an open source project, which inherits from [KS2.Drive](https://git
 When buiding a YodaDrive release, switch to the `feature/yoda-rebranding` branch, merge the latest changes from the `development` branch if needed, and update the version number in `About/About.xaml`.
 
 ## WinFsp dependency files for YodaDrive distributable
-The distributable for YodaDrive can be made to automatically install the proper version of WinFsp as part of the installation process. In order to build the distributable properly, the following has to be done first.
+The distributable for YodaDrive can be made to automatically install the proper version of WinFsp as part of the installation process. In order to build the distributable properly, the following has to be done first:
 * checkout branch `feature/yoda-rebranding`
 * copy the `Reference/WinFsp*_*` folder to
 ```
