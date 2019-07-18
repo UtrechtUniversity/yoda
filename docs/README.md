@@ -22,6 +22,8 @@ On this website you can find release notes and technical documentation on admini
 
 ## Development
 - [Setting up development environment](development/setting-up-development-environment.md)
+# Development
+- [Setting up YodaDrive development environment](development/yodadrive-development-environment.md)
 - [Development environment test users and data](development/development-test-data.md)
 
 ## Software design
