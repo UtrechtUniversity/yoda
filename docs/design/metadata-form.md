@@ -19,10 +19,10 @@ Data validation (when submitting metadata for the vault) will still take place b
 
 *Change - JSON schema’s*    
 The YoDa team will develop JSON schema’s. No longer XSD's.  
-The corresponding XSD will be derived from a community JONS by software that converts JSONS schema to XSD.
+The corresponding XSD will be derived from a community JSON by software that converts JSONS schema to XSD.
 
 ## Generic implementation
-The metadata form handling is implemented in a generic manner. It can be used within several situations/contexts and is used eg. both within the dynamic storage area as well as the vault.
+The metadata form handling is implemented in a generic manner. It can be used within several situations/contexts and is used eg. both within the research storage area as well as the vault.
 
 In itself the generic metadata form deals with two situations, i.e.
 - an editable form in which users can edit/add metadata to a datapackage
@@ -210,7 +210,7 @@ Build JSON encoded data structure conform the REACT requirements  to ‘feed’ 
 ![OVerview MOAI-CKAN](img/import.png)
 
 
-## Export functionility
+## Export functionality
 
 Purposes:
 - Build yoda-metadata.xml based upon the posted output from the REACT form
