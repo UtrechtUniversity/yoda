@@ -28,7 +28,7 @@ modules:
   - name: research
     repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
-    version: "{{ yoda_version }}"
+    version: "feature/geo-location"
   - name: vault
     repo: "https://github.com/UtrechtUniversity/yoda-portal-vault.git"
     dest: /var/www/yoda/yoda-portal/modules/vault
@@ -128,7 +128,7 @@ rulesets:
   - name: irods-ruleset-research
     repo: https://github.com/UtrechtUniversity/irods-ruleset-research.git
     ruleset_name: rules-research
-    version: "{{ yoda_version }}"
+    version: "feature/geo-schemas"
     install_scripts: yes
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
