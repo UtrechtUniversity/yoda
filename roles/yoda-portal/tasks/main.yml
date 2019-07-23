@@ -63,6 +63,7 @@
     dest: '{{ yoda_public_dir }}/{{ item.name }}'
     state: link
   with_items: "{{ modules }}"
+  when: not ansible_check_mode
 
 
 - name: Generate PHP session encryption key
