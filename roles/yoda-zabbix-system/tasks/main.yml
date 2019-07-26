@@ -13,6 +13,12 @@
     state: absent
 
 
+- name: Remove old yoda_checks.userparams.conf from zabbix_agentd.d
+  file:
+    path: /etc/zabbix/zabbix_agentd.d/yoda_checks.userparams.conf
+    state: absent
+
+
 - name: Remove old yoda-zabbix-sudoers file from /etc/sudoers.d
   file:
     path: /etc/sudoers.d/yoda-zabbix-sudoers
