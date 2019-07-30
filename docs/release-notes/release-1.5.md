@@ -1,14 +1,14 @@
-# Release notes Yoda version 1.5 (TBA)
+# Release notes Yoda version 1.5 (July 2019)
 
 Version: 1.5
 
-Released: TBA
+Released: July 2019
 
 ## What's new in Yoda version 1.5
 ### Features
 - New metadata form based on JSON schema
 - Research and vault space are split into separate modules
-- Add support for upload and download in research space
+- Add support for upload and download (25MB up / unlimited download)
 - Add support for viewing media in the portal
 - Support for metadata schema identifiers and schema migrations
 - Check for unpreservable file formats in your datasets
