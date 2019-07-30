@@ -10,6 +10,7 @@
   changed_when: False
   with_items:
     - metadata.json
+    - uischema.json
     - research.xsd
     - vault.xsd
     - avu.xsl
@@ -50,6 +51,7 @@
   changed_when: False
   with_items:
     - metadata.json
+    - uischema.json
     - research.xsd
     - vault.xsd
     - avu.xsl
@@ -80,5 +82,3 @@
     var: item
   when: item is search('(Installed|Updated)')
   with_items: "{{ install_default_1_xml_for_metadata.stdout_lines|default('Script did not run') }}"
-
-
