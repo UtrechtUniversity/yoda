@@ -1,9 +1,20 @@
-# Layout of involved schemas within Yoda
+# Community dependent files for configuration of metadata handling
 
-Different communities can have different metadata.
+## Community dependency
+Within YoDa, research is supported via groups;  administrative entities declaring which persons are allowed to participate in that perticular research.
+ 
+Each group within YoDa belongs to a community. A community (=category ) can hold multiple groups.
 
-Each Yoda instance has a default layout.
-When no category (=community) is set for any specific group, the default form (and consequently) schema's apply.
+Different communities may require community specific metadata to be added to their research datasets.
+YoDa is designed in such a way that each community can have its own metadata definition. It accommodates handling of community dependent metadata though configuration of the generic metadataform.
+
+If such a community specific definition is not present the system will fall back unto the default definition each YoDa instance is always equipped with.
+
+The metadata definition is declared in JSON schema’s.
+
+A metadata configuration file should always include all information that is required to be able to publish the research datapackage, including its metadata.
+The exact fields can be found on datacite.org
+
 
 ## Folder layout for category dependent schemas
 Central folder for all configurational and statuent files related to metadata is:

@@ -1,34 +1,30 @@
 # Metadata form
 ## Introduction
-A Yoda instance holds research information regarding communities (categories).
-The type of research data can differ between communities.
-Metadata that has to be registered together with research data that can differ as well between communities.  
+A Yoda instance holds research information regarding communities (categories).  
+The type of research data can differ between communities.  
+Metadata, that has to be registered together with research data, can differ as well between communities.  
 Yoda supports communities to use their own metadata accompanying their research by giving them the support of a specific metadata form. If no form exists for a specific community then the standard metadata form is used.
 
-
-*REACT FORM*   
-Within YoDa, REACT is the center for metadata form handling. It gives the development team more flexibilty in extending form possibilities.  
-YoDa users will experience little change regarding the switch to REACT form. Except maybe for some  gui interface changes.
-
-Yoda metadata is still saved in XML and as such available/accessible for the enduser.
-
-REACT relies on JSON data and JSON validation schema’s.  
-That is why internally transformations will have to take place from JSON to XML and vice versa.
-
-Data validation (when submitting metadata for the vault) will still take place based on XSD’s, data transformation is inevitable.
-
-*Change - JSON schema’s*    
-The YoDa team will develop JSON schema’s. No longer XSD's.  
-The corresponding XSD will be derived from a community JSON by software that converts JSONS schema to XSD.
-
 ## Generic implementation
-The metadata form handling is implemented in a generic manner. It can be used within several situations/contexts and is used eg. both within the research storage area as well as the vault.
+The metadata form handling is technically implemented in a generic manner.
 
+Within YoDa is it used in
+- RESEARCH area    
+to view/edit/add metadata for a dataset that will be placed in the vault. All in terms of the corresponding community
+- VAULT area  
+to view/edit/add the metatadata that accompanied a datasets when accepted for the vault. All in terms of the corresponding community
+- DATAREQUEST module
+Given the generic implementation of the form it is utilised in a whole different context for the DATAREQUEST module within YoDa.
+
+*Only the Research and Vault implementation is discussed in this document.*
+
+## Form functionality
+The metadata form handling is implemented in a generic manner.   
 In itself the generic metadata form deals with two situations, i.e.
 - an editable form in which users can edit/add metadata to a datapackage
 - a readonly view on this metadata as previously entered by a researcher
 
-What the generic metadata form deals with:
+What the generic (metadata) form deals with:
 - Presenting a form for the metadata of a specific datapackage where the elements on the form are configurable dependent on category
 - A default metadata form configuration when no metadata form configuration exists for a category
 - Possibility to have dependencies between elements on the form in order to form clear relations between the data
@@ -43,6 +39,65 @@ The file that can be edited via web disk as well by users with sufficient permis
 - readonly view on metadata for a datapackage
 
 
+
+*REACT FORM*   
+Within YoDa, REACT is the center for metadata form handling. It gives the development team more flexibilty in extending form possibilities.  
+
+
+REACT relies on JSON data and JSON validation schema’s.  
+Within YoDa metadata is kept in XML (filename is yoda-metadata.xml).
+That is why internally transformations will have to take place from JSON to XML and vice versa.
+
+Data validation (when submitting metadata for the vault) will still take place based on XSD’s.
+
+**Yoda metadata is still saved in XML and as such available/accessible for the enduser.**
+
+
+# Integral part of Yoda
+
+## React-form
+In essence React-form is a fully configurarable form handler that is based on javascript and JSON schema.  
+Fields can be configured using javascript classes.  
+The form can be fully integrated in an application like for instance YoDa.
+
+- Data can be exported (posted) to the application's backend
+- Data can be imported into the form and presented in the form's fields
+
+## YoDa integration
+
+### Import yoda-metadata.xml and presentation in the form
+YoDa-backend serves the frontend in creating a page holding the react form as a fully integrated part of YoDa.  
+metadata.JSON holds the full definition of the form and is used for validation purposes as well.  
+yoda-metadata.xml, the file that holds previously saved metadata, is transformed in terms of the metadata.JSON so the form can present the data.
+
+### Export (JSON to XML)
+When a user fills out the form and presses 'Save', the data is posted to the indicated backend.
+This JSON response is transformed into the collection specific yoda-metadata.xml.  
+
+
+### Deviations from standard React form
+YoDa has some clear deviations from the standard functionality of React form. This to be able to mimic the behaviour of the preceiding (own development) form that did not use JSON form yet.
+
+#### Default handling of React form is that when fields are clonable they are initially not visible.
+Only after hitting the (add) button they become visible.  
+There are challenges in correctly initializing array fields.
+
+Our own YoDa form requires clonable fields to be present in the form already.
+
+
+### Specific options menu depending on working in research or vault area
+Depending on the area/module a user is working in, different options become available in the options menu.
+
+#### Research area
+'To vault' functionality  
+Request a dataset in the research area to be saved into the vault.
+
+#### Vault area
+'Publish' functionality  
+Request publication of a dataset in the vault.
+
+
+
 # Basic structure
 
 The metadata form is based on React library (https://reactjs.org/)  a javascript library intended for frontend purposes.
@@ -52,8 +107,8 @@ React replaces the older metadata handling processes completely.
 
 
 ##  Required files and purposes
-- React library javascript library.
-This forms the generic basis fort he frontend.  
+- React library javascript library.  
+This forms the generic basis for the frontend.  
  
 - metadata.json - JSON schema  
 A JSON file that mainly holds the structural definition of the metadata form as well as mandatoriness.  
@@ -70,6 +125,10 @@ The metadata.json file mainly holds all information for the metadata form:
   Special mandatoryness-rules apply for compound fields and subproperty structures.
   This is discusses further in this document.
 
+- research.XSD  
+  The research  XSD is used to validate and describe metatadata that is in the research area.
+  This XSD is in fact a translation of the corresponding JSON schema.  
+  To be able to do so, an application JSONS2XSD was created which is described in another design document.
 
 - vault.XSD  
 The vault  XSD is used to validate metadata before it is allowed to be entered in the vault area.  
@@ -80,44 +139,6 @@ To be able to do so, an application JSONS2XSD was created which is described in 
 Holds, in XML format, the metadata as entered by the user.  
 This, either after a save action of the user from within the form, or when edited directly when using a WEBdav client.  
 The XML data should comply to the corresponding XSD before the metadata can be accepted into the vault.
-
-## Community dependency
-Within YoDa, research is supported via groups;  administrative entities declaring which persons are allowed to participate in that perticular research.
-
-Each group within YoDa belongs to a community. A community (=category ) can hold multiple groups.
-
-YoDa is designed in such a way that each community can have its own metadata definition.
-If such definition is not present, a YoDa instance is always equipped with a default definition.  
-The metadata definition is declared in JSON schema’s.
-
-A metadata definition should always include all information that is required to be able to publish the research datapackage, including its metadata.  
-The exact fields can be found on datacite.org
-
-Community dependent files are stored on the virtual iRods drive:
-
-**/tempZone/yoda/schemas**
-
-Each subfolder designates an area that corresponds to a category.
-
-So,
-**/tempZone/yoda/schemas/ilab**
-
-holds all the required files for category ilab.
-
-Always, also included is:
-
-**/tempZone/yoda/schemas/default**
-
-Which is the area which holds the default required files where categories do not have its designated category area.
-
-WIthin a category folders following files are located:
-
-- metadata.JSON  
-The JSON schema for the category.
-- research.XSD  
-results from metadata.JSON but without mandatoryness included
-- vault.XSD  
-results from metadata.JSON but with mandatoryness included
 
 
 ## Complex Data structures
@@ -193,127 +214,22 @@ If one element of a compound field holds a value the other n fields should hold 
 Compound fields within a subproperty structure follow the same rules as on highest level.
 I.e. when one element is filled, all elements must be filled.
 
-# Import and export functionality
-
-The import and export functionality establishes the bridge between the newly introduced REACT form, JSON schema based. and the YoDa application XML.
-
-In essence  
--the export functionality transforms the JSON data that was posted by the form into the yoda-metadata.xml conform the Yoda application requirements for the layout of the XML.  
--the import functionality transforms yoda-metadata.xml into JSON that is prepared for handling by he metadata form.
 
 
-## IMPORT
+# Integration of REACT form within YoDa #
+The file   
 
-Purpose:
-Build JSON encoded data structure conform the REACT requirements  to ‘feed’ the metadata form as such that YoDa is able to present a metadata form that resembles that original metadataform in functionality as well as gui.
+&nbsp;&nbsp;&nbsp;&nbsp;*YoDa-module*/app/index.js  
 
-![OVerview MOAI-CKAN](img/import.png)
+holds all YoDa-application specific javascript code to tweak the REACT form to the needs of the application.  
+It handles all YoDa specific situations where the REACTform is involved.  
+It integrates it within the YoDa application.
 
+Code changes do not directly take effect.  
+In order to effectuate, use:
 
-## Export functionality
+./node_modules/.bin/webpack -d  
+in:  
+/var/www/yoda/yoda-portal/modules/research
 
-Purposes:
-- Build yoda-metadata.xml based upon the posted output from the REACT form
-- Write metadata to iCAT database so it can be searched
-
-![OVerview MOAI-CKAN](img/export.png)
-
-There are two steps involved when the researcher submits the data package to the vault
-
-1. save data in yoda-metadata.xml for the datapackage
-Based upon the form definition in formelements.xml the posted metadata is matched and saved into yoda-metadata.xml in the corresponding folder.
-
-  - Data that is not 'known', i.e. not defined in formelements.xml is NOT saved.
-  - Incomplete subproperty structures are NOT saved in this situation.
-
-  - Data that is sent as empty strings will not be saved.
-    This to keep the metadata that is registered in iCat as effective as possible and not be fully drained with empty metadata values
-
-2. save data from yoda-metadata.xml into AVU's for the datapackage
-   Writing the metadata-xml file triggers an iRODS-policy to process the content of the file (in XML format), via a stylesheet, into AVU's.
-   The stylesheet 'flattens' the hierarchical XML formatted data so all values have an attribute like where all XML tags are places on one line, like:
-   *Contributor_Properties_Identifier_Person_Identifier_Scheme
-    elaborated with numeric indexes if multiplicity is involved*
-
-Step 2 also occurs when a researcher places a yoda-metadata.xml file on the web disk.
-
-The main definition can be found in JSON Schema definition
-
-**Subproperty structure:**  
-In XML a subproperty structure holds a <Properties> tag to separate the leadproperty area in the structure from the subproperty area.  
-This designation is not present within the JSON schema representation and has to be added while transforming  the JSON data to XML
-
-
-** indexed search on metadata **  
-Adding values to the iRODS iCAT database, based upon an XSLT, makes search actions possible from the portal within the metadata.
-
-
-## Submit to vault
-When requesting a datapackage to be accepted into the vault, its corresponding metadata will be validated first.  
-Validation will take place against the community XSD. If this does not exists, validation will take place against the default XSD of the YoDa instance.
-
-![OVerview MOAI-CKAN](img/to_vault.png)
-
-The XSD is a transformation of the JSON schema's that are maintained by the YoDa development team.   
-The Yoda team wrote a program to be able to do so. 
-The documentation of this conversion tool can be found here:
-
-
-
-### Processing of posted metadata in the vault workspace by the datamanager
-The metadata form is also used for editing of metadata when the data package has already been accepted and copied to the vault.
-
-A datamanager, a yoda-user that is member of a datamanager-group for the same research-group, can still edit metadata for the package that is already in the vault.
-However, the data as originally entered by the researcher and accepted for the vault by a datamanager is never compromised / lost.
-
-The presented metadata form within the vault uses the same technique as in the dynamic storage space.  
-Difference is that the newly added data is not actually overwriting the data in yoda-metadata.xml.  
-The metadata form saves ithe older data in the vault in the corresponding folder but always with a unique name, based upon timestamps.  
-Thus safeguarding earlier or original metadata.
-
-## Example of complex structure including representation of multiple lead/subproperty structure and mutliple compound being part of the subproperties  
-
-CONTRIBUTOR field  
-
-Internal PHP representation of contributor field as read from JSON schema.  
-The import and export functionality within the portal software use this structure to be able to determine 
-
-```
- [type] = array
- [items]
-      [type] => object – JSON form way of saying a nested structure is present
-      [yoda:structure] => subproperties   - YODA way of indicating which type of nested structure
-      [properties]
-              [Name]
-                   [$ref] => #/definitions/stringNormal
-                   [title] => Contributor to datapackage
-               [Contributor_Type]
-                      [$ref] => #/definitions/optionsContributorType
-                      [title] => Contributor type
-               [Affiliation]
-                     [type] => array
-                     [default]
-                           [0] => Utrecht University
-                      [items]
-                          [$ref] => #/definitions/stringNormal
-                          [title] => Affiliation
-                          [yoda:required] => 1
-                   [Person_Identifier]
-                                   [type] = array
-                                   [items]
-                                              [type] => object
-                                               [title] => Person identifier
-                                              [yoda:structure] => compound
-                                              [properties] => Array
-                                                        [Name_Identifier_Scheme] => Array
-                                                             [$ref] => #/definitions/optionsNameIdentifierScheme
-                                                             [title] => Type
-                                                         [Name_Identifier] => Array
-                                                               [$ref] => #/definitions/stringNormal
-                                                               [title] => Identifier
-                                                               [dependencies] => Array
-                                                                    [Name_Identifier_Scheme]
-                                                                            [0] => Name_Identifier
-                                                                      [Name_Identifier] => Array
-                                                                            [0] => Name_Identifier_Scheme
-```
+Since there is a separate vault module this will hold its own /app/index.js

@@ -1,12 +1,25 @@
 # Transformation of metadata within YoDa #
 
-## Research area ##
+Due to the fact that communities can change their requirements to their metadata YoDa allows for changes in metadata, i.e. metadata forms configuration.  
 
-**-yoda-metadata.xml**   
-*yoda-metadata.xml* holds a **schemaLocation**.   
-This designates the location of the publically accessible schema to which the data in yoda-metadata.xml must compy.
+*Comply to the latest schema!*  
+As a rule all metadata will have to comply to the latest corresponding schema.  
+This has repercussions on metadata present in research and vault area.  
 
-** research.xsd **   
+
+## Versions of schemas
+To be able to perform data transformations it is required to know which transformation to perform.  
+This is achieved by version control on the community XSD on one hand.  
+On the other hand, yoda-metadata.xml, when metadata is saved from the form, the schemalocation (which includes its version) of the XSD at the time of saving metadata.  
+
+### Research area ##
+
+*- yoda-metadata.xml*  
+yoda-metadata.xml holds a **schemaLocation**.   
+This designates the location of the publically accessible schema to which the data in yoda-metadata.xml must comply.
+As stated, the schema is under version control.
+
+*- The XML schemas for research and vault area (XSD) *   
 Each YoDa-instance holds community based schemas internally for control of metadata integrity for that perticular community.
 In such a system community folder reside:
 - research.xsd   
@@ -14,21 +27,13 @@ The schema to which yoda-metadata.xml in the research area must comply
 - vault.xsd   
 The schema to which yoda-metadata.xml in the research area must comply
 
-An example of configuration files for community 'iLab':
-
-/tempZone/yoda/schemas/ilab/
-- research.xsd
-- vault.xsd
-- All required xls's for the community
-
-For the research area the file research.xsd determines the rules for yoda-metadata.xml.   
-The **targetNamespace** within the xsd determines the ID / version.
+The **targetNamespace** within the xsd determines the ID / version of the XSD
 
 Both schemaLocation in yoda-metadata.xml and targetNamespace in corresponding xsd must be equal.  
 If not, transformation of data in yoda-metadata.xml must take place.
 
 
-### Transformation of metadata ###
+### Actual transformation of metadata ###
 Transformation is mainly achieved by using a stylesheet (xls) to convert data from one schemaID to another.   
 
 If using a stylesheet proves too difficult, or even impossible, the transformation software is set up as such that programmically (Python) changes can be performed as well.
