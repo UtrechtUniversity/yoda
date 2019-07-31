@@ -26,3 +26,9 @@ At most two uploads can be active at one time. Since consecutive writes are capt
 
 ### ReadDirectory
 `ReadDirectory` is performed synchronously, but makes use of the download connection and can be blocked by pending asynchronous `Read` calls. Note that WinFsp permits `ReadDirectory` itself to be asynchronous, but we do not implement it as such.
+
+## State Diagrams
+
+[Mount](img/yodadrive-mount.png)
+
+[Create-Write-Close](img/yodadrive-create.png)
