@@ -10,9 +10,9 @@ YodaDrive has been optimized for iRODS servers accessed via `davrods`, but can b
 Since the remote file system is WebDAV, changes that originate elsewhere are not visible until the user refreshes the view. YodaDrive does not implement WebDAV locking.
 
 ## Mode of operation
-After a remote filesystem has been mounted, calls are made from Windows via WinFsp to `Open`, `Create`, `Read`, or `Write` files. YodaDrive handles `Read` and `Write` asynchronously, and all other calls synchronously.
+After a remote filesystem has been mounted, calls are made from Windows via WinFsp to `Open`, `Create`, `Read`, `Write` or `Close` files. YodaDrive handles `Read` and `Write` asynchronously, and all other calls synchronously.
 
-For asynchronous `Read` and `Write` calls, YodaDrive returns `STATUS_PENDING` and later performs a callback when the `Read` or `Write` completes.  Closing a file with pending `Write` calls will force all scheduled writes to complete, before the `Close` call returns.
+For asynchronous `Read` and `Write` calls, YodaDrive returns `STATUS_PENDING` and later performs a callback when the `Read` or `Write` completes.  Closing a file with pending `Write` calls will wait for all scheduled writes to complete, before the `Close` call returns.
 
 YodaDrive uses one connection for downloads, and at most two connections for uploads.
 
