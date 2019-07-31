@@ -4,7 +4,7 @@ YodaDrive is a WebDAV client for Windows, allowing the user to mount a remove We
 
 YodaDrive is a C# Visual Studio project, making use of the [WebDAVClient](https://github.com/saguiitay/WebDAVClient) library written by Itay Sagui (originally by Kees van den Broek).
 
-YodaDrive has been optimized for `iRODS` servers via `davrods`, but can be used for any WebDAV server.
+YodaDrive has been optimized for iRODS servers accessed via `davrods`, but can be used for any WebDAV server.
 
 ## Limitations
 Since the remote file system is WebDAV, changes that originate elsewhere are not visible until the user refreshes the view. YodaDrive does not implement WebDAV locking.
@@ -25,4 +25,4 @@ Uploads are captured in a single `PUT` request if possible, as long as all `Writ
 At most two uploads can be active at one time. Since consecutive writes are captured in a single `PUT` request, uploading two large files will prevent any other uploads for the duration. This is handled by postponing `Create` and `Write` calls until an upload connection becomes available; `Create` will pretend to succeed and `Write` will not have a callback until the actual block could be appended.
 
 ### ReadDirectory
-`ReadDirectory` is performed synchronously, but makes use of the download connection and can be blocked by pending asynchronous `Read`s.  Note that WinFsp permits `ReadDirectory` itself to be asynchronous, but we do not implement it as such.
+`ReadDirectory` is performed synchronously, but makes use of the download connection and can be blocked by pending asynchronous `Read` calls. Note that WinFsp permits `ReadDirectory` itself to be asynchronous, but we do not implement it as such.
