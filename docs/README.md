@@ -41,6 +41,7 @@ On this website you can find release notes and technical documentation on admini
 - [Statistics module](design/statistics.md)
 - [Revision management](design/revisions.md)
 - [Vault process](design/vault-process.md)
+- [YodaDrive](design/yodadrive.md)
 - [Yoda OAI-PMH endpoint](design/yoda-moai.md)
 
 ## Documentation style

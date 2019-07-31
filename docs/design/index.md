@@ -14,4 +14,5 @@
 - [Statistics module](statistics.md)
 - [Revision management](revisions.md)
 - [Vault process](vault-process.md)
+- [YodaDrive](yodadrive.md)
 - [Yoda OAI-PMH endpoint](yoda-moai.md)
