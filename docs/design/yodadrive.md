@@ -29,6 +29,6 @@ At most two uploads can be active at one time. Since consecutive writes are capt
 
 ## State Diagrams
 
-[Mount](img/yodadrive-mount.png)
+![Mount](img/yodadrive-mount.png)
 
-[Create-Write-Close](img/yodadrive-create.png)
+![Create-Write-Close](img/yodadrive-create.png)
