@@ -1,0 +1,10 @@
+---
+# copyright Utrecht University
+
+- name: Ensure iRODS completion script is installed
+  copy:
+    src: irods_completion.sh
+    dest: /etc/profile.d/irods_completion.sh
+    owner: root
+    group: root
+    mode: '0644'
