@@ -5,7 +5,10 @@ These can be found in the irods-ruleset-research in `tools/schemas/`.
 Below a description of the needed files per schema (using the default schema as example):
 
 **metadata.json**
-  A JSON file describing the metadata form
+  A JSON file describing the metadata form.
+
+**uischema.json**
+  A JSON file describing how a given data type should be rendered as a form input component. It provides information on how the form should be rendered.
 
 **research.xsd**
   A schema describing the elements and their type of a yoda-metadata.xml
