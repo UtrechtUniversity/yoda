@@ -13,11 +13,13 @@
 - name: Ensure Python JSON to AVU module dependencies are installed
   pip:
     name: requests_cache
+  when: not ansible_check_mode
 
 
 - name: Install Python JSON to AVU module
   pip:
     name: irods-avu-json==2.0.0
+  when: not ansible_check_mode
 
 
 - name: Checkout rulesets from github

@@ -10,6 +10,7 @@
   changed_when: False
   with_items:
     - metadata.json
+    - uischema.json
     - research.xsd
     - vault.xsd
     - avu.xsl
@@ -50,6 +51,7 @@
   changed_when: False
   with_items:
     - metadata.json
+    - uischema.json
     - research.xsd
     - vault.xsd
     - avu.xsl
@@ -91,6 +93,7 @@
   changed_when: False
   with_items:
     - metadata.json
+    - uischema.json
     - research.xsd
     - vault.xsd
     - avu.xsl
@@ -132,6 +135,7 @@
   changed_when: False
   with_items:
     - metadata.json
+    - uischema.json
     - research.xsd
     - vault.xsd
     - avu.xsl
