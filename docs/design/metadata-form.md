@@ -8,13 +8,13 @@ Yoda supports communities to use their own metadata accompanying their research 
 ## Generic implementation
 The metadata form handling is technically implemented in a generic manner.
 
-Within YoDa is it used in
+Within Yoda is it used in
 - RESEARCH area    
 to view/edit/add metadata for a dataset that will be placed in the vault. All in terms of the corresponding community
 - VAULT area  
 to view/edit/add the metatadata that accompanied a datasets when accepted for the vault. All in terms of the corresponding community
 - DATAREQUEST module
-Given the generic implementation of the form it is utilised in a whole different context for the DATAREQUEST module within YoDa.
+Given the generic implementation of the form it is utilized in a whole different context for the DATAREQUEST module within Yoda.
 
 *Only the Research and Vault implementation is discussed in this document.*
 
@@ -32,41 +32,37 @@ What the generic (metadata) form deals with:
 - Determining validity of the metadata form data dependent on the category a datapackage belongs to
 - Saving the metadata to a file in XML format within the datapackage (called yoda-metadata.xml)
 The file that can be edited via web disk as well by users with sufficient permissions
-- When data is saved correctly add the metadata to iCat system as AVU’s to the corresponding datapackage information as well. This so these metadata entries can be searched by users
+- When data is saved correctly add the metadata to iCAT system as AVU’s to the corresponding datapackage information as well. This so these metadata entries can be searched by users
 - Offering possibilities to, after correctly/successfully validating a metadata set, the result can be used for further actions.  Like the ability
   - to bring a datapackage / metadata to the vault from within the dynamic storage environment
   - to save several metadata files, with unique names, within the vault
 - readonly view on metadata for a datapackage
 
-
-
 *REACT FORM*   
-Within YoDa, REACT is the center for metadata form handling. It gives the development team more flexibilty in extending form possibilities.  
-
+Within Yoda, REACT is the center for metadata form handling. It gives the development team more flexibility in extending form possibilities.  
 
 REACT relies on JSON data and JSON validation schema’s.  
-Within YoDa metadata is kept in XML (filename is yoda-metadata.xml).
+Within Yoda metadata is kept in XML (filename is yoda-metadata.xml).
 That is why internally transformations will have to take place from JSON to XML and vice versa.
 
 Data validation (when submitting metadata for the vault) will still take place based on XSD’s.
 
 **Yoda metadata is still saved in XML and as such available/accessible for the enduser.**
 
+## Integral part of Yoda
 
-# Integral part of Yoda
-
-## React-form
-In essence React-form is a fully configurarable form handler that is based on javascript and JSON schema.  
+### React-form
+In essence React-form is a fully configurable form handler that is based on javascript and JSON schema.  
 Fields can be configured using javascript classes.  
-The form can be fully integrated in an application like for instance YoDa.
+The form can be fully integrated in an application like for instance Yoda.
 
 - Data can be exported (posted) to the application's backend
 - Data can be imported into the form and presented in the form's fields
 
-## YoDa integration
+## Yoda integration
 
 ### Import yoda-metadata.xml and presentation in the form
-YoDa-backend serves the frontend in creating a page holding the react form as a fully integrated part of YoDa.  
+Yoda-backend serves the frontend in creating a page holding the react form as a fully integrated part of Yoda.  
 metadata.JSON holds the full definition of the form and is used for validation purposes as well.  
 yoda-metadata.xml, the file that holds previously saved metadata, is transformed in terms of the metadata.JSON so the form can present the data.
 
@@ -76,13 +72,13 @@ This JSON response is transformed into the collection specific yoda-metadata.xml
 
 
 ### Deviations from standard React form
-YoDa has some clear deviations from the standard functionality of React form. This to be able to mimic the behaviour of the preceiding (own development) form that did not use JSON form yet.
+Yoda has some clear deviations from the standard functionality of React form. This to be able to mimic the behaviour of the preceding (own development) form that did not use JSON form yet.
 
 #### Default handling of React form is that when fields are clonable they are initially not visible.
 Only after hitting the (add) button they become visible.  
 There are challenges in correctly initializing array fields.
 
-Our own YoDa form requires clonable fields to be present in the form already.
+Our own Yoda form requires clonable fields to be present in the form already.
 
 
 ### Specific options menu depending on working in research or vault area
@@ -96,17 +92,14 @@ Request a dataset in the research area to be saved into the vault.
 'Publish' functionality  
 Request publication of a dataset in the vault.
 
-
-
-# Basic structure
+## Basic structure
 
 The metadata form is based on React library (https://reactjs.org/)  a javascript library intended for frontend purposes.
 
 This is fitted into the place where the (now obsolete) previous version of metadata handling was situated.  
 React replaces the older metadata handling processes completely.
 
-
-##  Required files and purposes
+###  Required files and purposes
 - React library javascript library.  
 This forms the generic basis for the frontend.  
  
@@ -126,24 +119,24 @@ The metadata.json file mainly holds all information for the metadata form:
   This is discusses further in this document.
 
 - research.XSD  
-  The research  XSD is used to validate and describe metatadata that is in the research area.
+  The research XSD is used to validate and describe metatadata that is in the research area.
   This XSD is in fact a translation of the corresponding JSON schema.  
-  To be able to do so, an application JSONS2XSD was created which is described in another design document.
+  To be able to do so, an application ([json-to-xsd](https://github.com/UtrechtUniversity/irods-ruleset-research/blob/development/tools/json-to-xsd.py)) was created.
 
 - vault.XSD  
 The vault  XSD is used to validate metadata before it is allowed to be entered in the vault area.  
 This XSD is in fact a translation of the corresponding JSON schema.  
-To be able to do so, an application JSONS2XSD was created which is described in another design document.
+To be able to do so, an application ([json-to-xsd](https://github.com/UtrechtUniversity/irods-ruleset-research/blob/development/tools/json-to-xsd.py)) was created.
 
 - yoda-metadata.xml  
 Holds, in XML format, the metadata as entered by the user.  
-This, either after a save action of the user from within the form, or when edited directly when using a WEBdav client.  
+This, either after a save action of the user from within the form, or when edited directly when using a webDAV client.  
 The XML data should comply to the corresponding XSD before the metadata can be accepted into the vault.
 
 
-## Complex Data structures
+### Complex Data structures
 
-### Subproperty structure
+#### Subproperty structure
 Subproperties designate a structure consisting of
 1. one lead element
 2. N elements (subproperties) linked to the lead element organised as one group
@@ -214,16 +207,14 @@ If one element of a compound field holds a value the other n fields should hold 
 Compound fields within a subproperty structure follow the same rules as on highest level.
 I.e. when one element is filled, all elements must be filled.
 
-
-
-# Integration of REACT form within YoDa #
+## Integration of REACT form within Yoda
 The file   
 
-&nbsp;&nbsp;&nbsp;&nbsp;*YoDa-module*/app/index.js  
+&nbsp;&nbsp;&nbsp;&nbsp;*Yoda-module*/app/index.js  
 
-holds all YoDa-application specific javascript code to tweak the REACT form to the needs of the application.  
-It handles all YoDa specific situations where the REACTform is involved.  
-It integrates it within the YoDa application.
+holds all Yoda-application specific javascript code to tweak the REACT form to the needs of the application.  
+It handles all Yoda specific situations where the REACTform is involved.  
+It integrates it within the Yoda application.
 
 Code changes do not directly take effect.  
 In order to effectuate, use:
