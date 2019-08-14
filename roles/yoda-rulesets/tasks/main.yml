@@ -10,6 +10,12 @@
     state: present
 
 
+- name: Install Python JSON schema module
+  pip:
+    name: jsonschema==3.0.2
+  when: not ansible_check_mode
+
+
 - name: Ensure Python JSON to AVU module dependencies are installed
   pip:
     name: requests_cache
