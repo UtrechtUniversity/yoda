@@ -94,11 +94,6 @@
   with_items:
     - metadata.json
     - uischema.json
-    - research.xsd
-    - vault.xsd
-    - avu.xsl
-    - datacite.xsl
-    - landingpage.xsl
 
 
 - name: Ensure hptlab-0 metadata schema is installed
@@ -136,11 +131,6 @@
   with_items:
     - metadata.json
     - uischema.json
-    - research.xsd
-    - vault.xsd
-    - avu.xsl
-    - datacite.xsl
-    - landingpage.xsl
 
 
 - name: Ensure teclab-0 metadata schema is installed
