@@ -14,7 +14,9 @@ schemas:
     category: hptlab-0
   - schema: teclab-0
     category: teclab-0
-    
+  - schema: core-0
+    category: core-0
+
 # Test configuration.
 test_password: test
 
@@ -99,6 +101,14 @@ test_groups:
   - groupName: datamanager-teclab-0
     category: teclab-0
     subcategory: teclab-0
+    dataClassification:
+  - groupName: research-core-0
+    category: core-0
+    subcategory: core-0
+    dataClassification: unspecified
+  - groupName: datamanager-core-0
+    category: core-0
+    subcategory: core-0
     dataClassification:
 
   - groupName: research-browse
@@ -249,6 +259,12 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-teclab-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-core-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-core-0
     user: functionaladminpriv
     role: manager
 
@@ -571,6 +587,7 @@ deletion_research_groups:
   - research: default-1
   - research: hptlab-0
   - research: teclab-0
+  - research: core-0
   - research: browse
   - research: deletegroup
   - research: escapecharsinfolders
@@ -605,6 +622,7 @@ deletion_datamanager_groups:
   - datamanager: default-1
   - datamanager: hptlab-0
   - datamanager: teclab-0
+  - datamanager: core-0
   - datamanager: frontendtest
   - datamanager: initial
   - datamanager: teststatistics
