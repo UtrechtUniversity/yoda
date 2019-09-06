@@ -1,5 +1,9 @@
 # Yoda technical documentation
-On this website you can find release notes and technical documentation on administration tasks and software design of Yoda (Your data).
+On this website you can find release notes and technical documentation on administration tasks and software design of Yoda.
+
+## What is this?
+Yoda is a research data management solution developed by Utrecht University and used by multiple institutes around the world.
+It provides researchers and their partners with a workspace and an archive that enables them to collaborate, deposit, publish and preserve research data.
 
 ## Release notes
 - [release 1.5](release-notes/release-1.5.md) (July 2019)
@@ -11,6 +15,8 @@ On this website you can find release notes and technical documentation on admini
 - [release 0.9.7](release-notes/release-0.9.7.md) (August 2017)
 
 ## Administration tasks
+- [Configuring Yoda](administration/configuring-yoda.md)
+- [Deploying Yoda](administration/deploying-yoda.md)
 - [Installing licenses](administration/installing-licenses.md)
 - [Installing terms](administration/installing-terms.md)
 - [Installing preservable file formats](administration/installing-preservable-file-formats.md)
