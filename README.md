@@ -1,4 +1,4 @@
-# Yoda [![Release](https://img.shields.io/github/v/tag/UtrechtUniversity/yoda-ansible?sort=semver)](https://github.com/UtrechtUniversity/yoda-ansible/releases)[![License](https://img.shields.io/github/license/UtrechtUniversity/yoda-ansible.svg?maxAge=2592000)](/LICENSE)
+# Yoda  [![Release](https://img.shields.io/github/v/tag/UtrechtUniversity/yoda-ansible?sort=semver)](https://github.com/UtrechtUniversity/yoda-ansible/releases) [![License](https://img.shields.io/github/license/UtrechtUniversity/yoda-ansible.svg?maxAge=2592000)](/LICENSE)
 
 A system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.
 
