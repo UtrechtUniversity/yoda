@@ -1,5 +1,6 @@
 # Yoda [![Release](https://img.shields.io/github/v/tag/UtrechtUniversity/yoda-ansible?sort=semver)](https://github.com/UtrechtUniversity/yoda-ansible/releases)[![License](https://img.shields.io/github/license/UtrechtUniversity/yoda-ansible.svg?maxAge=2592000)](/LICENSE)
-## A system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.
+
+A system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.
 
 ## What is this?
 Yoda is a research data management solution developed by Utrecht University and used by multiple institutes around the world.
@@ -18,10 +19,7 @@ This repository is the staring point for using Yoda and contains the [Ansible](h
 * [CentOS](https://www.centos.org/) (>= 7.4)
 
 ## Documentation
-* [Setting up development environment](https://utrechtuniversity.github.io/yoda-docs/development/setting-up-development-environment.html)
-* [Dsign overview of the Ansible scripts](DESIGN.md).
-* [Configuration of Yoda](CONFIGURATION.md)
-* [Deployment of Yoda](DEPLOYMENT.md)
+Documentation is hosted on: https://utrechtuniversity.github.io/yoda-docs/
 
 ## License
 This project is licensed under the GPL-v3 license.
