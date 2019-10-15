@@ -5,6 +5,8 @@
   package:
     name:
       - python-enum34
+      - python-jinja2
+      - python-xmltodict
       - python-lxml
       - python-pip
     state: present
