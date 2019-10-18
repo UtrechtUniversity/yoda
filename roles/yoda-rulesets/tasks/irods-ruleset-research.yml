@@ -61,6 +61,25 @@
   when: (not ansible_check_mode) and (terms_installed.stderr.find('does not exist') >= 0)
 
 
+- name: Find out if templates system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/templates'
+  ignore_errors: True
+  register: templates_installed
+  changed_when: False
+
+
+- name: Install templates
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  shell: |
+    iput -r /etc/irods/irods-ruleset-research/tools/templates /{{ irods_zone }}/yoda
+    ichmod -rM inherit /{{ irods_zone }}/yoda/templates
+    ichmod -rM read public /{{ irods_zone }}/yoda/templates
+  when: (not ansible_check_mode) and (templates_installed.stderr.find('does not exist') >= 0)
+
+
 - name: Find out if preservable file formats lists system collection exists
   become_user: "{{ irods_service_account }}"
   become: yes
