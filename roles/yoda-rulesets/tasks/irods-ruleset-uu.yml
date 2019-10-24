@@ -296,3 +296,15 @@
       value: "{{ yoda_davrods_anonymous_fqdn }}{% if (yoda_davrods_anonymous_port is defined) %}:{{ yoda_davrods_anonymous_port }}{% endif %}"
   loop_control:
     loop_var: avu
+
+- name: Remove old research rule files left behind
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/irods/rules-research.re
+    - /etc/irods/rules_research.py
+    - /etc/irods/rules_research.pyc
+    - /etc/irods/irods-ruleset-research/
