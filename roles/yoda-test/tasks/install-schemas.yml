@@ -22,9 +22,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="default-0"'
     '*category="default-0"'
     '*update={{ update_schemas }}'
@@ -63,9 +63,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="default-1"'
     '*category="default-1"'
     '*update={{ update_schemas }}'
@@ -100,9 +100,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="hptlab-0"'
     '*category="hptlab-0"'
     '*update={{ update_schemas }}'
@@ -137,9 +137,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="teclab-0"'
     '*category="teclab-0"'
     '*update={{ update_schemas }}'
@@ -174,9 +174,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="core-0"'
     '*category="core-0"'
     '*update={{ update_schemas }}'

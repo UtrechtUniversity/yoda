@@ -1,4 +1,4 @@
----
+schemas/---
 # Copyright Utrecht University
 
 - name: Find out if group-manager privilige groups are created
@@ -118,7 +118,7 @@
   command: >
     irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-uu/tools/schemas/"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="{{ default_yoda_schema }}"'
     '*category="default"'
     '*update={{ update_schemas }}'
