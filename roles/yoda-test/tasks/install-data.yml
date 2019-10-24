@@ -130,7 +130,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    iput -f '/etc/irods/irods-ruleset-research/tools/licenses/{{ item }}' '/{{ irods_zone }}/yoda/licenses/{{ item }}'
+    iput -f '/etc/irods/irods-ruleset-uu/licenses/{{ item }}' '/{{ irods_zone }}/yoda/licenses/{{ item }}'
   with_items:
     - "Creative Commons Attribution 4.0 International Public License.txt"
     - "Creative Commons Attribution 4.0 International Public License.uri"
@@ -152,10 +152,28 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    iput -f '/etc/irods/irods-ruleset-research/tools/file_formats//{{ item }}' '/{{ irods_zone }}/yoda/file_formats/{{ item }}'
+    iput -f '/etc/irods/irods-ruleset-uu/file_formats//{{ item }}' '/{{ irods_zone }}/yoda/file_formats/{{ item }}'
   with_items:
     - "DANS.json"
     - "4TU.json"
+
+
+- name: Ensure Yoda templates directory is present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/yoda/templates
+  ignore_errors: true
+
+
+- name: Ensure templates are present in Yoda
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iput -f '/etc/irods/irods-ruleset-uu/templates/{{ item }}' '/{{ irods_zone }}/yoda/templates/{{ item }}'
+  with_items:
+    - emptylandingpage.html
+    - landingpage.html
 
 
 - name: Ensure intake module cronjob rules are present
