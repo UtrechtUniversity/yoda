@@ -105,7 +105,7 @@
     src: setup_irods_provider.j2
     dest: /etc/irods/setup_irods_provider
     force: no
-  when: irods_config.stat.exists == false and not ansible_check_mode
+  when: not irods_config.stat.exists and not ansible_check_mode
 
 
 - name: Ensure connection to database is possible

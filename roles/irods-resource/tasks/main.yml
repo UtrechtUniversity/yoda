@@ -59,7 +59,7 @@
     src: setup_irods_consumer.j2
     dest: /etc/irods/setup_irods_consumer
     force: no
-  when: irods_config.stat.exists == false and not ansible_check_mode
+  when: not irods_config.stat.exists and not ansible_check_mode
 
 
 - name: Configure iRODS resource server

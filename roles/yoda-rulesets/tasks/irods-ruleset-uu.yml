@@ -56,7 +56,7 @@
     hour: 6
     day: 15
     job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r >> /var/lib/irods/log/job_monthly-storage-statistics.log 2>&1'
-  when: monthly_storage_statistics.stat.exists == True
+  when: monthly_storage_statistics.stat.exists
 
 
 - name: Set configuration AVUs for UU ruleset to system collection
