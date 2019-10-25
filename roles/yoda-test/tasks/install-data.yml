@@ -172,8 +172,8 @@
   command:
     iput -f '/etc/irods/irods-ruleset-uu/templates/{{ item }}' '/{{ irods_zone }}/yoda/templates/{{ item }}'
   with_items:
-    - emptylandingpage.html
-    - landingpage.html
+    - emptylandingpage.html.j2
+    - landingpage.html.j2
 
 
 - name: Ensure intake module cronjob rules are present
