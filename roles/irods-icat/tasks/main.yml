@@ -201,7 +201,6 @@
     force: no
   with_items:
     - /etc/irods/rules_uu.py
-    - /etc/irods/rules_research.py
     - /etc/irods/rules_dr.py
 
 
