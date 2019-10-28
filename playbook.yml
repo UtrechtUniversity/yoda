@@ -13,6 +13,7 @@
 
 
 - hosts: all
+  gather_facts: False
   pre_tasks:
     - name: Retrieve Yoda Ansible repository branch
       shell: git branch | grep \* | cut -d ' ' -f2
@@ -34,7 +35,7 @@
 
 
 - name: Provision common software and certificates
-  hosts: portals
+  hosts: all
   become: yes
   roles:
     - common
