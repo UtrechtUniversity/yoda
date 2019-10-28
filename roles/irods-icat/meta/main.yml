@@ -12,6 +12,4 @@ galaxy_info:
 
 
 dependencies:
-- common
-- certificates
 - python-irodsclient

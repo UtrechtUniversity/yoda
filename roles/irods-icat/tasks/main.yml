@@ -125,12 +125,6 @@
   when: not ansible_check_mode
 
 
-- name: Ensure old iRODS setup file is absent
-  file:
-    path: /etc/irods/setup_irods
-    state: absent
-
-
 - name: Ensure iRODS setup file is absent
   file:
     path: /etc/irods/setup_irods_provider
