@@ -1,17 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Remove repository for PHP 7.2
-  yum_repository:
-    name: remi-php72
-    description: Remi's PHP 7.2 RPM repository for Enterprise Linux 7
-    mirrorlist: http://rpms.remirepo.net/enterprise/7/php72/mirror
-    enabled: no
-    gpgcheck: 1
-    gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
-    state: absent
-
-
 - name: Add repository for PHP 7.3
   yum:
     name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
@@ -27,13 +16,6 @@
     gpgcheck: 1
     gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
   register: php_repo
-
-
-- name: Clean package headers for PHP 7.3
-  command: yum clean all
-  args:
-    warn: false
-  when: not ansible_check_mode and php_repo.changed
 
 
 - name: Ensure PHP 7.3 packages are installed
