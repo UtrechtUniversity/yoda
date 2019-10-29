@@ -102,12 +102,12 @@
     setype: httpd_sys_rw_content_t
     state: present
   register: filecontext
-  when: ansible_selinux
+  when: ansible_selinux.status == "enabled"
 
 
 - name: Ensure selinux context is enforced on Yoda MOAI database
   command: 'restorecon {{ yoda_moai_home }}/moai.db'
-  when: filecontext is changed and ansible_selinux
+  when: filecontext is changed and ansible_selinux.status == "enabled"
 
 
 - name: Configure cronjob to update MOAI database
