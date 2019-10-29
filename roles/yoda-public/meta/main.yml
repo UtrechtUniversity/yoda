@@ -13,6 +13,5 @@ galaxy_info:
 
 dependencies:
 - apache
-- certificates
 - yoda-moai
 - yoda-landingpages
