@@ -52,9 +52,9 @@
   become: yes
   cron:
     name: 'monthly-storage-statistics'
-    minute: 0
-    hour: 6
-    day: 15
+    minute: '0'
+    hour: '6'
+    day: '15'
     job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r >> /var/lib/irods/log/job_monthly-storage-statistics.log 2>&1'
   when: monthly_storage_statistics.stat.exists
 
@@ -235,8 +235,8 @@
   become: yes
   cron:
     name: 'cronjob-revision-cleanup.sh'
-    minute: 0
-    hour: 2
+    minute: '0'
+    hour: '2'
     job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
 
 

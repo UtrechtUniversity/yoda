@@ -155,7 +155,7 @@
   irods_advanced:
     path: '/etc/irods/server_config.json'
     key: 'rule_engine_server_sleep_time_in_seconds'
-    value: 1
+    value: '1'
 
 
 - name: Ensure core.re is configured
