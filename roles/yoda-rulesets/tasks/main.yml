@@ -60,6 +60,18 @@
     - "{{ temporary_rules.files }}"
 
 
+- name: Ensure Python rules exist
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    content: ""
+    dest: "{{ item }}"
+    mode: 0644
+    force: no
+  with_items:
+    - /etc/irods/rules_dr.py
+
+
 - name: Run make install for each ruleset
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -86,3 +98,12 @@
   loop_control:
     loop_var: ruleset
   when: ruleset.install_scripts and install_rulesets
+
+
+- name: Ensure Python rules are loaded
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: "core.py.template"
+    dest: "/etc/irods/core.py"
+    mode: 0644

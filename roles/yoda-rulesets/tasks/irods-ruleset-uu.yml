@@ -303,7 +303,16 @@
     path: "{{ item }}"
     state: absent
   with_items:
+    - /etc/irods/rules_uu.py
+    - /etc/irods/rules_uu.pyc
     - /etc/irods/rules-research.re
     - /etc/irods/rules_research.py
     - /etc/irods/rules_research.pyc
     - /etc/irods/irods-ruleset-research/
+
+
+- name: Link ruleset directory
+  file:
+    src: /etc/irods/irods-ruleset-uu
+    dest: /etc/irods/rules_uu
+    state: link

@@ -180,22 +180,10 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:
-    src: "core.py.template"
+    content: ""
     dest: "/etc/irods/core.py"
     mode: 0644
-
-
-- name: Ensure Python rules exist
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    content: ""
-    dest: "{{ item }}"
-    mode: 0644
     force: no
-  with_items:
-    - /etc/irods/rules_uu.py
-    - /etc/irods/rules_dr.py
 
 
 - name: Ensure iRODS server is up
