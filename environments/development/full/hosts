@@ -3,35 +3,35 @@
 ###############
 # Define all hosts in instance here:
 [full:children]
-full-portal
-full-database
-full-icat
-full-resource
-full-public
-full-eus
+full_portal
+full_database
+full_icat
+full_resource
+full_public
+full_eus
 
 # Define portal host here:
-[full-portal]
+[full_portal]
 portal
 
 # Define database host here:
-[full-database]
+[full_database]
 database
 
 # Define icat host here:
-[full-icat]
+[full_icat]
 icat
 
 # Define resource host here:
-[full-resource]
+[full_resource]
 resource
 
 # Define public host here:
-[full-public]
+[full_public]
 public
 
 # Define external user service host here:
-[full-eus]
+[full_eus]
 eus
 
 ###############
@@ -39,31 +39,31 @@ eus
 ###############
 # Define all portal hosts here:
 [portals:children]
-full-portal
+full_portal
 
 # Define all database hosts here:
 [databases:children]
-full-database
+full_database
 
 # Define all icat hosts here:
 [icats:children]
-full-icat
+full_icat
 
 # Define all resource hosts here:
 [resources:children]
-full-resource
+full_resource
 
 # Define all public hosts here:
 [publics:children]
-full-public
+full_public
 
 # Define external user service host here:
 [eus:children]
-full-eus
+full_eus
 
 # Provision instances with test data:
 [test:children]
-full-icat
+full_icat
 
 [development:children]
 full
