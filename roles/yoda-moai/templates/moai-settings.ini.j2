@@ -11,7 +11,7 @@ url = https://{{ yoda_public_fqdn }}:{{ yoda_public_port }}/oai/oai
 url = https://{{ yoda_public_fqdn }}/oai/oai
 {% endif %}
 admin_email = fb-yoda@uu.nl
-formats = oai_dc datacite
+formats = oai_dc oai_datacite iso19139
 disallow_sets = private
 database = sqlite:///{{ yoda_moai_home }}/moai.db
 provider = file://{{ yoda_metadata_inbox }}
