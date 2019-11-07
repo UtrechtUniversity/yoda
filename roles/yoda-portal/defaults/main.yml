@@ -26,8 +26,8 @@ portal:
     dest: /var/www/yoda/yoda-portal
     version: "{{ yoda_version }}"
 
-# Yoda modules
-modules:
+# Yoda core modules
+core_modules:
   - name: group-manager
     repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
     dest: /var/www/yoda/yoda-portal/modules/group-manager
@@ -35,11 +35,18 @@ modules:
   - name: research
     repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
-    version: "{{ yoda_version }}"
+    version: "feature/jsonavu"
+  - name: vault
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-vault.git"
+    dest: /var/www/yoda/yoda-portal/modules/vault
+    version: "feature/jsonavu"
   - name: statistics
     repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
     version: "{{ yoda_version }}"
+
+# Yoda extra modules
+extra_modules:
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name

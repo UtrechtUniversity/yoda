@@ -6,19 +6,21 @@ irods_service_account: irods
 update_rulesets: no
 
 # Ruleset configuration.
-rulesets:
+core_rulesets:
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "feature/jsonavu-research-merge"
     install_scripts: yes
   - name: core
     ruleset_name: core
     path: /etc/irods/core.re
     install_scripts: no
 
+extra_rulesets:
+
 # Research module specific configuration.
-default_yoda_schema: defaulta-0
+default_yoda_schema: default-0
 enable_revisions: 1
 revision_strategy: A
 yoda_instance: "{{ instance }}"

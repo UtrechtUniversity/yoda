@@ -17,26 +17,10 @@ yoda_portal_fqdn: portal.yoda.test                 # Yoda Portal fully qualified
 yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
-######################
-# Yoda Portal modules
-######################
-modules:
-  - name: group-manager
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
-    dest: /var/www/yoda/yoda-portal/modules/group-manager
-    version: "{{ yoda_version }}"
-  - name: research
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
-    dest: /var/www/yoda/yoda-portal/modules/research
-    version: "feature/jsonavu"
-  - name: vault
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-vault.git"
-    dest: /var/www/yoda/yoda-portal/modules/vault
-    version: "feature/jsonavu"
-  - name: statistics
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
-    dest: /var/www/yoda/yoda-portal/modules/statistics
-    version: "{{ yoda_version }}"
+###############
+# Yoda modules
+###############
+extra_modules:
   - name: intake
     repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
     dest: /var/www/yoda/yoda-portal/modules/intake
@@ -114,7 +98,7 @@ irods_resources:
 ########################
 # Ruleset configuration
 ########################
-rulesets:
+extra_rulesets:
   - name: irods-ruleset-datarequest
     repo: https://github.com/UtrechtUniversity/irods-ruleset-datarequest.git
     ruleset_name: rules-dr
@@ -125,15 +109,7 @@ rulesets:
     ruleset_name: rules-yc
     version: "{{ yoda_version }}"
     install_scripts: no
-  - name: irods-ruleset-uu
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
-    ruleset_name: rules-uu
-    version: "feature/jsonavu-research-merge"
-    install_scripts: yes
-  - name: core
-    ruleset_name: core
-    path: /etc/irods/core.re
-    install_scripts: no
+
 
 ################################
 # Research module configuration

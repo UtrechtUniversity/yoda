@@ -43,7 +43,7 @@
     version: "{{ item.version }}"
     update: "{{ update_portal }}"
     force: yes
-  with_items: "{{ modules }}"
+  with_items: "{{ core_modules + extra_modules }}"
   register: modulechanges
 
 
@@ -52,7 +52,7 @@
     src: '{{ item.dest }}/public'
     dest: '{{ yoda_public_dir }}/{{ item.name }}'
     state: link
-  with_items: "{{ modules }}"
+  with_items: "{{ core_modules + extra_modules }}"
   when: not ansible_check_mode
 
 

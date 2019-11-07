@@ -38,7 +38,7 @@
     dest: "/etc/irods/{{ item.name }}"
     version: "{{ item.version }}"
     update: "{{ update_rulesets }}"
-  with_items: "{{ rulesets }}"
+  with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item"
   register: repochanges
 
@@ -80,7 +80,7 @@
     target: install
   when: item.1.changed
   with_together:
-    - "{{ rulesets }}"
+    - "{{ extra_rulesets + core_rulesets }}"
     - "{{ repochanges.results }}"
 
 
@@ -89,12 +89,12 @@
   become: yes
   irods_rulesets:
     config_path: "/etc/irods/server_config.json"
-    rulesets: "{{ rulesets | map(attribute='ruleset_name') | list  }}"
+    rulesets: "{{ extra_rulesets + core_rulesets | map(attribute='ruleset_name') | list  }}"
   when: not ansible_check_mode
 
 
 - include_tasks: "{{ ruleset.name }}.yml"
-  with_items: "{{ rulesets }}"
+  with_items: "{{ extra_rulesets + core_rulesets }}"
   loop_control:
     loop_var: ruleset
   when: ruleset.install_scripts and install_rulesets
