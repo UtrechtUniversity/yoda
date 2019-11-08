@@ -43,7 +43,7 @@ core_modules:
   - name: statistics
     repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
-    version: "{{ yoda_version }}"
+    version: "feature/jsonavu"
 
 # Yoda extra modules
 extra_modules:
