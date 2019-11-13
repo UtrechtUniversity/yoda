@@ -100,10 +100,10 @@
   register: irods_config
 
 
-- name: Copy responses for setup_irods.py
+- name: Copy setup JSON for setup_irods.py
   template:
-    src: setup_irods_provider.j2
-    dest: /etc/irods/setup_irods_provider
+    src: setup_irods_provider.json.j2
+    dest: /etc/irods/setup_irods_provider.json
     force: no
   when: not irods_config.stat.exists and not ansible_check_mode
 
@@ -117,8 +117,7 @@
 
 - name: Configure iRODS iCAT server
   become: yes
-  shell: python /var/lib/irods/scripts/setup_irods.py
-    < /etc/irods/setup_irods_provider
+  shell: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_provider.json
   args:
     creates: /etc/irods/service_account.config
   run_once: true
@@ -127,7 +126,7 @@
 
 - name: Ensure iRODS setup file is absent
   file:
-    path: /etc/irods/setup_irods_provider
+    path: /etc/irods/setup_irods_provider.json
     state: absent
 
 
