@@ -196,6 +196,8 @@ yoda_public_host: public.yoda.test     # Yoda public host
 yoda_public_fqdn: public.yoda.test     # Yoda public fully qualified domain name (FQDN)
 
 # Yoda public upload private key (base64 encoded)
+# These keys are the "insecure" public/private keypair we offer for use in development instances.
+# If you use this instance for anything other than development, you should create your own keypair.
 # ssh-keygen -t ed25519 -> base64
 upload_priv_key: |
   LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFB
