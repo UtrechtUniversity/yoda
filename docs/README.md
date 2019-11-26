@@ -30,6 +30,7 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Setting up development environment](development/setting-up-development-environment.md)
 - [Setting up YodaDrive development environment](development/yodadrive-development-environment.md)
 - [Development environment test users and data](development/development-test-data.md)
+- [Wall of Fame](development/wall-of-fame.md)
 
 ## Software design
 - [System overview](design/system-overview.md)
