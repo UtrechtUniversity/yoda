@@ -56,16 +56,15 @@
 
 - name: Copy responses for setup_irods.py
   template:
-    src: setup_irods_consumer.j2
-    dest: /etc/irods/setup_irods_consumer
+    src: setup_irods_consumer.json.j2
+    dest: /etc/irods/setup_irods_consumer.json
     force: no
   when: not irods_config.stat.exists and not ansible_check_mode
 
 
 - name: Configure iRODS resource server
   become: yes
-  shell: python /var/lib/irods/scripts/setup_irods.py
-    < /etc/irods/setup_irods_consumer
+  shell: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_consumer.json
   args:
     creates: /etc/irods/service_account.config
   when: not ansible_check_mode
@@ -73,7 +72,7 @@
 
 - name: Ensure iRODS setup file is absent
   file:
-    path: /etc/irods/setup_irods_consumer
+    path: /etc/irods/setup_irods_consumer.json
     state: absent
 
 
