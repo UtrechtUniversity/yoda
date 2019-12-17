@@ -13,6 +13,5 @@ galaxy_info:
 
 dependencies:
 - apache
-- certificates
 - irods-icommands
 - irods-runtime

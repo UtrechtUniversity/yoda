@@ -3,4 +3,4 @@
 TIMESTAMP=`date +%s`
 OFFSET={{ (ansible_date_time.tz_offset|int / 100)|int }}
 TIMESTAMP=$(( $TIMESTAMP - ($OFFSET * 60 * 60)))
-/usr/bin/irule -F /etc/irods/irods-ruleset-research/tools/revision-clean-up.r "*endOfCalendarDay=${TIMESTAMP}" '*bucketcase="{{ revision_strategy }}"'
+/usr/bin/irule -F /etc/irods/irods-ruleset-uu/tools/revision-clean-up.r "*endOfCalendarDay=${TIMESTAMP}" '*bucketcase="{{ revision_strategy }}"'

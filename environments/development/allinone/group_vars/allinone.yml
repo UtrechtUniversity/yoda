@@ -1,15 +1,11 @@
 ---
 # copyright Utrecht University
 
-########################
 # Ansible configuration
-########################
 ansible_user: vagrant                             # Administrative user on instance for Ansible
 ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of administrative user
 
-#####################
 # Yoda configuration
-#####################
 instance: allinone                                 # Name of Yoda instance, as defined in hosts file
 yoda_version: development                          # Git branch, for example: development or release-1.5
 yoda_environment: development                      # Yoda environment: development, testing, acceptance or production
@@ -17,26 +13,13 @@ yoda_portal_fqdn: portal.yoda.test                 # Yoda Portal fully qualified
 yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
-######################
-# Yoda Portal modules
-######################
-modules:
-  - name: group-manager
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
-    dest: /var/www/yoda/yoda-portal/modules/group-manager
-    version: "{{ yoda_version }}"
-  - name: research
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
-    dest: /var/www/yoda/yoda-portal/modules/research
-    version: "{{ yoda_version }}"
-  - name: vault
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-vault.git"
-    dest: /var/www/yoda/yoda-portal/modules/vault
-    version: "{{ yoda_version }}"
-  - name: statistics
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
-    dest: /var/www/yoda/yoda-portal/modules/statistics
-    version: "{{ yoda_version }}"
+default_yoda_schema: default-0                     # Default Yoda metadata scheme: default-0 or default-1
+yoda_prefix: UU01                                  # Prefix for internal portion of persistent identifier
+update_schemas: 1                                  # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
+credential_files: PLACEHOLDER                      # Location of Yoda credentials files
+
+# Yoda modules
+extra_modules:
   - name: intake
     repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
     dest: /var/www/yoda/yoda-portal/modules/intake
@@ -46,18 +29,13 @@ modules:
     dest: /var/www/yoda/yoda-portal/modules/datarequest
     version: "{{ yoda_version }}"
 
-######################
 # iRODS configuration
-######################
-irods_admin: rods                          # iRODS admin username
 irods_password: rods                       # iRODS admin password
-irods_database_user: irodsdb               # The iRODS database username
 irods_database_password: irodsdev          # The password for the iRODS database username
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_icat_fqdn: combined.yoda.test        # iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn: combined.yoda.test    # iRODS database fully qualified domain name (FQDN)
 irods_resource_fqdn: combined.yoda.test    # iRODS resource fully qualified domain name (FQDN)
-irods_default_resc: irodsResc              # iRODS default resource name
 irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources:
   - name: dev001_1
@@ -111,10 +89,8 @@ irods_resources:
     children:
       - dev002
 
-########################
-# Ruleset configuration
-########################
-rulesets:
+# iRODS rulesets
+extra_rulesets:
   - name: irods-ruleset-datarequest
     repo: https://github.com/UtrechtUniversity/irods-ruleset-datarequest.git
     ruleset_name: rules-dr
@@ -125,36 +101,8 @@ rulesets:
     ruleset_name: rules-yc
     version: "{{ yoda_version }}"
     install_scripts: no
-  - name: irods-ruleset-research
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-research.git
-    ruleset_name: rules-research
-    version: "{{ yoda_version }}"
-    install_scripts: yes
-  - name: irods-ruleset-uu
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
-    ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
-    install_scripts: yes
-  - name: core
-    ruleset_name: core
-    path: /etc/irods/core.re
-    install_scripts: no
 
-################################
-# Research module configuration
-################################
-default_yoda_schema: default-0 # Default Yoda XML scheme: default-0 or default-1
-enable_revisions: 1            # Enable revisions: yes (1) or no (0)
-revision_strategy: B           # Revision strategy: A, B, J or Simple
-yoda_random_id_length: 6       # Length of random ID to add to persistent identifier
-yoda_prefix: UU01              # Prefix for internal portion of persistent identifier
-update_rulesets: yes           # Update already installed rulesets with git
-update_schemas: 1              # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
-credential_files: PLACEHOLDER  # Location of Yoda credentials files
-
-#####################
 # Mail notifications
-#####################
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 notifications_sender_email: noreply@yoda.test # Notifiations sender email address
 notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email address
@@ -162,36 +110,26 @@ smtp_server: PLACEHOLDER            # SMTP server to send mail to
 smtp_username: PLACEHOLDER          # SMTP server username
 smtp_password: PLACEHOLDER          # SMTP server password
 
-#########################
 # DataCite Configuration
-#########################
 datacite_server: mds.test.datacite.org  # DataCite server URI
 datacite_username: PLACEHOLDER          # DataCite username
 datacite_password: PLACEHOLDER          # DataCite password
 datacite_prefix: 10.00012               # DataCite DOI prefix
 
-#########################
 # EPIC PID Configuration
-#########################
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
 epic_handle_prefix: PLACEHOLDER    # EPIC PID prefix
 
-###########################
 # PAM Radius configuration
-###########################
 # server, shared secret, timeout (s)
 pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
 
-#######################
 # Zabbix configuration
-#######################
 zabbix_server: PLACEHOLDER
 
-############################
 # Public host configuration
-############################
 yoda_public_host: combined.yoda.test   # Yoda public host
 yoda_public_fqdn: public.yoda.test     # Yoda public fully qualified domain name (FQDN)
 
@@ -214,9 +152,7 @@ upload_pub_key: |
   c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUl1SnB3d0k2VTZEZUlkZnhUQmZ6
   TlZFeTZrKzl4eXN6dDhBS0c0NVhiL2ggaXJvZHNAY29tYmluZWQK
 
-######################################
 # External user service configuration
-######################################
 yoda_eus_fqdn: eus.yoda.test
 eus_api_fqdn: api.eus.yoda.test
 eus_api_secret: PLACEHOLDER

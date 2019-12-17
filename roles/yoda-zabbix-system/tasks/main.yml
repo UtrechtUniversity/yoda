@@ -64,7 +64,7 @@
   selinux_permissive:
     name: zabbix_agent_t
     permissive: true
-  when: ansible_selinux
+  when: ansible_selinux.status == "enabled"
 
 
 - name: Allow Zabbix agent to sudo

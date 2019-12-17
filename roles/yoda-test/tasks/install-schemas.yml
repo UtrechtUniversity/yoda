@@ -22,9 +22,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="default-0"'
     '*category="default-0"'
     '*update={{ update_schemas }}'
@@ -63,9 +63,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-research/tools/install-metadata-schema.r
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-research/tools/schemas/"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="default-1"'
     '*category="default-1"'
     '*update={{ update_schemas }}'
@@ -82,3 +82,114 @@
     var: item
   when: item is search('(Installed|Updated)')
   with_items: "{{ install_default_1_xml_for_metadata.stdout_lines|default('Script did not run') }}"
+
+
+- name: Find out if hptlab-0 metadata schema is installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/schemas/hptlab-0/{{ item }}'
+  ignore_errors: True
+  register: installed_defaults
+  changed_when: False
+  with_items:
+    - metadata.json
+    - uischema.json
+
+
+- name: Ensure hptlab-0 metadata schema is installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: >
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    '*resc="{{ irods_default_resc }}"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
+    '*schema="hptlab-0"'
+    '*category="hptlab-0"'
+    '*update={{ update_schemas }}'
+  register: install_hptlab_0_xml_for_metadata
+  when: (update_schemas == 1) or
+        (installed_defaults | json_query('results[*].stderr') | join(' ') is search('does not exist'))
+  changed_when: install_hptlab_0_xml_for_metadata.stdout is search('(Installed|Updated)')
+
+
+- name: List installed or updated schemas, formelements or stylesheets
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  debug:
+    var: item
+  when: item is search('(Installed|Updated)')
+  with_items: "{{ install_hptlab_0_xml_for_metadata.stdout_lines | default('Script did not run') }}"
+
+
+- name: Find out if teclab-0 metadata schema is installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/schemas/teclab-0/{{ item }}'
+  ignore_errors: True
+  register: installed_defaults
+  changed_when: False
+  with_items:
+    - metadata.json
+    - uischema.json
+
+
+- name: Ensure teclab-0 metadata schema is installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: >
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    '*resc="{{ irods_default_resc }}"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
+    '*schema="teclab-0"'
+    '*category="teclab-0"'
+    '*update={{ update_schemas }}'
+  register: install_teclab_0_xml_for_metadata
+  when: (update_schemas == 1) or
+        (installed_defaults | json_query('results[*].stderr') | join(' ') is search('does not exist'))
+  changed_when: install_teclab_0_xml_for_metadata.stdout is search('(Installed|Updated)')
+
+
+- name: List installed or updated schemas, formelements or stylesheets
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  debug:
+    var: item
+  when: item is search('(Installed|Updated)')
+  with_items: "{{ install_teclab_0_xml_for_metadata.stdout_lines | default('Script did not run') }}"
+
+
+- name: Find out if core-0 metadata schema is installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/schemas/core-0/{{ item }}'
+  ignore_errors: True
+  register: installed_defaults
+  changed_when: False
+  with_items:
+    - metadata.json
+    - uischema.json
+
+
+- name: Ensure core-0 metadata schema is installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: >
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    '*resc="{{ irods_default_resc }}"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
+    '*schema="core-0"'
+    '*category="core-0"'
+    '*update={{ update_schemas }}'
+  register: install_teclab_0_xml_for_metadata
+  when: (update_schemas == 1) or
+        (installed_defaults | json_query('results[*].stderr') | join(' ') is search('does not exist'))
+  changed_when: install_teclab_0_xml_for_metadata.stdout is search('(Installed|Updated)')
+
+
+- name: List installed or updated schemas, formelements or stylesheets
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  debug:
+    var: item
+  when: item is search('(Installed|Updated)')
+  with_items: "{{ install_teclab_0_xml_for_metadata.stdout_lines | default('Script did not run') }}"

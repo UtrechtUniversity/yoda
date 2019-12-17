@@ -7,12 +7,13 @@
   pre_tasks:
     - name: Verify Ansible version meets requirements
       assert:
-        that: "ansible_version.full is version('2.7', '>=')"
+        that: "ansible_version.full is version('2.9', '>=')"
         msg: >
-          "You must update Ansible to at least 2.7 to deploy Yoda."
+          "You must update Ansible to at least 2.9 to deploy Yoda."
 
 
 - hosts: all
+  gather_facts: False
   pre_tasks:
     - name: Retrieve Yoda Ansible repository branch
       shell: git branch | grep \* | cut -d ' ' -f2
@@ -33,12 +34,18 @@
     - hostentries
 
 
-- name: Provision portal server
-  hosts: portals
+- name: Provision common software and certificates
+  hosts: all
   become: yes
   roles:
     - common
     - certificates
+
+
+- name: Provision portal server
+  hosts: portals
+  become: yes
+  roles:
     - apache
     - { role: acme_certificates, when: yoda_environment == "testing" }
     - php
@@ -54,8 +61,6 @@
   hosts: databases
   become: yes
   roles:
-    - common
-    - certificates
     - postgresql
     - irods-database
   tags:
@@ -66,8 +71,6 @@
   hosts: icats
   become: yes
   roles:
-    - common
-    - certificates
     - irods-icat
     - irods-runtime
     - irods-microservices
@@ -81,8 +84,6 @@
   hosts: resources
   become: yes
   roles:
-    - common
-    - certificates
     - irods-resource
     - irods-runtime
     - irods-microservices
@@ -115,8 +116,6 @@
   hosts: publics
   become: yes
   roles:
-    - common
-    - certificates
     - apache
     - yoda-moai
     - yoda-landingpages
@@ -129,8 +128,6 @@
   hosts: eus
   become: yes
   roles:
-    - common
-    - certificates
     - apache
     - php
     - yoda-external-user-service

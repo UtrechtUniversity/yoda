@@ -3,34 +3,34 @@
 ###################
 # Define all hosts in instance here:
 [allinone:children]
-allinone-portal
-allinone-database
-allinone-icat
-allinone-resource
-allinone-public
-allinone-eus
+allinone_portal
+allinone_database
+allinone_icat
+allinone_resource
+allinone_public
+allinone_eus
 
 # Define portal host here:
-[allinone-portal]
+[allinone_portal]
 combined
 
 # Define database host here:
-[allinone-database]
+[allinone_database]
 combined
 
 # Define icat host here:
-[allinone-icat]
+[allinone_icat]
 combined
 
 # Define resource host here:
-[allinone-resource]
+[allinone_resource]
 
 # Define public host here:
-[allinone-public]
+[allinone_public]
 combined
 
 # Define external user service host here:
-[allinone-eus]
+[allinone_eus]
 combined
 
 ###############
@@ -38,31 +38,30 @@ combined
 ###############
 # Define all portal hosts here:
 [portals:children]
-allinone-portal
+allinone_portal
 
 # Define all database hosts here:
 [databases:children]
-allinone-database
+allinone_database
 
 # Define all icat hosts here:
 [icats:children]
-allinone-icat
+allinone_icat
 
 # Define all resource hosts here:
 [resources:children]
-allinone-resource
+allinone_resource
 
 # Define all public hosts here:
 [publics:children]
-allinone-public
+allinone_public
 
 # Define external user service host here:
 [eus:children]
-allinone-eus
+allinone_eus
 
 # Provision instances with test data:
 [test:children]
-allinone-icat
+allinone_icat
 
 [development:children]
-

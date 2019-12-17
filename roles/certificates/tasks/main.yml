@@ -1,9 +1,15 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure dependencies for Ansible OpenSSL module are installed
+- name: Ensure old dependencies for Ansible OpenSSL module are absent
   package:
     name: pyOpenSSL
+    state: absent
+
+
+- name: Ensure dependencies for Ansible OpenSSL module are present
+  package:
+    name: python-cryptography
     state: present
 
 
@@ -12,31 +18,31 @@
     path: '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
     size: 4096
     type: RSA
-    force: False
+    force: no
     state: present
 
 
 - name: Ensure an OpenSSL certificate signing request is present
-  command: "openssl req -new -sha256 \
-    -key '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}' \
-    -out '{{ openssl_csr_selfsigned }}' -batch -subj \
-    '/O={{ openssl_o }}/C={{ openssl_c }}\
-     /localityName={{ openssl_localityName }}\
-     /commonName={{ certificate_domain }}'"
-  args:
-    chdir: '{{ openssl_certs_dir }}'
-    creates: '{{ openssl_csr_selfsigned }}'
+  openssl_csr:
+    path: '{{ openssl_certs_dir }}/{{ openssl_csr_selfsigned }}'
+    privatekey_path: '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
+    digest: sha256
+    country_name: '{{ openssl_c }}'
+    organization_name: '{{ openssl_o }}'
+    locality_name: '{{ openssl_localityName }}'
+    common_name: '{{ certificate_domain }}'
+    force: no
+    state: present
 
 
 - name: Ensure an OpenSSL self signed certificate is present
-  command: >
-    openssl x509 -req -sha256 -days 365
-    -in '{{ openssl_csr_selfsigned }}'
-    -signkey '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
-    -out '{{ openssl_crt_selfsigned }}'
-  args:
-    chdir: '{{ openssl_certs_dir }}'
-    creates: '{{ openssl_crt_selfsigned }}'
+  openssl_certificate:
+    path: '{{ openssl_certs_dir }}/{{ openssl_crt_selfsigned }}'
+    privatekey_path: '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
+    csr_path: '{{ openssl_certs_dir }}/{{ openssl_csr_selfsigned }}'
+    provider: selfsigned
+    force: no
+    state: present
 
 
 - name: Ensure signed private key is present
@@ -71,11 +77,12 @@
     creates: '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
 
 
-- name: Ensure Diffie-Hellman parameters are present
-  command: openssl dhparam -2 -out {{ openssl_dhparams }} 2048
-  args:
-    chdir: '{{ openssl_private_dir }}'
-    creates: '{{ openssl_private_dir }}/{{ openssl_dhparams }}'
+- name: Ensure Diffie-Hellman parameters (2048 bits) are present
+  openssl_dhparam:
+    path: '{{ openssl_private_dir }}/{{ openssl_dhparams }}'
+    size: 2048
+    force: no
+    state: present
 
 
 - name: Ensure certificate files have correct permissions

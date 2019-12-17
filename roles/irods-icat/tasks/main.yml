@@ -100,12 +100,12 @@
   register: irods_config
 
 
-- name: Copy responses for setup_irods.py
+- name: Copy setup JSON for setup_irods.py
   template:
-    src: setup_irods_provider.j2
-    dest: /etc/irods/setup_irods_provider
+    src: setup_irods_provider.json.j2
+    dest: /etc/irods/setup_irods_provider.json
     force: no
-  when: irods_config.stat.exists == false and not ansible_check_mode
+  when: not irods_config.stat.exists and not ansible_check_mode
 
 
 - name: Ensure connection to database is possible
@@ -117,23 +117,16 @@
 
 - name: Configure iRODS iCAT server
   become: yes
-  shell: python /var/lib/irods/scripts/setup_irods.py
-    < /etc/irods/setup_irods_provider
+  shell: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_provider.json
   args:
     creates: /etc/irods/service_account.config
   run_once: true
   when: not ansible_check_mode
 
 
-- name: Ensure old iRODS setup file is absent
-  file:
-    path: /etc/irods/setup_irods
-    state: absent
-
-
 - name: Ensure iRODS setup file is absent
   file:
-    path: /etc/irods/setup_irods_provider
+    path: /etc/irods/setup_irods_provider.json
     state: absent
 
 
@@ -161,7 +154,7 @@
   irods_advanced:
     path: '/etc/irods/server_config.json'
     key: 'rule_engine_server_sleep_time_in_seconds'
-    value: 1
+    value: '1'
 
 
 - name: Ensure core.re is configured
@@ -186,23 +179,10 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:
-    src: "core.py.template"
+    content: ""
     dest: "/etc/irods/core.py"
     mode: 0644
-
-
-- name: Ensure Python rules exist
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    content: ""
-    dest: "{{ item }}"
-    mode: 0644
     force: no
-  with_items:
-    - /etc/irods/rules_uu.py
-    - /etc/irods/rules_research.py
-    - /etc/irods/rules_dr.py
 
 
 - name: Ensure iRODS server is up

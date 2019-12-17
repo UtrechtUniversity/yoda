@@ -23,7 +23,7 @@ yoda_moai_packages:
     package: python-WSGIUtils
     url: https://github.com/UtrechtUniversity/yoda-moai/releases/download/yoda-1.0b
     filename: python-WSGIUtils-0.7-1.el7.centos.noarch.rpm
-    checksum: sha256:0f00236b96e7a3c80485aa0be62e885561314d1f071da946cdfb987c4a6b4e49 
+    checksum: sha256:0f00236b96e7a3c80485aa0be62e885561314d1f071da946cdfb987c4a6b4e49
 
 yoda_moai_version: "{{ yoda_version }}"
 yoda_moai_user: moai
@@ -36,4 +36,3 @@ yoda_metadata_inbox: "{{ yoda_moai_home }}/metadata"
 yoda_public_host: combined.yoda.test   # Yoda public host
 yoda_public_fqdn: public.yoda.test     # Yoda public fully qualified domain name (FQDN)
 yoda_public_port: 443
-

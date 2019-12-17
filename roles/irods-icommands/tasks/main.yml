@@ -21,4 +21,4 @@
   yum:
     name: irods-icommands-4.2.6-1
     state: present
-  when: irods_server.stat.exists == false and not ansible_check_mode
+  when: not irods_server.stat.exists and not ansible_check_mode

@@ -15,7 +15,7 @@
     mode: 0711
 
 
-- name: Checkout Yoda portal prerequisites
+- name: Checkout Yoda portal
   become_user: "{{ yoda_deployment_user }}"
   become: yes
   git:
@@ -23,17 +23,7 @@
     dest: "{{ item.dest }}"
     version: "{{ item.version }}"
     update: "{{ update_portal }}"
-  with_items: "{{ portal_prerequisites }}"
-
-
-- name: Checkout Yoda portal source
-  become_user: "{{ yoda_deployment_user }}"
-  become: yes
-  git:
-    repo: "{{ portal_source.repo }}"
-    dest: "{{ portal_source.dest }}"
-    version: "{{ portal_source.version }}"
-    update: "{{ update_portal }}"
+  with_items: "{{ portal }}"
   register: portalchanges
 
 
@@ -53,7 +43,7 @@
     version: "{{ item.version }}"
     update: "{{ update_portal }}"
     force: yes
-  with_items: "{{ modules }}"
+  with_items: "{{ core_modules + extra_modules }}"
   register: modulechanges
 
 
@@ -62,7 +52,7 @@
     src: '{{ item.dest }}/public'
     dest: '{{ yoda_public_dir }}/{{ item.name }}'
     state: link
-  with_items: "{{ modules }}"
+  with_items: "{{ core_modules + extra_modules }}"
   when: not ansible_check_mode
 
 

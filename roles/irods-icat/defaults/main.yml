@@ -30,6 +30,7 @@ irods_database_user: irodsdb               # The iRODS database username
 irods_database_password: irodsdev          # The password for the iRODS database username
 irods_authentication_scheme: PAM           # iRODS authentication method: "Native" or "PAM"
 irods_zone: tempZone                       # The name of the iRODS Zone
+irods_default_resc: irodsResc              # iRODS default resource name
 irods_port_range_begin: 20000
 irods_port_range_end: 20199
 irods_icat_port: 1247

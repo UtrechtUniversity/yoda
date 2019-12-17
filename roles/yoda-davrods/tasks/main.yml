@@ -43,6 +43,7 @@
     setype: httpd_sys_script_exec_t
     state: present
   register: filecontext
+  when: ansible_selinux.status == "enabled"
 
 
 - name: Ensure selinux context is enforced on davrods module
@@ -107,6 +108,7 @@
     - /usr/lib/irods/plugins/network/libssl_client.so
     - /usr/lib/irods/plugins/network/libtcp_server.so
     - /usr/lib/irods/plugins/network/libssl_server.so
+  when: ansible_selinux.status == "enabled"
 
 
 - name: Ensure selinux context is enforced on iRODS network plugins
