@@ -25,7 +25,7 @@ yoda_moai_packages:
     filename: python-WSGIUtils-0.7-1.el7.centos.noarch.rpm
     checksum: sha256:0f00236b96e7a3c80485aa0be62e885561314d1f071da946cdfb987c4a6b4e49
 
-yoda_moai_version: "feature/jsonavu"
+yoda_moai_version: "{{ yoda_version }}"
 yoda_moai_user: moai
 yoda_moai_home: /var/www/moai
 yoda_moai_database_connection_string: "sqlite:///{{ yoda_moai_home }}/moai.db"

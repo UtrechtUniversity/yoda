@@ -35,15 +35,15 @@ core_modules:
   - name: research
     repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
-    version: "feature/jsonavu"
+    version: "{{ yoda_version }}"
   - name: vault
     repo: "https://github.com/UtrechtUniversity/yoda-portal-vault.git"
     dest: /var/www/yoda/yoda-portal/modules/vault
-    version: "feature/jsonavu"
+    version: "{{ yoda_version }}"
   - name: statistics
     repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
-    version: "feature/jsonavu"
+    version: "{{ yoda_version }}"
 
 # Yoda extra modules
 extra_modules:
