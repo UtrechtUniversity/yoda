@@ -91,8 +91,9 @@ In case of a new Yoda instance we can copy a [configuration](environments/develo
 The configuration is split in several parts. Below an overview of these parts and the configuration options available.
 
 ### Ansible configuration
-Variable                     | Description
------------------------------|---------------------------------
+
+Variable   | Description
+-----------|---------------------------------------------
 ansible_user                 | Administrative user on instance for Ansible
 ansible_ssh_private_key_file | Path to private key file of administrative user
 repo_only                    | Only download packages from repos
@@ -100,8 +101,9 @@ repo_only                    | Only download packages from repos
 Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars).
 
 ### Yoda configuration
-Variable                     | Description
------------------------------|---------------------------------
+
+Variable   | Description
+-----------|---------------------------------------------
 instance                     | Name of Yoda instance, as defined in hosts file
 yoda_version                 | Git branch, for example: development or release-0.9.7
 yoda_environment             | Yoda environment: development, testing, acceptance or production
@@ -110,6 +112,7 @@ yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (
 yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
 ### iRODS configuration
+
 Variable                     | Description
 -----------------------------|---------------------------------
 irods_admin                  | iRODS admin username
@@ -125,8 +128,9 @@ irods_ssl_verify_server      | Verify TLS certificate, use 'cert' for acceptance
 irods_resources              | Definition of iRODS resources of this Yoda instance
 
 ### Research module configuration
-Variable                     | Description
------------------------------|---------------------------------
+
+Variable   | Description
+-----------|---------------------------------------------
 default_yoda_schema          | Default Yoda XML scheme: default-0 or default-1
 enable_revisions             | Enable revisions: yes (1) or no (0)
 revision_strategy            | Revision strategy: A, B, J or Simple
@@ -137,8 +141,9 @@ update_schemas               | Update already installed schemas, formelements an
 credential_files             | Location of Yoda credentials files
 
 ### Mail notifications
-Variable                     | Description
------------------------------|---------------------------------
+
+Variable   | Description
+-----------|---------------------------------------------
 send_notifications           | Enable notifications: yes (1) or no (0)
 notifications_sender_email   | Notifiations sender email address
 notifications_reply_to       | Notifiations Reply-To email address
@@ -147,37 +152,42 @@ smtp_username                | SMTP server username
 smtp_password                | SMTP server password
 
 ### DataCite Configuration
-Variable                     | Description
------------------------------|---------------------------------
+
+Variable   | Description
+-----------|---------------------------------------------
 datacite_username            | DataCite username
 datacite_password            | DataCite password
 datacite_prefix              | DataCite DOI prefix
 datacite_server              | DataCite server URI
 
 ### EPIC PID Configuration
-Variable                     | Description
------------------------------|---------------------------------
+
+Variable   | Description
+-----------|---------------------------------------------
 epic_url                     | EPIC PID server URI (undefined disables EPIC PID)
 epic_handle_prefix           | EPIC PID prefix
 epic_key                     | EPIC PID key (base64 encoded)
 epic_cert                    | EPIC PID cert (base64 encoded)
 
 ### PAM Radius configuration
-Variable                     | Description
------------------------------|---------------------------------
+
+Variable   | Description
+-----------|---------------------------------------------
 pam_radius_config:           | server, shared secret, timeout (s)
 
 ### Public host configuration
-Variable                     | Description
------------------------------|---------------------------------
+
+Variable   | Description
+-----------|---------------------------------------------
 yoda_public_host             | Yoda public host
 yoda_public_fqdn             | Yoda public fully qualified domain name (FQDN)
 upload_priv_key              | Yoda public upload private key (base64 encoded)
 upload_pub_key               | Yoda public upload public key (base64 encoded)
 
 ### External user service configuration
-Variable                     | Description
------------------------------|---------------------------------
+
+Variable   | Description
+-----------|---------------------------------------------
 yoda_eus_fqdn                | Yoda External User Service fully qualified domain name (FQDN)
 eus_api_fqdn                 | External User Service API fully qualified domain name (FQDN)
 eus_api_port                 | External User Service API port
