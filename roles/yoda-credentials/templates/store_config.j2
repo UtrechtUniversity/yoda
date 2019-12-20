@@ -9,16 +9,12 @@
 
     "datacite_url": "https://{{ datacite_server }}",
     "datacite_username": "{{ datacite_username }}",
-    "datacite_password": "{{ datacite_password }}",
+    "datacite_password": "{{ datacite_password }}"
 
 {% if epic_url != "PLACEHOLDER" %}
-    "epic_url": "{{ epic_url }}",
+   ,"epic_url": "{{ epic_url }}",
     "epic_handle_prefix": "{{ epic_handle_prefix }}",
     "epic_key": "{{ credentials_store }}/epic_key.pem",
-    "epic_certificate": "{{ credentials_store }}/epic_cert.pem",
+    "epic_certificate": "{{ credentials_store }}/epic_cert.pem"
 {% endif %}
-
-    "eus_api_fqdn": "{{ eus_api_fqdn }}",
-    "eus_api_port": "{{ eus_api_port }}",
-    "eus_api_secret": "{{ eus_api_secret }}"
 }

@@ -28,13 +28,27 @@ update_schemas: 0                # Update already installed schemas, formelement
 yoda_random_id_length: 6         # Length of random ID to add to persistent identifier
 irods_default_resc: irodsResc
 
-#####################
-# Mail notifications
-#####################
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
-sender_email: noreply@yoda.test     # Sender email address
-sender_name: "Yoda system"          # Sender name
-reply_to: noreply@yoda.test         # Reply-To email address
-smtp_server: PLACEHOLDER            # SMTP server to send mail to
-smtp_username: PLACEHOLDER          # SMTP server username
-smtp_password: PLACEHOLDER          # SMTP server password
+
+# Ruleset-uu configuration
+
+notifications_sender_email: noreply@yoda.test # Notifiations sender email address
+notifications_sender_name: "Yoda system"      # Notifiations sender name
+notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email address
+
+smtp_server: PLACEHOLDER                      # SMTP server to send mail to
+smtp_username: PLACEHOLDER                    # SMTP server username
+smtp_password: PLACEHOLDER                    # SMTP server password
+
+datacite_server: mds.test.datacite.org  # DataCite server URI
+datacite_username: PLACEHOLDER          # DataCite username
+datacite_password: PLACEHOLDER          # DataCite password
+
+epic_url: PLACEHOLDER                   # EPIC PID server URL
+epic_handle_prefix: PLACEHOLDER         # EPIC PID handle prefix
+epic_key: PLACEHOLDER                   # inline EPIC key (optional)
+epic_cert: PLACEHOLDER                  # inline EPIC cert (optional)
+
+eus_api_fqdn: api.eus.yoda.test         # External User Service API FQDN
+eus_api_port: 8443                      # External User Service API port
+eus_api_secret: PLACEHOLDER             # External User Service API secret

@@ -74,6 +74,16 @@
     loop_var: avu
 
 
+- name: Create local UU ruleset configuration
+  template:
+    src: rules_uu.cfg.j2
+    dest: "/etc/irods/irods-ruleset-uu/rules_uu.cfg"
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0600
+  when: not ansible_check_mode
+
+
 - name: Ensure that ExecCmd dir exists
   file:
     path: /var/lib/irods/msiExecCmd_bin
@@ -313,6 +323,6 @@
 
 - name: Link ruleset directory
   file:
-    src: /etc/irods/irods-ruleset-uu
+    src: irods-ruleset-uu
     dest: /etc/irods/rules_uu
     state: link

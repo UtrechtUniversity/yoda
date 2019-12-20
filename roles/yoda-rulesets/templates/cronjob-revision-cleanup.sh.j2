@@ -1,5 +1,6 @@
-# {{ ansible_managed }}
 #!/bin/bash
+# {{ ansible_managed }}
+
 TIMESTAMP=`date +%s`
 OFFSET={{ (ansible_date_time.tz_offset|int / 100)|int }}
 TIMESTAMP=$(( $TIMESTAMP - ($OFFSET * 60 * 60)))
