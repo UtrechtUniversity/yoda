@@ -24,6 +24,9 @@ Released: July 2019
 - Fixed: CSV exports start with an empty row
 - Fixed: unsubmit after submit fails in some cases
 
+### Known limitations
+- assumes default-0 compliant xsd schema.  
+
 ## Upgrading from Yoda version 1.4
 Upgrade is supported by Ansible (2.7.x).
 Requires Yoda public server and external user service to be on version 1.4.x or higher.
