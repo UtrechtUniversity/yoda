@@ -1,26 +1,262 @@
 import itertools
+from collections import OrderedDict
 
+import irods_types
 
 __all__ = [
+    "Query",
     "row_iterator",
     "paged_iterator",
     "AS_DICT",
     "AS_LIST",
+    "AS_TUPLE",
 ]
 
-
 MAX_SQL_ROWS = 256
-AUTO_CLOSE_QUERIES = True
-Report_Exit_To_Log = False
+
+class Option(object):
+    """iRODS QueryInp option flags - used internally.
+
+    AUTO_CLOSE, RETURN_TOTAL_ROW_COUNT, and UPPER_CASE_WHERE should not be set
+    by calling code, as Query already provides convenient functionality for this.
+
+    See irods: lib/core/include/rodsGenQuery.h
+    """
+    RETURN_TOTAL_ROW_COUNT = 0x020
+    NO_DISTINCT            = 0x040
+    QUOTA_QUERY            = 0x080
+    AUTO_CLOSE             = 0x100
+    UPPER_CASE_WHERE       = 0x200
 
 class row_return_type (object):
     def __init__(self): raise NotImplementedError
 
-class AS_DICT (row_return_type): pass
-class AS_LIST (row_return_type): pass
+class AS_DICT  (row_return_type): pass
+class AS_LIST  (row_return_type): pass
+class AS_TUPLE (row_return_type): pass
 
-class bad_column_spec (RuntimeError): pass
-class bad_returntype_spec (RuntimeError): pass
+
+class Query(object):
+    """Generator-style genquery iterator.
+
+    :param callback:       iRODS callback
+    :param columns:        a list of SELECT column names, or columns as a comma-separated string.
+    :param condition:      (optional) where clause, as a string
+    :param output:         (optional) [default=AS_TUPLE] either AS_DICT/AS_LIST/AS_TUPLE
+    :param offset:         (optional) starting row (0-based), can be used for pagination
+    :param limit:          (optional) maximum amount of results, can be used for pagination
+    :param case_sensitive: (optional) set this to False to make the entire where-clause case insensitive
+    :param options:        (optional) other OR-ed options to pass to the query (see the Option type above)
+
+    Getting the total row count:
+
+      Use q.total_rows() to get the total number of results matching the query
+      (without taking offset/limit into account).
+
+    Output types:
+
+      AS_LIST and AS_DICT behave the same as in row_iterator.
+      AS_TUPLE produces a tuple, similar to AS_LIST, with the exception that
+      for queries on single columns, each result is returned as a string
+      instead of a 1-element tuple.
+
+    Examples:
+
+        # Print all collections.
+        for x in Query(callback, 'COLL_NAME'):
+            print('name: ' + x)
+
+        # The same, but more verbose:
+        for x in Query(callback, 'COLL_NAME', output=AS_DICT):
+            print('name: {}'.format(x['COLL_NAME']))
+
+        # ... or make it into a list
+        colls = list(Query(callback, 'COLL_NAME'))
+
+        # ... or get data object paths
+        datas = ['{}/{}'.format(x, y) for x, y in Query(callback, 'COLL_NAME, DATA_NAME')]
+
+        # Print the first 200-299 of data objects ordered descending by data
+        # name, owned by a username containing 'r' or 'R', in a collection
+        # under (case-insensitive) '/tempzone/'.
+        for x in Query(callback, 'COLL_NAME, ORDER_DESC(DATA_NAME), DATA_OWNER_NAME',
+                       "DATA_OWNER_NAME like '%r%' and COLL_NAME like '/tempzone/%'",
+                       case_sensitive=False,
+                       offset=200, limit=100):
+            print('name: {}/{} - owned by {}'.format(*x))
+    """
+
+    def __init__(self,
+                 callback,
+                 columns,
+                 conditions='',
+                 output=AS_TUPLE,
+                 offset=0,
+                 limit=None,
+                 case_sensitive=True,
+                 options=0):
+
+        self.callback = callback
+
+        if type(columns) is str:
+            # Convert to list for caller convenience.
+            columns = [x.strip() for x in columns.split(',')]
+
+        assert type(columns) is list
+
+        # Boilerplate.
+        self.columns    = columns
+        self.conditions = conditions
+        self.output     = output
+        self.offset     = offset
+        self.limit      = limit
+        self.options    = options
+
+        assert self.output in (AS_TUPLE, AS_LIST, AS_DICT)
+
+        if not case_sensitive:
+            # Uppercase the entire condition string. Should cause no problems,
+            # since query keywords are case insensitive as well.
+            self.options   |= Option.UPPER_CASE_WHERE
+            self.conditions = self.conditions.upper()
+
+        self.gqi = None  # genquery inp
+        self.gqo = None  # genquery out
+        self.cti = None  # continue index
+
+        # Filled when calling total_rows() on the Query.
+        self._total = None
+
+    def exec_if_not_yet_execed(self):
+        """Query execution is delayed until the first result or total row count is requested."""
+        if self.gqi is not None:
+            return
+
+        self.gqi = self.callback.msiMakeGenQuery(', '.join(self.columns),
+                                                 self.conditions,
+                                                 irods_types.GenQueryInp())['arguments'][2]
+        if self.offset > 0:
+            self.gqi.rowOffset = self.offset
+        else:
+            # If offset is 0, we can (relatively) cheaply let iRODS count rows.
+            # - with non-zero offset, the query must be executed twice if the
+            #   row count is needed (see total_rows()).
+            self.options |= Option.RETURN_TOTAL_ROW_COUNT
+
+        if self.limit is not None and self.limit < MAX_SQL_ROWS - 1:
+            # We try to limit the amount of rows we pull in, however in order
+            # to close the query, 256 more rows will (if available) be fetched
+            # regardless.
+            self.gqi.maxRows = self.limit
+
+        self.gqi.options |= self.options
+
+        self.gqo    = self.callback.msiExecGenQuery(self.gqi, irods_types.GenQueryOut())['arguments'][1]
+        self.cti    = self.gqo.continueInx
+        self._total = None
+
+    def total_rows(self):
+        """Returns the total amount of rows matching the query.
+
+        This includes rows that are omitted from the result due to limit/offset parameters.
+        """
+        if self._total is None:
+            if self.offset == 0 and self.options & Option.RETURN_TOTAL_ROW_COUNT:
+                # Easy mode: Extract row count from gqo.
+                self.exec_if_not_yet_execed()
+                self._total = self.gqo.totalRowCount
+            else:
+                # Hard mode: for some reason, using PostgreSQL, you cannot get
+                # the total row count when an offset is supplied.
+                # When RETURN_TOTAL_ROW_COUNT is set in combination with a
+                # non-zero offset, iRODS solves this by executing the query
+                # twice[1], one time with no offset to get the row count.
+                # Apparently this does not work (we get the correct row count, but no rows).
+                # So instead, we run the query twice manually. This should
+                # perform only slightly worse.
+                # [1]: https://github.com/irods/irods/blob/4.2.6/plugins/database/src/general_query.cpp#L2393
+                self._total = Query(self.callback, self.columns, self.conditions, limit=0,
+                                    options=self.options|Option.RETURN_TOTAL_ROW_COUNT).total_rows()
+
+        return self._total
+
+    def __iter__(self):
+        self.exec_if_not_yet_execed()
+
+        row_i = 0
+
+        # Iterate until all rows are fetched / the query is aborted.
+        while True:
+            try:
+                # Iterate over a set of rows.
+                for r in range(self.gqo.rowCnt):
+                    if self.limit is not None and row_i >= self.limit:
+                        self._close()
+                        return
+
+                    row = [self.gqo.sqlResult[c].row(r) for c in range(len(self.columns))]
+                    row_i += 1
+
+                    if self.output == AS_TUPLE:
+                        yield row[0] if len(self.columns) == 1 else tuple(row)
+                    elif self.output == AS_LIST:
+                        yield row
+                    else:
+                        yield OrderedDict(zip(self.columns, row))
+
+            except GeneratorExit:
+                self._close()
+                return
+
+            if self.cti <= 0 or self.limit is not None and row_i >= self.limit:
+                self._close()
+                return
+
+            self._fetch()
+
+    def _fetch(self):
+        """Fetch the next batch of results"""
+        ret      = self.callback.msiGetMoreRows(self.gqi, self.gqo, 0)
+        self.gqo = ret['arguments'][1]
+        self.cti = ret['arguments'][2]
+
+    def _close(self):
+        """Close the query (prevents filling the statement table)."""
+        if not self.cti:
+            return
+
+        # msiCloseGenQuery fails with internal errors.
+        # Close the query using msiGetMoreRows instead.
+        # This is less than ideal, because it may fetch 256 more rows
+        # (gqi.maxRows is overwritten) resulting in unnecessary processing
+        # work. However there appears to be no other way to close the query.
+
+        while self.cti > 0:
+            # Close query immediately after getting the next batch.
+            # This avoids having to soak up all remaining results.
+            self.gqi.options |= Option.AUTO_CLOSE
+            self._fetch()
+
+        # Mark self as closed.
+        self.gqi = None
+        self.gqo = None
+        self.cti = None
+
+    def first(self):
+        """Get exactly one result (or None if no results are available)."""
+        for x in self:
+            self._close()
+            return x
+
+    def __str__(self):
+        return 'select {}{}{}{}'.format(', '.join(self.columns),
+                                        ' where '+self.conditions   if self.conditions else '',
+                                        ' limit '+str(self.limit)   if self.limit is not None else '',
+                                        ' offset '+str(self.offset) if self.offset else '')
+
+    def __del__(self):
+        """Auto-close query on when Query goes out of scope."""
+        self._close()
 
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -33,81 +269,7 @@ def row_iterator(  columns,     # comma-separated string, or list, of columns
                    row_return,  # AS_DICT or AS_LIST to specify rows as Python 'list's or 'dict's
                    callback     # fed in directly from rule call argument
                 ):
-
-    import irods_types
-
-    if not issubclass(row_return, row_return_type):
-        raise bad_returntype_spec( "row_return parameter should be AS_DICT or AS_LIST" )
-
-    if not isinstance(columns, (list, tuple)):
-        if isinstance(columns, str):
-            columns = list(map(lambda obj: obj.strip(), columns.split(",")))
-        else:
-            raise bad_column_spec ( "Column argument '{!r}' should be column names " \
-                                    "as list or comma separated string".format(columns))
-
-    if len(columns) < 1:
-        raise bad_column_spec( "Must select at least one column for the query" )
-
-    column_indices = list(map(reversed,enumerate(columns)))
-    column_lookup = dict(column_indices)
-
-    ret_val = callback.msiMakeGenQuery(",".join(columns) , conditions , irods_types.GenQueryInp())
-    genQueryInp = ret_val['arguments'][2]
-
-    ret_val = callback.msiExecGenQuery(genQueryInp , irods_types.GenQueryOut())
-    genQueryOut = ret_val['arguments'][1]
-    continue_index_old = 1
-
-    ret_val = callback.msiGetContInxFromGenQueryOut( genQueryOut, 0 )
-    continue_index = ret_val['arguments'][1]
-
-    exit_type = ''
-
-    try:
-
-        while continue_index_old > 0:
-
-            for j in range(genQueryOut.rowCnt):
-
-                row_as_list = [ genQueryOut.sqlResult[i].row(j) for i in range(len(column_indices)) ]
-
-                if row_return is AS_DICT:
-                    yield { k : row_as_list[v] for k,v in column_lookup.items() }
-                elif row_return is AS_LIST:
-                    yield row_as_list
-
-            continue_index_old = continue_index
-
-            ret_val = None  #-- in case of exception from msiGetMoreRows call
-            ret_val = callback.msiGetMoreRows(genQueryInp , genQueryOut, 0)
-
-            genQueryOut = ret_val['arguments'][1]
-            continue_index = ret_val['arguments'][2]
-
-    except GeneratorExit:
-        exit_type = 'ITERATION_STOPPED_BY_CALLER'
-    except Exception as e:
-        if ret_val is None:
-            exit_type = 'GET_ROWS_ERROR'
-        else:
-            exit_type = 'UNKNOWN_ERROR'
-        continue_index = 0 # prevent iterating through rest of results in "finally" clause
-        raise                  # --> rethrow (run the finally clause, but then propagates exception)
-    else:
-        exit_type = '(Normal)'
-    finally:
-        if Report_Exit_To_Log:
-            callback.writeLine("serverLog","Python GenQuery exit type - {}".format(exit_type))
-
-        #callback.msiCloseGenQuery( genQueryInp, genQueryOut ) # prb not a good strategy from Python
-
-        if AUTO_CLOSE_QUERIES:
-            while continue_index > 0:
-                continue_index_old = continue_index
-                ret_val = callback.msiGetMoreRows(genQueryInp , genQueryOut, 0) 
-                genQueryOut = ret_val['arguments'][1]
-                continue_index = ret_val['arguments'][2]
+    return Query(callback, columns, conditions, output=row_return)
 
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -175,81 +337,6 @@ class paged_iterator (object):
 
 def logPrinter(callback, stream):
   return lambda logMsg : callback.writeLine( stream, logMsg )
-
-#  ###############################################################################
-#  Helper routine to set up or tear down (N*1000) AVU's on the logical collection
-#    (with N between '0' and '9' inclusive)
-#  Note -- 'imeta rum' can be used to clear the unused AVU's if necessary
-#  ###############################################################################
-
-def set_or_clear_gnx_test_meta_on_coll(collnpath , operation, N, callback,
-                                       partial_pages = True):
-    import irods_types
-    if partial_pages:
-        lower_bound = 0
-    else:
-        lower_bound = 1000 - 768
-    thousands = 0
-    meta_string = "kvp_page={}%" .format(thousands) + \
-                  "%".join("{:04d}={}".format(i,-(i%10+1)) for i in range(lower_bound,1000))
-
-    for thousands in range(int(N)):
-        kvp = callback.msiString2KeyValPair(meta_string, irods_types.KeyValPair())['arguments'][1]
-        if operation.upper() in ('ASSOC','SET','+'):
-            retval = callback.msiAssociateKeyValuePairsToObj( kvp, collnpath,  "-C")
-        elif operation.upper() in ('CLEAR', 'CLR', '-'):
-            retval = callback.msiRemoveKeyValuePairsFromObj( kvp, collnpath,  "-C")
-        meta_string = meta_string.replace(
-                       "%{}".format(thousands),"%{}".format(thousands+1)).replace(
-                       "={}".format(thousands),"={}".format(thousands+1))
-
-#  ################################################################################
-#  Test function for evaluating the auto close feature (AUTO_CLOSE_QUERIES -> True)
-#     (test cases remain to be written as this flag is an experimental feature)
-#  ################################################################################
-
-def test_generator_exit_cases_Via_Rule_Framework (rule_args, callback, rei):
-
-    test_generator_exit_cases_Via_DirectCall (*rule_args, callback_=callback, rei_=rei)
-
-def test_generator_exit_cases_Via_DirectCall (*rule_args_ , **kw):
-
-    callback = kw.get('callback_')
-    rei = kw.get('rei_')
-
-    coll_name = rule_args_[0]
-
-    rowcount_and_mode =  rule_args_[1]
-    test_params = ( rule_args_[1] ).lower().split(",")
-
-    test_param_defaults = ["ROW",     "3",   "1",            "_"*4 ]
-                          # itr_type, nQuery, nRepsPerQuery, likePattern
-
-    if len(test_params)<4: test_params += test_param_defaults[ len(rmi)-4: ] # - extend with defaults
-
-    iterType      =  test_params[0]
-    nQueries      = int(test_params[1])
-    nRepsPerQuery = int(test_params[2])
-    likePattern   = test_params[3]
-
-    if rule_args_[2:] and rule_args_[2] and (callback is not None):
-        logger = logPrinter(callback, rule_args_[2])
-    else:
-        logger = lambda logMsg: None
-
-    columns    = [ "META_COLL_ATTR_NAME", "META_COLL_ATTR_VALUE" ]
-    conditions = "COLL_NAME = '{0}' ".format( coll_name )
-
-    if test_params[3] != "":
-        conditions += " and META_COLL_ATTR_NAME like '{}'".format(test_params[3])
-
-    Iterator = (row_iterator if 'row' in iterType else paged_iterator)
-
-    for j in range(nQueries):
-        nObj = 0
-        for obj in Iterator ( columns, conditions, AS_LIST, callback ):
-            nObj += 1
-            if nObj > nRepsPerQuery: break
 
 #
 #  Test rule below takes (like_path_rhs , requested_rowcount) as arguments via "rule_args" param
@@ -319,4 +406,3 @@ def test_python_RE_genquery_iterators( rule_args , callback, rei ):
     rule_args[0] = str( nr ) # -> fetched rows total
     rule_args[1] = str( lists_generated )
     rule_args[2] = str( lists_remainder )
-
