@@ -34,6 +34,7 @@ Example configuration defining the and functional roles of an instance called 'y
 host1.yoda.test
 host2.yoda.test
 host3.yoda.test
+host4.yoda.test
 
 [yoda-portal]
 host1.yoda.test
@@ -50,6 +51,9 @@ host2.yoda.test
 
 [yoda-public]
 host3.yoda.test
+
+[yoda-eus]
+host4.yoda.test
 ```
 
 Add the new functional roles of the instance to the corresponding groups.
@@ -70,6 +74,9 @@ yoda-resource
 
 [publics:children]
 yoda-public
+
+[eus:children]
+yoda-eus
 ```
 
 Last step to add the hosts of a new Yoda instance is to create configuration files for every new host.
