@@ -25,7 +25,7 @@ Released: July 2019
 - Fixed: unsubmit after submit fails in some cases
 
 ### Known limitations
-- assumes default-0 compliant xsd schema.  
+- Assumes default-0 compliant XSD schema.
 
 ## Upgrading from Yoda version 1.4
 Upgrade is supported by Ansible (2.7.x).
@@ -55,7 +55,14 @@ Adding the schema identifiers can take some time, the batch script adds 256 jobs
 irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-identifier.r
 ```
 
-9. Update all landingpages with the new layout:
+9. Update all landingpages with the new layout (if there are published packages):
 ```bash
 irule -F /etc/irods/irods-ruleset-research/tools/update-landingpages.r
+```
+
+10. Install preservable file formats checks:
+```bash
+iput -r /etc/irods/irods-ruleset-research/tools/file_formats /${RODSZONE}/yoda
+ichmod -rM inherit  /${RODSZONE}/yoda/file_formats
+ichmod -rM read public /${RODSZONE}/yoda/file_formats
 ```
