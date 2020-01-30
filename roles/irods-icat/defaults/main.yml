@@ -3,23 +3,6 @@
 
 rolename: irods-icat
 
-# Temporary directory to store downloaded rpm files.
-rpm_dest_dir: /tmp
-
-# iRODS iCAT rpm location and checksum
-irods_icat:
-  package: irods-icat-4.1.11
-  url: ftp://ftp.renci.org/pub/irods/releases/4.1.11/centos7
-  filename: irods-icat-4.1.11-centos7-x86_64.rpm
-  checksum: sha1:cd6a450477c9db51a6d1cc1dcc565c5eecf3d58d
-
-# iRODS database plugin rpm location and checksum
-irods_db:
-  package: irods-database-plugin-postgres-1.11
-  url: ftp://ftp.renci.org/pub/irods/releases/4.1.11/centos7
-  filename: irods-database-plugin-postgres-1.11-centos7-x86_64.rpm
-  checksum: sha1:5872b49bd75b6ff882a7e265cf5a502b9ca51a74
-
 # iRODS configuration.
 irods_admin: rods                          # iRODS admin username
 irods_password: rods                       # iRODS admin password

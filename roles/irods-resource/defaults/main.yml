@@ -1,16 +1,6 @@
 ---
 # copyright Utrecht University
 
-# Temporary directory to store downloaded rpm files.
-rpm_dest_dir: /tmp
-
-# iRODS resource server rpm location and checksum
-irods_resource:
-  package: irods-resource-4.1.11
-  url: ftp://ftp.renci.org/pub/irods/releases/4.1.11/centos7
-  filename: irods-resource-4.1.11-centos7-x86_64.rpm
-  checksum: sha1:721655f3b3482285974e85ed1c66a3f979156389
-
 # iRODS configuration.
 irods_admin: rods                          # iRODS admin username
 irods_password: rods                       # iRODS admin password
