@@ -13,7 +13,6 @@ Released: July 2019
 - Support for metadata schema identifiers and schema migrations
 - Check for unpreservable file formats in your datasets
 - Configurable number of records in file browser
-- Provenance information is written to vault packages in a file
 - Several UX improvements to the research space
 - Portal performance improvements (upgrade to PHP 7.2)
 - Upgrade CodeIgniter framework to latest release (v3.1.10)
@@ -60,7 +59,7 @@ irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-identifier.r
 irule -F /etc/irods/irods-ruleset-research/tools/update-landingpages.r
 ```
 
-10. Install preservable file formats checks:
+10. Install preservable file formats checks (if not already installed):
 ```bash
 iput -r /etc/irods/irods-ruleset-research/tools/file_formats /${RODSZONE}/yoda
 ichmod -rM inherit  /${RODSZONE}/yoda/file_formats
