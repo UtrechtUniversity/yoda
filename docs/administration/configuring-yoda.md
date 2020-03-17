@@ -4,9 +4,9 @@ Instructions on how to configure a (new) Yoda instance.
 ## 1. Create new environment
 This first step is optional.
 You can configure a (new) Yoda instance in an existing environment or create a new environment.
-A [development](environments/development/) environment is available with two example instances.
+A `development` environment is available with two example instances.
 
-To create a new environment make a new directory under [environment](environments/).
+To create a new environment make a new directory under `environments`.
 For example a production environment:
 ```bash
 mkdir environments/production
@@ -25,7 +25,7 @@ mkdir environments/production/yoda/host_vars
 
 ## 2. Add hosts of new Yoda instance
 Hosts of a Yoda instance are defined in the [Ansible inventory](https://docs.ansible.com/ansible/latest/intro_inventory.html) file 'hosts'.
-For the development instance 'full' this inventory can be found in [environments/development/full/hosts](environments/development/full/hosts).
+For the development instance 'full' this inventory can be found in `environments/development/full/hosts`.
 In the inventory the hosts of an instance are defined, their functional roles and to which groups they belong.
 
 Example configuration defining the and functional roles of an instance called 'yoda':
@@ -80,7 +80,7 @@ yoda-eus
 ```
 
 Last step to add the hosts of a new Yoda instance is to create configuration files for every new host.
-In development environment these configuration files are placed in [environments/development/hosts](environments/development/host_vars).
+In development environment these configuration files are placed in `environments/development/hosts`.
 For example, for host 'host1.yoda.test' a configuration file is created:
 ```bash
 touch environments/development/host_vars/host1.yoda.test
@@ -94,7 +94,7 @@ ansible_host: host1.yoda.test
 
 ## 3. Configure (new) Yoda instance
 To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars).
-In case of a new Yoda instance we can copy a [configuration](environments/development/full/group_vars/full.yml) of a development instance as base.
+In case of a new Yoda instance we can copy a configuration of a full development (`environments/development/full/`) instance as base.
 The configuration is split in several parts. Below an overview of these parts and the configuration options available.
 
 ### Ansible configuration
