@@ -16,10 +16,15 @@
   gather_facts: False
   pre_tasks:
     - name: Retrieve Yoda Ansible repository branch
-      shell: git branch | grep \* | cut -d ' ' -f2
+      shell: |
+        set -o pipefail
+        git branch | grep \* | cut -d ' ' -f2
       register: git_branch
       changed_when: False
       delegate_to: localhost
+      args:
+        executable: /bin/bash
+
 
     - name: Verify Yoda Ansible repository is on correct branch
       fail:
