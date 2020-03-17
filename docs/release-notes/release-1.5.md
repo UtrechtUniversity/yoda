@@ -59,9 +59,7 @@ irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-identifier.r
 irule -F /etc/irods/irods-ruleset-research/tools/update-landingpages.r
 ```
 
-10. Install preservable file formats checks (if not already installed):
-```bash
-iput -r /etc/irods/irods-ruleset-research/tools/file_formats /${RODSZONE}/yoda
-ichmod -rM inherit  /${RODSZONE}/yoda/file_formats
-ichmod -rM read public /${RODSZONE}/yoda/file_formats
-```
+## Customization after upgrade (optional)
+
+- The Ansible playbook installs default lists of preservable file formats. If you
+  need to add any custom lists, follow [the procedure for installing lists of preservable file formats](../administration/installing-preservable-file-formats.md)
