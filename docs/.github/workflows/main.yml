@@ -1,0 +1,49 @@
+name: Ruby
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # Cache Ruby dependencies across runs, in order to speed up jobs
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
+
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+
+    - name: Install Jekyll dependencies
+      run: |
+        gem install bundler --no-document
+        bundle config path vendor/bundle
+        bundle install --jobs 4
+
+    - name: Build site
+      run: |
+        bundle exec jekyll build
+
+    - name: Run basic HTML checks
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libxslt-dev libxml2-dev zlib1g-dev
+        gem install html-proofer --no-document
+        htmlproofer _site --alt-ignore '/assets/images/header.jpg' --disable-external
+      env:
+        NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+
+    - name: Check external links with Linkchecker
+      run: |
+        sudo apt-get install -y linkchecker
+        echo -e "[checking]\nlocalwebroot=$(realpath _site)" > lc.config
+        linkchecker -f lc.config _site --ignore-url 'maxcdn.bootstrapcdn.com' --ignore-url '/assets/images/'
