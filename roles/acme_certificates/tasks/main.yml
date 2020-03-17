@@ -21,7 +21,7 @@
 
 
 - name: Generate certificate if it  doesn't exist yet
-  shell: "certbot certonly --standalone --noninteractive --agree-tos --email l.r.westerhof@uu.nl -d {{ yoda_portal_fqdn }}"
+  command: "certbot certonly --standalone --noninteractive --agree-tos --email l.r.westerhof@uu.nl -d {{ yoda_portal_fqdn }}"
   when: not letsencrypt_fullchain.stat.exists
 
 
