@@ -33,7 +33,9 @@
       dest: '{{ credentials_store }}/epic_key.pem'
     - src: '{{ credential_files }}/epic_cert.pem'
       dest: '{{ credentials_store }}/epic_cert.pem'
-  when: (credential_files != "PLACEHOLDER") and (epic_url != "PLACEHOLDER") and (epic_key == "PLACEHOLDER") and (epic_cert == "PLACEHOLDER") and not ansible_check_mode
+  when: >
+    (credential_files != "PLACEHOLDER") and (epic_url != "PLACEHOLDER") and
+    (epic_key == "PLACEHOLDER") and (epic_cert == "PLACEHOLDER") and not ansible_check_mode
 
 
 - name: Ensure EPIC credentials are present in credentials store
