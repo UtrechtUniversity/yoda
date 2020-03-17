@@ -9,7 +9,7 @@ Released: TBA
 - Metadata format changed from XML to JSON
 - Add support for geo location in metadata schemas
 - Increase upload limit (100MB)
-- Deprecate support for TLS 1.0 and TLS 1.1
+- Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
 
 ## Upgrading from Yoda version 1.5
 Upgrade is supported by Ansible (2.8.x).
