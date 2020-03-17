@@ -1,0 +1,14 @@
+name: Ansible Lint
+
+ on: [push, pull_request]
+ 
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ansible-lint
+        uses: ansible/ansible-lint-action@v4
+        with:
+          targets: |
+            playbook.yml
