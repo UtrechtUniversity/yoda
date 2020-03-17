@@ -45,7 +45,7 @@ After user deletion the external user service is notified and deletes the user.
 
 ## General architecture
 ### Component view
-![](img/eus/overview.png)
+![Component view](img/eus/overview.png)
 
 ## Components
 ### External user database
@@ -178,19 +178,19 @@ resets.
 
 ## Sequence diagrams
 ### Authentication of an external user
-![](img/eus/seq-auth.png)
+![Authentication of an external user](img/eus/seq-auth.png)
 
 ### Enrollment of an external user not known to EUS
-![](img/eus/seq-enroll.png)
+![Enrollment of an external user not known to EUS](img/eus/seq-enroll.png)
 
 ### Invitation of external user known to EUS
-![](img/eus/seq-invite.png)
+![Invitation of external user known to EUS](img/eus/seq-invite.png)
 
 ### Password reset
-![](img/eus/seq-pwreset.png)
+![Password reset](img/eus/seq-pwreset.png)
 
 ### Deletion of an external user
-![](img/eus/seq-delete.png)
+![Deletion of an external user](img/eus/seq-delete.png)
 
 ## Interfaces
 
