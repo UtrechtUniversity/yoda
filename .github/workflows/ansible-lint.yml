@@ -39,4 +39,4 @@ jobs:
         #                         path to directories or files to skip. This option is
         #                         repeatable.
         #   -c C                  Specify configuration file to use. Defaults to ".ansible-lint"
-        args: "-x 303"
+        args: "-x 303,503"
