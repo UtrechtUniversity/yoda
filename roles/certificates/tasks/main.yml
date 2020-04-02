@@ -33,6 +33,7 @@
     common_name: '{{ certificate_domain }}'
     force: no
     state: present
+  when: not ansible_check_mode
 
 
 - name: Ensure an OpenSSL self signed certificate is present
@@ -43,6 +44,7 @@
     provider: selfsigned
     force: no
     state: present
+  when: not ansible_check_mode
 
 
 - name: Ensure signed private key is present
