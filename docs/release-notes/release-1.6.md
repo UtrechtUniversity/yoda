@@ -1,14 +1,17 @@
-# Release notes Yoda version 1.6 (TBA)
+# Release notes Yoda version 1.6 (April 2020)
 
 Version: 1.6
 
-Released: TBA
+Released: April 2020
 
 ## What's new in Yoda version 1.6
 ### Features
+- Improved browsing and sorting browse list
+- Create folders from web portal
+- Rename and remove files and folders from web portal
+- Increase upload limit (100MB)
 - Metadata format changed from XML to JSON
 - Add support for geo location in metadata schemas
-- Increase upload limit (100MB)
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
 
 ## Upgrading from Yoda version 1.5
