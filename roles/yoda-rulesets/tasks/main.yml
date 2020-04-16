@@ -12,21 +12,19 @@
     state: present
 
 
-- name: Install Python JSON schema module
+- name: Ensure Python ruleset dependencies are installed
   pip:
-    name: jsonschema==3.0.2
+    name:
+      - jsonschema==3.0.2
+      - pathvalidate==0.29.1
   when: not ansible_check_mode
 
 
-- name: Ensure Python JSON to AVU module dependencies are installed
+- name: Install Python JSON to AVU module and dependencies
   pip:
-    name: requests_cache
-  when: not ansible_check_mode
-
-
-- name: Install Python JSON to AVU module
-  pip:
-    name: irods-avu-json==2.0.0
+    name:
+      - requests_cache
+      - irods-avu-json==2.0.0
   when: not ansible_check_mode
 
 
