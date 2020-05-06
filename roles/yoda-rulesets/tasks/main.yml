@@ -91,13 +91,6 @@
   when: not ansible_check_mode
 
 
-- include_tasks: "{{ ruleset.name }}.yml"
-  with_items: "{{ extra_rulesets + core_rulesets }}"
-  loop_control:
-    loop_var: ruleset
-  when: ruleset.install_scripts and install_rulesets
-
-
 - name: Ensure Python rules are loaded
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -105,3 +98,10 @@
     src: "core.py.template"
     dest: "/etc/irods/core.py"
     mode: 0644
+
+
+- include_tasks: "{{ ruleset.name }}.yml"
+  with_items: "{{ extra_rulesets + core_rulesets }}"
+  loop_control:
+    loop_var: ruleset
+  when: ruleset.install_scripts and install_rulesets

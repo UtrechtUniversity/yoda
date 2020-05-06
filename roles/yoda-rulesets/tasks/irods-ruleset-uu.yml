@@ -1,5 +1,12 @@
 # Copyright Utrecht University
 
+- name: Link ruleset directory
+  file:
+    src: irods-ruleset-uu
+    dest: /etc/irods/rules_uu
+    state: link
+
+
 - name: Find out if group-manager privilige groups are created
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -319,10 +326,3 @@
     - /etc/irods/rules_research.py
     - /etc/irods/rules_research.pyc
     - /etc/irods/irods-ruleset-research/
-
-
-- name: Link ruleset directory
-  file:
-    src: irods-ruleset-uu
-    dest: /etc/irods/rules_uu
-    state: link
