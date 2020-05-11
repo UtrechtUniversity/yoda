@@ -73,6 +73,7 @@
 
 
 - name: Copy davrods anonymous Apache configuration
+  when: (yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled
   template:
     src: davrods-anonymous-vhost.conf.j2
     dest: /etc/httpd/conf.d/davrods-anonymous-vhost.conf
@@ -92,6 +93,18 @@
     force: no
   with_items:
     - /var/log/httpd/webdav_access.log
+  notify: Restart Apache webserver
+
+- name: Ensure webdav logfiles for anonymous access exist
+  when: (yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled
+  copy:
+    content: ""
+    dest: '{{ item }}'
+    mode: 0644
+    owner: root
+    group: root
+    force: no
+  with_items:
     - /var/log/httpd/webdav_anon_access.log
   notify: Restart Apache webserver
 
