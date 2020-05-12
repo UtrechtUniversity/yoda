@@ -178,6 +178,19 @@
       value: "{{ yoda_public_host }}"
     - attribute: org_davrods_vhost
       value: "{{ yoda_davrods_fqdn }}{% if (yoda_davrods_port is defined) %}:{{ yoda_davrods_port }}{% endif %}"
+  loop_control:
+    loop_var: avu
+
+- name: Set configuration AVUs for anonymous davrods vhosts
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  when: (yoda_davrods_anonymous_enabled is defined) and (yoda_davrods_anonymous_enabled)
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda"
+    irods_type: Collection
+    attribute: "{{ avu.attribute }}"
+    value: "{{ avu.value }}"
+  with_items:
     - attribute: org_davrods_anonymous_vhost
       value: "{{ yoda_davrods_anonymous_fqdn }}{% if (yoda_davrods_anonymous_port is defined) %}:{{ yoda_davrods_anonymous_port }}{% endif %}"
   loop_control:
