@@ -15,7 +15,6 @@ yoda_version: release-1.5                          # Git branch, for example: de
 yoda_environment: development                      # Yoda environment: development, testing, acceptance or production
 yoda_portal_fqdn: portal.yoda.test                 # Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
-yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
 ######################
