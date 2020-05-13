@@ -191,6 +191,17 @@
   when: (not ansible_check_mode) and (templates_installed.stderr.find('does not exist') >= 0)
 
 
+- name: Ensure templates are up to date
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iput -f '/etc/irods/irods-ruleset-uu/templates/{{ item }}' '/{{ irods_zone }}/yoda/templates/{{ item }}'
+  with_items:
+    - emptylandingpage.html.j2
+    - landingpage.html.j2
+  when: (not ansible_check_mode)
+
+
 - name: Find out if preservable file formats lists system collection exists
   become_user: "{{ irods_service_account }}"
   become: yes
