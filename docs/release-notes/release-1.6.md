@@ -1,8 +1,8 @@
-# Release notes Yoda version 1.6 (April 2020)
+# Release notes Yoda version 1.6 (May 2020)
 
 Version: 1.6
 
-Released: April 2020
+Released: May 2020
 
 ## What's new in Yoda version 1.6
 ### Features
@@ -19,18 +19,23 @@ Upgrade is supported by Ansible (2.8.x).
 Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.
 
-1. Set Yoda release to release-1.6 in configuration.
+1. Set Yoda release to `release-1.6` in configuration.
 '''yaml
 yoda_version: release-1.6
 '''
 
-2. The research ruleset (`irods-ruleset-research`) is merged with the UU ruleset (`irods-ruleset-uu`) and should be removed from the configuration (rulesets).
+2. Set the default schema to `default-1` in configuration.
+'''yaml
+default_yoda_schema: default-0
+'''
 
-3. Run the Ansible upgrade in check mode.
+3. The research ruleset (`irods-ruleset-research`) is merged with the UU ruleset (`irods-ruleset-uu`) and should be removed from the configuration (rulesets).
 
-4. Run the Ansible upgrade.
+4. Run the Ansible upgrade in check mode.
 
-5. Convert all metadata XML in the vault to JSON
+5. Run the Ansible upgrade.
+
+6. Convert all metadata XML in the vault to JSON
 ```bash
 irule -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 ```

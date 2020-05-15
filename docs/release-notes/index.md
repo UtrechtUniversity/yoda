@@ -1,4 +1,5 @@
 # Release notes
+- [Release 1.6](release-1.6.md) (TBA)
 - [Release 1.5](release-1.5.md) (July 2019)
 - [Release 1.4](release-1.4.md) (December 2018)
 - [Release 1.3](release-1.3.md) (November 2018)

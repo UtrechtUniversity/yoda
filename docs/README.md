@@ -6,6 +6,7 @@ Yoda is a research data management solution developed by Utrecht University and 
 It provides researchers and their partners with a workspace and an archive that enables them to collaborate, deposit, publish and preserve research data.
 
 ## Release notes
+- [release 1.6](release-notes/release-1.6.md) (TBA)
 - [release 1.5](release-notes/release-1.5.md) (July 2019)
 - [release 1.4](release-notes/release-1.4.md) (December 2018)
 - [release 1.3](release-notes/release-1.3.md) (November 2018)
