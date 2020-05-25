@@ -8,13 +8,14 @@
   register: irods_microservices_repo
 
 
-- name: Ensure iRODS 4.2.6 packages are absent
+- name: Ensure iRODS 4.2.7 packages are absent
   package:
     name:
-      - irods-uu-microservices-4.2.6_0.8.0-1
-      - irods-sudo-microservices-4.2.6_1.0.0-1
-      - davrods-4.2.6_1.4.2-1
+      - irods-uu-microservices-4.2.7_0.8.1-1
+      - irods-sudo-microservices-4.2.7_1.0.0-1
+      - davrods-4.2.7_1.4.2-1
     state: absent
+
 
 
 - name: Download iRODS microservice packages
