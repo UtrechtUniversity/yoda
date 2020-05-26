@@ -66,7 +66,7 @@
   when: monthly_storage_statistics.stat.exists
 
 
-- name: Set configuration AVUs for UU ruleset to system collection
+- name: Remove legacy configuration AVUs for UU ruleset on system collection
   become_user: "{{ irods_service_account }}"
   become: yes
   irods_setavu:
@@ -74,6 +74,7 @@
     irods_type: Collection
     attribute: "{{ avu.attribute }}"
     value: "{{ avu.value }}"
+    state: absent
   with_items:
     - attribute: org_send_notifications
       value: "{{ send_notifications }}"

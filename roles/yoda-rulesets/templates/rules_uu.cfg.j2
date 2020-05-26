@@ -12,8 +12,7 @@ environment                = '{{ yoda_environment }}'
 resource_primary           = '{{ irods_default_resc }}'
 resource_replica           = '{{ irods_repl_resc }}'
 
-max_revision_size          = '2 * 1000**3'
-
+notifications_enabled      = '{{ ["false", "true"][send_notifications] }}'
 notifications_sender_email = '{{ notifications_sender_email }}'
 notifications_sender_name  = '{{ notifications_sender_name }}'
 notifications_reply_to     = '{{ notifications_reply_to }}'
