@@ -6,10 +6,10 @@ Released: May 2020
 
 ## What's new in Yoda version 1.6
 ### Features
-- Improved browsing and sorting browse list
+- Improved folder browsing and sorting browse list
 - Create folders from web portal
 - Rename and remove files and folders from web portal
-- Increase upload limit (100MB)
+- Increase upload limit (300MB)
 - Metadata format changed from XML to JSON
 - Add support for geo location in metadata schemas
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
@@ -35,7 +35,7 @@ default_yoda_schema: default-0
 
 5. Run the Ansible upgrade.
 
-6. Convert all metadata XML in the vault to JSON
+6. Convert all metadata XML in the vault to JSON.
 ```bash
 irule -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 ```
