@@ -12,6 +12,7 @@ Released: May 2020
 - Increase upload limit (300MB)
 - Metadata format changed from XML to JSON
 - Add support for geo location in metadata schemas
+- Upgrade to iRODS v4.2.8.0.
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
 
 ## Upgrading from Yoda version 1.5
