@@ -1,12 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure old dependencies for Ansible OpenSSL module are absent
-  package:
-    name: pyOpenSSL
-    state: absent
-
-
 - name: Ensure dependencies for Ansible OpenSSL module are present
   package:
     name: python-cryptography
