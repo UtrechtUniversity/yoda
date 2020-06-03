@@ -7,7 +7,7 @@
     state: link
 
 
-- name: Find out if group-manager privilige groups are created
+- name: Find out if group-manager privilege groups are created
   become_user: "{{ irods_service_account }}"
   become: yes
   command: 'iadmin lg'
@@ -16,7 +16,7 @@
   check_mode: no
 
 
-- name: Configure group-manager privilige groups in iCAT database
+- name: Configure group-manager privilege groups in iCAT database
   become_user: "{{ irods_service_account }}"
   become: yes
   command: '/etc/irods/irods-ruleset-uu/tools/group-manager-setup.sh'
