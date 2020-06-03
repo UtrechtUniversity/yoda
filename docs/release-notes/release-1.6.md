@@ -16,7 +16,7 @@ Released: May 2020
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
 
 ## Upgrading from Yoda version 1.5
-Upgrade is supported by Ansible (2.8.x and 2.9.x).
+Upgrade is supported by Ansible (2.9.x).
 Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.
 
