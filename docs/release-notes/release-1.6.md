@@ -40,21 +40,12 @@ extra_modules:
     repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
     dest: /var/www/yoda/yoda-portal/modules/intake
     version: "{{ yoda_version }}"
-  - name: datarequest
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
-    dest: /var/www/yoda/yoda-portal/modules/datarequest
-    version: "{{ yoda_version }}"
 ```
 
 5. Instead of all the rulesets, only the extra rulesets are defined in the configuration. So `rulesets` becomes `extra_rulesets`:
 ```
 # iRODS rulesets
 extra_rulesets:
-  - name: irods-ruleset-datarequest
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-datarequest.git
-    ruleset_name: rules-dr
-    version: "{{ yoda_version }}"
-    install_scripts: yes
   - name: irods-ruleset-youth-cohort
     repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
     ruleset_name: rules-yc
