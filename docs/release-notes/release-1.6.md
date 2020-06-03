@@ -46,11 +46,27 @@ extra_modules:
     version: "{{ yoda_version }}"
 ```
 
-5. Run the Ansible upgrade in check mode.
+5. Instead of all the rulesets, only the extra rulesets are defined in the configuration. So `rulesets` becomes `extra_rulesets`:
+```
+# iRODS rulesets
+extra_rulesets:
+  - name: irods-ruleset-datarequest
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-datarequest.git
+    ruleset_name: rules-dr
+    version: "{{ yoda_version }}"
+    install_scripts: yes
+  - name: irods-ruleset-youth-cohort
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
+    ruleset_name: rules-yc
+    version: "{{ yoda_version }}"
+    install_scripts: no
+```
 
-6. Run the Ansible upgrade.
+6. Run the Ansible upgrade in check mode.
 
-7. Convert all metadata XML in the vault to JSON.
+7. Run the Ansible upgrade.
+
+8. Convert all metadata XML in the vault to JSON.
 ```bash
 irule -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 ```
