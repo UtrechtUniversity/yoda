@@ -32,11 +32,25 @@ default_yoda_schema: default-0
 
 3. The research ruleset (`irods-ruleset-research`) is merged with the UU ruleset (`irods-ruleset-uu`) and should be removed from the configuration (rulesets).
 
-4. Run the Ansible upgrade in check mode.
+4. Instead of all the modules, only the extra modules are defined in the configuration. So `modules` becomes `extra_modules`:
+```yaml
+# Yoda modules
+extra_modules:
+  - name: intake
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
+    dest: /var/www/yoda/yoda-portal/modules/intake
+    version: "{{ yoda_version }}"
+  - name: datarequest
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
+    dest: /var/www/yoda/yoda-portal/modules/datarequest
+    version: "{{ yoda_version }}"
+```
 
-5. Run the Ansible upgrade.
+5. Run the Ansible upgrade in check mode.
 
-6. Convert all metadata XML in the vault to JSON.
+6. Run the Ansible upgrade.
+
+7. Convert all metadata XML in the vault to JSON.
 ```bash
 irule -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 ```
