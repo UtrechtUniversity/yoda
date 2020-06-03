@@ -21,6 +21,14 @@ This repository is the staring point for using Yoda and contains the [Ansible](h
 ## Documentation
 Documentation is hosted on: https://utrechtuniversity.github.io/yoda-docs/
 
+## Contributing
+### Code
+Instructions on how to setup your development environment and other useful instructions for development can be found in the [documentation](https://utrechtuniversity.github.io/yoda-docs/development/setting-up-development-environment.html).
+
+### Bug reports
+We use GitHub for bug tracking.
+Please search existing [issues](https://github.com/UtrechtUniversity/yoda/issues) and create a new one if the issue is not yet tracked.
+
 ## License
 This project is licensed under the GPL-v3 license.
 The full license can be found in [LICENSE](LICENSE).
