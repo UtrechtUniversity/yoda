@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" href="/assets/images/favicon.ico">
+
+  <title>Metadata import and export functionality</title>
+
+  <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/css/custom.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/css/print.css" type="text/css" media="print" />
+</head>
+
+    <body data-rsssl="1" class="page-template-default page page-id-6 page-parent" data-spy="scroll" data-target="#sidebarnav">
+        <div id="page">
+
+            <div id="brandbar" class="affix-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-xs-8 logodiv">
+                <button type="button" class="navbar-toggle hidden-print" data-toggle="collapse" data-target="#main-menu-collapse">
+                    <span class="sr-only">Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="https://www.uu.nl/en">
+                    <img src="/assets/images/uu-logo.svg" alt="Logo Utrecht University">
+                </a>
+
+                <div class="visible-print-block">
+                    <h1>YODA</h1>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xs-4 hidden-print" role="search">
+                <!--
+                <div class="pull-right">
+                    <form method="get" id="searchform" action="https://yoda.sites.uu.nl">
+                        <div class="search-wrapper">
+                            <label class="screen-reader-text" for="s">'</label>
+                            <input type="text" class="searchfield" value="" name="s" id="s" placeholder="Search the Site...">
+                            <input type="submit" id="searchsubmit" class="searchbutton" value="">
+                        </div>
+                    </form>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<header id="masthead" class="header hidden-print">
+    <div class="container">
+        <h1>
+            <a href="" rel="home" title="YODA">
+                YODA
+            </a>
+        </h1>
+    </div>
+</header>
+
+<a class="skip-link sr-only" href="#content">Skip to content</a>
+
+<!-- MAIN MENU -->
+<nav id="#access" class="navbar navbar-default navbar-inverse">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header"></div>
+        <div id="main-menu-collapse" class="collapse navbar-collapse">
+            <ul id="menu-hoofdmenu" class="nav navbar-nav">
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Release notes" href="/release-notes/index.html">Release notes</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Administration" href="/administration/index.html">Administration</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Development" href="/development/index.html">Development</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Software design" href="/design/index.html">Software design</a>
+                    
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- /MAIN MENU -->
+
+
+            <div id="content" class="two-col">
+                <header class="article-header article-header-main">
+                    <div class="header-image hidden-print">
+
+                        
+                        <div class="breadcrumbs" xmlns:v="https://rdf.data-vocabulary.org/#">
+                            <div class="container">
+							<span property="itemListElement" typeof="ListItem">
+								<span property="name">YODA</span>
+								<meta property="position" content="1">
+							</span>
+                            </div>
+                        </div>
+                        
+
+                        <img src="/assets/images/header.jpg" alt="">
+
+                        
+                        <div class="page-header-placeholder"></div>
+                        
+                    </div>
+                </header>
+
+                <div id="content-wrapper" class="container">
+                    <div class="row-offcanvas row-offcanvas-left">
+                        <div id="left-sidebar" class="sidebar-offcanvas clearfix hidden-print" role="complementary">
+                            <!-- PAGE MENU -->
+                            
+                            
+                            
+                            <div class="widget-1 first-widget widget widget_nav_menu">
+                                <h4 class="widgettitle">Menu</h4>
+                                <div class="menu-hoofdmenu-container">
+                                    <!-- PAGE MENU -->
+                                    <ul class="menu">
+                                        
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/system-overview.html">System overview</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/state-model.html">State model</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/async-system-execution.html">Asynchronous and privileged execution</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/external-user-service.html">External user service</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/group-manager.html">Group manager</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/locking-mechanism.html">Locking mechanism</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/metadata-form.html">Metadata form</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/publication-process.html">Publication process</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/python-plugin.html">Python plugin</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/statistics.html">Statistics module</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/revisions.html">Revision management</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/vault-process.html">Vault process</a>
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- /PAGE MENU -->    
+                        </div>
+
+                        <div class="page-content clearfix">
+                            
+                            <div class="page-title">
+                                <h1>
+                                    Metadata import and export functionality
+                                </h1>
+                            </div>
+                            
+			    <!--
+                            <div class="toggle-btn-div visible-xs clearfix">
+                                <button type="button" class="toggle-btn white button icon left arrow-right" data-toggle="offcanvas">
+                                    Show sidebar
+                                </button>
+                            </div>
+                            -->
+                            <div class="page-content-inner facetwp-template">
+
+                                <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
+                                    <section class="entry-content">
+                                        
+<h1 id="metadata-import-and-export-functionality">Metadata import and export functionality</h1>
+
+<p>The import and export functionality establishes the bridge between the REACT form, JSON schema based, and the YoDa application XML.</p>
+
+<p>In essence<br />
+-the export functionality transforms the JSON data that was posted by the form into the yoda-metadata.xml conform the Yoda application requirements for the layout of the XML.<br />
+-the import functionality transforms yoda-metadata.xml into JSON that is prepared for handling by he metadata form.</p>
+
+<h2 id="import">IMPORT</h2>
+
+<p>Purpose:
+Build JSON encoded data structure conform the REACT requirements  to ‘feed’ the metadata form as such that YoDa is able to present a metadata form that resembles that original metadataform in functionality as well as gui.</p>
+
+<p><img src="/design/img/import.png" alt="OVerview MOAI-CKAN" /></p>
+
+<p>Example CONTRIBUTOR field</p>
+
+<p>Internal PHP representation of contributor field as read from JSON schema.
+The import functionality within the portal software use this structure to be able to determine wheter data is present within yoda-metadata.xml
+The resulting JSON object is put to the REACT form.</p>
+
+<p>DIT IS PHP representatie - kan mogelijk anders worden ingezet (bij import????)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> [type] = array
+ [items]
+      [type] =&gt; object – JSON form way of saying a nested structure is present
+      [yoda:structure] =&gt; subproperties   - YODA way of indicating which type of nested structure
+      [properties]
+              [Name]
+                   [$ref] =&gt; #/definitions/stringNormal
+                   [title] =&gt; Contributor to datapackage
+               [Contributor_Type]
+                      [$ref] =&gt; #/definitions/optionsContributorType
+                      [title] =&gt; Contributor type
+               [Affiliation]
+                     [type] =&gt; array
+                     [default]
+                           [0] =&gt; Utrecht University
+                      [items]
+                          [$ref] =&gt; #/definitions/stringNormal
+                          [title] =&gt; Affiliation
+                          [yoda:required] =&gt; 1
+                   [Person_Identifier]
+                                   [type] = array
+                                   [items]
+                                              [type] =&gt; object
+                                               [title] =&gt; Person identifier
+                                              [yoda:structure] =&gt; compound
+                                              [properties] =&gt; Array
+                                                        [Name_Identifier_Scheme] =&gt; Array
+                                                             [$ref] =&gt; #/definitions/optionsNameIdentifierScheme
+                                                             [title] =&gt; Type
+                                                         [Name_Identifier] =&gt; Array
+                                                               [$ref] =&gt; #/definitions/stringNormal
+                                                               [title] =&gt; Identifier
+                                                               [dependencies] =&gt; Array
+                                                                    [Name_Identifier_Scheme]
+                                                                            [0] =&gt; Name_Identifier
+                                                                      [Name_Identifier] =&gt; Array
+                                                                            [0] =&gt; Name_Identifier_Scheme
+</code></pre></div></div>
+
+<h2 id="export-functionality">Export functionality</h2>
+
+<p>Purposes:</p>
+<ul>
+  <li>Build yoda-metadata.xml based upon the posted output from the REACT form</li>
+  <li>Write metadata to iCAT database so it can be searched</li>
+</ul>
+
+<p><img src="/design/img/export.png" alt="OVerview MOAI-CKAN" /></p>
+
+<p>There are two steps involved when the researcher submits the data package to the vault</p>
+
+<ol>
+  <li>save data in yoda-metadata.xml for the datapackage
+Based upon the form definition in formelements.xml the posted metadata is matched and saved into yoda-metadata.xml in the corresponding folder.</li>
+</ol>
+
+<ul>
+  <li>Data that is not ‘known’, i.e. not defined in formelements.xml is NOT saved.</li>
+  <li>
+    <p>Incomplete subproperty structures are NOT saved in this situation.</p>
+  </li>
+  <li>Data that is sent as empty strings will not be saved.
+This to keep the metadata that is registered in iCat as effective as possible and not be fully drained with empty metadata values</li>
+</ul>
+
+<ol>
+  <li>save data from yoda-metadata.xml into AVU’s for the datapackage
+Writing the metadata-xml file triggers an iRODS-policy to process the content of the file (in XML format), via a stylesheet, into AVU’s.
+The stylesheet ‘flattens’ the hierarchical XML formatted data so all values have an attribute like where all XML tags are places on one line, like:
+<em>Contributor_Properties_Identifier_Person_Identifier_Scheme
+ elaborated with numeric indexes if multiplicity is involved</em></li>
+</ol>
+
+<p>Step 2 also occurs when a researcher places a yoda-metadata.xml file on the web disk.</p>
+
+<p>The main definition can be found in JSON Schema definition</p>
+
+<p><strong>Subproperty structure:</strong><br />
+In XML a subproperty structure holds a <Properties> tag to separate the leadproperty area in the structure from the subproperty area.  
+This designation is not present within the JSON schema representation and has to be added while transforming  the JSON data to XML</Properties></p>
+
+<p>** indexed search on metadata **<br />
+Adding values to the iRODS iCAT database, based upon an XSLT, makes search actions possible from the portal within the metadata.</p>
+
+                                    </section>
+
+                                    <footer class="article-footer"></footer>
+                                </article>
+                            </div> <!-- /page-content-inner -->
+                        </div> <!-- /page-content -->
+                    </div> <!--row-offcanvas -->
+                </div> <!-- /#content-wrapper -->
+            </div>
+
+            <footer id="colophon" class="footer hidden-print">
+                <div id="inner-footer" class="container clearfix">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img alt="Logo Utrecht University" src="/assets/images/uu-logo-footer.svg">
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="source-org copyright pull-right">© 2019 Utrecht University, <a href="https://www.uu.nl/en/organisation/contact/disclaimer">disclaimer</a></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <p id="back-top" style="display: none;">
+                <a href="#top"><i class="fa fa-angle-up"></i></a>
+            </p>
+
+            <script type="text/javascript" src='/assets/js/jquery.js'></script>
+<script type="text/javascript" src='/assets/js/bootstrap.min.js'></script>
+        </div>
+    </body>
+</html>

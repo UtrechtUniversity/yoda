@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" href="/assets/images/favicon.ico">
+
+  <title>External User Service</title>
+
+  <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/css/custom.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/css/print.css" type="text/css" media="print" />
+</head>
+
+    <body data-rsssl="1" class="page-template-default page page-id-6 page-parent" data-spy="scroll" data-target="#sidebarnav">
+        <div id="page">
+
+            <div id="brandbar" class="affix-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-xs-8 logodiv">
+                <button type="button" class="navbar-toggle hidden-print" data-toggle="collapse" data-target="#main-menu-collapse">
+                    <span class="sr-only">Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="https://www.uu.nl/en">
+                    <img src="/assets/images/uu-logo.svg" alt="Logo Utrecht University">
+                </a>
+
+                <div class="visible-print-block">
+                    <h1>YODA</h1>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xs-4 hidden-print" role="search">
+                <!--
+                <div class="pull-right">
+                    <form method="get" id="searchform" action="https://yoda.sites.uu.nl">
+                        <div class="search-wrapper">
+                            <label class="screen-reader-text" for="s">'</label>
+                            <input type="text" class="searchfield" value="" name="s" id="s" placeholder="Search the Site...">
+                            <input type="submit" id="searchsubmit" class="searchbutton" value="">
+                        </div>
+                    </form>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<header id="masthead" class="header hidden-print">
+    <div class="container">
+        <h1>
+            <a href="" rel="home" title="YODA">
+                YODA
+            </a>
+        </h1>
+    </div>
+</header>
+
+<a class="skip-link sr-only" href="#content">Skip to content</a>
+
+<!-- MAIN MENU -->
+<nav id="#access" class="navbar navbar-default navbar-inverse">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header"></div>
+        <div id="main-menu-collapse" class="collapse navbar-collapse">
+            <ul id="menu-hoofdmenu" class="nav navbar-nav">
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Release notes" href="/release-notes/index.html">Release notes</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Administration" href="/administration/index.html">Administration</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Development" href="/development/index.html">Development</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Software design" href="/design/index.html">Software design</a>
+                    
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- /MAIN MENU -->
+
+
+            <div id="content" class="two-col">
+                <header class="article-header article-header-main">
+                    <div class="header-image hidden-print">
+
+                        
+                        <div class="breadcrumbs" xmlns:v="https://rdf.data-vocabulary.org/#">
+                            <div class="container">
+							<span property="itemListElement" typeof="ListItem">
+								<span property="name">YODA</span>
+								<meta property="position" content="1">
+							</span>
+                            </div>
+                        </div>
+                        
+
+                        <img src="/assets/images/header.jpg" alt="">
+
+                        
+                        <div class="page-header-placeholder"></div>
+                        
+                    </div>
+                </header>
+
+                <div id="content-wrapper" class="container">
+                    <div class="row-offcanvas row-offcanvas-left">
+                        <div id="left-sidebar" class="sidebar-offcanvas clearfix hidden-print" role="complementary">
+                            <!-- PAGE MENU -->
+                            
+                            
+                            
+                            <div class="widget-1 first-widget widget widget_nav_menu">
+                                <h4 class="widgettitle">Menu</h4>
+                                <div class="menu-hoofdmenu-container">
+                                    <!-- PAGE MENU -->
+                                    <ul class="menu">
+                                        
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/system-overview.html">System overview</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/state-model.html">State model</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/async-system-execution.html">Asynchronous and privileged execution</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children current-menu-item">
+                                                <a href="/design/external-user-service.html">External user service</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/group-manager.html">Group manager</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/locking-mechanism.html">Locking mechanism</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/metadata-form.html">Metadata form</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/publication-process.html">Publication process</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/python-plugin.html">Python plugin</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/statistics.html">Statistics module</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/revisions.html">Revision management</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/vault-process.html">Vault process</a>
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- /PAGE MENU -->    
+                        </div>
+
+                        <div class="page-content clearfix">
+                            
+                            <div class="page-title">
+                                <h1>
+                                    External User Service
+                                </h1>
+                            </div>
+                            
+			    <!--
+                            <div class="toggle-btn-div visible-xs clearfix">
+                                <button type="button" class="toggle-btn white button icon left arrow-right" data-toggle="offcanvas">
+                                    Show sidebar
+                                </button>
+                            </div>
+                            -->
+                            <div class="page-content-inner facetwp-template">
+
+                                <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
+                                    <section class="entry-content">
+                                        <h1 id="external-user-service">External User Service</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>This technical design document describes an approach to implementing
+support for enrolling, removing, authenticating, and changing &amp;
+resetting the password of external users in Yoda.</p>
+
+<h2 id="definitions">Definitions</h2>
+<ul>
+  <li>
+    <p><strong>Internal user</strong> An internal user is either a user within the UU
+organisation or an administrative user such as <code class="highlighter-rouge">rods</code>.</p>
+  </li>
+  <li>
+    <p><strong>External user</strong> An external user is a user that is not part of the
+UU organisation. External users must have an e-mail address as their
+username, that does <strong>not</strong> end in either <code class="highlighter-rouge">@uu.nl</code> or <code class="highlighter-rouge">.uu.nl</code>. Any
+username that is an e-mail address and does <strong>not</strong> match above
+pattern belongs to an external user.</p>
+  </li>
+</ul>
+
+<h2 id="functional-description">Functional description</h2>
+<p>The supported workflows are as follows:</p>
+
+<h3 id="enrolling-an-external-user">Enrolling an external user</h3>
+<p>A group manager must be able to enroll an external user.</p>
+
+<p>When a group manager adds a new external user to a group, an invite must
+be sent to the e-mail address belonging to the new user. The invite must
+contain a generated unique URL that links to a page allowing the user to
+create a password and activate their account.</p>
+
+<p>The link must be invalidated either after activation, or if the external
+user does not create a password within 5 days.</p>
+
+<h3 id="authenticating-an-external-user">Authenticating an external user</h3>
+<p>An external user must be able to authenticate themselves via any
+available iRODS interface that offers PAM login.</p>
+
+<h3 id="resetting-or-changing-the-password-of-an-external-user">Resetting or changing the password of an external user</h3>
+<p>An external user must be able to reset their password. When a user
+submits their e-mail address to the external user service, they will
+receive a password reset link. Password restrictions based on
+information security guidelines are applied.</p>
+
+<h3 id="removing-external-users">Removing external users</h3>
+<p>An Yoda admin can remove an external user.
+After user deletion the external user service is notified and deletes the user.</p>
+
+<h2 id="general-architecture">General architecture</h2>
+<h3 id="component-view">Component view</h3>
+<p><img src="/design/img/eus/overview.png" alt="Component view" /></p>
+
+<h2 id="components">Components</h2>
+<h3 id="external-user-database">External user database</h3>
+<p>The external user database must store the username, password, creator and creator zone of external users.
+Additionally, a hash can be stored to allow for either account activation or password reset.</p>
+
+<p>When an external user is no longer linked to user_zones the user can be deleted from the users table as well.
+This could be a fully automated process later.</p>
+
+<p>The external user database contains the following tables:</p>
+
+<p><strong>users:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Col. name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>SERIAL</td>
+      <td>Numerical (autoincremented) ID  used for internal purposes</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">username</code></td>
+      <td>VARCHAR(64) NOT NULL</td>
+      <td>The e-mail address of the external user case-insensitive)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">password</code></td>
+      <td>CHAR(60) NULL</td>
+      <td>A hashed password (<code class="highlighter-rouge">NULL</code> indicates non-activated account)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hash</code></td>
+      <td>CHAR(64) NULL</td>
+      <td>A unique hash, used for activation and password reset</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hash_time</code></td>
+      <td>TIMESTAMP NULL</td>
+      <td>The creation time of the hash, used to invalidate hashes</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">creator_time</code></td>
+      <td>TIMESTAMP NOT NULL</td>
+      <td>The creation time of the user</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">creator_user</code></td>
+      <td>VARCHAR(255) NOT NULL</td>
+      <td>The username of the group manager that had this external user ‘created’</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">creator_zone</code></td>
+      <td>VARCHAR(255) NOT NULL</td>
+      <td>The zone the groupmananger is inviting the user from</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>PRIMARY</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">username</code></td>
+      <td>UNIQUE</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hash</code></td>
+      <td>UNIQUE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The 64-char username limit is prescribed by the iCAT (<code class="highlighter-rouge">DB_USERNAME_LEN</code>).</p>
+
+<p><strong>user_zones:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Col. name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">user_id</code></td>
+      <td>INTEGER</td>
+      <td>ID of the user involved</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">inviter_user</code></td>
+      <td>VARCHAR(255) NOT NULL</td>
+      <td>The groupmanager that invited the external user</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">inviter_zone</code></td>
+      <td>VARCHAR(255) NOT NULL</td>
+      <td>The zone the groupmanager invited the external user from</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">inviter_time</code></td>
+      <td>TIMESTAMP NOT NULL</td>
+      <td>The invitation time of the user</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>(user_id, inviter_zone)</td>
+      <td>PRIMARY</td>
+      <td>A user can only be added to a certain zone once.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="yoda-portal">Yoda portal</h2>
+<p>The Yoda portal login page shows a “Forgot / change password” button.
+On click, the “Forgot password” page on the external user service for
+external users is displayed.
+When entering an internal email the internal user should be pointed to the correct location.</p>
+
+<h3 id="group-manager">Group manager</h3>
+<p>The Group manager portal module does not need to be changed to allow for
+external user creation. It currently allows creation of users with an
+e-mail address as their username.</p>
+
+<h2 id="yoda-irods-service">Yoda iRODS service</h2>
+
+<h3 id="authentication">Authentication</h3>
+<p>External users will authenticate to iRODS using PAM. A PAM rule must be
+added (after <code class="highlighter-rouge">pam_unix</code> and <code class="highlighter-rouge">pam_radius_auth</code>) that will authenticate
+against the external user database.</p>
+
+<p>The PAM <code class="highlighter-rouge">succeed_if</code> module must be used in combination with “skip”
+actions to select the right authentication module based on a username
+glob. This will speed up authentication significantly.</p>
+
+<p>There is a <a href="https://github.com/pam-pgsql/pam-pgsql/">PAM-pgsql module</a>
+that would allow PAM to check credentials directly against the database,
+however, it has some drawbacks:</p>
+
+<ul>
+  <li>This module does not exist in CentOS7 repos. We would need to
+compile it from source (and audit it).</li>
+  <li>The module does not seem to support a safe password hashing
+algorithm (only MD5, SHA1, clear, or a DB function (which would
+require a separate PostgreSQL package to support anything other than
+MD5))</li>
+</ul>
+
+<p>Instead, the <code class="highlighter-rouge">pam_exec</code> module will be used together with <code class="highlighter-rouge">curl</code> to
+deliver a Basic-authed HTTPS POST request to the external user service,
+which will indicate success using the appropriate HTTP status code
+combined with an indicative response body text.</p>
+
+<p>This allows the external user database to be closed to outside
+connections, as the external user service is the only service that needs
+to access the database directly.</p>
+
+<p>The iRODS server will need a secret number (API key) to authenticate
+itself to the external service. This number must be stored as a local
+file on the server (not within iRODS), in a way that makes it accessible
+both to the PAM module and a Python Group manager rule.</p>
+
+<p>Addition:
+The external user service keeps track of the zones an external user is invited to.
+When authenticating, if a user is not registered within the eus for a zone, the user will not be able to log in to the corresponding Yoda instance.</p>
+
+<h3 id="group-and-user-management">Group and user management</h3>
+<p>The Group manager rules will need to be able to instruct the external
+user service to create and remove external user accounts. These requests
+must be authenticated with an API key, which must be available to the
+iRODS service account, but not accessible to user-submitted rules.</p>
+
+<p>A Python rule is used to fetch the secret from a local file and
+make requests to the external user service. Since Python rules can be
+called from anywhere in iRODS, the rule itself will need to perform
+authorization checks, using existing Group manager policy check
+functions <code class="highlighter-rouge">uuGroupPolicyCanGroupUserAdd</code> and
+<code class="highlighter-rouge">uuGroupPolicyCanGroupUserRemove</code>.</p>
+
+<p>External users are removed when they are removed from the last Yoda instance.
+A periodic cleanup job may be implemented to automate external user removal.</p>
+
+<h2 id="external-user-service-1">External user service</h2>
+
+<p>The external user service is a HTTPS server that services requests to a
+user management API, used by iRODS; and provides an interface for
+external users to activate their account, and change or reset their
+password.</p>
+
+<p>The iRODS server, which is the client to the API provided by this
+service, is to be fully trusted, and is thus expected to perform all
+necessary authorization checks before making a request.</p>
+
+<p>The service will have exclusive access to the external user database.</p>
+
+<p>Additionally, the service must be able to send e-mails to external users
+and group managers. E-mails are used for invitations and password
+resets.</p>
+
+<h2 id="sequence-diagrams">Sequence diagrams</h2>
+<h3 id="authentication-of-an-external-user">Authentication of an external user</h3>
+<p><img src="/design/img/eus/seq-auth.png" alt="Authentication of an external user" /></p>
+
+<h3 id="enrollment-of-an-external-user-not-known-to-eus">Enrollment of an external user not known to EUS</h3>
+<p><img src="/design/img/eus/seq-enroll.png" alt="Enrollment of an external user not known to EUS" /></p>
+
+<h3 id="invitation-of-external-user-known-to-eus">Invitation of external user known to EUS</h3>
+<p><img src="/design/img/eus/seq-invite.png" alt="Invitation of external user known to EUS" /></p>
+
+<h3 id="password-reset">Password reset</h3>
+<p><img src="/design/img/eus/seq-pwreset.png" alt="Password reset" /></p>
+
+<h3 id="deletion-of-an-external-user">Deletion of an external user</h3>
+<p><img src="/design/img/eus/seq-delete.png" alt="Deletion of an external user" /></p>
+
+<h2 id="interfaces">Interfaces</h2>
+
+<h3 id="yoda-portal--irods">Yoda portal → iRODS</h3>
+<p>The interface between the Yoda portal and iRODS is unchanged.</p>
+
+<h3 id="irods--http-api--external-user-service">iRODS → HTTP API → External user service</h3>
+<p>The external user service's HTTP API is used by iRODS to authenticate
+external users and enroll and remove external users.</p>
+
+<p>All requests from iRODS to the external user service must contain the
+header <code class="highlighter-rouge">X-Yoda-External-User-Secret</code>, containing a secret API key.</p>
+
+<p>When the secret header is not present, the external user service will
+respond with a 400 HTTP status code on all API requests. Additionally,
+API requests will be restricted to client IP addresses matching the
+iRODS server.</p>
+
+<p>POST parameters, if any, are supplied in the request body in JSON
+format, for example:</p>
+
+<pre><code class="language-{.example}">{
+  "username": "piet@example.com",
+  "creator_user": "gm@example.com",
+  "creator_zone": "tempZone"
+}
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">/api/auth-check</code></td>
+      <td>POST</td>
+      <td>User authentication: Credentials supplied via HTTP Basic <code class="highlighter-rouge">Authorization</code> header..  Response: On failure: 401. On success: 200, with body text <code class="highlighter-rouge">Authenticated</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/api/user/add</code></td>
+      <td>POST</td>
+      <td>User creation: Creates the given user in the external user database. Generates and stores an activation hash for that username. Sends an invitation e-mail to the new user. Parameters are <code class="highlighter-rouge">username</code>, <code class="highlighter-rouge">creator_user</code> and <code class="highlighter-rouge">creator_zone</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/api/user/delete</code></td>
+      <td>POST</td>
+      <td>User removal: Removes the given user from the external user database. Parameters are <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">userzone</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="external-user--http-ui--external-user-service">External user → HTTP UI → External user service</h2>
+<p>The HTTP UI is used by the external user to activate their account, and
+to change or reset their password.</p>
+
+<p>All POST parameters are sent in <code class="highlighter-rouge">x-www-form-urlencoded</code> format.</p>
+
+<p>POST actions that require the use of a hash must fail if the hash is
+older than the specified time:</p>
+
+<ul>
+  <li>For account creation: 5 days</li>
+  <li>For password reset: 15 minutes</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">/user/:username/activate/:hash</code></td>
+      <td>GET</td>
+      <td>User activation page. Allows the user confirm the creation of their account.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/user/:username/activate/:hash</code></td>
+      <td>POST</td>
+      <td>Confirms user activation, sets a password. Also sends an e-mail to the creator of the account. The user’s hash is cleared in the database upon use. The only parameter is <code class="highlighter-rouge">password</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/user/forgot-password</code></td>
+      <td>GET</td>
+      <td>“Forgot password” page. Allows the user to request a password reset link by filling in their username</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/user/:username/forgot-password</code></td>
+      <td>POST</td>
+      <td>Confirms “forgot password”. Generates a hash and sends a password reset link to the given username, if it exists. The only parameter is <code class="highlighter-rouge">username</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/user/:username/reset-password/:hash</code></td>
+      <td>GET</td>
+      <td>Password reset page. Allows the user to enter a new password</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/user/:username/reset-password/:hash</code></td>
+      <td>POST</td>
+      <td>Confirms password reset, sets a new password. The user’s hash is cleared in the database upon use. The only parameter is <code class="highlighter-rouge">password</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+                                    </section>
+
+                                    <footer class="article-footer"></footer>
+                                </article>
+                            </div> <!-- /page-content-inner -->
+                        </div> <!-- /page-content -->
+                    </div> <!--row-offcanvas -->
+                </div> <!-- /#content-wrapper -->
+            </div>
+
+            <footer id="colophon" class="footer hidden-print">
+                <div id="inner-footer" class="container clearfix">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img alt="Logo Utrecht University" src="/assets/images/uu-logo-footer.svg">
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="source-org copyright pull-right">© 2019 Utrecht University, <a href="https://www.uu.nl/en/organisation/contact/disclaimer">disclaimer</a></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <p id="back-top" style="display: none;">
+                <a href="#top"><i class="fa fa-angle-up"></i></a>
+            </p>
+
+            <script type="text/javascript" src='/assets/js/jquery.js'></script>
+<script type="text/javascript" src='/assets/js/bootstrap.min.js'></script>
+        </div>
+    </body>
+</html>

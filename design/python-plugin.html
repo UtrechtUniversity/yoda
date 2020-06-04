@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" href="/assets/images/favicon.ico">
+
+  <title>Yoda and the iRODS python plugin</title>
+
+  <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/css/custom.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/css/print.css" type="text/css" media="print" />
+</head>
+
+    <body data-rsssl="1" class="page-template-default page page-id-6 page-parent" data-spy="scroll" data-target="#sidebarnav">
+        <div id="page">
+
+            <div id="brandbar" class="affix-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-xs-8 logodiv">
+                <button type="button" class="navbar-toggle hidden-print" data-toggle="collapse" data-target="#main-menu-collapse">
+                    <span class="sr-only">Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="https://www.uu.nl/en">
+                    <img src="/assets/images/uu-logo.svg" alt="Logo Utrecht University">
+                </a>
+
+                <div class="visible-print-block">
+                    <h1>YODA</h1>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xs-4 hidden-print" role="search">
+                <!--
+                <div class="pull-right">
+                    <form method="get" id="searchform" action="https://yoda.sites.uu.nl">
+                        <div class="search-wrapper">
+                            <label class="screen-reader-text" for="s">'</label>
+                            <input type="text" class="searchfield" value="" name="s" id="s" placeholder="Search the Site...">
+                            <input type="submit" id="searchsubmit" class="searchbutton" value="">
+                        </div>
+                    </form>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<header id="masthead" class="header hidden-print">
+    <div class="container">
+        <h1>
+            <a href="" rel="home" title="YODA">
+                YODA
+            </a>
+        </h1>
+    </div>
+</header>
+
+<a class="skip-link sr-only" href="#content">Skip to content</a>
+
+<!-- MAIN MENU -->
+<nav id="#access" class="navbar navbar-default navbar-inverse">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header"></div>
+        <div id="main-menu-collapse" class="collapse navbar-collapse">
+            <ul id="menu-hoofdmenu" class="nav navbar-nav">
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Release notes" href="/release-notes/index.html">Release notes</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Administration" href="/administration/index.html">Administration</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Development" href="/development/index.html">Development</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Software design" href="/design/index.html">Software design</a>
+                    
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- /MAIN MENU -->
+
+
+            <div id="content" class="two-col">
+                <header class="article-header article-header-main">
+                    <div class="header-image hidden-print">
+
+                        
+                        <div class="breadcrumbs" xmlns:v="https://rdf.data-vocabulary.org/#">
+                            <div class="container">
+							<span property="itemListElement" typeof="ListItem">
+								<span property="name">YODA</span>
+								<meta property="position" content="1">
+							</span>
+                            </div>
+                        </div>
+                        
+
+                        <img src="/assets/images/header.jpg" alt="">
+
+                        
+                        <div class="page-header-placeholder"></div>
+                        
+                    </div>
+                </header>
+
+                <div id="content-wrapper" class="container">
+                    <div class="row-offcanvas row-offcanvas-left">
+                        <div id="left-sidebar" class="sidebar-offcanvas clearfix hidden-print" role="complementary">
+                            <!-- PAGE MENU -->
+                            
+                            
+                            
+                            <div class="widget-1 first-widget widget widget_nav_menu">
+                                <h4 class="widgettitle">Menu</h4>
+                                <div class="menu-hoofdmenu-container">
+                                    <!-- PAGE MENU -->
+                                    <ul class="menu">
+                                        
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/system-overview.html">System overview</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/state-model.html">State model</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/async-system-execution.html">Asynchronous and privileged execution</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/external-user-service.html">External user service</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/group-manager.html">Group manager</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/locking-mechanism.html">Locking mechanism</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/metadata-form.html">Metadata form</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/publication-process.html">Publication process</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children current-menu-item">
+                                                <a href="/design/python-plugin.html">Python plugin</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/statistics.html">Statistics module</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/revisions.html">Revision management</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/design/vault-process.html">Vault process</a>
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- /PAGE MENU -->    
+                        </div>
+
+                        <div class="page-content clearfix">
+                            
+                            <div class="page-title">
+                                <h1>
+                                    Yoda and the iRODS python plugin
+                                </h1>
+                            </div>
+                            
+			    <!--
+                            <div class="toggle-btn-div visible-xs clearfix">
+                                <button type="button" class="toggle-btn white button icon left arrow-right" data-toggle="offcanvas">
+                                    Show sidebar
+                                </button>
+                            </div>
+                            -->
+                            <div class="page-content-inner facetwp-template">
+
+                                <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
+                                    <section class="entry-content">
+                                        <h1 id="yoda-and-the-irods-python-plugin">Yoda and the iRODS python plugin</h1>
+
+<h2 id="configuring-the-python-rule-plugin">Configuring the Python rule plugin</h2>
+
+<p>Include the following in <code class="highlighter-rouge">server_config.json</code>, in the <code class="highlighter-rouge">rule_engines</code> array:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"instance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irods_rule_engine_plugin-python-instance"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"plugin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irods_rule_engine_plugin-python"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"plugin_specific_configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>We use the python plugin as the second in the array, after the iRODS rule language plugin, so that we can combine our existing rule language code with new python code.</p>
+
+<h2 id="defining-python-code">Defining python code</h2>
+
+<p>Python code can be included in core.py, in the following form:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pythonFunction</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
+    <span class="n">callback</span><span class="o">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"python rule called"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Static python functions must be defined in core.py.  There are three different types of functions, each with its own way of handling arguments and return values.</p>
+<ul>
+  <li>Rules called directly by iRODS have numbered parameters passed through <code class="highlighter-rouge">rule_args</code>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">acPythonPEP</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
+    <span class="n">callback</span><span class="o">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"arg = "</span> <span class="o">+</span> <span class="n">rule_args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Such rules can also return values through numbered output parameters.</p>
+  </li>
+  <li>Rules called with irule or from the frontend have access to <code class="highlighter-rouge">global_vars</code>, in which named parameters are passed as strings including the quotes:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
+    <span class="n">arg</span> <span class="o">=</span> <span class="n">global_vars</span><span class="p">[</span><span class="s">"*arg"</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                <span class="c"># strip the quotes</span>
+    <span class="n">callback</span><span class="o">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"arg = "</span> <span class="o">+</span> <span class="n">arg</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Output cannot be passed back through named parameters, but has to be handled with writeString/writeLine:</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INPUT *arg="some argument"
+OUTPUT ruleExecOut
+</code></pre></div>    </div>
+    <p>Note that <code class="highlighter-rouge">global_vars</code> is only available to python functions defined in core.py, not to functions imported by core.py.</p>
+  </li>
+  <li>Ordinary python functions which are not called by iRODS or externally, but only by other python code, accept arguments normally and can return a value:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">str1</span> <span class="o">+</span> <span class="n">str2</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="simple-code-example-roundtrip-irods---python---irods">Simple code example roundtrip irods -&gt; python -&gt; irods</h2>
+
+<p>Essence of the example is that <strong>rule_args</strong> both serves as input and as output parameters</p>
+
+<p>iRODS:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # \brief Front end rule to retrieve XSD location
+  #
+  # \param[in]  folder        Path of the folder
+  # \param[out] schemaLocation Location of XSD
+  # \param[out] status        Status of the action
+  # \param[out] statusInfo    Information message when action was not successful
+
+  iiFrontGetSchemaLocation(*folder, *schemaLocation, *status, *statusInfo)
+  {
+          *status = "Success";
+          *statusInfo = "";
+
+          *schema = '';
+
+          iiRuleGetLocation(*folder, *schema); # it is not possible to directly use *schemaLocation here
+          writeLine('serverLog', 'schema: ' ++ *schema);
+
+          *schemaLocation =  *schema; # again, does not work when passing schemaLocation direcly in iiRuleGetLocation
+  }
+</code></pre></div></div>
+
+<p>PYTHON:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># \brief Nonsense function that returns 'enriched' text based on rule_args[0]</span>
+  <span class="c"># rule_args serves both as input and output parametes</span>
+
+  <span class="k">def</span> <span class="nf">iiRuleGetLocation</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
+      <span class="n">rule_args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">'You passed  the  folder: '</span> <span class="o">+</span> <span class="n">rule_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+</code></pre></div></div>
+
+<h2 id="calling-python-code">Calling python code</h2>
+
+<p>Python functions can be called from iRODS rule language rules.</p>
+
+<p>Python functions can also be called with irule:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule -r irods_rule_engine_plugin-python-instance pythonFunction '*arg="some argument"' ruleExecOut
+</code></pre></div></div>
+<p>or</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule -r irods_rule_engine_plugin-python-instance -F pythonfunc.r
+</code></pre></div></div>
+
+<p><strong>pythonfunc.r</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
+    <span class="n">arg</span> <span class="o">=</span> <span class="n">global_vars</span><span class="p">[</span><span class="s">"*arg"</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                <span class="c"># strip the quotes</span>
+    <span class="n">callback</span><span class="o">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"arg = "</span> <span class="o">+</span> <span class="n">arg</span><span class="p">)</span>
+
+<span class="n">INPUT</span> <span class="o">*</span><span class="n">arg</span><span class="o">=</span><span class="s">"some argument"</span>
+<span class="n">OUTPUT</span> <span class="n">ruleExecOut</span>
+</code></pre></div></div>
+
+<p>Note that in the latter case, python functions in core.py are not available.</p>
+
+<h2 id="calling-microservices-from-python-code">Calling microservices from python code</h2>
+
+<p>Use <code class="highlighter-rouge">irods_types</code> to create output parameters of the proper type, and obtain the output values from <code class="highlighter-rouge">ret_val["arguments"][N]</code>.</p>
+
+<p><strong>Example code:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">uuGetGroups</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ret_val</span> <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiMakeGenQuery</span><span class="p">(</span><span class="s">"USER_GROUP_NAME"</span><span class="p">,</span> <span class="s">"USER_TYPE = 'rodsgroup'"</span><span class="p">,</span> <span class="n">irods_types</span><span class="o">.</span><span class="n">GenQueryInp</span><span class="p">())</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">ret_val</span><span class="p">[</span><span class="s">"arguments"</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>        <span class="c"># output parameter type GenQueryInp</span>
+
+    <span class="n">ret_val</span> <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiExecGenQuery</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">irods_types</span><span class="o">.</span><span class="n">GenQueryOut</span><span class="p">())</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">ret_val</span><span class="p">[</span><span class="s">"arguments"</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>   <span class="c"># output parameter type GenQueryOut</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">rowCnt</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">sqlResult</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="c"># continue with this query</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">continueInx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">ret_val</span> <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiGetMoreRows</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">callback</span><span class="o">.</span><span class="n">writeString</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">groups</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="setting-avus-from-python">Setting AVU’s from Python</h2>
+
+<p><strong>Example code:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">irods_types</span>
+
+<span class="k">def</span> <span class="nf">uuMetaAdd</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">objType</span><span class="p">,</span> <span class="n">objName</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="n">keyValPair</span>  <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiString2KeyValPair</span><span class="p">(</span><span class="n">attribute</span> <span class="o">+</span> <span class="s">"="</span> <span class="o">+</span> <span class="n">value</span><span class="p">,</span> <span class="n">irods_types</span><span class="o">.</span><span class="n">KeyValPair</span><span class="p">())[</span><span class="s">'arguments'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">retval</span> <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiAssociateKeyValuePairsToObj</span><span class="p">(</span><span class="n">keyValPair</span><span class="p">,</span> <span class="n">objName</span><span class="p">,</span> <span class="n">objType</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">addCollectionStatus</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
+    <span class="n">uuMetaAdd</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="s">"-C"</span><span class="p">,</span> <span class="s">"/tempZone/home/research-initial"</span><span class="p">,</span> <span class="s">"status"</span><span class="p">,</span> <span class="s">"PUBLISHED"</span><span class="p">)</span>
+</code></pre></div></div>
+
+                                    </section>
+
+                                    <footer class="article-footer"></footer>
+                                </article>
+                            </div> <!-- /page-content-inner -->
+                        </div> <!-- /page-content -->
+                    </div> <!--row-offcanvas -->
+                </div> <!-- /#content-wrapper -->
+            </div>
+
+            <footer id="colophon" class="footer hidden-print">
+                <div id="inner-footer" class="container clearfix">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img alt="Logo Utrecht University" src="/assets/images/uu-logo-footer.svg">
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="source-org copyright pull-right">© 2019 Utrecht University, <a href="https://www.uu.nl/en/organisation/contact/disclaimer">disclaimer</a></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <p id="back-top" style="display: none;">
+                <a href="#top"><i class="fa fa-angle-up"></i></a>
+            </p>
+
+            <script type="text/javascript" src='/assets/js/jquery.js'></script>
+<script type="text/javascript" src='/assets/js/bootstrap.min.js'></script>
+        </div>
+    </body>
+</html>

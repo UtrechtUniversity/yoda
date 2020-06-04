@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" href="/assets/images/favicon.ico">
+
+  <title>Long-running background jobs</title>
+
+  <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/css/custom.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/css/print.css" type="text/css" media="print" />
+</head>
+
+    <body data-rsssl="1" class="page-template-default page page-id-6 page-parent" data-spy="scroll" data-target="#sidebarnav">
+        <div id="page">
+
+            <div id="brandbar" class="affix-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-xs-8 logodiv">
+                <button type="button" class="navbar-toggle hidden-print" data-toggle="collapse" data-target="#main-menu-collapse">
+                    <span class="sr-only">Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="https://www.uu.nl/en">
+                    <img src="/assets/images/uu-logo.svg" alt="Logo Utrecht University">
+                </a>
+
+                <div class="visible-print-block">
+                    <h1>YODA</h1>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xs-4 hidden-print" role="search">
+                <!--
+                <div class="pull-right">
+                    <form method="get" id="searchform" action="https://yoda.sites.uu.nl">
+                        <div class="search-wrapper">
+                            <label class="screen-reader-text" for="s">'</label>
+                            <input type="text" class="searchfield" value="" name="s" id="s" placeholder="Search the Site...">
+                            <input type="submit" id="searchsubmit" class="searchbutton" value="">
+                        </div>
+                    </form>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<header id="masthead" class="header hidden-print">
+    <div class="container">
+        <h1>
+            <a href="" rel="home" title="YODA">
+                YODA
+            </a>
+        </h1>
+    </div>
+</header>
+
+<a class="skip-link sr-only" href="#content">Skip to content</a>
+
+<!-- MAIN MENU -->
+<nav id="#access" class="navbar navbar-default navbar-inverse">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header"></div>
+        <div id="main-menu-collapse" class="collapse navbar-collapse">
+            <ul id="menu-hoofdmenu" class="nav navbar-nav">
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Release notes" href="/release-notes/index.html">Release notes</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Administration" href="/administration/index.html">Administration</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Development" href="/development/index.html">Development</a>
+                    
+                </li>
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                    
+                    <a title="Software design" href="/design/index.html">Software design</a>
+                    
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- /MAIN MENU -->
+
+
+            <div id="content" class="two-col">
+                <header class="article-header article-header-main">
+                    <div class="header-image hidden-print">
+
+                        
+                        <div class="breadcrumbs" xmlns:v="https://rdf.data-vocabulary.org/#">
+                            <div class="container">
+							<span property="itemListElement" typeof="ListItem">
+								<span property="name">YODA</span>
+								<meta property="position" content="1">
+							</span>
+                            </div>
+                        </div>
+                        
+
+                        <img src="/assets/images/header.jpg" alt="">
+
+                        
+                        <div class="page-header-placeholder"></div>
+                        
+                    </div>
+                </header>
+
+                <div id="content-wrapper" class="container">
+                    <div class="row-offcanvas row-offcanvas-left">
+                        <div id="left-sidebar" class="sidebar-offcanvas clearfix hidden-print" role="complementary">
+                            <!-- PAGE MENU -->
+                            
+                            
+                            
+                            <div class="widget-1 first-widget widget widget_nav_menu">
+                                <h4 class="widgettitle">Menu</h4>
+                                <div class="menu-hoofdmenu-container">
+                                    <!-- PAGE MENU -->
+                                    <ul class="menu">
+                                        
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/administration/installing-licenses.html">Installing Licenses</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/administration/installing-terms.html">Installing terms</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/administration/installing-metadata-schemas.html">Installing metadata schemas</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/administration/upgrading-metadata-schemas.html">Upgrading metadata schemas</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children current-menu-item">
+                                                <a href="/administration/background-jobs.html">Background jobs</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/administration/troubleshooting-publication.html">Troubleshooting publication</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/administration/restore-collection.html">Restore collection</a>
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- /PAGE MENU -->    
+                        </div>
+
+                        <div class="page-content clearfix">
+                            
+                            <div class="page-title">
+                                <h1>
+                                    Long-running background jobs
+                                </h1>
+                            </div>
+                            
+			    <!--
+                            <div class="toggle-btn-div visible-xs clearfix">
+                                <button type="button" class="toggle-btn white button icon left arrow-right" data-toggle="offcanvas">
+                                    Show sidebar
+                                </button>
+                            </div>
+                            -->
+                            <div class="page-content-inner facetwp-template">
+
+                                <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
+                                    <section class="entry-content">
+                                        <h1 id="long-running-background-jobs">Long-running background jobs</h1>
+<p>Yoda can have long-running background jobs. Such jobs work on large amounts of
+data in (small) batches, where the next batch is started through a delayed rule.
+Currently there are two such jobs:</p>
+
+<ul>
+  <li>
+    <p>iiCheckMetadataXmlForSchemaUpdates</p>
+
+    <p>started by: <code class="highlighter-rouge">irods-ruleset-research/tools/check-metadata-for-schema-updates.r</code></p>
+
+    <p>Verify/update the metadata schemas of packages.</p>
+
+    <p>Check with: <code class="highlighter-rouge">iqstat -a | grep iiCheckMetadataXmlForSchemaUpdates</code></p>
+
+    <p>All metadata touched will be logged in the rodsLog.</p>
+
+    <p>Adding the schema identifiers can take some time, the batch script adds 256 jobs per 60 seconds to the rule queue.</p>
+  </li>
+  <li>
+    <p>uuCheckVaultIntegrity</p>
+
+    <p>started by: <code class="highlighter-rouge">irods-ruleset-uu/tools/check-vault-integrity.r</code></p>
+
+    <p>Verify the checksums of all stored data.</p>
+
+    <p>Check with: <code class="highlighter-rouge">iqstat -a | grep uuCheckVaultIntegrity</code></p>
+
+    <p>All data objects with data itegrity issues are logged in the rodsLog.</p>
+
+    <p>Checking the vault integrity takes a lot of time.</p>
+
+    <p>To add minimal load on the system, the batch script adds 256 jobs per 60 seconds to the rule queue.</p>
+  </li>
+</ul>
+
+                                    </section>
+
+                                    <footer class="article-footer"></footer>
+                                </article>
+                            </div> <!-- /page-content-inner -->
+                        </div> <!-- /page-content -->
+                    </div> <!--row-offcanvas -->
+                </div> <!-- /#content-wrapper -->
+            </div>
+
+            <footer id="colophon" class="footer hidden-print">
+                <div id="inner-footer" class="container clearfix">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img alt="Logo Utrecht University" src="/assets/images/uu-logo-footer.svg">
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="source-org copyright pull-right">© 2019 Utrecht University, <a href="https://www.uu.nl/en/organisation/contact/disclaimer">disclaimer</a></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <p id="back-top" style="display: none;">
+                <a href="#top"><i class="fa fa-angle-up"></i></a>
+            </p>
+
+            <script type="text/javascript" src='/assets/js/jquery.js'></script>
+<script type="text/javascript" src='/assets/js/bootstrap.min.js'></script>
+        </div>
+    </body>
+</html>

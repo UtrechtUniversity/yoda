@@ -1,0 +1,17 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam dpi 200
+
+actor       "Yoda admin" as ya
+participant "iRODS" as irods
+participant "External user service & DB" as eus
+
+ya      -> irods  : Delete user from iRODS
+irods   -> eus    : Delete user
+irods   <- eus    : Ok
+ya      <- irods  : Ok
+
+@enduml
