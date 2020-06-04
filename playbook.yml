@@ -15,7 +15,7 @@
 - hosts: all
   gather_facts: False
   pre_tasks:
-    - name: Retrieve Yoda Ansible repository branch
+    - name: Retrieve Yoda repository branch
       shell: |
         set -o pipefail
         git branch | grep \* | cut -d ' ' -f2
@@ -26,9 +26,9 @@
         executable: /bin/bash
 
 
-    - name: Verify Yoda Ansible repository is on correct branch
+    - name: Verify Yoda repository is on correct branch
       fail:
-        msg: "Make sure your yoda-ansible repository is on branch {{ yoda_version }}. (git checkout {{ yoda_version }})"
+        msg: "Make sure your Yoda repository is on branch {{ yoda_version }}. (git checkout {{ yoda_version }})"
       when: not ansible_check_mode and yoda_version not in git_branch.stdout and yoda_environment != "development"
 
 

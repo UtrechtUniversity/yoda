@@ -15,12 +15,12 @@ if ! command -v ansible >/dev/null; then
 fi
 
 # Remove current version.
-rm -rf ~/yoda-ansible
+rm -rf ~/yoda
 
-# Clone yoda-ansible.
-git clone https://github.com/UtrechtUniversity/yoda-ansible.git
-cd ~/yoda-ansible
+# Clone yoda.
+git clone https://github.com/UtrechtUniversity/yoda.git
+cd ~/yoda
 git checkout development
 
 # Set file permissions on SSH key to 0600.
-chmod 0600 ~/yoda-ansible/vagrant/ssh/vagrant
+chmod 0600 ~/yoda/vagrant/ssh/vagrant
