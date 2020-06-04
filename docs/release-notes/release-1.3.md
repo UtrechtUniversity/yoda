@@ -21,7 +21,7 @@ Upgrade is supported by Ansible (2.7.x). No migrations required.
 
 Make sure the delayed rule queue is empty before upgrading (`iqstat -a`).
 Add the following fields to the Ansible environment files
-(see [yoda-ansible/CONFIGURATION.md](https://github.com/UtrechtUniversity/yoda-ansible/blob/development/CONFIGURATION.md) for description):
+(see [yoda/CONFIGURATION.md](https://github.com/UtrechtUniversity/yoda/blob/release-1.4/CONFIGURATION.md) for description):
 - yoda_environment (replaces codeigniter_environment)
 - credential_files
 - send_notifications
