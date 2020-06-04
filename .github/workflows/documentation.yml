@@ -1,6 +1,16 @@
-name: Ruby
+name: Documentation
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+    - 'docs/**'
+  pull_request:
+    paths:
+    - 'docs/**'
+
+defaults:
+  run:
+    working-directory: docs
 
 jobs:
   build:
