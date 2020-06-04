@@ -231,47 +231,61 @@ Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.</p>
 
 <ol>
-  <li>
-    <p>Set Yoda release to <code class="highlighter-rouge">release-1.6</code> in configuration.
-‘'’yaml
-yoda_version: release-1.6
-‘’’</p>
-  </li>
-  <li>
-    <p>Set the default schema to <code class="highlighter-rouge">default-1</code> in configuration.
-‘'’yaml
-default_yoda_schema: default-0
-‘’’</p>
-  </li>
-  <li>
-    <p>The research ruleset (<code class="highlighter-rouge">irods-ruleset-research</code>) is merged with the UU ruleset (<code class="highlighter-rouge">irods-ruleset-uu</code>) and should be removed from the configuration (rulesets).</p>
-  </li>
-  <li>Instead of all the modules, only the extra modules are defined in the configuration. So <code class="highlighter-rouge">modules</code> becomes <code class="highlighter-rouge">extra_modules</code>:
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Yoda modules</span>
+  <li>Set Yoda release to <code class="highlighter-rouge">release-1.6</code> in configuration.</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">release-1.6</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Set the default schema to <code class="highlighter-rouge">default-1</code> in configuration.</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">default_yoda_schema</span><span class="pi">:</span> <span class="s">default-1</span>
+</code></pre></div></div>
+
+<ol>
+  <li>The core modules (<code class="highlighter-rouge">research</code>, <code class="highlighter-rouge">vault</code>, <code class="highlighter-rouge">statistics</code>, <code class="highlighter-rouge">group-manager</code>) are enabled by default in Yoda 1.6.
+Only extra modules have to be enabled in the configuration.
+So <code class="highlighter-rouge">modules</code> becomes <code class="highlighter-rouge">extra_modules</code> and all core modules should be removed from the <code class="highlighter-rouge">extra_modules</code> list.
+For example:</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Yoda modules</span>
 <span class="na">extra_modules</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">intake</span>
- <span class="na">repo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/UtrechtUniversity/yoda-portal-intake.git"</span>
- <span class="na">dest</span><span class="pi">:</span> <span class="s">/var/www/yoda/yoda-portal/modules/intake</span>
- <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Instead of all the rulesets, only the extra rulesets are defined in the configuration. So <code class="highlighter-rouge">rulesets</code> becomes <code class="highlighter-rouge">extra_rulesets</code>:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># iRODS rulesets
+    <span class="na">repo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/UtrechtUniversity/yoda-portal-intake.git"</span>
+    <span class="na">dest</span><span class="pi">:</span> <span class="s">/var/www/yoda/yoda-portal/modules/intake</span>
+    <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+</code></pre></div></div>
+
+<ol>
+  <li>The core rulesets (<code class="highlighter-rouge">core</code> and <code class="highlighter-rouge">irods-ruleset-uu</code>) are enabled by default in Yoda 1.6.
+Only extra modules have to be enabled in the configuration.
+Furthermore, the research ruleset (<code class="highlighter-rouge">irods-ruleset-research</code>) has been merged with the UU ruleset
+(<code class="highlighter-rouge">irods-ruleset-uu</code>). So <code class="highlighter-rouge">rulesets</code> becomes <code class="highlighter-rouge">extra_rulesets</code>;
+<code class="highlighter-rouge">core</code>, <code class="highlighter-rouge">irods-ruleset-research</code> and <code class="highlighter-rouge">irods-ruleset-uu</code> should be removed from the <code class="highlighter-rouge">extra_rulesets</code> list.
+For example:</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># iRODS rulesets
 extra_rulesets:
   - name: irods-ruleset-youth-cohort
- repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
- ruleset_name: rules-yc
- version: ""
- install_scripts: no
-</code></pre></div>    </div>
-  </li>
+    repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
+    ruleset_name: rules-yc
+    version: ""
+    install_scripts: no
+</code></pre></div></div>
+
+<ol>
   <li>
     <p>Run the Ansible upgrade in check mode.</p>
   </li>
   <li>
     <p>Run the Ansible upgrade.</p>
   </li>
-  <li>Convert all metadata XML in the vault to JSON.
+  <li>
+    <p>Convert all metadata XML in the vault to JSON.</p>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 </code></pre></div>    </div>
   </li>
