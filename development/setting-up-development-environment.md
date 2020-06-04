@@ -9,11 +9,11 @@ On GNU/Linux or macOS you also need:
 
 The guide below will deploy an 'allinone' instance (all functional roles in one virtual machine) with the default configuration.
 
-1. Clone the Yoda repository and checkout the development branch:
+1. Clone the yoda-ansible repository and checkout the development branch:
 ```bash
 cd
-git clone https://github.com/UtrechtUniversity/yoda.git
-cd ~/yoda
+git clone https://github.com/UtrechtUniversity/yoda-ansible.git
+cd ~/yoda-ansible
 git checkout development
 ```
 
@@ -25,11 +25,11 @@ vagrant --instance=allinone up
 3. On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
 ```bash
 vagrant ssh controller
-cd ~/yoda
+cd ~/yoda-ansible
 ```
 On a GNU/Linux or macOS host make sure the SSH keys have the right permissions (skip this step on Windows):
 ```bash
-chmod 0600 ~/yoda/vagrant/ssh/vagrant
+chmod 0600 ~/yoda-ansible/vagrant/ssh/vagrant
 ```
 
 4. Deploy Yoda to the virtual machines:
@@ -68,7 +68,7 @@ Upgrading the Yoda development environment to the latest version can be done by 
 1. On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
 ```bash
 vagrant ssh controller
-cd ~/yoda
+cd ~/yoda-ansible
 ```
 
 2. Upgrade Ansible scripts:
