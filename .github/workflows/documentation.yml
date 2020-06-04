@@ -2,15 +2,15 @@ name: Documentation
 
 on:
   push:
+    branches:
+    - development
     paths:
     - 'docs/**'
   pull_request:
+    branches:
+    - development
     paths:
     - 'docs/**'
-
-defaults:
-  run:
-    working-directory: docs
 
 jobs:
   build:
@@ -35,19 +35,22 @@ jobs:
 
     - name: Install Jekyll dependencies
       run: |
+        cd docs
         gem install bundler --no-document
         bundle config path vendor/bundle
         bundle install --jobs 4
 
-    - name: Build site
+    - name: Build test site
       run: |
-        bundle exec jekyll build
+        cd docs
+        bundle exec jekyll build --config _config_test.yml
 
     - name: Run basic HTML checks
       run: |
         sudo apt-get update
         sudo apt-get install -y libxslt-dev libxml2-dev zlib1g-dev
         gem install html-proofer --no-document
+        cd docs
         htmlproofer _site --alt-ignore '/assets/images/header.jpg' --disable-external
       env:
         NOKOGIRI_USE_SYSTEM_LIBRARIES: true
@@ -56,4 +59,18 @@ jobs:
       run: |
         sudo apt-get install -y linkchecker
         echo -e "[checking]\nlocalwebroot=$(realpath _site)" > lc.config
+        cd docs
         linkchecker -f lc.config _site --ignore-url 'maxcdn.bootstrapcdn.com' --ignore-url '/assets/images/'
+
+    - name: Build production site
+      run: |
+        cd docs
+        rm -rf _site
+        bundle exec jekyll build --config _config_prod.yml
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: docs/_site
