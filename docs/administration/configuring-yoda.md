@@ -140,12 +140,14 @@ Variable   | Description
 -----------|---------------------------------------------
 default_yoda_schema          | Default Yoda XML scheme: default-0 or default-1
 enable_revisions             | Enable revisions: yes (1) or no (0)
+enable_async_replication     | Enable asynchronous replication cronjob: yes (1) or no (0)
 revision_strategy            | Revision strategy: A, B, J or Simple
 yoda_random_id_length        | Length of random ID to add to persistent identifier
 yoda_prefix                  | Prefix for internal portion of persistent identifier
 update_rulesets              | Update already installed rulesets with git
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
+
 
 ### Mail notifications
 
