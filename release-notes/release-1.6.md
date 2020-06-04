@@ -21,13 +21,11 @@ Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.
 
 1. Set Yoda release to `release-1.6` in configuration.
-
 ```yaml
 yoda_version: release-1.6
 ```
 
 2. Set the default schema to `default-1` in configuration.
-
 ```yaml
 default_yoda_schema: default-1
 ```
@@ -36,7 +34,6 @@ default_yoda_schema: default-1
    Only extra modules have to be enabled in the configuration.
    So `modules` becomes `extra_modules` and all core modules should be removed from the `extra_modules` list.
    For example:
-
 ```yaml
 # Yoda modules
 extra_modules:
@@ -52,7 +49,6 @@ extra_modules:
    (`irods-ruleset-uu`). So `rulesets` becomes `extra_rulesets`;
    `core`, `irods-ruleset-research` and `irods-ruleset-uu` should be removed from the `extra_rulesets` list.
    For example:
-
 ```
 # iRODS rulesets
 extra_rulesets:
