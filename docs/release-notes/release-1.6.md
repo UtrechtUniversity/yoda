@@ -29,7 +29,7 @@ yoda_version: release-1.6
 2. Set the default schema to `default-1` in configuration.
 
 ```yaml
-default_yoda_schema: default-0
+default_yoda_schema: default-1
 ```
 
 3. The core modules (research, vault, statistics, group-manager) are enabled by default in Yoda 1.6. Only extra modules have to be enabled in the configuration.
