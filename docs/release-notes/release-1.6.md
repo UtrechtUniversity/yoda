@@ -30,9 +30,9 @@ yoda_version: release-1.6
 default_yoda_schema: default-0
 '''
 
-3. The research ruleset (`irods-ruleset-research`) is merged with the UU ruleset (`irods-ruleset-uu`) and should be removed from the configuration (rulesets).
+3. The core modules (research, vault, statistics, group-manager) are enabled by default in Yoda 1.6. Only extra modules have to be enabled in the configuration.
+   So `modules` becomes `extra_modules` and all core modules should be removed from the extra_modules list. For example:
 
-4. Instead of all the modules, only the extra modules are defined in the configuration. So `modules` becomes `extra_modules`:
 ```yaml
 # Yoda modules
 extra_modules:
@@ -42,7 +42,10 @@ extra_modules:
     version: "{{ yoda_version }}"
 ```
 
-5. Instead of all the rulesets, only the extra rulesets are defined in the configuration. So `rulesets` becomes `extra_rulesets`:
+4. The core rulesets (core and irods-ruleset-uu) are enabled by default in Yoda 1.6. Only extra modules have to be enabled in the configuration.
+   Furthermore, the research ruleset (`irods-ruleset-research`) has been merged with the UU ruleset (`irods-ruleset-uu`). So `rulesets` becomes `extra_rulesets`;
+   core, irods-ruleset-research and irods-ruleset-uu should be removed from the extra_rulesets list . For example:
+
 ```
 # iRODS rulesets
 extra_rulesets:
@@ -53,11 +56,11 @@ extra_rulesets:
     install_scripts: no
 ```
 
-6. Run the Ansible upgrade in check mode.
+5. Run the Ansible upgrade in check mode.
 
-7. Run the Ansible upgrade.
+6. Run the Ansible upgrade.
 
-8. Convert all metadata XML in the vault to JSON.
+7. Convert all metadata XML in the vault to JSON.
 ```bash
 irule -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 ```
