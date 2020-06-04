@@ -192,10 +192,10 @@
 <p>The guide below will deploy an ‘allinone’ instance (all functional roles in one virtual machine) with the default configuration.</p>
 
 <ol>
-  <li>Clone the yoda-ansible repository and checkout the development branch:
+  <li>Clone the Yoda repository and checkout the development branch:
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd
-</span>git clone https://github.com/UtrechtUniversity/yoda-ansible.git
-<span class="nb">cd</span> ~/yoda-ansible
+</span>git clone https://github.com/UtrechtUniversity/yoda.git
+<span class="nb">cd</span> ~/yoda
 git checkout development
 </code></pre></div>    </div>
   </li>
@@ -205,10 +205,10 @@ git checkout development
   </li>
   <li>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant ssh controller
-<span class="nb">cd</span> ~/yoda-ansible
+<span class="nb">cd</span> ~/yoda
 </code></pre></div>    </div>
     <p>On a GNU/Linux or macOS host make sure the SSH keys have the right permissions (skip this step on Windows):</p>
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod 0600 ~/yoda-ansible/vagrant/ssh/vagrant
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod 0600 ~/yoda/vagrant/ssh/vagrant
 </code></pre></div>    </div>
   </li>
   <li>Deploy Yoda to the virtual machines:
@@ -245,7 +245,7 @@ git checkout development
 <ol>
   <li>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant ssh controller
-<span class="nb">cd</span> ~/yoda-ansible
+<span class="nb">cd</span> ~/yoda
 </code></pre></div>    </div>
   </li>
   <li>Upgrade Ansible scripts:
