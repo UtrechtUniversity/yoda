@@ -32,8 +32,10 @@ yoda_version: release-1.6
 default_yoda_schema: default-1
 ```
 
-3. The core modules (research, vault, statistics, group-manager) are enabled by default in Yoda 1.6. Only extra modules have to be enabled in the configuration.
-   So `modules` becomes `extra_modules` and all core modules should be removed from the extra_modules list. For example:
+3. The core modules (`research`, `vault`, `statistics`, `group-manager`) are enabled by default in Yoda 1.6.
+   Only extra modules have to be enabled in the configuration.
+   So `modules` becomes `extra_modules` and all core modules should be removed from the `extra_modules` list.
+   For example:
 
 ```yaml
 # Yoda modules
@@ -44,9 +46,12 @@ extra_modules:
     version: "{{ yoda_version }}"
 ```
 
-4. The core rulesets (core and irods-ruleset-uu) are enabled by default in Yoda 1.6. Only extra modules have to be enabled in the configuration.
-   Furthermore, the research ruleset (`irods-ruleset-research`) has been merged with the UU ruleset (`irods-ruleset-uu`). So `rulesets` becomes `extra_rulesets`;
-   core, irods-ruleset-research and irods-ruleset-uu should be removed from the extra_rulesets list . For example:
+4. The core rulesets (`core` and `irods-ruleset-uu`) are enabled by default in Yoda 1.6.
+   Only extra modules have to be enabled in the configuration.
+   Furthermore, the research ruleset (`irods-ruleset-research`) has been merged with the UU ruleset
+   (`irods-ruleset-uu`). So `rulesets` becomes `extra_rulesets`;
+   `core`, `irods-ruleset-research` and `irods-ruleset-uu` should be removed from the `extra_rulesets` list.
+   For example:
 
 ```
 # iRODS rulesets
