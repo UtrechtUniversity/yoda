@@ -21,14 +21,16 @@ Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.
 
 1. Set Yoda release to `release-1.6` in configuration.
-'''yaml
+
+```yaml
 yoda_version: release-1.6
-'''
+```
 
 2. Set the default schema to `default-1` in configuration.
-'''yaml
+
+```yaml
 default_yoda_schema: default-0
-'''
+```
 
 3. The core modules (research, vault, statistics, group-manager) are enabled by default in Yoda 1.6. Only extra modules have to be enabled in the configuration.
    So `modules` becomes `extra_modules` and all core modules should be removed from the extra_modules list. For example:
