@@ -1,0 +1,20 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam dpi 200
+
+actor       "Group manager" as gm
+participant "Yoda portal" as portal
+participant "iRODS" as irods
+participant "External user service & DB" as eus
+actor       "External user" as user
+
+gm      -> portal : Add user to group
+portal  -> irods  : Add user to group
+irods   -> eus    : Create user
+eus     -> user   : Invitation mail
+gm      <- eus    : Confirm invitation sent by mail
+
+@enduml
