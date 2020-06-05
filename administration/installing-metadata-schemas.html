@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Installing metadata schemas, formelements and stylesheets</title>
+  <title>Installing metadata schemas</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -186,7 +186,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Installing metadata schemas, formelements and stylesheets
+                                    Installing metadata schemas
                                 </h1>
                             </div>
                             
@@ -201,10 +201,10 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="installing-metadata-schemas-formelements-and-stylesheets">Installing metadata schemas, formelements and stylesheets</h1>
+                                        <h1 id="installing-metadata-schemas">Installing metadata schemas</h1>
 <p>For a fully functional research module, a metadata schema is required.
-Currently we only have a default schema (currently the same as the I-lab schema) and a test schema.
-These can be found in the irods-ruleset-research in <code class="highlighter-rouge">tools/schemas/</code>.
+Currently we only have a default-0schema, default-1 schema and a core-0 schema.
+These can be found in the irods-ruleset-uu in <code class="highlighter-rouge">schemas/</code>.
 Below a description of the needed files per schema (using the default schema as example):</p>
 
 <p><strong>metadata.json</strong>
@@ -212,30 +212,6 @@ Below a description of the needed files per schema (using the default schema as 
 
 <p><strong>uischema.json</strong>
   A JSON file describing how a given data type should be rendered as a form input component. It provides information on how the form should be rendered.</p>
-
-<p><strong>research.xsd</strong>
-  A schema describing the elements and their type of a yoda-metadata.xml</p>
-
-<p><strong>vault.xsd</strong>
-  A schema describing the elements and their type of a yoda-metadata.xml with required fields</p>
-
-<p><strong>avu.xsl</strong>
-  A stylesheet to convert a yoda-metadata.xml to a AVU XML that can be loaded into iRODS with msiLoadMetadataFromXML(Buf)</p>
-
-<p><strong>datacite.xsl</strong>
-  A stylesheet to convert a combi.xml consisting of user metadata from a yoda-metadata.xml file and system metadata into
-  the DataCite XML format</p>
-
-<p><strong>landingpage.xsl</strong>
-  A stylesheet to convert a combi.xml into a landingpage html file</p>
-
-<p>Below a description of the other needed files:</p>
-
-<p><strong>schema-for-xsd.xsd</strong>
-  A schema to validate XSD schema’s.</p>
-
-<p><strong>emptylandingpage.xsl</strong>
-  A stylesheet to convert a combi.xml into a empty landingpage html file</p>
 
 <p>You can install this set with the <code class="highlighter-rouge">tools/install-metadata-schema.r</code> script. This script accepts five parameters:
 resc, src, schema, category and update.</p>
@@ -256,7 +232,7 @@ resc, src, schema, category and update.</p>
     </tr>
     <tr>
       <td>src</td>
-      <td>/etc/irods/irods-ruleset-research/tools/schemas</td>
+      <td>/etc/irods/irods-ruleset-uu/schemas</td>
       <td>Source directory of files</td>
     </tr>
     <tr>
@@ -266,8 +242,8 @@ resc, src, schema, category and update.</p>
     </tr>
     <tr>
       <td>category</td>
-      <td>default</td>
-      <td>Install schema to all categories (‘default’) or install to a single category (category name)</td>
+      <td>default-1</td>
+      <td>Install schema to all categories (‘default-1’) or install to a single category (category name)</td>
     </tr>
     <tr>
       <td>update</td>
@@ -280,11 +256,11 @@ resc, src, schema, category and update.</p>
 <p>In the default situation the default schema is installed in <code class="highlighter-rouge">/${RODSZONE}/yoda/schemas/default</code>.</p>
 
 <p>Example invocation to install (or update) schema ‘default’ for all categories:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-F</span> install-metadata-schema.r <span class="s1">'*resc="irodsResc"'</span> <span class="s1">'*src="/etc/irods/irods-ruleset-research/tools/schemas/"'</span> <span class="s1">'*schema="default"'</span> <span class="s1">'*category="default"'</span> <span class="s1">'*update=1'</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-F</span> install-metadata-schema.r <span class="s1">'*resc="irodsResc"'</span> <span class="s1">'*src="/etc/irods/irods-ruleset-uu/schemas/"'</span> <span class="s1">'*schema="default-1"'</span> <span class="s1">'*category="default"'</span> <span class="s1">'*update=1'</span>
 </code></pre></div></div>
 
-<p>Example invocation to install (or update) schema ‘test’ for category ‘experimental’:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-F</span> install-metadata-schema.r <span class="s1">'*resc="irodsResc"'</span> <span class="s1">'*src="/etc/irods/irods-ruleset-research/tools/schemas/"'</span> <span class="s1">'*schema="test"'</span> <span class="s1">'*category="experimental"'</span> <span class="s1">'*update=1'</span>
+<p>Example invocation to install (or update) schema ‘core-0’ for category ‘experimental’:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-F</span> install-metadata-schema.r <span class="s1">'*resc="irodsResc"'</span> <span class="s1">'*src="/etc/irods/irods-ruleset-uu/schemas/"'</span> <span class="s1">'*schema="core-0"'</span> <span class="s1">'*category="experimental"'</span> <span class="s1">'*update=1'</span>
 </code></pre></div></div>
 
 <p>If you want to install individual files without the script then you can use the iput command.
@@ -293,11 +269,7 @@ To update existing files use the force flag “-f”.
 See the example below. Please replace <code class="highlighter-rouge">${RODSZONE}</code> with the current iRODS Zone and <code class="highlighter-rouge">${CATEGORY}</code> with the category you want to install.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iput <span class="nt">-f</span> metadata.json /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda/schemas/<span class="k">${</span><span class="nv">CATEGORY</span><span class="k">}</span>/metadata.json
-iput <span class="nt">-f</span> research.xsd /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda/schemas/<span class="k">${</span><span class="nv">CATEGORY</span><span class="k">}</span>/research.xsd
-iput <span class="nt">-f</span> vault.xsd /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda/schemas/<span class="k">${</span><span class="nv">CATEGORY</span><span class="k">}</span>/vault.xsd
-iput <span class="nt">-f</span> avu.xsl /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda/schemas/<span class="k">${</span><span class="nv">CATEGORY</span><span class="k">}</span>/avu.xsl
-iput <span class="nt">-f</span> datacite.xsl /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda/schemas/<span class="k">${</span><span class="nv">CATEGORY</span><span class="k">}</span>/datacite.xsl
-iput <span class="nt">-f</span> landingpage.xsl /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda/schemas/<span class="k">${</span><span class="nv">CATEGORY</span><span class="k">}</span>/landingpage.xsl
+iput <span class="nt">-f</span> uischema.json /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda/schemas/<span class="k">${</span><span class="nv">CATEGORY</span><span class="k">}</span>/uischema.json
 </code></pre></div></div>
 
 <p>The above is legal bash if you define the <code class="highlighter-rouge">CATEGORY</code> and <code class="highlighter-rouge">RODSZONE</code> environment variables, for example:</p>
