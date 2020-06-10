@@ -4,28 +4,17 @@
 - name: Ensure Python dependencies are installed
   package:
     name:
-      - python-enum34
-      - python-jinja2
-      - python-xmltodict
-      - python-lxml
       - python-pip
     state: present
 
 
-- name: Ensure Python ruleset dependencies are installed
-  pip:
+- name: Ensure old Python dependencies are absent
+  package:
     name:
-      - jsonschema==3.0.2
-      - pathvalidate==0.29.1
-  when: not ansible_check_mode
-
-
-- name: Install Python JSON to AVU module and dependencies
-  pip:
-    name:
-      - requests_cache
-      - irods-avu-json==2.0.0
-  when: not ansible_check_mode
+      - python-jinja2
+      - python-xmltodict
+      - python-lxml
+    state: absent
 
 
 - name: Checkout rulesets from github
@@ -80,6 +69,11 @@
   with_together:
     - "{{ extra_rulesets + core_rulesets }}"
     - "{{ repochanges.results }}"
+
+
+- name: Install requirements for ruleset
+  pip:
+    requirements: /etc/irods/irods-ruleset-uu/requirements.txt
 
 
 - name: Ensure all rulesets are in server config
