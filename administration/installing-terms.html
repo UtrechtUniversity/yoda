@@ -215,7 +215,7 @@ ichmod <span class="nt">-rM</span> <span class="nb">read </span>public /<span cl
 
 <p>To add a new terms file just put it in the <code class="highlighter-rouge">/${RODSZONE}/yoda/terms</code> collection with a new name, so the old terms are preserved.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iput <span class="s2">"</span><span class="k">${</span><span class="nv">TERMS</span><span class="k">}</span><span class="s2">.txt"</span> <span class="s2">"/</span><span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span><span class="s2">/yoda/terms/</span><span class="k">${</span><span class="nv">TERMS</span><span class="k">}</span><span class="s2">.txt"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iput <span class="s2">"</span><span class="k">${</span><span class="nv">TERMS</span><span class="k">}</span><span class="s2">.txt"</span> <span class="s2">"/</span><span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span><span class="s2">/yoda/terms/</span><span class="k">${</span><span class="nv">TERMS</span><span class="k">}</span><span class="s2">.html"</span>
 </code></pre></div></div>
 
 <p>All vault packages with an action log record “submitted for publication” from before the create time of the new terms file were accepted under the old terms.</p>
