@@ -14,7 +14,7 @@ ichmod -rM read public /${RODSZONE}/yoda/terms
 To add a new terms file just put it in the `/${RODSZONE}/yoda/terms` collection with a new name, so the old terms are preserved.
 
 ```bash
-iput "${TERMS}.txt" "/${RODSZONE}/yoda/terms/${TERMS}.txt"
+iput "${TERMS}.txt" "/${RODSZONE}/yoda/terms/${TERMS}.html"
 ```
 
 All vault packages with an action log record "submitted for publication" from before the create time of the new terms file were accepted under the old terms.
