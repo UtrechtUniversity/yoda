@@ -16,7 +16,7 @@ core_rulesets:
     path: /etc/irods/core.re
     install_scripts: no
 
-extra_rulesets:
+extra_rulesets: []
 
 # UU Module specific configuration
 enable_async_replication: 1

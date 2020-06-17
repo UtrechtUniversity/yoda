@@ -46,7 +46,7 @@ core_modules:
     version: "{{ yoda_version }}"
 
 # Yoda extra modules
-extra_modules:
+extra_modules: []
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name
