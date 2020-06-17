@@ -1,0 +1,115 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam padding 2
+skinparam shadowing false
+skinparam dpi 200
+
+rectangle "Yoda instance" {
+
+    package "Yoda portal" {
+        rectangle "Apache webserver" as portalweb {
+            rectangle "PHP" as portalphp {
+            }
+            rectangle "davrods" as davrods {
+            }		    
+	}
+
+        rectangle "iRODS iCommands" as icommands {	    
+	}
+	
+        portalweb .d.> provider
+        icommands .d.> provider	
+    }
+
+    package "Yoda databse" {
+        database "PostgreSQL" as icatdb{
+            rectangle "iRODS database" as iCAT {
+            }
+        }
+    }
+
+    package "Yoda iCAT" {
+        rectangle "iRODS iCAT" as provider {
+            rectangle "iRODS rules" as icatrules {
+            }
+            rectangle "iRODS microservices" as icatmicroservices {
+            }	    
+        }
+    }
+
+    package "Yoda resource" {
+        rectangle "iRODS resource" as consumer {
+            rectangle "iRODS rules" as rescrules {
+            }
+            rectangle "iRODS microservices" as rescmicroservices {
+            }
+        }
+
+        cloud {
+          [Storage 1]
+        }
+
+        cloud {
+          [Storage 2]
+        }
+
+        cloud {
+          [Storage ...]
+        }
+
+        consumer .r-- provider
+	consumer .d.> [Storage 1]
+	consumer .d.> [Storage 2]
+	consumer .d.> [Storage ...]		
+    }
+
+    provider .d.> iCAT : use
+    
+}
+
+rectangle "Yoda Public server" {
+    rectangle "Apache webserver" as publicweb {
+        rectangle "OAI-PMH service" as moai {
+        }    
+    }
+
+    cloud {
+      [XML storage]
+    }
+
+    cloud {
+      [Landingpages]
+    }
+
+    publicweb .d.> [Landingpages]
+    moai .d.> [XML storage]
+}
+
+rectangle "Yoda External User service" {
+    rectangle "Apache webserver" as extweb {
+        rectangle "PHP" as extphp {
+        }      
+    }
+
+    database "PostgreSQL" as extdb {
+        rectangle "External users" as extusers {
+        }
+    }
+
+    extweb .d.> extusers : use
+}
+
+HTTPS -- portalweb
+HTTPS -r- publicweb
+HTTPS -r- extweb
+iCommands -- icommands
+provider .d.> [XML storage] : SCP
+provider .d.> [Landingpages] : SCP
+provider .d.> extweb : HTTPS-ALT
+
+provider .d.> SMTP
+extphp .d.> SMTP
+
+@enduml

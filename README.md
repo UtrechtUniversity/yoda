@@ -1,4 +1,4 @@
-# Yoda  [![Release](https://img.shields.io/github/v/tag/UtrechtUniversity/yoda-ansible?sort=semver)](https://github.com/UtrechtUniversity/yoda-ansible/releases) [![License](https://img.shields.io/github/license/UtrechtUniversity/yoda-ansible.svg?maxAge=2592000)](/LICENSE)
+# Yoda  [![Release](https://img.shields.io/github/v/tag/UtrechtUniversity/yoda?sort=semver)](https://github.com/UtrechtUniversity/yoda/releases) [![License](https://img.shields.io/github/license/UtrechtUniversity/yoda.svg?maxAge=2592000)](/LICENSE)
 
 A system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.
 
@@ -19,11 +19,11 @@ This repository is the staring point for using Yoda and contains the [Ansible](h
 * [CentOS](https://www.centos.org/) (>= 7.4)
 
 ## Documentation
-Documentation is hosted on: https://utrechtuniversity.github.io/yoda-docs/
+Documentation is hosted on: https://utrechtuniversity.github.io/yoda/
 
 ## Contributing
 ### Code
-Instructions on how to setup your development environment and other useful instructions for development can be found in the [documentation](https://utrechtuniversity.github.io/yoda-docs/development/setting-up-development-environment.html).
+Instructions on how to setup your development environment and other useful instructions for development can be found in the [documentation](https://utrechtuniversity.github.io/yoda/development/setting-up-development-environment.html).
 
 ### Bug reports
 We use GitHub for bug tracking.

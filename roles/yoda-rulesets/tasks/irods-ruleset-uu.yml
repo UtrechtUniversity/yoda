@@ -112,6 +112,7 @@
     mode: 0755
   when: not ansible_check_mode
 
+
 - name: Find out if default metadata schema is installed
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -246,7 +247,7 @@
   cron:
     name: 'process-publication.r'
     minute: '*'
-    job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/process-publication.r >/dev/null 2>&1'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/process-publication.r >/dev/null 2>&1'
 
 
 - name: Configure cronjob to retry copy-to-vault
@@ -255,7 +256,7 @@
   cron:
     name: 'retry-copy-to-vault.r'
     minute: '*'
-    job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/retry-copy-to-vault.r >/dev/null 2>&1'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/retry-copy-to-vault.r >/dev/null 2>&1'
 
 
 - name: Configure cronjob to clean up revisions
@@ -353,6 +354,7 @@
     - /etc/irods/rules_research.pyc
     - /etc/irods/irods-ruleset-research/
 
+
 - name: Enable asynchronous replication job
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -362,6 +364,7 @@
     job: '/bin/python /etc/irods/irods-ruleset-uu/tools/async-data-replicate.py >/dev/null 2>&1'
   when: enable_async_replication == 1
 
+
 - name: Enable asynchronous revision creation job
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -370,4 +373,3 @@
     minute: '6,16,26,36,46,56'
     job: '/bin/python /etc/irods/irods-ruleset-uu/tools/async-data-revision.py >/dev/null 2>&1'
   when: enable_revisions == 1
-
