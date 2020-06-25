@@ -113,6 +113,22 @@
   when: not ansible_check_mode
 
 
+- name: Ensure metadata schemas are installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: >
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    '*resc="{{ irods_default_resc }}"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
+    '*schema="{{ item }}"'
+    '*category="{{ item }}"'
+    '*update={{ update_schemas }}'
+  register: install_schemas
+  when: (update_schemas == 1)
+  changed_when: install_schemas.stdout is search('(Installed|Updated)')
+  with_items: "{{ schemas }}"
+
+
 - name: Find out if default metadata schema is installed
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -135,10 +151,10 @@
     '*schema="{{ default_yoda_schema }}"'
     '*category="default"'
     '*update={{ update_schemas }}'
-  register: install_default_xml_for_metadata
+  register: install_default_schema
   when: (update_schemas == 1) or
         (installed_defaults|json_query('results[*].stderr')|join(' ') is search('does not exist'))
-  changed_when: install_default_xml_for_metadata.stdout is search('(Installed|Updated)')
+  changed_when: install_default_schema.stdout is search('(Installed|Updated)')
 
 
 - name: List installed or updated schemas, formelements or stylesheets
