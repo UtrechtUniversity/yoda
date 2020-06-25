@@ -32,10 +32,17 @@ yoda_random_id_length: 6         # Length of random ID to add to persistent iden
 irods_default_resc: irodsResc
 irods_repl_resc: irodsRescRepl
 
+# Metadata schemas
+schemas:
+    - core-0
+    - default-0
+    - default-1
+    - hptlab-0
+    - teclab-0
+
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 
 # Ruleset-uu configuration
-
 notifications_sender_email: noreply@yoda.test # Notifiations sender email address
 notifications_sender_name: "Yoda system"      # Notifiations sender name
 notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email address
