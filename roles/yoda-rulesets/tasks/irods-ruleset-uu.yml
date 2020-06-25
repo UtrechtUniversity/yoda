@@ -122,11 +122,7 @@
   changed_when: false
   with_items:
     - metadata.json
-    - research.xsd
-    - vault.xsd
-    - avu.xsl
-    - datacite.xsl
-    - landingpage.xsl
+    - uischema.json
 
 
 - name: Ensure default metadata schema is installed
