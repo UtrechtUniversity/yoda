@@ -47,8 +47,8 @@
   - /etc/httpd/conf.d/autoindex.conf
 
 
-- name: Ensure Apache is running and enabled
+- name: Ensure Apache service is configured
   service:
     name: httpd
     state: started
-    enabled: yes
+    enabled: '{{ yoda_enable_httpd }}'
