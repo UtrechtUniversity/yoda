@@ -22,7 +22,7 @@ Thanks goes to these wonderful people!
         <sub><b>Roy van Elk</b></sub>
       </a>
       <br />
-      <small>Until 07/2019</small>
+      <small>Active</small>
     </td>   
     <td align="center">
       <a href="https://github.com/pfrederiks">

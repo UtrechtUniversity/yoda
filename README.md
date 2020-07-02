@@ -34,6 +34,7 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Wall of Fame](development/wall-of-fame.md)
 
 ## Software design
+- [API documentation](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/UtrechtUniversity/irods-ruleset-uu/gh-pages/api.json)
 - [System overview](design/system-overview.md)
 - [State model](design/state-model.md)
 - [Asynchronous and privileged execution](design/async-system-execution.md)
