@@ -1,20 +1,23 @@
-# Hotfixing ruleset
-If in some case a hotfix on a rulset is needed, the following method is recommended:
+# Applying a local change to a ruleset
+#
+If a local change (hotfix) to a ruleset is needed, the following method is recommended:
 
-First clone another copy of the ruleset:
+The commands below can be executed using the iRODS service account.
+
+1. First clone another copy of the ruleset:
 ```bash
 cd /etc/irods
 git clone https://github.com/UtrechtUniversity/irods-ruleset-uu.git hotfix
 ```
 
-Make changes to the ruleset (for example, meta.py) and compile the ruleset:
+2. Make changes to the ruleset (for example, meta.py) and compile the ruleset:
 ```bash
 cd hotfix
 vim meta.py
 make install
 ```
 
-Change the symlink to the fixed ruleset:
+3. Change the symlink to the fixed ruleset:
 ```bash
 cd /etc/irods
 ln -sfn hotfix rules_uu

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Hotfixing ruleset</title>
+  <title>Applying a local change to a ruleset</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -186,7 +186,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Hotfixing ruleset
+                                    Applying a local change to a ruleset
                                 </h1>
                             </div>
                             
@@ -201,24 +201,30 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="hotfixing-ruleset">Hotfixing ruleset</h1>
-<p>If in some case a hotfix on a rulset is needed, the following method is recommended:</p>
+                                        <h1 id="applying-a-local-change-to-a-ruleset">Applying a local change to a ruleset</h1>
+<p>#
+If a local change (hotfix) to a ruleset is needed, the following method is recommended:</p>
 
-<p>First clone another copy of the ruleset:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/irods
+<p>The commands below can be executed using the iRODS service account.</p>
+
+<ol>
+  <li>First clone another copy of the ruleset:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/irods
 git clone https://github.com/UtrechtUniversity/irods-ruleset-uu.git hotfix
-</code></pre></div></div>
-
-<p>Make changes to the ruleset (for example, meta.py) and compile the ruleset:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>hotfix
+</code></pre></div>    </div>
+  </li>
+  <li>Make changes to the ruleset (for example, meta.py) and compile the ruleset:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>hotfix
 vim meta.py
 make install
-</code></pre></div></div>
-
-<p>Change the symlink to the fixed ruleset:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/irods
+</code></pre></div>    </div>
+  </li>
+  <li>Change the symlink to the fixed ruleset:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/irods
 ln <span class="nt">-sfn</span> hotfix rules_uu
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <p>If the change does not have the desired result, revert to the old ruleset by changing the symlink back and compiling the ruleset:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/irods

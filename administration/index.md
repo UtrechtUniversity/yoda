@@ -1,7 +1,7 @@
 # Administration tasks
 - [Configuring Yoda](configuring-yoda.md)
 - [Deploying Yoda](deploying-yoda.md)
-- [Hotfixing ruleset](hotfixing-ruleset.md)
+- [Applying a local change to a ruleset](hotfixing-ruleset.md)
 - [Installing licenses](installing-licenses.md)
 - [Installing terms](installing-terms.md)
 - [Installing preservable file formats](installing-preservable-file-formats.md)
