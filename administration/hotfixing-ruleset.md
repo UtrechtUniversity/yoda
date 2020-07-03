@@ -1,5 +1,5 @@
 # Applying a local change to a ruleset
-#
+
 If a local change (hotfix) to a ruleset is needed, the following method is recommended:
 
 The commands below can be executed using the iRODS service account.
