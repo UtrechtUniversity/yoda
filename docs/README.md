@@ -18,6 +18,7 @@ It provides researchers and their partners with a workspace and an archive that 
 ## Administration tasks
 - [Configuring Yoda](administration/configuring-yoda.md)
 - [Deploying Yoda](administration/deploying-yoda.md)
+- [Applying a local change to a ruleset](administration/hotfixing-ruleset.md)
 - [Installing licenses](administration/installing-licenses.md)
 - [Installing terms](administration/installing-terms.md)
 - [Installing preservable file formats](administration/installing-preservable-file-formats.md)
@@ -34,6 +35,7 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Wall of Fame](development/wall-of-fame.md)
 
 ## Software design
+- [API documentation](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/irods-ruleset-uu/api.json)
 - [System overview](design/system-overview.md)
 - [State model](design/state-model.md)
 - [Asynchronous and privileged execution](design/async-system-execution.md)

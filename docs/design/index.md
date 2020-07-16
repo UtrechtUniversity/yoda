@@ -1,4 +1,5 @@
 # Software design
+- [API documentation](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/irods-ruleset-uu/api.json)
 - [System overview](system-overview.md)
 - [State model](state-model.md)
 - [Asynchronous and privileged execution](async-system-execution.md)
