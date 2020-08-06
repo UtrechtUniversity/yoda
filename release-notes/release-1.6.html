@@ -273,7 +273,7 @@ extra_rulesets:
     <p>Run the Ansible upgrade.</p>
   </li>
   <li>Convert all metadata XML in the vault to JSON.
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 </code></pre></div>    </div>
   </li>
 </ol>
