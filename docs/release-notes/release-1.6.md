@@ -65,5 +65,5 @@ extra_rulesets:
 
 7. Convert all metadata XML in the vault to JSON.
 ```bash
-irule -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 ```
