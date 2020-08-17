@@ -24,7 +24,7 @@ portal:
     version: "{{ yoda_version }}"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: /var/www/yoda/yoda-portal
-    version: "{{ yoda_version }}"
+    version: "feature-theming"
 
 # Yoda core modules
 core_modules:
@@ -35,7 +35,7 @@ core_modules:
   - name: research
     repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
-    version: "{{ yoda_version }}"
+    version: "feature-theming"
   - name: vault
     repo: "https://github.com/UtrechtUniversity/yoda-portal-vault.git"
     dest: /var/www/yoda/yoda-portal/modules/vault
@@ -43,7 +43,7 @@ core_modules:
   - name: statistics
     repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
-    version: "{{ yoda_version }}"
+    version: "feature-theming"
 
 # Yoda extra modules
 extra_modules: []
