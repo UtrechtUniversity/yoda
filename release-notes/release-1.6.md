@@ -67,3 +67,7 @@ extra_rulesets:
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 ```
+
+8. Update all landingpages with the new layout (if there are published packages):
+```bash
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-research/tools/update-landingpages.r
