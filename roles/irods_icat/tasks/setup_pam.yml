@@ -29,14 +29,16 @@
 
 - name: Ensure /etc/pam.d/irods is configured
   template:
-    src='irods_pam.j2'
-    dest='/etc/pam.d/irods'
+    src: 'irods_pam.j2'
+    dest: '/etc/pam.d/irods'
+    mode: '0644'
 
 
 - name: Ensure /etc/pam_radius.conf is configured
   template:
-    src='pam_radius.conf.j2'
-    dest='/etc/pam_radius.conf'
+    src: 'pam_radius.conf.j2'
+    dest: '/etc/pam_radius.conf'
+    mode: '0600'
 
 
 - name: Ensure correct file ownership and mode on PamAuthCheck

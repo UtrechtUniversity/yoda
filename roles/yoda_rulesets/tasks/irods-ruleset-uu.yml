@@ -251,6 +251,7 @@
     dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
+    mode: '0644'
 
 
 - name: Configure cronjob to process publications

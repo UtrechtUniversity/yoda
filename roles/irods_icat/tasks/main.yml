@@ -106,6 +106,7 @@
   template:
     src: setup_irods_provider.json.j2
     dest: /etc/irods/setup_irods_provider.json
+    mode: '0644'
     force: no
   when: not irods_config.stat.exists and not ansible_check_mode
 

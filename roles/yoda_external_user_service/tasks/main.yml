@@ -129,13 +129,14 @@
     src: config_local.php.j2
     dest: /var/www/extuser/yoda-external-user-service/config_local.php
     owner: "{{ yoda_deployment_user }}"
-    mode: 0644
+    mode: '0644'
 
 
 - name: Ensure public .htaccess is configured
   copy:
     src: /var/www/extuser/yoda-external-user-service/public/.htaccess.template-{{ yoda_environment }}
     dest: /var/www/extuser/yoda-external-user-service/public/.htaccess
+    mode: '0644'
     remote_src: yes
   notify: Restart Apache webserver
   when: not ansible_check_mode
@@ -145,6 +146,7 @@
   copy:
     src: /var/www/extuser/yoda-external-user-service/api/.htaccess.template-{{ yoda_environment }}
     dest: /var/www/extuser/yoda-external-user-service/api/.htaccess
+    mode: '0644'
     remote_src: yes
   notify: Restart Apache webserver
   when: not ansible_check_mode
@@ -154,4 +156,5 @@
   template:
     src: "yoda-external-user-service-vhost.conf.j2"
     dest: "/etc/httpd/conf.d/yoda-external-user-service-vhost.conf"
+    mode: '0644'
   notify: Restart Apache webserver

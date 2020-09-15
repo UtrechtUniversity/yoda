@@ -10,7 +10,7 @@
 - name: Install passlib and dependencies
   pip:
     name:
-      - bcrypt
+      - bcrypt==3.1.7
       - passlib
     state: latest
 

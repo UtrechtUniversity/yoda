@@ -60,6 +60,7 @@
   template:
     src: setup_irods_consumer.json.j2
     dest: /etc/irods/setup_irods_consumer.json
+    mode: '0644'
     force: no
   when: not irods_config.stat.exists and not ansible_check_mode
 

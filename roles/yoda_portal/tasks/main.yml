@@ -115,6 +115,7 @@
   copy:
     src: /var/www/yoda/yoda-portal/public/.htaccess.template-{{ codeigniter_environment }}
     dest: /var/www/yoda/yoda-portal/public/.htaccess
+    mode: '0644'
     remote_src: yes
   notify: Restart Apache webserver
 
@@ -123,6 +124,7 @@
   template:
     src: "yoda-portal-vhost.conf.j2"
     dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
+    mode: '0644'
   notify: Restart Apache webserver
 
 
@@ -130,7 +132,7 @@
   copy:
     content: ""
     dest: "/var/log/httpd/portal_access.log"
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
     force: no
