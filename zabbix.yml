@@ -30,7 +30,7 @@
   hosts: portals
   become: yes
   roles:
-   - yoda-zabbix-portal
+   - yoda_zabbix_portal
   tags:
     - portal
 
@@ -39,8 +39,8 @@
   hosts: icats
   become: yes
   roles:
-    - yoda-zabbix-icat
-    - yoda-zabbix-irodscommon
+    - yoda_zabbix_icat
+    - yoda_zabbix_irodscommon
   tags:
     - zabbix
 
@@ -49,7 +49,7 @@
   hosts: databases
   become: yes
   roles:
-    - role: yoda-zabbix-database
+    - role: yoda_zabbix_database
       zabbix_database_name: "{{ irods_database_name }}"
   tags:
     - database
@@ -59,7 +59,7 @@
   hosts: resources
   become: yes
   roles:
-    - yoda-zabbix-irodscommon
+    - yoda_zabbix_irodscommon
   tags:
     - resource
 
@@ -68,7 +68,7 @@
   hosts: publics
   become: yes
   roles:
-    - yoda-zabbix-system
+    - yoda_zabbix_system
   tags:
     - public
 
@@ -77,7 +77,7 @@
   hosts: eus
   become: yes
   roles:
-    - role: yoda-zabbix-database
+    - role: yoda_zabbix_database
       zabbix_database_name: "{{ eus_db_name }}"
   tags:
     - eus
