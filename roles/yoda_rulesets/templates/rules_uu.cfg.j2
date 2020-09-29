@@ -28,3 +28,11 @@ datacite_password          = '{{ datacite_password }}'
 eus_api_fqdn               = '{{ eus_api_fqdn }}'
 eus_api_port               = '{{ eus_api_port }}'
 eus_api_secret             = '{{ eus_api_secret }}'
+
+epic_pid_enabled           = '{{ epic_pid_enabled }}'
+{% if epic_pid_enabled %}
+epic_url                   = '{{ epic_url }}'
+epic_handle_prefix         = '{{ epic_handle_prefix }}'
+epic_key                   = '{{ credentials_store }}/epic_key.pem'
+epic_certificate           = '{{ credentials_store }}/epic_cert.pem'
+{% endif %}
