@@ -56,7 +56,7 @@ datacite_server: mds.test.datacite.org  # DataCite server URI
 datacite_username: PLACEHOLDER          # DataCite username
 datacite_password: PLACEHOLDER          # DataCite password
 
-epic_pid_enabled: False                 # EPIC PID enabled
+epic_pid_enabled: 0                     # EPIC PID enabled: yes (1) or no (0)
 epic_url: PLACEHOLDER                   # EPIC PID server URL
 epic_handle_prefix: PLACEHOLDER         # EPIC PID handle prefix
 epic_key: PLACEHOLDER                   # inline EPIC key (optional)
