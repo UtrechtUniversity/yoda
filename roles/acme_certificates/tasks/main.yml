@@ -44,10 +44,13 @@
   copy:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
+    mode: '{{ item.mode }}'
     remote_src: yes
   with_items:
     - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem'
       dest: '/etc/pki/tls/certs/localhost_and_chain.crt'
+      mode: '0644'
     - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/privkey.pem'
       dest: '/etc/pki/tls/private/localhost.key'
+      mode: '0600'
   when: not ansible_check_mode

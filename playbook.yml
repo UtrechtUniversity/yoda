@@ -54,10 +54,10 @@
     - apache
     - { role: acme_certificates, when: yoda_environment == "testing" }
     - php
-    - yoda-portal
-    - irods-icommands
-    - irods-runtime
-    - yoda-davrods
+    - yoda_portal
+    - irods_icommands
+    - irods_runtime
+    - yoda_davrods
   tags:
     - portal
 
@@ -67,7 +67,7 @@
   become: yes
   roles:
     - postgresql
-    - irods-database
+    - irods_database
   tags:
     - database
 
@@ -76,11 +76,11 @@
   hosts: icats
   become: yes
   roles:
-    - irods-icat
-    - irods-runtime
-    - irods-microservices
-    - composable-resources
-    - irods-completion
+    - irods_icat
+    - irods_runtime
+    - irods_microservices
+    - composable_resources
+    - irods_completion
   tags:
     - icat
 
@@ -89,10 +89,10 @@
   hosts: resources
   become: yes
   roles:
-    - irods-resource
-    - irods-runtime
-    - irods-microservices
-    - irods-completion
+    - irods_resource
+    - irods_runtime
+    - irods_microservices
+    - irods_completion
   tags:
     - resource
 
@@ -101,7 +101,7 @@
   hosts: icats
   become: yes
   roles:
-    - role: yoda-rulesets
+    - role: yoda_rulesets
       install_rulesets: yes
   tags:
     - icat
@@ -111,7 +111,7 @@
   hosts: resources
   become: yes
   roles:
-    - role: yoda-rulesets
+    - role: yoda_rulesets
       install_rulesets: no
   tags:
     - resource
@@ -122,9 +122,9 @@
   become: yes
   roles:
     - apache
-    - yoda-moai
-    - yoda-landingpages
-    - yoda-public
+    - yoda_moai
+    - yoda_landingpages
+    - yoda_public
   tags:
     - public
 
@@ -135,6 +135,6 @@
   roles:
     - apache
     - php
-    - yoda-external-user-service
+    - yoda_external_user_service
   tags:
     - eus

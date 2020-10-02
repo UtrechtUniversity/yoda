@@ -1,0 +1,38 @@
+# {{ ansible_managed }}
+#
+# Yoda ruleset configuration.
+# This file should be named "rules_uu.cfg" in the root of this ruleset package.
+#
+# All non-empty values must be quoted with single quotes (')
+# Special characters, including "'", must not be escaped.
+# A missing value (interpreted as None) usually means a feature is disabled.
+
+environment                = '{{ yoda_environment }}'
+
+resource_primary           = '{{ irods_default_resc }}'
+resource_replica           = '{{ irods_repl_resc }}'
+
+notifications_enabled      = '{{ ["false", "true"][send_notifications|int] }}'
+notifications_sender_email = '{{ notifications_sender_email }}'
+notifications_sender_name  = '{{ notifications_sender_name }}'
+notifications_reply_to     = '{{ notifications_reply_to }}'
+
+smtp_server                = '{{ smtp_server }}'
+smtp_username              = '{{ smtp_username }}'
+smtp_password              = '{{ smtp_password }}'
+
+datacite_url               = 'https://{{ datacite_server }}'
+datacite_username          = '{{ datacite_username }}'
+datacite_password          = '{{ datacite_password }}'
+
+eus_api_fqdn               = '{{ eus_api_fqdn }}'
+eus_api_port               = '{{ eus_api_port }}'
+eus_api_secret             = '{{ eus_api_secret }}'
+
+epic_pid_enabled           = '{{ ["false", "true"][epic_pid_enabled|int] }}'
+{% if epic_pid_enabled %}
+epic_url                   = '{{ epic_url }}'
+epic_handle_prefix         = '{{ epic_handle_prefix }}'
+epic_key                   = '{{ credentials_store }}/epic_key.pem'
+epic_certificate           = '{{ credentials_store }}/epic_cert.pem'
+{% endif %}

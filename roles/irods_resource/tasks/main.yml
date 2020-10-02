@@ -1,0 +1,250 @@
+---
+# copyright Utrecht University
+
+- name: Ensure iRODS 4.2.7 packages are absent
+  package:
+    name:
+      - irods-uu-microservices-4.2.7_0.8.1-1
+      - irods-uu-microservices-4.2.6_0.8.0-1
+      - irods-sudo-microservices-4.2.7_1.0.0-1
+      - irods-sudo-microservices-4.2.6_1.0.0-1
+      - davrods-4.2.7_1.4.2-1
+      - davrods-4.2.6_1.4.2-1
+    state: absent
+
+
+- name: Ensure iRODS resource server is installed
+  package:
+    name:
+      - irods-server-4.2.8-1
+      - irods-runtime-4.2.8-1
+      - irods-rule-engine-plugin-python-4.2.8.0-1
+    state: present
+  when: not ansible_check_mode
+
+
+- name: Retrieve iRODS iCAT server
+  set_fact:
+    'irods_icat': '{{ item }}'
+  with_inventory_hostnames:
+    - 'icats:&{{ instance }}'
+
+
+- name: Check if connection to iCAT server can be established
+  wait_for:
+    host: '{{ irods_icat }}'
+    port: 1247
+
+
+- name: Store iRODS server keys in variables
+  set_fact:
+    '{{ item.fact }}': '{{ item.key }}'
+  with_items:
+    - fact: irods_zone_key
+      key: "{{ hostvars[irods_icat]['zone_key'] }}"
+    - fact: irods_negotiation_key
+      key: "{{ hostvars[irods_icat]['negotiation_key'] }}"
+    - fact: irods_control_plane_key
+      key: "{{ hostvars[irods_icat]['server_control_plane_key'] }}"
+  when: not ansible_check_mode
+
+
+- name: Check if iRODS config file exists
+  stat:
+    path: /etc/irods/service_account.config
+  ignore_errors: true
+  register: irods_config
+
+
+- name: Copy responses for setup_irods.py
+  template:
+    src: setup_irods_consumer.json.j2
+    dest: /etc/irods/setup_irods_consumer.json
+    mode: '0644'
+    force: no
+  when: not irods_config.stat.exists and not ansible_check_mode
+
+
+- name: Configure iRODS resource server
+  become: yes
+  command: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_consumer.json
+  args:
+    creates: /etc/irods/service_account.config
+  when: not ansible_check_mode
+
+
+- name: Ensure iRODS setup file is absent
+  file:
+    path: /etc/irods/setup_irods_consumer.json
+    state: absent
+
+
+- name: Make iRODS service account owner of iRODS directories
+  file:
+    group: '{{ irods_service_account }}'
+    owner: '{{ irods_service_account }}'
+    recurse: yes
+    path: '{{ item }}'
+  with_items:
+  - /var/lib/irods
+  - /etc/irods
+
+
+- name: Ensure core.re is configured
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  template:
+    src: core.re.j2
+    dest: /etc/irods/core.re
+    mode: 0644
+
+
+- name: Ensure patched Python genquery module is present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: "genquery.py"
+    dest: "/etc/irods/genquery.py"
+    mode: 0644
+
+
+- name: Ensure core Python rules are present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    content: ""
+    dest: "/etc/irods/core.py"
+    mode: 0644
+    force: no
+
+
+- name: Ensure iRODS server is up
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 'ils /{{ irods_zone }}/home'
+  register: ils
+  ignore_errors: true
+  changed_when: ils is failed
+
+
+- name: Start iRODS server
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/var/lib/irods/irodsctl start'
+  when: ils is failed
+
+
+- name: Wait until iRODS server is ready to receive requests
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 'ils /{{ irods_zone }}/home'
+  register: ils
+  until: ils is succeeded
+  retries: 5
+  delay: 10
+  when: ils is failed
+
+
+- name: Ensure Python plugin is configured
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_python:
+    config_path: '/etc/irods/server_config.json'
+  when: not ansible_check_mode
+
+
+- name: Enable ports for resource in firewall
+  firewalld:
+    port: '{{ item }}'
+    permanent: true
+    state: enabled
+    immediate: yes
+  with_items:
+    - '{{ irods_icat_port }}/tcp'
+    - '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
+  notify: Restart firewall
+
+
+- name: Ensure private key file is available for iRODS
+  command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
+  args:
+    chdir: '/etc/irods'
+    creates: '{{ openssl_key_signed }}'
+
+
+- name: Ensure CA chain with signed certificate is present
+  file:
+    src: "{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}"
+    dest: "/etc/irods/{{ openssl_crt_signed_and_chain }}"
+    state: link
+
+
+- name: Ensure Diffie-Hellman parameters are present
+  command: openssl dhparam -2 -out {{ openssl_dhparams }} 2048
+  args:
+    chdir: '/etc/irods'
+    creates: '{{ openssl_dhparams }}'
+
+
+- name: Ensure iRODS has access to PKI files
+  file:
+    path: '{{ item }}'
+    mode: 0644
+    group: 'root'
+    owner: 'root'
+    state: file
+  with_items:
+    - '/etc/irods/{{ openssl_key_signed }}'
+    - '/etc/irods/{{ openssl_dhparams }}'
+  when: not ansible_check_mode
+
+
+- name: Ensure iRODS has access to PKI files
+  file:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: 0644
+    group: 'root'
+    owner: 'root'
+    state: link
+  with_items:
+    - src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
+      dest: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+  when: not ansible_check_mode
+
+
+- name: Ensure iRODS is configured to use SSL
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_config:
+    path: '/var/lib/irods/.irods/irods_environment.json'
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_items:
+    - key: 'irods_ssl_certificate_chain_file'
+      value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+    - key: 'irods_ssl_certificate_key_file'
+      value: '/etc/irods/{{ openssl_key_signed }}'
+    - key: 'irods_ssl_dh_params_file'
+      value: '/etc/irods/{{ openssl_dhparams }}'
+    - key: 'irods_client_server_policy'
+      value: 'CS_NEG_REQUIRE'
+    - key: 'irods_ssl_verify_server'
+      value: '{{ irods_ssl_verify_server }}'
+
+
+- name: Ensure iRODS server keys are synced
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_config:
+    path: '/etc/irods/server_config.json'
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_items:
+    - key: 'zone_key'
+      value: "{{ irods_zone_key }}"
+    - key: 'server_control_plane_key'
+      value: "{{ irods_control_plane_key }}"
+    - key: 'negotiation_key'
+      value: "{{ irods_negotiation_key }}"
+  when: not ansible_check_mode

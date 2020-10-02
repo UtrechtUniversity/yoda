@@ -6,7 +6,7 @@
   hosts: test
   become: yes
   roles:
-    - yoda-test
+    - yoda_test
   tags:
     - test
 
@@ -14,6 +14,6 @@
   hosts: eus
   become: yes
   roles:
-    - yoda-test-users-eus
+    - yoda_test_users_eus
   tags:
     - eus
