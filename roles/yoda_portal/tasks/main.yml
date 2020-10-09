@@ -34,6 +34,16 @@
     state: link
 
 
+- name: Configure Yoda thema
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  copy:
+    src: /var/www/yoda/yoda-portal/theming/themes/{{ yoda_theme }}/public/
+    dest: /var/www/yoda/yoda-portal/public/
+    remote_src: yes
+    directory_mode: yes
+
+
 - name: Checkout Yoda modules
   become_user: "{{ yoda_deployment_user }}"
   become: yes

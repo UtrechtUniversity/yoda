@@ -14,6 +14,8 @@ update_portal: yes
 yoda_php_encryption_key: dummy
 yoda_public_dir: /var/www/yoda/yoda-portal/public
 
+yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
+
 # Yoda portal
 portal:
   - repo: "https://github.com/UtrechtUniversity/CodeIgniter.git"
