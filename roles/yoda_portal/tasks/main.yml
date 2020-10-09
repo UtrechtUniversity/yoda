@@ -23,6 +23,7 @@
     dest: "{{ item.dest }}"
     version: "{{ item.version }}"
     update: "{{ update_portal }}"
+    force: yes
   with_items: "{{ portal }}"
   register: portalchanges
 
@@ -40,6 +41,7 @@
   copy:
     src: /var/www/yoda/yoda-portal/theming/themes/{{ yoda_theme }}/public/
     dest: /var/www/yoda/yoda-portal/public/
+    mode: 0755
     remote_src: yes
     directory_mode: yes
 
