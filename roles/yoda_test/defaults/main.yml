@@ -279,6 +279,16 @@ test_groupusers:
     user: datamanager
     role: manager
 
+  - groupName: datarequests-research-board-of-directors
+    user: functionaladminpriv
+    role: normal
+  - groupName: datarequests-research-data-management-committee
+    user: functionaladminpriv
+    role: normal
+  - groupName: datarequests-research-datamanagers
+    user: functionaladminpriv
+    role: normal
+
   - groupName: priv-category-add
     user: functionaladminpriv
     role: manager
