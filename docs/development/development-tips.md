@@ -13,3 +13,7 @@ ls *py | entr flake8 *.py avu_json/*.py util/*.py --exclude=__init__.py --statis
 Rebuild JS assets on source file change:
 ```bash
 ./node_modules/.bin/webpack -d -w```
+
+Remove all existing data requests (to declutter your _development_ environment ;):
+```bash
+icd ../datarequests-research && ils | grep \ \  | sed 's/\ \ C-\ //' | xargs -I COLLPATH sh -c "ichmod -M -r own rods COLLPATH && irm -r COLLPATH"```
