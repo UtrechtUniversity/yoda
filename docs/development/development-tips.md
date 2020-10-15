@@ -6,14 +6,22 @@ Watch latest iRODS log without unnecessary noise:
 ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v "Agent process started for puser=rods"
 ```
 
-Run flake8 checks on source file change (requires the `entr` package):
+Watch flake8 check on Python code:
 ```bash
-ls *py | entr flake8 *.py avu_json/*.py util/*.py --exclude=__init__.py --statistics```
+watch flake8 *.py avu_json/*.py util/*.py tests/step_defs/*.py --exclude=__init__.py --statistics
+```
 
-Rebuild JS assets on source file change:
+Run flake8 check on source file change (requires the `entr` package):
 ```bash
-./node_modules/.bin/webpack -d -w```
+ls *py | entr flake8 *.py avu_json/*.py util/*.py --exclude=__init__.py --statistics
+```
 
-Remove all existing data requests (to declutter your _development_ environment ;):
+Rebuild portal Javascript assets on source file change:
 ```bash
-icd ../datarequests-research && ils | grep \ \  | sed 's/\ \ C-\ //' | xargs -I COLLPATH sh -c "ichmod -M -r own rods COLLPATH && irm -r COLLPATH"```
+./node_modules/.bin/webpack -d -w
+```
+
+Remove all existing data requests (to declutter your _development_ environment):
+```bash
+icd ../datarequests-research && ils | grep \ \  | sed 's/\ \ C-\ //' | xargs -I COLLPATH sh -c "ichmod -M -r own rods COLLPATH && irm -r COLLPATH"
+```
