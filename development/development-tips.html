@@ -411,6 +411,22 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-t</span> /var/lib/irods/log/rodsLog<span class="k">*</span> | head <span class="nt">-n1</span> | xargs <span class="nt">-n</span> 1 <span class="nt">--</span> tail <span class="nt">-f</span> | <span class="nb">grep</span> <span class="nt">-v</span> <span class="s2">"Agent process started for puser=rods"</span>
 </code></pre></div></div>
 
+<p>Watch flake8 check on Python code:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch flake8 <span class="k">*</span>.py avu_json/<span class="k">*</span>.py util/<span class="k">*</span>.py tests/step_defs/<span class="k">*</span>.py <span class="nt">--exclude</span><span class="o">=</span>__init__.py <span class="nt">--statistics</span>
+</code></pre></div></div>
+
+<p>Run flake8 check on source file change (requires the <code class="highlighter-rouge">entr</code> package):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="k">*</span>py | entr flake8 <span class="k">*</span>.py avu_json/<span class="k">*</span>.py util/<span class="k">*</span>.py <span class="nt">--exclude</span><span class="o">=</span>__init__.py <span class="nt">--statistics</span>
+</code></pre></div></div>
+
+<p>Rebuild portal Javascript assets on source file change:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./node_modules/.bin/webpack <span class="nt">-d</span> <span class="nt">-w</span>
+</code></pre></div></div>
+
+<p>Remove all existing data requests (to declutter your <em>development</em> environment):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>icd ../datarequests-research <span class="o">&amp;&amp;</span> ils | <span class="nb">grep</span> <span class="se">\ \ </span> | sed <span class="s1">'s/\ \ C-\ //'</span> | xargs <span class="nt">-I</span> COLLPATH sh <span class="nt">-c</span> <span class="s2">"ichmod -M -r own rods COLLPATH &amp;&amp; irm -r COLLPATH"</span>
+</code></pre></div></div>
+
                                     </section>
 
                                     <footer class="article-footer"></footer>
