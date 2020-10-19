@@ -41,7 +41,7 @@ core_modules:
   - name: vault
     repo: "https://github.com/UtrechtUniversity/yoda-portal-vault.git"
     dest: /var/www/yoda/yoda-portal/modules/vault
-    version: "{{ yoda_version }}"
+    version: "feature-theming"
   - name: statistics
     repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
     dest: /var/www/yoda/yoda-portal/modules/statistics
