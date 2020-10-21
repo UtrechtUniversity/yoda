@@ -426,3 +426,23 @@
   when: datarequest_enabled and not ansible_check_mode
   with_items:
     - admin-datarequestactions.sh
+
+
+- name: Find out if datarequest system collection exist
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/datarequest'
+  ignore_errors: True
+  register: datarequest_system_collection
+  changed_when: False
+  when: datarequest_enabled and not ansible_check_mode
+
+
+- name: Install datarequest system collection
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  shell: |
+    iput -r /etc/irods/irods-ruleset-uu/datarequest /{{ irods_zone }}/yoda
+    ichmod -rM inherit /{{ irods_zone }}/yoda/datarequest
+    ichmod -rM read public /{{ irods_zone }}/yoda/datarequest
+  when: datarequest_enabled and not ansible_check_mode and (datarequest_system_collection.stderr.find('does not exist') >= 0)
