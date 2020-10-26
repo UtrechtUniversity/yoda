@@ -36,7 +36,7 @@
 - name: Ensure yoda system collections are present
   become_user: "{{ irods_service_account }}"
   become: yes
-  command: "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
+  command: "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }} *enableDatarequest={{ enable_datarequest }}'"
   register: create_system_collections
   when: >
     (system_collections.stderr.find('does not exist') >= 0)
