@@ -66,4 +66,4 @@ eus_api_fqdn: api.eus.yoda.test         # External User Service API FQDN
 eus_api_port: 8443                      # External User Service API port
 eus_api_secret: PLACEHOLDER             # External User Service API secret
 
-datarequest_enabled: false
+enable_datarequest: 0                   # Enable datarequest module: yes (1) or no (0)

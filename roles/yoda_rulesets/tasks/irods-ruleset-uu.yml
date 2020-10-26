@@ -402,7 +402,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/etc/irods/irods-ruleset-uu/tools/create-data-directory.sh'
-  when: datarequest_enabled and (not ansible_check_mode) and (data_requests.stderr.find('does not exist') >= 0)
+  when: enable_datarequest == 1 and (not ansible_check_mode) and (data_requests.stderr.find('does not exist') >= 0)
 
 
 - name: Ensure that ExecCmd dir exists
@@ -412,7 +412,7 @@
     group: '{{ irods_service_account }}'
     mode: 0755
     state: directory
-  when: datarequest_enabled and not ansible_check_mode
+  when: enable_datarequest == 1 and not ansible_check_mode
 
 
 - name: Copy scripts to ExecCmd dir
@@ -423,7 +423,7 @@
     src: "/etc/irods/irods-ruleset-uu/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
     mode: 0755
-  when: datarequest_enabled and not ansible_check_mode
+  when: enable_datarequest == 1 and not ansible_check_mode
   with_items:
     - admin-datarequestactions.sh
 
@@ -435,7 +435,7 @@
   ignore_errors: True
   register: datarequest_system_collection
   changed_when: False
-  when: datarequest_enabled and not ansible_check_mode
+  when: enable_datarequest == 1 and not ansible_check_mode
 
 
 - name: Install datarequest system collection
@@ -445,4 +445,4 @@
     iput -r /etc/irods/irods-ruleset-uu/datarequest /{{ irods_zone }}/yoda
     ichmod -rM inherit /{{ irods_zone }}/yoda/datarequest
     ichmod -rM read public /{{ irods_zone }}/yoda/datarequest
-  when: datarequest_enabled and not ansible_check_mode and (datarequest_system_collection.stderr.find('does not exist') >= 0)
+  when: enable_datarequest == 1 and not ansible_check_mode and (datarequest_system_collection.stderr.find('does not exist') >= 0)
