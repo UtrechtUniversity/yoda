@@ -36,9 +36,7 @@
 - name: Ensure yoda system collections are present
   become_user: "{{ irods_service_account }}"
   become: yes
-  command: >
-    "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r
-    '*enableRevisions={{ enable_revisions }} *enableDatarequest={{ enable_datarequest }}'"
+  command: "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
   register: create_system_collections
   when: >
     (system_collections.stderr.find('does not exist') >= 0)
@@ -388,6 +386,25 @@
     minute: '6,16,26,36,46,56'
     job: '/bin/python /etc/irods/irods-ruleset-uu/tools/async-data-revision.py >/dev/null 2>&1'
   when: enable_revisions == 1
+
+
+- name: Find out if datarequest system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/datarequest'
+  ignore_errors: True
+  register: datarequest_system_collection
+  changed_when: False
+  when: enable_datarequest and not ansible_check_mode
+
+
+- name: Ensure datarequest system collection is present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  shell: |
+    imkdir /{{ irods_zone }}/yoda/datarequest
+    ichmod read public /{{ irods_zone }}/yoda/datarequest
+  when: enable_datarequest and not ansible_check_mode and datarequest_system_collection.stderr.find('does not exist') >= 0
 
 
 - name: Find out if Yoda data requests data directory is present
