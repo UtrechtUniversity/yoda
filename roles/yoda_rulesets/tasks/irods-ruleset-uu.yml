@@ -424,11 +424,11 @@
   when: enable_datarequest
 
 
-- name: Ensure Yoda data requests data directory is present
+- name: Ensure datarequests data directory is present
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/etc/irods/irods-ruleset-uu/tools/create-data-directory.sh'
-  when: enable_datarequest and not (ansible_check_mode) and (data_requests.stderr.find('does not exist') >= 0)
+  when: enable_datarequest and not ansible_check_mode and data_requests.stderr.find('does not exist') >= 0
 
 
 - name: Ensure that ExecCmd dir exists
