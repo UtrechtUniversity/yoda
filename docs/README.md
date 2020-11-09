@@ -41,8 +41,8 @@ It provides researchers and their partners with a workspace and an archive that 
 
 ### System
 - [System overview](design/system-overview.md)
-- [Research space](design/design/research-space.md)
-- [Vault space](design/research-space.md)
+- [Research space](design/research-space.md)
+- [Vault space](design/vault-space.md)
 - [Statistics module](design/statistics.md)
 - [Datarequests module](design/data-requests.md)
 - [Group manager](design/group-manager.md)
