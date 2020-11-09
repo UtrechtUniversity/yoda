@@ -40,31 +40,31 @@ It provides researchers and their partners with a workspace and an archive that 
 - [API documentation](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/irods-ruleset-uu/api.json)
 
 ### System
-- [System overview](system-overview.md)
-- [Research space](research-space.md)
-- [Vault space](research-space.md)
-- [Statistics module](statistics.md)
-- [Datarequests module](data-requests.md)
-- [Group manager](group-manager.md)
-- [External user service](external-user-service.md)
-- [Yoda OAI-PMH endpoint](yoda-moai.md)
+- [System overview](design/system-overview.md)
+- [Research space](design/design/research-space.md)
+- [Vault space](design/research-space.md)
+- [Statistics module](design/statistics.md)
+- [Datarequests module](design/data-requests.md)
+- [Group manager](design/group-manager.md)
+- [External user service](design/external-user-service.md)
+- [Yoda OAI-PMH endpoint](design/yoda-moai.md)
 
 ### Metadata
-- [Metadata form](metadata-form.md)
-- [Metadata mappings](metadata-mappings.md)
-- [Metadata namespaces](metadata-namespaces.md)
-- [Metadata schemas](metadata-schemas.md)
+- [Metadata form](design/metadata-form.md)
+- [Metadata mappings](design/metadata-mappings.md)
+- [Metadata namespaces](design/metadata-namespaces.md)
+- [Metadata schemas](design/metadata-schemas.md)
 
 ### Processes
-- [Asynchronous and privileged execution](async-system-execution.md)
-- [Locking mechanism](locking-mechanism.md)
-- [Publication process](publication-process.md)
-- [Revision management](revisions.md)
-- [Vault process](vault-process.md)
+- [Asynchronous and privileged execution](design/async-system-execution.md)
+- [Locking mechanism](design/locking-mechanism.md)
+- [Publication process](design/publication-process.md)
+- [Revision management](design/revisions.md)
+- [Vault process](design/vault-process.md)
 
 ### Other
-- [Python plugin](python-plugin.md)
-- [Yoda drive](yodadrive.md)
+- [Python plugin](design/python-plugin.md)
+- [Yoda drive](design/yodadrive.md)
 
 ## Documentation style
 All documentation is styled using [Markdown](https://guides.github.com/features/mastering-markdown/).
