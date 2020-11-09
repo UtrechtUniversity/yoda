@@ -1,8 +1,8 @@
-# Release notes Yoda version 1.6 (May 2020)
+# Release notes Yoda version 1.6 (November 2020)
 
 Version: 1.6
 
-Released: May 2020
+Released: November 2020
 
 ## What's new in Yoda version 1.6
 ### Features
@@ -35,12 +35,12 @@ default_yoda_schema: default-1
    So `modules` becomes `extra_modules` and all core modules should be removed from the `extra_modules` list.
    For example:
 ```yaml
-# Yoda modules
-extra_modules:
-  - name: intake
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
-    dest: /var/www/yoda/yoda-portal/modules/intake
-    version: "{{ yoda_version }}"
+    # Yoda modules
+    extra_modules:
+      - name: intake
+        repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
+        dest: /var/www/yoda/yoda-portal/modules/intake
+        version: "{{ yoda_version }}"
 ```
 
 4. The core rulesets (`core` and `irods-ruleset-uu`) are enabled by default in Yoda 1.6.
@@ -49,14 +49,14 @@ extra_modules:
    (`irods-ruleset-uu`). So `rulesets` becomes `extra_rulesets`;
    `core`, `irods-ruleset-research` and `irods-ruleset-uu` should be removed from the `extra_rulesets` list.
    For example:
-```
-# iRODS rulesets
-extra_rulesets:
-  - name: irods-ruleset-youth-cohort
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
-    ruleset_name: rules-yc
-    version: "{{ yoda_version }}"
-    install_scripts: no
+```yaml
+    # iRODS rulesets
+    extra_rulesets:
+      - name: irods-ruleset-youth-cohort
+        repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
+        ruleset_name: rules-yc
+        version: "{{ yoda_version }}"
+        install_scripts: no
 ```
 
 5. Run the Ansible upgrade in check mode.
@@ -71,3 +71,4 @@ irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/iro
 8. Update all landingpages with the new layout (if there are published packages):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-research/tools/update-landingpages.r
+```
