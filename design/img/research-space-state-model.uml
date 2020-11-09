@@ -1,0 +1,33 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam padding 2
+skinparam shadowing false
+skinparam dpi 200
+
+state ResearchSpace as "Research Space" {
+  FOLDER : Unlocked
+  LOCKED : Locked
+  SUBMITTED : Submitted for vault
+  ACCEPTED : Accepted for vault
+  REJECTED : Rejected for vault
+  SECURED : Secured in vault
+
+  [*] --> FOLDER : Create folder (WebDAV)
+  FOLDER --> LOCKED : Lock
+  FOLDER --> SUBMITTED : Submit
+  LOCKED --> FOLDER : Unlock
+  LOCKED --> SUBMITTED : Submit
+  SUBMITTED --> FOLDER : Unsubmit
+  SUBMITTED --> ACCEPTED : Accept
+  SUBMITTED --> REJECTED : Reject
+  REJECTED --> LOCKED : Lock
+  REJECTED --> SUBMITTED : Submit
+  ACCEPTED --> SECURED : Secure
+  SECURED --> LOCKED : Lock
+  SECURED --> SUBMITTED : Submit
+  SECURED --> [*] : Delete folder (WebDAV)
+}
+
+@enduml

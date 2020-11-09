@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Development tips</title>
+  <title>Research space</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -244,7 +244,7 @@
                         </li>
                         
                         
-                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown current-menu-item">
                             <a title="Research space" href="/yoda/design/research-space.html">
                                 Research space
                             </a>
@@ -377,12 +377,67 @@
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/development/setting-up-development-environment.html">Setting up development environment</a>
+                                                <a href="/yoda/design/system-overview.html">System overview</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children current-menu-item">
+                                                <a href="/yoda/design/research-space.html">Research space</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/development/development-test-data.html">Development environment test users and data</a>
+                                                <a href="/yoda/design/vault-space.html">Vault space</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/async-system-execution.html">Asynchronous and privileged execution</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/external-user-service.html">External user service</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/group-manager.html">Group manager</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/locking-mechanism.html">Locking mechanism</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/metadata-form.html">Metadata form</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/publication-process.html">Publication process</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/python-plugin.html">Python plugin</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/statistics.html">Statistics module</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/revisions.html">Revision management</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/vault-process.html">Vault process</a>
                                             </li>
                                         
                                     </ul>
@@ -396,7 +451,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Development tips
+                                    Research space
                                 </h1>
                             </div>
                             
@@ -411,28 +466,11 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="development-tips">Development tips</h1>
-<p>A collection of tips to make Yoda development easier.</p>
+                                        <h1 id="research-space">Research space</h1>
 
-<p>Watch latest iRODS log without unnecessary noise:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-t</span> /var/lib/irods/log/rodsLog<span class="k">*</span> | head <span class="nt">-n1</span> | xargs <span class="nt">-n</span> 1 <span class="nt">--</span> tail <span class="nt">-f</span> | <span class="nb">grep</span> <span class="nt">-v</span> <span class="s2">"Agent process started for puser=rods"</span>
-</code></pre></div></div>
+<h2 id="state-model">State model</h2>
 
-<p>Watch flake8 check on Python code:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch flake8 <span class="k">*</span>.py avu_json/<span class="k">*</span>.py util/<span class="k">*</span>.py tests/step_defs/<span class="k">*</span>.py <span class="nt">--exclude</span><span class="o">=</span>__init__.py <span class="nt">--statistics</span>
-</code></pre></div></div>
-
-<p>Run flake8 check on source file change (requires the <code class="highlighter-rouge">entr</code> package):</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="k">*</span>py | entr flake8 <span class="k">*</span>.py avu_json/<span class="k">*</span>.py util/<span class="k">*</span>.py <span class="nt">--exclude</span><span class="o">=</span>__init__.py <span class="nt">--statistics</span>
-</code></pre></div></div>
-
-<p>Rebuild portal Javascript assets on source file change:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./node_modules/.bin/webpack <span class="nt">-d</span> <span class="nt">-w</span>
-</code></pre></div></div>
-
-<p>Remove all existing data requests (to declutter your <em>development</em> environment):</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>icd ../datarequests-research <span class="o">&amp;&amp;</span> ils | <span class="nb">grep</span> <span class="se">\ \ </span> | sed <span class="s1">'s/\ \ C-\ //'</span> | xargs <span class="nt">-I</span> COLLPATH sh <span class="nt">-c</span> <span class="s2">"ichmod -M -r own rods COLLPATH &amp;&amp; irm -r COLLPATH"</span>
-</code></pre></div></div>
+<p><img src="/yoda/design/img/research-space-state-model.png" alt="State model" /></p>
 
                                     </section>
 

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Release notes Yoda version 1.6 (May 2020)</title>
+  <title>Release notes Yoda version 1.6 (November 2020)</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -245,8 +245,15 @@
                         
                         
                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
-                            <a title="State model" href="/yoda/design/state-model.html">
-                                State model
+                            <a title="Research space" href="/yoda/design/research-space.html">
+                                Research space
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Vault space" href="/yoda/design/vault-space.html">
+                                Vault space
                             </a>
                         </li>
                         
@@ -419,7 +426,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Release notes Yoda version 1.6 (May 2020)
+                                    Release notes Yoda version 1.6 (November 2020)
                                 </h1>
                             </div>
                             
@@ -434,11 +441,11 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="release-notes-yoda-version-16-may-2020">Release notes Yoda version 1.6 (May 2020)</h1>
+                                        <h1 id="release-notes-yoda-version-16-november-2020">Release notes Yoda version 1.6 (November 2020)</h1>
 
 <p>Version: 1.6</p>
 
-<p>Released: May 2020</p>
+<p>Released: November 2020</p>
 
 <h2 id="whats-new-in-yoda-version-16">What’s new in Yoda version 1.6</h2>
 <h3 id="features">Features</h3>
@@ -471,13 +478,16 @@ Requires Yoda public server to be on version 1.6.x or higher.</p>
 Only extra modules have to be enabled in the configuration.
 So <code class="highlighter-rouge">modules</code> becomes <code class="highlighter-rouge">extra_modules</code> and all core modules should be removed from the <code class="highlighter-rouge">extra_modules</code> list.
 For example:
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Yoda modules</span>
-<span class="na">extra_modules</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">intake</span>
- <span class="na">repo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/UtrechtUniversity/yoda-portal-intake.git"</span>
- <span class="na">dest</span><span class="pi">:</span> <span class="s">/var/www/yoda/yoda-portal/modules/intake</span>
- <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
-</code></pre></div>    </div>
+```yaml
+ # Yoda modules
+ extra_modules:
+    <ul>
+      <li>name: intake
+repo: “https://github.com/UtrechtUniversity/yoda-portal-intake.git”
+dest: /var/www/yoda/yoda-portal/modules/intake
+version: “”
+```</li>
+    </ul>
   </li>
   <li>The core rulesets (<code class="highlighter-rouge">core</code> and <code class="highlighter-rouge">irods-ruleset-uu</code>) are enabled by default in Yoda 1.6.
 Only extra modules have to be enabled in the configuration.
@@ -485,14 +495,17 @@ Furthermore, the research ruleset (<code class="highlighter-rouge">irods-ruleset
 (<code class="highlighter-rouge">irods-ruleset-uu</code>). So <code class="highlighter-rouge">rulesets</code> becomes <code class="highlighter-rouge">extra_rulesets</code>;
 <code class="highlighter-rouge">core</code>, <code class="highlighter-rouge">irods-ruleset-research</code> and <code class="highlighter-rouge">irods-ruleset-uu</code> should be removed from the <code class="highlighter-rouge">extra_rulesets</code> list.
 For example:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># iRODS rulesets
-extra_rulesets:
-  - name: irods-ruleset-youth-cohort
- repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
- ruleset_name: rules-yc
- version: ""
- install_scripts: no
-</code></pre></div>    </div>
+```yaml
+ # iRODS rulesets
+ extra_rulesets:
+    <ul>
+      <li>name: irods-ruleset-youth-cohort
+repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
+ruleset_name: rules-yc
+version: “”
+install_scripts: no
+```</li>
+    </ul>
   </li>
   <li>
     <p>Run the Ansible upgrade in check mode.</p>
@@ -505,8 +518,9 @@ extra_rulesets:
 </code></pre></div>    </div>
   </li>
   <li>Update all landingpages with the new layout (if there are published packages):
-```bash
-irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-research/tools/update-landingpages.r</li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-research/tools/update-landingpages.r
+</code></pre></div>    </div>
+  </li>
 </ol>
 
                                     </section>
