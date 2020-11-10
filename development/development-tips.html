@@ -419,11 +419,11 @@
 </code></pre></div></div>
 
 <p>Watch flake8 check on Python code:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch flake8 <span class="k">*</span>.py avu_json/<span class="k">*</span>.py util/<span class="k">*</span>.py tests/step_defs/<span class="k">*</span>.py <span class="nt">--exclude</span><span class="o">=</span>__init__.py <span class="nt">--statistics</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch flake8
 </code></pre></div></div>
 
 <p>Run flake8 check on source file change (requires the <code class="highlighter-rouge">entr</code> package):</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="k">*</span>py | entr flake8 <span class="k">*</span>.py avu_json/<span class="k">*</span>.py util/<span class="k">*</span>.py <span class="nt">--exclude</span><span class="o">=</span>__init__.py <span class="nt">--statistics</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="k">*</span>py | entr flake8
 </code></pre></div></div>
 
 <p>Rebuild portal Javascript assets on source file change:</p>
