@@ -478,16 +478,13 @@ Requires Yoda public server to be on version 1.6.x or higher.</p>
 Only extra modules have to be enabled in the configuration.
 So <code class="highlighter-rouge">modules</code> becomes <code class="highlighter-rouge">extra_modules</code> and all core modules should be removed from the <code class="highlighter-rouge">extra_modules</code> list.
 For example:
-```yaml
- # Yoda modules
- extra_modules:
-    <ul>
-      <li>name: intake
-repo: “https://github.com/UtrechtUniversity/yoda-portal-intake.git”
-dest: /var/www/yoda/yoda-portal/modules/intake
-version: “”
-```</li>
-    </ul>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># Yoda modules</span>
+     <span class="na">extra_modules</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">intake</span>
+         <span class="na">repo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/UtrechtUniversity/yoda-portal-intake.git"</span>
+         <span class="na">dest</span><span class="pi">:</span> <span class="s">/var/www/yoda/yoda-portal/modules/intake</span>
+         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+</code></pre></div>    </div>
   </li>
   <li>The core rulesets (<code class="highlighter-rouge">core</code> and <code class="highlighter-rouge">irods-ruleset-uu</code>) are enabled by default in Yoda 1.6.
 Only extra modules have to be enabled in the configuration.
@@ -495,17 +492,14 @@ Furthermore, the research ruleset (<code class="highlighter-rouge">irods-ruleset
 (<code class="highlighter-rouge">irods-ruleset-uu</code>). So <code class="highlighter-rouge">rulesets</code> becomes <code class="highlighter-rouge">extra_rulesets</code>;
 <code class="highlighter-rouge">core</code>, <code class="highlighter-rouge">irods-ruleset-research</code> and <code class="highlighter-rouge">irods-ruleset-uu</code> should be removed from the <code class="highlighter-rouge">extra_rulesets</code> list.
 For example:
-```yaml
- # iRODS rulesets
- extra_rulesets:
-    <ul>
-      <li>name: irods-ruleset-youth-cohort
-repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
-ruleset_name: rules-yc
-version: “”
-install_scripts: no
-```</li>
-    </ul>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># iRODS rulesets</span>
+     <span class="na">extra_rulesets</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">irods-ruleset-youth-cohort</span>
+         <span class="na">repo</span><span class="pi">:</span> <span class="s">https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git</span>
+         <span class="na">ruleset_name</span><span class="pi">:</span> <span class="s">rules-yc</span>
+         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+         <span class="na">install_scripts</span><span class="pi">:</span> <span class="s">no</span>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Run the Ansible upgrade in check mode.</p>
