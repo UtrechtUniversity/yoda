@@ -456,6 +456,7 @@
   <li>Increase upload limit (300MB)</li>
   <li>Metadata format changed from XML to JSON</li>
   <li>Add support for geo location in metadata schemas</li>
+  <li>New tool to check mail configuration</li>
   <li>Upgrade to iRODS v4.2.7</li>
   <li>Deprecate support for TLS 1.0 and TLS 1.1 (use <code class="highlighter-rouge">legacy_tls</code> flag to enable support for TLS 1.0 and TLS 1.1)</li>
 </ul>
@@ -521,8 +522,8 @@ install_scripts: no
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r
 </code></pre></div>    </div>
   </li>
-  <li>Update all landingpages with the new layout (if there are published packages):
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/update-landingpages.r
+  <li>Update publication endpoints if there are published packages(landingpages and OAI-PMH)):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/update-publications.r
 </code></pre></div>    </div>
   </li>
 </ol>

@@ -12,6 +12,7 @@ Released: November 2020
 - Increase upload limit (300MB)
 - Metadata format changed from XML to JSON
 - Add support for geo location in metadata schemas
+- New tool to check mail configuration
 - Upgrade to iRODS v4.2.7
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
 
@@ -73,7 +74,7 @@ irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/iro
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r
 ```
 
-9. Update all landingpages with the new layout (if there are published packages):
+9. Update publication endpoints if there are published packages(landingpages and OAI-PMH)):
 ```bash
-irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/update-landingpages.r
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/update-publications.r
 ```
