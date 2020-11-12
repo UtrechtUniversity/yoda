@@ -74,7 +74,7 @@ irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/iro
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r
 ```
 
-9. Update publication endpoints if there are published packages(landingpages and OAI-PMH)):
+9. Update publication endpoints if there are published packages (landingpages and OAI-PMH)):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/update-publications.r
 ```
