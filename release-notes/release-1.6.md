@@ -12,7 +12,7 @@ Released: November 2020
 - Increase upload limit (300MB)
 - Metadata format changed from XML to JSON
 - Add support for geo location in metadata schemas
-- Upgrade to iRODS v4.2.8.0
+- Upgrade to iRODS v4.2.7
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
 
 ## Upgrading from Yoda version 1.5
@@ -35,12 +35,12 @@ default_yoda_schema: default-1
    So `modules` becomes `extra_modules` and all core modules should be removed from the `extra_modules` list.
    For example:
     ```yaml
-        # Yoda modules
-        extra_modules:
-          - name: intake
-            repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
-            dest: /var/www/yoda/yoda-portal/modules/intake
-            version: "{{ yoda_version }}"
+    # Yoda modules
+    extra_modules:
+      - name: intake
+        repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
+        dest: /var/www/yoda/yoda-portal/modules/intake
+        version: "{{ yoda_version }}"
     ```
 
 4. The core rulesets (`core` and `irods-ruleset-uu`) are enabled by default in Yoda 1.6.
@@ -50,25 +50,30 @@ default_yoda_schema: default-1
    `core`, `irods-ruleset-research` and `irods-ruleset-uu` should be removed from the `extra_rulesets` list.
    For example:
     ```yaml
-        # iRODS rulesets
-        extra_rulesets:
-          - name: irods-ruleset-youth-cohort
-            repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
-            ruleset_name: rules-yc
-            version: "{{ yoda_version }}"
-            install_scripts: no
+    # iRODS rulesets
+    extra_rulesets:
+      - name: irods-ruleset-youth-cohort
+        repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
+        ruleset_name: rules-yc
+        version: "{{ yoda_version }}"
+        install_scripts: no
     ```
 
 5. Run the Ansible upgrade in check mode.
 
 6. Run the Ansible upgrade.
 
-7. Convert all metadata XML in the vault to JSON.
+7. Convert all metadata XML in the vault to JSON (`default-0` XML to `default-0` JSON).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 ```
 
-8. Update all landingpages with the new layout (if there are published packages):
+8. Update all metadata JSON in the vault to latest metadata JSON version (`default-0` to `default-1`).
 ```bash
-irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-research/tools/update-landingpages.r
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r
+```
+
+9. Update all landingpages with the new layout (if there are published packages):
+```bash
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/update-landingpages.r
 ```
