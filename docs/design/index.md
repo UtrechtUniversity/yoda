@@ -1,20 +1,31 @@
 # Software design
+
+## API
 - [API documentation](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/irods-ruleset-uu/api.json)
+
+## System
 - [System overview](system-overview.md)
-- [State model](state-model.md)
-- [Asynchronous and privileged execution](async-system-execution.md)
-- [External user service](external-user-service.md)
+- [Research space](research-space.md)
+- [Vault space](research-space.md)
+- [Statistics module](statistics.md)
+- [Datarequests module](data-requests.md)
 - [Group manager](group-manager.md)
-- [Locking mechanism](locking-mechanism.md)
+- [External user service](external-user-service.md)
+- [Yoda OAI-PMH endpoint](yoda-moai.md)
+
+## Metadata
 - [Metadata form](metadata-form.md)
 - [Metadata mappings](metadata-mappings.md)
 - [Metadata namespaces](metadata-namespaces.md)
 - [Metadata schemas](metadata-schemas.md)
+
+## Processes
+- [Asynchronous and privileged execution](async-system-execution.md)
+- [Locking mechanism](locking-mechanism.md)
 - [Publication process](publication-process.md)
-- [Python plugin](python-plugin.md)
-- [Statistics module](statistics.md)
 - [Revision management](revisions.md)
 - [Vault process](vault-process.md)
-- [YodaDrive](yodadrive.md)
-- [Yoda OAI-PMH endpoint](yoda-moai.md)
-- [Data requests](data-requests.md)
+
+## Other
+- [Python plugin](python-plugin.md)
+- [Yoda drive](yodadrive.md)

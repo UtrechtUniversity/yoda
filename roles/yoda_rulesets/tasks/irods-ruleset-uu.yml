@@ -1,0 +1,456 @@
+# Copyright Utrecht University
+
+- name: Link ruleset directory
+  file:
+    src: irods-ruleset-uu
+    dest: /etc/irods/rules_uu
+    state: link
+
+
+- name: Find out if group-manager privilege groups are created
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'iadmin lg'
+  register: priv_groups
+  changed_when: priv_groups.stdout.find('priv-group-add') == -1
+  check_mode: no
+
+
+- name: Configure group-manager privilege groups in iCAT database
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: '/etc/irods/irods-ruleset-uu/tools/group-manager-setup.sh'
+  when: priv_groups.stdout.find('priv-group-add') == -1
+
+
+- name: Find out which system collections are present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda'
+  ignore_errors: True
+  register: system_collections
+  changed_when: False
+  check_mode: no
+
+
+- name: Ensure yoda system collections are present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
+  register: create_system_collections
+  when: >
+    (system_collections.stderr.find('does not exist') >= 0)
+    or
+    (system_collections.stdout.find('revisions') == -1
+    and enable_revisions == 1)
+  changed_when: create_system_collections.stdout.find('Creating') >= 0
+
+
+- name: Check for existence of storage statistics script
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  stat:
+    path: /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r
+  register: monthly_storage_statistics
+
+
+- name: Enable storage statistics gathering cronjob
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'monthly-storage-statistics'
+    minute: '0'
+    hour: '5'
+    day: '1'
+    job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r >> /var/lib/irods/log/job_monthly-storage-statistics.log 2>&1'
+  when: monthly_storage_statistics.stat.exists
+
+
+- name: Remove legacy configuration AVUs for UU ruleset on system collection
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda"
+    irods_type: Collection
+    attribute: "{{ avu.attribute }}"
+    value: "{{ avu.value }}"
+    state: absent
+  with_items:
+    - attribute: org_send_notifications
+      value: "{{ send_notifications }}"
+  loop_control:
+    loop_var: avu
+
+
+- name: Create local UU ruleset configuration
+  template:
+    src: rules_uu.cfg.j2
+    dest: "/etc/irods/irods-ruleset-uu/rules_uu.cfg"
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0600
+  when: not ansible_check_mode
+
+
+- name: Ensure that ExecCmd dir exists
+  file:
+    path: /var/lib/irods/msiExecCmd_bin
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0755
+    state: directory
+  when: not ansible_check_mode
+
+
+- name: Copy admin-remove-orphan-vault-if-empty.sh to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    remote_src: yes
+    src: /etc/irods/irods-ruleset-uu/tools/admin-remove-orphan-vault-if-empty.sh
+    dest: /var/lib/irods/msiExecCmd_bin/admin-remove-orphan-vault-if-empty.sh
+    mode: 0755
+  when: not ansible_check_mode
+
+
+- name: Ensure metadata schemas are installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: >
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    '*resc="{{ irods_default_resc }}"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
+    '*schema="{{ item }}"'
+    '*category="{{ item }}"'
+    '*update={{ update_schemas }}'
+  register: install_schemas
+  when: (update_schemas == 1)
+  changed_when: install_schemas.stdout is search('(Installed|Updated)')
+  with_items: "{{ schemas }}"
+
+
+- name: Find out if default metadata schema is installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/schemas/default/{{ item }}'
+  ignore_errors: true
+  register: installed_defaults
+  changed_when: false
+  with_items:
+    - metadata.json
+    - uischema.json
+
+
+- name: Ensure default metadata schema is installed
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: >
+    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    '*resc="{{ irods_default_resc }}"'
+    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
+    '*schema="{{ default_yoda_schema }}"'
+    '*category="default"'
+    '*update={{ update_schemas }}'
+  register: install_default_schema
+  when: (update_schemas == 1) or
+        (installed_defaults|json_query('results[*].stderr')|join(' ') is search('does not exist'))
+  changed_when: install_default_schema.stdout is search('(Installed|Updated)')
+
+
+- name: List installed or updated schemas, formelements or stylesheets
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  debug:
+    var: item
+  when: item is search('(Installed|Updated)')
+  with_items: "{{ install_default_xml_for_metadata.stdout_lines|default('Script did not run') }}"
+
+
+- name: Find out if terms and conditions system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/terms'
+  ignore_errors: True
+  register: terms_installed
+  changed_when: False
+
+
+- name: Install terms and conditions
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  shell: |
+    iput -r /etc/irods/irods-ruleset-uu/terms /{{ irods_zone }}/yoda
+    ichmod -rM inherit /{{ irods_zone }}/yoda/terms
+    ichmod -rM read public /{{ irods_zone }}/yoda/terms
+  when: (not ansible_check_mode) and (terms_installed.stderr.find('does not exist') >= 0)
+
+
+- name: Find out if templates system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/templates'
+  ignore_errors: True
+  register: templates_installed
+  changed_when: False
+
+
+- name: Install templates
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  shell: |
+    iput -r /etc/irods/irods-ruleset-uu/templates /{{ irods_zone }}/yoda
+    ichmod -rM inherit /{{ irods_zone }}/yoda/templates
+    ichmod -rM read public /{{ irods_zone }}/yoda/templates
+  when: (not ansible_check_mode) and (templates_installed.stderr.find('does not exist') >= 0)
+
+
+- name: Ensure templates are up to date
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iput -f '/etc/irods/irods-ruleset-uu/templates/{{ item }}' '/{{ irods_zone }}/yoda/templates/{{ item }}'
+  with_items:
+    - emptylandingpage.html.j2
+    - landingpage.html.j2
+  when: (not ansible_check_mode)
+
+
+- name: Find out if preservable file formats lists system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/file_formats'
+  ignore_errors: True
+  register: formats_installed
+  changed_when: False
+
+
+- name: Install preservable file formats lists
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  shell: |
+    iput -r /etc/irods/irods-ruleset-uu/file_formats /{{ irods_zone }}/yoda
+    ichmod -rM inherit /{{ irods_zone }}/yoda/file_formats
+    ichmod -rM read public /{{ irods_zone }}/yoda/file_formats
+  when: (not ansible_check_mode) and (formats_installed.stderr.find('does not exist') >= 0)
+
+
+- name: Ensure that Yoda publication directory is present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/yoda/publication
+  changed_when: False
+  failed_when: False
+
+
+- name: Install script for revision clean up
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  template:
+    src: cronjob-revision-cleanup.sh.j2
+    dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: '0644'
+
+
+- name: Configure cronjob to process publications
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'process-publication.r'
+    minute: '*'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/process-publication.r >/dev/null 2>&1'
+
+
+- name: Configure cronjob to retry copy-to-vault
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'retry-copy-to-vault.r'
+    minute: '*'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/retry-copy-to-vault.r >/dev/null 2>&1'
+
+
+- name: Configure cronjob to clean up revisions
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'cronjob-revision-cleanup.sh'
+    minute: '0'
+    hour: '2'
+    job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
+
+
+- name: Ensure that ExecCmd dir exists
+  file:
+    path: /var/lib/irods/msiExecCmd_bin
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0755
+    state: directory
+  when: not ansible_check_mode
+
+
+- name: Copy scripts to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    remote_src: yes
+    src: "/etc/irods/irods-ruleset-uu/tools/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: 0755
+  when: not ansible_check_mode
+  with_items:
+    - securecopy.sh
+    - scheduled-copytovault.sh
+    - admin-vaultactions.sh
+    - admin-vaultingest.sh
+
+
+- name: Set configuration AVUs for research ruleset to system collection
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda"
+    irods_type: Collection
+    attribute: "{{ avu.attribute }}"
+    value: "{{ avu.value }}"
+  with_items:
+    - attribute: org_datacite_prefix
+      value: "{{ datacite_prefix }}"
+    - attribute: org_yoda_instance
+      value: "{{ yoda_instance }}"
+    - attribute: org_moai_host
+      value: "{{ yoda_public_host }}"
+    - attribute: org_random_id_length
+      value: "{{ yoda_random_id_length }}"
+    - attribute: org_yoda_prefix
+      value: "{{ yoda_prefix }}"
+    - attribute: org_public_vhost
+      value: "{{ yoda_public_fqdn }}{% if (yoda_public_port is defined) %}:{{ yoda_public_port }}{% endif %}"
+    - attribute: org_public_host
+      value: "{{ yoda_public_host }}"
+    - attribute: org_davrods_vhost
+      value: "{{ yoda_davrods_fqdn }}{% if (yoda_davrods_port is defined) %}:{{ yoda_davrods_port }}{% endif %}"
+  loop_control:
+    loop_var: avu
+
+
+- name: Set configuration AVUs for anonymous davrods vhosts
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  when: (yoda_davrods_anonymous_enabled is defined) and (yoda_davrods_anonymous_enabled)
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda"
+    irods_type: Collection
+    attribute: "{{ avu.attribute }}"
+    value: "{{ avu.value }}"
+  with_items:
+    - attribute: org_davrods_anonymous_vhost
+      value: "{{ yoda_davrods_anonymous_fqdn }}{% if (yoda_davrods_anonymous_port is defined) %}:{{ yoda_davrods_anonymous_port }}{% endif %}"
+  loop_control:
+    loop_var: avu
+
+
+- name: Remove old research rule files left behind
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/irods/rules_uu.py
+    - /etc/irods/rules_uu.pyc
+    - /etc/irods/rules-research.re
+    - /etc/irods/rules_research.py
+    - /etc/irods/rules_research.pyc
+    - /etc/irods/irods-ruleset-research/
+
+
+- name: Enable asynchronous replication job
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'asynchronous-replication'
+    minute: '*/5'
+    job: '/bin/python /etc/irods/irods-ruleset-uu/tools/async-data-replicate.py >/dev/null 2>&1'
+  when: enable_async_replication == 1
+
+
+- name: Enable asynchronous revision creation job
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'asynchronous-revisions'
+    minute: '6,16,26,36,46,56'
+    job: '/bin/python /etc/irods/irods-ruleset-uu/tools/async-data-revision.py >/dev/null 2>&1'
+  when: enable_revisions == 1
+
+
+- name: Find out if datarequest system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/datarequest'
+  ignore_errors: True
+  register: datarequest_system_collection
+  changed_when: False
+  when: enable_datarequest and not ansible_check_mode
+
+
+- name: Ensure datarequest system collection is present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  shell: |
+    imkdir /{{ irods_zone }}/yoda/datarequest
+    ichmod read public /{{ irods_zone }}/yoda/datarequest
+  when: enable_datarequest and not ansible_check_mode and datarequest_system_collection.stderr.find('does not exist') >= 0
+
+
+- name: Ensure datarequest schemas exist
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: "/etc/irods/irods-ruleset-uu/tools/install-datarequest-schemas.sh '{{ irods_zone }}'"
+  when: enable_datarequest and not ansible_check_mode
+
+
+- name: Find out if Yoda data requests data directory is present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/home/datarequests-research'
+  ignore_errors: true
+  register: data_requests
+  changed_when: false
+  when: enable_datarequest
+
+
+- name: Ensure datarequests data directory is present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/etc/irods/irods-ruleset-uu/tools/create-data-directory.sh'
+  when: enable_datarequest and not ansible_check_mode and data_requests.stderr.find('does not exist') >= 0
+
+
+- name: Ensure that ExecCmd dir exists
+  file:
+    path: /var/lib/irods/msiExecCmd_bin
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0755
+    state: directory
+  when: enable_datarequest and not ansible_check_mode
+
+
+- name: Copy scripts to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    remote_src: yes
+    src: "/etc/irods/irods-ruleset-uu/tools/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: 0755
+  when: enable_datarequest and not ansible_check_mode
+  with_items:
+    - admin-datarequestactions.sh
+
+

@@ -1,0 +1,25 @@
+---
+# copyright Utrecht University
+
+rolename: irods-microservices
+
+# Temporary directory to store downloaded rpm files.
+rpm_dest_dir: /tmp
+
+# iRODS microservices rpm locations and checksums
+microservices:
+  irods_sudo_microservices:
+    package: irods-sudo-microservices-4.2.7_1.0.0-1
+    url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/4.2.7_1.0.0/irods-sudo-microservices-4.2.7_1.0.0-1.rpm
+    filename: irods-sudo-microservices-4.2.7_1.0.0-1.rpm
+    checksum: sha256:1270080dfbde8d6c5358b43b6942883a758a623468de3a86fe66c8d54fce0408
+  irods_uu_microservices:
+    package: irods-uu-microservices-4.2.7_0.8.1-1
+    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.1/irods-uu-microservices-4.2.7_0.8.1-1.rpm
+    filename: irods-uu-microservices-4.2.7_0.8.1-1.rpm
+    checksum: sha256:43312181a6fc934e882364a351787883ff3b7ad8f00c5ae7ef649c62d44ddecd
+
+# iRODS configuration.
+irods_service_account: irods
+
+repo_only: no  # Only download packages from repos.

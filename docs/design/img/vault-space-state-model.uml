@@ -1,0 +1,33 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam padding 2
+skinparam shadowing false
+skinparam dpi 200
+
+state VaultSpace as "Vault Space" {
+  INCOMPLETE : Incomplete datapackage
+  COMPLETE : Legacy datapackage
+  UNPUBLISHED : Unpublished datapackage
+  SUBMITTED_FOR_PUBLICATION : Submitted for publication
+  APPROVED_FOR_PUBLICATION : Publication pending
+  PUBLISHED : Published
+  PENDING_DEPUBLICATION : Depublication pending
+  DEPUBLISHED : Depublished
+  PENDING_REPUBLICATION : Republication pending
+
+  [*] --> UNPUBLISHED : Create datapackage
+  [*] --> INCOMPLETE : Create datapackage
+  UNPUBLISHED --> SUBMITTED_FOR_PUBLICATION : Submit for publication
+  COMPLETE --> SUBMITTED_FOR_PUBLICATION : Submit for publication
+  SUBMITTED_FOR_PUBLICATION --> APPROVED_FOR_PUBLICATION : Approve for publication
+  SUBMITTED_FOR_PUBLICATION --> UNPUBLISHED : Cancel publication
+  APPROVED_FOR_PUBLICATION --> PUBLISHED
+  PUBLISHED --> PENDING_DEPUBLICATION : Depublish publication
+  PENDING_DEPUBLICATION --> DEPUBLISHED
+  DEPUBLISHED --> PENDING_REPUBLICATION  : Republish publication
+  PENDING_REPUBLICATION --> PUBLISHED
+}
+
+@enduml

@@ -10,7 +10,7 @@ main:
 
 release-notes:
   - page: Release 1.6
-    url: /release-notes/release-1.6.html    
+    url: /release-notes/release-1.6.html
   - page: Release 1.5
     url: /release-notes/release-1.5.html
   - page: Release 1.4
@@ -51,8 +51,10 @@ development:
 design:
   - page: System overview
     url: /design/system-overview.html
-  - page: State model
-    url: /design/state-model.html
+  - page: Research space
+    url: /design/research-space.html
+  - page: Vault space
+    url: /design/vault-space.html
   - page: Asynchronous and privileged execution
     url: /design/async-system-execution.html
   - page: External user service

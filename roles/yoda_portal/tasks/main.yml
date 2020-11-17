@@ -1,0 +1,155 @@
+---
+# copyright Utrecht University
+
+- name: Ensure yodadeployment user exists
+  user:
+    name: "{{ yoda_deployment_user }}"
+
+
+- name: Ensure yodadeployment has access to /var/www/yoda
+  file:
+    path: /var/www/yoda
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0711
+
+
+- name: Checkout Yoda portal
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    version: "{{ item.version }}"
+    update: "{{ update_portal }}"
+  with_items: "{{ portal }}"
+  register: portalchanges
+
+
+- name: Link public directories of Yoda portal
+  file:
+    src: '{{ yoda_public_dir }}'
+    dest: /var/www/yoda/public
+    state: link
+
+
+- name: Checkout Yoda modules
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    version: "{{ item.version }}"
+    update: "{{ update_portal }}"
+    force: yes
+  with_items: "{{ core_modules + extra_modules }}"
+  register: modulechanges
+
+
+- name: Link public directories of Yoda modules
+  file:
+    src: '{{ item.dest }}/public'
+    dest: '{{ yoda_public_dir }}/{{ item.name }}'
+    state: link
+  with_items: "{{ core_modules + extra_modules }}"
+  when: not ansible_check_mode
+
+
+- name: Generate PHP session encryption key
+  shell: openssl rand -base64 32 > /var/www/yoda/yoda-portal/config/yoda_php_encryption_key
+    creates=/var/www/yoda/yoda-portal/config/yoda_php_encryption_key
+  when: not ansible_check_mode
+
+
+- name: Retrieve PHP session encryption key
+  slurp:
+    src: /var/www/yoda/yoda-portal/config/yoda_php_encryption_key
+  register: php_encryption_key
+  when: not ansible_check_mode
+
+
+- name: Store PHP session encryption key in variable
+  set_fact:
+    yoda_php_encryption_key: "{{ php_encryption_key['content'] | b64decode }}"
+  when: not ansible_check_mode
+
+
+- name: Generate PHP assets version
+  shell: date +%s > /var/www/yoda/yoda-portal/config/yoda_php_assets_version
+  when: not ansible_check_mode and (portalchanges.changed or modulechanges.changed)
+
+
+- name: Retrieve PHP assets version
+  slurp:
+    src: /var/www/yoda/yoda-portal/config/yoda_php_assets_version
+  register: php_assets_version
+  when: not ansible_check_mode
+
+
+- name: Store PHP assets version in variable
+  set_fact:
+    yoda_php_assets_version: "{{ php_assets_version['content'] | b64decode }}"
+  when: not ansible_check_mode
+
+
+- name: Create config_local.php
+  template:
+    src: config_local.php.j2
+    dest: /var/www/yoda/yoda-portal/config/config_local.php
+    owner: "{{ yoda_deployment_user }}"
+    mode: 0644
+  when: not ansible_check_mode
+
+
+- name: Ensure logs directory is present
+  file:
+    path: /var/www/yoda/yoda-portal/logs
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0711
+
+
+- name: Ensure .htaccess is configured
+  copy:
+    src: /var/www/yoda/yoda-portal/public/.htaccess.template-{{ codeigniter_environment }}
+    dest: /var/www/yoda/yoda-portal/public/.htaccess
+    mode: '0644'
+    remote_src: yes
+  notify: Restart Apache webserver
+
+
+- name: Copy Yoda Portal virtual host config for Apache
+  template:
+    src: "yoda-portal-vhost.conf.j2"
+    dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
+    mode: '0644'
+  notify: Restart Apache webserver
+
+
+- name: Ensure portal logfile exists
+  copy:
+    content: ""
+    dest: "/var/log/httpd/portal_access.log"
+    mode: '0644'
+    owner: root
+    group: root
+    force: no
+  notify: Restart Apache webserver
+
+
+- name: Run Composer on Yoda Research and Vault module
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  composer:
+    command: install
+    working_dir: "{{ item }}"
+  when: not ansible_check_mode
+  with_items:
+    - /var/www/yoda/yoda-portal/modules/research
+    - /var/www/yoda/yoda-portal/modules/vault
+
+
+- include_tasks: setup-nodejs-development-environment.yml
+  when: yoda_environment == "development"

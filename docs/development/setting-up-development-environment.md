@@ -11,9 +11,8 @@ The guide below will deploy an 'allinone' instance (all functional roles in one 
 
 1. Clone the Yoda repository and checkout the development branch:
 ```bash
-cd
 git clone https://github.com/UtrechtUniversity/yoda.git
-cd ~/yoda
+cd yoda
 git checkout development
 ```
 
