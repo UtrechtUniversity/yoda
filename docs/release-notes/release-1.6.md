@@ -12,6 +12,7 @@ Released: November 2020
 - Increase upload limit (300MB)
 - Metadata format changed from XML to JSON
 - Add support for geo location in metadata schemas
+- Add support for datarequest module
 - New tool to check mail configuration
 - Upgrade to iRODS v4.2.7
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
@@ -36,12 +37,12 @@ default_yoda_schema: default-1
    So `modules` becomes `extra_modules` and all core modules should be removed from the `extra_modules` list.
    For example:
     ```yaml
-    # Yoda modules
-    extra_modules:
-      - name: intake
-        repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
-        dest: /var/www/yoda/yoda-portal/modules/intake
-        version: "{{ yoda_version }}"
+        # Yoda modules
+        extra_modules:
+          - name: intake
+            repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
+            dest: /var/www/yoda/yoda-portal/modules/intake
+            version: "{{ yoda_version }}"
     ```
 
 4. The core rulesets (`core` and `irods-ruleset-uu`) are enabled by default in Yoda 1.6.
@@ -51,13 +52,13 @@ default_yoda_schema: default-1
    `core`, `irods-ruleset-research` and `irods-ruleset-uu` should be removed from the `extra_rulesets` list.
    For example:
     ```yaml
-    # iRODS rulesets
-    extra_rulesets:
-      - name: irods-ruleset-youth-cohort
-        repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
-        ruleset_name: rules-yc
-        version: "{{ yoda_version }}"
-        install_scripts: no
+        # iRODS rulesets
+        extra_rulesets:
+          - name: irods-ruleset-youth-cohort
+            repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
+            ruleset_name: rules-yc
+            version: "{{ yoda_version }}"
+            install_scripts: no
     ```
 
 5. Run the Ansible upgrade in check mode.
