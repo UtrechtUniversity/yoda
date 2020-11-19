@@ -1,37 +1,16 @@
 ---
 # copyright Utrecht University
 
-- name: Install python-irodsclient dependencies
+- name: Ensure Python dependencies are installed
   package:
     name:
-      - python-six
-      - python-prettytable
+      - python-pip
     state: present
 
 
-- name: Check if python-irodsclient is installable from repository
-  yum:
-    list: '{{ python_irodsclient.package }}'
-  register: python_irodsclient_repo
-
-
-- name: Download python-irodsclient rpm
-  get_url:
-    url: '{{ python_irodsclient.url }}/{{ python_irodsclient.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ python_irodsclient.filename }}'
-    checksum: '{{ python_irodsclient.checksum }}'
-  when: not python_irodsclient_repo.results and not repo_only
-
-
-- name: Install python-irodsclient from downloaded rpm
-  package:
-    name: '{{ rpm_dest_dir }}/{{ python_irodsclient.filename }}'
+- name: Install python-irodsclient
+  pip:
+    name:
+      - pip==20.2.4
+      - python-irodsclient==0.8.5
     state: present
-  when: not python_irodsclient_repo.results and not ansible_check_mode and not repo_only
-
-
-- name: Ensure python-irodsclient is installed from repository
-  package:
-    name: '{{ python_irodsclient.package }}'
-    state: present
-  when: python_irodsclient_repo.results and not ansible_check_mode

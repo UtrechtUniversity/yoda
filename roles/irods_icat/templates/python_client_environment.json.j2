@@ -1,0 +1,12 @@
+{
+    "irods_host": "{{ ansible_fqdn }}",
+    "irods_port": "{{ irods_icat_port }}",
+    "irods_ssl_ca_certificate_file": "/etc/irods/{{ openssl_crt_signed_and_chain }}",
+    "irods_ssl_certificate_chain_file": "/etc/irods/{{ openssl_crt_signed_and_chain }}",
+    "irods_ssl_certificate_key_file": "/etc/irods/{{ openssl_key_signed }}",
+    "irods_ssl_dh_params_file": "/etc/irods/{{ openssl_dhparams }}",
+    "irods_user_name": "{{ irods_admin }}",
+    "irods_zone_name": "{{ irods_zone }}",
+    "schema_name": "irods_environment",
+    "schema_version": "v3"
+}

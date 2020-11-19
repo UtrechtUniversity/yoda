@@ -23,7 +23,7 @@ else:
 
 
 def get_session():
-    env_file = os.path.expanduser('~/.irods/irods_environment.json')
+    env_file = os.path.expanduser('~/.irods/python_client_environment.json')
     with open(env_file) as data_file:
         ienv = json.load(data_file)
     return (iRODSSession(irods_env_file=env_file), ienv)
@@ -36,7 +36,7 @@ def main():
             category=dict(default=None, required=True),
             subcategory=dict(default=None, required=True),
             description=dict(default=None, required=True),
-            dataClassification=dict(default=None, required=True),            
+            dataClassification=dict(default=None, required=True),
             state=dict(default="present")
         ),
         supports_check_mode=True)
@@ -45,7 +45,7 @@ def main():
     category = module.params["category"]
     subcategory = module.params["subcategory"]
     description = module.params["description"]
-    dataClassification = module.params["dataClassification"]    
+    dataClassification = module.params["dataClassification"]
     state = module.params["state"]
 
     if IRODSCLIENT_AVAILABLE:

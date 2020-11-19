@@ -24,7 +24,7 @@ else:
 
 
 def get_session():
-    env_file = os.path.expanduser('~/.irods/irods_environment.json')
+    env_file = os.path.expanduser('~/.irods/python_client_environment.json')
     with open(env_file) as data_file:
         ienv = json.load(data_file)
     return (iRODSSession(irods_env_file=env_file), ienv)
