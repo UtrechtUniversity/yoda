@@ -72,6 +72,8 @@
 
 
 - name: Install requirements for ruleset
+  become_user: "{{ irods_service_account }}"
+  become: yes
   pip:
     requirements: /etc/irods/irods-ruleset-uu/requirements.txt
 
