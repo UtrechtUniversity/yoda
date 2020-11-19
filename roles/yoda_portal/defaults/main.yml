@@ -33,7 +33,7 @@ core_modules:
   - name: group-manager
     repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
     dest: /var/www/yoda/yoda-portal/modules/group-manager
-    version: "{{ yoda_version }}"
+    version: "feature-theming"
   - name: research
     repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
     dest: /var/www/yoda/yoda-portal/modules/research
