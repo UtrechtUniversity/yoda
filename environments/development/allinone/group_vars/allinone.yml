@@ -32,7 +32,7 @@ extra_modules:
   - name: datarequest
     repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
     dest: /var/www/yoda/yoda-portal/modules/datarequest
-    version: "{{ yoda_version }}"
+    version: "feature-theming"
 
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
