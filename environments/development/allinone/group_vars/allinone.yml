@@ -28,7 +28,7 @@ extra_modules:
   - name: intake
     repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
     dest: /var/www/yoda/yoda-portal/modules/intake
-    version: "{{ yoda_version }}"
+    version: "feature-theming"
   - name: datarequest
     repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
     dest: /var/www/yoda/yoda-portal/modules/datarequest
