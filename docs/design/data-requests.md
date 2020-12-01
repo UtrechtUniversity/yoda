@@ -21,33 +21,22 @@ The request must belong to a research proposal, which is submitted along with
 the data request. The research proposal must describe the purpose for which the
 researcher wants to obtain the requested data.
 
-### Management of data requests
-A data manager assigned as a custodian of (certain) data stored in Yoda must be
-able to see submitted requests for this data.
+### Management and review of data requests
+A delegate of a research programme's or study's Board of Directors (BoD) must be
+able to perform a cursory preliminary review of a data request.
 
-The data manager must be able to delegate the evaluation of the research
-proposals belonging to these requests to one or more members of a Data
-Management Committee (DMC). For example, given a research proposal on brain
-morphology, the data manager may assign the evaluation of this proposal to a
-specific DMC member with expertise in this area.
+Likewise, a data manager assigned as a custodian of (certain) data stored in
+Yoda must be also able to submit a review of a data request.
 
-### Evaluation of research proposals
-A DMC member must be able to view research proposals assigned to him for
-evaluation and must be able to register his evaluation of the research proposal.
+After these preliminary reviews, a BoD member must be able to assign a data
+request for review to one or more members of a Data Management Committee (DMC)
 
-### Approval of research proposals
-A representative of a research programme's or study's Board of Directors must be
-able to approve a research proposal based on the evaluations given by one or
-more DMC members.
+The DMC member(s) must be able to review research proposals assigned to him.
 
-### Evaluation of data requests
-Once a research proposal has been approved, the data manager must be able to
-review a data request belonging to this proposal. This is done to ensure that
-the requested data is within scope of the approved research proposal.
-
-### Approval of data requests
-If, after reviewing the data request, the data manager does not object to the
-release of the requested data, he must be able to approve the data request.
+### Final evaluation of research proposals
+A BoD member must be able to give a final evaluation of a research proposal
+based on the reviews by the data manager and the DMC member(s), thereby
+approving or rejecting the data request.
 
 ### Creation of data transfer agreements (DTAs)
 Once a data request and its accompanying research proposal have been approved,
@@ -61,7 +50,7 @@ DTA and register his agreement to the terms and conditions specified therein.
 
 ### Release of requested data
 After the DTA has been signed by the requesting researcher, the data manager
-may release the requested data to him. However, the means by which the data is
+may release the requested data to him. The means by which the data is
 transferred to the researcher is outside of the scope of the data request
 module.
 
@@ -80,54 +69,46 @@ subcollection as a JSON-formatted file.
 Because researchers only have ownership of subcollections they themselves have
 created, they cannot access data requests by other researchers.
 
-### Management of data requests
-Data managers must be able to view all submitted data requests. They are enabled
-to do so by membership of a group (e.g. "brainmorphlab-datamanagers"; see Group
-Manager) that has group manager permissions on the public collection mentioned
-above (these include read and write permissions). Because these permissions are
-recursive, they also apply to the subcollections made by researchers.
+### Management and review of data requests
+BoD members and data managers must be able to view all submitted data requests.
+They are enabled to do so by membership of a group (e.g.
+"brainmorphlab-datamanagers"; see Group Manager) that has group manager
+permissions on the public collection mentioned above (these include read and
+write permissions). Because these permissions are recursive, they also apply to
+the subcollections made by researchers.
 
-To assign a research proposal for evaluation to a DMC member, the data manager
-can give the DMC member read and write permissions on the subcollection in which
-the research proposal is stored. DMC membership is determined by membership of a
-particular group (e.g. "brainmorphlab-dmc"), acting as a pool from which the
-data manager may pick an appropriate member.
+Upon assignment of a research proposal for evaluation to a DMC member, the DMC
+member is granted read and write permissions on the subcollection in which the
+research proposal is stored.
 
-Because multiple research groups may use on a Yoda instance, multiple data
-manager and DMC groups may be created so that data requests meant for data of a
-particular research group can be handled by data managers associated with that
-research group.
+DMC membership is determined by membership of a particular group (e.g.
+"brainmorphlab-dmc"), acting as a pool from which the data manager may pick an
+appropriate member.
 
-### Evaluation of research proposals
 A DMC member can evaluate a research proposal through a web form. The evaluation
 is saved as a JSON-formatted file in the subcollection that also holds the
 research proposal itself.
 
-### Approval of research proposals
-Board of Directors (BoD) representatives also belong to a particular group (e.g.
-"brainmorphlab-bodr". They have the same rights as those in the data manager
-group, thus allowing them to view the research proposal and the evaluations
-of the reviewing DMC members.
+Because multiple research groups may use a Yoda instance, multiple data manager
+and DMC groups may be created so that data requests meant for data of a
+particular research group can be handled by data managers associated with that
+research group.
 
-A BoD representative can approve a research proposal through a web form that
-sets the value of the approval_status AVU of the research proposal JSON file to
-"approved".
+### Final evaluation of research proposals
+BoD members also belong to a particular group (e.g. "brainmorphlab-bod". They
+have the same rights as those in the data manager group, thus allowing them to
+view the research proposal and associated reviews.
 
-### Evaluation of data requests
-After the approval of a research proposal, the data manager evaluates the data
-request.
-
-### Approval of data requests
-If the data manager approves the data request, the approval_status AVU of the
-data request JSON file is set to "approved".
+A BoD member can approve a research proposal through a web form that sets the
+value of the status AVU of the research proposal subcollection to "approved".
 
 ### Creation of DTAs
-After approving the data request, the data manager creates a DTA and adds it
-as a PDF file to the subcollection (through a web form). The requesting
-researcher will receive a request to upload as signed copy of this document.
+After the data request has been approved, the data manager creates a DTA and
+adds it as a PDF file to the subcollection (through a web form). The researcher
+will receive a request to upload as signed copy of this document.
 
 ### Approval of DTAs
 The DTA created by the data manager is made available to the researcher. Once
-the researcher has created as signed copy of the document, he can upload it
+the researcher has created a signed copy of the document, he can upload it
 through a web form. The signed copy is saved in the subcollection. The data may
 now be made available to the researcher by the data manager.
