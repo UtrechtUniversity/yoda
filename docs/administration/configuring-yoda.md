@@ -149,6 +149,11 @@ update_rulesets              | Update already installed rulesets with git
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
 
+### Datarequest module configuration
+
+Variable                     | Description
+-----------------------------|---------------------
+enable_datarequest           | Enable datarequest module
 
 ### Mail notifications
 

@@ -19,6 +19,7 @@ yoda_prefix: UU01                                  # Prefix for internal portion
 update_schemas: 1                                  # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files: PLACEHOLDER                      # Location of Yoda credentials files
 
+# Datarequest module configuration
 enable_datarequest: true                           # Enable datarequest module
 
 # Yoda modules
