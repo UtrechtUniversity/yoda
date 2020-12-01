@@ -6,7 +6,7 @@ the submission, review and approval of requests to obtain research data stored
 in Yoda.
 
 ## Definitions
--   **Research group** A group of researchers belonging to a particular research
+- **Research group** A group of researchers belonging to a particular research
 lab or otherwise collaborating on a common research goal. E.g. the Brain
 Morphology Lab.
 
