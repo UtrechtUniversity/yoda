@@ -10,7 +10,7 @@ core_rulesets:
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "feature-theming"
     install_scripts: yes
   - name: core
     ruleset_name: core
