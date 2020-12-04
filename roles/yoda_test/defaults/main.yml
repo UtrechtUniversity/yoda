@@ -67,7 +67,8 @@ eus_test_users:
 
 # Following users are created in the regressiontest and need to be removed only.
 created_by_ta_users:
-  - name: testuser
+  - name: uipromote
+  - name: uidemote
 
 test_groups:
   - groupName: research-default-0
