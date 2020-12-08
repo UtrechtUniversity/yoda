@@ -12,7 +12,7 @@ Released: November 2020
 - Increase upload limit (300MB)
 - Metadata format changed from XML to JSON
 - Add support for geo location in metadata schemas
-- Add support for datarequest module
+- Add support for datarequest module ([installation instructions](https://utrechtuniversity.github.io/yoda/administration/installing-datarequest-module.html))
 - New tool to check mail configuration
 - Upgrade to iRODS v4.2.7
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
@@ -79,5 +79,3 @@ irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/iro
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/update-publications.r
 ```
-
-10. Optionally install the datarequest module. Installation instructions can be found at https://utrechtuniversity.github.io/yoda/administration/installing-datarequest-module.html
