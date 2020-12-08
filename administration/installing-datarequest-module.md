@@ -2,6 +2,7 @@
 
 ## Enable the datarequest module in Ansible
 Set `enable_datarequest` to `true` in configuration.
+
     ```yaml
     enable_datarequest: true
     ```
