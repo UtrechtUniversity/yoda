@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Before deployment using Ansible</title>
+  <title>Installing datarequest module</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -421,7 +421,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Before deployment using Ansible
+                                    Installing datarequest module
                                 </h1>
                             </div>
                             
@@ -436,9 +436,11 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="before-deployment-using-ansible">Before deployment using Ansible</h1>
+                                        <h1 id="installing-datarequest-module">Installing datarequest module</h1>
 
-<h2 id="enable-the-datarequest-module-in-ansible">Enable the datarequest module in Ansible</h2>
+<h2 id="before-deployment-using-ansible">Before deployment using Ansible</h2>
+
+<h3 id="enable-the-datarequest-module-in-ansible">Enable the datarequest module in Ansible</h3>
 <p>Set <code class="highlighter-rouge">enable_datarequest</code> to <code class="highlighter-rouge">true</code> in configuration.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>enable_datarequest: true
 </code></pre></div></div>
@@ -451,9 +453,9 @@
     version: ""
 </code></pre></div></div>
 
-<h1 id="after-deployment-using-ansible">After deployment using Ansible</h1>
+<h2 id="after-deployment-using-ansible">After deployment using Ansible</h2>
 
-<h2 id="creating-and-populating-required-groups">Creating and populating required groups</h2>
+<h3 id="creating-and-populating-required-groups">Creating and populating required groups</h3>
 
 <p>Ensure that the following groups exists, each with category <code class="highlighter-rouge">datarequests</code>,
 subcategory <code class="highlighter-rouge">research</code> and data classification <code class="highlighter-rouge">unspecified</code>:
@@ -465,7 +467,7 @@ subcategory <code class="highlighter-rouge">research</code> and data classificat
 
 <p>Using the group manager, populate these groups with appropriate members.</p>
 
-<h2 id="customizing-and-installing-schemas">Customizing and installing schemas</h2>
+<h3 id="customizing-and-installing-schemas">Customizing and installing schemas</h3>
 <p>For a fully functional datarequest module, schemas for the various forms have to
 be present. A set of templates for these schemas can be found in the
 <code class="highlighter-rouge">irods-ruleset-uu</code> repository in the <code class="highlighter-rouge">datarequest/schemas</code> directory. These meet
@@ -500,7 +502,7 @@ the DMC members and the <code class="highlighter-rouge">enumNames</code> field s
   </li>
 </ol>
 
-<h2 id="customizing-the-helpdesk-email-address">Customizing the helpdesk email address</h2>
+<h3 id="customizing-the-helpdesk-email-address">Customizing the helpdesk email address</h3>
 <p>Users can contact a helpdesk email address for questions regarding the
 datarequest procedure. This address is configured in <code class="highlighter-rouge">config/config.php</code> of the
 <code class="highlighter-rouge">yoda-portal-datarequest</code> repository by setting the <code class="highlighter-rouge">help_contact_name</code> and

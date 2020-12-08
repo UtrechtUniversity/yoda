@@ -1,6 +1,8 @@
-# Before deployment using Ansible
+# Installing datarequest module
 
-## Enable the datarequest module in Ansible
+## Before deployment using Ansible
+
+### Enable the datarequest module in Ansible
 Set `enable_datarequest` to `true` in configuration.
 ```
 enable_datarequest: true
@@ -15,9 +17,9 @@ extra_modules:
     version: "{{ yoda_version }}"
 ```
 
-# After deployment using Ansible
+## After deployment using Ansible
 
-## Creating and populating required groups
+### Creating and populating required groups
 
 Ensure that the following groups exists, each with category `datarequests`,
 subcategory `research` and data classification `unspecified`:
@@ -29,7 +31,7 @@ subcategory `research` and data classification `unspecified`:
 
 Using the group manager, populate these groups with appropriate members.
 
-## Customizing and installing schemas
+### Customizing and installing schemas
 For a fully functional datarequest module, schemas for the various forms have to
 be present. A set of templates for these schemas can be found in the
 `irods-ruleset-uu` repository in the `datarequest/schemas` directory. These meet
@@ -60,7 +62,7 @@ Instructions:
     iput -F /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schmemas/assignment/`
     ```
 
-## Customizing the helpdesk email address
+### Customizing the helpdesk email address
 Users can contact a helpdesk email address for questions regarding the
 datarequest procedure. This address is configured in `config/config.php` of the
 `yoda-portal-datarequest` repository by setting the `help_contact_name` and
