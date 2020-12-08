@@ -2,10 +2,9 @@
 
 ## Enable the datarequest module in Ansible
 Set `enable_datarequest` to `true` in configuration.
-
-    ```yaml
-    enable_datarequest: true
-    ```
+```
+enable_datarequest: true
+```
 
 Add the `yoda-portal-datarequest` repository to `extra_modules`.
 ```
