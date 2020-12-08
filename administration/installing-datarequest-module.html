@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Release notes Yoda version 1.6 (November 2020)</title>
+  <title>Before deployment using Ansible</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -82,7 +82,7 @@
                     <ul class="submenu visible-xs visible-sm nav navbar-nav">
                         
                         
-                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown current-menu-item">
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
                             <a title="Release 1.6" href="/yoda/release-notes/release-1.6.html">
                                 Release 1.6
                             </a>
@@ -376,43 +376,38 @@
                                         
                                         
                                             
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children current-menu-item">
-                                                <a href="/yoda/release-notes/release-1.6.html">Release 1.6</a>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/administration/installing-licenses.html">Installing Licenses</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/release-notes/release-1.5.html">Release 1.5</a>
+                                                <a href="/yoda/administration/installing-terms.html">Installing terms</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/release-notes/release-1.4.html">Release 1.4</a>
+                                                <a href="/yoda/administration/installing-metadata-schemas.html">Installing metadata schemas</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/release-notes/release-1.3.html">Release 1.3</a>
+                                                <a href="/yoda/administration/upgrading-metadata-schemas.html">Upgrading metadata schemas</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/release-notes/release-1.2.html">Release 1.2</a>
+                                                <a href="/yoda/administration/background-jobs.html">Background jobs</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/release-notes/release-1.1.html">Release 1.1</a>
+                                                <a href="/yoda/administration/troubleshooting-publication.html">Troubleshooting publication</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/release-notes/release-1.0.html">Release 1.0</a>
-                                            </li>
-                                        
-                                            
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/release-notes/release-0.9.7.html">Release 0.9.7</a>
+                                                <a href="/yoda/administration/restore-collection.html">Restore collection</a>
                                             </li>
                                         
                                     </ul>
@@ -426,7 +421,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Release notes Yoda version 1.6 (November 2020)
+                                    Before deployment using Ansible
                                 </h1>
                             </div>
                             
@@ -441,86 +436,77 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="release-notes-yoda-version-16-november-2020">Release notes Yoda version 1.6 (November 2020)</h1>
+                                        <h1 id="before-deployment-using-ansible">Before deployment using Ansible</h1>
 
-<p>Version: 1.6</p>
+<h2 id="enable-the-datarequest-module-in-ansible">Enable the datarequest module in Ansible</h2>
+<p>Set <code class="highlighter-rouge">enable_datarequest</code> to <code class="highlighter-rouge">true</code> in configuration.
+<code class="highlighter-rouge">enable_datarequest: true</code></p>
 
-<p>Released: November 2020</p>
+<p>Add the <code class="highlighter-rouge">yoda-portal-datarequest</code> repository to <code class="highlighter-rouge">extra_modules</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extra_modules:
+  - name: datarequest
+    repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
+    dest: /var/www/yoda/yoda-portal/modules/datarequest
+    version: ""
+</code></pre></div></div>
 
-<h2 id="whats-new-in-yoda-version-16">What’s new in Yoda version 1.6</h2>
-<h3 id="features">Features</h3>
-<ul>
-  <li>Improved folder browsing and sorting browse list</li>
-  <li>Create folders from web portal</li>
-  <li>Rename and remove files and folders from web portal</li>
-  <li>Increase upload limit (300MB)</li>
-  <li>Metadata format changed from XML to JSON</li>
-  <li>Add support for geo location in metadata schemas</li>
-  <li>Add support for datarequest module (<a href="https://utrechtuniversity.github.io/yoda/administration/installing-datarequest-module.html">installation instructions</a>)</li>
-  <li>New tool to check mail configuration</li>
-  <li>Upgrade to iRODS v4.2.7</li>
-  <li>Deprecate support for TLS 1.0 and TLS 1.1 (use <code class="highlighter-rouge">legacy_tls</code> flag to enable support for TLS 1.0 and TLS 1.1)</li>
-</ul>
+<h1 id="after-deployment-using-ansible">After deployment using Ansible</h1>
 
-<h2 id="upgrading-from-yoda-version-15">Upgrading from Yoda version 1.5</h2>
-<p>Upgrade is supported by Ansible (2.9.x).
-Requires Yoda external user service to be on version 1.5.x or higher.
-Requires Yoda public server to be on version 1.6.x or higher.</p>
+<h2 id="creating-and-populating-required-groups">Creating and populating required groups</h2>
+
+<p>Ensure that the following groups exists, each with category <code class="highlighter-rouge">datarequests</code>,
+subcategory <code class="highlighter-rouge">research</code> and data classification <code class="highlighter-rouge">unspecified</code>:
+<code class="highlighter-rouge">
+datarequests-research-datamanagers
+datarequests-research-board-of-directors
+datarequests-research-data-management-committee</code></p>
+
+<p>Using the group manager, populate these groups with appropriate members.</p>
+
+<h2 id="customizing-and-installing-schemas">Customizing and installing schemas</h2>
+<p>For a fully functional datarequest module, schemas for the various forms have to
+be present. A set of templates for these schemas can be found in the
+<code class="highlighter-rouge">irods-ruleset-uu</code> repository in the <code class="highlighter-rouge">datarequest/schemas</code> directory. These meet
+the requirements of the datarequest procedure of
+<a href="https://www.uu.nl/en/research/youth-cohort-study">the YOUth cohort study</a>.</p>
+
+<p>For a production deployment to a Yoda instance for which these templates are
+suitable as is (e.g. the Yoda instance of YOUth), only one template has to be
+changed, and that is <code class="highlighter-rouge">datarequest/schemas/youth-0/assignment/schema.json</code>.
+Within this template, replace the example DMC member entries in the <code class="highlighter-rouge">assign_to</code>
+section with real entries. The <code class="highlighter-rouge">enum</code> field should be an array of usernames of
+the DMC members and the <code class="highlighter-rouge">enumNames</code> field should be an array with corresponding
+“display names” (which are visible in the assignment form).</p>
+
+<p>Instructions:</p>
 
 <ol>
-  <li>Set Yoda release to <code class="highlighter-rouge">release-1.6</code> in configuration.
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">release-1.6</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Set the default schema to <code class="highlighter-rouge">default-1</code> in configuration.
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">default_yoda_schema</span><span class="pi">:</span> <span class="s">default-1</span>
-</code></pre></div>    </div>
-  </li>
-  <li>The core modules (<code class="highlighter-rouge">research</code>, <code class="highlighter-rouge">vault</code>, <code class="highlighter-rouge">statistics</code>, <code class="highlighter-rouge">group-manager</code>) are enabled by default in Yoda 1.6.
-Only extra modules have to be enabled in the configuration.
-So <code class="highlighter-rouge">modules</code> becomes <code class="highlighter-rouge">extra_modules</code> and all core modules should be removed from the <code class="highlighter-rouge">extra_modules</code> list.
-For example:
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># Yoda modules</span>
-     <span class="na">extra_modules</span><span class="pi">:</span>
-       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">intake</span>
-         <span class="na">repo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/UtrechtUniversity/yoda-portal-intake.git"</span>
-         <span class="na">dest</span><span class="pi">:</span> <span class="s">/var/www/yoda/yoda-portal/modules/intake</span>
-         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
-</code></pre></div>    </div>
-  </li>
-  <li>The core rulesets (<code class="highlighter-rouge">core</code> and <code class="highlighter-rouge">irods-ruleset-uu</code>) are enabled by default in Yoda 1.6.
-Only extra modules have to be enabled in the configuration.
-Furthermore, the research ruleset (<code class="highlighter-rouge">irods-ruleset-research</code>) has been merged with the UU ruleset
-(<code class="highlighter-rouge">irods-ruleset-uu</code>). So <code class="highlighter-rouge">rulesets</code> becomes <code class="highlighter-rouge">extra_rulesets</code>;
-<code class="highlighter-rouge">core</code>, <code class="highlighter-rouge">irods-ruleset-research</code> and <code class="highlighter-rouge">irods-ruleset-uu</code> should be removed from the <code class="highlighter-rouge">extra_rulesets</code> list.
-For example:
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># iRODS rulesets</span>
-     <span class="na">extra_rulesets</span><span class="pi">:</span>
-       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">irods-ruleset-youth-cohort</span>
-         <span class="na">repo</span><span class="pi">:</span> <span class="s">https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git</span>
-         <span class="na">ruleset_name</span><span class="pi">:</span> <span class="s">rules-yc</span>
-         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
-         <span class="na">install_scripts</span><span class="pi">:</span> <span class="s">no</span>
-</code></pre></div>    </div>
+  <li>Copy the template to a temporary directory for adjustment.</li>
+</ol>
+
+<p><code class="highlighter-rouge">cp datarequest/schemas/youth-0/assignment/schema.json /tmp/</code></p>
+
+<ol>
+  <li>
+    <p>Edit the template (see explanation above).</p>
   </li>
   <li>
-    <p>Run the Ansible upgrade in check mode.</p>
+    <p>Overwrite the default assignment schema with the edited schema.</p>
   </li>
-  <li>
-    <p>Run the Ansible upgrade.</p>
-  </li>
-  <li>Convert all metadata XML in the vault to JSON (<code class="highlighter-rouge">default-0</code> XML to <code class="highlighter-rouge">default-0</code> JSON).
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
-</code></pre></div>    </div>
-  </li>
-  <li>Update all metadata JSON in the vault to latest metadata JSON version (<code class="highlighter-rouge">default-0</code> to <code class="highlighter-rouge">default-1</code>).
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r
-</code></pre></div>    </div>
-  </li>
-  <li>Update publication endpoints if there are published packages (landingpages and OAI-PMH):
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/update-publications.r
-</code></pre></div>    </div>
-  </li>
+</ol>
+
+<p><code class="highlighter-rouge">iput -F /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schmemas/assignment/</code></p>
+
+<h2 id="customizing-the-helpdesk-email-address">Customizing the helpdesk email address</h2>
+<p>Users can contact a helpdesk email address for questions regarding the
+datarequest procedure. This address is configured in <code class="highlighter-rouge">config/config.php</code> of the
+<code class="highlighter-rouge">yoda-portal-datarequest</code> repository by setting the <code class="highlighter-rouge">help_contact_name</code> and
+<code class="highlighter-rouge">help_contact_email</code> fields.</p>
+
+<p>Instructions:</p>
+
+<ol>
+  <li>Adjust the above-mentioned fields in <code class="highlighter-rouge">/var/www/yoda/yoda-portal/modules/datarequest/config/config.php</code>.</li>
 </ol>
 
                                     </section>
