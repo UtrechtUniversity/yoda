@@ -2,9 +2,11 @@
 
 ## Enable the datarequest module in Ansible
 Set `enable_datarequest` to `true` in configuration.
-```enable_datarequest: true```
+
+`enable_datarequest: true`
 
 Add the `yoda-portal-datarequest` repository to `extra_modules`.
+
 ```
 extra_modules:
   - name: datarequest
@@ -19,10 +21,12 @@ extra_modules:
 
 Ensure that the following groups exists, each with category `datarequests`,
 subcategory `research` and data classification `unspecified`:
+
 ```
 datarequests-research-datamanagers
 datarequests-research-board-of-directors
-datarequests-research-data-management-committee```
+datarequests-research-data-management-committee
+```
 
 Using the group manager, populate these groups with appropriate members.
 
