@@ -79,3 +79,5 @@ irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/iro
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/update-publications.r
 ```
+
+10. Optionally install the datarequest module. Installation instructions can be found at https://utrechtuniversity.github.io/yoda/administration/installing-datarequest-module.html
