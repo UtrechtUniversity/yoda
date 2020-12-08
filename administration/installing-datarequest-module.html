@@ -440,7 +440,9 @@
 
 <h2 id="enable-the-datarequest-module-in-ansible">Enable the datarequest module in Ansible</h2>
 <p>Set <code class="highlighter-rouge">enable_datarequest</code> to <code class="highlighter-rouge">true</code> in configuration.
-<code class="highlighter-rouge">enable_datarequest: true</code></p>
+    <code class="highlighter-rouge">yaml
+    enable_datarequest: true
+   </code></p>
 
 <p>Add the <code class="highlighter-rouge">yoda-portal-datarequest</code> repository to <code class="highlighter-rouge">extra_modules</code>.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extra_modules:
@@ -456,10 +458,11 @@
 
 <p>Ensure that the following groups exists, each with category <code class="highlighter-rouge">datarequests</code>,
 subcategory <code class="highlighter-rouge">research</code> and data classification <code class="highlighter-rouge">unspecified</code>:
-<code class="highlighter-rouge">
-datarequests-research-datamanagers
-datarequests-research-board-of-directors
-datarequests-research-data-management-committee</code></p>
+    <code class="highlighter-rouge">
+    datarequests-research-datamanagers
+    datarequests-research-board-of-directors
+    datarequests-research-data-management-committee
+   </code></p>
 
 <p>Using the group manager, populate these groups with appropriate members.</p>
 
@@ -481,21 +484,22 @@ the DMC members and the <code class="highlighter-rouge">enumNames</code> field s
 <p>Instructions:</p>
 
 <ol>
-  <li>Copy the template to a temporary directory for adjustment.</li>
-</ol>
+  <li>
+    <p>Copy the template to a temporary directory for adjustment.</p>
 
-<p><code class="highlighter-rouge">cp datarequest/schemas/youth-0/assignment/schema.json /tmp/</code></p>
-
-<ol>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cp datarequest/schemas/youth-0/assignment/schema.json /tmp/
+</code></pre></div>    </div>
+  </li>
   <li>
     <p>Edit the template (see explanation above).</p>
   </li>
   <li>
     <p>Overwrite the default assignment schema with the edited schema.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> iput <span class="nt">-F</span> /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schmemas/assignment/<span class="sb">`</span>
+</code></pre></div>    </div>
   </li>
 </ol>
-
-<p><code class="highlighter-rouge">iput -F /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schmemas/assignment/</code></p>
 
 <h2 id="customizing-the-helpdesk-email-address">Customizing the helpdesk email address</h2>
 <p>Users can contact a helpdesk email address for questions regarding the

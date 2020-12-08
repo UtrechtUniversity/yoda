@@ -6,6 +6,7 @@
 - [Installing terms](installing-terms.md)
 - [Installing preservable file formats](installing-preservable-file-formats.md)
 - [Installing metadata schemas](installing-metadata-schemas.md)
+- [Installing datarequest module](installing-datarequest-module.md)
 - [Upgrading metadata schemas](upgrading-metadata-schemas.md)
 - [Background jobs](background-jobs.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
