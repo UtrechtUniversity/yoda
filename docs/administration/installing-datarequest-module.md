@@ -29,6 +29,24 @@ subcategory `research` and data classification `unspecified`:
     datarequests-research-data-management-committee
     ```
 
+Instructions:
+
+1. Log into an account on the server with permission to create new groups.
+
+`sudo su irods`
+
+2. Create the groups.
+
+```
+irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
+irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-board-of-directors", "datarequest", "research", "Board of Directors", "", *status, *message);' null ruleExecOut
+irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-management-committee", "datarequest", "research", "Data Management Committee", "", *status, *message);' null ruleExecOut
+```
+
+3. Confirm that the groups exist.
+
+`iadmin lg`
+
 Using the group manager, populate these groups with appropriate members.
 
 ### Customizing and installing schemas
