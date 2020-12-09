@@ -465,6 +465,29 @@ subcategory <code class="highlighter-rouge">research</code> and data classificat
     datarequests-research-data-management-committee
    </code></p>
 
+<p>Instructions:</p>
+
+<ol>
+  <li>Log into an account on the server with permission to create new groups.</li>
+</ol>
+
+<p><code class="highlighter-rouge">sudo su irods</code></p>
+
+<ol>
+  <li>Create the groups.</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
+irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-board-of-directors", "datarequest", "research", "Board of Directors", "", *status, *message);' null ruleExecOut
+irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-management-committee", "datarequest", "research", "Data Management Committee", "", *status, *message);' null ruleExecOut
+</code></pre></div></div>
+
+<ol>
+  <li>Confirm that the groups exist.</li>
+</ol>
+
+<p><code class="highlighter-rouge">iadmin lg</code></p>
+
 <p>Using the group manager, populate these groups with appropriate members.</p>
 
 <h3 id="customizing-and-installing-schemas">Customizing and installing schemas</h3>
