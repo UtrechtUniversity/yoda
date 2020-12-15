@@ -77,7 +77,7 @@ Instructions:
 3. Overwrite the default assignment schema with the edited schema.
 
     ```bash
-    iput -F /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schmemas/assignment/`
+    iput -f /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schemas/youth-0/assignment/schema.json
     ```
 
 ### Customizing the helpdesk email address
