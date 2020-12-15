@@ -29,6 +29,10 @@ eus_api_fqdn               = '{{ eus_api_fqdn }}'
 eus_api_port               = '{{ eus_api_port }}'
 eus_api_secret             = '{{ eus_api_secret }}'
 
+{% if enable_datarequest %}
+yoda_portal_fqdn           = '{{ yoda_portal_fqdn }}'
+{% endif %}
+
 epic_pid_enabled           = '{{ ["false", "true"][epic_pid_enabled|int] }}'
 {% if epic_pid_enabled %}
 epic_url                   = '{{ epic_url }}'
