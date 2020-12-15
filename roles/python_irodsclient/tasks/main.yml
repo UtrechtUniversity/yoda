@@ -8,9 +8,16 @@
     state: present
 
 
-- name: Install python-irodsclient
+- name: Ensure python-irodsclient dependencies are installed
   pip:
     name:
       - pip==20.2.4
+      - setuptools==44.1.1
+    state: present
+
+
+- name: Ensure python-irodsclient is installed
+  pip:
+    name:
       - python-irodsclient==0.8.5
     state: present
