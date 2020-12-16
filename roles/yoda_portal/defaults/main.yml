@@ -15,38 +15,7 @@ yoda_php_encryption_key: dummy
 yoda_public_dir: /var/www/yoda/yoda-portal/public
 
 # Yoda portal
-portal:
-  - repo: "https://github.com/UtrechtUniversity/CodeIgniter.git"
-    dest: /var/www/yoda/CodeIgniter
-    version: "{{ codeigniter_version }}"
-  - repo: "https://github.com/UtrechtUniversity/irods-php.git"
-    dest: /var/www/yoda/irods-php
-    version: "{{ yoda_version }}"
-  - repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
-    dest: /var/www/yoda/yoda-portal
-    version: "{{ yoda_version }}"
-
-# Yoda core modules
-core_modules:
-  - name: group-manager
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
-    dest: /var/www/yoda/yoda-portal/modules/group-manager
-    version: "{{ yoda_version }}"
-  - name: research
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
-    dest: /var/www/yoda/yoda-portal/modules/research
-    version: "{{ yoda_version }}"
-  - name: vault
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-vault.git"
-    dest: /var/www/yoda/yoda-portal/modules/vault
-    version: "{{ yoda_version }}"
-  - name: statistics
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
-    dest: /var/www/yoda/yoda-portal/modules/statistics
-    version: "{{ yoda_version }}"
-
-# Yoda extra modules
-extra_modules: []
+yoda_portal_version: "pyportal"
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name
