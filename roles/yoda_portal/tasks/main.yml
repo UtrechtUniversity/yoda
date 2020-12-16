@@ -11,7 +11,7 @@
 
 
 - name: Ensure Yoda portal virtualenv exists
-  shell: python3 -m virtualenv "/var/www/yoda/venv"
+  command: python3 -m virtualenv "/var/www/yoda/venv"
   args:
     creates: /var/www/yoda/venv
 
