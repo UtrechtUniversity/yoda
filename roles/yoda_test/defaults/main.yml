@@ -6,18 +6,6 @@ irods_service_account: irods
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_default_resc: irodsResc
 
-schemas:
-  - schema: default-0
-    category: default-0
-  - schema: default-1
-    category: default-1
-  - schema: hptlab-0
-    category: hptlab-0
-  - schema: teclab-0
-    category: teclab-0
-  - schema: core-0
-    category: core-0
-
 # Test configuration.
 test_password: test
 
@@ -47,12 +35,6 @@ test_users:
   - name: technicaladmin
     password: '{{ test_password }}'
     type: rodsadmin
-  - name: testuseradd
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: testuserdel
-    password: '{{ test_password }}'
-    type: rodsuser
   - name: bodmember
     password: '{{ test_password }}'
     type: rodsuser
@@ -112,10 +94,6 @@ test_groups:
     subcategory: core-0
     dataClassification:
 
-  - groupName: research-browse
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
   - groupName: research-initial
     category: initial
     subcategory: initial
@@ -153,10 +131,6 @@ test_groups:
     subcategory: intake-intake
     dataClassification: unspecified
   - groupName: research-revisions
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-search
     category: initial
     subcategory: initial
     dataClassification: unspecified
@@ -251,13 +225,6 @@ test_groupusers:
     user: functionaladmingroup
     role: manager
 
-  - groupName: research-browse
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-browse
-    user: researcher
-    role: normal
-
   - groupName: research-initial
     user: functionaladminpriv
     role: manager
@@ -270,9 +237,6 @@ test_groupusers:
   - groupName: research-initial
     user: viewer
     role: reader
-  - groupName: research-initial
-    user: testuserdel
-    role: normal
 
   - groupName: research-initial1
     user: functionaladminpriv
@@ -338,34 +302,15 @@ test_groupusers:
     user: viewer
     role: reader
 
-  - groupName: research-search
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-search
-    user: groupmanager
-    role: manager
-  - groupName: research-search
-    user: researcher
-    role: normal
-  - groupName: research-search
-    user: viewer
-    role: reader
-
-  - groupName: datamanager-teststatistics
-    user: functionaladminpriv
-    role: manager
-
 deletion_research_groups:
   - research: default-0
   - research: default-1
   - research: hptlab-0
   - research: teclab-0
   - research: core-0
-  - research: browse
   - research: initial
   - research: initial1
   - research: revisions
-  - research: search
 
 deletion_datamanager_groups:
   - datamanager: default-0
@@ -384,9 +329,6 @@ deletion_grp_groups:
   - grp: vault-test
 
 deletion_intake_groups:
-  - intake: i1
-  - intake: recreateintake
-  - intake: researchintake
 
 reset_tiers:
   - dev001
