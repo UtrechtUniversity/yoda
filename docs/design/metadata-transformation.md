@@ -1,6 +1,6 @@
-# Transformation of metadata within YoDa #
+# Transformation of metadata within Yoda #
 
-Due to the fact that communities can change their requirements to their metadata YoDa allows for changes in metadata, i.e. metadata forms configuration.  
+Due to the fact that communities can change their requirements to their metadata Yoda allows for changes in metadata, i.e. metadata forms configuration.  
 
 *Comply to the latest schema!*  
 As a rule all metadata will have to comply to the latest corresponding schema.  
@@ -20,7 +20,7 @@ This designates the location of the publically accessible schema to which the da
 As stated, the schema is under version control.
 
 *- The XML schemas for research and vault area (XSD) *   
-Each YoDa-instance holds community based schemas internally for control of metadata integrity for that perticular community.
+Each Yoda-instance holds community based schemas internally for control of metadata integrity for that perticular community.
 In such a system community folder reside:
 - research.xsd   
 The schema to which yoda-metadata.xml in the research area must comply

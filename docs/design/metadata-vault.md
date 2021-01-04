@@ -1,42 +1,33 @@
 # Metadata of datasets in the vault
 
-
-
 ## Submit to vault
 When requesting a datapackage to be accepted into the vault, its corresponding metadata will be validated first.
-Validation will take place against the community XSD. If this does not exists, validation will take place against the default XSD of the YoDa instance.
+Validation will take place against the community metadata JSON.
+If this does not exists, validation will take place against the default metadata JSON of the Yoda instance.
 
 ![OVerview MOAI-CKAN](img/to_vault.png)
-
-The XSD is a transformation of the JSON schema's that are maintained by the YoDa development team.
-The Yoda team wrote a program to be able to do so.
-The documentation of this conversion tool can be found here:  @LINK
-
-
 
 ## Editing metadata in vault
 The metadata form is also used for editing of metadata when the data package has already been accepted and copied to the vault.
 A **datamanager**, a yoda-user that is member of a datamanager-group for the same research-group, can still edit metadata for the package that is already in the vault.
 However, the data as originally entered by the researcher and accepted for the vault by a datamanager is never compromised / lost.
 
-
-
 ## Metadata form for the vault
 The presented metadata form within the vault uses the same basic technique(s) as in the dynamic storage space.  
-It uses the same JSONSchema as the research area. Therefore, the form layout is identical as shown in the research environment.
+It uses the same JSON schema as the research area.
+Therefore, the form layout is identical as shown in the research environment.
 Also validation of the metadata is identical.
 
 ### Permissions
 Only the datamanager of the vault-group is allowed to edit metadata.
 
-
 ### Presentation
-In the vault environment the data presented in the metadata form is loaded from the latest/newest yoda-metadata.xml present within the dataset.
+In the vault environment the data presented in the metadata form is loaded from the latest/newest yoda-metadata.json present within the dataset.
 
 A vault package contains all (previously) saved metadata-files with an extend suffix between brackets to 1) make its name unique and 2) to see a timeorder
 
-yoda-metadata[1554743001].xml
-yoda-metadata[1554733000].xml
+yoda-metadata[1554743001].json
+yoda-metadata[1554733000].json
 
 ### IMPORT
 The latest vault yoda-metadata file for the datapackage is loaded into PHP.
@@ -46,7 +37,7 @@ The corresponding JSONSchema (either community or default schema) is required as
 
 ## Saving metadata
 The entire process is handled in a similar way like in the research area.
-Main difference is that the new data is not actually overwriting the data in yoda-metadata.xml.
+Main difference is that the new data is not actually overwriting the data in yoda-metadata.json.
 The metadata form saves its data in the vault in the corresponding folder but always with a unique name, based upon timestamps.
 Thus always safeguarding earlier metadata.
 
@@ -54,9 +45,4 @@ Presented metadata in vault, is always based upon the newest metadata known for 
 
 ### Validation
 When a datamanager edits data and saves this, the new metadata is validated agains the proper.  
-After posting, the metadata is first validated against JSONS-validation in the PHP layer.
-After that, XSD validation will take place.
-
-### Saving metadata - add timestamp in filename
-WHEN IS JSONS - validated in PHP layer!!
-2 XSD's are required. WHere is that stated?????
+After posting, the metadata is validated against the metadata JSON schema.
