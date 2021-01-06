@@ -9,4 +9,5 @@ auth [success=done default=die] pam_exec.so expose_authtok /usr/local/bin/extern
 {% endif %}
 
 auth        sufficient    pam_unix.so
+auth        sufficient    pam_python.so /var/lib/irods/msiExecCmd_bin/oidc.py debug
 auth        required      pam_radius_auth.so

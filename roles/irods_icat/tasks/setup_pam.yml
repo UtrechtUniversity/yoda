@@ -48,3 +48,14 @@
     group: root
     mode: 04755
   when: not ansible_check_mode
+
+
+- name: Ensure OIDC authentication is present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  template:
+    src: oidc.py.j2
+    dest: /var/lib/irods/msiExecCmd_bin/oidc.py
+    owner: irods
+    group: irods
+    mode: 0644

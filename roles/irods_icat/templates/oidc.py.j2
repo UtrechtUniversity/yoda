@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+# {{ ansible_managed }}
+
+def pam_sm_authenticate(pamh, flags, argv):
+    return pamh.PAM_AUTH_ERR
