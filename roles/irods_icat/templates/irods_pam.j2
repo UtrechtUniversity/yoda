@@ -3,10 +3,10 @@
 
 auth        optional      pam_faildelay.so delay={{ pam_fail_delay }}
 
-{% if external_users %}
-auth [success=ignore default=1] pam_exec.so /usr/local/bin/is-user-external.sh
-auth [success=done default=die] pam_exec.so expose_authtok /usr/local/bin/external-auth.py
-{% endif %}
+#{% if external_users %}
+#auth [success=ignore default=1] pam_exec.so /usr/local/bin/is-user-external.sh
+#auth [success=done default=die] pam_exec.so expose_authtok /usr/local/bin/external-auth.py
+#{% endif %}
 
 auth        sufficient    pam_unix.so
 auth        sufficient    pam_python.so /var/lib/irods/msiExecCmd_bin/oidc.py debug

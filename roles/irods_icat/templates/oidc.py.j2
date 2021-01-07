@@ -1,10 +1,31 @@
 #!/usr/bin/env python
-# {{ ansible_managed }}
+# Ansible managed
 
-USERINFO_URI = "{{ oidc_userinfo_uri }}"
+import requests
+
+
+USERINFO_URI = "https://oauth.mocklab.io/userinfo"
 
 def validate_token(username, token):
-    return True
+    # Send token validation request.
+    headers = {"Authorization": "Bearer {}".format(token)}
+    r = requests.get(USERINFO_URI, headers=headers)
+
+    # Check http status.
+    if r.status_code != 200:
+        return False
+
+    # Retrieve token email.
+    try:
+        email = r.json()["email"]
+    except Exception:
+        return False
+
+    # Check if token email corresponds with username.
+    if username == r.json()["email"]:
+        return True
+
+    return False
 
 
 def pam_sm_authenticate(pamh, flags, argv):
@@ -15,10 +36,9 @@ def pam_sm_authenticate(pamh, flags, argv):
         return pamh.PAM_USER_UNKNOWN
 
     # Get the token.
-    try:
-        token = pwd.getpwnam(username)
-    except Exception:
-        return pamh.PAM_USER_UNKNOWN
+    token = pamh.authtok
+    if token is None:
+        return pamh.PAM_AUTH_ERR
 
     # Validate the token.
     if(validate_token(username, token)):
