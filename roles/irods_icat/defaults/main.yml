@@ -41,3 +41,6 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 openssl_dhparams: dhparams.pem
 openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
+
+# OpenID Connect configuration
+oidc_userinfo_uri: 'https://oauth.mocklab.io/userinfo'

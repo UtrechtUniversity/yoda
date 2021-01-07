@@ -1,5 +1,27 @@
 #!/usr/bin/env python
 # {{ ansible_managed }}
 
+USERINFO_URI = "{{ oidc_userinfo_uri }}"
+
+def validate_token(username, token):
+    return True
+
+
 def pam_sm_authenticate(pamh, flags, argv):
+    # Get the username.
+    try:
+        username = pamh.get_user()
+    except Exception:
+        return pamh.PAM_USER_UNKNOWN
+
+    # Get the token.
+    try:
+        token = pwd.getpwnam(username)
+    except Exception:
+        return pamh.PAM_USER_UNKNOWN
+
+    # Validate the token.
+    if(validate_token(username, token)):
+        return pamh.PAM_SUCCESS
+
     return pamh.PAM_AUTH_ERR
