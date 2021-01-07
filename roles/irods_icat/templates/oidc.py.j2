@@ -22,7 +22,7 @@ def validate_token(username, token):
         return False
 
     # Check if token email corresponds with username.
-    if username == r.json()["email"]:
+    if username == email:
         return True
 
     return False
