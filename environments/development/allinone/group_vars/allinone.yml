@@ -22,6 +22,8 @@ credential_files: PLACEHOLDER                      # Location of Yoda credential
 # Datarequest module configuration
 enable_datarequest: true                           # Enable datarequest module
 
+yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
+
 # Yoda modules
 extra_modules:
   - name: intake

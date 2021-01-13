@@ -6,18 +6,6 @@ irods_service_account: irods
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_default_resc: irodsResc
 
-schemas:
-  - schema: default-0
-    category: default-0
-  - schema: default-1
-    category: default-1
-  - schema: hptlab-0
-    category: hptlab-0
-  - schema: teclab-0
-    category: teclab-0
-  - schema: core-0
-    category: core-0
-
 # Test configuration.
 test_password: test
 
@@ -47,12 +35,6 @@ test_users:
   - name: technicaladmin
     password: '{{ test_password }}'
     type: rodsadmin
-  - name: testuseradd
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: testuserdel
-    password: '{{ test_password }}'
-    type: rodsuser
   - name: bodmember
     password: '{{ test_password }}'
     type: rodsuser
@@ -67,8 +49,8 @@ eus_test_users:
 
 # Following users are created in the regressiontest and need to be removed only.
 created_by_ta_users:
-  - name: createnewuser
-  - name: yodaexternaluser@gmail.com
+  - name: uipromote
+  - name: uidemote
 
 test_groups:
   - groupName: research-default-0
@@ -112,10 +94,6 @@ test_groups:
     subcategory: core-0
     dataClassification:
 
-  - groupName: research-browse
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
   - groupName: research-initial
     category: initial
     subcategory: initial
@@ -152,78 +130,11 @@ test_groups:
     category: intake-intake
     subcategory: intake-intake
     dataClassification: unspecified
-  - groupName: research-deletegroup
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-updateproperties
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-epicpid
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-mdtest
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-mdtestvault
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-notification
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-notpreservable
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-oaipmh
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-process1
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-process2
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-process3
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-processfordatacite
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
   - groupName: research-revisions
     category: initial
     subcategory: initial
     dataClassification: unspecified
-  - groupName: research-search
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-teststatistics1
-    category: teststatistics
-    subcategory: teststatistics
-    dataClassification: unspecified
-  - groupName: research-teststatistics2
-    category: teststatistics
-    subcategory: teststatistics
-    dataClassification: unspecified
-  - groupName: datamanager-teststatistics
-    category: teststatistics
-    subcategory: teststatistics
-    dataClassification:
-  - groupName: research-nodmprocess
-    category: nodminitial
-    subcategory: nodminitial
-    dataClassification: unspecified
+
   - groupName: datarequests-research-board-of-directors
     category: datarequests
     subcategory: research
@@ -238,18 +149,45 @@ test_groups:
     dataClassification: unspecified
 
 test_groupusers:
+  - groupName: research-core-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-core-0
+    user: researcher
+    role: normal
+  - groupName: datamanager-core-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-core-0
+    user: datamanager
+    role: manager
+
   - groupName: research-default-0
     user: functionaladminpriv
     role: manager
+  - groupName: research-default-0
+    user: researcher
+    role: normal
   - groupName: datamanager-default-0
     user: functionaladminpriv
     role: manager
+  - groupName: datamanager-default-0
+    user: datamanager
+    role: manager
+
   - groupName: research-default-1
     user: functionaladminpriv
     role: manager
+  - groupName: research-default-1
+    user: researcher
+    role: normal
   - groupName: datamanager-default-1
     user: functionaladminpriv
     role: manager
+  - groupName: datamanager-default-1
+    user: datamanager
+    role: manager
+
   - groupName: research-hptlab-0
     user: functionaladminpriv
     role: manager
@@ -260,12 +198,6 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-teclab-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-core-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-core-0
     user: functionaladminpriv
     role: manager
 
@@ -293,13 +225,6 @@ test_groupusers:
     user: functionaladmingroup
     role: manager
 
-  - groupName: research-browse
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-browse
-    user: researcher
-    role: normal
-
   - groupName: research-initial
     user: functionaladminpriv
     role: manager
@@ -312,9 +237,6 @@ test_groupusers:
   - groupName: research-initial
     user: viewer
     role: reader
-  - groupName: research-initial
-    user: testuserdel
-    role: normal
 
   - groupName: research-initial1
     user: functionaladminpriv
@@ -337,22 +259,6 @@ test_groupusers:
     role: normal
   - groupName: datamanager-initial
     user: yodadatamanager@gmail.com
-    role: normal
-
-  - groupName: research-deletegroup
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-deletegroup
-    user: researcher
-    role: normal
-  - groupName: research-deletegroup
-    user: viewer
-    role: reader
-  - groupName: research-deletegroup
-    user: groupmanager
-    role: manager
-  - groupName: research-deletegroup
-    user: datamanager
     role: normal
 
   - groupName: grp-intake-initial
@@ -383,155 +289,6 @@ test_groupusers:
     user: datamanager
     role: manager
 
-  - groupName: research-updateproperties
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-updateproperties
-    user: groupmanager
-    role: manager
-  - groupName: research-updateproperties
-    user: researcher
-    role: normal
-  - groupName: research-updateproperties
-    user: viewer
-    role: reader
-
-  - groupName: research-epicpid
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-epicpid
-    user: groupmanager
-    role: manager
-  - groupName: research-epicpid
-    user: researcher
-    role: normal
-  - groupName: research-epicpid
-    user: viewer
-    role: reader
-
-  - groupName: research-mdtest
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-mdtest
-    user: groupmanager
-    role: manager
-  - groupName: research-mdtest
-    user: researcher
-    role: normal
-  - groupName: research-mdtest
-    user: viewer
-    role: reader
-
-  - groupName: research-mdtestvault
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-mdtestvault
-    user: groupmanager
-    role: manager
-  - groupName: research-mdtestvault
-    user: researcher
-    role: normal
-  - groupName: research-mdtestvault
-    user: viewer
-    role: reader
-
-  - groupName: research-notification
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-notification
-    user: groupmanager
-    role: manager
-  - groupName: research-notification
-    user: yodaresearcher@gmail.com
-    role: normal
-  - groupName: research-notification
-    user: researcher
-    role: normal
-  - groupName: research-notification
-    user: viewer
-    role: reader
-
-  - groupName: research-notpreservable
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-notpreservable
-    user: groupmanager
-    role: manager
-  - groupName: research-notpreservable
-    user: yodaresearcher@gmail.com
-    role: normal
-  - groupName: research-notpreservable
-    user: researcher
-    role: normal
-  - groupName: research-notpreservable
-    user: viewer
-    role: reader
-
-  - groupName: research-oaipmh
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-oaipmh
-    user: groupmanager
-    role: manager
-  - groupName: research-oaipmh
-    user: researcher
-    role: normal
-  - groupName: research-oaipmh
-    user: viewer
-    role: reader
-
-  - groupName: research-process1
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-process1
-    user: groupmanager
-    role: manager
-  - groupName: research-process1
-    user: researcher
-    role: normal
-  - groupName: research-process1
-    user: viewer
-    role: reader
-
-  - groupName: research-process2
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-process2
-    user: groupmanager
-    role: manager
-  - groupName: research-process2
-    user: researcher
-    role: normal
-  - groupName: research-process2
-    user: viewer
-    role: reader
-
-  - groupName: research-process3
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-process3
-    user: groupmanager
-    role: manager
-  - groupName: research-process3
-    user: researcher
-    role: normal
-  - groupName: research-process3
-    user: viewer
-    role: reader
-
-  - groupName: research-processfordatacite
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-processfordatacite
-    user: groupmanager
-    role: manager
-  - groupName: research-processfordatacite
-    user: researcher
-    role: normal
-  - groupName: research-processfordatacite
-    user: viewer
-    role: reader
-
   - groupName: research-revisions
     user: functionaladminpriv
     role: manager
@@ -542,44 +299,6 @@ test_groupusers:
     user: researcher
     role: normal
   - groupName: research-revisions
-    user: viewer
-    role: reader
-
-  - groupName: research-search
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-search
-    user: groupmanager
-    role: manager
-  - groupName: research-search
-    user: researcher
-    role: normal
-  - groupName: research-search
-    user: viewer
-    role: reader
-
-  - groupName: research-teststatistics1
-    user: functionaladminpriv
-    role: manager
-
-  - groupName: research-teststatistics2
-    user: functionaladminpriv
-    role: manager
-
-  - groupName: datamanager-teststatistics
-    user: functionaladminpriv
-    role: manager
-
-  - groupName: research-nodmprocess
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-nodmprocess
-    user: groupmanager
-    role: manager
-  - groupName: research-nodmprocess
-    user: researcher
-    role: normal
-  - groupName: research-nodmprocess
     user: viewer
     role: reader
 
@@ -589,34 +308,9 @@ deletion_research_groups:
   - research: hptlab-0
   - research: teclab-0
   - research: core-0
-  - research: browse
-  - research: deletegroup
-  - research: escapecharsinfolders
-  - research: i1
   - research: initial
   - research: initial1
-  - research: epicpid
-  - research: mdtest
-  - research: mdtestvault
-  - research: nodmprocess
-  - research: notification
-  - research: notpreservable
-  - research: oaipmh
-  - research: process1
-  - research: process2
-  - research: process3
-  - research: processfordatacite
-  - research: r1
-  - research: research
-  - research: recreateresearch
-  - research: recreateresearch3
   - research: revisions
-  - research: search
-  - research: teststatistics1
-  - research: teststatistics2
-  - research: tovaultnodm
-  - research: tovaultwithdm
-  - research: updateproperties
 
 deletion_datamanager_groups:
   - datamanager: default-0
@@ -624,26 +318,17 @@ deletion_datamanager_groups:
   - datamanager: hptlab-0
   - datamanager: teclab-0
   - datamanager: core-0
-  - datamanager: frontendtest
   - datamanager: initial
-  - datamanager: teststatistics
-  - datamanager: nodminitial
-  - datamanager: newtovault
-  - datamanager: charescaping
 
 deletion_grp_groups:
   - grp: datamanager-initial
   - grp: datamanager-test
-  - grp: g1
   - grp: intake-initial
   - grp: intake-test
   - grp: vault-initial
   - grp: vault-test
 
 deletion_intake_groups:
-  - intake: i1
-  - intake: recreateintake
-  - intake: researchintake
 
 reset_tiers:
   - dev001
