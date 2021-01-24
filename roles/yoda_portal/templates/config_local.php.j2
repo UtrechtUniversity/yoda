@@ -45,3 +45,15 @@ $config['log_threshold']       = 1;
 {% endif %}
 
 $config['yoda_eus_fqdn']       = '{{ yoda_eus_fqdn }}';
+
+// Config for OIDC
+$config['oidc_clientId']        = '{{ oidc_clientId }}';
+$config['oidc_clientSecret']    = '{{ oidc_clientSecret }}';
+$config['oidc_callbackUrl']     = '{{ oidc_callbackUrl }}';
+$config['oidc_authUrl']         = '{{ oidc_authUrl }}';
+$config['oidc_tokenUrl']        = '{{ oidc_tokenUrl }}';
+$config['oidc_scopes']		= '{{ oidc_scopes }}';
+$config['oidc_acrValues']	= '{{ oidc_acrValues }}';
+$config['oidc_emailField']	= '{{ oidc_mailField | default(email) }}';
+$config['oidc_active']		= {% if oidc_clientId is defined and oidc_clientSecret is defined and oidc_callbackUrl is defined and oidc_authUrl is defined and oidc_tokenUrl is defined %}true{% else %}false{% endif %};
+$config['oidc_signing_text']	= '{{ oidc_signin_text }}';

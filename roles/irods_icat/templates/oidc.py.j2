@@ -4,7 +4,7 @@
 import requests
 
 
-USERINFO_URI = "https://oauth.mocklab.io/userinfo"
+USERINFO_URI = "{{ oidc_userinfoUrl }}"
 
 def validate_token(username, token):
     # Send token validation request.
