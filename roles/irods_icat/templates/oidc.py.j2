@@ -4,7 +4,7 @@
 import requests
 
 
-USERINFO_URI = "{{ oidc_userinfoUrl }}"
+USERINFO_URI = "{{ oidc_userinfo_uri | default('') }}"
 
 def validate_token(username, token):
     # Send token validation request.
@@ -17,7 +17,7 @@ def validate_token(username, token):
 
     # Retrieve token email.
     try:
-        email = r.json()["email"]
+        email = r.json()["{{ oidc_email_field | default('email') }}"]
     except Exception:
         return False
 
