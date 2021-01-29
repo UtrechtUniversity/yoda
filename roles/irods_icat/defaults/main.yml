@@ -43,4 +43,4 @@ openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
 
 # OpenID Connect configuration
-oidc_userinfo_uri: '{{ oidc_userinfo_uri | default("") }}'
+oidc_userinfo_uri: ''
