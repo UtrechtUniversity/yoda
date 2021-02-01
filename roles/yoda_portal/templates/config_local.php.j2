@@ -49,7 +49,7 @@ $config['yoda_eus_fqdn']       = '{{ yoda_eus_fqdn }}';
 // Config for OIDC
 $config['oidc_client_id']       = '{{ oidc_client_id     | default("") }}';
 $config['oidc_client_secret']   = '{{ oidc_client_secret | default("") }}';
-$config['oidc_callback_uri']    = '{{ oidc_callback_uri  | default("https://" ~ yoda_portal_fqdn) ~ "/user/callback" }}';
+$config['oidc_callback_uri']    = '{{ "https://" ~ yoda_portal_fqdn ~ "/user/callback" }}';
 $config['oidc_auth_base_uri']   = '{{ oidc_auth_base_uri | default("") }}';
 $config['oidc_token_uri']       = '{{ oidc_token_uri     | default("") }}';
 $config['oidc_scopes']		= '{{ oidc_scopes  	 | default("openid") }}';
