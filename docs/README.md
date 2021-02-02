@@ -27,6 +27,7 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Background jobs](administration/background-jobs.md)
 - [Troubleshooting publication](administration/troubleshooting-publication.md)
 - [Restore collection](administration/restore-collection.md)
+- [Configuring OpenId Connect](administration/configuring-openidc.md)
 
 ## Development
 - [Setting up development environment](development/setting-up-development-environment.md)
