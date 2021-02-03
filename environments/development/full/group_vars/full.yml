@@ -156,3 +156,15 @@ eus_smtp_password: PLACEHOLDER
 eus_smtp_from_address: PLACEHOLDER
 eus_smtp_replyto_address: PLACEHOLDER
 eus_mail_template: uu
+
+# Openid Connect configuration
+oidc_client_id: PLACEHOLDER
+oidc_client_secret: PLACEHOLDER
+oidc_callback_url: PLACEHOLDER
+oidc_auth_base_uri: PLACEHOLDER
+oidc_token_uri: PLACEHOLDER
+oidc_userinfo_uri: PLACEHOLDER
+oidc_scopes: PLACEHOLDER
+oidc_acr_values: PLACEHOLDER
+oidc_email_field: PLACEHOLDER
+oidc_signin_text: PLACEHOLDER

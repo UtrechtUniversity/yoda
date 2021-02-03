@@ -215,3 +215,18 @@ eus_smtp_password            | External User Service SMTP password
 eus_smtp_from_address        | External User Service from address
 eus_smtp_replyto_address     | External User Service replyto address
 eus_mail_template            | External User Service mail template
+
+## OpenId Connect configuration
+
+Variable   | Description
+-----------|---------------------------------------------
+oidc_active		| Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
+oidc_client_id		| OIDC Client Id
+oidc_client_secret	| OIDC Client Secret/Password
+oidc_auth_base_uri	| OIDC Authorization URI without parameters
+oidc_token_uri		| OIDC Token URI
+oidc_userinfo_uri	| OIDC Userinfo URI
+oidc_scopes		| OIDC Scopes
+oidc_acr_values		| OIDC Authentication Context Class Reference Values
+oidc_email_field	| The identifier of the JSON field in the `id_token` containing the email address. Default: `email`
+oidc_signin_text	| The text to appear on the Sign in button. Default: *Sign in with OIDC*

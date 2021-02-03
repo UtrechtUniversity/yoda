@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+# Ansible managed
+
+import requests
+
+
+USERINFO_URI = "{{ oidc_userinfo_uri | default('') }}"
+
+def validate_token(username, token):
+    # Send token validation request.
+    headers = {"Authorization": "Bearer {}".format(token)}
+    r = requests.get(USERINFO_URI, headers=headers)
+
+    # Check http status.
+    if r.status_code != 200:
+        return False
+
+    # Retrieve token email.
+    try:
+        email = r.json()["{{ oidc_email_field | default('email') }}"]
+    except Exception:
+        return False
+
+    # Check if token email corresponds with username.
+    if username == email:
+        return True
+
+    return False
+
+
+def pam_sm_authenticate(pamh, flags, argv):
+    # Get the username.
+    try:
+        username = pamh.get_user()
+    except Exception:
+        return pamh.PAM_USER_UNKNOWN
+
+    # Get the token.
+    token = pamh.authtok
+    if token is None:
+        return pamh.PAM_AUTH_ERR
+
+    # Validate the token.
+    if(validate_token(username, token)):
+        return pamh.PAM_SUCCESS
+
+    return pamh.PAM_AUTH_ERR
