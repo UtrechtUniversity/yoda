@@ -26,7 +26,7 @@ portal:
     version: "{{ yoda_version }}"
   - repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: /var/www/yoda/yoda-portal
-    version: "feature/oidc"
+    version: "{{ yoda_version }}"
 
 # Yoda core modules
 core_modules:
