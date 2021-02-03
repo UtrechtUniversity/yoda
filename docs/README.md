@@ -54,7 +54,6 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Metadata schema identifier](design/metadata-schema-identifier.md)
 - [Metadata form](design/metadata-form.md)
 - [Metadata mappings](design/metadata-mappings.md)
-- [Metadata namespaces](design/metadata-namespaces.md)
 - [Metadata schemas](design/metadata-schemas.md)
 
 ### Processes
