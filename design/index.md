@@ -14,9 +14,9 @@
 - [Yoda OAI-PMH endpoint](yoda-moai.md)
 
 ## Metadata
+- [Metadata schema identifier](metadata-schema-identifier.md)
 - [Metadata form](metadata-form.md)
 - [Metadata mappings](metadata-mappings.md)
-- [Metadata namespaces](metadata-namespaces.md)
 - [Metadata schemas](metadata-schemas.md)
 
 ## Processes

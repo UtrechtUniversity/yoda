@@ -921,6 +921,59 @@ The configuration is split in several parts. Below an overview of these parts an
   </tbody>
 </table>
 
+<h2 id="openid-connect-configuration">OpenId Connect configuration</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>oidc_active</td>
+      <td>Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td>oidc_client_id</td>
+      <td>OIDC Client Id</td>
+    </tr>
+    <tr>
+      <td>oidc_client_secret</td>
+      <td>OIDC Client Secret/Password</td>
+    </tr>
+    <tr>
+      <td>oidc_auth_base_uri</td>
+      <td>OIDC Authorization URI without parameters</td>
+    </tr>
+    <tr>
+      <td>oidc_token_uri</td>
+      <td>OIDC Token URI</td>
+    </tr>
+    <tr>
+      <td>oidc_userinfo_uri</td>
+      <td>OIDC Userinfo URI</td>
+    </tr>
+    <tr>
+      <td>oidc_scopes</td>
+      <td>OIDC Scopes</td>
+    </tr>
+    <tr>
+      <td>oidc_acr_values</td>
+      <td>OIDC Authentication Context Class Reference Values</td>
+    </tr>
+    <tr>
+      <td>oidc_email_field</td>
+      <td>The identifier of the JSON field in the <code class="highlighter-rouge">id_token</code> containing the email address. Default: <code class="highlighter-rouge">email</code></td>
+    </tr>
+    <tr>
+      <td>oidc_signin_text</td>
+      <td>The text to appear on the Sign in button. Default: <em>Sign in with OIDC</em></td>
+    </tr>
+  </tbody>
+</table>
+
                                     </section>
 
                                     <footer class="article-footer"></footer>

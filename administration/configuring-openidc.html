@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Community dependent files for configuration of metadata handling</title>
+  <title>yoda</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -343,20 +343,9 @@
                     <div class="header-image hidden-print">
 
                         
-                        <div class="breadcrumbs" xmlns:v="https://rdf.data-vocabulary.org/#">
-                            <div class="container">
-							<span property="itemListElement" typeof="ListItem">
-								<span property="name">YODA</span>
-								<meta property="position" content="1">
-							</span>
-                            </div>
-                        </div>
-                        
 
                         <img src="/yoda/assets/images/header.jpg" alt="">
 
-                        
-                        <div class="page-header-placeholder"></div>
                         
                     </div>
                 </header>
@@ -377,67 +366,37 @@
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/system-overview.html">System overview</a>
+                                                <a href="/yoda/administration/installing-licenses.html">Installing Licenses</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/research-space.html">Research space</a>
+                                                <a href="/yoda/administration/installing-terms.html">Installing terms</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/vault-space.html">Vault space</a>
+                                                <a href="/yoda/administration/installing-metadata-schemas.html">Installing metadata schemas</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/async-system-execution.html">Asynchronous and privileged execution</a>
+                                                <a href="/yoda/administration/upgrading-metadata-schemas.html">Upgrading metadata schemas</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/external-user-service.html">External user service</a>
+                                                <a href="/yoda/administration/background-jobs.html">Background jobs</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/group-manager.html">Group manager</a>
+                                                <a href="/yoda/administration/troubleshooting-publication.html">Troubleshooting publication</a>
                                             </li>
                                         
                                             
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/locking-mechanism.html">Locking mechanism</a>
-                                            </li>
-                                        
-                                            
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/metadata-form.html">Metadata form</a>
-                                            </li>
-                                        
-                                            
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/publication-process.html">Publication process</a>
-                                            </li>
-                                        
-                                            
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/python-plugin.html">Python plugin</a>
-                                            </li>
-                                        
-                                            
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/statistics.html">Statistics module</a>
-                                            </li>
-                                        
-                                            
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/revisions.html">Revision management</a>
-                                            </li>
-                                        
-                                            
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                <a href="/yoda/design/vault-process.html">Vault process</a>
+                                                <a href="/yoda/administration/restore-collection.html">Restore collection</a>
                                             </li>
                                         
                                     </ul>
@@ -448,12 +407,6 @@
                         </div>
 
                         <div class="page-content clearfix">
-                            
-                            <div class="page-title">
-                                <h1>
-                                    Community dependent files for configuration of metadata handling
-                                </h1>
-                            </div>
                             
 			    <!--
                             <div class="toggle-btn-div visible-xs clearfix">
@@ -466,46 +419,57 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="community-dependent-files-for-configuration-of-metadata-handling">Community dependent files for configuration of metadata handling</h1>
+                                        <p>#Configuring OpenId Connect (OIDC)
+Instruction on how to configure Openid Connect authentication.</p>
 
-<h2 id="community-dependency">Community dependency</h2>
-<p>Within Yoda, research is supported via groups;  administrative entities declaring which persons are allowed to participate in that particular research.</p>
+<h2 id="1-configuring-the-variables">1. Configuring the variables</h2>
+<p>When creating a new Yoda instance, setup the variables in the group_vars as explained in <a href="/yoda/administration/configuring-yoda.html">Configuring Yoda</a> and run the playbook.
+Alternatively, you can choose to pass the variables with the <em>–extra-vars</em> option everytime when running the Ansible playbook.</p>
 
-<p>Each group within Yoda belongs to a community. A community (=category) can hold multiple groups.</p>
+<p>For OIDC to function properly it requires the following variables to be set:</p>
+<ul>
+  <li>oidc_active</li>
+  <li>oidc_client_id</li>
+  <li>oidc_client_secret</li>
+  <li>oidc_auth_base_uri</li>
+  <li>oidc_token_uri</li>
+  <li>oidc_userinfo_uri</li>
+</ul>
 
-<p>Different communities may require community specific metadata to be added to their research datasets.
-Yoda is designed in such a way that each community can have its own metadata definition.
-It accommodates handling of community dependent metadata though configuration of the generic metadataform.</p>
+<p>Additionally, depending on the authorization server, you may need to configure the following variables:</p>
+<ul>
+  <li>oidc_scopes (default: <em>openid</em>)</li>
+  <li>oidc_acr_values</li>
+  <li>oidc_email_field (default: <em>email</em>)</li>
+</ul>
 
-<p>If such a community specific definition is not present the system will fall back unto the default definition each Yoda instance is always equipped with.</p>
+<p>Finally, for customization purposes, you can also configure:</p>
+<ul>
+  <li>oidc_signin_text</li>
+</ul>
 
-<p>The metadata definition is declared in JSON schema’s.</p>
+<h2 id="verifying-oidc">Verifying OIDC</h2>
+<p>To verify whether the deployment/update went successfully, go to the Yoda portal and click the <strong>Sign in</strong> button.
+If configured correctly, you should now see an extra button with the text as configured with the <code class="highlighter-rouge">oidc_signin_text</code> variable (default: <em>Sign in with OIDC</em>).</p>
 
-<p>A metadata configuration file should always include all information that is required to be able to publish the research datapackage, including its metadata.
-The exact fields can be found in the <code class="highlighter-rouge">core-0</code> schema.</p>
+<p>When clicking on the <em>Sign in with OIDC</em> button, login at the configured authorized server and verify that you are returned to the Yoda portal homepage.
+If so, you have correctly configured authentication via OIDC.
+Please also verify that the standard login method is still working as intended.</p>
 
-<h2 id="folder-layout-for-category-dependent-schemas">Folder layout for category dependent schemas</h2>
-<p>Central folder for all configurational and statuent files related to metadata is:
-<code class="highlighter-rouge">/zone/yoda/schemas</code></p>
+<h2 id="troubleshooting">Troubleshooting</h2>
 
-<p>Category (=community) dependency is dealt with by using subfolders like:
-<code class="highlighter-rouge">/zone/yoda/schemas/ilab</code></p>
+<ul>
+  <li><strong>The Sign in with OIDC button is missing:</strong> check if the <code class="highlighter-rouge">oidc_active</code> variable is set to <code class="highlighter-rouge">true</code>.</li>
+  <li><strong>After signing in at the authorization server I am redirected to the login screen with the error 'Failed to login to Yoda. Please contact a data manager about your account.':</strong> This can have multiple causes:
+    <ol>
+      <li>The user that is trying to sign in does not exist, or</li>
+      <li>An error occurred after signing in at the authorization server.</li>
+    </ol>
 
-<p>In this case ilab is the name of community “ilab”.</p>
-
-<p>Within the software presence of category configurations is always checked for first.<br />
-If not available then the fallback is to the default configuration:</p>
-
-<p><code class="highlighter-rouge">/zone/yoda/schemas/default</code></p>
-
-<h2 id="involved-files-and-their-purpose">Involved files and their purpose</h2>
-<p>Each folder will hold the following files:</p>
-
-<h3 id="metadatajson">metadata.json</h3>
-<p>Configuration for the metadata form as used for a community.</p>
-
-<h3 id="uischemajson">uischema.json</h3>
-<p>UI configuration for the metadata form as used for a community.</p>
+    <p>To check whether the problem is caused by case 1, verify that the user exists in Yoda and add them if they are not.
+  To solve case 2, re-check the client secret, the token URI, the email field, and scopes variables.</p>
+  </li>
+</ul>
 
                                     </section>
 

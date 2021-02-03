@@ -27,6 +27,7 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Background jobs](administration/background-jobs.md)
 - [Troubleshooting publication](administration/troubleshooting-publication.md)
 - [Restore collection](administration/restore-collection.md)
+- [Configuring OpenId Connect](administration/configuring-openidc.md)
 
 ## Development
 - [Setting up development environment](development/setting-up-development-environment.md)
@@ -50,9 +51,9 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Yoda OAI-PMH endpoint](design/yoda-moai.md)
 
 ### Metadata
+- [Metadata schema identifier](design/metadata-schema-identifier.md)
 - [Metadata form](design/metadata-form.md)
 - [Metadata mappings](design/metadata-mappings.md)
-- [Metadata namespaces](design/metadata-namespaces.md)
 - [Metadata schemas](design/metadata-schemas.md)
 
 ### Processes

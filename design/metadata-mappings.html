@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Mapping of yoda-metadata.xml</title>
+  <title>Mapping of yoda-metadata.json</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -451,7 +451,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Mapping of yoda-metadata.xml
+                                    Mapping of yoda-metadata.json
                                 </h1>
                             </div>
                             
@@ -466,21 +466,21 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h2 id="mapping-of-yoda-metadataxml">Mapping of yoda-metadata.xml</h2>
-<p>When a datapackage with yoda-metadata.xml is published it will be processed and converted to three different forms.
-If changes are made to the metadata.json or corresponding vault XSD, these processes could fail.</p>
+                                        <h2 id="mapping-of-yoda-metadatajson">Mapping of yoda-metadata.json</h2>
+<p>When a datapackage with yoda-metadata.json is published it will be processed and converted to three different forms.
+If changes are made to the metadata.json.</p>
 
-<h3 id="xslt-for-landing-page">XSLT for landing page</h3>
-<p>The landing page HTML is generated with a extensible stylesheet.
-Every new or changed element needs a template definition and a place in the group definition.
-This stylesheet is named landingpage.xsl and should be put in the <code class="highlighter-rouge">/zone/yoda/schemas/SCHEMANAME</code> collection.</p>
+<h3 id="jinja2-template-for-landing-page">Jinja2 template for landing page</h3>
+<p>The landing page HTML is generated with a Jinja2 template
+Every new or changed element needs a template definitio.
+This template is named landingpage.j2 and should be put in the <code class="highlighter-rouge">/zone/yoda/templates/</code> collection.</p>
 
-<h3 id="xslt-for-datacite">XSLT for DataCite</h3>
-<p>For DataCite a XML conforming to the DataCite Schema v4 is generated with an extensible stylesheet.
-This stylesheet is named datacite.xsl and should be put in the <code class="highlighter-rouge">/zone/yoda/schemas/SCHEMANAME</code> collection.</p>
+<h3 id="xml-generator-for-datacite">XML generator for DataCite</h3>
+<p>For DataCite a XML conforming to the DataCite Schema v4 is generated in Python.
+This generator can be found in <code class="highlighter-rouge">/etc/irods/irods-ruleset-uu/json_datacite41.py</code>.</p>
 
 <h3 id="oai-pmh-importer">OAI-PMH importer</h3>
-<p>The OAI-PMH stream is updated by loading the yoda-metadata.xml with a Python script.
+<p>The OAI-PMH stream is updated by loading the yoda-metadata.json with a Python script.
 This Python script only looks for a couple of elements that map to Dublin core and DataCite.
 Any changes to these fields will omit this metadata from the stream.
 The mapping is documented outside of this document.</p>

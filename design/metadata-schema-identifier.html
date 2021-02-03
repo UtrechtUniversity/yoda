@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Namespaces within Yoda</title>
+  <title>Metadata schema identifier</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -451,7 +451,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Namespaces within Yoda
+                                    Metadata schema identifier
                                 </h1>
                             </div>
                             
@@ -466,57 +466,100 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="namespaces-within-yoda">Namespaces within Yoda</h1>
+                                        <h1 id="metadata-schema-identifier">Metadata schema identifier</h1>
 
-<h2 id="xml-standards-for-yoda-metadataxml">XML standards for yoda-metadata.xml</h2>
-<p>To comply with xml standards, yoda-metadata.xml is equipped with a default namespace.
-Furthermore, yoda-metadata.xml is extended with the reference of its schemalocation. <br />
-I.e. the location of the its validation schema.
-This, so any user knows to what schema the data is validated.</p>
+<h2 id="introduction">Introduction</h2>
 
-<p>This validation schema is dependent on the space within Yoda, research or vault.
-In the example below, the data within yoda-metadata.xml lives in research area and will be validated agains research.xsd.</p>
+<p>Yoda  needs to publish its metadata schemas. This document describes the principles and proposal for an URI structure to identify and locate the published schemas.</p>
 
-<p>The schemas are publically accessible and stored in Github.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;metadata</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>   
- <span class="na">xmlns=</span><span class="s">"https://yoda.uu.nl/schemas/default-0"</span>   
- <span class="na">xsi:schemaLocation=</span><span class="s">"https://yoda.uu.nl/schemas/default-0 research.xsd"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;Title&gt;</span>1<span class="nt">&lt;/Title&gt;</span>
-  <span class="nt">&lt;Description&gt;</span>2<span class="nt">&lt;/Description&gt;</span>
-  <span class="nt">&lt;Version&gt;</span>3<span class="nt">&lt;/Version&gt;</span>
-  <span class="nt">&lt;Language&gt;</span>en - English<span class="nt">&lt;/Language&gt;</span>
-  <span class="nt">&lt;Retention_Period&gt;</span>10<span class="nt">&lt;/Retention_Period&gt;</span>
-  <span class="nt">&lt;Data_Classification&gt;</span>Public<span class="nt">&lt;/Data_Classification&gt;</span>
-  <span class="nt">&lt;Creator&gt;</span>
-    <span class="nt">&lt;Name&gt;</span>bla<span class="nt">&lt;/Name&gt;</span>
-    <span class="nt">&lt;Properties&gt;</span>
-      <span class="nt">&lt;Affiliation&gt;</span>Utrecht University<span class="nt">&lt;/Affiliation&gt;</span>
-      <span class="nt">&lt;Person_Identifier&gt;</span>
-        <span class="nt">&lt;Name_Identifier_Scheme&gt;</span>ORCID<span class="nt">&lt;/Name_Identifier_Scheme&gt;</span>
-        <span class="nt">&lt;Name_Identifier&gt;</span>ad<span class="nt">&lt;/Name_Identifier&gt;</span>
-      <span class="nt">&lt;/Person_Identifier&gt;</span>
-    <span class="nt">&lt;/Properties&gt;</span>
-  <span class="nt">&lt;/Creator&gt;</span>
-  <span class="nt">&lt;License&gt;</span>Creative Commons Attribution 4.0 International Public License<span class="nt">&lt;/License&gt;</span>
-  <span class="nt">&lt;Data_Access_Restriction&gt;</span>Restricted - available upon request<span class="nt">&lt;/Data_Access_Restriction&gt;</span>
-<span class="nt">&lt;/metadata&gt;</span>
-</code></pre></div></div>
+<h2 id="principles">Principles</h2>
 
-<h2 id="using-xsl-with-yoda-metadataxml">Using XSL with yoda-metadata.xml</h2>
+<ul>
+  <li>
+    <p>Referable: the URI needs to be referenced from metadata files. It should be easy to reference for human and machine readers: URI syntax, not too long, minimal characters that require encoding. The schemas will be public, so no authentication/authorization.</p>
+  </li>
+  <li>
+    <p>Scalable: The number of schemas will increase for different communities within and potentially outside UU, and there may be multiple schemas within a community, and there may be alternative serializations of a schema. We must ensure that each of these can be identified/referenced.</p>
+  </li>
+  <li>
+    <p>Identifiable: Each schema should be identified uniquely. Each identifier may not be reused for another schema, version and/or community. We will reserve latest and current as versions.</p>
+  </li>
+  <li>
+    <p>Durable: The references to the schemas may last for a long time. The solution must be able to survive most changes of the system and organizations so that these references remain valid. Thus a durable protocol (http), hostname (simple/governance) and path (easy to redirect via webserver)</p>
+  </li>
+  <li>
+    <p>Maintainable: Easy to maintain structure and files via e.g. GIT, and to add new schemas or versions.</p>
+  </li>
+  <li>
+    <p>Automatable: The schemas will be retrieved mainly by software/machines. Identifier structure and location/retrieval-functions should comply with standards. We avoid the use of complex characters that will need encoding.</p>
+  </li>
+</ul>
 
-<p>Given that yoda-metadata.xml lives within a certain namespace, to be able to retrieve data from it when using XPath statements, a corresponding namespace must be added to the stylesheet.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;xsl:stylesheet version="1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:yoda="https://yoda.uu.nl/schemas/default-0"
-    exclude-result-prefixes="yoda"&gt;
+<h2 id="proposal">Proposal</h2>
 
-  &lt;xsl:template match="/"&gt;
-        &lt;xsl:apply-templates select="/yoda:metadata"/&gt;
-  &lt;/xsl:template&gt;
-</code></pre></div></div>
+<p>We propose https://yoda.uu.nl/schemas/<schemaName>-<schemaVersion>/<schemaFile></schemaFile></schemaVersion></schemaName></p>
 
-<p>Above the namespace alias ‘yoda’ (xmlns:yoda=”https://yoda.uu.nl/schemas/default-0”) makes sure that, if both namespaces are equal, XPath selection actually retrieves data.</p>
+<ul>
+  <li>
+    <p>https:// - protocol</p>
+  </li>
+  <li>
+    <p>yoda.uu.nl – hostname</p>
+  </li>
+  <li>
+    <p>/schemas – exclusive path reserved for schemas, to avoid conflicts with other resources on that the host. Implies that no other software on this host may use this path.</p>
+  </li>
+  <li>
+    <schemaName> - can be anything, but must be unique for all schemas published at yoda.uu.nl.
+
+</schemaName>
+  </li>
+  <li>
+    <schemaVersion> - there can be multiple versions of a schema, which may be consecutive, but do not need to be. A schemaVersion must be unique per schemaName. We reserve latest and current as schemaVersions (this may be used as a symlink to the latest or current version in the future).
+
+</schemaVersion>
+  </li>
+  <li>
+    <schemaFile> - metadata.json / uischema.json
+
+</schemaFile>
+  </li>
+</ul>
+<h2 id="faq">FAQ</h2>
+
+<ul>
+  <li>
+    <p>Why https? https can be addressed from iRODS environments.</p>
+  </li>
+  <li>
+    <p>Why yoda.uu.nl? We don’t want to depend on the current instances (i-lab, youth, ..) and don’t have sufficient authority on uu.nl. We don’t prefer data.uu.nl, as this may be addressed via other protocols than https, such as iRods.</p>
+  </li>
+  <li>
+    <p>Why no community in path? There are non-community schemas such as datacite and schemas shared among communities. One may refer to a community in the schemaName.</p>
+  </li>
+  <li>
+    <p>Why schemas and not meta? We assume that vocabularies or ‘non-informational URIs’ will be provided/published by another facility. Currently all published resources are related to a schema (definitions, transformations).</p>
+  </li>
+  <li>
+    <p>Why not use persistent identifiers? This provides complexity in maintenance and retrieval. We believe that a well-chosen URI scheme can address most issues that a PID addresses.</p>
+  </li>
+  <li>
+    <p>How to support research- and vault schemas? We may consider these to be different schemas, or different versions, or different representations of the same version. We consider the distinction between these as a work-around, hence we consider these to be different representations.</p>
+  </li>
+  <li>
+    <p>How to ensure uniqueness? This is ensured hierarchically. As we share the hostname and schema-path, only the schemaName, schemaVersion and combination of those should be governed. We propose to make Yoda administration responsible for the unique schemaNames, and the schemaVersions. To avoid mixup of names and versions, we prohibit the use of the separator (hyphen, “-“) within the schemaName and the schemaVersion. To avoid conflicts of typical schemaNames among communities, we recommend to prefix these with the community name.</p>
+  </li>
+  <li>
+    <p>How to determine equality? See RFC on URI syntax (this ignores e.g. portnumbers and authentication aspects in the URI, and considers the schema and hostname to be case insensitive). We recommend to treat schemaName, schemaVersion and schemaFile as case insensitive.</p>
+  </li>
+</ul>
+
+<h2 id="yoda-examples-conform-this-proposal">Yoda examples conform this proposal</h2>
+
+<ul>
+  <li>https://yoda.uu.nl/schemas/default-0/metadata.json</li>
+  <li>https://yoda.uu.nl/schemas/default-0/uischema.json</li>
+</ul>
 
                                     </section>
 
