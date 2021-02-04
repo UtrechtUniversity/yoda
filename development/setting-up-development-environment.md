@@ -18,7 +18,7 @@ git checkout development
 
 2. Configure the virtual machines for development:
 ```bash
-vagrant --instance=allinone up
+vagrant up
 ```
 
 3. On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
