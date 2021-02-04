@@ -8,15 +8,15 @@ VAGRANTFILE_API_VERSION = "2"
 
 BOX = 'generic/centos7'
 GUI = false
-CPU = 1
-RAM = 1024
+CPU = 2
+RAM = 2048
 
 DOMAIN  = ".yoda.test"
-NETWORK = "192.168.50."
+NETWORK = "192.168.50.10"
 NETMASK = "255.255.255.0"
 
 HOSTS = {
-  "combined" => [NETWORK+"10", 2, 2048, GUI, BOX],
+  "combined" => [NETWORK, CPU, RAM, GUI, BOX],
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
