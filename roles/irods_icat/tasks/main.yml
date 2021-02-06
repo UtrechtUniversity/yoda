@@ -212,7 +212,6 @@
   become: yes
   command: '/var/lib/irods/irodsctl start'
   when: ils is failed
-  check_mode: false
 
 
 - name: Wait until iRODS server is ready to receive requests
