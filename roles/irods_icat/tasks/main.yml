@@ -30,6 +30,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command: '/var/lib/irods/irodsctl restart'
+  changed_when: false
 
 
 - name: Ensure default msiExecCmd binaries are absent
