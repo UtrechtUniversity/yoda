@@ -468,17 +468,22 @@ Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.</p>
 
 <ol>
-  <li>Set Yoda release to <code class="highlighter-rouge">release-1.6</code> in configuration.
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">release-1.6</span>
-</code></pre></div>    </div>
+  <li>
+    <p>Backup/copy custom configurations made to Yoda version 1.5.
+To view what files were changed from the defaults, run <code class="highlighter-rouge">git diff</code>.</p>
   </li>
-  <li>Set the default schema to <code class="highlighter-rouge">default-1</code> in configuration.
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">default_yoda_schema</span><span class="pi">:</span> <span class="s">default-1</span>
+  <li>
+    <p>After making sure the configurations are stored safely in another folder, reset the Yoda folder using <code class="highlighter-rouge">git stash</code> or when you want to delete all changes made: <code class="highlighter-rouge">git reset --hard</code>.</p>
+  </li>
+  <li>Checkout branch <code class="highlighter-rouge">release-1.6</code> of the Yoda Git repository
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout release-1.6
 </code></pre></div>    </div>
+    <p>This will set Yoda release to <code class="highlighter-rouge">release-1.6</code> in configuration as well as the default schema to <code class="highlighter-rouge">default-1</code>.</p>
   </li>
   <li>The core modules (<code class="highlighter-rouge">research</code>, <code class="highlighter-rouge">vault</code>, <code class="highlighter-rouge">statistics</code>, <code class="highlighter-rouge">group-manager</code>) are enabled by default in Yoda 1.6.
 Only extra modules have to be enabled in the configuration.
 So <code class="highlighter-rouge">modules</code> becomes <code class="highlighter-rouge">extra_modules</code> and all core modules should be removed from the <code class="highlighter-rouge">extra_modules</code> list.
+Update the configuration according to your specifications.
 For example:
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># Yoda modules</span>
      <span class="na">extra_modules</span><span class="pi">:</span>
@@ -493,6 +498,7 @@ Only extra modules have to be enabled in the configuration.
 Furthermore, the research ruleset (<code class="highlighter-rouge">irods-ruleset-research</code>) has been merged with the UU ruleset
 (<code class="highlighter-rouge">irods-ruleset-uu</code>). So <code class="highlighter-rouge">rulesets</code> becomes <code class="highlighter-rouge">extra_rulesets</code>;
 <code class="highlighter-rouge">core</code>, <code class="highlighter-rouge">irods-ruleset-research</code> and <code class="highlighter-rouge">irods-ruleset-uu</code> should be removed from the <code class="highlighter-rouge">extra_rulesets</code> list.
+Update the configuration according to your specifications.
 For example:
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># iRODS rulesets</span>
      <span class="na">extra_rulesets</span><span class="pi">:</span>
@@ -503,11 +509,17 @@ For example:
          <span class="na">install_scripts</span><span class="pi">:</span> <span class="s">no</span>
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>Run the Ansible upgrade in check mode.</p>
+  <li>Run the Ansible playbook in check mode.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> &lt;path-to-your-environment&gt; playbook.yml <span class="nt">--check</span>
+<span class="c">### EXAMPLE ###</span>
+ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml <span class="nt">--check</span>
+</code></pre></div>    </div>
   </li>
-  <li>
-    <p>Run the Ansible upgrade.</p>
+  <li>If the playbook has finished succesfully in check mode, run the Ansible playbook normally.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> &lt;path-to-your-environment&gt; playbook.yml
+<span class="c">### EXAMPLE ###</span>
+ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml
+</code></pre></div>    </div>
   </li>
   <li>Convert all metadata XML in the vault to JSON (<code class="highlighter-rouge">default-0</code> XML to <code class="highlighter-rouge">default-0</code> JSON).
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
@@ -517,7 +529,7 @@ For example:
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r
 </code></pre></div>    </div>
   </li>
-  <li>Update publication endpoints if there are published packages (landingpages and OAI-PMH):
+  <li>Update publication endpoints if there are published packages (landingpages and OAI-PMH)):
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/update-publications.r
 </code></pre></div>    </div>
   </li>
