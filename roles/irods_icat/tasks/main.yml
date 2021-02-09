@@ -4,9 +4,14 @@
 - name: Ensure iRODS 4.2.6 packages are absent
   package:
     name:
-      - irods-uu-microservices-4.2.6_0.8.0-1
-      - irods-sudo-microservices-4.2.6_1.0.0-1
-      - davrods-4.2.6_1.4.2-1
+      - irods-uu-microservices-4.2.6_0.8.0
+      - irods-sudo-microservices-4.2.6_1.0.0
+      - davrods-4.2.6_1.4.2
+      - irods-runtime-4.2.6
+      - irods-server-4.2.6
+      - irods-rule-engine-plugin-python-4.2.6
+      - irods-icommands-4.2.6
+      - irods-database-plugin-postgres-4.2.6
     state: absent
 
 
@@ -19,6 +24,14 @@
       - irods-rule-engine-plugin-python-4.2.7-1
     state: present
   when: not ansible_check_mode
+  register: irods_uninstalled
+
+
+- name: Restart the iRODS server
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/var/lib/irods/irodsctl restart'
+  when: irods_uninstalled is defined and irods_uninstalled.changed
 
 
 - name: Ensure default msiExecCmd binaries are absent
