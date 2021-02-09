@@ -186,6 +186,18 @@ Listen {{ yoda_davrods_port }}
         DavRodsHtmlHead   "/etc/httpd/irods/head.html"
         DavRodsHtmlHeader "/etc/httpd/irods/header.html"
         DavRodsHtmlFooter "/etc/httpd/irods/footer.html"
+
+        # Depending on file type, web browser clients will either display
+        # files directly or offer a download to the user.
+        # This behavior can be influenced with the 'Content-Disposition' header.
+        #
+        # By default (value 'Off'), no such header is sent by Davrods.
+        # When DavrodsForceDownload is 'On', Davrods will send
+        # 'Content-Disposition: attachment' for all data objects, signalling that
+        # web browsers should not display files inline, but offer a download
+        # instead.
+        #
+        DavrodsForceDownload On
     </Location>
 
     # Set the timeout to a day to permit large uploads.
