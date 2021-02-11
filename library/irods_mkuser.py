@@ -33,12 +33,14 @@ def main():
     module = AnsibleModule(
         argument_spec=dict(
             name=dict(default=None, required=True),
-            state=dict(default="present")
+            state=dict(default="present"),
+            type=dict(default="rodsuser")
             ),
         supports_check_mode=True)
 
     name = module.params["name"]
     state = module.params["state"]
+    usertype = module.params["type"]
 
     if IRODSCLIENT_AVAILABLE:
         try:
@@ -56,7 +58,7 @@ def main():
         resource = session.users.get(name)
     except UserDoesNotExist:
         if state == 'present' and not module.check_mode:
-            resource = session.users.create(name, "rodsuser")
+            resource = session.users.create(name, usertype)
             changed = True
         elif state == 'absent':
             module.exit_json(changed=False, msg="User {} is not present".format(name))

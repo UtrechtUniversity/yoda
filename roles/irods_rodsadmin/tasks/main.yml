@@ -1,0 +1,19 @@
+---
+- name: iRODS create rods admin linux user
+  become: yes
+  user:
+    user: "{{ item }}"
+    home: "/home/{{ irods_admins[item].home | default(item) }}"
+    shell: /bin/bash
+    # https://github.com/ansible/ansible/issues/24425
+    password: "{{ '%s'|format(irods_admins[item].password) | password_hash('sha512') }}"
+    update_password: on_create
+  with_items: '{{ irods_admins.keys() | default([]) }}'
+
+- name: iRODS create rods admin irods use
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  irods_mkuser:
+    name: "{{ item }}"
+    type: rodsadmin
+  with_items: '{{ irods_admins.keys() | default([]) }}'

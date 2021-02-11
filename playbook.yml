@@ -82,6 +82,7 @@
     - irods_microservices
     - composable_resources
     - irods_completion
+    - irods_rodsadmin
   tags:
     - icat
 
