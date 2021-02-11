@@ -11,7 +11,10 @@ lab or otherwise collaborating on a common research goal. E.g. the Brain
 Morphology Lab.
 
 ## Functional description
-The supported workflows are as follows:
+The supported workflows are described in this section. A sequence diagram
+mapping the workflow is shown below.
+
+![Workflow sequence diagram](img/datarequest-workflow-sequence-diagram.png)
 
 ### Submission of data requests
 A researcher seeking to obtain research data stored in Yoda must be able to
