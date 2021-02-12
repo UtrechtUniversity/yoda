@@ -1,8 +1,8 @@
-# Release notes Yoda version 1.6 (November 2020)
+# Release notes Yoda version 1.7 (March 2021)
 
 Version: 1.7
 
-Released: November 2020
+Released: March 2021
 
 ## What's new in Yoda version 1.7
 ### Features
