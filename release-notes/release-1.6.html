@@ -462,6 +462,10 @@
   <li>Deprecate support for TLS 1.0 and TLS 1.1 (use <code class="highlighter-rouge">legacy_tls</code> flag to enable support for TLS 1.0 and TLS 1.1)</li>
 </ul>
 
+<h3 id="know-issues">Know issues</h3>
+<p>The transformation of metadata, often required when a new version of Yoda is deployed holding one or more metadataschema changes versions, can not be completed when metadata still is in locked state “ACCEPTED”.<br />
+Therefore, the appointed admin needs to run checks beforehand and settles unfinished workflows to avoid incomplete metadata transformation(s).</p>
+
 <h2 id="upgrading-from-yoda-version-15">Upgrading from Yoda version 1.5</h2>
 <p>Upgrade is supported by Ansible (2.9.x).
 Requires Yoda external user service to be on version 1.5.x or higher.
@@ -490,7 +494,7 @@ For example:
        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">intake</span>
          <span class="na">repo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/UtrechtUniversity/yoda-portal-intake.git"</span>
          <span class="na">dest</span><span class="pi">:</span> <span class="s">/var/www/yoda/yoda-portal/modules/intake</span>
-         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">yoda_version</span><span class="nv"> </span><span class="err">\</span><span class="s">}</span><span class="err">\</span><span class="s">}"</span>
 </code></pre></div>    </div>
   </li>
   <li>The core rulesets (<code class="highlighter-rouge">core</code> and <code class="highlighter-rouge">irods-ruleset-uu</code>) are enabled by default in Yoda 1.6.
@@ -505,7 +509,7 @@ For example:
        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">irods-ruleset-youth-cohort</span>
          <span class="na">repo</span><span class="pi">:</span> <span class="s">https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git</span>
          <span class="na">ruleset_name</span><span class="pi">:</span> <span class="s">rules-yc</span>
-         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">yoda_version</span><span class="nv"> </span><span class="err">\</span><span class="s">}</span><span class="err">\</span><span class="s">}"</span>
          <span class="na">install_scripts</span><span class="pi">:</span> <span class="s">no</span>
 </code></pre></div>    </div>
   </li>
