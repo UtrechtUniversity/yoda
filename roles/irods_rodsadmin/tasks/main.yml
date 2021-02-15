@@ -1,5 +1,6 @@
 ---
-- name: iRODS create rods admin linux user
+
+- name: Ensure additional rods admin linux users are present
   become: yes
   user:
     user: "{{ item }}"
@@ -9,11 +10,14 @@
     password: "{{ '%s'|format(irods_admins[item].password) | password_hash('sha512') }}"
     update_password: on_create
   with_items: '{{ irods_admins.keys() | default([]) }}'
+  when: irods_admins is defined
 
-- name: iRODS create rods admin irods use
+
+- name: Ensure additional rods admin iRODS users are present
   become_user: '{{ irods_service_account }}'
   become: yes
   irods_mkuser:
     name: "{{ item }}"
     type: rodsadmin
   with_items: '{{ irods_admins.keys() | default([]) }}'
+  when: irods_admins is defined

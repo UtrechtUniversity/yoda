@@ -113,7 +113,8 @@
     mode: 0644
   when: not ansible_check_mode
 
-- name: create directory with parent directories
+
+- name: Create custom frontpage directory with parent directories
   file:
     path: /var/www/yoda/yoda-portal/public/static/img/custom/
     owner: "{{ yoda_deployment_user }}"
@@ -126,7 +127,8 @@
       ((portal_logo is defined) and (portal_logo)) or
       ((portal_static_frontpage is defined) and (portal_static_frontpage)) )
 
-- name: Customized icons
+
+- name: Ensure custom icons are present
   copy:
     src: "{{ portal_shortcut_icon }}"
     dest: "/var/www/yoda/yoda-portal/public/static/img/custom/{{ portal_shortcut_icon | basename }}"
@@ -135,7 +137,8 @@
     mode: '0644'
   when: (not ansible_check_mode) and (portal_shortcut_icon is defined) and (portal_shortcut_icon)
 
-- name: Customized logo
+
+- name: Ensure customized logo is present
   copy:
     src: "{{ portal_logo }}"
     dest: "/var/www/yoda/yoda-portal/public/static/img/custom/{{ portal_logo | basename }}"
@@ -144,7 +147,8 @@
     mode: '0644'
   when: (not ansible_check_mode) and (portal_logo is defined) and (portal_logo)
 
-- name: Customized frontpage
+
+- name: Ensure customized frontpage is present
   copy:
     src: "{{ portal_static_frontpage.file }}"
     dest: "/var/www/yoda/yoda-portal/public/static/static_frontpage.html"
@@ -153,7 +157,8 @@
     mode: '0644'
   when: (not ansible_check_mode) and (portal_static_frontpage is defined) and (portal_static_frontpage)
 
-- name: Customized frontpage images
+
+- name: Ensure customized frontpage images are present
   copy:
     src: "{{ item }}"
     dest: "/var/www/yoda/yoda-portal/public/static/img/custom/{{ item | basename }}"
@@ -164,8 +169,9 @@
   when: >
     (not ansible_check_mode) and
     (portal_static_frontpage is defined) and
-    (portal_static_frontpage)  and
+    (portal_static_frontpage) and
     (portal_static_frontpage.images)
+
 
 - name: Ensure logs directory is present
   file:

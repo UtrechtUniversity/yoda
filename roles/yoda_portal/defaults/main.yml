@@ -64,7 +64,10 @@ openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
 
 # portal customization
-portal_title_text: false
-portal_shortcut_icon: false
-portal_logo: false
-portal_static_frontpage: false
+portal_title_text: false                           # e.g. "YODA - development"
+portal_shortcut_icon: false                        # e.g. "environments/develop/files/favicon.ico"
+portal_logo: false                                 # e.g. "environments/develop/files/logo.png"
+portal_static_frontpage: false                     # portal_static_frontpage:
+                                                   #   file: "environments/develop/files/static_frontpage.html"
+                                                   #   images:
+                                                   #     - "environments/develop/files/splash.png"

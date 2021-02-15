@@ -23,15 +23,6 @@ enable_datarequest: true                           # Enable datarequest module
 
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 
-# portal customization
-portal_title_text: false                           # e.g. "YODA - development"
-portal_shortcut_icon: false                        # e.g. "environments/develop/files/favicon.ico"
-portal_logo: false                                 # e.g. "environments/develop/files/logo.png"
-portal_static_frontpage: false                     # portal_static_frontpage:
-                                                   #   file: "environments/develop/files/static_frontpage.html"
-                                                   #   images:
-                                                   #     - "environments/develop/files/splash.png"
-
 # Yoda modules
 extra_modules:
   - name: intake
