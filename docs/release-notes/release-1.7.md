@@ -1,44 +1,39 @@
-# Release notes Yoda version 1.6 (November 2020)
+# Release notes Yoda version 1.7 (March 2021)
 
-Version: 1.6
+Version: 1.7
 
-Released: November 2020
+Released: March 2021
 
-## What's new in Yoda version 1.6
+## What's new in Yoda version 1.7
 ### Features
-- Improved folder browsing and sorting browse list
-- Create folders from web portal
-- Rename and remove files and folders from web portal
-- Increase upload limit (300MB)
-- Metadata format changed from XML to JSON
-- Add support for geo location in metadata schemas
-- Add support for datarequest module ([installation instructions](../administration/installing-datarequest-module.html))
-- New tool to check mail configuration
-- Upgrade to iRODS v4.2.7
-- Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
+- Theming capability for all available Yoda modules using bootstrap4
+- API access for all currently used functionality used by the Yoda frontend for all modules
+- Two specific metadata forms (HPTlab and Teclab) for Utrecht University GEO faculty
+- As a Yoda administrator it is possible to send a test email (through Yoda from the command line) so email settings can be tested
+- A researcher can now add a CC-0 (Creative Commons zero) license for research data so sharing published data is conform this license
+- As a researcher I want my datacite record updated when datacite mapping is changed so that my dataset is found
 
-### Know issues
-The transformation of metadata, often required when a new version of Yoda is deployed holding one or more metadataschema changes versions, can not be completed when metadata still is in locked state "ACCEPTED".  
-Therefore, the appointed admin needs to run checks beforehand and settles unfinished workflows to avoid incomplete metadata transformation(s).
+### Known issues
+- When datapackage is secured to the vault, and directly after the metadata is edited and saved in the research area, the file metadata.json will be shown twice for a brief period of time (<5 minutes)
 
 
-## Upgrading from Yoda version 1.5
+## Upgrading from Yoda version 1.6
 Upgrade is supported by Ansible (2.9.x).
-Requires Yoda external user service to be on version 1.5.x or higher.
-Requires Yoda public server to be on version 1.6.x or higher.
+Requires Yoda external user service to be on version 1.5.x or higher. ??
+Requires Yoda public server to be on version 1.6.x or higher. ??
 
-1. Backup/copy custom configurations made to Yoda version 1.5.
+1. Backup/copy custom configurations made to Yoda version 1.6.
 To view what files were changed from the defaults, run `git diff`.
 
 2. After making sure the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Checkout branch `release-1.6` of the Yoda Git repository
+3. Checkout branch `release-1.7` of the Yoda Git repository
 ```bash
-git checkout release-1.6
+git checkout release-1.7
 ```
-This will set Yoda release to `release-1.6` in configuration as well as the default schema to `default-1`.
+This will set Yoda release to `release-1.7` in configuration as well as the default schema to `default-1`.
 
-4. The core modules (`research`, `vault`, `statistics`, `group-manager`) are enabled by default in Yoda 1.6.
+4. The core modules (`research`, `vault`, `statistics`, `group-manager`) are enabled by default in Yoda 1.7.
    Only extra modules have to be enabled in the configuration.
    So `modules` becomes `extra_modules` and all core modules should be removed from the `extra_modules` list.
    Update the configuration according to your specifications.
@@ -49,7 +44,7 @@ This will set Yoda release to `release-1.6` in configuration as well as the defa
           - name: intake
             repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
             dest: /var/www/yoda/yoda-portal/modules/intake
-            version: "\{\{ yoda_version \}\}"
+            version: "{{ yoda_version }}"
     ```
 
 5. The core rulesets (`core` and `irods-ruleset-uu`) are enabled by default in Yoda 1.6.
@@ -65,7 +60,7 @@ This will set Yoda release to `release-1.6` in configuration as well as the defa
           - name: irods-ruleset-youth-cohort
             repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
             ruleset_name: rules-yc
-            version: "\{\{ yoda_version \}\}"
+            version: "{{ yoda_version }}"
             install_scripts: no
     ```
 
