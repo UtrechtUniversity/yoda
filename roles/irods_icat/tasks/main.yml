@@ -13,6 +13,7 @@
       - irods-icommands-4.2.6
       - irods-database-plugin-postgres-4.2.6
     state: absent
+  register: irods_uninstalled
 
 
 - name: Ensure iRODS iCAT server, Python rule engine plugin and database plugin are present
@@ -24,7 +25,6 @@
       - irods-rule-engine-plugin-python-4.2.7-1
     state: present
   when: not ansible_check_mode
-  register: irods_uninstalled
 
 
 - name: Restart the iRODS server
