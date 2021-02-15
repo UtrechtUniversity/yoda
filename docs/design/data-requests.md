@@ -14,7 +14,7 @@ Morphology Lab.
 The supported workflows are described in this section. A sequence diagram
 mapping the workflow is shown below.
 
-![Workflow sequence diagram](img/datarequest-workflow-sequence-diagram.png)
+![Workflow sequence diagram](img/datarequest_workflow_sequence_diagram.png)
 
 ### Submission of data requests
 A researcher seeking to obtain research data stored in Yoda must be able to
