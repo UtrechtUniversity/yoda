@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Release notes Yoda version 1.7 (March 2021)</title>
+  <title>Release notes Yoda version 1.7 (TBA)</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -426,7 +426,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Release notes Yoda version 1.7 (March 2021)
+                                    Release notes Yoda version 1.7 (TBA)
                                 </h1>
                             </div>
                             
@@ -441,18 +441,18 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="release-notes-yoda-version-17-march-2021">Release notes Yoda version 1.7 (March 2021)</h1>
+                                        <h1 id="release-notes-yoda-version-17-tba">Release notes Yoda version 1.7 (TBA)</h1>
 
 <p>Version: 1.7</p>
 
-<p>Released: March 2021</p>
+<p>Released: TBA</p>
 
 <h2 id="whats-new-in-yoda-version-17">What’s new in Yoda version 1.7</h2>
 <h3 id="features">Features</h3>
 <ul>
-  <li>Theming capability for all available Yoda modules using bootstrap4</li>
+  <li>Theming capability for all available Yoda modules using Bootstrap 4</li>
   <li>API access for all currently used functionality used by the Yoda frontend for all modules</li>
-  <li>Two specific metadata forms (HPTlab and Teclab) for Utrecht University GEO faculty</li>
+  <li>Two specific metadata forms (HPTlab and Teclab) for Utrecht University Geo Faculty</li>
   <li>As a Yoda administrator it is possible to send a test email (through Yoda from the command line) so email settings can be tested</li>
   <li>A researcher can now add a CC-0 (Creative Commons zero) license for research data so sharing published data is conform this license</li>
   <li>As a researcher I want my datacite record updated when datacite mapping is changed so that my dataset is found</li>
@@ -465,8 +465,8 @@
 
 <h2 id="upgrading-from-yoda-version-16">Upgrading from Yoda version 1.6</h2>
 <p>Upgrade is supported by Ansible (2.9.x).
-Requires Yoda external user service to be on version 1.5.x or higher. ??
-Requires Yoda public server to be on version 1.6.x or higher. ??</p>
+Requires Yoda external user service to be on version 1.5.x or higher.
+Requires Yoda public server to be on version 1.6.x or higher.</p>
 
 <ol>
   <li>
@@ -476,38 +476,8 @@ To view what files were changed from the defaults, run <code class="highlighter-
   <li>
     <p>After making sure the configurations are stored safely in another folder, reset the Yoda folder using <code class="highlighter-rouge">git stash</code> or when you want to delete all changes made: <code class="highlighter-rouge">git reset --hard</code>.</p>
   </li>
-  <li>Checkout branch <code class="highlighter-rouge">release-1.7</code> of the Yoda Git repository
+  <li>Checkout branch <code class="highlighter-rouge">release-1.7</code> of the Yoda Git repository.
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout release-1.7
-</code></pre></div>    </div>
-    <p>This will set Yoda release to <code class="highlighter-rouge">release-1.7</code> in configuration as well as the default schema to <code class="highlighter-rouge">default-1</code>.</p>
-  </li>
-  <li>The core modules (<code class="highlighter-rouge">research</code>, <code class="highlighter-rouge">vault</code>, <code class="highlighter-rouge">statistics</code>, <code class="highlighter-rouge">group-manager</code>) are enabled by default in Yoda 1.7.
-Only extra modules have to be enabled in the configuration.
-So <code class="highlighter-rouge">modules</code> becomes <code class="highlighter-rouge">extra_modules</code> and all core modules should be removed from the <code class="highlighter-rouge">extra_modules</code> list.
-Update the configuration according to your specifications.
-For example:
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># Yoda modules</span>
-     <span class="na">extra_modules</span><span class="pi">:</span>
-       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">intake</span>
-         <span class="na">repo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/UtrechtUniversity/yoda-portal-intake.git"</span>
-         <span class="na">dest</span><span class="pi">:</span> <span class="s">/var/www/yoda/yoda-portal/modules/intake</span>
-         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
-</code></pre></div>    </div>
-  </li>
-  <li>The core rulesets (<code class="highlighter-rouge">core</code> and <code class="highlighter-rouge">irods-ruleset-uu</code>) are enabled by default in Yoda 1.6.
-Only extra modules have to be enabled in the configuration.
-Furthermore, the research ruleset (<code class="highlighter-rouge">irods-ruleset-research</code>) has been merged with the UU ruleset
-(<code class="highlighter-rouge">irods-ruleset-uu</code>). So <code class="highlighter-rouge">rulesets</code> becomes <code class="highlighter-rouge">extra_rulesets</code>;
-<code class="highlighter-rouge">core</code>, <code class="highlighter-rouge">irods-ruleset-research</code> and <code class="highlighter-rouge">irods-ruleset-uu</code> should be removed from the <code class="highlighter-rouge">extra_rulesets</code> list.
-Update the configuration according to your specifications.
-For example:
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># iRODS rulesets</span>
-     <span class="na">extra_rulesets</span><span class="pi">:</span>
-       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">irods-ruleset-youth-cohort</span>
-         <span class="na">repo</span><span class="pi">:</span> <span class="s">https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git</span>
-         <span class="na">ruleset_name</span><span class="pi">:</span> <span class="s">rules-yc</span>
-         <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
-         <span class="na">install_scripts</span><span class="pi">:</span> <span class="s">no</span>
 </code></pre></div>    </div>
   </li>
   <li>Run the Ansible playbook in check mode.
@@ -520,14 +490,6 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> &lt;path-to-your-environment&gt; playbook.yml
 <span class="c">### EXAMPLE ###</span>
 ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml
-</code></pre></div>    </div>
-  </li>
-  <li>Convert all metadata XML in the vault to JSON (<code class="highlighter-rouge">default-0</code> XML to <code class="highlighter-rouge">default-0</code> JSON).
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
-</code></pre></div>    </div>
-  </li>
-  <li>Update all metadata JSON in the vault to latest metadata JSON version (<code class="highlighter-rouge">default-0</code> to <code class="highlighter-rouge">default-1</code>).
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r
 </code></pre></div>    </div>
   </li>
   <li>Update publication endpoints if there are published packages (landingpages and OAI-PMH)):

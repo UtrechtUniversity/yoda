@@ -36,7 +36,6 @@ To view what files were changed from the defaults, run `git diff`.
 ```bash
 git checkout release-1.6
 ```
-This will set Yoda release to `release-1.6` in configuration as well as the default schema to `default-1`.
 
 4. The core modules (`research`, `vault`, `statistics`, `group-manager`) are enabled by default in Yoda 1.6.
    Only extra modules have to be enabled in the configuration.
