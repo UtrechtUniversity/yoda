@@ -44,7 +44,7 @@ This will set Yoda release to `release-1.6` in configuration as well as the defa
           - name: intake
             repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
             dest: /var/www/yoda/yoda-portal/modules/intake
-            version: "{{ yoda_version }}"
+            version: "\{\{ yoda_version \}\}"
     ```
 
 5. The core rulesets (`core` and `irods-ruleset-uu`) are enabled by default in Yoda 1.6.
@@ -60,7 +60,7 @@ This will set Yoda release to `release-1.6` in configuration as well as the defa
           - name: irods-ruleset-youth-cohort
             repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
             ruleset_name: rules-yc
-            version: "{{ yoda_version }}"
+            version: "\{\{ yoda_version \}\}"
             install_scripts: no
     ```
 
