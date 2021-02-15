@@ -55,6 +55,7 @@
   become: yes
   pip:
     requirements: /etc/irods/irods-ruleset-uu/requirements.txt
+    extra_args: --user
 
 
 - name: Ensure all rulesets are in server config

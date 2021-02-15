@@ -113,6 +113,59 @@
     mode: 0644
   when: not ansible_check_mode
 
+- name: create directory with parent directories
+  file:
+    path: /var/www/yoda/yoda-portal/public/static/img/custom/
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0755'
+    state: directory
+  when: >
+    (not ansible_check_mode) and
+    ( ((portal_shortcut_icon is defined) and (portal_shortcut_icon)) or
+      ((portal_logo is defined) and (portal_logo)) or
+      ((portal_static_frontpage is defined) and (portal_static_frontpage)) )
+
+- name: Customized icons
+  copy:
+    src: "{{ portal_shortcut_icon }}"
+    dest: "/var/www/yoda/yoda-portal/public/static/img/custom/{{ portal_shortcut_icon | basename }}"
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0644'
+  when: (not ansible_check_mode) and (portal_shortcut_icon is defined) and (portal_shortcut_icon)
+
+- name: Customized logo
+  copy:
+    src: "{{ portal_logo }}"
+    dest: "/var/www/yoda/yoda-portal/public/static/img/custom/{{ portal_logo | basename }}"
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0644'
+  when: (not ansible_check_mode) and (portal_logo is defined) and (portal_logo)
+
+- name: Customized frontpage
+  copy:
+    src: "{{ portal_static_frontpage.file }}"
+    dest: "/var/www/yoda/yoda-portal/public/static/static_frontpage.html"
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0644'
+  when: (not ansible_check_mode) and (portal_static_frontpage is defined) and (portal_static_frontpage)
+
+- name: Customized frontpage images
+  copy:
+    src: "{{ item }}"
+    dest: "/var/www/yoda/yoda-portal/public/static/img/custom/{{ item | basename }}"
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0644'
+  with_items: "{{ portal_static_frontpage.images }}"
+  when: >
+    (not ansible_check_mode) and
+    (portal_static_frontpage is defined) and
+    (portal_static_frontpage)  and
+    (portal_static_frontpage.images)
 
 - name: Ensure logs directory is present
   file:

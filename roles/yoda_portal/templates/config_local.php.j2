@@ -57,4 +57,17 @@ $config['oidc_acr_values']      = '{{ oidc_acr_values    | default("") }}';
 $config['oidc_email_field']     = '{{ oidc_email_field   | default("email") }}';
 $config['oidc_signin_text']     = '{{ oidc_signin_text   | default("Sign in with OIDC") }}';
 $config['oidc_auth_uri']        = "${config['oidc_auth_base_uri']}?response_type=code&client_id=${config['oidc_client_id']}&redirect_uri=${config['oidc_callback_uri']}&scope=${config['oidc_scopes']}&acr_values=${config['oidc_acr_values']}";
-$config['oidc_active']          = {{ oidc_active | default(false) }}; 
+$config['oidc_active']          = {{ oidc_active | default(false) }};
+
+// Branding
+{% if portal_title_text %}
+$config['portalTitleText'] = '{{ portal_title_text }}';
+{% endif %}
+
+{% if portal_shortcut_icon %}
+$config['portalShortcutIcon'] = '/static/img/custom/{{ portal_shortcut_icon | basename }}';
+{% endif %}
+
+{% if portal_logo %}
+$config['portalLogo'] = '/static/img/custom/{{ portal_logo | basename }}';
+{% endif %}
