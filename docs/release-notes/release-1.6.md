@@ -17,7 +17,7 @@ Released: November 2020
 - Upgrade to iRODS v4.2.7
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
 
-### Know issues
+### Known issues
 The transformation of metadata, often required when a new version of Yoda is deployed holding one or more metadataschema changes versions, can not be completed when metadata still is in locked state "ACCEPTED".  
 Therefore, the appointed admin needs to run checks beforehand and settles unfinished workflows to avoid incomplete metadata transformation(s).
 

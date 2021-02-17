@@ -16,7 +16,6 @@ Released: TBA
 ### Known issues
 - When datapackage is secured to the vault, and directly after the metadata is edited and saved in the research area, the file metadata.json will be shown twice for a brief period of time (<5 minutes)
 
-
 ## Upgrading from Yoda version 1.6
 Upgrade is supported by Ansible (2.9.x).
 Requires Yoda external user service to be on version 1.5.x or higher.
