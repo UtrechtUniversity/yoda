@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>yoda</title>
+  <title>Configuring OpenId Connect (OIDC)</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -343,9 +343,20 @@
                     <div class="header-image hidden-print">
 
                         
+                        <div class="breadcrumbs" xmlns:v="https://rdf.data-vocabulary.org/#">
+                            <div class="container">
+							<span property="itemListElement" typeof="ListItem">
+								<span property="name">YODA</span>
+								<meta property="position" content="1">
+							</span>
+                            </div>
+                        </div>
+                        
 
                         <img src="/yoda/assets/images/header.jpg" alt="">
 
+                        
+                        <div class="page-header-placeholder"></div>
                         
                     </div>
                 </header>
@@ -408,6 +419,12 @@
 
                         <div class="page-content clearfix">
                             
+                            <div class="page-title">
+                                <h1>
+                                    Configuring OpenId Connect (OIDC)
+                                </h1>
+                            </div>
+                            
 			    <!--
                             <div class="toggle-btn-div visible-xs clearfix">
                                 <button type="button" class="toggle-btn white button icon left arrow-right" data-toggle="offcanvas">
@@ -419,8 +436,8 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <p>#Configuring OpenId Connect (OIDC)
-Instruction on how to configure Openid Connect authentication.</p>
+                                        <h1 id="configuring-openid-connect-oidc">Configuring OpenId Connect (OIDC)</h1>
+<p>Instruction on how to configure Openid Connect authentication.</p>
 
 <h2 id="1-configuring-the-variables">1. Configuring the variables</h2>
 <p>When creating a new Yoda instance, setup the variables in the group_vars as explained in <a href="/yoda/administration/configuring-yoda.html">Configuring Yoda</a> and run the playbook.
