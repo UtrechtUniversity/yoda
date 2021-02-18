@@ -1,4 +1,4 @@
-#Configuring OpenId Connect (OIDC)
+# Configuring OpenId Connect (OIDC)
 Instruction on how to configure Openid Connect authentication.
 
 ## 1. Configuring the variables
