@@ -451,11 +451,12 @@
 <h3 id="features">Features</h3>
 <ul>
   <li>Theming capability for all available Yoda modules using Bootstrap 4</li>
-  <li>API access for all currently used functionality used by the Yoda frontend for all modules</li>
+  <li><a href="../administration/configuring-openidc.html">Support</a> for MFA login on the web portal using OIDC</li>
+  <li><a href="https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/irods-ruleset-uu/api.json">API</a> access for all currently used functionality used by the Yoda frontend for all modules</li>
   <li>Two specific metadata forms (HPTlab and Teclab) for Utrecht University Geo Faculty</li>
-  <li>As a Yoda administrator it is possible to send a test email (through Yoda from the command line) so email settings can be tested</li>
-  <li>A researcher can now add a CC-0 (Creative Commons zero) license for research data so sharing published data is conform this license</li>
-  <li>As a researcher I want my datacite record updated when datacite mapping is changed so that my dataset is found</li>
+  <li>The CC-0 (Creative Commons zero) license is added to allow publishing data under this license</li>
+  <li>Test script for administrators to send a tests email, so email settings can be tested</li>
+  <li>Script for administrators to update all published datapackages endpoints (DataCite, landingpages and OAI-PMH)</li>
 </ul>
 
 <h3 id="known-issues">Known issues</h3>
@@ -492,7 +493,7 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
 ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml
 </code></pre></div>    </div>
   </li>
-  <li>Update publication endpoints if there are published packages (landingpages and OAI-PMH)):
+  <li>Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/update-publications.r
 </code></pre></div>    </div>
   </li>
