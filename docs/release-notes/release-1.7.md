@@ -46,7 +46,7 @@ ansible-playbook -i <path-to-your-environment> playbook.yml
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-6. Update publication endpoints if there are published packages (landingpages and OAI-PMH)):
+6. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/update-publications.r
 ```
