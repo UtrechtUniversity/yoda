@@ -9,7 +9,7 @@ Released: TBA
 - Theming capability for all available Yoda modules using Bootstrap 4
 - [Support](../administration/configuring-openidc.html) for MFA login on the web portal using OIDC
 - [API](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/irods-ruleset-uu/api.json) access for all currently used functionality used by the Yoda frontend for all modules
-- Two specific metadata forms (HPTlab and Teclab) for Utrecht University Geo Faculty
+- Landingpage support for specific metadata forms (HPTlab and Teclab) for Utrecht University Geo Faculty
 - The CC-0 (Creative Commons zero) license is added to allow publishing data under this license
 - Test script for administrators to send a tests email, so email settings can be tested
 - Script for administrators to update all published datapackages endpoints (DataCite, landingpages and OAI-PMH)
