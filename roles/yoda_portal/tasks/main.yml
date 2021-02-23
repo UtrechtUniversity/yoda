@@ -35,17 +35,6 @@
     state: link
 
 
-- name: Configure Yoda thema
-  become_user: "{{ yoda_deployment_user }}"
-  become: yes
-  copy:
-    src: /var/www/yoda/yoda-portal/theming/themes/{{ yoda_theme }}/public/
-    dest: /var/www/yoda/yoda-portal/public/
-    mode: 0755
-    remote_src: yes
-    directory_mode: yes
-
-
 - name: Checkout Yoda modules
   become_user: "{{ yoda_deployment_user }}"
   become: yes
@@ -66,6 +55,17 @@
     state: link
   with_items: "{{ core_modules + extra_modules }}"
   when: not ansible_check_mode
+
+
+- name: Configure Yoda theme
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  copy:
+    src: /var/www/yoda/yoda-portal/theming/themes/{{ yoda_theme }}/public/
+    dest: /var/www/yoda/yoda-portal/public/
+    mode: 0755
+    remote_src: yes
+    directory_mode: yes
 
 
 - name: Generate PHP session encryption key
