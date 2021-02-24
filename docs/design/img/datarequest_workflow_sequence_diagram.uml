@@ -1,0 +1,60 @@
+@startuml
+actor "Researcher" as R
+actor "Datamanager" as DM
+actor "DMCmember" as M1
+actor "DMCmember" as M2
+actor "BODmember" as B
+participant "System" as Y
+
+R -> Y   : submit data request
+Y --> R  : confirm received
+note over Y
+ Submitted
+end note
+Y --> B  : request preliminary review
+B -> Y   : preliminary review
+Y --> R  : 1a: preliminary reject
+Y --> R  : 1b: preliminary resubmit
+note over Y
+ 1c: Preliminary Accept
+end note
+Y --> DM : request datamanager review
+DM -> Y  : datamanager review
+Y --> B  : 2a: datamanager reject
+Y --> R  : 2a: rejected after datamanager review
+Y --> B  : 2b: datamanager resubmit
+Y --> R  : 2b: resubmit after datamanager review
+Y --> B  : 2c: datamanager accept
+note over Y
+ 2c: Datamanager Accept
+end note
+B -> Y   : assign reviewer(s)
+Y --> M1 : please review
+Y --> M2 : please review
+note over Y
+ Under Review
+end note
+M1 -> Y  : review
+M2 -> Y  : review
+Y --> B  : request evaluation
+B -> Y   : evaluation
+Y --> R  : 3a: rejected
+Y --> R  : 3b: resubmit
+Y --> R  : 3c: approved
+note over Y
+ 3c: Approved
+end note
+Y --> DM : prepare DTA
+DM -> Y  : upload unsigned DTA
+Y --> R  : please sign DTA
+note over R
+ download DTA, sign, scan
+end note
+R -> Y   : submit signed DTA
+Y --> DM : review signed DTA
+note over DM
+ prepare data in Yoda
+end note
+DM -> Y  : data ready
+Y --> R  : data available for download
+@enduml

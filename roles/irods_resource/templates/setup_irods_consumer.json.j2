@@ -1,7 +1,7 @@
 {
   "admin_password": "{{ irods_password }}",
   "service_account_environment": {
-    "irods_host": "{{ ansible_fqdn }}",
+    "irods_host": "{{ irods_resource_fqdn | default(ansible_fqdn) }}",
     "irods_port": 1247,
     "irods_user_name": "{{ irods_admin }}",
     "irods_zone_name": "{{ irods_zone }}",

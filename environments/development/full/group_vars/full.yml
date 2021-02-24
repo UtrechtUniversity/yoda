@@ -94,19 +94,6 @@ irods_resources:
     children:
       - dev002
 
-# iRODS rulesets
-extra_rulesets:
-  - name: irods-ruleset-datarequest
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-datarequest.git
-    ruleset_name: rules-dr
-    version: "{{ yoda_version }}"
-    install_scripts: yes
-  - name: irods-ruleset-youth-cohort
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-youth-cohort.git
-    ruleset_name: rules-yc
-    version: "{{ yoda_version }}"
-    install_scripts: no
-
 # Mail notifications
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 notifications_sender_email: noreply@yoda.test # Notifiations sender email address
@@ -169,3 +156,15 @@ eus_smtp_password: PLACEHOLDER
 eus_smtp_from_address: PLACEHOLDER
 eus_smtp_replyto_address: PLACEHOLDER
 eus_mail_template: uu
+
+# Openid Connect configuration
+oidc_client_id: PLACEHOLDER
+oidc_client_secret: PLACEHOLDER
+oidc_callback_url: PLACEHOLDER
+oidc_auth_base_uri: PLACEHOLDER
+oidc_token_uri: PLACEHOLDER
+oidc_userinfo_uri: PLACEHOLDER
+oidc_scopes: PLACEHOLDER
+oidc_acr_values: PLACEHOLDER
+oidc_email_field: PLACEHOLDER
+oidc_signin_text: PLACEHOLDER

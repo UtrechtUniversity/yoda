@@ -18,10 +18,13 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Lint Ansible Playbook
-      uses: ansible/ansible-lint-action@151b9a2
+      uses: ansible/ansible-lint-action@c37fb7b4bda2c8cb18f4942716bae9f11b0dc9bc
       with:
         targets: |
           playbook.yml
+        override-deps: |
+          ansible==2.10
+          ansible-lint==4.3.7
 
         # [optional]
         # Arguments to be passed to the ansible-lint

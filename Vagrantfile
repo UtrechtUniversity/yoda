@@ -3,46 +3,21 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Retrieve instance from command line.
-require 'getoptlong'
-
-opts = GetoptLong.new(
-  [ '--instance', GetoptLong::OPTIONAL_ARGUMENT ]
-)
-
-instance='combined'
-opts.each do |opt, arg|
-  case opt
-    when '--instance'
-      instance=arg
-  end
-end
-
 # Configuration variables.
 VAGRANTFILE_API_VERSION = "2"
 
-BOX = 'centos/7'
+BOX = 'generic/centos7'
 GUI = false
-CPU = 1
-RAM = 1024
+CPU = 2
+RAM = 2048
 
 DOMAIN  = ".yoda.test"
-NETWORK = "192.168.50."
+NETWORK = "192.168.50.10"
 NETMASK = "255.255.255.0"
 
-if instance == "full" then
-  HOSTS = {
-    "portal"   => [NETWORK+"10", CPU, RAM, GUI, BOX],
-    "database" => [NETWORK+"11", CPU, RAM, GUI, BOX],
-    "icat"     => [NETWORK+"12", CPU, RAM, GUI, BOX],
-    "resource" => [NETWORK+"13", CPU, RAM, GUI, BOX],
-    "public"   => [NETWORK+"14", CPU, RAM, GUI, BOX],
-  }
-else
-  HOSTS = {
-    "combined" => [NETWORK+"10", 2, 2048, GUI, BOX],
-  }
-end
+HOSTS = {
+  "combined" => [NETWORK, CPU, RAM, GUI, BOX],
+}
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.insert_key = false

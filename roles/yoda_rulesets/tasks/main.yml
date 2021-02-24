@@ -8,15 +8,6 @@
     state: present
 
 
-- name: Ensure old Python dependencies are absent
-  package:
-    name:
-      - python-jinja2
-      - python-xmltodict
-      - python-lxml
-    state: absent
-
-
 - name: Checkout rulesets from github
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -47,18 +38,6 @@
     - "{{ temporary_rules.files }}"
 
 
-- name: Ensure Python rules exist
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    content: ""
-    dest: "{{ item }}"
-    mode: 0644
-    force: no
-  with_items:
-    - /etc/irods/rules_dr.py
-
-
 - name: Run make install for each ruleset
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -76,6 +55,7 @@
   become: yes
   pip:
     requirements: /etc/irods/irods-ruleset-uu/requirements.txt
+    extra_args: --user
 
 
 - name: Ensure all rulesets are in server config

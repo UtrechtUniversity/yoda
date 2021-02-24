@@ -76,11 +76,13 @@
   hosts: icats
   become: yes
   roles:
+    - pam_python
     - irods_icat
     - irods_runtime
     - irods_microservices
     - composable_resources
     - irods_completion
+    - irods_rodsadmin
   tags:
     - icat
 

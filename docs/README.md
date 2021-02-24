@@ -6,6 +6,7 @@ Yoda is a research data management solution developed by Utrecht University and 
 It provides researchers and their partners with a workspace and an archive that enables them to collaborate, deposit, publish and preserve research data.
 
 ## Release notes
+- [release 1.7](release-notes/release-1.7.md) (TBA)
 - [release 1.6](release-notes/release-1.6.md) (November 2020)
 - [release 1.5](release-notes/release-1.5.md) (July 2019)
 - [release 1.4](release-notes/release-1.4.md) (December 2018)
@@ -27,6 +28,7 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Background jobs](administration/background-jobs.md)
 - [Troubleshooting publication](administration/troubleshooting-publication.md)
 - [Restore collection](administration/restore-collection.md)
+- [Configuring OpenId Connect](administration/configuring-openidc.md)
 
 ## Development
 - [Setting up development environment](development/setting-up-development-environment.md)
@@ -53,7 +55,6 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Metadata schema identifier](design/metadata-schema-identifier.md)
 - [Metadata form](design/metadata-form.md)
 - [Metadata mappings](design/metadata-mappings.md)
-- [Metadata namespaces](design/metadata-namespaces.md)
 - [Metadata schemas](design/metadata-schemas.md)
 
 ### Processes

@@ -66,22 +66,6 @@
   when: monthly_storage_statistics.stat.exists
 
 
-- name: Remove legacy configuration AVUs for UU ruleset on system collection
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  irods_setavu:
-    name: "/{{ irods_zone }}/yoda"
-    irods_type: Collection
-    attribute: "{{ avu.attribute }}"
-    value: "{{ avu.value }}"
-    state: absent
-  with_items:
-    - attribute: org_send_notifications
-      value: "{{ send_notifications }}"
-  loop_control:
-    loop_var: avu
-
-
 - name: Create local UU ruleset configuration
   template:
     src: rules_uu.cfg.j2
@@ -353,21 +337,6 @@
     loop_var: avu
 
 
-- name: Remove old research rule files left behind
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  file:
-    path: "{{ item }}"
-    state: absent
-  with_items:
-    - /etc/irods/rules_uu.py
-    - /etc/irods/rules_uu.pyc
-    - /etc/irods/rules-research.re
-    - /etc/irods/rules_research.py
-    - /etc/irods/rules_research.pyc
-    - /etc/irods/irods-ruleset-research/
-
-
 - name: Enable asynchronous replication job
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -452,5 +421,3 @@
   when: enable_datarequest and not ansible_check_mode
   with_items:
     - admin-datarequestactions.sh
-
-

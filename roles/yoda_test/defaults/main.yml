@@ -191,14 +191,27 @@ test_groupusers:
   - groupName: research-hptlab-0
     user: functionaladminpriv
     role: manager
+  - groupName: research-hptlab-0
+    user: researcher
+    role: normal
   - groupName: datamanager-hptlab-0
     user: functionaladminpriv
     role: manager
+  - groupName: datamanager-hptlab-0
+    user: datamanager
+    role: manager
+
   - groupName: research-teclab-0
     user: functionaladminpriv
     role: manager
+  - groupName: research-teclab-0
+    user: researcher
+    role: normal
   - groupName: datamanager-teclab-0
     user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-teclab-0
+    user: datamanager
     role: manager
 
   - groupName: datarequests-research-board-of-directors
