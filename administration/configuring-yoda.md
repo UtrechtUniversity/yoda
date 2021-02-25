@@ -220,13 +220,15 @@ eus_mail_template            | External User Service mail template
 
 Variable   | Description
 -----------|---------------------------------------------
-oidc_active		| Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
+oidc_active         | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
 oidc_client_id		| OIDC Client Id
 oidc_client_secret	| OIDC Client Secret/Password
+oidc_callback_url   | OIDC Callback url
 oidc_auth_base_uri	| OIDC Authorization URI without parameters
 oidc_token_uri		| OIDC Token URI
 oidc_userinfo_uri	| OIDC Userinfo URI
-oidc_scopes		| OIDC Scopes
+oidc_scopes         | OIDC Scopes
 oidc_acr_values		| OIDC Authentication Context Class Reference Values
 oidc_email_field	| The identifier of the JSON field in the `id_token` containing the email address. Default: `email`
 oidc_signin_text	| The text to appear on the Sign in button. Default: *Sign in with OIDC*
+oidc_public_key     | OIDC jwks public key (base64 encoded PEM format)

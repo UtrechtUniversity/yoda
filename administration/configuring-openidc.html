@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="icon" href="/yoda/assets/images/favicon.ico">
 
-  <title>Configuring OpenId Connect (OIDC)</title>
+  <title>Configuring OpenID Connect (OIDC)</title>
 
   <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
   <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
@@ -428,7 +428,7 @@
                             
                             <div class="page-title">
                                 <h1>
-                                    Configuring OpenId Connect (OIDC)
+                                    Configuring OpenID Connect (OIDC)
                                 </h1>
                             </div>
                             
@@ -443,12 +443,12 @@
 
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
-                                        <h1 id="configuring-openid-connect-oidc">Configuring OpenId Connect (OIDC)</h1>
-<p>Instruction on how to configure Openid Connect authentication.</p>
+                                        <h1 id="configuring-openid-connect-oidc">Configuring OpenID Connect (OIDC)</h1>
+<p>Instruction on how to configure OpenID Connect authentication.</p>
 
-<h2 id="1-configuring-the-variables">1. Configuring the variables</h2>
+<h2 id="configuring-the-variables">Configuring the variables</h2>
 <p>When creating a new Yoda instance, setup the variables in the group_vars as explained in <a href="/yoda/administration/configuring-yoda.html">Configuring Yoda</a> and run the playbook.
-Alternatively, you can choose to pass the variables with the <em>–extra-vars</em> option everytime when running the Ansible playbook.</p>
+Alternatively, you can choose to pass the variables with the <em>–extra-vars</em> option every time when running the Ansible playbook.</p>
 
 <p>For OIDC to function properly it requires the following variables to be set:</p>
 <ul>
@@ -458,6 +458,7 @@ Alternatively, you can choose to pass the variables with the <em>–extra-vars</
   <li>oidc_auth_base_uri</li>
   <li>oidc_token_uri</li>
   <li>oidc_userinfo_uri</li>
+  <li>oidc_public_key</li>
 </ul>
 
 <p>Additionally, depending on the authorization server, you may need to configure the following variables:</p>
@@ -481,7 +482,6 @@ If so, you have correctly configured authentication via OIDC.
 Please also verify that the standard login method is still working as intended.</p>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
-
 <ul>
   <li><strong>The Sign in with OIDC button is missing:</strong> check if the <code class="highlighter-rouge">oidc_active</code> variable is set to <code class="highlighter-rouge">true</code>.</li>
   <li><strong>After signing in at the authorization server I am redirected to the login screen with the error 'Failed to login to Yoda. Please contact a data manager about your account.':</strong> This can have multiple causes:
@@ -491,7 +491,7 @@ Please also verify that the standard login method is still working as intended.<
     </ol>
 
     <p>To check whether the problem is caused by case 1, verify that the user exists in Yoda and add them if they are not.
-  To solve case 2, re-check the client secret, the token URI, the email field, and scopes variables.</p>
+  To solve case 2, re-check the client secret, the token URI, the email field, the public key, and scopes variables.</p>
   </li>
 </ul>
 
