@@ -1,9 +1,9 @@
-# Configuring OpenId Connect (OIDC)
-Instruction on how to configure Openid Connect authentication.
+# Configuring OpenID Connect (OIDC)
+Instruction on how to configure OpenID Connect authentication.
 
-## 1. Configuring the variables
+## Configuring the variables
 When creating a new Yoda instance, setup the variables in the group_vars as explained in [Configuring Yoda](configuring-yoda.md) and run the playbook.
-Alternatively, you can choose to pass the variables with the *--extra-vars* option everytime when running the Ansible playbook.
+Alternatively, you can choose to pass the variables with the *--extra-vars* option every time when running the Ansible playbook.
 
 For OIDC to function properly it requires the following variables to be set:
 - oidc_active
@@ -12,6 +12,7 @@ For OIDC to function properly it requires the following variables to be set:
 - oidc_auth_base_uri
 - oidc_token_uri
 - oidc_userinfo_uri
+- oidc_public_key
 
 Additionally, depending on the authorization server, you may need to configure the following variables:
 - oidc_scopes (default: *openid*)
@@ -30,11 +31,10 @@ If so, you have correctly configured authentication via OIDC.
 Please also verify that the standard login method is still working as intended.
 
 ## Troubleshooting
-
 - **The Sign in with OIDC button is missing:** check if the `oidc_active` variable is set to `true`.
 - **After signing in at the authorization server I am redirected to the login screen with the error \'Failed to login to Yoda. Please contact a data manager about your account.\':** This can have multiple causes:
     1. The user that is trying to sign in does not exist, or
     2. An error occurred after signing in at the authorization server.
 
     To check whether the problem is caused by case 1, verify that the user exists in Yoda and add them if they are not.
-    To solve case 2, re-check the client secret, the token URI, the email field, and scopes variables.
+    To solve case 2, re-check the client secret, the token URI, the email field, the public key, and scopes variables.

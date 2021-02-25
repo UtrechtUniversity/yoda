@@ -157,3 +157,26 @@ eus_smtp_password: PLACEHOLDER
 eus_smtp_from_address: PLACEHOLDER
 eus_smtp_replyto_address: PLACEHOLDER
 eus_mail_template: uu
+external_users_domain: gmail.com
+
+# Openid Connect configuration (This configuration is for TESTING purposes!)
+oidc_active: false
+oidc_client_id: myClientId                                    # OIDC Client Id
+oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
+oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url
+oidc_auth_base_uri: https://oauth.mocklab.io/oauth/authorize  # OIDC Authorization URI without parameters
+oidc_token_uri: https://oauth.mocklab.io/oauth/token          # OIDC Token URI
+oidc_userinfo_uri: https://oauth.mocklab.io/userinfo          # OIDC Userinfo URI
+oidc_scopes: openid                                           # OIDC Scopes
+oidc_acr_values: ""                                           # OIDC Authentication Context Class Reference Values
+oidc_email_field: email                                       # The identifier of the JSON field in the id_token containing the email address (default: email)
+oidc_signin_text: 'Sign in with Mocklab.io'                   # The text to appear on the Sign in button (default: Sign in with OIDC)
+oidc_public_key: |                                            # OIDC jwks public key (base64 encoded PEM format)
+  LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0NCk1JSUJJVEFOQmdrcWhraUc5dzBCQVFFRkFBT0NBU
+  TRBTUlJQkNRS0NBUUNZV2M0eFhkeStLekcrS1VISXRLMHINCnN4d0V5S0xhVTdYeDE4T1BvaUxzUU
+  dwWm1jTFhSNnc4T1hHVkJQNE15dGZsQjFsMjFreWFYUmlpNHF3L0ovdDENCnk4MzVMK1dJSTcydTl
+  FMXZCRlQwdVcycTcwSDh3ZUkwZ054dGlKUTZTcmtvRjlpUmxzaDhzWGxMRWtKUkQwc0gNCmVBb0dk
+  Z2dUQ3pDcGhLOW5MbnR1anYxbXBRTWgvRWl6V1I2Nm9MMnpwNWllR2Y0Z3VyME1naWRuN1NNT3dqN
+  GENCmVEVVNFV3g1RDlzcXlQeU9vWXFDNmJ5MmJPZWlCM2YzN3FpRXZUUGtMQzBKZlZoVVVTSnAwa0
+  s5R3NhTlIybHQNCmwwOFppUFdaV3h0N3JkM01GTFBSV2liMS9jV3dFZFVUZFc1RFpiWlpNcmovQS9
+  5UytwUWJkNFFXWnMzTmNPeTcNCkFnTUJBQUU9DQotLS0tLUVORCBQVUJMSUMgS0VZLS0tLS0=
