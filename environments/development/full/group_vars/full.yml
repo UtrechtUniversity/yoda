@@ -19,6 +19,10 @@ yoda_prefix: UU01                                  # Prefix for internal portion
 update_schemas: 1                                  # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files: PLACEHOLDER                      # Location of Yoda credentials files
 
+# Intake module configuration
+enable_intake: true                                # Enable intake module
+
+# Datarequest module configuration
 enable_datarequest: true                           # Enable datarequest module
 
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)

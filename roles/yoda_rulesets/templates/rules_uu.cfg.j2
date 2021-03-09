@@ -29,8 +29,8 @@ eus_api_fqdn               = '{{ eus_api_fqdn }}'
 eus_api_port               = '{{ eus_api_port }}'
 eus_api_secret             = '{{ eus_api_secret }}'
 
-enable_intake              = '{{ enable_intake }}'
-enable_datarequest         = '{{ enable_datarequest }}'
+enable_intake              = '{{ ["false", "true"][enable_intake|int] }}'
+enable_datarequest         = '{{ ["false", "true"][enable_datarequest|int] }}'
 {% if enable_datarequest %}
 yoda_portal_fqdn           = '{{ yoda_portal_fqdn }}'
 {% endif %}
