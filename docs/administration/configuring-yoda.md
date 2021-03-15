@@ -149,6 +149,12 @@ update_rulesets              | Update already installed rulesets with git
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
 
+### Intake module configuration
+
+Variable                     | Description
+-----------------------------|---------------------
+enable_intake                | Enable intake module
+
 ### Datarequest module configuration
 
 Variable                     | Description
