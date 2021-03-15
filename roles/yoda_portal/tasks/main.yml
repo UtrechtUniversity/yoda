@@ -18,12 +18,7 @@
 
 - name: Ensure Yoda portal dependencies are installed
   pip:
-    name:
-      - Flask
-      - Flask-WTF
-      - Flask-Session
-      - mod-wsgi
-      - python-irodsclient==0.8.5
+    requirements: /var/www/yoda/requirements.txt
     virtualenv: '/var/www/yoda/venv'
     virtualenv_python: python3.6
   notify: Restart Apache webserver
