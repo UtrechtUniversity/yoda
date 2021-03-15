@@ -21,6 +21,7 @@
     name:
       - Flask
       - Flask-WTF
+      - Flask-Session
       - mod-wsgi
       - python-irodsclient==0.8.5
     virtualenv: '/var/www/yoda/venv'
