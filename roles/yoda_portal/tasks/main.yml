@@ -35,6 +35,13 @@
     creates: /etc/httpd/conf.modules.d/02-wsgi.conf
 
 
+- name: Copy Yoda Portal config for Flask
+  template:
+    src: "flask.cfg.j2"
+    dest: "/var/www/yoda/flask.cfg"
+    mode: "0644"
+
+
 - name: Copy Yoda Portal virtual host config for Apache
   template:
     src: "yoda-portal-vhost.conf.j2"
