@@ -8,6 +8,14 @@ Set `enable_datarequest` to `true` in configuration.
 enable_datarequest: true
 ```
 
+### Set Ansible parameters specific to the datarequest module
+Users can contact a helpdesk email address for questions regarding the
+datarequest procedure. Set the fields below to specify the help contact.
+```
+datarequest_help_contact_name: the data manager
+datarequest_help_contact_email: help@yoda.instance
+```
+
 Add the `yoda-portal-datarequest` repository to `extra_modules`.
 ```
 extra_modules:
@@ -79,13 +87,3 @@ Instructions:
     ```bash
     iput -f /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schemas/youth-0/assignment/schema.json
     ```
-
-### Customizing the helpdesk email address
-Users can contact a helpdesk email address for questions regarding the
-datarequest procedure. This address is configured in `config/config.php` of the
-`yoda-portal-datarequest` repository by setting the `help_contact_name` and
-`help_contact_email` fields.
-
-Instructions:
-
-1. Adjust the above-mentioned fields in `/var/www/yoda/yoda-portal/modules/datarequest/config/config.php`.
