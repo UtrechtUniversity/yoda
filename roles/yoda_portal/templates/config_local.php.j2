@@ -46,6 +46,12 @@ $config['log_threshold']       = 1;
 
 $config['yoda_eus_fqdn']       = '{{ yoda_eus_fqdn }}';
 
+// Config for datarequest module
+{% if enable_datarequest %}
+$config['datarequest_help_contact_name']  = '{{ datarequest_help_contact_name }}';
+$config['datarequest_help_contact_email'] = '{{ datarequest_help_contact_email }}';
+{% endif %}
+
 // Config for OIDC
 $config['oidc_client_id']       = '{{ oidc_client_id     | default("") }}';
 $config['oidc_client_secret']   = '{{ oidc_client_secret | default("") }}';
