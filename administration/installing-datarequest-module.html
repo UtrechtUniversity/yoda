@@ -452,6 +452,13 @@
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>enable_datarequest: true
 </code></pre></div></div>
 
+<h3 id="set-ansible-parameters-specific-to-the-datarequest-module">Set Ansible parameters specific to the datarequest module</h3>
+<p>Users can contact a helpdesk email address for questions regarding the
+datarequest procedure. Set the fields below to specify the help contact.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>datarequest_help_contact_name: the data manager
+datarequest_help_contact_email: help@yoda.instance
+</code></pre></div></div>
+
 <p>Add the <code class="highlighter-rouge">yoda-portal-datarequest</code> repository to <code class="highlighter-rouge">extra_modules</code>.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extra_modules:
   - name: datarequest
@@ -530,18 +537,6 @@ the DMC members and the <code class="highlighter-rouge">enumNames</code> field s
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> iput <span class="nt">-f</span> /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schemas/youth-0/assignment/schema.json
 </code></pre></div>    </div>
   </li>
-</ol>
-
-<h3 id="customizing-the-helpdesk-email-address">Customizing the helpdesk email address</h3>
-<p>Users can contact a helpdesk email address for questions regarding the
-datarequest procedure. This address is configured in <code class="highlighter-rouge">config/config.php</code> of the
-<code class="highlighter-rouge">yoda-portal-datarequest</code> repository by setting the <code class="highlighter-rouge">help_contact_name</code> and
-<code class="highlighter-rouge">help_contact_email</code> fields.</p>
-
-<p>Instructions:</p>
-
-<ol>
-  <li>Adjust the above-mentioned fields in <code class="highlighter-rouge">/var/www/yoda/yoda-portal/modules/datarequest/config/config.php</code>.</li>
 </ol>
 
                                     </section>
