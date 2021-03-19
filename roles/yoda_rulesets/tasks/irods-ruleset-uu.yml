@@ -319,6 +319,7 @@
       value: "{{ yoda_davrods_fqdn }}{% if (yoda_davrods_port is defined) %}:{{ yoda_davrods_port }}{% endif %}"
   loop_control:
     loop_var: avu
+  when: not ansible_check_mode
 
 
 - name: Set configuration AVUs for anonymous davrods vhosts
@@ -335,6 +336,7 @@
       value: "{{ yoda_davrods_anonymous_fqdn }}{% if (yoda_davrods_anonymous_port is defined) %}:{{ yoda_davrods_anonymous_port }}{% endif %}"
   loop_control:
     loop_var: avu
+  when: not ansible_check_mode
 
 
 - name: Enable asynchronous replication job
