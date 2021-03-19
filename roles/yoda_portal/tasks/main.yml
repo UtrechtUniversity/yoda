@@ -66,6 +66,7 @@
     mode: 0755
     remote_src: yes
     directory_mode: yes
+  when: not ansible_check_mode
 
 
 - name: Generate PHP session encryption key
