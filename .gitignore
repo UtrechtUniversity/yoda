@@ -1,5 +1,6 @@
 # Editor swapfiles
 *~
+*.swp
 
 # Ansible stuff
 *.retry
