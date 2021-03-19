@@ -408,6 +408,7 @@
   become: yes
   irods_mkuser:
     name: anonymous
+  when: not ansible_check_mode
 
 
 - name: Ensure anonymous user has iRODS read access on /zone/home
