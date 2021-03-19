@@ -11,6 +11,7 @@
     vault_path: "{{ item.vault_path | default('EMPTY_RESC_PATH') }}"
     children: "{{ item.children | default([]) }}"
   with_items: "{{ irods_resources }}"
+  when: not ansible_check_mode
 
 
 - name: Ensure iRODS default resource is set in irods_environment.json
