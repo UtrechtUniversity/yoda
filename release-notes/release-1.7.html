@@ -482,15 +482,12 @@ Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.</p>
 
 <ol>
-  <li>
-    <p>Backup/copy custom configurations made to Yoda version 1.6.
-To view what files were changed from the defaults, run <code class="highlighter-rouge">git diff</code>.</p>
-  </li>
-  <li>
-    <p>After making sure the configurations are stored safely in another folder, reset the Yoda folder using <code class="highlighter-rouge">git stash</code> or when you want to delete all changes made: <code class="highlighter-rouge">git reset --hard</code>.</p>
-  </li>
   <li>Checkout branch <code class="highlighter-rouge">release-1.7</code> of the Yoda Git repository.
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout release-1.7
+</code></pre></div>    </div>
+  </li>
+  <li>Set Yoda release to <code class="highlighter-rouge">release-1.7</code> in configuration.
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">release-1.7</span>
 </code></pre></div>    </div>
   </li>
   <li>Run the Ansible playbook in check mode.
