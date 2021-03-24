@@ -21,7 +21,7 @@
   git:
     repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: "/var/www/yoda"
-    version: "pyportal-ansible"
+    version: "{{ yoda_portal_version }}"
     force: "yes"
   register: portalchanges
 
