@@ -19,7 +19,7 @@
         Require all granted
     </Directory>
 
-    WSGIDaemonProcess yodaweb user=apache group=apache threads=5 python-home=/var/www/yoda/venv
+    WSGIDaemonProcess yodaweb user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} threads=5 python-home=/var/www/yoda/venv
     WSGIProcessGroup yodaweb
     WSGIScriptAlias / /var/www/yoda/yoda.wsgi process-group=yodaweb
     WSGIPassAuthorization On
