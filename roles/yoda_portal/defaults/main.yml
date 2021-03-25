@@ -4,9 +4,6 @@
 yoda_deployment_user: yodadeployment
 
 yoda_version: development
-irods_php_version: "{{ yoda_version }}"
-codeigniter_version: "{{ yoda_version }}"
-codeigniter_environment: "{{ yoda_environment }}"
 
 yoda_portal_fqdn: portal.yoda.test
 yoda_eus_fqdn: eus.yoda.test
@@ -32,8 +29,15 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
 
+# Flask configuration
+flask_secret_key: PleaseChangeMe123
+flask_logo_url: https://www.uu.nl
+yoda_commit: '{{ portalchanges.after }}'
+flask_permanent_session_lifetime: 30 * 60       # in seconds, so 30 minutes
+flask_session_file_dir: '/tmp/flask_session/'   # default flask_session under current working dir
+
 # portal customization
-portal_title_text: false                           # e.g. "YODA - development"
+portal_title_text: Yoda Portal                     # e.g. "YODA - development"
 portal_shortcut_icon: false                        # e.g. "environments/develop/files/favicon.ico"
 portal_logo: false                                 # e.g. "environments/develop/files/logo.png"
 portal_static_frontpage: false                     # portal_static_frontpage:

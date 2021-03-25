@@ -1,7 +1,23 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure yodadeployment user exists
+  user:
+    name: "{{ yoda_deployment_user }}"
+
+
+- name: Ensure yodadeployment has access to /var/www/yoda
+  file:
+    path: /var/www/yoda
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: 0711
+
+
 - name: Checkout Yoda portal
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
   git:
     repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: "/var/www/yoda"
@@ -11,12 +27,16 @@
 
 
 - name: Ensure Yoda portal virtualenv exists
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
   command: python3 -m virtualenv "/var/www/yoda/venv"
   args:
     creates: /var/www/yoda/venv
 
 
 - name: Ensure Yoda portal dependencies are installed
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
   pip:
     requirements: /var/www/yoda/requirements.txt
     virtualenv: '/var/www/yoda/venv'
@@ -25,7 +45,7 @@
 
 
 - name: Install mod-wsgi
-  become_user: "root"
+  become_user: "{{ yoda_deployment_user }}"
   become: yes
   shell: |
     source /var/www/yoda/venv/bin/activate
@@ -33,6 +53,15 @@
     exit
   args:
     creates: /etc/httpd/conf.modules.d/02-wsgi.conf
+
+
+- name: Copy Yoda Portal config for Flask
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  template:
+    src: "flask.cfg.j2"
+    dest: "/var/www/yoda/flask.cfg"
+    mode: '0644'
 
 
 - name: Copy Yoda Portal virtual host config for Apache
