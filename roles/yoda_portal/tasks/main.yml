@@ -45,7 +45,7 @@
 
 
 - name: Install mod-wsgi
-  become_user: "{{ yoda_deployment_user }}"
+  become_user: "root"
   become: yes
   shell: |
     source /var/www/yoda/venv/bin/activate
