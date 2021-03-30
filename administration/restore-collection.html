@@ -444,8 +444,8 @@
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
                                         <h1 id="restore-collection">Restore collection</h1>
-<p>If you want to restore a collection you can use the <code class="highlighter-rouge">restore-collection.r</code> tool from the <code class="highlighter-rouge">irods-ruleset-research</code>.
-The tool is located at <code class="highlighter-rouge">/etc/irods/irods-ruleset-research/tools/restore-collection.r</code></p>
+<p>If you want to restore a collection you can use the <code class="language-plaintext highlighter-rouge">restore-collection.r</code> tool from the <code class="language-plaintext highlighter-rouge">irods-ruleset-research</code>.
+The tool is located at <code class="language-plaintext highlighter-rouge">/etc/irods/irods-ruleset-research/tools/restore-collection.r</code></p>
 
 <p>The tool accepts the following parameters:</p>
 
@@ -475,11 +475,11 @@ The tool is located at <code class="highlighter-rouge">/etc/irods/irods-ruleset-
 <h2 id="examples">Examples:</h2>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-F</span> restore-collection.r <span class="s2">"*path='/tempZone/home/research-test'"</span> <span class="s2">"*timestamp=1540819891"</span>
 </code></pre></div></div>
-<p>Restore the collection <code class="highlighter-rouge">/tempZone/home/research-test</code> with revision before <code class="highlighter-rouge">1540819891</code> (Mon Oct 29 14:31:31 2018 CET).</p>
+<p>Restore the collection <code class="language-plaintext highlighter-rouge">/tempZone/home/research-test</code> with revision before <code class="language-plaintext highlighter-rouge">1540819891</code> (Mon Oct 29 14:31:31 2018 CET).</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-F</span> restore-collection.r <span class="s2">"*path='/tempZone/home/research-test'"</span> <span class="s2">"*timestamp=1540819891"</span> <span class="s2">"*restorePath='/tempZone/home/research-test/restore'"</span>
 </code></pre></div></div>
-<p>Restore the collection <code class="highlighter-rouge">/tempZone/home/research-test</code> with revision before <code class="highlighter-rouge">1540819891</code> (Mon Oct 29 14:31:31 2018 CET) into collection <code class="highlighter-rouge">/tempZone/home/research-test/restore</code>.</p>
+<p>Restore the collection <code class="language-plaintext highlighter-rouge">/tempZone/home/research-test</code> with revision before <code class="language-plaintext highlighter-rouge">1540819891</code> (Mon Oct 29 14:31:31 2018 CET) into collection <code class="language-plaintext highlighter-rouge">/tempZone/home/research-test/restore</code>.</p>
 
                                     </section>
 

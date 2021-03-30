@@ -458,21 +458,21 @@ git clone https://github.com/UtrechtUniversity/irods-ruleset-uu.git hotfix
   <li>Make changes to the ruleset (for example, meta.py) and compile the ruleset:
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>hotfix
 vim meta.py
-make install
+make <span class="nb">install</span>
 </code></pre></div>    </div>
   </li>
   <li>Change the symlink to the fixed ruleset:
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/irods
-ln <span class="nt">-sfn</span> hotfix rules_uu
+<span class="nb">ln</span> <span class="nt">-sfn</span> hotfix rules_uu
 </code></pre></div>    </div>
   </li>
 </ol>
 
 <p>If the change does not have the desired result, revert to the old ruleset by changing the symlink back and compiling the ruleset:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/irods
-ln <span class="nt">-sfn</span> irods-ruleset-uu rules_uu
+<span class="nb">ln</span> <span class="nt">-sfn</span> irods-ruleset-uu rules_uu
 <span class="nb">cd </span>irods-ruleset-uu
-make install
+make <span class="nb">install</span>
 </code></pre></div></div>
 
                                     </section>

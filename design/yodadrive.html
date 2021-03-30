@@ -479,28 +479,28 @@
 
 <p>YodaDrive is a C# Visual Studio project, making use of the <a href="https://github.com/saguiitay/WebDAVClient">WebDAVClient</a> library written by Itay Sagui (originally by Kees van den Broek).</p>
 
-<p>YodaDrive has been optimized for iRODS servers accessed via <code class="highlighter-rouge">davrods</code>, but can be used for any WebDAV server.</p>
+<p>YodaDrive has been optimized for iRODS servers accessed via <code class="language-plaintext highlighter-rouge">davrods</code>, but can be used for any WebDAV server.</p>
 
 <h2 id="limitations">Limitations</h2>
 <p>Since the remote file system is WebDAV, changes that originate elsewhere are not visible until the user refreshes the view. YodaDrive does not implement WebDAV locking.</p>
 
 <h2 id="mode-of-operation">Mode of operation</h2>
-<p>After a remote filesystem has been mounted, calls are made from Windows via WinFsp to <code class="highlighter-rouge">Open</code>, <code class="highlighter-rouge">Create</code>, <code class="highlighter-rouge">Read</code>, <code class="highlighter-rouge">Write</code> or <code class="highlighter-rouge">Close</code> files. YodaDrive handles <code class="highlighter-rouge">Read</code> and <code class="highlighter-rouge">Write</code> asynchronously, and all other calls synchronously.</p>
+<p>After a remote filesystem has been mounted, calls are made from Windows via WinFsp to <code class="language-plaintext highlighter-rouge">Open</code>, <code class="language-plaintext highlighter-rouge">Create</code>, <code class="language-plaintext highlighter-rouge">Read</code>, <code class="language-plaintext highlighter-rouge">Write</code> or <code class="language-plaintext highlighter-rouge">Close</code> files. YodaDrive handles <code class="language-plaintext highlighter-rouge">Read</code> and <code class="language-plaintext highlighter-rouge">Write</code> asynchronously, and all other calls synchronously.</p>
 
-<p>For asynchronous <code class="highlighter-rouge">Read</code> and <code class="highlighter-rouge">Write</code> calls, YodaDrive returns <code class="highlighter-rouge">STATUS_PENDING</code> and later performs a callback when the <code class="highlighter-rouge">Read</code> or <code class="highlighter-rouge">Write</code> completes.  Closing a file with pending <code class="highlighter-rouge">Write</code> calls will wait for all scheduled writes to complete, before the <code class="highlighter-rouge">Close</code> call returns.</p>
+<p>For asynchronous <code class="language-plaintext highlighter-rouge">Read</code> and <code class="language-plaintext highlighter-rouge">Write</code> calls, YodaDrive returns <code class="language-plaintext highlighter-rouge">STATUS_PENDING</code> and later performs a callback when the <code class="language-plaintext highlighter-rouge">Read</code> or <code class="language-plaintext highlighter-rouge">Write</code> completes.  Closing a file with pending <code class="language-plaintext highlighter-rouge">Write</code> calls will wait for all scheduled writes to complete, before the <code class="language-plaintext highlighter-rouge">Close</code> call returns.</p>
 
 <p>YodaDrive uses one connection for downloads, and at most two connections for uploads.</p>
 
 <h3 id="read">Read</h3>
-<p>Downloads for all files in a remote filesystem are all managed on the same connection, with interleaved blocks for <code class="highlighter-rouge">Read</code> calls.  Each <code class="highlighter-rouge">Read</code> call is translated into a separate <code class="highlighter-rouge">GET</code> request.</p>
+<p>Downloads for all files in a remote filesystem are all managed on the same connection, with interleaved blocks for <code class="language-plaintext highlighter-rouge">Read</code> calls.  Each <code class="language-plaintext highlighter-rouge">Read</code> call is translated into a separate <code class="language-plaintext highlighter-rouge">GET</code> request.</p>
 
 <h3 id="write">Write</h3>
-<p>Uploads are captured in a single <code class="highlighter-rouge">PUT</code> request if possible, as long as all <code class="highlighter-rouge">Write</code> calls address consecutive blocks. Each <code class="highlighter-rouge">PUT</code> request uses chunked mode, and blocks written are appended as chunks. The initial <code class="highlighter-rouge">Write</code> call does not have to address a block at the beginning of the file.</p>
+<p>Uploads are captured in a single <code class="language-plaintext highlighter-rouge">PUT</code> request if possible, as long as all <code class="language-plaintext highlighter-rouge">Write</code> calls address consecutive blocks. Each <code class="language-plaintext highlighter-rouge">PUT</code> request uses chunked mode, and blocks written are appended as chunks. The initial <code class="language-plaintext highlighter-rouge">Write</code> call does not have to address a block at the beginning of the file.</p>
 
-<p>At most two uploads can be active at one time. Since consecutive writes are captured in a single <code class="highlighter-rouge">PUT</code> request, uploading two large files will prevent any other uploads for the duration. This is handled by postponing <code class="highlighter-rouge">Create</code> and <code class="highlighter-rouge">Write</code> calls until an upload connection becomes available; <code class="highlighter-rouge">Create</code> will pretend to succeed and <code class="highlighter-rouge">Write</code> will not have a callback until the actual block could be appended.</p>
+<p>At most two uploads can be active at one time. Since consecutive writes are captured in a single <code class="language-plaintext highlighter-rouge">PUT</code> request, uploading two large files will prevent any other uploads for the duration. This is handled by postponing <code class="language-plaintext highlighter-rouge">Create</code> and <code class="language-plaintext highlighter-rouge">Write</code> calls until an upload connection becomes available; <code class="language-plaintext highlighter-rouge">Create</code> will pretend to succeed and <code class="language-plaintext highlighter-rouge">Write</code> will not have a callback until the actual block could be appended.</p>
 
 <h3 id="readdirectory">ReadDirectory</h3>
-<p><code class="highlighter-rouge">ReadDirectory</code> is performed synchronously, but makes use of the download connection and can be blocked by pending asynchronous <code class="highlighter-rouge">Read</code> calls. Note that WinFsp permits <code class="highlighter-rouge">ReadDirectory</code> itself to be asynchronous, but we do not implement it as such.</p>
+<p><code class="language-plaintext highlighter-rouge">ReadDirectory</code> is performed synchronously, but makes use of the download connection and can be blocked by pending asynchronous <code class="language-plaintext highlighter-rouge">Read</code> calls. Note that WinFsp permits <code class="language-plaintext highlighter-rouge">ReadDirectory</code> itself to be asynchronous, but we do not implement it as such.</p>
 
 <h2 id="state-diagrams">State Diagrams</h2>
 

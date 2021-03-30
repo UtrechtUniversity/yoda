@@ -483,7 +483,7 @@ The content of a specific form is held within a JSON schema. Thus each category 
 This is used as a means to uniquely identify the schema.
 Also, it is used to be able to create XSD’s with the JSONS2XSD-tool in determining the namespaces as well as location of the resulting XSD’s.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> "$id": "https://yoda.uu.nl/schemas/default-0/metadata.json",
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> "$id": "https://yoda.uu.nl/schemas/default-0/metadata.json",
 </code></pre></div></div>
 
 <h2 id="definitions---general">Definitions - General</h2>
@@ -494,7 +494,7 @@ Data type, length and enumerations</p>
 <h3 id="strings">Strings</h3>
 
 <p>YoDa string type defitions:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"stringNormal": {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"stringNormal": {
   "type": "string",
   "maxLength": 255
 },
@@ -505,7 +505,7 @@ Data type, length and enumerations</p>
 </code></pre></div></div>
 <p>These definitions can be used for elements within the jsons form:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"properties": {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"properties": {
   "Title": {
     "$ref": "#/definitions/stringNormal",
     "title": "Title"
@@ -521,7 +521,7 @@ And ‘Description’ of datatype stringLong.</p>
 
 <h3 id="enumerations">Enumerations</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"optionsLicense": {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"optionsLicense": {
   "type": "string",
   "enum": [
     "Creative Commons Attribution 4.0 International Public License",
@@ -533,7 +533,7 @@ And ‘Description’ of datatype stringLong.</p>
 </code></pre></div></div>
 <p>Form element ‘License’  is described using optionsLicense</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"License": {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"License": {
   "$ref": "#/definitions/optionsLicense",
   "title": "License"
 },
@@ -542,7 +542,7 @@ And ‘Description’ of datatype stringLong.</p>
 <h3 id="default-values-for-elements">Default values for elements</h3>
 <p>REACT form allows default values to be set.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Discipline": {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Discipline": {
   "type": "array",
   "items": {
     "$ref": "#/definitions/optionsDiscipline",
@@ -556,7 +556,7 @@ And ‘Description’ of datatype stringLong.</p>
 <h3 id="multiplicity---typearray">Multiplicity - type=’array’</h3>
 <p>Giving a user the possibility to add specific data multiple times is achieved by using the type ‘array’.
 This is an indication that the element involved can be added multiple times.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Discipline": {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Discipline": {
   "type": "array",
   "items": {
     "$ref": "#/definitions/optionsDiscipline",
@@ -572,7 +572,7 @@ This is an indication that the element involved can be added multiple times.</p>
 <p>In order to be able to serve the need to create structures of data the type ‘object’ is used.
 Object in fact constructs a structure that it holds one ore more other elements. The properties attribute holds the elements that constitute this structure.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Collected": {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Collected": {
   "type": "object",
   "title": "Collection process",
   "yoda:structure": "compound",
@@ -597,7 +597,7 @@ The data itself is singular. I.e. only one start date and one end date can be ad
 <h3 id="dependencies-between-elements">Dependencies between elements</h3>
 <p>Dependencies can be added between data. I.e. if data is present in one element, the other element becomes mandatory as well.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Collected": {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Collected": {
   "type": "object",
   "title": "Collection process",
   "yoda:structure": "compound",
@@ -654,7 +654,7 @@ Consists of 2 elements (Contributor type and Affiliation) and 1 compound element
 
 <p>JSON representation is as follows:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Contributor": {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Contributor": {
   "type": "array",
   "items": {
     "type": "object",

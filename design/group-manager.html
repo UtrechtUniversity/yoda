@@ -488,7 +488,7 @@
 <p><strong><em>datamanager</em></strong> Has read access to data belonging to his/her community and the ability to manage archival process and metadata quality.</p>
 
 <h2 id="yoda-workspaces">Yoda workspaces</h2>
-<p>Within a Yoda community multiple workspaces can be created of different types. They are prefixed to indicate this type. Every workspace is located in the <code class="highlighter-rouge">/{rodsZone}/home</code> collection. Davrods and the research browser have this location as start location.</p>
+<p>Within a Yoda community multiple workspaces can be created of different types. They are prefixed to indicate this type. Every workspace is located in the <code class="language-plaintext highlighter-rouge">/{rodsZone}/home</code> collection. Davrods and the research browser have this location as start location.</p>
 
 <p><strong><em>research</em></strong> Collaboration workspace for a research group. No restrictions on the organization of data in folders. Metadata can be added to a folder. When all required metadata has been added a folder can be archived.</p>
 
@@ -520,7 +520,7 @@
 <p>To enable ordinary rodsusers to create groups and manage members in groups, without promoting them to rodsadmin, the sudo microservices have been developed. They give temporary admin privileges when an action meets all criteria set in policies. Technically this means that a sudo microservice will set the AUTH flags in the iRODS rei structure to run an action as admin. Care is taken to prevent the use of these services outside of the proper context.</p>
 
 <h2 id="how-are-the-roles-in-yoda-implemented-on-top-of-the-irods-permission-system">How are the roles in Yoda implemented on top of the iRODS permission system?</h2>
-<p><em>Normal</em> users are added to a group with the same name as its workspace. Example: normal users of <em>research-breakthrough</em> are added to the rodsgroup <em>research-breakthrough</em>. During group creation by the group-manager this group will get permission ‘own’ on the <code class="highlighter-rouge">/{rodsZone}/home/research-breakthrough</code> workspace and inheritance is enabled.</p>
+<p><em>Normal</em> users are added to a group with the same name as its workspace. Example: normal users of <em>research-breakthrough</em> are added to the rodsgroup <em>research-breakthrough</em>. During group creation by the group-manager this group will get permission ‘own’ on the <code class="language-plaintext highlighter-rouge">/{rodsZone}/home/research-breakthrough</code> workspace and inheritance is enabled.</p>
 
 <p>A <em>reader</em> cannot be added to the main group, because that will grant them ‘own’ permissions. Instead a shadow group is created prefixed with ‘read-‘. This group gets read permissions on the ‘research-‘ or ‘intake-‘ group of the same basename. Inheritance is enabled</p>
 

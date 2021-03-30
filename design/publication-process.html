@@ -474,15 +474,15 @@
                                 <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
                                     <section class="entry-content">
                                         <h1 id="publication-process">Publication Process</h1>
-<p>All state is kept in key-value-pair <code class="highlighter-rouge">*publicationState</code> and persisted into metadata after each step.
-Configuration is pulled from metadata on the <code class="highlighter-rouge">UUSYSTEMCOLLECTION</code> iRODS collection and kept in <code class="highlighter-rouge">*publicationConfig</code>.
+<p>All state is kept in key-value-pair <code class="language-plaintext highlighter-rouge">*publicationState</code> and persisted into metadata after each step.
+Configuration is pulled from metadata on the <code class="language-plaintext highlighter-rouge">UUSYSTEMCOLLECTION</code> iRODS collection and kept in <code class="language-plaintext highlighter-rouge">*publicationConfig</code>.
 Credentials are pulled from the Yoda credential store (store_config.json).
 Each step has a rule with the configuration and state as arguments.
-Temporary collection will be rods owned and located at <code class="highlighter-rouge">UUSYSTEMCOLLECTION/publish</code>.</p>
+Temporary collection will be rods owned and located at <code class="language-plaintext highlighter-rouge">UUSYSTEMCOLLECTION/publish</code>.</p>
 
 <p><strong>Precondition:</strong></p>
 <ul>
-  <li>Vault package has <code class="highlighter-rouge">APPROVED_FOR_PUBLICATION</code> status</li>
+  <li>Vault package has <code class="language-plaintext highlighter-rouge">APPROVED_FOR_PUBLICATION</code> status</li>
   <li>Actor is rodsadmin</li>
 </ul>
 
@@ -613,17 +613,17 @@ Temporary collection will be rods owned and located at <code class="highlighter-
   </li>
 </ul>
 
-<p><strong>Step 13:</strong> the vault package is given <code class="highlighter-rouge">PUBLISHED</code> status.</p>
+<p><strong>Step 13:</strong> the vault package is given <code class="language-plaintext highlighter-rouge">PUBLISHED</code> status.</p>
 
 <p><img src="/yoda/design/img/publication-process.png" alt="Publication process" /></p>
 
 <h1 id="depublication-process">Depublication process</h1>
-<p>This is very similar to the publication process. The DOI and URLs were preserved in the <code class="highlighter-rouge">UUSYSTEMCOLLECTION</code> metadata, and are reused by the depublication process. <br />
+<p>This is very similar to the publication process. The DOI and URLs were preserved in the <code class="language-plaintext highlighter-rouge">UUSYSTEMCOLLECTION</code> metadata, and are reused by the depublication process. <br />
 Depublication is performed with the differences noted below.</p>
 
 <p><strong>Precondition:</strong></p>
 <ul>
-  <li>Vault package has <code class="highlighter-rouge">PENDING_DEPUBLICATION</code> status</li>
+  <li>Vault package has <code class="language-plaintext highlighter-rouge">PENDING_DEPUBLICATION</code> status</li>
   <li>Actor is rodsadmin</li>
 </ul>
 
@@ -650,18 +650,18 @@ Depublication is performed with the differences noted below.</p>
 
 <p>Step 12 is skipped, the DOI at DataCite has already been minted.</p>
 
-<p><strong>Step 13:</strong> the vault package is given <code class="highlighter-rouge">DEPUBLISHED</code> status.</p>
+<p><strong>Step 13:</strong> the vault package is given <code class="language-plaintext highlighter-rouge">DEPUBLISHED</code> status.</p>
 
 <h1 id="republication-process">Republication process</h1>
-<p>The republication process is very similar to the publication process.  The DOI and URLs were preserved in the <code class="highlighter-rouge">UUSYSTEMCOLLECTION</code> metadata, and are reused by the republication process.</p>
+<p>The republication process is very similar to the publication process.  The DOI and URLs were preserved in the <code class="language-plaintext highlighter-rouge">UUSYSTEMCOLLECTION</code> metadata, and are reused by the republication process.</p>
 
 <p>Precondition:</p>
 <ul>
-  <li>Vault package has <code class="highlighter-rouge">PENDING_REPUBLICATION</code> status</li>
+  <li>Vault package has <code class="language-plaintext highlighter-rouge">PENDING_REPUBLICATION</code> status</li>
   <li>Actor is rodsadmin</li>
 </ul>
 
-<p>Step 13: the vault package is given <code class="highlighter-rouge">PUBLISHED</code> status.</p>
+<p>Step 13: the vault package is given <code class="language-plaintext highlighter-rouge">PUBLISHED</code> status.</p>
 
                                     </section>
 

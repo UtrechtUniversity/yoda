@@ -484,12 +484,12 @@ resetting the password of external users in Yoda.</p>
 <ul>
   <li>
     <p><strong>Internal user</strong> An internal user is either a user within the UU
-organisation or an administrative user such as <code class="highlighter-rouge">rods</code>.</p>
+organisation or an administrative user such as <code class="language-plaintext highlighter-rouge">rods</code>.</p>
   </li>
   <li>
     <p><strong>External user</strong> An external user is a user that is not part of the
 UU organisation. External users must have an e-mail address as their
-username, that does <strong>not</strong> end in either <code class="highlighter-rouge">@uu.nl</code> or <code class="highlighter-rouge">.uu.nl</code>. Any
+username, that does <strong>not</strong> end in either <code class="language-plaintext highlighter-rouge">@uu.nl</code> or <code class="language-plaintext highlighter-rouge">.uu.nl</code>. Any
 username that is an e-mail address and does <strong>not</strong> match above
 pattern belongs to an external user.</p>
   </li>
@@ -549,42 +549,42 @@ This could be a fully automated process later.</p>
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">id</code></td>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
       <td>SERIAL</td>
       <td>Numerical (autoincremented) ID  used for internal purposes</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">username</code></td>
+      <td><code class="language-plaintext highlighter-rouge">username</code></td>
       <td>VARCHAR(64) NOT NULL</td>
       <td>The e-mail address of the external user case-insensitive)</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">password</code></td>
+      <td><code class="language-plaintext highlighter-rouge">password</code></td>
       <td>CHAR(60) NULL</td>
-      <td>A hashed password (<code class="highlighter-rouge">NULL</code> indicates non-activated account)</td>
+      <td>A hashed password (<code class="language-plaintext highlighter-rouge">NULL</code> indicates non-activated account)</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">hash</code></td>
+      <td><code class="language-plaintext highlighter-rouge">hash</code></td>
       <td>CHAR(64) NULL</td>
       <td>A unique hash, used for activation and password reset</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">hash_time</code></td>
+      <td><code class="language-plaintext highlighter-rouge">hash_time</code></td>
       <td>TIMESTAMP NULL</td>
       <td>The creation time of the hash, used to invalidate hashes</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">creator_time</code></td>
+      <td><code class="language-plaintext highlighter-rouge">creator_time</code></td>
       <td>TIMESTAMP NOT NULL</td>
       <td>The creation time of the user</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">creator_user</code></td>
+      <td><code class="language-plaintext highlighter-rouge">creator_user</code></td>
       <td>VARCHAR(255) NOT NULL</td>
       <td>The username of the group manager that had this external user ‘created’</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">creator_zone</code></td>
+      <td><code class="language-plaintext highlighter-rouge">creator_zone</code></td>
       <td>VARCHAR(255) NOT NULL</td>
       <td>The zone the groupmananger is inviting the user from</td>
     </tr>
@@ -600,21 +600,21 @@ This could be a fully automated process later.</p>
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">id</code></td>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
       <td>PRIMARY</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">username</code></td>
+      <td><code class="language-plaintext highlighter-rouge">username</code></td>
       <td>UNIQUE</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">hash</code></td>
+      <td><code class="language-plaintext highlighter-rouge">hash</code></td>
       <td>UNIQUE</td>
     </tr>
   </tbody>
 </table>
 
-<p>The 64-char username limit is prescribed by the iCAT (<code class="highlighter-rouge">DB_USERNAME_LEN</code>).</p>
+<p>The 64-char username limit is prescribed by the iCAT (<code class="language-plaintext highlighter-rouge">DB_USERNAME_LEN</code>).</p>
 
 <p><strong>user_zones:</strong></p>
 
@@ -628,22 +628,22 @@ This could be a fully automated process later.</p>
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">user_id</code></td>
+      <td><code class="language-plaintext highlighter-rouge">user_id</code></td>
       <td>INTEGER</td>
       <td>ID of the user involved</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">inviter_user</code></td>
+      <td><code class="language-plaintext highlighter-rouge">inviter_user</code></td>
       <td>VARCHAR(255) NOT NULL</td>
       <td>The groupmanager that invited the external user</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">inviter_zone</code></td>
+      <td><code class="language-plaintext highlighter-rouge">inviter_zone</code></td>
       <td>VARCHAR(255) NOT NULL</td>
       <td>The zone the groupmanager invited the external user from</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">inviter_time</code></td>
+      <td><code class="language-plaintext highlighter-rouge">inviter_time</code></td>
       <td>TIMESTAMP NOT NULL</td>
       <td>The invitation time of the user</td>
     </tr>
@@ -682,10 +682,10 @@ e-mail address as their username.</p>
 
 <h3 id="authentication">Authentication</h3>
 <p>External users will authenticate to iRODS using PAM. A PAM rule must be
-added (after <code class="highlighter-rouge">pam_unix</code> and <code class="highlighter-rouge">pam_radius_auth</code>) that will authenticate
+added (after <code class="language-plaintext highlighter-rouge">pam_unix</code> and <code class="language-plaintext highlighter-rouge">pam_radius_auth</code>) that will authenticate
 against the external user database.</p>
 
-<p>The PAM <code class="highlighter-rouge">succeed_if</code> module must be used in combination with “skip”
+<p>The PAM <code class="language-plaintext highlighter-rouge">succeed_if</code> module must be used in combination with “skip”
 actions to select the right authentication module based on a username
 glob. This will speed up authentication significantly.</p>
 
@@ -702,7 +702,7 @@ require a separate PostgreSQL package to support anything other than
 MD5))</li>
 </ul>
 
-<p>Instead, the <code class="highlighter-rouge">pam_exec</code> module will be used together with <code class="highlighter-rouge">curl</code> to
+<p>Instead, the <code class="language-plaintext highlighter-rouge">pam_exec</code> module will be used together with <code class="language-plaintext highlighter-rouge">curl</code> to
 deliver a Basic-authed HTTPS POST request to the external user service,
 which will indicate success using the appropriate HTTP status code
 combined with an indicative response body text.</p>
@@ -730,8 +730,8 @@ iRODS service account, but not accessible to user-submitted rules.</p>
 make requests to the external user service. Since Python rules can be
 called from anywhere in iRODS, the rule itself will need to perform
 authorization checks, using existing Group manager policy check
-functions <code class="highlighter-rouge">uuGroupPolicyCanGroupUserAdd</code> and
-<code class="highlighter-rouge">uuGroupPolicyCanGroupUserRemove</code>.</p>
+functions <code class="language-plaintext highlighter-rouge">uuGroupPolicyCanGroupUserAdd</code> and
+<code class="language-plaintext highlighter-rouge">uuGroupPolicyCanGroupUserRemove</code>.</p>
 
 <p>External users are removed when they are removed from the last Yoda instance.
 A periodic cleanup job may be implemented to automate external user removal.</p>
@@ -779,7 +779,7 @@ resets.</p>
 external users and enroll and remove external users.</p>
 
 <p>All requests from iRODS to the external user service must contain the
-header <code class="highlighter-rouge">X-Yoda-External-User-Secret</code>, containing a secret API key.</p>
+header <code class="language-plaintext highlighter-rouge">X-Yoda-External-User-Secret</code>, containing a secret API key.</p>
 
 <p>When the secret header is not present, the external user service will
 respond with a 400 HTTP status code on all API requests. Additionally,
@@ -806,19 +806,19 @@ format, for example:</p>
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">/api/auth-check</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/api/auth-check</code></td>
       <td>POST</td>
-      <td>User authentication: Credentials supplied via HTTP Basic <code class="highlighter-rouge">Authorization</code> header..  Response: On failure: 401. On success: 200, with body text <code class="highlighter-rouge">Authenticated</code></td>
+      <td>User authentication: Credentials supplied via HTTP Basic <code class="language-plaintext highlighter-rouge">Authorization</code> header..  Response: On failure: 401. On success: 200, with body text <code class="language-plaintext highlighter-rouge">Authenticated</code></td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">/api/user/add</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/api/user/add</code></td>
       <td>POST</td>
-      <td>User creation: Creates the given user in the external user database. Generates and stores an activation hash for that username. Sends an invitation e-mail to the new user. Parameters are <code class="highlighter-rouge">username</code>, <code class="highlighter-rouge">creator_user</code> and <code class="highlighter-rouge">creator_zone</code>.</td>
+      <td>User creation: Creates the given user in the external user database. Generates and stores an activation hash for that username. Sends an invitation e-mail to the new user. Parameters are <code class="language-plaintext highlighter-rouge">username</code>, <code class="language-plaintext highlighter-rouge">creator_user</code> and <code class="language-plaintext highlighter-rouge">creator_zone</code>.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">/api/user/delete</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/api/user/delete</code></td>
       <td>POST</td>
-      <td>User removal: Removes the given user from the external user database. Parameters are <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">userzone</code>.</td>
+      <td>User removal: Removes the given user from the external user database. Parameters are <code class="language-plaintext highlighter-rouge">username</code> and <code class="language-plaintext highlighter-rouge">userzone</code>.</td>
     </tr>
   </tbody>
 </table>
@@ -827,7 +827,7 @@ format, for example:</p>
 <p>The HTTP UI is used by the external user to activate their account, and
 to change or reset their password.</p>
 
-<p>All POST parameters are sent in <code class="highlighter-rouge">x-www-form-urlencoded</code> format.</p>
+<p>All POST parameters are sent in <code class="language-plaintext highlighter-rouge">x-www-form-urlencoded</code> format.</p>
 
 <p>POST actions that require the use of a hash must fail if the hash is
 older than the specified time:</p>
@@ -847,34 +847,34 @@ older than the specified time:</p>
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">/user/:username/activate/:hash</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/user/:username/activate/:hash</code></td>
       <td>GET</td>
       <td>User activation page. Allows the user confirm the creation of their account.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">/user/:username/activate/:hash</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/user/:username/activate/:hash</code></td>
       <td>POST</td>
-      <td>Confirms user activation, sets a password. Also sends an e-mail to the creator of the account. The user’s hash is cleared in the database upon use. The only parameter is <code class="highlighter-rouge">password</code>.</td>
+      <td>Confirms user activation, sets a password. Also sends an e-mail to the creator of the account. The user’s hash is cleared in the database upon use. The only parameter is <code class="language-plaintext highlighter-rouge">password</code>.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">/user/forgot-password</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/user/forgot-password</code></td>
       <td>GET</td>
       <td>“Forgot password” page. Allows the user to request a password reset link by filling in their username</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">/user/:username/forgot-password</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/user/:username/forgot-password</code></td>
       <td>POST</td>
-      <td>Confirms “forgot password”. Generates a hash and sends a password reset link to the given username, if it exists. The only parameter is <code class="highlighter-rouge">username</code>.</td>
+      <td>Confirms “forgot password”. Generates a hash and sends a password reset link to the given username, if it exists. The only parameter is <code class="language-plaintext highlighter-rouge">username</code>.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">/user/:username/reset-password/:hash</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/user/:username/reset-password/:hash</code></td>
       <td>GET</td>
       <td>Password reset page. Allows the user to enter a new password</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">/user/:username/reset-password/:hash</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/user/:username/reset-password/:hash</code></td>
       <td>POST</td>
-      <td>Confirms password reset, sets a new password. The user’s hash is cleared in the database upon use. The only parameter is <code class="highlighter-rouge">password</code>.</td>
+      <td>Confirms password reset, sets a new password. The user’s hash is cleared in the database upon use. The only parameter is <code class="language-plaintext highlighter-rouge">password</code>.</td>
     </tr>
   </tbody>
 </table>

@@ -447,7 +447,7 @@
 <p>Terms and conditions for publication are also read from iRODS and presented to the user.
 It needs to be an HTML snippet to be rendered correctly.
 The naming scheme is up to the administrator, the last .html file placed in
-<code class="highlighter-rouge">/rodsZone/yoda/terms</code> will become the text presented to the user.
+<code class="language-plaintext highlighter-rouge">/rodsZone/yoda/terms</code> will become the text presented to the user.
 In order for every user to be able to read the terms, a read ACL for public needs to be set.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iput <span class="nt">-r</span> /etc/irods/irods-ruleset-research/tools/terms /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda
@@ -455,7 +455,7 @@ ichmod <span class="nt">-rM</span> inherit  /<span class="k">${</span><span clas
 ichmod <span class="nt">-rM</span> <span class="nb">read </span>public /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda/terms
 </code></pre></div></div>
 
-<p>To add a new terms file just put it in the <code class="highlighter-rouge">/${RODSZONE}/yoda/terms</code> collection with a new name, so the old terms are preserved.</p>
+<p>To add a new terms file just put it in the <code class="language-plaintext highlighter-rouge">/${RODSZONE}/yoda/terms</code> collection with a new name, so the old terms are preserved.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iput <span class="s2">"</span><span class="k">${</span><span class="nv">TERMS</span><span class="k">}</span><span class="s2">.txt"</span> <span class="s2">"/</span><span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span><span class="s2">/yoda/terms/</span><span class="k">${</span><span class="nv">TERMS</span><span class="k">}</span><span class="s2">.html"</span>
 </code></pre></div></div>

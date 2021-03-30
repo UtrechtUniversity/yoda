@@ -422,14 +422,14 @@
 <p>A collection of tips to make Yoda development easier.</p>
 
 <p>Watch latest iRODS log without unnecessary noise:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-t</span> /var/lib/irods/log/rodsLog<span class="k">*</span> | head <span class="nt">-n1</span> | xargs <span class="nt">-n</span> 1 <span class="nt">--</span> tail <span class="nt">-f</span> | <span class="nb">grep</span> <span class="nt">-v</span> <span class="s2">"Agent process started for puser=rods"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-t</span> /var/lib/irods/log/rodsLog<span class="k">*</span> | <span class="nb">head</span> <span class="nt">-n1</span> | xargs <span class="nt">-n</span> 1 <span class="nt">--</span> <span class="nb">tail</span> <span class="nt">-f</span> | <span class="nb">grep</span> <span class="nt">-v</span> <span class="s2">"Agent process started for puser=rods"</span>
 </code></pre></div></div>
 
 <p>Watch flake8 check on Python code:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch flake8
 </code></pre></div></div>
 
-<p>Run flake8 check on source file change (requires the <code class="highlighter-rouge">entr</code> package):</p>
+<p>Run flake8 check on source file change (requires the <code class="language-plaintext highlighter-rouge">entr</code> package):</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="k">*</span>py | entr flake8
 </code></pre></div></div>
 
@@ -438,10 +438,10 @@
 </code></pre></div></div>
 
 <p>Remove all existing data requests (to declutter your <em>development</em> environment):</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>icd ../datarequests-research <span class="o">&amp;&amp;</span> ils | <span class="nb">grep</span> <span class="se">\ \ </span> | sed <span class="s1">'s/\ \ C-\ //'</span> | xargs <span class="nt">-I</span> COLLPATH sh <span class="nt">-c</span> <span class="s2">"ichmod -M -r own rods COLLPATH &amp;&amp; irm -r COLLPATH"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>icd ../datarequests-research <span class="o">&amp;&amp;</span> ils | <span class="nb">grep</span> <span class="se">\ \ </span> | <span class="nb">sed</span> <span class="s1">'s/\ \ C-\ //'</span> | xargs <span class="nt">-I</span> COLLPATH sh <span class="nt">-c</span> <span class="s2">"ichmod -M -r own rods COLLPATH &amp;&amp; irm -r COLLPATH"</span>
 </code></pre></div></div>
 
-<p>Mount vagrant guest folder on host (e.g. <code class="highlighter-rouge">/etc/irods/irods-ruleset-uu/</code> so you can run <code class="highlighter-rouge">pytest</code> on the local machine):</p>
+<p>Mount vagrant guest folder on host (e.g. <code class="language-plaintext highlighter-rouge">/etc/irods/irods-ruleset-uu/</code> so you can run <code class="language-plaintext highlighter-rouge">pytest</code> on the local machine):</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Mount</span>
 sshfs <span class="nt">-o</span> <span class="nv">IdentityFile</span><span class="o">=</span>/home/dev/.vagrant.d/insecure_private_key <span class="nt">-p</span> 2222 vagrant@127.0.0.1:/etc/irods/irods-ruleset-uu irods-ruleset-uu
 

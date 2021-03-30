@@ -422,7 +422,7 @@
 <p>This document describes setting up a development environment for YodaDrive. <a href="https://github.com/UtrechtUniversity/YodaDrive">YodaDrive</a> is a WebDAV driver for Windows, written in C#. Development of YodaDrive requires a Windows development environment with Visual Studio Community 2017 or better.</p>
 
 <h2 id="virtual-machine">Virtual Machine</h2>
-<p>A Windows development environment, if not already available, can be installed on a virtual machine in Azure (<code class="highlighter-rouge">Standard B2ms</code>, 2 CPUs, 8 GB memory) or another cloud provider. If creating a VM in the cloud, make sure to restrict RDP access by IP address, or the machine will be hacked in short order even when kept fully up-to-date.</p>
+<p>A Windows development environment, if not already available, can be installed on a virtual machine in Azure (<code class="language-plaintext highlighter-rouge">Standard B2ms</code>, 2 CPUs, 8 GB memory) or another cloud provider. If creating a VM in the cloud, make sure to restrict RDP access by IP address, or the machine will be hacked in short order even when kept fully up-to-date.</p>
 
 <h2 id="visual-studio">Visual Studio</h2>
 <p><a href="https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community">Visual Studio Community 2019</a> is sufficient for development of YodaDrive, since YodaDrive is open source.</p>
@@ -434,24 +434,24 @@
 </ul>
 
 <h2 id="winfsp">WinFsp</h2>
-<p><a href="https://github.com/billziss-gh/winfsp/releases">WinFsp</a> is a FUSE-like driver for Windows, which is required by YodaDrive.  The version to install is <code class="highlighter-rouge">2019.3 B2</code> or later, and must match the version used by YodaDrive.</p>
+<p><a href="https://github.com/billziss-gh/winfsp/releases">WinFsp</a> is a FUSE-like driver for Windows, which is required by YodaDrive.  The version to install is <code class="language-plaintext highlighter-rouge">2019.3 B2</code> or later, and must match the version used by YodaDrive.</p>
 
-<p>WinFsp must be installed manually. Installing it as part of YodaDrive is not sufficient, since the <code class="highlighter-rouge">Developer</code> option must be selected during installation.</p>
+<p>WinFsp must be installed manually. Installing it as part of YodaDrive is not sufficient, since the <code class="language-plaintext highlighter-rouge">Developer</code> option must be selected during installation.</p>
 
 <h2 id="yodadrive">YodaDrive</h2>
-<p>Within VS2019, clone from <a href="https://github.com/UtrechtUniversity/YodaDrive">https://github.com/UtrechtUniversity/YodaDrive.git</a>.  Then open the <code class="highlighter-rouge">KS2Drive.sln</code> solution.</p>
+<p>Within VS2019, clone from <a href="https://github.com/UtrechtUniversity/YodaDrive">https://github.com/UtrechtUniversity/YodaDrive.git</a>.  Then open the <code class="language-plaintext highlighter-rouge">KS2Drive.sln</code> solution.</p>
 
 <h2 id="development">Development</h2>
-<p>YodaDrive is an open source project, which inherits from <a href="https://github.com/FrKaram/KS2.Drive">KS2.Drive</a>.  Main development takes part on the <code class="highlighter-rouge">development</code> branch. Everything specific to YodaDrive is on the <code class="highlighter-rouge">feature/yoda-rebranding</code> branch.</p>
+<p>YodaDrive is an open source project, which inherits from <a href="https://github.com/FrKaram/KS2.Drive">KS2.Drive</a>.  Main development takes part on the <code class="language-plaintext highlighter-rouge">development</code> branch. Everything specific to YodaDrive is on the <code class="language-plaintext highlighter-rouge">feature/yoda-rebranding</code> branch.</p>
 
-<p>When buiding a YodaDrive release, switch to the <code class="highlighter-rouge">feature/yoda-rebranding</code> branch, merge the latest changes from the <code class="highlighter-rouge">development</code> branch if needed, and update the version number in <code class="highlighter-rouge">About/About.xaml</code>.</p>
+<p>When buiding a YodaDrive release, switch to the <code class="language-plaintext highlighter-rouge">feature/yoda-rebranding</code> branch, merge the latest changes from the <code class="language-plaintext highlighter-rouge">development</code> branch if needed, and update the version number in <code class="language-plaintext highlighter-rouge">About/About.xaml</code>.</p>
 
 <h2 id="winfsp-dependency-files-for-yodadrive-distributable">WinFsp dependency files for YodaDrive distributable</h2>
 <p>The distributable for YodaDrive can be made to automatically install the proper version of WinFsp as part of the installation process. In order to build the distributable properly, the following has to be done first:</p>
 <ul>
-  <li>checkout branch <code class="highlighter-rouge">feature/yoda-rebranding</code></li>
-  <li>copy the <code class="highlighter-rouge">Reference/WinFsp*_*</code> folder to
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Program Files (x86)\Microsoft SDKs\ClickOnce Bootstrapper\Packages
+  <li>checkout branch <code class="language-plaintext highlighter-rouge">feature/yoda-rebranding</code></li>
+  <li>copy the <code class="language-plaintext highlighter-rouge">Reference/WinFsp*_*</code> folder to
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Program Files (x86)\Microsoft SDKs\ClickOnce Bootstrapper\Packages
 </code></pre></div>    </div>
   </li>
   <li>reboot the machine</li>
@@ -463,7 +463,7 @@
 <p>The YodaDrive distributable should be signed with the appropriate code signing key. The person in charge of this can install the key within Visual Studio, so that it can automatically sign releases thereafter.</p>
 
 <h2 id="publication">Publication</h2>
-<p>Publication will generate <code class="highlighter-rouge">Application Files</code>, <code class="highlighter-rouge">KS2Drive.application</code> and <code class="highlighter-rouge">setup.exe</code> in the output directory <code class="highlighter-rouge">C:\OutputKS2Drive</code>.  These can then be archived in a ZIP file for distribution.</p>
+<p>Publication will generate <code class="language-plaintext highlighter-rouge">Application Files</code>, <code class="language-plaintext highlighter-rouge">KS2Drive.application</code> and <code class="language-plaintext highlighter-rouge">setup.exe</code> in the output directory <code class="language-plaintext highlighter-rouge">C:\OutputKS2Drive</code>.  These can then be archived in a ZIP file for distribution.</p>
 
                                     </section>
 

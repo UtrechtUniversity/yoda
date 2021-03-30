@@ -477,11 +477,11 @@
 
 <h2 id="configuring-the-python-rule-plugin">Configuring the Python rule plugin</h2>
 
-<p>Include the following in <code class="highlighter-rouge">server_config.json</code>, in the <code class="highlighter-rouge">rule_engines</code> array:</p>
+<p>Include the following in <code class="language-plaintext highlighter-rouge">server_config.json</code>, in the <code class="language-plaintext highlighter-rouge">rule_engines</code> array:</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"instance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irods_rule_engine_plugin-python-instance"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"plugin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irods_rule_engine_plugin-python"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"plugin_specific_configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+    </span><span class="nl">"instance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irods_rule_engine_plugin-python-instance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"plugin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irods_rule_engine_plugin-python"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"plugin_specific_configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 <p>We use the python plugin as the second in the array, after the iRODS rule language plugin, so that we can combine our existing rule language code with new python code.</p>
@@ -490,27 +490,27 @@
 
 <p>Python code can be included in core.py, in the following form:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pythonFunction</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
-    <span class="n">callback</span><span class="o">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"python rule called"</span><span class="p">)</span>
+    <span class="n">callback</span><span class="p">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"python rule called"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Static python functions must be defined in core.py.  There are three different types of functions, each with its own way of handling arguments and return values.</p>
 <ul>
-  <li>Rules called directly by iRODS have numbered parameters passed through <code class="highlighter-rouge">rule_args</code>:
+  <li>Rules called directly by iRODS have numbered parameters passed through <code class="language-plaintext highlighter-rouge">rule_args</code>:
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">acPythonPEP</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
-    <span class="n">callback</span><span class="o">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"arg = "</span> <span class="o">+</span> <span class="n">rule_args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">callback</span><span class="p">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"arg = "</span> <span class="o">+</span> <span class="n">rule_args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </code></pre></div>    </div>
     <p>Such rules can also return values through numbered output parameters.</p>
   </li>
-  <li>Rules called with irule or from the frontend have access to <code class="highlighter-rouge">global_vars</code>, in which named parameters are passed as strings including the quotes:
+  <li>Rules called with irule or from the frontend have access to <code class="language-plaintext highlighter-rouge">global_vars</code>, in which named parameters are passed as strings including the quotes:
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
-    <span class="n">arg</span> <span class="o">=</span> <span class="n">global_vars</span><span class="p">[</span><span class="s">"*arg"</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                <span class="c"># strip the quotes</span>
-    <span class="n">callback</span><span class="o">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"arg = "</span> <span class="o">+</span> <span class="n">arg</span><span class="p">)</span>
+    <span class="n">arg</span> <span class="o">=</span> <span class="n">global_vars</span><span class="p">[</span><span class="s">"*arg"</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                <span class="c1"># strip the quotes
+</span>    <span class="n">callback</span><span class="p">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"arg = "</span> <span class="o">+</span> <span class="n">arg</span><span class="p">)</span>
 </code></pre></div>    </div>
     <p>Output cannot be passed back through named parameters, but has to be handled with writeString/writeLine:</p>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INPUT *arg="some argument"
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INPUT *arg="some argument"
 OUTPUT ruleExecOut
 </code></pre></div>    </div>
-    <p>Note that <code class="highlighter-rouge">global_vars</code> is only available to python functions defined in core.py, not to functions imported by core.py.</p>
+    <p>Note that <code class="language-plaintext highlighter-rouge">global_vars</code> is only available to python functions defined in core.py, not to functions imported by core.py.</p>
   </li>
   <li>Ordinary python functions which are not called by iRODS or externally, but only by other python code, accept arguments normally and can return a value:
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">):</span>
@@ -524,7 +524,7 @@ OUTPUT ruleExecOut
 <p>Essence of the example is that <strong>rule_args</strong> both serves as input and as output parameters</p>
 
 <p>iRODS:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # \brief Front end rule to retrieve XSD location
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # \brief Front end rule to retrieve XSD location
   #
   # \param[in]  folder        Path of the folder
   # \param[out] schemaLocation Location of XSD
@@ -546,9 +546,9 @@ OUTPUT ruleExecOut
 </code></pre></div></div>
 
 <p>PYTHON:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># \brief Nonsense function that returns 'enriched' text based on rule_args[0]</span>
-  <span class="c"># rule_args serves both as input and output parametes</span>
-
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># \brief Nonsense function that returns 'enriched' text based on rule_args[0]
+</span>  <span class="c1"># rule_args serves both as input and output parametes
+</span>
   <span class="k">def</span> <span class="nf">iiRuleGetLocation</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
       <span class="n">rule_args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">'You passed  the  folder: '</span> <span class="o">+</span> <span class="n">rule_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -559,16 +559,16 @@ OUTPUT ruleExecOut
 <p>Python functions can be called from iRODS rule language rules.</p>
 
 <p>Python functions can also be called with irule:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule -r irods_rule_engine_plugin-python-instance pythonFunction '*arg="some argument"' ruleExecOut
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule -r irods_rule_engine_plugin-python-instance pythonFunction '*arg="some argument"' ruleExecOut
 </code></pre></div></div>
 <p>or</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule -r irods_rule_engine_plugin-python-instance -F pythonfunc.r
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule -r irods_rule_engine_plugin-python-instance -F pythonfunc.r
 </code></pre></div></div>
 
 <p><strong>pythonfunc.r</strong>:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
-    <span class="n">arg</span> <span class="o">=</span> <span class="n">global_vars</span><span class="p">[</span><span class="s">"*arg"</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                <span class="c"># strip the quotes</span>
-    <span class="n">callback</span><span class="o">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"arg = "</span> <span class="o">+</span> <span class="n">arg</span><span class="p">)</span>
+    <span class="n">arg</span> <span class="o">=</span> <span class="n">global_vars</span><span class="p">[</span><span class="s">"*arg"</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                <span class="c1"># strip the quotes
+</span>    <span class="n">callback</span><span class="p">.</span><span class="n">writeLine</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="s">"arg = "</span> <span class="o">+</span> <span class="n">arg</span><span class="p">)</span>
 
 <span class="n">INPUT</span> <span class="o">*</span><span class="n">arg</span><span class="o">=</span><span class="s">"some argument"</span>
 <span class="n">OUTPUT</span> <span class="n">ruleExecOut</span>
@@ -578,7 +578,7 @@ OUTPUT ruleExecOut
 
 <h2 id="calling-microservices-from-python-code">Calling microservices from python code</h2>
 
-<p>Use <code class="highlighter-rouge">irods_types</code> to create output parameters of the proper type, and obtain the output values from <code class="highlighter-rouge">ret_val["arguments"][N]</code>.</p>
+<p>Use <code class="language-plaintext highlighter-rouge">irods_types</code> to create output parameters of the proper type, and obtain the output values from <code class="language-plaintext highlighter-rouge">ret_val["arguments"][N]</code>.</p>
 
 <p><strong>Example code:</strong></p>
 
@@ -586,22 +586,22 @@ OUTPUT ruleExecOut
     <span class="kn">import</span> <span class="nn">json</span>
 
     <span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">ret_val</span> <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiMakeGenQuery</span><span class="p">(</span><span class="s">"USER_GROUP_NAME"</span><span class="p">,</span> <span class="s">"USER_TYPE = 'rodsgroup'"</span><span class="p">,</span> <span class="n">irods_types</span><span class="o">.</span><span class="n">GenQueryInp</span><span class="p">())</span>
-    <span class="n">query</span> <span class="o">=</span> <span class="n">ret_val</span><span class="p">[</span><span class="s">"arguments"</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>        <span class="c"># output parameter type GenQueryInp</span>
-
-    <span class="n">ret_val</span> <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiExecGenQuery</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">irods_types</span><span class="o">.</span><span class="n">GenQueryOut</span><span class="p">())</span>
+    <span class="n">ret_val</span> <span class="o">=</span> <span class="n">callback</span><span class="p">.</span><span class="n">msiMakeGenQuery</span><span class="p">(</span><span class="s">"USER_GROUP_NAME"</span><span class="p">,</span> <span class="s">"USER_TYPE = 'rodsgroup'"</span><span class="p">,</span> <span class="n">irods_types</span><span class="p">.</span><span class="n">GenQueryInp</span><span class="p">())</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">ret_val</span><span class="p">[</span><span class="s">"arguments"</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>        <span class="c1"># output parameter type GenQueryInp
+</span>
+    <span class="n">ret_val</span> <span class="o">=</span> <span class="n">callback</span><span class="p">.</span><span class="n">msiExecGenQuery</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">irods_types</span><span class="p">.</span><span class="n">GenQueryOut</span><span class="p">())</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">ret_val</span><span class="p">[</span><span class="s">"arguments"</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>   <span class="c"># output parameter type GenQueryOut</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">rowCnt</span><span class="p">):</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">sqlResult</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-            <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">ret_val</span><span class="p">[</span><span class="s">"arguments"</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>   <span class="c1"># output parameter type GenQueryOut
+</span>        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">rowCnt</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">sqlResult</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="n">groups</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-        <span class="c"># continue with this query</span>
-        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">continueInx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># continue with this query
+</span>        <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="n">continueInx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">break</span>
-        <span class="n">ret_val</span> <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiGetMoreRows</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">ret_val</span> <span class="o">=</span> <span class="n">callback</span><span class="p">.</span><span class="n">msiGetMoreRows</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
-    <span class="n">callback</span><span class="o">.</span><span class="n">writeString</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">groups</span><span class="p">))</span>
+    <span class="n">callback</span><span class="p">.</span><span class="n">writeString</span><span class="p">(</span><span class="s">"stdout"</span><span class="p">,</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">groups</span><span class="p">))</span>
 </code></pre></div></div>
 
 <h2 id="setting-avus-from-python">Setting AVU’s from Python</h2>
@@ -611,8 +611,8 @@ OUTPUT ruleExecOut
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">irods_types</span>
 
 <span class="k">def</span> <span class="nf">uuMetaAdd</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">objType</span><span class="p">,</span> <span class="n">objName</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-    <span class="n">keyValPair</span>  <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiString2KeyValPair</span><span class="p">(</span><span class="n">attribute</span> <span class="o">+</span> <span class="s">"="</span> <span class="o">+</span> <span class="n">value</span><span class="p">,</span> <span class="n">irods_types</span><span class="o">.</span><span class="n">KeyValPair</span><span class="p">())[</span><span class="s">'arguments'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">retval</span> <span class="o">=</span> <span class="n">callback</span><span class="o">.</span><span class="n">msiAssociateKeyValuePairsToObj</span><span class="p">(</span><span class="n">keyValPair</span><span class="p">,</span> <span class="n">objName</span><span class="p">,</span> <span class="n">objType</span><span class="p">)</span>
+    <span class="n">keyValPair</span>  <span class="o">=</span> <span class="n">callback</span><span class="p">.</span><span class="n">msiString2KeyValPair</span><span class="p">(</span><span class="n">attribute</span> <span class="o">+</span> <span class="s">"="</span> <span class="o">+</span> <span class="n">value</span><span class="p">,</span> <span class="n">irods_types</span><span class="p">.</span><span class="n">KeyValPair</span><span class="p">())[</span><span class="s">'arguments'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">retval</span> <span class="o">=</span> <span class="n">callback</span><span class="p">.</span><span class="n">msiAssociateKeyValuePairsToObj</span><span class="p">(</span><span class="n">keyValPair</span><span class="p">,</span> <span class="n">objName</span><span class="p">,</span> <span class="n">objType</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">addCollectionStatus</span><span class="p">(</span><span class="n">rule_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">rei</span><span class="p">):</span>
     <span class="n">uuMetaAdd</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="s">"-C"</span><span class="p">,</span> <span class="s">"/tempZone/home/research-initial"</span><span class="p">,</span> <span class="s">"status"</span><span class="p">,</span> <span class="s">"PUBLISHED"</span><span class="p">)</span>

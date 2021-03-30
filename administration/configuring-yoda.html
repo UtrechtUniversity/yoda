@@ -449,25 +449,25 @@
 <h2 id="1-create-new-environment">1. Create new environment</h2>
 <p>This first step is optional.
 You can configure a (new) Yoda instance in an existing environment or create a new environment.
-A <code class="highlighter-rouge">development</code> environment is available with two example instances.</p>
+A <code class="language-plaintext highlighter-rouge">development</code> environment is available with two example instances.</p>
 
-<p>To create a new environment make a new directory under <code class="highlighter-rouge">environments</code>.
+<p>To create a new environment make a new directory under <code class="language-plaintext highlighter-rouge">environments</code>.
 For example a production environment:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir environments/production
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>environments/production
 </code></pre></div></div>
 
 <p>We call our new instance ‘yoda’, so create a new instance directory:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir environments/production/yoda
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>environments/production/yoda
 </code></pre></div></div>
 
 <p>In this new instance directory two directories are needed, on for the Yoda instance variables (group_vars) and one for host specific variables (host_vars).</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir environments/production/yoda/group_vars
-mkdir environments/production/yoda/host_vars
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>environments/production/yoda/group_vars
+<span class="nb">mkdir </span>environments/production/yoda/host_vars
 </code></pre></div></div>
 
 <h2 id="2-add-hosts-of-new-yoda-instance">2. Add hosts of new Yoda instance</h2>
 <p>Hosts of a Yoda instance are defined in the <a href="https://docs.ansible.com/ansible/latest/intro_inventory.html">Ansible inventory</a> file ‘hosts’.
-For the development instance ‘full’ this inventory can be found in <code class="highlighter-rouge">environments/development/full/hosts</code>.
+For the development instance ‘full’ this inventory can be found in <code class="language-plaintext highlighter-rouge">environments/development/full/hosts</code>.
 In the inventory the hosts of an instance are defined, their functional roles and to which groups they belong.</p>
 
 <p>Example configuration defining the and functional roles of an instance called ‘yoda’:</p>
@@ -520,9 +520,9 @@ yoda-eus
 </code></pre></div></div>
 
 <p>Last step to add the hosts of a new Yoda instance is to create configuration files for every new host.
-In development environment these configuration files are placed in <code class="highlighter-rouge">environments/development/hosts</code>.
+In development environment these configuration files are placed in <code class="language-plaintext highlighter-rouge">environments/development/hosts</code>.
 For example, for host ‘host1.yoda.test’ a configuration file is created:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>touch environments/development/host_vars/host1.yoda.test
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>environments/development/host_vars/host1.yoda.test
 </code></pre></div></div>
 
 <p>And place the basic host configuration in the new file:</p>
@@ -532,7 +532,7 @@ ansible_host: host1.yoda.test
 
 <h2 id="3-configure-new-yoda-instance">3. Configure (new) Yoda instance</h2>
 <p>To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars).
-In case of a new Yoda instance we can copy a configuration of a full development (<code class="highlighter-rouge">environments/development/full/</code>) instance as base.
+In case of a new Yoda instance we can copy a configuration of a full development (<code class="language-plaintext highlighter-rouge">environments/development/full/</code>) instance as base.
 The configuration is split in several parts. Below an overview of these parts and the configuration options available.</p>
 
 <h3 id="ansible-configuration">Ansible configuration</h3>
@@ -957,7 +957,7 @@ The configuration is split in several parts. Below an overview of these parts an
   <tbody>
     <tr>
       <td>oidc_active</td>
-      <td>Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code></td>
+      <td>Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code></td>
     </tr>
     <tr>
       <td>oidc_client_id</td>
@@ -993,7 +993,7 @@ The configuration is split in several parts. Below an overview of these parts an
     </tr>
     <tr>
       <td>oidc_email_field</td>
-      <td>The identifier of the JSON field in the <code class="highlighter-rouge">id_token</code> containing the email address. Default: <code class="highlighter-rouge">email</code></td>
+      <td>The identifier of the JSON field in the <code class="language-plaintext highlighter-rouge">id_token</code> containing the email address. Default: <code class="language-plaintext highlighter-rouge">email</code></td>
     </tr>
     <tr>
       <td>oidc_signin_text</td>

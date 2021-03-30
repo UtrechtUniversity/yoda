@@ -480,7 +480,7 @@
 A tier is an ilab-application introduced entity, not standard iRODS
 A tier can be considered a price level of a resource.</p>
 
-<p>metadata on resource level:<code class="highlighter-rouge">org_storage_tier  = ‘tape’</code></p>
+<p>metadata on resource level:<code class="language-plaintext highlighter-rouge">org_storage_tier  = ‘tape’</code></p>
 
 <p>If no tier is assigned to a resource yet, this is considered the ‘Standard’ tier by default.</p>
 
@@ -489,10 +489,10 @@ A tier can be considered a price level of a resource.</p>
 Collection of storage amount is performed  per group and per storage tier and stored as metadata on corresponding group.</p>
 
 <p>All determined storage data is recorded on group level.
-Each group holds the following metadata with key: <code class="highlighter-rouge">org_storage_data_month</code>.</p>
+Each group holds the following metadata with key: <code class="language-plaintext highlighter-rouge">org_storage_data_month</code>.</p>
 
 <p>This is postfixed with the month number, like:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org_storage_data_month01
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org_storage_data_month01
 org_storage_data_month02
 org_storage_data_month03
 org_storage_data_month04
@@ -507,31 +507,31 @@ org_storage_data_month12
 </code></pre></div></div>
 <p>Thus creating a full year cyclic buffer.</p>
 
-<p>Per entry, i.e. for a group every month, each metadata-entry holds category, tier and  storage information in a JSON format <code class="highlighter-rouge">['Categoryname', 'Tiername', '100']</code>.
+<p>Per entry, i.e. for a group every month, each metadata-entry holds category, tier and  storage information in a JSON format <code class="language-plaintext highlighter-rouge">['Categoryname', 'Tiername', '100']</code>.
 The frontend steps into this cyclic buffer starting from current month backward.
 Per month the front end gets tiername and storage data in a total array divided in
 tiername, months and storage.</p>
 
 <p>Metadata attribute:
-<code class="highlighter-rouge">UUORGMETADATAPREFIX ++ 'storage_data_month' ++ *month;</code></p>
+<code class="language-plaintext highlighter-rouge">UUORGMETADATAPREFIX ++ 'storage_data_month' ++ *month;</code></p>
 
 <p>Metadata value:
-<code class="highlighter-rouge">*json_str = "[\"*category\", \"*tier\", \"*storageAmount\"]";</code></p>
+<code class="language-plaintext highlighter-rouge">*json_str = "[\"*category\", \"*tier\", \"*storageAmount\"]";</code></p>
 
 <p>The corresponding category is registered on group level as well as a group could possibly change category. So for historic purposes it is required to know to what category a group belonged.</p>
 
 <h2 id="twelve-month-registration">Twelve month registration</h2>
 <p>Per group one or more metadata attributes like this exist for a month.<br />
-This occurs for each month (<code class="highlighter-rouge">org_storageDataMonth01, … , org_storageDataMonth12</code>) thus setting up a cyclic buffer for registration with a maximum history  12 months history.
+This occurs for each month (<code class="language-plaintext highlighter-rouge">org_storageDataMonth01, … , org_storageDataMonth12</code>) thus setting up a cyclic buffer for registration with a maximum history  12 months history.
 After 12 months the previous values are overwritten automatically by the mothly cronjob.</p>
 
 <h2 id="collecting-data-for-reporting">Collecting data for reporting</h2>
-<p>To find all latest and historic data for a category metadata can be matched against <code class="highlighter-rouge">‘[\“’ ++ *cat ++ ‘\”%%’</code>.
+<p>To find all latest and historic data for a category metadata can be matched against <code class="language-plaintext highlighter-rouge">‘[\“’ ++ *cat ++ ‘\”%%’</code>.
 This wil bring up all metadata storage metadata for this category. Combined with a specific month this will bring up all required data to calculate  the storage per tier for a specific category for a month.</p>
 
 <h2 id="which-month-does-registered-data-belong-to">Which month does registered data belong to?</h2>
 <p>For now, when registration takes place after the 15th of a month, the data collected is linked to the month later.
-I.e. data collected on 27th of may is linked to the month of June. And therefore registered under <code class="highlighter-rouge">org_storage_data_month06</code>.
+I.e. data collected on 27th of may is linked to the month of June. And therefore registered under <code class="language-plaintext highlighter-rouge">org_storage_data_month06</code>.
 This as invoicing takes place in June over the month of may.</p>
 
                                     </section>

@@ -448,14 +448,14 @@
 <p>When a publication stays in Approved status for an extended period of time (longer than cronjob interval) something probably went
 wrong. Here are some troubleshooting hints.</p>
 
-<p>First look for <code class="highlighter-rouge">iiProcessPublication</code> in <code class="highlighter-rouge">/var/lib/irods/log/rodsLog</code>. It will show the processing of the publication.</p>
+<p>First look for <code class="language-plaintext highlighter-rouge">iiProcessPublication</code> in <code class="language-plaintext highlighter-rouge">/var/lib/irods/log/rodsLog</code>. It will show the processing of the publication.</p>
 
 <ul>
   <li>When a publication succeeds it will return status OK.</li>
-  <li>When the publication process has caught an error, but has no recovery process it will return <code class="highlighter-rouge">Unrecoverable</code> as status.</li>
-  <li>When the whole process was interrupted at a time the error could not be caught, the status will stay at <code class="highlighter-rouge">Processing</code>.</li>
-  <li>When the publication process encountered a DOI collision it will set status to <code class="highlighter-rouge">Retry</code> and reset the generated random ID.</li>
-  <li>When the publication process encounters connectivity problems with DataCite or the public server it will set the status to <code class="highlighter-rouge">Retry</code>.</li>
+  <li>When the publication process has caught an error, but has no recovery process it will return <code class="language-plaintext highlighter-rouge">Unrecoverable</code> as status.</li>
+  <li>When the whole process was interrupted at a time the error could not be caught, the status will stay at <code class="language-plaintext highlighter-rouge">Processing</code>.</li>
+  <li>When the publication process encountered a DOI collision it will set status to <code class="language-plaintext highlighter-rouge">Retry</code> and reset the generated random ID.</li>
+  <li>When the publication process encounters connectivity problems with DataCite or the public server it will set the status to <code class="language-plaintext highlighter-rouge">Retry</code>.</li>
 </ul>
 
 <p>Then look at the rodsLog around the time of the problem. Error messages could give you a hint on the root cause.</p>
@@ -465,21 +465,21 @@ wrong. Here are some troubleshooting hints.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>imeta lsw <span class="nt">-C</span> /tempZone/home/vault-test/research-test[123456789] org_publication%
 </code></pre></div></div>
 
-<p>When the problem is caused by invalid metadata, check the value of <code class="highlighter-rouge">org_publication_combiXmlPath</code> and <code class="highlighter-rouge">org_publication_dataCiteXmlPath</code>. You can use iget to download the generated metadata at these paths and check for XML/XSLT related problems.</p>
+<p>When the problem is caused by invalid metadata, check the value of <code class="language-plaintext highlighter-rouge">org_publication_combiXmlPath</code> and <code class="language-plaintext highlighter-rouge">org_publication_dataCiteXmlPath</code>. You can use iget to download the generated metadata at these paths and check for XML/XSLT related problems.</p>
 
-<p>When the <code class="highlighter-rouge">org_publication_status</code> is <code class="highlighter-rouge">Retry</code> the publication process will be retried until success.
+<p>When the <code class="language-plaintext highlighter-rouge">org_publication_status</code> is <code class="language-plaintext highlighter-rouge">Retry</code> the publication process will be retried until success.
 Check status.datacite.org if you suspect a DataCite problem.
 Publications will fail if the API servers are down.<br />
 Check the ability of the rods user to set up a ssh connection with the inbox user on the public Yoda server.
 When troubleshooting was successful the publication process will skip the subtasks
 before the failure and continue.</p>
 
-<p>When the <code class="highlighter-rouge">org_publication_status</code> is <code class="highlighter-rouge">Processing</code> and the root cause of the crash looks to be incidental, you could set the status to <code class="highlighter-rouge">Retry</code> with  imeta on the <code class="highlighter-rouge">org_publication_status</code>. The publication will be retried the next time the cronjob runs.</p>
+<p>When the <code class="language-plaintext highlighter-rouge">org_publication_status</code> is <code class="language-plaintext highlighter-rouge">Processing</code> and the root cause of the crash looks to be incidental, you could set the status to <code class="language-plaintext highlighter-rouge">Retry</code> with  imeta on the <code class="language-plaintext highlighter-rouge">org_publication_status</code>. The publication will be retried the next time the cronjob runs.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>imeta <span class="nb">set</span> <span class="nt">-C</span> /tempZone/home/vault-test/research-test[123456789] org_publication_status Retry
 </code></pre></div></div>
 
-<p>When the <code class="highlighter-rouge">org_publication_status</code> is <code class="highlighter-rouge">Unrecoverable</code> then one of XSLT conversion steps have produced invalid metadata.
+<p>When the <code class="language-plaintext highlighter-rouge">org_publication_status</code> is <code class="language-plaintext highlighter-rouge">Unrecoverable</code> then one of XSLT conversion steps have produced invalid metadata.
 You could use a third party XSLT processor on the metadata in the previously mentioned source XML files with the used XSL’s from the current category.
 This could tell you the problem.
 If the metadata generation succeeds but is still invalid according to the DataCite API, you could use an XSD validator on the datacite.xml using the version 4 XSD’s found at schema.datacite.org.</p>

@@ -480,7 +480,7 @@ iRODS ACL system could not be used, because researcher should be able to lock/un
 the technical implementation of the locking mechanism in the research ruleset.</p>
 
 <p>Locks are represented by metadata on the folder, it’s children and it’s parents. The lock consists of a AVU with org_lock (defined in iiConstants.r) as attribute name and the collection where
-the lock is started (rootCollection). Whenever a lock is set this AVU is put on every child using a treewalk and every parent using iteration until the <code class="highlighter-rouge">/{rodsZone}/home/research-{groupName}</code> collection is found. Every relevant static Policy Enforcement Point that could be triggered because of a modification in the research area is checked for the metadata and in general the following rules are enforced:</p>
+the lock is started (rootCollection). Whenever a lock is set this AVU is put on every child using a treewalk and every parent using iteration until the <code class="language-plaintext highlighter-rouge">/{rodsZone}/home/research-{groupName}</code> collection is found. Every relevant static Policy Enforcement Point that could be triggered because of a modification in the research area is checked for the metadata and in general the following rules are enforced:</p>
 
 <ul>
   <li>if the root collection of the lock is on the current collection or a parent collection disallow the action.</li>
@@ -496,17 +496,17 @@ the lock is started (rootCollection). Whenever a lock is set this AVU is put on 
 
 <p>msiOprDisallowed and msiDeleteDisallowed are used to stop the current operation and return an error to the clients.
 There is one unfortunate special case. There is no static PEP for preconditions on a file put operation, only a post PEP. To prevent
-users from putting new files into a locked collection the files are removed in the post condition <code class="highlighter-rouge">acPostProcForPut</code>. When using webDAV it may appear like the file is still there due to caching.</p>
+users from putting new files into a locked collection the files are removed in the post condition <code class="language-plaintext highlighter-rouge">acPostProcForPut</code>. When using webDAV it may appear like the file is still there due to caching.</p>
 
 <h2 id="setting-and-removing-locks">Setting and removing locks</h2>
 <p>The locks are set and removed with the iiFolderLockChange rule in the iiFolderStatusTransition.r file.
 This rule should not be directly run, but triggered from folder status transitions.
 Please refer to the folder status design document for details on which transition should lock the folder.
-The rules in iiFolderStatusTransitions.r called by the front-end to initiate a status change will attempt a metadata change on the <code class="highlighter-rouge">org_status</code> attribute.
+The rules in iiFolderStatusTransitions.r called by the front-end to initiate a status change will attempt a metadata change on the <code class="language-plaintext highlighter-rouge">org_status</code> attribute.
 This will trigger an metadata PEP, which will run the lock change when the current user is allowed to.
 Every folder status transition is checked for preconditions by the iiCanModifyFolderStatus rule in iiPolicyChecks.r.</p>
 
-<p>When the locking fails, the modification of the <code class="highlighter-rouge">org_status</code> change will be interrupted by calling msiOprDisallowed.
+<p>When the locking fails, the modification of the <code class="language-plaintext highlighter-rouge">org_status</code> change will be interrupted by calling msiOprDisallowed.
 For the rules called by the front-end the errors are caught and returned with statusInfo.</p>
 
                                     </section>

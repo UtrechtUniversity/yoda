@@ -540,7 +540,7 @@ Thus safeguarding that no transformation will take place anymore.</p>
 <p>within iRods / iiSchemaUpdates.py: <br />
 the tranformation matrix holds possible conversions from schemaIDn to schemaID(m)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transformationMethod = transformationMatrix[schemaID1][schemaID2]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transformationMethod = transformationMatrix[schemaID1][schemaID2]
 </code></pre></div></div>
 
 <p>The matrix brings up a function name that will transform the data.
@@ -559,7 +559,7 @@ This has to be known in the transformation stylesheet as well. Otherwise, XPath 
 
 <p>Consequently, within a stylesheet both the new and old namespaces are required.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;xsl:stylesheet version="1.0"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;xsl:stylesheet version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 xmlns:yoda="https://utrechtuniversity.github.io/yoda-schemas/default"   
 exclude-result-prefixes="yoda"&gt;

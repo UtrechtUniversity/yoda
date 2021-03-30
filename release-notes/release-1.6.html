@@ -471,7 +471,7 @@
   <li>Add support for datarequest module (<a href="../administration/installing-datarequest-module.html">installation instructions</a>)</li>
   <li>New tool to check mail configuration</li>
   <li>Upgrade to iRODS v4.2.7</li>
-  <li>Deprecate support for TLS 1.0 and TLS 1.1 (use <code class="highlighter-rouge">legacy_tls</code> flag to enable support for TLS 1.0 and TLS 1.1)</li>
+  <li>Deprecate support for TLS 1.0 and TLS 1.1 (use <code class="language-plaintext highlighter-rouge">legacy_tls</code> flag to enable support for TLS 1.0 and TLS 1.1)</li>
 </ul>
 
 <h3 id="known-issues">Known issues</h3>
@@ -484,17 +484,17 @@ Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.</p>
 
 <ol>
-  <li>Set Yoda release to <code class="highlighter-rouge">release-1.6</code> in configuration.
+  <li>Set Yoda release to <code class="language-plaintext highlighter-rouge">release-1.6</code> in configuration.
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">release-1.6</span>
 </code></pre></div>    </div>
   </li>
-  <li>Set the default schema to <code class="highlighter-rouge">default-1</code> in configuration.
+  <li>Set the default schema to <code class="language-plaintext highlighter-rouge">default-1</code> in configuration.
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">default_yoda_schema</span><span class="pi">:</span> <span class="s">default-1</span>
 </code></pre></div>    </div>
   </li>
-  <li>The core modules (<code class="highlighter-rouge">research</code>, <code class="highlighter-rouge">vault</code>, <code class="highlighter-rouge">statistics</code>, <code class="highlighter-rouge">group-manager</code>) are enabled by default in Yoda 1.6.
+  <li>The core modules (<code class="language-plaintext highlighter-rouge">research</code>, <code class="language-plaintext highlighter-rouge">vault</code>, <code class="language-plaintext highlighter-rouge">statistics</code>, <code class="language-plaintext highlighter-rouge">group-manager</code>) are enabled by default in Yoda 1.6.
 Only extra modules have to be enabled in the configuration.
-So <code class="highlighter-rouge">modules</code> becomes <code class="highlighter-rouge">extra_modules</code> and all core modules should be removed from the <code class="highlighter-rouge">extra_modules</code> list.
+So <code class="language-plaintext highlighter-rouge">modules</code> becomes <code class="language-plaintext highlighter-rouge">extra_modules</code> and all core modules should be removed from the <code class="language-plaintext highlighter-rouge">extra_modules</code> list.
 Update the configuration according to your specifications.
 For example:
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># Yoda modules</span>
@@ -505,11 +505,11 @@ For example:
          <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">yoda_version</span><span class="nv"> </span><span class="err">\</span><span class="s">}</span><span class="err">\</span><span class="s">}"</span>
 </code></pre></div>    </div>
   </li>
-  <li>The core rulesets (<code class="highlighter-rouge">core</code> and <code class="highlighter-rouge">irods-ruleset-uu</code>) are enabled by default in Yoda 1.6.
+  <li>The core rulesets (<code class="language-plaintext highlighter-rouge">core</code> and <code class="language-plaintext highlighter-rouge">irods-ruleset-uu</code>) are enabled by default in Yoda 1.6.
 Only extra modules have to be enabled in the configuration.
-Furthermore, the research ruleset (<code class="highlighter-rouge">irods-ruleset-research</code>) has been merged with the UU ruleset
-(<code class="highlighter-rouge">irods-ruleset-uu</code>). So <code class="highlighter-rouge">rulesets</code> becomes <code class="highlighter-rouge">extra_rulesets</code>;
-<code class="highlighter-rouge">core</code>, <code class="highlighter-rouge">irods-ruleset-research</code> and <code class="highlighter-rouge">irods-ruleset-uu</code> should be removed from the <code class="highlighter-rouge">extra_rulesets</code> list.
+Furthermore, the research ruleset (<code class="language-plaintext highlighter-rouge">irods-ruleset-research</code>) has been merged with the UU ruleset
+(<code class="language-plaintext highlighter-rouge">irods-ruleset-uu</code>). So <code class="language-plaintext highlighter-rouge">rulesets</code> becomes <code class="language-plaintext highlighter-rouge">extra_rulesets</code>;
+<code class="language-plaintext highlighter-rouge">core</code>, <code class="language-plaintext highlighter-rouge">irods-ruleset-research</code> and <code class="language-plaintext highlighter-rouge">irods-ruleset-uu</code> should be removed from the <code class="language-plaintext highlighter-rouge">extra_rulesets</code> list.
 Update the configuration according to your specifications.
 For example:
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c1"># iRODS rulesets</span>
@@ -533,11 +533,11 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
 ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml
 </code></pre></div>    </div>
   </li>
-  <li>Convert all metadata XML in the vault to JSON (<code class="highlighter-rouge">default-0</code> XML to <code class="highlighter-rouge">default-0</code> JSON).
+  <li>Convert all metadata XML in the vault to JSON (<code class="language-plaintext highlighter-rouge">default-0</code> XML to <code class="language-plaintext highlighter-rouge">default-0</code> JSON).
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
 </code></pre></div>    </div>
   </li>
-  <li>Update all metadata JSON in the vault to latest metadata JSON version (<code class="highlighter-rouge">default-0</code> to <code class="highlighter-rouge">default-1</code>).
+  <li>Update all metadata JSON in the vault to latest metadata JSON version (<code class="language-plaintext highlighter-rouge">default-0</code> to <code class="language-plaintext highlighter-rouge">default-1</code>).
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r
 </code></pre></div>    </div>
   </li>

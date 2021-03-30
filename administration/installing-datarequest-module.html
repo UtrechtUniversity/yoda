@@ -448,19 +448,19 @@
 <h2 id="before-deployment-using-ansible">Before deployment using Ansible</h2>
 
 <h3 id="enable-the-datarequest-module-in-ansible">Enable the datarequest module in Ansible</h3>
-<p>Set <code class="highlighter-rouge">enable_datarequest</code> to <code class="highlighter-rouge">true</code> in configuration.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>enable_datarequest: true
+<p>Set <code class="language-plaintext highlighter-rouge">enable_datarequest</code> to <code class="language-plaintext highlighter-rouge">true</code> in configuration.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>enable_datarequest: true
 </code></pre></div></div>
 
 <h3 id="set-ansible-parameters-specific-to-the-datarequest-module">Set Ansible parameters specific to the datarequest module</h3>
 <p>Users can contact a helpdesk email address for questions regarding the
 datarequest procedure. Set the fields below to specify the help contact.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>datarequest_help_contact_name: the data manager
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>datarequest_help_contact_name: the data manager
 datarequest_help_contact_email: help@yoda.instance
 </code></pre></div></div>
 
-<p>Add the <code class="highlighter-rouge">yoda-portal-datarequest</code> repository to <code class="highlighter-rouge">extra_modules</code>.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extra_modules:
+<p>Add the <code class="language-plaintext highlighter-rouge">yoda-portal-datarequest</code> repository to <code class="language-plaintext highlighter-rouge">extra_modules</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extra_modules:
   - name: datarequest
     repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
     dest: /var/www/yoda/yoda-portal/modules/datarequest
@@ -471,9 +471,9 @@ datarequest_help_contact_email: help@yoda.instance
 
 <h3 id="creating-and-populating-required-groups">Creating and populating required groups</h3>
 
-<p>Ensure that the following groups exists, each with category <code class="highlighter-rouge">datarequests</code>,
-subcategory <code class="highlighter-rouge">research</code> and data classification <code class="highlighter-rouge">unspecified</code>:
-    <code class="highlighter-rouge">
+<p>Ensure that the following groups exists, each with category <code class="language-plaintext highlighter-rouge">datarequests</code>,
+subcategory <code class="language-plaintext highlighter-rouge">research</code> and data classification <code class="language-plaintext highlighter-rouge">unspecified</code>:
+    <code class="language-plaintext highlighter-rouge">
     datarequests-research-datamanagers
     datarequests-research-board-of-directors
     datarequests-research-data-management-committee
@@ -485,12 +485,12 @@ subcategory <code class="highlighter-rouge">research</code> and data classificat
   <li>
     <p>Log into an account on the server with permission to create new groups.</p>
 
-    <p><code class="highlighter-rouge">sudo su irods</code></p>
+    <p><code class="language-plaintext highlighter-rouge">sudo su irods</code></p>
   </li>
   <li>
     <p>Create the groups.</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
  irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-board-of-directors", "datarequest", "research", "Board of Directors", "", *status, *message);' null ruleExecOut
  irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-management-committee", "datarequest", "research", "Data Management Committee", "", *status, *message);' null ruleExecOut
 </code></pre></div>    </div>
@@ -498,7 +498,7 @@ subcategory <code class="highlighter-rouge">research</code> and data classificat
   <li>
     <p>Confirm that the groups exist.</p>
 
-    <p><code class="highlighter-rouge">iadmin lg</code></p>
+    <p><code class="language-plaintext highlighter-rouge">iadmin lg</code></p>
   </li>
 </ol>
 
@@ -507,16 +507,16 @@ subcategory <code class="highlighter-rouge">research</code> and data classificat
 <h3 id="customizing-and-installing-schemas">Customizing and installing schemas</h3>
 <p>For a fully functional datarequest module, schemas for the various forms have to
 be present. A set of templates for these schemas can be found in the
-<code class="highlighter-rouge">irods-ruleset-uu</code> repository in the <code class="highlighter-rouge">datarequest/schemas</code> directory. These meet
+<code class="language-plaintext highlighter-rouge">irods-ruleset-uu</code> repository in the <code class="language-plaintext highlighter-rouge">datarequest/schemas</code> directory. These meet
 the requirements of the datarequest procedure of
 <a href="https://www.uu.nl/en/research/youth-cohort-study">the YOUth cohort study</a>.</p>
 
 <p>For a production deployment to a Yoda instance for which these templates are
 suitable as is (e.g. the Yoda instance of YOUth), only one template has to be
-changed, and that is <code class="highlighter-rouge">datarequest/schemas/youth-0/assignment/schema.json</code>.
-Within this template, replace the example DMC member entries in the <code class="highlighter-rouge">assign_to</code>
-section with real entries. The <code class="highlighter-rouge">enum</code> field should be an array of usernames of
-the DMC members and the <code class="highlighter-rouge">enumNames</code> field should be an array with corresponding
+changed, and that is <code class="language-plaintext highlighter-rouge">datarequest/schemas/youth-0/assignment/schema.json</code>.
+Within this template, replace the example DMC member entries in the <code class="language-plaintext highlighter-rouge">assign_to</code>
+section with real entries. The <code class="language-plaintext highlighter-rouge">enum</code> field should be an array of usernames of
+the DMC members and the <code class="language-plaintext highlighter-rouge">enumNames</code> field should be an array with corresponding
 “display names” (which are visible in the assignment form).</p>
 
 <p>Instructions:</p>
@@ -525,7 +525,7 @@ the DMC members and the <code class="highlighter-rouge">enumNames</code> field s
   <li>
     <p>Copy the template to a temporary directory for adjustment.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cp datarequest/schemas/youth-0/assignment/schema.json /tmp/
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cp </span>datarequest/schemas/youth-0/assignment/schema.json /tmp/
 </code></pre></div>    </div>
   </li>
   <li>

@@ -455,58 +455,58 @@ ichmod <span class="nt">-rM</span> inherit  /<span class="k">${</span><span clas
 ichmod <span class="nt">-rM</span> <span class="nb">read </span>public /<span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span>/yoda/file_formats
 </code></pre></div></div>
 
-<p>To add a new list of preservable file formats just put a JSON file in the <code class="highlighter-rouge">/${RODSZONE}/yoda/file_formats</code> collection with a new name.</p>
+<p>To add a new list of preservable file formats just put a JSON file in the <code class="language-plaintext highlighter-rouge">/${RODSZONE}/yoda/file_formats</code> collection with a new name.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iput <span class="s2">"</span><span class="k">${</span><span class="nv">FILE_FORMATS</span><span class="k">}</span><span class="s2">.json"</span> <span class="s2">"/</span><span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span><span class="s2">/yoda/file_formats/</span><span class="k">${</span><span class="nv">FILE_FORMATS</span><span class="k">}</span><span class="s2">.json"</span>
 </code></pre></div></div>
 
 <p>JSON schema for preservable file formats:</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"definitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-  </span><span class="s2">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-07/schema#"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preservable_file_formats.json"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"List of preservable file formats"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nl">"definitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-07/schema#"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preservable_file_formats.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"List of preservable file formats"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"formats"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/name"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File formats list name"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"examples"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nl">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File formats list name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"examples"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"DANS Preferred formats"</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)$"</span><span class="w">
+      </span><span class="nl">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)$"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"help"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/help"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File formats list help text"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)$"</span><span class="w">
+    </span><span class="nl">"help"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/help"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File formats list help text"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)$"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"advice"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/advice"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File formats list advice text"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)$"</span><span class="w">
+    </span><span class="nl">"advice"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/advice"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File formats list advice text"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)$"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"formats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/formats"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"List of file formats"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/formats/items"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preservable file formats"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"examples"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"formats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/formats"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"List of file formats"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/properties/formats/items"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preservable file formats"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"examples"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="s2">"pdf"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"txt"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"xml"</span><span class="p">,</span><span class="w">
@@ -520,7 +520,7 @@ ichmod <span class="nt">-rM</span> <span class="nb">read </span>public /<span cl
           </span><span class="s2">"png"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"svg"</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)$"</span><span class="w">
+        </span><span class="nl">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)$"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
