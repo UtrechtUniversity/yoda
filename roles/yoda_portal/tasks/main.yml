@@ -72,5 +72,5 @@
   notify: Restart Apache webserver
 
 
-# - include_tasks: setup-nodejs-development-environment.yml
-#   when: yoda_environment == "development"
+- include_tasks: setup-nodejs-development-environment.yml
+  when: yoda_environment == "development"
