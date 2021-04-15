@@ -20,11 +20,11 @@ SESSION_USE_SIGNER          = True
 SESSION_FILE_DIR            = '{{ flask_session_file_dir }}'
 
 # iRODS authentication configuration
-IRODS_ICAT_HOSTNAME = 'combined.yoda.test'
-IRODS_ICAT_PORT     = 1247
-IRODS_DEFAULT_ZONE  = 'tempZone'
-IRODS_SSL_CA_FILE   = '/etc/irods/localhost_and_chain.crt'
-IRODS_AUTH_SCHEME   = 'pam'
+IRODS_ICAT_HOSTNAME = '{{ irods_icat_fqdn }}'
+IRODS_ICAT_PORT     = '{{ irods_icat_port }}'
+IRODS_DEFAULT_ZONE  = '{{ irods_zone }}'
+IRODS_SSL_CA_FILE   = '{{ openssl_certs_dir ~ "/" ~ openssl_crt_signed_and_chain }}'
+IRODS_AUTH_SCHEME   = '{{ irods_authentication_scheme }}'
 IRODS_CLIENT_OPTIONS_FOR_SSL = {
     "irods_client_server_policy": "CS_NEG_REQUIRE",
     "irods_client_server_negotiation": "request_server_negotiation",
@@ -48,7 +48,7 @@ IRODS_SESSION_OPTIONS = {
 
 {% if oidc_active is sameas true %}
 # OIDC configuration
-OIDC_ENABLED        =  {{ oidc_active        | default(False) }}
+OIDC_ENABLED        = {{ oidc_active | default(False) }}
 OIDC_CLIENT_ID      = '{{ oidc_client_id     | default("") }}'
 OIDC_CLIENT_SECRET  = '{{ oidc_client_secret | default("") }}'
 OIDC_CALLBACK_URI   = '{{ "https://" ~ yoda_portal_fqdn ~ "/user/callback" }}'
