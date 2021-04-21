@@ -1,15 +1,12 @@
 @startuml
-
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
 skinparam padding 2
 skinparam shadowing false
-skinparam dpi 200
 
 actor       Researcher  as researcher
 actor       Datamanager as datamanager
 participant Yoda        as yoda
 
+== Approved data package ==
 researcher   -> yoda        : Submit for publication
 note over yoda              : SUBMITTED_FOR_PUBLICATION
 yoda        --> datamanager : Submitted notification
@@ -20,4 +17,11 @@ yoda         -> yoda        : Publish
 note over yoda              : PUBLISHED
 yoda        --> researcher  : Published notification
 yoda        --> datamanager : Published notification
+== Canceled data package ==
+researcher   -> yoda        : Submit for publication
+note over yoda              : SUBMITTED_FOR_PUBLICATION
+yoda        --> datamanager : Submitted notification
+datamanager  -> yoda        : Cancel publication
+yoda        --> researcher  : Canceled notification
+note over yoda              : UNPUBLISHED
 @enduml

@@ -1,6 +1,6 @@
 # Wall of Fame
 
-This is a list (in alphabetic order) of all the contributors to Yoda.
+This is a list (in alphabetic order and not complete) of contributors to Yoda.
 Thanks goes to these wonderful people!
 
 <table>
@@ -36,6 +36,15 @@ Thanks goes to these wonderful people!
   </tr>
   <tr>
     <td align="center">
+      <a href="https://github.com/reavdhoef">
+        <img src="https://avatars.githubusercontent.com/u/44201733?v=4" width="120px;" alt="Rick van de Hoef"/>
+        <br />
+        <sub><b>Rick van de Hoef</b></sub>
+      </a>
+      <br />
+      <small>Active</small>
+    </td>
+    <td align="center">
       <a href="https://github.com/hanskleinloog">
         <img src="https://avatars0.githubusercontent.com/u/30900358?v=4" width="120px;" alt="Hans Kleinloog"/>
         <br />
@@ -43,7 +52,7 @@ Thanks goes to these wonderful people!
       </a>
       <br />
       <small>Until 07/2019</small>
-    </td>     
+    </td>
     <td align="center">
       <a href="https://github.com/AJdeMooij">
         <img src="https://avatars0.githubusercontent.com/u/6430919?v=4" width="120px;" alt="Jan de Mooij"/>
@@ -52,7 +61,7 @@ Thanks goes to these wonderful people!
       </a>
       <br />
       <small>Until 08/2016</small>
-    </td>       
+    </td>
     <td align="center">
       <a href="https://github.com/HarmdR">
       <img src="https://avatars.githubusercontent.com/u/4123721?v=4" width="120px;" alt="Harm de Raaff"/>
@@ -61,7 +70,9 @@ Thanks goes to these wonderful people!
       </a>
       <br />
       <small>Active</small>
-    </td>   
+    </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/cjsmeele">
         <img src="https://avatars.githubusercontent.com/u/2670982?v=4" width="120px;" alt="Chris Smeele"/>
@@ -69,10 +80,8 @@ Thanks goes to these wonderful people!
         <sub><b>Chris Smeele</b></sub>
       </a>
       <br />
-      <small>Active</small>
-    </td>                                
-  </tr>
-  <tr>
+      <small>Until 08/2020</small>
+    </td>
     <td align="center">
       <a href="https://github.com/tsmeele">
       <img src="https://avatars0.githubusercontent.com/u/11386611?v=4" width="120px;" alt="Ton Smeele"/>
@@ -80,7 +89,7 @@ Thanks goes to these wonderful people!
         <sub><b>Ton Smeele</b></sub>
       </a>
       <br />
-      <small>Active</small>
+      <small>Until 03/2021</small>
     </td>   
     <td align="center">
       <a href="https://github.com/lwesterhof">

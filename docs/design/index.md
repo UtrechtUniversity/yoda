@@ -6,7 +6,7 @@
 ## System
 - [System overview](system-overview.md)
 - [Research space](research-space.md)
-- [Vault space](research-space.md)
+- [Vault space](vault-space.md)
 - [Statistics module](statistics.md)
 - [Datarequests module](data-requests.md)
 - [Group manager](group-manager.md)

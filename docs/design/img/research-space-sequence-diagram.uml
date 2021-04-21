@@ -1,15 +1,12 @@
 @startuml
-
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
 skinparam padding 2
 skinparam shadowing false
-skinparam dpi 200
 
 actor       Researcher  as researcher
 actor       Datamanager as datamanager
 participant Yoda        as yoda
 
+== Accepted folder ==
 researcher   -> yoda        : Submit for vault
 note over yoda              : SUBMITTED
 yoda        --> datamanager : Submitted notification
@@ -20,4 +17,11 @@ yoda         -> yoda        : Secure in vault
 note over yoda              : SECURED
 yoda        --> researcher  : Secured notification
 yoda        --> datamanager : Secured notification
+== Rejected folder ==
+researcher   -> yoda        : Submit for vault
+note over yoda              : SUBMITTED
+yoda        --> datamanager : Submitted notification
+datamanager  -> yoda        : Reject for vault
+yoda        --> researcher  : Rejected notification
+note over yoda              : REJECTED
 @enduml
