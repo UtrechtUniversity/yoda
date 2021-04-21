@@ -1,0 +1,23 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam padding 2
+skinparam shadowing false
+skinparam dpi 200
+
+actor       Researcher  as researcher
+actor       Datamanager as datamanager
+participant Yoda        as yoda
+
+researcher   -> yoda        : Submit for vault
+note over yoda              : SUBMITTED
+yoda        --> datamanager : Submitted notification
+datamanager  -> yoda        : Accept for vault
+yoda        --> researcher  : Accepted notification
+note over yoda              : ACCCEPTED
+yoda         -> yoda        : Secure in vault
+note over yoda              : SECURED
+yoda        --> researcher  : Secured notification
+yoda        --> datamanager : Secured notification
+@enduml
