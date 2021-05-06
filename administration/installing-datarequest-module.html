@@ -475,7 +475,7 @@ datarequest_help_contact_email: help@yoda.instance
 subcategory <code class="language-plaintext highlighter-rouge">research</code> and data classification <code class="language-plaintext highlighter-rouge">unspecified</code>:
     <code class="language-plaintext highlighter-rouge">
     datarequests-research-datamanagers
-    datarequests-research-board-of-directors
+    datarequests-research-project-managers
     datarequests-research-data-management-committee
    </code></p>
 
@@ -491,7 +491,7 @@ subcategory <code class="language-plaintext highlighter-rouge">research</code> a
     <p>Create the groups.</p>
 
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
- irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-board-of-directors", "datarequest", "research", "Board of Directors", "", *status, *message);' null ruleExecOut
+ irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "Project managers", "", *status, *message);' null ruleExecOut
  irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-management-committee", "datarequest", "research", "Data Management Committee", "", *status, *message);' null ruleExecOut
 </code></pre></div>    </div>
   </li>

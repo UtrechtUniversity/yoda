@@ -25,19 +25,19 @@ the data request. The research proposal must describe the purpose for which the
 researcher wants to obtain the requested data.
 
 ### Management and review of data requests
-A delegate of a research programme's or study's Board of Directors (BoD) must be
-able to perform a cursory preliminary review of a data request.
+A delegate of a research programme's or study's project manager must be able to
+perform a cursory preliminary review of a data request.
 
 Likewise, a data manager assigned as a custodian of (certain) data stored in
 Yoda must be also able to submit a review of a data request.
 
-After these preliminary reviews, a BoD member must be able to assign a data
+After these preliminary reviews, a project manager must be able to assign a data
 request for review to one or more members of a Data Management Committee (DMC)
 
 The DMC member(s) must be able to review research proposals assigned to him.
 
 ### Final evaluation of research proposals
-A BoD member must be able to give a final evaluation of a research proposal
+A project manager must be able to give a final evaluation of a research proposal
 based on the reviews by the data manager and the DMC member(s), thereby
 approving or rejecting the data request.
 
@@ -73,7 +73,8 @@ Because researchers only have ownership of subcollections they themselves have
 created, they cannot access data requests by other researchers.
 
 ### Management and review of data requests
-BoD members and data managers must be able to view all submitted data requests.
+Project managers and data managers must be able to view all submitted data
+requests.
 They are enabled to do so by membership of a group (e.g.
 "brainmorphlab-datamanagers"; see Group Manager) that has group manager
 permissions on the public collection mentioned above (these include read and
@@ -98,12 +99,13 @@ particular research group can be handled by data managers associated with that
 research group.
 
 ### Final evaluation of research proposals
-BoD members also belong to a particular group (e.g. "brainmorphlab-bod". They
-have the same rights as those in the data manager group, thus allowing them to
-view the research proposal and associated reviews.
+Project managers also belong to a particular group (e.g. "brainmorphlab-pm".
+They have the same rights as those in the data manager group, thus allowing them
+to view the research proposal and associated reviews.
 
-A BoD member can approve a research proposal through a web form that sets the
-value of the status AVU of the research proposal subcollection to "approved".
+A project manager can approve a research proposal through a web form that sets
+the value of the status AVU of the research proposal subcollection to
+"approved".
 
 ### Creation of DTAs
 After the data request has been approved, the data manager creates a DTA and

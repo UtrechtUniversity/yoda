@@ -33,7 +33,7 @@ Ensure that the following groups exists, each with category `datarequests`,
 subcategory `research` and data classification `unspecified`:
     ```
     datarequests-research-datamanagers
-    datarequests-research-board-of-directors
+    datarequests-research-project-managers
     datarequests-research-data-management-committee
     ```
 
@@ -47,7 +47,7 @@ Instructions:
 
     ```
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-board-of-directors", "datarequest", "research", "Board of Directors", "", *status, *message);' null ruleExecOut
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "Project managers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-management-committee", "datarequest", "research", "Data Management Committee", "", *status, *message);' null ruleExecOut
     ```
 
