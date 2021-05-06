@@ -358,6 +358,27 @@
   when: enable_revisions == 1
 
 
+- name: Configure cronjob to mail daily notification reports
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'mail-daily-report.sh'
+    minute: '30'
+    hour: '6'
+    job: '/bin/bash /etc/irods/irods-ruleset-uu/tools/mail-daily-report.sh >/dev/null 2>&1'
+
+
+- name: Configure cronjob to mail weekly notification reports
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'mail-weekly-report.sh'
+    minute: '30'
+    hour: '23'
+    weekday: '0'
+    job: '/bin/bash /etc/irods/irods-ruleset-uu/tools/mail-weekly-report.sh >/dev/null 2>&1'
+
+
 - name: Find out if datarequest system collection exists
   become_user: "{{ irods_service_account }}"
   become: yes
