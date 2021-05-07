@@ -1,8 +1,8 @@
-# Release notes Yoda version 1.7 (TBA)
+# Release notes Yoda version 1.7 (May 2021)
 
 Version: 1.7
 
-Released: TBA
+Released: May 2021
 
 ## What's new in Yoda version 1.7
 ### Features
