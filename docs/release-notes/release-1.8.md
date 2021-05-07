@@ -6,8 +6,9 @@ Released: TBA
 
 ## What's new in Yoda version 1.8
 ### Features
-- Support for UI templates
+- Support for user settings
 - Support for notifications
+- Support for UI templates
 
 ## Upgrading from Yoda version 1.7
 Upgrade is supported by Ansible (2.9.x).
