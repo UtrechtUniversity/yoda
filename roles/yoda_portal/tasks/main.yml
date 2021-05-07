@@ -15,6 +15,19 @@
     mode: 0711
 
 
+- name: Delete legacy portal files
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "/var/www/yoda/public"
+    - "/var/www/yoda/yoda-portal"
+    - "/var/www/yoda/irods-php"
+    - "/var/www/yoda/CodeIgniter"
+
+
 - name: Checkout Yoda portal
   become_user: "{{ yoda_deployment_user }}"
   become: yes
