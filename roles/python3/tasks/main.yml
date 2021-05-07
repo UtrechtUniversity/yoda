@@ -10,7 +10,8 @@
     state: present
 
 
-- name: Ensure Python3 virtualenv is installed
+- name: Ensure Python 3 virtualenv is installed
   pip:
     name: virtualenv
     executable: pip3
+  when: not ansible_check_mode
