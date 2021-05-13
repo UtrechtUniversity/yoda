@@ -118,6 +118,36 @@
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
 
 
+- name: Ensure Yoda INTAKE test datasets are present in VM
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  copy:
+    src: '{{ item }}'
+    dest: '~/testdata/{{ item }}'
+    mode: 0644
+  with_items:
+    - 'intake_testset_initial'
+    - 'intake_testset_test'
+
+
+- name: Ensure Yoda INTAKE test datasets  are present in Yoda directory grp-intake-initial
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell:
+    iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-initial
+  with_items:
+    - 'intake_testset_initial'
+
+
+- name: Ensure Yoda INTAKE test datasets  are present in Yoda directory grp-intake-test
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  shell:
+    iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-test
+  with_items:
+    - 'intake_testset_test'
+
+
 - name: Ensure Yoda licenses directory is present
   become_user: '{{ irods_service_account }}'
   become: yes
