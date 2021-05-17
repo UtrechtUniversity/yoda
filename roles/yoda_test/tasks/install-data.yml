@@ -134,7 +134,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   shell:
-    iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-initial
+    iput -f -r ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-initial
   with_items:
     - 'intake_testset_initial'
 
@@ -143,7 +143,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   shell:
-    iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-test
+    iput -f -r ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-test
   with_items:
     - 'intake_testset_test'
 
