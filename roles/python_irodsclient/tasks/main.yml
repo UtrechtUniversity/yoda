@@ -19,5 +19,5 @@
 - name: Ensure python-irodsclient is installed
   pip:
     name:
-      - python-irodsclient==0.8.5
+      - python-irodsclient==0.9.0
     state: present
