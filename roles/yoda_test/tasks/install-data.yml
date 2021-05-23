@@ -127,25 +127,15 @@
     mode: 0644
   with_items:
     - 'intake_testset_initial'
-    - 'intake_testset_test'
 
 
-- name: Ensure Yoda INTAKE test datasets  are present in Yoda directory grp-intake-initial
+- name: Ensure Yoda INTAKE test datasets are present in Yoda directory grp-intake-initial
   become_user: '{{ irods_service_account }}'
   become: yes
   shell:
     iput -f -r ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-initial
   with_items:
     - 'intake_testset_initial'
-
-
-- name: Ensure Yoda INTAKE test datasets  are present in Yoda directory grp-intake-test
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  shell:
-    iput -f -r ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-test
-  with_items:
-    - 'intake_testset_test'
 
 
 - name: Ensure Yoda licenses directory is present
