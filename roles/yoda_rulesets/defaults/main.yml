@@ -33,6 +33,10 @@ yoda_random_id_length: 6         # Length of random ID to add to persistent iden
 irods_default_resc: irodsResc
 irods_repl_resc: irodsRescRepl
 
+# SURF config: separate resources for research and vault
+resource_research: "{{ irods_default_resc }}"
+resource_vault: "{{ irods_default_resc }}"
+
 # Metadata schemas
 schemas:
     - core-0
