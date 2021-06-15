@@ -1,3 +1,6 @@
+import ssl
+from flask import current_app as app
+
 # General Flask configuration
 SECRET_KEY          = '{{ flask_secret_key }}'
 PORTAL_TITLE_TEXT   = '{{ portal_title_text }}'
@@ -6,6 +9,7 @@ YODA_VERSION        = '{{ yoda_version }}'
 YODA_COMMIT         = '{{ yoda_commit }}'
 INTAKE_ENABLED      = '{{ enable_intake }}'
 DATAREQUEST_ENABLED = '{{ enable_datarequest }}'
+JSON_SORT_KEYS      = False  # Check if this is still needed with Python v3.7?
 
 # Flask-Session configuration
 SESSION_TYPE                = 'filesystem'
@@ -14,3 +18,56 @@ SESSION_COOKIE_SECURE       = True
 PERMANENT_SESSION_LIFETIME  = {{ flask_permanent_session_lifetime }} 
 SESSION_USE_SIGNER          = True
 SESSION_FILE_DIR            = '{{ flask_session_file_dir }}'
+
+# iRODS authentication configuration
+IRODS_ICAT_HOSTNAME = '{{ irods_icat_fqdn }}'
+IRODS_ICAT_PORT     = '{{ irods_icat_port }}'
+IRODS_DEFAULT_ZONE  = '{{ irods_zone }}'
+IRODS_SSL_CA_FILE   = '{{ openssl_certs_dir ~ "/" ~ openssl_crt_signed_and_chain }}'
+IRODS_AUTH_SCHEME   = '{{ irods_authentication_scheme }}'
+IRODS_CLIENT_OPTIONS_FOR_SSL = {
+    "irods_client_server_policy": "CS_NEG_REQUIRE",
+    "irods_client_server_negotiation": "request_server_negotiation",
+    "irods_ssl_ca_certificate_file": IRODS_SSL_CA_FILE,
+    "irods_ssl_verify_server": "cert",
+    "irods_encryption_key_size": 16,
+    "irods_encryption_salt_size": 8,
+    "irods_encryption_num_hash_rounds": 16,
+    "irods_encryption_algorithm": "AES-256-CBC"
+}
+IRODS_SESSION_OPTIONS = {
+    'ssl_context' : ssl.create_default_context(
+        purpose=ssl.Purpose.SERVER_AUTH,
+        cafile=IRODS_SSL_CA_FILE,
+        capath=None,
+        cadata=None,
+    ),
+    **IRODS_CLIENT_OPTIONS_FOR_SSL,
+    'authentication_scheme': IRODS_AUTH_SCHEME
+}
+
+{% if oidc_active is sameas true %}
+# OIDC configuration
+OIDC_ENABLED        = {{ oidc_active | default(False) }}
+OIDC_CLIENT_ID      = '{{ oidc_client_id     | default("") }}'
+OIDC_CLIENT_SECRET  = '{{ oidc_client_secret | default("") }}'
+OIDC_CALLBACK_URI   = '{{ "https://" ~ yoda_portal_fqdn ~ "/user/callback" }}'
+OIDC_AUTH_BASE_URI  = '{{ oidc_auth_base_uri | default("") }}'
+OIDC_TOKEN_URI      = '{{ oidc_token_uri     | default("") }}'
+OIDC_SCOPES         = '{{ oidc_scopes        | default("openid") }}'
+OIDC_ACR_VALUES     = '{{ oidc_acr_values    | default("") }}'
+OIDC_EMAIL_FIELD    = '{{ oidc_email_field   | default("email") }}'
+OIDC_SIGNIN_TEXT    = '{{ oidc_signin_text   | default("Sign in with OIDC") }}'
+OIDC_JWKS_URI       = '{{ oidc_jwks_uri      | default("") }}'
+OIDC_JWT_ISSUER     = '{{ oidc_jwt_issuer    | default("") }}'
+OIDC_JWT_OPTIONS    = {
+    "require_exp": {{ oidc_req_exp | default(True) }},      #check that exp (expiration) claim is present
+    "require_iat": {{ oidc_req_iat | default(False) }},     #check that iat (issued at) claim is present
+    "require_nbf": {{ oidc_req_nbf | default(False) }},     #check that nbf (not before) claim is present
+    "verify_aud": {{ oidc_verify_aud | default(True) }},    #check that aud (audience) claim matches audience
+    "verify_iat": {{ oidc_verify_iat | default(False) }},   #check that iat (issued at) claim value is an integer
+    "verify_exp": {{ oidc_verify_exp | default(True) }},    #check that exp (expiration) claim value is OK
+    "verify_iss": {{ oidc_verify_iss | default(True) }},    #check that iss (issuer) claim matches issuer
+    "verify_signature": True                                #verify the JWT cryptographic signature
+}
+{% endif %}
