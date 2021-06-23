@@ -164,7 +164,7 @@ eus_smtp_password: PLACEHOLDER
 eus_smtp_from_address: PLACEHOLDER
 eus_smtp_replyto_address: PLACEHOLDER
 eus_mail_template: uu
-external_users_domain: gmail.com
+external_users_domain_filter: uu.nl     # Domains to filter, separated by |
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: false
