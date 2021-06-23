@@ -35,7 +35,10 @@ test_users:
   - name: technicaladmin
     password: '{{ test_password }}'
     type: rodsadmin
-  - name: bodmember
+  - name: projectmanager
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: executivedirector
     password: '{{ test_password }}'
     type: rodsuser
   - name: dmcmember
@@ -135,7 +138,11 @@ test_groups:
     subcategory: initial
     dataClassification: unspecified
 
-  - groupName: datarequests-research-board-of-directors
+  - groupName: datarequests-research-project-managers
+    category: datarequests
+    subcategory: research
+    dataClassification: unspecified
+  - groupName: datarequests-research-executive-directors
     category: datarequests
     subcategory: research
     dataClassification: unspecified
@@ -214,8 +221,11 @@ test_groupusers:
     user: datamanager
     role: manager
 
-  - groupName: datarequests-research-board-of-directors
-    user: bodmember
+  - groupName: datarequests-research-project-managers
+    user: projectmanager
+    role: manager
+  - groupName: datarequests-research-executive-directors
+    user: executivedirector
     role: manager
   - groupName: datarequests-research-data-management-committee
     user: dmcmember

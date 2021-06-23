@@ -443,3 +443,4 @@
   when: enable_datarequest and not ansible_check_mode
   with_items:
     - admin-datarequestactions.sh
+    - admin-datarequest-temp-write-permission.sh

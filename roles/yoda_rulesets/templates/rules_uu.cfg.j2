@@ -11,6 +11,8 @@ environment                = '{{ yoda_environment }}'
 
 resource_primary           = '{{ irods_default_resc }}'
 resource_replica           = '{{ irods_repl_resc }}'
+resource_research          = '{{ resource_research }}'
+resource_vault             = '{{ resource_vault }}'
 
 notifications_enabled      = '{{ ["false", "true"][send_notifications|int] }}'
 notifications_sender_email = '{{ notifications_sender_email }}'
