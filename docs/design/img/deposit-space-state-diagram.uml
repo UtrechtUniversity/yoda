@@ -1,0 +1,21 @@
+@startuml
+
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 15
+skinparam padding 2
+skinparam shadowing false
+skinparam dpi 200
+
+state DepositSpace as "Deposit Space" {
+  FOLDER : Unlocked
+  SUBMITTED : Submitted for vault
+  ACCEPTED : Accepted for vault
+  SECURED : Secured in vault
+
+  [*] --> FOLDER : Create deposit folder
+  FOLDER --> SUBMITTED : Submit
+  SUBMITTED --> ACCEPTED : Accept
+  SECURED --> [*] : Delete deposit folder
+}
+
+@enduml
