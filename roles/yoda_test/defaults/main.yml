@@ -137,6 +137,10 @@ test_groups:
     category: initial
     subcategory: initial
     dataClassification: unspecified
+  - groupName: deposit-test
+    category: initial
+    subcategory: initial
+    dataClassification: unspecified
 
   - groupName: datarequests-research-project-managers
     category: datarequests
@@ -260,6 +264,13 @@ test_groupusers:
   - groupName: research-initial
     user: viewer
     role: reader
+
+  - groupName: deposit-test
+    user: functionaladminpriv
+    role: manager
+  - groupName: deposit-test
+    user: researcher
+    role: normal
 
   - groupName: research-initial1
     user: functionaladminpriv
