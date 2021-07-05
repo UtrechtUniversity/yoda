@@ -15,6 +15,7 @@ state DepositSpace as "Deposit Space" {
   [*] --> FOLDER : Create deposit folder
   FOLDER --> SUBMITTED : Submit
   SUBMITTED --> ACCEPTED : Accept
+  ACCEPTED --> SECURED : Secure
   SECURED --> [*] : Delete deposit folder
 }
 

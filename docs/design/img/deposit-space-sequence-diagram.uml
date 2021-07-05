@@ -6,7 +6,6 @@ actor       Researcher  as researcher
 actor       Datamanager as datamanager
 participant Yoda        as yoda
 
-== Accepted folder ==
 researcher   -> yoda        : Submit for vault
 note over yoda              : SUBMITTED
 yoda         -> yoda        : Accept for vault
