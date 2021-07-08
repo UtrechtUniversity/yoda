@@ -7,7 +7,7 @@ import requests
 USERINFO_URI = "{{ oidc_userinfo_uri | default('') }}"
 EMAIL_FIELD = "{{ oidc_email_field | default('email') }}"
  
-def validate_token(username, token):
+def validate_token(username, token, sub):
     # Send token validation request.
     headers = {"Authorization": "Bearer {}".format(token)}
     r = requests.get(USERINFO_URI, headers=headers)
@@ -22,14 +22,15 @@ def validate_token(username, token):
     # Retrieve token email.
     try:
         email = r.json()[EMAIL_FIELD].lower()
+        userinfo_sub = r.json()['sub']
     except Exception:
-        print('Unable to retrieve the email address from '
-              'the userinfo response.\nKey: {}\nUserinfo:\n{}'
+        print('Unable to extract data from the userinfo  '
+              'response.\nKey: {}\nUserinfo:\n{}'
               .format(EMAIL_FIELD, r.text))
         return False
 
     # Check if token email corresponds with username.
-    if username == email:
+    if username == email and sub == userinfo_sub:
         return True
 
     return False
@@ -51,13 +52,19 @@ def pam_sm_authenticate(pamh, flags, argv):
 
     # Remove the prefix from the portal.
     if token[0:14] == '++oidc_token++':
-        token = token[14:]
+         token = token[14:]
+         try:
+             sub_ix = token.index('end_sub')
+             sub = token[0:sub_ix]
+             token = token[sub_ix + 7:]
+         except:
+             sub = ''
     else:
         print('Not an oidc token')
         return pamh.PAM_PERM_DENIED
 
     # Validate the token.
-    if(validate_token(username, token)):
+    if(validate_token(username, token, sub)):
         return pamh.PAM_SUCCESS
 
     print('Validation failed')
