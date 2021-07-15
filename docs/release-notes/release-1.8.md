@@ -9,6 +9,7 @@ Released: TBA
 - Support for user settings
 - Support for notifications
 - Support for UI templates
+- Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
 
 ## Upgrading from Yoda version 1.7
 Upgrade is supported by Ansible (2.9.x).

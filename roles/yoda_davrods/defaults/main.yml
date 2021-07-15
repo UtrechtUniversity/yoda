@@ -36,5 +36,3 @@ openssl_crt_signed_and_chain: localhost_and_chain.crt
 openssl_dhparams: dhparams.pem
 
 repo_only: no  # Only download packages from repos.
-
-legacy_tls: False  # Legacy TLS support, TLS 1.0 and 1.1.
