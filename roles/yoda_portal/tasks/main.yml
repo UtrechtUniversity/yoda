@@ -57,15 +57,16 @@
   when: not ansible_check_mode
 
 
+# This task uses a cp command instead of the copy module
+# because the copy module does not work correctly in this
+# case: https://github.com/ansible/ansible/issues/74536
 - name: Configure Yoda theme
   become_user: "{{ yoda_deployment_user }}"
   become: yes
-  copy:
-    src: /var/www/yoda/yoda-portal/theming/themes/{{ yoda_theme }}/public/
-    dest: /var/www/yoda/yoda-portal/public/
-    mode: 0755
-    remote_src: yes
-    directory_mode: yes
+  command: cp -af {{ sourcedir }}/. {{ destdir }}
+  vars:
+      sourcedir: /var/www/yoda/yoda-portal/theming/themes/{{ yoda_theme }}/public
+      destdir: /var/www/yoda/yoda-portal/public/
   when: not ansible_check_mode
 
 
