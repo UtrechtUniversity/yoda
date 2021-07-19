@@ -56,6 +56,5 @@ We propose https://yoda.uu.nl/schemas/<schemaName>-<schemaVersion>/<schemaFile>
 * How to determine equality? See RFC on URI syntax (this ignores e.g. portnumbers and authentication aspects in the URI, and considers the schema and hostname to be case insensitive). We recommend to treat schemaName, schemaVersion and schemaFile as case insensitive.
 
 ## Yoda examples conform this proposal
-
 * https://yoda.uu.nl/schemas/default-0/metadata.json
 * https://yoda.uu.nl/schemas/default-0/uischema.json

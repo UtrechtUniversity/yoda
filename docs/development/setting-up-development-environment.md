@@ -50,7 +50,7 @@ ansible-playbook -i environments/development/allinone/ playbook.yml
 192.168.50.10 eus.yoda.test
 ```
 
-6. [OPTIONAL] Provision Yoda with [test data](development-test-data.md):
+6. [OPTIONAL] Provision Yoda with test data:
 ```bash
 ansible-playbook -i environments/development/allinone/ test.yml
 ```
