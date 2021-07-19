@@ -1,3 +1,10 @@
+---
+layout: default
+title: Software design
+nav_order: 2
+has_children: true
+has_toc: false
+---
 # Software design
 
 ## API

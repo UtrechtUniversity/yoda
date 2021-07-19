@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Statistics module
 
 ## Resources and tiers

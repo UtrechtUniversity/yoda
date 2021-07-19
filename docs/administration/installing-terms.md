@@ -1,3 +1,8 @@
+---
+parent: Administration tasks
+title: Installing Terms & Conditions
+nav_order: 4
+---
 # Installing Terms & Conditions
 Terms and conditions for publication are also read from iRODS and presented to the user.
 It needs to be an HTML snippet to be rendered correctly.

@@ -1,10 +1,15 @@
-# Release notes Yoda version 1.3 (November 2018)
+---
+parent: Release notes
+title: v1.3
+nav_order: 95
+---
+# Release Notes - Yoda v1.3
 
 Version: 1.3
 
 Released: November 2018
 
-## What's new in Yoda version 1.3
+## What's new
 ### Features
 - Upgrade from iRODS 4.1.11 to 4.2.4
 - Persistent identifier (EPIC-PID) for vault packages
@@ -16,7 +21,7 @@ Released: November 2018
 - Email notifications when a package is published
 - Several performance and security improvements
 
-## Upgrading from Yoda version 1.2
+## Upgrading from previous release
 Upgrade is supported by Ansible (2.7.x). No migrations required.
 
 Make sure the delayed rule queue is empty before upgrading (`iqstat -a`).

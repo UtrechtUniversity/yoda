@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Metadata of datasets in the vault
 
 ## Submit to vault

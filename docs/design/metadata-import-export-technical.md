@@ -1,4 +1,6 @@
-
+---
+parent: Software design
+---
 # Metadata import and export functionality
 
 The import and export functionality establishes the bridge between the REACT form, JSON schema based, and the YoDa application XML.

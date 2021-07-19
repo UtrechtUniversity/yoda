@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Overview of the Yoda group-manager
 The Yoda group-manager is a central tool for all Yoda implementations. The group-manager is used to control access permissions of users based on group membership and the role inside a group. As this usecase is not fully anticipated in the iRODS ACL (Access Control List) system, the group-manager makes use of shadow groups and metadata to accomplish its goals. To understand the choices made in the group-manager you need to understand the limitations of iRODS.
 

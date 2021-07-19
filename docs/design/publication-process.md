@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Publication Process
 All state is kept in key-value-pair ``*publicationState`` and persisted into metadata after each step.
 Configuration is pulled from metadata on the ``UUSYSTEMCOLLECTION`` iRODS collection and kept in ``*publicationConfig``.

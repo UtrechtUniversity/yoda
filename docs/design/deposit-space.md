@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Deposit space
 
 ## Introduction

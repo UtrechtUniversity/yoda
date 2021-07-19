@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Asynchronous and Privileged Execution
 
 Yoda uses delayed- and remote rule execution.

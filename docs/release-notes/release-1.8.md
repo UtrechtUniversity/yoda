@@ -1,17 +1,22 @@
-# Release notes Yoda version 1.8 (TBA)
+---
+parent: Release notes
+title: v1.8
+nav_order: 90
+---
+# Release Notes - Yoda v1.8
 
 Version: 1.8
 
 Released: TBA
 
-## What's new in Yoda version 1.8
+## What's new
 ### Features
 - Support for user settings
 - Support for notifications
 - Support for UI templates
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
 
-## Upgrading from Yoda version 1.7
+## Upgrading from previous release
 Upgrade is supported by Ansible (2.9.x).
 Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.

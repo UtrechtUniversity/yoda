@@ -1,3 +1,8 @@
+---
+parent: Administration tasks
+title: Configuring Yoda
+nav_order: 0
+---
 # Configuring Yoda
 Instructions on how to configure a (new) Yoda instance.
 

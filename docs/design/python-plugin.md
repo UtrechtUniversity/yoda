@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Yoda and the iRODS python plugin
 
 ## Configuring the Python rule plugin

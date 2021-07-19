@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Yoda MOAI service
 
 ## Overview

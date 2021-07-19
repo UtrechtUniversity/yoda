@@ -1,3 +1,8 @@
+---
+parent: Administration tasks
+title: Restore collection
+nav_order: 11
+---
 # Restore collection
 If you want to restore a collection you can use the `restore-collection.r` tool from the `irods-ruleset-research`.
 The tool is located at `/etc/irods/irods-ruleset-research/tools/restore-collection.r`

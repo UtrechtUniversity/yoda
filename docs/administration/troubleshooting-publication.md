@@ -1,3 +1,8 @@
+---
+parent: Administration tasks
+title: Troubleshooting publication
+nav_order: 10
+---
 # How to deal with hanging publications
 
 When a publication stays in Approved status for an extended period of time (longer than cronjob interval) something probably went

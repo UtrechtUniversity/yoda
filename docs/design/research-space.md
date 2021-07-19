@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Research space
 
 ## Introduction

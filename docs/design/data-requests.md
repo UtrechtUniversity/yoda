@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Data requests
 
 ## Introduction

@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Folder Locking mechanism
 To prevent modification of a folder in the research area, a researcher can use the lock function. This will catch attempts to write or remove data to that folder
 until the folder is unlocked again. The same mechanism is used to prevent modification during the status transitions needed to put a folder in to the vault. The

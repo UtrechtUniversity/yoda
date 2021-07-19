@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 ## Mapping of yoda-metadata.json
 When a datapackage with yoda-metadata.json is published it will be processed and converted to three different forms.
 If changes are made to the metadata.json.

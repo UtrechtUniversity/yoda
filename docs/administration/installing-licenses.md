@@ -1,3 +1,8 @@
+---
+parent: Administration tasks
+title: Installing Licenses
+nav_order: 3
+---
 # Installing Licenses
 If the metadata Schema includes a License as a list of values, it is possible to automatically add a License text and URI
 to a package put in the vault. For every value of this field the copy-to-vault process will check if a

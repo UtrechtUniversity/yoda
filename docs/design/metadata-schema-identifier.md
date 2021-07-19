@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Metadata schema identifier
 
 ## Introduction

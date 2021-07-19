@@ -1,3 +1,8 @@
+---
+parent: Development
+title: Setting up development environment
+nav_order: 0
+---
 # Setting up development environment
 Setting up a Yoda development environment is easy, you only need the following:
 
@@ -79,3 +84,18 @@ git pull
 ```bash
 ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
+
+## Development environment test users and data
+When you have set up an Yoda development environment and provisioned it with test data the following users are created:
+
+User                | Role
+--------------------|----------
+viewer              | Viewer with read only access to research groups
+researcher          | Researcher with read / write access to research groups
+groupmanager        | Groupmanager  with user management rights on research groups
+datamanager         | Datamanager of the research groups
+technicaladmin      | Technical administrator with rodsadmin access
+
+Password for all test users is `test`.
+
+In research group `research-initial` a folder `testdata` is created with some example data.

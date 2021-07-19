@@ -1,3 +1,8 @@
+---
+parent: Administration tasks
+title: Configuring OIDC
+nav_order: 11
+---
 # Configuring OpenID Connect (OIDC)
 Instruction on how to configure OpenID Connect authentication.
 

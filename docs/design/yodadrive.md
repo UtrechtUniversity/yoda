@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # YodaDrive
 
 YodaDrive is a WebDAV client for Windows, allowing the user to mount a remove WebDAV server as a local drive. YodaDrive is derived from [KS2.Drive](https://github.com/FrKaram/KS2.Drive) written by Francois Karam, and depends on [WinFsp](https://github.com/billziss-gh/winfsp) written by Bill Zissimopoulos.

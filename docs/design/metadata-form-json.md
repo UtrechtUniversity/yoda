@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # JSON schema for YoDa
 
 YoDa uses the REACT library for its configurable metadata forms.  

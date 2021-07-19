@@ -4,7 +4,7 @@ A system for reliable, long-term storing and archiving large amounts of research
 
 ## What is this?
 Yoda is a research data management solution developed by Utrecht University and used by multiple institutes around the world.
-It provides researchers and their partners with a workspace and an archive that enables them to collaborate, deposit, publish and preserve research data.
+It enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project.
 
 This repository is the staring point for using Yoda and contains the [Ansible](https://docs.ansible.com) scripts for automatic deployment of Yoda.
 

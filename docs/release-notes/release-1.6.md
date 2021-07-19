@@ -1,10 +1,15 @@
-# Release notes Yoda version 1.6 (November 2020)
+---
+parent: Release notes
+title: v1.6
+nav_order: 92
+---
+# Release Notes - Yoda v1.6
 
 Version: 1.6
 
 Released: November 2020
 
-## What's new in Yoda version 1.6
+## What's new
 ### Features
 - Improved folder browsing and sorting browse list
 - Create folders from web portal
@@ -21,8 +26,7 @@ Released: November 2020
 The transformation of metadata, often required when a new version of Yoda is deployed holding one or more metadataschema changes versions, can not be completed when metadata still is in locked state "ACCEPTED".  
 Therefore, the appointed admin needs to run checks beforehand and settles unfinished workflows to avoid incomplete metadata transformation(s).
 
-
-## Upgrading from Yoda version 1.5
+## Upgrading from previous release
 Upgrade is supported by Ansible (2.9.x).
 Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.

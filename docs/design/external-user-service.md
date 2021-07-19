@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # External User Service
 
 ## Introduction

@@ -1,10 +1,15 @@
-# Release notes Yoda version 1.4 (December 2018)
+---
+parent: Release notes
+title: v1.4
+nav_order: 94
+---
+# Release Notes - Yoda v1.4
 
 Version: 1.4
 
 Released: December 2018
 
-## What's new in Yoda version 1.4
+## What's new
 ### Features
 - Upgrade to iRODS 4.2.5
 - Support for external users through the External User Service
@@ -16,7 +21,7 @@ Released: December 2018
 - Option to configure EPIC credentials inside Ansible environment files
 - Added script to report, and optionally fix, bad ACLs for revisions.
 
-## Upgrading from Yoda version 1.3
+## Upgrading from previous release
 Upgrade is supported by Ansible (2.7.x). No migrations required.
 
 Add the following fields to the Ansible environment files

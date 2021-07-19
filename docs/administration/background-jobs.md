@@ -1,3 +1,8 @@
+---
+parent: Administration tasks
+title: Long-running background jobs
+nav_order: 9
+---
 # Long-running background jobs
 Yoda can have long-running background jobs. Such jobs work on large amounts of
 data in (small) batches, where the next batch is started through a delayed rule.

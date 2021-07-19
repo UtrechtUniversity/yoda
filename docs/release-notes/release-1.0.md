@@ -1,10 +1,15 @@
-# Release notes Yoda version 1.0 (November 2017)
+---
+parent: Release notes
+title: v1.0
+nav_order: 98
+---
+# Release Notes - Yoda v1.0
 
 Version: 1.0
 
 Released: November 2017
 
-## What's new in Yoda version 1.0
+## What's new
 ### Features
 - Researchers can submit a datapackage in the vault for publication after confirming the terms and agreements
 - Datamanagers can approve the submit for publication
@@ -22,7 +27,7 @@ Released: November 2017
 - Searching is no longer case sensitive
 - All members of a group can view the groups storage consumption and trends using the statistics module
 
-## Upgrading from Yoda version 0.9.7
+## Upgrading from previous release
 Upgrade is supported by Ansible (2.4.x). No migrations required.
 
 - yoda-metadata.xsd is changed. Existing 0.9.7 metadata is not supported and needs to be updated manually

@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # DANS sword2.0 interface #
 ## Description
 The interface uses a bag holding all data and corresponding metadata of research to be deposited at DANS.  

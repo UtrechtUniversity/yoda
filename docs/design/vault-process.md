@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # To vault process in research module
 
 This document does not fully describe the process to push datapackages to the vault. Only the

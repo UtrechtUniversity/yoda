@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Revision management
 
 For each new file or file modification Yoda creates a timestamped backup file in the revision store. The revision store is located at `/tempZone/yoda/revisions`.

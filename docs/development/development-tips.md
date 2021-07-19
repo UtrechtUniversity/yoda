@@ -1,3 +1,8 @@
+---
+parent: Development
+title: Development tips
+nav_order: 1
+---
 # Development tips
 A collection of tips to make Yoda development easier.
 

@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Transformation of metadata within Yoda #
 
 Due to the fact that communities can change their requirements to their metadata Yoda allows for changes in metadata, i.e. metadata forms configuration.  

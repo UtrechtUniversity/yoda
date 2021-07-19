@@ -1,2 +1,18 @@
-remote_theme: UtrechtUniversity/uu-jekyll-theme
+remote_theme: pmarsceill/just-the-docs
 baseurl: "/yoda"
+
+title: Yoda
+description: On this website you can find release notes and technical documentation on software design and administration tasks of Yoda
+
+aux_links:
+  "Yoda on GitHub":
+    - "https://github.com/UtrechtUniversity/yoda"
+
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub."
+gh_edit_repository: "https://github.com/UtrechtUniversity/yoda"
+gh_edit_branch: "pyportal"
+gh_edit_source: docs
+gh_edit_view_mode: "tree"
+
+footer_content: "Copyright &copy; 2017-2021 <a href=\"https://www.uu.nl/\">Utrecht University</a>. Licensed under <a href=\"https://github.com/UtrechtUniversity/yoda/blob/development/LICENSE\">GPLv3</a>."

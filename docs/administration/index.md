@@ -1,3 +1,10 @@
+---
+layout: default
+title: Administration tasks
+nav_order: 3
+has_children: true
+has_toc: false
+---
 # Administration tasks
 - [Configuring Yoda](configuring-yoda.md)
 - [Deploying Yoda](deploying-yoda.md)
@@ -11,3 +18,4 @@
 - [Background jobs](background-jobs.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
 - [Restore collection](restore-collection.md)
+- [Configuring OIDC](configuring-openidc.md)

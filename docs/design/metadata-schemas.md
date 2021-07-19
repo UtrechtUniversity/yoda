@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Community dependent files for configuration of metadata handling
 
 ## Community dependency

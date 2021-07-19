@@ -1,3 +1,6 @@
+---
+parent: Software design
+---
 # Metadata form
 ## Introduction
 A Yoda instance holds research information regarding communities (categories).  

@@ -1,10 +1,15 @@
-# Release notes Yoda version 1.7 (May 2021)
+---
+parent: Release notes
+title: v1.7
+nav_order: 91
+---
+# Release Notes - Yoda v1.7
 
 Version: 1.7
 
 Released: May 2021
 
-## What's new in Yoda version 1.7
+## What's new
 ### Features
 - Theming capability for all available Yoda modules using Bootstrap 4
 - [Support](../administration/configuring-openidc.html) for MFA login on the web portal using OIDC
@@ -17,7 +22,7 @@ Released: May 2021
 ### Known issues
 - When datapackage is secured to the vault, and directly after the metadata is edited and saved in the research area, the file metadata.json will be shown twice for a brief period of time (<5 minutes)
 
-## Upgrading from Yoda version 1.6
+## Upgrading from previous release
 Upgrade is supported by Ansible (2.9.x).
 Requires Yoda external user service to be on version 1.5.x or higher.
 Requires Yoda public server to be on version 1.6.x or higher.

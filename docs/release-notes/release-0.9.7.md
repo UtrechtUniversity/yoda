@@ -1,10 +1,15 @@
-# Release notes Yoda version 0.9.7 (August 2017)
+---
+parent: Release notes
+title: v0.9.7
+nav_order: 99
+---
+# Release Notes - Yoda v0.9.7
 
 Version: 0.9.7
 
 Released: August 2017
 
-## What's new in Yoda version 0.9.7
+## What's new
 ### Features
 - Folders in the research area can be secured in the vault
 - A datamanager per category can approve packages for the vault and control
@@ -14,7 +19,7 @@ Released: August 2017
 - Introduction of the statistics module
 - Integration of the youth intake module
 
-## Upgrading from Yoda version 0.9.6
+## Upgrading from previous release
 Install the 0.9.7 version of at least irods-ruleset-uu and
 irods-ruleset-research.
 

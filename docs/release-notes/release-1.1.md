@@ -1,10 +1,15 @@
-# Release notes Yoda version 1.1 (March 2018)
+---
+parent: Release notes
+title: v1.1
+nav_order: 97
+---
+# Release Notes - Yoda v1.1
 
 Version: 1.1
 
 Released: March 2018
 
-## What's new in Yoda version 1.1
+## What's new
 ### Features
 - Update metadata of published packages in the vault
 - Copying data packages from vault to research area
@@ -17,7 +22,7 @@ Released: March 2018
 - Fix incorrect creator name in intake module
 - Upgrade CodeIgniter to 3.1.7
 
-## Upgrading from Yoda version 1.0
+## Upgrading from previous release
 Upgrade is supported by Ansible (2.5.x). No migrations required.
 
 ## Known Issues

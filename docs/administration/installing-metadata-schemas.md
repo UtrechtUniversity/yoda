@@ -1,3 +1,8 @@
+---
+parent: Administration tasks
+title: Installing metadata schemas
+nav_order: 6
+---
 # Installing metadata schemas
 For a fully functional research module, a metadata schema is required.
 Currently we only have a default-0schema, default-1 schema and a core-0 schema.
