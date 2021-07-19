@@ -46,7 +46,7 @@ jobs:
         sudo apt-get install -y libxslt-dev libxml2-dev zlib1g-dev
         gem install html-proofer --no-document
         cd docs
-        htmlproofer _site --alt-ignore '/assets/images/header.jpg' --disable-external
+        htmlproofer _site --url-ignore "/#.*/" --disable-external
       env:
         NOKOGIRI_USE_SYSTEM_LIBRARIES: true
 
@@ -55,7 +55,7 @@ jobs:
         sudo apt-get install -y linkchecker
         echo -e "[checking]\nlocalwebroot=$(realpath _site)" > lc.config
         cd docs
-        linkchecker -f lc.config _site --ignore-url 'maxcdn.bootstrapcdn.com' --ignore-url '/assets/images/'
+        linkchecker -f lc.config _site
 
     - name: Build production site
       run: |
