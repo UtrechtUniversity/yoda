@@ -5,3 +5,14 @@
   service:
     name: firewalld
     state: restarted
+
+
+- name: Restart iRODS
+  service:
+    name: irods
+    state: restarted
+
+
+- name: Systemd daemon reload
+  ansible.builtin.systemd:
+    daemon_reload: yes

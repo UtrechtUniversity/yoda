@@ -1,6 +1,67 @@
 ---
 # copyright Utrecht University
 
+
+- name: Check iRODS service type is supported
+  fail:
+    msg: 'Error: irods_service_type value not supported'
+  when: irods_service_type not in ["sysv", "systemd"]
+
+
+- name: Populate service facts
+  service_facts:
+
+
+- name: Stop iRODS service before switching between init systems
+  service:
+    name: irods
+    state: stopped
+  when: ( ( irods_service_type == "sysv" and
+              'irods.service' in services and
+              services['irods.service']['source'] == "systemd" and
+              services['irods.service']['state'] == "running" )
+       or ( irods_service_type == "systemd" and
+              'irods' in services and
+              services['irods']['source'] == "sysv"  and
+              services['irods']['state'] == "running" ) )
+
+
+- name: Ensure systemd unit file present
+  template:
+    src: irods.service.j2
+    dest: /lib/systemd/system/irods.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: Systemd daemon reload
+  when: irods_service_type == "systemd"
+
+
+- name: Ensure systemd unit file absent
+  file:
+    path: /lib/systemd/system/irods.service
+    state: absent
+  notify: Systemd daemon reload
+  when: irods_service_type == "sysv"
+
+
+- name: Flush handlers to trigger daemon reload after switching between init systems
+  meta: flush_handlers
+
+
+- name: Start iRODS service after switching between init systems
+  service:
+    name: irods
+    state: started
+  when: ( ( irods_service_type == "sysv" and
+              'irods.service' in services and
+              services['irods.service']['source'] == "systemd" and
+              services['irods.service']['state'] == "running" )
+       or ( irods_service_type == "systemd" and
+              'irods' in services and
+              services['irods']['source'] == "sysv"  and
+              services['irods']['state'] == "running" ) )
+
 - name: Ensure iRODS 4.2.6 packages are absent
   package:
     name:
@@ -13,7 +74,7 @@
       - irods-icommands-4.2.6
       - irods-database-plugin-postgres-4.2.6
     state: absent
-  register: irods_uninstalled
+  notify: Restart iRODS
 
 
 - name: Ensure iRODS iCAT server, Python rule engine plugin and database plugin are present
@@ -27,11 +88,8 @@
   when: not ansible_check_mode
 
 
-- name: Restart the iRODS server
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: '/var/lib/irods/irodsctl restart'
-  when: irods_uninstalled is defined and irods_uninstalled.changed
+- name: Flush handlers to restart iRODS if needed
+  meta: flush_handlers
 
 
 - name: Ensure default msiExecCmd binaries are absent
@@ -208,10 +266,18 @@
 
 
 - name: Start iRODS server
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: '/var/lib/irods/irodsctl start'
+  service:
+    name: irods
+    state: started
   when: ils is failed
+
+
+- name: Enable iRODS systemd service
+  service:
+    name: irods
+    enabled: yes
+    use: service
+  when: irods_service_type == "systemd"
 
 
 - name: Wait until iRODS server is ready to receive requests
@@ -329,7 +395,7 @@
       value: '{{ irods_ssl_verify_server }}'
 
 
-- name: Ensure iRODS environmente file for Python client is present
+- name: Ensure iRODS environment file for Python client is present
   become_user: '{{ irods_service_account }}'
   become: yes
   template:
