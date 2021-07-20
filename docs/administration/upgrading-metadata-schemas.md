@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Upgrading metadata schemas
 nav_order: 8
 ---

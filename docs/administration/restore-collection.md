@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Restore collection
 nav_order: 11
 ---

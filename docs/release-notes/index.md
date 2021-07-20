@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Release notes
+title: Release Notes
 nav_order: 1
 has_children: true
 has_toc: false
 ---
-# Release notes
-- [Release Notes - Yoda v1.8 ](release-1.8.md) (TBA)
+# Release Notes
+- [Release Notes - Yoda v1.8](release-1.8.md) (TBA)
 - [Release Notes - Yoda v1.7](release-1.7.md) (May 2021)
 - [Release Notes - Yoda v1.6](release-1.6.md) (May 2020)
 - [Release Notes - Yoda v1.5](release-1.5.md) (July 2019)

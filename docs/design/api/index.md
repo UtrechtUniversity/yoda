@@ -1,6 +1,6 @@
 ---
 title: API
-parent: Software design
+parent: Software Design
 nav_order: 0
 has_children: false
 has_toc: false

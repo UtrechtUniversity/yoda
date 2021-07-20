@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Administration tasks
+title: Administration Tasks
 nav_order: 3
 has_children: true
 has_toc: false
 ---
-# Administration tasks
+# Administration Tasks
 - [Configuring Yoda](configuring-yoda.md)
 - [Deploying Yoda](deploying-yoda.md)
 - [Applying a local change to a ruleset](hotfixing-ruleset.md)

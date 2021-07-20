@@ -1,5 +1,6 @@
 ---
-grand_parent: Software design
+title: Metadata transformations
+grand_parent: Software Design
 parent: Metadata
 ---
 # Transformation of metadata within Yoda

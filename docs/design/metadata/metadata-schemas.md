@@ -1,5 +1,6 @@
 ---
-grand_parent: Software design
+title: Metadata schemas
+grand_parent: Software Design
 parent: Metadata
 ---
 # Community dependent files for configuration of metadata handling

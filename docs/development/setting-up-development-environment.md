@@ -41,7 +41,7 @@ chmod 0600 ~/yoda/vagrant/ssh/vagrant
 ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
-5. Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32\drivers\etc\hosts (Windows):
+5. Add following hosts to `/etc/hosts` (GNU/Linux or macOS) or  `%SystemRoot%\System32\drivers\etc\hosts` (Windows):
 ```
 192.168.50.10 portal.yoda.test
 192.168.50.10 data.yoda.test
@@ -50,14 +50,14 @@ ansible-playbook -i environments/development/allinone/ playbook.yml
 192.168.50.10 eus.yoda.test
 ```
 
-6. [OPTIONAL] Provision Yoda with test data:
+6. Provision Yoda with test data:
 ```bash
 ansible-playbook -i environments/development/allinone/ test.yml
 ```
 
 7. [OPTIONAL] Provision Yoda with [Zabbix](https://www.zabbix.com/) agent and monitoring scripts:
 
-    Configure Zabbix server in `environments/development/allinone/group_vars/allinone.yml) and make sure a Zabbix server is running on this address, you could use a [Zabbix appliance](https://www.zabbix.com/download_appliance) in Virtualbox.
+    Configure Zabbix server in `environments/development/allinone/group_vars/allinone.yml` and make sure a Zabbix server is running on this address, you could use a [Zabbix appliance](https://www.zabbix.com/download_appliance) in Virtualbox.
     ```yaml
     zabbix_server: 192.168.50.20
     ```

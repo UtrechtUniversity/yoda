@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Configuring OIDC
 nav_order: 11
 ---

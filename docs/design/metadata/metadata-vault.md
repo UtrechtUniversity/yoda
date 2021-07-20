@@ -1,5 +1,6 @@
 ---
-grand_parent: Software design
+title: Metadata vault
+grand_parent: Software Design
 parent: Metadata
 ---
 # Metadata of datasets in the vault

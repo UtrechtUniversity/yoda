@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Configuring Yoda
 nav_order: 0
 ---

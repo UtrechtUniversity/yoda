@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Installing lists of preservable file formats
 nav_order: 5
 ---

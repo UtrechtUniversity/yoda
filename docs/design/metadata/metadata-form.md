@@ -1,5 +1,5 @@
 ---
-grand_parent: Software design
+grand_parent: Software Design
 parent: Metadata
 ---
 # Metadata form

@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Installing metadata schemas
 nav_order: 6
 ---

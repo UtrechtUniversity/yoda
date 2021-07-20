@@ -8,7 +8,7 @@ The interface uses a bag holding all data and corresponding metadata of research
 See below for description of a 'bag'.
 
 The bag is posted to DANS using a SWORD-client.
-YoDa uses: https://github.com/swordapp/python-client-sword2/wiki/Quickstart
+Yoda uses: https://github.com/swordapp/python-client-sword2/wiki/Quickstart
 
 After posting, a response is received holding a URL that must be used in order to receive that processing status of the deposit process.
 

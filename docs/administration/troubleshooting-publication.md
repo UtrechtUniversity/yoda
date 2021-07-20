@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Troubleshooting publication
 nav_order: 10
 ---

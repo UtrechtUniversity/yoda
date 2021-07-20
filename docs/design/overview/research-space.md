@@ -1,5 +1,5 @@
 ---
-grand_parent: Software design
+grand_parent: Software Design
 parent: System Overview
 nav_order: 0
 ---

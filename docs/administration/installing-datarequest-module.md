@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Installing datarequest module
 nav_order: 7
 ---

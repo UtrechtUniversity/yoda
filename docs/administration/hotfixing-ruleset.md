@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Hotfixing ruleset
 nav_order: 2
 ---

@@ -1,10 +1,11 @@
 ---
-grand_parent: Software design
+title: Metadata import and export
+grand_parent: Software Design
 parent: Metadata
 ---
 # Metadata import and export functionality
 
-The import and export functionality establishes the bridge between the REACT form, JSON schema based, and the YoDa application XML.
+The import and export functionality establishes the bridge between the REACT form, JSON schema based, and the Yoda application XML.
 
 In essence  
 -the export functionality transforms the JSON data that was posted by the form into the yoda-metadata.xml conform the Yoda application requirements for the layout of the XML.  
@@ -14,7 +15,7 @@ In essence
 ## IMPORT
 
 Purpose:
-Build JSON encoded data structure conform the REACT requirements  to ‘feed’ the metadata form as such that YoDa is able to present a metadata form that resembles that original metadataform in functionality as well as gui.
+Build JSON encoded data structure conform the REACT requirements  to ‘feed’ the metadata form as such that Yoda is able to present a metadata form that resembles that original metadataform in functionality as well as gui.
 
 ![OVerview MOAI-CKAN](img/import.png)
 

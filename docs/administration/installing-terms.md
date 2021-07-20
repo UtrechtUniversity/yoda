@@ -1,5 +1,5 @@
 ---
-parent: Administration tasks
+parent: Administration Tasks
 title: Installing Terms & Conditions
 nav_order: 4
 ---

@@ -1,5 +1,5 @@
 ---
-parent: Release notes
+parent: Release Notes
 title: v1.1
 nav_order: 97
 ---

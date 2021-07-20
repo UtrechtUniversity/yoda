@@ -1,10 +1,11 @@
 ---
-grand_parent: Software design
+title: Metadata JSON schema
+grand_parent: Software Design
 parent: Metadata
 ---
-# JSON schema for YoDa
+# JSON schema for Yoda
 
-YoDa uses the REACT library for its configurable metadata forms.  
+Yoda uses the REACT library for its configurable metadata forms.
 The content of a specific form is held within a JSON schema. Thus each category (=community) can have its own metadata. And consequently its own metadata form.  
 
 ## $id
@@ -12,12 +13,9 @@ Each json schema starts with the id of the schema.
 This is used as a means to uniquely identify the schema.
 Also, it is used to be able to create XSD's with the JSONS2XSD-tool in determining the namespaces as well as location of the resulting XSD's.
 
-
 ```
  "$id": "https://yoda.uu.nl/schemas/default-0/metadata.json",
 ```
-
-
 
 ## Definitions - General
 Within JSON schema, within the definitions section, metadata can be described.
@@ -26,7 +24,7 @@ Data type, length and enumerations
 
 ### Strings
 
-YoDa string type defitions:
+Yoda string type defitions:
 ```
 "stringNormal": {
   "type": "string",
@@ -177,7 +175,7 @@ I.e. if either one is holding data, the other field must hold data as well.
 
 
 
-## Specific YoDa structure attributes
+## Specific Yoda structure attributes
 yoda:structure @TODO  
 -compound  
 A combination of form elements that can be regarded as one element.
@@ -187,7 +185,7 @@ A subproperty structure is contstructed of 1 main item and a properties section.
 
 
 "yoda:required": true  
-YoDa specific indication for handling of mandatoriness of array elements.
+Yoda specific indication for handling of mandatoriness of array elements.
 
 
 ## Example of complex structure

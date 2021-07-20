@@ -1,6 +1,6 @@
 ---
 title: Processes
-parent: Software design
+parent: Software Design
 nav_order: 3
 has_children: true
 ---
