@@ -16,22 +16,22 @@ Yoda consists of several core modules and has several additional modules providi
 ### Research space
 The research space implements a data deposit workflow to the vault space.
 
-[Technical design](/design/overview/research-space.html)
+[Technical design](research-space.md)
 
 ### Vault space
 The vault space implements a FAIR data publication workflow.
 
-[Technical design](/design/overview/vault-space.html)
+[Technical design](vault-space.md)
 
 ### Statistics
 
-[Technical design](/design/overview/statistics.html)
+[Technical design](statistics.md)
 
 ### Group manager
 The group-manager is used to control access permissions of users based on group membership and the role inside a group.
 It enables the distribution of access rights to data within Yoda with minimal aid of administrators.
 
-[Technical design](/design/overview/group-manager.html)
+[Technical design](group-manager.md)
 
 ### User
 
@@ -43,12 +43,12 @@ It enables the distribution of access rights to data within Yoda with minimal ai
 ### Datarequest
 Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda.
 
-[Technical design](/design/overview/data-requests.html)
+[Technical design](data-requests.md)
 
 ### Deposit space
 The deposit space implements a data deposit workflow to the vault space.
 
-[Technical design](/design/overview/deposit-space.html)
+[Technical design](deposit-space.md)
 
 ## Overview
 ![System overview](img/system-overview.png)
