@@ -12,8 +12,8 @@ In the sequence diagram the interactions between the actors in the research spac
 
 ## State diagram
 
-![State diagram](img/deposit-space-state-diagram.png)
+![State diagram](img/deposit/deposit-space-state-diagram.png)
 
 ## Sequence diagram
 
-![Sequence diagram](img/deposit-space-sequence-diagram.png)
+![Sequence diagram](img/deposit/deposit-space-sequence-diagram.png)

@@ -13,8 +13,8 @@ In the sequence diagram the interactions between the actors in the research spac
 
 ## State diagram
 
-![State diagram](img/research-space-state-diagram.png)
+![State diagram](img/research/research-space-state-diagram.png)
 
 ## Sequence diagram
 
-![Sequence diagram](img/research-space-sequence-diagram.png)
+![Sequence diagram](img/research/research-space-sequence-diagram.png)

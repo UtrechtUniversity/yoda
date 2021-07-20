@@ -13,8 +13,8 @@ In the sequence diagram the interactions between the actors in the research spac
 
 ## State diagram
 
-![State diagram](img/vault-space-state-diagram.png)
+![State diagram](img/vault/vault-space-state-diagram.png)
 
 ## Sequence diagram
 
-![Sequence diagram](img/vault-space-sequence-diagram.png)
+![Sequence diagram](img/vault/vault-space-sequence-diagram.png)
