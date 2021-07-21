@@ -83,6 +83,7 @@
     - composable_resources
     - irods_completion
     - irods_rodsadmin
+    - { role: dms_archive_mock, when: yoda_environment == "development" }
   tags:
     - icat
 

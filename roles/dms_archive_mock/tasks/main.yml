@@ -1,0 +1,16 @@
+---
+# copyright Utrecht University
+
+- name: Ensure DMS archive mock service files are present
+  copy:
+    src: 'dms-archive-mock'
+    dest: '/tmp'
+    mode: 0644
+  register: dms_mock_changes
+
+
+- name: Install DMS archive mock service
+  shell: |
+    cd /tmp/dms-archive-mock
+    python3 setup.py install
+  when: dms_mock_changes
