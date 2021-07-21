@@ -283,7 +283,7 @@ test_groupusers:
     role: normal
   - groupName: research-initial1
     user: viewer
-    role: normal
+    role: reader
 
   - groupName: datamanager-initial
     user: functionaladminpriv
