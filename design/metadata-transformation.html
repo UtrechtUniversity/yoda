@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" href="/yoda/assets/images/favicon.ico">
+
+  <title>Transformation of metadata within Yoda #</title>
+
+  <link rel='stylesheet' id='bootstrap-css'  href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' type='text/css' media='all' />
+  <link rel="stylesheet" href="/yoda/assets/css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/yoda/assets/css/custom.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/yoda/assets/css/print.css" type="text/css" media="print" />
+</head>
+
+    <body data-rsssl="1" class="page-template-default page page-id-6 page-parent" data-spy="scroll" data-target="#sidebarnav">
+        <div id="page">
+
+            <div id="brandbar" class="affix-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-xs-8 logodiv">
+                <button type="button" class="navbar-toggle hidden-print" data-toggle="collapse" data-target="#main-menu-collapse">
+                    <span class="sr-only">Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="https://www.uu.nl/en">
+                    <img src="/yoda/assets/images/uu-logo.svg" alt="Logo Utrecht University">
+                </a>
+
+                <div class="visible-print-block">
+                    <h1>YODA</h1>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xs-4 hidden-print" role="search">
+                <!--
+                <div class="pull-right">
+                    <form method="get" id="searchform" action="https://yoda.sites.uu.nl">
+                        <div class="search-wrapper">
+                            <label class="screen-reader-text" for="s">'</label>
+                            <input type="text" class="searchfield" value="" name="s" id="s" placeholder="Search the Site...">
+                            <input type="submit" id="searchsubmit" class="searchbutton" value="">
+                        </div>
+                    </form>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<header id="masthead" class="header hidden-print">
+    <div class="container">
+        <h1>
+            <a href="/yoda" rel="home" title="YODA">
+                YODA
+            </a>
+        </h1>
+    </div>
+</header>
+
+<a class="skip-link sr-only" href="#content">Skip to content</a>
+
+<!-- MAIN MENU -->
+<nav id="#access" class="navbar navbar-default navbar-inverse">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header"></div>
+        <div id="main-menu-collapse" class="collapse navbar-collapse">
+            <ul id="menu-hoofdmenu" class="nav navbar-nav">
+                
+                
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                    <a title="Release notes" href="/yoda/release-notes/index.html">Release notes</a>
+                    
+                    
+                    
+                    <ul class="submenu visible-xs visible-sm nav navbar-nav">
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Release 1.7" href="/yoda/release-notes/release-1.7.html">
+                                Release 1.7
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Release 1.6" href="/yoda/release-notes/release-1.6.html">
+                                Release 1.6
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Release 1.5" href="/yoda/release-notes/release-1.5.html">
+                                Release 1.5
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Release 1.4" href="/yoda/release-notes/release-1.4.html">
+                                Release 1.4
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Release 1.3" href="/yoda/release-notes/release-1.3.html">
+                                Release 1.3
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Release 1.2" href="/yoda/release-notes/release-1.2.html">
+                                Release 1.2
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Release 1.1" href="/yoda/release-notes/release-1.1.html">
+                                Release 1.1
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Release 1.0" href="/yoda/release-notes/release-1.0.html">
+                                Release 1.0
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Release 0.9.7" href="/yoda/release-notes/release-0.9.7.html">
+                                Release 0.9.7
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                    <a title="Administration" href="/yoda/administration/index.html">Administration</a>
+                    
+                    
+                    
+                    <ul class="submenu visible-xs visible-sm nav navbar-nav">
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Installing Licenses" href="/yoda/administration/installing-licenses.html">
+                                Installing Licenses
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Installing terms" href="/yoda/administration/installing-terms.html">
+                                Installing terms
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Installing metadata schemas" href="/yoda/administration/installing-metadata-schemas.html">
+                                Installing metadata schemas
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Upgrading metadata schemas" href="/yoda/administration/upgrading-metadata-schemas.html">
+                                Upgrading metadata schemas
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Background jobs" href="/yoda/administration/background-jobs.html">
+                                Background jobs
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Troubleshooting publication" href="/yoda/administration/troubleshooting-publication.html">
+                                Troubleshooting publication
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Restore collection" href="/yoda/administration/restore-collection.html">
+                                Restore collection
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                    <a title="Development" href="/yoda/development/index.html">Development</a>
+                    
+                    
+                    
+                    <ul class="submenu visible-xs visible-sm nav navbar-nav">
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Setting up development environment" href="/yoda/development/setting-up-development-environment.html">
+                                Setting up development environment
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Development environment test users and data" href="/yoda/development/development-test-data.html">
+                                Development environment test users and data
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                
+                <li class="first-item menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                    <a title="Software design" href="/yoda/design/index.html">Software design</a>
+                    
+                    
+                    
+                    <ul class="submenu visible-xs visible-sm nav navbar-nav">
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="System overview" href="/yoda/design/system-overview.html">
+                                System overview
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Research space" href="/yoda/design/research-space.html">
+                                Research space
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Vault space" href="/yoda/design/vault-space.html">
+                                Vault space
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Asynchronous and privileged execution" href="/yoda/design/async-system-execution.html">
+                                Asynchronous and privileged execution
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="External user service" href="/yoda/design/external-user-service.html">
+                                External user service
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Group manager" href="/yoda/design/group-manager.html">
+                                Group manager
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Locking mechanism" href="/yoda/design/locking-mechanism.html">
+                                Locking mechanism
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Metadata form" href="/yoda/design/metadata-form.html">
+                                Metadata form
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Publication process" href="/yoda/design/publication-process.html">
+                                Publication process
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Python plugin" href="/yoda/design/python-plugin.html">
+                                Python plugin
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Statistics module" href="/yoda/design/statistics.html">
+                                Statistics module
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Revision management" href="/yoda/design/revisions.html">
+                                Revision management
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown">
+                            <a title="Vault process" href="/yoda/design/vault-process.html">
+                                Vault process
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- /MAIN MENU -->
+
+
+            <div id="content" class="two-col">
+                <header class="article-header article-header-main">
+                    <div class="header-image hidden-print">
+
+                        
+                        <div class="breadcrumbs" xmlns:v="https://rdf.data-vocabulary.org/#">
+                            <div class="container">
+							<span property="itemListElement" typeof="ListItem">
+								<span property="name">YODA</span>
+								<meta property="position" content="1">
+							</span>
+                            </div>
+                        </div>
+                        
+
+                        <img src="/yoda/assets/images/header.jpg" alt="">
+
+                        
+                        <div class="page-header-placeholder"></div>
+                        
+                    </div>
+                </header>
+
+                <div id="content-wrapper" class="container">
+                    <div class="row-offcanvas row-offcanvas-left">
+                        <div id="left-sidebar" class="sidebar-offcanvas clearfix hidden-print" role="complementary">
+                            <!-- PAGE MENU -->
+                            
+                            
+                            
+                            <div class="widget-1 first-widget widget widget_nav_menu">
+                                <h4 class="widgettitle">Menu</h4>
+                                <div class="menu-hoofdmenu-container">
+                                    <!-- PAGE MENU -->
+                                    <ul class="menu">
+                                        
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/system-overview.html">System overview</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/research-space.html">Research space</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/vault-space.html">Vault space</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/async-system-execution.html">Asynchronous and privileged execution</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/external-user-service.html">External user service</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/group-manager.html">Group manager</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/locking-mechanism.html">Locking mechanism</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/metadata-form.html">Metadata form</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/publication-process.html">Publication process</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/python-plugin.html">Python plugin</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/statistics.html">Statistics module</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/revisions.html">Revision management</a>
+                                            </li>
+                                        
+                                            
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                                <a href="/yoda/design/vault-process.html">Vault process</a>
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- /PAGE MENU -->
+                        </div>
+
+                        <div class="page-content clearfix">
+                            
+                            <div class="page-title">
+                                <h1>
+                                    Transformation of metadata within Yoda #
+                                </h1>
+                            </div>
+                            
+			    <!--
+                            <div class="toggle-btn-div visible-xs clearfix">
+                                <button type="button" class="toggle-btn white button icon left arrow-right" data-toggle="offcanvas">
+                                    Show sidebar
+                                </button>
+                            </div>
+                            -->
+                            <div class="page-content-inner facetwp-template">
+
+                                <article id="post-6" class="clearfix post-6 page type-page status-publish hentry first-post">
+                                    <section class="entry-content">
+                                        <h1 id="transformation-of-metadata-within-yoda">Transformation of metadata within Yoda</h1>
+
+<p>Due to the fact that communities can change their requirements to their metadata Yoda allows for changes in metadata, i.e. metadata forms configuration.</p>
+
+<p><em>Comply to the latest schema!</em><br />
+As a rule all metadata will have to comply to the latest corresponding schema.<br />
+This has repercussions on metadata present in research and vault area.</p>
+
+<h2 id="versions-of-schemas">Versions of schemas</h2>
+<p>To be able to perform data transformations it is required to know which transformation to perform.<br />
+This is achieved by version control on the community XSD on one hand.<br />
+On the other hand, yoda-metadata.xml, when metadata is saved from the form, the schemalocation (which includes its version) of the XSD at the time of saving metadata.</p>
+
+<h3 id="research-area">Research area</h3>
+
+<p><em>- yoda-metadata.xml</em><br />
+yoda-metadata.xml holds a <strong>schemaLocation</strong>. <br />
+This designates the location of the publically accessible schema to which the data in yoda-metadata.xml must comply.
+As stated, the schema is under version control.</p>
+
+<p>*- The XML schemas for research and vault area (XSD) * <br />
+Each Yoda-instance holds community based schemas internally for control of metadata integrity for that perticular community.
+In such a system community folder reside:</p>
+<ul>
+  <li>research.xsd <br />
+The schema to which yoda-metadata.xml in the research area must comply</li>
+  <li>vault.xsd <br />
+The schema to which yoda-metadata.xml in the research area must comply</li>
+</ul>
+
+<p>The <strong>targetNamespace</strong> within the xsd determines the ID / version of the XSD</p>
+
+<p>Both schemaLocation in yoda-metadata.xml and targetNamespace in corresponding xsd must be equal.<br />
+If not, transformation of data in yoda-metadata.xml must take place.</p>
+
+<h3 id="actual-transformation-of-metadata">Actual transformation of metadata</h3>
+<p>Transformation is mainly achieved by using a stylesheet (xls) to convert data from one schemaID to another.</p>
+
+<p>If using a stylesheet proves too difficult, or even impossible, the transformation software is set up as such that programmically (Python) changes can be performed as well.
+Use of stylesheets is not a requirement for this purpose.</p>
+
+<h4 id="after-transformation">After transformation</h4>
+<p>After transformation of the metadata in yoda-metadata.xml the origin file is backed up like:</p>
+
+<p>yoda-metadata[5633743].xml</p>
+
+<p>yoda-metadata.xml now holds the transformed data. <br />
+And the schemaLocation is set to the correct schemaID. <br />
+Thus safeguarding that no transformation will take place anymore.</p>
+
+<h2 id="code">Code:</h2>
+
+<h3 id="trap-whether-transformation-is-required">Trap whether transformation is required###</h3>
+<p>PHP RESEARCH module: metadata.php-controller</p>
+
+<p><em>yoda-metadata.xml</em><br />
+<strong>schemaLocation</strong> is retrieved from xml =&gt; schemaID1</p>
+
+<p>yoda-metadata.xml path delivers <em>category</em> (default or specific) and xsd space (research.xsd or vault.xsd)
+<strong>targetNamespace</strong> is then retrieved from resulting xsd =&gt; schemaID2</p>
+
+<p>If difference exists between schemaLocation (of the user’s data) and targetNamespace of current xsd, schemaID1/schemaID2,  then transformation has to take place.</p>
+
+<h3 id="do-transformation---within-irods-ruleset-research">Do transformation - within irods-ruleset-research</h3>
+<p>within iRods / iiSchemaUpdates.py: <br />
+the tranformation matrix holds possible conversions from schemaIDn to schemaID(m)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transformationMethod = transformationMatrix[schemaID1][schemaID2]
+</code></pre></div></div>
+
+<p>The matrix brings up a function name that will transform the data.
+This can entail a scenario of steps to be taken. If possible simply by using a specific stylesheet. <br />
+Sometimes more complicated actions have to take place.</p>
+
+<p>Usage of stylesheets <br />
+A stylesheet is used to transform xml data from 1 version to another.  <br />
+Within the stylesheet all structural and dynamic data can be collected and returned as a the new yoda-metadata.xml.</p>
+
+<p><em>Namespaces required in stylesheet</em> <br />
+The original metadata is using a specific namespace in which the data ‘lives’. <br />
+This has to be known in the transformation stylesheet as well. Otherwise, XPath queries will not result in any data!</p>
+
+<p>Secondly, the stylesheet describes the contents of the NEW yoda-metadata.xml which belong to its own new namespace.</p>
+
+<p>Consequently, within a stylesheet both the new and old namespaces are required.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:yoda="https://utrechtuniversity.github.io/yoda-schemas/default"   
+exclude-result-prefixes="yoda"&gt;
+
+  &lt;xsl:template match="/"&gt;
+    &lt;xsl:apply-templates select="/yoda:metadata"/&gt;
+  &lt;/xsl:template&gt;
+
+  &lt;xsl:template match="/yoda:metadata"&gt;
+&lt;metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+ xmlns="https://utrechtuniversity.github.io/yoda-schemas/default/v2"   
+  xsi:schemaLocation="https://utrechtuniversity.github.io/yoda-schemas/default/v2 research.xsd"&gt;
+</code></pre></div></div>
+
+<p>This last row is what will become the <metadata> header row that is part of the new yoda-metadata.xml.
+Thus defining its new default namespace and schemaLocation.</metadata></p>
+
+                                    </section>
+
+                                    <footer class="article-footer"></footer>
+                                </article>
+                            </div> <!-- /page-content-inner -->
+                        </div> <!-- /page-content -->
+                    </div> <!--row-offcanvas -->
+                </div> <!-- /#content-wrapper -->
+            </div>
+
+            <footer id="colophon" class="footer hidden-print">
+                <div id="inner-footer" class="container clearfix">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img alt="Logo Utrecht University" src="/yoda/assets/images/uu-logo-footer.svg">
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="source-org copyright pull-right">© 2020 Utrecht University, <a href="https://www.uu.nl/en/organisation/contact/disclaimer">disclaimer</a></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <p id="back-top" style="display: none;">
+                <a href="#top"><i class="fa fa-angle-up"></i></a>
+            </p>
+
+            <script type="text/javascript" src='/yoda/assets/js/jquery.js'></script>
+<script type="text/javascript" src='/yoda/assets/js/bootstrap.min.js'></script>
+        </div>
+    </body>
+</html>
