@@ -35,7 +35,6 @@ subcategory `research` and data classification `unspecified`:
     datarequests-research-datamanagers
     datarequests-research-project-managers
     datarequests-research-data-management-committee
-    datarequests-research-executive-directors
     ```
 
 Instructions:
@@ -50,7 +49,6 @@ Instructions:
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "Project managers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-management-committee", "datarequest", "research", "Data Management Committee", "", *status, *message);' null ruleExecOut
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-executive-directors", "datarequest", "research", "Executive Directors", "", *status, *message);' null ruleExecOut
     ```
 
 3. Confirm that the groups exist.
