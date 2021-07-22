@@ -34,3 +34,8 @@ sshfs -o IdentityFile=/home/dev/.vagrant.d/insecure_private_key -p 2222 vagrant@
 # Umount
 fusermount -u irods-ruleset-uu
 ```
+
+Run pytest from mounted folder (see previous tip):
+```bash
+mkdir -p /tmp/cache && pytest -o cache_dir=/tmp/cache
+```
