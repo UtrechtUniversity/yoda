@@ -1,7 +1,6 @@
 ---
 # copyright Utrecht University
 
-
 - name: Check iRODS service type is supported
   fail:
     msg: 'Error: irods_service_type value not supported'
@@ -62,6 +61,7 @@
               services['irods']['source'] == "sysv"  and
               services['irods']['state'] == "running" ) )
 
+
 - name: Ensure iRODS 4.2.7 packages are absent
   package:
     name:
@@ -90,34 +90,6 @@
 
 - name: Flush handlers to restart iRODS if needed
   meta: flush_handlers
-
-
-- name: Ensure default msiExecCmd binaries are absent
-  file:
-    path: '{{ item }}'
-    state: absent
-  with_items:
-    - /var/lib/irods/msiExecCmd_bin/hello
-    - /var/lib/irods/msiExecCmd_bin/irodsServerMonPerf
-    - /var/lib/irods/msiExecCmd_bin/test_execstream.py
-    - /var/lib/irods/msiExecCmd_bin/univMSSInterface.sh
-
-
-- name: Ensure unneeded iRODS specific queries are absent
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: 'iadmin rsq {{ item }}'
-  ignore_errors: yes
-  with_items:
-    - listQueryByAliasLike
-    - findQueryByAlias
-    - ilsLACollections
-    - ilsLADataObjects
-    - listSharedCollectionsOwnedByUser
-    - listSharedCollectionsSharedWithUser
-    - listUserACLForDataObjViaGroup
-    - listUserACLForCollectionViaGroup
-  changed_when: False
 
 
 - name: Generate zone key
@@ -507,6 +479,34 @@
   become: yes
   command: 'irmdir /{{ irods_zone }}/home/public'
   when: (not ansible_check_mode) and (public_coll.stdout.find('/home/public') >= 0)
+
+
+- name: Ensure default msiExecCmd binaries are absent
+  file:
+    path: '{{ item }}'
+    state: absent
+  with_items:
+    - /var/lib/irods/msiExecCmd_bin/hello
+    - /var/lib/irods/msiExecCmd_bin/irodsServerMonPerf
+    - /var/lib/irods/msiExecCmd_bin/test_execstream.py
+    - /var/lib/irods/msiExecCmd_bin/univMSSInterface.sh
+
+
+- name: Ensure unneeded iRODS specific queries are absent
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: 'iadmin rsq {{ item }}'
+  ignore_errors: yes
+  with_items:
+    - listQueryByAliasLike
+    - findQueryByAlias
+    - ilsLACollections
+    - ilsLADataObjects
+    - listSharedCollectionsOwnedByUser
+    - listSharedCollectionsSharedWithUser
+    - listUserACLForDataObjViaGroup
+    - listUserACLForCollectionViaGroup
+  changed_when: False
 
 
 - include_tasks: setup_pam.yml
