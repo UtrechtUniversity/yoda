@@ -28,7 +28,7 @@ Rebuild portal Javascript assets on source file change:
 
 Remove all existing data requests (to declutter your _development_ environment):
 ```bash
-icd ../datarequests-research && ils | grep \ \  | sed 's/\ \ C-\ //' | xargs -I COLLPATH sh -c "ichmod -M -r own rods COLLPATH && irm -r COLLPATH"
+icd /tempZone/home/datarequests-research && ils | grep \ \  | sed 's/\ \ C-\ //' | xargs -I COLLPATH sh -c "ichmod -M -r own rods COLLPATH && irm -r COLLPATH"
 ```
 
 Mount vagrant guest folder on host (e.g. `/etc/irods/irods-ruleset-uu/` so you can run `pytest` on the local machine):
