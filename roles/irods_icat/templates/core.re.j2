@@ -55,8 +55,8 @@ acDeleteCollByAdminIfPresent(*parColl,*childColl) {
 acDeleteCollByAdmin(*parColl,*childColl) {
   msiDeleteCollByAdmin(*parColl,*childColl); }
 #
-acRenameLocalZone(*oldZone,*newZone) {
-  msiRenameCollection("/"++str(*oldZone)++"",*newZone) ::: msiRollback;
+acRenameLocalZone(*oldZone, *newZone) {
+  msiRenameLocalZoneCollection(*newZone) ::: msiRollback;
   msiRenameLocalZone(*oldZone,*newZone) ::: msiRollback;
   msiCommit; }
 #
@@ -121,13 +121,13 @@ acCheckPasswordStrength(*password) { }
 # The following are rules for data object operation
 # Note that the msiOprDisallowed microservice can be used by all the rules
 # to disallow the execution of certain actions.
-# 1) acSetRescSchemeForCreate - This is the preprocessing rule for creating a
+# 1) acSetRescSchemeForCreate - This is the preprossing rule for creating a
 # data object. It can be used for setting the resource selection scheme
-# when creating a data object which is used by the put, copy, and
-# replication operations. Currently, three preprocessing functions can be
+# when creating a data object which is used by the put, copy and
+# replicate operations. Currently, three preprocessing functions can be
 # used by this rule:
 #    msiSetNoDirectRescInp(rescList) - sets a list of resources that cannot
-#      be used by a normal user directly. More than one resource can be
+#      be used by a normal user directly. More than one resources can be
 #      input using the character "%" as separator. e.g., resc1%resc2%resc3.
 #      This function is optional, but if used, should be the first function
 #      to execute because it screens the resource input.
@@ -135,12 +135,12 @@ acCheckPasswordStrength(*password) { }
 #      From version 2.3 onward, this function is no longer mandatory, but
 #      if it is used, if should be executed right after the screening
 #      function msiSetNoDirectRescInp.
-#      defaultRescList - the resource to use if no resource is input. A "null"
-#        means there is no defaultResc. More than one resource can be
+#      defaultResc - the resource to use if no resource is input. A "null"
+#        means there is no defaultResc. More than one resources can be
 #      input using the character "%" as separator.
 #      optionStr - Can be "forced", "preferred" or "null". A "forced" input
-#      means the defaultRescList will be used regardless of the user input.
-#      The forced action only applies to users with normal privilege.
+#      means the defaultResc will be used regardless of the user input.
+#      The forced action only apply to to users with normal privilege.
 #    msiSetRescSortScheme(sortScheme) - set the scheme for
 #      for selecting the best resource to use when creating a data object.
 #      sortScheme - The sorting scheme. Valid scheme are "default",
@@ -148,7 +148,7 @@ acCheckPasswordStrength(*password) { }
 #        cache class of resource on the top of the list. The "byLoad" scheme will put
 #        the least loaded resource on the top of the list: in order to work properly,
 #        the RMS system must be switched on in order to pick up the load information
-#        for each server in the resource list.
+#        for each server in the resource group list.
 #        The scheme "random" and "byRescClass" can be applied in sequence. e.g.,
 #        msiSetRescSortScheme(random); msiSetRescSortScheme(byRescClass)
 #        will select randomly a cache class resource and put it on the
@@ -228,9 +228,14 @@ acSetMultiReplPerResc { }
 #    "rbudpTransfer". More than one flag values can be set using the
 #    "%" character as separator. e.g., "all%updateRepl". "updateRepl" means
 #    update an existing stale copy to the latest copy. The "all" flag means
-#    update all stale
+#    replicate to all resources in a resource group or update all stale
 #    copies if the "updateRepl" flag is also set. "rbudpTransfer" means
 #    the RBUDP protocol will be used for the transfer.
+#    A "null" input means a single will be made in one of the resource
+#    in the resource group.
+#    It may be desirable to do replication only if the dataObject is stored
+#    in a resource group. For example, the following rule can be used:
+# acPostProcForPut {ON($rescGroupName != "") {msiSysReplDataObj($rescGroupName,"all"); } }
 #
 #    msiSysChksumDataObj - checksum the just uploaded or copied data object.
 # acPostProcForPut {msiSysChksumDataObj; msiSysReplDataObj("demoResc8","all"); }
@@ -699,12 +704,12 @@ acPreProcForExecCmd(*cmd, *args, *addr, *hint) { }
 acPreProcForServerPortal(*oprType, *lAddr, *lPort, *pAddr, *pPort, *load) { }
 acPostProcForServerPortal(*oprType, *lAddr, *lPort, *pAddr, *pPort, *load) { }
 acPreProcForWriteSessionVariable(*var) {
-    on(*var == "status") {
-        succeed;
-    }
-    or {
-        failmsg(-1, "Update session variable $*var not allowed!");
-    }
+	on(*var == "status") {
+		succeed;
+	}
+	or {
+		failmsg(-1, "Update session variable $*var not allowed!");
+	}
 }
 
 getSessionVar(*name, *output) {
@@ -748,8 +753,8 @@ acPostProcForDataCopyReceived(*leaf_resource) {}
 
 # =-=-=-=-=-=-=-
 # examples of API dynamic policy enforcement points
-# pep_api_data_obj_put_pre(*COMM, *DATAOBJINP, *BUFFER, *PORTAL_OPR_OUT) {  }
-# pep_api_data_obj_put_post(*COMM, *DATAOBJINP, *BUFFER, *PORTAL_OPR_OUT) {  }
+# pep_api_data_obj_put_pre(*INSTANCE_NAME, *COMM, *DATAOBJINP, *BUFFER, *PORTAL_OPR_OUT) {  }
+# pep_api_data_obj_put_post(*INSTANCE_NAME, *COMM, *DATAOBJINP, *BUFFER, *PORTAL_OPR_OUT) {  }
 
 # =-=-=-=-=-=-=-
 # policy controlling when a dataObject is staged to cache from archive in a compound coordinating resource
