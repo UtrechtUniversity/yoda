@@ -480,7 +480,7 @@
     - /var/lib/irods/msiExecCmd_bin/hello
     - /var/lib/irods/msiExecCmd_bin/irodsServerMonPerf
     - /var/lib/irods/msiExecCmd_bin/test_execstream.py
-    - /var/lib/irods/msiExecCmd_bin/univMSSInterface.sh
+    - /var/lib/irods/msiExecCmd_bin/univMSSInterface.sh.template
 
 
 - name: Ensure unneeded iRODS specific queries are absent
