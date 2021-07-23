@@ -47,12 +47,17 @@ IRODS_SESSION_OPTIONS = {
 }
 
 {% if oidc_active is sameas true %}
+{%
+    set oidc_callback_uri =  "https://" ~ yoda_portal_fqdn ~ "/user/callback"
+%}
 # OIDC configuration
 OIDC_ENABLED        = {{ oidc_active | default(False) }}
+OIDC_DOMAIN         = '{{ oidc_domain | default("") }}'
 OIDC_CLIENT_ID      = '{{ oidc_client_id     | default("") }}'
 OIDC_CLIENT_SECRET  = '{{ oidc_client_secret | default("") }}'
-OIDC_CALLBACK_URI   = '{{ "https://" ~ yoda_portal_fqdn ~ "/user/callback" }}'
+OIDC_CALLBACK_URI   = '{{ oidc_callback_uri | default("") }}'
 OIDC_AUTH_BASE_URI  = '{{ oidc_auth_base_uri | default("") }}'
+OIDC_AUTH_URI       = '{{ oidc_auth_base_uri ~ "?response_type=code&client_id=" ~ oidc_client_id ~ "&redirect_uri=" ~ oidc_callback_uri ~ "&scope=" ~ oidc_scopes ~ "&acr_values=" ~ oidc_acr_values | default("") }}'
 OIDC_TOKEN_URI      = '{{ oidc_token_uri     | default("") }}'
 OIDC_SCOPES         = '{{ oidc_scopes        | default("openid") }}'
 OIDC_ACR_VALUES     = '{{ oidc_acr_values    | default("") }}'
