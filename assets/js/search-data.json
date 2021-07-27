@@ -367,7 +367,7 @@
   },"61": {
     "doc": "API",
     "title": "API",
-    "content": ". | API documentation | . ",
+    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
     "url": "/yoda/design/api/",
     "relUrl": "/design/api/"
   },"62": {
