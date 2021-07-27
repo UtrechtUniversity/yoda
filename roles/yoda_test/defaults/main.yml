@@ -49,6 +49,7 @@ test_users:
 eus_test_users:
   - name: yodaresearcher@gmail.com
   - name: yodadatamanager@gmail.com
+  - name: alice@otherdomain.com
 
 # Following users are created in the regressiontest and need to be removed only.
 created_by_ta_users:
