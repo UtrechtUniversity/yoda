@@ -17,7 +17,7 @@ microservices:
     package: irods-uu-microservices-4.2.10_0.8.2-1
     url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.2/irods-uu-microservices-4.2.10_0.8.2-1.rpm
     filename: irods-uu-microservices-4.2.10_0.8.2-1.rpm
-    checksum: sha256:bf203c4781071d8e73336fde825dc9fc9a40dd3253a929d3c136236ebad4bb78
+    checksum: sha256:02ef07f35dfb0bcf1e6d899bc940ece64222fe7da829ada9db752c6c5e83e6e0
 
 # iRODS configuration.
 irods_service_account: irods
