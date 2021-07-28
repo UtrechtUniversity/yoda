@@ -209,15 +209,6 @@
     mode: 0644
 
 
-- name: Ensure patched Python genquery module is present
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
-    src: "genquery.py"
-    dest: "/etc/irods/genquery.py"
-    mode: 0644
-
-
 - name: Ensure core Python rules are present
   become_user: "{{ irods_service_account }}"
   become: yes
