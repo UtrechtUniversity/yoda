@@ -9,7 +9,7 @@ davrods:
   package: davrods-4.2.10_1.5.0-1
   url: https://github.com/UtrechtUniversity/davrods/releases/download/4.2.10_1.5.0/
   filename: davrods-4.2.10_1.5.0-1.rpm
-  checksum: sha256:68bf0214bcf1ba51d870a76e596962d30e2bf69e65dbf0ca4eda905ba06751a0
+  checksum: sha256:aa35fbf9ac4dfe0c4833460a7448754f87794b2b5ce8349b1d7e02dd8accdbbd
 
 yoda_davrods_fqdn: data.yoda.test           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_port: 443
