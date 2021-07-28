@@ -11,6 +11,7 @@ Released: TBA
 
 ## What's new
 ### Features
+- Upgrade to iRODS v4.2.10
 - Support for user settings
 - Support for notifications
 - Support for UI templates
