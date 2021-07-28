@@ -66,7 +66,7 @@ def main():
             session, ienv = get_session()
         except iRODSException:
             module.fail_json(
-                msg="Could not establish irods connection. Please check ~/.irods/irods_environment.json"
+                msg="Could not establish irods connection. Please check ~/.irods/python_client_environment.json"
             )
     else:
         module.fail_json(msg="python-irodsclient needs to be installed")

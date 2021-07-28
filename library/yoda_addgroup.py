@@ -53,7 +53,7 @@ def main():
             session, ienv = get_session()
         except iRODSException:
             module.fail_json(
-                msg="Could not establish irods connection. Please check ~/.irods/irods_environment.json"
+                msg="Could not establish irods connection. Please check ~/.irods/python_client_environment.json"
             )
     else:
         module.fail_json(msg="python-irodsclient needs to be installed")
@@ -61,10 +61,10 @@ def main():
     changed = False
 
     # Rule to add a group to Yoda.
-    rule_body = textwrap.dedent('''\
-        test {{
-            uuGroupAdd(*groupName, *category, *subcategory, *description, *dataClassification, *status, *message);
-        }}''')
+    rule_body = '''a {{
+                       uuGroupAdd(*groupName, *category, *subcategory, *description, *dataClassification, *status, *message);
+                     }}
+                '''
 
     # Rule parameters.
     input_params = {
@@ -74,12 +74,13 @@ def main():
         '*description': '"{description}"'.format(**locals()),
         '*dataClassification': '"{dataClassification}"'.format(**locals())
     }
-    output = 'ruleExecOut'
 
     # Execute rule.
     if not module.check_mode:
-        myrule = Rule(session, body=rule_body,
-                      params=input_params, output=output)
+        myrule = Rule(session,
+                      body=rule_body,
+                      params=input_params,
+                      output='ruleExecOut')
         myrule.execute()
 
     changed = True
