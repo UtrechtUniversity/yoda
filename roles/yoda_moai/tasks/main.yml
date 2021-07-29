@@ -1,21 +1,17 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure Yoda MOAI prerequisites are installed
-  package:
-    name:
-      - python-pip
-      - python-virtualenv
-      - python-lxml
-      - python-sqlalchemy
-      - mod_wsgi
-    state: present
-
-
 - name: Ensure Yoda MOAI user exists
   user:
     name: '{{ yoda_moai_user }}'
     home: '{{ yoda_moai_home }}'
+
+
+- name: Delete legacy Yoda MOAI files
+  become: yes
+  file:
+    state: absent
+    path: "{{ yoda_moai_home }}/venv"
 
 
 - name: Check out Yoda MOAI from Github
@@ -115,7 +111,7 @@
 
 - name: Ensure selinux context is enforced on shared libraries
   command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
-  when: filecontext is changed and ansible_selinux.status == "enabled"
+  when: filescontext is changed and ansible_selinux.status == "enabled"
 
 
 - name: Set SELinux context for Yoda MOAI database
