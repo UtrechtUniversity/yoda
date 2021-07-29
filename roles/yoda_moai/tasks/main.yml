@@ -24,15 +24,23 @@
   git:
     repo: https://github.com/UtrechtUniversity/yoda-moai.git
     dest: '{{ yoda_moai_home }}/yoda-moai'
-    version: "{{ yoda_moai_version }}"
+    version: "python3"
   register: repochanges
+
+
+- name: Ensure Yoda MOAI virtualenv exists
+  become_user: '{{ yoda_moai_user }}'
+  become: yes
+  command: python3 -m virtualenv "{{ yoda_moai_home }}/yoda-moai/venv"
+  args:
+    creates: "{{ yoda_moai_home }}/yoda-moai/venv"
 
 
 - name: Install Yoda MOAI in virtualenv
   pip:
     name: '{{ yoda_moai_home }}/yoda-moai'
     extra_args: -e
-    virtualenv: '{{ yoda_moai_home }}/venv'
+    virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
     virtualenv_site_packages: yes
   when: repochanges.changed
   notify: Restart Apache webserver
@@ -91,9 +99,23 @@
 - name: Initialize Yoda MOAI database
   become_user: '{{ yoda_moai_user }}'
   become: yes
-  command: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
+  command: '{{ yoda_moai_home }}/yoda-moai/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
   args:
     creates: '{{ yoda_moai_home }}/moai.db'
+
+
+- name: Set SELinux context for shared libraries
+  sefcontext:
+    target: '{{ yoda_moai_home }}/yoda-moai/venv/.*\.so(\..*)?'
+    setype: httpd_sys_script_exec_t
+    state: present
+  register: filescontext
+  when: ansible_selinux.status == "enabled"
+
+
+- name: Ensure selinux context is enforced on shared libraries
+  command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
+  when: filecontext is changed and ansible_selinux.status == "enabled"
 
 
 - name: Set SELinux context for Yoda MOAI database
@@ -115,4 +137,4 @@
     user: '{{ yoda_moai_user }}'
     name: 'cronjob-update-moai'
     minute: '*/5'
-    job: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
+    job: '{{ yoda_moai_home }}/yoda-moai/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
