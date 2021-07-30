@@ -32,14 +32,26 @@
     creates: "{{ yoda_moai_home }}/yoda-moai/venv"
 
 
-- name: Install Yoda MOAI in virtualenv
+- name: Ensure Yoda MOAI dependencies are installed
+  become_user: '{{ yoda_moai_user }}'
+  become: yes
   pip:
     name: '{{ yoda_moai_home }}/yoda-moai'
     extra_args: -e
     virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
-    virtualenv_site_packages: yes
-  when: repochanges.changed
+    virtualenv_python: python3.6
   notify: Restart Apache webserver
+
+
+- name: Install mod-wsgi
+  become_user: "root"
+  become: yes
+  shell: |
+    source {{ yoda_moai_home }}/yoda-moai/venv/bin/activate
+    mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf
+    exit
+  args:
+    creates: /etc/httpd/conf.modules.d/02-wsgi.conf
 
 
 - name: Ensure Yoda MOAI home is world readable
@@ -111,7 +123,7 @@
 
 - name: Ensure selinux context is enforced on shared libraries
   command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
-  when: filescontext is changed and ansible_selinux.status == "enabled"
+  when: ansible_selinux.status == "enabled"
 
 
 - name: Set SELinux context for Yoda MOAI database
