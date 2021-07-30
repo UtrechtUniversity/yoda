@@ -33,8 +33,6 @@
 
 
 - name: Ensure Yoda MOAI dependencies are installed
-  become_user: '{{ yoda_moai_user }}'
-  become: yes
   pip:
     name: '{{ yoda_moai_home }}/yoda-moai'
     extra_args: -e
@@ -52,6 +50,7 @@
     exit
   args:
     creates: /etc/httpd/conf.modules.d/02-wsgi.conf
+  notify: Restart Apache webserver
 
 
 - name: Ensure Yoda MOAI home is world readable
