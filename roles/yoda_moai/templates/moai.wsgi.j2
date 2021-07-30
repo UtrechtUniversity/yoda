@@ -1,11 +1,12 @@
-activate_this = '{{ yoda_moai_home }}/venv/bin/activate_this.py'
-execfile(activate_this, dict(__file__=activate_this))
+#!/usr/bin/python3
+activate_this = '{{ yoda_moai_home }}/yoda-moai/venv/bin/activate_this.py'
+exec(compile(open(activate_this).read(), activate_this, 'exec'), dict(__file__=activate_this))
 
 import sys
 import os
 import site
 import tempfile
-import ConfigParser
+import configparser
 
 os.environ['PYTHON_EGG_CACHE'] = tempfile.mkdtemp(prefix='moai-egg-cache-')
 
@@ -17,12 +18,4 @@ else:
     from paste.script.util.logging_config import fileConfig
 
 config_file = '{{ yoda_moai_home }}/settings.ini'
-
-try:
-    fileConfig(config_file)
-except ConfigParser.NoSectionError:
-    # no logging configured
-    pass
-
 application = loadapp('config:%s' % config_file)
-
