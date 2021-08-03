@@ -1,0 +1,56 @@
+# CFF: https://citation-file-format.github.io/
+cff-version: 1.1.0
+message: "If you use this software, please consider citing the following works."
+title: Yoda
+abstract: "Yoda is a research data management service that enables researchers to securely deposit, share, publish and preserve large amounts of research data."
+authors:
+- family-names: Smeele
+  given-names: Ton
+- family-names: Westerhof
+  given-names: Lazlo
+- family-names: Smeele
+  given-names: Chris
+- family-names: van Schip
+  given-names: Rob
+- family-names: Croes
+  given-names: Felix A.
+- family-names: Hoogerwerf
+  given-names: Maarten
+- family-names: Kleinloog
+  given-names: Hans
+- family-names: Alebregtse
+  given-names: Jurgen
+- family-names: van de Hoef
+  given-names: Rick
+- family-names: de Mooij
+  given-names: Jan
+- family-names: de Raaff
+  given-names: Harm
+- family-names: van Elk
+  given-names: Roy
+- family-names: Frederiks
+  given-names: Paul
+- family-names: de Ruiter
+  given-names: Joris
+- family-names: Snel
+  given-names: Sietse
+- family-names: Zondergeld
+  given-names: Jelmer
+repository-code: "https://github.com/utrechtuniversity/yoda"
+license: GPL-3.0-only
+version: "1.7.0"
+date-released: 2021-06-23
+contact:
+- name: Utrecht University Yoda Team
+  email: yoda@uu.nl
+references:
+  - title: "Using iRODS to manage, share and publish research data: Yoda"
+    type: conference-paper
+    authors:
+    - family-names: Smeele
+      given-names: Ton
+    - family-names: Westerhof
+      given-names: Lazlo
+    collection-title: iRODS User Group Meeting 2018 Proceedings
+    year: 2018
+    url: "https://irods.org/uploads/2018/Smeele-UtrechtUni-Yoda-paper.pdf"
