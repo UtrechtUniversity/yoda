@@ -1,0 +1,20 @@
+[Unit]
+Description=iRODS Storage middleware
+After=local-fs.target network.target
+
+[Service]
+WorkingDirectory=/var/lib/irods
+User={{ irods_service_account }}
+Group={{ irods_service_account }}
+Environment="PATH=/bin:/usr/bin:/usr/sbin:/var/lib/irods:/var/lib/irods/iRODS"
+ExecStart=/bin/bash -c "irodsctl start"
+ExecReload=/usr/bin/touch /etc/irods/core.re
+ExecStop=/bin/bash -c "irodsctl stop"
+KillMode=control-group
+Restart=on-failure
+RestartPreventExitStatus=255
+Type=forking
+LimitNOFILE={{ irods_max_open_files | string }}
+
+[Install]
+WantedBy=multi-user.target
