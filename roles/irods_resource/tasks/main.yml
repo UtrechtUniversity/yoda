@@ -25,6 +25,20 @@
               services['irods']['state'] == "running" ) )
 
 
+- name: Force stop iRODS in case it was started manually
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command: '/var/lib/irods/irodsctl stop'
+  when: ( ( irods_service_type == "sysv" and
+              'irods.service' in services and
+              services['irods.service']['source'] == "systemd" and
+              services['irods.service']['state'] == "running" )
+       or ( irods_service_type == "systemd" and
+              'irods' in services and
+              services['irods']['source'] == "sysv"  and
+              services['irods']['state'] == "running" ) )
+
+
 - name: Ensure systemd unit file present
   template:
     src: irods.service.j2
