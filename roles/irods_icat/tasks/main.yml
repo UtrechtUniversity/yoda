@@ -272,12 +272,11 @@
   when: ils is failed
 
 
-- name: Enable iRODS systemd service
+- name: Enable or disable iRODS systemd service
   service:
     name: irods
-    enabled: yes
+    enabled: "{{ 'yes' if irods_enable_service else 'no' }}"
     use: service
-  when: irods_service_type == "systemd"
 
 
 - name: Wait until iRODS server is ready to receive requests
