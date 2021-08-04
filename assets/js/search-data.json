@@ -427,7 +427,7 @@
   },"71": {
     "doc": "System Overview",
     "title": "Core modules",
-    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . ",
+    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     "relUrl": "/design/overview/#core-modules"
   },"72": {
