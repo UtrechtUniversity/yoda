@@ -23,7 +23,7 @@ else:
 
 
 def get_session():
-    env_file = os.path.expanduser('~/.irods/python_client_environment.json')
+    env_file = os.path.expanduser('~/.irods/irods_environment.json')
     with open(env_file) as data_file:
         ienv = json.load(data_file)
     return (iRODSSession(irods_env_file=env_file), ienv)
@@ -53,7 +53,7 @@ def main():
             session, ienv = get_session()
         except iRODSException:
             module.fail_json(
-                msg="Could not establish irods connection. Please check ~/.irods/python_client_environment.json"
+                msg="Could not establish irods connection. Please check ~/.irods/irods_environment.json"
             )
     else:
         module.fail_json(msg="python-irodsclient needs to be installed")

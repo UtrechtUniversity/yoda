@@ -348,6 +348,8 @@
   with_items:
     - key: 'irods_ssl_certificate_chain_file'
       value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+    - key: 'irods_ssl_ca_certificate_file'
+      value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
     - key: 'irods_ssl_certificate_key_file'
       value: '/etc/irods/{{ openssl_key_signed }}'
     - key: 'irods_ssl_dh_params_file'
@@ -358,13 +360,10 @@
       value: '{{ irods_ssl_verify_server }}'
 
 
-- name: Ensure iRODS environment file for Python client is present
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  template:
-    src: python_client_environment.json.j2
-    dest: /var/lib/irods/.irods/python_client_environment.json
-    mode: '0600'
+- name: Ensure deprecated iRODS environment file for Python client is present
+  file:
+    path: /var/lib/irods/.irods/python_client_environment.json
+    state: absent
 
 
 - name: Retrieve iRODS server config file
