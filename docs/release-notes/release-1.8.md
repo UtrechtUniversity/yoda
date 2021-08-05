@@ -17,6 +17,10 @@ Released: TBA
 - Support for UI templates
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
 
+### Known issues
+- Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
+- Server leaks memory via Python rule genqueries and built-in microservices [irods/irods#4649](https://github.com/irods/irods/issues/4649)
+
 ## Upgrading from previous release
 Upgrade is supported by Ansible (2.9.x).
 Requires Yoda external user service to be on version 1.5.x or higher.
