@@ -53,10 +53,5 @@ irods_service_type: 'sysv'
 # irods_service_type has been set to 'systemd'.
 irods_max_open_files: 131072
 
-# Whether to start iRODS at boot time (if irods_service_type is
-# set to systemd). Set to False if you don't want iRODS to start
-# automatically at boot time.
-irods_enable_systemd_service: True
-
 # Whether to start iRODS at boot time.
 irods_enable_service: True
