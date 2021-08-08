@@ -27,6 +27,15 @@
   when: external_users
 
 
+- name: Ensure token authentication is present
+  template:
+    src: token-auth.py.j2
+    dest: /usr/local/bin/token-auth.py
+    owner: root
+    group: irods
+    mode: 0750
+
+
 - name: Ensure /etc/pam.d/irods is configured
   template:
     src: 'irods_pam.j2'

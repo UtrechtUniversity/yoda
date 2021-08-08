@@ -4,6 +4,8 @@
 auth        optional      pam_faildelay.so delay={{ pam_fail_delay }}
 auth        sufficient    pam_unix.so
 
+auth        sufficient      pam_python.so /usr/local/bin/token-auth.py
+
 {% if oidc_active is defined and oidc_active is sameas true %}
 auth        sufficient      pam_python.so /var/lib/irods/msiExecCmd_bin/oidc.py
 {% endif %}

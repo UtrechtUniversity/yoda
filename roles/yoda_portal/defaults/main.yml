@@ -3,7 +3,7 @@
 
 yoda_deployment_user: yodadeployment
 
-yoda_version: development
+yoda_version: pyportal-token-poc
 
 yoda_portal_fqdn: portal.yoda.test
 yoda_eus_fqdn: eus.yoda.test
@@ -12,7 +12,7 @@ update_portal: yes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 
 # Yoda portal
-yoda_portal_version: "pyportal"
+yoda_portal_version: "pyportal-token-poc"
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name
