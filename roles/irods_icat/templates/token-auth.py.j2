@@ -3,6 +3,7 @@ from traceback import print_exc
 
 TOKEN_DB = '/etc/irods/irods-ruleset-uu/tokens.db'
 
+
 def pam_sm_authenticate(pamh, flags, argv):
     try:
         user_id = pamh.get_user()
@@ -18,7 +19,8 @@ def pam_sm_authenticate(pamh, flags, argv):
 
     with conn:
         try:
-            for row in conn.execute('SELECT token FROM tokens WHERE user=:user_id', {"user_id": user_id}):
+            for row in conn.execute('''
+SELECT token FROM tokens WHERE user=:user_id''', {"user_id": user_id}):
                 # TODO: We are not taking any expiration time into account
                 # nor do we change the expiration when activity occurs
                 if token == row[0]:
