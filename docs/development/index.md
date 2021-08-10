@@ -9,4 +9,5 @@ has_toc: false
 - [Setting up development environment](setting-up-development-environment.md)
 - [Setting up YodaDrive development environment](yodadrive-development-environment.md)
 - [Development tips](development-tips.md)
+- [Authentication](authentication.md)
 - [Wall of Fame](wall-of-fame.md)
