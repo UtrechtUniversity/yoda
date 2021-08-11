@@ -1,6 +1,8 @@
+---
+grand_parent: Software design
+parent: System Overview
+---
 # Authentication
-
- 
 
 ## PAM stack
 
@@ -21,7 +23,7 @@ The default PAM stack for Yoda (which is the one for iRODS) has two modules for 
  Additionally, one can configure two more authentication methods:
  3. For external users: uses *is-user-external.sh* and *external-auth.py*
  4. For authentication via OIDC protocol: *oidc.py*
- 
+
 For configuring the additional authentication methods, please look at the relevant documentation.
 
 ### Testing
@@ -63,4 +65,3 @@ The authentication flow is best explained via a diagram:
 
 The above diagram shows the happy flow: no errors occur at any point during the flow.
 As the login start with a request to Yoda, any errors should always end up at Yoda so that a sensible error message can be shown to the user.
-

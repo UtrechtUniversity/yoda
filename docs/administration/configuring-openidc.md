@@ -1,7 +1,7 @@
 ---
 parent: Administration Tasks
 title: Configuring OIDC
-nav_order: 11
+nav_order: 12
 ---
 # Configuring OpenID Connect (OIDC)
 Instruction on how to configure OpenID Connect authentication.
@@ -19,7 +19,7 @@ For OIDC to function properly it requires the following variables to be set:
 - oidc_token_uri
 - oidc_userinfo_uri
 - oidc_jwks_uri, which returns all the valid JSON Web Key sets
-- oidc_jwt_issuer, the `iss` value in the JWT token 
+- oidc_jwt_issuer, the `iss` value in the JWT token
 
 Additionally, depending on the authorization server, you may need to configure the following variables:
 - oidc_scopes (default: `openid`)
@@ -30,14 +30,14 @@ Finally, for customization purposes, you can also configure:
 - oidc_domain
 - oidc_signin_text
 
-For token verification there are also the following parameters which define what checks are done when verifying a JWT. Take caution when setting values to `false`, as this makes verification less strict. Details can be found in the group_vars file. 
+For token verification there are also the following parameters which define what checks are done when verifying a JWT. Take caution when setting values to `false`, as this makes verification less strict. Details can be found in the group_vars file.
 - oidc_req_exp (default: `true`)      
 - oidc_req_iat (default: `false`)    
 - oidc_req_nbf (default: `false`)   
 - oidc_verify_aud (default: `true`)
 - oidc_verify_iat (default: `false`)
 - oidc_verify_exp (default: `true`)
-- oidc_verify_iss (default: `true`) 
+- oidc_verify_iss (default: `true`)
 
 ## Verifying OIDC
 To verify whether the deployment/update went successfully, go to the Yoda portal and click the *Sign in* button, enter an email address and click *Next*.
@@ -47,8 +47,8 @@ When clicking on the *Sign in with OIDC* button, login at the configured authori
 If so, you have correctly configured authentication via OIDC.
 Please also verify that the standard login method is still working as intended.
 
-Alternatively, if you have configured the `oidc_domain` parameter, entering an email address with the configured domain and clicking *Next* should redirect you automatically to the configured authorization server. 
-Follow the above steps as if having clicked the *Sign in with OIDC* button 
+Alternatively, if you have configured the `oidc_domain` parameter, entering an email address with the configured domain and clicking *Next* should redirect you automatically to the configured authorization server.
+Follow the above steps as if having clicked the *Sign in with OIDC* button
 
 ## Troubleshooting
 - **The Sign in with OIDC button is missing:** check if the `oidc_active` variable is set to `true` in you group_vars and run the Ansible playbook again.
