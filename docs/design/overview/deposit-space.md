@@ -1,6 +1,7 @@
 ---
 grand_parent: Software Design
 parent: System Overview
+nav_order: 5
 ---
 # Deposit space
 
