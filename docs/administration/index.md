@@ -16,6 +16,7 @@ has_toc: false
 - [Installing datarequest module](installing-datarequest-module.md)
 - [Upgrading metadata schemas](upgrading-metadata-schemas.md)
 - [Background jobs](background-jobs.md)
+- [Troubleshooting email](troubleshooting-email.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
 - [Restore collection](restore-collection.md)
 - [Configuring OIDC](configuring-openidc.md)

@@ -8,7 +8,7 @@ has_toc: false
 # Software Design
 
 ## API
-- [API documentation](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/irods-ruleset-uu/api.json)
+- [API documentation](api/)
 
 ## System
 - [System overview](overview/)
@@ -17,6 +17,7 @@ has_toc: false
 - [Statistics module](overview/statistics.html)
 - [Datarequests module](overview/data-requests.html)
 - [Group manager](overview/group-manager.html)
+- [Authentication](overview/authentication.html)
 - [External user service](overview/external-user-service.html)
 - [Yoda OAI-PMH endpoint](overview/yoda-moai.html)
 
