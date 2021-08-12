@@ -20,3 +20,4 @@ has_toc: false
 - [Troubleshooting publication](troubleshooting-publication.md)
 - [Restore collection](restore-collection.md)
 - [Configuring OIDC](configuring-openidc.md)
+- [Setting job flags](setting-job-flags.md)
