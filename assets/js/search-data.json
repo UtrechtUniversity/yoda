@@ -1225,13 +1225,13 @@
   },"204": {
     "doc": "Setting job flags",
     "title": "Replication flag",
-    "content": "Set: “”” itouch /tempZone/yoda/flags/stop_replication “”” . Unset: “”” irm /tempZone/yoda/flags/stop_replication “”” . ",
+    "content": "Set: . itouch /tempZone/yoda/flags/stop_replication . Unset: . irm /tempZone/yoda/flags/stop_replication . ",
     "url": "/yoda/administration/setting-job-flags.html#replication-flag",
     "relUrl": "/administration/setting-job-flags.html#replication-flag"
   },"205": {
     "doc": "Setting job flags",
     "title": "Revisions flag",
-    "content": "Set: “”” itouch /tempZone/yoda/flags/stop_revisions “”” . Unset: “”” irm /tempZone/yoda/flags/stop_revisions “”” . ",
+    "content": "Set: . itouch /tempZone/yoda/flags/stop_revisions . Unset: . irm /tempZone/yoda/flags/stop_revisions . ",
     "url": "/yoda/administration/setting-job-flags.html#revisions-flag",
     "relUrl": "/administration/setting-job-flags.html#revisions-flag"
   },"206": {
