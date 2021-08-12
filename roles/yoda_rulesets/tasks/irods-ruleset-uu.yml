@@ -224,6 +224,15 @@
   failed_when: False
 
 
+- name: Ensure that Yoda flags directory is present
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    imkdir /{{ irods_zone }}/yoda/flags
+  changed_when: False
+  failed_when: False
+
+
 - name: Install script for revision clean up
   become_user: "{{ irods_service_account }}"
   become: yes
