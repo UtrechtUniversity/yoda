@@ -11,22 +11,22 @@ If it is present, the job stops and logs a message that it is stopped.
 
 ## Replication flag
 Set:
-"""
+```bash
 itouch /tempZone/yoda/flags/stop_replication
-"""
+```
 
 Unset:
-"""
+```bash
 irm /tempZone/yoda/flags/stop_replication
-"""
+```
 
 ## Revisions flag
 Set:
-"""
+```bash
 itouch /tempZone/yoda/flags/stop_revisions
-"""
+```
 
 Unset:
-"""
+```bash
 irm /tempZone/yoda/flags/stop_revisions
-"""
+```
