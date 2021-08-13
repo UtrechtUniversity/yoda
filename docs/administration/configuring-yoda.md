@@ -157,6 +157,7 @@ credential_files             | Location of Yoda credentials files
 Variable                     | Description
 -----------------------------|---------------------
 enable_intake                | Enable intake module
+intake_groups                | List of intake groups (without the "grp-intake-" prefix)
 
 ### Datarequest module configuration
 
