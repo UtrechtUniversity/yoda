@@ -25,7 +25,11 @@ enable_intake: true                                # Enable intake module
 # Datarequest module configuration
 enable_datarequest: true                           # Enable datarequest module
 
-yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
+# Portal customization
+yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
+yoda_theme: vu                                     # Yoda theme: uu or vu (default: uu)
+portal_title_text: Yoda - Dev
+
 
 # Yoda modules
 extra_modules:
