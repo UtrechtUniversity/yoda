@@ -23,3 +23,10 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 openssl_dhparams: dhparams.pem
 openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
+
+# Service type. Possible values: 'sysv' and 'systemd'
+irods_service_type: 'sysv'
+
+# The max number of open files is only effective when
+# irods_service_type has been set to 'systemd'.
+irods_max_open_files: 131072

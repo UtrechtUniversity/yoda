@@ -16,7 +16,7 @@ def validate_token(username, token, sub):
     if r.status_code != 200:
         print('Failed to get a successful userinfo response '
               '\n{}\n{}'
-              .format(r.status_code, r.text))
+              .format(r.status_code, r.text.encode(r.encoding)))
         return False
 
     # Retrieve token email.

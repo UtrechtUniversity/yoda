@@ -24,6 +24,7 @@ The vault space implements a FAIR data publication workflow.
 [Technical design](vault-space.md){: .btn }
 
 ### Statistics
+The statistics module provides insight in research groups storage usage.
 
 [Technical design](statistics.md){: .btn }
 
@@ -34,7 +35,7 @@ It enables the distribution of access rights to data within Yoda with minimal ai
 [Technical design](group-manager.md){: .btn }
 
 ### User
-
+The user module provides settings and notifications.
 
 ## Additional modules
 
