@@ -1349,208 +1349,208 @@
     "url": "/yoda/administration/troubleshooting-publication.html",
     "relUrl": "/administration/troubleshooting-publication.html"
   },"225": {
+    "doc": "Troubleshooting replication and revision creation",
+    "title": "Troubleshooting replication and revision creation",
+    "content": "Revision creation and replication of data objects are handled asynchronously. Policies add metadata attributes to data objects that need to be replicated or have a new revision. The replication and revision creation cronjobs process these data objects asynchronously. Generic information about these background jobs can be found on the page about background processes. This page contains advice regarding how to troubleshoot these processes. If a data object is not replicated or does not get a new revision, consider first stopping and temporarily disabling the background process cronjob for troubleshooting. This can be done by temporarily setting the background process stop flag (/ZONE/yoda/flags/stop_replication or /ZONE/yoda/flags/stop_revisions) and waiting for the job to finish. The iquest command can be used to print a list of data objects that are queued for replication or revision creation. Example for replication: . iquest \"%s/%s\" --no-page \"SELECT COLL_NAME, DATA_NAME where META_DATA_ATTR_NAME = 'org_replication_scheduled'\" . If it seems that the background job is failing, or a data object is not getting processed despite having the expected metadata attribute, you could run the background job in verbose mode. Remember to remove the stop flag of the process first; otherwise the background job will not start. If many data objects (or large data objects) are queued for replication or revision creation it may be advisable to run the job in a tmux session. Running the jobs in verbose mode will log additional information about data objects being processed to the rodsLog. Example command for the replication job: . /bin/python /etc/irods/irods-ruleset-uu/tools/async-data-replicate.py -v . Failures during revision creation are often caused by permission problems. First run the cron job in verbose mode to determine which data object is causing the problem. Then verify that the data object is accessible to the rods account, e.g. using an iget command. ",
+    "url": "/yoda/administration/troubleshooting-replication-revisions.html",
+    "relUrl": "/administration/troubleshooting-replication-revisions.html"
+  },"226": {
     "doc": "Upgrading metadata schemas",
     "title": "Upgrading metadata schemas",
     "content": "Metadata schemas of an Yoda instance can be migrated to newer version or other metadata schema if a transformation exists. Only metadata in the vault space is upgraded using the steps below. For all metadata in the research space the systems requests the user to transform the metadata to the new metadata schema. | Upgrade default metadata schema using Ansible or manually . | After the upgrade all metadata on the system needs to be migrated, this can be done by running the following command: . irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-schema-updates.r . All metadata touched will be logged in the rodsLog. Adding the schema identifiers can take some time, the batch script adds 256 jobs per 60 seconds to the rule queue. | . ",
     "url": "/yoda/administration/upgrading-metadata-schemas.html",
     "relUrl": "/administration/upgrading-metadata-schemas.html"
-  },"226": {
+  },"227": {
     "doc": "To vault process in research module",
     "title": "To vault process in research module",
     "content": "This document does not fully describe the process to push datapackages to the vault. Only the technical choices made to implement the process are described here. The process is described in the architectural state model. ",
     "url": "/yoda/design/processes/vault-process.html",
     "relUrl": "/design/processes/vault-process.html"
-  },"227": {
+  },"228": {
     "doc": "To vault process in research module",
     "title": "Folder status",
     "content": "Each folder in the research area is initialized without any status information. This is regarded as the folder status Folder. Every other status is defined by the metadata field org_status on the collection. The valid statuses and transitions are defined in iiConstant like below. # \\brief All research folder states. FOLDER = \"\"; LOCKED = \"LOCKED\"; SUBMITTED = \"SUBMITTED\"; ACCEPTED = \"ACCEPTED\"; REJECTED = \"REJECTED\"; SECURED = \"SECURED\"; # \\constant IIFOLDERTRANSITIONS IIFOLDERTRANSITIONS = list((FOLDER, LOCKED), (FOLDER, SUBMITTED), (LOCKED, FOLDER), (LOCKED, SUBMITTED), (SUBMITTED, FOLDER), (SUBMITTED, ACCEPTED), (SUBMITTED, REJECTED), (REJECTED, LOCKED), (REJECTED, FOLDER), (REJECTED, SUBMITTED), (ACCEPTED, SECURED), (SECURED, LOCKED), (SECURED, FOLDER), (SECURED, SUBMITTED)) . ",
     "url": "/yoda/design/processes/vault-process.html#folder-status",
     "relUrl": "/design/processes/vault-process.html#folder-status"
-  },"228": {
+  },"229": {
     "doc": "To vault process in research module",
     "title": "Status Policies",
     "content": "All the status transitions are handled by rules in iiFolderStatusTransistions.r. Basically they set the org_status of the folder to the new status and PEP’s in iiPolicies.r will check if the transition is legal and call pre and post procedures for each transition. The checks if a status transition is allowed are found in iiPolicyChecks.r. The pre and post conditions are run based on the manipulation of the org_status metadata. This means every status transition can be triggered with the imeta command. Illegal transitions will be blocked with msiOprDisallowed. ",
     "url": "/yoda/design/processes/vault-process.html#status-policies",
     "relUrl": "/design/processes/vault-process.html#status-policies"
-  },"229": {
+  },"230": {
     "doc": "To vault process in research module",
     "title": "Datamanager approval",
     "content": "When a datamanager is present, a datapackage submitted to the vault by a researcher will remain in the submitted state. The datamanager can approve or reject the package for further processing. A researcher also has the opportunity to unsubmit the package. Because a datamanager only has read access to the research area, he/she cannot edit the org_status directly. To work around this issue the sudo microservices are used to temporarily enable the datamanager to set the org_status to ‘ACCEPTED’ or ‘REJECTED’. The rules can be found in iiDatamanagerPolicies.r and iiSudoPolicies.r. A research group without a datamanager can submit packages to the vault directly. Any submitted folder will be transitioned to ‘ACCEPTED’ state immediately after submission. ",
     "url": "/yoda/design/processes/vault-process.html#datamanager-approval",
     "relUrl": "/design/processes/vault-process.html#datamanager-approval"
-  },"230": {
+  },"231": {
     "doc": "To vault process in research module",
     "title": "Copy to vault",
     "content": "The copy-accepted-folders-to-vault.r cronjob in the tools directory of the research ruleset will copy any folder in ‘ACCEPTED’ state to the vault and set it to ‘SECURED’ state when successful. The copy is done recursively using the uuTreeWalk rule starting from the the ‘ACCEPTED’ folder. The metadata will be copied as well. ",
     "url": "/yoda/design/processes/vault-process.html#copy-to-vault",
     "relUrl": "/design/processes/vault-process.html#copy-to-vault"
-  },"231": {
+  },"232": {
     "doc": "To vault process in research module",
     "title": "Research vault",
     "content": "For each research group a vault group with a vault collection is created. Only the rodsadmin will be a member. This folder is read-only for managers and normal users of the research group. When a datamanager group for the category is present it will get read-only access as well. Inheritance is switched off. This makes it possible to manage permissions for each vault package separately. A datamanager gets control over it. ",
     "url": "/yoda/design/processes/vault-process.html#research-vault",
     "relUrl": "/design/processes/vault-process.html#research-vault"
-  },"232": {
+  },"233": {
     "doc": "To vault process in research module",
     "title": "Granting and revoking read access to the vault for the research group",
     "content": "The datamanager is allowed to use the sudo microservice msiSudoObjAclSet to grant and revoke read access to packages in the vault. This is configured in iiSudoPolicies.r and iiDatamanagerPolicies.r to not interfere with existing sudo policies in the irods-ruleset-uu. The only action the datamanager is allowed to do is set permissions starting from the root of a vault package to read for the research group with the same basename as the vault. ",
     "url": "/yoda/design/processes/vault-process.html#granting-and-revoking-read-access-to-the-vault-for-the-research-group",
     "relUrl": "/design/processes/vault-process.html#granting-and-revoking-read-access-to-the-vault-for-the-research-group"
-  },"233": {
+  },"234": {
     "doc": "To vault process in research module",
     "title": "No datamanager",
     "content": "When there is no datamanager is present the permissions can only be managed by the rodsadmin. Read-only for the research group by default could be implemented. ",
     "url": "/yoda/design/processes/vault-process.html#no-datamanager",
     "relUrl": "/design/processes/vault-process.html#no-datamanager"
-  },"234": {
+  },"235": {
     "doc": "Vault space",
     "title": "Vault space",
     "content": " ",
     "url": "/yoda/design/overview/vault-space.html",
     "relUrl": "/design/overview/vault-space.html"
-  },"235": {
+  },"236": {
     "doc": "Vault space",
     "title": "Introduction",
     "content": "The research space is described in this document. The state diagram describes the possible states a folder in the research space can be in. In the sequence diagram the interactions between the actors in the research space are documented. ",
     "url": "/yoda/design/overview/vault-space.html#introduction",
     "relUrl": "/design/overview/vault-space.html#introduction"
-  },"236": {
+  },"237": {
     "doc": "Vault space",
     "title": "State diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-space.html#state-diagram",
     "relUrl": "/design/overview/vault-space.html#state-diagram"
-  },"237": {
+  },"238": {
     "doc": "Vault space",
     "title": "Sequence diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-space.html#sequence-diagram",
     "relUrl": "/design/overview/vault-space.html#sequence-diagram"
-  },"238": {
+  },"239": {
     "doc": "Wall of Fame",
     "title": "Wall of Fame",
     "content": "This is a list (in alphabetic order and not complete) of contributors to Yoda. Thanks goes to these wonderful people! . | Jurgen AlebregtseUntil 11/2018 | Felix A. Croes Until 07/2019 | Roy van Elk Active | Paul Frederiks Until 01/2018 | . | Rick van de Hoef Active | Hans Kleinloog Until 07/2019 | Jan de Mooij Until 08/2016 | Harm de Raaff Active | . | Chris Smeele Until 08/2020 | Ton Smeele Until 03/2021 | Lazlo Westerhof Active | . ",
     "url": "/yoda/development/wall-of-fame.html",
     "relUrl": "/development/wall-of-fame.html"
-  },"239": {
+  },"240": {
     "doc": "Yoda MOAI service",
     "title": "Yoda MOAI service",
     "content": " ",
     "url": "/yoda/design/overview/yoda-moai.html",
     "relUrl": "/design/overview/yoda-moai.html"
-  },"240": {
+  },"241": {
     "doc": "Yoda MOAI service",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/yoda-moai.html#overview",
     "relUrl": "/design/overview/yoda-moai.html#overview"
-  },"241": {
+  },"242": {
     "doc": "Yoda MOAI service",
     "title": "Yoda MOAI",
     "content": "MOAI offers harvesting functionality following the OAI-PMH standard with the flexibility to serve different metadata prefixes. Currently, Dublin Core and DataCite are implemented as a metadata prefix. ",
     "url": "/yoda/design/overview/yoda-moai.html#yoda-moai",
     "relUrl": "/design/overview/yoda-moai.html#yoda-moai"
-  },"242": {
+  },"243": {
     "doc": "Yoda MOAI service",
     "title": "Provisioning MOAI database",
     "content": "When publishing datasets from within Yoda, the corresponding yoda-metadata.xml is put in a location where the Yoda MOAI service can read and process it. Each 5 minutes (configurable) the indicated folder is scanned and newly published XML files are provisioned to the internal SQLite database. The data is prepared in the database as such that it is able to provide output in XML form, on request of a harvester. Any OAI-PMH harvester able to read the Dublin Core and DataCite format is able to harvest Yoda through the endpoint serviced by MOAI. ",
     "url": "/yoda/design/overview/yoda-moai.html#provisioning-moai-database",
     "relUrl": "/design/overview/yoda-moai.html#provisioning-moai-database"
-  },"243": {
+  },"244": {
     "doc": "Yoda MOAI service",
     "title": "Yoda MOAI Technical",
     "content": "Provision from Yoda . Python -&gt; yoda.py The script reads all yoda-metadata.xml files that have been published and are placed in a specific folder. After processing it puts the found content into the Yoda MOAI SQLite database. ‘Collection name’ as metadata for a dataset A collection name defines an umbrella for different datasets to belong together. By exposing collection names through MOAI, it is possible for a harvester to draw conclusions regarding datasets from the same data supplier about datasets that belong together. Thus, multiple datasets can setup a collection having the same ‘purpose’. The nature of this purpose can be defined by the researchers/datamanagers themselves. In theory, equivalent collection names can exist over multiple Yoda instances. Even within the same Yoda instance. No validation is performed by Yoda software itself. So there is no formal safeguarding/protection of the content of collection name. Harvesters should be (made) aware of that. Initially they should combine collections endpoint/collection . select * from sets; select * from records; . Deliver metadata in datacite format to harvesters . python -&gt; datacite.py Prepares the output data in such a way that the application data of Yoda, originally held in yoda-metadata.xml files, can be outputted to an XML response with DataCite as a metadata prefix. ",
     "url": "/yoda/design/overview/yoda-moai.html#yoda-moai-technical",
     "relUrl": "/design/overview/yoda-moai.html#yoda-moai-technical"
-  },"244": {
+  },"245": {
     "doc": "Setting up YodaDrive development environment",
     "title": "YodaDrive Development Environment",
     "content": "This document describes setting up a development environment for YodaDrive. YodaDrive is a WebDAV driver for Windows, written in C#. Development of YodaDrive requires a Windows development environment with Visual Studio Community 2017 or better. ",
     "url": "/yoda/development/yodadrive-development-environment.html#yodadrive-development-environment",
     "relUrl": "/development/yodadrive-development-environment.html#yodadrive-development-environment"
-  },"245": {
+  },"246": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Virtual Machine",
     "content": "A Windows development environment, if not already available, can be installed on a virtual machine in Azure (Standard B2ms, 2 CPUs, 8 GB memory) or another cloud provider. If creating a VM in the cloud, make sure to restrict RDP access by IP address, or the machine will be hacked in short order even when kept fully up-to-date. ",
     "url": "/yoda/development/yodadrive-development-environment.html#virtual-machine",
     "relUrl": "/development/yodadrive-development-environment.html#virtual-machine"
-  },"246": {
+  },"247": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Visual Studio",
     "content": "Visual Studio Community 2019 is sufficient for development of YodaDrive, since YodaDrive is open source. Make sure that the following components are included for installation: . | .NET Desktop Development | .NET Framework 4.6.1 development tools | . ",
     "url": "/yoda/development/yodadrive-development-environment.html#visual-studio",
     "relUrl": "/development/yodadrive-development-environment.html#visual-studio"
-  },"247": {
+  },"248": {
     "doc": "Setting up YodaDrive development environment",
     "title": "WinFsp",
     "content": "WinFsp is a FUSE-like driver for Windows, which is required by YodaDrive. The version to install is 2019.3 B2 or later, and must match the version used by YodaDrive. WinFsp must be installed manually. Installing it as part of YodaDrive is not sufficient, since the Developer option must be selected during installation. ",
     "url": "/yoda/development/yodadrive-development-environment.html#winfsp",
     "relUrl": "/development/yodadrive-development-environment.html#winfsp"
-  },"248": {
+  },"249": {
     "doc": "Setting up YodaDrive development environment",
     "title": "YodaDrive",
     "content": "Within VS2019, clone from https://github.com/UtrechtUniversity/YodaDrive.git. Then open the KS2Drive.sln solution. ",
     "url": "/yoda/development/yodadrive-development-environment.html#yodadrive",
     "relUrl": "/development/yodadrive-development-environment.html#yodadrive"
-  },"249": {
+  },"250": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Development",
     "content": "YodaDrive is an open source project, which inherits from KS2.Drive. Main development takes part on the development branch. Everything specific to YodaDrive is on the feature/yoda-rebranding branch. When buiding a YodaDrive release, switch to the feature/yoda-rebranding branch, merge the latest changes from the development branch if needed, and update the version number in About/About.xaml. ",
     "url": "/yoda/development/yodadrive-development-environment.html#development",
     "relUrl": "/development/yodadrive-development-environment.html#development"
-  },"250": {
+  },"251": {
     "doc": "Setting up YodaDrive development environment",
     "title": "WinFsp dependency files for YodaDrive distributable",
     "content": "The distributable for YodaDrive can be made to automatically install the proper version of WinFsp as part of the installation process. In order to build the distributable properly, the following has to be done first: . | checkout branch feature/yoda-rebranding | copy the Reference/WinFsp*_* folder to C:\\Program Files (x86)\\Microsoft SDKs\\ClickOnce Bootstrapper\\Packages . | reboot the machine | start Visual Studio | verify that WinFsp is listed among the requirements for publication | . ",
     "url": "/yoda/development/yodadrive-development-environment.html#winfsp-dependency-files-for-yodadrive-distributable",
     "relUrl": "/development/yodadrive-development-environment.html#winfsp-dependency-files-for-yodadrive-distributable"
-  },"251": {
+  },"252": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Developer code signing",
     "content": "The YodaDrive distributable should be signed with the appropriate code signing key. The person in charge of this can install the key within Visual Studio, so that it can automatically sign releases thereafter. ",
     "url": "/yoda/development/yodadrive-development-environment.html#developer-code-signing",
     "relUrl": "/development/yodadrive-development-environment.html#developer-code-signing"
-  },"252": {
+  },"253": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Publication",
     "content": "Publication will generate Application Files, KS2Drive.application and setup.exe in the output directory C:\\OutputKS2Drive. These can then be archived in a ZIP file for distribution. ",
     "url": "/yoda/development/yodadrive-development-environment.html#publication",
     "relUrl": "/development/yodadrive-development-environment.html#publication"
-  },"253": {
+  },"254": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Setting up YodaDrive development environment",
     "content": " ",
     "url": "/yoda/development/yodadrive-development-environment.html",
     "relUrl": "/development/yodadrive-development-environment.html"
-  },"254": {
+  },"255": {
     "doc": "YodaDrive",
     "title": "YodaDrive",
     "content": "YodaDrive is a WebDAV client for Windows, allowing the user to mount a remove WebDAV server as a local drive. YodaDrive is derived from KS2.Drive written by Francois Karam, and depends on WinFsp written by Bill Zissimopoulos. YodaDrive is a C# Visual Studio project, making use of the WebDAVClient library written by Itay Sagui (originally by Kees van den Broek). YodaDrive has been optimized for iRODS servers accessed via davrods, but can be used for any WebDAV server. ",
     "url": "/yoda/design/other/yodadrive.html",
     "relUrl": "/design/other/yodadrive.html"
-  },"255": {
+  },"256": {
     "doc": "YodaDrive",
     "title": "Limitations",
     "content": "Since the remote file system is WebDAV, changes that originate elsewhere are not visible until the user refreshes the view. YodaDrive does not implement WebDAV locking. ",
     "url": "/yoda/design/other/yodadrive.html#limitations",
     "relUrl": "/design/other/yodadrive.html#limitations"
-  },"256": {
+  },"257": {
     "doc": "YodaDrive",
     "title": "Mode of operation",
     "content": "After a remote filesystem has been mounted, calls are made from Windows via WinFsp to Open, Create, Read, Write or Close files. YodaDrive handles Read and Write asynchronously, and all other calls synchronously. For asynchronous Read and Write calls, YodaDrive returns STATUS_PENDING and later performs a callback when the Read or Write completes. Closing a file with pending Write calls will wait for all scheduled writes to complete, before the Close call returns. YodaDrive uses one connection for downloads, and at most two connections for uploads. Read . Downloads for all files in a remote filesystem are all managed on the same connection, with interleaved blocks for Read calls. Each Read call is translated into a separate GET request. Write . Uploads are captured in a single PUT request if possible, as long as all Write calls address consecutive blocks. Each PUT request uses chunked mode, and blocks written are appended as chunks. The initial Write call does not have to address a block at the beginning of the file. At most two uploads can be active at one time. Since consecutive writes are captured in a single PUT request, uploading two large files will prevent any other uploads for the duration. This is handled by postponing Create and Write calls until an upload connection becomes available; Create will pretend to succeed and Write will not have a callback until the actual block could be appended. ReadDirectory . ReadDirectory is performed synchronously, but makes use of the download connection and can be blocked by pending asynchronous Read calls. Note that WinFsp permits ReadDirectory itself to be asynchronous, but we do not implement it as such. ",
     "url": "/yoda/design/other/yodadrive.html#mode-of-operation",
     "relUrl": "/design/other/yodadrive.html#mode-of-operation"
-  },"257": {
+  },"258": {
     "doc": "YodaDrive",
     "title": "State Diagrams",
     "content": ". ",
     "url": "/yoda/design/other/yodadrive.html#state-diagrams",
     "relUrl": "/design/other/yodadrive.html#state-diagrams"
-  },"258": {
-    "doc": "Troubleshooting replication and revision creation",
-    "title": "Troubleshooting replication and revision creation",
-    "content": "# Troubleshooting replication and revision creation Revision creation and replication of data objects are handled asynchronously. Policies add metadata attributes to data objects that need to be replicated or have a new revision. The replication and revision creation cronjobs process these data objects asynchronously. Generic information about these background jobs can be found on [the page about background processes](/yoda/design/processes/asynchronous-processes.html). This page contains advice regarding how to troubleshoot these processes. If a data object is not replicated or does not get a new revision, consider first stopping and temporarily disabling the background process cronjob for troubleshooting. This can be done by temporarily setting the background process stop flag (`/ZONE/yoda/flags/stop_replication` or `/ZONE/yoda/flags/stop_revisions`) and waiting for the job to finish. The iquest command can be used to print a list of data objects that are queued for replication or revision creation. Example for replication: ``` iquest \"%s/%s\" --no-page \"SELECT COLL_NAME, DATA_NAME where META_DATA_ATTR_NAME = 'org_replication_scheduled'\" ``` If it seems that the background job is failing, or a data object is not getting processed despite having the expected metadata attribute, you could run the background job in verbose mode. Remember to remove the stop flag of the process first; otherwise the background job will not start. If many data objects (or large data objects) are queued for replication or revision creation it may be advisable to run the job in a tmux session. Running the jobs in verbose mode will log additional information about data objects being processed to the rodsLog. Example command for the replication job: ``` /bin/python /etc/irods/irods-ruleset-uu/tools/async-data-replicate.py -v ``` Failures during revision creation are often caused by permission problems. First run the cron job in verbose mode to determine which data object is causing the problem. Then verify that the data object is accessible to the rods account, e.g. using an `iget` command. ",
-    "url": "/yoda/administration/troubleshooting-replication-revisions.html",
-    "relUrl": "/administration/troubleshooting-replication-revisions.html"
   }
 }
