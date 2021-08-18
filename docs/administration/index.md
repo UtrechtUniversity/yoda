@@ -8,7 +8,7 @@
 - [Installing metadata schemas](installing-metadata-schemas.md)
 - [Installing datarequest module](installing-datarequest-module.md)
 - [Upgrading metadata schemas](upgrading-metadata-schemas.md)
-- [Background jobs](background-jobs.md)
 - [Troubleshooting email](troubleshooting-email.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
+- [Troubleshooting replication and revision creation](troubleshooting-replication-revisions.md)
 - [Restore collection](restore-collection.md)
