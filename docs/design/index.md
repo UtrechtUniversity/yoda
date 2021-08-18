@@ -29,7 +29,7 @@ has_toc: false
 
 ## Processes
 - [Asynchronous and privileged execution](processes/async-system-execution.html)
-- [List of asynchronous processes](processes/asynchronous-processes.md)
+- [List of asynchronous processes](processes/asynchronous-processes.html)
 - [Locking mechanism](processes/locking-mechanism.html)
 - [Publication process](processes/publication-process.html)
 - [Revision management](processes/revisions.html)

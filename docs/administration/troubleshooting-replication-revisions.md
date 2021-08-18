@@ -5,7 +5,7 @@ add metadata attributes to data objects that need to be replicated or have a new
 The replication and revision creation cronjobs process these data objects asynchronously.
 
 Generic information about these background jobs can be found on
-[the page about background processes](../design/asynchronous-processes.md). This page
+[the page about background processes](../design/processes/asynchronous-processes.md). This page
 contains advice regarding how to troubleshoot these processes.
 
 If a data object is not replicated or does not get a new revision, consider first stopping and
