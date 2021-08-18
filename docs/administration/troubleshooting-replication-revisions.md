@@ -1,3 +1,8 @@
+---
+parent: Administration Tasks
+title: Troubleshooting replication and revision creation
+nav_order: 12
+---
 # Troubleshooting replication and revision creation
 
 Revision creation and replication of data objects are handled asynchronously. Policies
