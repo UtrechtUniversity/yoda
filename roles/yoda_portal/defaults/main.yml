@@ -12,7 +12,7 @@ update_portal: yes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 
 # Yoda portal
-yoda_portal_version: "pyportal"
+yoda_portal_version: "pyportal-user-themplates"
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name
