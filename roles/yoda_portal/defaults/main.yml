@@ -9,10 +9,12 @@ yoda_portal_fqdn: portal.yoda.test
 yoda_eus_fqdn: eus.yoda.test
 update_portal: yes
 
+# Yoda theme
+yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 
 # Yoda portal
-yoda_portal_version: "pyportal-user-themplates"
+yoda_portal_version: "pyportal"
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name

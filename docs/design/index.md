@@ -18,7 +18,8 @@ has_toc: false
 - [Datarequests module](overview/data-requests.html)
 - [Group manager](overview/group-manager.html)
 - [Authentication](overview/authentication.html)
-- [External user service](overview/external-user-service.html)
+- [Theme Packages](overview/theme-packages.html)
+- [External User Service](overview/external-user-service.html)
 - [Yoda OAI-PMH endpoint](overview/yoda-moai.html)
 
 ## Metadata

@@ -1,9 +1,14 @@
+---
+grand_parent: Software Design
+parent: Theme packaging
+nav_order: 7
+---
 # Theme packaging
 
 ## Overriding the default templates and static files with user defined themes
 
 Yoda allows for developers to add themes to the default (Utrecht University) theme.
-Thus adding the possibility for developers to tweak a Yoda-intstance to their own look and feel.
+Thus adding the possibility for developers to tweak a Yoda instance to their own look and feel.
 
 Adding themes can be accomplished by overriding the default templates and static files that are supplied within the default (Utrecht University) Yoda.
 
