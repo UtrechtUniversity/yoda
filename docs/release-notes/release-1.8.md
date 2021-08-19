@@ -11,10 +11,11 @@ Released: TBA
 
 ## What's new
 ### Features
-- Upgrade to iRODS v4.2.10
+- [Full theming support](../design/overview/theme-packages.md)
 - Support for user settings
 - Support for notifications
-- Support for UI templates
+- Support for copy and move actions in the web portal
+- Upgrade to iRODS v4.2.10
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
 
 ### Known issues
