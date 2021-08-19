@@ -23,6 +23,6 @@
 
 - name: Ensure iRODS iCommands is installed
   yum:
-    name: irods-icommands-4.2.9-1
+    name: irods-icommands-4.2.10-1
     state: present
   when: not irods_server.stat.exists and not ansible_check_mode

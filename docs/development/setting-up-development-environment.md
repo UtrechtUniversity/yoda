@@ -1,3 +1,8 @@
+---
+parent: Development
+title: Setting up development environment
+nav_order: 0
+---
 # Setting up development environment
 Setting up a Yoda development environment is easy, you only need the following:
 
@@ -36,7 +41,7 @@ chmod 0600 ~/yoda/vagrant/ssh/vagrant
 ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
-5. Add following hosts to /etc/hosts (GNU/Linux or macOS) or  %SystemRoot%\System32\drivers\etc\hosts (Windows):
+5. Add following hosts to `/etc/hosts` (GNU/Linux or macOS) or  `%SystemRoot%\System32\drivers\etc\hosts` (Windows):
 ```
 192.168.50.10 portal.yoda.test
 192.168.50.10 data.yoda.test
@@ -45,14 +50,14 @@ ansible-playbook -i environments/development/allinone/ playbook.yml
 192.168.50.10 eus.yoda.test
 ```
 
-6. [OPTIONAL] Provision Yoda with [test data](development-test-data.md):
+6. Provision Yoda with test data:
 ```bash
 ansible-playbook -i environments/development/allinone/ test.yml
 ```
 
 7. [OPTIONAL] Provision Yoda with [Zabbix](https://www.zabbix.com/) agent and monitoring scripts:
 
-    Configure Zabbix server in `environments/development/allinone/group_vars/allinone.yml) and make sure a Zabbix server is running on this address, you could use a [Zabbix appliance](https://www.zabbix.com/download_appliance) in Virtualbox.
+    Configure Zabbix server in `environments/development/allinone/group_vars/allinone.yml` and make sure a Zabbix server is running on this address, you could use a [Zabbix appliance](https://www.zabbix.com/download_appliance) in Virtualbox.
     ```yaml
     zabbix_server: 192.168.50.20
     ```
@@ -79,3 +84,18 @@ git pull
 ```bash
 ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
+
+## Development environment test users and data
+When you have set up an Yoda development environment and provisioned it with test data the following users are created:
+
+User                | Role
+--------------------|----------
+viewer              | Viewer with read only access to research groups
+researcher          | Researcher with read / write access to research groups
+groupmanager        | Groupmanager  with user management rights on research groups
+datamanager         | Datamanager of the research groups
+technicaladmin      | Technical administrator with rodsadmin access
+
+Password for all test users is `test`.
+
+In research group `research-initial` a folder `testdata` is created with some example data.

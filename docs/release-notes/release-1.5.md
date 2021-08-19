@@ -1,10 +1,15 @@
-# Release notes Yoda version 1.5 (July 2019)
+---
+parent: Release Notes
+title: v1.5
+nav_order: 93
+---
+# Release Notes - Yoda v1.5
 
 Version: 1.5
 
 Released: July 2019
 
-## What's new in Yoda version 1.5
+## What's new
 ### Features
 - New metadata form based on JSON schema
 - Research and vault space are split into separate modules
@@ -26,7 +31,7 @@ Released: July 2019
 ### Known limitations
 - Assumes default-0 compliant XSD schema.
 
-## Upgrading from Yoda version 1.4
+## Upgrading from previous release
 Upgrade is supported by Ansible (2.7.x).
 Requires Yoda public server and external user service to be on version 1.4.x or higher.
 

@@ -6,8 +6,8 @@
     "irods_cwd": "/{{irods_zone}}/home",
     "irods_user_name": "your username",
     "irods_zone_name": "{{ irods_zone }}",
-    "irods_client_server_negotiation": "none",
-    "irods_client_server_policy": "CS_NEG_DONT_CARE",
+    "irods_client_server_negotiation": "request_server_negotiation",
+    "irods_client_server_policy": "CS_NEG_REQUIRE",
     "irods_encryption_key_size": 32,
     "irods_encryption_salt_size": 8,
     "irods_encryption_num_hash_rounds": 16,
@@ -24,6 +24,5 @@
     "irods_ssl_certificate_chain_file": "/etc/irods/{{ openssl_crt_signed_and_chain }}",
     "irods_ssl_certificate_key_file": "/etc/irods/{{ openssl_key_signed }}",
     "irods_ssl_dh_params_file": "/etc/irods/{{ openssl_dhparams }}",
-    "irods_client_server_policy": "CS_NEG_REQUIRE",
     "irods_ssl_verify_server": "{{ irods_ssl_verify_server }}"
 }

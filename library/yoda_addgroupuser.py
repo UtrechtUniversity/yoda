@@ -23,7 +23,7 @@ else:
 
 
 def get_session():
-    env_file = os.path.expanduser('~/.irods/python_client_environment.json')
+    env_file = os.path.expanduser('~/.irods/irods_environment.json')
     with open(env_file) as data_file:
         ienv = json.load(data_file)
     return (iRODSSession(irods_env_file=env_file), ienv)
@@ -57,24 +57,24 @@ def main():
     changed = False
 
     # Rule to add an user to a group in Yoda.
-    rule_body = textwrap.dedent('''\
-        test {{
-            uuGroupUserAdd(*groupName, *user, *status, *message);
-            uuGroupUserChangeRole(*groupName, *user, *role, *status, *message);
-        }}''')
-
+    rule_body = '''a {{
+                       uuGroupUserAdd(*groupName, *user, *status, *message);
+                       uuGroupUserChangeRole(*groupName, *user, *role, *status, *message);
+                     }}
+                '''
     # Rule parameters.
     input_params = {
         '*groupName': '"{groupName}"'.format(**locals()),
         '*user': '"{user}"'.format(**locals()),
         '*role': '"{role}"'.format(**locals())
     }
-    output = 'ruleExecOut'
 
     # Execute rule.
     if not module.check_mode:
-        myrule = Rule(session, body=rule_body,
-                      params=input_params, output=output)
+        myrule = Rule(session,
+                      body=rule_body,
+                      params=input_params,
+                      output='ruleExecOut')
         myrule.execute()
 
     changed = True

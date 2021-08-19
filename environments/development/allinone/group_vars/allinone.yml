@@ -28,19 +28,9 @@ datarequest_help_contact_name: PLACEHOLDER         # Help contact name
 datarequest_help_contact_email: PLACEHOLDER        # Help contact email
 
 # Portal customization
+yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 portal_title_text: Yoda - Dev
-
-# Yoda modules
-extra_modules:
-  - name: intake
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
-    dest: /var/www/yoda/yoda-portal/modules/intake
-    version: "{{ yoda_version }}"
-  - name: datarequest
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
-    dest: /var/www/yoda/yoda-portal/modules/datarequest
-    version: "{{ yoda_version }}"
 
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
@@ -168,6 +158,7 @@ external_users_domain_filter: uu.nl     # Domains to filter, separated by |
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: false
+oidc_domain: "gmail.com"                                      # Domain that should use OIDC
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
 oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url

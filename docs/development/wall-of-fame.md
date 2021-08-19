@@ -1,3 +1,8 @@
+---
+parent: Development
+title: Wall of Fame
+nav_order: 2
+---
 # Wall of Fame
 
 This is a list (in alphabetic order and not complete) of contributors to Yoda.

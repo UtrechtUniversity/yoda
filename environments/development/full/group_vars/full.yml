@@ -24,19 +24,13 @@ enable_intake: true                                # Enable intake module
 
 # Datarequest module configuration
 enable_datarequest: true                           # Enable datarequest module
+datarequest_help_contact_name: PLACEHOLDER         # Help contact name
+datarequest_help_contact_email: PLACEHOLDER        # Help contact email
 
+# Portal customization
+yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
-
-# Yoda modules
-extra_modules:
-  - name: intake
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-intake.git"
-    dest: /var/www/yoda/yoda-portal/modules/intake
-    version: "{{ yoda_version }}"
-  - name: datarequest
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
-    dest: /var/www/yoda/yoda-portal/modules/datarequest
-    version: "{{ yoda_version }}"
+portal_title_text: Yoda - Dev
 
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
@@ -160,15 +154,27 @@ eus_smtp_password: PLACEHOLDER
 eus_smtp_from_address: PLACEHOLDER
 eus_smtp_replyto_address: PLACEHOLDER
 eus_mail_template: uu
+external_users_domain_filter: uu.nl     # Domains to filter, separated by |
 
-# Openid Connect configuration
-oidc_client_id: PLACEHOLDER
-oidc_client_secret: PLACEHOLDER
-oidc_callback_url: PLACEHOLDER
-oidc_auth_base_uri: PLACEHOLDER
-oidc_token_uri: PLACEHOLDER
-oidc_userinfo_uri: PLACEHOLDER
-oidc_scopes: PLACEHOLDER
-oidc_acr_values: PLACEHOLDER
-oidc_email_field: PLACEHOLDER
-oidc_signin_text: PLACEHOLDER
+# Openid Connect configuration (This configuration is for TESTING purposes!)
+oidc_active: false
+oidc_domain: "gmail.com"                                      # Domain that should use OIDC
+oidc_client_id: myClientId                                    # OIDC Client Id
+oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
+oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url
+oidc_auth_base_uri: https://oauth.mocklab.io/oauth/authorize  # OIDC Authorization URI without parameters
+oidc_token_uri: https://oauth.mocklab.io/oauth/token          # OIDC Token URI
+oidc_userinfo_uri: https://oauth.mocklab.io/userinfo          # OIDC Userinfo URI
+oidc_scopes: openid                                           # OIDC Scopes
+oidc_acr_values: ""                                           # OIDC Authentication Context Class Reference Values
+oidc_email_field: email                                       # The identifier of the JSON field in the id_token containing the email address (default: email)
+oidc_signin_text: 'Sign in with Mocklab.io'                   # The text to appear on the Sign in button (default: Sign in with OIDC)
+oidc_jwks_uri: https://oauth.mocklab.io/.well-known/jwks.json # The url where the JWKS can be found (Java web key sets)
+oidc_jwt_issuer: https://oauth.mocklab.io                     # The issuer of the JWT tokens ('iss' value in JWT, for verification)
+oidc_req_exp: true      #check that exp (expiration) claim is present
+oidc_req_iat: false     #check that iat (issued at) claim is present
+oidc_req_nbf: false     #check that nbf (not before) claim is present
+oidc_verify_aud: true   #check that aud (audience) claim matches audience
+oidc_verify_iat: false  #check that iat (issued at) claim value is an integer
+oidc_verify_exp: true   #check that exp (expiration) claim value is OK
+oidc_verify_iss: true   #check that iss (issue) claim is as expected

@@ -1,4 +1,11 @@
-# Administration tasks
+---
+layout: default
+title: Administration Tasks
+nav_order: 3
+has_children: true
+has_toc: false
+---
+# Administration Tasks
 - [Configuring Yoda](configuring-yoda.md)
 - [Deploying Yoda](deploying-yoda.md)
 - [Applying a local change to a ruleset](hotfixing-ruleset.md)
@@ -8,6 +15,9 @@
 - [Installing metadata schemas](installing-metadata-schemas.md)
 - [Installing datarequest module](installing-datarequest-module.md)
 - [Upgrading metadata schemas](upgrading-metadata-schemas.md)
-- [Background jobs](background-jobs.md)
+- [Troubleshooting email](troubleshooting-email.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
+- [Troubleshooting replication and revision creation](troubleshooting-replication-revisions.md)
 - [Restore collection](restore-collection.md)
+- [Configuring OIDC](configuring-openidc.md)
+- [Setting job flags](setting-job-flags.md)
