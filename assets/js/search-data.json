@@ -517,7 +517,7 @@
   },"86": {
     "doc": "Software Design",
     "title": "System",
-    "content": ". | System overview | Research space | Vault space | Statistics module | Datarequests module | Group manager | Authentication | External user service | Yoda OAI-PMH endpoint | . ",
+    "content": ". | System overview | Research space | Vault space | Statistics module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
     "url": "/yoda/design/#system",
     "relUrl": "/design/#system"
   },"87": {
@@ -1325,238 +1325,268 @@
     "url": "/yoda/design/overview/statistics.html#which-month-does-registered-data-belong-to",
     "relUrl": "/design/overview/statistics.html#which-month-does-registered-data-belong-to"
   },"221": {
+    "doc": "Theme packaging",
+    "title": "Theme packaging",
+    "content": " ",
+    "url": "/yoda/design/overview/theme-packages.html",
+    "relUrl": "/design/overview/theme-packages.html"
+  },"222": {
+    "doc": "Theme packaging",
+    "title": "Overriding the default templates and static files with user defined themes",
+    "content": "Yoda allows for developers to add themes to the default (Utrecht University) theme. Thus adding the possibility for developers to tweak a Yoda instance to their own look and feel. Adding themes can be accomplished by overriding the default templates and static files that are supplied within the default (Utrecht University) Yoda. Overriding can be done on two levels: 1) Template (HTML) overriding 2) Static (css/img/js) overriding . ",
+    "url": "/yoda/design/overview/theme-packages.html#overriding-the-default-templates-and-static-files-with-user-defined-themes",
+    "relUrl": "/design/overview/theme-packages.html#overriding-the-default-templates-and-static-files-with-user-defined-themes"
+  },"223": {
+    "doc": "Theme packaging",
+    "title": "Templates in Yoda",
+    "content": "In the default setup, based on a modularly constructed flask environment, the required html templates are organized as follows: . /var/www/yoda     /general/templates/general/*.html     /module_name/templates/module_name/*.html . in which the general directory holds all basic html files, for instance the foundation of the application, in which the modules can reside. ",
+    "url": "/yoda/design/overview/theme-packages.html#templates-in-yoda",
+    "relUrl": "/design/overview/theme-packages.html#templates-in-yoda"
+  },"224": {
+    "doc": "Theme packaging",
+    "title": "Overriding templates (HTML)",
+    "content": "flask.cfg holds the yoda theme (filled by ansible but can be manually overridden): e.g. YODA_THEME = ‘vu’ YODA_THEME_PATH = ‘/var/www/yoda/themes’ . When building a webpage yoda software first looks into the yoda/themes/vu directory whether a requested template is placed at that location. If so, this will be used (thus overriding the default supplied template). If not, the software will use the default template as supplied in the default (Utrecht University) situation. The structure under yoda/themes/vu must be the same as the default structure as well as the template names must be the same. E.g.: . /var/yoda/themes     /uu1         /general/base.html         /research/browse.html     … .     /uu2         /research/revision.html         /vault/browse.html     … . In the above example following default HTML files will be overridden when uu1 or uu2 is selected as a theme: . For uu1: /var/www/yoda/general/templates/general/base.html /var/www/yoda/research/templates/research/browse.html . For uu2: /var/www/yoda/research/templates/research/revision.html /var/www/yoda/vault/templates/vault/browse.html . ",
+    "url": "/yoda/design/overview/theme-packages.html#overriding-templates-html",
+    "relUrl": "/design/overview/theme-packages.html#overriding-templates-html"
+  },"225": {
+    "doc": "Theme packaging",
+    "title": "Override static files (js, img, css)",
+    "content": "To change the appearance or user experience on the frontend it is necessary to be able to override static files as supplied with yoda. This is only possible when the blueprint files are equipped with a different static_url_path . stats_bp = Blueprint(‘stats_bp’, __name__,                                   template_folder=’templates’,                                   static_folder=’static/stats’,                                   static_url_path=’/assets’) . On application level, in app.py, the static folder is set to ‘assets’ as well: app = Flask(__name__, static_folder=’assets’) . When the frontend requests for url’s holding the keyword ‘assets’ it will check whether the set theme holds the requested static file according to following structure: . /var/yoda/themes      /uu1         /static/css             /js/…         /research/static                 /css/..                 /js/..         /vault/static/img/…     /uu2         /static/css/         /research/static/js/ . If the requested file is not found, the default (Utrecht University) static file will be used. General level url request: requested url = /assets/css/yoda-portal.css . When present, /yoda/themes/uu1/static/css/yoda-portal.css is returned. If not present fall back to default, /yoda/static/css/yoda-portal.css is returned . Modular level url request: requested url = /research/assets/css/research.css . When present, /yoda/themes/uu1/research/static/css/yoda-portal.css is returned. If not present fall back to default /yoda/research/static/research/css/yoda-portal.css is returned . ",
+    "url": "/yoda/design/overview/theme-packages.html#override-static-files-js-img-css",
+    "relUrl": "/design/overview/theme-packages.html#override-static-files-js-img-css"
+  },"226": {
+    "doc": "Theme packaging",
+    "title": "Resulting theme package structure",
+    "content": "Putting templates and css together results in following theme package structure . /uu1     /static/css/…     /research         /template.html         /static/css/…             /js/…             /img/…     … /uu2     /static/css/…     /research         /template.html         /static/css/…             /js/…             /img/…     … /vu     /static/css/…     /research         /template.html         /static/css/…             /js/…             /img/…     … . ",
+    "url": "/yoda/design/overview/theme-packages.html#resulting-theme-package-structure",
+    "relUrl": "/design/overview/theme-packages.html#resulting-theme-package-structure"
+  },"227": {
     "doc": "Troubleshooting email",
     "title": "How to troubleshoot email-related issues",
     "content": "In order to verify that sending email messages from Yoda works as expected, an email test script is included in the irods-ruleset-uu repository. It can be called from the command line as the irods user. For example: . /etc/irods/irods-ruleset-uu/tools/mail-test.sh \"a.admin@uu.nl\" . The expected output is: . Successfully executed rule for testing email with destination &lt;a.admin@uu.nl&gt; . You should shortly receive an email message on the provided address with subject [Yoda] Test mail. ",
     "url": "/yoda/administration/troubleshooting-email.html#how-to-troubleshoot-email-related-issues",
     "relUrl": "/administration/troubleshooting-email.html#how-to-troubleshoot-email-related-issues"
-  },"222": {
+  },"228": {
     "doc": "Troubleshooting email",
     "title": "Troubleshooting email",
     "content": " ",
     "url": "/yoda/administration/troubleshooting-email.html",
     "relUrl": "/administration/troubleshooting-email.html"
-  },"223": {
+  },"229": {
     "doc": "Troubleshooting publication",
     "title": "How to deal with hanging publications",
     "content": "When a publication stays in Approved status for an extended period of time (longer than cronjob interval) something probably went wrong. Here are some troubleshooting hints. First look for iiProcessPublication in /var/lib/irods/log/rodsLog. It will show the processing of the publication. | When a publication succeeds it will return status OK. | When the publication process has caught an error, but has no recovery process it will return Unrecoverable as status. | When the whole process was interrupted at a time the error could not be caught, the status will stay at Processing. | When the publication process encountered a DOI collision it will set status to Retry and reset the generated random ID. | When the publication process encounters connectivity problems with DataCite or the public server it will set the status to Retry. | . Then look at the rodsLog around the time of the problem. Error messages could give you a hint on the root cause. The publication process saves its state in metadata on the vault package. You can use imeta to list the details. See an example below. imeta lsw -C /tempZone/home/vault-test/research-test[123456789] org_publication% . When the problem is caused by invalid metadata, check the value of org_publication_combiXmlPath and org_publication_dataCiteXmlPath. You can use iget to download the generated metadata at these paths and check for XML/XSLT related problems. When the org_publication_status is Retry the publication process will be retried until success. Check status.datacite.org if you suspect a DataCite problem. Publications will fail if the API servers are down. Check the ability of the rods user to set up a ssh connection with the inbox user on the public Yoda server. When troubleshooting was successful the publication process will skip the subtasks before the failure and continue. When the org_publication_status is Processing and the root cause of the crash looks to be incidental, you could set the status to Retry with imeta on the org_publication_status. The publication will be retried the next time the cronjob runs. imeta set -C /tempZone/home/vault-test/research-test[123456789] org_publication_status Retry . When the org_publication_status is Unrecoverable then one of XSLT conversion steps have produced invalid metadata. You could use a third party XSLT processor on the metadata in the previously mentioned source XML files with the used XSL’s from the current category. This could tell you the problem. If the metadata generation succeeds but is still invalid according to the DataCite API, you could use an XSD validator on the datacite.xml using the version 4 XSD’s found at schema.datacite.org. ",
     "url": "/yoda/administration/troubleshooting-publication.html#how-to-deal-with-hanging-publications",
     "relUrl": "/administration/troubleshooting-publication.html#how-to-deal-with-hanging-publications"
-  },"224": {
+  },"230": {
     "doc": "Troubleshooting publication",
     "title": "Troubleshooting publication",
     "content": " ",
     "url": "/yoda/administration/troubleshooting-publication.html",
     "relUrl": "/administration/troubleshooting-publication.html"
-  },"225": {
+  },"231": {
     "doc": "Troubleshooting replication and revision creation",
     "title": "Troubleshooting replication and revision creation",
     "content": "Revision creation and replication of data objects are handled asynchronously. Policies add metadata attributes to data objects that need to be replicated or have a new revision. The replication and revision creation cronjobs process these data objects asynchronously. Generic information about these background jobs can be found on the page about background processes. This page contains advice regarding how to troubleshoot these processes. If a data object is not replicated or does not get a new revision, consider first stopping and temporarily disabling the background process cronjob for troubleshooting. This can be done by temporarily setting the background process stop flag (/ZONE/yoda/flags/stop_replication or /ZONE/yoda/flags/stop_revisions) and waiting for the job to finish. The iquest command can be used to print a list of data objects that are queued for replication or revision creation. Example for replication: . iquest \"%s/%s\" --no-page \"SELECT COLL_NAME, DATA_NAME where META_DATA_ATTR_NAME = 'org_replication_scheduled'\" . If it seems that the background job is failing, or a data object is not getting processed despite having the expected metadata attribute, you could run the background job in verbose mode. Remember to remove the stop flag of the process first; otherwise the background job will not start. If many data objects (or large data objects) are queued for replication or revision creation it may be advisable to run the job in a tmux session. Running the jobs in verbose mode will log additional information about data objects being processed to the rodsLog. Example command for the replication job: . /bin/python /etc/irods/irods-ruleset-uu/tools/async-data-replicate.py -v . Failures during revision creation are often caused by permission problems. First run the cron job in verbose mode to determine which data object is causing the problem. Then verify that the data object is accessible to the rods account, e.g. using an iget command. ",
     "url": "/yoda/administration/troubleshooting-replication-revisions.html",
     "relUrl": "/administration/troubleshooting-replication-revisions.html"
-  },"226": {
+  },"232": {
     "doc": "Upgrading metadata schemas",
     "title": "Upgrading metadata schemas",
     "content": "Metadata schemas of an Yoda instance can be migrated to newer version or other metadata schema if a transformation exists. Only metadata in the vault space is upgraded using the steps below. For all metadata in the research space the systems requests the user to transform the metadata to the new metadata schema. | Upgrade default metadata schema using Ansible or manually . | After the upgrade all metadata on the system needs to be migrated, this can be done by running the following command: . irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-schema-updates.r . All metadata touched will be logged in the rodsLog. Adding the schema identifiers can take some time, the batch script adds 256 jobs per 60 seconds to the rule queue. | . ",
     "url": "/yoda/administration/upgrading-metadata-schemas.html",
     "relUrl": "/administration/upgrading-metadata-schemas.html"
-  },"227": {
+  },"233": {
     "doc": "To vault process in research module",
     "title": "To vault process in research module",
     "content": "This document does not fully describe the process to push datapackages to the vault. Only the technical choices made to implement the process are described here. The process is described in the architectural state model. ",
     "url": "/yoda/design/processes/vault-process.html",
     "relUrl": "/design/processes/vault-process.html"
-  },"228": {
+  },"234": {
     "doc": "To vault process in research module",
     "title": "Folder status",
     "content": "Each folder in the research area is initialized without any status information. This is regarded as the folder status Folder. Every other status is defined by the metadata field org_status on the collection. The valid statuses and transitions are defined in iiConstant like below. # \\brief All research folder states. FOLDER = \"\"; LOCKED = \"LOCKED\"; SUBMITTED = \"SUBMITTED\"; ACCEPTED = \"ACCEPTED\"; REJECTED = \"REJECTED\"; SECURED = \"SECURED\"; # \\constant IIFOLDERTRANSITIONS IIFOLDERTRANSITIONS = list((FOLDER, LOCKED), (FOLDER, SUBMITTED), (LOCKED, FOLDER), (LOCKED, SUBMITTED), (SUBMITTED, FOLDER), (SUBMITTED, ACCEPTED), (SUBMITTED, REJECTED), (REJECTED, LOCKED), (REJECTED, FOLDER), (REJECTED, SUBMITTED), (ACCEPTED, SECURED), (SECURED, LOCKED), (SECURED, FOLDER), (SECURED, SUBMITTED)) . ",
     "url": "/yoda/design/processes/vault-process.html#folder-status",
     "relUrl": "/design/processes/vault-process.html#folder-status"
-  },"229": {
+  },"235": {
     "doc": "To vault process in research module",
     "title": "Status Policies",
     "content": "All the status transitions are handled by rules in iiFolderStatusTransistions.r. Basically they set the org_status of the folder to the new status and PEP’s in iiPolicies.r will check if the transition is legal and call pre and post procedures for each transition. The checks if a status transition is allowed are found in iiPolicyChecks.r. The pre and post conditions are run based on the manipulation of the org_status metadata. This means every status transition can be triggered with the imeta command. Illegal transitions will be blocked with msiOprDisallowed. ",
     "url": "/yoda/design/processes/vault-process.html#status-policies",
     "relUrl": "/design/processes/vault-process.html#status-policies"
-  },"230": {
+  },"236": {
     "doc": "To vault process in research module",
     "title": "Datamanager approval",
     "content": "When a datamanager is present, a datapackage submitted to the vault by a researcher will remain in the submitted state. The datamanager can approve or reject the package for further processing. A researcher also has the opportunity to unsubmit the package. Because a datamanager only has read access to the research area, he/she cannot edit the org_status directly. To work around this issue the sudo microservices are used to temporarily enable the datamanager to set the org_status to ‘ACCEPTED’ or ‘REJECTED’. The rules can be found in iiDatamanagerPolicies.r and iiSudoPolicies.r. A research group without a datamanager can submit packages to the vault directly. Any submitted folder will be transitioned to ‘ACCEPTED’ state immediately after submission. ",
     "url": "/yoda/design/processes/vault-process.html#datamanager-approval",
     "relUrl": "/design/processes/vault-process.html#datamanager-approval"
-  },"231": {
+  },"237": {
     "doc": "To vault process in research module",
     "title": "Copy to vault",
     "content": "The copy-accepted-folders-to-vault.r cronjob in the tools directory of the research ruleset will copy any folder in ‘ACCEPTED’ state to the vault and set it to ‘SECURED’ state when successful. The copy is done recursively using the uuTreeWalk rule starting from the the ‘ACCEPTED’ folder. The metadata will be copied as well. ",
     "url": "/yoda/design/processes/vault-process.html#copy-to-vault",
     "relUrl": "/design/processes/vault-process.html#copy-to-vault"
-  },"232": {
+  },"238": {
     "doc": "To vault process in research module",
     "title": "Research vault",
     "content": "For each research group a vault group with a vault collection is created. Only the rodsadmin will be a member. This folder is read-only for managers and normal users of the research group. When a datamanager group for the category is present it will get read-only access as well. Inheritance is switched off. This makes it possible to manage permissions for each vault package separately. A datamanager gets control over it. ",
     "url": "/yoda/design/processes/vault-process.html#research-vault",
     "relUrl": "/design/processes/vault-process.html#research-vault"
-  },"233": {
+  },"239": {
     "doc": "To vault process in research module",
     "title": "Granting and revoking read access to the vault for the research group",
     "content": "The datamanager is allowed to use the sudo microservice msiSudoObjAclSet to grant and revoke read access to packages in the vault. This is configured in iiSudoPolicies.r and iiDatamanagerPolicies.r to not interfere with existing sudo policies in the irods-ruleset-uu. The only action the datamanager is allowed to do is set permissions starting from the root of a vault package to read for the research group with the same basename as the vault. ",
     "url": "/yoda/design/processes/vault-process.html#granting-and-revoking-read-access-to-the-vault-for-the-research-group",
     "relUrl": "/design/processes/vault-process.html#granting-and-revoking-read-access-to-the-vault-for-the-research-group"
-  },"234": {
+  },"240": {
     "doc": "To vault process in research module",
     "title": "No datamanager",
     "content": "When there is no datamanager is present the permissions can only be managed by the rodsadmin. Read-only for the research group by default could be implemented. ",
     "url": "/yoda/design/processes/vault-process.html#no-datamanager",
     "relUrl": "/design/processes/vault-process.html#no-datamanager"
-  },"235": {
+  },"241": {
     "doc": "Vault space",
     "title": "Vault space",
     "content": " ",
     "url": "/yoda/design/overview/vault-space.html",
     "relUrl": "/design/overview/vault-space.html"
-  },"236": {
+  },"242": {
     "doc": "Vault space",
     "title": "Introduction",
     "content": "The research space is described in this document. The state diagram describes the possible states a folder in the research space can be in. In the sequence diagram the interactions between the actors in the research space are documented. ",
     "url": "/yoda/design/overview/vault-space.html#introduction",
     "relUrl": "/design/overview/vault-space.html#introduction"
-  },"237": {
+  },"243": {
     "doc": "Vault space",
     "title": "State diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-space.html#state-diagram",
     "relUrl": "/design/overview/vault-space.html#state-diagram"
-  },"238": {
+  },"244": {
     "doc": "Vault space",
     "title": "Sequence diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-space.html#sequence-diagram",
     "relUrl": "/design/overview/vault-space.html#sequence-diagram"
-  },"239": {
+  },"245": {
     "doc": "Wall of Fame",
     "title": "Wall of Fame",
     "content": "This is a list (in alphabetic order and not complete) of contributors to Yoda. Thanks goes to these wonderful people! . | Jurgen AlebregtseUntil 11/2018 | Felix A. Croes Until 07/2019 | Roy van Elk Active | Paul Frederiks Until 01/2018 | . | Rick van de Hoef Active | Hans Kleinloog Until 07/2019 | Jan de Mooij Until 08/2016 | Harm de Raaff Active | . | Chris Smeele Until 08/2020 | Ton Smeele Until 03/2021 | Lazlo Westerhof Active | . ",
     "url": "/yoda/development/wall-of-fame.html",
     "relUrl": "/development/wall-of-fame.html"
-  },"240": {
+  },"246": {
     "doc": "Yoda MOAI service",
     "title": "Yoda MOAI service",
     "content": " ",
     "url": "/yoda/design/overview/yoda-moai.html",
     "relUrl": "/design/overview/yoda-moai.html"
-  },"241": {
+  },"247": {
     "doc": "Yoda MOAI service",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/yoda-moai.html#overview",
     "relUrl": "/design/overview/yoda-moai.html#overview"
-  },"242": {
+  },"248": {
     "doc": "Yoda MOAI service",
     "title": "Yoda MOAI",
     "content": "MOAI offers harvesting functionality following the OAI-PMH standard with the flexibility to serve different metadata prefixes. Currently, Dublin Core and DataCite are implemented as a metadata prefix. ",
     "url": "/yoda/design/overview/yoda-moai.html#yoda-moai",
     "relUrl": "/design/overview/yoda-moai.html#yoda-moai"
-  },"243": {
+  },"249": {
     "doc": "Yoda MOAI service",
     "title": "Provisioning MOAI database",
     "content": "When publishing datasets from within Yoda, the corresponding yoda-metadata.xml is put in a location where the Yoda MOAI service can read and process it. Each 5 minutes (configurable) the indicated folder is scanned and newly published XML files are provisioned to the internal SQLite database. The data is prepared in the database as such that it is able to provide output in XML form, on request of a harvester. Any OAI-PMH harvester able to read the Dublin Core and DataCite format is able to harvest Yoda through the endpoint serviced by MOAI. ",
     "url": "/yoda/design/overview/yoda-moai.html#provisioning-moai-database",
     "relUrl": "/design/overview/yoda-moai.html#provisioning-moai-database"
-  },"244": {
+  },"250": {
     "doc": "Yoda MOAI service",
     "title": "Yoda MOAI Technical",
     "content": "Provision from Yoda . Python -&gt; yoda.py The script reads all yoda-metadata.xml files that have been published and are placed in a specific folder. After processing it puts the found content into the Yoda MOAI SQLite database. ‘Collection name’ as metadata for a dataset A collection name defines an umbrella for different datasets to belong together. By exposing collection names through MOAI, it is possible for a harvester to draw conclusions regarding datasets from the same data supplier about datasets that belong together. Thus, multiple datasets can setup a collection having the same ‘purpose’. The nature of this purpose can be defined by the researchers/datamanagers themselves. In theory, equivalent collection names can exist over multiple Yoda instances. Even within the same Yoda instance. No validation is performed by Yoda software itself. So there is no formal safeguarding/protection of the content of collection name. Harvesters should be (made) aware of that. Initially they should combine collections endpoint/collection . select * from sets; select * from records; . Deliver metadata in datacite format to harvesters . python -&gt; datacite.py Prepares the output data in such a way that the application data of Yoda, originally held in yoda-metadata.xml files, can be outputted to an XML response with DataCite as a metadata prefix. ",
     "url": "/yoda/design/overview/yoda-moai.html#yoda-moai-technical",
     "relUrl": "/design/overview/yoda-moai.html#yoda-moai-technical"
-  },"245": {
+  },"251": {
     "doc": "Setting up YodaDrive development environment",
     "title": "YodaDrive Development Environment",
     "content": "This document describes setting up a development environment for YodaDrive. YodaDrive is a WebDAV driver for Windows, written in C#. Development of YodaDrive requires a Windows development environment with Visual Studio Community 2017 or better. ",
     "url": "/yoda/development/yodadrive-development-environment.html#yodadrive-development-environment",
     "relUrl": "/development/yodadrive-development-environment.html#yodadrive-development-environment"
-  },"246": {
+  },"252": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Virtual Machine",
     "content": "A Windows development environment, if not already available, can be installed on a virtual machine in Azure (Standard B2ms, 2 CPUs, 8 GB memory) or another cloud provider. If creating a VM in the cloud, make sure to restrict RDP access by IP address, or the machine will be hacked in short order even when kept fully up-to-date. ",
     "url": "/yoda/development/yodadrive-development-environment.html#virtual-machine",
     "relUrl": "/development/yodadrive-development-environment.html#virtual-machine"
-  },"247": {
+  },"253": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Visual Studio",
     "content": "Visual Studio Community 2019 is sufficient for development of YodaDrive, since YodaDrive is open source. Make sure that the following components are included for installation: . | .NET Desktop Development | .NET Framework 4.6.1 development tools | . ",
     "url": "/yoda/development/yodadrive-development-environment.html#visual-studio",
     "relUrl": "/development/yodadrive-development-environment.html#visual-studio"
-  },"248": {
+  },"254": {
     "doc": "Setting up YodaDrive development environment",
     "title": "WinFsp",
     "content": "WinFsp is a FUSE-like driver for Windows, which is required by YodaDrive. The version to install is 2019.3 B2 or later, and must match the version used by YodaDrive. WinFsp must be installed manually. Installing it as part of YodaDrive is not sufficient, since the Developer option must be selected during installation. ",
     "url": "/yoda/development/yodadrive-development-environment.html#winfsp",
     "relUrl": "/development/yodadrive-development-environment.html#winfsp"
-  },"249": {
+  },"255": {
     "doc": "Setting up YodaDrive development environment",
     "title": "YodaDrive",
     "content": "Within VS2019, clone from https://github.com/UtrechtUniversity/YodaDrive.git. Then open the KS2Drive.sln solution. ",
     "url": "/yoda/development/yodadrive-development-environment.html#yodadrive",
     "relUrl": "/development/yodadrive-development-environment.html#yodadrive"
-  },"250": {
+  },"256": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Development",
     "content": "YodaDrive is an open source project, which inherits from KS2.Drive. Main development takes part on the development branch. Everything specific to YodaDrive is on the feature/yoda-rebranding branch. When buiding a YodaDrive release, switch to the feature/yoda-rebranding branch, merge the latest changes from the development branch if needed, and update the version number in About/About.xaml. ",
     "url": "/yoda/development/yodadrive-development-environment.html#development",
     "relUrl": "/development/yodadrive-development-environment.html#development"
-  },"251": {
+  },"257": {
     "doc": "Setting up YodaDrive development environment",
     "title": "WinFsp dependency files for YodaDrive distributable",
     "content": "The distributable for YodaDrive can be made to automatically install the proper version of WinFsp as part of the installation process. In order to build the distributable properly, the following has to be done first: . | checkout branch feature/yoda-rebranding | copy the Reference/WinFsp*_* folder to C:\\Program Files (x86)\\Microsoft SDKs\\ClickOnce Bootstrapper\\Packages . | reboot the machine | start Visual Studio | verify that WinFsp is listed among the requirements for publication | . ",
     "url": "/yoda/development/yodadrive-development-environment.html#winfsp-dependency-files-for-yodadrive-distributable",
     "relUrl": "/development/yodadrive-development-environment.html#winfsp-dependency-files-for-yodadrive-distributable"
-  },"252": {
+  },"258": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Developer code signing",
     "content": "The YodaDrive distributable should be signed with the appropriate code signing key. The person in charge of this can install the key within Visual Studio, so that it can automatically sign releases thereafter. ",
     "url": "/yoda/development/yodadrive-development-environment.html#developer-code-signing",
     "relUrl": "/development/yodadrive-development-environment.html#developer-code-signing"
-  },"253": {
+  },"259": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Publication",
     "content": "Publication will generate Application Files, KS2Drive.application and setup.exe in the output directory C:\\OutputKS2Drive. These can then be archived in a ZIP file for distribution. ",
     "url": "/yoda/development/yodadrive-development-environment.html#publication",
     "relUrl": "/development/yodadrive-development-environment.html#publication"
-  },"254": {
+  },"260": {
     "doc": "Setting up YodaDrive development environment",
     "title": "Setting up YodaDrive development environment",
     "content": " ",
     "url": "/yoda/development/yodadrive-development-environment.html",
     "relUrl": "/development/yodadrive-development-environment.html"
-  },"255": {
+  },"261": {
     "doc": "YodaDrive",
     "title": "YodaDrive",
     "content": "YodaDrive is a WebDAV client for Windows, allowing the user to mount a remove WebDAV server as a local drive. YodaDrive is derived from KS2.Drive written by Francois Karam, and depends on WinFsp written by Bill Zissimopoulos. YodaDrive is a C# Visual Studio project, making use of the WebDAVClient library written by Itay Sagui (originally by Kees van den Broek). YodaDrive has been optimized for iRODS servers accessed via davrods, but can be used for any WebDAV server. ",
     "url": "/yoda/design/other/yodadrive.html",
     "relUrl": "/design/other/yodadrive.html"
-  },"256": {
+  },"262": {
     "doc": "YodaDrive",
     "title": "Limitations",
     "content": "Since the remote file system is WebDAV, changes that originate elsewhere are not visible until the user refreshes the view. YodaDrive does not implement WebDAV locking. ",
     "url": "/yoda/design/other/yodadrive.html#limitations",
     "relUrl": "/design/other/yodadrive.html#limitations"
-  },"257": {
+  },"263": {
     "doc": "YodaDrive",
     "title": "Mode of operation",
     "content": "After a remote filesystem has been mounted, calls are made from Windows via WinFsp to Open, Create, Read, Write or Close files. YodaDrive handles Read and Write asynchronously, and all other calls synchronously. For asynchronous Read and Write calls, YodaDrive returns STATUS_PENDING and later performs a callback when the Read or Write completes. Closing a file with pending Write calls will wait for all scheduled writes to complete, before the Close call returns. YodaDrive uses one connection for downloads, and at most two connections for uploads. Read . Downloads for all files in a remote filesystem are all managed on the same connection, with interleaved blocks for Read calls. Each Read call is translated into a separate GET request. Write . Uploads are captured in a single PUT request if possible, as long as all Write calls address consecutive blocks. Each PUT request uses chunked mode, and blocks written are appended as chunks. The initial Write call does not have to address a block at the beginning of the file. At most two uploads can be active at one time. Since consecutive writes are captured in a single PUT request, uploading two large files will prevent any other uploads for the duration. This is handled by postponing Create and Write calls until an upload connection becomes available; Create will pretend to succeed and Write will not have a callback until the actual block could be appended. ReadDirectory . ReadDirectory is performed synchronously, but makes use of the download connection and can be blocked by pending asynchronous Read calls. Note that WinFsp permits ReadDirectory itself to be asynchronous, but we do not implement it as such. ",
     "url": "/yoda/design/other/yodadrive.html#mode-of-operation",
     "relUrl": "/design/other/yodadrive.html#mode-of-operation"
-  },"258": {
+  },"264": {
     "doc": "YodaDrive",
     "title": "State Diagrams",
     "content": ". ",
     "url": "/yoda/design/other/yodadrive.html#state-diagrams",
     "relUrl": "/design/other/yodadrive.html#state-diagrams"
-  },"259": {
-    "doc": "Theme packaging",
-    "title": "Theme packaging",
-    "content": "# Theme packaging ## Overriding the default templates and static files with user defined themes Yoda allows for developers to add themes to the default (Utrecht University) theme. Thus adding the possibility for developers to tweak a Yoda-intstance to their own look and feel. Adding themes can be accomplished by overriding the default templates and static files that are supplied within the default (Utrecht University) Yoda. Overriding can be done on two levels: 1) Template (HTML) overriding 2) Static (css/img/js) overriding ## Templates in Yoda In the default setup, based on a modularly constructed flask environment, the required html templates are organized as follows: /var/www/yoda &nbsp;&nbsp;&nbsp;&nbsp;/general/templates/general/\\*.html &nbsp;&nbsp;&nbsp;&nbsp;/module_name/templates/module_name/\\*.html in which the general directory holds all basic html files, for instance the foundation of the application, in which the modules can reside. ## Overriding templates (HTML) flask.cfg holds the yoda theme (filled by ansible but can be manually overridden): e.g. YODA_THEME = 'vu' YODA_THEME_PATH = '/var/www/yoda/themes' When building a webpage yoda software first looks into the yoda/themes/vu directory whether a requested template is placed at that location. If so, this will be used (thus overriding the default supplied template). If not, the software will use the default template as supplied in the default (Utrecht University) situation. The structure under yoda/themes/vu must be the same as the default structure as well as the template names must be the same. E.g.: /var/yoda/themes &nbsp;&nbsp;&nbsp;&nbsp;/uu1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/general/base.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/research/browse.html &nbsp;&nbsp;&nbsp;&nbsp;... &nbsp;&nbsp;&nbsp;&nbsp;/uu2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/research/revision.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/vault/browse.html &nbsp;&nbsp;&nbsp;&nbsp;... In the above example following default HTML files will be overridden when uu1 or uu2 is selected as a theme: For uu1: /var/www/yoda/general/templates/general/base.html /var/www/yoda/research/templates/research/browse.html For uu2: /var/www/yoda/research/templates/research/revision.html /var/www/yoda/vault/templates/vault/browse.html ## Override static files (js, img, css) To change the appearance or user experience on the frontend it is necessary to be able to override static files as supplied with yoda. This is only possible when the blueprint files are equipped with a different static_url_path stats_bp = Blueprint('stats_bp', \\__name__, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template_folder='templates', &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static_folder='static/stats', &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**static_url_path='/assets'**) On application level, in app.py, the static folder is set to 'assets' as well: app = Flask(\\__name__, **static_folder='assets'**) When the frontend requests for url's holding the keyword 'assets' it will check whether the set theme holds the requested static file according to following structure: /var/yoda/themes &nbsp;&nbsp;&nbsp;&nbsp; /uu1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/static/css &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/js/... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/research/static &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/css/.. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/js/.. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/vault/static/img/... &nbsp;&nbsp;&nbsp;&nbsp;/uu2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/static/css/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/research/static/js/ If the requested file is not found, the default (Utrecht University) static file will be used. General level url request: requested url = /assets/css/yoda-portal.css When present, /yoda/themes/uu1/static/css/yoda-portal.css is returned. If not present fall back to default, /yoda/static/css/yoda-portal.css is returned Modular level url request: requested url = /research/assets/css/research.css When present, /yoda/themes/uu1/research/static/css/yoda-portal.css is returned. If not present fall back to default /yoda/research/static/research/css/yoda-portal.css is returned ## Resulting theme package structure Putting templates and css together results in following theme package structure /uu1 &nbsp;&nbsp;&nbsp;&nbsp;/static/css/... &nbsp;&nbsp;&nbsp;&nbsp;/research &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/template.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/static/css/... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/js/... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/img/... &nbsp;&nbsp;&nbsp;&nbsp;... /uu2 &nbsp;&nbsp;&nbsp;&nbsp;/static/css/... &nbsp;&nbsp;&nbsp;&nbsp;/research &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/template.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/static/css/... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/js/... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/img/... &nbsp;&nbsp;&nbsp;&nbsp;... /vu &nbsp;&nbsp;&nbsp;&nbsp;/static/css/... &nbsp;&nbsp;&nbsp;&nbsp;/research &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/template.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/static/css/... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/js/... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/img/... &nbsp;&nbsp;&nbsp;&nbsp;... ",
-    "url": "/yoda/design/overview/theme-packages.html",
-    "relUrl": "/design/overview/theme-packages.html"
   }
 }
