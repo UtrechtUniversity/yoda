@@ -18,7 +18,8 @@ has_toc: false
 - [Datarequests module](overview/data-requests.html)
 - [Group manager](overview/group-manager.html)
 - [Authentication](overview/authentication.html)
-- [External user service](overview/external-user-service.html)
+- [Theme Packages](overview/theme-packages.html)
+- [External User Service](overview/external-user-service.html)
 - [Yoda OAI-PMH endpoint](overview/yoda-moai.html)
 
 ## Metadata
@@ -29,6 +30,7 @@ has_toc: false
 
 ## Processes
 - [Asynchronous and privileged execution](processes/async-system-execution.html)
+- [List of asynchronous processes](processes/asynchronous-processes.html)
 - [Locking mechanism](processes/locking-mechanism.html)
 - [Publication process](processes/publication-process.html)
 - [Revision management](processes/revisions.html)

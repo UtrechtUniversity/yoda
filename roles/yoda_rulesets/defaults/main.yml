@@ -71,6 +71,9 @@ eus_api_port: 8443                      # External User Service API port
 eus_api_secret: PLACEHOLDER             # External User Service API secret
 
 enable_intake: false                    # Enable intake module
+intake_groups: []                       # List of intake_groups. Use the names without "grp-intake-"
+                                        # For example: "projectabc" for "grp-intake-projectabc"
+
 enable_datarequest: false               # Enable datarequest module
 
 yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
