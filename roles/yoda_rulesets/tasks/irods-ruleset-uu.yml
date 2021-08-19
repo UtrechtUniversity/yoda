@@ -243,6 +243,30 @@
     group: '{{ irods_service_account }}'
     mode: '0644'
 
+- name: Install script for moving intake collections to the vault
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  template:
+    src: job_movetovault.r.j2
+    dest: '~{{ irods_service_account }}/.irods/job_movetovault.r'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: '0644'
+  # This script is provided by the test playbook for development/test servers.
+  when: enable_intake and yoda_environment not in ["development","testing"]
+
+- name: Install script for moving intake collections to the vault
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  template:
+    src: job_movetovault.r.j2
+    dest: '~{{ irods_service_account }}/.irods/job_movetovault.r'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: '0644'
+  # This script is provided by the test playbook for development/test servers.
+  when: enable_intake and yoda_environment not in ["development","testing"]
+
 
 - name: Configure cronjob to process publications
   become_user: "{{ irods_service_account }}"
@@ -270,6 +294,45 @@
     minute: '0'
     hour: '2'
     job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
+
+
+- name: Configure cronjob for moving collections from intake to vault
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'job_movetovault.r'
+    minute: '*/5'
+    job: >
+      /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
+      /var/lib/irods/.irods/job_movetovault.r >>$HOME/iRODS/server/log/job_movetovault.log 2>&1
+  # This script is provided by the test playbook for development/test servers.
+  when: enable_intake and yoda_environment not in ["development","testing"]
+
+
+- name: Ensure that ExecCmd dir exists
+  file:
+    path: /var/lib/irods/msiExecCmd_bin
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: 0755
+    state: directory
+  when: not ansible_check_mode
+
+
+- name: Copy scripts to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    remote_src: yes
+    src: "/etc/irods/irods-ruleset-uu/tools/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: 0755
+  when: not ansible_check_mode
+  with_items:
+    - securecopy.sh
+    - scheduled-copytovault.sh
+    - admin-vaultactions.sh
+    - admin-vaultingest.sh
 
 
 - name: Set configuration AVUs for research ruleset to system collection
