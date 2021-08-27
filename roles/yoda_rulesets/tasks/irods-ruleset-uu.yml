@@ -386,11 +386,21 @@
   when: enable_datarequest and not ansible_check_mode and datarequest_system_collection.stderr.find('does not exist') >= 0
 
 
-- name: Ensure datarequest schemas exist
+- name: Find out if datarequest schema collection exists
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command: 'ils /{{ irods_zone }}/yoda/datarequest/schemas'
+  ignore_errors: True
+  register: datarequest_schema_collection
+  changed_when: False
+  when: enable_datarequest and not ansible_check_mode
+
+
+- name: Install default datarequest module schemas if they do not exist
   become_user: "{{ irods_service_account }}"
   become: yes
   command: "/etc/irods/irods-ruleset-uu/tools/install-datarequest-schemas.sh '{{ irods_zone }}'"
-  when: enable_datarequest and not ansible_check_mode
+  when: enable_datarequest and not ansible_check_mode and datarequest_schema_collection.stderr.find('does not exist') >= 0
 
 
 - name: Find out if Yoda data requests data directory is present
