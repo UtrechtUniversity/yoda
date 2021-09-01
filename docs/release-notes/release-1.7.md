@@ -12,7 +12,7 @@ Released: May 2021
 ## What's new
 ### Features
 - Theming capability for all available Yoda modules using Bootstrap 4
-- [Support](../administration/configuring-openidc.html) for MFA login on the web portal using OIDC
+- [Support](../administration/configuring-openidc.md) for MFA login on the web portal using OIDC
 - [API](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/irods-ruleset-uu/api.json) access for all currently used functionality used by the Yoda frontend for all modules
 - Landingpage support for specific metadata forms (HPTlab and Teclab) for Utrecht University Geo Faculty
 - The CC-0 (Creative Commons zero) license is added to allow publishing data under this license

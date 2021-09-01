@@ -17,7 +17,7 @@ Released: November 2020
 - Increase upload limit (300MB)
 - Metadata format changed from XML to JSON
 - Add support for geo location in metadata schemas
-- Add support for datarequest module ([installation instructions](../administration/installing-datarequest-module.html))
+- Add support for datarequest module ([installation instructions](../administration/installing-datarequest-module.md))
 - New tool to check mail configuration
 - Upgrade to iRODS v4.2.7
 - Deprecate support for TLS 1.0 and TLS 1.1 (use `legacy_tls` flag to enable support for TLS 1.0 and TLS 1.1)
