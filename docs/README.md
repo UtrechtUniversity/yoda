@@ -40,8 +40,9 @@ It provides researchers and their partners with a workspace and an archive that 
 ## Software design
 
 ### API
-- [API documentation](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/irods-ruleset-uu/api.json)
-
+- [Core API documentation](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/UtrechtUniversity/irods-ruleset-uu/gh-pages/api_core.json)
+- [Intake module API documentation](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/UtrechtUniversity/irods-ruleset-uu/gh-pages/api_intake.json)
+- [Data request module API documentation](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/UtrechtUniversity/irods-ruleset-uu/gh-pages/api_datarequest.json)
 ### System
 - [System overview](design/system-overview.md)
 - [Research space](design/research-space.md)
