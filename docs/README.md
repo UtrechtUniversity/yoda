@@ -26,7 +26,6 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Installing preservable file formats](administration/installing-preservable-file-formats.md)
 - [Installing metadata schemas](administration/installing-metadata-schemas.md)
 - [Upgrading metadata schemas](administration/upgrading-metadata-schemas.md)
-- [Background jobs](administration/background-jobs.md)
 - [Troubleshooting publication](administration/troubleshooting-publication.md)
 - [Restore collection](administration/restore-collection.md)
 - [Configuring OpenId Connect](administration/configuring-openidc.md)
@@ -43,6 +42,7 @@ It provides researchers and their partners with a workspace and an archive that 
 - [Core API documentation](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/UtrechtUniversity/irods-ruleset-uu/gh-pages/api_core.json)
 - [Intake module API documentation](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/UtrechtUniversity/irods-ruleset-uu/gh-pages/api_intake.json)
 - [Data request module API documentation](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/UtrechtUniversity/irods-ruleset-uu/gh-pages/api_datarequest.json)
+
 ### System
 - [System overview](design/system-overview.md)
 - [Research space](design/research-space.md)
@@ -61,6 +61,7 @@ It provides researchers and their partners with a workspace and an archive that 
 
 ### Processes
 - [Asynchronous and privileged execution](design/async-system-execution.md)
+- [List of asynchronous processes](design/asynchronous-processes.md)
 - [Locking mechanism](design/locking-mechanism.md)
 - [Publication process](design/publication-process.md)
 - [Revision management](design/revisions.md)
