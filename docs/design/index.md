@@ -23,19 +23,19 @@ has_toc: false
 - [Yoda OAI-PMH endpoint](overview/yoda-moai.md)
 
 ## Metadata
-- [Metadata schema identifier](metadata-schema-identifier.md)
-- [Metadata form](metadata-form.md)
-- [Metadata mappings](metadata-mappings.md)
-- [Metadata schemas](metadata-schemas.md)
+- [Metadata schema identifier](metadata/metadata-schema-identifier.md)
+- [Metadata form](metadata/metadata-form.md)
+- [Metadata mappings](metadata/metadata-mappings.md)
+- [Metadata schemas](metadata/metadata-schemas.md)
 
 ## Processes
-- [Asynchronous and privileged execution](async-system-execution.md)
-- [List of asynchronous processes](asynchronous-processes.md)
-- [Locking mechanism](locking-mechanism.md)
-- [Publication process](publication-process.md)
-- [Revision management](revisions.md)
-- [Vault process](vault-process.md)
+- [Asynchronous and privileged execution](processes/async-system-execution.md)
+- [List of asynchronous processes](processes/asynchronous-processes.md)
+- [Locking mechanism](processes/locking-mechanism.md)
+- [Publication process](processes/publication-process.md)
+- [Revision management](processes/revisions.md)
+- [Vault process](processes/vault-process.md)
 
 ## Other
-- [Python plugin](python-plugin.md)
-- [Yoda drive](yodadrive.md)
+- [Python plugin](other/python-plugin.md)
+- [Yoda drive](other/yodadrive.md)
