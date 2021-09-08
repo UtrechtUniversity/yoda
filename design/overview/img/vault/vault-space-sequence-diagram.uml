@@ -1,0 +1,27 @@
+@startuml
+skinparam padding 2
+skinparam shadowing false
+
+actor       Researcher  as researcher
+actor       Datamanager as datamanager
+participant Yoda        as yoda
+
+== Approved data package ==
+researcher   -> yoda        : Submit for publication
+note over yoda              : SUBMITTED_FOR_PUBLICATION
+yoda        --> datamanager : Submitted notification
+datamanager  -> yoda        : Approve for publication
+yoda        --> researcher  : Approved notification
+note over yoda              : APPROVED_FOR_PUBLICATION
+yoda         -> yoda        : Publish
+note over yoda              : PUBLISHED
+yoda        --> researcher  : Published notification
+yoda        --> datamanager : Published notification
+== Canceled data package ==
+researcher   -> yoda        : Submit for publication
+note over yoda              : SUBMITTED_FOR_PUBLICATION
+yoda        --> datamanager : Submitted notification
+datamanager  -> yoda        : Cancel publication
+yoda        --> researcher  : Canceled notification
+note over yoda              : UNPUBLISHED
+@enduml
