@@ -8,7 +8,6 @@ It enables researchers and their partners to securely deposit, share, publish an
 
 This repository is the staring point for using Yoda and contains the [Ansible](https://docs.ansible.com) scripts for automatic deployment of Yoda.
 
-
 ## Requirements
 ### Control machine requirements
 * [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.9)
