@@ -18,3 +18,9 @@
     name: nodejs-8*
     state: present
   when: not ansible_check_mode
+
+
+- name: Ensure SASS compiler package is installed
+  npm:
+    name: sass
+    global: yes
