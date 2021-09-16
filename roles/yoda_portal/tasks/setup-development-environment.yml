@@ -1,26 +1,24 @@
 ---
 # copyright Utrecht University
 
-- name: Import RPM key for NodeSource
+- name: Remove RPM key for NodeSource
   rpm_key:
     key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
-    state: present
+    state: absent
 
 
-- name: Add NodeSource repositories for Node.js
+- name: Ensure Node.js v8 is absent
   package:
-    name: "https://rpm.nodesource.com/pub_8.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm"
-    state: present
+    name:
+      - nodejs-8*
+      - nodesource-release
+    state: absent
 
 
-- name: Ensure Node.js and npm are installed
-  package:
-    name: nodejs-8*
-    state: present
-  when: not ansible_check_mode
-
-
-- name: Ensure SASS compiler package is installed
-  npm:
-    name: sass
-    global: yes
+- name: Ensure NVM is installed
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
