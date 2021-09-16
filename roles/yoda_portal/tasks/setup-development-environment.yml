@@ -15,10 +15,11 @@
     state: absent
 
 
-- name: Ensure NVM is installed
+- name: Ensure nvm is installed
   become_user: "{{ yoda_deployment_user }}"
   become: yes
-  shell: >
+  shell: |
+    set -o pipefail
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
