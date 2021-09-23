@@ -25,5 +25,5 @@
 
 - name: Ensure iRODS runtime is installed
   package:
-    name: irods-rule-engine-plugin-indexing-4.2.10-1
+    name: irods-rule-engine-plugin-indexing-4.2.10.0-1
     state: present
