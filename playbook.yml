@@ -81,6 +81,7 @@
     - irods_runtime
     - irods_microservices
     - irods_rule_engine_plugin_indexing
+    - irods_rule_engine_plugin_elasticsearch
     - elasticsearch
     - composable_resources
     - irods_completion

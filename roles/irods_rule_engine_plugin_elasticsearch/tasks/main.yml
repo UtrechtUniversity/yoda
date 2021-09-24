@@ -23,7 +23,7 @@
     state: absent
 
 
-- name: Ensure iRODS rule engine plugin indexing is installed
+- name: Ensure iRODS rule engine plugin elasticsearch is installed
   package:
-    name: irods-rule-engine-plugin-indexing-4.2.10.0-1
+    name: irods-rule-engine-plugin-elasticsearch-4.2.10.0-1
     state: present
