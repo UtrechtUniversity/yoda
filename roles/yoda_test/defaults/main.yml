@@ -62,6 +62,7 @@ test_groups:
     category: default-0
     subcategory: default-0
     dataClassification:
+
   - groupName: research-default-1
     category: default-1
     subcategory: default-1
@@ -70,6 +71,16 @@ test_groups:
     category: default-1
     subcategory: default-1
     dataClassification:
+
+  - groupName: research-default-2
+    category: default-2
+    subcategory: default-2
+    dataClassification: unspecified
+  - groupName: datamanager-default-2
+    category: default-2
+    subcategory: default-2
+    dataClassification:
+
   - groupName: research-hptlab-0
     category: hptlab-0
     subcategory: hptlab-0
@@ -78,6 +89,7 @@ test_groups:
     category: hptlab-0
     subcategory: hptlab-0
     dataClassification:
+
   - groupName: research-teclab-0
     category: teclab-0
     subcategory: teclab-0
@@ -86,6 +98,7 @@ test_groups:
     category: teclab-0
     subcategory: teclab-0
     dataClassification:
+
   - groupName: research-core-0
     category: core-0
     subcategory: core-0
@@ -93,6 +106,15 @@ test_groups:
   - groupName: datamanager-core-0
     category: core-0
     subcategory: core-0
+    dataClassification:
+
+  - groupName: research-core-1
+    category: core-1
+    subcategory: core-1
+    dataClassification: unspecified
+  - groupName: datamanager-core-1
+    category: core-1
+    subcategory: core-1
     dataClassification:
 
   - groupName: research-initial
@@ -167,6 +189,19 @@ test_groupusers:
     user: datamanager
     role: manager
 
+  - groupName: research-core-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-core-1
+    user: researcher
+    role: normal
+  - groupName: datamanager-core-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-core-1
+    user: datamanager
+    role: manager
+
   - groupName: research-default-0
     user: functionaladminpriv
     role: manager
@@ -190,6 +225,19 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-default-1
+    user: datamanager
+    role: manager
+
+  - groupName: research-default-2
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-default-2
+    user: researcher
+    role: normal
+  - groupName: datamanager-default-2
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-default-2
     user: datamanager
     role: manager
 
@@ -330,9 +378,11 @@ test_groupusers:
 deletion_research_groups:
   - research: default-0
   - research: default-1
+  - research: default-2
   - research: hptlab-0
   - research: teclab-0
   - research: core-0
+  - research: core-1
   - research: initial
   - research: initial1
   - research: revisions
@@ -340,9 +390,11 @@ deletion_research_groups:
 deletion_datamanager_groups:
   - datamanager: default-0
   - datamanager: default-1
+  - datamanager: default-2
   - datamanager: hptlab-0
   - datamanager: teclab-0
   - datamanager: core-0
+  - datamanager: core-1
   - datamanager: initial
 
 deletion_grp_groups:

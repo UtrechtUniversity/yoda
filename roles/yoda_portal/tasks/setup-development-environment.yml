@@ -1,0 +1,25 @@
+---
+# copyright Utrecht University
+
+- name: Remove RPM key for NodeSource
+  rpm_key:
+    key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
+    state: absent
+
+
+- name: Ensure Node.js v8 is absent
+  package:
+    name:
+      - nodejs-8*
+      - nodesource-release
+    state: absent
+
+
+- name: Ensure nvm is installed
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  shell: |
+    set -o pipefail
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
