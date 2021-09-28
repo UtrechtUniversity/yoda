@@ -1,0 +1,11 @@
+.page-content img {
+    max-width: 100%;
+}
+
+.page-content-inner h1 {
+    display: none;
+}
+
+h2 {
+    color: #339966;
+}
