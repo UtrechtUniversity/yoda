@@ -162,9 +162,11 @@ intake_groups                | List of intake groups (without the "grp-intake-" 
 
 ### Datarequest module configuration
 
-Variable                     | Description
------------------------------|---------------------
-enable_datarequest           | Enable datarequest module
+Variable                       | Description
+-------------------------------|---------------------
+enable_datarequest             | Enable datarequest module
+datarequest_help_contact_name  | Help contact name
+datarequest_help_contact_email | Help contact email address
 
 ### Mail notifications
 
