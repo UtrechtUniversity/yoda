@@ -44,6 +44,7 @@ schemas:
     - default-1
     - hptlab-0
     - teclab-0
+    - dag-0
 
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 
