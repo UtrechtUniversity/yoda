@@ -1,0 +1,27 @@
+@startuml
+skinparam padding 2
+skinparam shadowing false
+
+actor       Researcher  as researcher
+actor       Datamanager as datamanager
+participant Yoda        as yoda
+
+== Accepted folder ==
+researcher   -> yoda        : Submit for vault
+note over yoda              : SUBMITTED
+yoda        --> datamanager : Submitted notification
+datamanager  -> yoda        : Accept for vault
+yoda        --> researcher  : Accepted notification
+note over yoda              : ACCCEPTED
+yoda         -> yoda        : Secure in vault
+note over yoda              : SECURED
+yoda        --> researcher  : Secured notification
+yoda        --> datamanager : Secured notification
+== Rejected folder ==
+researcher   -> yoda        : Submit for vault
+note over yoda              : SUBMITTED
+yoda        --> datamanager : Submitted notification
+datamanager  -> yoda        : Reject for vault
+yoda        --> researcher  : Rejected notification
+note over yoda              : REJECTED
+@enduml
