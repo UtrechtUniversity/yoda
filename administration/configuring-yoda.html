@@ -460,51 +460,53 @@ In the inventory the hosts of an instance are defined, their functional roles an
 
 <p>Example configuration defining the and functional roles of an instance called ‘yoda’:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>yoda:children]
-host1.yoda.test
-host2.yoda.test
-host3.yoda.test
-host4.yoda.test
+yoda_portal
+yoda_database
+yoda_icat
+yoda_resource
+yoda_public
+yoda_eus
 
-<span class="o">[</span>yoda-portal]
+<span class="o">[</span>yoda_portal]
 host1.yoda.test
 
 <span class="c"># leave this out when using an existing database for ICAT</span>
-<span class="o">[</span>yoda-database]
+<span class="o">[</span>yoda_database]
 host1.yoda.test
 
-<span class="o">[</span>yoda-icat]
+<span class="o">[</span>yoda_icat]
 host1.yoda.test
 
-<span class="o">[</span>yoda-resource]
+<span class="o">[</span>yoda_resource]
 host2.yoda.test
 
-<span class="o">[</span>yoda-public]
+<span class="o">[</span>yoda_public]
 host3.yoda.test
 
-<span class="o">[</span>yoda-eus]
+<span class="o">[</span>yoda_eus]
 host4.yoda.test
 </code></pre></div></div>
 
 <p>Add the new functional roles of the instance to the corresponding groups.
 For example:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>portals:children]
-yoda-portal
+yoda_portal
 
 <span class="c"># leave this out when using an existing database for ICAT</span>
 <span class="o">[</span>databases:children]
-yoda-database
+yoda_database
 
 <span class="o">[</span>icats:children]
-yoda-icat
+yoda_icat
 
 <span class="o">[</span>resources:children]
-yoda-resource
+yoda_resource
 
 <span class="o">[</span>publics:children]
-yoda-public
+yoda_public
 
 <span class="o">[</span>eus:children]
-yoda-eus
+yoda_eus
 </code></pre></div></div>
 
 <p>Last step to add the hosts of a new Yoda instance is to create configuration files for every new host.
