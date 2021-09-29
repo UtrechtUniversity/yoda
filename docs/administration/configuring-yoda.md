@@ -135,6 +135,7 @@ irods_icat_fqdn              | iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn          | iRODS database fully qualified domain name (FQDN)
 irods_resource_fqdn          | iRODS resource fully qualified domain name (FQDN)
 irods_default_resc           | iRODS default resource name
+irods_resc_trigger_pol       | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
 irods_ssl_verify_server      | Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources              | Definition of iRODS resources of this Yoda instance
 irods_service_type           | Possible values: 'sysv' (System V) or 'systemd'
