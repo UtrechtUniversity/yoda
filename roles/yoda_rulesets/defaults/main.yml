@@ -32,6 +32,7 @@ update_schemas: 0                # Update already installed schemas, formelement
 yoda_random_id_length: 6         # Length of random ID to add to persistent identifier
 irods_default_resc: irodsResc
 irods_repl_resc: irodsRescRepl
+irods_resc_trigger_pol: []
 
 # SURF config: separate resources for research and vault
 resource_research: "{{ irods_default_resc }}"
@@ -44,6 +45,7 @@ schemas:
     - default-1
     - hptlab-0
     - teclab-0
+    - dag-0
 
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 
