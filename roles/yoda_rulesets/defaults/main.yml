@@ -41,8 +41,10 @@ resource_vault: "{{ irods_default_resc }}"
 # Metadata schemas
 schemas:
     - core-0
+    - core-1
     - default-0
     - default-1
+    - default-2
     - hptlab-0
     - teclab-0
     - dag-0
