@@ -174,7 +174,6 @@ oidc_userinfo_uri: https://oauth.mocklab.io/userinfo          # OIDC Userinfo UR
 oidc_scopes: openid                                           # OIDC Scopes
 oidc_acr_values: ""                                           # OIDC Authentication Context Class Reference Values
 oidc_email_field: email                                       # The identifier of the JSON field in the id_token containing the email address (default: email)
-oidc_signin_text: 'Sign in with Mocklab.io'                   # The text to appear on the Sign in button (default: Sign in with OIDC)
 oidc_jwks_uri: https://oauth.mocklab.io/.well-known/jwks.json # The url where the JWKS can be found (Java web key sets)
 oidc_jwt_issuer: https://oauth.mocklab.io                     # The issuer of the JWT tokens ('iss' value in JWT, for verification)
 oidc_req_exp: true      #check that exp (expiration) claim is present

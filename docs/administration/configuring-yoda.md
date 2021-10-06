@@ -247,5 +247,5 @@ oidc_userinfo_uri	| OIDC Userinfo URI
 oidc_scopes         | OIDC Scopes
 oidc_acr_values		| OIDC Authentication Context Class Reference Values
 oidc_email_field	| The identifier of the JSON field in the `id_token` containing the email address. Default: `email`
-oidc_signin_text	| The text to appear on the Sign in button. Default: *Sign in with OIDC*
+oidc_signin_text	| The text to appear on the Sign in button. Default: *Sign in with OIDC* (deprecated since v1.8)
 oidc_public_key     | OIDC jwks public key (base64 encoded PEM format)
