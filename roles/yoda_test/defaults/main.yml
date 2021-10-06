@@ -117,6 +117,19 @@ test_groups:
     subcategory: core-1
     dataClassification:
 
+  - groupName: research-dag-0
+    category: dag-0
+    subcategory: dag-0
+    dataClassification: unspecified
+  - groupName: datamanager-dag-0
+    category: dag-0
+    subcategory: dag-0
+    dataClassification:
+  - groupName: deposit-pilot
+    category: dag-0
+    subcategory: dag-0
+    dataClassification: unspecified
+
   - groupName: research-initial
     category: initial
     subcategory: initial
@@ -154,10 +167,6 @@ test_groups:
     subcategory: intake-intake
     dataClassification: unspecified
   - groupName: research-revisions
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: deposit-test
     category: initial
     subcategory: initial
     dataClassification: unspecified
@@ -267,6 +276,19 @@ test_groupusers:
     user: datamanager
     role: manager
 
+  - groupName: research-dag-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-dag-0
+    user: researcher
+    role: normal
+  - groupName: datamanager-dag-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-dag-0
+    user: datamanager
+    role: manager
+
   - groupName: datarequests-research-project-managers
     user: projectmanager
     role: manager
@@ -304,10 +326,10 @@ test_groupusers:
     user: viewer
     role: reader
 
-  - groupName: deposit-test
+  - groupName: deposit-pilot
     user: functionaladminpriv
     role: manager
-  - groupName: deposit-test
+  - groupName: deposit-pilot
     user: researcher
     role: normal
 
@@ -383,9 +405,15 @@ deletion_research_groups:
   - research: teclab-0
   - research: core-0
   - research: core-1
+  - research: dag-0
+  - research: dag-0
   - research: initial
   - research: initial1
   - research: revisions
+
+deletion_deposit_groups:
+  - deposit: test
+  - deposit: pilot
 
 deletion_datamanager_groups:
   - datamanager: default-0
@@ -395,6 +423,7 @@ deletion_datamanager_groups:
   - datamanager: teclab-0
   - datamanager: core-0
   - datamanager: core-1
+  - datamanager: dag-0
   - datamanager: initial
 
 deletion_grp_groups:

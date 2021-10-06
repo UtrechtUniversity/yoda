@@ -36,28 +36,30 @@ In the inventory the hosts of an instance are defined, their functional roles an
 Example configuration defining the and functional roles of an instance called 'yoda':
 ```bash
 [yoda:children]
-host1.yoda.test
-host2.yoda.test
-host3.yoda.test
-host4.yoda.test
+yoda_portal
+yoda_database
+yoda_icat
+yoda_resource
+yoda_public
+yoda_eus
 
-[yoda-portal]
+[yoda_portal]
 host1.yoda.test
 
 # leave this out when using an existing database for ICAT
-[yoda-database]
+[yoda_database]
 host1.yoda.test
 
-[yoda-icat]
+[yoda_icat]
 host1.yoda.test
 
-[yoda-resource]
+[yoda_resource]
 host2.yoda.test
 
-[yoda-public]
+[yoda_public]
 host3.yoda.test
 
-[yoda-eus]
+[yoda_eus]
 host4.yoda.test
 ```
 
@@ -65,23 +67,23 @@ Add the new functional roles of the instance to the corresponding groups.
 For example:
 ```bash
 [portals:children]
-yoda-portal
+yoda_portal
 
 # leave this out when using an existing database for ICAT
 [databases:children]
-yoda-database
+yoda_database
 
 [icats:children]
-yoda-icat
+yoda_icat
 
 [resources:children]
-yoda-resource
+yoda_resource
 
 [publics:children]
-yoda-public
+yoda_public
 
 [eus:children]
-yoda-eus
+yoda_eus
 ```
 
 Last step to add the hosts of a new Yoda instance is to create configuration files for every new host.
@@ -138,6 +140,7 @@ irods_icat_fqdn              | iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn          | iRODS database fully qualified domain name (FQDN)
 irods_resource_fqdn          | iRODS resource fully qualified domain name (FQDN)
 irods_default_resc           | iRODS default resource name
+irods_resc_trigger_pol       | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
 irods_ssl_verify_server      | Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources              | Definition of iRODS resources of this Yoda instance
 
@@ -163,9 +166,11 @@ enable_intake                | Enable intake module
 
 ### Datarequest module configuration
 
-Variable                     | Description
------------------------------|---------------------
-enable_datarequest           | Enable datarequest module
+Variable                       | Description
+-------------------------------|---------------------
+enable_datarequest             | Enable datarequest module
+datarequest_help_contact_name  | Help contact name
+datarequest_help_contact_email | Help contact email address
 
 ### Mail notifications
 
