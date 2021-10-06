@@ -1,10 +1,6 @@
 # {{ ansible_managed }}
 # yoda-public-vhost.conf
 
-{% if yoda_public_port != 443 %}
-Listen {{ yoda_public_port }}
-{% endif %}
-
 <VirtualHost *:{{ yoda_public_port }}>
     DocumentRoot {{ landingpages_root }}
     ServerName {{ yoda_public_fqdn }}

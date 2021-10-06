@@ -5,6 +5,18 @@
 #
 Listen 443 https
 
+{% if yoda_davrods_port != 443 %}
+Listen {{ yoda_davrods_port }}
+{% endif %}
+
+{% if yoda_davrods_anonymous_port != 443 %}
+Listen {{ yoda_davrods_anonymous_port }}
+{% endif %}
+
+{% if yoda_public_port != 443 %}
+Listen {{ yoda_public_port }}
+{% endif %}
+
 ##
 ##  SSL Global Context
 ##

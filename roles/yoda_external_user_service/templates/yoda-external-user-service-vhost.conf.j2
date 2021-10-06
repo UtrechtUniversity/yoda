@@ -42,7 +42,6 @@
     SSLCertificateKeyFile   {{ openssl_private_dir }}/{{ openssl_key_signed }}
 </VirtualHost>
 
-Listen {{ eus_api_port }}
 <VirtualHost *:{{ eus_api_port }}>
     DocumentRoot "/var/www/extuser/api"
     ServerName {{ eus_api_fqdn }}

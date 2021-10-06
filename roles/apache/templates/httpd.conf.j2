@@ -54,6 +54,10 @@ ServerRoot "/etc/httpd"
 #Listen 12.34.56.78:80
 Listen 80
 
+{% if eus_api_port != yoda_davrods_anonymous_port %}
+Listen {{ eus_api_port }}
+{% endif %}
+
 #
 # Dynamic Shared Object (DSO) Support
 #
