@@ -22,7 +22,7 @@ def validate_token(username, token):
         return False
 
     # Check if token email corresponds with username.
-    if username == email:
+    if username == email.lower():
         return True
 
     return False
