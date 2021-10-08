@@ -79,6 +79,7 @@
     - pam_python
     - irods_icat
     - irods_runtime
+    - irods_resource_plugin_s3
     - irods_microservices
     - composable_resources
     - irods_completion
