@@ -337,6 +337,7 @@
   with_items:
     - '{{ irods_icat_port }}/tcp'
     - '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
+  when: change_firewall
   notify: Restart firewall
 
 

@@ -5,3 +5,4 @@
   service:
     name: firewalld
     state: restarted
+  when: change_firewall

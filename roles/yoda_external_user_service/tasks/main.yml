@@ -53,6 +53,7 @@
     state: enabled
     immediate: yes
   notify: Restart firewall
+  when: change_firewall
 
 
 - name: Create Yoda External User Service database

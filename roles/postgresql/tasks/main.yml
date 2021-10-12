@@ -38,7 +38,9 @@
     state: enabled
     immediate: yes
   notify: Restart firewall
-  when: (ansible_fqdn != irods_icat_fqdn)
+  when:
+    - (ansible_fqdn != irods_icat_fqdn)
+    - change_firewall
 
 
 - name: Ensure private key file is available for PostgreSQL

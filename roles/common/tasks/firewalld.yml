@@ -5,6 +5,7 @@
   package:
     name: firewalld
     state: present
+  when: change_firewall
   notify: Restart firewall
 
 
@@ -13,3 +14,4 @@
     name: firewalld
     state: started
     enabled: yes
+  when: change_firewall

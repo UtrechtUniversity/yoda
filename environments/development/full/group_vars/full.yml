@@ -7,6 +7,7 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of 
 
 change_firewall: true                              # Change firewall configuration and restart
 
+#####################
 # Yoda configuration
 instance: full                                     # Name of Yoda instance, as defined in hosts file
 yoda_version: development                          # Git branch, for example: development or release-1.5

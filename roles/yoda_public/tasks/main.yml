@@ -17,4 +17,5 @@
     permanent: true
     state: enabled
     immediate: yes
+  when: change_firewall
   notify: Restart firewall
