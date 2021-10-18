@@ -8,6 +8,7 @@
 - [Research space](research-space.md)
 - [Vault space](research-space.md)
 - [Statistics module](statistics.md)
+- [Intake module](intake.md)
 - [Datarequests module](data-requests.md)
 - [Group manager](group-manager.md)
 - [External user service](external-user-service.md)
