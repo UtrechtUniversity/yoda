@@ -1,0 +1,26 @@
+@startuml
+actor User
+participant Yoda
+participant "Identity Server" as IS
+participant "iRODS" as rods
+
+User->Yoda: GET login page
+Yoda->User: REDIRECT to Identity Server login page
+User->IS: GET login page
+IS->User: RESPONSE login page
+User->IS: POST login credentials
+IS->User: RESPONSE Consent page
+User->IS: POST Consent
+IS->User: REDIRECT Yoda callback with auth code
+User->Yoda: POST callback with auth code
+Yoda->IS: GET Token (using auth code)
+IS->Yoda: RESPONSE Token
+Yoda->IS: GET Userinfo (with username)
+IS->Yoda: RESPONSE Userinfo
+Yoda->rods: POST login with username from userinfo and token as password
+rods->IS: GET Userinfo
+IS->rods: RESPONSE Userinfo
+rods->rods: Compares username\nreceived from Userinfo\nwith the one from Yoda.\nIf equal:
+rods->Yoda: RESPONSE User authenticated
+Yoda->User: RESPONSE Homepage logged in as user
+@enduml
