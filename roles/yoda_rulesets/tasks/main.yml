@@ -8,7 +8,14 @@
     state: present
 
 
-- name: Checkout rulesets from github
+- name: Sanity check ruleset names
+  fail:
+    msg: 'Invalid ruleset name {{ item.name }}'
+  with_items: "{{ extra_rulesets + core_rulesets }}"
+  when: "'/' in item.name or '..' in item.name"
+
+
+- name: Check out rulesets without local patches from Github
   become_user: "{{ irods_service_account }}"
   become: yes
   git:
@@ -17,8 +24,57 @@
     version: "{{ item.version }}"
     update: "{{ update_rulesets }}"
   with_items: "{{ extra_rulesets + core_rulesets }}"
-  when: "'repo' in item"
+  when: "'repo' in item and 'patch' not in item"
   register: repochanges
+
+
+- name: Check out rulesets with local patches from Github
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  git:
+    repo: "{{ item.repo }}"
+    dest: "/etc/irods/repo_{{ item.name }}"
+    version: "{{ item.version }}"
+    update: "{{ update_rulesets }}"
+  with_items: "{{ extra_rulesets + core_rulesets }}"
+  when: "'repo' in item and 'patch' in item"
+  register: repochanges
+
+
+- name: Sync rulesets with repos before applying patches
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  synchronize:
+    src: "/etc/irods/repo_{{ item.name }}/"
+    dest: "/etc/irods/{{ item.name }}"
+    checksum: yes
+    delete: yes
+    rsync_opts:
+     - "--exclude=rules_uu.cfg"
+  delegate_to: "{{ inventory_hostname }}"
+  with_items: "{{ extra_rulesets + core_rulesets }}"
+  when: "not ansible_check_mode and 'repo' in item and 'patch' in item"
+
+
+- name: Create patch files for rulesets
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    dest: "/etc/irods/{{ item.name }}.patch"
+    content: "{{ item['patch'] }}"
+    mode: "0644"
+  with_items: "{{ extra_rulesets + core_rulesets }}"
+  when: "'repo' in item and 'patch' in item"
+
+
+- name: Apply patches to rulesets
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  command:
+    chdir: "/etc/irods/{{ item.name }}"
+    cmd: "git apply /etc/irods/{{ item.name }}.patch"
+  with_items: "{{ extra_rulesets + core_rulesets }}"
+  when: "'repo' in item and 'patch' in item and item['patch'] not in ['']"
 
 
 - name: Find temporary rule files left behind
@@ -44,7 +100,7 @@
   make:
     chdir: "/etc/irods/{{ item.0.name }}"
     target: install
-  when: item.1.changed
+  when: item.1.changed or ( 'repo' in item.0 and 'patch' in item.0 )
   with_together:
     - "{{ extra_rulesets + core_rulesets }}"
     - "{{ repochanges.results }}"

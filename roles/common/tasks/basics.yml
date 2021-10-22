@@ -18,4 +18,5 @@
       - htop
       - git
       - tmux
+      - rsync
     state: present
