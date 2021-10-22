@@ -15,6 +15,7 @@ has_toc: false
 - [Research space](overview/research-space.md)
 - [Vault space](overview/vault-space.md)
 - [Statistics module](overview/statistics.md)
+- [Intake module](overview/intake.md)
 - [Datarequests module](overview/data-requests.md)
 - [Group manager](overview/group-manager.md)
 - [Authentication](overview/authentication.md)
