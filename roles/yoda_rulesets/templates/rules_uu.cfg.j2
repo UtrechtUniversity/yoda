@@ -45,3 +45,9 @@ epic_handle_prefix         = '{{ epic_handle_prefix }}'
 epic_key                   = '{{ credentials_store }}/epic_key.pem'
 epic_certificate           = '{{ credentials_store }}/epic_cert.pem'
 {% endif %}
+
+enable_tokens             = '{{ ["false", "true"][enable_tokens|int] }}'
+{% if enable_tokens %}
+tokens_length              = {{ tokens_length }}
+tokens_lifetime            = {{ tokens_lifetime }}
+{% endif %}

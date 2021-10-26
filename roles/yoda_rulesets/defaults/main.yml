@@ -81,3 +81,8 @@ intake_groups: []                       # List of intake_groups. Use the names w
 enable_datarequest: false               # Enable datarequest module
 
 yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
+
+# Data Access Tokens
+enable_tokens: false                    # Enable data access tokens for webDAV and iCommands
+tokens_length: 32                       # Length of data access tokens
+tokens_lifetime: 72                     # Lifetime of data access tokens (in hours)

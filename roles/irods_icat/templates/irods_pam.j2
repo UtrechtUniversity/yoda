@@ -2,9 +2,10 @@
 #%PAM-1.0
 
 auth        optional      pam_faildelay.so delay={{ pam_fail_delay }}
-auth        sufficient    pam_unix.so
 
+{% if enable_tokens %}
 auth        sufficient      pam_python.so /usr/local/bin/token-auth.py
+{% endif %}
 
 {% if oidc_active is defined and oidc_active is sameas true %}
 auth        sufficient      pam_python.so /var/lib/irods/msiExecCmd_bin/oidc.py
@@ -15,4 +16,4 @@ auth [success=ignore default=1] pam_exec.so /usr/local/bin/is-user-external.sh
 auth [success=done default=die] pam_exec.so expose_authtok /usr/local/bin/external-auth.py
 {% endif %}
 
-auth        required      pam_radius_auth.so
+auth        required    pam_unix.so

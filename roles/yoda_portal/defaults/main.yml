@@ -51,3 +51,6 @@ enable_intake: False                               # Enable intake module
 enable_datarequest: False                          # Enable datarequest module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name
 datarequest_help_contact_email: PLACEHOLDER        # Help contact email
+
+# Data Access Tokens
+enable_tokens: false                    # Enable data access tokens for webDAV and iCommands
