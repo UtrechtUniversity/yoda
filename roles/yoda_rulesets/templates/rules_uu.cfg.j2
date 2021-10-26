@@ -49,6 +49,7 @@ epic_certificate           = '{{ credentials_store }}/epic_cert.pem'
 
 enable_tokens              = '{{ ["false", "true"][enable_tokens|int] }}'
 {% if enable_tokens %}
-token_length               = '{{ tokens_length }}'
-token_lifetime             = '{{ tokens_lifetime }}'
+token_database             = '{{ token_database }}'
+token_length               = '{{ token_length }}'
+token_lifetime             = '{{ token_lifetime }}'
 {% endif %}

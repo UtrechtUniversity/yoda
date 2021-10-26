@@ -158,6 +158,12 @@ update_rulesets              | Update already installed rulesets with git
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
 
+### Deposit module configuration
+
+Variable                     | Description
+-----------------------------|---------------------
+enable_deposit               | Enable deposit module
+
 ### Intake module configuration
 
 Variable                     | Description
@@ -201,11 +207,14 @@ epic_handle_prefix           | EPIC PID prefix
 epic_key                     | EPIC PID key (base64 encoded)
 epic_cert                    | EPIC PID cert (base64 encoded)
 
-### PAM Radius configuration
+### Data Access Tokens configuration
 
-Variable   | Description
------------|---------------------------------------------
-pam_radius_config:           | server, shared secret, timeout (s)
+Variable       | Description
+---------------|---------------------------------------------
+enable_tokens  | Enable data access tokens for webDAV and iCommands
+token_database | Location of the database that contain the tokens
+token_length   | Length of data access tokens
+token_lifetime | Lifetime of data access tokens (in hours)
 
 ### Public host configuration
 

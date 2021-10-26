@@ -55,3 +55,4 @@ irods_max_open_files: 131072
 
 # Data Access Tokens
 enable_tokens: false                    # Enable data access tokens for webDAV and iCommands
+token_database: /etc/irods/irods-ruleset-uu/tokens.db # Location of the database that contain the tokens

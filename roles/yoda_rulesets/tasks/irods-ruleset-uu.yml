@@ -491,6 +491,6 @@
 - name: Ensure token database is present
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: '/etc/irods/irods-ruleset-uu/tools/setup_tokens.sh'
+  command: '/etc/irods/irods-ruleset-uu/tools/setup_tokens.sh {{ token_database }}'
   args:
-    creates: /etc/irods/irods-ruleset-uu/tokens.db
+    creates: "{{ token_database }}"

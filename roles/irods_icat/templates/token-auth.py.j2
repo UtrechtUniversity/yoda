@@ -5,7 +5,7 @@ import sqlite3
 from datetime import datetime
 from traceback import print_exc
 
-TOKEN_DB = '/etc/irods/irods-ruleset-uu/tokens.db'
+TOKEN_DB = '{{ token_database }}'
 
 
 def pam_sm_authenticate(pamh, flags, argv):
