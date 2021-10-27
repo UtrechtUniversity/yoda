@@ -1,0 +1,150 @@
+{
+    "links":[
+        {
+            "rel":"describedby",
+            "href":"https://yoda.uu.nl/schemas/teclab-0/metadata.json"
+        }
+    ],
+    "Discipline":[
+        "Analogue modelling of geologic processes"
+    ],
+    "Lab":[
+        "aa45f98e5c098237d0c57b58e5f953e1"
+    ],
+    "Additional_Lab":[
+        ""
+    ],
+    "Version":"Version 1.0",
+    "Language":"en - English",
+    "Collected":{
+        "Start_Date":"2000-01-01",
+        "End_Date":"2020-01-01"
+    },
+    "GeoLocation":[
+        {
+            "geoLocationBox":{
+                "northBoundLatitude":54.470037612805754,
+                "westBoundLongitude":17.270216562484656,
+                "southBoundLatitude":45.39844997630411,
+                "eastBoundLongitude":0.3964592292167702
+            },
+            "Description_Temporal":{
+                "Start_Date":"2000-01-01",
+                "End_Date":"2010-01-01"
+            },
+            "Description_Spatial":"EUROPE"
+        }
+    ],
+    "Main_Setting":[
+        "basin plain setting"
+    ],
+    "Process_Hazard":[
+        "deformation"
+    ],
+    "Geological_Structure":[
+        "fault"
+    ],
+    "Geomorphical_Feature":[
+        "alluvial and fluvial features"
+    ],
+    "Material":[
+        "Air"
+    ],
+    "Apparatus":[
+        "2D Convection box"
+    ],
+    "Monitoring":[
+        "Conductivity measuring system"
+    ],
+    "Software":[
+        "CloudCompare"
+    ],
+    "Measured_Property":[
+        "Bulk modulus"
+    ],
+    "Tag":[
+        "TAG"
+    ],
+    "Related_Datapackage":[
+        {
+            "Persistent_Identifier":{
+                "Identifier_Scheme":"ARK",
+                "Identifier":"RDP1"
+            },
+            "Relation_Type":"IsCitedBy",
+            "Title":"RELATED DATAPACKAGE"
+        }
+    ],
+    "Funding_Reference":[
+        {
+            "Funder_Reference":"FUNDING REFERENCE",
+            "Funder_Name":"FUNDER NAME",
+            "Award_Number":"GRANT NUMBER",
+            "Award_Name":"GRANT NAME"
+        }
+    ],
+    "Retention_Period":10,
+    "Creator":[
+        {
+            "Name":{
+                "Given_Name":"NAME",
+                "Family_Name":"CREFAMNAME"
+            },
+            "Affiliation":[
+                "Utrecht University"
+            ],
+            "Person_Identifier":[
+                {
+                    "Name_Identifier_Scheme":"ORCID",
+                    "Name_Identifier":"CRE1234"
+                }
+            ]
+        }
+    ],
+    "Contributor":[
+        {
+            "Name":{
+                "Given_Name":"CON",
+                "Family_Name":"CONFAMNAME"
+            },
+            "Affiliation":[
+                "Utrecht University"
+            ],
+            "Person_Identifier":[
+                {
+                    "Name_Identifier_Scheme":"ORCID",
+                    "Name_Identifier":"CON123"
+                }
+            ],
+            "Contributor_Type":"DataCollector"
+        }
+    ],
+    "Contact":[
+        {
+            "Name":{
+                "Given_Name":"NAME",
+                "Family_Name":"CONTFAMNAME"
+            },
+            "Affiliation":[
+                "Utrecht University"
+            ],
+            "Person_Identifier":[
+                {
+                    "Name_Identifier_Scheme":"ORCID",
+                    "Name_Identifier":"CONT123"
+                }
+            ],
+            "Position":"PROJECT DIRECTOR",
+            "Email":"contactperson@contactperson.com"
+        }
+    ],
+    "License":"Creative Commons Attribution 4.0 International Public License",
+    "Data_Access_Restriction":"Open - freely retrievable",
+    "Title":"TITLE",
+    "Description":"ABSTRACT",
+    "Additional_Documentation":"ADDTIONAL TECHNICAL DOCUMENTATION",
+    "Data_Type":"Dataset",
+    "Data_Classification":"Public",
+    "Embargo_End_Date":"2030-01-01",
+    "Dataset_Created":"2020-01-01"
+}

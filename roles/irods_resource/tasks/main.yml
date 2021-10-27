@@ -25,20 +25,6 @@
               services['irods']['state'] == "running" ) )
 
 
-- name: Force stop iRODS in case it was started manually
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  command: '/var/lib/irods/irodsctl stop'
-  when: ( ( irods_service_type == "sysv" and
-              'irods.service' in services and
-              services['irods.service']['source'] == "systemd" and
-              services['irods.service']['state'] == "running" )
-       or ( irods_service_type == "systemd" and
-              'irods' in services and
-              services['irods']['source'] == "sysv"  and
-              services['irods']['state'] == "running" ) )
-
-
 - name: Ensure systemd unit file present
   template:
     src: irods.service.j2
@@ -79,14 +65,14 @@
 - name: Ensure iRODS 4.2.6 packages are absent
   package:
     name:
-      - irods-uu-microservices-4.2.6_0.8.0
-      - irods-sudo-microservices-4.2.6_1.0.0
-      - davrods-4.2.6_1.4.2
-      - irods-runtime-4.2.6
-      - irods-server-4.2.6
-      - irods-rule-engine-plugin-python-4.2.6
-      - irods-icommands-4.2.6
-      - irods-database-plugin-postgres-4.2.6
+      - irods-uu-microservices-4.2.7_0.8.1
+      - irods-sudo-microservices-4.2.7_1.0.0
+      - davrods-4.2.7_1.4.2
+      - irods-runtime-4.2.7
+      - irods-server-4.2.7
+      - irods-rule-engine-plugin-python-4.2.7
+      - irods-icommands-4.2.7
+      - irods-database-plugin-postgres-4.2.7
     state: absent
   notify: Restart iRODS
 
@@ -94,9 +80,9 @@
 - name: Ensure iRODS resource server is installed
   package:
     name:
-      - irods-server-4.2.7-1
-      - irods-runtime-4.2.7-1
-      - irods-rule-engine-plugin-python-4.2.7-1
+      - irods-server-4.2.10-1
+      - irods-runtime-4.2.10-1
+      - irods-rule-engine-plugin-python-4.2.10.0-1
     state: present
   when: not ansible_check_mode
 
@@ -216,11 +202,12 @@
   when: ils is failed
 
 
-- name: Enable or disable iRODS systemd service
+- name: Enable iRODS systemd service
   service:
     name: irods
-    enabled: "{{ 'yes' if irods_enable_service else 'no' }}"
+    enabled: yes
     use: service
+  when: irods_service_type == "systemd"
 
 
 - name: Wait until iRODS server is ready to receive requests

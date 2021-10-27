@@ -9,13 +9,36 @@
     Redirect / https://{{ yoda_portal_fqdn }}/
 </VirtualHost>
 
+
 <VirtualHost *:443>
     DocumentRoot "/var/www/yoda/public"
     ServerName {{ yoda_portal_fqdn }}
+
     <Directory /var/www/yoda>
         AllowOverride All
         Require all granted
     </Directory>
+
+    Alias "/static/" "/var/www/yoda/static/"
+    <Directory "/var/www/yoda/static/">
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    AliasMatch "(?i)^/([^/]+)/static/(.*)$" "/var/www/yoda/$1/static/$1/$2"
+    <Directory ~ "/var/www/yoda/[^/]+/static/.*">
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    WSGIDaemonProcess yodaweb user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} threads=5 python-home=/var/www/yoda/venv
+    WSGIProcessGroup yodaweb
+    WSGIScriptAlias / /var/www/yoda/yoda.wsgi process-group=yodaweb
+    WSGIPassAuthorization On
+
+    Header set Access-Control-Allow-Origin *
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
 
     # intermediate TLS configuration
     SSLEngine               on

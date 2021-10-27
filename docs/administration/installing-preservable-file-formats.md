@@ -1,3 +1,8 @@
+---
+parent: Administration Tasks
+title: Installing lists of preservable file formats
+nav_order: 5
+---
 # Installing lists of preservable file formats
 Preservable file formats are read from iRODS and presented to the user.
 It needs to be a JSON (.json) file which validates against the JSON schema below.

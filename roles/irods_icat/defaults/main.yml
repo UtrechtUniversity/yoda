@@ -31,7 +31,7 @@ pam_radius_config: |
 
 # External Users configuration
 external_users: True
-external_users_domain: uu.nl
+external_users_domain_filter: uu.nl
 eus_api_fqdn: eus.yoda.test
 eus_api_port: 8443
 eus_api_secret: PLACEHOLDER
@@ -52,6 +52,3 @@ irods_service_type: 'sysv'
 # The max number of open files is only effective when
 # irods_service_type has been set to 'systemd'.
 irods_max_open_files: 131072
-
-# Whether to start iRODS at boot time.
-irods_enable_service: True

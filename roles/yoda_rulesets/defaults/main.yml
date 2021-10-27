@@ -10,7 +10,7 @@ core_rulesets:
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "pyportal"
     install_scripts: yes
   - name: core
     ruleset_name: core
@@ -41,10 +41,13 @@ resource_vault: "{{ irods_default_resc }}"
 # Metadata schemas
 schemas:
     - core-0
+    - core-1
     - default-0
     - default-1
+    - default-2
     - hptlab-0
     - teclab-0
+    - dag-0
 
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 

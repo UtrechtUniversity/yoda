@@ -1,3 +1,8 @@
+---
+parent: Administration Tasks
+title: Installing datarequest module
+nav_order: 7
+---
 # Installing datarequest module
 
 ## Before deployment using Ansible

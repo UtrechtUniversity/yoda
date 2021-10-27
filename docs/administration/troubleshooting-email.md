@@ -1,3 +1,8 @@
+---
+parent: Administration Tasks
+title: Troubleshooting email
+nav_order: 11
+---
 # How to troubleshoot email-related issues
 
 In order to verify that sending email messages from Yoda works as
