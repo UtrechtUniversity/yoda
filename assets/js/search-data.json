@@ -37,7 +37,7 @@
   },"6": {
     "doc": "Asynchronous processes",
     "title": "Table of contents",
-    "content": ". | Metadata | Metadata schema update job | Replication | Replication job | Revision management | Revision management - creation job | Revision management - cleanup job | Statistics | Statistics job | Archiving | Archiving - retry-copy-to-vault job | Archiving - intake to vault job | Archiving - publication job | Archiving - vault integrity job | . ",
+    "content": ". | Metadata | Metadata schema update job | Replication | Replication job | Revision management | Revision management - creation job | Revision management - cleanup job | Statistics | Statistics job | Archiving | Archiving - retry-copy-to-vault job | Archiving - intake to vault job | Archiving - publication job | . ",
     "url": "/yoda/design/processes/asynchronous-processes.html#table-of-contents",
     "relUrl": "/design/processes/asynchronous-processes.html#table-of-contents"
   },"7": {
@@ -67,7 +67,7 @@
   },"11": {
     "doc": "Asynchronous processes",
     "title": "Archiving and publication",
-    "content": "Asynchronous jobs are also used to copy data packages from a research or intake folder to the vault, as well as to process publications. Furthermore, an asynchronous job for verifying vault data integrity is available. Retry copy to vault job . |   |   | . | Script | /etc/irods/irods-ruleset-uu/tools/retry-copy-to-vault.r | . | Purpose | copy data packages from research groups to the vault | . | Lock file | no lock file, but collection metadata attribute records processing status | . | Typically started by | cronjob, runs every minute | . By default, groups that are to be copied to the vault are marked with a metadata attribute named cronjob_copy_to_vault. Intake copy to vault job . |   |   | . | Script | /var/lib/irods/.irods/job_movetovault.r | . | Purpose | copy data packages from intake groups to the vault | . | Lock file | uses lock attribute on the vault folder | . | Typically started by | cronjob, runs every five minutes | . Process publication job . |   |   | . | Script | /etc/irods/irods-ruleset-uu/tools/process-publication.r | . | Purpose | Asynchronously handles publication and depublication of data packages | . | Lock file | no lock file, but status is recorded in metadata | . | Typically started by | cronjob, runs every minute | . Vault integrity check job . |   |   | . | Script | irods-ruleset-uu/tools/check-vault-integrity.r | . | Purpose | Verifies checksums of data objects in the vault | . | Scheduling | Delayed rule queue | . | Typically started by | manually by administrator | . All data objects with data integrity issues are logged in the rodsLog. Verifying vault integrity can take a long time. The batch script adds 256 jobs per 60 seconds to the rule queue in order to manage the load on the server. ",
+    "content": "Asynchronous jobs are also used to copy data packages from a research or intake folder to the vault, as well as to process publications. Retry copy to vault job . |   |   | . | Script | /etc/irods/irods-ruleset-uu/tools/retry-copy-to-vault.r | . | Purpose | copy data packages from research groups to the vault | . | Lock file | no lock file, but collection metadata attribute records processing status | . | Typically started by | cronjob, runs every minute | . By default, groups that are to be copied to the vault are marked with a metadata attribute named cronjob_copy_to_vault. Intake copy to vault job . |   |   | . | Script | /var/lib/irods/.irods/job_movetovault.r | . | Purpose | copy data packages from intake groups to the vault | . | Lock file | uses lock attribute on the vault folder | . | Typically started by | cronjob, runs every five minutes | . Process publication job . |   |   | . | Script | /etc/irods/irods-ruleset-uu/tools/process-publication.r | . | Purpose | Asynchronously handles publication and depublication of data packages | . | Lock file | no lock file, but status is recorded in metadata | . | Typically started by | cronjob, runs every minute | . ",
     "url": "/yoda/design/processes/asynchronous-processes.html#archiving-and-publication",
     "relUrl": "/design/processes/asynchronous-processes.html#archiving-and-publication"
   },"12": {
@@ -139,7 +139,7 @@
   },"23": {
     "doc": "Configuring Yoda",
     "title": "3. Configure (new) Yoda instance",
-    "content": "To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars). In case of a new Yoda instance we can copy a configuration of a full development (environments/development/full/) instance as base. The configuration is split in several parts. Below an overview of these parts and the configuration options available. Ansible configuration . | Variable | Description | . | ansible_user | Administrative user on instance for Ansible | . | ansible_ssh_private_key_file | Path to private key file of administrative user | . | repo_only | Only download packages from repos | . Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars). Yoda configuration . | Variable | Description | . | instance | Name of Yoda instance, as defined in hosts file | . | yoda_version | Git branch, for example: development or release-0.9.7 | . | yoda_environment | Yoda environment: development, testing, acceptance or production | . | yoda_portal_fqdn | Yoda Portal fully qualified domain name (FQDN) | . | yoda_davrods_fqdn | Yoda Davrods WebDAV fully qualified domain name (FQDN) | . | yoda_davrods_anonymous_fqdn | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN) | . | yoda_enable_httpd | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes) | . | httpd_log_forwarded_for | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer. | . iRODS configuration . | Variable | Description | . | irods_admin | iRODS admin username | . | irods_password | iRODS admin password | . | irods_database_user | The iRODS database username | . | irods_database_password | The password for the iRODS database username | . | irods_zone | The name of the iRODS Zone | . | irods_icat_fqdn | iRODS iCAT fully qualified domain name (FQDN) | . | irods_database_fqdn | iRODS database fully qualified domain name (FQDN) | . | irods_resource_fqdn | iRODS resource fully qualified domain name (FQDN) | . | irods_default_resc | iRODS default resource name | . | irods_resc_trigger_pol | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: [“^testResc$”,”^myResc$”] | . | irods_ssl_verify_server | Verify TLS certificate, use ‘cert’ for acceptance and production | . | irods_resources | Definition of iRODS resources of this Yoda instance | . Research module configuration . | Variable | Description | . | default_yoda_schema | Default Yoda XML scheme: default-0 or default-1 | . | enable_revisions | Enable revisions: yes (1) or no (0) | . | enable_async_replication | Enable asynchronous replication cronjob: yes (1) or no (0) | . | revision_strategy | Revision strategy: A, B, J or Simple | . | yoda_random_id_length | Length of random ID to add to persistent identifier | . | yoda_prefix | Prefix for internal portion of persistent identifier | . | update_rulesets | Update already installed rulesets with git | . | update_schemas | Update already installed schemas, formelements and stylesheets: yes (1) or no (0) | . | credential_files | Location of Yoda credentials files | . Intake module configuration . | Variable | Description | . | enable_intake | Enable intake module | . Datarequest module configuration . | Variable | Description | . | enable_datarequest | Enable datarequest module | . | datarequest_help_contact_name | Help contact name | . | datarequest_help_contact_email | Help contact email address | . Mail notifications . | Variable | Description | . | send_notifications | Enable notifications: yes (1) or no (0) | . | notifications_sender_email | Notifiations sender email address | . | notifications_reply_to | Notifiations Reply-To email address | . | smtp_server | SMTP server to send mail to | . | smtp_username | SMTP server username | . | smtp_password | SMTP server password | . DataCite Configuration . | Variable | Description | . | datacite_username | DataCite username | . | datacite_password | DataCite password | . | datacite_prefix | DataCite DOI prefix | . | datacite_server | DataCite server URI | . EPIC PID Configuration . | Variable | Description | . | epic_url | EPIC PID server URI (undefined disables EPIC PID) | . | epic_handle_prefix | EPIC PID prefix | . | epic_key | EPIC PID key (base64 encoded) | . | epic_cert | EPIC PID cert (base64 encoded) | . PAM Radius configuration . | Variable | Description | . | pam_radius_config: | server, shared secret, timeout (s) | . Public host configuration . | Variable | Description | . | yoda_public_host | Yoda public host | . | yoda_public_fqdn | Yoda public fully qualified domain name (FQDN) | . | upload_priv_key | Yoda public upload private key (base64 encoded) | . | upload_pub_key | Yoda public upload public key (base64 encoded) | . External user service configuration . | Variable | Description | . | yoda_eus_fqdn | Yoda External User Service fully qualified domain name (FQDN) | . | eus_api_fqdn | External User Service API fully qualified domain name (FQDN) | . | eus_api_port | External User Service API port | . | eus_api_secret | External User Service API secret | . | eus_db_password | External User Service database password | . | eus_smtp_host | External User Service SMTP host | . | eus_smtp_port | External User Service SMTP port | . | eus_smtp_user | External User Service SMTP user | . | eus_smtp_password | External User Service SMTP password | . | eus_smtp_from_address | External User Service from address | . | eus_smtp_replyto_address | External User Service replyto address | . | eus_mail_template | External User Service mail template | . ",
+    "content": "To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars). In case of a new Yoda instance we can copy a configuration of a full development (environments/development/full/) instance as base. The configuration is split in several parts. Below an overview of these parts and the configuration options available. Ansible configuration . | Variable | Description | . | ansible_user | Administrative user on instance for Ansible | . | ansible_ssh_private_key_file | Path to private key file of administrative user | . | repo_only | Only download packages from repos | . Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars). Yoda configuration . | Variable | Description | . | instance | Name of Yoda instance, as defined in hosts file | . | yoda_version | Git branch, for example: development or release-0.9.7 | . | yoda_environment | Yoda environment: development, testing, acceptance or production | . | yoda_portal_fqdn | Yoda Portal fully qualified domain name (FQDN) | . | yoda_davrods_fqdn | Yoda Davrods WebDAV fully qualified domain name (FQDN) | . | yoda_davrods_anonymous_fqdn | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN) | . | yoda_enable_httpd | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes) | . | httpd_log_forwarded_for | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer. | . iRODS configuration . | Variable | Description | . | irods_admin | iRODS admin username | . | irods_password | iRODS admin password | . | irods_database_user | The iRODS database username | . | irods_database_password | The password for the iRODS database username | . | irods_zone | The name of the iRODS Zone | . | irods_icat_fqdn | iRODS iCAT fully qualified domain name (FQDN) | . | irods_database_fqdn | iRODS database fully qualified domain name (FQDN) | . | irods_resource_fqdn | iRODS resource fully qualified domain name (FQDN) | . | irods_default_resc | iRODS default resource name | . | irods_resc_trigger_pol | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: [“^testResc$”,”^myResc$”] | . | irods_ssl_verify_server | Verify TLS certificate, use ‘cert’ for acceptance and production | . | irods_resources | Definition of iRODS resources of this Yoda instance | . | irods_service_type | Possible values: ‘sysv’ (System V) or ‘systemd’ | . | irods_max_open_files | Maximum number of open files for iRODS service (only effective when irods_service_type is set to ‘systemd’) | . | irods_enable_service | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS (e.g. mounting encrypted volumes) | . Research module configuration . | Variable | Description | . | default_yoda_schema | Default Yoda XML scheme: default-0 or default-1 | . | enable_revisions | Enable revisions: yes (1) or no (0) | . | enable_async_replication | Enable asynchronous replication cronjob: yes (1) or no (0) | . | revision_strategy | Revision strategy: A, B, J or Simple | . | yoda_random_id_length | Length of random ID to add to persistent identifier | . | yoda_prefix | Prefix for internal portion of persistent identifier | . | update_rulesets | Update already installed rulesets with git | . | update_schemas | Update already installed schemas, formelements and stylesheets: yes (1) or no (0) | . | credential_files | Location of Yoda credentials files | . Intake module configuration . | Variable | Description | . | enable_intake | Enable intake module | . | intake_groups | List of intake groups (without the “grp-intake-“ prefix) | . Datarequest module configuration . | Variable | Description | . | enable_datarequest | Enable datarequest module | . | datarequest_help_contact_name | Help contact name | . | datarequest_help_contact_email | Help contact email address | . Mail notifications . | Variable | Description | . | send_notifications | Enable notifications: yes (1) or no (0) | . | notifications_sender_email | Notifiations sender email address | . | notifications_reply_to | Notifiations Reply-To email address | . | smtp_server | SMTP server to send mail to | . | smtp_username | SMTP server username | . | smtp_password | SMTP server password | . DataCite Configuration . | Variable | Description | . | datacite_username | DataCite username | . | datacite_password | DataCite password | . | datacite_prefix | DataCite DOI prefix | . | datacite_server | DataCite server URI | . EPIC PID Configuration . | Variable | Description | . | epic_url | EPIC PID server URI (undefined disables EPIC PID) | . | epic_handle_prefix | EPIC PID prefix | . | epic_key | EPIC PID key (base64 encoded) | . | epic_cert | EPIC PID cert (base64 encoded) | . PAM Radius configuration . | Variable | Description | . | pam_radius_config: | server, shared secret, timeout (s) | . Public host configuration . | Variable | Description | . | yoda_public_host | Yoda public host | . | yoda_public_fqdn | Yoda public fully qualified domain name (FQDN) | . | upload_priv_key | Yoda public upload private key (base64 encoded) | . | upload_pub_key | Yoda public upload public key (base64 encoded) | . External user service configuration . | Variable | Description | . | yoda_eus_fqdn | Yoda External User Service fully qualified domain name (FQDN) | . | eus_api_fqdn | External User Service API fully qualified domain name (FQDN) | . | eus_api_port | External User Service API port | . | eus_api_secret | External User Service API secret | . | eus_db_password | External User Service database password | . | eus_smtp_host | External User Service SMTP host | . | eus_smtp_port | External User Service SMTP port | . | eus_smtp_user | External User Service SMTP user | . | eus_smtp_password | External User Service SMTP password | . | eus_smtp_from_address | External User Service from address | . | eus_smtp_replyto_address | External User Service replyto address | . | eus_mail_template | External User Service mail template | . ",
     "url": "/yoda/administration/configuring-yoda.html#3-configure-new-yoda-instance",
     "relUrl": "/administration/configuring-yoda.html#3-configure-new-yoda-instance"
   },"24": {
@@ -431,35 +431,35 @@
     "url": "/yoda/administration/hotfixing-ruleset.html",
     "relUrl": "/administration/hotfixing-ruleset.html"
   },"72": {
+    "doc": "Development",
+    "title": "Development",
+    "content": ". | Setting up development environment | Setting up YodaDrive development environment | Development tips | Wall of Fame | . ",
+    "url": "/yoda/development/",
+    "relUrl": "/development/"
+  },"73": {
+    "doc": "Release Notes",
+    "title": "Release Notes",
+    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "url": "/yoda/release-notes/",
+    "relUrl": "/release-notes/"
+  },"74": {
     "doc": "Administration Tasks",
     "title": "Administration Tasks",
     "content": ". | Configuring Yoda | Deploying Yoda | Applying a local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | . ",
     "url": "/yoda/administration/",
     "relUrl": "/administration/"
-  },"73": {
+  },"75": {
     "doc": "Processes",
     "title": "Processes",
     "content": " ",
     "url": "/yoda/design/processes/",
     "relUrl": "/design/processes/"
-  },"74": {
+  },"76": {
     "doc": "API",
     "title": "API",
     "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
     "url": "/yoda/design/api/",
     "relUrl": "/design/api/"
-  },"75": {
-    "doc": "Other",
-    "title": "Other",
-    "content": " ",
-    "url": "/yoda/design/other/",
-    "relUrl": "/design/other/"
-  },"76": {
-    "doc": "Metadata",
-    "title": "Metadata",
-    "content": " ",
-    "url": "/yoda/design/metadata/",
-    "relUrl": "/design/metadata/"
   },"77": {
     "doc": "System Overview",
     "title": "System overview",
@@ -491,53 +491,53 @@
     "url": "/yoda/design/overview/",
     "relUrl": "/design/overview/"
   },"82": {
+    "doc": "Other",
+    "title": "Other",
+    "content": " ",
+    "url": "/yoda/design/other/",
+    "relUrl": "/design/other/"
+  },"83": {
+    "doc": "Metadata",
+    "title": "Metadata",
+    "content": " ",
+    "url": "/yoda/design/metadata/",
+    "relUrl": "/design/metadata/"
+  },"84": {
     "doc": "Software Design",
     "title": "Software Design",
     "content": " ",
     "url": "/yoda/design/",
     "relUrl": "/design/"
-  },"83": {
+  },"85": {
     "doc": "Software Design",
     "title": "API",
     "content": ". | API documentation | . ",
     "url": "/yoda/design/#api",
     "relUrl": "/design/#api"
-  },"84": {
+  },"86": {
     "doc": "Software Design",
     "title": "System",
     "content": ". | System overview | Research space | Vault space | Statistics module | Intake module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
     "url": "/yoda/design/#system",
     "relUrl": "/design/#system"
-  },"85": {
+  },"87": {
     "doc": "Software Design",
     "title": "Metadata",
     "content": ". | Metadata schema identifier | Metadata form | Metadata mappings | Metadata schemas | . ",
     "url": "/yoda/design/#metadata",
     "relUrl": "/design/#metadata"
-  },"86": {
+  },"88": {
     "doc": "Software Design",
     "title": "Processes",
     "content": ". | Asynchronous and privileged execution | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
     "url": "/yoda/design/#processes",
     "relUrl": "/design/#processes"
-  },"87": {
+  },"89": {
     "doc": "Software Design",
     "title": "Other",
     "content": ". | Python plugin | Yoda drive | . ",
     "url": "/yoda/design/#other",
     "relUrl": "/design/#other"
-  },"88": {
-    "doc": "Development",
-    "title": "Development",
-    "content": ". | Setting up development environment | Setting up YodaDrive development environment | Development tips | Wall of Fame | . ",
-    "url": "/yoda/development/",
-    "relUrl": "/development/"
-  },"89": {
-    "doc": "Release Notes",
-    "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
-    "url": "/yoda/release-notes/",
-    "relUrl": "/release-notes/"
   },"90": {
     "doc": "Home",
     "title": "Yoda technical documentation",
