@@ -21,7 +21,6 @@ This page contains an overview of asynchronous processes in Yoda.
 * [Archiving - retry-copy-to-vault job](#archiving-retry-copy-job)
 * [Archiving - intake to vault job](#archiving-intake-to-vault-job)
 * [Archiving - publication job](#archiving-publication-job)
-* [Archiving - vault integrity job](#archiving-vault-integrity-job)
 
 <a name="metadata"/>
 
@@ -137,8 +136,7 @@ and communities.
 ## Archiving and publication
 
 Asynchronous jobs are also used to copy data packages from a research or intake folder to the vault,
-as well as to process publications. Furthermore, an asynchronous job for verifying vault data integrity
-is available.
+as well as to process publications.
 
 <a name="archiving-retry-copy-job"/>
 
@@ -175,18 +173,3 @@ By default, groups that are to be copied to the vault are marked with a metadata
 | Purpose              | Asynchronously handles publication and depublication of data packages       |
 | Lock file            | no lock file, but status is recorded in metadata                            |
 | Typically started by | cronjob, runs every minute                                                  |
-
-<a name="archiving-vault-integrity-job"/>
-
-### Vault integrity check job
-
-|   |   |
-|---|---|
-| Script               | irods-ruleset-uu/tools/check-vault-integrity.r                              |
-| Purpose              | Verifies checksums of data objects in the vault                             |
-| Scheduling           | Delayed rule queue                                                          |
-| Typically started by | manually by administrator                                                   |
-
-All data objects with data integrity issues are logged in the rodsLog. Verifying vault integrity
-can take a long time. The batch script adds 256 jobs per 60 seconds to the rule queue in order to
-manage the load on the server.

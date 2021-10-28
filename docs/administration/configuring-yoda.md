@@ -143,6 +143,9 @@ irods_default_resc           | iRODS default resource name
 irods_resc_trigger_pol       | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
 irods_ssl_verify_server      | Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources              | Definition of iRODS resources of this Yoda instance
+irods_service_type           | Possible values: 'sysv' (System V) or 'systemd'
+irods_max_open_files         | Maximum number of open files for iRODS service (only effective when irods_service_type is set to 'systemd')
+irods_enable_service         | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS (e.g. mounting encrypted volumes)
 
 ### Research module configuration
 
@@ -169,6 +172,7 @@ enable_deposit               | Enable deposit module
 Variable                     | Description
 -----------------------------|---------------------
 enable_intake                | Enable intake module
+intake_groups                | List of intake groups (without the "grp-intake-" prefix)
 
 ### Datarequest module configuration
 
