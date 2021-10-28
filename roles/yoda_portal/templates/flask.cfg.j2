@@ -45,7 +45,8 @@ IRODS_SESSION_OPTIONS = {
         cadata=None,
     ),
     **IRODS_CLIENT_OPTIONS_FOR_SSL,
-    'authentication_scheme': IRODS_AUTH_SCHEME
+    'authentication_scheme': IRODS_AUTH_SCHEME,
+    'application_name': 'yoda-portal'
 }
 
 {% if oidc_active is sameas true %}
