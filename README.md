@@ -1,10 +1,8 @@
 <br/>
 <p align="center">
   <a href="https://github.com/UtrechtUniversity/yoda">
-    <img src="docs/yoda.png" alt="Logo" width="170" height="70">
+    <img src="docs/yoda.svg" alt="Yoda logo" width="340" height="140">
   </a>
-
-  <h3 align="center">Yoda</h3>
 
   <p align="center">
     A system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.

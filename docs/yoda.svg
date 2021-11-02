@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="170mm"
+   height="70mm"
+   viewBox="0 0 169.99999 70"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="yoda.svg"
+   inkscape:export-filename="/home/lazlo/Downloads/yoda3.png"
+   inkscape:export-xdpi="31.594841"
+   inkscape:export-ydpi="31.594841">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4737">
+      <stop
+         style="stop-color:#6f55d5;stop-opacity:1;"
+         offset="0"
+         id="stop4733" />
+      <stop
+         style="stop-color:#6f55d5;stop-opacity:0;"
+         offset="1"
+         id="stop4735" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4729">
+      <stop
+         style="stop-color:#5739ce;stop-opacity:1;"
+         offset="0"
+         id="stop4725" />
+      <stop
+         style="stop-color:#6f55d5;stop-opacity:0.94210523"
+         offset="1"
+         id="stop4727" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4729"
+       id="linearGradient4731"
+       x1="97.895836"
+       y1="70.78125"
+       x2="98.160416"
+       y2="94.064583"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1795597,0,0,1.1795596,-36.30405,-53.849024)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4737"
+       id="linearGradient4739"
+       x1="97.895836"
+       y1="70.78125"
+       x2="98.160416"
+       y2="94.064583"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1795597,0,0,1.1795596,-36.30405,-53.849024)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.94316065"
+     inkscape:cx="364.10581"
+     inkscape:cy="269.76876"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1030"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="1"
+     inkscape:document-rotation="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-4.2840996,-21.555696)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4550"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
+         id="flowRegion4552"><rect
+           id="rect4554"
+           width="499"
+           height="242"
+           x="155"
+           y="217.51968" /></flowRegion><flowPara
+         id="flowPara4556" /></flowRoot>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4558"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
+         id="flowRegion4560"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Comfortaa;-inkscape-font-specification:Comfortaa"><rect
+           id="rect4562"
+           width="671"
+           height="211"
+           x="85"
+           y="348.51968"
+           style="-inkscape-font-specification:Comfortaa;font-family:Comfortaa;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;" /></flowRegion><flowPara
+         id="flowPara4564" /></flowRoot>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.4836px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:url(#linearGradient4731);fill-opacity:1;stroke:url(#linearGradient4739);stroke-width:0.312092;stroke-opacity:1"
+       x="7.0767112"
+       y="74.582886"
+       id="text4568"
+       inkscape:export-xdpi="40.071037"
+       inkscape:export-ydpi="40.071037"
+       transform="scale(0.98220442,1.018118)"><tspan
+         sodipodi:role="line"
+         id="tspan4566"
+         x="7.0767112"
+         y="74.582886"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:66.5795px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa Bold';letter-spacing:-3.12092px;fill:url(#linearGradient4731);fill-opacity:1;stroke:url(#linearGradient4739);stroke-width:0.312092;stroke-opacity:1">Yoda</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.4836px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.312092"
+       x="25.384928"
+       y="86.121475"
+       id="text4622"
+       inkscape:export-xdpi="40.071037"
+       inkscape:export-ydpi="40.071037"
+       transform="scale(0.98220442,1.018118)"><tspan
+         sodipodi:role="line"
+         id="tspan4620"
+         x="25.384928"
+         y="86.121475"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';letter-spacing:-0.780229px;fill:#808080;stroke-width:0.312092">research data management</tspan></text>
+  </g>
+</svg>
