@@ -113,6 +113,7 @@
     dest: /var/www/yoda/yoda-portal/config/config_local.php
     owner: "{{ yoda_deployment_user }}"
     mode: 0644
+  no_log: true
   when: not ansible_check_mode
 
 
