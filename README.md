@@ -1,8 +1,27 @@
-# Yoda  [![Release](https://img.shields.io/github/v/tag/UtrechtUniversity/yoda?sort=semver)](https://github.com/UtrechtUniversity/yoda/releases) [![License](https://img.shields.io/github/license/UtrechtUniversity/yoda.svg?maxAge=2592000)](/LICENSE)
+<br/>
+<p align="center">
+  <a href="https://github.com/UtrechtUniversity/yoda">
+    <img src="docs/yoda.png" alt="Logo" width="170" height="70">
+  </a>
 
-A system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.
+  <h3 align="center">Yoda</h3>
 
-## What is this?
+  <p align="center">
+    A system for reliable, long-term storing and archiving large amounts of research data during all stages of a study.
+    <br/>
+    <br/>
+    <a href="https://utrechtuniversity.github.io/yoda/"><strong>Explore the docs »</strong></a>
+    <br/>
+    <br/>
+    <a href="https://github.com/UtrechtUniversity/yoda/issues/new?assignees=&labels=bug+%3Abug%3A&template=bug_report.md&title=%5BBUG%5D">Report Bug</a>
+    .
+    <a href="https://github.com/UtrechtUniversity/yoda/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BFEATURE%5D">Request Feature</a>
+  </p>
+</p>
+
+[![Release](https://img.shields.io/github/v/tag/UtrechtUniversity/yoda?sort=semver)](https://github.com/UtrechtUniversity/yoda/releases) [![License](https://img.shields.io/github/license/UtrechtUniversity/yoda.svg?maxAge=2592000)](/LICENSE)
+
+## About the project
 Yoda is a research data management solution developed by Utrecht University and used by multiple institutes around the world.
 It enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project.
 
