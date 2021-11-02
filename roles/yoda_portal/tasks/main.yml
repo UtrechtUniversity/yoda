@@ -75,6 +75,7 @@
     src: "flask.cfg.j2"
     dest: "/var/www/yoda/flask.cfg"
     mode: '0644'
+  no_log: true
 
 
 - name: Copy Yoda Portal virtual host config for Apache
