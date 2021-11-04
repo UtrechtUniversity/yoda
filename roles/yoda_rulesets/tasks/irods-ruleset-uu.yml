@@ -86,15 +86,21 @@
   when: not ansible_check_mode
 
 
-- name: Copy admin-remove-orphan-vault-if-empty.sh to ExecCmd dir
+- name: Copy scripts to ExecCmd dir
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:
     remote_src: yes
-    src: /etc/irods/irods-ruleset-uu/tools/admin-remove-orphan-vault-if-empty.sh
-    dest: /var/lib/irods/msiExecCmd_bin/admin-remove-orphan-vault-if-empty.sh
+    src: "/etc/irods/irods-ruleset-uu/tools/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
     mode: 0755
   when: not ansible_check_mode
+  with_items:
+    - securecopy.sh
+    - scheduled-copytovault.sh
+    - admin-remove-orphan-vault-if-empty.sh
+    - admin-vaultactions.sh
+    - admin-vaultingest.sh
 
 
 - name: Ensure metadata schemas are installed
@@ -139,15 +145,6 @@
   when: (update_schemas == 1) or
         (installed_defaults|json_query('results[*].stderr')|join(' ') is search('does not exist'))
   changed_when: install_default_schema.stdout is search('(Installed|Updated)')
-
-
-- name: List installed or updated schemas, formelements or stylesheets
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  debug:
-    var: item
-  when: item is search('(Installed|Updated)')
-  with_items: "{{ install_default_xml_for_metadata.stdout_lines|default('Script did not run') }}"
 
 
 - name: Find out if terms and conditions system collection exists
@@ -257,6 +254,19 @@
     mode: '0644'
   # This script is provided by the test playbook for development/test servers.
   when: enable_intake and yoda_environment not in ["development","testing"]
+
+- name: Install script for moving intake collections to the vault
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  template:
+    src: job_movetovault.r.j2
+    dest: '~{{ irods_service_account }}/.irods/job_movetovault.r'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: '0644'
+  # This script is provided by the test playbook for development/test servers.
+  when: enable_intake and yoda_environment not in ["development","testing"]
+
 
 - name: Configure cronjob to process publications
   become_user: "{{ irods_service_account }}"
@@ -391,6 +401,27 @@
   when: enable_revisions == 1
 
 
+- name: Configure cronjob to mail daily notification reports
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'mail-daily-report.sh'
+    minute: '30'
+    hour: '6'
+    job: '/bin/bash /etc/irods/irods-ruleset-uu/tools/mail-daily-report.sh >/dev/null 2>&1'
+
+
+- name: Configure cronjob to mail weekly notification reports
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'mail-weekly-report.sh'
+    minute: '30'
+    hour: '23'
+    weekday: '0'
+    job: '/bin/bash /etc/irods/irods-ruleset-uu/tools/mail-weekly-report.sh >/dev/null 2>&1'
+
+
 - name: Find out if datarequest system collection exists
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -444,17 +475,7 @@
   when: enable_datarequest and not ansible_check_mode and data_requests.stderr.find('does not exist') >= 0
 
 
-- name: Ensure that ExecCmd dir exists
-  file:
-    path: /var/lib/irods/msiExecCmd_bin
-    owner: '{{ irods_service_account }}'
-    group: '{{ irods_service_account }}'
-    mode: 0755
-    state: directory
-  when: enable_datarequest and not ansible_check_mode
-
-
-- name: Copy scripts to ExecCmd dir
+- name: Copy datarequest scripts to ExecCmd dir
   become_user: "{{ irods_service_account }}"
   become: yes
   copy:

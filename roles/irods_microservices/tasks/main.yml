@@ -8,17 +8,17 @@
   register: irods_microservices_repo
 
 
-- name: Ensure iRODS 4.2.6 packages are absent
+- name: Ensure iRODS 4.2.7 packages are absent
   package:
     name:
-      - irods-uu-microservices-4.2.6_0.8.0
-      - irods-sudo-microservices-4.2.6_1.0.0
-      - davrods-4.2.6_1.4.2
-      - irods-runtime-4.2.6
-      - irods-server-4.2.6
-      - irods-rule-engine-plugin-python-4.2.6
-      - irods-icommands-4.2.6
-      - irods-database-plugin-postgres-4.2.6
+      - irods-uu-microservices-4.2.7_0.8.1
+      - irods-sudo-microservices-4.2.7_1.0.0
+      - davrods-4.2.7_1.4.2
+      - irods-runtime-4.2.7
+      - irods-server-4.2.7
+      - irods-rule-engine-plugin-python-4.2.7
+      - irods-icommands-4.2.7
+      - irods-database-plugin-postgres-4.2.7
     state: absent
 
 

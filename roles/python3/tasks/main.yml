@@ -1,0 +1,17 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Python 3 packages are installed
+  yum:
+    name:
+      - python3
+      - python3-devel
+      - gcc
+    state: present
+
+
+- name: Ensure Python 3 virtualenv is installed
+  pip:
+    name: virtualenv
+    executable: pip3
+  when: not ansible_check_mode

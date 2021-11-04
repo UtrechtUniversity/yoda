@@ -1,3 +1,4 @@
+#!/bin/bash
 # Script for irods i-commands auto-completion with bash
 # This script is GPL, blah blah blah...
 # Bruno Bzeznik <Bruno.Bzeznik@imag.fr> 10/2011

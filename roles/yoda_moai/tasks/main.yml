@@ -1,21 +1,17 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure Yoda MOAI prerequisites are installed
-  package:
-    name:
-      - python-pip
-      - python-virtualenv
-      - python-lxml
-      - python-sqlalchemy
-      - mod_wsgi
-    state: present
-
-
 - name: Ensure Yoda MOAI user exists
   user:
     name: '{{ yoda_moai_user }}'
     home: '{{ yoda_moai_home }}'
+
+
+- name: Delete legacy Yoda MOAI files
+  become: yes
+  file:
+    state: absent
+    path: "{{ yoda_moai_home }}/venv"
 
 
 - name: Check out Yoda MOAI from Github
@@ -28,13 +24,32 @@
   register: repochanges
 
 
-- name: Install Yoda MOAI in virtualenv
+- name: Ensure Yoda MOAI virtualenv exists
+  become_user: '{{ yoda_moai_user }}'
+  become: yes
+  command: python3 -m virtualenv "{{ yoda_moai_home }}/yoda-moai/venv"
+  args:
+    creates: "{{ yoda_moai_home }}/yoda-moai/venv"
+
+
+- name: Ensure Yoda MOAI dependencies are installed
   pip:
     name: '{{ yoda_moai_home }}/yoda-moai'
     extra_args: -e
-    virtualenv: '{{ yoda_moai_home }}/venv'
-    virtualenv_site_packages: yes
-  when: repochanges.changed
+    virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
+    virtualenv_python: python3.6
+  notify: Restart Apache webserver
+
+
+- name: Install mod-wsgi
+  become_user: "root"
+  become: yes
+  shell: |
+    source {{ yoda_moai_home }}/yoda-moai/venv/bin/activate
+    mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf
+    exit
+  args:
+    creates: /etc/httpd/conf.modules.d/02-wsgi.conf
   notify: Restart Apache webserver
 
 
@@ -91,9 +106,23 @@
 - name: Initialize Yoda MOAI database
   become_user: '{{ yoda_moai_user }}'
   become: yes
-  command: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
+  command: '{{ yoda_moai_home }}/yoda-moai/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
   args:
     creates: '{{ yoda_moai_home }}/moai.db'
+
+
+- name: Set SELinux context for shared libraries
+  sefcontext:
+    target: '{{ yoda_moai_home }}/yoda-moai/venv/.*\.so(\..*)?'
+    setype: httpd_sys_script_exec_t
+    state: present
+  register: filescontext
+  when: ansible_selinux.status == "enabled"
+
+
+- name: Ensure selinux context is enforced on shared libraries
+  command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
+  when: ansible_selinux.status == "enabled"
 
 
 - name: Set SELinux context for Yoda MOAI database
@@ -115,4 +144,4 @@
     user: '{{ yoda_moai_user }}'
     name: 'cronjob-update-moai'
     minute: '*/5'
-    job: '{{ yoda_moai_home }}/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
+    job: '{{ yoda_moai_home }}/yoda-moai/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'

@@ -21,7 +21,17 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Prepare test data vault-groups for removal
+- name: Prepare test data deposit-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/deposit-'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
+
+
+- name: Prepare test data (research) vault-groups for removal
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -29,6 +39,16 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
+
+
+- name: Prepare test data (deposit) vault-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/home/vault-'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
 
 
 - name: Prepare test data datamanager-groups for removal
@@ -91,6 +111,16 @@
     - "{{ deletion_research_groups }}"
 
 
+- name: Prepare test data trash deposit-groups for removal
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -rM own rods /{{ irods_zone }}/trash/home/deposit-'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
+
+
 - name: Prepare trash test users for removal
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -111,7 +141,17 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test data vault-groups
+- name: Remove test data deposit-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/deposit-'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
+
+
+- name: Remove test data (research) vault-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -119,6 +159,16 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
+
+
+- name: Remove test data (deposit) vault-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/home/deposit-'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
 
 
 - name: Remove test data datamanager-groups
@@ -171,6 +221,16 @@
     - "{{ deletion_research_groups }}"
 
 
+- name: Remove test data trash deposit-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irm -r /{{ irods_zone }}/trash/home/deposit-'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
+
+
 - name: Remove test data revisions research-groups
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -191,7 +251,17 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test vault-groups
+- name: Remove test deposit-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup deposit-'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
+
+
+- name: Remove test (research) vault-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -201,7 +271,17 @@
     - "{{ deletion_research_groups }}"
 
 
-- name: Remove test read-groups
+- name: Remove test (deposit) vault-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup vault-'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
+
+
+- name: Remove test (research) read-groups
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
@@ -209,6 +289,16 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
+
+
+- name: Remove test (deposit) read-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    iadmin rmgroup read-'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
 
 
 - name: Remove test intake-groups
@@ -269,6 +359,16 @@
   ignore_errors: true
   with_items:
     - "{{ deletion_research_groups }}"
+
+
+- name: Remove trash data deposit-groups
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    irmtrash -rM /{{ irods_zone }}/trash/home/'{{ item.deposit }}'
+  ignore_errors: true
+  with_items:
+    - "{{ deletion_deposit_groups }}"
 
 
 - name: Remove test trash data user-homes

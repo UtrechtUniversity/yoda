@@ -5,6 +5,7 @@
   package:
     name:
       - httpd
+      - httpd-devel
       - mod_ssl
       - openssl
     state: present

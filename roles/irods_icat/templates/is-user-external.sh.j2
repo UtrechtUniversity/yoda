@@ -1,8 +1,8 @@
 #!/bin/bash
 # {{ ansible_managed }}
 
-{% if external_users_domain  %}
-[[ "$PAM_USER" =~ .*@.* ]] && [[ ! "$PAM_USER" =~ [.@]{{external_users_domain}}$ ]]
+{% if external_users_domain_filter  %}
+[[ "$PAM_USER" =~ .*@.* ]] && [[ ! "$PAM_USER" =~ [.@]({{external_users_domain_filter | replace('.', '\.')}})$ ]]
 {% else %}
 [[ "$PAM_USER" =~ .*@.* ]]
 {% endif %}

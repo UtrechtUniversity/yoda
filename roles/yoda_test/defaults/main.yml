@@ -14,6 +14,68 @@ test_users:
   - name: researcher
     password: '{{ test_password }}'
     type: rodsuser
+
+  - name: researcher1
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher2
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher3
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher4
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher5
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher6
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher7
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher8
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher9
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher10
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher11
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher12
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher13
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher14
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher15
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher16
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher17
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher18
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher19
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: researcher20
+    password: '{{ test_password }}'
+    type: rodsuser
+
   - name: viewer
     password: '{{ test_password }}'
     type: rodsuser
@@ -46,6 +108,7 @@ test_users:
 eus_test_users:
   - name: yodaresearcher@gmail.com
   - name: yodadatamanager@gmail.com
+  - name: alice@otherdomain.com
 
 # Following users are created in the regressiontest and need to be removed only.
 created_by_ta_users:
@@ -61,6 +124,7 @@ test_groups:
     category: default-0
     subcategory: default-0
     dataClassification:
+
   - groupName: research-default-1
     category: default-1
     subcategory: default-1
@@ -69,6 +133,16 @@ test_groups:
     category: default-1
     subcategory: default-1
     dataClassification:
+
+  - groupName: research-default-2
+    category: default-2
+    subcategory: default-2
+    dataClassification: unspecified
+  - groupName: datamanager-default-2
+    category: default-2
+    subcategory: default-2
+    dataClassification:
+
   - groupName: research-hptlab-0
     category: hptlab-0
     subcategory: hptlab-0
@@ -77,6 +151,7 @@ test_groups:
     category: hptlab-0
     subcategory: hptlab-0
     dataClassification:
+
   - groupName: research-teclab-0
     category: teclab-0
     subcategory: teclab-0
@@ -85,6 +160,7 @@ test_groups:
     category: teclab-0
     subcategory: teclab-0
     dataClassification:
+
   - groupName: research-core-0
     category: core-0
     subcategory: core-0
@@ -93,6 +169,28 @@ test_groups:
     category: core-0
     subcategory: core-0
     dataClassification:
+
+  - groupName: research-core-1
+    category: core-1
+    subcategory: core-1
+    dataClassification: unspecified
+  - groupName: datamanager-core-1
+    category: core-1
+    subcategory: core-1
+    dataClassification:
+
+  - groupName: research-dag-0
+    category: dag-0
+    subcategory: dag-0
+    dataClassification: unspecified
+  - groupName: datamanager-dag-0
+    category: dag-0
+    subcategory: dag-0
+    dataClassification:
+  - groupName: deposit-pilot
+    category: dag-0
+    subcategory: dag-0
+    dataClassification: unspecified
 
   - groupName: research-initial
     category: initial
@@ -162,6 +260,19 @@ test_groupusers:
     user: datamanager
     role: manager
 
+  - groupName: research-core-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-core-1
+    user: researcher
+    role: normal
+  - groupName: datamanager-core-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-core-1
+    user: datamanager
+    role: manager
+
   - groupName: research-default-0
     user: functionaladminpriv
     role: manager
@@ -188,6 +299,19 @@ test_groupusers:
     user: datamanager
     role: manager
 
+  - groupName: research-default-2
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-default-2
+    user: researcher
+    role: normal
+  - groupName: datamanager-default-2
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-default-2
+    user: datamanager
+    role: manager
+
   - groupName: research-hptlab-0
     user: functionaladminpriv
     role: manager
@@ -211,6 +335,19 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-teclab-0
+    user: datamanager
+    role: manager
+
+  - groupName: research-dag-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-dag-0
+    user: researcher
+    role: normal
+  - groupName: datamanager-dag-0
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-dag-0
     user: datamanager
     role: manager
 
@@ -251,6 +388,74 @@ test_groupusers:
     user: viewer
     role: reader
 
+  - groupName: deposit-pilot
+    user: functionaladminpriv
+    role: manager
+  - groupName: deposit-pilot
+    user: researcher
+    role: normal
+
+  - groupName: deposit-pilot
+    user: researcher1
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher2
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher3
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher4
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher5
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher6
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher7
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher8
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher9
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher10
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher11
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher12
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher13
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher14
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher15
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher16
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher17
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher18
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher19
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher20
+    role: normal
+
   - groupName: research-initial1
     user: functionaladminpriv
     role: manager
@@ -262,7 +467,7 @@ test_groupusers:
     role: normal
   - groupName: research-initial1
     user: viewer
-    role: normal
+    role: reader
 
   - groupName: datamanager-initial
     user: functionaladminpriv
@@ -318,19 +523,30 @@ test_groupusers:
 deletion_research_groups:
   - research: default-0
   - research: default-1
+  - research: default-2
   - research: hptlab-0
   - research: teclab-0
   - research: core-0
+  - research: core-1
+  - research: dag-0
+  - research: dag-0
   - research: initial
   - research: initial1
   - research: revisions
 
+deletion_deposit_groups:
+  - deposit: test
+  - deposit: pilot
+
 deletion_datamanager_groups:
   - datamanager: default-0
   - datamanager: default-1
+  - datamanager: default-2
   - datamanager: hptlab-0
   - datamanager: teclab-0
   - datamanager: core-0
+  - datamanager: core-1
+  - datamanager: dag-0
   - datamanager: initial
 
 deletion_grp_groups:

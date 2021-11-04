@@ -1,3 +1,8 @@
+---
+parent: Administration Tasks
+title: Deploying Yoda
+nav_order: 1
+---
 # Deploying Yoda
 Instructions needed for deploying a (new) Yoda instance.
 
