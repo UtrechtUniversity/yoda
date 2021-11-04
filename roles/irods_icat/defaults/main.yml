@@ -52,3 +52,5 @@ irods_service_type: 'sysv'
 # The max number of open files is only effective when
 # irods_service_type has been set to 'systemd'.
 irods_max_open_files: 131072
+
+change_firewall: true

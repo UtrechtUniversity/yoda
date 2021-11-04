@@ -4,8 +4,7 @@
 # Ansible configuration
 ansible_user: vagrant                             # Administrative user on instance for Ansible
 ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of administrative user
-
-change_firewall: true                              # Change firewall configuration and restart
+change_firewall: true                             # Allow Ansible to change firewall configuration and restart firewalld
 
 #####################
 # Yoda configuration

@@ -36,3 +36,5 @@ openssl_crt_signed_and_chain: localhost_and_chain.crt
 openssl_dhparams: dhparams.pem
 
 repo_only: no  # Only download packages from repos.
+
+change_firewall: true

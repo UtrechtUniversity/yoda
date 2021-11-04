@@ -111,6 +111,7 @@ Variable   | Description
 ansible_user                 | Administrative user on instance for Ansible
 ansible_ssh_private_key_file | Path to private key file of administrative user
 repo_only                    | Only download packages from repos
+change_firewall              | Allow Ansible to change firewall configuration and restart firewalld (boolean, default value: true). Set to false to prevent adding or changing any preexisting rules.
 
 Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars).
 
