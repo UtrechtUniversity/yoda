@@ -28,7 +28,7 @@ Describe here the issue that you are experiencing.
 **Actual result:** Describe here what happens after you run the steps above (i.e. the buggy behaviour)
 **Expected result:** Describe here what should happen after you run the steps above (i.e. what would be the correct behaviour)
 
-### Addtional info
+### Additional info
 <!-- replace the examples with relevant info -->
 **Yoda version:** v0.0.0
 **Ansible version:** v0.0.0
