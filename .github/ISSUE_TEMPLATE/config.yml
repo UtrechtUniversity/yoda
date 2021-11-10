@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Yoda discussions
-    url: https://github.com/UtrechtUniversity/yoda/discussions
+  - name: Yoda Ideas
+    url: https://github.com/UtrechtUniversity/yoda/discussions/categories/ideas
+    about: Please share ideas here.
+  - name: Yoda Q&A
+    url: https://github.com/UtrechtUniversity/yoda/discussions/categories/q-a
     about: Please ask and answer questions here.
