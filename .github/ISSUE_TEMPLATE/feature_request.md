@@ -1,5 +1,5 @@
 ---
-name: Feature request
+name: 📋 Feature request
 about: A feature request for Yoda
 title: "[FEATURE]"
 labels: enhancement
