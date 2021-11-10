@@ -77,19 +77,22 @@
   when: "'repo' in item and 'patch' in item and item['patch'] not in ['']"
 
 
-- name: Find temporary rule files left behind
+- name: Find temporary rule and cache files left behind
   find:
     paths: /etc/irods
-    patterns: '*.re.*'
+    patterns: '*.re.*,*.pyc'
+    recurse: yes
+  when: repochanges.changed
   register: temporary_rules
 
 
-- name: Remove temporary rule files left behind
+- name: Remove temporary rule and cache files left behind
   become_user: "{{ irods_service_account }}"
   become: yes
   file:
     path: "{{ item.path }}"
     state: absent
+  when: repochanges.changed
   with_items:
     - "{{ temporary_rules.files }}"
 
