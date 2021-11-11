@@ -14,7 +14,7 @@ yoda_theme_path: /var/www/yoda/themes              # Base path holding customise
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 
 # Yoda portal
-yoda_portal_version: "pyportal"
+yoda_portal_version: "{{ yoda_version }}"
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name
@@ -38,7 +38,16 @@ flask_session_file_dir: '/tmp/flask_session/'   # default flask_session under cu
 # portal customization
 portal_title_text: Yoda Portal                     # e.g. "YODA - development"
 
+# Research module configuration
+enable_research: True                              # Enable research module
+
+# Deposit module configuration
+enable_deposit: False                              # Enable deposit module
+
+# Intake module configuration
+enable_intake: False                               # Enable intake module
+
 # Datarequest module configuration
-enable_datarequest: false                          # Enable datarequest module
+enable_datarequest: False                          # Enable datarequest module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name
 datarequest_help_contact_email: PLACEHOLDER        # Help contact email

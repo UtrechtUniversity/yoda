@@ -8,7 +8,8 @@ has_toc: false
 # Administration Tasks
 - [Configuring Yoda](configuring-yoda.md)
 - [Deploying Yoda](deploying-yoda.md)
-- [Applying a local change to a ruleset](hotfixing-ruleset.md)
+- [Applying a temporary local change to a ruleset](hotfixing-ruleset.md)
+- [Applying a permanent local change to a ruleset](local-ruleset-patch.md)
 - [Installing licenses](installing-licenses.md)
 - [Installing terms](installing-terms.md)
 - [Installing preservable file formats](installing-preservable-file-formats.md)

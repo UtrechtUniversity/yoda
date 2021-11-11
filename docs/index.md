@@ -8,7 +8,6 @@ On this website you can find release notes and technical documentation on softwa
 {: .fs-6 .fw-300 }
 
 [Get started now](development/setting-up-development-environment.md){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/UtrechtUniversity/yoda){: .btn .fs-5 .mb-4 .mb-md-0 }
-
 ---
 
 ## What is this?

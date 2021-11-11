@@ -75,6 +75,7 @@
     src: "flask.cfg.j2"
     dest: "/var/www/yoda/flask.cfg"
     mode: '0644'
+  no_log: true
 
 
 - name: Copy Yoda Portal virtual host config for Apache
@@ -85,5 +86,5 @@
   notify: Restart Apache webserver
 
 
-- include_tasks: setup-nodejs-development-environment.yml
+- include_tasks: setup-development-environment.yml
   when: yoda_environment == "development"

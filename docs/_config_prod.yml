@@ -3,7 +3,7 @@ baseurl: "/yoda"
 
 title: Yoda
 description: On this website you can find release notes and technical documentation on software design and administration tasks of Yoda
-logo: "yoda.png"
+logo: "yoda.svg"
 
 aux_links:
   "Yoda on GitHub":

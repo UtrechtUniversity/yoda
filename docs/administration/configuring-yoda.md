@@ -36,28 +36,30 @@ In the inventory the hosts of an instance are defined, their functional roles an
 Example configuration defining the and functional roles of an instance called 'yoda':
 ```bash
 [yoda:children]
-host1.yoda.test
-host2.yoda.test
-host3.yoda.test
-host4.yoda.test
+yoda_portal
+yoda_database
+yoda_icat
+yoda_resource
+yoda_public
+yoda_eus
 
-[yoda-portal]
+[yoda_portal]
 host1.yoda.test
 
 # leave this out when using an existing database for ICAT
-[yoda-database]
+[yoda_database]
 host1.yoda.test
 
-[yoda-icat]
+[yoda_icat]
 host1.yoda.test
 
-[yoda-resource]
+[yoda_resource]
 host2.yoda.test
 
-[yoda-public]
+[yoda_public]
 host3.yoda.test
 
-[yoda-eus]
+[yoda_eus]
 host4.yoda.test
 ```
 
@@ -65,23 +67,23 @@ Add the new functional roles of the instance to the corresponding groups.
 For example:
 ```bash
 [portals:children]
-yoda-portal
+yoda_portal
 
 # leave this out when using an existing database for ICAT
 [databases:children]
-yoda-database
+yoda_database
 
 [icats:children]
-yoda-icat
+yoda_icat
 
 [resources:children]
-yoda-resource
+yoda_resource
 
 [publics:children]
-yoda-public
+yoda_public
 
 [eus:children]
-yoda-eus
+yoda_eus
 ```
 
 Last step to add the hosts of a new Yoda instance is to create configuration files for every new host.
@@ -123,6 +125,7 @@ yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 yoda_enable_httpd            | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
+httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.
 
 ### iRODS configuration
 
@@ -137,8 +140,12 @@ irods_icat_fqdn              | iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn          | iRODS database fully qualified domain name (FQDN)
 irods_resource_fqdn          | iRODS resource fully qualified domain name (FQDN)
 irods_default_resc           | iRODS default resource name
+irods_resc_trigger_pol       | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
 irods_ssl_verify_server      | Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources              | Definition of iRODS resources of this Yoda instance
+irods_service_type           | Possible values: 'sysv' (System V) or 'systemd'
+irods_max_open_files         | Maximum number of open files for iRODS service (only effective when irods_service_type is set to 'systemd')
+irods_enable_service         | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS (e.g. mounting encrypted volumes)
 
 ### Research module configuration
 
@@ -159,12 +166,15 @@ credential_files             | Location of Yoda credentials files
 Variable                     | Description
 -----------------------------|---------------------
 enable_intake                | Enable intake module
+intake_groups                | List of intake groups (without the "grp-intake-" prefix)
 
 ### Datarequest module configuration
 
-Variable                     | Description
------------------------------|---------------------
-enable_datarequest           | Enable datarequest module
+Variable                       | Description
+-------------------------------|---------------------
+enable_datarequest             | Enable datarequest module
+datarequest_help_contact_name  | Help contact name
+datarequest_help_contact_email | Help contact email address
 
 ### Mail notifications
 
