@@ -1,3 +1,8 @@
+---
+parent: Administration Tasks
+title: Upgrading metadata schemas
+nav_order: 8
+---
 # Upgrading metadata schemas
 
 Metadata schemas of an Yoda instance can be migrated to newer version or other metadata schema if a transformation exists.

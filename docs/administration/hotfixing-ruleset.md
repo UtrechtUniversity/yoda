@@ -1,6 +1,13 @@
+---
+parent: Administration Tasks
+title: Hotfixing ruleset
+nav_order: 2
+---
 # Applying a local change to a ruleset
 
-If a local change (hotfix) to a ruleset is needed, the following method is recommended:
+This page describes a method for making a temporary local change (hotfix) to a ruleset. Such a
+hotfix can be used temporarily for testing. If the change is to be kept permanently, it is advisable
+to [deploy the change using Ansible](local-ruleset-patch.md).
 
 The commands below can be executed using the iRODS service account.
 

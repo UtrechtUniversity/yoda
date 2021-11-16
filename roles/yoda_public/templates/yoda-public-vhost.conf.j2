@@ -13,7 +13,7 @@ Listen {{ yoda_public_port }}
         Require all granted
     </Directory>
 
-    WSGIDaemonProcess moai user={{ yoda_moai_user }} group={{ yoda_moai_user }} processes=2 threads=1
+    WSGIDaemonProcess moai user={{ yoda_moai_user }} group={{ yoda_moai_user }} threads=5 python-home={{ yoda_moai_home }}/yoda-moai/venv
     WSGIProcessGroup moai
     WSGIScriptAlias /oai {{ yoda_moai_home }}/moai.wsgi
     WSGIScriptReloading On

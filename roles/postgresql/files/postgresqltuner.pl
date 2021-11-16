@@ -203,7 +203,7 @@ sub usage {
 }
 
 # OS command check
-print "Checking if OS commands are available on $host...\n";
+print "Checking if OS commands is available on $host...\n";
 my $os_cmd_prefix='LANG=C LC_ALL=C ';
 my $can_run_os_cmd=0;
 if ($host =~ /^\//) {
@@ -238,15 +238,15 @@ my @Extensions;
 if (min_version('9.1')) {
 	@Extensions=select_one_column("select extname from pg_extension");
 } else {
-	print_report_warn("pg_extension does not exist in ".get_setting('server_version'));
+	print_report_warn("pg_extension does not exists in ".get_setting('server_version'));
 }
 my %advices;
 
 if ($i_am_super) {
-	print_report_ok("User used for report has superuser rights");
+	print_report_ok("User used for report have super rights");
 } else {
-	print_report_bad("User used for report does not have superuser rights. Report will be incomplete");
-	add_advice("report","urgent","Use an account with superuser privileges to get a more complete report");
+	print_report_bad("User used for report does not have super rights. Report will be incomplete");
+	add_advice("report","urgent","Use an account with super privileges to get a more complete report");
 }
 
 # Report
@@ -290,7 +290,7 @@ print_header_1("OS information");
 					print_report_bad("vm.overcommit_ratio is too high, you need to keep free space for the kernel");
 				}
 			} else {
-				print_report_ok("vm.overcommit_memory is good: no memory overcommitment");
+				print_report_ok("vm.overcommit_memory is good : no memory overcommitment");
 			}
 		}
 
@@ -351,7 +351,7 @@ print_header_1("OS information");
 						chomp($disk_schedulers);
 						next if ($disk_schedulers eq 'none');
 						foreach my $scheduler (split(/ /,$disk_schedulers)) {
-							if ($scheduler =~ /^\[([a-z-]+)\]$/) {
+							if ($scheduler =~ /^\[([a-z]+)\]$/) {
 								$active_schedulers{$1}++;
 							}
 						}
@@ -372,7 +372,7 @@ print_header_1("OS information");
 					$rotational_disks+=$disk_is_rotational;
 				}
 			}
-			print_report_info("Currently used I/O scheduler(s): ".join(',',keys(%active_schedulers)));
+			print_report_info("Currently used I/O scheduler(s) : ".join(',',keys(%active_schedulers)));
 		}
 		if (defined($hypervisor) && defined($rotational_disks) && $rotational_disks>0) {
 			print_report_warn("On virtual machines, /sys/block/DISK/queue/rotational is not accurate. Use the --ssd arg if the VM in running on a SSD storage");
@@ -380,7 +380,7 @@ print_header_1("OS information");
 		}
 		if (defined($hypervisor) && $active_schedulers{'cfq'}) {
 			print_report_bad("CFQ scheduler is bad on virtual machines (hypervisor and/or storage is already dooing I/O scheduling)");
-			add_advice("system","urgent","Configure your system to use noop or deadline io scheduler when on virtual machines:\necho deadline > /sys/block/sdX/queue/scheduler\nupdate your kernel parameters line with elevator=deadline to keep this parameter at next reboot");
+			add_advice("system","urgent","Configure your system to use noop or deadline io scheduler when on virtual machines :\necho deadline > /sys/block/sdX/queue/scheduler\nupdate your kernel parameters line with elevator=deadline to keep this parameter at next reboot");
 		}
 	}
 }
@@ -391,24 +391,21 @@ print_header_1("General instance informations");
 {
 	print_header_2("Version");
 	my $version=get_setting('server_version');
-	if ($version=~/(devel|rc)/) {
-		print_report_bad("You are using version $version which is a Development Snapshot or Release Candidate: do not use in production");
-		add_advice("version","urgent","Use a stable version (not a Development Snapshot or Release Candidate)");
+	if ($version=~/rc/) {
+		print_report_bad("You are using version $version which is a Release Candidate : do not use in production");
+		add_advice("version","urgent","Use a stable version (not a Release Candidate)");
 	}
-	if (min_version('11')) {
-		print_report_ok("You are using latest major $version");
-	} elsif (min_version('10')) {
-		print_report_warn("You are using version $version which is not the latest version");
-		add_advice("version","low","Upgrade to latest version");
+	if (min_version('10')) {
+		print_report_ok("You are using last $version");
 	} elsif (min_version('9.0')) {
 		print_report_warn("You are using version $version which is not the latest version");
-		add_advice("version","low","Upgrade to latest version");
+		add_advice("version","low","Upgrade to last version");
 	} elsif (min_version('8.0')) {
 		print_report_bad("You are using version $version which is very old");
-		add_advice("version","medium","Upgrade to latest version");
+		add_advice("version","medium","Upgrade to last version");
 	} else {
 		print_report_bad("You are using version $version which is very old and is not supported by this script");
-		add_advice("version","high","Upgrade to latest version");
+		add_advice("version","high","Upgrade to last version");
 	}
 }
 
@@ -416,7 +413,7 @@ print_header_1("General instance informations");
 {
 	print_header_2("Uptime");
 	my $uptime=select_one_value("select extract(epoch from now()-pg_postmaster_start_time())");
-	print_report_info("Service uptime: ".format_epoch_to_time($uptime));
+	print_report_info("Service uptime : ".format_epoch_to_time($uptime));
 	if ($uptime < $day_s) {
 		print_report_warn("Uptime is less than 1 day. $script_name result may not be accurate");
 	}
@@ -433,8 +430,8 @@ print_header_1("General instance informations");
 ## Extensions
 {
 	print_header_2("Extensions");
-	print_report_info("Number of activated extensions: ".scalar(@Extensions));
-	print_report_info("Activated extensions: @Extensions");
+	print_report_info("Number of activated extensions : ".scalar(@Extensions));
+	print_report_info("Activated extensions : @Extensions");
 	if (grep(/pg_stat_statements/,@Extensions)) {
 		print_report_ok("Extension pg_stat_statements is enabled");
 	} else {
@@ -448,14 +445,14 @@ print_header_1("General instance informations");
 	print_header_2("Users");
 	my @ExpiringSoonUsers = select_one_column("select usename from pg_user where valuntil < now()+interval'7 days'");
 	if (@ExpiringSoonUsers > 0) {
-		print_report_warn("some users account will expire in less than 7 days: ".join(',',@ExpiringSoonUsers));
+		print_report_warn("some users account will expire in less than 7 days : ".join(',',@ExpiringSoonUsers));
 	} else {
 		print_report_ok("No user account will expire in less than 7 days");
 	}
 	if ($i_am_super) {
 		my @BadPasswordUsers = select_one_column("select usename from pg_shadow where passwd='md5'||md5(usename||usename)");
 		if (@BadPasswordUsers > 0) {
-			print_report_warn("some users account have the username as password: ".join(',',@BadPasswordUsers));
+			print_report_warn("some users account have the username as password : ".join(',',@BadPasswordUsers));
 		} else {
 			print_report_ok("No user with password=username");
 		}
@@ -491,14 +488,14 @@ print_header_1("General instance informations");
 	if ($superuser_reserved_connections == 0) {
 		print_report_bad("No connection slot is reserved for superuser. In case of connection saturation you will not be able to connect to investigate or kill connections");
 	} else {
-		print_report_info("$superuser_reserved_connections connections are reserved for super user (".format_percent($superuser_reserved_connections_ratio).")");
+		print_report_info("$superuser_reserved_connections are reserved for super user (".format_percent($superuser_reserved_connections_ratio).")");
 	}
 	if ($superuser_reserved_connections_ratio > 20) {
 		print_report_warn(format_percent($superuser_reserved_connections_ratio)." of connections are reserved for super user. This is too much and can limit other users connections");
 	}
 	# average connection age
 	my $connection_age_average=select_one_value("select extract(epoch from avg(now()-backend_start)) as age from pg_stat_activity");
-	print_report_info("Average connection age: ".format_epoch_to_time($connection_age_average));
+	print_report_info("Average connection age : ".format_epoch_to_time($connection_age_average));
 	if ($connection_age_average < 1 * $min_s) {
 		print_report_bad("Average connection age is less than 1 minute. Use a connection pooler to limit new connection/seconds");
 	} elsif ($connection_age_average < 10 * $min_s) {
@@ -508,13 +505,13 @@ print_header_1("General instance informations");
 	my $pre_auth_delay=get_setting('pre_auth_delay');
 	$pre_auth_delay=~s/s//;
 	if ($pre_auth_delay > 0) {
-		print_report_bad("pre_auth_delay=$pre_auth_delay: this is a developer feature for debugging and decrease connection delay of $pre_auth_delay seconds");
+		print_report_bad("pre_auth_delay=$pre_auth_delay : this is a developer feature for debugging and decrease connection delay of $pre_auth_delay seconds");
 	}
 	# post_auth_delay
 	my $post_auth_delay=get_setting('post_auth_delay');
 	$post_auth_delay=~s/s//;
 	if ($post_auth_delay > 0) {
-		print_report_bad("post_auth_delay=$post_auth_delay: this is a developer feature for debugging and decrease connection delay of $post_auth_delay seconds");
+		print_report_bad("post_auth_delay=$post_auth_delay : this is a developer feature for debugging and decrease connection delay of $post_auth_delay seconds");
 	}
 
 	print_header_2("Memory usage");
@@ -533,7 +530,7 @@ print_header_1("General instance informations");
 		$max_processes+=get_setting('max_worker_processes');
 	}
 	my $track_activity_size=get_setting('track_activity_query_size')*$max_processes;
-	print_report_info("Track activity reserved size: ".format_size($track_activity_size));
+	print_report_info("Track activity reserved size : ".format_size($track_activity_size));
 	# maintenance_work_mem
 	my $maintenance_work_mem=get_setting('maintenance_work_mem');
 	my $autovacuum_max_workers=get_setting('autovacuum_max_workers');
@@ -545,13 +542,13 @@ print_header_1("General instance informations");
 	}
 	# total
 	my $max_memory=$shared_buffers+$work_mem_total+$maintenance_work_mem_total+$track_activity_size;
-	print_report_info("Max memory usage:\n\t\t  shared_buffers (".format_size($shared_buffers).")\n\t\t+ max_connections * work_mem * average_work_mem_buffers_per_connection ($max_connections * ".format_size($work_mem)." * $work_mem_per_connection_percent / 100 = ".format_size($max_connections*$work_mem*$work_mem_per_connection_percent/100).")\n\t\t+ autovacuum_max_workers * maintenance_work_mem ($autovacuum_max_workers * ".format_size($maintenance_work_mem)." = ".format_size($autovacuum_max_workers*$maintenance_work_mem).")\n\t\t+ track activity size (".format_size($track_activity_size).")\n\t\t= ".format_size($max_memory));
+	print_report_info("Max memory usage :\n\t\t  shared_buffers (".format_size($shared_buffers).")\n\t\t+ max_connections * work_mem * average_work_mem_buffers_per_connection ($max_connections * ".format_size($work_mem)." * $work_mem_per_connection_percent / 100 = ".format_size($max_connections*$work_mem*$work_mem_per_connection_percent/100).")\n\t\t+ autovacuum_max_workers * maintenance_work_mem ($autovacuum_max_workers * ".format_size($maintenance_work_mem)." = ".format_size($autovacuum_max_workers*$maintenance_work_mem).")\n\t\t+ track activity size (".format_size($track_activity_size).")\n\t\t= ".format_size($max_memory));
 	# effective_cache_size
 	my $effective_cache_size=get_setting('effective_cache_size');
 	print_report_info("effective_cache_size: ".format_size($effective_cache_size));
 	# total database size
 	my $all_databases_size=select_one_value("select sum(pg_database_size(datname)) from pg_database");
-	print_report_info("Size of all databases: ".format_size($all_databases_size));
+	print_report_info("Size of all databases : ".format_size($all_databases_size));
 	# shared_buffer usage
 	my $shared_buffers_usage=$all_databases_size/$shared_buffers;
 	if ($shared_buffers_usage < 0.7) {
@@ -559,7 +556,7 @@ print_header_1("General instance informations");
 	}
 	# ratio of total RAM
 	if (! defined($os->{mem_total})) {
-		print_report_unknown("OS total mem unknown: unable to analyse PostgreSQL memory usage");
+		print_report_unknown("OS total mem unknown : unable to analyse PostgreSQL memory usage");
 	} else {
 		my $percent_postgresql_max_memory=$max_memory*100/$os->{mem_total};
 		print_report_info("PostgreSQL maximum memory usage: ".format_percent($percent_postgresql_max_memory)." of system RAM");
@@ -584,7 +581,7 @@ print_header_1("General instance informations");
 		if ($percent_mem_usage < 60 and $shared_buffers_usage > 1) {
 			print_report_warn("Increase shared_buffers and/or effective_cache_size to use more memory");
 		} elsif ($percent_mem_usage > 90) {
-			print_report_warn("the sum of max_memory and effective_cache_size is too high, the planner can find bad plans if system cache is smaller than expected");
+			print_report_warn("the sum of max_memory and effective_cache_size is too high, the planer can find bad plans if system cache is smaller than expected");
 		}
 	}
 
@@ -596,18 +593,18 @@ print_header_1("General instance informations");
 	# log hostname
 	my $log_hostname=get_setting('log_hostname');
 	if ($log_hostname eq 'on') {
-		print_report_bad("log_hostname is on: this will decrease connection performance due to reverse DNS lookup");
+		print_report_bad("log_hostname is on : this will decrease connection performance due to reverse DNS lookup");
 	} else {
-		print_report_ok("log_hostname is off: no reverse DNS lookup latency");
+		print_report_ok("log_hostname is off : no reverse DNS lookup latency");
 	}
 
 	# log_min_duration_statement
 	my $log_min_duration_statement=get_setting('log_min_duration_statement');
 	$log_min_duration_statement=~s/ms//;
 	if ($log_min_duration_statement == -1 ) {
-		print_report_warn("log of long queries is deactivated. It will be more difficult to optimize query performances");
+		print_report_warn("log of long queries is desactivated. It will be more difficult to optimize query performances");
 	} elsif ($log_min_duration_statement < 1000 ) {
-		print_report_bad("log_min_duration_statement=$log_min_duration_statement: all requests less than 1 sec will be written in log. It can be disk intensive (I/O and space)");
+		print_report_bad("log_min_duration_statement=$log_min_duration_statement : all requests of more than 1 sec will be written in log. It can be disk intensive (I/O and space)");
 	} else {
 		print_report_ok("long queries will be logged");
 	}
@@ -615,9 +612,9 @@ print_header_1("General instance informations");
 	# log_statement
 	my $log_statement=get_setting('log_statement');
 	if ($log_statement eq 'all') {
-		print_report_bad("log_statement=all: this is very disk intensive and only usefull for debug");
+		print_report_bad("log_statement=all : this is very disk intensive and only usefull for debug");
 	} elsif ($log_statement eq 'mod') {
-		print_report_warn("log_statement=mod: this is disk intensive");
+		print_report_warn("log_statement=mod : this is disk intensive");
 	} else {
 		print_report_ok("log_statement=$log_statement");
 	}
@@ -720,20 +717,20 @@ print_header_1("General instance informations");
 ## Planner
 {
 	print_header_2("Planner");
-	# Modified cost settings
+	# Modified costs settings
 	my @ModifiedCosts=select_one_column("select name from pg_settings where name like '%cost%' and setting<>boot_val;");
 	if (@ModifiedCosts > 0) {
-		print_report_warn("some cost settings are not the defaults: ".join(',',@ModifiedCosts).". This can have bad impacts on performance. Use at your own risk");
+		print_report_warn("some costs settings are not the defaults : ".join(',',@ModifiedCosts).". This can have bad impacts on performance. Use at your own risks");
 	} else {
-		print_report_ok("cost settings are defaults");
+		print_report_ok("costs settings are defaults");
 	}
 
 	# random vs seq page cost on SSD
 	if (!defined($rotational_disks)) {
-		print_report_unknown("Information about rotational/SSD disk is unknown: unable to check random_page_cost and seq_page_cost tuning");
+		print_report_unknown("Information about rotational/SSD disk is unknown : unable to check random_page_cost and seq_page_cost tuning");
 	} else {
 		if ($rotational_disks == 0 and get_setting('random_page_cost')>get_setting('seq_page_cost')) {
-			print_report_warn("With SSD storage, set random_page_cost=seq_page_cost to help planner use more index scan");
+			print_report_warn("With SSD storage, set random_page_cost=seq_page_cost to help planer use more index scan");
 			add_advice("planner","medium","Set random_page_cost=seq_page_cost on SSD disks");
 		} elsif ($rotational_disks > 0 and get_setting('random_page_cost')<=get_setting('seq_page_cost')) {
 			print_report_bad("Without SSD storage, random_page_cost must be more than seq_page_cost");
@@ -744,7 +741,7 @@ print_header_1("General instance informations");
 	# disabled plan fonctions
 	my @DisabledPlanFunctions=select_one_column("select name,setting from pg_settings where name like 'enable_%' and setting='off';");
 	if (@DisabledPlanFunctions > 0) {
-		print_report_bad("some plan features are disabled: ".join(',',@DisabledPlanFunctions));
+		print_report_bad("some plan features are disabled : ".join(',',@DisabledPlanFunctions));
 	} else {
 		print_report_ok("all plan features are enabled");
 	}
@@ -758,7 +755,7 @@ print_header_1("Database information for database $database");
 {
 	print_header_2("Database size");
 	my $sum_total_relation_size=select_one_value("select sum(pg_total_relation_size(schemaname||'.'||quote_ident(tablename))) from pg_tables");
-	print_report_info("Database $database total size: ".format_size($sum_total_relation_size));
+	print_report_info("Database $database total size : ".format_size($sum_total_relation_size));
 	if (min_version('9.0')) {
 		my $sum_table_size=select_one_value("select sum(pg_table_size(schemaname||'.'||quote_ident(tablename))) from pg_tables");
 		my $sum_index_size=$sum_total_relation_size-$sum_table_size;
@@ -767,8 +764,8 @@ print_header_1("Database information for database $database");
 		#print_report_debug("sum_index_size: $sum_index_size");
 		my $table_percent=$sum_table_size*100/$sum_total_relation_size;
 		my $index_percent=$sum_index_size*100/$sum_total_relation_size;
-		print_report_info("Database $database tables size: ".format_size($sum_table_size)." (".format_percent($table_percent).")");
-		print_report_info("Database $database indexes size: ".format_size($sum_index_size)." (".format_percent($index_percent).")");
+		print_report_info("Database $database tables size : ".format_size($sum_table_size)." (".format_percent($table_percent).")");
+		print_report_info("Database $database indexes size : ".format_size($sum_index_size)." (".format_percent($index_percent).")");
 	}
 }
 
@@ -780,7 +777,7 @@ print_header_1("Database information for database $database");
 		if (keys(%{$tablespaces_in_pgdata}) == 0) {
 			print_report_ok("No tablespace in PGDATA");
 		} else {
-			print_report_bad("Some tablespaces are in PGDATA: ".join(' ',keys(%{$tablespaces_in_pgdata})));
+			print_report_bad("Some tablespaces are in PGDATA : ".join(' ',keys(%{$tablespaces_in_pgdata})));
 			add_advice('tablespaces','urgent','Some tablespaces are in PGDATA. Move them outside of this folder.');
 		}
 	} else {
@@ -812,7 +809,7 @@ print_header_1("Database information for database $database");
 		my $shared_buffer_idx_hit_rate=select_one_value("select sum(idx_blks_hit)*100/(sum(idx_blks_read)+sum(idx_blks_hit)+1) from pg_statio_all_tables ;");
 		print_report_info("shared_buffer_idx_hit_rate: ".format_percent($shared_buffer_idx_hit_rate));
 		if ($shared_buffer_idx_hit_rate > 99.99) {
-			print_report_info("shared buffer idx hit rate too high. You can safely reduce shared_buffer");
+			print_report_info("shared buffer idx hit rate too high. You can reducte shared_buffer if you need");
 		} elsif ($shared_buffer_idx_hit_rate>98) {
 			print_report_ok("Shared buffer idx hit rate is very good");
 		} elsif ($shared_buffer_idx_hit_rate>90) {
@@ -830,7 +827,7 @@ print_header_1("Database information for database $database");
 	{
 		my @Invalid_indexes=select_one_column("select relname from pg_index join pg_class on indexrelid=oid where indisvalid=false");
 		if (@Invalid_indexes > 0) {
-			print_report_bad("There are invalid indexes in the database: @Invalid_indexes");
+			print_report_bad("There are invalid indexes in the database : @Invalid_indexes");
 			add_advice("index","urgent","You have invalid indexes in the database. Please check/rebuild them");
 		} else {
 			print_report_ok("No invalid indexes");
@@ -845,8 +842,8 @@ print_header_1("Database information for database $database");
 			@Unused_indexes=select_one_column("select relname||'.'||indexrelname from pg_stat_user_indexes where idx_scan=0 ORDER BY relname, indexrelname");
 		}
 		if (@Unused_indexes > 0) {
-			print_report_warn("Some indexes are unused since the last statistics run: @Unused_indexes");
-			add_advice("index","medium","You have unused indexes in the database since the last statistics run. Please remove them if they are not used");
+			print_report_warn("Some indexes are unused since last statistics: @Unused_indexes");
+			add_advice("index","medium","You have unused indexes in the database since last statistics. Please remove them if they are never use");
 		} else {
 			print_report_ok("No unused indexes");
 		}
@@ -858,10 +855,10 @@ print_header_1("Database information for database $database");
 	print_header_2("Procedures");
 	# Procedures with default cost
 	{
-		my @Default_cost_procs=select_one_column("select n.nspname||'.'||p.proname from pg_catalog.pg_proc p left join pg_catalog.pg_namespace n on n.oid = p.pronamespace where pg_catalog.pg_function_is_visible(p.oid) and n.nspname not in ('pg_catalog','information_schema','sys') and p.prorows<>1000 and p.procost<>10 and p.proname not like 'uuid_%' and p.proname != 'pg_stat_statements_reset'");
+		my @Default_cost_procs=select_one_column("select n.nspname||'.'||p.proname from pg_catalog.pg_proc p left join pg_catalog.pg_namespace n on n.oid = p.pronamespace where pg_catalog.pg_function_is_visible(p.oid) and n.nspname not in ('pg_catalog','information_schema') and p.prorows<>1000 and p.procost<>10");
 		if (@Default_cost_procs > 0) {
-			print_report_warn("Some user procedures do not have custom cost and rows settings: @Default_cost_procs");
-			add_advice("proc","low","You have custom procedures with default cost and rows setting. Please reconfigure them with specific values to help the planner");
+			print_report_warn("Some user procedures does not have custom cost and rows settings : @Default_cost_procs");
+			add_advice("proc","low","You have custom procedures with default cost and rows setting. Please reconfigure them with specific values to help the planer");
 		} else {
 			print_report_ok("No procedures with default costs");
 		}
@@ -880,7 +877,7 @@ exit(0);
 sub min_version {
 	my $min_version=shift;
 	my $cur_version=get_setting('server_version');
-	$cur_version=~s/(devel|rc).*//; # clean devel or RC
+	$cur_version=~s/rc.*//; # clean RC
 	my ($min_major,$min_minor)=split(/\./,$min_version);
 	my ($cur_major,$cur_minor)=split(/\./,$cur_version);
 	if ($cur_major > $min_major) {
@@ -903,7 +900,7 @@ sub min_version {
 sub select_all_hashref {
 	my ($query,$key)=@_;
 	if (!defined($query) or !defined($key)) {
-		print STDERR "ERROR: Missing query or key\n";
+		print STDERR "ERROR : Missing query or key\n";
 		exit 1;
 	}
 	my $sth = $dbh->prepare($query);
@@ -915,7 +912,7 @@ sub select_all_hashref {
 sub select_one_value {
 	my ($query)=@_;
 	if (!defined($query)) {
-		print STDERR "ERROR: Missing query\n";
+		print STDERR "ERROR : Missing query\n";
 		exit 1;
 	}
 	my $sth = $dbh->prepare($query);
@@ -931,7 +928,7 @@ sub select_one_value {
 sub select_one_column {
 	my ($query)=@_;
 	if (!defined($query)) {
-		print STDERR "ERROR: Missing query\n";
+		print STDERR "ERROR : Missing query\n";
 		exit 1;
 	}
 	my $sth = $dbh->prepare($query);
@@ -996,7 +993,7 @@ sub print_header {
 sub get_setting {
 	my $name=shift;
 	if (!defined($settings->{$name})) {
-		print STDERR "ERROR: setting $name does not exist\n";
+		print STDERR "ERROR: setting $name does not exists\n";
 		exit 1;
 	} else {
     return standard_units($settings->{$name}->{setting}, $settings->{$name}->{unit});
@@ -1101,7 +1098,7 @@ sub add_advice {
 
 sub print_advices {
 	print "\n";
-	print_header_1("Configuration advice");
+	print_header_1("Configuration advices");
 	my $advice_count=0;
 	foreach my $category (sort(keys(%advices))) {
 		print_header_2($category);

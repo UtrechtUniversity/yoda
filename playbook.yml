@@ -53,7 +53,7 @@
   roles:
     - apache
     - { role: acme_certificates, when: yoda_environment == "testing" }
-    - php
+    - python3
     - yoda_portal
     - irods_icommands
     - irods_runtime

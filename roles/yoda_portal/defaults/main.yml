@@ -4,51 +4,17 @@
 yoda_deployment_user: yodadeployment
 
 yoda_version: development
-irods_php_version: "{{ yoda_version }}"
-codeigniter_version: "{{ yoda_version }}"
-codeigniter_environment: "{{ yoda_environment }}"
 
 yoda_portal_fqdn: portal.yoda.test
 yoda_eus_fqdn: eus.yoda.test
 update_portal: yes
-yoda_php_encryption_key: dummy
-yoda_public_dir: /var/www/yoda/yoda-portal/public
 
+# Yoda theme
+yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 
 # Yoda portal
-portal:
-  - repo: "https://github.com/UtrechtUniversity/CodeIgniter.git"
-    dest: /var/www/yoda/CodeIgniter
-    version: "{{ codeigniter_version }}"
-  - repo: "https://github.com/UtrechtUniversity/irods-php.git"
-    dest: /var/www/yoda/irods-php
-    version: "{{ yoda_version }}"
-  - repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
-    dest: /var/www/yoda/yoda-portal
-    version: "{{ yoda_version }}"
-
-# Yoda core modules
-core_modules:
-  - name: group-manager
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-group-manager.git"
-    dest: /var/www/yoda/yoda-portal/modules/group-manager
-    version: "{{ yoda_version }}"
-  - name: research
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-research.git"
-    dest: /var/www/yoda/yoda-portal/modules/research
-    version: "{{ yoda_version }}"
-  - name: vault
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-vault.git"
-    dest: /var/www/yoda/yoda-portal/modules/vault
-    version: "{{ yoda_version }}"
-  - name: statistics
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-statistics.git"
-    dest: /var/www/yoda/yoda-portal/modules/statistics
-    version: "{{ yoda_version }}"
-
-# Yoda extra modules
-extra_modules: []
+yoda_portal_version: "{{ yoda_version }}"
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name
@@ -63,16 +29,25 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
 
+# Flask configuration
+flask_secret_key: PleaseChangeMe123
+yoda_commit: '{{ portalchanges.after }}'
+flask_permanent_session_lifetime: 30 * 60       # in seconds, so 30 minutes
+flask_session_file_dir: '/tmp/flask_session/'   # default flask_session under current working dir
+
 # portal customization
-portal_title_text: false                           # e.g. "YODA - development"
-portal_shortcut_icon: false                        # e.g. "environments/develop/files/favicon.ico"
-portal_logo: false                                 # e.g. "environments/develop/files/logo.png"
-portal_static_frontpage: false                     # portal_static_frontpage:
-                                                   #   file: "environments/develop/files/static_frontpage.html"
-                                                   #   images:
-                                                   #     - "environments/develop/files/splash.png"
+portal_title_text: Yoda Portal                     # e.g. "YODA - development"
+
+# Research module configuration
+enable_research: True                              # Enable research module
+
+# Deposit module configuration
+enable_deposit: False                              # Enable deposit module
+
+# Intake module configuration
+enable_intake: False                               # Enable intake module
 
 # Datarequest module configuration
-enable_datarequest: false                          # Enable datarequest module
+enable_datarequest: False                          # Enable datarequest module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name
 datarequest_help_contact_email: PLACEHOLDER        # Help contact email
