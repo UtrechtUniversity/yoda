@@ -47,7 +47,7 @@ openssl_crt_signed_and_chain: localhost_and_chain.crt
 oidc_userinfo_uri: ''
 
 # Service type. Possible values: 'sysv' and 'systemd'
-irods_service_type: 'sysv'
+irods_service_type: 'systemd'
 
 # The max number of open files is only effective when
 # irods_service_type has been set to 'systemd'.
