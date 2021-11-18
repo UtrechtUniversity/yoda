@@ -135,5 +135,8 @@ Building theme CSS:
 cd static/src/
 npm install
 npm install -g sass
-sass build.scss ../../themes/uu/static/css/yoda-portal.css
+# Build (default) UU theme
+sass build_uu.scss ../../static/css/yoda-portal.css
+# Build (custom) VU theme
+sass build_vu.scss ../../themes/vu/static/css/yoda-portal.css
 ```
