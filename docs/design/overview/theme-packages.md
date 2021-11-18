@@ -128,3 +128,12 @@ Putting templates and css together results in following theme package structure
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/js/...  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/img/...  
 &nbsp;&nbsp;&nbsp;&nbsp;...  
+
+## Compiling theme CSS
+Building theme CSS:
+```
+cd static/src/
+npm install
+npm install -g sass
+sass build.scss ../../themes/uu/static/css/yoda-portal.css
+```
