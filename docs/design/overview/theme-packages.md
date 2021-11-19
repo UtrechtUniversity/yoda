@@ -136,7 +136,7 @@ cd static/src/
 npm install
 npm install -g sass
 # Build (default) UU theme
-sass build_uu.scss ../../static/css/yoda-portal.css
+sass --style compressed build_uu.scss ../../static/css/yoda-portal.css
 # Build (custom) VU theme
-sass build_vu.scss ../../themes/vu/static/css/yoda-portal.css
+sass --style compressed build_vu.scss ../../themes/vu/static/css/yoda-portal.css
 ```
