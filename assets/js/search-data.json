@@ -1417,7 +1417,7 @@
   },"236": {
     "doc": "Theme packaging",
     "title": "Compiling theme CSS",
-    "content": "Building theme CSS: . cd static/src/ npm install npm install -g sass # Build (default) UU theme sass build_uu.scss ../../static/css/yoda-portal.css # Build (custom) VU theme sass build_vu.scss ../../themes/vu/static/css/yoda-portal.css . ",
+    "content": "Building theme CSS: . cd static/src/ npm install npm install -g sass # Build (default) UU theme sass --style compressed build_uu.scss ../../static/css/yoda-portal.css # Build (custom) VU theme sass --style compressed build_vu.scss ../../themes/vu/static/css/yoda-portal.css . ",
     "url": "/yoda/design/overview/theme-packages.html#compiling-theme-css",
     "relUrl": "/design/overview/theme-packages.html#compiling-theme-css"
   },"237": {
