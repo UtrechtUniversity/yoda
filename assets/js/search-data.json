@@ -1285,7 +1285,7 @@
   },"214": {
     "doc": "Restore collection",
     "title": "Restore collection",
-    "content": "If you want to restore a collection you can use the restore-collection.r tool from the irods-ruleset-research. The tool is located at /etc/irods/irods-ruleset-research/tools/restore-collection.r . The tool accepts the following parameters: . | Parameter | Description | . | path | Path to collection to restore | . | timestamp | UNIX timestamp, restore collection to revision from before this timestamp | . | restorePath | Path to restore the collection to, empty if you want to restore in the same collection | . ",
+    "content": "If you want to restore a collection you can use the restore-collection.r tool from the irods-ruleset-uu. The tool is located at /etc/irods/irods-ruleset-uu/tools/restore-collection.r . The tool accepts the following parameters: . | Parameter | Description | . | path | Path to collection to restore | . | timestamp | UNIX timestamp, restore collection to revision from before this timestamp | . | restorePath | Path to restore the collection to, empty if you want to restore in the same collection | . ",
     "url": "/yoda/administration/restore-collection.html",
     "relUrl": "/administration/restore-collection.html"
   },"215": {
