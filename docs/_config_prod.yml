@@ -12,7 +12,7 @@ aux_links:
 gh_edit_link: true
 gh_edit_link_text: "Edit this page on GitHub."
 gh_edit_repository: "https://github.com/UtrechtUniversity/yoda"
-gh_edit_branch: "pyportal"
+gh_edit_branch: "development"
 gh_edit_source: docs
 gh_edit_view_mode: "tree"
 
