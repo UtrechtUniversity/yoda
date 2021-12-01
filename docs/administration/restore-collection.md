@@ -4,8 +4,8 @@ title: Restore collection
 nav_order: 13
 ---
 # Restore collection
-If you want to restore a collection you can use the `restore-collection.r` tool from the `irods-ruleset-research`.
-The tool is located at `/etc/irods/irods-ruleset-research/tools/restore-collection.r`
+If you want to restore a collection you can use the `restore-collection.r` tool from the `irods-ruleset-uu`.
+The tool is located at `/etc/irods/irods-ruleset-uu/tools/restore-collection.r`
 
 The tool accepts the following parameters:
 
