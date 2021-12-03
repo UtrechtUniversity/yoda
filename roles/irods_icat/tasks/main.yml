@@ -191,13 +191,13 @@
     value: '{{ irods_icat_fqdn }}'
 
 
-- name: Set delayed rule sleep time to 1 second
+- name: Set delayed rule sleep time to 10 seconds
   become_user: '{{ irods_service_account }}'
   become: yes
   irods_advanced:
     path: '/etc/irods/server_config.json'
     key: 'rule_engine_server_sleep_time_in_seconds'
-    value: '1'
+    value: '10'
 
 
 - name: Ensure core.re is configured

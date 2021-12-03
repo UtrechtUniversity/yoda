@@ -128,3 +128,15 @@ Putting templates and css together results in following theme package structure
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/js/...  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/img/...  
 &nbsp;&nbsp;&nbsp;&nbsp;...  
+
+## Compiling theme CSS
+Building theme CSS:
+```
+cd static/src/
+npm install
+npm install -g sass
+# Build (default) UU theme
+sass --style compressed build_uu.scss ../../static/css/yoda-portal.css
+# Build (custom) VU theme
+sass --style compressed build_vu.scss ../../themes/vu/static/css/yoda-portal.css
+```
