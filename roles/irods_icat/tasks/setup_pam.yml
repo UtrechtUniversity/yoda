@@ -1,10 +1,10 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure PAM radius is installed
+- name: Ensure PAM radius is absent
   package:
     name: pam_radius
-    state: present
+    state: absent
 
 
 - name: Ensure external user check is present
@@ -27,6 +27,16 @@
   when: external_users
 
 
+- name: Ensure token authentication is present
+  template:
+    src: token-auth.py.j2
+    dest: /usr/local/bin/token-auth.py
+    owner: root
+    group: irods
+    mode: 0750
+  when: enable_tokens
+
+
 - name: Ensure /etc/pam.d/irods is configured
   template:
     src: 'irods_pam.j2'
@@ -34,20 +44,10 @@
     mode: '0644'
 
 
-- name: Ensure /etc/pam_radius.conf is configured
-  template:
-    src: 'pam_radius.conf.j2'
-    dest: '/etc/pam_radius.conf'
-    mode: '0600'
-
-
-- name: Ensure correct file ownership and mode on PamAuthCheck
+- name: Ensure deprecated /etc/pam_radius.conf is removed
   file:
-    path: /usr/sbin/irodsPamAuthCheck
-    owner: root
-    group: root
-    mode: 04755
-  when: not ansible_check_mode
+    path: /etc/pam_radius.conf
+    state: absent
 
 
 - name: Ensure OIDC authentication is present
@@ -60,3 +60,12 @@
     owner: irods
     group: irods
     mode: 0644
+
+
+- name: Ensure correct file ownership and mode on PamAuthCheck
+  file:
+    path: /usr/sbin/irodsPamAuthCheck
+    owner: root
+    group: root
+    mode: 04755
+  when: not ansible_check_mode

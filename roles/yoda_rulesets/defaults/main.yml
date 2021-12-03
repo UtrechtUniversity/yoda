@@ -74,6 +74,8 @@ eus_api_fqdn: api.eus.yoda.test         # External User Service API FQDN
 eus_api_port: 8443                      # External User Service API port
 eus_api_secret: PLACEHOLDER             # External User Service API secret
 
+enable_deposit: false                   # Enable deposit module
+
 enable_intake: false                    # Enable intake module
 intake_groups: []                       # List of intake_groups. Use the names without "grp-intake-"
                                         # For example: "projectabc" for "grp-intake-projectabc"
