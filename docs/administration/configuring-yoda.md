@@ -253,3 +253,11 @@ oidc_acr_values		| OIDC Authentication Context Class Reference Values
 oidc_email_field	| The identifier of the JSON field in the `id_token` containing the email address. Default: `email`
 oidc_signin_text	| The text to appear on the Sign in button. Default: *Sign in with OIDC*
 oidc_public_key     | OIDC jwks public key (base64 encoded PEM format)
+
+# Data Access Tokens configuration
+Variable       | Description
+---------------|---------------------------------------------
+enable_tokens  | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
+token_database | Location of the database that contain the tokens
+token_length   | Length of data access tokens
+token_lifetime | Lifetime of data access tokens (in hours)
