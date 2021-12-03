@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-yoda_version: pyportal-token-poc
+yoda_version: development
 irods_service_account: irods
 credentials_store: /var/lib/irods/.credentials_store
 
@@ -10,7 +10,7 @@ core_rulesets:
   - name: irods-ruleset-uu
     repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
     ruleset_name: rules-uu
-    version: "pyportal-token-poc"
+    version: "{{ yoda_version }}"
     install_scripts: yes
   - name: core
     ruleset_name: core
