@@ -12,7 +12,7 @@ CPU = 2
 RAM = 2048
 
 DOMAIN  = ".yoda.test"
-NETWORK = "192.168.50."
+NETWORK = "192.168.56."
 NETMASK = "255.255.255.0"
 
 HOSTS = {
@@ -51,7 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine.vm.provision "shell",
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
       machine.vm.provision "shell",
-        inline: "sudo echo \"192.168.50.10 api.eus.yoda.test\" | sudo tee -a /etc/hosts"
+        inline: "sudo echo \"192.168.56.10 api.eus.yoda.test\" | sudo tee -a /etc/hosts"
     end
   end
 
@@ -63,7 +63,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
       controller.vm.box = BOX
       controller.vm.hostname = "controller"
-      controller.vm.network :private_network, ip: "192.168.50.5", netmask: NETMASK
+      controller.vm.network :private_network, ip: "192.168.56.5", netmask: NETMASK
       controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh"
       controller.vm.synced_folder ".", "/vagrant", disabled: true
       controller.vm.provision "shell",
