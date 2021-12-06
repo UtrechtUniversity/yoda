@@ -44,6 +44,4 @@ iput "${LICENSE}.uri" "/${RODSZONE}/yoda/licenses/${LICENSE}.uri"
 
 # Footnotes
 
-[^1]: UTF-8 is not an option, because browsers will display a .txt file with the windows-1252 encoding. The ANSI subset of
-the windows-1252 encoding is not an option, because Mac and linux will not correctly detect ANSI in a .txt file if opened
-from the web disk.
+[^1]: UTF-8 is not an option, because browsers will display a .txt file with the windows-1252 encoding. The ANSI subset of the windows-1252 encoding is not an option, because Mac and linux will not correctly detect ANSI in a .txt file if opened from the web disk.
