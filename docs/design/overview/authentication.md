@@ -30,7 +30,7 @@ For configuring the additional authentication methods, please look at the releva
 
 ### Testing
 
-To test the configured PAM stack, you can use the the `irodsPamAuthCheck` tool.
+To test the configured PAM stack, you can use the `irodsPamAuthCheck` tool.
 This is located on the iRODS server at `/usr/sbin/irodsPamAuthCheck`.
 The program requires a username to be passed as a parameter and then prompts for the password.
 These will then be passed to the PAM stack.
@@ -38,7 +38,7 @@ If successful, the output will be *Authenticated*, otherwise the output will be 
 
 ## Yoda portal
 
-The Yoda Portal is build on top of iRODS but is not the same application.
+The Yoda Portal is built on top of iRODS.
 As such, when logging in to Yoda, an iRODS session has to be created as well.
 Creation of the iRODS session goes by sending iRODS a PAM Auth Request and is handled as described in the previous section.
 The authentication mechanism for Yoda is described below.
