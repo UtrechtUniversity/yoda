@@ -10,6 +10,7 @@ RESEARCH_ENABLED    = {{ enable_research }}
 DEPOSIT_ENABLED     = {{ enable_deposit }}
 INTAKE_ENABLED      = {{ enable_intake }}
 DATAREQUEST_ENABLED = {{ enable_datarequest }}
+TOKENS_ENABLED      = {{ enable_tokens }}
 JSON_SORT_KEYS      = False  # Check if this is still needed with Python v3.7?
 
 # Flask-Session configuration
@@ -44,7 +45,8 @@ IRODS_SESSION_OPTIONS = {
         cadata=None,
     ),
     **IRODS_CLIENT_OPTIONS_FOR_SSL,
-    'authentication_scheme': IRODS_AUTH_SCHEME
+    'authentication_scheme': IRODS_AUTH_SCHEME,
+    'application_name': 'yoda-portal'
 }
 
 {% if oidc_active is sameas true %}
@@ -64,7 +66,6 @@ OIDC_SCOPES         = '{{ oidc_scopes        | default("openid") }}'
 OIDC_ACR_VALUES     = '{{ oidc_acr_values    | default("") }}'
 OIDC_USERINFO_URI   = '{{ oidc_userinfo_uri  | default("") }}'
 OIDC_EMAIL_FIELD    = '{{ oidc_email_field   | default("email") }}'
-OIDC_SIGNIN_TEXT    = '{{ oidc_signin_text   | default("Sign in with OIDC") }}'
 OIDC_JWKS_URI       = '{{ oidc_jwks_uri      | default("") }}'
 OIDC_JWT_ISSUER     = '{{ oidc_jwt_issuer    | default("") }}'
 OIDC_JWT_OPTIONS    = {

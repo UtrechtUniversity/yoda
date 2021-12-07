@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+# {{ ansible_managed }}
+
+import sqlite3
+from datetime import datetime
+from traceback import print_exc
+
+TOKEN_DB = '{{ token_database }}'
+
+
+def pam_sm_authenticate(pamh, flags, argv):
+    try:
+        user_id = pamh.get_user()
+    except Exception:
+        return pamh.PAM_USER_UNKNOWN
+
+    token = pamh.authtok
+    if token is None:
+        return pamh.PAM_AUTH_ERR
+
+    authenticated = False
+    conn = sqlite3.connect(TOKEN_DB)
+
+    with conn:
+        try:
+            # Check if token matches an active token from the user.
+            for row in conn.execute('''SELECT token FROM tokens WHERE user=:user_id AND exp_time > :now''',
+                                    {"user_id": user_id, "now": datetime.now()}):
+                if token == row[0]:
+                    authenticated = True
+                    break
+        except Exception:
+            print_exc()
+
+    conn.close()
+
+    if authenticated:
+        return pamh.PAM_SUCCESS
+    else:
+        return pamh.PAM_AUTH_ERR

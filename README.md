@@ -23,7 +23,7 @@
 Yoda is a research data management solution developed by Utrecht University and used by multiple institutes around the world.
 It enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project.
 
-This repository is the staring point for using Yoda and contains the [Ansible](https://docs.ansible.com) scripts for automatic deployment of Yoda.
+This is the main repository of Yoda. It contains the [Ansible](https://docs.ansible.com) playbook for automated deployment, as well as the documentation.
 
 ## Requirements
 ### Control machine requirements
@@ -44,6 +44,10 @@ Instructions on how to setup your development environment and other useful instr
 ### Bug reports
 We use GitHub for bug tracking.
 Please search existing [issues](https://github.com/UtrechtUniversity/yoda/issues) and create a new one if the issue is not yet tracked.
+
+### Questions and ideas
+
+The best place to reach us about questions and ideas regarding Yoda is on our [GitHub Discussions page](https://github.com/utrechtuniversity/yoda/discussions).
 
 ## License
 This project is licensed under the GPL-v3 license.

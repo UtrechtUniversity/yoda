@@ -28,7 +28,7 @@ Additionally, depending on the authorization server, you may need to configure t
 
 Finally, for customization purposes, you can also configure:
 - oidc_domain
-- oidc_signin_text
+- oidc_signin_text (deprecated since v1.8)
 
 For token verification there are also the following parameters which define what checks are done when verifying a JWT. Take caution when setting values to `false`, as this makes verification less strict. Details can be found in the group_vars file.
 - oidc_req_exp (default: `true`)      

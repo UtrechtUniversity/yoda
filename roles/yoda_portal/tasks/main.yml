@@ -68,6 +68,25 @@
     creates: /etc/httpd/conf.modules.d/02-wsgi.conf
 
 
+- name: Generate Flask secret key
+  shell: openssl rand -base64 32 > /var/www/yoda/flask_secret_key
+    creates=/var/www/yoda/flask_secret_key
+  when: not ansible_check_mode
+
+
+- name: Retrieve Flask secret key
+  slurp:
+    src: /var/www/yoda/flask_secret_key
+  register: secret_key
+  when: not ansible_check_mode
+
+
+- name: Store Flask secret key in variable
+  set_fact:
+    flask_secret_key: "{{ secret_key['content'] }}"
+  when: not ansible_check_mode
+
+
 - name: Copy Yoda Portal config for Flask
   become_user: "{{ yoda_deployment_user }}"
   become: yes
@@ -75,7 +94,6 @@
     src: "flask.cfg.j2"
     dest: "/var/www/yoda/flask.cfg"
     mode: '0644'
-  no_log: true
 
 
 - name: Copy Yoda Portal virtual host config for Apache

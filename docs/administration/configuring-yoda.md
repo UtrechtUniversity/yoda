@@ -161,6 +161,12 @@ update_rulesets              | Update already installed rulesets with git
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
 
+### Deposit module configuration
+
+Variable                     | Description
+-----------------------------|---------------------
+enable_deposit               | Enable deposit module
+
 ### Intake module configuration
 
 Variable                     | Description
@@ -205,11 +211,14 @@ epic_handle_prefix           | EPIC PID prefix
 epic_key                     | EPIC PID key (base64 encoded)
 epic_cert                    | EPIC PID cert (base64 encoded)
 
-### PAM Radius configuration
+# Data Access Tokens configuration
 
-Variable   | Description
------------|---------------------------------------------
-pam_radius_config:           | server, shared secret, timeout (s)
+Variable       | Description
+---------------|---------------------------------------------
+enable_tokens  | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
+token_database | Location of the database that contain the tokens
+token_length   | Length of data access tokens
+token_lifetime | Lifetime of data access tokens (in hours) (in hours)
 
 ### Public host configuration
 
@@ -251,5 +260,5 @@ oidc_userinfo_uri	| OIDC Userinfo URI
 oidc_scopes         | OIDC Scopes
 oidc_acr_values		| OIDC Authentication Context Class Reference Values
 oidc_email_field	| The identifier of the JSON field in the `id_token` containing the email address. Default: `email`
-oidc_signin_text	| The text to appear on the Sign in button. Default: *Sign in with OIDC*
+oidc_signin_text	| The text to appear on the Sign in button. Default: *Sign in with OIDC* (deprecated since v1.8)
 oidc_public_key     | OIDC jwks public key (base64 encoded PEM format)
