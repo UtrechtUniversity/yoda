@@ -30,13 +30,12 @@ openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
 
 # Flask configuration
-flask_secret_key: PleaseChangeMe123
 yoda_commit: '{{ portalchanges.after }}'
 flask_permanent_session_lifetime: 30 * 60       # in seconds, so 30 minutes
 flask_session_file_dir: '/tmp/flask_session/'   # default flask_session under current working dir
 
 # portal customization
-portal_title_text: Yoda Portal                     # e.g. "YODA - development"
+portal_title_text: Yoda Portal                     # e.g. "Yoda - development"
 
 # Research module configuration
 enable_research: True                              # Enable research module
@@ -51,3 +50,6 @@ enable_intake: False                               # Enable intake module
 enable_datarequest: False                          # Enable datarequest module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name
 datarequest_help_contact_email: PLACEHOLDER        # Help contact email
+
+# Data Access Tokens
+enable_tokens: false                               # Enable data access tokens for webDAV and iCommands

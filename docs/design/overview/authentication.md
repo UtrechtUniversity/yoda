@@ -1,7 +1,7 @@
 ---
 grand_parent: Software Design
 parent: System Overview
-nav_order: 6
+nav_order: 10
 ---
 # Authentication
 
@@ -24,12 +24,13 @@ The default PAM stack for Yoda (which is the one for iRODS) has two modules for 
  Additionally, one can configure two more authentication methods:
  3. For external users: uses *is-user-external.sh* and *external-auth.py*
  4. For authentication via OIDC protocol: *oidc.py*
+ 5. For data access passwords: *token_auth.py*
 
 For configuring the additional authentication methods, please look at the relevant documentation.
 
 ### Testing
 
-To test the configured PAM stack, you can use the the `irodsPamAuthCheck` tool.
+To test the configured PAM stack, you can use the `irodsPamAuthCheck` tool.
 This is located on the iRODS server at `/usr/sbin/irodsPamAuthCheck`.
 The program requires a username to be passed as a parameter and then prompts for the password.
 These will then be passed to the PAM stack.
@@ -37,7 +38,7 @@ If successful, the output will be *Authenticated*, otherwise the output will be 
 
 ## Yoda portal
 
-The Yoda Portal is build on top of iRODS but is not the same application.
+The Yoda Portal is built on top of iRODS.
 As such, when logging in to Yoda, an iRODS session has to be created as well.
 Creation of the iRODS session goes by sending iRODS a PAM Auth Request and is handled as described in the previous section.
 The authentication mechanism for Yoda is described below.
@@ -66,3 +67,11 @@ The authentication flow is best explained via a diagram:
 
 The above diagram shows the happy flow: no errors occur at any point during the flow.
 As the login start with a request to Yoda, any errors should always end up at Yoda so that a sensible error message can be shown to the user.
+
+## Data Access Passwords
+
+Data Access Passwords are one-time passwords for data-access through iCommands and webDAV.
+To get a Data Access Password you must login in the portal.
+After logging in, click on your username at the top-right corner to open a drop-down menu, and select Data Access Password.
+On this page you can generate Data Access Passwords for your account.
+The passwords are valid for 72 hours. If the password has expired, you can simply repeat this procedure.

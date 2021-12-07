@@ -13,7 +13,7 @@ This template is named landingpage.j2 and should be put in the `/zone/yoda/templ
 
 ### XML generator for DataCite
 For DataCite a XML conforming to the DataCite Schema v4 is generated in Python.
-This generator can be found in `/etc/irods/irods-ruleset-uu/json_datacite41.py`.
+This generator can be found in `/etc/irods/yoda-ruleset/json_datacite41.py`.
 
 ### OAI-PMH importer
 The OAI-PMH stream is updated by loading the yoda-metadata.json with a Python script.

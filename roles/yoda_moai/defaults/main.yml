@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-yoda_moai_version: "pyportal"
+yoda_moai_version: "development"
 yoda_moai_user: moai
 yoda_moai_home: /var/www/moai
 yoda_moai_database_connection_string: "sqlite:///{{ yoda_moai_home }}/moai.db"

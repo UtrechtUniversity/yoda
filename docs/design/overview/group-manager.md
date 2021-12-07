@@ -64,7 +64,7 @@ A group *manager* has all the same characteristics as a normal user but in addit
 A *datamanager* is not a member of a group belonging to a workspace. Instead a special 'datamanager-' group needs to be created per category. This group has to have the same name as that category. This group is given read access to every workspace in this category. This allows the datamanager to check the quality of data and metadata before archiving the work.
 
 ## iRODS ruleset
-The following files in the irods-ruleset-uu support the groupmanager.
+The following files in the yoda-ruleset support the groupmanager.
 
 ***uuSudoPolicies*** Set of policies for every sudo action. Every action is denied by default.
 

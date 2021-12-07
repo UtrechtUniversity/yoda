@@ -66,7 +66,7 @@ switched off. This makes it possible to manage permissions for each vault packag
 
 ## Granting and revoking read access to the vault for the research group
 The datamanager is allowed to use the sudo microservice msiSudoObjAclSet to grant and revoke read access to packages in the vault. This is configured in
-*iiSudoPolicies.r* and *iiDatamanagerPolicies.r* to not interfere with existing sudo policies in the irods-ruleset-uu. The only action the datamanager is
+*iiSudoPolicies.r* and *iiDatamanagerPolicies.r* to not interfere with existing sudo policies in the yoda-ruleset. The only action the datamanager is
 allowed to do is set permissions starting from the root of a vault package to read for the research group with the same basename as the vault.
 
 ## No datamanager

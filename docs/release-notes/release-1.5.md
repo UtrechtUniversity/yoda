@@ -39,7 +39,7 @@ Requires Yoda public server and external user service to be on version 1.4.x or 
 
 2. Add vault module to portal modules configuration.
 
-3. Instance specific rulesets (e.g. `irods-ruleset-i-lab`) are merged with `irods-ruleset-uu` and should be removed from the configuration (rulesets).
+3. Instance specific rulesets (e.g. `irods-ruleset-i-lab`) are merged with `yoda-ruleset` and should be removed from the configuration (rulesets).
 
 4. Rename default metadata schema from `default` to `default-0` in the configuration (ensure `update_schemas` is enabled).
 
