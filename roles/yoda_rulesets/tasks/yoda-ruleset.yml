@@ -5,6 +5,7 @@
     src: yoda-ruleset
     dest: /etc/irods/rules_uu
     state: link
+  when: not ansible_check_mode
 
 
 - name: Find out if group-manager privilege groups are created
