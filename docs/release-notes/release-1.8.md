@@ -52,7 +52,7 @@ ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-5. If the playbook has finished succesfully in check mode, run the Ansible playbook normally.
+5. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
