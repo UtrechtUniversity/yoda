@@ -55,11 +55,11 @@ default_yoda_schema: default-1
             version: "\{\{ yoda_version \}\}"
     ```
 
-4. The core rulesets (`core` and `irods-ruleset-uu`) are enabled by default in Yoda 1.6.
+4. The core rulesets (`core` and `yoda-ruleset`) are enabled by default in Yoda 1.6.
    Only extra modules have to be enabled in the configuration.
    Furthermore, the research ruleset (`irods-ruleset-research`) has been merged with the UU ruleset
-   (`irods-ruleset-uu`). So `rulesets` becomes `extra_rulesets`;
-   `core`, `irods-ruleset-research` and `irods-ruleset-uu` should be removed from the `extra_rulesets` list.
+   (`yoda-ruleset`). So `rulesets` becomes `extra_rulesets`;
+   `core`, `irods-ruleset-research` and `yoda-ruleset` should be removed from the `extra_rulesets` list.
    Update the configuration according to your specifications.
    For example:
     ```yaml
@@ -88,15 +88,15 @@ ansible-playbook -i /environments/development/allinone playbook.yml
 
 7. Convert all metadata XML in the vault to JSON (`default-0` XML to `default-0` JSON).
 ```bash
-irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/check-vault-metadata-xml-for-transformation-to-json.r
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-vault-metadata-xml-for-transformation-to-json.r
 ```
 
 8. Update all metadata JSON in the vault to latest metadata JSON version (`default-0` to `default-1`).
 ```bash
-irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
 9. Update publication endpoints if there are published packages (landingpages and OAI-PMH)):
 ```bash
-irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/update-publications.r
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```

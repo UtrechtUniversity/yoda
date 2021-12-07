@@ -13,7 +13,7 @@ Released: May 2021
 ### Features
 - Theming capability for all available Yoda modules using Bootstrap 4
 - [Support](../administration/configuring-openidc.md) for MFA login on the web portal using OIDC
-- [API](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/UtrechtUniversity/irods-ruleset-uu/gh-pages/api_core.json) access for all currently used functionality used by the Yoda frontend for all modules
+- [API](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/UtrechtUniversity/yoda-ruleset/gh-pages/api_core.json) access for all currently used functionality used by the Yoda frontend for all modules
 - Landingpage support for specific metadata forms (HPTlab and Teclab) for Utrecht University Geo Faculty
 - The CC-0 (Creative Commons zero) license is added to allow publishing data under this license
 - Test script for administrators to send a tests email, so email settings can be tested
@@ -53,5 +53,5 @@ ansible-playbook -i /environments/development/allinone playbook.yml
 
 5. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
-irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/update-publications.r
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```

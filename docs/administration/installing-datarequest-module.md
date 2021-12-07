@@ -65,7 +65,7 @@ Using the group manager, populate these groups with appropriate members.
 ### Customizing and installing schemas
 For a fully functional datarequest module, schemas for the various forms have to
 be present. A set of templates for these schemas can be found in the
-`irods-ruleset-uu` repository in the `datarequest/schemas` directory. These meet
+`yoda-ruleset` repository in the `datarequest/schemas` directory. These meet
 the requirements of the datarequest procedure of
 [the YOUth cohort study](https://www.uu.nl/en/research/youth-cohort-study).
 

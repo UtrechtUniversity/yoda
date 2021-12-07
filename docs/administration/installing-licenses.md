@@ -24,11 +24,11 @@ _/${RODSZONE}/yoda/licenses/${LICENSE}.uri_.
 
 ## Installing default licenses
 
-The files of the licenses included in the default metadata schema can be found in _/etc/irods/irods-ruleset-uu/licenses_. The command to upload these license
+The files of the licenses included in the default metadata schema can be found in _/etc/irods/yoda-ruleset/licenses_. The command to upload these license
 files to Yoda is:
 
 ```bash
-iput -r /etc/irods/irods-ruleset-uu/licenses /${RODSZONE}/yoda
+iput -r /etc/irods/yoda-ruleset/licenses /${RODSZONE}/yoda
 ```
 
 ## Installing non-default licenses
