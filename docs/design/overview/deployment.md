@@ -1,19 +1,23 @@
-Design
-======
+---
+grand_parent: Software Design
+parent: System Overview
+nav_order: 10
+---
 
-Playbook
---------
-The master playbook for automated deployment of Yoda can be found in [playbook](playbook.yml).
+# Deployment
+
+## Ansible Playbook
+The master playbook for automated deployment of Yoda can be found in [playbook.yml](https://github.com/UtrechtUniversity/yoda/playbook.yml).
 It consists of four tier which implements four distinct functional roles:
 * Yoda webportal
-* iCAT database
-* iCAT server
-* iRODS resource server
+* iRODS database
+* iRODS provider (catalog) server
+* iRODS consumer (resource) server
 
 ### Yoda webportal tier
 The Yoda webportal tier provisions the host with the following:
 * Apache webserver
-* PHP
+* Python
 * iRODS iCommands & runtime
 * Yoda portal and davrods
 
@@ -27,13 +31,13 @@ The iCAT server tier provisions the host with the following:
 * iRODS iCAT server & runtime
 * iRODS microservices
 * iRODS resource configuration
-* Yoda rulesets
+* Yoda ruleset
 
 ### iRODS resource server
 The iRODS resource server tier provisions the host with the following:
 * iRODS resource server & runtime
 * iRODS microservices
-
+* Yoda ruleset
 
 Roles
 -----
@@ -65,9 +69,9 @@ roles/
     irods-microservices/  # ""
     irods-resource/       # ""
     irods-runtime/        # ""
-    php/                  # ""
     postgresql/           # ""
     python-irodsclient/   # ""
+    python3/              # ""
     yoda-davrods/         # ""
     yoda-landingpages/    # ""
     yoda-moai/            # ""
@@ -80,8 +84,7 @@ roles/
 ```
 
 
-Environments
-------------
+## Environments
 The playbook can be used with different environments.
 Each environment has its own inventory (hosts) with all instances.
 Each instance is configured in group variables (group_vars).
