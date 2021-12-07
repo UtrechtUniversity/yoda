@@ -2,7 +2,7 @@
 </code></pre></div> </div> </li> <li>Run the Ansible playbook in check mode. <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> &lt;path-to-your-environment&gt; playbook.yml <span class="nt">--check</span>
 <span class="c">### EXAMPLE ###</span>
 ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml <span class="nt">--check</span>
-</code></pre></div> </div> </li> <li>If the playbook has finished succesfully in check mode, run the Ansible playbook normally. <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> &lt;path-to-your-environment&gt; playbook.yml
+</code></pre></div> </div> </li> <li>If the playbook has finished successfully in check mode, run the Ansible playbook normally. <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> &lt;path-to-your-environment&gt; playbook.yml
 <span class="c">### EXAMPLE ###</span>
 ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml
 </code></pre></div> </div> </li> <li>Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/irods-ruleset-uu/tools/update-publications.r
