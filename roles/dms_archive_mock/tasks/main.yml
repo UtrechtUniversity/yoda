@@ -2,15 +2,39 @@
 # copyright Utrecht University
 
 - name: Ensure DMS archive mock service files are present
+  become_user: irods
+  become: yes
   copy:
     src: 'dms-archive-mock'
-    dest: '/tmp'
+    dest: '/var/lib/irods/'
     mode: 0644
   register: dms_mock_changes
 
 
 - name: Install DMS archive mock service
+  become_user: irods
+  become: yes
   shell: |
-    cd /tmp/dms-archive-mock
+    cd /var/lib/irods/dms-archive-mock
+    python3 -m virtualenv tape_archive_venv
+    . tape_archive_venv/bin/activate
     python3 setup.py install
   when: dms_mock_changes
+
+
+- name: Ensure DMS archive mock service is configured
+  template:
+    src: "dmmock_server.json.j2"
+    dest: "/etc/dmmock_server.json"
+    mode: '0644'
+
+
+- name: Ensure mock tape archive resource exist
+  become_user: irods
+  become: yes
+  irods_resource:
+    name: "mockTapeArchive"
+    resource_type: "unixfilesystem"
+    host: "{{ irods_icat_fqdn | default('EMPTY_RESC_HOST') }}"
+    vault_path: "/var/lib/irods/Vault3"
+  when: not ansible_check_mode
