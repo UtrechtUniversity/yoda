@@ -107,7 +107,7 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
     '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="{{ item }}"'
@@ -135,7 +135,7 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
     '*src="/etc/irods/irods-ruleset-uu/schemas/"'
     '*schema="{{ default_yoda_schema }}"'
