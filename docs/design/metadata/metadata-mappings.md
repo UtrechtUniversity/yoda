@@ -7,9 +7,10 @@ When a datapackage with yoda-metadata.json is published it will be processed and
 If changes are made to the metadata.json.
 
 ### Jinja2 template for landing page
-The landing page HTML is generated with a Jinja2 template
-Every new or changed element needs a template definitio.
-This template is named landingpage.j2 and should be put in the `/zone/yoda/templates/` collection.
+The landing page HTML code is generated using a Jinja2 template. This template may need to be adapted
+in case of metadata schema changes. The template can be found in
+`/etc/irods/irods-ruleset-uu/templates/landingpage.html.j2`. The Ansible playbook activates this template
+by uploading it to the `/zone/yoda/templates/` collection.
 
 ### XML generator for DataCite
 For DataCite a XML conforming to the DataCite Schema v4 is generated in Python.
