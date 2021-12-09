@@ -21,3 +21,6 @@ $ iput -R mockTapeArchive test.json
 $ dmattr /var/lib/irods/Vault3/home/rods/test.json
 $ dmput -r /var/lib/irods/Vault3/home/rods/test.json
 ```
+
+## More information
+Several of the DMF commands are described here: https://www.nas.nasa.gov/hecc/support/kb/data-migration-facility-(dmf)-commands_250.html
