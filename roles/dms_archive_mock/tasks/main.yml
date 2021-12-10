@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure DMS archive mock service files are present
-  become_user: irods
+  become_user: "{{ irods_service_account }}"
   become: yes
   copy:
     src: 'dms-archive-mock'
@@ -12,7 +12,7 @@
 
 
 - name: Install DMS archive mock service
-  become_user: irods
+  become_user: "{{ irods_service_account }}"
   become: yes
   shell: |
     cd /var/lib/irods/dms-archive-mock
@@ -30,7 +30,7 @@
 
 
 - name: Ensure mock tape archive resource exist
-  become_user: irods
+  become_user: "{{ irods_service_account }}"
   become: yes
   irods_resource:
     name: "mockTapeArchive"
@@ -38,3 +38,17 @@
     host: "{{ irods_icat_fqdn | default('EMPTY_RESC_HOST') }}"
     vault_path: "/var/lib/irods/Vault3"
   when: not ansible_check_mode
+
+
+- name: Copy DMF scripts to msiExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: "tape_archive/scripts/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: 0755
+  when: not ansible_check_mode
+  with_items:
+    - dmattr
+    - dmget
+    - dmput
