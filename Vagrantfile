@@ -12,7 +12,7 @@ CPU = 2
 RAM = 2048
 
 DOMAIN  = ".yoda.test"
-NETWORK = "192.168.56."
+NETWORK = "192.168.56.10"
 NETMASK = "255.255.255.0"
 
 HOSTS = {
