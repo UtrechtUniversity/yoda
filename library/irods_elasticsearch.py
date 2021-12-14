@@ -35,7 +35,7 @@ def main():
 
     if not found:
       plugins.extend([
-	{
+        {
           "instance_name": "irods_rule_engine_plugin-indexing-instance",
           "plugin_name": "irods_rule_engine_plugin-indexing",
           "plugin_specific_configuration": {}
@@ -44,9 +44,10 @@ def main():
           "instance_name": "irods_rule_engine_plugin-elasticsearch-instance",
           "plugin_name": "irods_rule_engine_plugin-elasticsearch",
           "plugin_specific_configuration": {
-            "hosts" : ["http://localhost:9200/"],
-            "bulk_count" : 100,
-            "read_size" : 4194304
+            "hosts": ["http://localhost:9200/"],
+            "es_version": "6.x",
+            "bulk_count": 100,
+            "read_size": 4194304
           }
         },
         {
