@@ -16,7 +16,7 @@ NETWORK = "192.168.56."
 NETMASK = "255.255.255.0"
 
 HOSTS = {
-  "combined" => [NETWORK, CPU, RAM, GUI, BOX],
+  "combined" => [NETWORK+"10", CPU, RAM, GUI, BOX],
 }
 
 # Hosts for full environment.
