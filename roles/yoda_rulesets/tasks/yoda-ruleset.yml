@@ -74,6 +74,7 @@
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: 0600
+  no_log: true
   when: not ansible_check_mode
 
 
