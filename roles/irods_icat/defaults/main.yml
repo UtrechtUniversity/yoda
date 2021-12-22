@@ -52,3 +52,7 @@ irods_service_type: 'systemd'
 # The max number of open files is only effective when
 # irods_service_type has been set to 'systemd'.
 irods_max_open_files: 131072
+
+# Data Access Tokens
+enable_tokens: false                    # Enable data access tokens for webDAV and iCommands
+token_database: /etc/irods/yoda-ruleset/tokens.db # Location of the database that contain the tokens

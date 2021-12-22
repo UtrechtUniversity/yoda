@@ -6,7 +6,7 @@ nav_order: 6
 # Installing metadata schemas
 For a fully functional research module, a metadata schema is required.
 Currently we only have a default-0schema, default-1 schema and a core-0 schema.
-These can be found in the irods-ruleset-uu in `schemas/`.
+These can be found in the yoda-ruleset in `schemas/`.
 Below a description of the needed files per schema (using the default schema as example):
 
 **metadata.json**
@@ -22,7 +22,7 @@ resc, src, schema, category and update.
 Parameter  | Default value                                   | Description
 -----------|-------------------------------------------------|------------
 resc	   | irodsResc	                                     | Name of default resource to put the files into
-src        | /etc/irods/irods-ruleset-uu/schemas             | Source directory of files
+src        | /etc/irods/yoda-ruleset/schemas             | Source directory of files
 schema     | default                                         | Schema to install
 category   | default-1                                       | Install schema to all categories ('default-1') or install to a single category (category name)
 update     | 0                                               | Update existing schema (1) or keep existing files (0)
@@ -31,12 +31,12 @@ In the default situation the default schema is installed in ``/${RODSZONE}/yoda/
 
 Example invocation to install (or update) schema 'default' for all categories:
 ```bash
-irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/irods-ruleset-uu/schemas/"' '*schema="default-1"' '*category="default"' '*update=1'
+irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/yoda-ruleset/schemas/"' '*schema="default-1"' '*category="default"' '*update=1'
 ```
 
 Example invocation to install (or update) schema 'core-0' for category 'experimental':
 ```bash
-irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/irods-ruleset-uu/schemas/"' '*schema="core-0"' '*category="experimental"' '*update=1'
+irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/yoda-ruleset/schemas/"' '*schema="core-0"' '*category="experimental"' '*update=1'
 ```
 
 If you want to install individual files without the script then you can use the iput command.

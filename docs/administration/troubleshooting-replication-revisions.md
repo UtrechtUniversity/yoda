@@ -33,7 +33,7 @@ in verbose mode will log additional information about data objects being process
 command for the replication job:
 
 ```
-/bin/python /etc/irods/irods-ruleset-uu/tools/async-data-replicate.py -v
+/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py -v
 ```
 
 Failures during revision creation are often caused by permission problems. First run the cron job in

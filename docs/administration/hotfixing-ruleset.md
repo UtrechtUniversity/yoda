@@ -14,7 +14,7 @@ The commands below can be executed using the iRODS service account.
 1. First clone another copy of the ruleset:
 ```bash
 cd /etc/irods
-git clone https://github.com/UtrechtUniversity/irods-ruleset-uu.git hotfix
+git clone https://github.com/UtrechtUniversity/yoda-ruleset.git hotfix
 ```
 
 2. Make changes to the ruleset (for example, meta.py) and compile the ruleset:
@@ -33,7 +33,7 @@ ln -sfn hotfix rules_uu
 If the change does not have the desired result, revert to the old ruleset by changing the symlink back and compiling the ruleset:
 ```bash
 cd /etc/irods
-ln -sfn irods-ruleset-uu rules_uu
-cd irods-ruleset-uu
+ln -sfn yoda-ruleset rules_uu
+cd yoda-ruleset
 make install
 ```

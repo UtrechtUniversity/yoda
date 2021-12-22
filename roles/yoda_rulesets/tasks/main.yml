@@ -38,7 +38,7 @@
     update: "{{ update_rulesets }}"
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item and 'patch' in item"
-  register: repochanges
+  register: patch_repochanges
 
 
 - name: Sync rulesets with repos before applying patches
@@ -82,7 +82,7 @@
     paths: /etc/irods
     patterns: '*.re.*,*.pyc'
     recurse: yes
-  when: repochanges.changed
+  when: repochanges.changed or patch_repochanges.changed
   register: temporary_rules
 
 
@@ -92,7 +92,7 @@
   file:
     path: "{{ item.path }}"
     state: absent
-  when: repochanges.changed
+  when: repochanges.changed or patch_repochanges.changed
   with_items:
     - "{{ temporary_rules.files }}"
 
@@ -107,13 +107,14 @@
   with_together:
     - "{{ extra_rulesets + core_rulesets }}"
     - "{{ repochanges.results }}"
+    - "{{ patch_repochanges.results }}"
 
 
 - name: Install requirements for ruleset
   become_user: "{{ irods_service_account }}"
   become: yes
   pip:
-    requirements: /etc/irods/irods-ruleset-uu/requirements.txt
+    requirements: /etc/irods/yoda-ruleset/requirements.txt
     extra_args: --user
 
 
