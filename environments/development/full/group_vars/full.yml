@@ -169,7 +169,7 @@ eus_mail_template: uu
 external_users_domain_filter: uu.nl     # Domains to filter, separated by |
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
-oidc_active: false
+oidc_active: True
 oidc_domain: "gmail.com"                                      # Domain that should use OIDC
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
