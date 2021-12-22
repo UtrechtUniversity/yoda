@@ -77,6 +77,9 @@ eus_api_secret: PLACEHOLDER             # External User Service API secret
 # Research module configuration
 enable_research: true                   # Enable research module
 
+# Datarequest module configuration
+enable_datarequest: false               # Enable datarequest module
+
 # Deposit module configuration
 enable_deposit: false                   # Enable deposit module
 
