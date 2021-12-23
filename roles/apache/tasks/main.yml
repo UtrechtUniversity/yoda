@@ -47,6 +47,13 @@
   - /etc/httpd/conf.d/autoindex.conf
 
 
+- name: Ensure Apache mod_lua is disabled
+  file:
+    path: /etc/httpd/conf.modules.d/00-lua.conf
+    state: absent
+  notify: Restart Apache webserver
+
+
 - name: Ensure Apache service is configured
   service:
     name: httpd
