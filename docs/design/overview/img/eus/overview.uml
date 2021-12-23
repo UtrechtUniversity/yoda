@@ -53,7 +53,7 @@ note right of SMTP
     External user webservice can:
     - Send invitation mail to new users
     - Send password reset link to existing users
-    - Send user creation succes status to group manager
+    - Send user creation success status to group manager
 end note
 
 @enduml

@@ -9,7 +9,7 @@ participant Yoda        as yoda
 researcher   -> yoda        : Submit for vault
 note over yoda              : SUBMITTED
 yoda         -> yoda        : Accept for vault
-note over yoda              : ACCCEPTED
+note over yoda              : ACCEPTED
 yoda         -> yoda        : Secure in vault
 note over yoda              : SECURED
 yoda        --> researcher  : Secured notification

@@ -23,7 +23,7 @@ rectangle "Yoda instance" {
         icommands .d.> provider	
     }
 
-    package "Yoda databse" {
+    package "Yoda database" {
         database "PostgreSQL" as icatdb{
             rectangle "iRODS database" as iCAT {
             }
