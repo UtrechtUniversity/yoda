@@ -1,0 +1,20 @@
+---
+# copyright Utrecht University
+
+# Temporary directory to store downloaded tgz files.
+dest_dir: /tmp
+
+systemd_dir: /etc/systemd/system
+
+# opensearch installation
+opensearch:
+  user: opensearch
+  cluster: opensearch
+  version: 1.2.3
+  url: https://artifacts.opensearch.org/releases/bundle/opensearch/1.2.3
+  filename: opensearch-1.2.3-linux-x64.tar.gz
+  checksum: sha256:a594ac2808e6e476d647e47e45e837fba3e21671285ce39b2cee1c32d5e6887d
+  home: /usr/share/opensearch
+  config: /usr/share/opensearch/config
+  plugins: /usr/share/opensearch/plugins
+  mem: 2g

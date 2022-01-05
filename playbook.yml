@@ -52,6 +52,7 @@
   become: yes
   roles:
     - apache
+    - opensearch
     - { role: acme_certificates, when: yoda_environment == "testing" }
     - python3
     - yoda_portal
@@ -81,9 +82,6 @@
     - irods_runtime
     - irods_microservices
     - irods_rule_engine_plugin_indexing
-    - irods_rule_engine_plugin_elasticsearch
-    - irods_rule_engine_plugin_document_type
-#    - elasticsearch
     - composable_resources
     - irods_completion
     - irods_rodsadmin

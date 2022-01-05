@@ -262,10 +262,10 @@
   when: not ansible_check_mode
 
 
-- name: Ensure elasticsearch plugin is configured
+- name: Ensure indexing plugin is configured
   become_user: '{{ irods_service_account }}'
   become: yes
-  irods_elasticsearch:
+  irods_indexing:
     config_path: '/etc/irods/server_config.json'
   when: not ansible_check_mode
 

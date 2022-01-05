@@ -1,0 +1,79 @@
+---
+# copyright Utrecht University
+
+- name: Download OpenSearch
+  get_url:
+    url: '{{ opensearch.url }}/{{ opensearch.filename }}'
+    dest: '{{ dest_dir }}/{{ opensearch.filename }}'
+    checksum: '{{ opensearch.checksum }}'
+
+
+- name: Create OpenSearch user
+  user:
+    name: '{{ opensearch.user }}'
+    state: present
+    shell: /bin/bash
+
+
+- name: Install OpenSearch
+  ansible.builtin.unarchive:
+    src: '{{ dest_dir }}/{{ opensearch.filename }}'
+    dest: /usr/share
+    creates: '{{ opensearch.home }}'
+    remote_src: yes
+    extra_opts:
+      - --transform
+      - 's/^opensearch-{{ opensearch.version }}/opensearch/'
+
+
+- name: Disable plugins
+  command: creates='{{ opensearch.plugins }}.disabled' mv '{{ opensearch.plugins }}' '{{ opensearch.plugins }}.disabled'
+
+
+- name: Create empty plugins directory
+  file:
+    path: '{{ opensearch.plugins }}'
+    mode: 0755
+    owner: '{{ opensearch.user }}'
+    group: '{{ opensearch.user }}'
+    state: directory
+
+
+- name: Install configuration file
+  template:
+    src: opensearch.yml
+    dest: '{{ opensearch.config }}/opensearch.yml'
+    owner: '{{ opensearch.user }}'
+    group: '{{ opensearch.user }}'
+    mode: 0600
+    backup: yes
+
+
+- name: Install jvm.options
+  template:
+    src: jvm.options
+    dest: '{{ opensearch.config }}/jvm.options'
+    owner: '{{ opensearch.user }}'
+    group: '{{ opensearch.user }}'
+    mode: 0600
+    force: yes
+
+
+- name: Set vm.max_map_count in sysctl.conf
+  sysctl:
+    name: vm.max_map_count
+    value: '262144'
+    state: present
+
+
+- name: Create systemd service
+  template:
+    src: opensearch.service
+    dest: '{{ systemd_dir }}/opensearch.service'
+
+
+- name: Make sure OpenSearch is started
+  service:
+    name: opensearch
+    state: started
+    enabled: yes

@@ -5,10 +5,15 @@
   package:
     name:
       - irods-rule-engine-plugin-indexing-4.2.10.0-1
+      - irods-rule-engine-plugin-elasticsearch-4.2.10.0-1
+      - irods-rule-engine-plugin-document-type-4.2.10.0-1
     state: absent
 
 
-- name: Ensure iRODS rule engine plugin indexing is installed
+- name: Ensure iRODS rule engine plugin packages are installed
   package:
-    name: irods-rule-engine-plugin-indexing-4.2.10.1-1
+    name:
+      - irods-rule-engine-plugin-indexing-4.2.10.1-1
+      - irods-rule-engine-plugin-elasticsearch-4.2.10.1-1
+      - irods-rule-engine-plugin-document-type-4.2.10.1-1
     state: present

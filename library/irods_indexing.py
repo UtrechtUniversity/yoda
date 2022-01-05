@@ -26,11 +26,11 @@ def main():
   with open(config_path, 'r+') as data_file:
     server_config = json.load(data_file)
 
-    # Find elasticsearch plugin in server config.
+    # Find indexing plugin in server config.
     found = False
     plugins = server_config["plugin_configuration"]["rule_engines"]
     for plugin in plugins:
-      if plugin["plugin_name"] == "irods_rule_engine_plugin-elasticsearch":
+      if plugin["plugin_name"] == "irods_rule_engine_plugin-indexing":
         found = True
 
     if not found:
@@ -45,7 +45,7 @@ def main():
           "plugin_name": "irods_rule_engine_plugin-elasticsearch",
           "plugin_specific_configuration": {
             "hosts": ["http://localhost:9200/"],
-            "es_version": "6.x",
+            "es_version": "7.x",
             "bulk_count": 100,
             "read_size": 4194304
           }
