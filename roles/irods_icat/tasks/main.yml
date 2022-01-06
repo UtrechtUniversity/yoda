@@ -267,6 +267,7 @@
   become: yes
   irods_indexing:
     config_path: '/etc/irods/server_config.json'
+  notify: Restart iRODS
   when: not ansible_check_mode
 
 
