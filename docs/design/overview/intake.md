@@ -3,7 +3,7 @@ grand_parent: Software Design
 parent: System Overview
 nav_order: 8
 ---
-# Intake module specifications
+# Intake module
 
 ## Introduction
 

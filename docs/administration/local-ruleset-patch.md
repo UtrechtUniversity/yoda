@@ -20,8 +20,8 @@ This example patch changes the UUPRIMARYRESOURCES constant in the ruleset code.
 
 ```
 core_rulesets:
-  - name: irods-ruleset-uu
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
+  - name: yoda-ruleset
+    repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
     version: "{{ yoda_version }}"
     patch: |

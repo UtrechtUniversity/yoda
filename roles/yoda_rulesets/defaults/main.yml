@@ -7,8 +7,8 @@ credentials_store: /var/lib/irods/.credentials_store
 
 # Ruleset configuration.
 core_rulesets:
-  - name: irods-ruleset-uu
-    repo: https://github.com/UtrechtUniversity/irods-ruleset-uu.git
+  - name: yoda-ruleset
+    repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
     version: "{{ yoda_version }}"
     install_scripts: yes
@@ -77,6 +77,9 @@ eus_api_secret: PLACEHOLDER             # External User Service API secret
 # Research module configuration
 enable_research: true                   # Enable research module
 
+# Datarequest module configuration
+enable_datarequest: false               # Enable datarequest module
+
 # Deposit module configuration
 enable_deposit: false                   # Enable deposit module
 
@@ -87,7 +90,7 @@ intake_groups: []                       # List of intake_groups. Use the names w
 
 # Data Access Tokens
 enable_tokens: false                    # Enable data access tokens for webDAV and iCommands
-token_database: /etc/irods/irods-ruleset-uu/tokens.db # Location of the database that contain the tokens
+token_database: /etc/irods/yoda-ruleset/tokens.db # Location of the database that contain the tokens
 token_length: 32                                      # Length of data access tokens
 token_lifetime: 72                                    # Lifetime of data access tokens (in hours)
 

@@ -2,9 +2,10 @@
 
 - name: Link ruleset directory
   file:
-    src: irods-ruleset-uu
+    src: yoda-ruleset
     dest: /etc/irods/rules_uu
     state: link
+  when: not ansible_check_mode
 
 
 - name: Find out if group-manager privilege groups are created
@@ -19,7 +20,7 @@
 - name: Configure group-manager privilege groups in iCAT database
   become_user: "{{ irods_service_account }}"
   become: yes
-  command: '/etc/irods/irods-ruleset-uu/tools/group-manager-setup.sh'
+  command: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
   when: priv_groups.stdout.find('priv-group-add') == -1
 
 
@@ -36,7 +37,7 @@
 - name: Ensure yoda system collections are present
   become_user: "{{ irods_service_account }}"
   become: yes
-  command: "irule -F /etc/irods/irods-ruleset-uu/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
+  command: "irule -F /etc/irods/yoda-ruleset/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
   register: create_system_collections
   when: >
     (system_collections.stderr.find('does not exist') >= 0)
@@ -50,7 +51,7 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   stat:
-    path: /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r
+    path: /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
   register: monthly_storage_statistics
 
 
@@ -62,17 +63,18 @@
     minute: '0'
     hour: '5'
     day: '1'
-    job: '/bin/irule -F /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r >> /var/lib/irods/log/job_monthly-storage-statistics.log 2>&1'
+    job: '/bin/irule -F /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r >> /var/lib/irods/log/job_monthly-storage-statistics.log 2>&1'
   when: monthly_storage_statistics.stat.exists
 
 
 - name: Create local UU ruleset configuration
   template:
     src: rules_uu.cfg.j2
-    dest: "/etc/irods/irods-ruleset-uu/rules_uu.cfg"
+    dest: "/etc/irods/yoda-ruleset/rules_uu.cfg"
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: 0600
+  no_log: true
   when: not ansible_check_mode
 
 
@@ -91,7 +93,7 @@
   become: yes
   copy:
     remote_src: yes
-    src: "/etc/irods/irods-ruleset-uu/tools/{{ item }}"
+    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
     mode: 0755
   when: not ansible_check_mode
@@ -107,9 +109,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
+    '*src="/etc/irods/yoda-ruleset/schemas/"'
     '*schema="{{ item }}"'
     '*category="{{ item }}"'
     '*update={{ update_schemas }}'
@@ -135,9 +137,9 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   command: >
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/install-metadata-schema.r
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/install-metadata-schema.r
     '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/irods-ruleset-uu/schemas/"'
+    '*src="/etc/irods/yoda-ruleset/schemas/"'
     '*schema="{{ default_yoda_schema }}"'
     '*category="default"'
     '*update={{ update_schemas }}'
@@ -160,7 +162,7 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   shell: |
-    iput -r /etc/irods/irods-ruleset-uu/terms /{{ irods_zone }}/yoda
+    iput -r /etc/irods/yoda-ruleset/terms /{{ irods_zone }}/yoda
     ichmod -rM inherit /{{ irods_zone }}/yoda/terms
     ichmod -rM read public /{{ irods_zone }}/yoda/terms
   when: (not ansible_check_mode) and (terms_installed.stderr.find('does not exist') >= 0)
@@ -179,7 +181,7 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   shell: |
-    iput -r /etc/irods/irods-ruleset-uu/templates /{{ irods_zone }}/yoda
+    iput -r /etc/irods/yoda-ruleset/templates /{{ irods_zone }}/yoda
     ichmod -rM inherit /{{ irods_zone }}/yoda/templates
     ichmod -rM read public /{{ irods_zone }}/yoda/templates
   when: (not ansible_check_mode) and (templates_installed.stderr.find('does not exist') >= 0)
@@ -189,7 +191,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    iput -f '/etc/irods/irods-ruleset-uu/templates/{{ item }}' '/{{ irods_zone }}/yoda/templates/{{ item }}'
+    iput -f '/etc/irods/yoda-ruleset/templates/{{ item }}' '/{{ irods_zone }}/yoda/templates/{{ item }}'
   with_items:
     - emptylandingpage.html.j2
     - landingpage.html.j2
@@ -209,7 +211,7 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   shell: |
-    iput -r /etc/irods/irods-ruleset-uu/file_formats /{{ irods_zone }}/yoda
+    iput -r /etc/irods/yoda-ruleset/file_formats /{{ irods_zone }}/yoda
     ichmod -rM inherit /{{ irods_zone }}/yoda/file_formats
     ichmod -rM read public /{{ irods_zone }}/yoda/file_formats
   when: (not ansible_check_mode) and (formats_installed.stderr.find('does not exist') >= 0)
@@ -274,7 +276,7 @@
   cron:
     name: 'process-publication.r'
     minute: '*'
-    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/process-publication.r >/dev/null 2>&1'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/process-publication.r >/dev/null 2>&1'
 
 
 - name: Configure cronjob to retry copy-to-vault
@@ -283,7 +285,7 @@
   cron:
     name: 'retry-copy-to-vault.r'
     minute: '*'
-    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-uu/tools/retry-copy-to-vault.r >/dev/null 2>&1'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r >/dev/null 2>&1'
 
 
 - name: Configure cronjob to clean up revisions
@@ -324,7 +326,7 @@
   become: yes
   copy:
     remote_src: yes
-    src: "/etc/irods/irods-ruleset-uu/tools/{{ item }}"
+    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
     mode: 0755
   when: not ansible_check_mode
@@ -387,7 +389,7 @@
   cron:
     name: 'asynchronous-replication'
     minute: '*/5'
-    job: '/bin/python /etc/irods/irods-ruleset-uu/tools/async-data-replicate.py >/dev/null 2>&1'
+    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1'
   when: enable_async_replication == 1
 
 
@@ -397,7 +399,7 @@
   cron:
     name: 'asynchronous-revisions'
     minute: '6,16,26,36,46,56'
-    job: '/bin/python /etc/irods/irods-ruleset-uu/tools/async-data-revision.py >/dev/null 2>&1'
+    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py >/dev/null 2>&1'
   when: enable_revisions == 1
 
 
@@ -408,7 +410,7 @@
     name: 'mail-daily-report.sh'
     minute: '30'
     hour: '6'
-    job: '/bin/bash /etc/irods/irods-ruleset-uu/tools/mail-daily-report.sh >/dev/null 2>&1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/mail-daily-report.sh >/dev/null 2>&1'
 
 
 - name: Configure cronjob to mail weekly notification reports
@@ -419,7 +421,7 @@
     minute: '30'
     hour: '23'
     weekday: '0'
-    job: '/bin/bash /etc/irods/irods-ruleset-uu/tools/mail-weekly-report.sh >/dev/null 2>&1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/mail-weekly-report.sh >/dev/null 2>&1'
 
 
 - name: Find out if datarequest system collection exists
@@ -454,7 +456,7 @@
 - name: Install default datarequest module schemas if they do not exist
   become_user: "{{ irods_service_account }}"
   become: yes
-  command: "/etc/irods/irods-ruleset-uu/tools/install-datarequest-schemas.sh '{{ irods_zone }}'"
+  command: "/etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh '{{ irods_zone }}'"
   when: enable_datarequest and not ansible_check_mode and datarequest_schema_collection.stderr.find('does not exist') >= 0
 
 
@@ -471,7 +473,7 @@
 - name: Ensure datarequests data directory is present
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: '/etc/irods/irods-ruleset-uu/tools/create-data-directory.sh'
+  command: '/etc/irods/yoda-ruleset/tools/create-data-directory.sh'
   when: enable_datarequest and not ansible_check_mode and data_requests.stderr.find('does not exist') >= 0
 
 
@@ -480,7 +482,7 @@
   become: yes
   copy:
     remote_src: yes
-    src: "/etc/irods/irods-ruleset-uu/tools/{{ item }}"
+    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
     mode: 0755
   when: enable_datarequest and not ansible_check_mode
@@ -491,6 +493,6 @@
 - name: Ensure token database is present
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: '/etc/irods/irods-ruleset-uu/tools/setup_tokens.sh {{ token_database }}'
+  command: '/etc/irods/yoda-ruleset/tools/setup_tokens.sh {{ token_database }}'
   args:
     creates: "{{ token_database }}"

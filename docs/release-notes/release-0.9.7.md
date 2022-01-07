@@ -20,7 +20,7 @@ Released: August 2017
 - Integration of the youth intake module
 
 ## Upgrading from previous release
-Install the 0.9.7 version of at least irods-ruleset-uu and
+Install the 0.9.7 version of at least yoda-ruleset and
 irods-ruleset-research.
 
 Install the latest version of implementation specific rulesets;
@@ -28,7 +28,7 @@ irods-ruleset-youth-cohort or irods-ruleset-i-lab for example
 
 Run the following migration scripts as rodsadmin to enable new features:
 
-*/etc/irods/irods-ruleset-uu/tools/createSystemCollections.r*
+*/etc/irods/yoda-ruleset/tools/createSystemCollections.r*
     This script creates system collections that are needed for metadata
     schema's and revisions. To enabe revisions run it as follows:
 
@@ -36,7 +36,7 @@ Run the following migration scripts as rodsadmin to enable new features:
 irule -F createSystemCollections.r "*enableRevisions=1"
 ```
 
-*/etc/irods/irods-ruleset-uu/set-vault-permissions.r*
+*/etc/irods/yoda-ruleset/set-vault-permissions.r*
     This scripts makes the vault collections belonging to a research group
     visible and allows a datamanager to manage read-only access.
 
@@ -73,10 +73,10 @@ crontab like the example below.
 */2 * *    * *    /bin/irule -F $HOME/.irods/copy-accepted-folders-to-vault.r >> $HOME/iRODS/server/log/copy-accepted-folders-to-vault.log
 ```
 To workaround a memory leak in the irodsReServer iRODS needs to be restarted
-regularly. The restartifirodsisidle.sh script from the irods-ruleset-uu/tools
+regularly. The restartifirodsisidle.sh script from the yoda-ruleset/tools
 directory is meant to restart iRODS only if no jobs are running. It could be
 included in a cronjob or invoked by monit using irodsReServer.monit also found
-in the irods-ruleset-uu/tools directory.
+in the yoda-ruleset/tools directory.
 
 ## Known Issues
 

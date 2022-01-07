@@ -40,6 +40,9 @@ The user module provides settings and notifications.
 ## Additional modules
 
 ### Intake
+This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager.
+
+[Technical design](intake.md){: .btn }
 
 ### Datarequest
 Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda.

@@ -35,7 +35,7 @@ after schema updates.
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/irods-ruleset-uu/tools/check-metadata-for-schema-updates.r       |
+| Script               | /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r       |
 | Purpose              | verify and update data package metadata to new schema versions              |
 | Lock file            | no locking                                                                  |
 | Scheduling           | delayed rule queue                                                          |
@@ -58,7 +58,7 @@ contains the source and destination resource, separated by commas.
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/irods-ruleset-uu/tools/async-data-replicate.py                   |
+| Script               | /etc/irods/yoda-ruleset/tools/async-data-replicate.py                   |
 | Purpose              | replicate data objects to consumer                                          |
 | Lock file            | /tmp/irods-async-data-replicate.py.lock                                     |
 | Scheduling           | cronjob, data object queue based on data object metadata attributes         |
@@ -87,7 +87,7 @@ and revision cleanup are handled asynchronously.
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/irods-ruleset-uu/tools/async-data-revision.py                    |
+| Script               | /etc/irods/yoda-ruleset/tools/async-data-revision.py                    |
 | Purpose              | create revisions of data objects                                            |
 | Lock file            | /tmp/irods-async-data-revision.py.lock                                      |
 | Scheduling           | cronjob, queue based on data object metadata attributes                     |
@@ -126,7 +126,7 @@ and communities.
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/irods-ruleset-uu/tools/monthly-storage-statistics.r              |
+| Script               | /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r              |
 | Purpose              | record size of data in group metadata                                       |
 | Lock file            | no lock file                                                                |
 | Typically started by | monthly cronjob                                                             |
@@ -144,7 +144,7 @@ as well as to process publications.
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/irods-ruleset-uu/tools/retry-copy-to-vault.r                     |
+| Script               | /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r                     |
 | Purpose              | copy data packages from research groups to the vault                        |
 | Lock file            | no lock file, but collection metadata attribute records processing status   |
 | Typically started by | cronjob, runs every minute                                                  |
@@ -169,7 +169,7 @@ By default, groups that are to be copied to the vault are marked with a metadata
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/irods-ruleset-uu/tools/process-publication.r                     |
+| Script               | /etc/irods/yoda-ruleset/tools/process-publication.r                     |
 | Purpose              | Asynchronously handles publication and depublication of data packages       |
 | Lock file            | no lock file, but status is recorded in metadata                            |
 | Typically started by | cronjob, runs every minute                                                  |

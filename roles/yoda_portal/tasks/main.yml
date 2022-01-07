@@ -94,6 +94,7 @@
     src: "flask.cfg.j2"
     dest: "/var/www/yoda/flask.cfg"
     mode: '0644'
+  when: not ansible_check_mode
 
 
 - name: Copy Yoda Portal virtual host config for Apache
@@ -102,6 +103,20 @@
     dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
     mode: '0644'
   notify: Restart Apache webserver
+
+
+- name: Set SELinux context for shared libraries
+  sefcontext:
+    target: '/var/www/yoda/venv/.*\.so(\..*)?'
+    setype: httpd_sys_script_exec_t
+    state: present
+  register: filescontext
+  when: ansible_selinux.status == "enabled"
+
+
+- name: Ensure selinux context is enforced on shared libraries
+  command: 'restorecon -r /var/www/yoda/venv'
+  when: ansible_selinux.status == "enabled"
 
 
 - include_tasks: setup-development-environment.yml

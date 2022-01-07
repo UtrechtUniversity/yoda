@@ -114,7 +114,7 @@
   become_user: "{{ irods_service_account }}"
   become: yes
   pip:
-    requirements: /etc/irods/irods-ruleset-uu/requirements.txt
+    requirements: /etc/irods/yoda-ruleset/requirements.txt
     extra_args: --user
 
 
