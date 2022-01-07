@@ -81,7 +81,6 @@
     - irods_icat
     - irods_runtime
     - irods_microservices
-    - irods_rule_engine_plugin_indexing
     - composable_resources
     - irods_completion
     - irods_rodsadmin

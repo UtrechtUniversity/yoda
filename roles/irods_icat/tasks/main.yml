@@ -81,17 +81,26 @@
       - irods-database-plugin-postgres-4.2.10-1
       - irods-icommands-4.2.10-1
       - irods-rule-engine-plugin-python-4.2.10.0-1
+      - irods-rule-engine-plugin-indexing-4.2.10.0-1
+      - irods-rule-engine-plugin-elasticsearch-4.2.10.0-1
+      - irods-rule-engine-plugin-document-type-4.2.10.0-1
+      - irods-rule-engine-plugin-indexing-4.2.10.1-1
+      - irods-rule-engine-plugin-elasticsearch-4.2.10.1-1
+      - irods-rule-engine-plugin-document-type-4.2.10.1-1
     state: absent
   notify: Restart iRODS
 
 
-- name: Ensure iRODS iCAT server, Python rule engine plugin and database plugin are present
+- name: Ensure iRODS iCAT server and all plugins are present
   package:
     name:
       - irods-server-4.2.11-1
       - irods-runtime-4.2.11-1
       - irods-database-plugin-postgres-4.2.11-1
       - irods-rule-engine-plugin-python-4.2.11.0-1
+      - irods-rule-engine-plugin-indexing-4.2.11.0-1
+      - irods-rule-engine-plugin-elasticsearch-4.2.11.0-1
+      - irods-rule-engine-plugin-document-type-4.2.11.0-1
     state: present
   when: not ansible_check_mode
 
