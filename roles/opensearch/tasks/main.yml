@@ -70,6 +70,7 @@
   template:
     src: opensearch.service
     dest: '{{ systemd_dir }}/opensearch.service'
+    mode: 0644
 
 
 - name: Make sure OpenSearch is started
