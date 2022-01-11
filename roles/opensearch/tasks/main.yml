@@ -78,3 +78,12 @@
     name: opensearch
     state: started
     enabled: yes
+
+
+- name: Enable port for indexing
+  firewalld:
+    port: 9200/tcp
+    permanent: true
+    state: enabled
+    immediate: yes
+  notify: Restart firewall

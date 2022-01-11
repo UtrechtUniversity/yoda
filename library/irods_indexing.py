@@ -14,11 +14,13 @@ def main():
   module = AnsibleModule(
     argument_spec=dict(
       config_path=dict(default=None, required=True),
+      index_server=dict(default=None, required=True),
       state=dict(default="present")
       ),
     supports_check_mode=True)
 
   config_path = module.params["config_path"]
+  index_server = module.params["index_server"]
   state = module.params["state"]
   changed = False
 
@@ -44,7 +46,7 @@ def main():
           "instance_name": "irods_rule_engine_plugin-elasticsearch-instance",
           "plugin_name": "irods_rule_engine_plugin-elasticsearch",
           "plugin_specific_configuration": {
-            "hosts": ["http://localhost:9200/"],
+            "hosts": ["http://" + index_server + ":9200/"],
             "es_version": "7.x",
             "bulk_count": 100,
             "read_size": 4194304

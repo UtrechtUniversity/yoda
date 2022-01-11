@@ -284,6 +284,7 @@
   become: yes
   irods_indexing:
     config_path: '/etc/irods/server_config.json'
+    index_server: '{{ yoda_portal_fqdn }}'
   notify: Restart iRODS
   when: not ansible_check_mode
 
