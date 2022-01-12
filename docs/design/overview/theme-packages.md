@@ -1,6 +1,6 @@
 ---
 grand_parent: Software Design
-parent: Theme packaging
+parent: System Overview
 nav_order: 7
 ---
 # Theme packaging
