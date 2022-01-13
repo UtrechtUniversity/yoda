@@ -170,7 +170,7 @@ external_users_domain_filter: uu.nl     # Domains to filter, separated by |
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: True
-oidc_domain: "gmail.com"                                      # Domain that should use OIDC
+oidc_domains: ['gmail.com']                                   # Domains that should use OIDC (list)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
 oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url
