@@ -52,7 +52,7 @@ git checkout release-1.8
 default_yoda_schema: default-2
 ```
 
-5. If OpenID Connect (OIDC) is active (`oidc_active`), make sure you have [configured](../administraion/configuring-openidc.md) `oidc_domains`, `oidc_jwks_uri` and `oidc_jwt_issuer`.
+5. If OpenID Connect (OIDC) is active (`oidc_active`), make sure you have [configured](../administration/configuring-openidc.md) `oidc_domains`, `oidc_jwks_uri` and `oidc_jwt_issuer`.
 
 6. Run the Ansible playbook in check mode.
 ```bash
