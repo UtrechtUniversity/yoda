@@ -115,13 +115,13 @@
   },"19": {
     "doc": "Configuring OIDC",
     "title": "Configuring the variables",
-    "content": "When creating a new Yoda instance, setup the variables in the group_vars as explained in Configuring Yoda and run the playbook. Alternatively, you can choose to pass the variables with the –extra-vars option every time when running the Ansible playbook. The development group_vars contains examples for all of the variables. For OIDC to function properly it requires the following variables to be set: . | oidc_active (default: false), used by Ansible during setup. Please note that switching oidc_active to false (and running the Ansbible playbook again) is not a safe way to disable OIDC: you should also replace the oidc_client_id and oidc_client_secret values with placeholders. | oidc_client_id | oidc_client_secret | oidc_auth_base_uri | oidc_token_uri | oidc_userinfo_uri | oidc_jwks_uri, which returns all the valid JSON Web Key sets | oidc_jwt_issuer, the iss value in the JWT token | . Additionally, depending on the authorization server, you may need to configure the following variables: . | oidc_scopes (default: openid) | oidc_acr_values | oidc_email_field (default: email) | . Finally, for customization purposes, you can also configure: . | oidc_domain | oidc_signin_text (deprecated since v1.8) | . For token verification there are also the following parameters which define what checks are done when verifying a JWT. Take caution when setting values to false, as this makes verification less strict. Details can be found in the group_vars file. | oidc_req_exp (default: true) | oidc_req_iat (default: false) | oidc_req_nbf (default: false) | oidc_verify_aud (default: true) | oidc_verify_iat (default: false) | oidc_verify_exp (default: true) | oidc_verify_iss (default: true) | . ",
+    "content": "When creating a new Yoda instance, setup the variables in the group_vars as explained in Configuring Yoda and run the playbook. Alternatively, you can choose to pass the variables with the –extra-vars option every time when running the Ansible playbook. The development group_vars contains examples for all of the variables. For OIDC to function properly it requires the following variables to be set: . | oidc_active (default: false), used by Ansible during setup. Please note that switching oidc_active to false (and running the Ansbible playbook again) is not a safe way to disable OIDC: you should also replace the oidc_client_id and oidc_client_secret values with placeholders. | oidc_client_id | oidc_client_secret | oidc_auth_base_uri | oidc_token_uri | oidc_userinfo_uri | oidc_jwks_uri, which returns all the valid JSON Web Key sets | oidc_jwt_issuer, the iss value in the JWT token | . Additionally, depending on the authorization server, you may need to configure the following variables: . | oidc_scopes (default: openid) | oidc_acr_values | oidc_email_field (default: email) | . Finally, for customization purposes, you can also configure: . | oidc_domains | oidc_signin_text (deprecated since v1.8) | . For token verification there are also the following parameters which define what checks are done when verifying a JWT. Take caution when setting values to false, as this makes verification less strict. Details can be found in the group_vars file. | oidc_req_exp (default: true) | oidc_req_iat (default: false) | oidc_req_nbf (default: false) | oidc_verify_aud (default: true) | oidc_verify_iat (default: false) | oidc_verify_exp (default: true) | oidc_verify_iss (default: true) | . ",
     "url": "/yoda/administration/configuring-openidc.html#configuring-the-variables",
     "relUrl": "/administration/configuring-openidc.html#configuring-the-variables"
   },"20": {
     "doc": "Configuring OIDC",
     "title": "Verifying OIDC",
-    "content": "To verify whether the deployment/update went successfully, go to the Yoda portal and click the Sign in button, enter an email address and click Next. If configured correctly, you should now see an extra button with the text as configured with the oidc_signin_text variable (default: Sign in with OIDC). When clicking on the Sign in with OIDC button, login at the configured authorized server and verify that you are returned to the Yoda portal homepage. If so, you have correctly configured authentication via OIDC. Please also verify that the standard login method is still working as intended. Alternatively, if you have configured the oidc_domain parameter, entering an email address with the configured domain and clicking Next should redirect you automatically to the configured authorization server. Follow the above steps as if having clicked the Sign in with OIDC button . ",
+    "content": "To verify whether the deployment/update went successfully, go to the Yoda portal and click the Sign in button, enter an email address and click Next. If configured correctly, you should now see an extra button with the text as configured with the oidc_signin_text variable (default: Sign in with OIDC). When clicking on the Sign in with OIDC button, login at the configured authorized server and verify that you are returned to the Yoda portal homepage. If so, you have correctly configured authentication via OIDC. Please also verify that the standard login method is still working as intended. Alternatively, if you have configured the oidc_domains parameter, entering an email address with the configured domain and clicking Next should redirect you automatically to the configured authorization server. Follow the above steps as if having clicked the Sign in with OIDC button . ",
     "url": "/yoda/administration/configuring-openidc.html#verifying-oidc",
     "relUrl": "/administration/configuring-openidc.html#verifying-oidc"
   },"21": {
@@ -169,7 +169,7 @@
   },"28": {
     "doc": "Configuring Yoda",
     "title": "OpenId Connect configuration",
-    "content": "| Variable | Description | . | oidc_active | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be true or false | . | oidc_client_id | OIDC Client Id | . | oidc_client_secret | OIDC Client Secret/Password | . | oidc_callback_url | OIDC Callback url | . | oidc_auth_base_uri | OIDC Authorization URI without parameters | . | oidc_token_uri | OIDC Token URI | . | oidc_userinfo_uri | OIDC Userinfo URI | . | oidc_scopes | OIDC Scopes | . | oidc_acr_values | OIDC Authentication Context Class Reference Values | . | oidc_email_field | The identifier of the JSON field in the id_token containing the email address. Default: email | . | oidc_signin_text | The text to appear on the Sign in button. Default: Sign in with OIDC (deprecated since v1.8) | . | oidc_public_key | OIDC jwks public key (base64 encoded PEM format) | . ",
+    "content": "| Variable | Description | . | oidc_active | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be true or false | . | oidc_domains | Domains that should use OIDC (list) | . | oidc_client_id | OIDC Client Id | . | oidc_client_secret | OIDC Client Secret/Password | . | oidc_callback_url | OIDC Callback url | . | oidc_auth_base_uri | OIDC Authorization URI without parameters | . | oidc_token_uri | OIDC Token URI | . | oidc_userinfo_uri | OIDC Userinfo URI | . | oidc_scopes | OIDC Scopes | . | oidc_acr_values | OIDC Authentication Context Class Reference Values | . | oidc_email_field | The identifier of the JSON field in the id_token containing the email address. Default: email the email address (default: email) | . | oidc_jwks_uri | The url where the JWKS can be found (Java web key sets) | . | oidc_jwt_issuer | The issuer of the JWT tokens (‘iss’ value in JWT, for verification) | . | oidc_req_exp | Check that exp (expiration) claim is present | . | oidc_req_iat | Check that iat (issued at) claim is present | . | oidc_req_nbf | Check that nbf (not before) claim is present | . | oidc_verify_aud | Check that aud (audience) claim matches audience | . | oidc_verify_iat | Check that iat (issued at) claim value is an integer | . | oidc_verify_exp | Check that exp (expiration) claim value is OK | . | oidc_verify_iss | Check that iss (issue) claim is as expected | . ",
     "url": "/yoda/administration/configuring-yoda.html#openid-connect-configuration",
     "relUrl": "/administration/configuring-yoda.html#openid-connect-configuration"
   },"29": {
@@ -485,107 +485,107 @@
     "url": "/yoda/development/",
     "relUrl": "/development/"
   },"81": {
-    "doc": "Administration Tasks",
-    "title": "Administration Tasks",
-    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | . ",
-    "url": "/yoda/administration/",
-    "relUrl": "/administration/"
-  },"82": {
-    "doc": "Release Notes",
-    "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
-    "url": "/yoda/release-notes/",
-    "relUrl": "/release-notes/"
-  },"83": {
-    "doc": "Processes",
-    "title": "Processes",
-    "content": " ",
-    "url": "/yoda/design/processes/",
-    "relUrl": "/design/processes/"
-  },"84": {
-    "doc": "API",
-    "title": "API",
-    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
-    "url": "/yoda/design/api/",
-    "relUrl": "/design/api/"
-  },"85": {
-    "doc": "System Overview",
-    "title": "System overview",
-    "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
-    "url": "/yoda/design/overview/#system-overview",
-    "relUrl": "/design/overview/#system-overview"
-  },"86": {
-    "doc": "System Overview",
-    "title": "Core modules",
-    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
-    "url": "/yoda/design/overview/#core-modules",
-    "relUrl": "/design/overview/#core-modules"
-  },"87": {
-    "doc": "System Overview",
-    "title": "Additional modules",
-    "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
-    "url": "/yoda/design/overview/#additional-modules",
-    "relUrl": "/design/overview/#additional-modules"
-  },"88": {
-    "doc": "System Overview",
-    "title": "Overview",
-    "content": ". ",
-    "url": "/yoda/design/overview/#overview",
-    "relUrl": "/design/overview/#overview"
-  },"89": {
-    "doc": "System Overview",
-    "title": "System Overview",
-    "content": " ",
-    "url": "/yoda/design/overview/",
-    "relUrl": "/design/overview/"
-  },"90": {
-    "doc": "Metadata",
-    "title": "Metadata",
-    "content": " ",
-    "url": "/yoda/design/metadata/",
-    "relUrl": "/design/metadata/"
-  },"91": {
     "doc": "Other",
     "title": "Other",
     "content": " ",
     "url": "/yoda/design/other/",
     "relUrl": "/design/other/"
-  },"92": {
+  },"82": {
+    "doc": "System Overview",
+    "title": "System overview",
+    "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
+    "url": "/yoda/design/overview/#system-overview",
+    "relUrl": "/design/overview/#system-overview"
+  },"83": {
+    "doc": "System Overview",
+    "title": "Core modules",
+    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
+    "url": "/yoda/design/overview/#core-modules",
+    "relUrl": "/design/overview/#core-modules"
+  },"84": {
+    "doc": "System Overview",
+    "title": "Additional modules",
+    "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
+    "url": "/yoda/design/overview/#additional-modules",
+    "relUrl": "/design/overview/#additional-modules"
+  },"85": {
+    "doc": "System Overview",
+    "title": "Overview",
+    "content": ". ",
+    "url": "/yoda/design/overview/#overview",
+    "relUrl": "/design/overview/#overview"
+  },"86": {
+    "doc": "System Overview",
+    "title": "System Overview",
+    "content": " ",
+    "url": "/yoda/design/overview/",
+    "relUrl": "/design/overview/"
+  },"87": {
+    "doc": "API",
+    "title": "API",
+    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
+    "url": "/yoda/design/api/",
+    "relUrl": "/design/api/"
+  },"88": {
+    "doc": "Metadata",
+    "title": "Metadata",
+    "content": " ",
+    "url": "/yoda/design/metadata/",
+    "relUrl": "/design/metadata/"
+  },"89": {
+    "doc": "Processes",
+    "title": "Processes",
+    "content": " ",
+    "url": "/yoda/design/processes/",
+    "relUrl": "/design/processes/"
+  },"90": {
     "doc": "Software Design",
     "title": "Software Design",
     "content": " ",
     "url": "/yoda/design/",
     "relUrl": "/design/"
-  },"93": {
+  },"91": {
     "doc": "Software Design",
     "title": "API",
     "content": ". | API documentation | . ",
     "url": "/yoda/design/#api",
     "relUrl": "/design/#api"
-  },"94": {
+  },"92": {
     "doc": "Software Design",
     "title": "System",
     "content": ". | System overview | Research space | Vault space | Statistics module | Intake module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
     "url": "/yoda/design/#system",
     "relUrl": "/design/#system"
-  },"95": {
+  },"93": {
     "doc": "Software Design",
     "title": "Metadata",
     "content": ". | Metadata schema identifier | Metadata form | Metadata mappings | Metadata schemas | . ",
     "url": "/yoda/design/#metadata",
     "relUrl": "/design/#metadata"
-  },"96": {
+  },"94": {
     "doc": "Software Design",
     "title": "Processes",
     "content": ". | Asynchronous and privileged execution | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
     "url": "/yoda/design/#processes",
     "relUrl": "/design/#processes"
-  },"97": {
+  },"95": {
     "doc": "Software Design",
     "title": "Other",
     "content": ". | Python plugin | Yoda drive | . ",
     "url": "/yoda/design/#other",
     "relUrl": "/design/#other"
+  },"96": {
+    "doc": "Release Notes",
+    "title": "Release Notes",
+    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "url": "/yoda/release-notes/",
+    "relUrl": "/release-notes/"
+  },"97": {
+    "doc": "Administration Tasks",
+    "title": "Administration Tasks",
+    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | . ",
+    "url": "/yoda/administration/",
+    "relUrl": "/administration/"
   },"98": {
     "doc": "Home",
     "title": "Yoda technical documentation",
@@ -1321,13 +1321,13 @@
   },"220": {
     "doc": "v1.8",
     "title": "What’s new",
-    "content": "Features . | Full theming support | Support for Data Access Passwords | Support for user settings | Support for notifications | Support for copy and move actions in the web portal | Support for multi-select actions for files and folders in research space | Improved search module and new search bar in header | Several UX improvements to default theme | Upgrade to iRODS v4.2.10 | Removed legacy_tls flag (legacy TLS support, TLS 1.0 and 1.1) | . Known issues . | Collections with single apex “’” in the name do not work irods/irods#5727 | Server leaks memory via Python rule genqueries and built-in microservices irods/irods#4649 | iQuest fails when select is used in argument string irods/irods#4697 | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python irods_rule_engine_plugin_python#54 | Long PAM password/token string causes PACKSTRUCT error python-irodsclient#279 | Executing a rule requires reconnection / reauthentication to iRODS python-irodsclient#190 | . ",
+    "content": "Features . | Full theming support | Support for Data Access Passwords | Support for user settings | Support for notifications | Support for copy and move actions in the web portal | Support for multi-select actions for files and folders in research space | Improved search module and new search bar in header | Several UX improvements to default theme | Upgrade to iRODS v4.2.10 | Removed legacy_tls flag (legacy TLS support, TLS 1.0 and 1.1) | Improvements to default schema (default-2) | Transformation from default-1 to teclab-0 / hptlab-0 | . Known issues . | Collections with single apex “’” in the name do not work irods/irods#5727 | Server leaks memory via Python rule genqueries and built-in microservices irods/irods#4649 | iQuest fails when select is used in argument string irods/irods#4697 | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python irods_rule_engine_plugin_python#54 | Long PAM password/token string causes PACKSTRUCT error python-irodsclient#279 | Executing a rule requires reconnection / reauthentication to iRODS python-irodsclient#190 | . ",
     "url": "/yoda/release-notes/release-1.8.html#whats-new",
     "relUrl": "/release-notes/release-1.8.html#whats-new"
   },"221": {
     "doc": "v1.8",
     "title": "Upgrading from previous release",
-    "content": "Upgrade is supported by Ansible (2.9.x). Requires Yoda external user service to be on version 1.5.x or higher. Requires Yoda public server to be on version 1.6.x or higher. | Backup/copy custom configurations made to Yoda version 1.7. To view what files were changed from the defaults, run git diff. | After making sure the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Checkout branch release-1.8 of the Yoda Git repository. git checkout release-1.8 . | Run the Ansible playbook in check mode. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | . ",
+    "content": "Upgrade is supported by Ansible (2.9.x). Requires Yoda external user service to be on version 1.5.x or higher. Requires Yoda public server to be on version 1.6.x or higher. | Backup/copy custom configurations made to Yoda version 1.7. To view what files were changed from the defaults, run git diff. | After making sure the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Checkout branch release-1.8 of the Yoda Git repository. git checkout release-1.8 . | Change the default schema from default-1 to default-2 in configuration. default_yoda_schema: default-2 . | If OpenID Connect (OIDC) is active (oidc_active), make sure you have configured oidc_domains, oidc_jwks_uri and oidc_jwt_issuer. | Run the Ansible playbook in check mode. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update all metadata JSON in the vault to latest metadata JSON version (default-1 to default-2). irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | . ",
     "url": "/yoda/release-notes/release-1.8.html#upgrading-from-previous-release",
     "relUrl": "/release-notes/release-1.8.html#upgrading-from-previous-release"
   },"222": {
