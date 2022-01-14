@@ -251,6 +251,7 @@ eus_mail_template            | External User Service mail template
 Variable   | Description
 -----------|---------------------------------------------
 oidc_active         | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
+oidc_domains        | Domains that should use OIDC (list)
 oidc_client_id		| OIDC Client Id
 oidc_client_secret	| OIDC Client Secret/Password
 oidc_callback_url   | OIDC Callback url
@@ -259,6 +260,13 @@ oidc_token_uri		| OIDC Token URI
 oidc_userinfo_uri	| OIDC Userinfo URI
 oidc_scopes         | OIDC Scopes
 oidc_acr_values		| OIDC Authentication Context Class Reference Values
-oidc_email_field	| The identifier of the JSON field in the `id_token` containing the email address. Default: `email`
-oidc_signin_text	| The text to appear on the Sign in button. Default: *Sign in with OIDC* (deprecated since v1.8)
-oidc_public_key     | OIDC jwks public key (base64 encoded PEM format)
+oidc_email_field	| The identifier of the JSON field in the `id_token` containing the email address. Default: `email` the email address (default: email)
+oidc_jwks_uri       | The url where the JWKS can be found (Java web key sets)
+oidc_jwt_issuer     | The issuer of the JWT tokens ('iss' value in JWT, for verification)
+oidc_req_exp        | Check that exp (expiration) claim is present
+oidc_req_iat        | Check that iat (issued at) claim is present
+oidc_req_nbf        | Check that nbf (not before) claim is present
+oidc_verify_aud     | Check that aud (audience) claim matches audience
+oidc_verify_iat     | Check that iat (issued at) claim value is an integer
+oidc_verify_exp     | Check that exp (expiration) claim value is OK
+oidc_verify_iss     | Check that iss (issue) claim is as expected
