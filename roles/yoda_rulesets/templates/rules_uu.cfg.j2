@@ -53,3 +53,5 @@ token_database             = '{{ token_database }}'
 token_length               = '{{ token_length }}'
 token_lifetime             = '{{ token_lifetime }}'
 {% endif %}
+
+enable_tape_archive        = '{{ ["false", "true"][enable_tape_archive|int] }}'

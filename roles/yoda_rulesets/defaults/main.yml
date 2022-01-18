@@ -94,4 +94,7 @@ token_database: /etc/irods/yoda-ruleset/tokens.db # Location of the database tha
 token_length: 32                                      # Length of data access tokens
 token_lifetime: 72                                    # Lifetime of data access tokens (in hours)
 
+# DMF tape archive
+enable_tape_archive: false
+
 yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
