@@ -55,11 +55,20 @@
     - { role: acme_certificates, when: yoda_environment == "testing" }
     - python3
     - yoda_portal
+  tags:
+    - portal
+
+
+- name: Provision davrods server
+  hosts: davrods
+  become: yes
+  roles:
+    - apache
     - irods_icommands
     - irods_runtime
     - yoda_davrods
   tags:
-    - portal
+    - davrods
 
 
 - name: Provision database server
