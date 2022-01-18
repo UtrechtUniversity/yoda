@@ -4,6 +4,7 @@
 # Define all hosts in instance here:
 [allinone:children]
 allinone_portal
+allinone_davrods
 allinone_database
 allinone_icat
 allinone_resource
@@ -12,6 +13,10 @@ allinone_eus
 
 # Define portal host here:
 [allinone_portal]
+combined
+
+# Define davrods host here:
+[allinone_davrods]
 combined
 
 # Define database host here:
@@ -39,6 +44,10 @@ combined
 # Define all portal hosts here:
 [portals:children]
 allinone_portal
+
+# Define all davrods hosts here:
+[davrods:children]
+allinone_davrods
 
 # Define all database hosts here:
 [databases:children]
