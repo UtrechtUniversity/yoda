@@ -13,7 +13,7 @@ For all metadata in the research space the systems requests the user to transfor
 
 2. After the upgrade all metadata on the system needs to be migrated, this can be done by running the following command:
 ```bash
-irule -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-schema-updates.r
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/irods-ruleset-research/tools/check-metadata-for-schema-updates.r
 ```
 All metadata touched will be logged in the rodsLog.
 Adding the schema identifiers can take some time, the batch script adds 256 jobs per 60 seconds to the rule queue.

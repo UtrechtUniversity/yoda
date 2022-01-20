@@ -47,6 +47,17 @@
     creates: /var/www/yoda/venv
 
 
+- name: Remove any existing python-irodsclient
+  become_user: "{{ yoda_deployment_user }}"
+  become: yes
+  pip:
+    name:
+      - python-irodsclient
+    state: absent
+    virtualenv: '/var/www/yoda/venv'
+    virtualenv_python: python3.6
+
+
 - name: Ensure Yoda portal dependencies are installed
   become_user: "{{ yoda_deployment_user }}"
   become: yes

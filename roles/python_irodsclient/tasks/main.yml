@@ -16,8 +16,15 @@
     state: present
 
 
+- name: Remove any python-irodsclient
+  pip:
+    name:
+      - python-irodsclient
+    state: absent
+
+
 - name: Ensure python-irodsclient is installed
   pip:
     name:
-      - python-irodsclient==1.0.0
+      - git+https://github.com/irods/python-irodsclient.git@4f686b96af1125a79b71394ef697d78cd734bc41
     state: present
