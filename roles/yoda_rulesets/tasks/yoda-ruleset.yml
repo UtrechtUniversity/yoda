@@ -37,7 +37,9 @@
 - name: Ensure yoda system collections are present
   become_user: "{{ irods_service_account }}"
   become: yes
-  command: "irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'"
+  command: >
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
+    /etc/irods/yoda-ruleset/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'
   register: create_system_collections
   when: >
     (system_collections.stderr.find('does not exist') >= 0)
@@ -63,7 +65,9 @@
     minute: '0'
     hour: '5'
     day: '1'
-    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r >> /var/lib/irods/log/job_monthly-storage-statistics.log 2>&1'
+    job: >
+      /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
+      /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r >>/var/lib/irods/log/job_monthly-storage-statistics.log 2>&1
   when: monthly_storage_statistics.stat.exists
 
 
