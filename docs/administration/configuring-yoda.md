@@ -201,6 +201,7 @@ datacite_username            | DataCite username
 datacite_password            | DataCite password
 datacite_prefix              | DataCite DOI prefix
 datacite_server              | DataCite server URI
+datacite_api_server          | DataCite REST API URI
 
 ### EPIC PID Configuration
 
