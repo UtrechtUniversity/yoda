@@ -1,0 +1,50 @@
+@startuml
+
+
+package "YoDa" {
+
+   file published_files [
+           published yoda-metadata.json files
+   ]
+}
+
+
+package "MOAI" {
+
+   component yodaImport
+
+   database sqlite[
+      sqlite MOAI
+   ]
+
+   component datacite
+}
+
+package "CKAN CATALOG" {
+    package "CKAN iLAB"{
+        component "customThemeIlab"
+    }
+
+
+
+    package "Harvest" {
+        component CKANEXT_HARVEST
+
+	component CKANEXT_OAIPMH 
+
+        component CKANEXT_OAIPMH_iLAB
+
+    }
+
+
+}
+
+published_files -> yodaImport
+yodaImport -> sqlite
+sqlite -> datacite
+datacite -> CKANEXT_HARVEST
+CKANEXT_HARVEST --> CKANEXT_OAIPMH
+CKANEXT_OAIPMH -> CKANEXT_OAIPMH_iLAB
+CKANEXT_OAIPMH_iLAB -> customThemeIlab
+
+@enduml
