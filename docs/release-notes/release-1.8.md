@@ -17,6 +17,7 @@ Released: TBA
 - Support for notifications
 - Support for copy and move actions in the web portal
 - Support for multi-select actions for files and folders in research space
+- Support for davrods server on separate host
 - Improved search module and new search bar in header
 - Several UX improvements to default theme
 - Upgrade to iRODS v4.2.10

@@ -86,6 +86,24 @@ yoda_public
 yoda_eus
 ```
 
+It is possible to deploy davrods to a separate host by adding a davrods host and group:
+```bash
+[yoda:children]
+yoda_portal
+yoda_davrods
+yoda_database
+yoda_icat
+yoda_resource
+yoda_public
+yoda_eus
+
+[yoda_davrods]
+host5.yoda.test
+
+[davrods:children]
+yoda_davrods
+```
+
 Last step to add the hosts of a new Yoda instance is to create configuration files for every new host.
 In development environment these configuration files are placed in `environments/development/hosts`.
 For example, for host 'host1.yoda.test' a configuration file is created:
