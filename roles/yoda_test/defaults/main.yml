@@ -38,7 +38,7 @@ test_users:
   - name: projectmanager
     password: '{{ test_password }}'
     type: rodsuser
-  - name: dmcmember
+  - name: dacmember
     password: '{{ test_password }}'
     type: rodsuser
 
@@ -139,7 +139,7 @@ test_groups:
     category: datarequests
     subcategory: research
     dataClassification: unspecified
-  - groupName: datarequests-research-data-management-committee
+  - groupName: datarequests-research-data-access-committee
     category: datarequests
     subcategory: research
     dataClassification: unspecified
@@ -217,8 +217,8 @@ test_groupusers:
   - groupName: datarequests-research-project-managers
     user: projectmanager
     role: manager
-  - groupName: datarequests-research-data-management-committee
-    user: dmcmember
+  - groupName: datarequests-research-data-access-committee
+    user: dacmember
     role: manager
   - groupName: datarequests-research-datamanagers
     user: datamanager
