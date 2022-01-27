@@ -88,6 +88,9 @@ enable_intake: false                    # Enable intake module
 intake_groups: []                       # List of intake_groups. Use the names without "grp-intake-"
                                         # For example: "projectabc" for "grp-intake-projectabc"
 
+# Yoda ID
+enable_yoda_id: false                   # Enable Yoda IDs for vault data packages
+
 # Data Access Tokens
 enable_tokens: false                    # Enable data access tokens for webDAV and iCommands
 token_database: /etc/irods/yoda-ruleset/tokens.db # Location of the database that contain the tokens
