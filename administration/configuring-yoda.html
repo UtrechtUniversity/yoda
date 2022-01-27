@@ -46,6 +46,20 @@ yoda_public
 
 <span class="o">[</span>eus:children]
 yoda_eus
+</code></pre></div></div> <p>It is possible to deploy davrods to a separate host by adding a davrods host and group:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>yoda:children]
+yoda_portal
+yoda_davrods
+yoda_database
+yoda_icat
+yoda_resource
+yoda_public
+yoda_eus
+
+<span class="o">[</span>yoda_davrods]
+host5.yoda.test
+
+<span class="o">[</span>davrods:children]
+yoda_davrods
 </code></pre></div></div> <p>Last step to add the hosts of a new Yoda instance is to create configuration files for every new host. In development environment these configuration files are placed in <code class="language-plaintext highlighter-rouge">environments/development/hosts</code>. For example, for host ‘host1.yoda.test’ a configuration file is created:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>environments/development/host_vars/host1.yoda.test
 </code></pre></div></div> <p>And place the basic host configuration in the new file:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">---</span>
 ansible_host: host1.yoda.test

@@ -151,7 +151,7 @@
   },"25": {
     "doc": "Configuring Yoda",
     "title": "2. Add hosts of new Yoda instance",
-    "content": "Hosts of a Yoda instance are defined in the Ansible inventory file ‘hosts’. For the development instance ‘full’ this inventory can be found in environments/development/full/hosts. In the inventory the hosts of an instance are defined, their functional roles and to which groups they belong. Example configuration defining the and functional roles of an instance called ‘yoda’: . [yoda:children] yoda_portal yoda_database yoda_icat yoda_resource yoda_public yoda_eus [yoda_portal] host1.yoda.test # leave this out when using an existing database for ICAT [yoda_database] host1.yoda.test [yoda_icat] host1.yoda.test [yoda_resource] host2.yoda.test [yoda_public] host3.yoda.test [yoda_eus] host4.yoda.test . Add the new functional roles of the instance to the corresponding groups. For example: . [portals:children] yoda_portal # leave this out when using an existing database for ICAT [databases:children] yoda_database [icats:children] yoda_icat [resources:children] yoda_resource [publics:children] yoda_public [eus:children] yoda_eus . Last step to add the hosts of a new Yoda instance is to create configuration files for every new host. In development environment these configuration files are placed in environments/development/hosts. For example, for host ‘host1.yoda.test’ a configuration file is created: . touch environments/development/host_vars/host1.yoda.test . And place the basic host configuration in the new file: . --- ansible_host: host1.yoda.test . ",
+    "content": "Hosts of a Yoda instance are defined in the Ansible inventory file ‘hosts’. For the development instance ‘full’ this inventory can be found in environments/development/full/hosts. In the inventory the hosts of an instance are defined, their functional roles and to which groups they belong. Example configuration defining the and functional roles of an instance called ‘yoda’: . [yoda:children] yoda_portal yoda_database yoda_icat yoda_resource yoda_public yoda_eus [yoda_portal] host1.yoda.test # leave this out when using an existing database for ICAT [yoda_database] host1.yoda.test [yoda_icat] host1.yoda.test [yoda_resource] host2.yoda.test [yoda_public] host3.yoda.test [yoda_eus] host4.yoda.test . Add the new functional roles of the instance to the corresponding groups. For example: . [portals:children] yoda_portal # leave this out when using an existing database for ICAT [databases:children] yoda_database [icats:children] yoda_icat [resources:children] yoda_resource [publics:children] yoda_public [eus:children] yoda_eus . It is possible to deploy davrods to a separate host by adding a davrods host and group: . [yoda:children] yoda_portal yoda_davrods yoda_database yoda_icat yoda_resource yoda_public yoda_eus [yoda_davrods] host5.yoda.test [davrods:children] yoda_davrods . Last step to add the hosts of a new Yoda instance is to create configuration files for every new host. In development environment these configuration files are placed in environments/development/hosts. For example, for host ‘host1.yoda.test’ a configuration file is created: . touch environments/development/host_vars/host1.yoda.test . And place the basic host configuration in the new file: . --- ansible_host: host1.yoda.test . ",
     "url": "/yoda/administration/configuring-yoda.html#2-add-hosts-of-new-yoda-instance",
     "relUrl": "/administration/configuring-yoda.html#2-add-hosts-of-new-yoda-instance"
   },"26": {
@@ -479,53 +479,53 @@
     "url": "/yoda/administration/hotfixing-ruleset.html",
     "relUrl": "/administration/hotfixing-ruleset.html"
   },"80": {
-    "doc": "Development",
-    "title": "Development",
-    "content": ". | Setting up development environment | Setting up YodaDrive development environment | Development tips | Wall of Fame | . ",
-    "url": "/yoda/development/",
-    "relUrl": "/development/"
+    "doc": "Administration Tasks",
+    "title": "Administration Tasks",
+    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | . ",
+    "url": "/yoda/administration/",
+    "relUrl": "/administration/"
   },"81": {
+    "doc": "Release Notes",
+    "title": "Release Notes",
+    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "url": "/yoda/release-notes/",
+    "relUrl": "/release-notes/"
+  },"82": {
     "doc": "Other",
     "title": "Other",
     "content": " ",
     "url": "/yoda/design/other/",
     "relUrl": "/design/other/"
-  },"82": {
+  },"83": {
     "doc": "System Overview",
     "title": "System overview",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
     "url": "/yoda/design/overview/#system-overview",
     "relUrl": "/design/overview/#system-overview"
-  },"83": {
+  },"84": {
     "doc": "System Overview",
     "title": "Core modules",
     "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     "relUrl": "/design/overview/#core-modules"
-  },"84": {
+  },"85": {
     "doc": "System Overview",
     "title": "Additional modules",
     "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
     "url": "/yoda/design/overview/#additional-modules",
     "relUrl": "/design/overview/#additional-modules"
-  },"85": {
+  },"86": {
     "doc": "System Overview",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/#overview",
     "relUrl": "/design/overview/#overview"
-  },"86": {
+  },"87": {
     "doc": "System Overview",
     "title": "System Overview",
     "content": " ",
     "url": "/yoda/design/overview/",
     "relUrl": "/design/overview/"
-  },"87": {
-    "doc": "API",
-    "title": "API",
-    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
-    "url": "/yoda/design/api/",
-    "relUrl": "/design/api/"
   },"88": {
     "doc": "Metadata",
     "title": "Metadata",
@@ -533,59 +533,59 @@
     "url": "/yoda/design/metadata/",
     "relUrl": "/design/metadata/"
   },"89": {
+    "doc": "API",
+    "title": "API",
+    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
+    "url": "/yoda/design/api/",
+    "relUrl": "/design/api/"
+  },"90": {
     "doc": "Processes",
     "title": "Processes",
     "content": " ",
     "url": "/yoda/design/processes/",
     "relUrl": "/design/processes/"
-  },"90": {
+  },"91": {
     "doc": "Software Design",
     "title": "Software Design",
     "content": " ",
     "url": "/yoda/design/",
     "relUrl": "/design/"
-  },"91": {
+  },"92": {
     "doc": "Software Design",
     "title": "API",
     "content": ". | API documentation | . ",
     "url": "/yoda/design/#api",
     "relUrl": "/design/#api"
-  },"92": {
+  },"93": {
     "doc": "Software Design",
     "title": "System",
     "content": ". | System overview | Research space | Vault space | Statistics module | Intake module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
     "url": "/yoda/design/#system",
     "relUrl": "/design/#system"
-  },"93": {
+  },"94": {
     "doc": "Software Design",
     "title": "Metadata",
     "content": ". | Metadata schema identifier | Metadata form | Metadata mappings | Metadata schemas | . ",
     "url": "/yoda/design/#metadata",
     "relUrl": "/design/#metadata"
-  },"94": {
+  },"95": {
     "doc": "Software Design",
     "title": "Processes",
     "content": ". | Asynchronous and privileged execution | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
     "url": "/yoda/design/#processes",
     "relUrl": "/design/#processes"
-  },"95": {
+  },"96": {
     "doc": "Software Design",
     "title": "Other",
     "content": ". | Python plugin | Yoda drive | . ",
     "url": "/yoda/design/#other",
     "relUrl": "/design/#other"
-  },"96": {
-    "doc": "Release Notes",
-    "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
-    "url": "/yoda/release-notes/",
-    "relUrl": "/release-notes/"
   },"97": {
-    "doc": "Administration Tasks",
-    "title": "Administration Tasks",
-    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | . ",
-    "url": "/yoda/administration/",
-    "relUrl": "/administration/"
+    "doc": "Development",
+    "title": "Development",
+    "content": ". | Setting up development environment | Setting up YodaDrive development environment | Development tips | Wall of Fame | . ",
+    "url": "/yoda/development/",
+    "relUrl": "/development/"
   },"98": {
     "doc": "Home",
     "title": "Yoda technical documentation",
@@ -1321,7 +1321,7 @@
   },"220": {
     "doc": "v1.8",
     "title": "What’s new",
-    "content": "Features . | Full theming support | Support for Data Access Passwords | Support for user settings | Support for notifications | Support for copy and move actions in the web portal | Support for multi-select actions for files and folders in research space | Improved search module and new search bar in header | Several UX improvements to default theme | Upgrade to iRODS v4.2.10 | Removed legacy_tls flag (legacy TLS support, TLS 1.0 and 1.1) | Improvements to default schema (default-2) | Transformation from default-1 to teclab-0 / hptlab-0 | . Known issues . | Collections with single apex “’” in the name do not work irods/irods#5727 | Server leaks memory via Python rule genqueries and built-in microservices irods/irods#4649 | iQuest fails when select is used in argument string irods/irods#4697 | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python irods_rule_engine_plugin_python#54 | Long PAM password/token string causes PACKSTRUCT error python-irodsclient#279 | Executing a rule requires reconnection / reauthentication to iRODS python-irodsclient#190 | . ",
+    "content": "Features . | Full theming support | Support for Data Access Passwords | Support for user settings | Support for notifications | Support for copy and move actions in the web portal | Support for multi-select actions for files and folders in research space | Support for davrods server on separate host | Improved search module and new search bar in header | Several UX improvements to default theme | Upgrade to iRODS v4.2.10 | Removed legacy_tls flag (legacy TLS support, TLS 1.0 and 1.1) | Improvements to default schema (default-2) | Transformation from default-1 to teclab-0 / hptlab-0 | . Known issues . | Collections with single apex “’” in the name do not work irods/irods#5727 | Server leaks memory via Python rule genqueries and built-in microservices irods/irods#4649 | iQuest fails when select is used in argument string irods/irods#4697 | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python irods_rule_engine_plugin_python#54 | Long PAM password/token string causes PACKSTRUCT error python-irodsclient#279 | Executing a rule requires reconnection / reauthentication to iRODS python-irodsclient#190 | . ",
     "url": "/yoda/release-notes/release-1.8.html#whats-new",
     "relUrl": "/release-notes/release-1.8.html#whats-new"
   },"221": {
