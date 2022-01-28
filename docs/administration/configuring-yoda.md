@@ -218,7 +218,7 @@ Variable   | Description
 datacite_username            | DataCite username
 datacite_password            | DataCite password
 datacite_prefix              | DataCite DOI prefix
-datacite_server              | DataCite server URI
+datacite_rest_api_url        | DataCite REST API URL
 
 ### EPIC PID Configuration
 
