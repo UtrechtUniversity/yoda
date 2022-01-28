@@ -30,12 +30,12 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 **Step 3:** Determine Last Modification Time
 - Add to State
 
-**Step 4:** Generate Combi XML consisting of user and system metadata
-- Save CombiXML in temporary collection
-- Add path of CombiXML to state
+**Step 4:** Generate Combi JSON consisting of user and system metadata
+- Save CombiJSON in temporary collection
+- Add path of CombiJSON to state
 
-**Step 5:** Generate DataCite XML from Combi XML
-- Add DataCite XML to state
+**Step 5:** Generate DataCite JSON from Combi JSON
+- Add DataCite JSON to state
 - On failure:
 	- Flag package with unrecoverable failure
 	- Bail
@@ -48,7 +48,7 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 - If not in use:
 	- Add DOI to metadata of Vault Package
 
-**Step 7:** Send DataCite XML
+**Step 7:** Send DataCite JSON
 - Retrieve DataCite url and DataCite credentials from credentials store
 - API request to metadata endpoint with DataCite XML
 - put result in state
@@ -60,7 +60,7 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 	- Bail
 
 **Step 8:** Create Landing Page
-- Use CombiXml to generate landing page
+- Use CombiJSON to generate landing page
 - Add landing page path to state
 - On failure:
 	- Flag package with unrecoverable failure
@@ -100,11 +100,11 @@ Depublication is performed with the differences noted below.
 
 Step 2 of the publication process above is skipped. A DOI has already been generated.
 
-**Step 4:** Generate Combi XML consisting only the system metadata, as the user metadata is being removed.
+**Step 4:** Generate Combi JSON consisting only the system metadata, as the user metadata is being removed.
 
 Step 5 and 6 of the publication process above are skipped.
 
-**Step 7:** Remove DataCite metadata
+**Step 7:** Remove (i.e. hide) DataCite metadata
 - Retrieve DataCite url and DataCite credentials from credentials store
 - API request to remove metadata from Datacite
 - put result in state

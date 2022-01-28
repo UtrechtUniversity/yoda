@@ -116,10 +116,10 @@ smtp_username: PLACEHOLDER          # SMTP server username
 smtp_password: PLACEHOLDER          # SMTP server password
 
 # DataCite Configuration
-datacite_server: mds.test.datacite.org  # DataCite server URI
-datacite_username: PLACEHOLDER          # DataCite username
-datacite_password: PLACEHOLDER          # DataCite password
-datacite_prefix: 10.00012               # DataCite DOI prefix
+datacite_rest_api_url: api.test.datacite.org  # DataCite API server URL
+datacite_username: PLACEHOLDER                # DataCite username
+datacite_password: PLACEHOLDER                # DataCite password
+datacite_prefix: 10.00012                     # DataCite DOI prefix
 
 # EPIC PID Configuration
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)

@@ -60,9 +60,9 @@ smtp_server: PLACEHOLDER                      # SMTP server to send mail to
 smtp_username: PLACEHOLDER                    # SMTP server username
 smtp_password: PLACEHOLDER                    # SMTP server password
 
-datacite_server: mds.test.datacite.org  # DataCite server URI
-datacite_username: PLACEHOLDER          # DataCite username
-datacite_password: PLACEHOLDER          # DataCite password
+datacite_rest_api_url: api.test.datacite.org  # DataCite API server URL
+datacite_username: PLACEHOLDER                # DataCite username
+datacite_password: PLACEHOLDER                # DataCite password
 
 epic_pid_enabled: 0                     # EPIC PID enabled: yes (1) or no (0)
 epic_url: PLACEHOLDER                   # EPIC PID server URL
