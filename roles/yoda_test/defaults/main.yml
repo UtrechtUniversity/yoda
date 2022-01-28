@@ -152,6 +152,15 @@ test_groups:
     subcategory: hptlab-0
     dataClassification:
 
+  - groupName: research-hptlab-1
+    category: hptlab-1
+    subcategory: hptlab-1
+    dataClassification: unspecified
+  - groupName: datamanager-hptlab-1
+    category: hptlab-1
+    subcategory: hptlab-1
+    dataClassification:
+
   - groupName: research-teclab-0
     category: teclab-0
     subcategory: teclab-0
@@ -159,6 +168,15 @@ test_groups:
   - groupName: datamanager-teclab-0
     category: teclab-0
     subcategory: teclab-0
+    dataClassification:
+
+  - groupName: research-teclab-1
+    category: teclab-1
+    subcategory: teclab-1
+    dataClassification: unspecified
+  - groupName: datamanager-teclab-1
+    category: teclab-1
+    subcategory: teclab-1
     dataClassification:
 
   - groupName: research-core-0
