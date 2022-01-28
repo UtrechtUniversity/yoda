@@ -343,6 +343,19 @@ test_groupusers:
     user: datamanager
     role: manager
 
+  - groupName: research-hptlab-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-hptlab-1
+    user: researcher
+    role: normal
+  - groupName: datamanager-hptlab-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-hptlab-1
+    user: datamanager
+    role: manager
+
   - groupName: research-teclab-0
     user: functionaladminpriv
     role: manager
@@ -353,6 +366,19 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-teclab-0
+    user: datamanager
+    role: manager
+
+  - groupName: research-teclab-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-teclab-1
+    user: researcher
+    role: normal
+  - groupName: datamanager-teclab-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-teclab-1
     user: datamanager
     role: manager
 
@@ -543,7 +569,9 @@ deletion_research_groups:
   - research: default-1
   - research: default-2
   - research: hptlab-0
+  - research: hptlab-1
   - research: teclab-0
+  - research: teclab-1
   - research: core-0
   - research: core-1
   - research: dag-0
@@ -561,7 +589,9 @@ deletion_datamanager_groups:
   - datamanager: default-1
   - datamanager: default-2
   - datamanager: hptlab-0
+  - datamanager: hptlab-1
   - datamanager: teclab-0
+  - datamanager: teclab-1
   - datamanager: core-0
   - datamanager: core-1
   - datamanager: dag-0
