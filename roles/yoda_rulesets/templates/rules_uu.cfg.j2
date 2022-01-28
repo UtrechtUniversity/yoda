@@ -48,6 +48,8 @@ epic_key                   = '{{ credentials_store }}/epic_key.pem'
 epic_certificate           = '{{ credentials_store }}/epic_cert.pem'
 {% endif %}
 
+enable_yoda_id             = '{{ ["false", "true"][enable_yoda_id|int] }}'
+
 enable_tokens              = '{{ ["false", "true"][enable_tokens|int] }}'
 {% if enable_tokens %}
 token_database             = '{{ token_database }}'

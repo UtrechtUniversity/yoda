@@ -4,6 +4,7 @@
 # Define all hosts in instance here:
 [full:children]
 full_portal
+full_davrods
 full_database
 full_icat
 full_resource
@@ -12,6 +13,10 @@ full_eus
 
 # Define portal host here:
 [full_portal]
+portal
+
+# Define davrods host here:
+[full_davrods]
 portal
 
 # Define database host here:
@@ -40,6 +45,10 @@ eus
 # Define all portal hosts here:
 [portals:children]
 full_portal
+
+# Define all davrods hosts here:
+[davrods:children]
+full_davrods
 
 # Define all database hosts here:
 [databases:children]
