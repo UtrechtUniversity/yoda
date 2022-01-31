@@ -1,29 +1,29 @@
 ---
 # copyright Utrecht University
 
-- name: Add repository for PHP 7.3
+- name: Add repository for PHP 7.4
   yum:
     name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
     state: present
 
 
-- name: Enable repository for PHP 7.3
+- name: Enable repository for PHP 7.4
   yum_repository:
-    name: remi-php73
-    description: Remi's PHP 7.3 RPM repository for Enterprise Linux 7
-    mirrorlist: http://rpms.remirepo.net/enterprise/7/php73/mirror
+    name: remi-php74
+    description: Remi's PHP 7.4 RPM repository for Enterprise Linux 7
+    mirrorlist: http://rpms.remirepo.net/enterprise/7/php74/mirror
     enabled: yes
     gpgcheck: 1
     gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
   register: php_repo
 
 
-- name: Ensure PHP 7.3 packages are installed
+- name: Ensure PHP 7.4 packages are installed
   yum:
     name:
-      - php-7.3*
-      - php-cli-7.3*
-      - php-xml-7.3*
+      - php-7.4*
+      - php-cli-7.4*
+      - php-xml-7.4*
       - php-pecl-mcrypt
     state: present
   when: not ansible_check_mode
