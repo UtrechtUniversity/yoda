@@ -34,7 +34,7 @@ datarequest_help_contact_name: PLACEHOLDER         # Help contact name
 datarequest_help_contact_email: PLACEHOLDER        # Help contact email
 
 # Yoda ID
-enable_yoda_id: false                              # Enable Yoda IDs for vault data packages
+enable_yoda_id: True                               # Enable Yoda IDs for vault data packages
 
 # Data Access Tokens
 enable_tokens: True                                   # Enable data access tokens for webDAV and iCommands
