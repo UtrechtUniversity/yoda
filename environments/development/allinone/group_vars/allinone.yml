@@ -34,9 +34,12 @@ enable_datarequest: True                           # Enable datarequest module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name
 datarequest_help_contact_email: PLACEHOLDER        # Help contact email
 
+# Yoda ID
+enable_yoda_id: True                               # Enable Yoda IDs for vault data packages
+
 # Data Access Tokens
 enable_tokens: True                                   # Enable data access tokens for webDAV and iCommands
-token_database: /etc/irods/yoda-ruleset/tokens.db # Location of the database that contain the tokens
+token_database: /etc/irods/yoda-ruleset/tokens.db     # Location of the database that contain the tokens
 token_length: 32                                      # Length of data access tokens
 token_lifetime: 72                                    # Lifetime of data access tokens (in hours)
 
@@ -114,10 +117,10 @@ smtp_username: PLACEHOLDER          # SMTP server username
 smtp_password: PLACEHOLDER          # SMTP server password
 
 # DataCite Configuration
-datacite_server: mds.test.datacite.org  # DataCite server URI
-datacite_username: PLACEHOLDER          # DataCite username
-datacite_password: PLACEHOLDER          # DataCite password
-datacite_prefix: 10.00012               # DataCite DOI prefix
+datacite_rest_api_url: api.test.datacite.org  # DataCite API server URL
+datacite_username: PLACEHOLDER                # DataCite username
+datacite_password: PLACEHOLDER                # DataCite password
+datacite_prefix: 10.00012                     # DataCite DOI prefix
 
 # EPIC PID Configuration
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
@@ -171,7 +174,7 @@ external_users_domain_filter: uu.nl     # Domains to filter, separated by |
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: True
-oidc_domain: "gmail.com"                                      # Domain that should use OIDC
+oidc_domains: ['gmail.com']                                   # Domains that should use OIDC (list)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
 oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url

@@ -55,7 +55,7 @@ IRODS_SESSION_OPTIONS = {
 %}
 # OIDC configuration
 OIDC_ENABLED        = {{ oidc_active | default(False) }}
-OIDC_DOMAIN         = '{{ oidc_domain | default("") }}'
+OIDC_DOMAINS        = {{ oidc_domains | default([""]) }}
 OIDC_CLIENT_ID      = '{{ oidc_client_id     | default("") }}'
 OIDC_CLIENT_SECRET  = '{{ oidc_client_secret | default("") }}'
 OIDC_CALLBACK_URI   = '{{ oidc_callback_uri | default("") }}'
@@ -83,3 +83,6 @@ OIDC_JWT_OPTIONS    = {
 # Portal theme configuration
 YODA_THEME_PATH = '{{ yoda_theme_path  | default("/var/www/yoda/themes") }}' # Path to location of themes
 YODA_THEME = '{{ yoda_theme | default("uu") }}'                              # Reference to actual theme directory in YODA_THEME_PATH
+
+# External User Service configuaration
+YODA_EUS_FQDN = '{{ yoda_eus_fqdn | default("") }}'
