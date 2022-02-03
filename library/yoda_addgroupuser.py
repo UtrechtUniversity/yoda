@@ -9,6 +9,7 @@ ANSIBLE_METADATA = {
 }
 
 from ansible.module_utils.basic import *
+import io
 
 
 IRODSCLIENT_AVAILABLE = False
@@ -57,11 +58,11 @@ def main():
     changed = False
 
     # Rule to add an user to a group in Yoda.
-    rule_body = '''a {{
+    rule_file = io.StringIO(u'''a {{
                        uuGroupUserAdd(*groupName, *user, *status, *message);
                        uuGroupUserChangeRole(*groupName, *user, *role, *status, *message);
                      }}
-                '''
+                ''')
     # Rule parameters.
     input_params = {
         '*groupName': '"{groupName}"'.format(**locals()),
@@ -72,7 +73,8 @@ def main():
     # Execute rule.
     if not module.check_mode:
         myrule = Rule(session,
-                      body=rule_body,
+                      instance_name='irods_rule_engine_plugin-irods_rule_language-instance',
+                      rule_file=rule_file,
                       params=input_params,
                       output='ruleExecOut')
         myrule.execute()
