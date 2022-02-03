@@ -61,8 +61,9 @@ def main():
     changed = False
 
     # Rule to add a group to Yoda.
-    rule_body = '''
-                   uuGroupAdd(*groupName, *category, *subcategory, *description, *dataClassification, *status, *message);
+    rule_body = '''a {{
+                       uuGroupAdd(*groupName, *category, *subcategory, *description, *dataClassification, *status, *message);
+                     }}
                 '''
 
     # Rule parameters.
@@ -77,7 +78,6 @@ def main():
     # Execute rule.
     if not module.check_mode:
         myrule = Rule(session,
-                      instance_name='irods_rule_engine_plugin-irods_rule_language-instance',
                       body=rule_body,
                       params=input_params,
                       output='ruleExecOut')
