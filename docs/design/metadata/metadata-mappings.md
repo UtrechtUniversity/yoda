@@ -9,7 +9,7 @@ If changes are made to the metadata.json.
 ### Jinja2 template for landing page
 The landing page HTML code is generated using a Jinja2 template. This template may need to be adapted
 in case of metadata schema changes. The template can be found in
-`/etc/irods/irods-ruleset-uu/templates/landingpage.html.j2`. The Ansible playbook activates this template
+`/etc/irods/yoda-ruleset/templates/landingpage.html.j2`. The Ansible playbook activates this template
 by uploading it to the `/zone/yoda/templates/` collection.
 
 ### JSON generator for DataCite

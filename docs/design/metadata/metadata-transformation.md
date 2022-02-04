@@ -68,7 +68,7 @@ yoda-metadata.xml path delivers *category* (default or specific) and xsd space (
 
 If difference exists between schemaLocation (of the user's data) and targetNamespace of current xsd, schemaID1/schemaID2,  then transformation has to take place.
 
-### Do transformation - within irods-ruleset-research ###
+### Do transformation - within yoda-ruleset ###
 within iRods / iiSchemaUpdates.py:   
 the tranformation matrix holds possible conversions from schemaIDn to schemaID(m)
 
