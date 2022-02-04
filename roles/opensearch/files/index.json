@@ -1,0 +1,23 @@
+{
+  "mappings": {
+    "properties": {
+      "absolutePath": { "type": "text" },
+      "dataSize": { "type": "long" },
+      "fileName": { "type": "text" },
+      "isFile": { "type": "boolean" },
+      "lastModifiedDate": { "type": "long" },
+      "metadataEntries": {
+        "type": "nested",
+        "properties": {
+          "attribute": { "type": "text" },
+          "unit": { "type": "text" },
+          "value": { "type": "text" }
+        }
+      },
+      "mimeType": { "type":  "text" },
+      "parentPath": { "type": "text" },
+      "url": { "type": "text" },
+      "zoneName": { "type": "text" }
+    }
+  }
+}

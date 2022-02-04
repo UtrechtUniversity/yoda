@@ -16,7 +16,7 @@
 
 
 - name: Install OpenSearch
-  ansible.builtin.unarchive:
+  unarchive:
     src: '{{ dest_dir }}/{{ opensearch.filename }}'
     dest: /usr/share
     creates: '{{ opensearch.home }}'
@@ -24,6 +24,7 @@
     extra_opts:
       - --transform
       - 's/^opensearch-{{ opensearch.version }}/opensearch/'
+  register: installation
 
 
 - name: Disable plugins
@@ -87,3 +88,17 @@
     state: enabled
     immediate: yes
   notify: Restart firewall
+
+
+- name: Install initial index
+  uri:
+    url: "http://{{ yoda_portal_host }}:9200/yoda"
+    method: PUT
+    body: "{{ lookup('file', 'index.json') }}"
+    status_code: 200
+    body_format: json
+  register: index
+  until: index is succeeded
+  retries: 10
+  delay: 5
+  when: installation is changed
