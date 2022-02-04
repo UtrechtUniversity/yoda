@@ -18,6 +18,7 @@ Released: TBA
 - Support for copy and move actions in the web portal
 - Support for multi-select actions for files and folders in research space
 - Support for davrods server on separate host
+- Support for [Data Package References](../design/overview/data_package_reference.md)
 - Improved search module and new search bar in header
 - Several UX improvements to default theme
 - Upgrade to iRODS v4.2.10
@@ -49,6 +50,9 @@ git checkout release-1.8
 ```
 
 4. Change the default schema from `default-1` to `default-2` in configuration.
+Discipline must be present in all vault packages before migration.
+I.e. discipline must be manually added if not present yet.
+This requires an intervention by the responsible datamanager beforehand.
 ```yaml
 default_yoda_schema: default-2
 ```
