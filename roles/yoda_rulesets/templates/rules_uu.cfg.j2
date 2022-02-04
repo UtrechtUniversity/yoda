@@ -7,51 +7,51 @@
 # Special characters, including "'", must not be escaped.
 # A missing value (interpreted as None) usually means a feature is disabled.
 
-environment                = '{{ yoda_environment }}'
+environment                    = '{{ yoda_environment }}'
 
-resource_primary           = '{{ irods_default_resc }}'
-resource_replica           = '{{ irods_repl_resc }}'
-resource_research          = '{{ resource_research }}'
-resource_vault             = '{{ resource_vault }}'
-resource_trigger_pol       = '{{ irods_resc_trigger_pol | join (" ") }}'
+resource_primary               = '{{ irods_default_resc }}'
+resource_replica               = '{{ irods_repl_resc }}'
+resource_research              = '{{ resource_research }}'
+resource_vault                 = '{{ resource_vault }}'
+resource_trigger_pol           = '{{ irods_resc_trigger_pol | join (" ") }}'
 
-notifications_enabled      = '{{ ["false", "true"][send_notifications|int] }}'
-notifications_sender_email = '{{ notifications_sender_email }}'
-notifications_sender_name  = '{{ notifications_sender_name }}'
-notifications_reply_to     = '{{ notifications_reply_to }}'
+notifications_enabled          = '{{ ["false", "true"][send_notifications|int] }}'
+notifications_sender_email     = '{{ notifications_sender_email }}'
+notifications_sender_name      = '{{ notifications_sender_name }}'
+notifications_reply_to         = '{{ notifications_reply_to }}'
 
-smtp_server                = '{{ smtp_server }}'
-smtp_username              = '{{ smtp_username }}'
-smtp_password              = '{{ smtp_password }}'
+smtp_server                    = '{{ smtp_server }}'
+smtp_username                  = '{{ smtp_username }}'
+smtp_password                  = '{{ smtp_password }}'
 
-datacite_rest_api_url      = 'https://{{ datacite_rest_api_url }}'
-datacite_username          = '{{ datacite_username }}'
-datacite_password          = '{{ datacite_password }}'
+datacite_rest_api_url          = 'https://{{ datacite_rest_api_url }}'
+datacite_username              = '{{ datacite_username }}'
+datacite_password              = '{{ datacite_password }}'
 
-eus_api_fqdn               = '{{ eus_api_fqdn }}'
-eus_api_port               = '{{ eus_api_port }}'
-eus_api_secret             = '{{ eus_api_secret }}'
+eus_api_fqdn                   = '{{ eus_api_fqdn }}'
+eus_api_port                   = '{{ eus_api_port }}'
+eus_api_secret                 = '{{ eus_api_secret }}'
 
-enable_deposit             = '{{ ["false", "true"][enable_deposit|int] }}'
-enable_intake              = '{{ ["false", "true"][enable_intake|int] }}'
-enable_datarequest         = '{{ ["false", "true"][enable_datarequest|int] }}'
+enable_deposit                 = '{{ ["false", "true"][enable_deposit|int] }}'
+enable_intake                  = '{{ ["false", "true"][enable_intake|int] }}'
+enable_datarequest             = '{{ ["false", "true"][enable_datarequest|int] }}'
 {% if enable_datarequest %}
-yoda_portal_fqdn           = '{{ yoda_portal_fqdn }}'
+yoda_portal_fqdn               = '{{ yoda_portal_fqdn }}'
 {% endif %}
 
-epic_pid_enabled           = '{{ ["false", "true"][epic_pid_enabled|int] }}'
+epic_pid_enabled               = '{{ ["false", "true"][epic_pid_enabled|int] }}'
 {% if epic_pid_enabled %}
-epic_url                   = '{{ epic_url }}'
-epic_handle_prefix         = '{{ epic_handle_prefix }}'
-epic_key                   = '{{ credentials_store }}/epic_key.pem'
-epic_certificate           = '{{ credentials_store }}/epic_cert.pem'
+epic_url                       = '{{ epic_url }}'
+epic_handle_prefix             = '{{ epic_handle_prefix }}'
+epic_key                       = '{{ credentials_store }}/epic_key.pem'
+epic_certificate               = '{{ credentials_store }}/epic_cert.pem'
 {% endif %}
 
-enable_yoda_id             = '{{ ["false", "true"][enable_yoda_id|int] }}'
+enable_data_package_reference  = '{{ ["false", "true"][enable_data_package_reference|int] }}'
 
-enable_tokens              = '{{ ["false", "true"][enable_tokens|int] }}'
+enable_tokens                  = '{{ ["false", "true"][enable_tokens|int] }}'
 {% if enable_tokens %}
-token_database             = '{{ token_database }}'
-token_length               = '{{ token_length }}'
-token_lifetime             = '{{ token_lifetime }}'
+token_database                 = '{{ token_database }}'
+token_length                   = '{{ token_length }}'
+token_lifetime                 = '{{ token_lifetime }}'
 {% endif %}
