@@ -17,11 +17,11 @@ restorePath | Path to restore the collection to, empty if you want to restore in
 
 ## Examples:
 ```bash
-irule -F restore-collection.r "*path='/tempZone/home/research-test'" "*timestamp=1540819891"
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F restore-collection.r "*path='/tempZone/home/research-test'" "*timestamp=1540819891"
 ```
 Restore the collection `/tempZone/home/research-test` with revision before `1540819891` (Mon Oct 29 14:31:31 2018 CET).
 
 ```bash
-irule -F restore-collection.r "*path='/tempZone/home/research-test'" "*timestamp=1540819891" "*restorePath='/tempZone/home/research-test/restore'"
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F restore-collection.r "*path='/tempZone/home/research-test'" "*timestamp=1540819891" "*restorePath='/tempZone/home/research-test/restore'"
 ```
 Restore the collection `/tempZone/home/research-test` with revision before `1540819891` (Mon Oct 29 14:31:31 2018 CET) into collection `/tempZone/home/research-test/restore`.

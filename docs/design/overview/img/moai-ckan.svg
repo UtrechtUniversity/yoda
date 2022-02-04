@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="298px" preserveAspectRatio="none" style="width:1536px;height:298px;background:#FFFFFF;" version="1.1" viewBox="0 0 1536 298" width="1536px" zoomAndPan="magnify"><defs><filter height="300%" id="fdq1i40f8ttvq" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[c43e6963a80ef40bdad9832995041d84]
+cluster YoDa--><polygon fill="#FFFFFF" filter="url(#fdq1i40f8ttvq)" points="16,54,63,54,70,76.2969,320,76.2969,320,141,16,141,16,54" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="70" y1="76.2969" y2="76.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="41" x="20" y="68.9951">YoDa</text><!--MD5=[b7f69952bad1ca127e3950e2ee9545b1]
+cluster MOAI--><polygon fill="#FFFFFF" filter="url(#fdq1i40f8ttvq)" points="344,49,392,49,399,71.2969,772,71.2969,772,146,344,146,344,49" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="344" x2="399" y1="71.2969" y2="71.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="42" x="348" y="63.9951">MOAI</text><!--MD5=[d2ce834afd3e8e3f527ca0eaaca8cdc2]
+cluster CKAN CATALOG--><polygon fill="#FFFFFF" filter="url(#fdq1i40f8ttvq)" points="796,6,925,6,932,28.2969,1519,28.2969,1519,291,796,291,796,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="796" x2="932" y1="28.2969" y2="28.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="123" x="800" y="20.9951">CKAN CATALOG</text><!--MD5=[537657ae676b04178b9e56c5714e8889]
+cluster CKAN iLAB--><polygon fill="#FFFFFF" filter="url(#fdq1i40f8ttvq)" points="1293,170,1382,170,1389,192.2969,1495,192.2969,1495,267,1293,267,1293,170" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="1293" x2="1389" y1="192.2969" y2="192.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="83" x="1297" y="184.9951">CKAN iLAB</text><!--MD5=[e4670878662888a82c5b2c1767fc25a3]
+cluster Harvest--><polygon fill="#FFFFFF" filter="url(#fdq1i40f8ttvq)" points="820,49,889,49,896,71.2969,1269,71.2969,1269,267,820,267,820,49" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="820" x2="896" y1="71.2969" y2="71.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="63" x="824" y="63.9951">Harvest</text><!--MD5=[b37bdf05f21fbf4f2fb0f5c19f4357a7]
+entity published_files--><polygon fill="#FEFECE" filter="url(#fdq1i40f8ttvq)" points="32,89,32,125.2969,304,125.2969,304,99,294,89,32,89" style="stroke:#000000;stroke-width:1.5;"/><path d="M294,89 L294,99 L304,99 " fill="#FEFECE" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="252" x="42" y="111.9951">published yoda-metadata.json files</text><!--MD5=[548f35d1ac28ebd412e6fe8462bf67ef]
+entity yodaImport--><rect fill="#FEFECE" filter="url(#fdq1i40f8ttvq)" height="46.2969" style="stroke:#A80036;stroke-width:1.5;" width="124" x="360" y="84"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="464" y="89"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="462" y="91"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="462" y="95"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="375" y="116.9951">yodaImport</text><!--MD5=[7a603111606425ec6ae263a7f93634a1]
+entity sqlite--><path d="M519.5,94.5 C519.5,84.5 570,84.5 570,84.5 C570,84.5 620.5,84.5 620.5,94.5 L620.5,119.7969 C620.5,129.7969 570,129.7969 570,129.7969 C570,129.7969 519.5,129.7969 519.5,119.7969 L519.5,94.5 " fill="#FEFECE" filter="url(#fdq1i40f8ttvq)" style="stroke:#000000;stroke-width:1.5;"/><path d="M519.5,94.5 C519.5,104.5 570,104.5 570,104.5 C570,104.5 620.5,104.5 620.5,94.5 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="529.5" y="121.4951">sqlite MOAI</text><!--MD5=[10d8a51494877248debcfd010e160810]
+entity datacite--><rect fill="#FEFECE" filter="url(#fdq1i40f8ttvq)" height="46.2969" style="stroke:#A80036;stroke-width:1.5;" width="100" x="656" y="84"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="736" y="89"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="734" y="91"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="734" y="95"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="671" y="116.9951">datacite</text><!--MD5=[ea07db858cbbb6b24cc65ff3ef251d55]
+entity customThemeIlab--><rect fill="#FEFECE" filter="url(#fdq1i40f8ttvq)" height="46.2969" style="stroke:#A80036;stroke-width:1.5;" width="169" x="1309.5" y="205"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="1458.5" y="210"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="1456.5" y="212"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="1456.5" y="216"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="129" x="1324.5" y="237.9951">customThemeIlab</text><!--MD5=[b2ffd883393fbef15cd80a4c87b14f92]
+entity CKANEXT_HARVEST--><rect fill="#FEFECE" filter="url(#fdq1i40f8ttvq)" height="46.2969" style="stroke:#A80036;stroke-width:1.5;" width="182" x="836" y="84"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="998" y="89"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="996" y="91"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="996" y="95"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="142" x="851" y="116.9951">CKANEXT_HARVEST</text><!--MD5=[666eb9f67a7dfd15bb28b621616c63ed]
+entity CKANEXT_OAIPMH--><rect fill="#FEFECE" filter="url(#fdq1i40f8ttvq)" height="46.2969" style="stroke:#A80036;stroke-width:1.5;" width="171" x="836.5" y="205"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="987.5" y="210"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="985.5" y="212"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="985.5" y="216"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="851.5" y="237.9951">CKANEXT_OAIPMH</text><!--MD5=[1482606ad4293865ce360903a4bea19e]
+entity CKANEXT_OAIPMH_iLAB--><rect fill="#FEFECE" filter="url(#fdq1i40f8ttvq)" height="46.2969" style="stroke:#A80036;stroke-width:1.5;" width="210" x="1043" y="205"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="1233" y="210"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="1231" y="212"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="1231" y="216"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="170" x="1058" y="237.9951">CKANEXT_OAIPMH_iLAB</text><!--MD5=[de3f44fb2ea50cb5e30b7ed0feb3511b]
+link published_files to yodaImport--><path d="M304.426,107 C321.213,107 338.001,107 354.788,107 " fill="none" id="published_files-to-yodaImport" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="359.998,107,350.998,103,354.998,107,350.998,111,359.998,107" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bb8b9a61b7f36e4bc14d63c9239abcb4]
+link yodaImport to sqlite--><path d="M484.148,107 C494.144,107 504.139,107 514.134,107 " fill="none" id="yodaImport-to-sqlite" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="519.361,107,510.361,103,514.361,107,510.361,111,519.361,107" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[2534b638211387981e216c5c79986cfe]
+link sqlite to datacite--><path d="M620.734,107 C630.661,107 640.588,107 650.515,107 " fill="none" id="sqlite-to-datacite" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="655.707,107,646.707,103,650.707,107,646.707,111,655.707,107" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[eccee07a006a9a0ba49aa8825bb62913]
+link datacite to CKANEXT_HARVEST--><path d="M756.07,119.091 C780.901,123.331 805.731,124.957 830.561,123.971 " fill="none" id="datacite-to-CKANEXT_HARVEST" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="835.86,123.721,826.6814,120.1497,830.8656,123.9567,827.0586,128.1409,835.86,123.721" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[fc4c45da9855166f0452ee82f3e7fc9a]
+link CKANEXT_HARVEST to CKANEXT_OAIPMH--><path d="M926.071,130.104 C925.249,149.685 924.044,178.351 923.159,199.426 " fill="none" id="CKANEXT_HARVEST-to-CKANEXT_OAIPMH" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="922.941,204.61,927.3155,195.7859,923.151,199.6144,919.3225,195.4499,922.941,204.61" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[469e5d93734fcd26e9eae8610af2c57d]
+link CKANEXT_OAIPMH to CKANEXT_OAIPMH_iLAB--><path d="M1007.63,228 C1017.67,228 1027.71,228 1037.75,228 " fill="none" id="CKANEXT_OAIPMH-to-CKANEXT_OAIPMH_iLAB" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1043,228,1034,224,1038,228,1034,232,1043,228" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[f5cabe445303454b199a4b86480e8c9c]
+link CKANEXT_OAIPMH_iLAB to customThemeIlab--><path d="M1253.22,228 C1270.17,228 1287.11,228 1304.06,228 " fill="none" id="CKANEXT_OAIPMH_iLAB-to-customThemeIlab" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1309.31,228,1300.31,224,1304.31,228,1300.31,232,1309.31,228" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[37458838b5fa9639a4bc004b46546c8b]
+@startuml
+package "YoDa" {
+
+   file published_files [
+           published yoda-metadata.json files
+   ]
+}
+
+
+package "MOAI" {
+
+   component yodaImport
+
+   database sqlite[
+      sqlite MOAI
+   ]
+
+   component datacite
+}
+
+package "CKAN CATALOG" {
+    package "CKAN iLAB"{
+        component "customThemeIlab"
+    }
+
+
+
+    package "Harvest" {
+        component CKANEXT_HARVEST
+
+	component CKANEXT_OAIPMH 
+
+        component CKANEXT_OAIPMH_iLAB
+
+    }
+
+
+}
+
+published_files -> yodaImport
+yodaImport -> sqlite
+sqlite -> datacite
+datacite -> CKANEXT_HARVEST
+CKANEXT_HARVEST - -> CKANEXT_OAIPMH
+CKANEXT_OAIPMH -> CKANEXT_OAIPMH_iLAB
+CKANEXT_OAIPMH_iLAB -> customThemeIlab
+@enduml
+
+PlantUML version 1.2022.1beta4(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
