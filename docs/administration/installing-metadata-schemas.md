@@ -31,12 +31,12 @@ In the default situation the default schema is installed in ``/${RODSZONE}/yoda/
 
 Example invocation to install (or update) schema 'default' for all categories:
 ```bash
-irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/yoda-ruleset/schemas/"' '*schema="default-1"' '*category="default"' '*update=1'
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/yoda-ruleset/schemas/"' '*schema="default-1"' '*category="default"' '*update=1'
 ```
 
 Example invocation to install (or update) schema 'core-0' for category 'experimental':
 ```bash
-irule -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/yoda-ruleset/schemas/"' '*schema="core-0"' '*category="experimental"' '*update=1'
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F install-metadata-schema.r '*resc="irodsResc"' '*src="/etc/irods/yoda-ruleset/schemas/"' '*schema="core-0"' '*category="experimental"' '*update=1'
 ```
 
 If you want to install individual files without the script then you can use the iput command.

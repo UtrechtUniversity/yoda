@@ -12,8 +12,8 @@ in case of metadata schema changes. The template can be found in
 `/etc/irods/irods-ruleset-uu/templates/landingpage.html.j2`. The Ansible playbook activates this template
 by uploading it to the `/zone/yoda/templates/` collection.
 
-### XML generator for DataCite
-For DataCite a XML conforming to the DataCite Schema v4 is generated in Python.
+### JSON generator for DataCite
+For DataCite a JSON-file is generated conform the DataCite Schema v4.  
 This generator can be found in `/etc/irods/yoda-ruleset/json_datacite41.py`.
 
 ### OAI-PMH importer
