@@ -9,9 +9,15 @@
       "metadataEntries": {
         "type": "nested",
         "properties": {
-          "attribute": { "type": "text" },
+          "attribute": {
+            "type": "text",
+            "fields": { "raw": { "type": "keyword" } }
+          },
           "unit": { "type": "text" },
-          "value": { "type": "text" }
+          "value": {
+            "type": "text",
+            "fields": { "raw": { "type": "keyword" } }
+          }
         }
       },
       "mimeType": { "type":  "text" },
