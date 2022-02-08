@@ -253,7 +253,7 @@
   },"42": {
     "doc": "Data Package Reference",
     "title": "Adding Data Package Reference to existing vault packages",
-    "content": "To add the Data Package Reference to existing vault packages without a reference is script is available: . irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/generate-data-package-references.r . ",
+    "content": "To add the Data Package Reference to existing vault packages without a reference is script is available: . irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/generate-data-package-references.r . ",
     "url": "/yoda/design/overview/data_package_reference.html#adding-data-package-reference-to-existing-vault-packages",
     "relUrl": "/design/overview/data_package_reference.html#adding-data-package-reference-to-existing-vault-packages"
   },"43": {
