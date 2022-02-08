@@ -16,5 +16,5 @@ An example of a complete link to this Data Package would be `https://portal.yoda
 To add the Data Package Reference to existing vault packages without a reference is script is available:
 
 ```bash
-irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/generate-data-package-references.r
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/generate-data-package-references.r
 ```
