@@ -23,6 +23,7 @@
     dest: "/etc/irods/{{ item.name }}"
     version: "{{ item.version }}"
     update: "{{ update_rulesets }}"
+    force: yes
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item and 'patch' not in item"
   register: repochanges
