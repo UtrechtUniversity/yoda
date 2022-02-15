@@ -11,7 +11,7 @@ The naming scheme is up to the administrator, the lists ar presented alphabetica
 In order for every user to be able to read the terms, a read ACL for public needs to be set.
 
 ```bash
-iput -r /etc/irods/irods-ruleset-research/tools/file_formats /${RODSZONE}/yoda
+iput -r /etc/irods/yoda-ruleset/tools/file_formats /${RODSZONE}/yoda
 ichmod -rM inherit  /${RODSZONE}/yoda/file_formats
 ichmod -rM read public /${RODSZONE}/yoda/file_formats
 ```
