@@ -165,7 +165,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    irm -r /{{ irods_zone }}/home/deposit-'{{ item.deposit }}'
+    irm -r /{{ irods_zone }}/home/vault-'{{ item.deposit }}'
   ignore_errors: true
   with_items:
     - "{{ deletion_deposit_groups }}"

@@ -11,7 +11,7 @@ The naming scheme is up to the administrator, the last .html file placed in
 In order for every user to be able to read the terms, a read ACL for public needs to be set.
 
 ```bash
-iput -r /etc/irods/irods-ruleset-research/tools/terms /${RODSZONE}/yoda
+iput -r /etc/irods/yoda-ruleset/tools/terms /${RODSZONE}/yoda
 ichmod -rM inherit  /${RODSZONE}/yoda/terms
 ichmod -rM read public /${RODSZONE}/yoda/terms
 ```

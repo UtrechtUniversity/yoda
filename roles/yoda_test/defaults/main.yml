@@ -438,6 +438,9 @@ test_groupusers:
   - groupName: deposit-pilot
     user: researcher
     role: normal
+  - groupName: deposit-pilot
+    user: viewer
+    role: normal
 
   - groupName: deposit-pilot
     user: researcher1
