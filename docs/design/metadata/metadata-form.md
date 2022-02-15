@@ -125,12 +125,12 @@ The metadata.json file mainly holds all information for the metadata form:
 - research.XSD  
   The research XSD is used to validate and describe metatadata that is in the research area.
   This XSD is in fact a translation of the corresponding JSON schema.  
-  To be able to do so, an application ([json-to-xsd](https://github.com/UtrechtUniversity/irods-ruleset-research/blob/development/tools/json-to-xsd.py)) was created.
+  To be able to do so, an application ([json-to-xsd](https://github.com/UtrechtUniversity/yoda-ruleset/blob/development/tools/json-to-xsd.py)) was created.
 
 - vault.XSD  
 The vault  XSD is used to validate metadata before it is allowed to be entered in the vault area.  
 This XSD is in fact a translation of the corresponding JSON schema.  
-To be able to do so, an application ([json-to-xsd](https://github.com/UtrechtUniversity/irods-ruleset-research/blob/development/tools/json-to-xsd.py)) was created.
+To be able to do so, an application ([json-to-xsd](https://github.com/UtrechtUniversity/yoda-ruleset/blob/development/tools/json-to-xsd.py)) was created.
 
 - yoda-metadata.xml  
 Holds, in XML format, the metadata as entered by the user.  
