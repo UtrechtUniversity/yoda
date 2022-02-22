@@ -3,6 +3,11 @@
 
 auth        optional      pam_faildelay.so delay={{ pam_fail_delay }}
 
+{% if enable_tokens or ( oidc_active is defined and oidc_active is sameas true ) %}
+# Need to call pam_unix first in order to retrieve authentication token for pam_python
+auth        sufficient      pam_unix.so
+{% endif %}
+
 {% if enable_tokens %}
 auth        sufficient      pam_python.so /usr/local/bin/token-auth.py
 {% endif %}
