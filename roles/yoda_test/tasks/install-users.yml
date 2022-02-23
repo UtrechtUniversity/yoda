@@ -8,12 +8,12 @@
   with_items: '{{ test_users }}'
 
 
-- name: Ensure Yoda test users and Yoda external users exists
+- name: Ensure Yoda test users exist
   become_user: '{{ irods_service_account }}'
   become: yes
   irods_mkuser:
     name: '{{ item.name }}'
-  with_items: '{{ test_users + eus_test_users }}'
+  with_items: '{{ test_users + oidc_test_users + eus_test_users }}'
 
 
 - name: Ensure Yoda test users have type

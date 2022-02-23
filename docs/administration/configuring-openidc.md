@@ -27,7 +27,7 @@ Additionally, depending on the authorization server, you may need to configure t
 - oidc_email_field (default: `email`)
 
 Finally, for customization purposes, you can also configure:
-- oidc_domain
+- oidc_domains
 - oidc_signin_text (deprecated since v1.8)
 
 For token verification there are also the following parameters which define what checks are done when verifying a JWT. Take caution when setting values to `false`, as this makes verification less strict. Details can be found in the group_vars file.
@@ -47,7 +47,7 @@ When clicking on the *Sign in with OIDC* button, login at the configured authori
 If so, you have correctly configured authentication via OIDC.
 Please also verify that the standard login method is still working as intended.
 
-Alternatively, if you have configured the `oidc_domain` parameter, entering an email address with the configured domain and clicking *Next* should redirect you automatically to the configured authorization server.
+Alternatively, if you have configured the `oidc_domains` parameter, entering an email address with the configured domain and clicking *Next* should redirect you automatically to the configured authorization server.
 Follow the above steps as if having clicked the *Sign in with OIDC* button
 
 ## Troubleshooting

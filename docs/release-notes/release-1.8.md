@@ -17,10 +17,14 @@ Released: TBA
 - Support for notifications
 - Support for copy and move actions in the web portal
 - Support for multi-select actions for files and folders in research space
+- Support for davrods server on separate host
+- Support for [Data Package References](../design/overview/data_package_reference.md)
 - Improved search module and new search bar in header
 - Several UX improvements to default theme
 - Upgrade to iRODS v4.2.10
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
+- Improvements to default schema (`default-2`)
+- Transformation from `default-1` to `teclab-0` / `hptlab-0`
 
 ### Known issues
 - Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
@@ -45,21 +49,36 @@ To view what files were changed from the defaults, run `git diff`.
 git checkout release-1.8
 ```
 
-4. Run the Ansible playbook in check mode.
+4. Change the default schema from `default-1` to `default-2` in configuration.
+Discipline must be present in all vault packages before migration.
+I.e. discipline must be manually added if not present yet.
+This requires an intervention by the responsible datamanager beforehand.
+```yaml
+default_yoda_schema: default-2
+```
+
+5. If OpenID Connect (OIDC) is active (`oidc_active`), make sure you have [configured](../administration/configuring-openidc.md) `oidc_domains`, `oidc_jwks_uri` and `oidc_jwt_issuer`.
+
+6. Run the Ansible playbook in check mode.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-5. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
+7. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-6. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+8. Update all metadata JSON in the vault to latest metadata JSON version (`default-1` to `default-2`).
+```bash
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
+```
+
+9. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```

@@ -105,9 +105,14 @@ test_users:
     type: rodsuser
 
 # Following users are created as iRODS users only.
-eus_test_users:
+oidc_test_users:
   - name: yodaresearcher@gmail.com
   - name: yodadatamanager@gmail.com
+  - name: researcher@yoda.test
+  - name: datamanager@yoda.test
+
+# Following users are created as iRODS users only.
+eus_test_users:
   - name: alice@otherdomain.com
 
 # Following users are created in the regressiontest and need to be removed only.
@@ -152,6 +157,15 @@ test_groups:
     subcategory: hptlab-0
     dataClassification:
 
+  - groupName: research-hptlab-1
+    category: hptlab-1
+    subcategory: hptlab-1
+    dataClassification: unspecified
+  - groupName: datamanager-hptlab-1
+    category: hptlab-1
+    subcategory: hptlab-1
+    dataClassification:
+
   - groupName: research-teclab-0
     category: teclab-0
     subcategory: teclab-0
@@ -159,6 +173,15 @@ test_groups:
   - groupName: datamanager-teclab-0
     category: teclab-0
     subcategory: teclab-0
+    dataClassification:
+
+  - groupName: research-teclab-1
+    category: teclab-1
+    subcategory: teclab-1
+    dataClassification: unspecified
+  - groupName: datamanager-teclab-1
+    category: teclab-1
+    subcategory: teclab-1
     dataClassification:
 
   - groupName: research-core-0
@@ -325,6 +348,19 @@ test_groupusers:
     user: datamanager
     role: manager
 
+  - groupName: research-hptlab-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-hptlab-1
+    user: researcher
+    role: normal
+  - groupName: datamanager-hptlab-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-hptlab-1
+    user: datamanager
+    role: manager
+
   - groupName: research-teclab-0
     user: functionaladminpriv
     role: manager
@@ -335,6 +371,19 @@ test_groupusers:
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-teclab-0
+    user: datamanager
+    role: manager
+
+  - groupName: research-teclab-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: research-teclab-1
+    user: researcher
+    role: normal
+  - groupName: datamanager-teclab-1
+    user: functionaladminpriv
+    role: manager
+  - groupName: datamanager-teclab-1
     user: datamanager
     role: manager
 
@@ -393,6 +442,9 @@ test_groupusers:
     role: manager
   - groupName: deposit-pilot
     user: researcher
+    role: normal
+  - groupName: deposit-pilot
+    user: viewer
     role: normal
 
   - groupName: deposit-pilot
@@ -525,7 +577,9 @@ deletion_research_groups:
   - research: default-1
   - research: default-2
   - research: hptlab-0
+  - research: hptlab-1
   - research: teclab-0
+  - research: teclab-1
   - research: core-0
   - research: core-1
   - research: dag-0
@@ -543,7 +597,9 @@ deletion_datamanager_groups:
   - datamanager: default-1
   - datamanager: default-2
   - datamanager: hptlab-0
+  - datamanager: hptlab-1
   - datamanager: teclab-0
+  - datamanager: teclab-1
   - datamanager: core-0
   - datamanager: core-1
   - datamanager: dag-0

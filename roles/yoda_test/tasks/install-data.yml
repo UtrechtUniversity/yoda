@@ -147,7 +147,7 @@
   with_items:
     - 'yoda-metadata.json'
 
-    
+
 - name: Ensure Yoda licenses directory is present
   become_user: '{{ irods_service_account }}'
   become: yes
@@ -164,6 +164,8 @@
   with_items:
     - "Creative Commons Attribution 4.0 International Public License.txt"
     - "Creative Commons Attribution 4.0 International Public License.uri"
+    - "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.txt"
+    - "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.uri"
     - "Creative Commons Attribution-ShareAlike 4.0 International Public License.txt"
     - "Creative Commons Attribution-ShareAlike 4.0 International Public License.uri"
     - "Creative Commons Zero v1.0 Universal.txt"
