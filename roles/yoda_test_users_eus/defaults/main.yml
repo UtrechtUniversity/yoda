@@ -15,9 +15,5 @@ delete_ext_test_users:
   - name: alice@otherdomain.com
 
 create_ext_test_users:
-  - name: yodaresearcher@gmail.com
-    id: 9000
-  - name: yodadatamanager@gmail.com
-    id: 9001
   - name: alice@otherdomain.com
-    id: 9002
+    id: 9000

@@ -1,14 +1,14 @@
 ---
 # copyright Utrecht University
 
-- name: Remove all test users in irods
+- name: Remove all test users in iRODS
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
     iadmin rmuser '{{ item.name }}'
   ignore_errors: true
   with_items:
-    - '{{ test_users + created_by_ta_users + eus_test_users }}'
+    - '{{ test_users + created_by_ta_users + oidc_test_users + eus_test_users }}'
 
 - name: Remove test users
   user:
