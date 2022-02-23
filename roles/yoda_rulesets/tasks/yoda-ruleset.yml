@@ -530,6 +530,17 @@
     - admin-datarequest-temp-write-permission.sh
 
 
+- name: Configure cronjob to check datarequest review period expiration
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  cron:
+    name: 'datarequest-check-review-period-expiration'
+    minute: '*'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
+      /etc/irods/irods-ruleset-uu/tools/datarequest-check-review-period-expiration.r >/dev/null 2>&1'
+  when: enable_datarequest and not ansible_check_mode
+
+
 - name: Ensure token database is present
   become_user: '{{ irods_service_account }}'
   become: yes
