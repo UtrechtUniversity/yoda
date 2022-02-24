@@ -32,13 +32,13 @@ Likewise, a data manager assigned as a custodian of (certain) data stored in
 Yoda must be also able to submit a review of a data request.
 
 After these preliminary reviews, a project manager must be able to assign a data
-request for review to one or more members of a Data Management Committee (DMC)
+request for review to one or more members of a Data Access Committee (DAC)
 
-The DMC member(s) must be able to review research proposals assigned to him.
+The DAC member(s) must be able to review research proposals assigned to him.
 
 ### Final evaluation of research proposals
 A project manager must be able to give a final evaluation of a research proposal
-based on the reviews by the data manager and the DMC member(s), thereby
+based on the reviews by the data manager and the DAC member(s), thereby
 approving or rejecting the data request.
 
 ### Creation of data transfer agreements (DTAs)
@@ -81,20 +81,20 @@ permissions on the public collection mentioned above (these include read and
 write permissions). Because these permissions are recursive, they also apply to
 the subcollections made by researchers.
 
-Upon assignment of a research proposal for evaluation to a DMC member, the DMC
+Upon assignment of a research proposal for evaluation to a DAC member, the DAC
 member is granted read and write permissions on the subcollection in which the
 research proposal is stored.
 
-DMC membership is determined by membership of a particular group (e.g.
-"brainmorphlab-dmc"), acting as a pool from which the data manager may pick an
+DAC membership is determined by membership of a particular group (e.g.
+"brainmorphlab-dac"), acting as a pool from which the data manager may pick an
 appropriate member.
 
-A DMC member can evaluate a research proposal through a web form. The evaluation
+A DAC member can evaluate a research proposal through a web form. The evaluation
 is saved as a JSON-formatted file in the subcollection that also holds the
 research proposal itself.
 
 Because multiple research groups may use a Yoda instance, multiple data manager
-and DMC groups may be created so that data requests meant for data of a
+and DAC groups may be created so that data requests meant for data of a
 particular research group can be handled by data managers associated with that
 research group.
 

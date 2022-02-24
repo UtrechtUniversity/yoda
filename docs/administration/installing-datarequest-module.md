@@ -34,7 +34,7 @@ subcategory `research` and data classification `unspecified`:
     ```
     datarequests-research-datamanagers
     datarequests-research-project-managers
-    datarequests-research-data-management-committee
+    datarequests-research-data-access-committee
     ```
 
 Instructions:
@@ -48,7 +48,7 @@ Instructions:
     ```
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "Project managers", "", *status, *message);' null ruleExecOut
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-management-committee", "datarequest", "research", "Data Management Committee", "", *status, *message);' null ruleExecOut
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-access-committee", "datarequest", "research", "Data Access Committee", "", *status, *message);' null ruleExecOut
     ```
 
 3. Confirm that the groups exist.
@@ -67,9 +67,9 @@ the requirements of the datarequest procedure of
 For a production deployment to a Yoda instance for which these templates are
 suitable as is (e.g. the Yoda instance of YOUth), only one template has to be
 changed, and that is `datarequest/schemas/youth-0/assignment/schema.json`.
-Within this template, replace the example DMC member entries in the `assign_to`
+Within this template, replace the example DAC member entries in the `assign_to`
 section with real entries. The `enum` field should be an array of usernames of
-the DMC members and the `enumNames` field should be an array with corresponding
+the DAC members and the `enumNames` field should be an array with corresponding
 "display names" (which are visible in the assignment form).
 
 Instructions:
