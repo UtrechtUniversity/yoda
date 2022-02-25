@@ -56,34 +56,3 @@ Instructions:
     `iadmin lg`
 
 Using the group manager, populate these groups with appropriate members.
-
-### Customizing and installing schemas
-For a fully functional datarequest module, schemas for the various forms have to
-be present. A set of templates for these schemas can be found in the
-`irods-ruleset-uu` repository in the `datarequest/schemas` directory. These meet
-the requirements of the datarequest procedure of
-[the YOUth cohort study](https://www.uu.nl/en/research/youth-cohort-study).
-
-For a production deployment to a Yoda instance for which these templates are
-suitable as is (e.g. the Yoda instance of YOUth), only one template has to be
-changed, and that is `datarequest/schemas/youth-0/assignment/schema.json`.
-Within this template, replace the example DAC member entries in the `assign_to`
-section with real entries. The `enum` field should be an array of usernames of
-the DAC members and the `enumNames` field should be an array with corresponding
-"display names" (which are visible in the assignment form).
-
-Instructions:
-
-1. Copy the template to a temporary directory for adjustment.
-
-    ```bash
-    cp datarequest/schemas/youth-0/assignment/schema.json /tmp/
-    ```
-
-2. Edit the template (see explanation above).
-
-3. Overwrite the default assignment schema with the edited schema.
-
-    ```bash
-    iput -f /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schemas/youth-0/assignment/schema.json
-    ```
