@@ -95,6 +95,7 @@
     dest: "/var/www/yoda/flask.cfg"
     mode: '0644'
   when: not ansible_check_mode
+  notify: Restart Apache webserver
 
 
 - name: Copy Yoda Portal virtual host config for Apache
