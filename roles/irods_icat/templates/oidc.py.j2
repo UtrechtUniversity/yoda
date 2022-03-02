@@ -7,6 +7,12 @@ import requests
 USERINFO_URI = "{{ oidc_userinfo_uri | default('') }}"
 EMAIL_FIELD = "{{ oidc_email_field | default('email') }}"
 
+
+def unescape_irods_pam_password(password):
+    password.replace("\@", "@")
+    return password
+
+
 def validate_token(username, token, sub):
     # Send token validation request.
     headers = {"Authorization": "Bearer {}".format(token)}
@@ -49,6 +55,8 @@ def pam_sm_authenticate(pamh, flags, argv):
     if token is None:
         print('Missing token')
         return pamh.PAM_AUTH_ERR
+
+    token = unescape_irods_pam_password(token)
 
     # Remove the prefix from the portal.
     if token[0:14] == '++oidc_token++':
