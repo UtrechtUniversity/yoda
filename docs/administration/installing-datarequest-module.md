@@ -39,7 +39,7 @@ subcategory `research` and data classification `unspecified`:
     ```
     datarequests-research-datamanagers
     datarequests-research-project-managers
-    datarequests-research-data-management-committee
+    datarequests-research-data-access-committee
     ```
 
 Instructions:
@@ -53,7 +53,7 @@ Instructions:
     ```
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "Project managers", "", *status, *message);' null ruleExecOut
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-management-committee", "datarequest", "research", "Data Management Committee", "", *status, *message);' null ruleExecOut
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-access-committee", "datarequest", "research", "Data Access Committee", "", *status, *message);' null ruleExecOut
     ```
 
 3. Confirm that the groups exist.
@@ -62,33 +62,8 @@ Instructions:
 
 Using the group manager, populate these groups with appropriate members.
 
-### Customizing and installing schemas
-For a fully functional datarequest module, schemas for the various forms have to
-be present. A set of templates for these schemas can be found in the
-`yoda-ruleset` repository in the `datarequest/schemas` directory. These meet
-the requirements of the datarequest procedure of
-[the YOUth cohort study](https://www.uu.nl/en/research/youth-cohort-study).
+### Updating the data request module schemas
 
-For a production deployment to a Yoda instance for which these templates are
-suitable as is (e.g. the Yoda instance of YOUth), only one template has to be
-changed, and that is `datarequest/schemas/youth-0/assignment/schema.json`.
-Within this template, replace the example DMC member entries in the `assign_to`
-section with real entries. The `enum` field should be an array of usernames of
-the DMC members and the `enumNames` field should be an array with corresponding
-"display names" (which are visible in the assignment form).
+If data request module schemas are already present, they will not be overwritten when the Ansible playbook is executed.
 
-Instructions:
-
-1. Copy the template to a temporary directory for adjustment.
-
-    ```bash
-    cp datarequest/schemas/youth-0/assignment/schema.json /tmp/
-    ```
-
-2. Edit the template (see explanation above).
-
-3. Overwrite the default assignment schema with the edited schema.
-
-    ```bash
-    iput -f /tmp/schema.json /IRODS_ZONENAME_HERE/yoda/datarequest/schemas/youth-0/assignment/schema.json
-    ```
+The data request module schemas can be updated by executing `/etc/irods/irods-ruleset-uu/tools/install-datarequest-schemas.sh $zoneName`.
