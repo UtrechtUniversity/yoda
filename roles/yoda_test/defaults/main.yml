@@ -583,7 +583,6 @@ deletion_research_groups:
   - research: core-0
   - research: core-1
   - research: dag-0
-  - research: dag-0
   - research: initial
   - research: initial1
   - research: revisions

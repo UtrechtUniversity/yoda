@@ -53,7 +53,7 @@
   - { index: 0, target: 'mod_davrods.so' }
 
 
-- name: Copy irods_enviroment.json to /etc/httpd/irods/irods_environment.json
+- name: Copy irods_environment.json to /etc/httpd/irods/irods_environment.json
   template:
     src: irods_environment.j2
     dest: /etc/httpd/irods/irods_environment.json
