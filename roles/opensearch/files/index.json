@@ -13,7 +13,10 @@
             "type": "text",
             "fields": { "raw": { "type": "keyword" } }
           },
-          "unit": { "type": "text" },
+          "unit": {
+            "type": "text",
+            "fields": { "raw": { "type": "keyword" } }
+          },
           "value": {
             "type": "text",
             "fields": { "raw": { "type": "keyword" } }
