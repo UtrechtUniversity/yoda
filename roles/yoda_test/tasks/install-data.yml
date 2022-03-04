@@ -168,7 +168,7 @@
   ignore_errors: true
 
 
-- name: Ensure intake module cronjob rules are present
+- name: Ensure intake module rule files are present
   become_user: '{{ irods_service_account }}'
   become: yes
   copy:
@@ -178,15 +178,7 @@
   with_items:
     - 'job_movetovault.r'
     - 'job_checksums.r'
-
-
-- name: Configure cronjob to move grp-intake-* datapackages to the grp-vault-*
-  become_user: '{{ irods_service_account }}'
-  become: yes
-  cron:
-    name: 'job_movetovault.r'
-    minute: '*/5'
-    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /var/lib/irods/.irods/job_movetovault.r >> /var/lib/irods/log/job_movetovault.log 2>&1'
+    - 'job_clearintakelocks.r'
 
 
 - name: Configure cronjob to make checksums of datapackages in grp-vault-*

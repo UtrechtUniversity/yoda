@@ -246,6 +246,7 @@
     group: '{{ irods_service_account }}'
     mode: '0644'
 
+
 - name: Install script for moving intake collections to the vault
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -255,8 +256,22 @@
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
+  # This script is provided by the yoda_test rule for development/test servers.
+  when: enable_intake and yoda_environment not in ["development","testing"]
+
+
+- name: Install script for clearing locks after moving intake collections
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  template:
+    src: job_clearintakelocks.r.j2
+    dest: '~{{ irods_service_account }}/.irods/job_clearintakelocks.r'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: '0644'
   # This script is provided by the test playbook for development/test servers.
   when: enable_intake and yoda_environment not in ["development","testing"]
+
 
 - name: Configure cronjob to process publications
   become_user: "{{ irods_service_account }}"
@@ -286,17 +301,26 @@
     job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
 
 
+- name: Ensure cronjob script for moving collections from intake to vault is installed
+  copy:
+    src: run-intake-movetovault.sh
+    dest: '/var/lib/irods/.irods/run-intake-movetovault.sh'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: '0755'
+  when: enable_intake or yoda_environment in ["development","testing"]
+
+
 - name: Configure cronjob for moving collections from intake to vault
   become_user: "{{ irods_service_account }}"
   become: yes
+  # Name kept for historical reasons, so that the playbook updates old-style
+  # cronjobs that invoked the rule directly.
   cron:
     name: 'job_movetovault.r'
     minute: '*/5'
-    job: >
-      /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
-      /var/lib/irods/.irods/job_movetovault.r >>$HOME/iRODS/server/log/job_movetovault.log 2>&1
-  # This script is provided by the test playbook for development/test servers.
-  when: enable_intake and yoda_environment not in ["development","testing"]
+    job: '/var/lib/irods/.irods/run-intake-movetovault.sh >& /dev/null'
+  when: enable_intake or yoda_environment in ["development","testing"]
 
 
 - name: Ensure that ExecCmd dir exists
