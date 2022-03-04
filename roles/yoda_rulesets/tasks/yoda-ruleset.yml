@@ -105,6 +105,7 @@
     - securecopy.sh
     - scheduled-copytovault.sh
     - enable-indexing.sh
+    - disable-indexing.sh
     - admin-remove-orphan-vault-if-empty.sh
     - admin-vaultactions.sh
     - admin-vaultingest.sh
