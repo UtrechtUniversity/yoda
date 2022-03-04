@@ -9,8 +9,7 @@ EMAIL_FIELD = "{{ oidc_email_field | default('email') }}"
 
 
 def unescape_irods_pam_password(password):
-    password.replace("\@", "@")
-    return password
+    return password.replace('\@', '@')
 
 
 def validate_token(username, token, sub):
