@@ -23,6 +23,9 @@ credential_files: PLACEHOLDER                      # Location of Yoda credential
 # Research module configuration
 enable_research: True                              # Enable research module
 
+# OpenSearch module configuration
+enable_open_search: True                           # Enable OpenSearch module
+
 # Deposit module configuration
 enable_deposit: True                               # Enable deposit module
 

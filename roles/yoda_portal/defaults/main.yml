@@ -41,6 +41,9 @@ portal_title_text: Yoda Portal                     # e.g. "Yoda - development"
 # Research module configuration
 enable_research: True                              # Enable research module
 
+# OpenSearch module configuration
+enable_open_search: False                          # Enable OpenSearch module
+
 # Deposit module configuration
 enable_deposit: False                              # Enable deposit module
 
