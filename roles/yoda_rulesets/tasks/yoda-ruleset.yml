@@ -259,7 +259,7 @@
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
-  # This script is provided by the yoda_test rule for development/test servers.
+  # This script is provided by the test playbook for development/test servers.
   when: enable_intake and yoda_environment not in ["development","testing"]
 
 
@@ -269,19 +269,6 @@
   template:
     src: job_clearintakelocks.r.j2
     dest: '~{{ irods_service_account }}/.irods/job_clearintakelocks.r'
-    owner: '{{ irods_service_account }}'
-    group: '{{ irods_service_account }}'
-    mode: '0644'
-  # This script is provided by the test playbook for development/test servers.
-  when: enable_intake and yoda_environment not in ["development","testing"]
-
-
-- name: Install script for moving intake collections to the vault
-  become_user: "{{ irods_service_account }}"
-  become: yes
-  template:
-    src: job_movetovault.r.j2
-    dest: '~{{ irods_service_account }}/.irods/job_movetovault.r'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
