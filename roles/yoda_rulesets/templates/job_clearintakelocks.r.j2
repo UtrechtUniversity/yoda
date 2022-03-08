@@ -1,18 +1,18 @@
 # \file
 # \brief job
-# \author Ton Smeele
-# \copyright Copyright (c) 2015, Utrecht university. All rights reserved
+# \author Sietse Snel
+# \copyright Copyright (c) 2022, Utrecht university. All rights reserved
 # \license GPLv3, see LICENSE
 #
 #  This file should be executed as part of a recurring crontab job
 #  as the irods admin user (i.e. irods user type rodsadmin)
 #  e.g. run every 5 minutes
 #
-#  if another instance of the job is running then the vault will be
-#  locked and silently ignored
+#  It clears all locks on intake folders after job_movetovault has run, in
+#  order to facilitate retries after transient errors
 #
 
-uuYcRunIntake2Vault {
+uuYcClearIntakeLocks {
 	# intake areas can be added to the grouplist as needed
 	*grouplist = list ( {{ intake_groups | map("regex_replace","(.+)",'\"\\1\"') | join(',') }} );
 	*zone = $rodsZoneClient;
@@ -20,17 +20,10 @@ uuYcRunIntake2Vault {
 	foreach (*grp in *grouplist) {
 		*intakeRoot = "/*zone/home/grp-intake-*grp";
 		*vaultRoot  = "/*zone/home/grp-vault-*grp";
-		uuLock(*vaultRoot, *status);
-		if (*status == 0) {
-			# we have a lock
-			uuYc2Vault(*intakeRoot, *vaultRoot, *status);
-			if (*status == 0 ) then *result = "ok" else *result = "ERROR (*status)";
-			writeLine("serverLog","RunIntake2Vault for *intakeRoot result = *result");
-			uuUnlock(*vaultRoot);
-		}
+                # uuUnlock also succeeds if lock doesn't exist, so no need to verify that lock exists first
+		uuUnlock(*vaultRoot);
 	}
 }
-
 
 input *intakeRoot='dummy'
 output ruleExecOut
