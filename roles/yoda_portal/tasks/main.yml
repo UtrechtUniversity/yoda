@@ -120,5 +120,13 @@
   when: ansible_selinux.status == "enabled"
 
 
+- name: Allow Flask to connect to OpenSearch
+  seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
+  when: ansible_selinux.status == "enabled" and enable_open_search
+
+
 - include_tasks: setup-development-environment.yml
   when: yoda_environment == "development"
