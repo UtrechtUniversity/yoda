@@ -643,7 +643,7 @@
   },"107": {
     "doc": "Installing datarequest module",
     "title": "Before deployment using Ansible",
-    "content": "Enable the datarequest module in Ansible . Set enable_datarequest to true in configuration. enable_datarequest: true . Set Ansible parameters specific to the datarequest module . Users can contact a helpdesk email address for questions regarding the datarequest procedure. Set the fields below to specify the help contact. datarequest_help_contact_name: the data manager datarequest_help_contact_email: help@yoda.instance . Add the yoda-portal-datarequest repository to extra_modules. extra_modules: - name: datarequest repo: \"https://github.com/UtrechtUniversity/yoda-portal-datarequest.git\" dest: /var/www/yoda/yoda-portal/modules/datarequest version: \"\\{\\{ yoda_version \\}\\}\" . ",
+    "content": "Enable the datarequest module in Ansible . Set enable_datarequest to true in configuration. enable_datarequest: true . Set Ansible parameters specific to the datarequest module . Users can contact a helpdesk email address for questions regarding the datarequest procedure. Set the fields below to specify the help contact. datarequest_help_contact_name: the data manager datarequest_help_contact_email: help@yoda.instance . Add the yoda-portal-datarequest repository to extra_modules. extra_modules: - name: datarequest repo: \"https://github.com/UtrechtUniversity/yoda-portal-datarequest.git\" dest: /var/www/yoda/yoda-portal/modules/datarequest version: \"\" . ",
     "url": "/yoda/administration/installing-datarequest-module.html#before-deployment-using-ansible",
     "relUrl": "/administration/installing-datarequest-module.html#before-deployment-using-ansible"
   },"108": {
