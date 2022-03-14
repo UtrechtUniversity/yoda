@@ -20,6 +20,7 @@ Released: TBA
 - Support for davrods server on separate host
 - Support for [Data Package References](../design/overview/data_package_reference.md)
 - Improved search module and new search bar in header
+- DataCite connection uses REST API instead of legacy MDS
 - Several UX improvements to default theme
 - Upgrade to iRODS v4.2.10
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
@@ -57,28 +58,36 @@ This requires an intervention by the responsible datamanager beforehand.
 default_yoda_schema: default-2
 ```
 
-5. If OpenID Connect (OIDC) is active (`oidc_active`), make sure you have [configured](../administration/configuring-openidc.md) `oidc_domains`, `oidc_jwks_uri` and `oidc_jwt_issuer`.
+5. Two OpenID Connect configuration options are added and one has been replaced. If OIDC is active (`oidc_active`), make sure you have [configured](../administration/configuring-openidc.md), `oidc_jwks_uri` and `oidc_jwt_issuer`. Option `oidc_domain` is replaced with `oidc_domains`. Example:
+```yaml
+oidc_domains: ['domain1.tld', 'domain2.tld']
+```
 
-6. Run the Ansible playbook in check mode.
+6. DataCite connection is now using REST API instead of legacy MDS. If DataCite is configured the option `datacite_server` should be replaced with `datacite_rest_api_url`. Example:
+```yaml
+datacite_rest_api_url: api.test.datacite.org
+```
+
+7. Run the Ansible playbook in check mode.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-7. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
+8. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-8. Update all metadata JSON in the vault to latest metadata JSON version (`default-1` to `default-2`).
+9. Update all metadata JSON in the vault to latest metadata JSON version (`default-1` to `default-2`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-9. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+10. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
