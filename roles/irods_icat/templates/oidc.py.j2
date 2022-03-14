@@ -26,7 +26,10 @@ def validate_token(username, token, sub):
 
     # Retrieve token email.
     try:
-        email = r.json()[EMAIL_FIELD].lower()
+        email = r.json()[EMAIL_FIELD]
+        if not isinstance(email, list):
+            email = [email]
+        email = [x.lower() for x in email]
         userinfo_sub = r.json()['sub']
     except Exception:
         print('Unable to extract data from the userinfo  '
@@ -35,7 +38,7 @@ def validate_token(username, token, sub):
         return False
 
     # Check if token email corresponds with username.
-    if username == email and sub == userinfo_sub:
+    if username in email and sub == userinfo_sub:
         return True
 
     return False
