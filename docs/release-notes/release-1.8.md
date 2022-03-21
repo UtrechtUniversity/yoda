@@ -22,18 +22,14 @@ Released: TBA
 - Improved search module and new search bar in header
 - DataCite connection uses REST API instead of legacy MDS
 - Several UX improvements to default theme
-- Upgrade to iRODS v4.2.10
+- Upgrade to iRODS v4.2.11
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
 - Improvements to default schema (`default-2`)
 - Transformation from `default-1` to `teclab-0` / `hptlab-0`
 
 ### Known issues
 - Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
-- Server leaks memory via Python rule genqueries and built-in microservices [irods/irods#4649](https://github.com/irods/irods/issues/4649)
-- iQuest fails when select is used in argument string [irods/irods#4697](https://github.com/irods/irods/issues/4697)
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python [irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54)
-- Long PAM password/token string causes PACKSTRUCT error [python-irodsclient#279](https://github.com/irods/python-irodsclient/issues/279)
-- Executing a rule requires reconnection / reauthentication to iRODS [python-irodsclient#190](https://github.com/irods/python-irodsclient/issues/190)
 
 ## Upgrading from previous release
 Upgrade is supported by Ansible (2.9.x).
