@@ -497,71 +497,71 @@
     "url": "/yoda/release-notes/",
     "relUrl": "/release-notes/"
   },"83": {
-    "doc": "Administration Tasks",
-    "title": "Administration Tasks",
-    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | . ",
-    "url": "/yoda/administration/",
-    "relUrl": "/administration/"
-  },"84": {
     "doc": "Development",
     "title": "Development",
     "content": ". | Setting up development environment | Setting up YodaDrive development environment | Development tips | Wall of Fame | . ",
     "url": "/yoda/development/",
     "relUrl": "/development/"
+  },"84": {
+    "doc": "Administration Tasks",
+    "title": "Administration Tasks",
+    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | . ",
+    "url": "/yoda/administration/",
+    "relUrl": "/administration/"
   },"85": {
-    "doc": "Processes",
-    "title": "Processes",
-    "content": " ",
-    "url": "/yoda/design/processes/",
-    "relUrl": "/design/processes/"
-  },"86": {
     "doc": "Metadata",
     "title": "Metadata",
     "content": " ",
     "url": "/yoda/design/metadata/",
     "relUrl": "/design/metadata/"
-  },"87": {
+  },"86": {
     "doc": "API",
     "title": "API",
     "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
     "url": "/yoda/design/api/",
     "relUrl": "/design/api/"
-  },"88": {
-    "doc": "Other",
-    "title": "Other",
+  },"87": {
+    "doc": "Processes",
+    "title": "Processes",
     "content": " ",
-    "url": "/yoda/design/other/",
-    "relUrl": "/design/other/"
-  },"89": {
+    "url": "/yoda/design/processes/",
+    "relUrl": "/design/processes/"
+  },"88": {
     "doc": "System Overview",
     "title": "System overview",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
     "url": "/yoda/design/overview/#system-overview",
     "relUrl": "/design/overview/#system-overview"
-  },"90": {
+  },"89": {
     "doc": "System Overview",
     "title": "Core modules",
     "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     "relUrl": "/design/overview/#core-modules"
-  },"91": {
+  },"90": {
     "doc": "System Overview",
     "title": "Additional modules",
     "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
     "url": "/yoda/design/overview/#additional-modules",
     "relUrl": "/design/overview/#additional-modules"
-  },"92": {
+  },"91": {
     "doc": "System Overview",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/#overview",
     "relUrl": "/design/overview/#overview"
-  },"93": {
+  },"92": {
     "doc": "System Overview",
     "title": "System Overview",
     "content": " ",
     "url": "/yoda/design/overview/",
     "relUrl": "/design/overview/"
+  },"93": {
+    "doc": "Other",
+    "title": "Other",
+    "content": " ",
+    "url": "/yoda/design/other/",
+    "relUrl": "/design/other/"
   },"94": {
     "doc": "Software Design",
     "title": "Software Design",
@@ -1333,7 +1333,7 @@
   },"222": {
     "doc": "v1.8",
     "title": "What’s new",
-    "content": "Features . | Full theming support | Support for Data Access Passwords | Support for user settings | Support for notifications | Support for copy and move actions in the web portal | Support for multi-select actions for files and folders in research space | Support for davrods server on separate host | Support for Data Package References | Improved search module and new search bar in header | DataCite connection uses REST API instead of legacy MDS | Several UX improvements to default theme | Upgrade to iRODS v4.2.11 | Removed legacy_tls flag (legacy TLS support, TLS 1.0 and 1.1) | Improvements to default schema (default-2) | Transformation from default-1 to teclab-0 / hptlab-0 | . Known issues . | Collections with single apex “’” in the name do not work irods/irods#5727 | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python irods_rule_engine_plugin_python#54 | . ",
+    "content": "Features . | Full theming support | Support for Data Access Passwords | Support for user settings | Support for notifications | Support for copy and move actions in the web portal | Support for multi-select actions for files and folders in research space | Support for davrods server on separate host | Support for Data Package References | Improvements to default schema (default-2) | Transformation from default-1 to teclab-0 / hptlab-0 | Improved search module and new search bar in header | DataCite connection uses REST API instead of legacy MDS | Several UX improvements to default theme | Upgrade iRODS to v4.2.11 | Upgrade python-irodsclient to v1.1.2 | Removed legacy_tls flag (legacy TLS support, TLS 1.0 and 1.1) | . Known issues . | Collections with single apex “’” in the name do not work irods/irods#5727 | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python irods_rule_engine_plugin_python#54 | . ",
     "url": "/yoda/release-notes/release-1.8.html#whats-new",
     "relUrl": "/release-notes/release-1.8.html#whats-new"
   },"223": {
