@@ -19,13 +19,15 @@ Released: TBA
 - Support for multi-select actions for files and folders in research space
 - Support for davrods server on separate host
 - Support for [Data Package References](../design/overview/data_package_reference.md)
+- Improvements to default schema (`default-2`)
+- Transformation from `default-1` to `teclab-0` / `hptlab-0`
 - Improved search module and new search bar in header
 - DataCite connection uses REST API instead of legacy MDS
 - Several UX improvements to default theme
-- Upgrade to iRODS v4.2.11
+- Upgrade iRODS to v4.2.11
+- Upgrade python-irodsclient to v1.1.2
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
-- Improvements to default schema (`default-2`)
-- Transformation from `default-1` to `teclab-0` / `hptlab-0`
+
 
 ### Known issues
 - Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
