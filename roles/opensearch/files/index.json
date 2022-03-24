@@ -19,7 +19,13 @@
           },
           "value": {
             "type": "text",
-            "fields": { "raw": { "type": "keyword" } }
+            "fields": {
+              "raw": { "type": "keyword" },
+              "number": {
+                "type": "long",
+                "ignore_malformed": true
+              }
+            }
           }
         }
       },
