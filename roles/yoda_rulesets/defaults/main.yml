@@ -10,7 +10,7 @@ core_rulesets:
   - name: yoda-ruleset
     repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
-    version: "development-indexing"
+    version: "{{ yoda_version }}"
     install_scripts: yes
   - name: core
     ruleset_name: core
