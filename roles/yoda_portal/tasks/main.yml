@@ -2,12 +2,12 @@
 # copyright Utrecht University
 
 - name: Ensure yodadeployment user exists
-  user:
+  ansible.builtin.user:
     name: "{{ yoda_deployment_user }}"
 
 
 - name: Ensure yodadeployment has access to /var/www/yoda
-  file:
+  ansible.builtin.file:
     path: /var/www/yoda
     state: directory
     owner: "{{ yoda_deployment_user }}"
@@ -18,7 +18,7 @@
 - name: Delete legacy portal files
   become_user: "{{ yoda_deployment_user }}"
   become: yes
-  file:
+  ansible.builtin.file:
     state: absent
     path: "{{ item }}"
   with_items:
@@ -31,7 +31,7 @@
 - name: Checkout Yoda portal
   become_user: "{{ yoda_deployment_user }}"
   become: yes
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: "/var/www/yoda"
     version: "{{ yoda_portal_version }}"
@@ -42,7 +42,7 @@
 - name: Ensure Yoda portal virtualenv exists
   become_user: "{{ yoda_deployment_user }}"
   become: yes
-  command: python3 -m virtualenv "/var/www/yoda/venv"
+  ansible.builtin.command: python3 -m virtualenv "/var/www/yoda/venv"
   args:
     creates: /var/www/yoda/venv
 
@@ -50,7 +50,7 @@
 - name: Ensure Yoda portal dependencies are installed
   become_user: "{{ yoda_deployment_user }}"
   become: yes
-  pip:
+  ansible.builtin.pip:
     requirements: /var/www/yoda/requirements.txt
     virtualenv: '/var/www/yoda/venv'
     virtualenv_python: python3.6
@@ -60,7 +60,7 @@
 - name: Install mod-wsgi
   become_user: "root"
   become: yes
-  shell: |
+  ansible.builtin.shell: |
     source /var/www/yoda/venv/bin/activate
     mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf
     exit
@@ -69,20 +69,20 @@
 
 
 - name: Generate Flask secret key
-  shell: openssl rand -base64 32 > /var/www/yoda/flask_secret_key
+  ansible.builtin.shell: openssl rand -base64 32 > /var/www/yoda/flask_secret_key
     creates=/var/www/yoda/flask_secret_key
   when: not ansible_check_mode
 
 
 - name: Retrieve Flask secret key
-  slurp:
+  ansible.builtin.slurp:
     src: /var/www/yoda/flask_secret_key
   register: secret_key
   when: not ansible_check_mode
 
 
 - name: Store Flask secret key in variable
-  set_fact:
+  ansible.builtin.set_fact:
     flask_secret_key: "{{ secret_key['content'] }}"
   when: not ansible_check_mode
 
@@ -90,7 +90,7 @@
 - name: Copy Yoda Portal config for Flask
   become_user: "{{ yoda_deployment_user }}"
   become: yes
-  template:
+  ansible.builtin.template:
     src: "flask.cfg.j2"
     dest: "/var/www/yoda/flask.cfg"
     mode: '0644'
@@ -99,7 +99,7 @@
 
 
 - name: Copy Yoda Portal virtual host config for Apache
-  template:
+  ansible.builtin.template:
     src: "yoda-portal-vhost.conf.j2"
     dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
     mode: '0644'
@@ -116,7 +116,7 @@
 
 
 - name: Ensure selinux context is enforced on shared libraries
-  command: 'restorecon -r /var/www/yoda/venv'
+  ansible.builtin.command: 'restorecon -r /var/www/yoda/venv'
   when: ansible_selinux.status == "enabled"
 
 

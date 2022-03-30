@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure iRODS completion script is installed
-  copy:
+  ansible.builtin.copy:
     src: irods_completion.sh
     dest: /etc/profile.d/irods_completion.sh
     owner: root

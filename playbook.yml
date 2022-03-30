@@ -6,7 +6,7 @@
   gather_facts: False
   pre_tasks:
     - name: Verify Ansible version meets requirements
-      assert:
+      ansible.builtin.assert:
         that: "ansible_version.full is version('2.9', '>=')"
         msg: >
           "You must update Ansible to at least 2.9 to deploy Yoda."
@@ -16,7 +16,7 @@
   gather_facts: False
   pre_tasks:
     - name: Retrieve Yoda repository branch
-      shell: |
+      ansible.builtin.shell: |
         set -o pipefail
         git branch | grep \* | cut -d ' ' -f2
       register: git_branch
@@ -27,7 +27,7 @@
 
 
     - name: Verify Yoda repository is on correct branch
-      fail:
+      ansible.builtin.fail:
         msg: "Make sure your Yoda repository is on branch {{ yoda_version }}. (git checkout {{ yoda_version }})"
       when: not ansible_check_mode and yoda_version not in git_branch.stdout and yoda_environment != "development"
 

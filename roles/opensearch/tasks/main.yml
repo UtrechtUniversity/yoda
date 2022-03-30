@@ -2,21 +2,21 @@
 # copyright Utrecht University
 
 - name: Download OpenSearch
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ opensearch.url }}/{{ opensearch.filename }}'
     dest: '{{ dest_dir }}/{{ opensearch.filename }}'
     checksum: '{{ opensearch.checksum }}'
 
 
 - name: Create OpenSearch user
-  user:
+  ansible.builtin.user:
     name: '{{ opensearch.user }}'
     state: present
     shell: /bin/bash
 
 
 - name: Install OpenSearch
-  unarchive:
+  ansible.builtin.unarchive:
     src: '{{ dest_dir }}/{{ opensearch.filename }}'
     dest: /usr/share
     creates: '{{ opensearch.home }}'
@@ -28,11 +28,11 @@
 
 
 - name: Disable plugins
-  command: creates='{{ opensearch.plugins }}.disabled' mv '{{ opensearch.plugins }}' '{{ opensearch.plugins }}.disabled'
+  ansible.builtin.command: creates='{{ opensearch.plugins }}.disabled' mv '{{ opensearch.plugins }}' '{{ opensearch.plugins }}.disabled'
 
 
 - name: Create empty plugins directory
-  file:
+  ansible.builtin.file:
     path: '{{ opensearch.plugins }}'
     mode: 0755
     owner: '{{ opensearch.user }}'
@@ -41,7 +41,7 @@
 
 
 - name: Install configuration file
-  template:
+  ansible.builtin.template:
     src: opensearch.yml
     dest: '{{ opensearch.config }}/opensearch.yml'
     owner: '{{ opensearch.user }}'
@@ -51,7 +51,7 @@
 
 
 - name: Install jvm.options
-  template:
+  ansible.builtin.template:
     src: jvm.options
     dest: '{{ opensearch.config }}/jvm.options'
     owner: '{{ opensearch.user }}'
@@ -68,14 +68,14 @@
 
 
 - name: Create systemd service
-  template:
+  ansible.builtin.template:
     src: opensearch.service
     dest: '{{ systemd_dir }}/opensearch.service'
     mode: 0644
 
 
 - name: Make sure OpenSearch is started
-  service:
+  ansible.builtin.service:
     name: opensearch
     state: started
     enabled: yes
@@ -91,7 +91,7 @@
 
 
 - name: Install initial index
-  uri:
+  ansible.builtin.uri:
     url: "http://{{ yoda_portal_host }}:9200/yoda"
     method: PUT
     body: "{{ lookup('file', 'index.json') }}"

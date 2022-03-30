@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure Apache webserver is installed
-  package:
+  ansible.builtin.package:
     name:
       - httpd
       - httpd-devel
@@ -24,7 +24,7 @@
 
 
 - name: Ensure customized httpd config is present
-  template:
+  ansible.builtin.template:
     src: 'httpd.conf.j2'
     dest: '/etc/httpd/conf/httpd.conf'
     mode: 0600
@@ -32,7 +32,7 @@
 
 
 - name: Ensure customized SSL config is present
-  template:
+  ansible.builtin.template:
     src: 'ssl.conf.j2'
     dest: '/etc/httpd/conf.d/ssl.conf'
     mode: 0600
@@ -40,7 +40,7 @@
 
 
 - name: Ensure autoindex.conf is absent
-  file:
+  ansible.builtin.file:
     path: '{{ item }}'
     state: absent
   notify: Restart Apache webserver
@@ -49,14 +49,14 @@
 
 
 - name: Ensure Apache mod_lua is disabled
-  file:
+  ansible.builtin.file:
     path: /etc/httpd/conf.modules.d/00-lua.conf
     state: absent
   notify: Restart Apache webserver
 
 
 - name: Ensure Apache service is configured
-  service:
+  ansible.builtin.service:
     name: httpd
     state: started
     enabled: '{{ yoda_enable_httpd }}'
