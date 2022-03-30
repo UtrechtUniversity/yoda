@@ -23,7 +23,7 @@
     digest: sha256
     country_name: '{{ openssl_c }}'
     organization_name: '{{ openssl_o }}'
-    locality_name: '{{ openssl_localityName }}'
+    locality_name: '{{ openssl_locality_name }}'
     common_name: '{{ certificate_domain }}'
     force: no
     state: present
