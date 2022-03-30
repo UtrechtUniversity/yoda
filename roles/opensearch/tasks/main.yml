@@ -6,6 +6,7 @@
     url: '{{ opensearch.url }}/{{ opensearch.filename }}'
     dest: '{{ dest_dir }}/{{ opensearch.filename }}'
     checksum: '{{ opensearch.checksum }}'
+    mode: 0644
 
 
 - name: Create OpenSearch user

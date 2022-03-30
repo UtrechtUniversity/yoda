@@ -20,6 +20,7 @@
     url: '{{ davrods.url }}/{{ davrods.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     checksum: '{{ davrods.checksum }}'
+    mode: 0644
   when: not davrods_repo.results and not repo_only
 
 
