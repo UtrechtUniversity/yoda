@@ -4,7 +4,7 @@
 - name: Ensure nvm is installed
   become_user: "{{ yoda_deployment_user }}"
   become: yes
-  shell: |
+  ansible.builtin.shell: |
     set -o pipefail
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
   args:

@@ -1,0 +1,38 @@
+{
+  "mappings": {
+    "properties": {
+      "absolutePath": { "type": "text" },
+      "dataSize": { "type": "long" },
+      "fileName": { "type": "text" },
+      "isFile": { "type": "boolean" },
+      "lastModifiedDate": { "type": "long" },
+      "metadataEntries": {
+        "type": "nested",
+        "properties": {
+          "attribute": {
+            "type": "text",
+            "fields": { "raw": { "type": "keyword" } }
+          },
+          "unit": {
+            "type": "text",
+            "fields": { "raw": { "type": "keyword" } }
+          },
+          "value": {
+            "type": "text",
+            "fields": {
+              "raw": { "type": "keyword" },
+              "number": {
+                "type": "long",
+                "ignore_malformed": true
+              }
+            }
+          }
+        }
+      },
+      "mimeType": { "type":  "text" },
+      "parentPath": { "type": "text" },
+      "url": { "type": "text" },
+      "zoneName": { "type": "text" }
+    }
+  }
+}

@@ -2,6 +2,6 @@
 # copyright Utrecht University
 
 - name: Enable EPEL repository
-  package:
+  ansible.builtin.package:
     name: epel-release
     state: present

@@ -82,6 +82,9 @@ enable_research: true                   # Enable research module
 # Datarequest module configuration
 enable_datarequest: false               # Enable datarequest module
 
+# OpenSearch module configuration
+enable_open_search: True                # Enable OpenSearch module
+
 # Deposit module configuration
 enable_deposit: false                   # Enable deposit module
 

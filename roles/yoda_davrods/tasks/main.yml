@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure davrods prerequisites are installed
-  package:
+  ansible.builtin.package:
     name:
       - boost
       - jansson
@@ -10,28 +10,29 @@
 
 
 - name: Check if davrods is installable from repository
-  yum:
+  ansible.builtin.yum:
     list: '{{ davrods.package }}'
   register: davrods_repo
 
 
 - name: Download davrods rpm
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ davrods.url }}/{{ davrods.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     checksum: '{{ davrods.checksum }}'
+    mode: 0644
   when: not davrods_repo.results and not repo_only
 
 
 - name: Install davrods from downloaded rpm
-  package:
+  ansible.builtin.package:
     name: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     state: present
   when: not davrods_repo.results and not ansible_check_mode and not repo_only
 
 
 - name: Ensure davrods rpm is installed
-  package:
+  ansible.builtin.package:
     name: '{{ davrods.package }}'
     state: present
   when: davrods_repo.results and not ansible_check_mode
@@ -47,14 +48,14 @@
 
 
 - name: Ensure selinux context is enforced on davrods module
-  command: restorecon /etc/httpd/modules/{{ item.target }}
+  ansible.builtin.command: restorecon /etc/httpd/modules/{{ item.target }}
   when: filecontext is changed and ansible_selinux
   with_items:
   - { index: 0, target: 'mod_davrods.so' }
 
 
 - name: Copy irods_environment.json to /etc/httpd/irods/irods_environment.json
-  template:
+  ansible.builtin.template:
     src: irods_environment.j2
     dest: /etc/httpd/irods/irods_environment.json
     owner: apache
@@ -64,7 +65,7 @@
 
 
 - name: Copy davrods Apache configuration
-  template:
+  ansible.builtin.template:
     src: davrods-vhost.conf.j2
     dest: /etc/httpd/conf.d/davrods-vhost.conf
     owner: root
@@ -75,7 +76,7 @@
 
 - name: Copy davrods anonymous Apache configuration
   when: (yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled
-  template:
+  ansible.builtin.template:
     src: davrods-anonymous-vhost.conf.j2
     dest: /etc/httpd/conf.d/davrods-anonymous-vhost.conf
     owner: root
@@ -85,7 +86,7 @@
 
 
 - name: Ensure webdav logfiles exist
-  copy:
+  ansible.builtin.copy:
     content: ""
     dest: '{{ item }}'
     mode: 0644
@@ -98,7 +99,7 @@
 
 - name: Ensure webdav logfiles for anonymous access exist
   when: (yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled
-  copy:
+  ansible.builtin.copy:
     content: ""
     dest: '{{ item }}'
     mode: 0644
@@ -125,7 +126,7 @@
 
 
 - name: Ensure selinux context is enforced on iRODS network plugins
-  command: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
+  ansible.builtin.command: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
   when: filecontext.results[item.index] is changed and ansible_selinux
   with_items:
   - { index: 0, target: 'libtcp_client.so' }
@@ -153,7 +154,7 @@
 
 
 - name: Ensure styling of davrods directory listing is present
-  template:
+  ansible.builtin.template:
     src: '{{ item.src }}'
     dest: '/etc/httpd/irods/{{ item.dest }}'
     owner: root

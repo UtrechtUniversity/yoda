@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure Yoda landingpages root is world readable
-  file:
+  ansible.builtin.file:
     path: '{{ landingpages_root }}'
     mode: 0755
     owner: '{{ yoda_inbox_user }}'
@@ -11,7 +11,7 @@
 
 
 - name: Ensure inbox user exists
-  user:
+  ansible.builtin.user:
     name: '{{ yoda_inbox_user }}'
 
 
@@ -23,7 +23,7 @@
 
 
 - name: Ensure Yoda landingpage static file directories are present
-  file:
+  ansible.builtin.file:
     path: '{{ item }}'
     state: directory
     mode: 0755
@@ -34,7 +34,7 @@
 
 
 - name: Ensure Yoda (< v1.5) landingpage static files are absent
-  file:
+  ansible.builtin.file:
     path: '{{ item }}'
     state: absent
   with_items:
@@ -45,7 +45,7 @@
 
 
 - name: Ensure Yoda landingpage static files are present
-  copy:
+  ansible.builtin.copy:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
     mode: 0644

@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure Ansible dependencies are installed
-  package:
+  ansible.builtin.package:
     name:
       - libsemanage-python
       - libselinux-python
@@ -11,7 +11,7 @@
 
 
 - name: Ensure basics (vim, bind-utils, etc.) are installed
-  package:
+  ansible.builtin.package:
     name:
       - bind-utils
       - vim

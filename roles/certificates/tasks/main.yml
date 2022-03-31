@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure dependencies for Ansible OpenSSL module are present
-  package:
+  ansible.builtin.package:
     name: python-cryptography
     state: present
 
@@ -23,7 +23,7 @@
     digest: sha256
     country_name: '{{ openssl_c }}'
     organization_name: '{{ openssl_o }}'
-    locality_name: '{{ openssl_localityName }}'
+    locality_name: '{{ openssl_locality_name }}'
     common_name: '{{ certificate_domain }}'
     force: no
     state: present
@@ -42,7 +42,7 @@
 
 
 - name: Ensure signed private key is present
-  command: >
+  ansible.builtin.command: >
     cp '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
     '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
   args:
@@ -50,7 +50,7 @@
 
 
 - name: Ensure signed certificate is present
-  command: >
+  ansible.builtin.command: >
     cp '{{ openssl_certs_dir }}/{{ openssl_crt_selfsigned }}'
     '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
   args:
@@ -58,7 +58,7 @@
 
 
 - name: Ensure CA chain is present
-  command: >
+  ansible.builtin.command: >
     cp '{{ openssl_certs_dir }}/{{ openssl_crt_selfsigned }}'
     '{{ openssl_certs_dir }}/{{ openssl_chain }}'
   args:
@@ -66,7 +66,7 @@
 
 
 - name: Ensure CA chain with signed certificate is present
-  command: >
+  ansible.builtin.command: >
     cp '{{ openssl_certs_dir }}/{{ openssl_crt_selfsigned }}'
     '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
   args:
@@ -82,7 +82,7 @@
 
 
 - name: Ensure certificate files have correct permissions
-  file:
+  ansible.builtin.file:
     path: '{{ item }}'
     mode: 0644
     group: 'root'

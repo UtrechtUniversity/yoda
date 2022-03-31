@@ -9,6 +9,7 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of 
 instance: full                                     # Name of Yoda instance, as defined in hosts file
 yoda_version: development                          # Git branch, for example: development or release-1.5
 yoda_environment: development                      # Yoda environment: development, testing, acceptance or production
+yoda_portal_host: combined.yoda.test               # Yoda Portal host
 yoda_portal_fqdn: portal.yoda.test                 # Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_enabled: true
@@ -21,6 +22,9 @@ credential_files: PLACEHOLDER                      # Location of Yoda credential
 
 # Research module configuration
 enable_research: True                              # Enable research module
+
+# OpenSearch module configuration
+enable_open_search: True                           # Enable OpenSearch module
 
 # Deposit module configuration
 enable_deposit: True                               # Enable deposit module

@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure iRODS 4.2.7 packages are absent
-  package:
+  ansible.builtin.package:
     name:
       - irods-uu-microservices-4.2.7_0.8.1
       - irods-sudo-microservices-4.2.7_1.0.0
@@ -24,6 +24,6 @@
 
 
 - name: Ensure iRODS runtime is installed
-  package:
+  ansible.builtin.package:
     name: irods-runtime-4.2.11-1
     state: present

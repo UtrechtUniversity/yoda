@@ -2,12 +2,12 @@
 # copyright Utrecht University
 
 - name: Restart Apache webserver
-  service:
+  ansible.builtin.service:
     name: httpd
     state: restarted
 
 
 - name: Restart firewall
-  service:
+  ansible.builtin.service:
     name: firewalld
     state: restarted

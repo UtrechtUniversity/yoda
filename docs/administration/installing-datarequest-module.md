@@ -27,7 +27,7 @@ extra_modules:
   - name: datarequest
     repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
     dest: /var/www/yoda/yoda-portal/modules/datarequest
-    version: "\{\{ yoda_version \}\}"
+    version: "{{ yoda_version }}"
 ```
 
 ## After deployment using Ansible
