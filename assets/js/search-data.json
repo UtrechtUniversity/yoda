@@ -1513,7 +1513,7 @@
   },"252": {
     "doc": "Troubleshooting email",
     "title": "How to troubleshoot email-related issues",
-    "content": "In order to verify that sending email messages from Yoda works as expected, an email test script is included in the yoda-ruleset repository. It can be called from the command line as the irods user. For example: . /etc/irods/yoda-ruleset/tools/mail-test.sh \"a.admin@uu.nl\" . The expected output is: . Successfully executed rule for testing email with destination &lt;a.admin@uu.nl&gt; . You should shortly receive an email message on the provided address with subject [Yoda] Test mail. ",
+    "content": "In order to verify that sending email messages from Yoda works as expected, an email test script is included in the yoda-ruleset repository. It can be called from the command line as the irods user. For example: . /etc/irods/yoda-ruleset/tools/mail/mail-test.sh \"a.admin@uu.nl\" . The expected output is: . Successfully executed rule for testing email with destination &lt;a.admin@uu.nl&gt; . You should shortly receive an email message on the provided address with subject [Yoda] Test mail. ",
     "url": "/yoda/administration/troubleshooting-email.html#how-to-troubleshoot-email-related-issues",
     "relUrl": "/administration/troubleshooting-email.html#how-to-troubleshoot-email-related-issues"
   },"253": {
