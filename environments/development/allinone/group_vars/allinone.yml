@@ -24,10 +24,10 @@ credential_files: PLACEHOLDER                      # Location of Yoda credential
 enable_research: True                              # Enable research module
 
 # OpenSearch module configuration
-enable_open_search: False                           # Enable OpenSearch module
+enable_open_search: True                           # Enable OpenSearch module
 
 # Deposit module configuration
-enable_deposit: False                               # Enable deposit module
+enable_deposit: True                               # Enable deposit module
 
 # Intake module configuration
 enable_intake: True                                # Enable intake module
