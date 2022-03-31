@@ -34,8 +34,11 @@ def main():
     for plugin in plugins:
       if plugin["plugin_name"] == "irods_rule_engine_plugin-indexing":
         found = True
+      if plugin["plugin_name"] == "irods_rule_engine_plugin-cpp_default_policy":
+        default_policy = plugin
 
     if not found:
+      plugins.remove(default_policy)
       plugins.extend([
         {
           "instance_name": "irods_rule_engine_plugin-indexing-instance",
@@ -56,7 +59,13 @@ def main():
           "instance_name": "irods_rule_engine_plugin-document_type-instance",
           "plugin_name": "irods_rule_engine_plugin-document_type",
           "plugin_specific_configuration": {}
-        }])
+        },
+        default_policy
+      ])
+      changed = True
+    elif plugins[-1] != default_policy:
+      plugins.remove(default_policy)
+      plugins.append(default_policy)
       changed = True
 
     if not module.check_mode:
