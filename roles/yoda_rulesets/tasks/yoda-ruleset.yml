@@ -438,7 +438,7 @@
   ansible.builtin.cron:
     name: 'asynchronous-tape-archive-replication'
     minute: '3,13,23,33,43,53'
-    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/tape_archive/async-tape-archive-replicate.r >/dev/null 2>&1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/tape_archive/async-tape-archive-replicate.sh >/dev/null 2>&1'
   when: enable_tape_archive
 
 
