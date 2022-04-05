@@ -432,6 +432,16 @@
   when: enable_revisions == 1
 
 
+- name: Enable asynchronous tape archive replication job
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  ansible.builtin.cron:
+    name: 'asynchronous-tape-archive-replication'
+    minute: '3,13,23,33,43,53'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/tape_archive/async-tape-archive-replicate.sh >/dev/null 2>&1'
+  when: enable_tape_archive
+
+
 - name: Configure cronjob to mail daily notification reports
   become_user: "{{ irods_service_account }}"
   become: yes
