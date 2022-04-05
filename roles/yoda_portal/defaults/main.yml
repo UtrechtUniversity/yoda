@@ -15,7 +15,7 @@ yoda_theme_path: /var/www/yoda/themes              # Base path holding customise
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 
 # Yoda portal
-yoda_portal_version: "development-dms"
+yoda_portal_version: "{{ yoda_version }}"
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name

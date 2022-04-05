@@ -47,7 +47,7 @@ token_length: 32                                      # Length of data access to
 token_lifetime: 72                                    # Lifetime of data access tokens (in hours)
 
 # DMF tape archive
-enable_tape_archive: True
+enable_tape_archive: false
 
 # Portal customization
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
