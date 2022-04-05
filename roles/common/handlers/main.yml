@@ -2,6 +2,6 @@
 # copyright Utrecht University
 
 - name: Restart firewall
-  service:
+  ansible.builtin.service:
     name: firewalld
     state: restarted

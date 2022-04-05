@@ -105,9 +105,14 @@ test_users:
     type: rodsuser
 
 # Following users are created as iRODS users only.
-eus_test_users:
+oidc_test_users:
   - name: yodaresearcher@gmail.com
   - name: yodadatamanager@gmail.com
+  - name: researcher@yoda.test
+  - name: datamanager@yoda.test
+
+# Following users are created as iRODS users only.
+eus_test_users:
   - name: alice@otherdomain.com
 
 # Following users are created in the regressiontest and need to be removed only.
@@ -577,7 +582,6 @@ deletion_research_groups:
   - research: teclab-1
   - research: core-0
   - research: core-1
-  - research: dag-0
   - research: dag-0
   - research: initial
   - research: initial1

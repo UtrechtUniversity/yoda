@@ -2,14 +2,14 @@
 # copyright Utrecht University
 
 - name: Ensure Python dependencies are installed
-  package:
+  ansible.builtin.package:
     name:
       - python-pip
     state: present
 
 
 - name: Sanity check ruleset names
-  fail:
+  ansible.builtin.fail:
     msg: 'Invalid ruleset name {{ item.name }}'
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'/' in item.name or '..' in item.name"
@@ -18,11 +18,12 @@
 - name: Check out rulesets without local patches from Github
   become_user: "{{ irods_service_account }}"
   become: yes
-  git:
+  ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "/etc/irods/{{ item.name }}"
     version: "{{ item.version }}"
     update: "{{ update_rulesets }}"
+    force: yes
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item and 'patch' not in item"
   register: repochanges
@@ -31,7 +32,7 @@
 - name: Check out rulesets with local patches from Github
   become_user: "{{ irods_service_account }}"
   become: yes
-  git:
+  ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "/etc/irods/repo_{{ item.name }}"
     version: "{{ item.version }}"
@@ -59,7 +60,7 @@
 - name: Create patch files for rulesets
   become_user: "{{ irods_service_account }}"
   become: yes
-  copy:
+  ansible.builtin.copy:
     dest: "/etc/irods/{{ item.name }}.patch"
     content: "{{ item['patch'] }}"
     mode: "0644"
@@ -70,7 +71,7 @@
 - name: Apply patches to rulesets
   become_user: "{{ irods_service_account }}"
   become: yes
-  command:
+  ansible.builtin.command:
     chdir: "/etc/irods/{{ item.name }}"
     cmd: "git apply /etc/irods/{{ item.name }}.patch"
   with_items: "{{ extra_rulesets + core_rulesets }}"
@@ -78,7 +79,7 @@
 
 
 - name: Find temporary rule and cache files left behind
-  find:
+  ansible.builtin.find:
     paths: /etc/irods
     patterns: '*.re.*,*.pyc'
     recurse: yes
@@ -89,7 +90,7 @@
 - name: Remove temporary rule and cache files left behind
   become_user: "{{ irods_service_account }}"
   become: yes
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     state: absent
   when: repochanges.changed or patch_repochanges.changed
@@ -113,7 +114,7 @@
 - name: Install requirements for ruleset
   become_user: "{{ irods_service_account }}"
   become: yes
-  pip:
+  ansible.builtin.pip:
     requirements: /etc/irods/yoda-ruleset/requirements.txt
     extra_args: --user
 
@@ -130,7 +131,7 @@
 - name: Ensure Python rules are loaded
   become_user: "{{ irods_service_account }}"
   become: yes
-  copy:
+  ansible.builtin.copy:
     src: "core.py.template"
     dest: "/etc/irods/core.py"
     mode: 0644

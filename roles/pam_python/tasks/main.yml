@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure PAM Python module is present
-  copy:
+  ansible.builtin.copy:
     src: "pam_python.so"
     dest: "/usr/lib64/security/pam_python.so"
     owner: root

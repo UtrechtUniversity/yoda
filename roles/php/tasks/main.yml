@@ -2,13 +2,13 @@
 # copyright Utrecht University
 
 - name: Add repository for PHP 7.4
-  yum:
+  ansible.builtin.yum:
     name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
     state: present
 
 
 - name: Enable repository for PHP 7.4
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: remi-php74
     description: Remi's PHP 7.4 RPM repository for Enterprise Linux 7
     mirrorlist: http://rpms.remirepo.net/enterprise/7/php74/mirror
@@ -19,7 +19,7 @@
 
 
 - name: Ensure PHP 7.4 packages are installed
-  yum:
+  ansible.builtin.yum:
     name:
       - php-7.4*
       - php-cli-7.4*
@@ -39,7 +39,7 @@
 
 
 - name: Ensure PHP is configured
-  template:
+  ansible.builtin.template:
     src: php.ini.j2
     dest: "/etc/php.ini"
     owner: root

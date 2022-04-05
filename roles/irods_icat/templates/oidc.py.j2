@@ -7,6 +7,11 @@ import requests
 USERINFO_URI = "{{ oidc_userinfo_uri | default('') }}"
 EMAIL_FIELD = "{{ oidc_email_field | default('email') }}"
 
+
+def unescape_irods_pam_password(password):
+    return password.replace('\@', '@')
+
+
 def validate_token(username, token, sub):
     # Send token validation request.
     headers = {"Authorization": "Bearer {}".format(token)}
@@ -21,7 +26,10 @@ def validate_token(username, token, sub):
 
     # Retrieve token email.
     try:
-        email = r.json()[EMAIL_FIELD].lower()
+        email = r.json()[EMAIL_FIELD]
+        if not isinstance(email, list):
+            email = [email]
+        email = [x.lower() for x in email]
         userinfo_sub = r.json()['sub']
     except Exception:
         print('Unable to extract data from the userinfo  '
@@ -30,7 +38,7 @@ def validate_token(username, token, sub):
         return False
 
     # Check if token email corresponds with username.
-    if username == email and sub == userinfo_sub:
+    if username in email and sub == userinfo_sub:
         return True
 
     return False
@@ -49,6 +57,8 @@ def pam_sm_authenticate(pamh, flags, argv):
     if token is None:
         print('Missing token')
         return pamh.PAM_AUTH_ERR
+
+    token = unescape_irods_pam_password(token)
 
     # Remove the prefix from the portal.
     if token[0:14] == '++oidc_token++':

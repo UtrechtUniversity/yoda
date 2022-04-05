@@ -12,7 +12,7 @@ Alternatively, you can choose to pass the variables with the *--extra-vars* opti
 The development group_vars contains examples for all of the variables.
 
 For OIDC to function properly it requires the following variables to be set:
-- oidc_active (default: `false`), used by Ansible during setup. Please note that switching `oidc_active` to `false` (and running the Ansbible playbook again) is not a safe way to disable OIDC: you should also replace the `oidc_client_id` and `oidc_client_secret` values with placeholders.
+- oidc_active (default: `false`), used by Ansible during setup. Please note that switching `oidc_active` to `false` (and running the Ansible playbook again) is not a safe way to disable OIDC: you should also replace the `oidc_client_id` and `oidc_client_secret` values with placeholders.
 - oidc_client_id
 - oidc_client_secret
 - oidc_auth_base_uri
@@ -27,7 +27,7 @@ Additionally, depending on the authorization server, you may need to configure t
 - oidc_email_field (default: `email`)
 
 Finally, for customization purposes, you can also configure:
-- oidc_domains
+- oidc_domains, which should be an array of domains with OIDC authentication, e.g. `["mydomain.com","myotherdomain.com"]`. By default, OIDC authentication is enabled for every domain (provided that oidc_active is set to `true`)
 - oidc_signin_text (deprecated since v1.8)
 
 For token verification there are also the following parameters which define what checks are done when verifying a JWT. Take caution when setting values to `false`, as this makes verification less strict. Details can be found in the group_vars file.

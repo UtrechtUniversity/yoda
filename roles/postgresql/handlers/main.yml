@@ -2,12 +2,12 @@
 # copyright Utrecht University
 
 - name: Restart PostgreSQL
-  service:
+  ansible.builtin.service:
     name: postgresql
     state: restarted
 
 
 - name: Restart firewall
-  service:
+  ansible.builtin.service:
     name: firewalld
     state: restarted

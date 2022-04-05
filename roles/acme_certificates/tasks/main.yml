@@ -2,38 +2,38 @@
 # copyright Utrecht University
 
 - name: Ensure Certbot for Let's Encrypt is installed
-  package:
+  ansible.builtin.package:
     name: python-certbot-apache
     state: present
 
 
 - name: Check if certificate already exists
-  stat:
+  ansible.builtin.stat:
     path: "/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem"
   register: letsencrypt_fullchain
 
 
 - name: Ensure Apache is stopped
-  service:
+  ansible.builtin.service:
     name: httpd
     state: stopped
   when: not letsencrypt_fullchain.stat.exists
 
 
 - name: Generate certificate if it  doesn't exist yet
-  command: "certbot certonly --standalone --noninteractive --agree-tos --email l.r.westerhof@uu.nl -d {{ yoda_portal_fqdn }}"
+  ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email l.r.westerhof@uu.nl -d {{ yoda_portal_fqdn }}"
   when: not letsencrypt_fullchain.stat.exists
 
 
 - name: Ensure Apache is started
-  service:
+  ansible.builtin.service:
     name: httpd
     state: started
   when: not letsencrypt_fullchain.stat.exists
 
 
 - name: Add cronjob for Certbot renewal
-  cron:
+  ansible.builtin.cron:
     name: Certbot automatic renewal
     job: "sudo certbot renew --quiet --pre-hook 'systemctl stop httpd' --post-hook 'systemctl start httpd'"
     minute: 25
@@ -41,7 +41,7 @@
 
 
 - name: Ensure new certificate is used
-  copy:
+  ansible.builtin.copy:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
     mode: '{{ item.mode }}'

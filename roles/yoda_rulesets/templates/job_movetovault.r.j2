@@ -21,10 +21,6 @@ uuYcRunIntake2Vault {
 		*intakeRoot = "/*zone/home/grp-intake-*grp";
 		*vaultRoot  = "/*zone/home/grp-vault-*grp";
 		uuLock(*vaultRoot, *status);
-		# FIX ME: currently we ignore existing locks
-		# because locks are not removed when the rule exist with error
-		# need a more robust solution for this!
-		*status = 0; 
 		if (*status == 0) {
 			# we have a lock
 			uuYc2Vault(*intakeRoot, *vaultRoot, *status);

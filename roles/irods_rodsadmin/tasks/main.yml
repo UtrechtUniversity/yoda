@@ -2,7 +2,7 @@
 
 - name: Ensure additional rods admin linux users are present
   become: yes
-  user:
+  ansible.builtin.user:
     user: "{{ item }}"
     home: "/home/{{ irods_admins[item].home | default(item) }}"
     shell: /bin/bash

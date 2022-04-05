@@ -1,0 +1,54 @@
+---
+# copyright Utrecht University
+
+- name: Ensure DMS archive mock service files are present
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: 'dms-archive-mock'
+    dest: '/var/lib/irods/'
+    mode: 0644
+  register: dms_mock_changes
+
+
+- name: Install DMS archive mock service
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  shell: |
+    cd /var/lib/irods/dms-archive-mock
+    python3 -m virtualenv tape_archive_venv
+    . tape_archive_venv/bin/activate
+    python3 setup.py install
+  when: dms_mock_changes
+
+
+- name: Ensure DMS archive mock service is configured
+  template:
+    src: "dmmock_server.json.j2"
+    dest: "/etc/dmmock_server.json"
+    mode: '0644'
+
+
+- name: Ensure mock tape archive resource exist
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  irods_resource:
+    name: "mockTapeArchive"
+    resource_type: "unixfilesystem"
+    host: "{{ irods_icat_fqdn | default('EMPTY_RESC_HOST') }}"
+    vault_path: "/var/lib/irods/Vault3"
+  when: not ansible_check_mode
+
+
+- name: Copy DMF scripts to msiExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  copy:
+    src: "tape_archive/scripts/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: 0755
+  when: not ansible_check_mode
+  with_items:
+    - dmattr
+    - dmget
+    - dmput

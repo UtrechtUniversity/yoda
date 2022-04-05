@@ -1,0 +1,3 @@
+#!/bin/sh
+. /var/lib/irods/dms-archive-mock/tape_archive_venv/bin/activate
+echo "$@" | xargs dmattr  -a state  -d :

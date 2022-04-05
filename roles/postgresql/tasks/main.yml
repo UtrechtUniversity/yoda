@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure PostgreSQL database and dependencies are installed
-  package:
+  ansible.builtin.package:
     name:
       - postgresql-server
       - postgresql-contrib
@@ -11,12 +11,12 @@
 
 
 - name: Initialize PostgreSQL database
-  command: postgresql-setup initdb
+  ansible.builtin.command: postgresql-setup initdb
     creates=/var/lib/pgsql/data/postgresql.conf
 
 
 - name: Password protect loopback IPv4 connections
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /var/lib/pgsql/data/pg_hba.conf
     regexp: 'host\s+all\s+all\s+127.0.0.1/32'
     line: 'host all all 127.0.0.1/32 md5'
@@ -24,7 +24,7 @@
 
 
 - name: Password protect loopback IPv6 connections
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /var/lib/pgsql/data/pg_hba.conf
     regexp: 'host\s+all\s+all\s+::1/128'
     line: 'host all all ::1/128 md5'
@@ -42,7 +42,7 @@
 
 
 - name: Ensure private key file is available for PostgreSQL
-  copy:
+  ansible.builtin.copy:
     src: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
     dest: '/var/lib/pgsql/data/{{ openssl_key_signed }}'
     group: 'postgres'
@@ -52,7 +52,7 @@
 
 
 - name: Ensure certificate file is available for PostgreSQL
-  copy:
+  ansible.builtin.copy:
     src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
     dest: '/var/lib/pgsql/data/{{ openssl_crt_signed }}'
     group: 'postgres'
@@ -62,7 +62,7 @@
 
 
 - name: Ensure PostgreSQL is configured
-  template:
+  ansible.builtin.template:
     src: postgresql.conf.j2
     dest: "/var/lib/pgsql/data/postgresql.conf"
     owner: postgres
@@ -72,7 +72,7 @@
 
 
 - name: Ensure PostgreSQL is enabled and started
-  service:
+  ansible.builtin.service:
     name: postgresql
     enabled: yes
     state: started

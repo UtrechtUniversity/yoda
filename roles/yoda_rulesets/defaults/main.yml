@@ -82,6 +82,9 @@ enable_research: true                   # Enable research module
 # Datarequest module configuration
 enable_datarequest: false               # Enable datarequest module
 
+# OpenSearch module configuration
+enable_open_search: True                # Enable OpenSearch module
+
 # Deposit module configuration
 enable_deposit: false                   # Enable deposit module
 
@@ -99,4 +102,14 @@ token_database: /etc/irods/yoda-ruleset/tokens.db # Location of the database tha
 token_length: 32                                      # Length of data access tokens
 token_lifetime: 72                                    # Lifetime of data access tokens (in hours)
 
+# DMF tape archive
+enable_tape_archive: false
+
 yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
+
+yoda_davrods_fqdn: data.yoda.test           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_davrods_port: 443
+
+yoda_davrods_anonymous_enabled: true
+yoda_davrods_anonymous_fqdn: public.data.yoda.test
+yoda_davrods_anonymous_port: 443

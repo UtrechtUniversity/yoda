@@ -2,14 +2,14 @@
 # copyright Utrecht University
 
 - name: Ensure Yoda MOAI user exists
-  user:
+  ansible.builtin.user:
     name: '{{ yoda_moai_user }}'
     home: '{{ yoda_moai_home }}'
 
 
 - name: Delete legacy Yoda MOAI files
   become: yes
-  file:
+  ansible.builtin.file:
     state: absent
     path: "{{ yoda_moai_home }}/venv"
 
@@ -17,7 +17,7 @@
 - name: Check out Yoda MOAI from Github
   become_user: '{{ yoda_moai_user }}'
   become: yes
-  git:
+  ansible.builtin.git:
     repo: https://github.com/UtrechtUniversity/yoda-moai.git
     dest: '{{ yoda_moai_home }}/yoda-moai'
     version: "{{ yoda_moai_version }}"
@@ -27,13 +27,13 @@
 - name: Ensure Yoda MOAI virtualenv exists
   become_user: '{{ yoda_moai_user }}'
   become: yes
-  command: python3 -m virtualenv "{{ yoda_moai_home }}/yoda-moai/venv"
+  ansible.builtin.command: python3 -m virtualenv "{{ yoda_moai_home }}/yoda-moai/venv"
   args:
     creates: "{{ yoda_moai_home }}/yoda-moai/venv"
 
 
 - name: Ensure Yoda MOAI dependencies are installed
-  pip:
+  ansible.builtin.pip:
     name: '{{ yoda_moai_home }}/yoda-moai'
     extra_args: -e
     virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
@@ -44,7 +44,7 @@
 - name: Install mod-wsgi
   become_user: "root"
   become: yes
-  shell: |
+  ansible.builtin.shell: |
     source {{ yoda_moai_home }}/yoda-moai/venv/bin/activate
     mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf
     exit
@@ -54,7 +54,7 @@
 
 
 - name: Ensure Yoda MOAI home is world readable
-  file:
+  ansible.builtin.file:
     path: '{{ yoda_moai_home }}'
     mode: 0755
     owner: '{{ yoda_moai_user }}'
@@ -63,7 +63,7 @@
 
 
 - name: Ensure inbox user exists
-  user:
+  ansible.builtin.user:
     name: '{{ yoda_inbox_user }}'
 
 
@@ -75,7 +75,7 @@
 
 
 - name: Ensure metadata inbox exists and is readable for moai
-  file:
+  ansible.builtin.file:
     path: '{{ yoda_metadata_inbox }}'
     owner: '{{ yoda_inbox_user }}'
     group: '{{ yoda_moai_user }}'
@@ -84,7 +84,7 @@
 
 
 - name: Install moai.wsgi
-  template:
+  ansible.builtin.template:
     src: moai.wsgi.j2
     dest: '{{ yoda_moai_home }}/moai.wsgi'
     owner: '{{ yoda_moai_user }}'
@@ -94,7 +94,7 @@
 
 
 - name: Install settings.ini for Yoda MOAI
-  template:
+  ansible.builtin.template:
     src: moai-settings.ini.j2
     dest: '{{ yoda_moai_home }}/settings.ini'
     owner: '{{ yoda_moai_user }}'
@@ -106,7 +106,7 @@
 - name: Initialize Yoda MOAI database
   become_user: '{{ yoda_moai_user }}'
   become: yes
-  command: '{{ yoda_moai_home }}/yoda-moai/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
+  ansible.builtin.command: '{{ yoda_moai_home }}/yoda-moai/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
   args:
     creates: '{{ yoda_moai_home }}/moai.db'
 
@@ -121,7 +121,7 @@
 
 
 - name: Ensure selinux context is enforced on shared libraries
-  command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
+  ansible.builtin.command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
   when: ansible_selinux.status == "enabled"
 
 
@@ -135,12 +135,12 @@
 
 
 - name: Ensure selinux context is enforced on Yoda MOAI database
-  command: 'restorecon {{ yoda_moai_home }}/moai.db'
+  ansible.builtin.command: 'restorecon {{ yoda_moai_home }}/moai.db'
   when: filecontext is changed and ansible_selinux.status == "enabled"
 
 
 - name: Configure cronjob to update MOAI database
-  cron:
+  ansible.builtin.cron:
     user: '{{ yoda_moai_user }}'
     name: 'cronjob-update-moai'
     minute: '*/5'
