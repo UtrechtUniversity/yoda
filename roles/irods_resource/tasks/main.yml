@@ -2,17 +2,17 @@
 # copyright Utrecht University
 
 - name: Check iRODS service type is supported
-  fail:
+  ansible.builtin.fail:
     msg: 'Error: irods_service_type value not supported'
   when: irods_service_type not in ["sysv", "systemd"]
 
 
 - name: Populate service facts
-  service_facts:
+  ansible.builtin.service_facts:
 
 
 - name: Stop iRODS service before switching between init systems
-  service:
+  ansible.builtin.service:
     name: irods
     state: stopped
   when: ( ( irods_service_type == "sysv" and
@@ -26,7 +26,7 @@
 
 
 - name: Ensure systemd unit file present
-  template:
+  ansible.builtin.template:
     src: irods.service.j2
     dest: /lib/systemd/system/irods.service
     owner: root
@@ -37,7 +37,7 @@
 
 
 - name: Ensure systemd unit file absent
-  file:
+  ansible.builtin.file:
     path: /lib/systemd/system/irods.service
     state: absent
   notify: Systemd daemon reload
@@ -45,11 +45,11 @@
 
 
 - name: Flush handlers to trigger daemon reload after switching between init systems
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 
 - name: Start iRODS service after switching between init systems
-  service:
+  ansible.builtin.service:
     name: irods
     state: started
   when: ( ( irods_service_type == "sysv" and
@@ -63,7 +63,7 @@
 
 
 - name: Ensure iRODS 4.2.7 packages are absent
-  package:
+  ansible.builtin.package:
     name:
       - irods-uu-microservices-4.2.7_0.8.1
       - irods-sudo-microservices-4.2.7_1.0.0
@@ -86,7 +86,7 @@
 
 
 - name: Ensure iRODS resource server is installed
-  package:
+  ansible.builtin.package:
     name:
       - irods-server-4.2.11-1
       - irods-runtime-4.2.11-1
@@ -96,24 +96,24 @@
 
 
 - name: Flush handlers to restart iRODS if needed
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 
 - name: Retrieve iRODS iCAT server
-  set_fact:
+  ansible.builtin.set_fact:
     'irods_icat': '{{ item }}'
   with_inventory_hostnames:
     - 'icats:&{{ instance }}'
 
 
 - name: Check if connection to iCAT server can be established
-  wait_for:
+  ansible.builtin.wait_for:
     host: '{{ irods_icat }}'
     port: 1247
 
 
 - name: Store iRODS server keys in variables
-  set_fact:
+  ansible.builtin.set_fact:
     '{{ item.fact }}': '{{ item.key }}'
   with_items:
     - fact: irods_zone_key
@@ -126,14 +126,14 @@
 
 
 - name: Check if iRODS config file exists
-  stat:
+  ansible.builtin.stat:
     path: /etc/irods/service_account.config
   ignore_errors: true
   register: irods_config
 
 
 - name: Copy responses for setup_irods.py
-  template:
+  ansible.builtin.template:
     src: setup_irods_consumer.json.j2
     dest: /etc/irods/setup_irods_consumer.json
     mode: '0644'
@@ -143,20 +143,20 @@
 
 - name: Configure iRODS resource server
   become: yes
-  command: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_consumer.json
+  ansible.builtin.command: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_consumer.json
   args:
     creates: /etc/irods/service_account.config
   when: not ansible_check_mode
 
 
 - name: Ensure iRODS setup file is absent
-  file:
+  ansible.builtin.file:
     path: /etc/irods/setup_irods_consumer.json
     state: absent
 
 
 - name: Make iRODS service account owner of iRODS directories
-  file:
+  ansible.builtin.file:
     group: '{{ irods_service_account }}'
     owner: '{{ irods_service_account }}'
     recurse: yes
@@ -169,7 +169,7 @@
 - name: Ensure core.re is configured
   become_user: '{{ irods_service_account }}'
   become: yes
-  template:
+  ansible.builtin.template:
     src: core.re.j2
     dest: /etc/irods/core.re
     mode: 0644
@@ -178,7 +178,7 @@
 - name: Ensure patched Python genquery module is present
   become_user: "{{ irods_service_account }}"
   become: yes
-  copy:
+  ansible.builtin.copy:
     src: "genquery.py"
     dest: "/etc/irods/genquery.py"
     mode: 0644
@@ -187,7 +187,7 @@
 - name: Ensure core Python rules are present
   become_user: "{{ irods_service_account }}"
   become: yes
-  copy:
+  ansible.builtin.copy:
     content: ""
     dest: "/etc/irods/core.py"
     mode: 0644
@@ -197,21 +197,21 @@
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: 'ils /{{ irods_zone }}/home'
+  ansible.builtin.command: 'ils /{{ irods_zone }}/home'
   register: ils
   ignore_errors: true
   changed_when: ils is failed
 
 
 - name: Start iRODS server
-  service:
+  ansible.builtin.service:
     name: irods
     state: started
   when: ils is failed
 
 
 - name: Enable iRODS systemd service
-  service:
+  ansible.builtin.service:
     name: irods
     enabled: yes
     use: service
@@ -221,7 +221,7 @@
 - name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
   become: yes
-  command: 'ils /{{ irods_zone }}/home'
+  ansible.builtin.command: 'ils /{{ irods_zone }}/home'
   register: ils
   until: ils is succeeded
   retries: 5
@@ -250,28 +250,28 @@
 
 
 - name: Ensure private key file is available for iRODS
-  command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
+  ansible.builtin.command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
   args:
     chdir: '/etc/irods'
     creates: '{{ openssl_key_signed }}'
 
 
 - name: Ensure CA chain with signed certificate is present
-  file:
+  ansible.builtin.file:
     src: "{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}"
     dest: "/etc/irods/{{ openssl_crt_signed_and_chain }}"
     state: link
 
 
 - name: Ensure Diffie-Hellman parameters are present
-  command: openssl dhparam -2 -out {{ openssl_dhparams }} 2048
+  ansible.builtin.command: openssl dhparam -2 -out {{ openssl_dhparams }} 2048
   args:
     chdir: '/etc/irods'
     creates: '{{ openssl_dhparams }}'
 
 
 - name: Ensure iRODS has access to PKI files
-  file:
+  ansible.builtin.file:
     path: '{{ item }}'
     mode: 0644
     group: 'root'
@@ -284,7 +284,7 @@
 
 
 - name: Ensure iRODS has access to PKI files
-  file:
+  ansible.builtin.file:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
     mode: 0644

@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Insert host entries for every development server
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/hosts
     line: "{{ hostvars[item].ansible_host }}
       {{ hostvars[item].ansible_fqdn }}

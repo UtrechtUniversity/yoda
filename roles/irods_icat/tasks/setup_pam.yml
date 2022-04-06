@@ -2,13 +2,13 @@
 # copyright Utrecht University
 
 - name: Ensure PAM radius is absent
-  package:
+  ansible.builtin.package:
     name: pam_radius
     state: absent
 
 
 - name: Ensure external user check is present
-  template:
+  ansible.builtin.template:
     src: is-user-external.sh.j2
     dest: /usr/local/bin/is-user-external.sh
     owner: root
@@ -18,7 +18,7 @@
 
 
 - name: Ensure external user authentication is present
-  template:
+  ansible.builtin.template:
     src: external-auth.py.j2
     dest: /usr/local/bin/external-auth.py
     owner: root
@@ -28,7 +28,7 @@
 
 
 - name: Ensure token authentication is present
-  template:
+  ansible.builtin.template:
     src: token-auth.py.j2
     dest: /usr/local/bin/token-auth.py
     owner: root
@@ -38,14 +38,14 @@
 
 
 - name: Ensure /etc/pam.d/irods is configured
-  template:
+  ansible.builtin.template:
     src: 'irods_pam.j2'
     dest: '/etc/pam.d/irods'
     mode: '0644'
 
 
 - name: Ensure deprecated /etc/pam_radius.conf is removed
-  file:
+  ansible.builtin.file:
     path: /etc/pam_radius.conf
     state: absent
 
@@ -54,7 +54,7 @@
   become_user: '{{ irods_service_account }}'
   become: yes
   when: oidc_active is defined and oidc_active is sameas true
-  template:
+  ansible.builtin.template:
     src: oidc.py.j2
     dest: /var/lib/irods/msiExecCmd_bin/oidc.py
     owner: irods
@@ -63,7 +63,7 @@
 
 
 - name: Ensure correct file ownership and mode on PamAuthCheck
-  file:
+  ansible.builtin.file:
     path: /usr/sbin/irodsPamAuthCheck
     owner: root
     group: root

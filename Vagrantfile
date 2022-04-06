@@ -9,7 +9,7 @@ VAGRANTFILE_API_VERSION = "2"
 BOX = 'generic/centos7'
 GUI = false
 CPU = 2
-RAM = 2048
+RAM = 4096
 
 DOMAIN  = ".yoda.test"
 NETWORK = "192.168.56."

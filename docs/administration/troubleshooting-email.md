@@ -10,7 +10,7 @@ expected, an email test script is included in the yoda-ruleset repository.
 
 It can be called from the command line as the irods user. For example:
 ```bash
-/etc/irods/yoda-ruleset/tools/mail-test.sh "a.admin@uu.nl"
+/etc/irods/yoda-ruleset/tools/mail/mail-test.sh "a.admin@uu.nl"
 ```
 
 The expected output is:
