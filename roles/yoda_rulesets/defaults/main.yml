@@ -113,3 +113,6 @@ yoda_davrods_port: 443
 yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test
 yoda_davrods_anonymous_port: 443
+
+# Cleanup functionality in research area
+cleanup_temp_files: ._*,.DS_Store,Thumbs.db  # String containing masks that temporary files have to comply to

@@ -22,3 +22,4 @@ has_toc: false
 - [Restore collection](restore-collection.md)
 - [Configuring OIDC](configuring-openidc.md)
 - [Setting job flags](setting-job-flags.md)
+- [Configuring cleanup temporary files](configuring-c.md)
