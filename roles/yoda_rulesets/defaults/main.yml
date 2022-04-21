@@ -77,7 +77,8 @@ eus_api_port: 8443                      # External User Service API port
 eus_api_secret: PLACEHOLDER             # External User Service API secret
 
 # Research module configuration
-enable_research: true                   # Enable research module
+enable_research: true                               # Enable research module
+temporary_files: ['._*', '.DS_Store', 'Thumbs.db' ] # List of temporary files for cleanup functionality
 
 # Datarequest module configuration
 enable_datarequest: false               # Enable datarequest module
@@ -113,6 +114,3 @@ yoda_davrods_port: 443
 yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test
 yoda_davrods_anonymous_port: 443
-
-# Cleanup functionality in research area
-cleanup_temp_files: ._*,.DS_Store,Thumbs.db  # String containing masks that temporary files have to comply to

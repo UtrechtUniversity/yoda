@@ -19,7 +19,6 @@ default_yoda_schema: default-1                     # Default Yoda metadata schem
 yoda_prefix: UU01                                  # Prefix for internal portion of persistent identifier
 update_schemas: 1                                  # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files: PLACEHOLDER                      # Location of Yoda credentials files
-cleanup_temp_files: PLACEHOLDER                    # list of comma separated masks temporary files need to comply to for cleanup functionality
 
 # Research module configuration
 enable_research: True                              # Enable research module
