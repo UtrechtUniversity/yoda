@@ -58,3 +58,5 @@ token_lifetime                 = '{{ token_lifetime }}'
 {% endif %}
 
 enable_tape_archive            = '{{ ["false", "true"][enable_tape_archive|int] }}'
+
+temporary_files                = '{{ temporary_files | join (" ") }}'

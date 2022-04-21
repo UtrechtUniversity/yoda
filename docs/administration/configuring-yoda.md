@@ -178,6 +178,7 @@ yoda_prefix                  | Prefix for internal portion of persistent identif
 update_rulesets              | Update already installed rulesets with git
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
+temporary_files              | List of temporary files for cleanup functionality
 
 ### Deposit module configuration
 
