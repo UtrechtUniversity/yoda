@@ -25,23 +25,23 @@ The mask(s) will be used to select the corresponding files and show to a user.
 It is possible to search for files that have a specific name.  
 For example:  
 ```  
-    mask definition: 'Thumbs.db'  ```
+    mask definition: 'Thumbs.db'  
+```
 The mask will search exact matches of the filename 'Thumbs.db'.  
 
 ### Mask - use of wildcards
 It is possible to use all common wildcards in the creation of a mask.  
 For example:
-
 ```  
-    mask definition with wildcard:  '._*''  ```
+    mask definition with wildcard:  '._*''  
+```
 The mask will search for files whose name match the given wildcards.
-
 
 ### Multiple masks
 Masks can be added by concatenation being sepecated by a comma.
-
 ```  
-    multiple masks in mask defintion: '._*','Thumbs.db'  ```
+    multiple masks in mask defintion: '._*','Thumbs.db'  
+```
 
 ## Configuring the variable
 When creating a new Yoda instance, setup variable 'temporary_files' in the group_vars as explained in [Configuring Yoda](configuring-yoda.md) and run the playbook.
