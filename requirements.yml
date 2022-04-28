@@ -1,0 +1,8 @@
+---
+collections:
+  - name: community.general
+    version: 4.6.0
+  - name: community.crypto
+    version: 2.2.3
+  - name: community.postgresql
+    version: 1.7.1
