@@ -3,6 +3,5 @@ skip_list:
   - truthy
   - command-instead-of-module
   - experimental
-  - fqcn-builtins
   - no-handler
   - yaml
