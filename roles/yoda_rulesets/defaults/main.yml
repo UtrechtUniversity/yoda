@@ -77,7 +77,8 @@ eus_api_port: 8443                      # External User Service API port
 eus_api_secret: PLACEHOLDER             # External User Service API secret
 
 # Research module configuration
-enable_research: true                   # Enable research module
+enable_research: true                               # Enable research module
+temporary_files: ['._*', '.DS_Store', 'Thumbs.db']  # List of temporary files for cleanup functionality
 
 # Datarequest module configuration
 enable_datarequest: false               # Enable datarequest module

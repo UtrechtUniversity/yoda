@@ -25,7 +25,7 @@ Released: TBA
 - DataCite connection uses REST API instead of legacy MDS
 - Several UX improvements to default theme
 - Upgrade iRODS to v4.2.11
-- Upgrade python-irodsclient to v1.1.2
+- Upgrade python-irodsclient to v1.1.3
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
 
 

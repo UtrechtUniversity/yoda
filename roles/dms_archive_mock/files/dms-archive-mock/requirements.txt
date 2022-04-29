@@ -1,3 +1,3 @@
 Flask
 requests
-numpy
+numpy==1.19.5

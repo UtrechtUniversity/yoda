@@ -1,0 +1,7 @@
+skip_list:
+  - line-length
+  - truthy
+  - command-instead-of-module
+  - experimental
+  - no-handler
+  - yaml
