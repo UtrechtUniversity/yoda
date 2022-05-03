@@ -38,6 +38,7 @@ chmod 0600 ~/yoda/vagrant/ssh/vagrant
 
 4. Deploy Yoda to the virtual machines:
 ```bash
+ansible-galaxy collection install -r requirements.yml
 ansible-playbook -i environments/development/allinone/ playbook.yml
 ```
 
