@@ -307,13 +307,13 @@
   },"51": {
     "doc": "Deploying Yoda",
     "title": "Deploying new instance",
-    "content": "Configure the new instance and run the Yoda playbook to deploy. For example, deploying the instance ‘yoda’ in an environment called ‘production’: . ansible-playbook -i environments/development playbook.yml --limit=yoda -K . ",
+    "content": "Configure the new instance and run the Yoda playbook to deploy. For example, deploying the instance ‘yoda’ in an environment called ‘production’: . ansible-galaxy collection install -r requirements.yml ansible-playbook -i environments/development playbook.yml --limit=yoda -K . ",
     "url": "/yoda/administration/deploying-yoda.html#deploying-new-instance",
     "relUrl": "/administration/deploying-yoda.html#deploying-new-instance"
   },"52": {
     "doc": "Deploying Yoda",
     "title": "Upgrading existing instance",
-    "content": "To upgrade an existing Yoda instance update your Yoda Ansible repository to include the latest changes: . git pull . Upgrade the configuration of the Yoda Instance and then run the Yoda playbook: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -K . You may want to run the Yoda playbook in check mode first to see the changes it will make: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -CDK . ",
+    "content": "To upgrade an existing Yoda instance update your Yoda Ansible repository to include the latest changes: . git pull . Install all Ansible collections needed to deploy Yoda: . ansible-galaxy collection install -r requirements.yml . Upgrade the configuration of the Yoda Instance and then run the Yoda playbook: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -K . You may want to run the Yoda playbook in check mode first to see the changes it will make: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -CDK . ",
     "url": "/yoda/administration/deploying-yoda.html#upgrading-existing-instance",
     "relUrl": "/administration/deploying-yoda.html#upgrading-existing-instance"
   },"53": {
@@ -533,11 +533,11 @@
     "url": "/yoda/administration/hotfixing-ruleset.html",
     "relUrl": "/administration/hotfixing-ruleset.html"
   },"89": {
-    "doc": "Administration Tasks",
-    "title": "Administration Tasks",
-    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | Configuring cleanup temporary files | . ",
-    "url": "/yoda/administration/",
-    "relUrl": "/administration/"
+    "doc": "Release Notes",
+    "title": "Release Notes",
+    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "url": "/yoda/release-notes/",
+    "relUrl": "/release-notes/"
   },"90": {
     "doc": "Development",
     "title": "Development",
@@ -545,11 +545,11 @@
     "url": "/yoda/development/",
     "relUrl": "/development/"
   },"91": {
-    "doc": "Release Notes",
-    "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
-    "url": "/yoda/release-notes/",
-    "relUrl": "/release-notes/"
+    "doc": "Administration Tasks",
+    "title": "Administration Tasks",
+    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | Configuring cleanup temporary files | . ",
+    "url": "/yoda/administration/",
+    "relUrl": "/administration/"
   },"92": {
     "doc": "API",
     "title": "API",
@@ -557,53 +557,53 @@
     "url": "/yoda/design/api/",
     "relUrl": "/design/api/"
   },"93": {
-    "doc": "Metadata",
-    "title": "Metadata",
-    "content": " ",
-    "url": "/yoda/design/metadata/",
-    "relUrl": "/design/metadata/"
-  },"94": {
     "doc": "Other",
     "title": "Other",
     "content": " ",
     "url": "/yoda/design/other/",
     "relUrl": "/design/other/"
-  },"95": {
-    "doc": "Processes",
-    "title": "Processes",
+  },"94": {
+    "doc": "Metadata",
+    "title": "Metadata",
     "content": " ",
-    "url": "/yoda/design/processes/",
-    "relUrl": "/design/processes/"
-  },"96": {
+    "url": "/yoda/design/metadata/",
+    "relUrl": "/design/metadata/"
+  },"95": {
     "doc": "System Overview",
     "title": "System overview",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
     "url": "/yoda/design/overview/#system-overview",
     "relUrl": "/design/overview/#system-overview"
-  },"97": {
+  },"96": {
     "doc": "System Overview",
     "title": "Core modules",
     "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     "relUrl": "/design/overview/#core-modules"
-  },"98": {
+  },"97": {
     "doc": "System Overview",
     "title": "Additional modules",
     "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
     "url": "/yoda/design/overview/#additional-modules",
     "relUrl": "/design/overview/#additional-modules"
-  },"99": {
+  },"98": {
     "doc": "System Overview",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/#overview",
     "relUrl": "/design/overview/#overview"
-  },"100": {
+  },"99": {
     "doc": "System Overview",
     "title": "System Overview",
     "content": " ",
     "url": "/yoda/design/overview/",
     "relUrl": "/design/overview/"
+  },"100": {
+    "doc": "Processes",
+    "title": "Processes",
+    "content": " ",
+    "url": "/yoda/design/processes/",
+    "relUrl": "/design/processes/"
   },"101": {
     "doc": "Software Design",
     "title": "Software Design",
@@ -1399,7 +1399,7 @@
   },"233": {
     "doc": "v1.8",
     "title": "Upgrading from previous release",
-    "content": "Upgrade is supported by Ansible (2.9.x). Requires Yoda external user service to be on version 1.5.x or higher. Requires Yoda public server to be on version 1.6.x or higher. | Backup/copy custom configurations made to Yoda version 1.7. To view what files were changed from the defaults, run git diff. | After making sure the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Checkout branch release-1.8 of the Yoda Git repository. git checkout release-1.8 . | Change the default schema from default-1 to default-2 in configuration. Discipline must be present in all vault packages before migration. I.e. discipline must be manually added if not present yet. This requires an intervention by the responsible datamanager beforehand. default_yoda_schema: default-2 . | Two OpenID Connect configuration options are added and one has been replaced. If OIDC is active (oidc_active), make sure you have configured, oidc_jwks_uri and oidc_jwt_issuer. Option oidc_domain is replaced with oidc_domains. Example: oidc_domains: ['domain1.tld', 'domain2.tld'] . | DataCite connection is now using REST API instead of legacy MDS. If DataCite is configured the option datacite_server should be replaced with datacite_rest_api_url. Example: datacite_rest_api_url: api.test.datacite.org . | Run the Ansible playbook in check mode. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update all metadata JSON in the vault to latest metadata JSON version (default-1 to default-2). irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | . ",
+    "content": "Upgrade is supported by Ansible (2.9.x). Requires Yoda external user service to be on version 1.5.x or higher. Requires Yoda public server to be on version 1.6.x or higher. | Backup/copy custom configurations made to Yoda version 1.7. To view what files were changed from the defaults, run git diff. | After making sure the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Checkout branch release-1.8 of the Yoda Git repository. git checkout release-1.8 . | Change the default schema from default-1 to default-2 in configuration. Discipline must be present in all vault packages before migration. I.e. discipline must be manually added if not present yet. This requires an intervention by the responsible datamanager beforehand. default_yoda_schema: default-2 . | Two OpenID Connect configuration options are added and one has been replaced. If OIDC is active (oidc_active), make sure you have configured, oidc_jwks_uri and oidc_jwt_issuer. Option oidc_domain is replaced with oidc_domains. Example: oidc_domains: ['domain1.tld', 'domain2.tld'] . | DataCite connection is now using REST API instead of legacy MDS. If DataCite is configured the option datacite_server should be replaced with datacite_rest_api_url. Example: datacite_rest_api_url: api.test.datacite.org . | Install all Ansible collections needed to deploy Yoda: ansible-galaxy collection install -r requirements.yml . | Run the Ansible playbook in check mode. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update all metadata JSON in the vault to latest metadata JSON version (default-1 to default-2). irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | . ",
     "url": "/yoda/release-notes/release-1.8.html#upgrading-from-previous-release",
     "relUrl": "/release-notes/release-1.8.html#upgrading-from-previous-release"
   },"234": {
@@ -1477,7 +1477,7 @@
   },"246": {
     "doc": "Setting up development environment",
     "title": "Setting up development environment",
-    "content": "Setting up a Yoda development environment is easy, you only need the following: . | VirtualBox (&gt;= 5.2) | Vagrant (&gt;= 2.0) | . On GNU/Linux or macOS you also need: . | Ansible (&gt;= 2.7) | . The guide below will deploy an ‘allinone’ instance (all functional roles in one virtual machine) with the default configuration. | Clone the Yoda repository and checkout the development branch: git clone https://github.com/UtrechtUniversity/yoda.git cd yoda git checkout development . | Configure the virtual machines for development: vagrant up . | On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS): vagrant ssh controller cd ~/yoda . On a GNU/Linux or macOS host make sure the SSH keys have the right permissions (skip this step on Windows): . chmod 0600 ~/yoda/vagrant/ssh/vagrant . | Deploy Yoda to the virtual machines: ansible-playbook -i environments/development/allinone/ playbook.yml . | Add following hosts to /etc/hosts (GNU/Linux or macOS) or %SystemRoot%\\System32\\drivers\\etc\\hosts (Windows): 192.168.56.10 portal.yoda.test 192.168.56.10 data.yoda.test 192.168.56.10 public.data.yoda.test 192.168.56.10 public.yoda.test 192.168.56.10 eus.yoda.test . | Provision Yoda with test data: ansible-playbook -i environments/development/allinone/ test.yml . | [OPTIONAL] Provision Yoda with Zabbix agent and monitoring scripts: . Configure Zabbix server in environments/development/allinone/group_vars/allinone.yml and make sure a Zabbix server is running on this address, you could use a Zabbix appliance in Virtualbox. zabbix_server: 192.168.56.20 . Run the Zabbix playbook . ansible-playbook -i environments/development/allinone/ zabbix.yml . | . ",
+    "content": "Setting up a Yoda development environment is easy, you only need the following: . | VirtualBox (&gt;= 5.2) | Vagrant (&gt;= 2.0) | . On GNU/Linux or macOS you also need: . | Ansible (&gt;= 2.7) | . The guide below will deploy an ‘allinone’ instance (all functional roles in one virtual machine) with the default configuration. | Clone the Yoda repository and checkout the development branch: git clone https://github.com/UtrechtUniversity/yoda.git cd yoda git checkout development . | Configure the virtual machines for development: vagrant up . | On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS): vagrant ssh controller cd ~/yoda . On a GNU/Linux or macOS host make sure the SSH keys have the right permissions (skip this step on Windows): . chmod 0600 ~/yoda/vagrant/ssh/vagrant . | Deploy Yoda to the virtual machines: ansible-galaxy collection install -r requirements.yml ansible-playbook -i environments/development/allinone/ playbook.yml . | Add following hosts to /etc/hosts (GNU/Linux or macOS) or %SystemRoot%\\System32\\drivers\\etc\\hosts (Windows): 192.168.56.10 portal.yoda.test 192.168.56.10 data.yoda.test 192.168.56.10 public.data.yoda.test 192.168.56.10 public.yoda.test 192.168.56.10 eus.yoda.test . | Provision Yoda with test data: ansible-playbook -i environments/development/allinone/ test.yml . | [OPTIONAL] Provision Yoda with Zabbix agent and monitoring scripts: . Configure Zabbix server in environments/development/allinone/group_vars/allinone.yml and make sure a Zabbix server is running on this address, you could use a Zabbix appliance in Virtualbox. zabbix_server: 192.168.56.20 . Run the Zabbix playbook . ansible-playbook -i environments/development/allinone/ zabbix.yml . | . ",
     "url": "/yoda/development/setting-up-development-environment.html",
     "relUrl": "/development/setting-up-development-environment.html"
   },"247": {
