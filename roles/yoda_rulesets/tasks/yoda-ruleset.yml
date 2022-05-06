@@ -533,7 +533,7 @@
 - name: Configure cronjob to check datarequest review period expiration
   become_user: "{{ irods_service_account }}"
   become: yes
-  cron:
+  ansible.builtin.cron:
     name: 'datarequest-check-review-period-expiration'
     minute: '*'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
