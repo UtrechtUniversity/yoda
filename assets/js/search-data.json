@@ -373,7 +373,7 @@
   },"62": {
     "doc": "Development tips",
     "title": "General",
-    "content": "Watch latest iRODS log without unnecessary noise: . ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v \"Agent process started for puser=rods\" . Watch flake8 check on Python code: . watch flake8 . Run flake8 check on source file change (requires the entr package): . ls *py | entr flake8 . Rebuild portal Javascript assets on source file change: ./node_modules/.bin/webpack -d -w . ",
+    "content": "Watch latest iRODS log without unnecessary noise: . ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v \"Agent process started for puser=rods\" . Watch flake8 check on Python code: . watch flake8 . Run flake8 check on source file change (requires the entr package): . ls *py | entr flake8 . Reload Flask on project change (requires the entr package; run as root): . cd /var/www/yoda &amp;&amp; find /etc/irods/yoda-ruleset . \\( -path *.swp -o -path */node_modules/* -o -path ./venv -o -path ./.git \\) -prune -o -print | entr touch yoda_debug.wsgi . Rebuild portal Javascript assets on source file change: ./node_modules/.bin/webpack -d -w . ",
     "url": "/yoda/development/development-tips.html#general",
     "relUrl": "/development/development-tips.html#general"
   },"63": {
