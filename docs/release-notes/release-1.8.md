@@ -66,26 +66,31 @@ oidc_domains: ['domain1.tld', 'domain2.tld']
 datacite_rest_api_url: api.test.datacite.org
 ```
 
-7. Run the Ansible playbook in check mode.
+7. Install all Ansible collections needed to deploy Yoda:
+```bash
+ansible-galaxy collection install -r requirements.yml
+```
+
+8. Run the Ansible playbook in check mode.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-8. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
+9. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-9. Update all metadata JSON in the vault to latest metadata JSON version (`default-1` to `default-2`).
+10. Update all metadata JSON in the vault to latest metadata JSON version (`default-1` to `default-2`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-10. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+11. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
