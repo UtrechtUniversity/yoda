@@ -25,7 +25,6 @@
     extra_opts:
       - --transform
       - 's/^opensearch-{{ opensearch.version }}/opensearch/'
-  register: installation
 
 
 - name: Disable plugins
@@ -91,6 +90,15 @@
   notify: Restart firewall
 
 
+- name: Discover presence of index
+  ansible.builtin.uri:
+    url: "http://{{ yoda_portal_host }}:9200/yoda"
+    method: GET
+    status_code: 200
+  register: present
+  ignore_errors: true
+
+
 - name: Install initial index
   ansible.builtin.uri:
     url: "http://{{ yoda_portal_host }}:9200/yoda"
@@ -102,4 +110,4 @@
   until: index is succeeded
   retries: 10
   delay: 5
-  when: installation is changed
+  when: present is failed
