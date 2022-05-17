@@ -50,7 +50,7 @@
 
 
 - name: Ensure Python dependencies are installed
-  package:
+  ansible.builtin.package:
     name:
       - python-pip
     state: present
@@ -58,7 +58,7 @@
 
 
 - name: Ensure pysqlcipher3 is installed
-  pip:
+  ansible.builtin.pip:
     name:
       - pysqlcipher3==1.0.4
     state: present
