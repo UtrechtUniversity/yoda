@@ -27,6 +27,44 @@
   when: external_users
 
 
+- name: Download sqlcipher rpms
+  ansible.builtin.get_url:
+    url: '{{ item.url }}/{{ item.filename }}'
+    dest: '{{ rpm_dest_dir }}/{{ item.filename }}'
+    checksum: '{{ item.checksum }}'
+    mode: 0644
+  with_items:
+    - { 'url': '{{ sqlcipher.url }}', 'filename': '{{ sqlcipher.filename }}', 'checksum': '{{ sqlcipher.checksum }}' }
+    - { 'url': '{{ sqlcipher_dev.url }}', 'filename': '{{ sqlcipher_dev.filename }}', 'checksum': '{{ sqlcipher_dev.checksum }}' }
+  when: enable_tokens
+
+
+- name: Install sqlcipher from downloaded rpms
+  ansible.builtin.package:
+    name: '{{ rpm_dest_dir }}/{{ item }}'
+    state: present
+  with_items:
+    - '{{ sqlcipher.filename }}'
+    - '{{ sqlcipher_dev.filename }}'
+  when: enable_tokens
+
+
+- name: Ensure Python dependencies are installed
+  package:
+    name:
+      - python-pip
+    state: present
+  when: enable_tokens
+
+
+- name: Ensure pysqlcipher3 is installed
+  pip:
+    name:
+      - pysqlcipher3==1.0.4
+    state: present
+  when: enable_tokens
+
+
 - name: Ensure token authentication is present
   ansible.builtin.template:
     src: token-auth.py.j2
