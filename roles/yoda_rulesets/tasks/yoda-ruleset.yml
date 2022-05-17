@@ -463,6 +463,17 @@
     job: '/bin/bash /etc/irods/yoda-ruleset/tools/mail/mail-weekly-report.sh >/dev/null 2>&1'
 
 
+- name: Configure cronjob for vault package retention notifications
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  ansible.builtin.cron:
+    name: 'notification-datamanager-retention.sh'
+    minute: '30'
+    hour: '03'
+    day: '1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification-datamanager-retention.sh >/dev/null 2>&1'
+
+
 - name: Find out if datarequest system collection exists
   become_user: "{{ irods_service_account }}"
   become: yes
