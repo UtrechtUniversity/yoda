@@ -10,12 +10,33 @@
 
 uuYcRunIntake2Vault {
         # intake areas can be added to the grouplist as needed
-        *grouplist = list ("initial","test");
+        *grouplist = list ("initial", "test", "foo");
+        *grp_prefixes = list ("grp-intake-", "intake-");
         *zone = $rodsZoneClient;
+
         foreach (*grp in *grouplist) {
-                *intakeRoot = "/*zone/home/grp-intake-*grp";
+                *intakeRoot = "";
+                *found = false;
+
+                foreach (*prefix in *grp_prefixes) {
+                    *grp_name = *prefix ++ *grp;
+                    foreach(*row in SELECT USER_GROUP_NAME
+                        WHERE USER_GROUP_NAME = '*grp_name'
+                        AND USER_TYPE = 'rodsgroup') {
+
+                        *path=*row.USER_GROUP_NAME;
+                        *found = true;
+                        break;
+                    }
+                    if (*found) {
+                        break;
+                    }
+                }
+                *intakeRoot = "/*zone/home/*grp_name";
                 *vaultRoot  = "/*zone/home/grp-vault-*grp";
-                uuLock(*vaultRoot, *status);
+
+                # uuLock(*vaultRoot, *status);
+                *status = 0;
                 if (*status == 0) {
                         # we have a lock
                         uuYc2Vault(*intakeRoot, *vaultRoot, *status);
