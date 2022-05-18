@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # {{ ansible_managed }}
 
-import pysqlcipher3
+from pysqlcipher3 import dbapi2 as sqlite3
 from datetime import datetime
 from traceback import print_exc
 
@@ -19,7 +19,7 @@ def pam_sm_authenticate(pamh, flags, argv):
         return pamh.PAM_AUTH_ERR
 
     authenticated = False
-    conn = pysqlcipher3.connect(TOKEN_DB)
+    conn = sqlite3.connect(TOKEN_DB)
 
     with conn:
         try:
