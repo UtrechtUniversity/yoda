@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # {{ ansible_managed }}
 
-from pysqlcipher3 import dbapi2 as sqlite3
 from datetime import datetime
 from traceback import print_exc
+
+from pysqlcipher3 import dbapi2 as sqlite3
 
 TOKEN_DB = '{{ token_database }}'
 
