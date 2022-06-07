@@ -463,6 +463,17 @@
     job: '/bin/bash /etc/irods/yoda-ruleset/tools/mail/mail-weekly-report.sh >/dev/null 2>&1'
 
 
+- name: Configure cronjob for vault package retention notifications
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  ansible.builtin.cron:
+    name: 'notification-datamanager-retention.sh'
+    minute: '30'
+    hour: '03'
+    day: '1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification-datamanager-retention.sh >/dev/null 2>&1'
+
+
 - name: Find out if datarequest system collection exists
   become_user: "{{ irods_service_account }}"
   become: yes
@@ -530,9 +541,21 @@
     - admin-datarequest-temp-write-permission.sh
 
 
+- name: Configure cronjob to check datarequest review period expiration
+  become_user: "{{ irods_service_account }}"
+  become: yes
+  ansible.builtin.cron:
+    name: 'datarequest-check-review-period-expiration'
+    minute: '*'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
+      /etc/irods/irods-ruleset-uu/tools/datarequest-check-review-period-expiration.r >/dev/null 2>&1'
+  when: enable_datarequest and not ansible_check_mode
+
+
 - name: Ensure token database is present
   become_user: '{{ irods_service_account }}'
   become: yes
-  ansible.builtin.command: '/etc/irods/yoda-ruleset/tools/setup_tokens.sh {{ token_database }}'
+  ansible.builtin.command: '/etc/irods/yoda-ruleset/tools/setup_tokens.sh {{ token_database }} {{ token_db_password }}'
   args:
     creates: "{{ token_database }}"
+  when: enable_tokens

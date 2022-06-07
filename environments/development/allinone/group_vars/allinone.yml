@@ -41,10 +41,11 @@ datarequest_help_contact_email: PLACEHOLDER        # Help contact email
 enable_data_package_reference: True                # Enable Data Package References for vault data packages
 
 # Data Access Tokens
-enable_tokens: True                                   # Enable data access tokens for webDAV and iCommands
-token_database: /etc/irods/yoda-ruleset/tokens.db     # Location of the database that contain the tokens
-token_length: 32                                      # Length of data access tokens
-token_lifetime: 72                                    # Lifetime of data access tokens (in hours)
+enable_tokens: True                                     # Enable data access tokens for webDAV and iCommands
+token_database: /etc/irods/yoda-ruleset/accesstokens.db # Location of the database that contain the tokens
+token_db_password: test
+token_length: 32                                        # Length of data access tokens
+token_lifetime: 72                                      # Lifetime of data access tokens (in hours)
 
 # DMF tape archive
 enable_tape_archive: false
