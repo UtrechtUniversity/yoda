@@ -24,7 +24,7 @@ def pam_sm_authenticate(pamh, flags, argv):
 
     with conn:
         try:
-            conn.execute("PRAGMA key='{{ token_db_password }}'")
+            conn.execute("PRAGMA key='{{ token_database_password }}'")
 
             # Check if token matches an active token from the user.
             for row in conn.execute('''SELECT token FROM tokens WHERE user=:user_id AND exp_time > :now''',

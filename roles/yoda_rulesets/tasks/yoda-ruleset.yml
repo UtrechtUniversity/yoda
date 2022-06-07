@@ -555,7 +555,7 @@
 - name: Ensure token database is present
   become_user: '{{ irods_service_account }}'
   become: yes
-  ansible.builtin.command: '/etc/irods/yoda-ruleset/tools/setup_tokens.sh {{ token_database }} {{ token_db_password }}'
+  ansible.builtin.command: '/etc/irods/yoda-ruleset/tools/setup_tokens.sh {{ token_database }} {{ token_database_password }}'
   args:
     creates: "{{ token_database }}"
   when: enable_tokens
