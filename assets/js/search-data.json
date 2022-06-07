@@ -145,7 +145,7 @@
   },"24": {
     "doc": "Configuring Data Access Passwords",
     "title": "Configuring the variables",
-    "content": "When creating a new Yoda instance, setup the variables in the group_vars as explained in Configuring Yoda and run the playbook. Alternatively, you can choose to pass the variables with the –extra-vars option every time when running the Ansible playbook. The development group_vars contains examples for all of the variables. For Data Access Passwords to function properly it requires the following variables to be set: . | enable_tokens (default: false), used by Ansible during setup. | . For customization purposes, you can also configure: . | token_database | token_length | token_lifetime | . ",
+    "content": "When creating a new Yoda instance, setup the variables in the group_vars as explained in Configuring Yoda and run the playbook. Alternatively, you can choose to pass the variables with the –extra-vars option every time when running the Ansible playbook. The development group_vars contains examples for all of the variables. For Data Access Passwords to function properly it requires the following variables to be set: . | enable_tokens (default: false), used by Ansible during setup. | token_database_password, used as password for the token database. | . For customization purposes, you can also configure: . | token_database | token_length | token_lifetime | . ",
     "url": "/yoda/administration/configuring-data-access-passwords.html#configuring-the-variables",
     "relUrl": "/administration/configuring-data-access-passwords.html#configuring-the-variables"
   },"25": {
@@ -205,7 +205,7 @@
   },"34": {
     "doc": "Configuring Yoda",
     "title": "Data Access Tokens configuration",
-    "content": "| Variable | Description | . | enable_tokens | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be true or false | . | token_database | Location of the database that contain the tokens | . | token_length | Length of data access tokens | . | token_lifetime | Lifetime of data access tokens (in hours) (in hours) | . Public host configuration . | Variable | Description | . | yoda_public_host | Yoda public host | . | yoda_public_fqdn | Yoda public fully qualified domain name (FQDN) | . | upload_priv_key | Yoda public upload private key (base64 encoded) | . | upload_pub_key | Yoda public upload public key (base64 encoded) | . External user service configuration . | Variable | Description | . | yoda_eus_fqdn | Yoda External User Service fully qualified domain name (FQDN) | . | eus_api_fqdn | External User Service API fully qualified domain name (FQDN) | . | eus_api_port | External User Service API port | . | eus_api_secret | External User Service API secret | . | eus_db_password | External User Service database password | . | eus_smtp_host | External User Service SMTP host | . | eus_smtp_port | External User Service SMTP port | . | eus_smtp_user | External User Service SMTP user | . | eus_smtp_password | External User Service SMTP password | . | eus_smtp_from_address | External User Service from address | . | eus_smtp_replyto_address | External User Service replyto address | . | eus_mail_template | External User Service mail template | . ",
+    "content": "| Variable | Description | . | enable_tokens | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be true or false | . | token_database | Location of the database that contain the tokens | . | token_database_password | Token database password | . | token_length | Length of data access tokens | . | token_lifetime | Lifetime of data access tokens (in hours) (in hours) | . Public host configuration . | Variable | Description | . | yoda_public_host | Yoda public host | . | yoda_public_fqdn | Yoda public fully qualified domain name (FQDN) | . | upload_priv_key | Yoda public upload private key (base64 encoded) | . | upload_pub_key | Yoda public upload public key (base64 encoded) | . External user service configuration . | Variable | Description | . | yoda_eus_fqdn | Yoda External User Service fully qualified domain name (FQDN) | . | eus_api_fqdn | External User Service API fully qualified domain name (FQDN) | . | eus_api_port | External User Service API port | . | eus_api_secret | External User Service API secret | . | eus_db_password | External User Service database password | . | eus_smtp_host | External User Service SMTP host | . | eus_smtp_port | External User Service SMTP port | . | eus_smtp_user | External User Service SMTP user | . | eus_smtp_password | External User Service SMTP password | . | eus_smtp_from_address | External User Service from address | . | eus_smtp_replyto_address | External User Service replyto address | . | eus_mail_template | External User Service mail template | . ",
     "url": "/yoda/administration/configuring-yoda.html#data-access-tokens-configuration",
     "relUrl": "/administration/configuring-yoda.html#data-access-tokens-configuration"
   },"35": {
@@ -533,65 +533,65 @@
     "url": "/yoda/administration/hotfixing-ruleset.html",
     "relUrl": "/administration/hotfixing-ruleset.html"
   },"89": {
-    "doc": "Development",
-    "title": "Development",
-    "content": ". | Setting up development environment | Setting up YodaDrive development environment | Mock tape archive | Development tips | Wall of Fame | . ",
-    "url": "/yoda/development/",
-    "relUrl": "/development/"
-  },"90": {
-    "doc": "Release Notes",
-    "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
-    "url": "/yoda/release-notes/",
-    "relUrl": "/release-notes/"
-  },"91": {
     "doc": "Administration Tasks",
     "title": "Administration Tasks",
     "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | Configuring cleanup temporary files | . ",
     "url": "/yoda/administration/",
     "relUrl": "/administration/"
+  },"90": {
+    "doc": "Development",
+    "title": "Development",
+    "content": ". | Setting up development environment | Setting up YodaDrive development environment | Mock tape archive | Development tips | Wall of Fame | . ",
+    "url": "/yoda/development/",
+    "relUrl": "/development/"
+  },"91": {
+    "doc": "Release Notes",
+    "title": "Release Notes",
+    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "url": "/yoda/release-notes/",
+    "relUrl": "/release-notes/"
   },"92": {
-    "doc": "Other",
-    "title": "Other",
+    "doc": "Processes",
+    "title": "Processes",
     "content": " ",
-    "url": "/yoda/design/other/",
-    "relUrl": "/design/other/"
+    "url": "/yoda/design/processes/",
+    "relUrl": "/design/processes/"
   },"93": {
-    "doc": "API",
-    "title": "API",
-    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
-    "url": "/yoda/design/api/",
-    "relUrl": "/design/api/"
-  },"94": {
     "doc": "System Overview",
     "title": "System overview",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
     "url": "/yoda/design/overview/#system-overview",
     "relUrl": "/design/overview/#system-overview"
-  },"95": {
+  },"94": {
     "doc": "System Overview",
     "title": "Core modules",
     "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     "relUrl": "/design/overview/#core-modules"
-  },"96": {
+  },"95": {
     "doc": "System Overview",
     "title": "Additional modules",
     "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
     "url": "/yoda/design/overview/#additional-modules",
     "relUrl": "/design/overview/#additional-modules"
-  },"97": {
+  },"96": {
     "doc": "System Overview",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/#overview",
     "relUrl": "/design/overview/#overview"
-  },"98": {
+  },"97": {
     "doc": "System Overview",
     "title": "System Overview",
     "content": " ",
     "url": "/yoda/design/overview/",
     "relUrl": "/design/overview/"
+  },"98": {
+    "doc": "API",
+    "title": "API",
+    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
+    "url": "/yoda/design/api/",
+    "relUrl": "/design/api/"
   },"99": {
     "doc": "Metadata",
     "title": "Metadata",
@@ -599,11 +599,11 @@
     "url": "/yoda/design/metadata/",
     "relUrl": "/design/metadata/"
   },"100": {
-    "doc": "Processes",
-    "title": "Processes",
+    "doc": "Other",
+    "title": "Other",
     "content": " ",
-    "url": "/yoda/design/processes/",
-    "relUrl": "/design/processes/"
+    "url": "/yoda/design/other/",
+    "relUrl": "/design/other/"
   },"101": {
     "doc": "Software Design",
     "title": "Software Design",
