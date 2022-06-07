@@ -13,6 +13,7 @@ The development group_vars contains examples for all of the variables.
 
 For Data Access Passwords to function properly it requires the following variables to be set:
 - enable_tokens (default: `false`), used by Ansible during setup.
+- token_database_password, used as password for the token database.
 
 For customization purposes, you can also configure:
 - token_database

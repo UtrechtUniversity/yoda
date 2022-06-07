@@ -203,8 +203,8 @@ datarequest_help_contact_email | Help contact email address
 
 ### Mail notifications
 
-Variable   | Description
------------|---------------------------------------------
+Variable                     | Description
+-----------------------------|---------------------------------------------
 send_notifications           | Enable notifications: yes (1) or no (0)
 notifications_sender_email   | Notifiations sender email address
 notifications_reply_to       | Notifiations Reply-To email address
@@ -214,8 +214,8 @@ smtp_password                | SMTP server password
 
 ### DataCite Configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable                     | Description
+-----------------------------|---------------------------------------------
 datacite_username            | DataCite username
 datacite_password            | DataCite password
 datacite_prefix              | DataCite DOI prefix
@@ -223,8 +223,8 @@ datacite_rest_api_url        | DataCite REST API URL
 
 ### EPIC PID Configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable                     | Description
+-----------------------------|---------------------------------------------
 epic_url                     | EPIC PID server URI (undefined disables EPIC PID)
 epic_handle_prefix           | EPIC PID prefix
 epic_key                     | EPIC PID key (base64 encoded)
@@ -232,17 +232,18 @@ epic_cert                    | EPIC PID cert (base64 encoded)
 
 # Data Access Tokens configuration
 
-Variable       | Description
----------------|---------------------------------------------
-enable_tokens  | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
-token_database | Location of the database that contain the tokens
-token_length   | Length of data access tokens
-token_lifetime | Lifetime of data access tokens (in hours) (in hours)
+Variable                | Description
+------------------------|------------------------------------
+enable_tokens           | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
+token_database          | Location of the database that contain the tokens
+token_database_password | Token database password
+token_length            | Length of data access tokens
+token_lifetime          | Lifetime of data access tokens (in hours) (in hours)
 
 ### Public host configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable                     | Description
+-----------------------------|---------------------------------------------
 yoda_public_host             | Yoda public host
 yoda_public_fqdn             | Yoda public fully qualified domain name (FQDN)
 upload_priv_key              | Yoda public upload private key (base64 encoded)
@@ -250,8 +251,8 @@ upload_pub_key               | Yoda public upload public key (base64 encoded)
 
 ### External user service configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable                     | Description
+-----------------------------|---------------------------------------------
 yoda_eus_fqdn                | Yoda External User Service fully qualified domain name (FQDN)
 eus_api_fqdn                 | External User Service API fully qualified domain name (FQDN)
 eus_api_port                 | External User Service API port
