@@ -46,7 +46,7 @@
   with_items:
     - '{{ sqlcipher.filename }}'
     - '{{ sqlcipher_dev.filename }}'
-  when: enable_tokens
+  when: enable_tokens and not ansible_check_mode
 
 
 - name: Ensure Python dependencies are installed
