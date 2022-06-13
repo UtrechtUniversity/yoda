@@ -34,8 +34,8 @@
     checksum: '{{ item.checksum }}'
     mode: 0644
   with_items:
-    - { 'url': '{{ sqlcipher.url }}', 'filename': '{{ sqlcipher.filename }}', 'checksum': '{{ sqlcipher.checksum }}' }
-    - { 'url': '{{ sqlcipher_dev.url }}', 'filename': '{{ sqlcipher_dev.filename }}', 'checksum': '{{ sqlcipher_dev.checksum }}' }
+    - {'url': '{{ sqlcipher.url }}', 'filename': '{{ sqlcipher.filename }}', 'checksum': '{{ sqlcipher.checksum }}'}
+    - {'url': '{{ sqlcipher_dev.url }}', 'filename': '{{ sqlcipher_dev.filename }}', 'checksum': '{{ sqlcipher_dev.checksum }}'}
   when: enable_tokens
 
 

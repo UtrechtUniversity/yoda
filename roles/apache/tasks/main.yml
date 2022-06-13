@@ -45,7 +45,7 @@
     state: absent
   notify: Restart Apache webserver
   with_items:
-  - /etc/httpd/conf.d/autoindex.conf
+    - /etc/httpd/conf.d/autoindex.conf
 
 
 - name: Ensure Apache mod_lua is disabled

@@ -162,8 +162,8 @@
     recurse: yes
     path: '{{ item }}'
   with_items:
-  - /var/lib/irods
-  - /etc/irods
+    - /var/lib/irods
+    - /etc/irods
 
 
 - name: Ensure core.re is configured
