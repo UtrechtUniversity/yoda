@@ -51,7 +51,7 @@
     checksum: yes
     delete: yes
     rsync_opts:
-     - "--exclude=rules_uu.cfg"
+      - "--exclude=rules_uu.cfg"
   delegate_to: "{{ inventory_hostname }}"
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "not ansible_check_mode and 'repo' in item and 'patch' in item"

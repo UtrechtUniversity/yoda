@@ -4,4 +4,3 @@ skip_list:
   - command-instead-of-module
   - experimental
   - no-handler
-  - yaml
