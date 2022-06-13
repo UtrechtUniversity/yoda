@@ -16,7 +16,7 @@
     port: '{{ item }}'
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   with_items:
     - 80/tcp
     - 443/tcp

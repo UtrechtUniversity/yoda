@@ -3,7 +3,7 @@
 
 - name: Remove all test users in iRODS
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     iadmin rmuser '{{ item.name }}'
   ignore_errors: true

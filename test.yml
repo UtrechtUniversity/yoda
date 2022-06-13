@@ -4,7 +4,7 @@
 
 - name: Provision instance with test data
   hosts: test
-  become: yes
+  become: true
   roles:
     - yoda_test
   tags:
@@ -12,7 +12,7 @@
 
 - name: Provision eus with testdata
   hosts: eus
-  become: yes
+  become: true
   roles:
     - yoda_test_users_eus
   tags:

@@ -17,7 +17,7 @@
 
 - name: Delete legacy portal files
   become_user: "{{ yoda_deployment_user }}"
-  become: yes
+  become: true
   ansible.builtin.file:
     state: absent
     path: "{{ item }}"
@@ -30,7 +30,7 @@
 
 - name: Checkout Yoda portal
   become_user: "{{ yoda_deployment_user }}"
-  become: yes
+  become: true
   ansible.builtin.git:
     repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: "/var/www/yoda"
@@ -41,7 +41,7 @@
 
 - name: Ensure Yoda portal virtualenv exists
   become_user: "{{ yoda_deployment_user }}"
-  become: yes
+  become: true
   ansible.builtin.command: python3 -m virtualenv "/var/www/yoda/venv"
   args:
     creates: /var/www/yoda/venv
@@ -49,7 +49,7 @@
 
 - name: Ensure Yoda portal dependencies are installed
   become_user: "{{ yoda_deployment_user }}"
-  become: yes
+  become: true
   ansible.builtin.pip:
     requirements: /var/www/yoda/requirements.txt
     virtualenv: '/var/www/yoda/venv'
@@ -59,7 +59,7 @@
 
 - name: Install mod-wsgi
   become_user: "root"
-  become: yes
+  become: true
   ansible.builtin.shell: |
     source /var/www/yoda/venv/bin/activate
     mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf
@@ -89,7 +89,7 @@
 
 - name: Copy Yoda Portal config for Flask
   become_user: "{{ yoda_deployment_user }}"
-  become: yes
+  become: true
   ansible.builtin.template:
     src: "flask.cfg.j2"
     dest: "/var/www/yoda/flask.cfg"
@@ -123,8 +123,8 @@
 - name: Allow Flask to connect to OpenSearch
   seboolean:
     name: httpd_can_network_connect
-    state: yes
-    persistent: yes
+    state: true
+    persistent: true
   when: ansible_selinux.status == "enabled" and enable_open_search
 
 

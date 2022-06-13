@@ -36,7 +36,7 @@
     port: 5432/tcp
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   notify: Restart firewall
   when: (ansible_fqdn != irods_icat_fqdn)
 
@@ -48,7 +48,7 @@
     group: 'postgres'
     owner: 'postgres'
     mode: 0600
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure certificate file is available for PostgreSQL
@@ -58,7 +58,7 @@
     group: 'postgres'
     owner: 'postgres'
     mode: 0600
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure PostgreSQL is configured
@@ -74,7 +74,7 @@
 - name: Ensure PostgreSQL is enabled and started
   ansible.builtin.service:
     name: postgresql
-    enabled: yes
+    enabled: true
     state: started
 
 

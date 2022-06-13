@@ -171,7 +171,7 @@
     src: setup_irods_provider.json.j2
     dest: /etc/irods/setup_irods_provider.json
     mode: '0644'
-    force: no
+    force: false
   when: not irods_config.stat.exists and not ansible_check_mode
 
 
@@ -183,7 +183,7 @@
 
 
 - name: Configure iRODS iCAT server
-  become: yes
+  become: true
   ansible.builtin.command: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_provider.json
   args:
     creates: /etc/irods/service_account.config
@@ -199,7 +199,7 @@
 
 - name: Ensure iRODS iCAT host is a FQDN for iRODS 4.1.11
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_config:
     path: '/etc/irods/server_config.json'
     key: 'icat_host'
@@ -208,7 +208,7 @@
 
 - name: Ensure iRODS host is defined
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: 'irods_host'
@@ -217,7 +217,7 @@
 
 - name: Set delayed rule sleep time to 10 seconds
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_advanced:
     path: '/etc/irods/server_config.json'
     key: 'rule_engine_server_sleep_time_in_seconds'
@@ -226,7 +226,7 @@
 
 - name: Ensure core.re is configured
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.template:
     src: core.re.j2
     dest: /etc/irods/core.re
@@ -235,17 +235,17 @@
 
 - name: Ensure core Python rules are present
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.copy:
     content: ""
     dest: "/etc/irods/core.py"
     mode: 0644
-    force: no
+    force: false
 
 
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.command: 'ils /{{ irods_zone }}/home'
   register: ils
   ignore_errors: true
@@ -262,14 +262,14 @@
 - name: Enable iRODS systemd service
   ansible.builtin.service:
     name: irods
-    enabled: yes
+    enabled: true
     use: service
   when: irods_service_type == "systemd"
 
 
 - name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.command: 'ils /{{ irods_zone }}/home'
   register: ils
   until: ils is succeeded
@@ -280,7 +280,7 @@
 
 - name: Ensure Python plugin is configured
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_python:
     config_path: '/etc/irods/server_config.json'
   when: not ansible_check_mode
@@ -288,7 +288,7 @@
 
 - name: Ensure indexing plugin is configured
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_indexing:
     config_path: '/etc/irods/server_config.json'
     index_server: '{{ yoda_portal_host }}'
@@ -298,7 +298,7 @@
 
 - name: Ensure all users have iRODS read access on /zone/home
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.shell: 'ils -A /{{ irods_zone }}/home | grep "g:public#"'
   register: read_access
   ignore_errors: true
@@ -307,7 +307,7 @@
 
 - name: Provide iRODS read access for all users on /zone/home
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.command: 'ichmod -M read public /{{ irods_zone }}/home'
   when: read_access is failed
 
@@ -317,7 +317,7 @@
     port: '{{ item }}'
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   with_items:
     - '{{ irods_icat_port }}/tcp'
     - '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
@@ -374,7 +374,7 @@
 
 - name: Ensure iRODS is configured to use SSL
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: '{{ item.key }}'
@@ -402,7 +402,7 @@
 
 - name: Retrieve iRODS server config file
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.slurp:
     src: /etc/irods/server_config.json
   register: server_config
@@ -447,7 +447,7 @@
 
 - name: Install private upload key
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.copy:
     content: '{{ upload_priv_key | b64decode }}'
     dest: '/var/lib/irods/.ssh/id_ed25519'
@@ -458,7 +458,7 @@
 
 - name: Scan public host pub key
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.shell: "ssh-keyscan {{ yoda_public_host }} >> ~/.ssh/known_hosts"
   args:
     creates: '/var/lib/irods/.ssh/known_hosts'
@@ -467,7 +467,7 @@
 
 - name: Ensure Yoda anonymous user exists
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_mkuser:
     name: anonymous
   when: not ansible_check_mode
@@ -475,7 +475,7 @@
 
 - name: Ensure anonymous user has iRODS read access on /zone/home
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.shell: 'ils -A /{{ irods_zone }}/home | grep "anonymous#"'
   register: read_access
   ignore_errors: true
@@ -484,14 +484,14 @@
 
 - name: Provide iRODS read access for anonymous user on /zone/home
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.command: 'ichmod -M read anonymous /{{ irods_zone }}/home'
   when: read_access is failed
 
 
 - name: Check if public collection exists
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.command: 'ils /{{ irods_zone }}/home/public'
   register: public_coll
   changed_when: false
@@ -500,7 +500,7 @@
 
 - name: Remove public collection provided that it is empty
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.command: 'irmdir /{{ irods_zone }}/home/public'
   when: (not ansible_check_mode) and (public_coll.stdout.find('/home/public') >= 0)
 
@@ -518,9 +518,9 @@
 
 - name: Ensure unneeded iRODS specific queries are absent
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.command: 'iadmin rsq {{ item }}'
-  ignore_errors: yes
+  ignore_errors: true
   with_items:
     - listQueryByAliasLike
     - findQueryByAlias
@@ -530,7 +530,7 @@
     - listSharedCollectionsSharedWithUser
     - listUserACLForDataObjViaGroup
     - listUserACLForCollectionViaGroup
-  changed_when: False
+  changed_when: false
 
 
 - include_tasks: setup_pam.yml

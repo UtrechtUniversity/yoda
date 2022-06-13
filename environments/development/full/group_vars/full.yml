@@ -21,27 +21,27 @@ update_schemas: 1                                  # Update already installed sc
 credential_files: PLACEHOLDER                      # Location of Yoda credentials files
 
 # Research module configuration
-enable_research: True                              # Enable research module
+enable_research: true                              # Enable research module
 
 # OpenSearch module configuration
-enable_open_search: True                           # Enable OpenSearch module
+enable_open_search: true                           # Enable OpenSearch module
 
 # Deposit module configuration
-enable_deposit: True                               # Enable deposit module
+enable_deposit: true                               # Enable deposit module
 
 # Intake module configuration
-enable_intake: True                                # Enable intake module
+enable_intake: true                                # Enable intake module
 
 # Datarequest module configuration
-enable_datarequest: True                           # Enable datarequest module
+enable_datarequest: true                           # Enable datarequest module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name
 datarequest_help_contact_email: PLACEHOLDER        # Help contact email
 
 # Data Package Reference
-enable_data_package_reference: True                # Enable Data Package References for vault data packages
+enable_data_package_reference: true                # Enable Data Package References for vault data packages
 
 # Data Access Tokens
-enable_tokens: True                                     # Enable data access tokens for webDAV and iCommands
+enable_tokens: true                                     # Enable data access tokens for webDAV and iCommands
 token_database: /etc/irods/yoda-ruleset/accesstokens.db # Location of the database that contain the tokens
 token_database_password: test                           # Token database password
 token_length: 32                                        # Length of data access tokens
@@ -180,7 +180,7 @@ eus_mail_template: uu
 external_users_domain_filter: uu.nl     # Domains to filter, separated by |
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
-oidc_active: True
+oidc_active: true
 oidc_domains: ['gmail.com', 'yoda.test']                      # Domains that should use OIDC (list)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password

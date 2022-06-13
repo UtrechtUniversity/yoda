@@ -16,5 +16,5 @@
     port: '{{ yoda_public_port }}/tcp'
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   notify: Restart firewall
