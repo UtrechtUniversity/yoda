@@ -3,7 +3,7 @@
 
 - name: Ensure Yoda test groups exists
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   yoda_addgroup:
     groupName: '{{ item.groupName }}'
     category: '{{ item.category }}'
@@ -15,7 +15,7 @@
 
 - name: Ensure Yoda users are added to groups
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   yoda_addgroupuser:
     groupName: '{{ item.groupName }}'
     user: '{{ item.user }}'
@@ -25,7 +25,7 @@
 
 - name: Ensure Yoda intake datamanager has read access to grp-vault-initial folder
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     ichmod -M read grp-datamanager-initial /{{ irods_zone }}/home/grp-vault-initial
   ignore_errors: true
@@ -33,7 +33,7 @@
 
 - name: Ensure Yoda intake datamanager has read access to grp-vault-test folder
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     ichmod -M read grp-datamanager-test /{{ irods_zone }}/home/grp-vault-test
   ignore_errors: true
@@ -41,7 +41,7 @@
 
 - name: Ensure Yoda test data directory research-initial/testdata is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     imkdir /{{ irods_zone }}/home/research-initial/testdata
   ignore_errors: true
@@ -49,7 +49,7 @@
 
 - name: Ensure Yoda test data directory is present
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   file:
     path: '~/testdata/'
     state: directory
@@ -58,7 +58,7 @@
 
 - name: Ensure Yoda test data directory research-mdtest/nomdpresent is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     imkdir /{{ irods_zone }}/home/research-mdtest/nomdpresent
   ignore_errors: true
@@ -66,7 +66,7 @@
 
 - name: Ensure Yoda test data directory research-default-1/transformation is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     imkdir /{{ irods_zone }}/home/research-default-1/transformation
   ignore_errors: true
@@ -74,7 +74,7 @@
 
 - name: Ensure Yoda test data directory research-mdtest/invalidmetadata is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     imkdir /{{ irods_zone }}/home/research-mdtest/invalidmetadata
   ignore_errors: true
@@ -82,7 +82,7 @@
 
 - name: Ensure Yoda test data directory research-notpreservable/testdata is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     imkdir /{{ irods_zone }}/home/research-notpreservable/testdata
   ignore_errors: true
@@ -90,7 +90,7 @@
 
 - name: Ensure Yoda test data directory research-mdtest/copyfromparent is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     imkdir /{{ irods_zone }}/home/research-mdtest/copyfromparent
   ignore_errors: true
@@ -98,7 +98,7 @@
 
 - name: Ensure Yoda test files are present in VM
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   copy:
     src: '{{ item }}'
     dest: '~/testdata/{{ item }}'
@@ -111,7 +111,7 @@
 
 - name: Ensure Yoda test files are present in Yoda directory research-initial/testdata
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   shell:
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-initial/testdata
   with_items:
@@ -121,7 +121,7 @@
 
 - name: Ensure Yoda INTAKE test datasets are present in VM
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   copy:
     src: '{{ item }}'
     dest: '~/testdata/{{ item }}'
@@ -132,7 +132,7 @@
 
 - name: Ensure Yoda INTAKE test datasets are present in Yoda directory grp-intake-initial
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   shell:
     iput -f -r ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-initial
   with_items:
@@ -141,7 +141,7 @@
 
 - name: Ensure Yoda metadata is present for geo publication test
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   shell:
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-teclab-0
   with_items:
@@ -150,7 +150,7 @@
 
 - name: Ensure Yoda licenses directory is present
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     imkdir /{{ irods_zone }}/yoda/licenses
   ignore_errors: true
@@ -158,7 +158,7 @@
 
 - name: Ensure licenses are present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     iput -f '/etc/irods/yoda-ruleset/licenses/{{ item }}' '/{{ irods_zone }}/yoda/licenses/{{ item }}'
   with_items:
@@ -176,7 +176,7 @@
 
 - name: Ensure Yoda preservable file formats directory is present
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     imkdir /{{ irods_zone }}/yoda/file_formats
   ignore_errors: true
@@ -184,7 +184,7 @@
 
 - name: Ensure preservable file formats are present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     iput -f '/etc/irods/yoda-ruleset/file_formats//{{ item }}' '/{{ irods_zone }}/yoda/file_formats/{{ item }}'
   with_items:
@@ -194,7 +194,7 @@
 
 - name: Ensure Yoda templates directory is present
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     imkdir /{{ irods_zone }}/yoda/templates
   ignore_errors: true
@@ -202,7 +202,7 @@
 
 - name: Ensure intake module rule files are present
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   copy:
     src: '{{ item }}'
     dest: '~/.irods/{{ item }}'
@@ -215,7 +215,7 @@
 
 - name: Configure cronjob to make checksums of datapackages in grp-vault-*
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   cron:
     name: 'job_checksums.r'
     minute: '*/5'
@@ -224,7 +224,7 @@
 
 - name: Run monthly storage statistics job
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   command:
     irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
   ignore_errors: true

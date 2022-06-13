@@ -12,7 +12,7 @@
     path: '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
     size: 4096
     type: RSA
-    force: no
+    force: false
     state: present
 
 
@@ -25,7 +25,7 @@
     organization_name: '{{ openssl_o }}'
     locality_name: '{{ openssl_locality_name }}'
     common_name: '{{ certificate_domain }}'
-    force: no
+    force: false
     state: present
   when: not ansible_check_mode
 
@@ -36,7 +36,7 @@
     privatekey_path: '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
     csr_path: '{{ openssl_certs_dir }}/{{ openssl_csr_selfsigned }}'
     provider: selfsigned
-    force: no
+    force: false
     state: present
   when: not ansible_check_mode
 
@@ -77,7 +77,7 @@
   community.crypto.openssl_dhparam.openssl_dhparam:
     path: '{{ openssl_private_dir }}/{{ openssl_dhparams }}'
     size: 2048
-    force: no
+    force: false
     state: present
 
 

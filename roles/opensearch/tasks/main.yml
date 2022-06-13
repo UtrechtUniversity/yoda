@@ -21,7 +21,7 @@
     src: '{{ dest_dir }}/{{ opensearch.filename }}'
     dest: /usr/share
     creates: '{{ opensearch.home }}'
-    remote_src: yes
+    remote_src: true
     extra_opts:
       - --transform
       - 's/^opensearch-{{ opensearch.version }}/opensearch/'
@@ -47,7 +47,7 @@
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
     mode: 0600
-    backup: yes
+    backup: true
 
 
 - name: Install jvm.options
@@ -57,7 +57,7 @@
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
     mode: 0600
-    force: yes
+    force: true
 
 
 - name: Set vm.max_map_count in sysctl.conf
@@ -78,7 +78,7 @@
   ansible.builtin.service:
     name: opensearch
     state: started
-    enabled: yes
+    enabled: true
 
 
 - name: Enable port for indexing
@@ -86,7 +86,7 @@
     port: 9200/tcp
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   notify: Restart firewall
 
 

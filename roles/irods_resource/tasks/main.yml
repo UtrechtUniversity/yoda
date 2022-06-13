@@ -137,12 +137,12 @@
     src: setup_irods_consumer.json.j2
     dest: /etc/irods/setup_irods_consumer.json
     mode: '0644'
-    force: no
+    force: false
   when: not irods_config.stat.exists and not ansible_check_mode
 
 
 - name: Configure iRODS resource server
-  become: yes
+  become: true
   ansible.builtin.command: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_consumer.json
   args:
     creates: /etc/irods/service_account.config
@@ -159,7 +159,7 @@
   ansible.builtin.file:
     group: '{{ irods_service_account }}'
     owner: '{{ irods_service_account }}'
-    recurse: yes
+    recurse: true
     path: '{{ item }}'
   with_items:
     - /var/lib/irods
@@ -168,7 +168,7 @@
 
 - name: Ensure core.re is configured
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.template:
     src: core.re.j2
     dest: /etc/irods/core.re
@@ -177,7 +177,7 @@
 
 - name: Ensure patched Python genquery module is present
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.copy:
     src: "genquery.py"
     dest: "/etc/irods/genquery.py"
@@ -186,17 +186,17 @@
 
 - name: Ensure core Python rules are present
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.copy:
     content: ""
     dest: "/etc/irods/core.py"
     mode: 0644
-    force: no
+    force: false
 
 
 - name: Ensure iRODS server is up
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.command: 'ils /{{ irods_zone }}/home'
   register: ils
   ignore_errors: true
@@ -213,14 +213,14 @@
 - name: Enable iRODS systemd service
   ansible.builtin.service:
     name: irods
-    enabled: yes
+    enabled: true
     use: service
   when: irods_service_type == "systemd"
 
 
 - name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   ansible.builtin.command: 'ils /{{ irods_zone }}/home'
   register: ils
   until: ils is succeeded
@@ -231,7 +231,7 @@
 
 - name: Ensure Python plugin is configured
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_python:
     config_path: '/etc/irods/server_config.json'
   when: not ansible_check_mode
@@ -242,7 +242,7 @@
     port: '{{ item }}'
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   with_items:
     - '{{ irods_icat_port }}/tcp'
     - '{{ irods_port_range_begin }}-{{ irods_port_range_end }}/tcp'
@@ -299,7 +299,7 @@
 
 - name: Ensure iRODS is configured to use SSL
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: '{{ item.key }}'
@@ -319,7 +319,7 @@
 
 - name: Ensure iRODS server keys are synced
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_config:
     path: '/etc/irods/server_config.json'
     key: '{{ item.key }}'

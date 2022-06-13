@@ -3,7 +3,7 @@
 
 - name: Copy DMF scripts to msiExecCmd dir
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.copy:
     src: "tape_archive/scripts/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"

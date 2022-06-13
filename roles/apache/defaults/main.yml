@@ -1,4 +1,4 @@
 ---
 
 yoda_enable_httpd: true
-httpd_log_forwarded_for: False
+httpd_log_forwarded_for: false

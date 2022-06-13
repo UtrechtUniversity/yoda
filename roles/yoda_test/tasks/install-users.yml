@@ -10,7 +10,7 @@
 
 - name: Ensure Yoda test users exist
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_mkuser:
     name: '{{ item.name }}'
   with_items: '{{ test_users + oidc_test_users + eus_test_users }}'
@@ -18,7 +18,7 @@
 
 - name: Ensure Yoda test users have type
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_moduser:
     name: '{{ item.name }}'
     option: 'type'
@@ -28,7 +28,7 @@
 
 - name: Ensure Yoda test users have password
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   irods_moduser:
     name: '{{ item.name }}'
     option: 'password'

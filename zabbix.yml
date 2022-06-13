@@ -3,7 +3,7 @@
 # This playbook provisions Yoda instance with the Zabbix agent, PostgreSQL monitoring and Zabbix user access to the database.
 
 - hosts: localhost
-  gather_facts: False
+  gather_facts: false
   pre_tasks:
     - name: Verify Ansible version meets requirements
       assert:
@@ -17,7 +17,7 @@
     - name: Retrieve Yoda repository branch
       shell: git branch | grep \* | cut -d ' ' -f2
       register: git_branch
-      changed_when: False
+      changed_when: false
       delegate_to: localhost
 
     - name: Verify Yoda repository is on correct branch
@@ -28,7 +28,7 @@
 
 - name: Provision portal server with Zabbix agent
   hosts: portals
-  become: yes
+  become: true
   roles:
    - yoda_zabbix_portal
   tags:
@@ -37,7 +37,7 @@
 
 - name: Provision iCAT server with Zabbix agent and Yoda monitoring
   hosts: icats
-  become: yes
+  become: true
   roles:
     - yoda_zabbix_icat
     - yoda_zabbix_irodscommon
@@ -47,7 +47,7 @@
 
 - name: Provision database server with Zabbix agent and PostgreSQL monitoring
   hosts: databases
-  become: yes
+  become: true
   roles:
     - role: yoda_zabbix_database
       zabbix_database_name: "{{ irods_database_name }}"
@@ -57,7 +57,7 @@
 
 - name: Provision resource server with Zabbix agent
   hosts: resources
-  become: yes
+  become: true
   roles:
     - yoda_zabbix_irodscommon
   tags:
@@ -66,7 +66,7 @@
 
 - name: Provision public server with Zabbix agent
   hosts: publics
-  become: yes
+  become: true
   roles:
     - yoda_zabbix_system
   tags:
@@ -75,7 +75,7 @@
 
 - name: Provision external user service server with Zabbix agent
   hosts: eus
-  become: yes
+  become: true
   roles:
     - role: yoda_zabbix_database
       zabbix_database_name: "{{ eus_db_name }}"

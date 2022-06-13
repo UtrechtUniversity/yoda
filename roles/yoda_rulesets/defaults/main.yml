@@ -11,11 +11,11 @@ core_rulesets:
     repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
     version: "{{ yoda_version }}"
-    install_scripts: yes
+    install_scripts: true
   - name: core
     ruleset_name: core
     path: /etc/irods/core.re
-    install_scripts: no
+    install_scripts: false
 
 extra_rulesets: []
 
@@ -27,7 +27,7 @@ default_yoda_schema: default-0   # Default Yoda metadata scheme: default-0 or de
 enable_revisions: 1              # Enable revisions: yes (1) or no (0)
 revision_strategy: B             # Revision strategy: A, B, J or Simple
 yoda_instance: "{{ instance }}"
-update_rulesets: yes             # Update already installed rulesets with git
+update_rulesets: true            # Update already installed rulesets with git
 update_schemas: 0                # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 yoda_random_id_length: 6         # Length of random ID to add to persistent identifier
 irods_default_resc: irodsResc
@@ -84,7 +84,7 @@ temporary_files: ['._*', '.DS_Store', 'Thumbs.db']  # List of temporary files fo
 enable_datarequest: false               # Enable datarequest module
 
 # OpenSearch module configuration
-enable_open_search: True                # Enable OpenSearch module
+enable_open_search: true                # Enable OpenSearch module
 
 # Deposit module configuration
 enable_deposit: false                   # Enable deposit module

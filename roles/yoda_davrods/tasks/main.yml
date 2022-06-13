@@ -92,7 +92,7 @@
     mode: 0644
     owner: root
     group: root
-    force: no
+    force: false
   with_items:
     - /var/log/httpd/webdav_access.log
   notify: Restart Apache webserver
@@ -105,7 +105,7 @@
     mode: 0644
     owner: root
     group: root
-    force: no
+    force: false
   with_items:
     - /var/log/httpd/webdav_anon_access.log
   notify: Restart Apache webserver
@@ -140,7 +140,7 @@
     port: '{{ yoda_davrods_port }}/tcp'
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   notify: Restart firewall
 
 
@@ -149,7 +149,7 @@
     port: '{{ yoda_davrods_anonymous_port }}/tcp'
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   notify: Restart firewall
 
 

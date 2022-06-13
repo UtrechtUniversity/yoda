@@ -8,7 +8,7 @@
 
 
 - name: Delete legacy Yoda MOAI files
-  become: yes
+  become: true
   ansible.builtin.file:
     state: absent
     path: "{{ yoda_moai_home }}/venv"
@@ -16,7 +16,7 @@
 
 - name: Check out Yoda MOAI from Github
   become_user: '{{ yoda_moai_user }}'
-  become: yes
+  become: true
   ansible.builtin.git:
     repo: https://github.com/UtrechtUniversity/yoda-moai.git
     dest: '{{ yoda_moai_home }}/yoda-moai'
@@ -26,7 +26,7 @@
 
 - name: Ensure Yoda MOAI virtualenv exists
   become_user: '{{ yoda_moai_user }}'
-  become: yes
+  become: true
   ansible.builtin.command: python3 -m virtualenv "{{ yoda_moai_home }}/yoda-moai/venv"
   args:
     creates: "{{ yoda_moai_home }}/yoda-moai/venv"
@@ -43,7 +43,7 @@
 
 - name: Install mod-wsgi
   become_user: "root"
-  become: yes
+  become: true
   ansible.builtin.shell: |
     source {{ yoda_moai_home }}/yoda-moai/venv/bin/activate
     mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf
@@ -105,7 +105,7 @@
 
 - name: Initialize Yoda MOAI database
   become_user: '{{ yoda_moai_user }}'
-  become: yes
+  become: true
   ansible.builtin.command: '{{ yoda_moai_home }}/yoda-moai/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
   args:
     creates: '{{ yoda_moai_home }}/moai.db'
