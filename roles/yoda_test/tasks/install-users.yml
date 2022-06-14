@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure test users exists
-  user:
+  ansible.builtin.user:
     name: '{{ item.name }}'
     password: "{{ item.password | password_hash('sha512') }}"
   with_items: '{{ test_users }}'
