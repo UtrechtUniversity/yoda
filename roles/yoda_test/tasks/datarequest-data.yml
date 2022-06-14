@@ -3,29 +3,28 @@
 
 - name: Prepare removal of test data in datarequests-research group
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
-    ichmod -rM own rods /{{ irods_zone}}/home/datarequests-research
+  become: true
+  ansible.builtin.command:
+    ichmod -rM own rods /{{ irods_zone }}/home/datarequests-research
   ignore_errors: true
 
 - name: Remove test data in datarequests-research group
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     irm -r /{{ irods_zone }}/home/datarequests-research
   ignore_errors: true
 
 - name: Make datarequests-research group
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/home/datarequests-research
   ignore_errors: true
 
 - name: Set rights for datarequests-research group
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     ichmod write public /{{ irods_zone }}/home/datarequests-research
   ignore_errors: true
-

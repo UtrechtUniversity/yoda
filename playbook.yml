@@ -3,7 +3,7 @@
 # This playbook deploys a complete Yoda instance.
 
 - hosts: localhost
-  gather_facts: False
+  gather_facts: false
   pre_tasks:
     - name: Verify Ansible version meets requirements
       ansible.builtin.assert:
@@ -13,14 +13,14 @@
 
 
 - hosts: all
-  gather_facts: False
+  gather_facts: false
   pre_tasks:
     - name: Retrieve Yoda repository branch
       ansible.builtin.shell: |
         set -o pipefail
         git branch | grep \* | cut -d ' ' -f2
       register: git_branch
-      changed_when: False
+      changed_when: false
       delegate_to: localhost
       args:
         executable: /bin/bash
@@ -34,14 +34,14 @@
 
 - name: Add hosts entries to development instances
   hosts: development
-  become: yes
+  become: true
   roles:
     - hostentries
 
 
 - name: Provision common software and certificates
   hosts: all
-  become: yes
+  become: true
   roles:
     - common
     - certificates
@@ -49,7 +49,7 @@
 
 - name: Provision portal server
   hosts: portals
-  become: yes
+  become: true
   roles:
     - apache
     - role: opensearch
@@ -70,7 +70,7 @@
 
 - name: Provision davrods server
   hosts: davrods
-  become: yes
+  become: true
   roles:
     - apache
     - irods_icommands
@@ -82,7 +82,7 @@
 
 - name: Provision database server
   hosts: databases
-  become: yes
+  become: true
   roles:
     - postgresql
     - irods_database
@@ -92,7 +92,7 @@
 
 - name: Provision iCAT server
   hosts: icats
-  become: yes
+  become: true
   roles:
     - pam_python
     - irods_icat
@@ -104,13 +104,15 @@
     - irods_rodsadmin
     - role: dms_archive_mock
       when: enable_tape_archive and yoda_environment == "development"
+    - role: dms_tape_archive
+      when: enable_tape_archive and yoda_environment != "development"
   tags:
     - icat
 
 
 - name: Provision resource server
   hosts: resources
-  become: yes
+  become: true
   roles:
     - irods_resource
     - irods_runtime
@@ -122,27 +124,27 @@
 
 - name: Provision rulesets on iCAT server
   hosts: icats
-  become: yes
+  become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: yes
+      install_rulesets: true
   tags:
     - icat
 
 
 - name: Provision rulesets on resource server
   hosts: resources
-  become: yes
+  become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: no
+      install_rulesets: true
   tags:
     - resource
 
 
 - name: Provision public server
   hosts: publics
-  become: yes
+  become: true
   roles:
     - apache
     - yoda_moai
@@ -154,7 +156,7 @@
 
 - name: Provision external user service server
   hosts: eus
-  become: yes
+  become: true
   roles:
     - apache
     - php

@@ -3,8 +3,8 @@
 
 - name: Ensure DMS archive mock service files are present
   become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
+  become: true
+  ansible.builtin.copy:
     src: 'dms-archive-mock'
     dest: '/var/lib/irods/'
     mode: 0644
@@ -13,8 +13,8 @@
 
 - name: Install DMS archive mock service
   become_user: "{{ irods_service_account }}"
-  become: yes
-  shell: |
+  become: true
+  ansible.builtin.shell: |
     cd /var/lib/irods/dms-archive-mock
     python3 -m virtualenv tape_archive_venv
     . tape_archive_venv/bin/activate
@@ -23,7 +23,7 @@
 
 
 - name: Ensure DMS archive mock service is configured
-  template:
+  ansible.builtin.template:
     src: "dmmock_server.json.j2"
     dest: "/etc/dmmock_server.json"
     mode: '0644'
@@ -31,7 +31,7 @@
 
 - name: Ensure mock tape archive resource exist
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   irods_resource:
     name: "mockTapeArchive"
     resource_type: "unixfilesystem"
@@ -42,8 +42,8 @@
 
 - name: Copy DMF scripts to msiExecCmd dir
   become_user: "{{ irods_service_account }}"
-  become: yes
-  copy:
+  become: true
+  ansible.builtin.copy:
     src: "tape_archive/scripts/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
     mode: 0755

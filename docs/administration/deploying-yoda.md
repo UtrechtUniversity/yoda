@@ -10,6 +10,7 @@ Instructions needed for deploying a (new) Yoda instance.
 [Configure](configuring-yoda.md) the new instance and run the Yoda playbook to deploy.
 For example, deploying the instance 'yoda' in an environment called 'production':
 ```bash
+ansible-galaxy collection install -r requirements.yml
 ansible-playbook -i environments/development playbook.yml --limit=yoda -K
 ```
 
@@ -17,6 +18,11 @@ ansible-playbook -i environments/development playbook.yml --limit=yoda -K
 To upgrade an existing Yoda instance update your Yoda Ansible repository to include the latest changes:
 ```bash
 git pull
+```
+
+Install all Ansible collections needed to deploy Yoda:
+```bash
+ansible-galaxy collection install -r requirements.yml
 ```
 
 Upgrade the [configuration](configuring-yoda.md) of the Yoda Instance and then run the Yoda playbook:

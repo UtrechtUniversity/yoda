@@ -53,8 +53,11 @@ enable_data_package_reference  = '{{ ["false", "true"][enable_data_package_refer
 enable_tokens                  = '{{ ["false", "true"][enable_tokens|int] }}'
 {% if enable_tokens %}
 token_database                 = '{{ token_database }}'
+token_database_password        = '{{ token_database_password }}'
 token_length                   = '{{ token_length }}'
 token_lifetime                 = '{{ token_lifetime }}'
 {% endif %}
 
 enable_tape_archive            = '{{ ["false", "true"][enable_tape_archive|int] }}'
+
+temporary_files                = '{{ temporary_files | join (" ") }}'

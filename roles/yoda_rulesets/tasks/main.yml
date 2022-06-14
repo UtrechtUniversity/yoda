@@ -17,13 +17,13 @@
 
 - name: Check out rulesets without local patches from Github
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "/etc/irods/{{ item.name }}"
     version: "{{ item.version }}"
     update: "{{ update_rulesets }}"
-    force: yes
+    force: true
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item and 'patch' not in item"
   register: repochanges
@@ -31,7 +31,7 @@
 
 - name: Check out rulesets with local patches from Github
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "/etc/irods/repo_{{ item.name }}"
@@ -44,14 +44,14 @@
 
 - name: Sync rulesets with repos before applying patches
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   synchronize:
     src: "/etc/irods/repo_{{ item.name }}/"
     dest: "/etc/irods/{{ item.name }}"
-    checksum: yes
-    delete: yes
+    checksum: true
+    delete: true
     rsync_opts:
-     - "--exclude=rules_uu.cfg"
+      - "--exclude=rules_uu.cfg"
   delegate_to: "{{ inventory_hostname }}"
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "not ansible_check_mode and 'repo' in item and 'patch' in item"
@@ -59,7 +59,7 @@
 
 - name: Create patch files for rulesets
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.copy:
     dest: "/etc/irods/{{ item.name }}.patch"
     content: "{{ item['patch'] }}"
@@ -70,7 +70,7 @@
 
 - name: Apply patches to rulesets
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.command:
     chdir: "/etc/irods/{{ item.name }}"
     cmd: "git apply /etc/irods/{{ item.name }}.patch"
@@ -82,14 +82,14 @@
   ansible.builtin.find:
     paths: /etc/irods
     patterns: '*.re.*,*.pyc'
-    recurse: yes
+    recurse: true
   when: repochanges.changed or patch_repochanges.changed
   register: temporary_rules
 
 
 - name: Remove temporary rule and cache files left behind
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: absent
@@ -100,7 +100,7 @@
 
 - name: Run make install for each ruleset
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   make:
     chdir: "/etc/irods/{{ item.0.name }}"
     target: install
@@ -113,7 +113,7 @@
 
 - name: Install requirements for ruleset
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.pip:
     requirements: /etc/irods/yoda-ruleset/requirements.txt
     extra_args: --user
@@ -121,7 +121,7 @@
 
 - name: Ensure all rulesets are in server config
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   irods_rulesets:
     config_path: "/etc/irods/server_config.json"
     rulesets: "{{ (extra_rulesets + core_rulesets) | map(attribute='ruleset_name') | list  }}"
@@ -130,7 +130,7 @@
 
 - name: Ensure Python rules are loaded
   become_user: "{{ irods_service_account }}"
-  become: yes
+  become: true
   ansible.builtin.copy:
     src: "core.py.template"
     dest: "/etc/irods/core.py"

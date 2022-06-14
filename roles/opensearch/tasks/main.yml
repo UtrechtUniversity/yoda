@@ -21,11 +21,10 @@
     src: '{{ dest_dir }}/{{ opensearch.filename }}'
     dest: /usr/share
     creates: '{{ opensearch.home }}'
-    remote_src: yes
+    remote_src: true
     extra_opts:
       - --transform
       - 's/^opensearch-{{ opensearch.version }}/opensearch/'
-  register: installation
 
 
 - name: Disable plugins
@@ -48,7 +47,7 @@
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
     mode: 0600
-    backup: yes
+    backup: true
 
 
 - name: Install jvm.options
@@ -58,7 +57,7 @@
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
     mode: 0600
-    force: yes
+    force: true
 
 
 - name: Set vm.max_map_count in sysctl.conf
@@ -79,7 +78,7 @@
   ansible.builtin.service:
     name: opensearch
     state: started
-    enabled: yes
+    enabled: true
 
 
 - name: Enable port for indexing
@@ -87,8 +86,17 @@
     port: 9200/tcp
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   notify: Restart firewall
+
+
+- name: Discover presence of index
+  ansible.builtin.uri:
+    url: "http://{{ yoda_portal_host }}:9200/yoda"
+    method: GET
+    status_code: 200
+  register: present
+  ignore_errors: true
 
 
 - name: Install initial index
@@ -102,4 +110,4 @@
   until: index is succeeded
   retries: 10
   delay: 5
-  when: installation is changed
+  when: present is failed

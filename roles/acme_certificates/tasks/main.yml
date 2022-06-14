@@ -45,7 +45,7 @@
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
     mode: '{{ item.mode }}'
-    remote_src: yes
+    remote_src: true
   with_items:
     - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem'
       dest: '/etc/pki/tls/certs/localhost_and_chain.crt'

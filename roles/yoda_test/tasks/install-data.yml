@@ -3,7 +3,7 @@
 
 - name: Ensure Yoda test groups exists
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   yoda_addgroup:
     groupName: '{{ item.groupName }}'
     category: '{{ item.category }}'
@@ -15,7 +15,7 @@
 
 - name: Ensure Yoda users are added to groups
   become_user: '{{ irods_service_account }}'
-  become: yes
+  become: true
   yoda_addgroupuser:
     groupName: '{{ item.groupName }}'
     user: '{{ item.user }}'
@@ -25,32 +25,32 @@
 
 - name: Ensure Yoda intake datamanager has read access to grp-vault-initial folder
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     ichmod -M read grp-datamanager-initial /{{ irods_zone }}/home/grp-vault-initial
   ignore_errors: true
 
 
 - name: Ensure Yoda intake datamanager has read access to grp-vault-test folder
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     ichmod -M read grp-datamanager-test /{{ irods_zone }}/home/grp-vault-test
   ignore_errors: true
 
 
 - name: Ensure Yoda test data directory research-initial/testdata is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/home/research-initial/testdata
   ignore_errors: true
 
 
 - name: Ensure Yoda test data directory is present
   become_user: '{{ irods_service_account }}'
-  become: yes
-  file:
+  become: true
+  ansible.builtin.file:
     path: '~/testdata/'
     state: directory
     mode: 0755
@@ -58,48 +58,48 @@
 
 - name: Ensure Yoda test data directory research-mdtest/nomdpresent is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/home/research-mdtest/nomdpresent
   ignore_errors: true
 
 
 - name: Ensure Yoda test data directory research-default-1/transformation is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/home/research-default-1/transformation
   ignore_errors: true
 
 
 - name: Ensure Yoda test data directory research-mdtest/invalidmetadata is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/home/research-mdtest/invalidmetadata
   ignore_errors: true
 
 
 - name: Ensure Yoda test data directory research-notpreservable/testdata is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/home/research-notpreservable/testdata
   ignore_errors: true
 
 
 - name: Ensure Yoda test data directory research-mdtest/copyfromparent is present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/home/research-mdtest/copyfromparent
   ignore_errors: true
 
 
 - name: Ensure Yoda test files are present in VM
   become_user: '{{ irods_service_account }}'
-  become: yes
-  copy:
+  become: true
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: '~/testdata/{{ item }}'
     mode: 0644
@@ -111,8 +111,8 @@
 
 - name: Ensure Yoda test files are present in Yoda directory research-initial/testdata
   become_user: '{{ irods_service_account }}'
-  become: yes
-  shell:
+  become: true
+  ansible.builtin.command:
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-initial/testdata
   with_items:
     - 'lorem.txt'
@@ -121,8 +121,8 @@
 
 - name: Ensure Yoda INTAKE test datasets are present in VM
   become_user: '{{ irods_service_account }}'
-  become: yes
-  copy:
+  become: true
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: '~/testdata/{{ item }}'
     mode: 0644
@@ -132,8 +132,8 @@
 
 - name: Ensure Yoda INTAKE test datasets are present in Yoda directory grp-intake-initial
   become_user: '{{ irods_service_account }}'
-  become: yes
-  shell:
+  become: true
+  ansible.builtin.command:
     iput -f -r ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-initial
   with_items:
     - 'intake_testset_initial'
@@ -141,8 +141,8 @@
 
 - name: Ensure Yoda metadata is present for geo publication test
   become_user: '{{ irods_service_account }}'
-  become: yes
-  shell:
+  become: true
+  ansible.builtin.command:
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-teclab-0
   with_items:
     - 'yoda-metadata.json'
@@ -150,16 +150,16 @@
 
 - name: Ensure Yoda licenses directory is present
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/yoda/licenses
   ignore_errors: true
 
 
 - name: Ensure licenses are present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     iput -f '/etc/irods/yoda-ruleset/licenses/{{ item }}' '/{{ irods_zone }}/yoda/licenses/{{ item }}'
   with_items:
     - "Creative Commons Attribution 4.0 International Public License.txt"
@@ -176,16 +176,16 @@
 
 - name: Ensure Yoda preservable file formats directory is present
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/yoda/file_formats
   ignore_errors: true
 
 
 - name: Ensure preservable file formats are present in Yoda
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     iput -f '/etc/irods/yoda-ruleset/file_formats//{{ item }}' '/{{ irods_zone }}/yoda/file_formats/{{ item }}'
   with_items:
     - "DANS.json"
@@ -194,16 +194,16 @@
 
 - name: Ensure Yoda templates directory is present
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     imkdir /{{ irods_zone }}/yoda/templates
   ignore_errors: true
 
 
 - name: Ensure intake module rule files are present
   become_user: '{{ irods_service_account }}'
-  become: yes
-  copy:
+  become: true
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: '~/.irods/{{ item }}'
     mode: 0644
@@ -215,8 +215,8 @@
 
 - name: Configure cronjob to make checksums of datapackages in grp-vault-*
   become_user: '{{ irods_service_account }}'
-  become: yes
-  cron:
+  become: true
+  ansible.builtin.cron:
     name: 'job_checksums.r'
     minute: '*/5'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /var/lib/irods/.irods/job_checksums.r >> /var/lib/irods/log/job_checksums.log 2>&1'
@@ -224,7 +224,7 @@
 
 - name: Run monthly storage statistics job
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
   ignore_errors: true

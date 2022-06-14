@@ -1,0 +1,7 @@
+skip_list:
+  - line-length
+  - command-instead-of-module
+  - experimental
+  - no-handler
+
+parseable: true

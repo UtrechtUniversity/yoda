@@ -24,6 +24,11 @@ Run flake8 check on source file change (requires the `entr` package):
 ls *py | entr flake8
 ```
 
+Reload Flask on project change (requires the `entr` package; run as root):
+```bash
+cd /var/www/yoda && find /etc/irods/yoda-ruleset . \( -path *.swp -o -path */node_modules/* -o -path ./venv -o -path ./.git \) -prune -o -print | entr touch yoda_debug.wsgi
+```
+
 Rebuild portal Javascript assets on source file change:
 ```bash
 ./node_modules/.bin/webpack -d -w

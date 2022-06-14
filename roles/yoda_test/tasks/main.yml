@@ -1,8 +1,8 @@
 ---
 # copyright Utrecht University
 
-- include: cleanup-data.yml
-- include: cleanup-users.yml
-- include: datarequest-data.yml
-- include: install-users.yml
-- include: install-data.yml
+- import_tasks: cleanup-data.yml
+- import_tasks: cleanup-users.yml
+- import_tasks: datarequest-data.yml
+- import_tasks: install-users.yml
+- import_tasks: install-data.yml

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # {{ ansible_managed }}
 
-import sqlite3
 from datetime import datetime
 from traceback import print_exc
+
+from pysqlcipher3 import dbapi2 as sqlite3
 
 TOKEN_DB = '{{ token_database }}'
 
@@ -23,6 +24,8 @@ def pam_sm_authenticate(pamh, flags, argv):
 
     with conn:
         try:
+            conn.execute("PRAGMA key='{{ token_database_password }}'")
+
             # Check if token matches an active token from the user.
             for row in conn.execute('''SELECT token FROM tokens WHERE user=:user_id AND exp_time > :now''',
                                     {"user_id": user_id, "now": datetime.now()}):

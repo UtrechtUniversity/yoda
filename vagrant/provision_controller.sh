@@ -24,3 +24,6 @@ git checkout development
 
 # Set file permissions on SSH key to 0600.
 chmod 0600 ~/yoda/vagrant/ssh/vagrant
+
+# Install all Ansible collections needed to deploy Yoda.
+ansible-galaxy collection install -r requirements.yml

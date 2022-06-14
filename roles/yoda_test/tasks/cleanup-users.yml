@@ -3,15 +3,15 @@
 
 - name: Remove all test users in iRODS
   become_user: '{{ irods_service_account }}'
-  become: yes
-  command:
+  become: true
+  ansible.builtin.command:
     iadmin rmuser '{{ item.name }}'
   ignore_errors: true
   with_items:
     - '{{ test_users + created_by_ta_users + oidc_test_users + eus_test_users }}'
 
 - name: Remove test users
-  user:
+  ansible.builtin.user:
     name: '{{ item.name }}'
     password: "{{ item.password | password_hash('sha512') }}"
     state: absent

@@ -23,6 +23,21 @@ irods_control_plane_port: 1248
 irods_schema_uri: https://schemas.irods.org/configuration
 irods_ssl_verify_server: cert
 
+rpm_dest_dir: /tmp
+
+# sqlcipher RPM locations and checksum
+sqlcipher:
+  package: sqlcipher-4.5.1-0
+  url: https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/
+  filename: sqlcipher-4.5.1-0.el7.x86_64.rpm
+  checksum: sha256:b256727666088dbb34dee1fbb0673b6fed02547e8e140c1022f864c82973e829
+
+sqlcipher_dev:
+  package: sqlcipher-devel-4.5.1-0
+  url: https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/
+  filename: sqlcipher-devel-4.5.1-0.el7.x86_64.rpm
+  checksum: sha256:2bf78f64075a5c39c36055d338b4e89d49a5b3e0f0d6d6a210abce669405a31e
+
 # PAM configuration.
 pam_fail_delay: 1000000                    # PAM fail delay in micro-seconds
 pam_radius_config: |
@@ -30,7 +45,7 @@ pam_radius_config: |
   other-server  other-secret   3
 
 # External Users configuration
-external_users: True
+external_users: true
 external_users_domain_filter: uu.nl
 eus_api_fqdn: eus.yoda.test
 eus_api_port: 8443
@@ -54,8 +69,9 @@ irods_service_type: 'systemd'
 irods_max_open_files: 131072
 
 # Data Access Tokens
-enable_tokens: false                               # Enable data access tokens for webDAV and iCommands
-token_database: /etc/irods/yoda-ruleset/tokens.db  # Location of the database that contain the tokens
+enable_tokens: false                                     # Enable data access tokens for webDAV and iCommands
+token_database: /etc/irods/yoda-ruleset/accesstokens.db  # Location of the database that contain the tokens
+token_database_password: PLACEHOLDER                     # Token database password
 
 # OpenSearch module configuration
 enable_open_search: false                          # Enable OpenSearch module

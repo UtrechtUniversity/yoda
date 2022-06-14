@@ -16,7 +16,7 @@
     port: '{{ item }}'
     permanent: true
     state: enabled
-    immediate: yes
+    immediate: true
   with_items:
     - 80/tcp
     - 443/tcp
@@ -45,7 +45,7 @@
     state: absent
   notify: Restart Apache webserver
   with_items:
-  - /etc/httpd/conf.d/autoindex.conf
+    - /etc/httpd/conf.d/autoindex.conf
 
 
 - name: Ensure Apache mod_lua is disabled

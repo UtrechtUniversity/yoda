@@ -12,7 +12,7 @@
     name: remi-php74
     description: Remi's PHP 7.4 RPM repository for Enterprise Linux 7
     mirrorlist: http://rpms.remirepo.net/enterprise/7/php74/mirror
-    enabled: yes
+    enabled: true
     gpgcheck: 1
     gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
   register: php_repo
@@ -33,8 +33,8 @@
 - name: Allow PHP to open TCP sockets in SELinux config
   seboolean:
     name: httpd_can_network_connect
-    state: yes
-    persistent: yes
+    state: true
+    persistent: true
   when: ansible_selinux.status == "enabled"
 
 

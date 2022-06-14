@@ -8,16 +8,16 @@
 
 
 - name: Ensure an OpenSSL 4096 bits RSA private key is present
-  openssl_privatekey:
+  community.crypto.openssl_privatekey:
     path: '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
     size: 4096
     type: RSA
-    force: no
+    force: false
     state: present
 
 
 - name: Ensure an OpenSSL certificate signing request is present
-  openssl_csr:
+  community.crypto.openssl_csr:
     path: '{{ openssl_certs_dir }}/{{ openssl_csr_selfsigned }}'
     privatekey_path: '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
     digest: sha256
@@ -25,18 +25,18 @@
     organization_name: '{{ openssl_o }}'
     locality_name: '{{ openssl_locality_name }}'
     common_name: '{{ certificate_domain }}'
-    force: no
+    force: false
     state: present
   when: not ansible_check_mode
 
 
 - name: Ensure an OpenSSL self signed certificate is present
-  openssl_certificate:
+  community.crypto.x509_certificate:
     path: '{{ openssl_certs_dir }}/{{ openssl_crt_selfsigned }}'
     privatekey_path: '{{ openssl_private_dir }}/{{ openssl_key_selfsigned }}'
     csr_path: '{{ openssl_certs_dir }}/{{ openssl_csr_selfsigned }}'
     provider: selfsigned
-    force: no
+    force: false
     state: present
   when: not ansible_check_mode
 
@@ -74,10 +74,10 @@
 
 
 - name: Ensure Diffie-Hellman parameters (2048 bits) are present
-  openssl_dhparam:
+  community.crypto.openssl_dhparam.openssl_dhparam:
     path: '{{ openssl_private_dir }}/{{ openssl_dhparams }}'
     size: 2048
-    force: no
+    force: false
     state: present
 
 
