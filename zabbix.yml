@@ -15,10 +15,15 @@
 - hosts: all
   pre_tasks:
     - name: Retrieve Yoda repository branch
-      shell: git branch | grep \* | cut -d ' ' -f2
+      ansible.builtin.shell: |
+        set -o pipefail
+        git branch | grep \* | cut -d ' ' -f2
       register: git_branch
       changed_when: false
       delegate_to: localhost
+      args:
+        executable: /bin/bash
+
 
     - name: Verify Yoda repository is on correct branch
       fail:
