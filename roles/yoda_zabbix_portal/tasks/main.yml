@@ -31,22 +31,20 @@
     mode: 0440
 
 
-- name: Copy Yoda zabbix scripts
-  ansible.builtin.shell: "cp /etc/zabbix/yoda-zabbix/zabbix-portal/*.sh /etc/zabbix/zabbix_agentd.d/"
-  notify: Restart Zabbix agent
-
-
-- name: Find Yoda Zabbix scripts
+- name: Find Zabbix script files
   ansible.builtin.find:
-    paths: /etc/zabbix/zabbix_agentd.d
-    patterns: "*.sh"
-  register: zabbix_portal_scripts
+    path: /etc/zabbix/yoda-zabbix/zabbix-portal
+    pattern: "*.sh"
+  register: portal_script_files
 
 
-- name: Ensure right file ownership on Yoda Zabbix scripts
-  ansible.builtin.file:
-    path: "{{ item.path }}"
+- name: Copy Yoda Zabbix script files
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/zabbix/zabbix_agentd.d/
+    remote_src: true
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items: "{{ zabbix_portal_scripts.files }}"
+  with_items: "{{ portal_script_files.files }}"
+  notify: Restart Zabbix agent
