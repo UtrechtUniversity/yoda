@@ -135,22 +135,20 @@
     mode: 0440
 
 
-- name: Copy Yoda Zabbix scripts
-  ansible.builtin.shell: "cp /etc/zabbix/yoda-zabbix/zabbix-system/*.sh /etc/zabbix/zabbix_agentd.d/"
-  notify: Restart Zabbix agent
-
-
-- name: Find Yoda Zabbix scripts
+- name: Find Zabbix script files
   ansible.builtin.find:
-    paths: /etc/zabbix/zabbix_agentd.d
-    patterns: "*.sh"
-  register: zabbix_system_scripts
+    path: /etc/zabbix/yoda-zabbix/zabbix-system
+    pattern: "*.sh"
+  register: system_script_files
 
 
-- name: Ensure right file ownership on Yoda Zabbix scripts
-  ansible.builtin.file:
-    path: "{{ item.path }}"
+- name: Copy Yoda Zabbix scripts
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/zabbix/zabbix_agentd.d/
+    remote_src: true
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items: "{{ zabbix_system_scripts.files }}"
+  with_items: "{{ system_script_files.files }}"
+  notify: Restart Zabbix agent

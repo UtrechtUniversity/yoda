@@ -36,43 +36,39 @@
     mode: 0440
 
 
-- name: Copy Yoda Zabbix rules
-  ansible.builtin.shell: "cp /etc/zabbix/yoda-zabbix/zabbix-icat/*.r /etc/zabbix/zabbix_agentd.d/"
-  notify: Restart Zabbix agent
-
-
-- name: Copy Yoda Zabbix scripts
-  ansible.builtin.shell: "cp /etc/zabbix/yoda-zabbix/zabbix-icat/*.sh /etc/zabbix/zabbix_agentd.d/"
-  notify: Restart Zabbix agent
-
-
-- name: Find Yoda Zabbix rules
+- name: Find Zabbix rule files
   ansible.builtin.find:
-    paths: /etc/zabbix/zabbix_agentd.d
-    patterns: "*.r"
-  register: zabbix_icat_rules
+    path: /etc/zabbix/yoda-zabbix/zabbix-icat
+    pattern: "*.r"
+  register: icat_rule_files
 
 
-- name: Ensure right file ownership on Yoda Zabbix rules
-  ansible.builtin.file:
-    path: "{{ item.path }}"
+- name: Copy Yoda Zabbix rules
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/zabbix/zabbix_agentd.d/
+    remote_src: true
     owner: irods
     group: irods
     mode: 0500
-  with_items: "{{ zabbix_icat_rules.files }}"
+  with_items: "{{ icat_rule_files.files }}"
+  notify: Restart Zabbix agent
 
 
-- name: Find Yoda Zabbix scripts
+- name: Find Zabbix scripts
   ansible.builtin.find:
-    paths: /etc/zabbix/zabbix_agentd.d
-    patterns: "*.sh"
-  register: zabbix_icat_scripts
+    path: "/etc/zabbix/yoda-zabbix/zabbix-icat"
+    pattern: "*.sh"
+  register: icat_script_files
 
 
-- name: Ensure right file ownership on Yoda Zabbix scripts
-  ansible.builtin.file:
-    path: "{{ item.path }}"
+- name: Copy Yoda Zabbix scripts
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/zabbix/zabbix_agentd.d/
+    remote_src: true
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items: "{{ zabbix_icat_scripts.files }}"
+  with_items: "{{ icat_script_files.files }}"
+  notify: Restart Zabbix agent
