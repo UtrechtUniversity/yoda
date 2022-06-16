@@ -2,13 +2,13 @@
 # copyright Utrecht University
 
 - name: Check if Zabbix PostgreSQL monitoring RPM is installable from repository
-  yum:
+  ansible.builtin.yum:
     list: '{{ zabbix_postgres.package }}'
   register: zabbix_postgres_repo
 
 
 - name: Download Zabbix PostgreSQL monitoring RPM
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
     checksum: '{{ zabbix_postgres.checksum }}'
@@ -17,14 +17,14 @@
 
 
 - name: Install Zabbix PostgreSQL monitoring from downloaded RPM
-  package:
+  ansible.builtin.package:
     name: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
     state: present
   when: not zabbix_postgres_repo.results and not repo_only
 
 
 - name: Ensure Zabbix PostgreSQL monitoring RPM is installed
-  package:
+  ansible.builtin.package:
     name: '{{ zabbix_postgres.package }}'
     state: present
   when: zabbix_postgres_repo.results
