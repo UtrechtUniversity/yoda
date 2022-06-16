@@ -43,7 +43,7 @@
   package:
     name: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
     state: present
-  when: not zabbix_agent_repo.results and not repo_only
+  when: not zabbix_agent_repo.results and not repo_only and not ansible_check_mode
 
 
 - name: Ensure Zabbix agent rpm is installed
