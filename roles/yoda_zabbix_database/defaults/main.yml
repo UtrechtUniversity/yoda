@@ -19,4 +19,4 @@ irods_database_name: ICAT
 eus_db_name: extuser
 zabbix_database_user: zabbix
 
-repo_only: no  # Only download packages from repos.
+repo_only: false # Only download packages from repos.

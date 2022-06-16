@@ -30,7 +30,7 @@
   hosts: portals
   become: true
   roles:
-   - yoda_zabbix_portal
+    - yoda_zabbix_portal
   tags:
     - portal
 

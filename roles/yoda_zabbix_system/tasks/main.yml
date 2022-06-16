@@ -56,7 +56,7 @@
 - name: Enable the Zabbix agent service
   service:
     name: zabbix-agent
-    enabled: yes
+    enabled: true
     use: service
 
 
@@ -70,8 +70,8 @@
 - name: Allow Zabbix agent to sudo
   seboolean:
     name: zabbix_run_sudo
-    state: yes
-    persistent: yes
+    state: true
+    persistent: true
 
 
 - name: Generate Zabbix agent PSK
@@ -109,7 +109,7 @@
   copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda_system.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda_system.userparams.conf
@@ -124,7 +124,7 @@
   copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda-zabbix-system-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-system-sudoers
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda-zabbix-system-sudoers
