@@ -5,7 +5,7 @@
   copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda_irodscommon.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda_irodscommon.userparams.conf
@@ -20,7 +20,7 @@
   copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda-zabbix-irodscommon-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda-zabbix-irodscommon-sudoers

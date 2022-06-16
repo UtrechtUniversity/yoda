@@ -5,7 +5,7 @@
   copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-portal/yoda_portal.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_portal.userparams.conf
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda_portal.userparams.conf
@@ -20,7 +20,7 @@
   copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-portal/yoda-zabbix-portal-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-portal-sudoers
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on zabbix_agentd.userparams.conf
