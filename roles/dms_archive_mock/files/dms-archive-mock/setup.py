@@ -14,7 +14,7 @@ setup(
     zip_safe=False,
     install_requires=['Flask',
                       'requests',
-                      'numpy==1.19.5'],
+                      'numpy==1.22.0'],
     entry_points='''
     [console_scripts]
     dmattr=dm_mock:dmattr
