@@ -50,6 +50,9 @@
     "default_resource_name": "{{ irods_default_resc }}",
     "environment_variables": {},
     "federation": [],
+    "host_resolution": {
+      "host_entries": []
+    },
     "match_hash_policy": "compatible",
     "negotiation_key": "{{ irods_negotiation_key }}",
     "plugin_configuration": {
@@ -113,5 +116,6 @@
     "zone_name": "{{ irods_zone }}",
     "zone_port": {{ irods_icat_port }},
     "zone_user": "rods"
-  }
+  },
+  "default_resource_name": "{{ irods_default_resc }}"
 }

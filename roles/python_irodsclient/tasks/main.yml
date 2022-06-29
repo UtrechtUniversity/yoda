@@ -19,5 +19,5 @@
 - name: Ensure python-irodsclient is installed
   pip:
     name:
-      - python-irodsclient==1.1.3
+      - git+https://github.com/irods/python-irodsclient.git@4f686b96af1125a79b71394ef697d78cd734bc41
     state: present

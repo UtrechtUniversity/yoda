@@ -4,7 +4,7 @@
 - name: Ensure Python dependencies are installed
   ansible.builtin.package:
     name:
-      - python-pip
+      - python3-pip
     state: present
 
 
@@ -115,6 +115,7 @@
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.pip:
+    executable: pip3
     requirements: /etc/irods/yoda-ruleset/requirements.txt
     extra_args: --user
 

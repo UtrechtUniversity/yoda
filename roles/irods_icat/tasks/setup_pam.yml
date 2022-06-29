@@ -52,7 +52,7 @@
 - name: Ensure Python dependencies are installed
   ansible.builtin.package:
     name:
-      - python-pip
+      - python3-pip
     state: present
   when: enable_tokens
 
@@ -61,6 +61,7 @@
   ansible.builtin.pip:
     name:
       - pysqlcipher3==1.0.4
+    executable: pip3
     state: present
   when: enable_tokens
 

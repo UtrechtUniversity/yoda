@@ -25,5 +25,5 @@
 
 - name: Ensure iRODS runtime is installed
   ansible.builtin.package:
-    name: irods-runtime-4.2.11-1
+    name: irods-runtime-4.3.0-1
     state: present

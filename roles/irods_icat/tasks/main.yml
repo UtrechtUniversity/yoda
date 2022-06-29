@@ -87,6 +87,19 @@
       - irods-rule-engine-plugin-indexing-4.2.10.1-1
       - irods-rule-engine-plugin-elasticsearch-4.2.10.1-1
       - irods-rule-engine-plugin-document-type-4.2.10.1-1
+      - irods-uu-microservices-4.2.11_0.8.2
+      - irods-sudo-microservices-4.2.11_1.0.0
+      - davrods-4.2.11_1.5.0
+      - irods-runtime-4.2.11-1
+      - irods-server-4.2.11-1
+      - irods-database-plugin-postgres-4.2.11-1
+      - irods-icommands-4.2.11-1
+      - irods-rule-engine-plugin-python-4.2.11.1-1
+      - irods-rule-engine-plugin-indexing-4.2.11.0-1
+      - irods-rule-engine-plugin-elasticsearch-4.2.11.0-1
+      - irods-rule-engine-plugin-document-type-4.2.11.0-1
+
+
     state: absent
   notify: Restart iRODS
 
@@ -94,10 +107,10 @@
 - name: Ensure iRODS iCAT server and plugins are present
   ansible.builtin.package:
     name:
-      - irods-server-4.2.11-1
-      - irods-runtime-4.2.11-1
-      - irods-database-plugin-postgres-4.2.11-1
-      - irods-rule-engine-plugin-python-4.2.11.1-1
+      - irods-server-4.3.0-1
+      - irods-runtime-4.3.0-1
+      - irods-database-plugin-postgres-4.3.0-1
+      - irods-rule-engine-plugin-python-4.3.0.0-1
     state: present
   when: not ansible_check_mode
 
@@ -105,9 +118,9 @@
 - name: Ensure iRODS indexing plugins are present
   ansible.builtin.package:
     name:
-      - irods-rule-engine-plugin-indexing-4.2.11.0-1
-      - irods-rule-engine-plugin-elasticsearch-4.2.11.0-1
-      - irods-rule-engine-plugin-document-type-4.2.11.0-1
+      - irods-rule-engine-plugin-indexing-4.3.0.0-1
+      - irods-rule-engine-plugin-elasticsearch-4.3.0.0-1
+      - irods-rule-engine-plugin-document-type-4.3.0.0-1
     state: present
   when: not ansible_check_mode and enable_open_search
 
@@ -182,9 +195,24 @@
     timeout: 30
 
 
+- name: Ensure that unixODBC-devel is installed
+  ansible.builtin.package:
+    name:
+      - unixODBC-devel
+    state: present
+
+
+- name: Ensure that pyodbc is installed
+  ansible.builtin.pip:
+    name:
+      - pyodbc==4.0.32
+    executable: pip3
+    state: present
+
+
 - name: Configure iRODS iCAT server
   become: true
-  ansible.builtin.command: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_provider.json
+  ansible.builtin.command: python3 /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_provider.json
   args:
     creates: /etc/irods/service_account.config
   run_once: true

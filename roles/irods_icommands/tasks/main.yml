@@ -31,6 +31,6 @@
 
 - name: Ensure iRODS iCommands is installed
   ansible.builtin.yum:
-    name: irods-icommands-4.2.11-1
+    name: irods-icommands-4.3.0-1
     state: present
   when: not irods_server.stat.exists and not ansible_check_mode

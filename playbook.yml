@@ -94,6 +94,7 @@
   hosts: icats
   become: true
   roles:
+    - python3
     - pam_python
     - irods_icat
     - irods_runtime
@@ -113,6 +114,7 @@
   hosts: resources
   become: true
   roles:
+    - python3
     - irods_resource
     - irods_runtime
     - irods_microservices
