@@ -108,4 +108,4 @@
     body: "{{ lookup('file', 'index.json') }}"
     status_code: 200
     body_format: json
-  when: present.status == 404
+  when: not ansible_check_mode and present.status == 404
