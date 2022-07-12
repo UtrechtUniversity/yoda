@@ -18,6 +18,7 @@ JSON_SORT_KEYS      = False  # Check if this is still needed with Python v3.7?
 SESSION_TYPE                = 'filesystem'
 SESSION_COOKIE_HTTPONLY     = True
 SESSION_COOKIE_SECURE       = True
+SESSION_COOKIE_SAMESITE     = 'Strict'
 PERMANENT_SESSION_LIFETIME  = {{ flask_permanent_session_lifetime }}
 SESSION_USE_SIGNER          = True
 SESSION_FILE_DIR            = '{{ flask_session_file_dir }}'
