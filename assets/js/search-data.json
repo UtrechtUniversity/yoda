@@ -109,7 +109,7 @@
   },"18": {
     "doc": "Configuring Cleanup functionality temporary files",
     "title": "Defining selection masks",
-    "content": "It is possible to define masks that describe a certain file/type. The mask(s) will be used to select the corresponding files and show to a user. Mask - find specific files . It is possible to search for files that have a specific name. For example: . mask definition: 'Thumbs.db' . The mask will search exact matches of the filename ‘Thumbs.db’. Mask - use of wildcards . It is possible to use all common wildcards in the creation of a mask. For example: . mask definition with wildcard: '._*'' . The mask will search for files whose name match the given wildcards. Multiple masks . Masks can be added by concatenation being sepecated by a comma. multiple masks in mask defintion: '._*','Thumbs.db' . ",
+    "content": "It is possible to define masks that describe a certain file/type. The mask(s) will be used to select the corresponding files and show to a user. Mask - find specific files . It is possible to search for files that have a specific name. For example: . mask definition: 'Thumbs.db' . The mask will search exact matches of the filename ‘Thumbs.db’. Mask - use of wildcards . It is possible to use all common wildcards in the creation of a mask. For example: . mask definition with wildcard: '._*'' . The mask will search for files whose name match the given wildcards. Multiple masks . Masks can be added by concatenation being sepecated by a comma. multiple masks in mask definition: '._*','Thumbs.db' . ",
     "url": "/yoda/administration/configuring-cleanup-temporary-files.html#defining-selection-masks",
     "relUrl": "/administration/configuring-cleanup-temporary-files.html#defining-selection-masks"
   },"19": {
@@ -145,7 +145,7 @@
   },"24": {
     "doc": "Configuring Data Access Passwords",
     "title": "Configuring the variables",
-    "content": "When creating a new Yoda instance, setup the variables in the group_vars as explained in Configuring Yoda and run the playbook. Alternatively, you can choose to pass the variables with the –extra-vars option every time when running the Ansible playbook. The development group_vars contains examples for all of the variables. For Data Access Passwords to function properly it requires the following variables to be set: . | enable_tokens (default: false), used by Ansible during setup. | token_database_password, used as password for the token database. | . For customization purposes, you can also configure: . | token_database | token_length | token_lifetime | . ",
+    "content": "When creating a new Yoda instance, setup the variables in the group_vars as explained in Configuring Yoda and run the playbook. Alternatively, you can choose to pass the variables with the –extra-vars option every time when running the Ansible playbook. The development group_vars contains examples for all of the variables. For Data Access Passwords to function properly it requires the following variables to be set: . | enable_tokens (default: false), used by Ansible during setup. | . For customization purposes, you can also configure: . | token_database | token_length | token_lifetime | . ",
     "url": "/yoda/administration/configuring-data-access-passwords.html#configuring-the-variables",
     "relUrl": "/administration/configuring-data-access-passwords.html#configuring-the-variables"
   },"25": {
@@ -205,7 +205,7 @@
   },"34": {
     "doc": "Configuring Yoda",
     "title": "Data Access Tokens configuration",
-    "content": "| Variable | Description | . | enable_tokens | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be true or false | . | token_database | Location of the database that contain the tokens | . | token_database_password | Token database password | . | token_length | Length of data access tokens | . | token_lifetime | Lifetime of data access tokens (in hours) (in hours) | . Public host configuration . | Variable | Description | . | yoda_public_host | Yoda public host | . | yoda_public_fqdn | Yoda public fully qualified domain name (FQDN) | . | upload_priv_key | Yoda public upload private key (base64 encoded) | . | upload_pub_key | Yoda public upload public key (base64 encoded) | . External user service configuration . | Variable | Description | . | yoda_eus_fqdn | Yoda External User Service fully qualified domain name (FQDN) | . | eus_api_fqdn | External User Service API fully qualified domain name (FQDN) | . | eus_api_port | External User Service API port | . | eus_api_secret | External User Service API secret | . | eus_db_password | External User Service database password | . | eus_smtp_host | External User Service SMTP host | . | eus_smtp_port | External User Service SMTP port | . | eus_smtp_user | External User Service SMTP user | . | eus_smtp_password | External User Service SMTP password | . | eus_smtp_from_address | External User Service from address | . | eus_smtp_replyto_address | External User Service replyto address | . | eus_mail_template | External User Service mail template | . ",
+    "content": "| Variable | Description | . | enable_tokens | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be true or false | . | token_database | Location of the database that contain the tokens | . | token_length | Length of data access tokens | . | token_lifetime | Lifetime of data access tokens (in hours) (in hours) | . Public host configuration . | Variable | Description | . | yoda_public_host | Yoda public host | . | yoda_public_fqdn | Yoda public fully qualified domain name (FQDN) | . | upload_priv_key | Yoda public upload private key (base64 encoded) | . | upload_pub_key | Yoda public upload public key (base64 encoded) | . External user service configuration . | Variable | Description | . | yoda_eus_fqdn | Yoda External User Service fully qualified domain name (FQDN) | . | eus_api_fqdn | External User Service API fully qualified domain name (FQDN) | . | eus_api_port | External User Service API port | . | eus_api_secret | External User Service API secret | . | eus_db_password | External User Service database password | . | eus_smtp_host | External User Service SMTP host | . | eus_smtp_port | External User Service SMTP port | . | eus_smtp_user | External User Service SMTP user | . | eus_smtp_password | External User Service SMTP password | . | eus_smtp_from_address | External User Service from address | . | eus_smtp_replyto_address | External User Service replyto address | . | eus_mail_template | External User Service mail template | . ",
     "url": "/yoda/administration/configuring-yoda.html#data-access-tokens-configuration",
     "relUrl": "/administration/configuring-yoda.html#data-access-tokens-configuration"
   },"35": {
@@ -277,13 +277,13 @@
   },"46": {
     "doc": "Data requests module",
     "title": "Functional description",
-    "content": "The supported workflows are described in this section. A sequence diagram mapping the workflow is shown below. Submission of data requests . A researcher seeking to obtain research data stored in Yoda must be able to submit a request for this data. The request must belong to a research proposal, which is submitted along with the data request. The research proposal must describe the purpose for which the researcher wants to obtain the requested data. Management and review of data requests . A delegate of a research programme’s or study’s project manager must be able to perform a cursory preliminary review of a data request. Likewise, a data manager assigned as a custodian of (certain) data stored in Yoda must be also able to submit a review of a data request. After these preliminary reviews, a project manager must be able to assign a data request for review to one or more members of a Data Access Committee (DAC) . The DAC member(s) must be able to review research proposals assigned to him. Final evaluation of research proposals . A project manager must be able to give a final evaluation of a research proposal based on the reviews by the data manager and the DAC member(s), thereby approving or rejecting the data request. Creation of data transfer agreements (DTAs) . Once a data request and its accompanying research proposal have been approved, the data manager must be able to create a DTA specifying the terms and conditions under which the requested data is made available to the requesting researcher. Approval of DTAs . Once a DTA has been created, the requesting researcher must be able to view the DTA and register his agreement to the terms and conditions specified therein. Release of requested data . After the DTA has been signed by the requesting researcher, the data manager may release the requested data to him. The means by which the data is transferred to the researcher is outside of the scope of the data request module. ",
+    "content": "The supported workflows are described in this section. A sequence diagram mapping the workflow is shown below. Submission of data requests . A researcher seeking to obtain research data stored in Yoda must be able to submit a request for this data. The request must belong to a research proposal, which is submitted along with the data request. The research proposal must describe the purpose for which the researcher wants to obtain the requested data. Management and review of data requests . A delegate of a research programme’s or study’s project manager must be able to perform a cursory preliminary review of a data request. Likewise, a data manager assigned as a custodian of (certain) data stored in Yoda must be also able to submit a review of a data request. After these preliminary reviews, a project manager must be able to assign a data request for review to one or more members of a Data Management Committee (DMC) . The DMC member(s) must be able to review research proposals assigned to him. Final evaluation of research proposals . A project manager must be able to give a final evaluation of a research proposal based on the reviews by the data manager and the DMC member(s), thereby approving or rejecting the data request. Creation of data transfer agreements (DTAs) . Once a data request and its accompanying research proposal have been approved, the data manager must be able to create a DTA specifying the terms and conditions under which the requested data is made available to the requesting researcher. Approval of DTAs . Once a DTA has been created, the requesting researcher must be able to view the DTA and register his agreement to the terms and conditions specified therein. Release of requested data . After the DTA has been signed by the requesting researcher, the data manager may release the requested data to him. The means by which the data is transferred to the researcher is outside of the scope of the data request module. ",
     "url": "/yoda/design/overview/data-requests.html#functional-description",
     "relUrl": "/design/overview/data-requests.html#functional-description"
   },"47": {
     "doc": "Data requests module",
     "title": "Technical description",
-    "content": "To keep the complexity of the module to a minimum, existing Yoda functionality and modules are used to implement the functional requirements. Submission of data requests . To allow anyone, including newly registered Yoda users, to submit a data request, a public iRODS collection (named, for example, “datarequests”) must be created. When a data request is submitted through a web form by a researcher, a subcollection is created which will act as a folder for all files related to the research proposal. The data request and research proposal is then saved to this subcollection as a JSON-formatted file. Because researchers only have ownership of subcollections they themselves have created, they cannot access data requests by other researchers. Management and review of data requests . Project managers and data managers must be able to view all submitted data requests. They are enabled to do so by membership of a group (e.g. “brainmorphlab-datamanagers”; see Group Manager) that has group manager permissions on the public collection mentioned above (these include read and write permissions). Because these permissions are recursive, they also apply to the subcollections made by researchers. Upon assignment of a research proposal for evaluation to a DAC member, the DAC member is granted read and write permissions on the subcollection in which the research proposal is stored. DAC membership is determined by membership of a particular group (e.g. “brainmorphlab-dac”), acting as a pool from which the data manager may pick an appropriate member. A DAC member can evaluate a research proposal through a web form. The evaluation is saved as a JSON-formatted file in the subcollection that also holds the research proposal itself. Because multiple research groups may use a Yoda instance, multiple data manager and DAC groups may be created so that data requests meant for data of a particular research group can be handled by data managers associated with that research group. Final evaluation of research proposals . Project managers also belong to a particular group (e.g. “brainmorphlab-pm”. They have the same rights as those in the data manager group, thus allowing them to view the research proposal and associated reviews. A project manager can approve a research proposal through a web form that sets the value of the status AVU of the research proposal subcollection to “approved”. Creation of DTAs . After the data request has been approved, the data manager creates a DTA and adds it as a PDF file to the subcollection (through a web form). The researcher will receive a request to upload as signed copy of this document. Approval of DTAs . The DTA created by the data manager is made available to the researcher. Once the researcher has created a signed copy of the document, he can upload it through a web form. The signed copy is saved in the subcollection. The data may now be made available to the researcher by the data manager. ",
+    "content": "To keep the complexity of the module to a minimum, existing Yoda functionality and modules are used to implement the functional requirements. Submission of data requests . To allow anyone, including newly registered Yoda users, to submit a data request, a public iRODS collection (named, for example, “datarequests”) must be created. When a data request is submitted through a web form by a researcher, a subcollection is created which will act as a folder for all files related to the research proposal. The data request and research proposal is then saved to this subcollection as a JSON-formatted file. Because researchers only have ownership of subcollections they themselves have created, they cannot access data requests by other researchers. Management and review of data requests . Project managers and data managers must be able to view all submitted data requests. They are enabled to do so by membership of a group (e.g. “brainmorphlab-datamanagers”; see Group Manager) that has group manager permissions on the public collection mentioned above (these include read and write permissions). Because these permissions are recursive, they also apply to the subcollections made by researchers. Upon assignment of a research proposal for evaluation to a DMC member, the DMC member is granted read and write permissions on the subcollection in which the research proposal is stored. DMC membership is determined by membership of a particular group (e.g. “brainmorphlab-dmc”), acting as a pool from which the data manager may pick an appropriate member. A DMC member can evaluate a research proposal through a web form. The evaluation is saved as a JSON-formatted file in the subcollection that also holds the research proposal itself. Because multiple research groups may use a Yoda instance, multiple data manager and DMC groups may be created so that data requests meant for data of a particular research group can be handled by data managers associated with that research group. Final evaluation of research proposals . Project managers also belong to a particular group (e.g. “brainmorphlab-pm”. They have the same rights as those in the data manager group, thus allowing them to view the research proposal and associated reviews. A project manager can approve a research proposal through a web form that sets the value of the status AVU of the research proposal subcollection to “approved”. Creation of DTAs . After the data request has been approved, the data manager creates a DTA and adds it as a PDF file to the subcollection (through a web form). The researcher will receive a request to upload as signed copy of this document. Approval of DTAs . The DTA created by the data manager is made available to the researcher. Once the researcher has created a signed copy of the document, he can upload it through a web form. The signed copy is saved in the subcollection. The data may now be made available to the researcher by the data manager. ",
     "url": "/yoda/design/overview/data-requests.html#technical-description",
     "relUrl": "/design/overview/data-requests.html#technical-description"
   },"48": {
@@ -307,13 +307,13 @@
   },"51": {
     "doc": "Deploying Yoda",
     "title": "Deploying new instance",
-    "content": "Configure the new instance and run the Yoda playbook to deploy. For example, deploying the instance ‘yoda’ in an environment called ‘production’: . ansible-galaxy collection install -r requirements.yml ansible-playbook -i environments/development playbook.yml --limit=yoda -K . ",
+    "content": "Configure the new instance and run the Yoda playbook to deploy. For example, deploying the instance ‘yoda’ in an environment called ‘production’: . ansible-playbook -i environments/development playbook.yml --limit=yoda -K . ",
     "url": "/yoda/administration/deploying-yoda.html#deploying-new-instance",
     "relUrl": "/administration/deploying-yoda.html#deploying-new-instance"
   },"52": {
     "doc": "Deploying Yoda",
     "title": "Upgrading existing instance",
-    "content": "To upgrade an existing Yoda instance update your Yoda Ansible repository to include the latest changes: . git pull . Install all Ansible collections needed to deploy Yoda: . ansible-galaxy collection install -r requirements.yml . Upgrade the configuration of the Yoda Instance and then run the Yoda playbook: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -K . You may want to run the Yoda playbook in check mode first to see the changes it will make: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -CDK . ",
+    "content": "To upgrade an existing Yoda instance update your Yoda Ansible repository to include the latest changes: . git pull . Upgrade the configuration of the Yoda Instance and then run the Yoda playbook: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -K . You may want to run the Yoda playbook in check mode first to see the changes it will make: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -CDK . ",
     "url": "/yoda/administration/deploying-yoda.html#upgrading-existing-instance",
     "relUrl": "/administration/deploying-yoda.html#upgrading-existing-instance"
   },"53": {
@@ -373,7 +373,7 @@
   },"62": {
     "doc": "Development tips",
     "title": "General",
-    "content": "Watch latest iRODS log without unnecessary noise: . ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v \"Agent process started for puser=rods\" . Watch flake8 check on Python code: . watch flake8 . Run flake8 check on source file change (requires the entr package): . ls *py | entr flake8 . Reload Flask on project change (requires the entr package; run as root): . cd /var/www/yoda &amp;&amp; find /etc/irods/yoda-ruleset . \\( -path *.swp -o -path */node_modules/* -o -path ./venv -o -path ./.git \\) -prune -o -print | entr touch yoda_debug.wsgi . Rebuild portal Javascript assets on source file change: ./node_modules/.bin/webpack -d -w . ",
+    "content": "Watch latest iRODS log without unnecessary noise: . ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v \"Agent process started for puser=rods\" . Watch flake8 check on Python code: . watch flake8 . Run flake8 check on source file change (requires the entr package): . ls *py | entr flake8 . Rebuild portal Javascript assets on source file change: ./node_modules/.bin/webpack -d -w . ",
     "url": "/yoda/development/development-tips.html#general",
     "relUrl": "/development/development-tips.html#general"
   },"63": {
@@ -539,107 +539,107 @@
     "url": "/yoda/development/",
     "relUrl": "/development/"
   },"90": {
-    "doc": "Release Notes",
-    "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
-    "url": "/yoda/release-notes/",
-    "relUrl": "/release-notes/"
-  },"91": {
-    "doc": "Administration Tasks",
-    "title": "Administration Tasks",
-    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | Configuring cleanup temporary files | . ",
-    "url": "/yoda/administration/",
-    "relUrl": "/administration/"
-  },"92": {
-    "doc": "API",
-    "title": "API",
-    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
-    "url": "/yoda/design/api/",
-    "relUrl": "/design/api/"
-  },"93": {
-    "doc": "Other",
-    "title": "Other",
-    "content": " ",
-    "url": "/yoda/design/other/",
-    "relUrl": "/design/other/"
-  },"94": {
     "doc": "Processes",
     "title": "Processes",
     "content": " ",
     "url": "/yoda/design/processes/",
     "relUrl": "/design/processes/"
-  },"95": {
+  },"91": {
     "doc": "Metadata",
     "title": "Metadata",
     "content": " ",
     "url": "/yoda/design/metadata/",
     "relUrl": "/design/metadata/"
-  },"96": {
+  },"92": {
     "doc": "System Overview",
     "title": "System overview",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
     "url": "/yoda/design/overview/#system-overview",
     "relUrl": "/design/overview/#system-overview"
-  },"97": {
+  },"93": {
     "doc": "System Overview",
     "title": "Core modules",
     "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     "relUrl": "/design/overview/#core-modules"
-  },"98": {
+  },"94": {
     "doc": "System Overview",
     "title": "Additional modules",
     "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
     "url": "/yoda/design/overview/#additional-modules",
     "relUrl": "/design/overview/#additional-modules"
-  },"99": {
+  },"95": {
     "doc": "System Overview",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/#overview",
     "relUrl": "/design/overview/#overview"
-  },"100": {
+  },"96": {
     "doc": "System Overview",
     "title": "System Overview",
     "content": " ",
     "url": "/yoda/design/overview/",
     "relUrl": "/design/overview/"
-  },"101": {
+  },"97": {
+    "doc": "Other",
+    "title": "Other",
+    "content": " ",
+    "url": "/yoda/design/other/",
+    "relUrl": "/design/other/"
+  },"98": {
+    "doc": "API",
+    "title": "API",
+    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
+    "url": "/yoda/design/api/",
+    "relUrl": "/design/api/"
+  },"99": {
     "doc": "Software Design",
     "title": "Software Design",
     "content": " ",
     "url": "/yoda/design/",
     "relUrl": "/design/"
-  },"102": {
+  },"100": {
     "doc": "Software Design",
     "title": "API",
     "content": ". | API documentation | . ",
     "url": "/yoda/design/#api",
     "relUrl": "/design/#api"
-  },"103": {
+  },"101": {
     "doc": "Software Design",
     "title": "System",
     "content": ". | System overview | Research space | Vault space | Statistics module | Intake module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
     "url": "/yoda/design/#system",
     "relUrl": "/design/#system"
-  },"104": {
+  },"102": {
     "doc": "Software Design",
     "title": "Metadata",
     "content": ". | Metadata schema identifier | Metadata form | Metadata mappings | Metadata schemas | . ",
     "url": "/yoda/design/#metadata",
     "relUrl": "/design/#metadata"
-  },"105": {
+  },"103": {
     "doc": "Software Design",
     "title": "Processes",
     "content": ". | Asynchronous and privileged execution | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
     "url": "/yoda/design/#processes",
     "relUrl": "/design/#processes"
-  },"106": {
+  },"104": {
     "doc": "Software Design",
     "title": "Other",
     "content": ". | Python plugin | Yoda drive | . ",
     "url": "/yoda/design/#other",
     "relUrl": "/design/#other"
+  },"105": {
+    "doc": "Administration Tasks",
+    "title": "Administration Tasks",
+    "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | Configuring cleanup temporary files | . ",
+    "url": "/yoda/administration/",
+    "relUrl": "/administration/"
+  },"106": {
+    "doc": "Release Notes",
+    "title": "Release Notes",
+    "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "url": "/yoda/release-notes/",
+    "relUrl": "/release-notes/"
   },"107": {
     "doc": "Home",
     "title": "Yoda technical documentation",
@@ -1399,7 +1399,7 @@
   },"233": {
     "doc": "v1.8",
     "title": "Upgrading from previous release",
-    "content": "Upgrade is supported by Ansible (2.9.x). Requires Yoda external user service to be on version 1.5.x or higher. Requires Yoda public server to be on version 1.6.x or higher. | Backup/copy custom configurations made to Yoda version 1.7. To view what files were changed from the defaults, run git diff. | After making sure the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Checkout branch release-1.8 of the Yoda Git repository. git checkout release-1.8 . | Change the default schema from default-1 to default-2 in configuration. Discipline must be present in all vault packages before migration. I.e. discipline must be manually added if not present yet. This requires an intervention by the responsible datamanager beforehand. default_yoda_schema: default-2 . | Two OpenID Connect configuration options are added and one has been replaced. If OIDC is active (oidc_active), make sure you have configured, oidc_jwks_uri and oidc_jwt_issuer. Option oidc_domain is replaced with oidc_domains. Example: oidc_domains: ['domain1.tld', 'domain2.tld'] . | DataCite connection is now using REST API instead of legacy MDS. If DataCite is configured the option datacite_server should be replaced with datacite_rest_api_url. Example: datacite_rest_api_url: api.test.datacite.org . | Install all Ansible collections needed to deploy Yoda: ansible-galaxy collection install -r requirements.yml . | Run the Ansible playbook in check mode. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update all metadata JSON in the vault to latest metadata JSON version (default-1 to default-2). irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | . ",
+    "content": "Upgrade is supported by Ansible (2.9.x). Requires Yoda external user service to be on version 1.5.x or higher. Requires Yoda public server to be on version 1.6.x or higher. | Backup/copy custom configurations made to Yoda version 1.7. To view what files were changed from the defaults, run git diff. | After making sure the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Checkout branch release-1.8 of the Yoda Git repository. git checkout release-1.8 . | Change the default schema from default-1 to default-2 in configuration. Discipline must be present in all vault packages before migration. I.e. discipline must be manually added if not present yet. This requires an intervention by the responsible datamanager beforehand. default_yoda_schema: default-2 . | Two OpenID Connect configuration options are added and one has been replaced. If OIDC is active (oidc_active), make sure you have configured, oidc_jwks_uri and oidc_jwt_issuer. Option oidc_domain is replaced with oidc_domains. Example: oidc_domains: ['domain1.tld', 'domain2.tld'] . | DataCite connection is now using REST API instead of legacy MDS. If DataCite is configured the option datacite_server should be replaced with datacite_rest_api_url. Example: datacite_rest_api_url: api.test.datacite.org . | Run the Ansible playbook in check mode. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update all metadata JSON in the vault to latest metadata JSON version (default-1 to default-2). irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | . ",
     "url": "/yoda/release-notes/release-1.8.html#upgrading-from-previous-release",
     "relUrl": "/release-notes/release-1.8.html#upgrading-from-previous-release"
   },"234": {
@@ -1477,7 +1477,7 @@
   },"246": {
     "doc": "Setting up development environment",
     "title": "Setting up development environment",
-    "content": "Setting up a Yoda development environment is easy, you only need the following: . | VirtualBox (&gt;= 5.2) | Vagrant (&gt;= 2.0) | . On GNU/Linux or macOS you also need: . | Ansible (&gt;= 2.7) | . The guide below will deploy an ‘allinone’ instance (all functional roles in one virtual machine) with the default configuration. | Clone the Yoda repository and checkout the development branch: git clone https://github.com/UtrechtUniversity/yoda.git cd yoda git checkout development . | Configure the virtual machines for development: vagrant up . | On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS): vagrant ssh controller cd ~/yoda . On a GNU/Linux or macOS host make sure the SSH keys have the right permissions (skip this step on Windows): . chmod 0600 ~/yoda/vagrant/ssh/vagrant . | Deploy Yoda to the virtual machines: ansible-galaxy collection install -r requirements.yml ansible-playbook -i environments/development/allinone/ playbook.yml . | Add following hosts to /etc/hosts (GNU/Linux or macOS) or %SystemRoot%\\System32\\drivers\\etc\\hosts (Windows): 192.168.56.10 portal.yoda.test 192.168.56.10 data.yoda.test 192.168.56.10 public.data.yoda.test 192.168.56.10 public.yoda.test 192.168.56.10 eus.yoda.test . | Provision Yoda with test data: ansible-playbook -i environments/development/allinone/ test.yml . | [OPTIONAL] Provision Yoda with Zabbix agent and monitoring scripts: . Configure Zabbix server in environments/development/allinone/group_vars/allinone.yml and make sure a Zabbix server is running on this address, you could use a Zabbix appliance in Virtualbox. zabbix_server: 192.168.56.20 . Run the Zabbix playbook . ansible-playbook -i environments/development/allinone/ zabbix.yml . | . ",
+    "content": "Setting up a Yoda development environment is easy, you only need the following: . | VirtualBox (&gt;= 5.2) | Vagrant (&gt;= 2.0) | . On GNU/Linux or macOS you also need: . | Ansible (&gt;= 2.7) | . The guide below will deploy an ‘allinone’ instance (all functional roles in one virtual machine) with the default configuration. | Clone the Yoda repository and checkout the development branch: git clone https://github.com/UtrechtUniversity/yoda.git cd yoda git checkout development . | Configure the virtual machines for development: vagrant up . | On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS): vagrant ssh controller cd ~/yoda . On a GNU/Linux or macOS host make sure the SSH keys have the right permissions (skip this step on Windows): . chmod 0600 ~/yoda/vagrant/ssh/vagrant . | Deploy Yoda to the virtual machines: ansible-playbook -i environments/development/allinone/ playbook.yml . | Add following hosts to /etc/hosts (GNU/Linux or macOS) or %SystemRoot%\\System32\\drivers\\etc\\hosts (Windows): 192.168.56.10 portal.yoda.test 192.168.56.10 data.yoda.test 192.168.56.10 public.data.yoda.test 192.168.56.10 public.yoda.test 192.168.56.10 eus.yoda.test . | Provision Yoda with test data: ansible-playbook -i environments/development/allinone/ test.yml . | [OPTIONAL] Provision Yoda with Zabbix agent and monitoring scripts: . Configure Zabbix server in environments/development/allinone/group_vars/allinone.yml and make sure a Zabbix server is running on this address, you could use a Zabbix appliance in Virtualbox. zabbix_server: 192.168.56.20 . Run the Zabbix playbook . ansible-playbook -i environments/development/allinone/ zabbix.yml . | . ",
     "url": "/yoda/development/setting-up-development-environment.html",
     "relUrl": "/development/setting-up-development-environment.html"
   },"247": {
@@ -1567,7 +1567,7 @@
   },"261": {
     "doc": "Theme packaging",
     "title": "Compiling theme CSS",
-    "content": "Building theme CSS: . sudo su yodadeployment cd /var/www/yoda-portal/static/src/ # Install npm nvm install v16 # Install sass compiler npm install npm install -g sass # Build (default) UU theme sass --style compressed build_uu.scss ../../static/css/yoda-portal.css # Build (custom) VU theme sass --style compressed build_vu.scss ../../themes/vu/static/css/yoda-portal.css . ",
+    "content": "Building theme CSS: . cd static/src/ npm install npm install -g sass # Build (default) UU theme sass --style compressed build_uu.scss ../../static/css/yoda-portal.css # Build (custom) VU theme sass --style compressed build_vu.scss ../../themes/vu/static/css/yoda-portal.css . ",
     "url": "/yoda/design/overview/theme-packages.html#compiling-theme-css",
     "relUrl": "/design/overview/theme-packages.html#compiling-theme-css"
   },"262": {

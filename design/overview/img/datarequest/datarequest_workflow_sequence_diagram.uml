@@ -1,8 +1,8 @@
 @startuml
 actor "Researcher" as R
 actor "Datamanager" as DM
-actor "DACmember" as M1
-actor "DACmember" as M2
+actor "DMCmember" as M1
+actor "DMCmember" as M2
 actor "BODmember" as B
 participant "System" as Y
 
