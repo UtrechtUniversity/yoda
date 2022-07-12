@@ -5,7 +5,8 @@ git checkout development
 </code></pre></div> </div> </li> <li>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS): <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant ssh controller
 <span class="nb">cd</span> ~/yoda
 </code></pre></div> </div> <p>On a GNU/Linux or macOS host make sure the SSH keys have the right permissions (skip this step on Windows):</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>0600 ~/yoda/vagrant/ssh/vagrant
-</code></pre></div> </div> </li> <li>Deploy Yoda to the virtual machines: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone/ playbook.yml
+</code></pre></div> </div> </li> <li>Deploy Yoda to the virtual machines: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-galaxy collection <span class="nb">install</span> <span class="nt">-r</span> requirements.yml
+ansible-playbook <span class="nt">-i</span> environments/development/allinone/ playbook.yml
 </code></pre></div> </div> </li> <li>Add following hosts to <code class="language-plaintext highlighter-rouge">/etc/hosts</code> (GNU/Linux or macOS) or <code class="language-plaintext highlighter-rouge">%SystemRoot%\System32\drivers\etc\hosts</code> (Windows): <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>192.168.56.10 portal.yoda.test
 192.168.56.10 data.yoda.test
 192.168.56.10 public.data.yoda.test
