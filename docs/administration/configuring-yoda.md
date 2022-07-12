@@ -201,6 +201,13 @@ enable_datarequest             | Enable datarequest module
 datarequest_help_contact_name  | Help contact name
 datarequest_help_contact_email | Help contact email address
 
+### OpenSearch configuration
+
+Variable                       | Description
+-------------------------------|---------------------
+enable_open_search             | Enable OpenSearch and indexing plugin
+opensearch_server              | FQDN of the OpenSearch server (typically the provider)
+
 ### Mail notifications
 
 Variable                     | Description
