@@ -16,6 +16,7 @@ JSON_SORT_KEYS      = False  # Check if this is still needed with Python v3.7?
 
 # Flask-Session configuration
 SESSION_TYPE                = 'filesystem'
+SESSION_COOKIE_NAME         = '__Host-session'
 SESSION_COOKIE_HTTPONLY     = True
 SESSION_COOKIE_SECURE       = True
 SESSION_COOKIE_SAMESITE     = 'Strict'
