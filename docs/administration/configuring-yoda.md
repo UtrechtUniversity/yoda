@@ -276,6 +276,7 @@ oidc_client_id		| OIDC Client Id
 oidc_client_secret	| OIDC Client Secret/Password
 oidc_callback_url   | OIDC Callback url
 oidc_auth_base_uri	| OIDC Authorization URI without parameters
+oidc_login_hint     | Boolean indicating whether login hint should be added to Authorization URI (default: True)
 oidc_token_uri		| OIDC Token URI
 oidc_userinfo_uri	| OIDC Userinfo URI
 oidc_scopes         | OIDC Scopes
