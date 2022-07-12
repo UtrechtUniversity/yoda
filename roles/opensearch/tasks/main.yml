@@ -92,7 +92,7 @@
 
 - name: Discover presence of index
   ansible.builtin.uri:
-    url: "http://{{ yoda_portal_host }}:9200/yoda"
+    url: "http://{{ opensearch_server }}:9200/yoda"
     method: GET
     status_code: 200, 404
   register: present
@@ -103,7 +103,7 @@
 
 - name: Install initial index
   ansible.builtin.uri:
-    url: "http://{{ yoda_portal_host }}:9200/yoda"
+    url: "http://{{ opensearch_server }}:9200/yoda"
     method: PUT
     body: "{{ lookup('file', 'index.json') }}"
     status_code: 200
