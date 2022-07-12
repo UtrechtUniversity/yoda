@@ -3,10 +3,18 @@ name: Ansible Lint
 on:
   push:
     paths-ignore:
+    - 'README.md'
+    - 'Vagrantfile'
     - 'docs/**'
+    - '.github/workflows/ansible-lint-zabbix.yml'
+    - '.github/workflows/documentation.yml'
   pull_request:
     paths-ignore:
+    - 'README.md'
+    - 'Vagrantfile'
     - 'docs/**'
+    - '.github/workflows/ansible-lint-zabbix.yml'
+    - '.github/workflows/documentation.yml'
 
 jobs:
   build:
