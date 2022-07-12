@@ -62,6 +62,7 @@ OIDC_CLIENT_SECRET  = '{{ oidc_client_secret | default("") }}'
 OIDC_CALLBACK_URI   = '{{ oidc_callback_uri | default("") }}'
 OIDC_AUTH_BASE_URI  = '{{ oidc_auth_base_uri | default("") }}'
 OIDC_AUTH_URI       = '{{ oidc_auth_base_uri ~ "?response_type=code&client_id=" ~ oidc_client_id ~ "&redirect_uri=" ~ oidc_callback_uri ~ "&scope=" ~ oidc_scopes ~ "&acr_values=" ~ oidc_acr_values | default("") }}'
+OIDC_LOGIN_HINT     = {{ oidc_login_hint | default(True) }}
 OIDC_TOKEN_URI      = '{{ oidc_token_uri     | default("") }}'
 OIDC_SCOPES         = '{{ oidc_scopes        | default("openid") }}'
 OIDC_ACR_VALUES     = '{{ oidc_acr_values    | default("") }}'
