@@ -44,7 +44,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y libxslt-dev libxml2-dev zlib1g-dev
-        gem install html-proofer --no-document
+        gem install html-proofer --no-document -v 3.19.4
         cd docs
         htmlproofer _site --url-ignore "/#.*/" --disable-external
       env:
