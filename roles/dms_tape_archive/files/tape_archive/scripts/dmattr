@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "$@" | xargs dmattr  -a state  -d :
+printf "%q " "$@" | xargs dmattr -a state -d ":"
