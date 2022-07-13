@@ -2,14 +2,14 @@
 # copyright Utrecht University
 
 - name: Ensure yoda_icat.userparams.conf is present
-  copy:
+  ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-icat/yoda_icat.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_icat.userparams.conf
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda_icat.userparams.conf
-  file:
+  ansible.builtin.file:
     path: /etc/zabbix/zabbix_agentd.d/yoda_icat.userparams.conf
     owner: zabbix
     group: zabbix
@@ -17,62 +17,58 @@
 
 
 - name: Ensure yoda-zabbix-icat-sudoers exists
-  stat: path=/etc/sudoers.d/yoda-zabbix-icat-sudoers
+  ansible.builtin.stat: path=/etc/sudoers.d/yoda-zabbix-icat-sudoers
   register: icat_zabbix_sudoers
 
 
 - name: Ensure yoda-zabbix-icat-sudoers is present
-  copy:
+  ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-icat/yoda-zabbix-icat-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-icat-sudoers
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda-zabbix-icat-sudoers
-  file:
+  ansible.builtin.file:
     path: /etc/sudoers.d/yoda-zabbix-icat-sudoers
     owner: root
     group: root
     mode: 0440
 
 
+- name: Find Zabbix rule files
+  ansible.builtin.find:
+    path: /etc/zabbix/yoda-zabbix/zabbix-icat
+    pattern: "*.r"
+  register: icat_rule_files
+
+
 - name: Copy Yoda Zabbix rules
-  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-icat/*.r /etc/zabbix/zabbix_agentd.d/"
-  notify: Restart Zabbix agent
-
-
-- name: Copy Yoda Zabbix scripts
-  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-icat/*.sh /etc/zabbix/zabbix_agentd.d/"
-  notify: Restart Zabbix agent
-
-
-- name: Find Yoda Zabbix rules
-  find:
-    paths: /etc/zabbix/zabbix_agentd.d
-    patterns: "*.r"
-  register: zabbix_icat_rules
-
-
-- name: Ensure right file ownership on Yoda Zabbix rules
-  file:
-    path: "{{ item.path }}"
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/zabbix/zabbix_agentd.d/
+    remote_src: true
     owner: irods
     group: irods
     mode: 0500
-  with_items: "{{ zabbix_icat_rules.files }}"
+  with_items: "{{ icat_rule_files.files }}"
+  notify: Restart Zabbix agent
 
 
-- name: Find Yoda Zabbix scripts
-  find:
-    paths: /etc/zabbix/zabbix_agentd.d
-    patterns: "*.sh"
-  register: zabbix_icat_scripts
+- name: Find Zabbix scripts
+  ansible.builtin.find:
+    path: "/etc/zabbix/yoda-zabbix/zabbix-icat"
+    pattern: "*.sh"
+  register: icat_script_files
 
 
-- name: Ensure right file ownership on Yoda Zabbix scripts
-  file:
-    path: "{{ item.path }}"
+- name: Copy Yoda Zabbix scripts
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/zabbix/zabbix_agentd.d/
+    remote_src: true
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items: "{{ zabbix_icat_scripts.files }}"
+  with_items: "{{ icat_script_files.files }}"
+  notify: Restart Zabbix agent

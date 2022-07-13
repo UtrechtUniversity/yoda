@@ -22,6 +22,13 @@ def main():
   config_path = module.params["config_path"]
   index_server = module.params["index_server"]
   state = module.params["state"]
+  indexing = None
+  config = {
+    "hosts": ["http://" + index_server + ":9200/"],
+    "es_version": "7.x",
+    "bulk_count": 100,
+    "read_size": 4194304
+  }
   changed = False
 
   # Retrieve iRODS server config.
@@ -29,15 +36,14 @@ def main():
     server_config = json.load(data_file)
 
     # Find indexing plugin in server config.
-    found = False
     plugins = server_config["plugin_configuration"]["rule_engines"]
     for plugin in plugins:
-      if plugin["plugin_name"] == "irods_rule_engine_plugin-indexing":
-        found = True
+      if plugin["plugin_name"] == "irods_rule_engine_plugin-elasticsearch":
+        indexing = plugin
       if plugin["plugin_name"] == "irods_rule_engine_plugin-cpp_default_policy":
         default_policy = plugin
 
-    if not found:
+    if indexing is None:
       plugins.remove(default_policy)
       plugins.extend([
         {
@@ -48,12 +54,7 @@ def main():
         {
           "instance_name": "irods_rule_engine_plugin-elasticsearch-instance",
           "plugin_name": "irods_rule_engine_plugin-elasticsearch",
-          "plugin_specific_configuration": {
-            "hosts": ["http://" + index_server + ":9200/"],
-            "es_version": "7.x",
-            "bulk_count": 100,
-            "read_size": 4194304
-          }
+          "plugin_specific_configuration": config
         },
         {
           "instance_name": "irods_rule_engine_plugin-document_type-instance",
@@ -63,10 +64,14 @@ def main():
         default_policy
       ])
       changed = True
-    elif plugins[-1] != default_policy:
-      plugins.remove(default_policy)
-      plugins.append(default_policy)
-      changed = True
+    else:
+      if indexing["plugin_specific_configuration"] != config:
+        indexing["plugin_specific_configuration"] = config
+        changed = True
+      if plugins[-1] != default_policy:
+        plugins.remove(default_policy)
+        plugins.append(default_policy)
+        changed = True
 
     if not module.check_mode:
       data_file.seek(0)

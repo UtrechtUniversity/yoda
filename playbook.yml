@@ -138,7 +138,7 @@
   become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: true
+      install_rulesets: false
   tags:
     - resource
 

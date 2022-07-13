@@ -2,14 +2,14 @@
 # copyright Utrecht University
 
 - name: Ensure yoda_portal.userparams.conf is present
-  copy:
+  ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-portal/yoda_portal.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_portal.userparams.conf
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda_portal.userparams.conf
-  file:
+  ansible.builtin.file:
     path: /etc/zabbix/zabbix_agentd.d/yoda_portal.userparams.conf
     owner: zabbix
     group: zabbix
@@ -17,36 +17,34 @@
 
 
 - name: Ensure yoda-zabbix-portal-sudoers is present
-  copy:
+  ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-portal/yoda-zabbix-portal-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-portal-sudoers
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on zabbix_agentd.userparams.conf
-  file:
+  ansible.builtin.file:
     path: /etc/sudoers.d/yoda-zabbix-portal-sudoers
     owner: root
     group: root
     mode: 0440
 
 
-- name: Copy Yoda zabbix scripts
-  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-portal/*.sh /etc/zabbix/zabbix_agentd.d/"
-  notify: Restart Zabbix agent
+- name: Find Zabbix script files
+  ansible.builtin.find:
+    path: /etc/zabbix/yoda-zabbix/zabbix-portal
+    pattern: "*.sh"
+  register: portal_script_files
 
 
-- name: Find Yoda Zabbix scripts
-  find:
-    paths: /etc/zabbix/zabbix_agentd.d
-    patterns: "*.sh"
-  register: zabbix_portal_scripts
-
-
-- name: Ensure right file ownership on Yoda Zabbix scripts
-  file:
-    path: "{{ item.path }}"
+- name: Copy Yoda Zabbix script files
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/zabbix/zabbix_agentd.d/
+    remote_src: true
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items: "{{ zabbix_portal_scripts.files }}"
+  with_items: "{{ portal_script_files.files }}"
+  notify: Restart Zabbix agent

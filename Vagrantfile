@@ -37,12 +37,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define name do |machine|
       machine.vm.box = box
 
-      machine.vm.provider "virtualbox" do |vbox|
+      machine.vm.provider :virtualbox do |vbox|
         vbox.gui    = gui
         vbox.cpus   = cpu
         vbox.memory = ram
         vbox.name   = name
         vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+      end
+
+      machine.vm.provider :libvirt do |libvirt|
+        libvirt.driver = "kvm"
+        libvirt.cpus   = cpu
+        libvirt.memory = ram
       end
 
       machine.vm.hostname = name + DOMAIN
@@ -58,7 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Provision controller for Ansible on Windows host.
   if Vagrant::Util::Platform.windows? then
     config.vm.define "controller" do |controller|
-      controller.vm.provider "virtualbox" do |vbox|
+      controller.vm.provider :virtualbox do |vbox|
         vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
       end
       controller.vm.box = BOX

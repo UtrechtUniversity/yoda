@@ -57,6 +57,15 @@
   when: enable_tokens
 
 
+# Installation of pysqlcipher3 package fails silently if
+# GCC is unavailable, so we need to ensure it has been installed.
+- name: Ensure GCC is installed
+  ansible.builtin.package:
+    name: gcc
+    state: present
+  when: enable_tokens
+
+
 - name: Ensure pysqlcipher3 is installed
   ansible.builtin.pip:
     name:
