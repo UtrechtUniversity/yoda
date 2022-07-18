@@ -533,5 +533,15 @@
   changed_when: false
 
 
+- name: Ensure RUM job for removing unused metadata is present
+  ansible.builtin.cron:
+    user: '{{ irods_service_account }}'
+    disabled: '{{ not irods_rum_job_enabled }}'
+    job: '/usr/bin/iadmin rum'
+    hour: '{{ irods_rum_job_hour | string }}'
+    minute: '{{ irods_rum_job_minute | string }}'
+    name: 'iRODS RUM job for removing unused metadata entries'
+
+
 - include_tasks: setup_pam.yml
   when: irods_authentication_scheme == "PAM"
