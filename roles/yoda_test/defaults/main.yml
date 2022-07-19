@@ -588,7 +588,6 @@ deletion_research_groups:
   - research: revisions
 
 deletion_deposit_groups:
-  - deposit: test
   - deposit: pilot
 
 deletion_datamanager_groups:
