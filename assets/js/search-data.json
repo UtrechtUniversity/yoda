@@ -199,7 +199,7 @@
   },"33": {
     "doc": "Configuring Yoda",
     "title": "3. Configure (new) Yoda instance",
-    "content": "To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars). In case of a new Yoda instance we can copy a configuration of a full development (environments/development/full/) instance as base. The configuration is split in several parts. Below an overview of these parts and the configuration options available. Ansible configuration . | Variable | Description | . | ansible_user | Administrative user on instance for Ansible | . | ansible_ssh_private_key_file | Path to private key file of administrative user | . | repo_only | Only download packages from repos | . Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars). Yoda configuration . | Variable | Description | . | instance | Name of Yoda instance, as defined in hosts file | . | yoda_version | Git branch, for example: development or release-0.9.7 | . | yoda_environment | Yoda environment: development, testing, acceptance or production | . | yoda_portal_fqdn | Yoda Portal fully qualified domain name (FQDN) | . | yoda_davrods_fqdn | Yoda Davrods WebDAV fully qualified domain name (FQDN) | . | yoda_davrods_anonymous_fqdn | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN) | . | yoda_enable_httpd | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes) | . | httpd_log_forwarded_for | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer. | . iRODS configuration . | Variable | Description | . | irods_admin | iRODS admin username | . | irods_password | iRODS admin password | . | irods_database_user | The iRODS database username | . | irods_database_password | The password for the iRODS database username | . | irods_zone | The name of the iRODS Zone | . | irods_icat_fqdn | iRODS iCAT fully qualified domain name (FQDN) | . | irods_database_fqdn | iRODS database fully qualified domain name (FQDN) | . | irods_resource_fqdn | iRODS resource fully qualified domain name (FQDN) | . | irods_default_resc | iRODS default resource name | . | irods_resc_trigger_pol | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: [“^testResc$”,”^myResc$”] | . | irods_ssl_verify_server | Verify TLS certificate, use ‘cert’ for acceptance and production | . | irods_resources | Definition of iRODS resources of this Yoda instance | . | irods_service_type | Possible values: ‘sysv’ (System V) or ‘systemd’ | . | irods_max_open_files | Maximum number of open files for iRODS service (only effective when irods_service_type is set to ‘systemd’) | . | irods_enable_service | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS (e.g. mounting encrypted volumes) | . | irods_rum_job_enabled | Whether to enable the daily RUM job for removing unused metadata entries (default: true) | . | irods_rum_job_hour | Time to run RUM job - hour (default: 20) | . | irods_rum_job_minute | Time to run RUM job - minute (default: 0) | . Research module configuration . | Variable | Description | . | default_yoda_schema | Default Yoda XML scheme: default-0 or default-1 | . | enable_revisions | Enable revisions: yes (1) or no (0) | . | enable_async_replication | Enable asynchronous replication cronjob: yes (1) or no (0) | . | revision_strategy | Revision strategy: A, B, J or Simple | . | yoda_random_id_length | Length of random ID to add to persistent identifier | . | yoda_prefix | Prefix for internal portion of persistent identifier | . | update_rulesets | Update already installed rulesets with git | . | update_schemas | Update already installed schemas, formelements and stylesheets: yes (1) or no (0) | . | credential_files | Location of Yoda credentials files | . | temporary_files | List of temporary files for cleanup functionality | . Deposit module configuration . | Variable | Description | . | enable_deposit | Enable deposit module | . Intake module configuration . | Variable | Description | . | enable_intake | Enable intake module | . | intake_groups | List of intake groups (without the “grp-intake-“ prefix) | . Datarequest module configuration . | Variable | Description | . | enable_datarequest | Enable datarequest module | . | datarequest_help_contact_name | Help contact name | . | datarequest_help_contact_email | Help contact email address | . OpenSearch configuration . | Variable | Description | . | enable_open_search | Enable OpenSearch and indexing plugin | . | opensearch_server | FQDN of the OpenSearch server (typically the provider) | . Mail notifications . | Variable | Description | . | send_notifications | Enable notifications: yes (1) or no (0) | . | notifications_sender_email | Notifiations sender email address | . | notifications_reply_to | Notifiations Reply-To email address | . | smtp_server | SMTP server to send mail to | . | smtp_username | SMTP server username | . | smtp_password | SMTP server password | . DataCite Configuration . | Variable | Description | . | datacite_username | DataCite username | . | datacite_password | DataCite password | . | datacite_prefix | DataCite DOI prefix | . | datacite_rest_api_url | DataCite REST API URL | . EPIC PID Configuration . | Variable | Description | . | epic_url | EPIC PID server URI (undefined disables EPIC PID) | . | epic_handle_prefix | EPIC PID prefix | . | epic_key | EPIC PID key (base64 encoded) | . | epic_cert | EPIC PID cert (base64 encoded) | . ",
+    "content": "To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars). In case of a new Yoda instance we can copy a configuration of a full development (environments/development/full/) instance as base. The configuration is split in several parts. Below an overview of these parts and the configuration options available. Ansible configuration . | Variable | Description | . | ansible_user | Administrative user on instance for Ansible | . | ansible_ssh_private_key_file | Path to private key file of administrative user | . | repo_only | Only download packages from repos | . Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars). Yoda configuration . | Variable | Description | . | instance | Name of Yoda instance, as defined in hosts file | . | yoda_version | Git branch, for example: development or release-0.9.7 | . | yoda_environment | Yoda environment: development, testing, acceptance or production | . | yoda_portal_fqdn | Yoda Portal fully qualified domain name (FQDN) | . | yoda_davrods_fqdn | Yoda Davrods WebDAV fully qualified domain name (FQDN) | . | yoda_davrods_anonymous_fqdn | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN) | . | yoda_enable_httpd | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes) | . | httpd_log_forwarded_for | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer. | . iRODS configuration . | Variable | Description | . | irods_admin | iRODS admin username | . | irods_password | iRODS admin password | . | irods_database_user | The iRODS database username | . | irods_database_password | The password for the iRODS database username | . | irods_zone | The name of the iRODS Zone | . | irods_icat_fqdn | iRODS iCAT fully qualified domain name (FQDN) | . | irods_database_fqdn | iRODS database fully qualified domain name (FQDN) | . | irods_resource_fqdn | iRODS resource fully qualified domain name (FQDN) | . | irods_default_resc | iRODS default resource name | . | irods_resc_trigger_pol | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: [“^testResc$”,”^myResc$”] | . | irods_ssl_verify_server | Verify TLS certificate, use ‘cert’ for acceptance and production | . | irods_resources | Definition of iRODS resources of this Yoda instance | . | irods_service_type | Possible values: ‘sysv’ (System V) or ‘systemd’ | . | irods_max_open_files | Maximum number of open files for iRODS service (only effective when irods_service_type is set to ‘systemd’) | . | irods_enable_service | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes (only effective when irods_service_type is set to ‘systemd’) | . | irods_rum_job_enabled | Whether to enable the daily RUM job for removing unused metadata entries (default: true) | . | irods_rum_job_hour | Time to run RUM job - hour (default: 20) | . | irods_rum_job_minute | Time to run RUM job - minute (default: 0) | . Research module configuration . | Variable | Description | . | default_yoda_schema | Default Yoda XML scheme: default-0 or default-1 | . | enable_revisions | Enable revisions: yes (1) or no (0) | . | enable_async_replication | Enable asynchronous replication cronjob: yes (1) or no (0) | . | revision_strategy | Revision strategy: A, B, J or Simple | . | yoda_random_id_length | Length of random ID to add to persistent identifier | . | yoda_prefix | Prefix for internal portion of persistent identifier | . | update_rulesets | Update already installed rulesets with git | . | update_schemas | Update already installed schemas, formelements and stylesheets: yes (1) or no (0) | . | credential_files | Location of Yoda credentials files | . | temporary_files | List of temporary files for cleanup functionality | . Deposit module configuration . | Variable | Description | . | enable_deposit | Enable deposit module | . Intake module configuration . | Variable | Description | . | enable_intake | Enable intake module | . | intake_groups | List of intake groups (without the “grp-intake-“ prefix) | . Datarequest module configuration . | Variable | Description | . | enable_datarequest | Enable datarequest module | . | datarequest_help_contact_name | Help contact name | . | datarequest_help_contact_email | Help contact email address | . OpenSearch configuration . | Variable | Description | . | enable_open_search | Enable OpenSearch and indexing plugin | . | opensearch_server | FQDN of the OpenSearch server (typically the provider) | . Mail notifications . | Variable | Description | . | send_notifications | Enable notifications: yes (1) or no (0) | . | notifications_sender_email | Notifiations sender email address | . | notifications_reply_to | Notifiations Reply-To email address | . | smtp_server | SMTP server to send mail to | . | smtp_username | SMTP server username | . | smtp_password | SMTP server password | . DataCite Configuration . | Variable | Description | . | datacite_username | DataCite username | . | datacite_password | DataCite password | . | datacite_prefix | DataCite DOI prefix | . | datacite_rest_api_url | DataCite REST API URL | . EPIC PID Configuration . | Variable | Description | . | epic_url | EPIC PID server URI (undefined disables EPIC PID) | . | epic_handle_prefix | EPIC PID prefix | . | epic_key | EPIC PID key (base64 encoded) | . | epic_cert | EPIC PID cert (base64 encoded) | . ",
     "url": "/yoda/administration/configuring-yoda.html#3-configure-new-yoda-instance",
     "relUrl": "/administration/configuring-yoda.html#3-configure-new-yoda-instance"
   },"34": {
@@ -533,113 +533,113 @@
     "url": "/yoda/administration/hotfixing-ruleset.html",
     "relUrl": "/administration/hotfixing-ruleset.html"
   },"89": {
-    "doc": "Development",
-    "title": "Development",
-    "content": ". | Setting up development environment | Setting up YodaDrive development environment | Mock tape archive | Development tips | Wall of Fame | . ",
-    "url": "/yoda/development/",
-    "relUrl": "/development/"
-  },"90": {
-    "doc": "Processes",
-    "title": "Processes",
-    "content": " ",
-    "url": "/yoda/design/processes/",
-    "relUrl": "/design/processes/"
-  },"91": {
-    "doc": "Metadata",
-    "title": "Metadata",
-    "content": " ",
-    "url": "/yoda/design/metadata/",
-    "relUrl": "/design/metadata/"
-  },"92": {
-    "doc": "System Overview",
-    "title": "System overview",
-    "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
-    "url": "/yoda/design/overview/#system-overview",
-    "relUrl": "/design/overview/#system-overview"
-  },"93": {
-    "doc": "System Overview",
-    "title": "Core modules",
-    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
-    "url": "/yoda/design/overview/#core-modules",
-    "relUrl": "/design/overview/#core-modules"
-  },"94": {
-    "doc": "System Overview",
-    "title": "Additional modules",
-    "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
-    "url": "/yoda/design/overview/#additional-modules",
-    "relUrl": "/design/overview/#additional-modules"
-  },"95": {
-    "doc": "System Overview",
-    "title": "Overview",
-    "content": ". ",
-    "url": "/yoda/design/overview/#overview",
-    "relUrl": "/design/overview/#overview"
-  },"96": {
-    "doc": "System Overview",
-    "title": "System Overview",
-    "content": " ",
-    "url": "/yoda/design/overview/",
-    "relUrl": "/design/overview/"
-  },"97": {
-    "doc": "Other",
-    "title": "Other",
-    "content": " ",
-    "url": "/yoda/design/other/",
-    "relUrl": "/design/other/"
-  },"98": {
-    "doc": "API",
-    "title": "API",
-    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
-    "url": "/yoda/design/api/",
-    "relUrl": "/design/api/"
-  },"99": {
-    "doc": "Software Design",
-    "title": "Software Design",
-    "content": " ",
-    "url": "/yoda/design/",
-    "relUrl": "/design/"
-  },"100": {
-    "doc": "Software Design",
-    "title": "API",
-    "content": ". | API documentation | . ",
-    "url": "/yoda/design/#api",
-    "relUrl": "/design/#api"
-  },"101": {
-    "doc": "Software Design",
-    "title": "System",
-    "content": ". | System overview | Research space | Vault space | Statistics module | Intake module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
-    "url": "/yoda/design/#system",
-    "relUrl": "/design/#system"
-  },"102": {
-    "doc": "Software Design",
-    "title": "Metadata",
-    "content": ". | Metadata schema identifier | Metadata form | Metadata mappings | Metadata schemas | . ",
-    "url": "/yoda/design/#metadata",
-    "relUrl": "/design/#metadata"
-  },"103": {
-    "doc": "Software Design",
-    "title": "Processes",
-    "content": ". | Asynchronous and privileged execution | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
-    "url": "/yoda/design/#processes",
-    "relUrl": "/design/#processes"
-  },"104": {
-    "doc": "Software Design",
-    "title": "Other",
-    "content": ". | Python plugin | Yoda drive | . ",
-    "url": "/yoda/design/#other",
-    "relUrl": "/design/#other"
-  },"105": {
     "doc": "Administration Tasks",
     "title": "Administration Tasks",
     "content": ". | Configuring Yoda | Deploying Yoda | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Upgrading metadata schemas | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | Restore collection | Configuring OIDC | Setting job flags | Configuring cleanup temporary files | . ",
     "url": "/yoda/administration/",
     "relUrl": "/administration/"
-  },"106": {
+  },"90": {
+    "doc": "Development",
+    "title": "Development",
+    "content": ". | Setting up development environment | Setting up YodaDrive development environment | Mock tape archive | Development tips | Wall of Fame | . ",
+    "url": "/yoda/development/",
+    "relUrl": "/development/"
+  },"91": {
     "doc": "Release Notes",
     "title": "Release Notes",
     "content": ". | Release Notes - Yoda v1.8 (TBA) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
     "url": "/yoda/release-notes/",
     "relUrl": "/release-notes/"
+  },"92": {
+    "doc": "Processes",
+    "title": "Processes",
+    "content": " ",
+    "url": "/yoda/design/processes/",
+    "relUrl": "/design/processes/"
+  },"93": {
+    "doc": "Other",
+    "title": "Other",
+    "content": " ",
+    "url": "/yoda/design/other/",
+    "relUrl": "/design/other/"
+  },"94": {
+    "doc": "Metadata",
+    "title": "Metadata",
+    "content": " ",
+    "url": "/yoda/design/metadata/",
+    "relUrl": "/design/metadata/"
+  },"95": {
+    "doc": "System Overview",
+    "title": "System overview",
+    "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
+    "url": "/yoda/design/overview/#system-overview",
+    "relUrl": "/design/overview/#system-overview"
+  },"96": {
+    "doc": "System Overview",
+    "title": "Core modules",
+    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
+    "url": "/yoda/design/overview/#core-modules",
+    "relUrl": "/design/overview/#core-modules"
+  },"97": {
+    "doc": "System Overview",
+    "title": "Additional modules",
+    "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
+    "url": "/yoda/design/overview/#additional-modules",
+    "relUrl": "/design/overview/#additional-modules"
+  },"98": {
+    "doc": "System Overview",
+    "title": "Overview",
+    "content": ". ",
+    "url": "/yoda/design/overview/#overview",
+    "relUrl": "/design/overview/#overview"
+  },"99": {
+    "doc": "System Overview",
+    "title": "System Overview",
+    "content": " ",
+    "url": "/yoda/design/overview/",
+    "relUrl": "/design/overview/"
+  },"100": {
+    "doc": "API",
+    "title": "API",
+    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
+    "url": "/yoda/design/api/",
+    "relUrl": "/design/api/"
+  },"101": {
+    "doc": "Software Design",
+    "title": "Software Design",
+    "content": " ",
+    "url": "/yoda/design/",
+    "relUrl": "/design/"
+  },"102": {
+    "doc": "Software Design",
+    "title": "API",
+    "content": ". | API documentation | . ",
+    "url": "/yoda/design/#api",
+    "relUrl": "/design/#api"
+  },"103": {
+    "doc": "Software Design",
+    "title": "System",
+    "content": ". | System overview | Research space | Vault space | Statistics module | Intake module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
+    "url": "/yoda/design/#system",
+    "relUrl": "/design/#system"
+  },"104": {
+    "doc": "Software Design",
+    "title": "Metadata",
+    "content": ". | Metadata schema identifier | Metadata form | Metadata mappings | Metadata schemas | . ",
+    "url": "/yoda/design/#metadata",
+    "relUrl": "/design/#metadata"
+  },"105": {
+    "doc": "Software Design",
+    "title": "Processes",
+    "content": ". | Asynchronous and privileged execution | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
+    "url": "/yoda/design/#processes",
+    "relUrl": "/design/#processes"
+  },"106": {
+    "doc": "Software Design",
+    "title": "Other",
+    "content": ". | Python plugin | Yoda drive | . ",
+    "url": "/yoda/design/#other",
+    "relUrl": "/design/#other"
   },"107": {
     "doc": "Home",
     "title": "Yoda technical documentation",
