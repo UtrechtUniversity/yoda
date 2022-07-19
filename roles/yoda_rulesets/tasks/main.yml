@@ -78,24 +78,11 @@
   when: "'repo' in item and 'patch' in item and item['patch'] not in ['']"
 
 
-- name: Find temporary rule and cache files left behind
-  ansible.builtin.find:
-    paths: /etc/irods
-    patterns: '*.re.*,*.pyc'
-    recurse: true
-  when: repochanges.changed or patch_repochanges.changed
-  register: temporary_rules
-
-
-- name: Remove temporary rule and cache files left behind
-  become_user: "{{ irods_service_account }}"
+- name: Remove temporary rule and cache files
+  become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.file:
-    path: "{{ item.path }}"
-    state: absent
+  ansible.builtin.command: '/bin/find /etc/irods -type f ( -name "*.re.*" -o -name "*.pyc" ) -delete'
   when: repochanges.changed or patch_repochanges.changed
-  with_items:
-    - "{{ temporary_rules.files }}"
 
 
 - name: Run make install for each ruleset

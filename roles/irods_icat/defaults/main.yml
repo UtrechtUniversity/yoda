@@ -23,6 +23,10 @@ irods_control_plane_port: 1248
 irods_schema_uri: https://schemas.irods.org/configuration
 irods_ssl_verify_server: cert
 
+irods_rum_job_enabled: true
+irods_rum_job_hour: 20
+irods_rum_job_minute: 0
+
 rpm_dest_dir: /tmp
 
 # sqlcipher RPM locations and checksum
