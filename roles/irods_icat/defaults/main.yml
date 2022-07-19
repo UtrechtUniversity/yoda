@@ -68,6 +68,9 @@ oidc_userinfo_uri: ''
 # Service type. Possible values: 'sysv' and 'systemd'
 irods_service_type: 'systemd'
 
+# Whether to start iRODS at boot time.
+irods_enable_service: true
+
 # The max number of open files is only effective when
 # irods_service_type has been set to 'systemd'.
 irods_max_open_files: 131072

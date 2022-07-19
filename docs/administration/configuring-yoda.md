@@ -163,7 +163,7 @@ irods_ssl_verify_server      | Verify TLS certificate, use 'cert' for acceptance
 irods_resources              | Definition of iRODS resources of this Yoda instance
 irods_service_type           | Possible values: 'sysv' (System V) or 'systemd'
 irods_max_open_files         | Maximum number of open files for iRODS service (only effective when irods_service_type is set to 'systemd')
-irods_enable_service         | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS (e.g. mounting encrypted volumes)
+irods_enable_service         | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes (only effective when irods_service_type is set to 'systemd')
 irods_rum_job_enabled        | Whether to enable the daily RUM job for removing unused metadata entries (default: true)
 irods_rum_job_hour           | Time to run RUM job - hour (default: 20)
 irods_rum_job_minute         | Time to run RUM job - minute (default: 0)

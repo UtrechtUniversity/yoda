@@ -259,10 +259,10 @@
   when: ils is failed
 
 
-- name: Enable iRODS systemd service
+- name: Configure iRODS systemd service
   ansible.builtin.service:
     name: irods
-    enabled: true
+    enabled: "{{ irods_enable_service }}"
     use: service
   when: irods_service_type == "systemd"
 
