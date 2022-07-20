@@ -9,9 +9,6 @@ irods_zone: tempZone                       # The name of the iRODS Zone
 test_password: test
 
 delete_ext_test_users:
-  - name: yodadatamanager@gmail.com
-  - name: yodaresearcher@gmail.com
-  - name: yodaexternaluser@gmail.com
   - name: alice@otherdomain.com
 
 create_ext_test_users:
