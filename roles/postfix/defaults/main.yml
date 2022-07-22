@@ -1,0 +1,20 @@
+---
+# copyright Utrecht University
+
+enable_postfix: false
+
+### Parameters without defaults that always need to be defined
+### in group_vars or host_vars, when Postfix is enabled
+
+# postfix_relayhost
+# postfix_myhostname:
+# postfix_relayhost_username:
+# postfix_relayhost_password:
+
+### Default parameters
+postfix_inet_protocols: all
+postfix_relayhost_port: 587
+postfix_smtp_enable_tls: true
+postfix_enable_debugging: false
+postfix_myhostname: yoda
+postfix_myorigin: "$mydomain"

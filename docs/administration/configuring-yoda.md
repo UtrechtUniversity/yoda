@@ -211,16 +211,38 @@ Variable                       | Description
 enable_open_search             | Enable OpenSearch and indexing plugin
 opensearch_server              | FQDN of the OpenSearch server (typically the provider)
 
-### Mail notifications
+### Yoda notifications configuration
 
 Variable                     | Description
 -----------------------------|---------------------------------------------
 send_notifications           | Enable notifications: yes (1) or no (0)
 notifications_sender_email   | Notifiations sender email address
 notifications_reply_to       | Notifiations Reply-To email address
+
+### Yoda internal SMTP settings configuration
+
+Variable                     | Description
+-----------------------------|---------------------------------------------
 smtp_server                  | SMTP server to send mail to
 smtp_username                | SMTP server username
 smtp_password                | SMTP server password
+smtp_auth                    | Whether to use SMTP authentication (true/false, default: true)
+smtp_starttls                | Whether to force StartTLS on non-SMTP connections (true/false, default: true)
+
+### Postfix configuration
+
+Variable                     | Description
+-----------------------------|---------------------------------------------
+enable_postfix               | Whether to enable the Postfix local MTA (default: false)
+postfix_myhostname           | Hostname of server where Postfix will be installed (compulsory parameter if Postfix is enabled)
+postfix_relayhost            | Relay host, the server that Postfix should send emails to (compulsory parameter if Postfix is enabled)
+postfix_relayhost_port:      | Port of relay host (default: 587)
+postfix_relayhost_username   | User name for authentication on relay host (compulsory parameter if Postfix is enabled)
+postfix_relayhost_password   | Password for authentication on relay host (compulsory parameter if Postfix is enabled)
+postfix_smtp_enable_tls      | Whether to enable TLS on connections to relay host. This also enables authentication on connections to the relay host (default: true)
+postfix_enable_debugging     | This enables additional logging on connections to the relay host. Useful for troubleshooting. (default: false)
+postfix_myorigin             | Sets origin domain for emails sent on the system. Defaults to the postfix_myhostname domain.
+postfix_inet_protocols       | Refers to Postfix inet_protocols setting. Can be useful for running Postfix in IPv4 only mode, if no IPv6 connectivity is available (default: "all")
 
 ### DataCite Configuration
 
@@ -272,6 +294,8 @@ eus_smtp_host                | External User Service SMTP host
 eus_smtp_port                | External User Service SMTP port
 eus_smtp_user                | External User Service SMTP user
 eus_smtp_password            | External User Service SMTP password
+eus_smtp_auth                | External User Service SMTP authentication (true/false, default: true)
+eus_smtp_security            : External User Service SMTP encryption (tls/ssl/false, default: tls)
 eus_smtp_from_address        | External User Service from address
 eus_smtp_replyto_address     | External User Service replyto address
 eus_mail_template            | External User Service mail template
