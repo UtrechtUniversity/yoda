@@ -93,7 +93,7 @@
 - name: Stop PostgreSQL 9 service
   ansible.builtin.service:
     name: postgresql
-    enabled: no
+    enabled: false
     state: stopped
   when: "'postgresql-server' in ansible_facts.packages"
 
