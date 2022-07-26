@@ -1,1 +1,1 @@
-environments/development/allinone/Vagrantfile
+vagrant/environments/allinone/Vagrantfile
