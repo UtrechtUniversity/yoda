@@ -1,23 +1,37 @@
 ---
 # copyright Utrecht University
 
+- name: Download PostgreSQL repo package
+  ansible.builtin.get_url:
+    url: "{{ rpm_url }}/{{ rpm_redhat_repo }}"
+    dest: "{{ rpm_dest_dir }}/{{ rpm_redhat_repo }}"
+    mode: 0644
+
+
+- name: Install PostgreSQL repo package
+  ansible.builtin.yum:
+    name: "{{ rpm_dest_dir }}/{{ rpm_redhat_repo }}"
+    state: present
+
+
 - name: Ensure PostgreSQL database and dependencies are installed
   ansible.builtin.package:
     name:
-      - postgresql-server
-      - postgresql-contrib
+      - postgresql11-server
+      - postgresql11-contrib
+      - postgresql11-odbc
       - python-psycopg2
     state: present
 
 
 - name: Initialize PostgreSQL database
-  ansible.builtin.command: postgresql-setup initdb
-    creates=/var/lib/pgsql/data/postgresql.conf
+  ansible.builtin.command: postgresql-11-setup initdb
+    creates=/var/lib/pgsql/11/data/postgresql.conf
 
 
 - name: Password protect loopback IPv4 connections
   ansible.builtin.lineinfile:
-    dest: /var/lib/pgsql/data/pg_hba.conf
+    dest: /var/lib/pgsql/11/data/pg_hba.conf
     regexp: 'host\s+all\s+all\s+127.0.0.1/32'
     line: 'host all all 127.0.0.1/32 md5'
   notify: Restart PostgreSQL
@@ -25,7 +39,7 @@
 
 - name: Password protect loopback IPv6 connections
   ansible.builtin.lineinfile:
-    dest: /var/lib/pgsql/data/pg_hba.conf
+    dest: /var/lib/pgsql/11/data/pg_hba.conf
     regexp: 'host\s+all\s+all\s+::1/128'
     line: 'host all all ::1/128 md5'
   notify: Restart PostgreSQL
@@ -44,7 +58,7 @@
 - name: Ensure private key file is available for PostgreSQL
   ansible.builtin.copy:
     src: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
-    dest: '/var/lib/pgsql/data/{{ openssl_key_signed }}'
+    dest: '/var/lib/pgsql/11/data/{{ openssl_key_signed }}'
     group: 'postgres'
     owner: 'postgres'
     mode: 0600
@@ -54,7 +68,7 @@
 - name: Ensure certificate file is available for PostgreSQL
   ansible.builtin.copy:
     src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
-    dest: '/var/lib/pgsql/data/{{ openssl_crt_signed }}'
+    dest: '/var/lib/pgsql/11/data/{{ openssl_crt_signed }}'
     group: 'postgres'
     owner: 'postgres'
     mode: 0600
@@ -64,18 +78,124 @@
 - name: Ensure PostgreSQL is configured
   ansible.builtin.template:
     src: postgresql.conf.j2
-    dest: "/var/lib/pgsql/data/postgresql.conf"
+    dest: "/var/lib/pgsql/11/data/postgresql.conf"
     owner: postgres
     group: postgres
     mode: 0600
   notify: Restart PostgreSQL
 
 
-- name: Ensure PostgreSQL is enabled and started
+- name: Check for presence of PostgreSQL 9
+  ansible.builtin.package_facts:
+    manager: auto
+
+
+- name: Stop PostgreSQL 9 service
   ansible.builtin.service:
     name: postgresql
+    enabled: no
+    state: stopped
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Create PostgreSQL 9 shim directory
+  ansible.builtin.file:
+    path: /var/lib/pgsql/shim
+    owner: postgres
+    group: postgres
+    state: directory
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Install PostgreSQL 9 shims
+  ansible.builtin.file:
+    src: "/usr/bin/{{ item }}"
+    dest: "/var/lib/pgsql/shim/{{ item }}"
+    owner: postgres
+    group: postgres
+    state: link
+  with_items:
+    - clusterdb
+    - createdb
+    - createuser
+    - dropdb
+    - dropuser
+    - initdb
+    - oid2name
+    - pg_archivecleanup
+    - pg_basebackup
+    - pgbench
+    - pg_config
+    - pg_controldata
+    - pg_dump
+    - pg_dumpall
+    - pg_receivexlog
+    - pg_resetxlog
+    - pg_restore
+    - pg_standby
+    - pg_test_fsync
+    - pg_test_timing
+    - postgres
+    - postgresql-check-db-dir
+    - postgresql-setup
+    - postmaster
+    - psql
+    - reindexdb
+    - vacuumdb
+    - vacuumlo
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Install PostgreSQL 9 shim script
+  ansible.builtin.copy:
+    src: "pg_ctl"
+    dest: /var/lib/pgsql/shim/pg_ctl
+    owner: postgres
+    group: postgres
+    mode: 0755
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Upgrade PostgreSQL database
+  become_user: postgres
+  become: true
+  ansible.builtin.command: /usr/pgsql-11/bin/pg_upgrade -b /var/lib/pgsql/shim -B /usr/pgsql-11/bin -d /var/lib/pgsql/data -D /var/lib/pgsql/11/data
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Remove PostgreSQL 9 service
+  ansible.builtin.package:
+    name:
+      - postgresql
+      - postgresql-contrib
+      - postgresql-libs
+      - postgresql-server
+    state: absent
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Remove PostgreSQL 9 data and shim
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /var/lib/pgsql/data
+    - /var/lib/pgsql/shim
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Ensure PostgreSQL is enabled and started
+  ansible.builtin.service:
+    name: postgresql-11
     enabled: true
     state: started
+
+
+- name: Optimize PostgreSQL database
+  become_user: postgres
+  become: true
+  ansible.builtin.command: /usr/pgsql-11/bin/vacuumdb --all
+  when: "'postgresql-server' in ansible_facts.packages"
 
 
 - include_tasks: install-postgresqltuner.yml
