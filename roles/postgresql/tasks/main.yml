@@ -161,7 +161,11 @@
 - name: Upgrade PostgreSQL database
   become_user: postgres
   become: true
-  ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/pg_upgrade -b /var/lib/pgsql/shim -B /usr/pgsql-{{ pgsql_version }}/bin -d /var/lib/pgsql/data -D /var/lib/pgsql/{{ pgsql_version }}/data"
+  ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/pg_upgrade \
+			   -b /var/lib/pgsql/shim \
+			   -B /usr/pgsql-{{ pgsql_version }}/bin \
+			   -d /var/lib/pgsql/data \
+			   -D /var/lib/pgsql/{{ pgsql_version }}/data"
   when: "'postgresql-server' in ansible_facts.packages"
 
 
@@ -187,7 +191,7 @@
 
 
 - name: Check that ODBC is configured for PostgreSQL
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/odbcinst.ini
     search_string: "pgsql-{{ pgsql_version }}"
     state: absent
