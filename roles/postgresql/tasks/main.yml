@@ -17,22 +17,23 @@
 - name: Ensure PostgreSQL database and dependencies are installed
   ansible.builtin.package:
     name:
-      - postgresql11-server
-      - postgresql11-contrib
-      - postgresql11-odbc
+      - "postgresql{{ pgsql_version }}-server"
+      - "postgresql{{ pgsql_version }}-contrib"
+      - "postgresql{{ pgsql_version }}-odbc"
       - python-psycopg2
       - unixODBC
     state: present
 
 
 - name: Initialize PostgreSQL database
-  ansible.builtin.command: postgresql-11-setup initdb
-    creates=/var/lib/pgsql/11/data/postgresql.conf
+  ansible.builtin.command: "postgresql-{{ pgsql_version }}-setup initdb"
+  args:
+    creates: "/var/lib/pgsql/{{ pgsql_version }}/data/postgresql.conf"
 
 
 - name: Password protect loopback IPv4 connections
   ansible.builtin.lineinfile:
-    dest: /var/lib/pgsql/11/data/pg_hba.conf
+    dest: "/var/lib/pgsql/{{ pgsql_version }}/data/pg_hba.conf"
     regexp: 'host\s+all\s+all\s+127.0.0.1/32'
     line: 'host all all 127.0.0.1/32 md5'
   notify: Restart PostgreSQL
@@ -40,7 +41,7 @@
 
 - name: Password protect loopback IPv6 connections
   ansible.builtin.lineinfile:
-    dest: /var/lib/pgsql/11/data/pg_hba.conf
+    dest: "/var/lib/pgsql/{{ pgsql_version }}/data/pg_hba.conf"
     regexp: 'host\s+all\s+all\s+::1/128'
     line: 'host all all ::1/128 md5'
   notify: Restart PostgreSQL
@@ -59,7 +60,7 @@
 - name: Ensure private key file is available for PostgreSQL
   ansible.builtin.copy:
     src: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
-    dest: '/var/lib/pgsql/11/data/{{ openssl_key_signed }}'
+    dest: '/var/lib/pgsql/{{ pgsql_version }}/data/{{ openssl_key_signed }}'
     group: 'postgres'
     owner: 'postgres'
     mode: 0600
@@ -69,7 +70,7 @@
 - name: Ensure certificate file is available for PostgreSQL
   ansible.builtin.copy:
     src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
-    dest: '/var/lib/pgsql/11/data/{{ openssl_crt_signed }}'
+    dest: '/var/lib/pgsql/{{ pgsql_version }}/data/{{ openssl_crt_signed }}'
     group: 'postgres'
     owner: 'postgres'
     mode: 0600
@@ -79,7 +80,7 @@
 - name: Ensure PostgreSQL is configured
   ansible.builtin.template:
     src: postgresql.conf.j2
-    dest: "/var/lib/pgsql/11/data/postgresql.conf"
+    dest: "/var/lib/pgsql/{{ pgsql_version }}/data/postgresql.conf"
     owner: postgres
     group: postgres
     mode: 0600
@@ -160,7 +161,7 @@
 - name: Upgrade PostgreSQL database
   become_user: postgres
   become: true
-  ansible.builtin.command: /usr/pgsql-11/bin/pg_upgrade -b /var/lib/pgsql/shim -B /usr/pgsql-11/bin -d /var/lib/pgsql/data -D /var/lib/pgsql/11/data
+  ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/pg_upgrade -b /var/lib/pgsql/shim -B /usr/pgsql-{{ pgsql_version }}/bin -d /var/lib/pgsql/data -D /var/lib/pgsql/{{ pgsql_version }}/data"
   when: "'postgresql-server' in ansible_facts.packages"
 
 
@@ -188,7 +189,7 @@
 - name: Check that ODBC is configured for PostgreSQL
   lineinfile:
     path: /etc/odbcinst.ini
-    search_string: pgsql-11
+    search_string: "pgsql-{{ pgsql_version }}"
     state: absent
   check_mode: true
   changed_when: false
@@ -200,15 +201,15 @@
   args:
     stdin: |
       [PostgreSQL]
-      Description = PostgreSQL 11 ODBC Driver
-      Driver      = /usr/pgsql-11/lib/psqlodbc.so
-      Setup       = /usr/pgsql-11/lib/psqlodbcw.so
+      Description = PostgreSQL {{ pgsql_version }} ODBC Driver
+      Driver      = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbc.so
+      Setup       = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbcw.so
   when: not driver.found
 
 
 - name: Ensure PostgreSQL is enabled and started
   ansible.builtin.service:
-    name: postgresql-11
+    name: "postgresql-{{ pgsql_version }}"
     enabled: true
     state: started
 
@@ -216,7 +217,7 @@
 - name: Optimize PostgreSQL database
   become_user: postgres
   become: true
-  ansible.builtin.command: /usr/pgsql-11/bin/vacuumdb --all
+  ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/vacuumdb --all"
   when: "'postgresql-server' in ansible_facts.packages"
 
 
