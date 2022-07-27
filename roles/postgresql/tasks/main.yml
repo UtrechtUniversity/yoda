@@ -21,6 +21,7 @@
       - postgresql11-contrib
       - postgresql11-odbc
       - python-psycopg2
+      - unixODBC
     state: present
 
 
@@ -182,6 +183,27 @@
     - /var/lib/pgsql/data
     - /var/lib/pgsql/shim
   when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Check that ODBC is configured for PostgreSQL
+  lineinfile:
+    path: /etc/odbcinst.ini
+    search_string: pgsql-11
+    state: absent
+  check_mode: true
+  changed_when: false
+  register: driver
+
+
+- name: Configure ODBC for PostgreSQL
+  ansible.builtin.command: odbcinst -i -d -r
+  args:
+    stdin: |
+      [PostgreSQL]
+      Description = PostgreSQL 11 ODBC Driver
+      Driver      = /usr/pgsql-11/lib/psqlodbc.so
+      Setup       = /usr/pgsql-11/lib/psqlodbcw.so
+  when: not driver.found
 
 
 - name: Ensure PostgreSQL is enabled and started
