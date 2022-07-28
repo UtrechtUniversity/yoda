@@ -7,7 +7,7 @@ nav_order: 90
 
 Version: 1.8
 
-Released: TBA
+Released: July 2022
 
 ## What's new
 ### Features
