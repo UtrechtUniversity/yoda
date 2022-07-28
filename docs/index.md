@@ -14,7 +14,7 @@ On this website you can find release notes and technical documentation on softwa
 Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project.
 
 ## Latest release
-- [Release Notes - Yoda v1.7](release-notes/release-1.8.md) (July 2022)
+- [Release Notes - Yoda v1.8](release-notes/release-1.8.md) (July 2022)
 
 ## Documentation style
 All documentation is styled using [Markdown](https://guides.github.com/features/mastering-markdown/).
