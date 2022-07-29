@@ -158,6 +158,12 @@
   when: "'postgresql-server' in ansible_facts.packages"
 
 
+- name: Last step before the upgrade
+  ansible.builtin.fail:
+    msg: PostgreSQL database upgrade prevented
+  when: "'postgresql-server' in ansible_facts.packages and prevent_upgrade"
+
+
 - name: Upgrade PostgreSQL database
   become_user: postgres
   become: true

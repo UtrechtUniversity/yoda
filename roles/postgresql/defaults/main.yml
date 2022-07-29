@@ -3,6 +3,7 @@
 
 # version of PostgreSQL to install (tested with 11-14)
 pgsql_version: 11
+prevent_upgrade: false
 
 # PostgreSQL package repo
 rpm_dest_dir: /tmp
