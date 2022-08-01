@@ -19,6 +19,8 @@ Released: July 2022
 - Support for multi-select actions for files and folders in research space
 - Support for davrods server on separate host
 - Support for [Data Package References](../design/overview/data_package_reference.md)
+- Support for checksum reports
+- Support for [local Postfix MTA](../administration/local-postfix-mta.md)
 - Improvements to default schema (`default-2`)
 - Transformation from `default-1` to `teclab-0` / `hptlab-0`
 - Improved search module and new search bar in header
