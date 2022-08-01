@@ -229,6 +229,21 @@ smtp_password                | SMTP server password
 smtp_auth                    | Whether to use SMTP authentication (true/false, default: true)
 smtp_starttls                | Whether to force StartTLS on non-SMTP connections (true/false, default: true)
 
+### PostgreSQL database configuration
+
+Variable                               | Description
+---------------------------------------|---------------------------------------------
+postgresql_max_connections             | Maximum number of database connections (default: 100)
+postgresql_shared_buffers              | Amount of memory database should use for shared buffers. Rule of thumb: set to 25% of memory on dedicated database server; on a shared server, it should probably be lower. Default value: 32 MB.
+postgresql_work_mem                    | Maximum amount of worker memory. Rule of thumb: increasing worker memory can help with improving performance, but it is necessary to ensure that sufficient memory is available, considering the maximum number of database connections. Default value: 1 MB.
+postgresql_maintenance_work_mem        | Maximum amount of memory for maintenance processes, such as VACUUM. Default value: 16 MB.
+postgresql_effective_cache_size        | Tells the query planner how much memory it can expect to be available for disk caching for the database. Rule of thumb: set to approximately 50-75% on dedicated database server. Default value: 128 MB.
+postgresql_random_page_cost            | Tells the query planner about the relative cost of random access versus sequential access. You could use a tool like fio to get an estimate, or use a ballpark estimate based on the type of storage of the database volume (e.g. 1.0 for SSD-based storage). Default value is 4.0.
+postgresql_log_line_prefix:            | Format of log message prefix in the PostgreSQL log, for adding timestamps etc. to log messages. The default value adds a timestamp and process number, which is sufficient for most purposes. It might be useful to log additional information in specific situations, such as when troubleshooting database issues.
+postgresql_log_min_duration_statement  | Minimum number of milliseconds for slow query logging (default: -1 / disabled)
+postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled)
+postgresql_timezone                    | Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam.
+
 ### Postfix configuration
 
 Variable                     | Description
