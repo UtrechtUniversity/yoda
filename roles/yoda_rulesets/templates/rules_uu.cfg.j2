@@ -23,6 +23,8 @@ notifications_reply_to         = '{{ notifications_reply_to }}'
 smtp_server                    = '{{ smtp_server }}'
 smtp_username                  = '{{ smtp_username }}'
 smtp_password                  = '{{ smtp_password }}'
+smtp_auth                      = '{{ ["false", "true"][smtp_auth|int] }}'
+smtp_starttls                  = '{{ ["false", "true"][smtp_starttls|int] }}'
 
 datacite_rest_api_url          = 'https://{{ datacite_rest_api_url }}'
 datacite_username              = '{{ datacite_username }}'

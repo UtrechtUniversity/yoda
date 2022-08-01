@@ -79,7 +79,7 @@ _complete_user() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=`iquest "%s" "SELECT USER_NAME where USER_TYPE != 'rodsgroup'"`
+  tmp=`iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE != 'rodsgroup'"`
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -90,7 +90,7 @@ _complete_group() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=`iquest "%s" "SELECT USER_NAME where USER_TYPE = 'rodsgroup'"`
+  tmp=`iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE = 'rodsgroup'"`
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -101,7 +101,7 @@ _complete_resource() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=`iquest "%s" "SELECT RESC_NAME"`
+  tmp=`iquest --no-page "%s" "SELECT RESC_NAME"`
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -112,7 +112,7 @@ _complete_zone() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=`iquest '%s' 'SELECT ZONE_NAME'`
+  tmp=`iquest --no-page '%s' 'SELECT ZONE_NAME'`
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }

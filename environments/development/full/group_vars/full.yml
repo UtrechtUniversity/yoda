@@ -24,7 +24,7 @@ enable_research: true                              # Enable research module
 
 # OpenSearch module configuration
 enable_open_search: true                           # Enable OpenSearch module
-opensearch_server: combined.yoda.test
+opensearch_server: portal.yoda.test
 
 # Deposit module configuration
 enable_deposit: true                               # Enable deposit module
