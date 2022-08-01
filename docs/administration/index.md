@@ -15,6 +15,7 @@ has_toc: false
 - [Installing preservable file formats](installing-preservable-file-formats.md)
 - [Installing metadata schemas](installing-metadata-schemas.md)
 - [Installing datarequest module](installing-datarequest-module.md)
+- [Working with the local Postfix MTA](local-postfix-mta.md)
 - [Upgrading metadata schemas](upgrading-metadata-schemas.md)
 - [Troubleshooting email](troubleshooting-email.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
