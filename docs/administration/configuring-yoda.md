@@ -148,25 +148,26 @@ httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache 
 ### iRODS configuration
 
 Variable                     | Description
------------------------------|---------------------------------
-irods_admin                  | iRODS admin username
-irods_password               | iRODS admin password
-irods_database_user          | The iRODS database username
-irods_database_password      | The password for the iRODS database username
-irods_zone                   | The name of the iRODS Zone
-irods_icat_fqdn              | iRODS iCAT fully qualified domain name (FQDN)
-irods_database_fqdn          | iRODS database fully qualified domain name (FQDN)
-irods_resource_fqdn          | iRODS resource fully qualified domain name (FQDN)
-irods_default_resc           | iRODS default resource name
-irods_resc_trigger_pol       | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
-irods_ssl_verify_server      | Verify TLS certificate, use 'cert' for acceptance and production
-irods_resources              | Definition of iRODS resources of this Yoda instance
-irods_service_type           | Possible values: 'sysv' (System V) or 'systemd'
-irods_max_open_files         | Maximum number of open files for iRODS service (only effective when irods_service_type is set to 'systemd')
-irods_enable_service         | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes (only effective when irods_service_type is set to 'systemd')
-irods_rum_job_enabled        | Whether to enable the daily RUM job for removing unused metadata entries (default: true)
-irods_rum_job_hour           | Time to run RUM job - hour (default: 20)
-irods_rum_job_minute         | Time to run RUM job - minute (default: 0)
+-------------------------------------|---------------------------------
+irods_admin                          | iRODS admin username
+irods_password                       | iRODS admin password
+irods_database_user                  | The iRODS database username
+irods_database_password              | The password for the iRODS database username
+irods_database_enable_yoda_indexes   | Enable indexes to speed up Yoda search operations (default: false). This is mainly useful for medium-sized and large environments (millions of data objects or more). Please note that the indexes can take up a significant amount of diskspace (rough estimate: 10-30% increase in database size). They will be created asynchronously. This can take some time on existing environments with a significant amount of data, and temporarily decrease performance.
+irods_zone                           | The name of the iRODS Zone
+irods_icat_fqdn                      | iRODS iCAT fully qualified domain name (FQDN)
+irods_database_fqdn                  | iRODS database fully qualified domain name (FQDN)
+irods_resource_fqdn                  | iRODS resource fully qualified domain name (FQDN)
+irods_default_resc                   | iRODS default resource name
+irods_resc_trigger_pol               | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
+irods_ssl_verify_server              | Verify TLS certificate, use 'cert' for acceptance and production
+irods_resources                      | Definition of iRODS resources of this Yoda instance
+irods_service_type                   | Possible values: 'sysv' (System V) or 'systemd'
+irods_max_open_files                 | Maximum number of open files for iRODS service (only effective when irods_service_type is set to 'systemd')
+irods_enable_service                 | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes (only effective when irods_service_type is set to 'systemd')
+irods_rum_job_enabled                | Whether to enable the daily RUM job for removing unused metadata entries (default: true)
+irods_rum_job_hour                   | Time to run RUM job - hour (default: 20)
+irods_rum_job_minute                 | Time to run RUM job - minute (default: 0)
 
 ### Research module configuration
 

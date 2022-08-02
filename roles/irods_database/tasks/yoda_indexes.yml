@@ -1,0 +1,49 @@
+---
+# copyright Utrecht University
+
+- name: Install pg_trgm extension for trigram matching on iCAT database
+  community.postgresql.postgresql_ext:
+    name: pg_trgm
+    db: '{{ irods_database_name }}'
+  become: true
+  become_user: postgres
+
+
+- name: Install Yoda-specific indexes on iCAT database
+  community.postgresql.postgresql_idx:
+    db: '{{ irods_database_name }}'
+    name: '{{ item.name }}'
+    type: '{{ item.type }}'
+    columns: '{{ item.columns }}'
+    table: '{{ item.table }}'
+  with_items:
+    - name: idx_yoda_coll1
+      type: gin
+      columns: UPPER(coll_name) gin_trgm_ops
+      table: r_coll_main
+    - name: idx_yoda_coll2
+      type: gin
+      columns: UPPER(parent_coll_name) gin_trgm_ops
+      table: r_coll_main
+    - name: idx_yoda_data1
+      type: gin
+      columns: UPPER(data_name) gin_trgm_ops
+      table: r_data_main
+    - name: idx_yoda_meta1
+      type: gin
+      columns: UPPER(meta_attr_value) gin_trgm_ops
+      table: r_meta_main
+    - name: idx_yoda_meta2
+      type: gin
+      columns: UPPER(meta_attr_unit) gin_trgm_ops
+      table: r_meta_main
+    - name: idx_yoda_meta3
+      type: btree
+      columns: UPPER(meta_attr_name)
+      table: r_meta_main
+    - name: idx_yoda_meta4
+      type: btree
+      columns: UPPER(meta_attr_value)
+      table: r_meta_main
+  become: true
+  become_user: postgres

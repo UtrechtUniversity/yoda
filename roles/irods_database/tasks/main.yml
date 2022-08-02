@@ -27,3 +27,8 @@
     name: "{{ irods_database_user }}"
     password: "{{ irods_database_password }}"
     priv: ALL
+
+
+- name: Add Yoda indexes
+  include_tasks: "yoda_indexes.yml"
+  when: irods_database_enable_yoda_indexes
