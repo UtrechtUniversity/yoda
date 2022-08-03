@@ -29,6 +29,4 @@
     priv: ALL
 
 
-- name: Add Yoda indexes
-  include_tasks: "yoda_indexes.yml"
-  when: irods_database_enable_yoda_indexes
+- include_tasks: "yoda_indexes.yml"

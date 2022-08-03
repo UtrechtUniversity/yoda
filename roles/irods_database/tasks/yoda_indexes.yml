@@ -1,15 +1,36 @@
 ---
 # copyright Utrecht University
 
-- name: Install pg_trgm extension for trigram matching on iCAT database
-  community.postgresql.postgresql_ext:
-    name: pg_trgm
-    db: '{{ irods_database_name }}'
+- name: Remove Yoda-specific indexes on iCAT database
   become: true
   become_user: postgres
+  community.postgresql.postgresql_idx:
+    db: '{{ irods_database_name }}'
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - idx_yoda_coll1
+    - idx_yoda_coll2
+    - idx_yoda_data1
+    - idx_yoda_meta1
+    - idx_yoda_meta2
+    - idx_yoda_meta3
+    - idx_yoda_meta4
+  when: not irods_database_enable_yoda_indexes
+
+
+- name: Install or remove pg_trgm extension for trigram matching on iCAT database
+  become: true
+  become_user: postgres
+  community.postgresql.postgresql_ext:
+    state: '{{ "present" if irods_database_enable_yoda_indexes else "absent" }}'
+    name: pg_trgm
+    db: '{{ irods_database_name }}'
 
 
 - name: Install Yoda-specific indexes on iCAT database
+  become: true
+  become_user: postgres
   community.postgresql.postgresql_idx:
     db: '{{ irods_database_name }}'
     name: '{{ item.name }}'
@@ -45,5 +66,4 @@
       type: btree
       columns: UPPER(meta_attr_value)
       table: r_meta_main
-  become: true
-  become_user: postgres
+  when: irods_database_enable_yoda_indexes
