@@ -82,6 +82,7 @@
     owner: root
     group: irods
     mode: 0750
+  no_log: true
   when: enable_tokens
 
 
