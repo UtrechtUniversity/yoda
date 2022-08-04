@@ -111,6 +111,7 @@
       - irods-runtime-4.3.0-1
       - irods-database-plugin-postgres-4.3.0-1
       - irods-rule-engine-plugin-python-4.3.0.0-1
+      - irods-icommands-4.3.0-1
     state: present
   when: not ansible_check_mode
 
