@@ -98,8 +98,6 @@
       - irods-rule-engine-plugin-indexing-4.2.11.0-1
       - irods-rule-engine-plugin-elasticsearch-4.2.11.0-1
       - irods-rule-engine-plugin-document-type-4.2.11.0-1
-
-
     state: absent
   notify: Restart iRODS
 
@@ -114,6 +112,7 @@
       - irods-icommands-4.3.0-1
     state: present
   when: not ansible_check_mode
+  register: installed
 
 
 - name: Ensure iRODS indexing plugins are present
@@ -269,7 +268,7 @@
     content: ""
     dest: "/etc/irods/core.py"
     mode: 0644
-    force: false
+    force: "{{ installed.changed }}"
 
 
 - name: Ensure iRODS server is up
