@@ -100,3 +100,31 @@ technicaladmin      | Technical administrator with rodsadmin access
 Password for all test users is `test`.
 
 In research group `research-initial` a folder `testdata` is created with some example data.
+
+# Surf development environment
+
+Surf uses the following setup:
+- Portal server: runs Yoda portal, iRODS iCAT server (provider), iCAT database and EUS
+- WebDAV server: runs DavRODS and public server, as well as iRODS resource server (consumer)
+- Resource server: additional iRODS resource server
+
+To deploy it on local VMs, add the following entries to your hosts file:
+
+```
+# Surf Yoda test
+192.168.56.20 portal.surfyoda.test
+192.168.56.21 data.surfyoda.test
+192.168.56.21 public.data.surfyoda.test
+192.168.56.21 public.surfyoda.test
+192.168.56.20 eus.surfyoda.test
+192.168.56.22 resource.surfyoda.test
+```
+
+And run the following commands in the root of the Yoda repository:
+
+```
+cp vagrant/environment/surf/Vagrantfile .
+vagrant box update
+vagrant up
+ansible-playbook -DK -i environments/development/surf playbook.yml
+```
