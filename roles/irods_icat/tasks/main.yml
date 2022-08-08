@@ -252,10 +252,10 @@
   changed_when: ils is failed
 
 
-- name: Start iRODS server
+- name: Restart iRODS server
   ansible.builtin.service:
     name: irods
-    state: started
+    state: restarted
   when: ils is failed
 
 
