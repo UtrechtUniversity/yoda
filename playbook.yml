@@ -98,7 +98,6 @@
     - irods_icat
     - irods_runtime
     - irods_microservices
-    - composable_resources
     - irods_completion
     - irods_rodsadmin
     - role: dms_archive_mock
@@ -121,6 +120,15 @@
     - irods_completion
   tags:
     - resource
+
+
+- name: Provision iRODS resources
+  hosts: icats
+  become: true
+  roles:
+    - composable_resources
+  tags:
+    - icat
 
 
 - name: Provision rulesets on iCAT server
