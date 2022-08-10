@@ -453,6 +453,7 @@
     dest: '/var/lib/irods/.ssh/id_ed25519'
     owner: '{{ irods_service_account }}'
     mode: 0600
+  no_log: true
   when: upload_priv_key is defined
 
 
