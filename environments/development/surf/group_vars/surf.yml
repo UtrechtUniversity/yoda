@@ -61,7 +61,7 @@ irods_database_password: irodsdev          # The password for the iRODS database
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_icat_fqdn: portal.surfyoda.test            # iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn: portal.surfyoda.test    # iRODS database fully qualified domain name (FQDN)
-irods_resource_fqdn: resource.surfyoda.test    # iRODS resource fully qualified domain name (FQDN)
+#irods_resource_fqdn: resource.surfyoda.test    # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources:
   - name: dev001_1
