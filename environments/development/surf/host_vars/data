@@ -1,2 +1,6 @@
 ---
 ansible_host: 192.168.56.21
+# By default, Yoda doesn't install rulesets on resource
+# servers. We need to override that behaviour for this
+# server, since it's also a DavRODS server.
+override_resc_install_rulesets: true

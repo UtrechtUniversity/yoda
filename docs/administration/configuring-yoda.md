@@ -180,6 +180,7 @@ revision_strategy            | Revision strategy: A, B, J or Simple
 yoda_random_id_length        | Length of random ID to add to persistent identifier
 yoda_prefix                  | Prefix for internal portion of persistent identifier
 update_rulesets              | Update already installed rulesets with git
+override_resc_install_rulesets | Install rulesets on server even if it is a resource server (default: false). This override parameter can be used on resource servers that have an additional role, e.g. DavRODS server
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
 temporary_files              | List of temporary files for cleanup functionality
