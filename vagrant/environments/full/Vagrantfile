@@ -16,7 +16,11 @@ NETWORK = "192.168.56."
 NETMASK = "255.255.255.0"
 
 HOSTS = {
-  "combined" => [NETWORK+"10", CPU, RAM, GUI, BOX],
+  "portal"   => [NETWORK+"10", CPU, RAM, GUI, BOX],
+  "database" => [NETWORK+"11", CPU, 3072, GUI, BOX],
+  "icat"     => [NETWORK+"12", CPU, 6144, GUI, BOX],
+  "resource" => [NETWORK+"13", CPU, 6144, GUI, BOX],
+  "public"   => [NETWORK+"14", CPU, 3072, GUI, BOX],
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|

@@ -106,6 +106,8 @@
       when: enable_tape_archive and yoda_environment == "development"
     - role: dms_tape_archive
       when: enable_tape_archive and yoda_environment != "development"
+    - role: postfix
+      when: enable_postfix
   tags:
     - icat
 
@@ -162,5 +164,7 @@
     - apache
     - php
     - yoda_external_user_service
+    - role: postfix
+      when: enable_postfix
   tags:
     - eus
