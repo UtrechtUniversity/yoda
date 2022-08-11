@@ -1,10 +1,26 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure PAM radius is absent
+- name: Install pam_radius if needed for fallback
   ansible.builtin.package:
     name: pam_radius
+    state: '{{ "present" if enable_radius_fallback else "absent" }}'
+
+
+- name: Ensure /etc/pam_radius.conf is configured if needed for fallback
+  ansible.builtin.template:
+    src: 'pam_radius.conf.j2'
+    dest: '/etc/pam_radius.conf'
+    mode: '0600'
+  no_log: true
+  when: enable_radius_fallback
+
+
+- name: Ensure /etc/pam_radius.conf is removed if no fallback is configured
+  ansible.builtin.file:
+    path: /etc/pam_radius.conf
     state: absent
+  when: not enable_radius_fallback
 
 
 - name: Ensure external user check is present
@@ -91,12 +107,6 @@
     src: 'irods_pam.j2'
     dest: '/etc/pam.d/irods'
     mode: '0644'
-
-
-- name: Ensure deprecated /etc/pam_radius.conf is removed
-  ansible.builtin.file:
-    path: /etc/pam_radius.conf
-    state: absent
 
 
 - name: Ensure OIDC authentication is present
