@@ -29,13 +29,14 @@
   ansible.builtin.git:
     repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
     dest: "/var/www/yoda/git"
+    version: "{{ yoda_portal_version }}"
   when: not git.stat.exists
-  
+
 
 - name: Move Yoda portal repository to the correct location
   become_user: "{{ yoda_deployment_user }}"
   become: true
-  command: mv "/var/www/yoda/git/.git" "/var/www/yoda/.git"
+  ansible.builtin.command: mv "/var/www/yoda/git/.git" "/var/www/yoda/.git"
   when: not git.stat.exists
 
 
