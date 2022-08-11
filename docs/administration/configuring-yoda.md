@@ -157,7 +157,7 @@ irods_database_enable_yoda_indexes   | Enable indexes to speed up Yoda search op
 irods_zone                           | The name of the iRODS Zone
 irods_icat_fqdn                      | iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn                  | iRODS database fully qualified domain name (FQDN)
-irods_resource_fqdn                  | iRODS resource fully qualified domain name (FQDN)
+irods_resource_fqdn                  | iRODS resource fully qualified domain name (FQDN). Don't define this variable if you have multiple resource servers.
 irods_default_resc                   | iRODS default resource name
 irods_resc_trigger_pol               | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
 irods_ssl_verify_server              | Verify TLS certificate, use 'cert' for acceptance and production
@@ -180,6 +180,7 @@ revision_strategy            | Revision strategy: A, B, J or Simple
 yoda_random_id_length        | Length of random ID to add to persistent identifier
 yoda_prefix                  | Prefix for internal portion of persistent identifier
 update_rulesets              | Update already installed rulesets with git
+override_resc_install_rulesets | Install rulesets on server even if it is a resource server (default: false). This override parameter can be used on resource servers that have an additional role, e.g. DavRODS server
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
 temporary_files              | List of temporary files for cleanup functionality

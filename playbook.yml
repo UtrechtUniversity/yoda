@@ -98,7 +98,6 @@
     - irods_icat
     - irods_runtime
     - irods_microservices
-    - composable_resources
     - irods_completion
     - irods_rodsadmin
     - role: dms_archive_mock
@@ -123,6 +122,15 @@
     - resource
 
 
+- name: Provision iRODS resources
+  hosts: icats
+  become: true
+  roles:
+    - composable_resources
+  tags:
+    - icat
+
+
 - name: Provision rulesets on iCAT server
   hosts: icats
   become: true
@@ -138,7 +146,7 @@
   become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: false
+      install_rulesets: '{{ override_resc_install_rulesets | default(False) }}'
   tags:
     - resource
 
