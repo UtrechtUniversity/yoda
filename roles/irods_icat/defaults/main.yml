@@ -44,6 +44,7 @@ sqlcipher_dev:
 
 # PAM configuration.
 pam_fail_delay: 1000000                    # PAM fail delay in micro-seconds
+enable_radius_fallback: false
 pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
