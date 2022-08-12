@@ -143,7 +143,7 @@ pam_radius_config: |
 zabbix_server: PLACEHOLDER
 
 # Public host configuration
-yoda_public_host: public.surfyoda.test     # Yoda public host
+yoda_public_host: data.surfyoda.test       # Yoda public host
 yoda_public_fqdn: public.surfyoda.test     # Yoda public fully qualified domain name (FQDN)
 
 # Yoda public upload private key (base64 encoded)
