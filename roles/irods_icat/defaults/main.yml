@@ -23,6 +23,10 @@ irods_control_plane_port: 1248
 irods_schema_uri: https://schemas.irods.org/configuration
 irods_ssl_verify_server: cert
 
+irods_rum_job_enabled: true
+irods_rum_job_hour: 20
+irods_rum_job_minute: 0
+
 rpm_dest_dir: /tmp
 
 # sqlcipher RPM locations and checksum
@@ -40,6 +44,7 @@ sqlcipher_dev:
 
 # PAM configuration.
 pam_fail_delay: 1000000                    # PAM fail delay in micro-seconds
+enable_radius_fallback: false
 pam_radius_config: |
   127.0.0.1     secret         1
   other-server  other-secret   3
@@ -63,6 +68,9 @@ oidc_userinfo_uri: ''
 
 # Service type. Possible values: 'sysv' and 'systemd'
 irods_service_type: 'systemd'
+
+# Whether to start iRODS at boot time.
+irods_enable_service: true
 
 # The max number of open files is only effective when
 # irods_service_type has been set to 'systemd'.

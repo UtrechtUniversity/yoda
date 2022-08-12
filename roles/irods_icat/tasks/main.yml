@@ -252,17 +252,17 @@
   changed_when: ils is failed
 
 
-- name: Start iRODS server
+- name: Restart iRODS server
   ansible.builtin.service:
     name: irods
-    state: started
+    state: restarted
   when: ils is failed
 
 
-- name: Enable iRODS systemd service
+- name: Configure iRODS systemd service
   ansible.builtin.service:
     name: irods
-    enabled: true
+    enabled: "{{ irods_enable_service }}"
     use: service
   when: irods_service_type == "systemd"
 
@@ -453,6 +453,7 @@
     dest: '/var/lib/irods/.ssh/id_ed25519'
     owner: '{{ irods_service_account }}'
     mode: 0600
+  no_log: true
   when: upload_priv_key is defined
 
 
@@ -531,6 +532,16 @@
     - listUserACLForDataObjViaGroup
     - listUserACLForCollectionViaGroup
   changed_when: false
+
+
+- name: Ensure RUM job for removing unused metadata is present
+  ansible.builtin.cron:
+    user: '{{ irods_service_account }}'
+    disabled: '{{ not irods_rum_job_enabled }}'
+    job: '/usr/bin/iadmin rum'
+    hour: '{{ irods_rum_job_hour | string }}'
+    minute: '{{ irods_rum_job_minute | string }}'
+    name: 'iRODS RUM job for removing unused metadata entries'
 
 
 - include_tasks: setup_pam.yml

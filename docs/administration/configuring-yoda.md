@@ -148,22 +148,26 @@ httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache 
 ### iRODS configuration
 
 Variable                     | Description
------------------------------|---------------------------------
-irods_admin                  | iRODS admin username
-irods_password               | iRODS admin password
-irods_database_user          | The iRODS database username
-irods_database_password      | The password for the iRODS database username
-irods_zone                   | The name of the iRODS Zone
-irods_icat_fqdn              | iRODS iCAT fully qualified domain name (FQDN)
-irods_database_fqdn          | iRODS database fully qualified domain name (FQDN)
-irods_resource_fqdn          | iRODS resource fully qualified domain name (FQDN)
-irods_default_resc           | iRODS default resource name
-irods_resc_trigger_pol       | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
-irods_ssl_verify_server      | Verify TLS certificate, use 'cert' for acceptance and production
-irods_resources              | Definition of iRODS resources of this Yoda instance
-irods_service_type           | Possible values: 'sysv' (System V) or 'systemd'
-irods_max_open_files         | Maximum number of open files for iRODS service (only effective when irods_service_type is set to 'systemd')
-irods_enable_service         | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS (e.g. mounting encrypted volumes)
+-------------------------------------|---------------------------------
+irods_admin                          | iRODS admin username
+irods_password                       | iRODS admin password
+irods_database_user                  | The iRODS database username
+irods_database_password              | The password for the iRODS database username
+irods_database_enable_yoda_indexes   | Enable indexes to speed up Yoda search operations (default: false). This is mainly useful for medium-sized and large environments (millions of data objects or more). Please note that the indexes can take up a significant amount of diskspace (rough estimate: 10-30% increase in database size). They will be created asynchronously. This can take some time on existing environments with a significant amount of data, and temporarily decrease performance.
+irods_zone                           | The name of the iRODS Zone
+irods_icat_fqdn                      | iRODS iCAT fully qualified domain name (FQDN)
+irods_database_fqdn                  | iRODS database fully qualified domain name (FQDN)
+irods_resource_fqdn                  | iRODS resource fully qualified domain name (FQDN). Don't define this variable if you have multiple resource servers.
+irods_default_resc                   | iRODS default resource name
+irods_resc_trigger_pol               | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
+irods_ssl_verify_server              | Verify TLS certificate, use 'cert' for acceptance and production
+irods_resources                      | Definition of iRODS resources of this Yoda instance
+irods_service_type                   | Possible values: 'sysv' (System V) or 'systemd'
+irods_max_open_files                 | Maximum number of open files for iRODS service (only effective when irods_service_type is set to 'systemd')
+irods_enable_service                 | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes (only effective when irods_service_type is set to 'systemd')
+irods_rum_job_enabled                | Whether to enable the daily RUM job for removing unused metadata entries (default: true)
+irods_rum_job_hour                   | Time to run RUM job - hour (default: 20)
+irods_rum_job_minute                 | Time to run RUM job - minute (default: 0)
 
 ### Research module configuration
 
@@ -176,6 +180,7 @@ revision_strategy            | Revision strategy: A, B, J or Simple
 yoda_random_id_length        | Length of random ID to add to persistent identifier
 yoda_prefix                  | Prefix for internal portion of persistent identifier
 update_rulesets              | Update already installed rulesets with git
+override_resc_install_rulesets | Install rulesets on server even if it is a resource server (default: false). This override parameter can be used on resource servers that have an additional role, e.g. DavRODS server
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
 temporary_files              | List of temporary files for cleanup functionality
@@ -208,16 +213,53 @@ Variable                       | Description
 enable_open_search             | Enable OpenSearch and indexing plugin
 opensearch_server              | FQDN of the OpenSearch server (typically the provider)
 
-### Mail notifications
+### Yoda notifications configuration
 
 Variable                     | Description
 -----------------------------|---------------------------------------------
 send_notifications           | Enable notifications: yes (1) or no (0)
 notifications_sender_email   | Notifiations sender email address
 notifications_reply_to       | Notifiations Reply-To email address
+
+### Yoda internal SMTP settings configuration
+
+Variable                     | Description
+-----------------------------|---------------------------------------------
 smtp_server                  | SMTP server to send mail to
 smtp_username                | SMTP server username
 smtp_password                | SMTP server password
+smtp_auth                    | Whether to use SMTP authentication (true/false, default: true)
+smtp_starttls                | Whether to force StartTLS on non-SMTP connections (true/false, default: true)
+
+### PostgreSQL database configuration
+
+Variable                               | Description
+---------------------------------------|---------------------------------------------
+postgresql_max_connections             | Maximum number of database connections (default: 100)
+postgresql_shared_buffers              | Amount of memory database should use for shared buffers. Rule of thumb: set to 25% of memory on dedicated database server; on a shared server, it should probably be lower. Default value: 32 MB.
+postgresql_work_mem                    | Maximum amount of worker memory. Rule of thumb: increasing worker memory can help with improving performance, but it is necessary to ensure that sufficient memory is available, considering the maximum number of database connections. Default value: 1 MB.
+postgresql_maintenance_work_mem        | Maximum amount of memory for maintenance processes, such as VACUUM. Default value: 16 MB.
+postgresql_effective_cache_size        | Tells the query planner how much memory it can expect to be available for disk caching for the database. Rule of thumb: set to approximately 50-75% on dedicated database server. Default value: 128 MB.
+postgresql_random_page_cost            | Tells the query planner about the relative cost of random access versus sequential access. You could use a tool like fio to get an estimate, or use a ballpark estimate based on the type of storage of the database volume (e.g. 1.0 for SSD-based storage). Default value is 4.0.
+postgresql_log_line_prefix:            | Format of log message prefix in the PostgreSQL log, for adding timestamps etc. to log messages. The default value adds a timestamp and process number, which is sufficient for most purposes. It might be useful to log additional information in specific situations, such as when troubleshooting database issues.
+postgresql_log_min_duration_statement  | Minimum number of milliseconds for slow query logging (default: -1 / disabled)
+postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled)
+postgresql_timezone                    | Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam.
+
+### Postfix configuration
+
+Variable                     | Description
+-----------------------------|---------------------------------------------
+enable_postfix               | Whether to enable the Postfix local MTA (default: false)
+postfix_myhostname           | Hostname of server where Postfix will be installed (compulsory parameter if Postfix is enabled)
+postfix_relayhost            | Relay host, the server that Postfix should send emails to (compulsory parameter if Postfix is enabled)
+postfix_relayhost_port:      | Port of relay host (default: 587)
+postfix_relayhost_username   | User name for authentication on relay host (compulsory parameter if Postfix is enabled)
+postfix_relayhost_password   | Password for authentication on relay host (compulsory parameter if Postfix is enabled)
+postfix_smtp_enable_tls      | Whether to enable TLS on connections to relay host. This also enables authentication on connections to the relay host (default: true)
+postfix_enable_debugging     | This enables additional logging on connections to the relay host. Useful for troubleshooting. (default: false)
+postfix_myorigin             | Sets origin domain for emails sent on the system. Defaults to the postfix_myhostname domain.
+postfix_inet_protocols       | Refers to Postfix inet_protocols setting. Can be useful for running Postfix in IPv4 only mode, if no IPv6 connectivity is available (default: "all")
 
 ### DataCite Configuration
 
@@ -246,6 +288,7 @@ token_database          | Location of the database that contain the tokens
 token_database_password | Token database password
 token_length            | Length of data access tokens
 token_lifetime          | Lifetime of data access tokens (in hours) (in hours)
+enable_radius_fallback  | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
 
 ### Public host configuration
 
@@ -269,6 +312,8 @@ eus_smtp_host                | External User Service SMTP host
 eus_smtp_port                | External User Service SMTP port
 eus_smtp_user                | External User Service SMTP user
 eus_smtp_password            | External User Service SMTP password
+eus_smtp_auth                | External User Service SMTP authentication (true/false, default: true)
+eus_smtp_security            : External User Service SMTP encryption (tls/ssl/false, default: tls)
 eus_smtp_from_address        | External User Service from address
 eus_smtp_replyto_address     | External User Service replyto address
 eus_mail_template            | External User Service mail template

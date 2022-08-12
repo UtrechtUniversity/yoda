@@ -15,3 +15,19 @@ openssl_private_dir: '/etc/pki/tls/private'
 openssl_certs_dir: '/etc/pki/tls/certs'
 openssl_key_signed: localhost.key
 openssl_crt_signed: localhost.crt
+
+# General PostgreSQL configuration
+postgresql_timezone: 'Europe/Amsterdam'
+postgresql_max_connections: 100
+
+# PostgreSQL performance-related configuration
+postgresql_shared_buffers: 32MB
+postgresql_work_mem: 1MB
+postgresql_maintenance_work_mem: 16MB
+postgresql_effective_cache_size: 128MB
+postgresql_random_page_cost: "4.0"
+
+# PostgreSQL logging configuration
+postgresql_log_line_prefix: '%m [%p] '
+postgresql_log_min_duration_statement: -1
+postgresql_log_autovacuum_min_duration: -1
