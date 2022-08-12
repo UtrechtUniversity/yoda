@@ -25,6 +25,7 @@ Additionally, depending on the authorization server, you may need to configure t
 - oidc_scopes (default: `openid`)
 - oidc_acr_values
 - oidc_email_field (default: `email`)
+- oidc_login_hint (default: `true`)
 
 Finally, for customization purposes, you can also configure:
 - oidc_domains, which should be an array of domains with OIDC authentication, e.g. `["mydomain.com","myotherdomain.com"]`. By default, OIDC authentication is enabled for every domain (provided that oidc_active is set to `true`)

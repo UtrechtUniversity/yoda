@@ -1,59 +1,64 @@
 ---
 parent: Administration Tasks
-title: Configuring Cleanup functionality temporary files
+title: Configuring cleanup functionality temporary files
 nav_order: 13
 ---
 # Configuring cleanup functionality of temporary files
-Instruction on how to configure functionality to select identify temporary files in the research area.
-It enables the possibility to show a list of temporary files and delete them individually or as a selection.
+This page contains instructions for configuring the cleanup feature in the research module. This feature
+helps users find and remove files that should not be archived or published.
 
 ## Background
-When using specific systems certain files (or file-types) get introduced.
-These files have no relation whatsoever to the actual data of the research at hand.
-They merely get produced by the system or the tools used.
-Before entering the vault research data requires to be cleaned of these files as they serve no purpose.
-This can be a painstaking exercise.
-Therefore, Yoda is equipped with a powerful tool that enables users to find these files easily and remove them in a simple manner if so required.
+Some software automatically creates temporary, cache or metadata files.
+For example, Windows Explorer can automatically create [Windows thumbnail cache files](https://en.wikipedia.org/wiki/Windows_thumbnail_cache)
+that contain cached thumbnails of images. Such files should typically
+not be archived or published. Removing these files manually is cumbersome, so Yoda has a cleanup tool
+that enables users to find these files easily and optionally remove them.
 
-As temporary files can differ for different Yoda-systems it is possible to configure which files are considered superfluous. Thus, making this functionality flexible and effective for any user.
+Yoda searches for these files using a set of filename selection masks, such as wildcards.
+The selection masks are configured at a system-wide level by the system administrator.
 
 ## Defining selection masks
-It is possible to define masks that describe a certain file/type.  
-The mask(s) will be used to select the corresponding files and show to a user.
+Selection masks are used to match a type of file by its name.
 
 ### Mask - find specific files
-It is possible to search for files that have a specific name.  
-For example:  
-```  
-    mask definition: 'Thumbs.db'  
+It is possible to search for files that have a specific name.
+
+For example:
 ```
-The mask will search exact matches of the filename 'Thumbs.db'.  
+    mask definition: 'Thumbs.db'
+```
+This mask will match files named 'Thumbs.db'.
 
 ### Mask - use of wildcards
-It is possible to use all common wildcards in the creation of a mask.  
+It is possible to use all common wildcards in the creation of a mask.
+
 For example:
-```  
-    mask definition with wildcard:  '._*''  
 ```
-The mask will search for files whose name match the given wildcards.
+    mask definition using wildcard:  '.*''
+```
+
+This mask will match files with a name starting with '.'.
 
 ### Multiple masks
-Masks can be added by concatenation being sepecated by a comma.
-```  
-    multiple masks in mask defintion: '._*','Thumbs.db'  
+Masks can be concatenated with a comma.
+
+For example:
+```
+    multiple masks in mask definition: '.*','Thumbs.db'
 ```
 
 ## Configuring the variable
-When creating a new Yoda instance, setup variable 'temporary_files' in the group_vars as explained in [Configuring Yoda](configuring-yoda.md) and run the playbook.
-Alternatively, you can choose to pass the variables with the *--extra-vars* option every time when running the Ansible playbook.
-The development group_vars contains examples for all of the variables.
+When creating a new Yoda instance, set variable 'temporary_files' in the group\_vars,
+ as explained in [Configuring Yoda](configuring-yoda.md) and run the playbook.
 
 
-## Default value
-When deploying Yoda the default value of this variable contains following masks:  
+## Default selection masks
+By default, Yoda uses these selection masks:
+
 - '._*'         # MacOS resource fork  
 - '.DS_Store'   # MacOS custom folder attributes  
 - 'Thumbs.db'   # Windows thumbnail images
 
 ## Usage
-The research space offers an option to activate the action menu has a specific menu option 'Cleanup temporary files'.  
+
+In the research space action menu in the Yoda portal, select the option 'Cleanup temporary files'.

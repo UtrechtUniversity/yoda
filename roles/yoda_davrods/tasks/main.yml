@@ -54,6 +54,14 @@
     - {index: 0, target: 'mod_davrods.so'}
 
 
+- name: Allow DavRODS connections to iCAT server
+  seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+  when: ansible_selinux.status == "enabled"
+
+
 - name: Copy irods_environment.json to /etc/httpd/irods/irods_environment.json
   ansible.builtin.template:
     src: irods_environment.j2

@@ -1,5 +1,7 @@
 #!/bin/bash
 # copyright Utrecht University
+set -e
+set -x
 
 # Install Git if not present.
 if ! command -v git >/dev/null; then

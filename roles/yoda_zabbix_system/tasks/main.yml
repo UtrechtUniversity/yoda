@@ -2,37 +2,37 @@
 # copyright Utrecht University
 
 - name: Remove old yoda-zabbix repo from /etc/irods
-  file:
+  ansible.builtin.file:
     path: /etc/irods/yoda-zabbix
     state: absent
 
 
 - name: Remove old zabbix_agentd.userparams.conf from zabbix_agentd.d
-  file:
+  ansible.builtin.file:
     path: /etc/zabbix/zabbix_agentd.d/zabbix_agentd.userparams.conf
     state: absent
 
 
 - name: Remove old yoda_checks.userparams.conf from zabbix_agentd.d
-  file:
+  ansible.builtin.file:
     path: /etc/zabbix/zabbix_agentd.d/yoda_checks.userparams.conf
     state: absent
 
 
 - name: Remove old yoda-zabbix-sudoers file from /etc/sudoers.d
-  file:
+  ansible.builtin.file:
     path: /etc/sudoers.d/yoda-zabbix-sudoers
     state: absent
 
 
 - name: Check if Zabbix agent is installable from repository
-  yum:
+  ansible.builtin.yum:
     list: '{{ zabbix_agent.package }}'
   register: zabbix_agent_repo
 
 
 - name: Download Zabbix agent rpm
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ zabbix_agent.url }}/{{ zabbix_agent.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
     checksum: '{{ zabbix_agent.checksum }}'
@@ -40,23 +40,23 @@
 
 
 - name: Install Zabbix agent from downloaded rpm
-  package:
+  ansible.builtin.package:
     name: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
     state: present
-  when: not zabbix_agent_repo.results and not repo_only
+  when: not zabbix_agent_repo.results and not repo_only and not ansible_check_mode
 
 
 - name: Ensure Zabbix agent rpm is installed
-  package:
+  ansible.builtin.package:
     name: '{{ zabbix_agent.package }}'
     state: present
   when: zabbix_agent_repo.results
 
 
 - name: Enable the Zabbix agent service
-  service:
+  ansible.builtin.service:
     name: zabbix-agent
-    enabled: yes
+    enabled: true
     use: service
 
 
@@ -70,18 +70,18 @@
 - name: Allow Zabbix agent to sudo
   seboolean:
     name: zabbix_run_sudo
-    state: yes
-    persistent: yes
+    state: true
+    persistent: true
 
 
 - name: Generate Zabbix agent PSK
-  shell: openssl rand -hex 256 > /etc/zabbix/zabbix_agentd.psk
+  ansible.builtin.shell: openssl rand -hex 256 > /etc/zabbix/zabbix_agentd.psk
     creates=/etc/zabbix/zabbix_agentd.psk
   when: not ansible_check_mode
 
 
 - name: Ensure right file ownership on zabbix_agentd.psk
-  file:
+  ansible.builtin.file:
     path: /etc/zabbix/zabbix_agentd.psk
     owner: zabbix
     group: zabbix
@@ -89,7 +89,7 @@
 
 
 - name: Configure Zabbix agent
-  template:
+  ansible.builtin.template:
     src: zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
     owner: zabbix
@@ -99,21 +99,21 @@
 
 
 - name: Checkout Yoda Zabbix scripts and rules
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/UtrechtUniversity/yoda-zabbix.git"
     dest: "/etc/zabbix/yoda-zabbix"
     version: "{{ zabbix_version }}"
 
 
 - name: Ensure yoda_system.userparams.conf is present
-  copy:
+  ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda_system.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda_system.userparams.conf
-  file:
+  ansible.builtin.file:
     path: /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
     owner: zabbix
     group: zabbix
@@ -121,36 +121,34 @@
 
 
 - name: Ensure yoda-zabbix-system-sudoers is present
-  copy:
+  ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda-zabbix-system-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-system-sudoers
-    remote_src: yes
+    remote_src: true
 
 
 - name: Ensure right file ownership on yoda-zabbix-system-sudoers
-  file:
+  ansible.builtin.file:
     path: /etc/sudoers.d/yoda-zabbix-system-sudoers
     owner: root
     group: root
     mode: 0440
 
 
+- name: Find Zabbix script files
+  ansible.builtin.find:
+    path: /etc/zabbix/yoda-zabbix/zabbix-system
+    pattern: "*.sh"
+  register: system_script_files
+
+
 - name: Copy Yoda Zabbix scripts
-  shell: "cp /etc/zabbix/yoda-zabbix/zabbix-system/*.sh /etc/zabbix/zabbix_agentd.d/"
-  notify: Restart Zabbix agent
-
-
-- name: Find Yoda Zabbix scripts
-  find:
-    paths: /etc/zabbix/zabbix_agentd.d
-    patterns: "*.sh"
-  register: zabbix_system_scripts
-
-
-- name: Ensure right file ownership on Yoda Zabbix scripts
-  file:
-    path: "{{ item.path }}"
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/zabbix/zabbix_agentd.d/
+    remote_src: true
     owner: zabbix
     group: zabbix
     mode: 0500
-  with_items: "{{ zabbix_system_scripts.files }}"
+  with_items: "{{ system_script_files.files }}"
+  notify: Restart Zabbix agent

@@ -6,6 +6,8 @@ dest_dir: /tmp
 
 systemd_dir: /etc/systemd/system
 
+opensearch_server: combined.yoda.test
+
 # opensearch installation
 opensearch:
   user: opensearch

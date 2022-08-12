@@ -16,4 +16,4 @@ gh_edit_branch: "development"
 gh_edit_source: docs
 gh_edit_view_mode: "tree"
 
-footer_content: "Copyright &copy; 2017-2021 <a href=\"https://www.uu.nl/\">Utrecht University</a>. Licensed under <a href=\"https://github.com/UtrechtUniversity/yoda/blob/development/LICENSE\">GPLv3</a>."
+footer_content: "Copyright &copy; 2017-2022 <a href=\"https://www.uu.nl/\">Utrecht University</a>. Licensed under <a href=\"https://github.com/UtrechtUniversity/yoda/blob/development/LICENSE\">GPLv3</a>."

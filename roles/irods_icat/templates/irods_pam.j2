@@ -8,7 +8,11 @@ auth        optional      pam_faildelay.so delay={{ pam_fail_delay }}
 auth        sufficient      pam_unix.so
 {% endif %}
 
-{% if enable_tokens %}
+{% if enable_tokens and enable_radius_fallback %}
+auth        [success=done auth_err=ignore] pam_python.so /usr/local/bin/token-auth.py
+
+auth        sufficient      pam_radius_auth.so
+{% elif enable_tokens %}
 auth        sufficient      pam_python.so /usr/local/bin/token-auth.py
 {% endif %}
 

@@ -1,0 +1,114 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Postfix and related software is installed
+  ansible.builtin.package:
+    name:
+      - postfix
+      - mailx
+      - cyrus-sasl-plain
+    state: present
+  notify: Systemd daemon reload
+
+
+- name: "Configure Postfix"
+  ini_file:
+    path: /etc/postfix/main.cf
+    section:
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    mode: 0644
+    owner: root
+    group: root
+  loop: "{{ postfix_params | dict2items }}"
+  vars:
+    postfix_params:
+      relayhost: "[{{ postfix_relayhost }}]:{{ postfix_relayhost_port | string }}"
+      inet_interfaces: "localhost"
+      inet_protocols: "{{ postfix_inet_protocols }}"
+      myhostname: "{{ postfix_myhostname }}"
+      myorigin: "{{ postfix_myorigin }}"
+      mydestination: ""
+  when: not ansible_check_mode
+  notify: Restart Postfix
+
+
+- name: "Configure Postfix SASL for SMTP delivery via TLS"
+  ini_file:
+    section:
+    path: /etc/postfix/main.cf
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    mode: 0644
+    owner: root
+    group: root
+  loop: "{{ postfix_params | dict2items }}"
+  when: postfix_smtp_enable_tls and not ansible_check_mode
+  vars:
+    postfix_params:
+      smtp_use_tls: "yes"
+      smtp_sasl_auth_enable: "yes"
+      smtp_sasl_password_maps: "hash:/etc/postfix/sasl_passwd"
+      smtp_sasl_security_options: "noanonymous"
+      smtp_sasl_tls_security_options: "noanonymous"
+  notify: Restart Postfix
+
+
+- name: "Configure Postfix debugging parameters"
+  ini_file:
+    path: /etc/postfix/main.cf
+    section:
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    mode: 0644
+    owner: root
+    group: root
+  loop: "{{ postfix_params | dict2items }}"
+  when: postfix_enable_debugging and not ansible_check_mode
+  vars:
+    postfix_params:
+      debug_peer_list: "{{ postfix_relayhost }}"
+      debug_peer_level: "3"
+  notify: Restart Postfix
+
+
+- name: Create Postfix relayhost credentials file
+  ansible.builtin.template:
+    src: sasl_passwd.j2
+    dest: "/etc/postfix/sasl_passwd"
+    owner: root
+    group: root
+    mode: '0600'
+  no_log: true
+  notify: Restart Postfix
+
+
+- name: Disable bounces in Postfix
+  ansible.builtin.lineinfile:
+    path: /etc/postfix/master.cf
+    regexp: '^bounce'
+    line: "bounce    unix  -       -       n       -       0       discard"
+    owner: root
+    group: root
+    mode: '0644'
+  when: not ansible_check_mode
+  notify: Restart Postfix
+
+- name: Ensure seboolean httpd_can_sendmail is enabled
+  ansible.posix.seboolean:
+    name: httpd_can_sendmail
+    state: true
+    persistent: true
+
+- name: Map Postfix relayhost credentials file
+  ansible.builtin.command: /usr/sbin/postmap sasl_passwd # noqa 301
+  when: not ansible_check_mode
+  args:
+    chdir: /etc/postfix
+
+- name: Ensure Postfix service is enabled and started
+  ansible.builtin.service:
+    name: postfix
+    enabled: true
+    state: started
+  ignore_errors: "{{ ansible_check_mode }}"

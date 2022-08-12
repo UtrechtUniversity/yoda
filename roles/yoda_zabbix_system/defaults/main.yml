@@ -15,4 +15,4 @@ zabbix_agent:
 
 zabbix_server: 192.168.56.20
 
-repo_only: no  # Only download packages from repos.
+repo_only: false # Only download packages from repos.

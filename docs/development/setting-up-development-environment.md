@@ -6,11 +6,11 @@ nav_order: 0
 # Setting up development environment
 Setting up a Yoda development environment is easy, you only need the following:
 
-* [VirtualBox](https://www.virtualbox.org/manual/ch02.html) (>= 5.2)
+* [VirtualBox](https://www.virtualbox.org/manual/ch02.html) or [libvirt](https://libvirt.org/)
 * [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 2.0)
 
 On GNU/Linux or macOS you also need:
-* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.7)
+* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.11)
 
 The guide below will deploy an 'allinone' instance (all functional roles in one virtual machine) with the default configuration.
 
@@ -100,3 +100,31 @@ technicaladmin      | Technical administrator with rodsadmin access
 Password for all test users is `test`.
 
 In research group `research-initial` a folder `testdata` is created with some example data.
+
+# Surf development environment
+
+Surf uses the following setup:
+- Portal server: runs Yoda portal, iRODS iCAT server (provider), iCAT database and EUS
+- WebDAV server: runs DavRODS and public server, as well as iRODS resource server (consumer)
+- Resource server: additional iRODS resource server
+
+To deploy it on local VMs, add the following entries to your hosts file:
+
+```
+# Surf Yoda test
+192.168.56.20 portal.surfyoda.test
+192.168.56.21 data.surfyoda.test
+192.168.56.21 public.data.surfyoda.test
+192.168.56.21 public.surfyoda.test
+192.168.56.20 eus.surfyoda.test
+192.168.56.22 resource.surfyoda.test
+```
+
+And run the following commands in the root of the Yoda repository:
+
+```
+cp vagrant/environment/surf/Vagrantfile .
+vagrant box update
+vagrant up
+ansible-playbook -DK -i environments/development/surf playbook.yml
+```
