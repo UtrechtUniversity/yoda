@@ -1,0 +1,10 @@
+[Unit]
+Description=Mailpit service
+After=network.service
+
+[Service]
+Type=simple
+ExecStart=/opt/mailpit/mailpit -s {{ mailpit_smtp_bind_address }}:{{ mailpit_smtp_port | string }} -v -m {{ mailpit_max_messages | string }}
+
+[Install]
+WantedBy=multi-user.target

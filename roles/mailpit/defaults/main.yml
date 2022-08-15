@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+enable_mailpit: false
+
+mailpit_version: 0.1.4
+mailpit_max_messages: 10000
+mailpit_smtp_bind_address: 0.0.0.0
+mailpit_smtp_port: 25
