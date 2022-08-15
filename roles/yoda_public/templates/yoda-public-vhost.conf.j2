@@ -1,6 +1,17 @@
 # {{ ansible_managed }}
 # yoda-public-vhost.conf
 
+<VirtualHost *:80>
+    ServerName {{ yoda_public_fqdn }}
+    DocumentRoot {{ landingpages_root }}
+    # Always redirect to https.
+{% if yoda_public_port == 443 %}
+    Redirect / https://{{ yoda_public_fqdn }}/
+{% else %}
+    Redirect / https://{{ yoda_public_fqdn }}:{{ yoda_public_port | string }}/
+{% endif %}
+</VirtualHost>
+
 {% if yoda_public_port != 443 %}
 Listen {{ yoda_public_port }}
 {% endif %}
