@@ -279,7 +279,7 @@ epic_handle_prefix           | EPIC PID prefix
 epic_key                     | EPIC PID key (base64 encoded)
 epic_cert                    | EPIC PID cert (base64 encoded)
 
-# Data Access Tokens configuration
+### Data Access Tokens configuration
 
 Variable                | Description
 ------------------------|------------------------------------
@@ -318,7 +318,7 @@ eus_smtp_from_address        | External User Service from address
 eus_smtp_replyto_address     | External User Service replyto address
 eus_mail_template            | External User Service mail template
 
-## OpenId Connect configuration
+### OpenID Connect (OIDC) configuration
 
 Variable   | Description
 -----------|---------------------------------------------
