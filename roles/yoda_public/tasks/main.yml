@@ -18,3 +18,11 @@
     state: enabled
     immediate: true
   notify: Restart firewall
+
+
+- name: Allow Apache to listen to Yoda public port
+  community.general.seport:
+    ports: "{{ yoda_public_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
