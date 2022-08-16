@@ -6,13 +6,13 @@ ansible_user: vagrant                             # Administrative user on insta
 ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of administrative user
 
 # Yoda configuration
-instance: full                                     # Name of Yoda instance, as defined in hosts file
-yoda_version: release-1.8                          # Git branch, for example: development or release-1.5
+instance: surf                                     # Name of Yoda instance, as defined in hosts file
+yoda_version: development                          # Git branch, for example: development or release-1.5
 yoda_environment: development                      # Yoda environment: development, testing, acceptance or production
-yoda_portal_fqdn: portal.yoda.test                 # Yoda Portal fully qualified domain name (FQDN)
-yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_portal_fqdn: portal.surfyoda.test                 # Yoda Portal fully qualified domain name (FQDN)
+yoda_davrods_fqdn: data.surfyoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_enabled: true
-yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_anonymous_fqdn: public.data.surfyoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
 default_yoda_schema: default-1                     # Default Yoda metadata scheme: core-0 or default-1
 yoda_prefix: UU01                                  # Prefix for internal portion of persistent identifier
@@ -23,19 +23,19 @@ credential_files: PLACEHOLDER                      # Location of Yoda credential
 enable_research: true                              # Enable research module
 
 # OpenSearch module configuration
-enable_open_search: true                           # Enable OpenSearch module
-opensearch_server: portal.yoda.test
+enable_open_search: false                          # OpenSearch not needed (no deposit module)
+opensearch_server: PLACEHODLER
 
 # Deposit module configuration
-enable_deposit: true                               # Enable deposit module
+enable_deposit: false                              # Surf doesn't use deposit module
 
 # Intake module configuration
-enable_intake: true                                # Enable intake module
+enable_intake: false                               # Surf doesn't use intake module
 
 # Datarequest module configuration
-enable_datarequest: true                           # Enable datarequest module
+enable_datarequest: false                          # Surf doesn't use DR module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name
-datarequest_help_contact_email: PLACEHOLDER        # Help contact email
+surfdatarequest_help_contact_email: PLACEHOLDER        # Help contact email
 
 # Data Package Reference
 enable_data_package_reference: true                # Enable Data Package References for vault data packages
@@ -53,25 +53,25 @@ enable_tape_archive: false
 # Portal customization
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
-portal_title_text: Yoda - Dev
+portal_title_text: Yoda - Surf Config Test
 
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
 irods_database_password: irodsdev          # The password for the iRODS database username
 irods_zone: tempZone                       # The name of the iRODS Zone
-irods_icat_fqdn: icat.yoda.test            # iRODS iCAT fully qualified domain name (FQDN)
-irods_database_fqdn: database.yoda.test    # iRODS database fully qualified domain name (FQDN)
-irods_resource_fqdn: resource.yoda.test    # iRODS resource fully qualified domain name (FQDN)
+irods_icat_fqdn: portal.surfyoda.test            # iRODS iCAT fully qualified domain name (FQDN)
+irods_database_fqdn: portal.surfyoda.test    # iRODS database fully qualified domain name (FQDN)
+#irods_resource_fqdn: resource.surfyoda.test    # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources:
   - name: dev001_1
-    host: "{{ irods_icat_fqdn }}"
+    host: "{{ yoda_davrods_fqdn }}"
     vault_path: /var/lib/irods/Vault1_1
     resource_type: unixfilesystem
 
   - name: dev001_2
     resource_type: unixfilesystem
-    host: "{{ irods_icat_fqdn }}"
+    host: "{{ yoda_davrods_fqdn }}"
     vault_path: /var/lib/irods/Vault1_2
 
   - name: dev001_p1
@@ -97,7 +97,7 @@ irods_resources:
 
   - name: dev002_1
     resource_type: unixfilesystem
-    host: "{{ irods_resource_fqdn }}"
+    host: resource.surfyoda.test
     vault_path: /var/lib/irods/Vault2_1
 
   - name: dev002_p1
@@ -116,9 +116,9 @@ irods_resources:
       - dev002
 
 # Mail notifications
-send_notifications: 1                         # Enable notifications: yes (1) or no (0)
-notifications_sender_email: noreply@yoda.test # Notifiations sender email address
-notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email address
+send_notifications: 1                             # Enable notifications: yes (1) or no (0)
+notifications_sender_email: noreply@surfyoda.test # Notifiations sender email address
+notifications_reply_to: noreply@surfyoda.test     # Notifiations Reply-To email address
 smtp_server: smtp://localhost:25
 smtp_auth: false
 smtp_starttls: false
@@ -143,8 +143,8 @@ pam_radius_config: |
 zabbix_server: PLACEHOLDER
 
 # Public host configuration
-yoda_public_host: public.yoda.test     # Yoda public host
-yoda_public_fqdn: public.yoda.test     # Yoda public fully qualified domain name (FQDN)
+yoda_public_host: data.surfyoda.test       # Yoda public host
+yoda_public_fqdn: public.surfyoda.test     # Yoda public fully qualified domain name (FQDN)
 
 # Yoda public upload private key (base64 encoded)
 # These keys are the "insecure" public/private keypair we offer for use in development instances.
@@ -166,16 +166,16 @@ upload_pub_key: |
   TlZFeTZrKzl4eXN6dDhBS0c0NVhiL2ggaXJvZHNAY29tYmluZWQK
 
 # External user service configuration
-yoda_eus_fqdn: eus.yoda.test
-eus_api_fqdn: api.eus.yoda.test
+yoda_eus_fqdn: eus.surfyoda.test
+eus_api_fqdn: api.eus.surfyoda.test
 eus_api_secret: PLACEHOLDER
 eus_db_password: PLACEHOLDER
 eus_smtp_host: localhost
 eus_smtp_port: 25
 eus_smtp_auth: false
 eus_smtp_security: false
-eus_smtp_from_address: yoda@yoda.test
-eus_smtp_replyto_address: yoda@yoda.test
+eus_smtp_from_address: yoda@surfyoda.test
+eus_smtp_replyto_address: yoda@surfyoda.test
 eus_mail_template: uu
 external_users_domain_filter: uu.nl     # Domains to filter, separated by |
 
@@ -184,7 +184,7 @@ oidc_active: true
 oidc_domains: ['yoda.test']                      # Domains that should use OIDC (list)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
-oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url
+oidc_callback_url: https://portal.surfyoda.test/user/callback     # OIDC Callback url
 oidc_auth_base_uri: https://oauth.mocklab.io/oauth/authorize  # OIDC Authorization URI without parameters
 oidc_token_uri: https://oauth.mocklab.io/oauth/token          # OIDC Token URI
 oidc_userinfo_uri: https://oauth.mocklab.io/userinfo          # OIDC Userinfo URI

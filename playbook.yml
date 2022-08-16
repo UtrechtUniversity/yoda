@@ -98,7 +98,6 @@
     - irods_icat
     - irods_runtime
     - irods_microservices
-    - composable_resources
     - irods_completion
     - irods_rodsadmin
     - role: dms_archive_mock
@@ -107,6 +106,8 @@
       when: enable_tape_archive and yoda_environment != "development"
     - role: postfix
       when: enable_postfix
+    - role: mailpit
+      when: enable_mailpit
   tags:
     - icat
 
@@ -121,6 +122,15 @@
     - irods_completion
   tags:
     - resource
+
+
+- name: Provision iRODS resources
+  hosts: icats
+  become: true
+  roles:
+    - composable_resources
+  tags:
+    - icat
 
 
 - name: Provision rulesets on iCAT server
@@ -138,7 +148,7 @@
   become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: false
+      install_rulesets: '{{ override_resc_install_rulesets | default(False) }}'
   tags:
     - resource
 
@@ -164,5 +174,7 @@
     - yoda_external_user_service
     - role: postfix
       when: enable_postfix
+    - role: mailpit
+      when: enable_mailpit
   tags:
     - eus

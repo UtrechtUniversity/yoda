@@ -49,6 +49,13 @@ Run pytest from mounted folder (see previous tip):
 mkdir -p /tmp/cache && pytest -o cache_dir=/tmp/cache
 ```
 
+## Mailpit
+
+The development environments have [Mailpit](https://github.com/axllent/mailpit) for testing email during development.
+In order to see what messages Yoda would have sent, browse to port 8025 on the iCAT or EUS server of the environment.
+
+![Mailpit screenshot](screenshot-mailpit.png)
+
 ## Datarequest module
 Remove all existing data requests (to declutter your _development_ environment):
 ```bash

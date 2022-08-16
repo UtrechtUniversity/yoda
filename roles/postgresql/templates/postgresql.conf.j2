@@ -64,7 +64,7 @@
 #port = 5432				# (change requires restart)
 # Note: In RHEL/Fedora installations, you can't set the port number here;
 # adjust it in the service file instead.
-max_connections = 100			# (change requires restart)
+max_connections = {{ postgresql_max_connections | string }} # (change requires restart)
 # Note:  Increasing max_connections costs ~400 bytes of shared memory per
 # connection slot, plus lock space (see max_locks_per_transaction).
 #superuser_reserved_connections = 3	# (change requires restart)
@@ -114,7 +114,7 @@ ssl_key_file = '{{ openssl_key_signed }}'
 
 # - Memory -
 
-shared_buffers = 32MB			# min 128kB
+shared_buffers = {{ postgresql_shared_buffers }} # min 128kB
 					# (change requires restart)
 #temp_buffers = 8MB			# min 800kB
 #max_prepared_transactions = 0		# zero disables the feature
@@ -123,8 +123,8 @@ shared_buffers = 32MB			# min 128kB
 # per transaction slot, plus lock space (see max_locks_per_transaction).
 # It is not advisable to set max_prepared_transactions nonzero unless you
 # actively intend to use prepared transactions.
-#work_mem = 1MB				# min 64kB
-#maintenance_work_mem = 16MB		# min 1MB
+work_mem = {{ postgresql_work_mem }}   # min 64kB
+maintenance_work_mem = {{ postgresql_maintenance_work_mem }}	# min 1MB
 #max_stack_depth = 2MB			# min 100kB
 
 # - Disk -
@@ -263,11 +263,11 @@ shared_buffers = 32MB			# min 128kB
 # - Planner Cost Constants -
 
 #seq_page_cost = 1.0			# measured on an arbitrary scale
-#random_page_cost = 4.0			# same scale as above
+random_page_cost = {{ postgresql_random_page_cost }} # same scale as above
 #cpu_tuple_cost = 0.01			# same scale as above
 #cpu_index_tuple_cost = 0.005		# same scale as above
 #cpu_operator_cost = 0.0025		# same scale as above
-#effective_cache_size = 128MB
+effective_cache_size =  {{ postgresql_effective_cache_size }}
 
 # - Genetic Query Optimizer -
 
@@ -376,7 +376,8 @@ log_rotation_size = 0			# Automatic rotation of logfiles will
 					#   fatal
 					#   panic (effectively off)
 
-#log_min_duration_statement = -1	# -1 is disabled, 0 logs all statements
+log_min_duration_statement = {{ postgresql_log_min_duration_statement }}
+					# -1 is disabled, 0 logs all statements
 					# and their durations, > 0 logs only
 					# statements running at least this number
 					# of milliseconds
@@ -394,7 +395,8 @@ log_rotation_size = 0			# Automatic rotation of logfiles will
 #log_duration = off
 #log_error_verbosity = default		# terse, default, or verbose messages
 #log_hostname = off
-#log_line_prefix = ''			# special values:
+log_line_prefix = '{{ postgresql_log_line_prefix }}'
+					# special values:
 					#   %a = application name
 					#   %u = user name
 					#   %d = database name
@@ -419,7 +421,7 @@ log_rotation_size = 0			# Automatic rotation of logfiles will
 #log_temp_files = -1			# log temporary files equal or larger
 					# than the specified size in kilobytes;
 					# -1 disables, 0 logs all temp files
-log_timezone = 'Europe/Amsterdam'
+log_timezone = '{{ postgresql_timezone }}'
 
 
 #------------------------------------------------------------------------------
@@ -451,7 +453,8 @@ log_timezone = 'Europe/Amsterdam'
 
 #autovacuum = on			# Enable autovacuum subprocess?  'on'
 					# requires track_counts to also be on.
-#log_autovacuum_min_duration = -1	# -1 disables, 0 logs all actions and
+log_autovacuum_min_duration = {{ postgresql_log_autovacuum_min_duration }}
+					# -1 disables, 0 logs all actions and
 					# their durations, > 0 logs only
 					# actions running at least this number
 					# of milliseconds.
@@ -501,7 +504,7 @@ log_timezone = 'Europe/Amsterdam'
 
 datestyle = 'iso, mdy'
 #intervalstyle = 'postgres'
-timezone = 'Europe/Amsterdam'
+timezone = '{{ postgresql_timezone }}'
 #timezone_abbreviations = 'Default'     # Select the set of available time zone
 					# abbreviations.  Currently, there are
 					#   Default

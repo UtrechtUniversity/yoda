@@ -1,0 +1,79 @@
+###############
+# Full instance
+###############
+# Define all hosts in instance here:
+[surf:children]
+surf_portal
+surf_davrods
+surf_database
+surf_icat
+surf_resource
+surf_public
+surf_eus
+
+# Define portal host here:
+[surf_portal]
+portal
+
+# Define davrods host here:
+[surf_davrods]
+data
+
+# Define database host here:
+[surf_database]
+portal
+
+# Define icat host here:
+[surf_icat]
+portal
+
+# Define resource host here:
+[surf_resource]
+data
+resource
+
+# Define public host here:
+[surf_public]
+data
+
+# Define external user service host here:
+[surf_eus]
+portal
+
+###############
+# All instances
+###############
+# Define all portal hosts here:
+[portals:children]
+surf_portal
+
+# Define all davrods hosts here:
+[davrods:children]
+surf_davrods
+
+# Define all database hosts here:
+[databases:children]
+surf_database
+
+# Define all icat hosts here:
+[icats:children]
+surf_icat
+
+# Define all resource hosts here:
+[resources:children]
+surf_resource
+
+# Define all public hosts here:
+[publics:children]
+surf_public
+
+# Define external user service host here:
+[eus:children]
+surf_eus
+
+# Provision instances with test data:
+[test:children]
+surf_icat
+
+[development:children]
+surf

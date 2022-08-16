@@ -19,6 +19,8 @@ Released: July 2022
 - Support for multi-select actions for files and folders in research space
 - Support for davrods server on separate host
 - Support for [Data Package References](../design/overview/data_package_reference.md)
+- Support for checksum reports
+- Support for [local Postfix MTA](../administration/local-postfix-mta.md)
 - Improvements to default schema (`default-2`)
 - Transformation from `default-1` to `teclab-0` / `hptlab-0`
 - Improved search module and new search bar in header
@@ -48,7 +50,12 @@ To view what files were changed from the defaults, run `git diff`.
 git checkout release-1.8
 ```
 
-4. Change the default schema from `default-1` to `default-2` in configuration.
+4. Set the Yoda version to `release-1.8` in the configuration.
+```yaml
+yoda_version: release-1.8
+```
+
+5. Change the default schema from `default-1` to `default-2` in the configuration.
 Discipline must be present in all vault packages before migration.
 I.e. discipline must be manually added if not present yet.
 This requires an intervention by the responsible datamanager beforehand.
@@ -56,41 +63,41 @@ This requires an intervention by the responsible datamanager beforehand.
 default_yoda_schema: default-2
 ```
 
-5. Two OpenID Connect configuration options are added and one has been replaced. If OIDC is active (`oidc_active`), make sure you have [configured](../administration/configuring-openidc.md), `oidc_jwks_uri` and `oidc_jwt_issuer`. Option `oidc_domain` is replaced with `oidc_domains`. Example:
+6. Two OpenID Connect configuration options have been added and one has been replaced. If OIDC is active (`oidc_active`), make sure you have [configured](../administration/configuring-openidc.md), `oidc_jwks_uri` and `oidc_jwt_issuer`. Option `oidc_domain` is replaced with `oidc_domains`. Example:
 ```yaml
 oidc_domains: ['domain1.tld', 'domain2.tld']
 ```
 
-6. DataCite connection is now using REST API instead of legacy MDS. If DataCite is configured the option `datacite_server` should be replaced with `datacite_rest_api_url`. Example:
+7. DataCite connection is now using REST API instead of legacy MDS. If DataCite is configured, the option `datacite_server` should be replaced with `datacite_rest_api_url`. Example:
 ```yaml
 datacite_rest_api_url: api.test.datacite.org
 ```
 
-7. Install all Ansible collections needed to deploy Yoda:
+8. Install all Ansible collections needed to deploy Yoda:
 ```bash
 ansible-galaxy collection install -r requirements.yml
 ```
 
-8. Run the Ansible playbook in check mode.
+9. Run the Ansible playbook in check mode.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-9. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
+10. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-10. Update all metadata JSON in the vault to latest metadata JSON version (`default-1` to `default-2`).
+11. Update all metadata JSON in the vault to latest metadata JSON version (`default-1` to `default-2`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-11. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+12. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```

@@ -44,8 +44,6 @@ test_users:
 
 # Following users are created as iRODS users only.
 oidc_test_users:
-  - name: yodaresearcher@gmail.com
-  - name: yodadatamanager@gmail.com
   - name: researcher@yoda.test
   - name: datamanager@yoda.test
 
@@ -214,11 +212,17 @@ test_groupusers:
   - groupName: research-core-0
     user: researcher
     role: normal
+  - groupName: research-core-0
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-core-0
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-core-0
     user: datamanager
+    role: manager
+  - groupName: datamanager-core-0
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: research-core-1
@@ -227,11 +231,17 @@ test_groupusers:
   - groupName: research-core-1
     user: researcher
     role: normal
+  - groupName: research-core-1
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-core-1
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-core-1
     user: datamanager
+    role: manager
+  - groupName: datamanager-core-1
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: research-default-0
@@ -240,11 +250,17 @@ test_groupusers:
   - groupName: research-default-0
     user: researcher
     role: normal
+  - groupName: research-default-0
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-default-0
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-default-0
     user: datamanager
+    role: manager
+  - groupName: datamanager-default-0
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: research-default-1
@@ -253,11 +269,17 @@ test_groupusers:
   - groupName: research-default-1
     user: researcher
     role: normal
+  - groupName: research-default-1
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-default-1
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-default-1
     user: datamanager
+    role: manager
+  - groupName: datamanager-default-1
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: research-default-2
@@ -266,11 +288,17 @@ test_groupusers:
   - groupName: research-default-2
     user: researcher
     role: normal
+  - groupName: research-default-2
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-default-2
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-default-2
     user: datamanager
+    role: manager
+  - groupName: datamanager-default-2
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: research-hptlab-0
@@ -279,11 +307,17 @@ test_groupusers:
   - groupName: research-hptlab-0
     user: researcher
     role: normal
+  - groupName: research-hptlab-0
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-hptlab-0
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-hptlab-0
     user: datamanager
+    role: manager
+  - groupName: datamanager-hptlab-0
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: research-hptlab-1
@@ -292,11 +326,17 @@ test_groupusers:
   - groupName: research-hptlab-1
     user: researcher
     role: normal
+  - groupName: research-hptlab-1
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-hptlab-1
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-hptlab-1
     user: datamanager
+    role: manager
+  - groupName: datamanager-hptlab-1
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: research-teclab-0
@@ -305,11 +345,17 @@ test_groupusers:
   - groupName: research-teclab-0
     user: researcher
     role: normal
+  - groupName: research-teclab-0
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-teclab-0
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-teclab-0
     user: datamanager
+    role: manager
+  - groupName: datamanager-teclab-0
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: research-teclab-1
@@ -318,11 +364,17 @@ test_groupusers:
   - groupName: research-teclab-1
     user: researcher
     role: normal
+  - groupName: research-teclab-1
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-teclab-1
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-teclab-1
     user: datamanager
+    role: manager
+  - groupName: datamanager-teclab-1
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: research-dag-0
@@ -331,11 +383,17 @@ test_groupusers:
   - groupName: research-dag-0
     user: researcher
     role: normal
+  - groupName: research-dag-0
+    user: researcher@yoda.test
+    role: normal
   - groupName: datamanager-dag-0
     user: functionaladminpriv
     role: manager
   - groupName: datamanager-dag-0
     user: datamanager
+    role: manager
+  - groupName: datamanager-dag-0
+    user: datamanager@yoda.test
     role: manager
 
   - groupName: datarequests-research-project-managers
@@ -372,6 +430,9 @@ test_groupusers:
     user: researcher
     role: normal
   - groupName: research-initial
+    user: researcher@yoda.test
+    role: normal
+  - groupName: research-initial
     user: viewer
     role: reader
 
@@ -380,6 +441,9 @@ test_groupusers:
     role: manager
   - groupName: deposit-pilot
     user: researcher
+    role: normal
+  - groupName: deposit-pilot
+    user: researcher@yoda.test
     role: normal
   - groupName: deposit-pilot
     user: viewer
@@ -395,6 +459,9 @@ test_groupusers:
     user: researcher
     role: normal
   - groupName: research-initial1
+    user: researcher@yoda.test
+    role: normal
+  - groupName: research-initial1
     user: viewer
     role: reader
 
@@ -405,17 +472,23 @@ test_groupusers:
     user: datamanager
     role: normal
   - groupName: datamanager-initial
-    user: yodadatamanager@gmail.com
+    user: datamanager@yoda.test
     role: normal
 
   - groupName: grp-intake-initial
     user: researcher
     role: normal
   - groupName: grp-intake-initial
+    user: researcher@yoda.test
+    role: normal
+  - groupName: grp-intake-initial
     user: groupmanager
     role: manager
   - groupName: grp-intake-initial
     user: datamanager
+    role: normal
+  - groupName: grp-intake-initial
+    user: datamanager@yoda.test
     role: normal
 
   - groupName: grp-datamanager-initial
@@ -426,10 +499,16 @@ test_groupusers:
     user: researcher
     role: normal
   - groupName: grp-intake-test
+    user: researcher@yoda.test
+    role: normal
+  - groupName: grp-intake-test
     user: groupmanager
     role: manager
   - groupName: grp-intake-test
     user: datamanager
+    role: normal
+  - groupName: grp-intake-test
+    user: datamanager@yoda.test
     role: normal
 
   - groupName: grp-datamanager-test
@@ -445,6 +524,9 @@ test_groupusers:
   - groupName: research-revisions
     user: researcher
     role: normal
+  - groupName: research-revisions
+    user: researcher@yoda.test
+    role:
   - groupName: research-revisions
     user: viewer
     role: reader
