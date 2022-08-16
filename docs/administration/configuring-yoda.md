@@ -343,3 +343,13 @@ oidc_verify_aud     | Check that aud (audience) claim matches audience
 oidc_verify_iat     | Check that iat (issued at) claim value is an integer
 oidc_verify_exp     | Check that exp (expiration) claim value is OK
 oidc_verify_iss     | Check that iss (issue) claim is as expected
+
+### Mailpit configuration
+
+Variable                 | Description
+-------------------------|---------------------------------------------
+enable_mailpit           | Enable [Mailpit](https://github.com/axllent/mailpit) for email testing. Should only be enabled on local development environments for security reasons. Mailpit and Postfix shouldn't be enabled simultaneously. Default: false
+mailpit_version          | Mailpit version to install
+mailpit_max_messages     | Maximum number of messages to store (default: 10000)
+mailpit_smtp_bind_address| Address to bind on for SMTP interface (default: 0.0.0.0)
+mailpit_smtp_port        | TCP port for SMTP interface (default: 25)
