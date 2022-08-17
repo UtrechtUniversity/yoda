@@ -20,10 +20,19 @@ uuYcRunIntake2Vault {
 
         foreach (*grp in *grouplist) {
                 *intakeRoot = "";
+                *vlt_name = "";
                 *found = false;
 
                 foreach (*prefix in *grp_prefixes) {
                     *grp_name = *prefix ++ *grp;
+
+                    if (*prefix == "intake-" ) {
+                        *vlt_name = "vault-" ++ *grp;
+                    }
+                    else {
+                        *vlt_name = "grp-vault-" ++ *grp;
+                    }
+
                     foreach(*row in SELECT USER_GROUP_NAME
                         WHERE USER_GROUP_NAME = '*grp_name'
                         AND USER_TYPE = 'rodsgroup') {
@@ -36,16 +45,23 @@ uuYcRunIntake2Vault {
                         break;
                     }
                 }
-                *intakeRoot = "/*zone/home/*grp_name";
-                *vaultRoot  = "/*zone/home/grp-vault-*grp";
 
-                uuLock(*vaultRoot, *status);
-                if (*status == 0) {
-                        # we have a lock
-                        uuYc2Vault(*intakeRoot, *vaultRoot, *status);
-                        if (*status == 0 ) then *result = "ok" else *result = "ERROR (*status)";
-                        writeLine("serverLog","RunIntake2Vault for *intakeRoot result = *result");
-                        uuUnlock(*vaultRoot);
+                if ( *found ) {
+                    *intakeRoot = "/*zone/home/*grp_name";
+                    *vaultRoot  = "/*zone/home/*vlt_name";
+                    writeLine("serverLog","RunIntake2Vault for *intakeRoot -> *vaultRoot ...");
+
+                    uuLock(*vaultRoot, *status);
+                    if (*status == 0) {
+                            # we have a lock
+                            uuYc2Vault(*intakeRoot, *vaultRoot, *status);
+                            if (*status == 0 ) then *result = "ok" else *result = "ERROR (*status)";
+                            writeLine("serverLog","RunIntake2Vault for *intakeRoot result = *result");
+                            uuUnlock(*vaultRoot);
+                    }
+                }
+                else {
+                    writeLine("serverLog", "Intake2vault was unable to find group *grp.");
                 }
         }
 }
