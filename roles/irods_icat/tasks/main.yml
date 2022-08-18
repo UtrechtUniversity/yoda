@@ -197,7 +197,7 @@
     state: absent
 
 
-- name: Ensure iRODS iCAT host is a FQDN for iRODS 4.1.11
+- name: Ensure iCAT host is defined
   become_user: '{{ irods_service_account }}'
   become: true
   irods_config:
