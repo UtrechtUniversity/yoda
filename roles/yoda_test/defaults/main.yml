@@ -41,6 +41,12 @@ test_users:
   - name: dacmember
     password: '{{ test_password }}'
     type: rodsuser
+  - name: principalinvestigator
+    password: '{{ test_password }}'
+    type: rodsuser
+  - name: facultydean
+    password: '{{ test_password }}'
+    type: rodsuser
 
 # Following users are created as iRODS users only.
 oidc_test_users:
@@ -201,6 +207,14 @@ test_groups:
     subcategory: research
     dataClassification: unspecified
   - groupName: datarequests-research-datamanagers
+    category: datarequests
+    subcategory: research
+    dataClassification: unspecified
+  - groupName: datarequests-research-principal-investigators
+    category: datarequests
+    subcategory: research
+    dataClassification: unspecified
+  - groupName: datarequests-research-faculty-deans
     category: datarequests
     subcategory: research
     dataClassification: unspecified
@@ -404,6 +418,12 @@ test_groupusers:
     role: manager
   - groupName: datarequests-research-datamanagers
     user: datamanager
+    role: manager
+  - groupName: datarequests-research-principal-investigators
+    user: principalinvestigator
+    role: manager
+  - groupName: datarequests-research-faculty-deans
+    user: facultydean
     role: manager
 
   - groupName: priv-category-add
