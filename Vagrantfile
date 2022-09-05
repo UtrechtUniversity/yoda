@@ -34,6 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vbox.memory = ram
         vbox.name   = name
         vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+        vbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       end
 
       machine.vm.provider :libvirt do |libvirt|
