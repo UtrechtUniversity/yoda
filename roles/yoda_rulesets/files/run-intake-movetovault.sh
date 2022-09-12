@@ -1,7 +1,7 @@
 #!/bin/bash
 /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance \
       -F /var/lib/irods/.irods/job_movetovault.r \
-      >>$HOME/iRODS/server/log/job_movetovault.log 2>&1
+      >>$HOME/log/job_movetovault.log 2>&1
 
 # Check if the job is still running. This can happen if the previous
 # job hasn't finished before this one started. In this case, the previous
