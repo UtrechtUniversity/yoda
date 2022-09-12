@@ -15,14 +15,14 @@
   ansible.builtin.service:
     name: irods
     state: stopped
-  when: ( ( irods_service_type == "sysv" and
-              'irods.service' in services and
-              services['irods.service']['source'] == "systemd" and
-              services['irods.service']['state'] == "running" )
-       or ( irods_service_type == "systemd" and
-              'irods' in services and
-              services['irods']['source'] == "sysv"  and
-              services['irods']['state'] == "running" ) )
+  when: ((irods_service_type == "sysv" and
+          'irods.service' in services and
+          services['irods.service']['source'] == "systemd" and
+          services['irods.service']['state'] == "running")
+         or (irods_service_type == "systemd" and
+          'irods' in services and
+          services['irods']['source'] == "sysv" and
+          services['irods']['state'] == "running"))
 
 
 - name: Ensure systemd unit file present
@@ -52,14 +52,14 @@
   ansible.builtin.service:
     name: irods
     state: started
-  when: ( ( irods_service_type == "sysv" and
-              'irods.service' in services and
-              services['irods.service']['source'] == "systemd" and
-              services['irods.service']['state'] == "running" )
-       or ( irods_service_type == "systemd" and
-              'irods' in services and
-              services['irods']['source'] == "sysv"  and
-              services['irods']['state'] == "running" ) )
+  when: ((irods_service_type == "sysv" and
+          'irods.service' in services and
+          services['irods.service']['source'] == "systemd" and
+          services['irods.service']['state'] == "running")
+         or (irods_service_type == "systemd" and
+          'irods' in services and
+          services['irods']['source'] == "sysv" and
+          services['irods']['state'] == "running"))
 
 
 - name: Ensure iRODS 4.2.7 packages are absent
