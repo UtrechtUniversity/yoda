@@ -2,7 +2,7 @@
 # {{ ansible_managed }}
 
 {% if external_users_domain_filter  %}
-[[ "$PAM_USER" =~ .*@.* ]] && [[ ! "$PAM_USER" =~ [.@]({{external_users_domain_filter | replace('.', '\.')}})$ ]]
+[[ "$PAM_USER" =~ .*@.* ]] && [[ ! "$PAM_USER" =~ [.@]({{external_users_domain_filter | replace (' ','') | replace('.', '\.')}})$ ]]
 {% else %}
 [[ "$PAM_USER" =~ .*@.* ]]
 {% endif %}
