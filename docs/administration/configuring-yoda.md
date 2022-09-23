@@ -142,6 +142,8 @@ yoda_environment             | Yoda environment: development, testing, acceptanc
 yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_logo_path       | Path of the DavRODS logo on the portal. Defaults to the themed logo.
+yoda_davrods_logo_link       | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
 yoda_enable_httpd            | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
 httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.
 
@@ -279,7 +281,7 @@ epic_handle_prefix           | EPIC PID prefix
 epic_key                     | EPIC PID key (base64 encoded)
 epic_cert                    | EPIC PID cert (base64 encoded)
 
-# Data Access Tokens configuration
+### Data Access Tokens configuration
 
 Variable                | Description
 ------------------------|------------------------------------
@@ -318,7 +320,7 @@ eus_smtp_from_address        | External User Service from address
 eus_smtp_replyto_address     | External User Service replyto address
 eus_mail_template            | External User Service mail template
 
-## OpenId Connect configuration
+### OpenID Connect (OIDC) configuration
 
 Variable   | Description
 -----------|---------------------------------------------
@@ -343,3 +345,13 @@ oidc_verify_aud     | Check that aud (audience) claim matches audience
 oidc_verify_iat     | Check that iat (issued at) claim value is an integer
 oidc_verify_exp     | Check that exp (expiration) claim value is OK
 oidc_verify_iss     | Check that iss (issue) claim is as expected
+
+### Mailpit configuration
+
+Variable                 | Description
+-------------------------|---------------------------------------------
+enable_mailpit           | Enable [Mailpit](https://github.com/axllent/mailpit) for email testing. Should only be enabled on local development environments for security reasons. Mailpit and Postfix shouldn't be enabled simultaneously. Default: false
+mailpit_version          | Mailpit version to install
+mailpit_max_messages     | Maximum number of messages to store (default: 10000)
+mailpit_smtp_bind_address| Address to bind on for SMTP interface (default: 0.0.0.0)
+mailpit_smtp_port        | TCP port for SMTP interface (default: 25)

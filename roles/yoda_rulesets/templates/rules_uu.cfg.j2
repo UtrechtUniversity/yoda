@@ -63,3 +63,7 @@ token_lifetime                 = '{{ token_lifetime }}'
 enable_tape_archive            = '{{ ["false", "true"][enable_tape_archive|int] }}'
 
 temporary_files                = '{{ temporary_files | join (" ") }}'
+
+{% if external_users %}
+external_users_domain_filter   = '{{ external_users_domain_filter | replace (' ','') | replace('|', ' ')}}'
+{% endif %}

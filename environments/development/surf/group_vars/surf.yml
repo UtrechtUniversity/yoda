@@ -116,12 +116,12 @@ irods_resources:
       - dev002
 
 # Mail notifications
-send_notifications: 0               # Enable notifications: yes (1) or no (0)
+send_notifications: 1                             # Enable notifications: yes (1) or no (0)
 notifications_sender_email: noreply@surfyoda.test # Notifiations sender email address
 notifications_reply_to: noreply@surfyoda.test     # Notifiations Reply-To email address
-smtp_server: PLACEHOLDER            # SMTP server to send mail to
-smtp_username: PLACEHOLDER          # SMTP server username
-smtp_password: PLACEHOLDER          # SMTP server password
+smtp_server: smtp://localhost:25
+smtp_auth: false
+smtp_starttls: false
 
 # DataCite Configuration
 datacite_rest_api_url: api.test.datacite.org  # DataCite API server URL
@@ -143,7 +143,7 @@ pam_radius_config: |
 zabbix_server: PLACEHOLDER
 
 # Public host configuration
-yoda_public_host: public.surfyoda.test     # Yoda public host
+yoda_public_host: data.surfyoda.test       # Yoda public host
 yoda_public_fqdn: public.surfyoda.test     # Yoda public fully qualified domain name (FQDN)
 
 # Yoda public upload private key (base64 encoded)
@@ -170,18 +170,18 @@ yoda_eus_fqdn: eus.surfyoda.test
 eus_api_fqdn: api.eus.surfyoda.test
 eus_api_secret: PLACEHOLDER
 eus_db_password: PLACEHOLDER
-eus_smtp_host: PLACEHOLDER
-eus_smtp_port: 587
-eus_smtp_user: PLACEHOLDER
-eus_smtp_password: PLACEHOLDER
-eus_smtp_from_address: PLACEHOLDER
-eus_smtp_replyto_address: PLACEHOLDER
+eus_smtp_host: localhost
+eus_smtp_port: 25
+eus_smtp_auth: false
+eus_smtp_security: false
+eus_smtp_from_address: yoda@surfyoda.test
+eus_smtp_replyto_address: yoda@surfyoda.test
 eus_mail_template: uu
-external_users_domain_filter: uu.nl     # Domains to filter, separated by |
+external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated by |
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: true
-oidc_domains: ['gmail.com', 'yoda.test']                      # Domains that should use OIDC (list)
+oidc_domains: ['yoda.test']                      # Domains that should use OIDC (list)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
 oidc_callback_url: https://portal.surfyoda.test/user/callback     # OIDC Callback url
@@ -200,3 +200,7 @@ oidc_verify_aud: true   #check that aud (audience) claim matches audience
 oidc_verify_iat: false  #check that iat (issued at) claim value is an integer
 oidc_verify_exp: true   #check that exp (expiration) claim value is OK
 oidc_verify_iss: true   #check that iss (issue) claim is as expected
+
+# Mail configuration
+enable_mailpit: true
+enable_postfix: false

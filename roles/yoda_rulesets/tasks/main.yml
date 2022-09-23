@@ -111,7 +111,7 @@
   become: true
   irods_rulesets:
     config_path: "/etc/irods/server_config.json"
-    rulesets: "{{ (extra_rulesets + core_rulesets) | map(attribute='ruleset_name') | list  }}"
+    rulesets: "{{ (extra_rulesets + core_rulesets) | map(attribute='ruleset_name') | list }}"
   when: not ansible_check_mode
 
 

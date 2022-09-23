@@ -117,3 +117,7 @@ yoda_davrods_port: 443
 yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test
 yoda_davrods_anonymous_port: 443
+
+# External Users configuration
+external_users: true
+external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated by |
