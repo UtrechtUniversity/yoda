@@ -104,6 +104,7 @@
   with_items:
     - securecopy.sh
     - scheduled-copytovault.sh
+    - scheduled-user-modify.sh
     - admin-remove-orphan-vault-if-empty.sh
     - admin-vaultactions.sh
     - admin-vaultingest.sh
