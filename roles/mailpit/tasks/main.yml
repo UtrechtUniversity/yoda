@@ -1,0 +1,51 @@
+---
+# copyright Utrecht University
+
+
+- name: Disable Postfix, if installed
+  ansible.builtin.service:
+    name: postfix
+    enabled: false
+    state: stopped
+  ignore_errors: true
+
+- name: Create mailpit directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /opt/mailpit
+    - /opt/mailpit/data
+
+
+- name: Download and extract mailpit
+  ansible.builtin.unarchive:
+    src: "https://github.com/axllent/mailpit/releases/download/{{ mailpit_version }}/mailpit-linux-amd64.tar.gz"
+    dest: /opt/mailpit
+    remote_src: true
+
+
+- name: Create mailpit systemd unit file
+  ansible.builtin.template:
+    src: mailpit.service.j2
+    dest: /etc/systemd/system/mailpit.service
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: Configure mailpit service
+  ansible.builtin.service:
+    name: mailpit
+    enabled: true
+    state: started
+    daemon_reload: true
+
+
+- name: Allow public access to mailpit web interface
+  firewalld:
+    port: '8025/tcp'
+    permanent: true
+    state: enabled
+    immediate: true
+  notify: Restart firewall

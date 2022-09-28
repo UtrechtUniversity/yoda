@@ -14,8 +14,6 @@
     - idx_yoda_data1
     - idx_yoda_meta1
     - idx_yoda_meta2
-    - idx_yoda_meta3
-    - idx_yoda_meta4
   when: not irods_database_enable_yoda_indexes
 
 
@@ -57,13 +55,5 @@
     - name: idx_yoda_meta2
       type: gin
       columns: UPPER(meta_attr_unit) gin_trgm_ops
-      table: r_meta_main
-    - name: idx_yoda_meta3
-      type: btree
-      columns: UPPER(meta_attr_name)
-      table: r_meta_main
-    - name: idx_yoda_meta4
-      type: btree
-      columns: UPPER(meta_attr_value)
       table: r_meta_main
   when: irods_database_enable_yoda_indexes

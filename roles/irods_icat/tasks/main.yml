@@ -15,14 +15,14 @@
   ansible.builtin.service:
     name: irods
     state: stopped
-  when: ( ( irods_service_type == "sysv" and
-              'irods.service' in services and
-              services['irods.service']['source'] == "systemd" and
-              services['irods.service']['state'] == "running" )
-       or ( irods_service_type == "systemd" and
-              'irods' in services and
-              services['irods']['source'] == "sysv"  and
-              services['irods']['state'] == "running" ) )
+  when: ((irods_service_type == "sysv" and
+          'irods.service' in services and
+          services['irods.service']['source'] == "systemd" and
+          services['irods.service']['state'] == "running")
+         or (irods_service_type == "systemd" and
+          'irods' in services and
+          services['irods']['source'] == "sysv" and
+          services['irods']['state'] == "running"))
 
 
 - name: Ensure systemd unit file present
@@ -52,14 +52,14 @@
   ansible.builtin.service:
     name: irods
     state: started
-  when: ( ( irods_service_type == "sysv" and
-              'irods.service' in services and
-              services['irods.service']['source'] == "systemd" and
-              services['irods.service']['state'] == "running" )
-       or ( irods_service_type == "systemd" and
-              'irods' in services and
-              services['irods']['source'] == "sysv"  and
-              services['irods']['state'] == "running" ) )
+  when: ((irods_service_type == "sysv" and
+          'irods.service' in services and
+          services['irods.service']['source'] == "systemd" and
+          services['irods.service']['state'] == "running")
+         or (irods_service_type == "systemd" and
+          'irods' in services and
+          services['irods']['source'] == "sysv" and
+          services['irods']['state'] == "running"))
 
 
 - name: Ensure iRODS 4.2.11 packages are absent
@@ -203,7 +203,7 @@
     state: absent
 
 
-- name: Ensure iRODS iCAT host is a FQDN for iRODS 4.1.11
+- name: Ensure iCAT host is defined
   become_user: '{{ irods_service_account }}'
   become: true
   irods_config:
@@ -459,6 +459,7 @@
     dest: '/var/lib/irods/.ssh/id_ed25519'
     owner: '{{ irods_service_account }}'
     mode: 0600
+  no_log: true
   when: upload_priv_key is defined
 
 

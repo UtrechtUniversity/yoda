@@ -164,7 +164,7 @@
     '*update={{ update_schemas }}'
   register: install_default_schema
   when: (update_schemas == 1) or
-        (installed_defaults|json_query('results[*].stderr')|join(' ') is search('does not exist'))
+        (installed_defaults | json_query('results[*].stderr') | join(' ') is search('does not exist'))
   changed_when: install_default_schema.stdout is search('(Installed|Updated)')
 
 
@@ -275,7 +275,7 @@
     group: '{{ irods_service_account }}'
     mode: '0644'
   # This script is provided by the test playbook for development/test servers.
-  when: enable_intake and yoda_environment not in ["development","testing"]
+  when: enable_intake and yoda_environment not in ["development", "testing"]
 
 
 - name: Install script for clearing locks after moving intake collections
@@ -288,7 +288,7 @@
     group: '{{ irods_service_account }}'
     mode: '0644'
   # This script is provided by the test playbook for development/test servers.
-  when: enable_intake and yoda_environment not in ["development","testing"]
+  when: enable_intake and yoda_environment not in ["development", "testing"]
 
 
 - name: Configure cronjob to process publications
@@ -326,7 +326,7 @@
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0755'
-  when: enable_intake or yoda_environment in ["development","testing"]
+  when: enable_intake or yoda_environment in ["development", "testing"]
 
 
 - name: Configure cronjob for moving collections from intake to vault
@@ -338,7 +338,7 @@
     name: 'job_movetovault.r'
     minute: '*/5'
     job: '/var/lib/irods/.irods/run-intake-movetovault.sh >& /dev/null'
-  when: enable_intake or yoda_environment in ["development","testing"]
+  when: enable_intake or yoda_environment in ["development", "testing"]
 
 
 - name: Ensure that ExecCmd dir exists

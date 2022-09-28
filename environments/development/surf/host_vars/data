@@ -1,0 +1,6 @@
+---
+ansible_host: 192.168.56.21
+# We need to create separate default resources for each
+# resource server, otherwise iRODS setup on the resource servers
+# will fail because it can't create the default resource.
+irods_default_resc: defaultRescData

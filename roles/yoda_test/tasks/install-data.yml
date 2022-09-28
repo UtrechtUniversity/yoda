@@ -196,3 +196,12 @@
   ansible.builtin.command:
     irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
   ignore_errors: true
+
+
+- name: Ensure rods user is removed from groups
+  become_user: '{{ irods_service_account }}'
+  become: true
+  yoda_removegroupuser:
+    groupName: '{{ item.groupName }}'
+    user: 'rods'
+  with_items: '{{ test_groups }}'

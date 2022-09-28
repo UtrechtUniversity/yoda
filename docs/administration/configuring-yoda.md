@@ -142,6 +142,8 @@ yoda_environment             | Yoda environment: development, testing, acceptanc
 yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_logo_path       | Path of the DavRODS logo on the portal. Defaults to the themed logo.
+yoda_davrods_logo_link       | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
 yoda_enable_httpd            | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
 httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.
 
@@ -157,7 +159,7 @@ irods_database_enable_yoda_indexes   | Enable indexes to speed up Yoda search op
 irods_zone                           | The name of the iRODS Zone
 irods_icat_fqdn                      | iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn                  | iRODS database fully qualified domain name (FQDN)
-irods_resource_fqdn                  | iRODS resource fully qualified domain name (FQDN)
+irods_resource_fqdn                  | iRODS resource fully qualified domain name (FQDN). Don't define this variable if you have multiple resource servers.
 irods_default_resc                   | iRODS default resource name
 irods_resc_trigger_pol               | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
 irods_ssl_verify_server              | Verify TLS certificate, use 'cert' for acceptance and production
@@ -180,6 +182,7 @@ revision_strategy            | Revision strategy: A, B, J or Simple
 yoda_random_id_length        | Length of random ID to add to persistent identifier
 yoda_prefix                  | Prefix for internal portion of persistent identifier
 update_rulesets              | Update already installed rulesets with git
+override_resc_install_rulesets | Install rulesets on server even if it is a resource server (default: false). This override parameter can be used on resource servers that have an additional role, e.g. DavRODS server
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
 temporary_files              | List of temporary files for cleanup functionality
@@ -278,7 +281,7 @@ epic_handle_prefix           | EPIC PID prefix
 epic_key                     | EPIC PID key (base64 encoded)
 epic_cert                    | EPIC PID cert (base64 encoded)
 
-# Data Access Tokens configuration
+### Data Access Tokens configuration
 
 Variable                | Description
 ------------------------|------------------------------------
@@ -287,6 +290,7 @@ token_database          | Location of the database that contain the tokens
 token_database_password | Token database password
 token_length            | Length of data access tokens
 token_lifetime          | Lifetime of data access tokens (in hours) (in hours)
+enable_radius_fallback  | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
 
 ### Public host configuration
 
@@ -316,7 +320,7 @@ eus_smtp_from_address        | External User Service from address
 eus_smtp_replyto_address     | External User Service replyto address
 eus_mail_template            | External User Service mail template
 
-## OpenId Connect configuration
+### OpenID Connect (OIDC) configuration
 
 Variable   | Description
 -----------|---------------------------------------------
@@ -341,3 +345,13 @@ oidc_verify_aud     | Check that aud (audience) claim matches audience
 oidc_verify_iat     | Check that iat (issued at) claim value is an integer
 oidc_verify_exp     | Check that exp (expiration) claim value is OK
 oidc_verify_iss     | Check that iss (issue) claim is as expected
+
+### Mailpit configuration
+
+Variable                 | Description
+-------------------------|---------------------------------------------
+enable_mailpit           | Enable [Mailpit](https://github.com/axllent/mailpit) for email testing. Should only be enabled on local development environments for security reasons. Mailpit and Postfix shouldn't be enabled simultaneously. Default: false
+mailpit_version          | Mailpit version to install
+mailpit_max_messages     | Maximum number of messages to store (default: 10000)
+mailpit_smtp_bind_address| Address to bind on for SMTP interface (default: 0.0.0.0)
+mailpit_smtp_port        | TCP port for SMTP interface (default: 25)

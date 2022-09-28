@@ -34,20 +34,12 @@ Rebuild portal Javascript assets on source file change:
 ./node_modules/.bin/webpack -d -w
 ```
 
-## Testing
-Mount vagrant guest folder on host (e.g. `/etc/irods/yoda-ruleset/` so you can run `pytest` on the local machine):
-```bash
-# Mount
-sshfs -o IdentityFile=/home/dev/.vagrant.d/insecure_private_key -p 2222 vagrant@127.0.0.1:/etc/irods/yoda-ruleset yoda-ruleset
+## Mailpit
 
-# Umount
-fusermount -u yoda-ruleset
-```
+The development environments have [Mailpit](https://github.com/axllent/mailpit) for testing email during development.
+In order to see what messages Yoda would have sent, browse to port 8025 on the iCAT or EUS server of the environment.
 
-Run pytest from mounted folder (see previous tip):
-```bash
-mkdir -p /tmp/cache && pytest -o cache_dir=/tmp/cache
-```
+![Mailpit screenshot](screenshot-mailpit.png)
 
 ## Datarequest module
 Remove all existing data requests (to declutter your _development_ environment):
