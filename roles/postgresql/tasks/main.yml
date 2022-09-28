@@ -1,39 +1,43 @@
 ---
 # copyright Utrecht University
 
-- name: Download PostgreSQL repo package
-  ansible.builtin.get_url:
-    url: "{{ rpm_url }}/{{ rpm_redhat_repo }}"
-    dest: "{{ rpm_dest_dir }}/{{ rpm_redhat_repo }}"
-    mode: 0644
+- name: Include OS-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
 
 
-- name: Install PostgreSQL repo package
-  ansible.builtin.yum:
-    name: "{{ rpm_dest_dir }}/{{ rpm_redhat_repo }}"
-    state: present
+- include_tasks: setup-redhat.yml
+  when: ansible_os_family == 'RedHat'
 
 
-- name: Ensure PostgreSQL database and dependencies are installed
-  ansible.builtin.package:
-    name:
-      - "postgresql{{ pgsql_version }}-server"
-      - "postgresql{{ pgsql_version }}-contrib"
-      - "postgresql{{ pgsql_version }}-odbc"
-      - python-psycopg2
-      - unixODBC
-    state: present
+- include_tasks: setup-debian.yml
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure PostgreSQL data directory exists
+  file:
+    path: "{{ postgresql_data_dir }}"
+    owner: postgres
+    group: postgres
+    state: directory
+    mode: 0700
+
+
+- name: Check if PostgreSQL database is initialized
+  stat:
+    path: "{{ postgresql_data_dir }}/PG_VERSION"
+  register: pg_version
 
 
 - name: Initialize PostgreSQL database
-  ansible.builtin.command: "postgresql-{{ pgsql_version }}-setup initdb"
-  args:
-    creates: "/var/lib/pgsql/{{ pgsql_version }}/data/postgresql.conf"
+  become_user: postgres
+  become: true
+  ansible.builtin.command: "{{ postgresql_bin_path }}/initdb -D {{ postgresql_data_dir }}"
+  when: not pg_version.stat.exists
 
 
 - name: Password protect loopback IPv4 connections
   ansible.builtin.lineinfile:
-    dest: "/var/lib/pgsql/{{ pgsql_version }}/data/pg_hba.conf"
+    dest: "{{ postgresql_config_path }}/pg_hba.conf"
     regexp: 'host\s+all\s+all\s+127.0.0.1/32'
     line: 'host all all 127.0.0.1/32 md5'
   notify: Restart PostgreSQL
@@ -41,7 +45,7 @@
 
 - name: Password protect loopback IPv6 connections
   ansible.builtin.lineinfile:
-    dest: "/var/lib/pgsql/{{ pgsql_version }}/data/pg_hba.conf"
+    dest: "{{ postgresql_config_path }}/pg_hba.conf"
     regexp: 'host\s+all\s+all\s+::1/128'
     line: 'host all all ::1/128 md5'
   notify: Restart PostgreSQL
@@ -60,7 +64,7 @@
 - name: Ensure private key file is available for PostgreSQL
   ansible.builtin.copy:
     src: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
-    dest: '/var/lib/pgsql/{{ pgsql_version }}/data/{{ openssl_key_signed }}'
+    dest: '{{ postgresql_config_path }}/{{ openssl_key_signed }}'
     group: 'postgres'
     owner: 'postgres'
     mode: 0600
@@ -70,7 +74,7 @@
 - name: Ensure certificate file is available for PostgreSQL
   ansible.builtin.copy:
     src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
-    dest: '/var/lib/pgsql/{{ pgsql_version }}/data/{{ openssl_crt_signed }}'
+    dest: '{{ postgresql_config_path }}/{{ openssl_crt_signed }}'
     group: 'postgres'
     owner: 'postgres'
     mode: 0600
@@ -79,127 +83,21 @@
 
 - name: Ensure PostgreSQL is configured
   ansible.builtin.template:
-    src: postgresql.conf.j2
-    dest: "/var/lib/pgsql/{{ pgsql_version }}/data/postgresql.conf"
+    src: postgresql-{{ ansible_os_family }}.conf.j2
+    dest: "{{ postgresql_config_path }}/postgresql.conf"
     owner: postgres
     group: postgres
     mode: 0600
   notify: Restart PostgreSQL
 
 
-- name: Check for presence of PostgreSQL 9
-  ansible.builtin.package_facts:
-    manager: auto
-
-
-- name: Stop PostgreSQL 9 service
-  ansible.builtin.service:
-    name: postgresql
-    enabled: false
-    state: stopped
-  when: "'postgresql-server' in ansible_facts.packages"
-
-
-- name: Create PostgreSQL 9 shim directory
-  ansible.builtin.file:
-    path: /var/lib/pgsql/shim
-    owner: postgres
-    group: postgres
-    state: directory
-  when: "'postgresql-server' in ansible_facts.packages"
-
-
-- name: Install PostgreSQL 9 shims
-  ansible.builtin.file:
-    src: "/usr/bin/{{ item }}"
-    dest: "/var/lib/pgsql/shim/{{ item }}"
-    owner: postgres
-    group: postgres
-    state: link
-  with_items:
-    - clusterdb
-    - createdb
-    - createuser
-    - dropdb
-    - dropuser
-    - initdb
-    - oid2name
-    - pg_archivecleanup
-    - pg_basebackup
-    - pgbench
-    - pg_config
-    - pg_controldata
-    - pg_dump
-    - pg_dumpall
-    - pg_receivexlog
-    - pg_resetxlog
-    - pg_restore
-    - pg_standby
-    - pg_test_fsync
-    - pg_test_timing
-    - postgres
-    - postgresql-check-db-dir
-    - postgresql-setup
-    - postmaster
-    - psql
-    - reindexdb
-    - vacuumdb
-    - vacuumlo
-  when: "'postgresql-server' in ansible_facts.packages"
-
-
-- name: Install PostgreSQL 9 shim script
-  ansible.builtin.copy:
-    src: "pg_ctl"
-    dest: /var/lib/pgsql/shim/pg_ctl
-    owner: postgres
-    group: postgres
-    mode: 0755
-  when: "'postgresql-server' in ansible_facts.packages"
-
-
-- name: Last step before the upgrade
-  ansible.builtin.fail:
-    msg: PostgreSQL database upgrade prevented
-  when: "'postgresql-server' in ansible_facts.packages and prevent_upgrade"
-
-
-- name: Upgrade PostgreSQL database
-  become_user: postgres
-  become: true
-  ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/pg_upgrade \
-			   -b /var/lib/pgsql/shim \
-			   -B /usr/pgsql-{{ pgsql_version }}/bin \
-			   -d /var/lib/pgsql/data \
-			   -D /var/lib/pgsql/{{ pgsql_version }}/data"
-  when: "'postgresql-server' in ansible_facts.packages"
-
-
-- name: Remove PostgreSQL 9 service
-  ansible.builtin.package:
-    name:
-      - postgresql
-      - postgresql-contrib
-      - postgresql-libs
-      - postgresql-server
-    state: absent
-  when: "'postgresql-server' in ansible_facts.packages"
-
-
-- name: Remove PostgreSQL 9 data and shim
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: absent
-  with_items:
-    - /var/lib/pgsql/data
-    - /var/lib/pgsql/shim
-    - /var/lib/pgsql/initdb.log
-  when: "'postgresql-server' in ansible_facts.packages"
+- include_tasks: upgrade.yml
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Check that ODBC is configured for PostgreSQL
   ansible.builtin.lineinfile:
-    path: /etc/odbcinst.ini
+    path: "{{ odbc_config_path }}"
     search_string: "pgsql-{{ pgsql_version }}"
     state: absent
   check_mode: true
@@ -220,7 +118,7 @@
 
 - name: Ensure PostgreSQL is enabled and started
   ansible.builtin.service:
-    name: "postgresql-{{ pgsql_version }}"
+    name: "{{ postgresql_daemon }}"
     enabled: true
     state: started
 
@@ -229,7 +127,7 @@
   become_user: postgres
   become: true
   ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/vacuumdb --all"
-  when: "'postgresql-server' in ansible_facts.packages"
+  when: "ansible_os_family == 'RedHat' and 'postgresql-server' in ansible_facts.packages"
 
 
 - include_tasks: install-postgresqltuner.yml

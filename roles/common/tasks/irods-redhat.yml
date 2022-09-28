@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure iRODS packages repository is enabled
+- name: Ensure iRODS packages YUM repository is enabled
   ansible.builtin.yum_repository:
     name: iRODS-packages
     description: YUM repositories for the iRODS Consortium

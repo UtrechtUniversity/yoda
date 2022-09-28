@@ -2,7 +2,18 @@
 # copyright Utrecht University
 
 - import_tasks: hostname.yml
+
 - import_tasks: epel.yml
-- import_tasks: irods.yml
+  when: ansible_os_family == 'RedHat'
+
+- import_tasks: irods-redhat.yml
+  when: ansible_os_family == 'RedHat'
+- import_tasks: irods-debian.yml
+  when: ansible_os_family == 'Debian'
+
 - import_tasks: firewalld.yml
-- import_tasks: basics.yml
+
+- import_tasks: basics-redhat.yml
+  when: ansible_os_family == 'RedHat'
+- import_tasks: basics-debian.yml
+  when: ansible_os_family == 'Debian'

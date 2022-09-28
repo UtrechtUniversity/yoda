@@ -1,0 +1,111 @@
+---
+# copyright Utrecht University
+
+- name: Check for presence of PostgreSQL 9
+  ansible.builtin.package_facts:
+    manager: auto
+
+
+- name: Stop PostgreSQL 9 service
+  ansible.builtin.service:
+    name: postgresql
+    enabled: false
+    state: stopped
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Create PostgreSQL 9 shim directory
+  ansible.builtin.file:
+    path: /var/lib/pgsql/shim
+    owner: postgres
+    group: postgres
+    state: directory
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Install PostgreSQL 9 shims
+  ansible.builtin.file:
+    src: "/usr/bin/{{ item }}"
+    dest: "/var/lib/pgsql/shim/{{ item }}"
+    owner: postgres
+    group: postgres
+    state: link
+  with_items:
+    - clusterdb
+    - createdb
+    - createuser
+    - dropdb
+    - dropuser
+    - initdb
+    - oid2name
+    - pg_archivecleanup
+    - pg_basebackup
+    - pgbench
+    - pg_config
+    - pg_controldata
+    - pg_dump
+    - pg_dumpall
+    - pg_receivexlog
+    - pg_resetxlog
+    - pg_restore
+    - pg_standby
+    - pg_test_fsync
+    - pg_test_timing
+    - postgres
+    - postgresql-check-db-dir
+    - postgresql-setup
+    - postmaster
+    - psql
+    - reindexdb
+    - vacuumdb
+    - vacuumlo
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Install PostgreSQL 9 shim script
+  ansible.builtin.copy:
+    src: "pg_ctl"
+    dest: /var/lib/pgsql/shim/pg_ctl
+    owner: postgres
+    group: postgres
+    mode: 0755
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Last step before the upgrade
+  ansible.builtin.fail:
+    msg: PostgreSQL database upgrade prevented
+  when: "'postgresql-server' in ansible_facts.packages and prevent_upgrade"
+
+
+- name: Upgrade PostgreSQL database
+  become_user: postgres
+  become: true
+  ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/pg_upgrade \
+			   -b /var/lib/pgsql/shim \
+			   -B /usr/pgsql-{{ pgsql_version }}/bin \
+			   -d /var/lib/pgsql/data \
+			   -D /var/lib/pgsql/{{ pgsql_version }}/data"
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Remove PostgreSQL 9 service
+  ansible.builtin.package:
+    name:
+      - postgresql
+      - postgresql-contrib
+      - postgresql-libs
+      - postgresql-server
+    state: absent
+  when: "'postgresql-server' in ansible_facts.packages"
+
+
+- name: Remove PostgreSQL 9 data and shim
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /var/lib/pgsql/data
+    - /var/lib/pgsql/shim
+    - /var/lib/pgsql/initdb.log
+  when: "'postgresql-server' in ansible_facts.packages"
