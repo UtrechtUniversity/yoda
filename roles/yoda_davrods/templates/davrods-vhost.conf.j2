@@ -8,6 +8,17 @@
 # its default options.
 #
 
+<VirtualHost *:80>
+    ServerName {{ yoda_davrods_fqdn }}
+
+    # Always redirect to https.
+{% if yoda_davrods_port == 443 %}
+    Redirect / https://{{ yoda_davrods_fqdn }}/
+{% else %}
+    Redirect / https://{{ yoda_davrods_fqdn }}:{{ yoda_davrods_port | string }}/
+{% endif %}
+</VirtualHost>
+
 {% if yoda_davrods_port != 443 %}
 Listen {{ yoda_davrods_port }}
 {% endif %}

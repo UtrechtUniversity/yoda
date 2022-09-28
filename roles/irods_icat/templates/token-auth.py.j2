@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # {{ ansible_managed }}
 
+import os
 from datetime import datetime
 from traceback import print_exc
 
@@ -17,6 +18,11 @@ def pam_sm_authenticate(pamh, flags, argv):
 
     token = pamh.authtok
     if token is None:
+        return pamh.PAM_AUTH_ERR
+
+    # This ensures that the authentication script does not create 0 byte
+    # token databases, which can interfere with running the Ansible playbook.
+    if not os.path.isfile(TOKEN_DB):
         return pamh.PAM_AUTH_ERR
 
     authenticated = False

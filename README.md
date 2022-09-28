@@ -33,7 +33,7 @@ This is the main repository of Yoda. It contains the [Ansible](https://docs.ansi
 ### Control machine requirements
 * [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.11.x)
 * [VirtualBox](https://www.virtualbox.org/manual/ch02.html) or [libvirt](https://libvirt.org/)
-* [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 2.2.x)
+* [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 2.3.x)
 
 ### Managed node requirements
 * [CentOS](https://www.centos.org/) (>= 7.4)

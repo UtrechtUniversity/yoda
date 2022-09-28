@@ -152,6 +152,14 @@
   notify: Restart firewall
 
 
+- name: Allow Apache to listen to davrods port
+  community.general.seport:
+    ports: "{{ yoda_davrods_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+
+
 - name: Allow public to ports for anonymous davrods in firewall
   firewalld:
     port: '{{ yoda_davrods_anonymous_port }}/tcp'
@@ -159,6 +167,14 @@
     state: enabled
     immediate: true
   notify: Restart firewall
+
+
+- name: Allow Apache to listen to anonymous davrods port
+  community.general.seport:
+    ports: "{{ yoda_davrods_anonymous_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
 
 
 - name: Ensure styling of davrods directory listing is present

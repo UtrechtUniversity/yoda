@@ -4,7 +4,3 @@ ansible_host: 192.168.56.21
 # resource server, otherwise iRODS setup on the resource servers
 # will fail because it can't create the default resource.
 irods_default_resc: defaultRescData
-# By default, Yoda doesn't install rulesets on resource
-# servers. We need to override that behaviour for this
-# server, since it's also a DavRODS server.
-override_resc_install_rulesets: true

@@ -40,6 +40,8 @@ subcategory `research` and data classification `unspecified`:
     datarequests-research-datamanagers
     datarequests-research-project-managers
     datarequests-research-data-access-committee
+    datarequests-research-principal-investigators
+    datarequests-research-faculty-deans
     ```
 
 Instructions:
@@ -54,6 +56,8 @@ Instructions:
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "Project managers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-access-committee", "datarequest", "research", "Data Access Committee", "", *status, *message);' null ruleExecOut
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-principal-investigators", "datarequest", "research", "Principal investigators", "", *status, *message);' null ruleExecOut
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-faculty-deans", "datarequest", "research", "Faculty deans", "", *status, *message);' null ruleExecOut
     ```
 
 3. Confirm that the groups exist.
