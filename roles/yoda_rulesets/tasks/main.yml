@@ -60,7 +60,7 @@
 - name: Create patch files for rulesets
   become_user: "{{ irods_service_account }}"
   become: true
-  ansible.builtin.copy:
+  ansible.builtin.copy: # noqa template-instead-of-copy
     dest: "/etc/irods/{{ item.name }}.patch"
     content: "{{ item['patch'] }}"
     mode: "0644"
@@ -71,7 +71,7 @@
 - name: Apply patches to rulesets
   become_user: "{{ irods_service_account }}"
   become: true
-  ansible.builtin.command:
+  ansible.builtin.command: # noqa command-instead-of-module
     chdir: "/etc/irods/{{ item.name }}"
     cmd: "git apply /etc/irods/{{ item.name }}.patch"
   with_items: "{{ extra_rulesets + core_rulesets }}"
@@ -81,7 +81,8 @@
 - name: Remove temporary rule and cache files
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: '/bin/find /etc/irods -type f ( -name "*.re.*" -o -name "*.pyc" ) -delete'
+  ansible.builtin.command: # noqa no-handler
+    cmd: '/bin/find /etc/irods -type f ( -name "*.re.*" -o -name "*.pyc" ) -delete'
   when: repochanges.changed or patch_repochanges.changed
 
 
