@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
 - include_tasks: setup-redhat.yml
@@ -14,7 +14,7 @@
 
 
 - name: Ensure PostgreSQL data directory exists
-  file:
+  ansible.builtin.file:
     path: "{{ postgresql_data_dir }}"
     owner: postgres
     group: postgres
@@ -23,7 +23,7 @@
 
 
 - name: Check if PostgreSQL database is initialized
-  stat:
+  ansible.builtin.stat:
     path: "{{ postgresql_data_dir }}/PG_VERSION"
   register: pg_version
 
