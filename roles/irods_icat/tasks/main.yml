@@ -454,8 +454,8 @@
 - name: Install private upload key
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.copy:
-    content: '{{ upload_priv_key | b64decode }}'
+  ansible.builtin.template:
+    src: id_ed25519.j2
     dest: '/var/lib/irods/.ssh/id_ed25519'
     owner: '{{ irods_service_account }}'
     mode: 0600
