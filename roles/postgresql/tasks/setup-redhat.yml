@@ -12,6 +12,7 @@
   ansible.builtin.yum:
     name: "{{ rpm_dest_dir }}/{{ rpm_redhat_repo }}"
     state: present
+  when: not ansible_check_mode
 
 
 - name: Ensure PostgreSQL database and dependencies are installed
@@ -23,3 +24,4 @@
       - python-psycopg2
       - unixODBC
     state: present
+  when: not ansible_check_mode

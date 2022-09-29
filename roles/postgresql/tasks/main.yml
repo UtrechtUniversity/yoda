@@ -41,6 +41,7 @@
     regexp: 'host\s+all\s+all\s+127.0.0.1/32'
     line: 'host all all 127.0.0.1/32 md5'
   notify: Restart PostgreSQL
+  when: not ansible_check_mode
 
 
 - name: Password protect loopback IPv6 connections
@@ -49,6 +50,7 @@
     regexp: 'host\s+all\s+all\s+::1/128'
     line: 'host all all ::1/128 md5'
   notify: Restart PostgreSQL
+  when: not ansible_check_mode
 
 
 - name: Allow access to port 5432 in firewall
@@ -69,6 +71,7 @@
     owner: 'postgres'
     mode: 0600
     remote_src: true
+  when: not ansible_check_mode
 
 
 - name: Ensure certificate file is available for PostgreSQL
@@ -79,6 +82,7 @@
     owner: 'postgres'
     mode: 0600
     remote_src: true
+  when: not ansible_check_mode
 
 
 - name: Ensure PostgreSQL is configured
@@ -121,6 +125,7 @@
     name: "{{ postgresql_daemon }}"
     enabled: true
     state: started
+  when: not ansible_check_mode
 
 
 - name: Optimize PostgreSQL database
