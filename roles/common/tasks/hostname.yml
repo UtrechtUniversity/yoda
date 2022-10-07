@@ -7,6 +7,6 @@
   changed_when: hostname.stdout.find(inventory_hostname) == -1
 
 
-- name: Ensure FQDN is defined as hostname in /etc/hosts
-  ansible.builtin.command: hostnamectl set-hostname {{ inventory_hostname }}
-  changed_when: hostname.stdout.find(inventory_hostname) == -1
+#- name: Ensure FQDN is defined as hostname in /etc/hosts
+#  ansible.builtin.command: hostnamectl set-hostname {{ inventory_hostname }}
+#  changed_when: hostname.stdout.find(inventory_hostname) == -1
