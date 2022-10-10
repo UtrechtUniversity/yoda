@@ -10,7 +10,7 @@
 environment                    = '{{ yoda_environment }}'
 
 resource_primary               = '{{ irods_default_resc }}'
-resource_replica               = '{{ irods_repl_resc }}'
+resource_replica               = '{{ irods_repl_resc | join (" ") }}'
 resource_research              = '{{ resource_research }}'
 resource_vault                 = '{{ resource_vault }}'
 resource_trigger_pol           = '{{ irods_resc_trigger_pol | join (" ") }}'
