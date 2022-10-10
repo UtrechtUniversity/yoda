@@ -1,0 +1,7 @@
+---
+# copyright Utrecht University
+
+- name: Ensure S3cmd is installed
+  ansible.builtin.package:
+    name: s3cmd
+    state: present
