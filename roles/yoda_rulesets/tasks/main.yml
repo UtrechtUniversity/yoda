@@ -125,7 +125,8 @@
     mode: 0644
 
 
-- include_tasks: "{{ ruleset.name }}.yml"
+- name: Install Yoda rulesets
+  ansible.builtin.include_tasks: "{{ ruleset.name }}.yml"
   with_items: "{{ extra_rulesets + core_rulesets }}"
   loop_control:
     loop_var: ruleset

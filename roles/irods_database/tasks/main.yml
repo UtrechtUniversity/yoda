@@ -1,7 +1,8 @@
 ---
 # copyright Utrecht University
 
-- include_tasks: password_protect.yml
+- name: Password protect database
+  ansible.builtin.include_tasks: password_protect.yml
   with_inventory_hostnames:
     - 'icats:&{{ instance }}'
   loop_control:
@@ -29,4 +30,5 @@
     priv: ALL
 
 
-- include_tasks: "yoda_indexes.yml"
+- name: Setup Yoda databases indexes
+  ansible.builtin.include_tasks: "yoda_indexes.yml"

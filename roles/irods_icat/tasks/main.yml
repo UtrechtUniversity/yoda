@@ -544,5 +544,6 @@
     name: 'iRODS RUM job for removing unused metadata entries'
 
 
-- include_tasks: setup_pam.yml
+- name: Setup PAM
+  ansible.builtin.include_tasks: setup_pam.yml
   when: irods_authentication_scheme == "PAM"

@@ -78,5 +78,6 @@
     state: started
 
 
-- include_tasks: install-postgresqltuner.yml
+- name: Install postgresqltuner
+  ansible.builtin.include_tasks: install-postgresqltuner.yml
   when: yoda_environment == "development" or yoda_environment == "testing"
