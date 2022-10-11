@@ -139,7 +139,7 @@ irods_resources:
 # List of replication resources
 irods_repl_resc:
   - irodsRescRepl
-  - irodsRescReplS3
+  - irodsRescS3
 
 # Mail notifications
 send_notifications: 1                         # Enable notifications: yes (1) or no (0)
