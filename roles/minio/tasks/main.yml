@@ -56,6 +56,10 @@
   notify: Restart minio
 
 
+- name: Flush handlers to restart minio if needed
+  ansible.builtin.meta: flush_handlers
+
+
 - name: Allow public access to minio web console
   firewalld:
     port: '9090/tcp'
@@ -65,14 +69,22 @@
   notify: Restart firewall
 
 
-- name: Ensure s3cmd configuration is present
+- name: Ensure S3cmd configuration is present
   ansible.builtin.template:
     src: s3cfg.j2
-    dest: /var/lib/.s3cfg
+    dest: /var/lib/irods/.s3cfg
     owner: irods
     group: irods
     mode: 0644
-  notify: Restart minio
+
+
+- name: Ensure S3 keypair is present
+  ansible.builtin.template:
+    src: s3.keypair.j2
+    dest:   /var/lib/irods/s3.keypair
+    owner: irods
+    group: irods
+    mode: 0644
 
 
 - name: Check S3 bucket for Yoda is present
