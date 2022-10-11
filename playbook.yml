@@ -100,6 +100,8 @@
     - irods_icat
     - irods_runtime
     - irods_resource_plugin_s3
+    - role: minio
+      when: yoda_environment == "development"
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
