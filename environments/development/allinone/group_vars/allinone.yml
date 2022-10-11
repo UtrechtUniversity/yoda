@@ -118,7 +118,8 @@ irods_resources:
   - name: dev003_1
     resource_type: s3
     host: "{{ irods_resource_fqdn }}"
-    vault_path: /var/lib/irods/Vault3_1
+    vault_path: /yoda
+    context: "S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/s3.keypair;S3_RETRY_COUNT=1;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=consistent;HOST_MODE=cacheless_attached"
 
   - name: dev003_p1
     resource_type: passthru
