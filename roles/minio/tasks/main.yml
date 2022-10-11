@@ -81,7 +81,7 @@
 - name: Ensure S3 keypair is present
   ansible.builtin.template:
     src: s3.keypair.j2
-    dest:   /var/lib/irods/s3.keypair
+    dest: /var/lib/irods/s3.keypair
     owner: irods
     group: irods
     mode: 0644
