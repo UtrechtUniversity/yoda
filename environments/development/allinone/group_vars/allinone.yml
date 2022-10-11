@@ -115,6 +115,31 @@ irods_resources:
     children:
       - dev002
 
+  - name: dev003_1
+    resource_type: s3
+    host: "{{ irods_resource_fqdn }}"
+    vault_path: /var/lib/irods/Vault3_1
+
+  - name: dev003_p1
+    resource_type: passthru
+    children:
+      - dev003_1
+
+  - name: dev003
+    resource_type: random
+    children:
+      - dev003_p1
+
+  - name: irodsRescS3
+    resource_type: random
+    children:
+      - dev003
+
+# List of replication resources
+irods_repl_resc:
+  - irodsRescRepl
+  - irodsRescReplS3
+
 # Mail notifications
 send_notifications: 1                         # Enable notifications: yes (1) or no (0)
 notifications_sender_email: noreply@yoda.test # Notifiations sender email address
