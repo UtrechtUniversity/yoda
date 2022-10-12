@@ -123,6 +123,20 @@
     - disable-indexing.sh
 
 
+- name: Copy tape archive scripts to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/etc/irods/yoda-ruleset/tools/tape_archive/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: 0755
+  when: not ansible_check_mode and enable_tape_archive
+  with_items:
+    - admin-tape-archive-set-state.sh
+    - async-tape-archive-replicate.sh
+
+
 - name: Ensure metadata schemas are installed
   become_user: "{{ irods_service_account }}"
   become: true
@@ -338,32 +352,6 @@
     minute: '*/5'
     job: '/var/lib/irods/.irods/run-intake-movetovault.sh >& /dev/null'
   when: enable_intake or yoda_environment in ["development", "testing"]
-
-
-- name: Ensure that ExecCmd dir exists
-  ansible.builtin.file:
-    path: /var/lib/irods/msiExecCmd_bin
-    owner: '{{ irods_service_account }}'
-    group: '{{ irods_service_account }}'
-    mode: 0755
-    state: directory
-  when: not ansible_check_mode
-
-
-- name: Copy scripts to ExecCmd dir
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.copy:
-    remote_src: true
-    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
-    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
-  when: not ansible_check_mode
-  with_items:
-    - securecopy.sh
-    - scheduled-copytovault.sh
-    - admin-vaultactions.sh
-    - admin-vaultingest.sh
 
 
 - name: Set configuration AVUs for research ruleset to system collection
