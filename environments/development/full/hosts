@@ -13,31 +13,31 @@ full_eus
 
 # Define portal host here:
 [full_portal]
-portal
+portal.yoda.test
 
 # Define davrods host here:
 [full_davrods]
-portal
+portal.yoda.test
 
 # Define database host here:
 [full_database]
-database
+database.yoda.test
 
 # Define icat host here:
 [full_icat]
-icat
+icat.yoda.test
 
 # Define resource host here:
 [full_resource]
-resource
+resource.yoda.test
 
 # Define public host here:
 [full_public]
-public
+public.yoda.test
 
 # Define external user service host here:
 [full_eus]
-eus
+eus.yoda.test
 
 ###############
 # All instances

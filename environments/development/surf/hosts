@@ -13,32 +13,32 @@ surf_eus
 
 # Define portal host here:
 [surf_portal]
-portal
+portal.yoda.test
 
 # Define davrods host here:
 [surf_davrods]
-data
+data.yoda.test
 
 # Define database host here:
 [surf_database]
-portal
+portal.yoda.test
 
 # Define icat host here:
 [surf_icat]
-portal
+portal.yoda.test
 
 # Define resource host here:
 [surf_resource]
-data
-resource
+data.yoda.test
+resource.yoda.test
 
 # Define public host here:
 [surf_public]
-data
+data.yoda.test
 
 # Define external user service host here:
 [surf_eus]
-portal
+portal.yoda.test
 
 ###############
 # All instances
