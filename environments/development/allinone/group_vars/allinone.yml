@@ -131,7 +131,7 @@ irods_resources:
     children:
       - dev003_p1
 
-  - name: irodsRescS3
+  - name: irodsRescReplS3
     resource_type: random
     children:
       - dev003
@@ -139,7 +139,7 @@ irods_resources:
 # List of replication resources
 irods_repl_resc:
   - irodsRescRepl
-  - irodsRescS3
+  - irodsRescReplS3
 
 # Mail notifications
 send_notifications: 1                         # Enable notifications: yes (1) or no (0)
