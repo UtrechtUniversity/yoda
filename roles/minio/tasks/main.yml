@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-- name: Download Minio RPM
+- name: Download MinIO RPM
   ansible.builtin.get_url:
     url: 'https://dl.min.io/server/minio/release/linux-amd64/archive/minio-20221005145827.0.0.x86_64.rpm'
     dest: '/tmp/minio.rpm'
@@ -9,7 +9,7 @@
     mode: 0644
 
 
-- name: Install Minio from downloaded RPM
+- name: Install MinIO from downloaded RPM
   ansible.builtin.package:
     name: '/tmp/minio.rpm'
     state: present
@@ -36,7 +36,7 @@
     group: minio-user
 
 
-- name: Ensure minio configuration file is present
+- name: Ensure MinIO configuration file is present
   ansible.builtin.template:
     src: minio.j2
     dest: /etc/default/minio
@@ -46,7 +46,7 @@
   notify: Restart minio
 
 
-- name: Ensure minio systemd service file is present
+- name: Ensure MinIO systemd service file is present
   ansible.builtin.template:
     src: minio.service.j2
     dest: /etc/systemd/system/minio.service
@@ -56,17 +56,17 @@
   notify: Restart minio
 
 
-- name: Flush handlers to restart minio if needed
-  ansible.builtin.meta: flush_handlers
-
-
-- name: Allow public access to minio web console
+- name: Allow public access to MinIO web console
   firewalld:
     port: '9090/tcp'
     permanent: true
     state: enabled
     immediate: true
   notify: Restart firewall
+
+
+- name: Flush handlers to restart MinIO if needed
+  ansible.builtin.meta: flush_handlers
 
 
 - name: Ensure S3cmd configuration is present
