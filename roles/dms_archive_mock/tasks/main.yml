@@ -32,6 +32,7 @@
 - name: Ensure mock tape archive resource exist
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa fqcn[action]
   irods_resource:
     name: "mockTapeArchive"
     resource_type: "unixfilesystem"

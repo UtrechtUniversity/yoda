@@ -12,7 +12,7 @@
 
 
 - name: Allow public to ports for Apache in firewall
-  firewalld:
+  ansible.posix.firewalld:
     port: '{{ item }}'
     permanent: true
     state: enabled

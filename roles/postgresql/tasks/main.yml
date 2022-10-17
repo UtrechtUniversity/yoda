@@ -32,7 +32,7 @@
 
 
 - name: Allow access to port 5432 in firewall
-  firewalld:
+  ansible.posix.firewalld:
     port: 5432/tcp
     permanent: true
     state: enabled

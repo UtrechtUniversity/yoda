@@ -61,7 +61,7 @@
 
 
 - name: Set vm.max_map_count in sysctl.conf
-  sysctl:
+  ansible.posix.sysctl:
     name: vm.max_map_count
     value: '262144'
     state: present
@@ -82,7 +82,7 @@
 
 
 - name: Enable port for indexing
-  firewalld:
+  ansible.posix.firewalld:
     port: 9200/tcp
     permanent: true
     state: enabled

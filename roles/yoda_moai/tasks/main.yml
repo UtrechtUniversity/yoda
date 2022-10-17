@@ -68,7 +68,7 @@
 
 
 - name: Add upload user pub key to authorized_keys of inbox
-  authorized_key:
+  ansible.posix.authorized_key:
     user: '{{ yoda_inbox_user }}'
     key: '{{ upload_pub_key | b64decode }}'
     state: present
@@ -112,7 +112,7 @@
 
 
 - name: Set SELinux context for shared libraries
-  sefcontext:
+  community.general.sefcontext:
     target: '{{ yoda_moai_home }}/yoda-moai/venv/.*\.so(\..*)?'
     setype: httpd_sys_script_exec_t
     state: present
@@ -126,7 +126,7 @@
 
 
 - name: Set SELinux context for Yoda MOAI database
-  sefcontext:
+  community.general.sefcontext:
     target: '{{ yoda_moai_home }}/moai.db'
     setype: httpd_sys_rw_content_t
     state: present

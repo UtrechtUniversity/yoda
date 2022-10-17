@@ -45,7 +45,7 @@
 - name: Sync rulesets with repos before applying patches
   become_user: "{{ irods_service_account }}"
   become: true
-  synchronize:
+  ansible.posix.synchronize:
     src: "/etc/irods/repo_{{ item.name }}/"
     dest: "/etc/irods/{{ item.name }}"
     checksum: true
@@ -89,7 +89,7 @@
 - name: Run make install for each ruleset
   become_user: "{{ irods_service_account }}"
   become: true
-  make:
+  community.general.make:
     chdir: "/etc/irods/{{ item.0.name }}"
     target: install
   when: item.1.changed or ( 'repo' in item.0 and 'patch' in item.0 )
@@ -110,6 +110,7 @@
 - name: Ensure all rulesets are in server config
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa fqcn[action]
   irods_rulesets:
     config_path: "/etc/irods/server_config.json"
     rulesets: "{{ (extra_rulesets + core_rulesets) | map(attribute='ruleset_name') | list }}"
