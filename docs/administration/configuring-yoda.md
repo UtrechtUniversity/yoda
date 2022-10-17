@@ -171,6 +171,14 @@ irods_rum_job_enabled                | Whether to enable the daily RUM job for r
 irods_rum_job_hour                   | Time to run RUM job - hour (default: 20)
 irods_rum_job_minute                 | Time to run RUM job - minute (default: 0)
 
+### S3 configuration - for iRODS S3 resource plugin and s3cmd utilities
+
+Variable                             | Description
+-------------------------------------|---------------------------------
+s3_access_key                        | S3 access key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
+s3_secret_key                        | S3 secret key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
+s3_hostname                          | S3 server hostname (used by s3cmd; the hostname used by the S3 resource plugin is configured in the S3 resource contexts instead)
+
 ### Research module configuration
 
 Variable   | Description

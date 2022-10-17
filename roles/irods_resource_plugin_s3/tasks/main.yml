@@ -27,3 +27,12 @@
   ansible.builtin.package:
     name: irods-resource-plugin-s3-4.2.11.2
     state: present
+
+
+- name: Ensure S3 credentials file is present
+  ansible.builtin.template:
+    src: s3auth.j2
+    dest: /var/lib/irods/.s3auth
+    owner: '{{ irods_service_account }}'
+    group: irods
+    mode: 0600

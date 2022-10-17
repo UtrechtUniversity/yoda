@@ -5,3 +5,12 @@
   ansible.builtin.package:
     name: s3cmd
     state: present
+
+
+- name: Ensure S3cmd configuration file is present
+  ansible.builtin.template:
+    src: s3cfg.j2
+    dest: /var/lib/irods/.s3cfg
+    owner: '{{ irods_service_account }}'
+    group: irods
+    mode: 0600
