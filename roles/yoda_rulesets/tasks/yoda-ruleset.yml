@@ -357,6 +357,7 @@
 - name: Set configuration AVUs for research ruleset to system collection
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa fqcn[action]
   irods_setavu:
     name: "/{{ irods_zone }}/yoda"
     irods_type: Collection
@@ -387,6 +388,7 @@
 - name: Set configuration AVUs for anonymous davrods vhosts
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa fqcn[action]
   irods_setavu:
     name: "/{{ irods_zone }}/yoda"
     irods_type: Collection

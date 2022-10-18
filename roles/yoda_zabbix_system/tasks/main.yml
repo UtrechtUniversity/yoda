@@ -61,14 +61,14 @@
 
 
 - name: Allow Zabbix agent to start
-  selinux_permissive:
+  community.general.selinux_permissive:
     name: zabbix_agent_t
     permissive: true
   when: ansible_selinux.status == "enabled"
 
 
 - name: Allow Zabbix agent to sudo
-  seboolean:
+  ansible.posix.seboolean:
     name: zabbix_run_sudo
     state: true
     persistent: true

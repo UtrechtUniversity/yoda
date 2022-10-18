@@ -47,7 +47,7 @@
 
 
 - name: Allow public to API port for External User Service in firewall
-  firewalld:
+  ansible.posix.firewalld:
     port: '8443/tcp'
     permanent: true
     state: enabled
@@ -58,7 +58,7 @@
 - name: Create Yoda External User Service database
   become_user: postgres
   become: true
-  postgresql_db:
+  community.postgresql.postgresql_db:
     name: "{{ eus_db_name }}"
     encoding: UTF-8
     lc_collate: en_US.UTF-8
@@ -69,7 +69,7 @@
 - name: Create Yoda External User Service database user
   become_user: postgres
   become: true
-  postgresql_user:
+  community.postgresql.postgresql_user:
     db: "{{ eus_db_name }}"
     name: "{{ eus_db_user }}"
     password: "{{ eus_db_password }}"
@@ -96,7 +96,7 @@
 - name: Make sure database user has permissions on tables
   become_user: postgres
   become: true
-  postgresql_privs:
+  community.postgresql.postgresql_privs:
     database: "{{ eus_db_name }}"
     state: present
     privs: SELECT,INSERT,UPDATE,DELETE
@@ -113,7 +113,7 @@
 - name: Make sure database user has permissions on sequences
   become_user: postgres
   become: true
-  postgresql_privs:
+  community.postgresql.postgresql_privs:
     database: "{{ eus_db_name }}"
     state: present
     privs: USAGE

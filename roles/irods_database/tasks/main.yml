@@ -12,7 +12,7 @@
 - name: Create iCAT database
   become_user: postgres
   become: true
-  postgresql_db:
+  community.postgresql.postgresql_db:
     name: "{{ irods_database_name }}"
     encoding: UTF-8
     lc_collate: en_US.UTF-8
@@ -23,7 +23,7 @@
 - name: Create iRODS database user
   become_user: postgres
   become: true
-  postgresql_user:
+  community.postgresql.postgresql_user:
     db: "{{ irods_database_name }}"
     name: "{{ irods_database_user }}"
     password: "{{ irods_database_password }}"

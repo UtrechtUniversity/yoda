@@ -16,7 +16,7 @@
 
 
 - name: Add upload user pub key to authorized_keys of inbox
-  authorized_key:
+  ansible.posix.authorized_key:
     user: '{{ yoda_inbox_user }}'
     key: '{{ upload_pub_key | b64decode }}'
     state: present
