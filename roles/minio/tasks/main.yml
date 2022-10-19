@@ -57,7 +57,7 @@
 
 
 - name: Allow public access to MinIO web console
-  firewalld:
+  ansible.builtin.firewalld:
     port: '9090/tcp'
     permanent: true
     state: enabled
@@ -67,24 +67,6 @@
 
 - name: Flush handlers to restart MinIO if needed
   ansible.builtin.meta: flush_handlers
-
-
-- name: Ensure S3cmd configuration is present
-  ansible.builtin.template:
-    src: s3cfg.j2
-    dest: /var/lib/irods/.s3cfg
-    owner: irods
-    group: irods
-    mode: 0644
-
-
-- name: Ensure S3 keypair is present
-  ansible.builtin.template:
-    src: s3.keypair.j2
-    dest: /var/lib/irods/s3.keypair
-    owner: irods
-    group: irods
-    mode: 0644
 
 
 - name: Check S3 bucket for Yoda is present

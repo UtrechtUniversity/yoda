@@ -99,9 +99,10 @@
     - pam_python
     - irods_icat
     - irods_runtime
-    - irods_resource_plugin_s3
+    - role: irods_resource_plugin_s3
+      when: enable_s3_resource
     - role: minio
-      when: yoda_environment == "development"
+      when: enable_s3_resource and yoda_environment == "development"
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
@@ -122,6 +123,8 @@
   become: true
   roles:
     - irods_resource
+    - role: irods_resource_plugin_s3
+      when: enable_s3_resource
     - irods_runtime
     - irods_microservices
     - irods_completion
