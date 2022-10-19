@@ -1,0 +1,25 @@
+# Set the hosts and volumes MinIO uses at startup
+MINIO_VOLUMES="/mnt/data/minio-s3/minio"
+
+# Set all MinIO server options
+#
+# The following explicitly sets the MinIO Console listen address to
+# port 9001 on all network interfaces. The default behavior is dynamic
+# port selection.
+MINIO_OPTS="--console-address :9090"
+
+# Set the root username. This user has unrestricted permissions to
+# perform S3 and administrative API operations on any resource in the
+# deployment.
+#
+# Defer to your organizations requirements for superadmin user name.
+MINIO_ROOT_USER=minioadmin
+
+# Set the root password
+#
+# Use a long, random, unique string that meets your organizations
+# requirements for passwords.
+
+MINIO_ROOT_PASSWORD=minioadmin
+
+CI=true

@@ -115,6 +115,38 @@ irods_resources:
     children:
       - dev002
 
+  - name: dev003_1
+    resource_type: s3
+    host: "{{ irods_icat_fqdn }}"
+    vault_path: /yoda
+    context: "S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/.s3auth;S3_REGIONNAME=local-s3;S3_RETRY_COUNT=1;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=consistent;HOST_MODE=cacheless_attached"
+
+  - name: dev003_p1
+    resource_type: passthru
+    children:
+      - dev003_1
+
+  - name: dev003
+    resource_type: random
+    children:
+      - dev003_p1
+
+  - name: irodsRescReplS3
+    resource_type: random
+    children:
+      - dev003
+
+# List of replication resources
+irods_repl_resc:
+  - irodsRescRepl
+  - irodsRescReplS3
+
+# S3 configuration
+enable_s3_resource: False
+s3_access_key: minioadmin
+s3_secret_key: minioadmin
+s3_hostname: localhost:9000
+
 # Mail notifications
 send_notifications: 1                         # Enable notifications: yes (1) or no (0)
 notifications_sender_email: noreply@yoda.test # Notifiations sender email address

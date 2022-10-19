@@ -10,7 +10,7 @@ core_rulesets:
   - name: yoda-ruleset
     repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "development-s3"
     install_scripts: true
   - name: core
     ruleset_name: core
@@ -30,8 +30,9 @@ yoda_instance: "{{ instance }}"
 update_rulesets: true            # Update already installed rulesets with git
 update_schemas: 0                # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 yoda_random_id_length: 6         # Length of random ID to add to persistent identifier
-irods_default_resc: irodsResc
-irods_repl_resc: irodsRescRepl
+irods_default_resc: irodsResc    # Default resource
+irods_repl_resc:                 # List of replication resources
+  - irodsRescRepl
 irods_resc_trigger_pol: []
 
 # SURF config: separate resources for research and vault

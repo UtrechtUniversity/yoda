@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+enable_s3_resource: false
+
+irods_service_account: irods
+
+s3_access_key: PLACEHOLDER
+s3_secret_key: PLACEHOLDER
