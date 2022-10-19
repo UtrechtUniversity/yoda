@@ -14,6 +14,7 @@ Released: TBA
 - Support for DOI versions
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
+- Upgrade python-irodsclient to v1.1.5
 
 ### Known issues
 - Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
