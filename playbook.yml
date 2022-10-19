@@ -2,7 +2,8 @@
 # copyright Utrecht University
 # This playbook deploys a complete Yoda instance.
 
-- hosts: localhost
+- name: Check Ansible version
+  hosts: localhost
   gather_facts: false
   pre_tasks:
     - name: Verify Ansible version meets requirements
@@ -12,7 +13,8 @@
           "You must update Ansible to at least 2.9 to deploy Yoda."
 
 
-- hosts: all
+- name: Check repository branches
+  hosts: all
   gather_facts: false
   pre_tasks:
     - name: Retrieve Yoda repository branch

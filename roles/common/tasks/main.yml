@@ -1,8 +1,13 @@
 ---
 # copyright Utrecht University
 
-- import_tasks: hostname.yml
-- import_tasks: epel.yml
-- import_tasks: irods.yml
-- import_tasks: firewalld.yml
-- import_tasks: basics.yml
+- name: Setup hostname
+  ansible.builtin.import_tasks: hostname.yml
+- name: Setup EPEL repository
+  ansible.builtin.import_tasks: epel.yml
+- name: Setup iRODS repository
+  ansible.builtin.import_tasks: irods.yml
+- name: Setup firewalld
+  ansible.builtin.import_tasks: firewalld.yml
+- name: Setup basics
+  ansible.builtin.import_tasks: basics.yml

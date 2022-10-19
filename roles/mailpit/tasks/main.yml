@@ -43,7 +43,7 @@
 
 
 - name: Allow public access to mailpit web interface
-  firewalld:
+  ansible.posix.firewalld:
     port: '8025/tcp'
     permanent: true
     state: enabled

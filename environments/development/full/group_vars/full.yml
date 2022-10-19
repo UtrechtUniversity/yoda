@@ -177,7 +177,7 @@ eus_smtp_security: false
 eus_smtp_from_address: yoda@yoda.test
 eus_smtp_replyto_address: yoda@yoda.test
 eus_mail_template: uu
-external_users_domain_filter: uu.nl     # Domains to filter, separated by |
+external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated by |
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: true

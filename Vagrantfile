@@ -22,6 +22,11 @@ HOSTS = {
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.insert_key = false
 
+  config.trigger.before [:up, :provision] do |trigger|
+    trigger.info = 'Ensure we have a directory on the host to mount Yoda ruleset for UI/API tests.'
+    trigger.run = { inline: '/bin/bash -c "test -d ./test || mkdir ./test"' }
+  end
+
   HOSTS.each do | (name, cfg) |
     ipaddr, cpu, ram, gui, box = cfg
 
@@ -34,6 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vbox.memory = ram
         vbox.name   = name
         vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+        vbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       end
 
       machine.vm.provider :libvirt do |libvirt|
@@ -45,6 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine.vm.hostname = name + DOMAIN
       machine.vm.network 'private_network', ip: ipaddr, netmask: NETMASK
       machine.vm.synced_folder ".", "/vagrant", disabled: true
+      machine.vm.synced_folder "test/", "/etc/irods/yoda-ruleset", mount_options: ["uid=995", "gid=993"]
       machine.vm.provision "shell",
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
       machine.vm.provision "shell",

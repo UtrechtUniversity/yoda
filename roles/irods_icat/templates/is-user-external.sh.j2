@@ -1,8 +1,10 @@
 #!/bin/bash
 # {{ ansible_managed }}
 
-{% if external_users_domain_filter  %}
-[[ "$PAM_USER" =~ .*@.* ]] && [[ ! "$PAM_USER" =~ [.@]({{external_users_domain_filter | replace('.', '\.')}})$ ]]
+{% if external_users_domain_filter and external_users_exact_match %}
+[[ "$PAM_USER" =~ .*@.* ]] && [[ ! "$PAM_USER" =~ ^[A-Za-z0-9._%+-]+@({{external_users_domain_filter | replace (' ','') | replace('.', '\.')}})$ ]]
+{% elif external_users_domain_filter %}
+[[ "$PAM_USER" =~ .*@.* ]] && [[ ! "$PAM_USER" =~ [.@]({{external_users_domain_filter | replace (' ','') | replace('.', '\.')}})$ ]]
 {% else %}
 [[ "$PAM_USER" =~ .*@.* ]]
 {% endif %}

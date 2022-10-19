@@ -56,3 +56,4 @@ datarequest_help_contact_email: PLACEHOLDER        # Help contact email
 
 # Data Access Tokens
 enable_tokens: false                               # Enable data access tokens for webDAV and iCommands
+token_lifetime: 72                                 # Lifetime of data access tokens (in hours)

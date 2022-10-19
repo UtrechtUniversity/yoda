@@ -2,7 +2,8 @@
 # copyright Utrecht University
 # This playbook provisions Yoda instance with the Zabbix agent, PostgreSQL monitoring and Zabbix user access to the database.
 
-- hosts: localhost
+- name: Check Ansible version
+  hosts: localhost
   gather_facts: false
   pre_tasks:
     - name: Verify Ansible version meets requirements
@@ -12,7 +13,8 @@
           "You must update Ansible to at least 2.9 to deploy Yoda."
 
 
-- hosts: all
+- name: Check repository branches
+  hosts: all
   pre_tasks:
     - name: Retrieve Yoda repository branch
       ansible.builtin.shell: |

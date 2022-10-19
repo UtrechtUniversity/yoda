@@ -134,7 +134,7 @@
 
 
 - name: Set SELinux context for shared libraries
-  sefcontext:
+  community.general.sefcontext:
     target: '/var/www/yoda/venv/.*\.so(\..*)?'
     setype: httpd_sys_script_exec_t
     state: present
@@ -148,12 +148,13 @@
 
 
 - name: Allow Flask to connect to OpenSearch
-  seboolean:
+  ansible.posix.seboolean:
     name: httpd_can_network_connect
     state: true
     persistent: true
   when: ansible_selinux.status == "enabled" and enable_open_search
 
 
-- include_tasks: setup-development-environment.yml
+- name: Setup NPM development environment
+  ansible.builtin.include_tasks: setup-development-environment.yml
   when: yoda_environment == "development"

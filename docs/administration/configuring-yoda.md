@@ -142,6 +142,8 @@ yoda_environment             | Yoda environment: development, testing, acceptanc
 yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_logo_path       | Path of the DavRODS logo on the portal. Defaults to the themed logo.
+yoda_davrods_logo_link       | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
 yoda_enable_httpd            | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
 httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.
 
@@ -323,7 +325,7 @@ eus_mail_template            | External User Service mail template
 Variable   | Description
 -----------|---------------------------------------------
 oidc_active         | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
-oidc_domains        | Domains that should use OIDC (list)
+oidc_domains        | Domains that should use OIDC (list). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
 oidc_client_id		| OIDC Client Id
 oidc_client_secret	| OIDC Client Secret/Password
 oidc_callback_url   | OIDC Callback url

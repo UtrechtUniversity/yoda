@@ -123,6 +123,20 @@
     - disable-indexing.sh
 
 
+- name: Copy tape archive scripts to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/etc/irods/yoda-ruleset/tools/tape_archive/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: 0755
+  when: not ansible_check_mode and enable_tape_archive
+  with_items:
+    - admin-tape-archive-set-state.sh
+    - async-tape-archive-replicate.sh
+
+
 - name: Ensure metadata schemas are installed
   become_user: "{{ irods_service_account }}"
   become: true
@@ -163,7 +177,7 @@
     '*update={{ update_schemas }}'
   register: install_default_schema
   when: (update_schemas == 1) or
-        (installed_defaults|json_query('results[*].stderr')|join(' ') is search('does not exist'))
+        (installed_defaults | json_query('results[*].stderr') | join(' ') is search('does not exist'))
   changed_when: install_default_schema.stdout is search('(Installed|Updated)')
 
 
@@ -274,7 +288,7 @@
     group: '{{ irods_service_account }}'
     mode: '0644'
   # This script is provided by the test playbook for development/test servers.
-  when: enable_intake and yoda_environment not in ["development","testing"]
+  when: enable_intake and yoda_environment not in ["development", "testing"]
 
 
 - name: Install script for clearing locks after moving intake collections
@@ -287,7 +301,7 @@
     group: '{{ irods_service_account }}'
     mode: '0644'
   # This script is provided by the test playbook for development/test servers.
-  when: enable_intake and yoda_environment not in ["development","testing"]
+  when: enable_intake and yoda_environment not in ["development", "testing"]
 
 
 - name: Configure cronjob to process publications
@@ -325,7 +339,7 @@
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0755'
-  when: enable_intake or yoda_environment in ["development","testing"]
+  when: enable_intake or yoda_environment in ["development", "testing"]
 
 
 - name: Configure cronjob for moving collections from intake to vault
@@ -337,38 +351,13 @@
     name: 'job_movetovault.r'
     minute: '*/5'
     job: '/var/lib/irods/.irods/run-intake-movetovault.sh >& /dev/null'
-  when: enable_intake or yoda_environment in ["development","testing"]
-
-
-- name: Ensure that ExecCmd dir exists
-  ansible.builtin.file:
-    path: /var/lib/irods/msiExecCmd_bin
-    owner: '{{ irods_service_account }}'
-    group: '{{ irods_service_account }}'
-    mode: 0755
-    state: directory
-  when: not ansible_check_mode
-
-
-- name: Copy scripts to ExecCmd dir
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.copy:
-    remote_src: true
-    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
-    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
-  when: not ansible_check_mode
-  with_items:
-    - securecopy.sh
-    - scheduled-copytovault.sh
-    - admin-vaultactions.sh
-    - admin-vaultingest.sh
+  when: enable_intake or yoda_environment in ["development", "testing"]
 
 
 - name: Set configuration AVUs for research ruleset to system collection
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa fqcn[action]
   irods_setavu:
     name: "/{{ irods_zone }}/yoda"
     irods_type: Collection
@@ -399,6 +388,7 @@
 - name: Set configuration AVUs for anonymous davrods vhosts
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa fqcn[action]
   irods_setavu:
     name: "/{{ irods_zone }}/yoda"
     irods_type: Collection

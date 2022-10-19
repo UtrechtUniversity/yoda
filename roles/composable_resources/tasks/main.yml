@@ -4,6 +4,7 @@
 - name: Ensure all resources exist
   become_user: irods
   become: true
+  # noqa fqcn[action]
   irods_resource:
     name: "{{ item.name }}"
     resource_type: "{{ item.resource_type }}"
@@ -17,6 +18,7 @@
 - name: Ensure iRODS default resource is set in irods_environment.json
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: 'irods_default_resource'
@@ -26,6 +28,7 @@
 - name: Ensure iRODS default resource is set in server_config.json
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_config:
     path: '/etc/irods/server_config.json'
     key: 'default_resource_name'

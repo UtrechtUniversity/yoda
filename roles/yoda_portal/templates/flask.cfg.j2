@@ -12,6 +12,7 @@ DEPOSIT_ENABLED     = {{ enable_deposit }}
 INTAKE_ENABLED      = {{ enable_intake }}
 DATAREQUEST_ENABLED = {{ enable_datarequest }}
 TOKENS_ENABLED      = {{ enable_tokens }}
+TOKEN_LIFETIME      = {{ token_lifetime }}
 JSON_SORT_KEYS      = False  # Check if this is still needed with Python v3.7?
 
 # Flask-Session configuration
@@ -93,4 +94,4 @@ YODA_EUS_FQDN = '{{ yoda_eus_fqdn | default("") }}'
 
 # Data request module configuration
 DATAREQUEST_HELP_CONTACT_NAME  = '{{ datarequest_help_contact_name }}'
-DATAREQUEST_HELP_CONTACT_EMAIL = '{{ datarequest_help_contact_name }}'
+DATAREQUEST_HELP_CONTACT_EMAIL = '{{ datarequest_help_contact_email }}'
