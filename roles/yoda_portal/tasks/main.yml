@@ -15,46 +15,6 @@
     mode: 0711
 
 
-- name: Check for presence of .git directory
-  become_user: "{{ yoda_deployment_user }}"
-  become: true
-  ansible.builtin.stat:
-    path: /var/www/yoda/.git
-  register: git
-
-
-- name: Checkout Yoda portal in temporary location
-  become_user: "{{ yoda_deployment_user }}"
-  become: true
-  ansible.builtin.git:
-    repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
-    dest: "/var/www/yoda/git"
-    version: "{{ yoda_portal_version }}"
-  when: not git.stat.exists
-
-
-- name: Move Yoda portal repository to the correct location
-  become_user: "{{ yoda_deployment_user }}"
-  become: true
-  ansible.builtin.command: mv "/var/www/yoda/git/.git" "/var/www/yoda/.git"
-  when: not git.stat.exists
-
-
-- name: Delete legacy portal files
-  become_user: "{{ yoda_deployment_user }}"
-  become: true
-  ansible.builtin.file:
-    state: absent
-    path: "{{ item }}"
-  with_items:
-    - "/var/www/yoda/public"
-    - "/var/www/yoda/yoda-portal"
-    - "/var/www/yoda/irods-php"
-    - "/var/www/yoda/CodeIgniter"
-    - "/var/www/yoda/git"
-  when: not git.stat.exists
-
-
 - name: Checkout Yoda portal
   become_user: "{{ yoda_deployment_user }}"
   become: true
@@ -144,7 +104,7 @@
 
 - name: Ensure selinux context is enforced on shared libraries
   ansible.builtin.command: 'restorecon -r /var/www/yoda/venv'
-  when: ansible_selinux.status == "enabled"
+  when: ansible_selinux.status == "enabled" and filescontext.changed
 
 
 - name: Allow Flask to connect to OpenSearch

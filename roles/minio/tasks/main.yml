@@ -75,6 +75,7 @@
   ansible.builtin.shell: s3cmd ls | grep yoda  # noqa no-changed-when
   register: bucket_check
   ignore_errors: true
+  changed_when: false
 
 
 - name: Ensure S3 bucket for Yoda is present

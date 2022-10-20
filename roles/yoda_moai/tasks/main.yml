@@ -7,14 +7,7 @@
     home: '{{ yoda_moai_home }}'
 
 
-- name: Delete legacy Yoda MOAI files
-  become: true
-  ansible.builtin.file:
-    state: absent
-    path: "{{ yoda_moai_home }}/venv"
-
-
-- name: Check out Yoda MOAI from Github
+- name: Check out Yoda MOAI
   become_user: '{{ yoda_moai_user }}'
   become: true
   ansible.builtin.git:
@@ -33,11 +26,12 @@
 
 
 - name: Ensure Yoda MOAI dependencies are installed
-  ansible.builtin.pip:
+  ansible.builtin.pip: # noqa no-handler
     name: '{{ yoda_moai_home }}/yoda-moai'
     extra_args: -e
     virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
     virtualenv_python: python3.6
+  when: repochanges.changed
   notify: Restart Apache webserver
 
 
@@ -122,7 +116,7 @@
 
 - name: Ensure selinux context is enforced on shared libraries
   ansible.builtin.command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
-  when: ansible_selinux.status == "enabled"
+  when: ansible_selinux.status == "enabled" and filescontext.changed
 
 
 - name: Set SELinux context for Yoda MOAI database
@@ -136,7 +130,7 @@
 
 - name: Ensure selinux context is enforced on Yoda MOAI database
   ansible.builtin.command: 'restorecon {{ yoda_moai_home }}/moai.db'
-  when: filecontext is changed and ansible_selinux.status == "enabled"
+  when: ansible_selinux.status == "enabled" and filecontext is changed
 
 
 - name: Configure cronjob to update MOAI database

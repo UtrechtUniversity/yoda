@@ -33,17 +33,6 @@
     - '{{ landingpages_root }}/static/js/'
 
 
-- name: Ensure Yoda (< v1.5) landingpage static files are absent
-  ansible.builtin.file:
-    path: '{{ item }}'
-    state: absent
-  with_items:
-    - '{{ landingpages_root }}/static/css/yoda-landingpage.css'
-    - '{{ landingpages_root }}/static/img/logo-uu.svg'
-    - '{{ landingpages_root }}/static/js/jquery-3.2.1.min.js'
-    - '{{ landingpages_root }}/static/js/main.js'
-
-
 - name: Ensure Yoda landingpage static files are present
   ansible.builtin.copy:
     src: '{{ item.src }}'
