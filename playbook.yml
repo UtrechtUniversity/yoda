@@ -8,9 +8,9 @@
   pre_tasks:
     - name: Verify Ansible version meets requirements
       ansible.builtin.assert:
-        that: "ansible_version.full is version('2.11', '>=')"
+        that: "ansible_version.full is version('2.9', '>=')"
         msg: >
-          "You must update Ansible to at least 2.11 to deploy Yoda."
+          "You must update Ansible to at least 2.9 to deploy Yoda."
 
 
 - name: Check repository branches
