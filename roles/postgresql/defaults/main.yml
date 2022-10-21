@@ -9,7 +9,7 @@ openssl_crt_signed: localhost.crt
 
 # General PostgreSQL configuration
 postgresql_timezone: 'Europe/Amsterdam'
-postgresql_max_connections: 200
+postgresql_max_connections: 100
 
 # PostgreSQL performance-related configuration
 postgresql_shared_buffers: 32MB
