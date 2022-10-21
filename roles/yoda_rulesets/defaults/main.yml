@@ -51,6 +51,7 @@ schemas:
   - teclab-0
   - teclab-1
   - dag-0
+  - vollmer-0
 
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 

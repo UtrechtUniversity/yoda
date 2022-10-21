@@ -152,7 +152,7 @@
   ansible.builtin.shell: |
     imkdir /{{ irods_zone }}/yoda
 
-  when: (not ansible_check_mode) and (system_collection.stderr.find('does not exist') >= 0)
+  when: not ansible_check_mode and system_collection.stderr.find('does not exist') >= 0
 
 
 - name: Find out if metadata schemas system collection exists
@@ -171,7 +171,7 @@
     imkdir /{{ irods_zone }}/yoda/schemas
     ichmod -rM inherit /{{ irods_zone }}/yoda/schemas
     ichmod -rM read public /{{ irods_zone }}/yoda/schemas
-  when: (not ansible_check_mode) and (schemas_installed.stderr.find('does not exist') >= 0)
+  when: not ansible_check_mode and schemas_installed.stderr.find('does not exist') >= 0
 
 
 - name: Ensure metadata schemas are present
@@ -181,7 +181,7 @@
     set -o pipefail
     irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item }}/ i:/{{ irods_zone }}/yoda/schemas/{{ item }}/ | grep sync
   register: metadata_schema
-  when: update_schemas == 1
+  when: not ansible_check_mode and update_schemas == 1
   failed_when: metadata_schema.rc not in [0, 1]
   changed_when: metadata_schema.stdout_lines | length != 2
   with_items: "{{ schemas }}"
@@ -194,7 +194,7 @@
     set -o pipefail
     irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ default_yoda_schema }}/ i:/{{ irods_zone }}/yoda/schemas/default/ | grep sync
   register: default_metadata
-  when: update_schemas == 1
+  when: not ansible_check_mode and update_schemas == 1
   failed_when: default_metadata.rc not in [0, 1]
   changed_when: default_metadata.stdout_lines | length != 2
 
