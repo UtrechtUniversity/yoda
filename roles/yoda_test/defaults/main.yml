@@ -198,6 +198,7 @@ test_groupusers:
 
   - {groupName: grp-datamanager-initial, user: datamanager,           role: manager}
   - {groupName: grp-datamanager-initial, user: datamanager@yoda.test, role: manager}
+  - {groupName: grp-datamanager-initial, user: rods,                  role: normal}
 
   - {groupName: grp-intake-test, user: researcher,             role: normal}
   - {groupName: grp-intake-test, user: researcher@yoda.test,   role: normal}
@@ -208,6 +209,7 @@ test_groupusers:
 
   - {groupName: grp-datamanager-test, user: datamanager,           role: manager}
   - {groupName: grp-datamanager-test, user: datamanager@yoda.test, role: manager}
+  - {groupName: grp-datamanager-test, user: rods,                  role: normal}
 
   - {groupName: datarequests-research-project-managers,      user: projectmanager, role: manager}
   - {groupName: datarequests-research-data-access-committee, user: dacmember,      role: manager}
