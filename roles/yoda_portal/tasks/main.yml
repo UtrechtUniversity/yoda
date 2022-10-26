@@ -113,8 +113,3 @@
     state: true
     persistent: true
   when: ansible_selinux.status == "enabled" and enable_open_search
-
-
-- name: Setup NPM development environment
-  ansible.builtin.include_tasks: setup-development-environment.yml
-  when: yoda_environment == "development"

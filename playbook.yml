@@ -66,6 +66,8 @@
       when: "'davrods' not in group_names"
     - role: yoda_davrods
       when: "'davrods' not in group_names"
+    - role: nvm
+      when: yoda_environment == "development"
   tags:
     - portal
 
