@@ -204,4 +204,5 @@
   yoda_removegroupuser:
     groupName: '{{ item.groupName }}'
     user: 'rods'
+  when: item.groupName not in intake_datamanager_groups
   with_items: '{{ test_groups }}'

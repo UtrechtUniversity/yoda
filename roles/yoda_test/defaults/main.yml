@@ -224,6 +224,10 @@ test_groupusers:
   - {groupName: datarequests-research-data-access-committee, user: dacmember,      role: manager}
   - {groupName: datarequests-research-datamanagers,          user: datamanager,    role: manager}
 
+intake_datamanager_groups:
+  - grp-datamanager-initial
+  - grp-datamanager-test
+
 deletion_research_groups:
   - research: default-0
   - research: default-1
