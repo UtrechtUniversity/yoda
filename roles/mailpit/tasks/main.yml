@@ -1,13 +1,13 @@
 ---
 # copyright Utrecht University
 
-
 - name: Disable Postfix, if installed
   ansible.builtin.service:
     name: postfix
     enabled: false
     state: stopped
   ignore_errors: true
+
 
 - name: Create mailpit directories
   ansible.builtin.file:
