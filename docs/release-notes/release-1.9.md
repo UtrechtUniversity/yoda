@@ -12,6 +12,7 @@ Released: TBA
 ## What's new
 ### Features
 - Support for DOI versions
+- Support for [Data Access Passwords](../design/overview/authentication.md) expiration notifications
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
 - Upgrade python-irodsclient to v1.1.5
