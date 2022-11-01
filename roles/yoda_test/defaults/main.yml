@@ -39,6 +39,7 @@ created_by_ta_users:
   - name: uidemote
 
 test_groups:
+  - {groupName: research-hdr-c0-tl1,   category: core-0,    subcategory: core-0,    dataClassification: unspecified, schema_id: teclab-1}
   - {groupName: research-core-0,       category: core-0,    subcategory: core-0,    dataClassification: unspecified}
   - {groupName: datamanager-core-0,    category: core-0,    subcategory: core-0,    dataClassification: ""}
   - {groupName: research-core-1,       category: core-1,    subcategory: core-1,    dataClassification: unspecified}
