@@ -15,7 +15,16 @@
     state: absent
 
 
-- name: Ensure iRODS runtime is installed
-  ansible.builtin.package:
-    name: irods-runtime-4.3.0-1
+- name: Download iRODS runtime package
+  ansible.builtin.get_url:
+    url: "{{ irods_runtime.url }}"
+    dest: "{{ rpm_dest_dir }}/{{ irods_runtime.filename }}"
+    checksum: "{{ irods_runtime.checksum }}"
+    mode: 0644
+
+
+- name: Install iRODS runtime package from downloaded rpm
+  ansible.builtin.yum:
+    name: "{{ rpm_dest_dir }}/{{ irods_runtime.filename }}"
     state: present
+  when: not ansible_check_mode

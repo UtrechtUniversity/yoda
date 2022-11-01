@@ -1,0 +1,8 @@
+rpm_dest_dir: /tmp
+  
+# patched irods_runtime
+irods_runtime:
+  package: irods-runtime-4.3.0-1
+  url: https://github.com/dworkin/irods/releases/download/4.3.0.1/irods-runtime-4.3.0-1.x86_64.rpm
+  filename: irods-runtime-4.3.0-1.x86_64.rpm
+  checksum: sha256:6d6c1f15bb7eb4091db88468d3a01fb65310d90d28bc006706b7e095db5ae0c5

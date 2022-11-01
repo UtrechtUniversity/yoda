@@ -60,9 +60,9 @@
       when: yoda_environment == "testing"
     - python3
     - yoda_portal
-    - role: irods_icommands
-      when: "'davrods' not in group_names"
     - role: irods_runtime
+      when: "'davrods' not in group_names"
+    - role: irods_icommands
       when: "'davrods' not in group_names"
     - role: yoda_davrods
       when: "'davrods' not in group_names"
@@ -75,8 +75,8 @@
   become: true
   roles:
     - apache
-    - irods_icommands
     - irods_runtime
+    - irods_icommands
     - yoda_davrods
   tags:
     - davrods
@@ -98,8 +98,8 @@
   roles:
     - python3
     - pam_python
-    - irods_icat
     - irods_runtime
+    - irods_icat
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
@@ -120,8 +120,8 @@
   become: true
   roles:
     - python3
-    - irods_resource
     - irods_runtime
+    - irods_resource
     - irods_microservices
     - irods_completion
   tags:
