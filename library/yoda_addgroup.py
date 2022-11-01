@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017-2018 Utrecht University
+# Copyright (c) 2017-2022 Utrecht University
 # GNU General Public License v3.0
 
 ANSIBLE_METADATA = {
@@ -46,7 +46,7 @@ def main():
     groupName = module.params["groupName"]
     category = module.params["category"]
     subcategory = module.params["subcategory"]
-    schema_id = module.params["schema_id"] if schema_id in module.params else category
+    schema_id = module.params["schema_id"]
     description = module.params["description"]
     dataClassification = module.params["dataClassification"]
     state = module.params["state"]
