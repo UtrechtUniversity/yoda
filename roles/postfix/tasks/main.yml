@@ -12,7 +12,7 @@
 
 
 - name: "Configure Postfix"
-  ini_file:
+  community.general.ini_file:
     path: /etc/postfix/main.cf
     section:
     option: "{{ item.key }}"
@@ -34,7 +34,7 @@
 
 
 - name: "Configure Postfix SASL for SMTP delivery via TLS"
-  ini_file:
+  community.general.ini_file:
     section:
     path: /etc/postfix/main.cf
     option: "{{ item.key }}"
@@ -55,7 +55,7 @@
 
 
 - name: "Configure Postfix debugging parameters"
-  ini_file:
+  community.general.ini_file:
     path: /etc/postfix/main.cf
     section:
     option: "{{ item.key }}"

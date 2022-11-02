@@ -171,6 +171,15 @@ irods_rum_job_enabled                | Whether to enable the daily RUM job for r
 irods_rum_job_hour                   | Time to run RUM job - hour (default: 20)
 irods_rum_job_minute                 | Time to run RUM job - minute (default: 0)
 
+### S3 configuration - for iRODS S3 resource plugin and s3cmd utilities
+
+Variable                             | Description
+-------------------------------------|---------------------------------
+enable_s3_resource                   | Enable [iRODS S3 Resource Plugin](https://github.com/irods/irods_resource_plugin_s3). Default: false
+s3_access_key                        | S3 access key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
+s3_secret_key                        | S3 secret key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
+s3_hostname                          | S3 server hostname (used by s3cmd; the hostname used by the S3 resource plugin is configured in the S3 resource contexts instead)
+
 ### Research module configuration
 
 Variable   | Description
@@ -283,14 +292,15 @@ epic_cert                    | EPIC PID cert (base64 encoded)
 
 ### Data Access Tokens configuration
 
-Variable                | Description
-------------------------|------------------------------------
-enable_tokens           | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
-token_database          | Location of the database that contain the tokens
-token_database_password | Token database password
-token_length            | Length of data access tokens
-token_lifetime          | Lifetime of data access tokens (in hours) (in hours)
-enable_radius_fallback  | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
+Variable                      | Description
+------------------------------|------------------------------------
+enable_tokens                 | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
+token_database                | Location of the database that contain the tokens
+token_database_password       | Token database password
+token_length                  | Length of data access tokens
+token_lifetime                | Lifetime of data access tokens (in hours)
+token_expiration_notification | Send notification before token expiration (in hours)
+enable_radius_fallback        | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
 
 ### Public host configuration
 
@@ -325,7 +335,7 @@ eus_mail_template            | External User Service mail template
 Variable   | Description
 -----------|---------------------------------------------
 oidc_active         | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
-oidc_domains        | Domains that should use OIDC (list)
+oidc_domains        | Domains that should use OIDC (list). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
 oidc_client_id		| OIDC Client Id
 oidc_client_secret	| OIDC Client Secret/Password
 oidc_callback_url   | OIDC Callback url

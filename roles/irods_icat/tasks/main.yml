@@ -206,6 +206,7 @@
 - name: Ensure iCAT host is defined
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_config:
     path: '/etc/irods/server_config.json'
     key: 'icat_host'
@@ -215,6 +216,7 @@
 - name: Ensure iRODS host is defined
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: 'irods_host'
@@ -224,6 +226,7 @@
 - name: Set delayed rule sleep time to 10 seconds
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_advanced:
     path: '/etc/irods/server_config.json'
     key: 'rule_engine_server_sleep_time_in_seconds'
@@ -287,6 +290,7 @@
 - name: Ensure Python plugin is configured
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_python:
     config_path: '/etc/irods/server_config.json'
   when: not ansible_check_mode
@@ -295,6 +299,7 @@
 - name: Ensure indexing plugin is configured
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_indexing:
     config_path: '/etc/irods/server_config.json'
     index_server: '{{ opensearch_server }}'
@@ -319,7 +324,7 @@
 
 
 - name: Enable ports for iCAT in firewall
-  firewalld:
+  ansible.posix.firewalld:
     port: '{{ item }}'
     permanent: true
     state: enabled
@@ -381,6 +386,7 @@
 - name: Ensure iRODS is configured to use SSL
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: '{{ item.key }}'
@@ -434,7 +440,7 @@
 
 
 - name: Ensure iRODS is configured to use SSL connection to database
-  ini_file:
+  community.general.ini_file:
     path: /var/lib/irods/.odbc.ini
     section: postgres
     option: 'sslmode'
@@ -475,6 +481,7 @@
 - name: Ensure Yoda anonymous user exists
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_mkuser:
     name: anonymous
   when: not ansible_check_mode
@@ -550,5 +557,6 @@
     name: 'iRODS RUM job for removing unused metadata entries'
 
 
-- include_tasks: setup_pam.yml
+- name: Setup PAM
+  ansible.builtin.include_tasks: setup_pam.yml
   when: irods_authentication_scheme == "PAM"

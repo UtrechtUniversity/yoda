@@ -186,7 +186,7 @@
   become: true
   ansible.builtin.cron:
     name: 'job_checksums.r'
-    minute: '*/5'
+    minute: '*/7'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /var/lib/irods/.irods/job_checksums.r >> /var/lib/irods/log/job_checksums.log 2>&1'
 
 
@@ -204,4 +204,5 @@
   yoda_removegroupuser:
     groupName: '{{ item.groupName }}'
     user: 'rods'
+  when: item.groupName not in intake_datamanager_groups
   with_items: '{{ test_groups }}'

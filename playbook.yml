@@ -66,6 +66,8 @@
       when: "'davrods' not in group_names"
     - role: yoda_davrods
       when: "'davrods' not in group_names"
+    - role: nvm
+      when: yoda_environment == "development"
   tags:
     - portal
 
@@ -100,6 +102,10 @@
     - pam_python
     - irods_runtime
     - irods_icat
+    - role: irods_resource_plugin_s3
+      when: enable_s3_resource
+    - role: minio
+      when: enable_s3_resource and yoda_environment == "development"
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
@@ -122,6 +128,9 @@
     - python3
     - irods_runtime
     - irods_resource
+    - role: irods_resource_plugin_s3
+      when: enable_s3_resource
+    - irods_runtime
     - irods_microservices
     - irods_completion
   tags:

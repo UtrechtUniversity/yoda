@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017-2018 Utrecht University
+# Copyright (c) 2017-2022 Utrecht University
 # GNU General Public License v3.0
 
 ANSIBLE_METADATA = {
@@ -52,6 +52,9 @@ def main():
 
     resource_type = module.params["resource_type"]
     context = module.params["context"]
+    if not context:
+        context = None
+
     state = module.params["state"]
 
     if IRODSCLIENT_AVAILABLE:
