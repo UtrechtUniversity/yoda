@@ -1,5 +1,9 @@
+---
+# copyright Utrecht University
+
+# Temporary directory to store downloaded rpm files.
 rpm_dest_dir: /tmp
-  
+
 # patched irods_runtime
 irods_runtime:
   package: irods-runtime-4.3.0-1
