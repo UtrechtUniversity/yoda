@@ -57,7 +57,9 @@ test_groups:
   - {groupName: research-teclab-0,     category: teclab-0,  subcategory: teclab-0,  dataClassification: unspecified}
   - {groupName: datamanager-teclab-0,  category: teclab-0,  subcategory: teclab-0,  dataClassification: ""}
   - {groupName: research-teclab-1,     category: teclab-1,  subcategory: teclab-1,  dataClassification: unspecified}
-  - {groupName: datamanager-teclab-1,  category: teclab-1,  subcategory: teclab-1,  dataClassification: ""}
+  - {groupName: datamanager-teclab-1,  category: vollmer-0, subcategory: vollmer-0, dataClassification: ""}
+  - {groupName: research-vollmer-0,    category: vollmer-0, subcategory: vollmer-0, dataClassification: unspecified}
+  - {groupName: datamanager-vollmer-0, category: vollmer-0, subcategory: vollmer-0, dataClassification: ""}
 
   - {groupName: research-initial,    category: initial, subcategory: initial, dataClassification: unspecified}
   - {groupName: research-initial1,   category: initial, subcategory: initial, dataClassification: unspecified}
@@ -143,6 +145,13 @@ test_groupusers:
   - {groupName: datamanager-teclab-1, user: datamanager@yoda.test, role: manager}
   - {groupName: datamanager-teclab-1, user: functionaladminpriv,   role: manager}
 
+  - {groupName: research-vollmer-0,    user: researcher,            role: normal}
+  - {groupName: research-vollmer-0,    user: researcher@yoda.test,  role: normal}
+  - {groupName: research-vollmer-0,    user: functionaladminpriv,   role: manager}
+  - {groupName: datamanager-vollmer-0, user: datamanager,           role: manager}
+  - {groupName: datamanager-vollmer-0, user: datamanager@yoda.test, role: manager}
+  - {groupName: datamanager-vollmer-0, user: functionaladminpriv,   role: manager}
+
   - {groupName: research-dag-0,    user: researcher,            role: normal}
   - {groupName: research-dag-0,    user: researcher@yoda.test,  role: normal}
   - {groupName: research-dag-0,    user: functionaladminpriv,   role: manager}
@@ -199,6 +208,7 @@ test_groupusers:
 
   - {groupName: grp-datamanager-initial, user: datamanager,           role: manager}
   - {groupName: grp-datamanager-initial, user: datamanager@yoda.test, role: manager}
+  - {groupName: grp-datamanager-initial, user: rods,                  role: normal}
 
   - {groupName: grp-intake-test, user: researcher,             role: normal}
   - {groupName: grp-intake-test, user: researcher@yoda.test,   role: normal}
@@ -209,10 +219,15 @@ test_groupusers:
 
   - {groupName: grp-datamanager-test, user: datamanager,           role: manager}
   - {groupName: grp-datamanager-test, user: datamanager@yoda.test, role: manager}
+  - {groupName: grp-datamanager-test, user: rods,                  role: normal}
 
   - {groupName: datarequests-research-project-managers,      user: projectmanager, role: manager}
   - {groupName: datarequests-research-data-access-committee, user: dacmember,      role: manager}
   - {groupName: datarequests-research-datamanagers,          user: datamanager,    role: manager}
+
+intake_datamanager_groups:
+  - grp-datamanager-initial
+  - grp-datamanager-test
 
 deletion_research_groups:
   - research: default-0
@@ -225,6 +240,7 @@ deletion_research_groups:
   - research: core-0
   - research: core-1
   - research: dag-0
+  - research: vollmer-0
   - research: initial
   - research: initial1
   - research: revisions
@@ -243,6 +259,7 @@ deletion_datamanager_groups:
   - datamanager: core-0
   - datamanager: core-1
   - datamanager: dag-0
+  - datamanager: vollmer-0
   - datamanager: initial
 
 deletion_grp_groups:

@@ -119,7 +119,7 @@ irods_resources:
     resource_type: s3
     host: "{{ irods_icat_fqdn }}"
     vault_path: /yoda
-    context: "S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/.s3auth;S3_REGIONNAME=local-s3;S3_RETRY_COUNT=1;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=consistent;HOST_MODE=cacheless_attached"
+    context: "S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/.s3auth;S3_REGIONNAME=local-s3;S3_RETRY_COUNT=1;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached"
 
   - name: dev003_p1
     resource_type: passthru

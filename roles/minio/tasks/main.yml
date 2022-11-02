@@ -69,6 +69,12 @@
   ansible.builtin.meta: flush_handlers
 
 
+- name: Ensure MinIO service is started
+  ansible.builtin.service:
+    name: minio
+    state: started
+
+
 - name: Check S3 bucket for Yoda is present
   become_user: irods
   become: true

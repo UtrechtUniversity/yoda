@@ -292,14 +292,15 @@ epic_cert                    | EPIC PID cert (base64 encoded)
 
 ### Data Access Tokens configuration
 
-Variable                | Description
-------------------------|------------------------------------
-enable_tokens           | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
-token_database          | Location of the database that contain the tokens
-token_database_password | Token database password
-token_length            | Length of data access tokens
-token_lifetime          | Lifetime of data access tokens (in hours) (in hours)
-enable_radius_fallback  | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
+Variable                      | Description
+------------------------------|------------------------------------
+enable_tokens                 | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
+token_database                | Location of the database that contain the tokens
+token_database_password       | Token database password
+token_length                  | Length of data access tokens
+token_lifetime                | Lifetime of data access tokens (in hours)
+token_expiration_notification | Send notification before token expiration (in hours)
+enable_radius_fallback        | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
 
 ### Public host configuration
 
