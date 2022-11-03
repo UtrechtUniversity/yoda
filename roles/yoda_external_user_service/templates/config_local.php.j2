@@ -10,6 +10,14 @@ config('db_user_table', '{{ eus_db_user_table }}');
 
 config('api_secret',    '{{ eus_api_secret }}');
 
+config('smtp_auth',            {{ eus_smtp_auth }});
+
+{% if eus_smtp_security == "false" %}
+config('smtp_security',         {{ eus_smtp_security }});
+{% else %}
+config('smtp_security',        '{{ eus_smtp_security }}');
+{% endif %}
+
 config('smtp_host',            '{{ eus_smtp_host }}');
 config('smtp_port',            '{{ eus_smtp_port }}');
 config('smtp_user',            '{{ eus_smtp_user }}');
