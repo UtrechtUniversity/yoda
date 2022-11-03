@@ -50,6 +50,9 @@ token_lifetime: 72                                      # Lifetime of data acces
 # DMF tape archive
 enable_tape_archive: false
 
+# iRODS consistency check
+enable_irods_consistency_check: true
+
 # Portal customization
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)

@@ -1,0 +1,18 @@
+---
+# copyright Utrecht University
+
+- name: Ensure iRODS consistency check virtualenv exists
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: python3 -m virtualenv "/var/lib/irods/irods-consistency-check"
+  args:
+    creates: /var/lib/irods/irods-consistency-check
+
+
+- name: Ensure iRODS consistency check is installed
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.pip:
+    name: git+https://github.com/UtrechtUniversity/irods-consistency-check.git@v2.0.0
+    virtualenv: '/var/lib/irods/irods-consistency-check'
+    virtualenv_python: python3.6

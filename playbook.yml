@@ -108,6 +108,8 @@
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
+    - role: irods_consistency_check
+      when: enable_irods_consistency_check
     - role: dms_archive_mock
       when: enable_tape_archive and yoda_environment == "development"
     - role: dms_tape_archive
