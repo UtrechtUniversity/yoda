@@ -83,6 +83,8 @@
     - composable_resources
     - irods_completion
     - irods_rodsadmin
+    - role: postfix
+      when: enable_postfix
   tags:
     - icat
 
@@ -138,5 +140,7 @@
     - apache
     - php
     - yoda_external_user_service
+    - role: postfix
+      when: enable_postfix
   tags:
     - eus

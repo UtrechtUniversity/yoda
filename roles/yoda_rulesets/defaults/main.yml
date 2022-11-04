@@ -56,6 +56,8 @@ notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email addr
 smtp_server: PLACEHOLDER                      # SMTP server to send mail to
 smtp_username: PLACEHOLDER                    # SMTP server username
 smtp_password: PLACEHOLDER                    # SMTP server password
+smtp_auth: true                               # Whether to use SMTP authentication
+smtp_starttls: true                           # Whether to force StartTLS on non-SMTPS connections
 
 datacite_server: mds.test.datacite.org  # DataCite server URI
 datacite_username: PLACEHOLDER          # DataCite username

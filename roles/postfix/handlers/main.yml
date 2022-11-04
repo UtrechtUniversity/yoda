@@ -1,0 +1,13 @@
+---
+# copyright Utrecht University
+
+- name: Restart Postfix
+  ansible.builtin.service:
+    name: postfix
+    state: restarted
+  when: not ansible_check_mode
+
+
+- name: Systemd daemon reload
+  ansible.builtin.systemd:
+    daemon_reload: true
