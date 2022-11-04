@@ -9,12 +9,12 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of 
 instance: surf                                     # Name of Yoda instance, as defined in hosts file
 yoda_version: development                          # Git branch, for example: development or release-1.5
 yoda_environment: development                      # Yoda environment: development, testing, acceptance or production
-yoda_portal_fqdn: portal.surfyoda.test                 # Yoda Portal fully qualified domain name (FQDN)
-yoda_davrods_fqdn: data.surfyoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_portal_fqdn: portal.surfyoda.test             # Yoda Portal fully qualified domain name (FQDN)
+yoda_davrods_fqdn: data.surfyoda.test              # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.surfyoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
-default_yoda_schema: default-1                     # Default Yoda metadata scheme: core-0 or default-1
+default_yoda_schema: default-2                     # Default Yoda metadata scheme: core-1 or default-2
 yoda_prefix: UU01                                  # Prefix for internal portion of persistent identifier
 update_schemas: 1                                  # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files: PLACEHOLDER                      # Location of Yoda credentials files
