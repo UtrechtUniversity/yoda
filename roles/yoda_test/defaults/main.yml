@@ -204,18 +204,6 @@ deletion_deposit_groups:
   - deposit: pilot
 
 deletion_datamanager_groups:
-  - datamanager: default-0
-  - datamanager: default-1
-  - datamanager: default-2
-  - datamanager: hptlab-0
-  - datamanager: hptlab-1
-  - datamanager: teclab-0
-  - datamanager: teclab-1
-  - datamanager: core-0
-  - datamanager: core-1
-  - datamanager: dag-0
-  - datamanager: vollmer-0
-  - datamanager: initial
   - datamanager: test-automation
 
 deletion_grp_groups:
