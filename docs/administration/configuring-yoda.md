@@ -365,3 +365,10 @@ mailpit_version          | Mailpit version to install
 mailpit_max_messages     | Maximum number of messages to store (default: 10000)
 mailpit_smtp_bind_address| Address to bind on for SMTP interface (default: 0.0.0.0)
 mailpit_smtp_port        | TCP port for SMTP interface (default: 25)
+
+### Tooling
+
+Variable                        | Description
+--------------------------------|---------------------------------------------
+enable_irods_consistency_check  | Install iRODS consistency checker tool (ichk)
+irods_consistency_check_version | iRODS consistency checker (ichk) version

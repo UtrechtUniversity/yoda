@@ -13,6 +13,6 @@
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.pip:
-    name: git+https://github.com/UtrechtUniversity/irods-consistency-check.git@v2.0.0
+    name: "git+https://github.com/UtrechtUniversity/irods-consistency-check.git@v{{ irods_consistency_check_version }}"
     virtualenv: '/var/lib/irods/irods-consistency-check'
     virtualenv_python: python3.6
