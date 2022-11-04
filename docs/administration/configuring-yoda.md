@@ -124,8 +124,8 @@ The configuration is split in several parts. Below an overview of these parts an
 
 ### Ansible configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable                     | Description
+-----------------------------|---------------------------------------------
 ansible_user                 | Administrative user on instance for Ansible
 ansible_ssh_private_key_file | Path to private key file of administrative user
 repo_only                    | Only download packages from repos
@@ -134,8 +134,8 @@ Note: if one of these variables are different for a host then define them in the
 
 ### Yoda configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable                     | Description
+-----------------------------|---------------------------------------------
 instance                     | Name of Yoda instance, as defined in hosts file
 yoda_version                 | Git branch, for example: development or release-0.9.7
 yoda_environment             | Yoda environment: development, testing, acceptance or production
@@ -149,7 +149,7 @@ httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache 
 
 ### iRODS configuration
 
-Variable                     | Description
+Variable                             | Description
 -------------------------------------|---------------------------------
 irods_admin                          | iRODS admin username
 irods_password                       | iRODS admin password
@@ -325,27 +325,27 @@ eus_smtp_port                | External User Service SMTP port
 eus_smtp_user                | External User Service SMTP user
 eus_smtp_password            | External User Service SMTP password
 eus_smtp_auth                | External User Service SMTP authentication (true/false, default: true)
-eus_smtp_security            : External User Service SMTP encryption (tls/ssl/false, default: tls)
+eus_smtp_security            | External User Service SMTP encryption (tls/ssl/false, default: tls)
 eus_smtp_from_address        | External User Service from address
 eus_smtp_replyto_address     | External User Service replyto address
 eus_mail_template            | External User Service mail template
 
 ### OpenID Connect (OIDC) configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable            | Description
+--------------------|---------------------------------------------
 oidc_active         | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
 oidc_domains        | Domains that should use OIDC (list). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
-oidc_client_id		| OIDC Client Id
-oidc_client_secret	| OIDC Client Secret/Password
+oidc_client_id      | OIDC Client Id
+oidc_client_secret  | OIDC Client Secret/Password
 oidc_callback_url   | OIDC Callback url
-oidc_auth_base_uri	| OIDC Authorization URI without parameters
+oidc_auth_base_uri  | OIDC Authorization URI without parameters
 oidc_login_hint     | Boolean indicating whether login hint should be added to Authorization URI (default: True)
-oidc_token_uri		| OIDC Token URI
-oidc_userinfo_uri	| OIDC Userinfo URI
+oidc_token_uri      | OIDC Token URI
+oidc_userinfo_uri   | OIDC Userinfo URI
 oidc_scopes         | OIDC Scopes
-oidc_acr_values		| OIDC Authentication Context Class Reference Values
-oidc_email_field	| The identifier of the JSON field in the `id_token` containing the email address. Default: `email` the email address (default: email)
+oidc_acr_values     | OIDC Authentication Context Class Reference Values
+oidc_email_field    | The identifier of the JSON field in the `id_token` containing the email address. Default: `email` the email address (default: email)
 oidc_jwks_uri       | The url where the JWKS can be found (Java web key sets)
 oidc_jwt_issuer     | The issuer of the JWT tokens ('iss' value in JWT, for verification)
 oidc_req_exp        | Check that exp (expiration) claim is present
