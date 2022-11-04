@@ -132,6 +132,8 @@
     - irods_runtime
     - irods_microservices
     - irods_completion
+    - role: irods_consistency_check
+      when: enable_irods_consistency_check
   tags:
     - resource
 
