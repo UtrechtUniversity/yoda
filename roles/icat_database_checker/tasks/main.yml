@@ -1,0 +1,18 @@
+---
+# copyright Utrecht University
+
+- name: Ensure iCAT database checker virtualenv exists
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: python3 -m virtualenv "/var/lib/irods/icat-database-checker"
+  args:
+    creates: /var/lib/irods/icat-database-checker
+
+
+- name: Ensure iCAT database checker is installed
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.pip:
+    name: "git+https://github.com/UtrechtUniversity/icat-database-checker.git@v{{ icat_database_checker_version }}"
+    virtualenv: '/var/lib/irods/icat-database-checker'
+    virtualenv_python: python3.6

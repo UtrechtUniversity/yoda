@@ -372,3 +372,5 @@ Variable                        | Description
 --------------------------------|---------------------------------------------
 enable_irods_consistency_check  | Install iRODS consistency checker tool (ichk)
 irods_consistency_check_version | iRODS consistency checker (ichk) version
+enable_icat_database_checker    | Install iCAT database checker
+icat_database_checker_version   | iCAT database checker version
