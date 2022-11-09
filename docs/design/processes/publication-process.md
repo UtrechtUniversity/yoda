@@ -50,7 +50,7 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 
 **Step 7:** Send DataCite JSON
 - Retrieve DataCite url and DataCite credentials from credentials store
-- API request to metadata endpoint with DataCite XML
+- API request to metadata endpoint with DataCite JSON
 - put result in state
 - On request failure:
 	- Flag package for retry
@@ -77,7 +77,7 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 	- Flag package for retry
 
 **Step 11:** Secure copy metadata for Yoda MOAI server
-- Use secure copy to push combi XML to MOAI server
+- Use secure copy to push combi JSON to MOAI server
 - On failure:
 	- Flag package for retry
 
@@ -125,4 +125,4 @@ Precondition:
 - Vault package has ```PENDING_REPUBLICATION``` status
 - Actor is rodsadmin
 
-Step 13: the vault package is given ```PUBLISHED``` status.
+**Step 13:** the vault package is given ```PUBLISHED``` status.
