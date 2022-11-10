@@ -10,7 +10,7 @@ core_rulesets:
   - name: yoda-ruleset
     repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
-    version: "development-doi-version-update"
+    version: "{{ yoda_version }}"
     install_scripts: true
   - name: core
     ruleset_name: core
@@ -51,6 +51,7 @@ schemas:
   - teclab-0
   - teclab-1
   - dag-0
+  - vocabulary-0
   - vollmer-0
 
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
