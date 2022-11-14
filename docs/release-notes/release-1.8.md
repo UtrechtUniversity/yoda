@@ -102,3 +102,18 @@ irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yod
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
+
+13. If the data request module is enabled, project managers, data managers and data committee members will only continue
+    to receive emails regarding data requests if they have notifications enabled. The `imeta` command can be used to check
+    whether a user has notifications enabled, and enable them if needed:
+
+```bash
+imeta ls -u u.user@uu.nl org_settings_mail_notifications
+imeta set -u u.user@uu.nl org_settings_mail_notifications IMMEDIATE
+```
+
+14. If the data request module is enabled, manually update the data request module schemas after upgrading (replace ZONENAME with the zone name of the environment):
+
+```bash
+/etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh ZONENAME
+```
