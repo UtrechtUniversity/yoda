@@ -78,10 +78,13 @@
 - name: Check S3 bucket for Yoda is present
   become_user: irods
   become: true
-  ansible.builtin.shell: s3cmd ls | grep yoda  # noqa no-changed-when
+  ansible.builtin.shell: s3cmd ls | grep yoda
   register: bucket_check
   ignore_errors: true
   changed_when: false
+  until: bucket_check.rc != 1
+  retries: 5
+  delay: 10
 
 
 - name: Ensure S3 bucket for Yoda is present
