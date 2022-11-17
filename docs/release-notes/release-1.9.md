@@ -11,7 +11,9 @@ Released: TBA
 
 ## What's new
 ### Features
-- Support for DOI versions
+- Support for DOI versioning
+- Support for configuring metadata schemas per research group
+- Support for basic controlled vocabularies in metadata schemas
 - Support for [Data Access Passwords](../design/overview/authentication.md) expiration notifications
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
