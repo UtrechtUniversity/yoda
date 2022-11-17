@@ -1447,7 +1447,7 @@
   },"241": {
     "doc": "v1.9",
     "title": "What’s new",
-    "content": "Features . | Support for DOI versions | Support for Data Access Passwords expiration notifications | Support for multiple replication resources | Support for configuring iRODS S3 resources | Upgrade python-irodsclient to v1.1.5 | . Known issues . | Collections with single apex “’” in the name do not work irods/irods#5727 | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python irods_rule_engine_plugin_python#54 | . ",
+    "content": "Features . | Support for DOI versioning | Support for configuring metadata schemas per research group | Support for basic controlled vocabularies in metadata schemas | Support for Data Access Passwords expiration notifications | Support for multiple replication resources | Support for configuring iRODS S3 resources | Upgrade python-irodsclient to v1.1.5 | . Known issues . | Collections with single apex “’” in the name do not work irods/irods#5727 | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python irods_rule_engine_plugin_python#54 | . ",
     "url": "/yoda/release-notes/release-1.9.html#whats-new",
     "relUrl": "/release-notes/release-1.9.html#whats-new"
   },"242": {
