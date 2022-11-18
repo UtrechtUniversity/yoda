@@ -209,9 +209,12 @@ test_groupusers:
   - {groupName: grp-datamanager-test, user: datamanager@yoda.test, role: manager}
   - {groupName: grp-datamanager-test, user: rods,                  role: normal}
 
-  - {groupName: datarequests-research-project-managers,      user: projectmanager, role: manager}
-  - {groupName: datarequests-research-data-access-committee, user: dacmember,      role: manager}
-  - {groupName: datarequests-research-datamanagers,          user: datamanager,    role: manager}
+  - {groupName: datarequests-research-project-managers,      user: projectmanager,           role: manager}
+  - {groupName: datarequests-research-project-managers,      user: projectmanager@yoda.test, role: manager}
+  - {groupName: datarequests-research-data-access-committee, user: dacmember,                role: manager}
+  - {groupName: datarequests-research-data-access-committee, user: dacmember@yoda.test,      role: manager}
+  - {groupName: datarequests-research-datamanagers,          user: datamanager,              role: manager}
+  - {groupName: datarequests-research-datamanagers,          user: datamanager@yoda.test,    role: manager}
 
 intake_datamanager_groups:
   - grp-datamanager-initial
