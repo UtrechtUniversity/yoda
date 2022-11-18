@@ -78,12 +78,15 @@ test_groups:
   - {groupName: datarequests-research-datamanagers,          category: datarequests, subcategory: research, dataClassification: unspecified}
 
 test_groupusers:
-  - {groupName: priv-category-add, user: functionaladminpriv,           role: manager}
-  - {groupName: priv-category-add, user: functionaladminpriv@yoda.test, role: manager}
-  - {groupName: priv-category-add, user: functionaladmincategory,       role: manager}
+  - {groupName: priv-category-add, user: functionaladminpriv,               role: manager}
+  - {groupName: priv-category-add, user: functionaladminpriv@yoda.test,     role: manager}
+  - {groupName: priv-category-add, user: functionaladmincategory,           role: manager}
+  - {groupName: priv-category-add, user: functionaladmincategory@yoda.test, role: manager}
 
-  - {groupName: priv-group-add, user: functionaladminpriv,  role: manager}
-  - {groupName: priv-group-add, user: functionaladmingroup, role: manager}
+  - {groupName: priv-group-add, user: functionaladminpriv,            role: manager}
+  - {groupName: priv-group-add, user: functionaladminpriv@yoda.test,  role: manager}
+  - {groupName: priv-group-add, user: functionaladmingroup,           role: manager}
+  - {groupName: priv-group-add, user: functionaladmingroup@yoda.test, role: manager}
 
   - {groupName: research-initial, user: viewer,                        role: reader}
   - {groupName: research-initial, user: viewer@yoda.test,              role: reader}
