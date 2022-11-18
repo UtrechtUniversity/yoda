@@ -23,19 +23,21 @@ test_users:
   - {name: dacmember,               password: '{{ test_password }}', type: rodsuser}
 
 # Following users are created as iRODS users only.
-oidc_test_users:
-  - name: researcher@yoda.test
-  - name: viewer@yoda.test
-  - name: groupmanager@yoda.test
-  - name: datamanager@yoda.test
-  - name: functionaladmingroup@yoda.test
-  - name: functionaladmincategory@yoda.test
-  - name: functionaladminpriv@yoda.test
-  - name: technicaladmin@yoda.test
+eus_test_users:
+  - {name: researcher@yoda.test,              password: '{{ test_password }}', type: rodsuser,  id: 9000}
+  - {name: viewer@yoda.test,                  password: '{{ test_password }}', type: rodsuser,  id: 9001}
+  - {name: groupmanager@yoda.test,            password: '{{ test_password }}', type: rodsuser,  id: 9002}
+  - {name: datamanager@yoda.test,             password: '{{ test_password }}', type: rodsuser,  id: 9003}
+  - {name: functionaladmingroup@yoda.test,    password: '{{ test_password }}', type: rodsuser,  id: 9004}
+  - {name: functionaladmincategory@yoda.test, password: '{{ test_password }}', type: rodsuser,  id: 9005}
+  - {name: functionaladminpriv@yoda.test,     password: '{{ test_password }}', type: rodsuser,  id: 9006}
+  - {name: technicaladmin@yoda.test,          password: '{{ test_password }}', type: rodsadmin, id: 9007}
+  - {name: projectmanager@yoda.test,          password: '{{ test_password }}', type: rodsuser,  id: 9008}
+  - {name: dacmember@yoda.test,               password: '{{ test_password }}', type: rodsuser,  id: 9009}
 
 # Following users are created as iRODS users only.
-eus_test_users:
-  - name: alice@otherdomain.com
+oidc_test_users:
+  - {name: alice@yoda.dev, password: '{{ test_password }}', type: rodsuser}
 
 # Following users are created in the regressiontest and need to be removed only.
 created_by_ta_users:

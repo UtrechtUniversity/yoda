@@ -185,7 +185,7 @@ external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated 
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: true
-oidc_domains: ['yoda.test']                      # Domains that should use OIDC (list)
+oidc_domains: ['yoda.dev']                                    # Domains that should use OIDC (list)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
 oidc_callback_url: https://portal.surfyoda.test/user/callback     # OIDC Callback url
