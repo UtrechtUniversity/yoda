@@ -56,8 +56,6 @@
     - apache
     - role: opensearch
       when: enable_open_search
-    - role: acme_certificates
-      when: yoda_environment == "testing"
     - python3
     - yoda_portal
     - role: irods_icommands

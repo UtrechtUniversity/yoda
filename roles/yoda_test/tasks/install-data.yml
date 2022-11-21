@@ -21,7 +21,19 @@
     groupName: '{{ item.groupName }}'
     user: '{{ item.user }}'
     role: '{{ item.role }}'
-  with_items: '{{ test_groupusers }}'
+  with_items: '{{ test_group_users }}'
+  when: yoda_environment == "development"
+
+
+- name: Ensure Yoda users are added to groups
+  become_user: '{{ irods_service_account }}'
+  become: true
+  yoda_addgroupuser:
+    groupName: '{{ item.groupName }}'
+    user: '{{ item.user }}'
+    role: '{{ item.role }}'
+  with_items: '{{ test_group_eus_users }}'
+  when: yoda_environment == "development" or yoda_environment == "testing"
 
 
 - name: Ensure Yoda intake datamanager has read access to grp-vault-initial folder
