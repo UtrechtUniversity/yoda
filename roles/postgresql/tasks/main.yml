@@ -5,11 +5,13 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
-- include_tasks: setup-redhat.yml
+- name: Setup PostgreSQL for RedHat family
+  ansible.builtin.include_tasks: setup-redhat.yml
   when: ansible_os_family == 'RedHat'
 
 
-- include_tasks: setup-debian.yml
+- name: Setup PostgreSQL for Debian family
+  ansible.builtin.include_tasks: setup-debian.yml
   when: ansible_os_family == 'Debian'
 
 
@@ -95,7 +97,8 @@
   notify: Restart PostgreSQL
 
 
-- include_tasks: upgrade.yml
+- name: Upgrade PostgreSQL for RedHat family
+  include_tasks: upgrade.yml
   when: ansible_os_family == 'RedHat'
 
 
