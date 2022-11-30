@@ -9,6 +9,3 @@ development_credentials.yml
 
 # Vagrant stuff
 /.vagrant
-
-# Ruleset mount directory for UI and API tests
-./test

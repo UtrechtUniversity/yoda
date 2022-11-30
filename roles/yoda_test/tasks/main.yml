@@ -1,8 +1,17 @@
 ---
 # copyright Utrecht University
 
-- import_tasks: cleanup-data.yml
-- import_tasks: cleanup-users.yml
-- import_tasks: datarequest-data.yml
-- import_tasks: install-users.yml
-- import_tasks: install-data.yml
+- name: Cleanup data
+  ansible.builtin.import_tasks: cleanup-data.yml
+- name: Cleanup users
+  ansible.builtin.import_tasks: cleanup-users.yml
+- name: Datarequest data
+  ansible.builtin.import_tasks: datarequest-data.yml
+- name: Install Users
+  ansible.builtin.import_tasks: install-users-development.yml
+  when: yoda_environment == "development"
+- name: Install Users
+  ansible.builtin.import_tasks: install-users-testing.yml
+  when: yoda_environment == "testing"
+- name: Install data
+  ansible.builtin.import_tasks: install-data.yml

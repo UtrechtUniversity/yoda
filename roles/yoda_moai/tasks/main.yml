@@ -7,14 +7,7 @@
     home: '{{ yoda_moai_home }}'
 
 
-- name: Delete legacy Yoda MOAI files
-  become: true
-  ansible.builtin.file:
-    state: absent
-    path: "{{ yoda_moai_home }}/venv"
-
-
-- name: Check out Yoda MOAI from Github
+- name: Check out Yoda MOAI
   become_user: '{{ yoda_moai_user }}'
   become: true
   ansible.builtin.git:
@@ -33,11 +26,12 @@
 
 
 - name: Ensure Yoda MOAI dependencies are installed
-  ansible.builtin.pip:
+  ansible.builtin.pip: # noqa no-handler
     name: '{{ yoda_moai_home }}/yoda-moai'
     extra_args: -e
     virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
     virtualenv_python: python3.6
+  when: repochanges.changed
   notify: Restart Apache webserver
 
 
@@ -68,7 +62,7 @@
 
 
 - name: Add upload user pub key to authorized_keys of inbox
-  authorized_key:
+  ansible.posix.authorized_key:
     user: '{{ yoda_inbox_user }}'
     key: '{{ upload_pub_key | b64decode }}'
     state: present
@@ -112,7 +106,7 @@
 
 
 - name: Set SELinux context for shared libraries
-  sefcontext:
+  community.general.sefcontext:
     target: '{{ yoda_moai_home }}/yoda-moai/venv/.*\.so(\..*)?'
     setype: httpd_sys_script_exec_t
     state: present
@@ -122,11 +116,11 @@
 
 - name: Ensure selinux context is enforced on shared libraries
   ansible.builtin.command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
-  when: ansible_selinux.status == "enabled"
+  when: ansible_selinux.status == "enabled" and filescontext.changed
 
 
 - name: Set SELinux context for Yoda MOAI database
-  sefcontext:
+  community.general.sefcontext:
     target: '{{ yoda_moai_home }}/moai.db'
     setype: httpd_sys_rw_content_t
     state: present
@@ -136,7 +130,7 @@
 
 - name: Ensure selinux context is enforced on Yoda MOAI database
   ansible.builtin.command: 'restorecon {{ yoda_moai_home }}/moai.db'
-  when: filecontext is changed and ansible_selinux.status == "enabled"
+  when: ansible_selinux.status == "enabled" and filecontext is changed
 
 
 - name: Configure cronjob to update MOAI database

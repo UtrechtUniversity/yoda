@@ -6,14 +6,16 @@
   hosts: test
   become: true
   roles:
-    - yoda_test
+    - role: yoda_test
+      when: yoda_environment != "production"
   tags:
     - test
 
-- name: Provision eus with testdata
+- name: Provision external user service with test data
   hosts: eus
   become: true
   roles:
-    - yoda_test_users_eus
+    - role: yoda_test_users_eus
+      when: yoda_environment != "production"
   tags:
     - eus

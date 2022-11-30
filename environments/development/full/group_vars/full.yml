@@ -14,7 +14,7 @@ yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully q
 yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
-default_yoda_schema: default-1                     # Default Yoda metadata scheme: core-0 or default-1
+default_yoda_schema: default-2                     # Default Yoda metadata scheme: core-1 or default-2
 yoda_prefix: UU01                                  # Prefix for internal portion of persistent identifier
 update_schemas: 1                                  # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files: PLACEHOLDER                      # Location of Yoda credentials files
@@ -49,6 +49,10 @@ token_lifetime: 72                                      # Lifetime of data acces
 
 # DMF tape archive
 enable_tape_archive: false
+
+# iRODS check tooling
+enable_irods_consistency_check: true
+enable_icat_database_checker: true
 
 # Portal customization
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
@@ -114,6 +118,38 @@ irods_resources:
     resource_type: random
     children:
       - dev002
+
+  - name: dev003_1
+    resource_type: s3
+    host: "{{ irods_icat_fqdn }}"
+    vault_path: /yoda
+    context: "S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/.s3auth;S3_REGIONNAME=local-s3;S3_RETRY_COUNT=1;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached"
+
+  - name: dev003_p1
+    resource_type: passthru
+    children:
+      - dev003_1
+
+  - name: dev003
+    resource_type: random
+    children:
+      - dev003_p1
+
+  - name: irodsRescReplS3
+    resource_type: random
+    children:
+      - dev003
+
+# List of replication resources
+irods_repl_resc:
+  - irodsRescRepl
+  - irodsRescReplS3
+
+# S3 configuration
+enable_s3_resource: False
+s3_access_key: minioadmin
+s3_secret_key: minioadmin
+s3_hostname: localhost:9000
 
 # Mail notifications
 send_notifications: 1                         # Enable notifications: yes (1) or no (0)
@@ -181,7 +217,7 @@ external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated 
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: true
-oidc_domains: ['yoda.test']                      # Domains that should use OIDC (list)
+oidc_domains: ['yoda.dev']                                    # Domains that should use OIDC (list)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
 oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url

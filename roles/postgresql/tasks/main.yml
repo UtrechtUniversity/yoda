@@ -54,7 +54,7 @@
 
 
 - name: Allow access to port 5432 in firewall
-  firewalld:
+  ansible.posix.firewalld:
     port: 5432/tcp
     permanent: true
     state: enabled
@@ -135,5 +135,6 @@
   when: "ansible_os_family == 'RedHat' and 'postgresql-server' in ansible_facts.packages"
 
 
-- include_tasks: install-postgresqltuner.yml
+- name: Install postgresqltuner
+  ansible.builtin.include_tasks: install-postgresqltuner.yml
   when: yoda_environment == "development" or yoda_environment == "testing"

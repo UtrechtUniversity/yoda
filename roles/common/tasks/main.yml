@@ -1,19 +1,28 @@
 ---
 # copyright Utrecht University
 
-- import_tasks: hostname.yml
+- name: Setup hostname
+  ansible.builtin.import_tasks: hostname.yml
 
-- import_tasks: epel.yml
+- name: Setup EPEL repository
+  ansible.builtin.import_tasks: epel.yml
   when: ansible_os_family == 'RedHat'
 
-- import_tasks: irods-redhat.yml
+- name: Setup iRODS repository
+  ansible.builtin.import_tasks: irods-redhat.yml
   when: ansible_os_family == 'RedHat'
-- import_tasks: irods-debian.yml
+
+- name: Setup iRODS repository
+  ansible.builtin.import_tasks: irods-debian.yml
   when: ansible_os_family == 'Debian'
 
-- import_tasks: firewalld.yml
+- name: Setup firewalld
+  ansible.builtin.import_tasks: firewalld.yml
 
-- import_tasks: basics-redhat.yml
+- name: Setup basics
+  ansible.builtin.import_tasks: basics-redhat.yml
   when: ansible_os_family == 'RedHat'
-- import_tasks: basics-debian.yml
+
+- name: Setup basics
+  ansible.builtin.import_tasks: basics-debian.yml
   when: ansible_os_family == 'Debian'

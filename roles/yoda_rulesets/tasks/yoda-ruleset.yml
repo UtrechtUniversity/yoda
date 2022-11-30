@@ -71,7 +71,7 @@
   when: monthly_storage_statistics.stat.exists
 
 
-- name: Create local UU ruleset configuration
+- name: Create local Yoda ruleset configuration
   ansible.builtin.template:
     src: rules_uu.cfg.j2
     dest: "/etc/irods/yoda-ruleset/rules_uu.cfg"
@@ -123,48 +123,80 @@
     - disable-indexing.sh
 
 
-- name: Ensure metadata schemas are installed
+- name: Copy tape archive scripts to ExecCmd dir
   become_user: "{{ irods_service_account }}"
   become: true
-  ansible.builtin.command: >
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/install-metadata-schema.r
-    '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/yoda-ruleset/schemas/"'
-    '*schema="{{ item }}"'
-    '*category="{{ item }}"'
-    '*update={{ update_schemas }}'
-  register: install_schemas
-  when: (update_schemas == 1)
-  changed_when: install_schemas.stdout is search('(Installed|Updated)')
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/etc/irods/yoda-ruleset/tools/tape_archive/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: 0755
+  when: not ansible_check_mode and enable_tape_archive
+  with_items:
+    - admin-tape-archive-set-state.sh
+    - async-tape-archive-replicate.sh
+
+
+- name: Find out if system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.command: 'ils /{{ irods_zone }}/yoda'
+  ignore_errors: true
+  register: system_collection
+  changed_when: false
+
+
+- name: Ensure that Yoda metadata schema collection exists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.shell: |
+    imkdir /{{ irods_zone }}/yoda
+
+  when: not ansible_check_mode and system_collection.stderr.find('does not exist') >= 0
+
+
+- name: Find out if metadata schemas system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.command: 'ils /{{ irods_zone }}/yoda/schemas'
+  ignore_errors: true
+  register: schemas_installed
+  changed_when: false
+
+
+- name: Ensure that Yoda metadata schema collection exists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.shell: |
+    imkdir /{{ irods_zone }}/yoda/schemas
+    ichmod -rM inherit /{{ irods_zone }}/yoda/schemas
+    ichmod -rM read public /{{ irods_zone }}/yoda/schemas
+  when: not ansible_check_mode and schemas_installed.stderr.find('does not exist') >= 0
+
+
+- name: Ensure metadata schemas are present
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.shell: |
+    set -o pipefail
+    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item }}/ i:/{{ irods_zone }}/yoda/schemas/{{ item }}/ | grep sync
+  register: metadata_schema
+  when: not ansible_check_mode and update_schemas == 1
+  failed_when: metadata_schema.rc not in [0, 1]
+  changed_when: metadata_schema.stdout_lines | length != 2
   with_items: "{{ schemas }}"
 
 
-- name: Find out if default metadata schema is installed
+- name: Ensure default metadata schema is present
   become_user: "{{ irods_service_account }}"
   become: true
-  ansible.builtin.command: 'ils /{{ irods_zone }}/yoda/schemas/default/{{ item }}'
-  ignore_errors: true
-  register: installed_defaults
-  changed_when: false
-  with_items:
-    - metadata.json
-    - uischema.json
-
-
-- name: Ensure default metadata schema is installed
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.command: >
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/install-metadata-schema.r
-    '*resc="{{ irods_default_resc }}"'
-    '*src="/etc/irods/yoda-ruleset/schemas/"'
-    '*schema="{{ default_yoda_schema }}"'
-    '*category="default"'
-    '*update={{ update_schemas }}'
-  register: install_default_schema
-  when: (update_schemas == 1) or
-        (installed_defaults | json_query('results[*].stderr') | join(' ') is search('does not exist'))
-  changed_when: install_default_schema.stdout is search('(Installed|Updated)')
+  ansible.builtin.shell: |
+    set -o pipefail
+    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ default_yoda_schema }}/ i:/{{ irods_zone }}/yoda/schemas/default/ | grep sync
+  register: default_metadata
+  when: not ansible_check_mode and update_schemas == 1
+  failed_when: default_metadata.rc not in [0, 1]
+  changed_when: default_metadata.stdout_lines | length != 2
 
 
 - name: Find out if terms and conditions system collection exists
@@ -195,25 +227,26 @@
   changed_when: false
 
 
-- name: Install templates
+- name: Ensure that Yoda templates collection exists
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.shell: |
-    iput -r /etc/irods/yoda-ruleset/templates /{{ irods_zone }}/yoda
+    imkdir /{{ irods_zone }}/yoda/templates
     ichmod -rM inherit /{{ irods_zone }}/yoda/templates
     ichmod -rM read public /{{ irods_zone }}/yoda/templates
   when: (not ansible_check_mode) and (templates_installed.stderr.find('does not exist') >= 0)
 
 
-- name: Ensure templates are up to date
+- name: Ensure templates are present
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command:
-    iput -f '/etc/irods/yoda-ruleset/templates/{{ item }}' '/{{ irods_zone }}/yoda/templates/{{ item }}'
+  ansible.builtin.command: 'irsync -Kv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/templates/{{ item }} i:/{{ irods_zone }}/yoda/templates/{{ item }}'
   with_items:
     - emptylandingpage.html.j2
     - landingpage.html.j2
+  register: template_installed
   when: (not ansible_check_mode)
+  changed_when: template_installed.stdout.find('sync') == -1
 
 
 - name: Find out if preservable file formats lists system collection exists
@@ -340,35 +373,10 @@
   when: enable_intake or yoda_environment in ["development", "testing"]
 
 
-- name: Ensure that ExecCmd dir exists
-  ansible.builtin.file:
-    path: /var/lib/irods/msiExecCmd_bin
-    owner: '{{ irods_service_account }}'
-    group: '{{ irods_service_account }}'
-    mode: 0755
-    state: directory
-  when: not ansible_check_mode
-
-
-- name: Copy scripts to ExecCmd dir
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.copy:
-    remote_src: true
-    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
-    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
-  when: not ansible_check_mode
-  with_items:
-    - securecopy.sh
-    - scheduled-copytovault.sh
-    - admin-vaultactions.sh
-    - admin-vaultingest.sh
-
-
 - name: Set configuration AVUs for research ruleset to system collection
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa fqcn[action]
   irods_setavu:
     name: "/{{ irods_zone }}/yoda"
     irods_type: Collection
@@ -399,6 +407,7 @@
 - name: Set configuration AVUs for anonymous davrods vhosts
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa fqcn[action]
   irods_setavu:
     name: "/{{ irods_zone }}/yoda"
     irods_type: Collection
@@ -471,7 +480,18 @@
     minute: '30'
     hour: '03'
     day: '1'
-    job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification-datamanager-retention.sh >/dev/null 2>&1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-datamanager-retention.sh >/dev/null 2>&1'
+
+
+- name: Configure cronjob for data access token expiry notifications
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'notification-data-access-token-expiry.sh'
+    minute: '45'
+    hour: '04'
+    day: '1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-data-access-token-expiry.sh >/dev/null 2>&1'
 
 
 - name: Find out if datarequest system collection exists
@@ -548,7 +568,7 @@
     name: 'datarequest-check-review-period-expiration'
     minute: '*'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
-      /etc/irods/irods-ruleset-uu/tools/datarequest-check-review-period-expiration.r >/dev/null 2>&1'
+      /etc/irods/yoda-ruleset/tools/datarequest-check-review-period-expiration.r >/dev/null 2>&1'
   when: enable_datarequest and not ansible_check_mode
 
 

@@ -34,7 +34,7 @@
 - name: Create Zabbix database user
   become_user: postgres
   become: true
-  postgresql_user:
+  community.postgresql.postgresql_user:
     db: "{{ zabbix_database_name }}"
     name: "{{ zabbix_database_user }}"
     priv: "CONNECT"

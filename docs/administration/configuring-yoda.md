@@ -124,8 +124,8 @@ The configuration is split in several parts. Below an overview of these parts an
 
 ### Ansible configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable                     | Description
+-----------------------------|---------------------------------------------
 ansible_user                 | Administrative user on instance for Ansible
 ansible_ssh_private_key_file | Path to private key file of administrative user
 repo_only                    | Only download packages from repos
@@ -134,8 +134,8 @@ Note: if one of these variables are different for a host then define them in the
 
 ### Yoda configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable                     | Description
+-----------------------------|---------------------------------------------
 instance                     | Name of Yoda instance, as defined in hosts file
 yoda_version                 | Git branch, for example: development or release-0.9.7
 yoda_environment             | Yoda environment: development, testing, acceptance or production
@@ -149,7 +149,7 @@ httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache 
 
 ### iRODS configuration
 
-Variable                     | Description
+Variable                             | Description
 -------------------------------------|---------------------------------
 irods_admin                          | iRODS admin username
 irods_password                       | iRODS admin password
@@ -170,6 +170,15 @@ irods_enable_service                 | Whether to enable the iRODS service. Set 
 irods_rum_job_enabled                | Whether to enable the daily RUM job for removing unused metadata entries (default: true)
 irods_rum_job_hour                   | Time to run RUM job - hour (default: 20)
 irods_rum_job_minute                 | Time to run RUM job - minute (default: 0)
+
+### S3 configuration - for iRODS S3 resource plugin and s3cmd utilities
+
+Variable                             | Description
+-------------------------------------|---------------------------------
+enable_s3_resource                   | Enable [iRODS S3 Resource Plugin](https://github.com/irods/irods_resource_plugin_s3). Default: false
+s3_access_key                        | S3 access key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
+s3_secret_key                        | S3 secret key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
+s3_hostname                          | S3 server hostname (used by s3cmd; the hostname used by the S3 resource plugin is configured in the S3 resource contexts instead)
 
 ### Research module configuration
 
@@ -283,14 +292,15 @@ epic_cert                    | EPIC PID cert (base64 encoded)
 
 ### Data Access Tokens configuration
 
-Variable                | Description
-------------------------|------------------------------------
-enable_tokens           | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
-token_database          | Location of the database that contain the tokens
-token_database_password | Token database password
-token_length            | Length of data access tokens
-token_lifetime          | Lifetime of data access tokens (in hours) (in hours)
-enable_radius_fallback  | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
+Variable                      | Description
+------------------------------|------------------------------------
+enable_tokens                 | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be `true` or `false`
+token_database                | Location of the database that contain the tokens
+token_database_password       | Token database password
+token_length                  | Length of data access tokens
+token_lifetime                | Lifetime of data access tokens (in hours)
+token_expiration_notification | Send notification before token expiration (in hours)
+enable_radius_fallback        | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
 
 ### Public host configuration
 
@@ -315,27 +325,27 @@ eus_smtp_port                | External User Service SMTP port
 eus_smtp_user                | External User Service SMTP user
 eus_smtp_password            | External User Service SMTP password
 eus_smtp_auth                | External User Service SMTP authentication (true/false, default: true)
-eus_smtp_security            : External User Service SMTP encryption (tls/ssl/false, default: tls)
+eus_smtp_security            | External User Service SMTP encryption (tls/ssl/false, default: tls)
 eus_smtp_from_address        | External User Service from address
 eus_smtp_replyto_address     | External User Service replyto address
 eus_mail_template            | External User Service mail template
 
 ### OpenID Connect (OIDC) configuration
 
-Variable   | Description
------------|---------------------------------------------
+Variable            | Description
+--------------------|---------------------------------------------
 oidc_active         | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
-oidc_domains        | Domains that should use OIDC (list)
-oidc_client_id		| OIDC Client Id
-oidc_client_secret	| OIDC Client Secret/Password
+oidc_domains        | Domains that should use OIDC (list). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
+oidc_client_id      | OIDC Client Id
+oidc_client_secret  | OIDC Client Secret/Password
 oidc_callback_url   | OIDC Callback url
-oidc_auth_base_uri	| OIDC Authorization URI without parameters
+oidc_auth_base_uri  | OIDC Authorization URI without parameters
 oidc_login_hint     | Boolean indicating whether login hint should be added to Authorization URI (default: True)
-oidc_token_uri		| OIDC Token URI
-oidc_userinfo_uri	| OIDC Userinfo URI
+oidc_token_uri      | OIDC Token URI
+oidc_userinfo_uri   | OIDC Userinfo URI
 oidc_scopes         | OIDC Scopes
-oidc_acr_values		| OIDC Authentication Context Class Reference Values
-oidc_email_field	| The identifier of the JSON field in the `id_token` containing the email address. Default: `email` the email address (default: email)
+oidc_acr_values     | OIDC Authentication Context Class Reference Values
+oidc_email_field    | The identifier of the JSON field in the `id_token` containing the email address. Default: `email` the email address (default: email)
 oidc_jwks_uri       | The url where the JWKS can be found (Java web key sets)
 oidc_jwt_issuer     | The issuer of the JWT tokens ('iss' value in JWT, for verification)
 oidc_req_exp        | Check that exp (expiration) claim is present
@@ -355,3 +365,12 @@ mailpit_version          | Mailpit version to install
 mailpit_max_messages     | Maximum number of messages to store (default: 10000)
 mailpit_smtp_bind_address| Address to bind on for SMTP interface (default: 0.0.0.0)
 mailpit_smtp_port        | TCP port for SMTP interface (default: 25)
+
+### Tooling
+
+Variable                        | Description
+--------------------------------|---------------------------------------------
+enable_irods_consistency_check  | Install iRODS consistency checker tool (ichk)
+irods_consistency_check_version | iRODS consistency checker (ichk) version
+enable_icat_database_checker    | Install iCAT database checker
+icat_database_checker_version   | iCAT database checker version

@@ -31,7 +31,7 @@
 
 
 - name: Allow PHP to open TCP sockets in SELinux config
-  seboolean:
+  ansible.posix.seboolean:
     name: httpd_can_network_connect
     state: true
     persistent: true
