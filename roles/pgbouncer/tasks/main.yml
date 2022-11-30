@@ -1,0 +1,43 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Ensure PgBouncer is installed
+  ansible.builtin.package:
+    name:
+      - pgbouncer
+    state: present
+
+
+- name: Ensure PgBouncer HBA-style auth configuration is present
+  ansible.builtin.template:
+    src: bouncer_hba.conf.j2
+    dest: "{{ pgbouncer_config_path }}/bouncer_hba.conf"
+    mode: 0600
+  notify: Restart PgBouncer
+
+
+- name: Ensure PgBouncer is configured
+  ansible.builtin.template:
+    src: pgbouncer.ini.j2
+    dest: "{{ pgbouncer_config_path }}/pgbouncer.ini"
+    mode: 0600
+  notify: Restart PgBouncer
+
+
+- name: Enable and start pgbouncer service
+  ansible.builtin.service:
+    name: pgbouncer
+    enabled: true
+    state: started
+
+
+- name: Allow access to pgbouncer in firewall
+  ansible.builtin.firewalld:
+    port: "6432/tcp"
+    permanent: true
+    state: enabled
+    immediate: true

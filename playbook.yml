@@ -87,6 +87,8 @@
   become: true
   roles:
     - postgresql
+    - role: pgbouncer
+      when: enable_pgbouncer
     - irods_database
   tags:
     - database

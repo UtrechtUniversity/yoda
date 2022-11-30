@@ -1,0 +1,4 @@
+---
+# copyright Utrecht University
+
+pgbouncer_config_path: "/etc/pgbouncer"

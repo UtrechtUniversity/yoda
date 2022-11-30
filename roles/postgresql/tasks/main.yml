@@ -98,7 +98,7 @@
 
 
 - name: Upgrade PostgreSQL for RedHat family
-  include_tasks: upgrade.yml
+  ansible.builtin.include_tasks: upgrade.yml
   when: ansible_os_family == 'RedHat'
 
 
