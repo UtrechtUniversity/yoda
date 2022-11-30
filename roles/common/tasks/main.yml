@@ -11,3 +11,5 @@
   ansible.builtin.import_tasks: firewalld.yml
 - name: Setup basics
   ansible.builtin.import_tasks: basics.yml
+- name: Setup kernel parameters
+  ansible.builtin.import_tasks: kernel.yml
