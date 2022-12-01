@@ -16,8 +16,8 @@
   ansible.builtin.template:
     src: bouncer_hba.conf.j2
     dest: "{{ pgbouncer_config_path }}/bouncer_hba.conf"
-    group: pgbouncer
-    owner: pgbouncer
+    group: '{{ pgbouncer_user }}'
+    owner: '{{ pgbouncer_user }}'
     mode: 0600
   notify: Restart PgBouncer
 
@@ -26,8 +26,8 @@
   ansible.builtin.copy:
     src: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
     dest: '{{ pgbouncer_config_path }}/{{ openssl_key_signed }}'
-    group: pgbouncer
-    owner: pgbouncer
+    group: '{{ pgbouncer_user }}'
+    owner: '{{ pgbouncer_user }}'
     mode: 0600
     remote_src: true
   when: not ansible_check_mode
@@ -37,8 +37,8 @@
   ansible.builtin.copy:
     src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
     dest: '{{ pgbouncer_config_path }}/{{ openssl_crt_signed }}'
-    group: pgbouncer
-    owner: pgbouncer
+    group: '{{ pgbouncer_user }}'
+    owner: '{{ pgbouncer_user }}'
     mode: 0600
     remote_src: true
   when: not ansible_check_mode
@@ -48,8 +48,8 @@
   ansible.builtin.template:
     src: pgbouncer.ini.j2
     dest: "{{ pgbouncer_config_path }}/pgbouncer.ini"
-    group: pgbouncer
-    owner: pgbouncer
+    group: '{{ pgbouncer_user }}'
+    owner: '{{ pgbouncer_user }}'
     mode: 0600
   notify: Restart PgBouncer
 
