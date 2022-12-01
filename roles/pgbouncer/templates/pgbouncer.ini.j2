@@ -66,21 +66,21 @@ listen_port = 6432
 ;;;
 
 ;; disable, allow, require, verify-ca, verify-full
-;client_tls_sslmode = disable
+client_tls_sslmode = require
 
 ;; Path to file that contains trusted CA certs
 ;client_tls_ca_file = <system default>
 
 ;; Private key and cert to present to clients.
 ;; Required for accepting TLS connections from clients.
-;client_tls_key_file =
-;client_tls_cert_file =
+client_tls_key_file = {{ pgbouncer_config_path }}/{{ openssl_key_signed }}
+client_tls_cert_file = {{ pgbouncer_config_path }}/{{ openssl_crt_signed }}
 
 ;; fast, normal, secure, legacy, <ciphersuite string>
-;client_tls_ciphers = fast
+client_tls_ciphers = fast
 
 ;; all, secure, tlsv1.0, tlsv1.1, tlsv1.2, tlsv1.3
-;client_tls_protocols = secure
+client_tls_protocols = secure
 
 ;; none, auto, legacy
 ;client_tls_dheparams = auto
@@ -93,21 +93,21 @@ listen_port = 6432
 ;;;
 
 ;; disable, allow, require, verify-ca, verify-full
-;server_tls_sslmode = disable
+server_tls_sslmode = require
 
 ;; Path to that contains trusted CA certs
 ;server_tls_ca_file = <system default>
 
 ;; Private key and cert to present to backend.
 ;; Needed only if backend server require client cert.
-;server_tls_key_file =
-;server_tls_cert_file =
+server_tls_key_file = {{ pgbouncer_config_path }}/{{ openssl_key_signed }}
+server_tls_cert_file = {{ pgbouncer_config_path }}/{{ openssl_crt_signed }}
 
 ;; all, secure, tlsv1.0, tlsv1.1, tlsv1.2, tlsv1.3
-;server_tls_protocols = secure
+server_tls_protocols = secure
 
 ;; fast, normal, secure, legacy, <ciphersuite string>
-;server_tls_ciphers = fast
+server_tls_ciphers = fast
 
 ;;;
 ;;; Authentication settings

@@ -2,3 +2,6 @@
 # copyright Utrecht University
 
 pgbouncer_config_path: "/etc/pgbouncer"
+
+openssl_private_dir: '/etc/ssl/private/'
+openssl_certs_dir: '/etc/ssl/certs'
