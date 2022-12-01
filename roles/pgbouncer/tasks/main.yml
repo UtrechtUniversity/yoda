@@ -16,6 +16,8 @@
   ansible.builtin.template:
     src: bouncer_hba.conf.j2
     dest: "{{ pgbouncer_config_path }}/bouncer_hba.conf"
+    group: pgbouncer
+    owner: pgbouncer
     mode: 0600
   notify: Restart PgBouncer
 
@@ -24,6 +26,8 @@
   ansible.builtin.template:
     src: pgbouncer.ini.j2
     dest: "{{ pgbouncer_config_path }}/pgbouncer.ini"
+    group: pgbouncer
+    owner: pgbouncer
     mode: 0600
   notify: Restart PgBouncer
 

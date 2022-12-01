@@ -8,7 +8,7 @@ irods_admin: rods                          # iRODS admin username
 irods_password: rods                       # iRODS admin password
 irods_database_fqdn: database.yoda.test
 irods_database_name: ICAT
-irods_database_port: 5432
+irods_database_port: "{{ 6432 if enable_pgbouncer else 5432 }}"
 irods_database_user: irodsdb               # The iRODS database username
 irods_database_password: irodsdev          # The password for the iRODS database username
 irods_authentication_scheme: PAM           # iRODS authentication method: "Native" or "PAM"

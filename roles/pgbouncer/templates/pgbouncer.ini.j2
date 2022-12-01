@@ -52,7 +52,7 @@ logfile = /var/log/pgbouncer/pgbouncer.log
 ;;;
 
 ;; IP address or * which means all IPs
-listen_addr = combined.yoda.test
+listen_addr = *
 listen_port = 6432
 
 ;; Unix socket is also used for -R.
@@ -129,10 +129,10 @@ auth_hba_file = /etc/pgbouncer/bouncer_hba.conf
 ;;;
 
 ;; comma-separated list of users who are allowed to change settings
-;admin_users = user2, someadmin, otheradmin
+admin_users = postgres
 
 ;; comma-separated list of users who are just allowed to use SHOW command
-;stats_users = stats, root
+stats_users = stats, postgres
 
 ;;;
 ;;; Pooler personality questions
