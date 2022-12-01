@@ -84,3 +84,6 @@ token_database_password: PLACEHOLDER                     # Token database passwo
 
 # OpenSearch module configuration
 enable_open_search: false                          # Enable OpenSearch module
+
+# PgBouncer configuration
+enable_pgbouncer: false
