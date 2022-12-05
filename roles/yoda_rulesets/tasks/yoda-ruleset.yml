@@ -349,6 +349,7 @@
     minute: '0'
     hour: '2'
     job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
+    state: '{{ "present" if enable_revision_cleanup else "absent" }}'
 
 
 - name: Ensure cronjob script for moving collections from intake to vault is installed
@@ -421,24 +422,24 @@
   when: (not ansible_check_mode) and (yoda_davrods_anonymous_enabled is defined) and (yoda_davrods_anonymous_enabled)
 
 
-- name: Enable asynchronous replication job
+- name: Configure asynchronous replication job
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
     name: 'asynchronous-replication'
     minute: '*/5'
     job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1'
-  when: enable_async_replication == 1
+    state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
 
 
-- name: Enable asynchronous revision creation job
+- name: Configure asynchronous revision creation job
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
     name: 'asynchronous-revisions'
     minute: '6,16,26,36,46,56'
     job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py >/dev/null 2>&1'
-  when: enable_revisions == 1
+    state: '{{ "present" if enable_revisions == 1 else "absent" }}'
 
 
 - name: Enable asynchronous tape archive replication job
@@ -448,7 +449,7 @@
     name: 'asynchronous-tape-archive-replication'
     minute: '3,13,23,33,43,53'
     job: '/bin/bash /etc/irods/yoda-ruleset/tools/tape_archive/async-tape-archive-replicate.sh >/dev/null 2>&1'
-  when: enable_tape_archive
+    state: '{{ "present" if enable_tape_archive else "absent" }}'
 
 
 - name: Configure cronjob to mail daily notification reports
