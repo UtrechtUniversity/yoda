@@ -17,39 +17,28 @@
   hosts: all
   gather_facts: false
   pre_tasks:
-    - name: Retrieve Yoda repository branch
+    - name: Determine whether yoda version matches playbook version (branch or lightweight tag)
       ansible.builtin.shell: |
         set -o pipefail
-        git branch | grep \* | cut -d ' ' -f2
-      register: git_branch
-      changed_when: false
-      check_mode: false
+        git show-ref | grep "^$(git rev-parse HEAD) " | \
+        grep -E "refs/(heads|tags)/" | cut -d '/' -f 3 | grep "^{{ yoda_version }}$"
       delegate_to: localhost
-      args:
-        executable: /bin/bash
-
-    - name: Determine whether yoda version matches a lightweight tag describing the current commit
-      ansible.builtin.shell: |
-        set -o pipefail
-        git show-ref | grep "^$(git rev-parse head) " | \
-        grep " refs/tags/" | cut -d '/' -f 3 | grep "^{{ yoda_version }}$"
-      delegate_to: localhost
-      register: check_git_ltags
+      register: check_git_bltags
       changed_when: false
-      failed_when: check_git_ltags.rc > 1
+      failed_when: check_git_bltags.rc > 1
       check_mode: false
       args:
         executable: /bin/bash
 
 
-    - name: Determine whether yoda version matches an annotated tag describing the current commit
+    - name: Determine whether yoda version matches playbook version (annotated or lightweight tag)
       ansible.builtin.shell: |
         set -o pipefail
-        git describe --tags | grep "^{{ yoda_version }}$"
+        git tag --points-at HEAD | grep "^{{ yoda_version }}$"
       delegate_to: localhost
-      register: check_git_atags
+      register: check_git_tags
       changed_when: false
-      failed_when: check_git_atags.rc > 1
+      failed_when: check_git_tags.rc > 1
       check_mode: false
       args:
         executable: /bin/bash
@@ -58,7 +47,7 @@
     - name: Abort if Yoda repository is not on correct branch or tag
       ansible.builtin.fail:
         msg: "Make sure your Yoda repository is on branch {{ yoda_version }} or a tag pointing at the current commit. (git checkout {{ yoda_version }})"
-      when: yoda_version not in git_branch.stdout and check_git_ltags.rc != 0 and check_git_atags.rc != 0 and yoda_environment != "development"
+      when: check_git_bltags.rc != 0 and check_git_tags.rc != 0 and yoda_environment != "development"
 
 
 - name: Add hosts entries to development instances
