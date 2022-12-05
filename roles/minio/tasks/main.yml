@@ -57,7 +57,7 @@
 
 
 - name: Allow public access to MinIO web console
-  ansible.builtin.firewalld:
+  ansible.posix.firewalld:
     port: '9090/tcp'
     permanent: true
     state: enabled
