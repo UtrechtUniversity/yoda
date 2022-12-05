@@ -248,6 +248,7 @@ smtp_starttls                | Whether to force StartTLS on non-SMTP connections
 
 Variable                               | Description
 ---------------------------------------|---------------------------------------------
+pgsql_version                          | PostgreSQL version (default: 11)
 postgresql_max_connections             | Maximum number of database connections (default: 100)
 postgresql_shared_buffers              | Amount of memory database should use for shared buffers. Rule of thumb: set to 25% of memory on dedicated database server; on a shared server, it should probably be lower. Default value: 32 MB.
 postgresql_work_mem                    | Maximum amount of worker memory. Rule of thumb: increasing worker memory can help with improving performance, but it is necessary to ensure that sufficient memory is available, considering the maximum number of database connections. Default value: 1 MB.
@@ -258,6 +259,17 @@ postgresql_log_line_prefix:            | Format of log message prefix in the Pos
 postgresql_log_min_duration_statement  | Minimum number of milliseconds for slow query logging (default: -1 / disabled)
 postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled)
 postgresql_timezone                    | Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam.
+
+### PgBouncer configuration
+
+Variable                               | Description
+---------------------------------------|---------------------------------------------
+enable_pgbouncer                       | Whether to enable PgBouncer (default: false)
+pgbouncer_pool_mode                    | Specifies when a server connection can be reused by other clients (default: session)
+pgbouncer_max_client_conn              | Maximum number of client connections allowed (default: 200)
+pgbouncer_default_pool_size            | How many server connections to allow per user/database pair (default: 50)
+pgbouncer_reserve_pool_size            | How many additional connections to allow to a pool (default: 25)
+pgbouncer_reserve_pool_timeout         | If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2)
 
 ### Postfix configuration
 
