@@ -137,7 +137,7 @@ Note: if one of these variables are different for a host then define them in the
 Variable                     | Description
 -----------------------------|---------------------------------------------
 instance                     | Name of Yoda instance, as defined in hosts file
-yoda_version                 | Git branch, for example: development or release-0.9.7
+yoda_version                 | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
 yoda_environment             | Yoda environment: development, testing, acceptance or production
 yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
