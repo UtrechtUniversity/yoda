@@ -3,7 +3,7 @@
 
 - name: Download MinIO RPM
   ansible.builtin.get_url:
-    url: 'https://dl.min.io/server/minio/release/linux-amd64/archive/minio-20221005145827.0.0.x86_64.rpm'
+    url: '{{ minio_rpm_url }}'
     dest: '/tmp/minio.rpm'
     checksum: 'sha256:2f15a979045aba8acf6827a39deba9178fee6e1ace2e44cc272b5113ec892e31'
     mode: 0644
