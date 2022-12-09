@@ -5,7 +5,7 @@
   ansible.builtin.get_url:
     url: '{{ minio_rpm_url }}'
     dest: '/tmp/minio.rpm'
-    checksum: 'sha256:2f15a979045aba8acf6827a39deba9178fee6e1ace2e44cc272b5113ec892e31'
+    checksum: '{{ minio_rpm_checksum }}'
     mode: 0644
 
 
