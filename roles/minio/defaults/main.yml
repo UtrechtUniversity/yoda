@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+# Latest stable version of MinIO: https://min.io/docs/minio/linux/index.html
+minio_rpm_url: https://dl.min.io/server/minio/release/linux-amd64/archive/minio-20221202191922.0.0.x86_64.rpm

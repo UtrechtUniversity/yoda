@@ -137,7 +137,7 @@ Note: if one of these variables are different for a host then define them in the
 Variable                     | Description
 -----------------------------|---------------------------------------------
 instance                     | Name of Yoda instance, as defined in hosts file
-yoda_version                 | Git branch, for example: development or release-0.9.7
+yoda_version                 | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
 yoda_environment             | Yoda environment: development, testing, acceptance or production
 yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
@@ -188,6 +188,7 @@ Variable   | Description
 -----------|---------------------------------------------
 default_yoda_schema          | Default Yoda XML scheme: default-0 or default-1
 enable_revisions             | Enable revisions: yes (1) or no (0)
+enable_revision_cleanup      | Enable cleanup job for removing old revisions (true/false, default: true)
 enable_async_replication     | Enable asynchronous replication cronjob: yes (1) or no (0)
 revision_strategy            | Revision strategy: A, B, J or Simple
 yoda_random_id_length        | Length of random ID to add to persistent identifier
