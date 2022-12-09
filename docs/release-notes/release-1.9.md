@@ -13,8 +13,10 @@ Released: TBA
 ### Features
 - Support for DOI versioning
 - Support for configuring metadata schemas per research group
+- Support for configuring retention period per research group
 - Support for basic controlled vocabularies in metadata schemas
 - Support for [Data Access Passwords](../design/overview/authentication.md) expiration notifications
+- Support for research group retention period notifications
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
 - Upgrade python-irodsclient to v1.1.5

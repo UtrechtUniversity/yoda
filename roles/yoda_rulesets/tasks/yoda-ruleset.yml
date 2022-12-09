@@ -489,7 +489,7 @@
   become: true
   ansible.builtin.cron:
     name: 'notification-group-retention.sh'
-    minute: '30'
+    minute: '55'
     hour: '03'
     day: '1'
     job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-group-retention.sh >/dev/null 2>&1'
