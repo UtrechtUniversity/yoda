@@ -184,7 +184,7 @@
   when: not ansible_check_mode and update_schemas == 1 and item.install
   failed_when: metadata_schema.rc not in [0, 1]
   changed_when: metadata_schema.stdout_lines | length != 2
-  with_items:  "{{ metadata_schemas }}"
+  with_items: "{{ metadata_schemas }}"
 
 
 - name: Set configuration AVUs for metatadata schemas
