@@ -198,6 +198,7 @@ override_resc_install_rulesets | Install rulesets on server even if it is a reso
 update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files             | Location of Yoda credentials files
 temporary_files              | List of temporary files for cleanup functionality
+metadata_schemas             | List of metadata schemas to install on the system
 
 ### Deposit module configuration
 

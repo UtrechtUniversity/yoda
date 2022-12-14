@@ -40,20 +40,47 @@ irods_resc_trigger_pol: []
 resource_research: "{{ irods_default_resc }}"
 resource_vault: "{{ irods_default_resc }}"
 
-# Metadata schemas
-schemas:
-  - core-0
-  - core-1
-  - default-0
-  - default-1
-  - default-2
-  - hptlab-0
-  - hptlab-1
-  - teclab-0
-  - teclab-1
-  - dag-0
-  - vocabulary-0
-  - vollmer-0
+# Configure metadata schemas:
+# name    - name of the metadata schema (same as folder name in /etc/irods/yoda-ruleset/schemas)
+# install - indicates if metadata schema should be installed in this environment
+# active  - indicates if metaschema is selectable by user for use in a research group
+metadata_schemas:
+  - name: core-0
+    install: true
+    active: true
+  - name: core-1
+    install: true
+    active: true
+  - name: default-0
+    install: true
+    active: true
+  - name: default-1
+    install: true
+    active: true
+  - name: default-2
+    install: true
+    active: true
+  - name: hptlab-0
+    install: true
+    active: true
+  - name: hptlab-1
+    install: true
+    active: true
+  - name: teclab-0
+    install: true
+    active: true
+  - name: teclab-1
+    install: true
+    active: true
+  - name: dag-0
+    install: true
+    active: true
+  - name: vocabulary-0
+    install: true
+    active: true
+  - name: vollmer-0
+    install: true
+    active: true
 
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 

@@ -179,12 +179,25 @@
   become: true
   ansible.builtin.shell: |
     set -o pipefail
-    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item }}/ i:/{{ irods_zone }}/yoda/schemas/{{ item }}/ | grep sync
+    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item.name }}/ i:/{{ irods_zone }}/yoda/schemas/{{ item.name }}/ | grep sync
   register: metadata_schema
-  when: not ansible_check_mode and update_schemas == 1
+  when: not ansible_check_mode and update_schemas == 1 and item.install
   failed_when: metadata_schema.rc not in [0, 1]
   changed_when: metadata_schema.stdout_lines | length != 2
-  with_items: "{{ schemas }}"
+  with_items:  "{{ metadata_schemas }}"
+
+
+- name: Set configuration AVUs for metatadata schemas
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa fqcn[action]
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda/schemas/{{ item.name }}"
+    irods_type: Collection
+    attribute: "org_schema_user_selectable"
+    value: "{{ item.active }}"
+  when: not ansible_check_mode and item.install
+  with_items: "{{ metadata_schemas }}"
 
 
 - name: Ensure default metadata schema is present
@@ -197,6 +210,18 @@
   when: not ansible_check_mode and update_schemas == 1
   failed_when: default_metadata.rc not in [0, 1]
   changed_when: default_metadata.stdout_lines | length != 2
+
+
+- name: Set configuration AVUs for default metatadata schema
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa fqcn[action]
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda/schemas/default"
+    irods_type: Collection
+    attribute: "org_schema_user_selectable"
+    value: true
+  when: not ansible_check_mode
 
 
 - name: Find out if terms and conditions system collection exists
