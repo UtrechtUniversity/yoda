@@ -39,6 +39,15 @@ When the `org_publication_status` is `Processing` and the root cause of the cras
 imeta set -C /tempZone/home/vault-test/research-test[123456789] org_publication_status Retry
 ```
 
+The publication rule can be set to verbose mode so that it logs additional information for troubleshooting
+purposes. In order to enable this, set the `org_publication_verbose_mode` AVU on the system collection:
+
+```bash
+imeta set -C /tempZone/yoda org_publication_verbose_mode yes
+```
+
+After troubleshooting, verbose mode can be disabled by removing the `org_publication_verbose_mode` AVU.
+
 When the `org_publication_status` is `Unrecoverable` then one of JSON conversion steps have produced invalid metadata.
 You could use a third party JSON processor on the metadata in the previously mentioned source JSON files with the used JSON schemas from the current category / research group.
 This could tell you the problem.
