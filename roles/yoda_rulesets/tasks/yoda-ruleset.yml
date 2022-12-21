@@ -509,15 +509,15 @@
     job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-datamanager-retention.sh >/dev/null 2>&1'
 
 
-- name: Configure cronjob for research group retention notifications
+- name: Configure cronjob for research groups expiration date notifications
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
-    name: 'notification-group-retention.sh'
+    name: 'notification-groups-expiration-date.sh'
     minute: '55'
     hour: '03'
     day: '1'
-    job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-group-retention.sh >/dev/null 2>&1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-groups-expiration-date.sh >/dev/null 2>&1'
 
 
 - name: Configure cronjob for data access token expiry notifications
