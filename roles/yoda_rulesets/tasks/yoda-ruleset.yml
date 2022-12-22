@@ -441,6 +441,15 @@
   when: enable_revisions == 1
 
 
+- name: Enable asynchronous archival job
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'vault-archive.r'
+    minute: '*/6'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/vault-archive.r >/dev/null 2>&1'
+
+
 - name: Enable asynchronous tape archive replication job
   become_user: "{{ irods_service_account }}"
   become: true
