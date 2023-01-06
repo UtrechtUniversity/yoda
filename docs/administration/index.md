@@ -24,3 +24,4 @@ has_toc: false
 - [Configuring OIDC](configuring-openidc.md)
 - [Setting job flags](setting-job-flags.md)
 - [Configuring cleanup temporary files](configuring-cleanup-temporary-files.md)
+- [Using Python-irodsclient](using-python-irodsclient.md)
