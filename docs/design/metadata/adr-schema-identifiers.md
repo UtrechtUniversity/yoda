@@ -2,11 +2,11 @@
 grand_parent: Software Design
 parent: Metadata
 ---
-# Metadata schema identifier
+# ADR Metadata schema identifiers
 
 ## Introduction
 
-Yoda  needs to publish its metadata schemas. This document describes the principles and proposal for an URI structure to identify and locate the published schemas.
+This document describes how the Yoda metadata schema identifier format was decided on.
 
 ## Principles
 
@@ -18,13 +18,13 @@ Yoda  needs to publish its metadata schemas. This document describes the princip
 
 * Durable: The references to the schemas may last for a long time. The solution must be able to survive most changes of the system and organizations so that these references remain valid. Thus a durable protocol (http), hostname (simple/governance) and path (easy to redirect via webserver)
 
-* Maintainable: Easy to maintain structure and files via e.g. GIT, and to add new schemas or versions.
+* Maintainable: Easy to maintain structure and files via e.g. Git, and to add new schemas or versions.
 
 * Automatable: The schemas will be retrieved mainly by software/machines. Identifier structure and location/retrieval-functions should comply with standards. We avoid the use of complex characters that will need encoding.
 
-## Proposal
+## Accepted proposal for identifier format
 
-We propose https://yoda.uu.nl/schemas/<schemaName>-<schemaVersion>/<schemaFile>
+The format is https://yoda.uu.nl/schemas/<schemaName>-<schemaVersion>/<schemaFile>
 
 * https:// - protocol
 
@@ -38,7 +38,7 @@ We propose https://yoda.uu.nl/schemas/<schemaName>-<schemaVersion>/<schemaFile>
 
 * <schemaFile> - metadata.json / uischema.json
 
-## FAQ
+## FAQs and considered alternatives
 
 * Why https? https can be addressed from iRODS environments.
 
@@ -56,6 +56,7 @@ We propose https://yoda.uu.nl/schemas/<schemaName>-<schemaVersion>/<schemaFile>
 
 * How to determine equality? See RFC on URI syntax (this ignores e.g. portnumbers and authentication aspects in the URI, and considers the schema and hostname to be case insensitive). We recommend to treat schemaName, schemaVersion and schemaFile as case insensitive.
 
-## Yoda examples conform this proposal
+## Examples of schema identifiers that use this format
+
 * [default-1 metadata.json](https://yoda.uu.nl/schemas/default-1/metadata.json)
 * [default-1 uischema.json](https://yoda.uu.nl/schemas/default-0/uischema.json)
