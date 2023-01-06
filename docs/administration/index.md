@@ -6,22 +6,34 @@ has_children: true
 has_toc: false
 ---
 # Administration Tasks
-- [Configuring Yoda](configuring-yoda.md)
+
+## Configuration and deployment
+
+Main page: [Configuring Yoda](configuring-yoda.md)
+
+Specific information:
+- [Configuring cleanup of temporary files](configuring-cleanup-temporary-files.md)
+- [Configuring OIDC](configuring-openidc.md)
 - [Deploying Yoda](deploying-yoda.md)
-- [Applying a temporary local change to a ruleset](hotfixing-ruleset.md)
-- [Applying a permanent local change to a ruleset](local-ruleset-patch.md)
 - [Installing licenses](installing-licenses.md)
 - [Installing terms](installing-terms.md)
 - [Installing preservable file formats](installing-preservable-file-formats.md)
 - [Installing metadata schemas](installing-metadata-schemas.md)
 - [Installing datarequest module](installing-datarequest-module.md)
+- Rulesets changes:
+    - [Applying a temporary local change to a ruleset](hotfixing-ruleset.md)
+    - [Applying a permanent local change to a ruleset](local-ruleset-patch.md)
 - [Working with the local Postfix MTA](local-postfix-mta.md)
 - [Upgrading metadata schemas](upgrading-metadata-schemas.md)
+
+## Operations
+
+- [Graciously stopping revision and replication jobs](setting-job-flags.md)
+- [Using Python-irodsclient](using-python-irodsclient.md)
+
+## Troubleshooting
+
+- [Restoring a collection](restore-collection.md)
 - [Troubleshooting email](troubleshooting-email.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
 - [Troubleshooting replication and revision creation](troubleshooting-replication-revisions.md)
-- [Restore collection](restore-collection.md)
-- [Configuring OIDC](configuring-openidc.md)
-- [Setting job flags](setting-job-flags.md)
-- [Configuring cleanup temporary files](configuring-cleanup-temporary-files.md)
-- [Using Python-irodsclient](using-python-irodsclient.md)
