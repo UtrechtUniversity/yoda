@@ -8,25 +8,18 @@ This page contains implementation information about the metadata form functional
 
 ## Form functionality
 
-The metadata form handling is implemented in a generic manner.   
-In itself the generic metadata form deals with two situations, i.e.
-- an editable form in which users can edit/add metadata to a datapackage
-- a readonly view on this metadata as previously entered by a researcher
+The metadata form can be used in two ways. Firstly, regular users can use the form
+to view and edit the metadata of a data package. Secondly, the form can show data package
+metadata in readonly mode, if metadata cannot be edited by the present user.
 
-The generic (metadata) form deals with:
-- Presenting a form for the metadata of a specific datapackage where the elements on the form are configurable dependent on category
-- A default metadata form configuration when no metadata form configuration exists for a category or group
-- Possibility to have dependencies between elements on the form in order to form clear relations between the data
-- Determining completeness of the form and giving proper indications to the user dependent on the category a datapackage belongs to
-- Determining validity of the metadata form data dependent on the category a datapackage belongs to
-- Saving the metadata to a file in JSON format within the datapackage (`yoda-metadata.json`)
-  This file can also be edited by regular users.
-- When data is saved correctly, copy the metadata to AVUs so that metadata can be searched by users.
-- Offering possibilities to, after correctly/successfully validating a metadata set, the result can be used for further actions.  Like the ability
-    - to bring a datapackage / metadata to the vault from within the dynamic storage environment
-    - to save several metadata files, with unique names, within the vault
-- readonly view on metadata for a datapackage
+The form can be configured using metadata schemas (see [schema configuration](schema-configuration.md)
+for details). Based on the configured schema, the form shows feedback to the user
+regarding the completeness and validity of entered metadata. If the metadata is complete
+and valid, the user can save it. In that case, it is stored in a user-editable `yoda-metadata.json`
+file, and also copied to iRODS metadata (AVUs) of the collection. After a user has entered metadata,
+the data package can optionally be submitted to the vault for archiving and/or publication.
 
 ## Integration of React form within Yoda
 
-The directory `/research/metadata-form/src` in the Yoda portal repository contains Yoda-specific javascript code for the React form.
+The directory `/research/metadata-form/src` in the Yoda-portal repository contains Yoda-specific JavaScript code
+for the React form.
