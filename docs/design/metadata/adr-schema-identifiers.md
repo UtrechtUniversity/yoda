@@ -24,19 +24,19 @@ This document describes how the Yoda metadata schema identifier format was decid
 
 ## Accepted proposal for identifier format
 
-The format is https://yoda.uu.nl/schemas/<schemaName>-<schemaVersion>/<schemaFile>
+The format is `https://yoda.uu.nl/schemas/<schemaName>-<schemaVersion>/<schemaFile>`
 
-* https:// - protocol
+* `https://` - protocol
 
-* yoda.uu.nl – hostname
+* `yoda.uu.nl` – hostname
 
-* /schemas – exclusive path reserved for schemas, to avoid conflicts with other resources on that the host. Implies that no other software on this host may use this path.
+* `/schemas` – exclusive path reserved for schemas, to avoid conflicts with other resources on that the host. Implies that no other software on this host may use this path.
 
-* <schemaName> - can be anything, but must be unique for all schemas published at yoda.uu.nl.
+* `<schemaName>` - can be anything, but must be unique for all schemas published at yoda.uu.nl.
 
-* <schemaVersion> - there can be multiple versions of a schema, which may be consecutive, but do not need to be. A schemaVersion must be unique per schemaName. We reserve latest and current as schemaVersions (this may be used as a symlink to the latest or current version in the future).
+* `<schemaVersion>` - there can be multiple versions of a schema, which may be consecutive, but do not need to be. A schemaVersion must be unique per schemaName. We reserve latest and current as schemaVersions (this may be used as a symlink to the latest or current version in the future).
 
-* <schemaFile> - metadata.json / uischema.json
+* `<schemaFile>` - metadata.json / uischema.json
 
 ## FAQs and considered alternatives
 
