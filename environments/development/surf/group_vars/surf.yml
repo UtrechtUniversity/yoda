@@ -24,7 +24,7 @@ enable_research: true                              # Enable research module
 
 # OpenSearch module configuration
 enable_open_search: false                          # OpenSearch not needed (no deposit module)
-opensearch_server: PLACEHODLER
+opensearch_server: PLACEHOLDER
 
 # Deposit module configuration
 enable_deposit: false                              # Surf doesn't use deposit module
