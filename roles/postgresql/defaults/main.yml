@@ -1,9 +1,10 @@
 ---
 # copyright Utrecht University
 
-# version of PostgreSQL to install (tested with 11-14)
+# Version of PostgreSQL to install (tested with 11-14)
 pgsql_version: 11
-prevent_upgrade: true
+prevent_upgrade: true             # Prevent upgrading to pgsql_version
+remove_postgresql_9_data: false   # Remove PostgreSQL 9 data and shim after upgrade
 
 # PostgreSQL RPM package repo
 rpm_dest_dir: /tmp

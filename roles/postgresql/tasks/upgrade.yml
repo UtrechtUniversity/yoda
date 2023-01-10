@@ -108,4 +108,4 @@
     - /var/lib/pgsql/data
     - /var/lib/pgsql/shim
     - /var/lib/pgsql/initdb.log
-  when: "'postgresql-server' in ansible_facts.packages"
+  when: "'postgresql-server' in ansible_facts.packages and remove_postgresql_9_data"
