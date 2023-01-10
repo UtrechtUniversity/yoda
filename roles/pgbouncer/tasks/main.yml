@@ -62,7 +62,7 @@
 
 
 - name: Allow access to pgbouncer in firewall
-  ansible.builtin.firewalld:
+  ansible.posix.firewalld:
     port: "6432/tcp"
     permanent: true
     state: enabled
