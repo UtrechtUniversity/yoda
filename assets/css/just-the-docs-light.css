@@ -646,7 +646,7 @@ h6, .text-zeta { font-size: 11px !important; }
 
 .search-results-list-item { padding: 0; margin: 0; }
 
-.search-result { display: block; padding-top: 0.25rem 0.75rem; }
+.search-result { display: block; padding: 0.25rem 0.75rem; }
 .search-result:hover, .search-result.active { background-color: #ebedf5; }
 
 .search-result-title { display: block; padding-top: 0.5rem; padding-bottom: 0.5rem; }
