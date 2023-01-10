@@ -2,7 +2,7 @@
 grand_parent: Software Design
 parent: Metadata
 ---
-# ADR Metadata schema identifiers
+# Architectural decision record schema identifier format
 
 ## Introduction
 

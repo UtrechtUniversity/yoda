@@ -42,7 +42,7 @@ For more information, see:
 Each schema has a globally unique identifier (URL) that is based on its name. For example, the *default-2
 schema* is identified as `https://yoda.uu.nl/schemas/default-2/metadata.json`.
 
-For more information, see [ADR schema identifiers](adr-schema-identifiers.md)
+For more information, see [Architectural decision record schema identifier format](adr-schema-identifiers.md)
 
 ## Exporting of metadata during publication
 
