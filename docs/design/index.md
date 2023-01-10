@@ -24,10 +24,12 @@ has_toc: false
 - [Yoda OAI-PMH endpoint](overview/yoda-moai.md)
 
 ## Metadata
-- [Metadata schema identifier](metadata/metadata-schema-identifier.md)
-- [Metadata form](metadata/metadata-form.md)
-- [Metadata mappings](metadata/metadata-mappings.md)
-- [Metadata schemas](metadata/metadata-schemas.md)
+- [Metadata design overview](metadata/index.md)
+- [Metadata schema definition](metadata/metadata-form-json.md)
+- [Metadata schema - JSON configuration](metadata/schema-configuration.md)
+- [Metadata schema identifier format](metadata/adr-schema-identifiers.md)
+- [Metadata: use in the vault](metadata/metadata-vault.md)
+- [Metadata: form implementation](metadata/metadata-form.md)
 
 ## Processes
 - [Asynchronous and privileged execution](processes/async-system-execution.md)
