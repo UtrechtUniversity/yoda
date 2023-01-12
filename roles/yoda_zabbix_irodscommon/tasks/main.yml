@@ -48,3 +48,22 @@
     mode: 0500
   with_items: "{{ zabbix_irodscommon_scripts.files }}"
   notify: Restart Zabbix agent
+
+
+- name: Create directory for irods scripts if needed
+  ansible.builtin.file:
+    path: /var/lib/irods/bin
+    mode: 0770
+    owner: irods
+    group: irods
+    state: directory
+
+
+- name: Copy irods log read script
+  ansible.builtin.copy:
+    src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/read-irods-logs.py
+    dest: /var/lib/irods/bin
+    mode: 0770
+    owner: irods
+    group: irods
+    remote_src: true
