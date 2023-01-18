@@ -1,6 +1,11 @@
 ---
 # copyright Utrecht University
 
+- name: Collect package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+
 - name: Include OS-specific variables
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 

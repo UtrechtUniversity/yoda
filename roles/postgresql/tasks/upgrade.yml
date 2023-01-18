@@ -7,11 +7,6 @@
   when: prevent_upgrade
 
 
-- name: Check for presence of PostgreSQL 9
-  ansible.builtin.package_facts:
-    manager: auto
-
-
 - name: Stop PostgreSQL 9 service
   ansible.builtin.service:
     name: postgresql
