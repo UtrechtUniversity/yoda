@@ -12,10 +12,10 @@
     state: present
 
 
-- name: Ensure PgBouncer HBA-style auth configuration is present
+- name: Ensure PgBouncer user list configuration is present
   ansible.builtin.template:
-    src: bouncer_hba.conf.j2
-    dest: "{{ pgbouncer_config_path }}/bouncer_hba.conf"
+    src: userlist.txt.j2
+    dest: "{{ pgbouncer_config_path }}/userlist.txt"
     group: '{{ pgbouncer_user }}'
     owner: '{{ pgbouncer_user }}'
     mode: 0600
