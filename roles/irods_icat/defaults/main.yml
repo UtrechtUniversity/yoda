@@ -27,21 +27,6 @@ irods_rum_job_enabled: true
 irods_rum_job_hour: 20
 irods_rum_job_minute: 0
 
-rpm_dest_dir: /tmp
-
-# sqlcipher RPM locations and checksum
-sqlcipher:
-  package: sqlcipher-4.5.1-0
-  url: https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/
-  filename: sqlcipher-4.5.1-0.el7.x86_64.rpm
-  checksum: sha256:b256727666088dbb34dee1fbb0673b6fed02547e8e140c1022f864c82973e829
-
-sqlcipher_dev:
-  package: sqlcipher-devel-4.5.1-0
-  url: https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/
-  filename: sqlcipher-devel-4.5.1-0.el7.x86_64.rpm
-  checksum: sha256:2bf78f64075a5c39c36055d338b4e89d49a5b3e0f0d6d6a210abce669405a31e
-
 # PAM configuration.
 pam_fail_delay: 1000000                    # PAM fail delay in micro-seconds
 enable_radius_fallback: false
