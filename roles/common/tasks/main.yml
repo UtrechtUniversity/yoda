@@ -3,13 +3,29 @@
 
 - name: Setup hostname
   ansible.builtin.import_tasks: hostname.yml
+
 - name: Setup EPEL repository
   ansible.builtin.import_tasks: epel.yml
+  when: ansible_os_family == 'RedHat'
+
 - name: Setup iRODS repository
-  ansible.builtin.import_tasks: irods.yml
+  ansible.builtin.import_tasks: irods-redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Setup iRODS repository
+  ansible.builtin.import_tasks: irods-debian.yml
+  when: ansible_os_family == 'Debian'
+
 - name: Setup firewalld
   ansible.builtin.import_tasks: firewalld.yml
+
 - name: Setup basics
-  ansible.builtin.import_tasks: basics.yml
+  ansible.builtin.import_tasks: basics-redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Setup basics
+  ansible.builtin.import_tasks: basics-debian.yml
+  when: ansible_os_family == 'Debian'
+
 - name: Setup kernel parameters
   ansible.builtin.import_tasks: kernel.yml

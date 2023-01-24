@@ -1,0 +1,14 @@
+---
+# copyright Utrecht University
+
+- name: Ensure iRODS APT signing key is present
+  ansible.builtin.apt_key:
+    url: https://packages.irods.org/irods-signing-key.asc
+    state: present
+
+
+- name: Ensure iRODS packages APT repository is enabled
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://packages.irods.org/apt/ focal main
+    filename: renci-irods
+    state: present

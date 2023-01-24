@@ -400,6 +400,21 @@
       value: '{{ irods_ssl_verify_server }}'
 
 
+- name: Ensure iRODS is configured to use database
+  become_user: '{{ irods_service_account }}'
+  become: true
+  # noqa fqcn[action]
+  irods_postgres:
+    path: '/etc/irods/server_config.json'
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_items:
+    - key: 'db_host'
+      value: '{{ irods_database_fqdn }}'
+    - key: 'db_port'
+      value: '{{ irods_database_port }}'
+
+
 - name: Ensure deprecated iRODS environment file for Python client is present
   ansible.builtin.file:
     path: /var/lib/irods/.irods/python_client_environment.json

@@ -1,0 +1,27 @@
+---
+# copyright Utrecht University
+
+- name: Download PostgreSQL YUM repo package
+  ansible.builtin.get_url:
+    url: "{{ rpm_url }}/{{ rpm_redhat_repo }}"
+    dest: "{{ rpm_dest_dir }}/{{ rpm_redhat_repo }}"
+    mode: 0644
+
+
+- name: Install PostgreSQL YUM repo package
+  ansible.builtin.yum:
+    name: "{{ rpm_dest_dir }}/{{ rpm_redhat_repo }}"
+    state: present
+  when: not ansible_check_mode
+
+
+- name: Ensure PostgreSQL database and dependencies are installed
+  ansible.builtin.package:
+    name:
+      - "postgresql{{ pgsql_version }}-server"
+      - "postgresql{{ pgsql_version }}-contrib"
+      - "postgresql{{ pgsql_version }}-odbc"
+      - python-psycopg2
+      - unixODBC
+    state: present
+  when: not ansible_check_mode

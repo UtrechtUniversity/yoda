@@ -82,11 +82,10 @@ max_connections = {{ postgresql_max_connections | string }} # (change requires r
 
 #authentication_timeout = 1min		# 1s-600s
 ssl = on
-ssl_ciphers = 'AES128+EECDH:AES128+EDH'
-					# (change requires restart)
+ssl_ciphers = 'AES128+EECDH:AES128+EDH' # (change requires restart)
 #ssl_renegotiation_limit = 0		# amount of data between renegotiations
-ssl_cert_file = '{{ openssl_crt_signed }}'
-ssl_key_file = '{{ openssl_key_signed }}'
+ssl_cert_file = '{{ postgresql_config_path }}/{{ openssl_crt_signed }}'
+ssl_key_file = '{{ postgresql_config_path }}/{{ openssl_key_signed }}'
 #ssl_ca_file = ''			# (change requires restart)
 #ssl_crl_file = ''			# (change requires restart)
 #password_encryption = on

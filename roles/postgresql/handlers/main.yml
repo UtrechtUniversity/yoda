@@ -3,8 +3,9 @@
 
 - name: Restart PostgreSQL
   ansible.builtin.service:
-    name: postgresql
+    name: "{{ postgresql_daemon }}"
     state: restarted
+  when: not ansible_check_mode
 
 
 - name: Restart firewall

@@ -1,6 +1,10 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Password protect database
   ansible.builtin.include_tasks: password_protect.yml
   with_inventory_hostnames:

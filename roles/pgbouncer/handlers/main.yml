@@ -1,0 +1,8 @@
+---
+# copyright Utrecht University
+
+- name: Restart PgBouncer
+  ansible.builtin.service:
+    name: pgbouncer
+    state: restarted
+  when: not ansible_check_mode
