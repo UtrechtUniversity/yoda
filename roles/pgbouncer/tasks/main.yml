@@ -46,7 +46,7 @@
 
 - name: Ensure PgBouncer is configured
   ansible.builtin.template:
-    src: pgbouncer.ini.j2
+    src: pgbouncer-{{ ansible_os_family }}.ini.j2
     dest: "{{ pgbouncer_config_path }}/pgbouncer.ini"
     group: '{{ pgbouncer_user }}'
     owner: '{{ pgbouncer_user }}'
