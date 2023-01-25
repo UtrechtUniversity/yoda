@@ -282,7 +282,6 @@ test_group_eus_users:
   - {groupName: deposit-pilot, user: researcher@yoda.test,          role: normal}
   - {groupName: deposit-pilot, user: functionaladminpriv@yoda.test, role: manager}
 
->>>>>>> 751ef561 (Added intake group like "intake-foo")
   - {groupName: grp-intake-initial, user: researcher@yoda.test,   role: normal}
   - {groupName: grp-intake-initial, user: groupmanager,           role: manager}
   - {groupName: grp-intake-initial, user: groupmanager@yoda.test, role: manager}
