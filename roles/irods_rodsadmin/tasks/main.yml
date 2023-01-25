@@ -9,7 +9,7 @@
     # https://github.com/ansible/ansible/issues/24425
     password: "{{ '%s' | format(irods_admins[item].password) | password_hash('sha512') }}"
     update_password: on_create
-  with_items: '{{ irods_admins.keys() | default([]) }}'
+  with_items: '{{ irods_admins | default([]) }}'
   when: irods_admins is defined
 
 
@@ -20,5 +20,5 @@
   irods_mkuser:
     name: "{{ item }}"
     type: rodsadmin
-  with_items: '{{ irods_admins.keys() | default([]) }}'
+  with_items: '{{ irods_admins | default([]) }}'
   when: irods_admins is defined
