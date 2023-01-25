@@ -46,6 +46,19 @@
     ichmod -M read grp-datamanager-test2 /{{ irods_zone }}/home/grp-vault-foo
   ignore_errors: true
 
+
+- name: Ensure rods user has access to intake vaults for movetovault jobs
+  become_user: '{{ irods_service_account }}'
+  become: yes
+  command:
+    ichmod -M own rods /{{ irods_zone }}/home/{{ item }}
+  ignore_errors: true
+  with_items:
+    - grp-vault-initial
+    - grp-vault-test
+    - grp-vault-test2
+
+
 - name: Ensure Yoda test data directory research-initial/testdata is present in Yoda
   become_user: '{{ irods_service_account }}'
   become: true
