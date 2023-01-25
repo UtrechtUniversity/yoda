@@ -10,7 +10,7 @@
 
 uuYcRunIntake2Vault {
         # intake areas can be added to the grouplist as needed
-        *grouplist = list ("initial", "test", "foo");
+        *grouplist = list ("initial", "test", "test2");
         *grp_prefixes = list ("grp-intake-", "intake-");
         *zone = $rodsZoneClient;
 
