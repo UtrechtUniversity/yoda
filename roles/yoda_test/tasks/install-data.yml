@@ -52,11 +52,12 @@
     ichmod -M read grp-datamanager-test /{{ irods_zone }}/home/grp-vault-test
   ignore_errors: true
 
-- name: Ensure Yoda intake datamanager has read access to grp-vault-foo folder
+
+- name: Ensure Yoda intake datamanager has read access to grp-vault-test2 folder
   become_user: '{{ irods_service_account }}'
   become: yes
   command:
-    ichmod -M read grp-datamanager-foo /{{ irods_zone }}/home/grp-vault-foo
+    ichmod -M read grp-datamanager-test2 /{{ irods_zone }}/home/grp-vault-foo
   ignore_errors: true
 
 - name: Ensure Yoda test data directory research-initial/testdata is present in Yoda
