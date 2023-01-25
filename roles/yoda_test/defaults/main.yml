@@ -72,6 +72,9 @@ test_groups:
   - {groupName: grp-intake-test,         category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
   - {groupName: grp-datamanager-test,    category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
   - {groupName: grp-vault-test,          category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
+  - {groupName: intake-test2,            category: intake-intake2,subcategory: intake-intake2,dataClassification: unspecified}
+  - {groupName: grp-datamanager-test2,   category: intake-intake2,subcategory: intake-intake2,dataClassification: unspecified}
+  - {groupName: grp-vault-test2,         category: intake-intake2,subcategory: intake-intake2,dataClassification: unspecified}
 
   - {groupName: datarequests-research-project-managers,      category: datarequests, subcategory: research, dataClassification: unspecified}
   - {groupName: datarequests-research-data-access-committee, category: datarequests, subcategory: research, dataClassification: unspecified}
@@ -155,6 +158,13 @@ test_group_users:
 
   - {groupName: grp-datamanager-test, user: datamanager,           role: manager}
   - {groupName: grp-datamanager-test, user: rods,                  role: normal}
+
+  - {groupName: intake-test2,    user: researcher,             role: normal}
+  - {groupName: intake-test2,    user: groupmanager,           role: manager}
+  - {groupName: intake-test2,    user: datamanager,            role: normal}
+
+  - {groupName: grp-datamanager-test2, user: datamanager,           role: manager}
+  - {groupName: grp-datamanager-test2, user: rods,                  role: normal}
 
   - {groupName: datarequests-research-project-managers,      user: projectmanager,           role: manager}
   - {groupName: datarequests-research-data-access-committee, user: dacmember,                role: manager}
@@ -273,12 +283,15 @@ deletion_datamanager_groups:
 deletion_grp_groups:
   - grp: datamanager-initial
   - grp: datamanager-test
+  - grp: datamanager-test2
   - grp: intake-initial
   - grp: intake-test
   - grp: vault-initial
   - grp: vault-test
+  - grp: vault-test2
 
 deletion_intake_groups:
+  - intake: test2
 
 reset_tiers:
   - dev001

@@ -212,6 +212,7 @@ Variable                     | Description
 -----------------------------|---------------------
 enable_intake                | Enable intake module
 intake_groups                | List of intake groups (without the "grp-intake-" prefix)
+intake_extended_timeout      | If the intake module is enabled, portal iRODS session timeouts and portal VHost timeouts will be changed to this value (in seconds), in order to be able to handle long synchronous operations, such as intake scans (default: 1800)
 
 ### Datarequest module configuration
 

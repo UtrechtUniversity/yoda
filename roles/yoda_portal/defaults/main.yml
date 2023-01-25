@@ -48,6 +48,7 @@ enable_deposit: false                              # Enable deposit module
 
 # Intake module configuration
 enable_intake: false                               # Enable intake module
+intake_extended_timeout: 1800
 
 # Datarequest module configuration
 enable_datarequest: false                          # Enable datarequest module
