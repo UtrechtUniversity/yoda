@@ -107,6 +107,7 @@
     - admin-remove-orphan-vault-if-empty.sh
     - admin-vaultactions.sh
     - admin-vaultingest.sh
+    - admin-vault-archive.sh
 
 
 - name: Copy indexing scripts to ExecCmd dir
