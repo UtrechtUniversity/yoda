@@ -207,13 +207,10 @@ LogLevel warn
     # a CustomLog directive (see below).
     #
 
-{% if httpd_log_forwarded_for %}
-    LogFormat "%{X-Forwarded-For}i %h %l %u %v %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
-    LogFormat "%{X-Forwarded-For}i %h %l %u %v %t \"%r\" %>s %b" common
-{% else %}
-    LogFormat "%h %l %u %v %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
-    LogFormat "%h %l %u %v %t \"%r\" %>s %b" common
-{% endif %}
+    {% set httpd_log_forwarded_for_fragment = "%{X-Forwarded-For}i " if httpd_log_forwarded_for else "" -%}
+    {%- set httpd_log_user_agent_fragment = ' \\"%{User-Agent}i\\"' if httpd_log_user_agent else "" -%}
+    LogFormat "{{ httpd_log_forwarded_for_fragment }}%h %l %u %v %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "{{ httpd_log_forwarded_for_fragment }}%h %l %u %v %t \"%r\" %>s %b {{ httpd_log_user_agent_fragment }}" common
 
     <IfModule logio_module>
       # You need to enable mod_logio.c to use %I and %O
