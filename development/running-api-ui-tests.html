@@ -4,7 +4,7 @@
 <span class="nb">source</span> ~/yoda-test-venv/bin/activate
 <span class="nb">cd </span>yoda/test/tests
 python3 <span class="nt">-m</span> pip <span class="nb">install </span>selenium
-python3 <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">-r</span> requirements.yml
+python3 <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
 </code></pre></div></div> <ol> <li>Run the tests (in the <code class="language-plaintext highlighter-rouge">yoda/test/tests</code> directory)</li> </ol> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">test</span> <span class="nt">-d</span> /tmp/cache <span class="o">||</span> <span class="nb">mkdir</span> <span class="nt">-p</span> /tmp/cache
 python3 <span class="nt">-m</span> pytest <span class="nt">-o</span> <span class="nv">cache_dir</span><span class="o">=</span>/tmp/cache
 </code></pre></div></div> <h2 id="alternative-way-of-mounting-the-ruleset-folder-on-linux-systems"> <a href="#alternative-way-of-mounting-the-ruleset-folder-on-linux-systems" class="anchor-heading" aria-labelledby="alternative-way-of-mounting-the-ruleset-folder-on-linux-systems"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Alternative way of mounting the ruleset folder on Linux systems </h2> <p>Mount vagrant guest folder on host (e.g. <code class="language-plaintext highlighter-rouge">/etc/irods/yoda-ruleset/</code> so you can run <code class="language-plaintext highlighter-rouge">pytest</code> on the local machine):</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Mount</span>
