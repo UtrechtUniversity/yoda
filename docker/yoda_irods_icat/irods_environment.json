@@ -1,0 +1,22 @@
+{
+    "irods_client_server_negotiation": "request_server_negotiation", 
+    "irods_client_server_policy": "CS_NEG_REQUIRE", 
+    "irods_cwd": "/tempZone/home/rods", 
+    "irods_default_hash_scheme": "SHA256", 
+    "irods_default_resource": "irodsResc", 
+    "irods_encryption_algorithm": "AES-256-CBC", 
+    "irods_encryption_key_size": 32, 
+    "irods_encryption_num_hash_rounds": 16, 
+    "irods_encryption_salt_size": 8, 
+    "irods_home": "/tempZone/home/rods", 
+    "irods_host": "combined.yoda.test", 
+    "irods_match_hash_policy": "compatible", 
+    "irods_port": 1247, 
+    "irods_ssl_ca_certificate_file": "/etc/irods/localhost_and_chain.crt", 
+    "irods_ssl_certificate_chain_file": "/etc/irods/localhost_and_chain.crt", 
+    "irods_ssl_certificate_key_file": "/etc/irods/localhost.key", 
+    "irods_ssl_dh_params_file": "/etc/irods/dhparams.pem", 
+    "irods_ssl_verify_server": "none", 
+    "irods_user_name": "rods", 
+    "irods_zone_name": "tempZone"
+}
