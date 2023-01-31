@@ -28,7 +28,7 @@
         "authentication": {}, 
         "database": {
             "postgres": {
-                "db_host": "combined.yoda.test", 
+                "db_host": "db.yoda.test", 
                 "db_name": "ICAT", 
                 "db_odbc_driver": "PostgreSQL", 
                 "db_password": "irodsdev", 

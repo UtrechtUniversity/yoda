@@ -9,6 +9,8 @@ ENV IRODS_SUDO_MSVC_VERSION "4.2.11_1.0.0"
 ENV IRODS_UU_MSVC_VERSION "0.8.2"
 ENV YUM_REPO_FILE_LOC "https://packages.irods.org/renci-irods.yum.repo"
 ENV YUM_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
+ENV YODA_RULESET_REPO "https://github.com/UtrechtUniversity/yoda-ruleset.git"
+ENV YODA_RULESET_BRANCH "development"
 
 # Network settings
 EXPOSE 1247
@@ -33,7 +35,7 @@ RUN install -m 0755 -o root -g root /tmp/pam_python.so /usr/lib64/security/pam_p
 # Install iRODS
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3033
-RUN yum install -y epel-release wget  && \
+RUN yum install -y epel-release wget git && \
     yum clean all && \
     useradd -d /var/lib/irods irods && \
     rpm --import "$YUM_IRODS_REPO_SIGNING_KEY_LOC" && \
@@ -87,7 +89,27 @@ RUN install -m 0644 /tmp/irods.pam /etc/pam.d/irods
 COPY server_config.json /etc/irods/server_config.json
 RUN mkdir /var/lib/irods/.irods
 COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
-RUN touch /etc/irods/core.py
+
+# Install and configure rulesets
+RUN git clone -b ${YODA_RULESET_BRANCH} --single-branch ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
+RUN python -m pip --no-cache-dir install --user pip==20.2.4 && \
+    python -m pip --no-cache-dir install --user setuptools==44.1.1 && \ 
+    python -m pip --no-cache-dir install --user python-irodsclient==1.1.3 && \
+    python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt
+COPY core.py.template /etc/irods/core.py
+RUN for script in scheduled-copytovault.sh admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh \
+                  admin-vaultingest.sh enable-indexing.sh disable-indexing.sh  \
+                  admin-datarequestactions.sh admin-datarequest-temp-write-permission.sh ; \
+    do install -m 0755 /etc/irods/yoda-ruleset/tools/${script} /var/lib/irods/msiExecCmd_bin/${script} ; \
+    done && \
+    /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db test
+COPY stage/run-intake-movetovault.sh /tmp/run-intake-movetovault.sh
+COPY job_movetovault.r /var/lib/irods/.irods/job_movetovault.r
+COPY job_clearintakelocks.r /var/lib/irods/.irods/job_clearintakelocks.r
+RUN install -o irods -g irods -m 0755 /tmp/run-intake-movetovault.sh /var/lib/irods/.irods/run-intake-movetovault.sh
+COPY rules_uu.cfg /etc/irods/yoda-ruleset
+COPY cronjob-revision-cleanup.sh /tmp/cronjob-revision-cleanup.sh
+RUN install -o irods -g irods -m 0755 /tmp/cronjob-revision-cleanup.sh /var/lib/irods/.irods/cronjob-revision-cleanup.sh
 
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/usr/sbin/init"]
