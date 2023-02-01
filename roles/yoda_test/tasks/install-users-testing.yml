@@ -1,0 +1,19 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Yoda test users exist
+  become_user: '{{ irods_service_account }}'
+  become: true
+  irods_mkuser:
+    name: '{{ item.name }}'
+  with_items: '{{ eus_test_users }}'
+
+
+- name: Ensure Yoda test users have type
+  become_user: '{{ irods_service_account }}'
+  become: true
+  irods_moduser:
+    name: '{{ item.name }}'
+    option: 'type'
+    value: '{{ item.type }}'
+  with_items: '{{ eus_test_users }}'

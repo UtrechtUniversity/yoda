@@ -163,8 +163,8 @@ acCheckPasswordStrength(*password) { }
 # acSetRescSchemeForCreate {msiSetDefaultResc("demoResc","null"); msiSetRescSortScheme("random"); msiSetRescSortScheme("byRescClass"); }
 # acSetRescSchemeForCreate {msiSetDefaultResc("demoResc7%demoResc8","preferred"); }
 # acSetRescSchemeForCreate {ON($objPath like "/tempZone/home/rods/protected/*") {msiOprDisallowed;} }
-acSetRescSchemeForCreate {msiSetDefaultResc("{{ irods_default_resc }}","null"); }
-acSetRescSchemeForRepl {msiSetDefaultResc("{{ irods_default_resc }}","null"); }
+acSetRescSchemeForCreate {msiSetDefaultResc("{{ irods_default_resc }}","forced"); }
+acSetRescSchemeForRepl {msiSetDefaultResc("{{ irods_default_resc }}","forced"); }
 # acSetRescSchemeForCreate {msiGetSessionVarValue("all","all"); msiSetDefaultResc("demoResc","null"); }
 # acSetRescSchemeForCreate {msiSetDefaultResc("demoResc","forced"); msiSetRescSortScheme("random"); msiSetRescSortScheme("byRescClass"); }
 #

@@ -1,0 +1,7 @@
+---
+# copyright Utrecht University
+
+irods_service_account: irods
+
+enable_irods_consistency_check: false
+irods_consistency_check_version: "2.1.0"

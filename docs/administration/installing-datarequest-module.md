@@ -70,4 +70,4 @@ Using the group manager, populate these groups with appropriate members.
 
 If data request module schemas are already present, they will not be overwritten when the Ansible playbook is executed.
 
-The data request module schemas can be updated by executing `/etc/irods/irods-ruleset-uu/tools/install-datarequest-schemas.sh $zoneName`.
+The data request module schemas can be updated by executing `/etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh $zoneName`.

@@ -1,0 +1,4 @@
+---
+# copyright Utrecht University
+
+postgresql_config_path: "/etc/postgresql/{{ pgsql_version }}/main"

@@ -1,0 +1,78 @@
+###############
+# Full instance
+###############
+# Define all hosts in instance here:
+[ubuntu:children]
+ubuntu_portal
+ubuntu_davrods
+ubuntu_database
+ubuntu_icat
+ubuntu_resource
+ubuntu_public
+ubuntu_eus
+
+# Define portal host here:
+[ubuntu_portal]
+combined
+
+# Define davrods host here:
+[ubuntu_davrods]
+combined
+
+# Define database host here:
+[ubuntu_database]
+database
+
+# Define icat host here:
+[ubuntu_icat]
+combined
+
+# Define resource host here:
+[ubuntu_resource]
+
+
+# Define public host here:
+[ubuntu_public]
+combined
+
+# Define external user service host here:
+[ubuntu_eus]
+combined
+
+###############
+# All instances
+###############
+# Define all portal hosts here:
+[portals:children]
+ubuntu_portal
+
+# Define all davrods hosts here:
+[davrods:children]
+ubuntu_davrods
+
+# Define all database hosts here:
+[databases:children]
+ubuntu_database
+
+# Define all icat hosts here:
+[icats:children]
+ubuntu_icat
+
+# Define all resource hosts here:
+[resources:children]
+ubuntu_resource
+
+# Define all public hosts here:
+[publics:children]
+ubuntu_public
+
+# Define external user service host here:
+[eus:children]
+ubuntu_eus
+
+# Provision instances with test data:
+[test:children]
+ubuntu_icat
+
+[development:children]
+ubuntu

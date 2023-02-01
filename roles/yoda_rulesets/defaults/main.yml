@@ -25,6 +25,7 @@ enable_async_replication: 1
 # Research module specific configuration.
 default_yoda_schema: default-0   # Default Yoda metadata scheme: default-0 or default-1
 enable_revisions: 1              # Enable revisions: yes (1) or no (0)
+enable_revision_cleanup: true    # Enable revision cleanup job (true/false)
 revision_strategy: B             # Revision strategy: A, B, J or Simple
 yoda_instance: "{{ instance }}"
 update_rulesets: true            # Update already installed rulesets with git
@@ -35,23 +36,66 @@ irods_repl_resc:                 # List of replication resources
   - irodsRescRepl
 irods_resc_trigger_pol: []
 
+# sqlcipher RPM locations and checksum
+sqlcipher:
+  package: sqlcipher-4.5.1-0
+  url: https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/
+  filename: sqlcipher-4.5.1-0.el7.x86_64.rpm
+  checksum: sha256:b256727666088dbb34dee1fbb0673b6fed02547e8e140c1022f864c82973e829
+
+sqlcipher_dev:
+  package: sqlcipher-devel-4.5.1-0
+  url: https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/
+  filename: sqlcipher-devel-4.5.1-0.el7.x86_64.rpm
+  checksum: sha256:2bf78f64075a5c39c36055d338b4e89d49a5b3e0f0d6d6a210abce669405a31e
+
+rpm_dest_dir: /tmp
+
 # SURF config: separate resources for research and vault
 resource_research: "{{ irods_default_resc }}"
 resource_vault: "{{ irods_default_resc }}"
 
-# Metadata schemas
-schemas:
-  - core-0
-  - core-1
-  - default-0
-  - default-1
-  - default-2
-  - hptlab-0
-  - hptlab-1
-  - teclab-0
-  - teclab-1
-  - dag-0
-  - vollmer-0
+# Configure metadata schemas:
+# name    - name of the metadata schema (same as folder name in /etc/irods/yoda-ruleset/schemas)
+# install - indicates if metadata schema should be installed in this environment
+# active  - indicates if metaschema is selectable by user for use in a research group
+metadata_schemas:
+  - name: core-0
+    install: true
+    active: true
+  - name: core-1
+    install: true
+    active: true
+  - name: default-0
+    install: true
+    active: true
+  - name: default-1
+    install: true
+    active: true
+  - name: default-2
+    install: true
+    active: true
+  - name: hptlab-0
+    install: true
+    active: true
+  - name: hptlab-1
+    install: true
+    active: true
+  - name: teclab-0
+    install: true
+    active: true
+  - name: teclab-1
+    install: true
+    active: true
+  - name: dag-0
+    install: true
+    active: true
+  - name: vocabulary-0
+    install: true
+    active: true
+  - name: vollmer-0
+    install: true
+    active: true
 
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 
@@ -69,6 +113,7 @@ smtp_starttls: true                           # Whether to force StartTLS on non
 datacite_rest_api_url: api.test.datacite.org  # DataCite API server URL
 datacite_username: PLACEHOLDER                # DataCite username
 datacite_password: PLACEHOLDER                # DataCite password
+datacite_publisher: Utrecht University        # DataCite publisher: the name of the entity that publishes
 
 epic_pid_enabled: 0                     # EPIC PID enabled: yes (1) or no (0)
 epic_url: PLACEHOLDER                   # EPIC PID server URL

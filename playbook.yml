@@ -17,21 +17,37 @@
   hosts: all
   gather_facts: false
   pre_tasks:
-    - name: Retrieve Yoda repository branch
+    - name: Determine whether yoda version matches playbook version (branch or lightweight tag)
       ansible.builtin.shell: |
         set -o pipefail
-        git branch | grep \* | cut -d ' ' -f2
-      register: git_branch
-      changed_when: false
+        git show-ref | grep "^$(git rev-parse HEAD) " | \
+        grep -E "refs/(heads|tags)/" | cut -d '/' -f 3 | grep "^{{ yoda_version }}$"
       delegate_to: localhost
+      register: check_git_bltags
+      changed_when: false
+      failed_when: check_git_bltags.rc > 1
+      check_mode: false
       args:
         executable: /bin/bash
 
 
-    - name: Verify Yoda repository is on correct branch
+    - name: Determine whether yoda version matches playbook version (annotated or lightweight tag)
+      ansible.builtin.shell: |
+        set -o pipefail
+        git tag --points-at HEAD | grep "^{{ yoda_version }}$"
+      delegate_to: localhost
+      register: check_git_tags
+      changed_when: false
+      failed_when: check_git_tags.rc > 1
+      check_mode: false
+      args:
+        executable: /bin/bash
+
+
+    - name: Abort if Yoda repository is not on correct branch or tag
       ansible.builtin.fail:
-        msg: "Make sure your Yoda repository is on branch {{ yoda_version }}. (git checkout {{ yoda_version }})"
-      when: not ansible_check_mode and yoda_version not in git_branch.stdout and yoda_environment != "development"
+        msg: "Make sure your Yoda repository is on branch {{ yoda_version }} or a tag pointing at the current commit. (git checkout {{ yoda_version }})"
+      when: check_git_bltags.rc != 0 and check_git_tags.rc != 0 and yoda_environment != "development"
 
 
 - name: Add hosts entries to development instances
@@ -56,8 +72,6 @@
     - apache
     - role: opensearch
       when: enable_open_search
-    - role: acme_certificates
-      when: yoda_environment == "testing"
     - python3
     - yoda_portal
     - role: irods_icommands
@@ -89,6 +103,8 @@
   become: true
   roles:
     - postgresql
+    - role: pgbouncer
+      when: enable_pgbouncer
     - irods_database
   tags:
     - database
@@ -108,6 +124,10 @@
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
+    - role: irods_consistency_check
+      when: enable_irods_consistency_check
+    - role: icat_database_checker
+      when: enable_icat_database_checker
     - role: dms_archive_mock
       when: enable_tape_archive and yoda_environment == "development"
     - role: dms_tape_archive
@@ -130,6 +150,8 @@
     - irods_runtime
     - irods_microservices
     - irods_completion
+    - role: irods_consistency_check
+      when: enable_irods_consistency_check
   tags:
     - resource
 

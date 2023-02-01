@@ -11,11 +11,17 @@ Released: TBA
 
 ## What's new
 ### Features
-- Support for DOI versions
+- Support for DOI versioning
+- Support for configuring metadata schemas per research group
+- Support for configuring retention period per research group
+- Support for basic controlled vocabularies in metadata schemas
 - Support for [Data Access Passwords](../design/overview/authentication.md) expiration notifications
+- Support for research group retention period notifications
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
 - Upgrade python-irodsclient to v1.1.5
+- Upgrade to PostgreSQL 11 (or later)
+- Support for database connection pooling with PgBouncer
 
 ### Known issues
 - Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
