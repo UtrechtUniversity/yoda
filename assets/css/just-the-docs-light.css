@@ -733,6 +733,10 @@ figure.highlight pre, figure.highlight :not(pre) > code { overflow-x: auto; padd
 
 code.language-mermaid { padding: 0; background-color: inherit; border: 0; }
 
+.highlight, pre.highlight { background: #f5f6fa; color: #5c5962; }
+
+.highlight pre { background: #f5f6fa; }
+
 .text-grey-dk-000 { color: #959396 !important; }
 
 .text-grey-dk-100 { color: #5c5962 !important; }
