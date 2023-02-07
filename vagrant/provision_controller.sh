@@ -6,14 +6,15 @@ set -x
 # Install Git if not present.
 if ! command -v git >/dev/null; then
     echo "Installing Git."
-    sudo yum install git -y
+    sudo apt install git
 fi
 
 # Install Ansible if not present.
 if ! command -v ansible >/dev/null; then
     echo "Installing Ansible."
-    sudo yum install epel-release -y
-    sudo yum install ansible -y
+    sudo add-apt-repository ppa:ansible/ansible
+    sudo apt update
+    sudo apt install ansible -y
 fi
 
 # Remove current version.

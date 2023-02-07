@@ -59,7 +59,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.provider :virtualbox do |vbox|
         vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
       end
-      controller.vm.box = BOX
+      controller.vm.box = 'generic/ubuntu2004'
       controller.vm.hostname = "controller"
       controller.vm.network :private_network, ip: "192.168.56.5", netmask: NETMASK
       controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh"
