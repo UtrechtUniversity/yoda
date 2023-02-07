@@ -9,3 +9,6 @@ galaxy_info:
   platforms:
     - name: CentOS
       version: 7
+
+dependencies:
+  - python_irodsclient
