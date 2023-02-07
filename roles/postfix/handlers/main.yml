@@ -11,3 +11,9 @@
 - name: Systemd daemon reload
   ansible.builtin.systemd:
     daemon_reload: true
+
+
+- name: Load Postfix Canonical Map
+  ansible.builtin.command:
+    cmd: postmap canonical
+    chdir: /etc/postfix
