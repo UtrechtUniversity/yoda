@@ -6,7 +6,7 @@ set -x
 # Install Git if not present.
 if ! command -v git >/dev/null; then
     echo "Installing Git."
-    sudo apt install git
+    sudo apt install git -y
 fi
 
 # Install Ansible if not present.
