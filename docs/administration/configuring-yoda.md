@@ -282,13 +282,14 @@ Variable                     | Description
 enable_postfix               | Whether to enable the Postfix local MTA (default: false)
 postfix_myhostname           | Hostname of server where Postfix will be installed (compulsory parameter if Postfix is enabled)
 postfix_relayhost            | Relay host, the server that Postfix should send emails to (compulsory parameter if Postfix is enabled)
-postfix_relayhost_port:      | Port of relay host (default: 587)
+postfix_relayhost_port       | Port of relay host (default: 587)
 postfix_relayhost_username   | User name for authentication on relay host (compulsory parameter if Postfix is enabled)
 postfix_relayhost_password   | Password for authentication on relay host (compulsory parameter if Postfix is enabled)
 postfix_smtp_enable_tls      | Whether to enable TLS on connections to relay host. This also enables authentication on connections to the relay host (default: true)
 postfix_enable_debugging     | This enables additional logging on connections to the relay host. Useful for troubleshooting. (default: false)
 postfix_myorigin             | Sets origin domain for emails sent on the system. Defaults to the postfix_myhostname domain.
 postfix_inet_protocols       | Refers to Postfix inet_protocols setting. Can be useful for running Postfix in IPv4 only mode, if no IPv6 connectivity is available (default: "all")
+postfix_canonical_map        | An optional dictionary of rewrite rules for email addresses. See [the local Postfix MTA page](local-postfix-mta.md) for further information.
 
 ### DataCite Configuration
 
