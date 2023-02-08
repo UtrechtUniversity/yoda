@@ -12,9 +12,9 @@ setup(
     packages=['dm_mock', 'dm_server', 'dm_server'],
     include_package_data=False,
     zip_safe=False,
-    install_requires=['Flask',
-                      'requests',
-                      'numpy==1.22.0'],
+    install_requires=['Flask==2.0.3',
+                      'requests==2.27.1',
+                      'numpy==1.19.5'],
     entry_points='''
     [console_scripts]
     dmattr=dm_mock:dmattr

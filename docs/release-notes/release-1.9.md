@@ -19,7 +19,7 @@ Released: TBA
 - Support for research group retention period notifications
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
-- Upgrade python-irodsclient to v1.1.5
+- Upgrade python-irodsclient to v1.1.6
 - Upgrade to PostgreSQL 11 (or later)
 - Support for database connection pooling with PgBouncer
 
