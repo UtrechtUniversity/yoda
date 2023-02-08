@@ -159,6 +159,7 @@ enable_tape_archive: false
 
 # datapackage archive
 enable_data_package_archive: true
+data_package_limit: 1073741824
 
 yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
 
