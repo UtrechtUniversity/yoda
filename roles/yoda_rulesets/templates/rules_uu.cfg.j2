@@ -62,6 +62,8 @@ token_expiration_notification  = '{{ token_expiration_notification }}'
 
 enable_tape_archive            = '{{ ["false", "true"][enable_tape_archive|int] }}'
 
+enable_data_package_archive    = '{{ ["false", "true"][enable_data_package_archive|int] }}'
+
 temporary_files                = '{{ temporary_files | join (" ") }}'
 
 {% if external_users %}

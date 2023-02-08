@@ -157,6 +157,9 @@ token_expiration_notification: 24                       # Send notification befo
 # DMF tape archive
 enable_tape_archive: false
 
+# datapackage archive
+enable_data_package_archive: true
+
 yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
 
 yoda_davrods_fqdn: data.yoda.test           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
