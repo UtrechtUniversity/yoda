@@ -19,7 +19,7 @@
     python3 -m virtualenv tape_archive_venv
     . tape_archive_venv/bin/activate
     python3 setup.py install
-  when: dms_mock_changes
+  when: dms_mock_changes.changed
 
 
 - name: Ensure DMS archive mock service is configured
