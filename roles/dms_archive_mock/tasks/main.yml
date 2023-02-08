@@ -11,7 +11,7 @@
   register: dms_mock_changes
 
 
-- name: Install DMS archive mock service
+- name: Install DMS archive mock service # noqa no-handler
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.shell: |
