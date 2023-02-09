@@ -157,9 +157,9 @@ token_expiration_notification: 24                       # Send notification befo
 # DMF tape archive
 enable_tape_archive: false
 
-# datapackage archive
-enable_data_package_archive: true
-data_package_limit: 1073741824
+# Data Package Archive
+enable_data_package_archive: false      # Enable data package archive functionality
+data_package_limit: 1073741824          # 1 GB
 
 yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
 

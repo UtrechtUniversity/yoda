@@ -40,6 +40,10 @@ surfdatarequest_help_contact_email: PLACEHOLDER        # Help contact email
 # Data Package Reference
 enable_data_package_reference: true                # Enable Data Package References for vault data packages
 
+# Data Package Archive
+enable_data_package_archive: true       # Enable data package archive functionality
+data_package_limit: 1024                # 1 KB
+
 # Data Access Tokens
 enable_tokens: true                                     # Enable data access tokens for webDAV and iCommands
 token_database: /etc/irods/yoda-ruleset/accesstokens.db # Location of the database that contain the tokens

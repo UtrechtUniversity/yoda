@@ -50,6 +50,10 @@ token_lifetime: 72                                      # Lifetime of data acces
 # DMF tape archive
 enable_tape_archive: false
 
+# Data Package Archive
+enable_data_package_archive: true      # Enable data package archive functionality
+data_package_limit: 1024                # 1 KB
+
 # iRODS check tooling
 enable_irods_consistency_check: true
 enable_icat_database_checker: true
