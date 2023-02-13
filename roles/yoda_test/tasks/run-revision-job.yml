@@ -1,0 +1,8 @@
+---
+# copyright Utrecht University
+
+- name: Run revision job in order to ensure data for revision tests is present
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command:
+    /bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py
