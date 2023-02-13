@@ -36,11 +36,10 @@ ansible-playbook -DK -i environments/development/allinone test.yml
 virtualenv ~/yoda-test-venv
 source ~/yoda-test-venv/bin/activate
 cd yoda/test/tests
-python3 -m pip install selenium
 python3 -m pip install -r requirements.txt
 ```
 
-4. Run the tests (in the `yoda/test/tests` directory)
+5. Run the tests (in the `yoda/test/tests` directory)
 
 ```bash
 test -d /tmp/cache || mkdir -p /tmp/cache
