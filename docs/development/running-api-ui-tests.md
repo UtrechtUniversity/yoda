@@ -10,29 +10,42 @@ directory.
 
 To run the tests on the Vagrant VM:
 1. Ensure that you have [Geckodriver](https://github.com/mozilla/geckodriver) installed for running the UI tests.
-2. Deploy the VM, for example:
+2. Create the development VM using Vagrant:
 
 ```bash
-vagrant box update && vagrant up && ansible-playbook -DK -i environments/development/allinone playbook.yml
+vagrant box update && vagrant up
 ```
 
-3. Deploy the test data on the VM:
+3. Deploy the VM. In order to be able to complete the vault publication tests, you will need to pass Datacite test credentials when
+   deploying the playbook. For example:
+
+```bash
+ansible-playbook -DK -i environments/development/allinone playbook.yml --extra-vars 'datacite_username=MYUSERNAME datacite_password=MYPASSWORD datacite_server=mds.test.datacite.org datacite_prefix=MYPREFIX'
+```
+
+   If no Datacite test credentials are available, it is also possible to deploy the allinone VM without providing values for the Datacite parameters.
+   In that case, the vault publication tests will fail. For example:
+
+```bash
+ansible-playbook -DK -i environments/development/allinone playbook.yml
+```
+
+4. Deploy the test data on the VM:
 
 ```
 ansible-playbook -DK -i environments/development/allinone test.yml
 ```
 
-4. Install the test dependencies
+5. Install the test dependencies
 
 ```bash
 virtualenv ~/yoda-test-venv
 source ~/yoda-test-venv/bin/activate
 cd yoda/test/tests
-python3 -m pip install selenium
 python3 -m pip install -r requirements.txt
 ```
 
-4. Run the tests (in the `yoda/test/tests` directory)
+6. Run the tests (in the `yoda/test/tests` directory)
 
 ```bash
 test -d /tmp/cache || mkdir -p /tmp/cache
