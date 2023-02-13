@@ -10,7 +10,15 @@ directory.
 
 To run the tests on the Vagrant VM:
 1. Ensure that you have [Geckodriver](https://github.com/mozilla/geckodriver) installed for running the UI tests.
-2. Deploy the VM, for example:
+2. Deploy the VM. In order to be able to complete the vault publication tests, you will need to pass Datacite test credentials when
+   deploying the playbook. For example:
+
+```bash
+ansible-playbook -DK -i environments/development/allinone playbook.yml --extra-vars 'datacite_username=MYUSERNAME datacite_password=MYPASSWORD datacite_server=mds.test.datacite.org datacite_prefix=MYPREFIX'
+```
+
+   If no Datacite test credentials are available, it is also possible to deploy the allinone VM without providing values for the Datacite parameters.
+   In that case, the vault publication tests will fail. For example:
 
 ```bash
 vagrant box update && vagrant up && ansible-playbook -DK -i environments/development/allinone playbook.yml
