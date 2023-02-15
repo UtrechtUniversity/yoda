@@ -27,6 +27,7 @@
       - irods-database-plugin-postgres-4.2.10-1
       - irods-icommands-4.2.10-1
       - irods-rule-engine-plugin-python-4.2.10.0-1
+      - irods-microservices-4.2.11_0.9.0-1
     state: absent
 
 
