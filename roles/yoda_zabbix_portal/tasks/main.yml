@@ -34,7 +34,9 @@
 - name: Find Zabbix script files
   ansible.builtin.find:
     path: /etc/zabbix/yoda-zabbix/zabbix-portal
-    pattern: "*.sh"
+    pattern:
+      - "*.sh"
+      - "read-apache-logs.py"
   register: portal_script_files
 
 

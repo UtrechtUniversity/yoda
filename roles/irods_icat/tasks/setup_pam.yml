@@ -44,49 +44,10 @@
   when: external_users
 
 
-- name: Download sqlcipher rpms
-  ansible.builtin.get_url:
-    url: '{{ item.url }}/{{ item.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ item.filename }}'
-    checksum: '{{ item.checksum }}'
-    mode: 0644
-  with_items:
-    - {'url': '{{ sqlcipher.url }}', 'filename': '{{ sqlcipher.filename }}', 'checksum': '{{ sqlcipher.checksum }}'}
-    - {'url': '{{ sqlcipher_dev.url }}', 'filename': '{{ sqlcipher_dev.filename }}', 'checksum': '{{ sqlcipher_dev.checksum }}'}
-  when: enable_tokens
-
-
-- name: Install sqlcipher from downloaded rpms
-  ansible.builtin.package:
-    name: '{{ rpm_dest_dir }}/{{ item }}'
-    state: present
-  with_items:
-    - '{{ sqlcipher.filename }}'
-    - '{{ sqlcipher_dev.filename }}'
-  when: enable_tokens and not ansible_check_mode
-
-
 - name: Ensure Python dependencies are installed
   ansible.builtin.package:
     name:
       - python-pip
-    state: present
-  when: enable_tokens
-
-
-# Installation of pysqlcipher3 package fails silently if
-# GCC is unavailable, so we need to ensure it has been installed.
-- name: Ensure GCC is installed
-  ansible.builtin.package:
-    name: gcc
-    state: present
-  when: enable_tokens
-
-
-- name: Ensure pysqlcipher3 is installed
-  ansible.builtin.pip:
-    name:
-      - pysqlcipher3==1.0.4
     state: present
   when: enable_tokens
 

@@ -1,12 +1,30 @@
 ---
 # copyright Utrecht University
 
-- name: Read the current hostname configured in /etc/hosts
+- name: Read the current hostname
   ansible.builtin.command: 'hostname --fqdn'
   register: hostname
   changed_when: hostname.stdout.find(inventory_hostname) == -1
 
 
-- name: Ensure FQDN is defined as hostname in /etc/hosts
+- name: Ensure FQDN is defined as hostname
   ansible.builtin.command: hostnamectl set-hostname {{ inventory_hostname }}
   changed_when: hostname.stdout.find(inventory_hostname) == -1
+
+
+- name: Check whether /etc/hosts has FQDN entry
+  ansible.builtin.command:
+    cmd: grep -Fq "{{ inventory_hostname }}" /etc/hosts
+  register: check_etchosts
+  check_mode: false
+  ignore_errors: true
+  changed_when: false
+  when: yoda_environment != "development"
+
+
+- name: Add FQDN entry to /etc/hosts
+  ansible.builtin.lineinfile:
+    dest: /etc/hosts
+    line: '127.0.0.1 {{ inventory_hostname }} # Added by Yoda Ansible playbook'
+    state: present
+  when: yoda_environment != "development" and check_etchosts.rc == 1

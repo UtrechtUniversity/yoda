@@ -1,0 +1,15 @@
+---
+# copyright Utrecht University
+
+- name: Set TCP keepalive time kernel parameter
+  ansible.posix.sysctl:
+    name: net.ipv4.tcp_keepalive_time
+    value: '{{ tcp_keepalive_time }}'
+    sysctl_set: true
+
+
+- name: Set TCP keepalive interval kernel parameter
+  ansible.posix.sysctl:
+    name: net.ipv4.tcp_keepalive_intvl
+    value: '{{ tcp_keepalive_intvl }}'
+    sysctl_set: true

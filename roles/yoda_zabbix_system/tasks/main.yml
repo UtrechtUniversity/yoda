@@ -1,6 +1,12 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure Python 3 is installed
+  ansible.builtin.package:
+    name: python3
+    state: present
+
+
 - name: Remove old yoda-zabbix repo from /etc/irods
   ansible.builtin.file:
     path: /etc/irods/yoda-zabbix

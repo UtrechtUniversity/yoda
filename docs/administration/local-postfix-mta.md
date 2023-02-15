@@ -29,15 +29,18 @@ email server are:
 * Postfix has proper logging of email message delivery, whereas Yoda and the EUS have very limited email logging
   in the default configuration. Complete logging makes it possible to verify that emails have been sent, and
   to find the cause of any problems in case something has gone wrong.
+* Postfix can be configured to rewrite internal email addresses to public email addresses, making it possible
+  to deliver email for Yoda accounts with nonexistent email addresses.
 
 In summary, using Postfix as a local MTA makes email delivery more resilient and helps with troubleshooting.
 
 ## Configuration
 
-Configuration consists of three parts:
+Configuration consists of up to four parts:
 * Configure Postfix
 * Configure the EUS to send emails to the Postfix instance
 * Configure Yoda (ruleset) to send emails to the Postfix instance
+* Optionally configure canonical map entries for rewriting email addresses
 
 ### Postfix
 
@@ -72,6 +75,18 @@ Configure the Yoda ruleset to send email messages to the local Postfix instance:
 smtp_server: smtp://localhost:25
 smtp_auth: false
 smtp_starttls: false
+```
+
+### Canonical map
+
+If the Yoda instance has accounts with names that do not relate to real email addresses,
+the `postfix_canonical_map` dictionary can be used to make Postfix rewrite addresses.
+For example:
+
+```
+postfix_canonical_map:
+  datamanager@yoda.test: a.admin@uu.nl
+  researcher@yoda.test: a.admin@uu.nl
 ```
 
 ### See also
