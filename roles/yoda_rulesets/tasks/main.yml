@@ -115,7 +115,8 @@
   community.general.make:
     chdir: "/etc/irods/{{ item.0.name }}"
     target: install
-  when: item.1.changed or ( 'repo' in item.0 and 'patch' in item.0 )
+  when: "'repo' in item.0"
+  changed_when: item.1.changed or ( 'repo' in item.0 and 'patch' in item.0 )
   with_together:
     - "{{ extra_rulesets + core_rulesets }}"
     - "{{ repochanges.results }}"
