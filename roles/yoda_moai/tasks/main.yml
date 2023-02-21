@@ -191,6 +191,24 @@
   when: ansible_selinux.status == "enabled"
 
 
+- name: Upload custom SELinux module for MOAI
+  ansible.builtin.copy:
+    src: my-httpd.pp
+    dest: /root/my-httpd.pp
+    owner: root
+    group: root
+    mode: 0644
+  notify: Load custom SELinux module for MOAI
+
+
+- name: Set SELinux context for lib64
+  community.general.sefcontext:
+    target: /var/www/moai/yoda-moai/venv/lib64
+    setype: httpd_sys_rw_content_t
+    state: present
+  when: ansible_selinux.status == "enabled"
+
+
 - name: Ensure selinux context is enforced on shared libraries
   ansible.builtin.command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
   when: ansible_selinux.status == "enabled" and filescontext.changed

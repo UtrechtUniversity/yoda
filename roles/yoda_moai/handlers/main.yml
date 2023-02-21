@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+- name: Load custom SELinux module for MOAI
+  ansible.builtin.command: semodule -i /root/my-httpd.pp
