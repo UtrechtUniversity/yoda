@@ -29,6 +29,11 @@
     state: absent
 
 
+- name: Install virtualenv for MOAI
+  ansible.builtin.package:
+    name: python-virtualenv
+
+
 # Python 3.6 is end of life and no longer compatible with newer versions of SQLAlchemy,
 # so install newer version.
 - name: Install Python 3.8
