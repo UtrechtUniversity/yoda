@@ -17,34 +17,106 @@
   register: repochanges
 
 
+- name: Install SCLO-RH repository for Python 3.8
+  ansible.builtin.package:
+    name: centos-release-scl
+    enablerepo: "{{ centos_extras_repository }}"
+
+
+- name: Remove Python 2 Mod_WSGI package
+  ansible.builtin.package:
+    name: mod_wsgi
+    state: absent
+
+
+# Python 3.6 is end of life and no longer compatible with newer versions of SQLAlchemy,
+# so install newer version.
+- name: Install Python 3.8
+  ansible.builtin.yum:
+    name: rh-python38-python,rh-python38-python-devel,rh-python38-python-libs,rh-python38-python-pip,rh-python38-python-pip-wheel,rh-python38-python-mod_wsgi
+    enablerepo: "{{ centos_sclo_rh_repository }}"
+  when: not ansible_check_mode
+
+
+- name: Link Python 3 Mod_WSGI to Apache Modules
+  ansible.builtin.file:
+    dest: /usr/lib64/httpd/modules/mod_wsgi.so
+    src: /opt/rh/rh-python38/root/usr/lib64/python3.8/site-packages/mod_wsgi/server/mod_wsgi-py38.cpython-38-x86_64-linux-gnu.so
+    state: link
+
+
+- name: Configure WSGI module in Apache
+  ansible.builtin.copy:
+    src: 02-wsgi.conf
+    dest: /etc/httpd/conf.modules.d/02-wsgi.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Apache webserver
+
+
+- name: Remove old WSGI configuration in Apache
+  ansible.builtin.file:
+    path: /etc/httpd/conf.modules.d/10-wsgi.conf
+    state: absent
+  notify: Restart Apache webserver
+
+
+- name: Check if MOAI virtual environment is still running on Python 2
+  ansible.builtin.stat:
+    path: '/var/www/moai/venv/bin/python2.7'
+  register: moai_venv_python2
+
+
+# For upgrade to Yoda 1.9
+- name: Move old Python 2 MOAI virtual environment in order to be able to replace it
+  become_user: '{{ yoda_moai_user }}'
+  become: true
+  ansible.builtin.command: "mv /var/www/moai/yoda-moai/venv /var/www/moai/venv.python2-backup"
+  when: moai_venv_python2.stat.exists
+
+
 - name: Ensure Yoda MOAI virtualenv exists
   become_user: '{{ yoda_moai_user }}'
   become: true
-  ansible.builtin.command: python3 -m virtualenv "{{ yoda_moai_home }}/yoda-moai/venv"
+  ansible.builtin.command: virtualenv --python /opt/rh/rh-python38/root/bin/python3 "{{ yoda_moai_home }}/yoda-moai/venv"
   args:
     creates: "{{ yoda_moai_home }}/yoda-moai/venv"
 
 
+- name: Upgrade pip in virtual environment
+  ansible.builtin.pip:
+    name:
+      - pip==20.2.4
+    executable: /var/www/moai/yoda-moai/venv/bin/pip3.8
+
+
+# Change detection in git repositories is unreliable in some Ansible versions, so we always
+# run this task, just to be sure.
 - name: Ensure Yoda MOAI dependencies are installed
-  ansible.builtin.pip: # noqa no-handler
-    name: '{{ yoda_moai_home }}/yoda-moai'
-    extra_args: -e
-    virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
-    virtualenv_python: python3.6
-  when: repochanges.changed
-  notify: Restart Apache webserver
-
-
-- name: Install mod-wsgi
-  become_user: "root"
+  become_user: '{{ yoda_moai_user }}'
   become: true
-  ansible.builtin.shell: |
-    source {{ yoda_moai_home }}/yoda-moai/venv/bin/activate
-    mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf
-    exit
-  args:
-    creates: /etc/httpd/conf.modules.d/02-wsgi.conf
+  ansible.builtin.pip:
+    name: '{{ yoda_moai_home }}/yoda-moai'
+    virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
+    extra_args: "-e"
+  environment:
+    C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8
   notify: Restart Apache webserver
+
+
+# We need to patch SQLAlchemy because it is no longer compatible with
+# the ancient SQLite version in CentOS 7. Copy the file rather than fileinline
+# to avoid the need for hairy workarounds for limitations regarding nested quotes.
+- name: Patch SQLAlchemy to be compatible with ancient SQLite
+  become_user: '{{ yoda_moai_user }}'
+  become: true
+  ansible.builtin.copy:
+    src: pysqlite.py
+    dest: "{{ yoda_moai_home }}/yoda-moai/venv/lib/python3.8/site-packages/sqlalchemy/dialects/sqlite/pysqlite.py"
+    mode: 0644
+    owner: '{{ yoda_moai_user }}'
+    group: '{{ yoda_moai_user }}'
 
 
 - name: Ensure Yoda MOAI home is world readable
@@ -107,8 +179,8 @@
 
 - name: Set SELinux context for shared libraries
   community.general.sefcontext:
-    target: '{{ yoda_moai_home }}/yoda-moai/venv/.*\.so(\..*)?'
-    setype: httpd_sys_script_exec_t
+    target: '{{ yoda_moai_home }}/yoda-moai/venv/(.*)?'
+    setype: httpd_unconfined_script_exec_t
     state: present
   register: filescontext
   when: ansible_selinux.status == "enabled"
