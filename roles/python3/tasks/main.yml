@@ -1,17 +1,48 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure Python 3 packages are installed
+- name: Install SCLO-RH repository for Python 3.8
+  ansible.builtin.package:
+    name: centos-release-scl
+    enablerepo: "{{ centos_extras_repository }}"
+
+
+- name: Ensure Python dependencies are installed
+  ansible.builtin.yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - gcc
+    - python-virtualenv
+
+
+- name: Remove distribution Python 3.6 packages
   ansible.builtin.yum:
     name:
       - python3
       - python3-devel
-      - gcc
-    state: present
+    state: absent
+
+
+- name: Install Python 3.8 for portal and MOAI
+  ansible.builtin.yum:
+    name: rh-python38-python,rh-python38-python-devel,rh-python38-python-libs,rh-python38-python-pip,rh-python38-python-pip-wheel
+    enablerepo: "{{ centos_sclo_rh_repository }}"
+  when: not ansible_check_mode
+
+
+- name: Link to new Python 3.8 executables
+  ansible.builtin.file:
+    state: link
+    dest: "/usr/local/bin/{{ item }}"
+    src: "/opt/rh/rh-python38/root/bin/{{ item }}"
+  with_items:
+    - pip3
+    - python3
 
 
 - name: Ensure Python 3 virtualenv is installed
   ansible.builtin.pip:
     name: virtualenv
-    executable: pip3
+    executable: /usr/local/bin/pip3
   when: not ansible_check_mode

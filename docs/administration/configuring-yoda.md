@@ -129,6 +129,8 @@ Variable                     | Description
 ansible_user                 | Administrative user on instance for Ansible
 ansible_ssh_private_key_file | Path to private key file of administrative user
 repo_only                    | Only download packages from repos
+centos_extras_repository     | Name of the CentOS extras repository
+centos_sclo_rh_repository    | Name of the CentOS SCLO-RH repository
 
 Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars).
 

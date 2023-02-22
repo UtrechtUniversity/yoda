@@ -17,68 +17,24 @@
   register: repochanges
 
 
-- name: Install SCLO-RH repository for Python 3.8
-  ansible.builtin.package:
-    name: centos-release-scl
-    enablerepo: "{{ centos_extras_repository }}"
-
-
-- name: Remove Python 2 Mod_WSGI package
-  ansible.builtin.package:
-    name: mod_wsgi
-    state: absent
-
-
-- name: Install virtualenv for MOAI
-  ansible.builtin.package:
-    name: python-virtualenv
-
-
-# Python 3.6 is end of life and no longer compatible with newer versions of SQLAlchemy,
-# so install newer version.
-- name: Install Python 3.8
-  ansible.builtin.yum:
-    name: rh-python38-python,rh-python38-python-devel,rh-python38-python-libs,rh-python38-python-pip,rh-python38-python-pip-wheel,rh-python38-python-mod_wsgi
-    enablerepo: "{{ centos_sclo_rh_repository }}"
-  when: not ansible_check_mode
-
-
-- name: Link Python 3 Mod_WSGI to Apache Modules
-  ansible.builtin.file:
-    dest: /usr/lib64/httpd/modules/mod_wsgi.so
-    src: /opt/rh/rh-python38/root/usr/lib64/python3.8/site-packages/mod_wsgi/server/mod_wsgi-py38.cpython-38-x86_64-linux-gnu.so
-    state: link
-
-
-- name: Configure WSGI module in Apache
-  ansible.builtin.copy:
-    src: 02-wsgi.conf
-    dest: /etc/httpd/conf.modules.d/02-wsgi.conf
-    owner: root
-    group: root
-    mode: 0644
-  notify: Restart Apache webserver
-
-
-- name: Remove old WSGI configuration in Apache
-  ansible.builtin.file:
-    path: /etc/httpd/conf.modules.d/10-wsgi.conf
-    state: absent
-  notify: Restart Apache webserver
-
-
-- name: Check if MOAI virtual environment is still running on Python 2
+- name: Check if MOAI virtual environment is running Python 2.7
   ansible.builtin.stat:
     path: '/var/www/moai/venv/bin/python2.7'
-  register: moai_venv_python2
+  register: moai_venv_python27
+
+
+- name: Check if MOAI virtual environment is running Python 3.6
+  ansible.builtin.stat:
+    path: '/var/www/moai/venv/bin/python3.6'
+  register: moai_venv_python36
 
 
 # For upgrade to Yoda 1.9
-- name: Move old Python 2 MOAI virtual environment in order to be able to replace it
+- name: Move old MOAI virtual environment
   become_user: '{{ yoda_moai_user }}'
   become: true
-  ansible.builtin.command: "mv /var/www/moai/yoda-moai/venv /var/www/moai/venv.python2-backup"
-  when: moai_venv_python2.stat.exists
+  ansible.builtin.command: "mv /var/www/moai/yoda-moai/venv /var/www/moai/venv.backup-pre-1.9"
+  when: moai_venv_python27.stat.exists or moai_venv_python36.stat.exists
 
 
 - name: Ensure Yoda MOAI virtualenv exists
@@ -92,8 +48,8 @@
 - name: Upgrade pip in virtual environment
   ansible.builtin.pip:
     name:
-      - pip==20.2.4
-    executable: /var/www/moai/yoda-moai/venv/bin/pip3.8
+      - pip==23.0.1
+    executable: /var/www/moai/yoda-moai/venv/bin/pip3
 
 
 # Change detection in git repositories is unreliable in some Ansible versions, so we always
@@ -189,16 +145,6 @@
     state: present
   register: filescontext
   when: ansible_selinux.status == "enabled"
-
-
-- name: Upload custom SELinux module for MOAI
-  ansible.builtin.copy:
-    src: my-httpd.pp
-    dest: /root/my-httpd.pp
-    owner: root
-    group: root
-    mode: 0644
-  notify: Load custom SELinux module for MOAI
 
 
 - name: Set SELinux context for lib64

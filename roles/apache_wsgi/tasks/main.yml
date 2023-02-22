@@ -1,0 +1,42 @@
+---
+# copyright Utrecht University
+
+- name: Install Mod-WSGI for Python 3.8
+  ansible.builtin.yum:
+    name: rh-python38-python-mod_wsgi
+    enablerepo: "{{ centos_sclo_rh_repository }}"
+  when: not ansible_check_mode
+
+
+- name: Link Python 3 Mod_WSGI to Apache Modules
+  ansible.builtin.file:
+    dest: /usr/lib64/httpd/modules/mod_wsgi.so
+    src: /opt/rh/rh-python38/root/usr/lib64/python3.8/site-packages/mod_wsgi/server/mod_wsgi-py38.cpython-38-x86_64-linux-gnu.so
+    state: link
+
+
+- name: Configure WSGI module in Apache
+  ansible.builtin.copy:
+    src: 02-wsgi.conf
+    dest: /etc/httpd/conf.modules.d/02-wsgi.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Apache webserver
+
+
+- name: Remove old WSGI configuration in Apache
+  ansible.builtin.file:
+    path: /etc/httpd/conf.modules.d/10-wsgi.conf
+    state: absent
+  notify: Restart Apache webserver
+
+
+- name: Upload custom SELinux module for WSGI with Python 3.8
+  ansible.builtin.copy:
+    src: my-httpd.pp
+    dest: /root/my-httpd.pp
+    owner: root
+    group: root
+    mode: 0644
+  notify: Load custom SELinux module for WSGI with Python 3.8
