@@ -13,5 +13,6 @@ galaxy_info:
 
 dependencies:
   - apache
+  - apache_wsgi
   - postgresql
-  - php
+  - python3

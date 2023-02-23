@@ -244,6 +244,8 @@ notifications_reply_to       | Notifiations Reply-To email address
 
 ### Yoda internal SMTP settings configuration
 
+These settings also affect the External User Service (EUS).
+
 Variable                     | Description
 -----------------------------|---------------------------------------------
 smtp_server                  | SMTP server to send mail to
@@ -343,14 +345,10 @@ eus_api_fqdn                 | External User Service API fully qualified domain 
 eus_api_port                 | External User Service API port
 eus_api_secret               | External User Service API secret
 eus_db_password              | External User Service database password
-eus_smtp_host                | External User Service SMTP host
-eus_smtp_port                | External User Service SMTP port
-eus_smtp_user                | External User Service SMTP user
-eus_smtp_password            | External User Service SMTP password
-eus_smtp_auth                | External User Service SMTP authentication (true/false, default: true)
-eus_smtp_security            | External User Service SMTP encryption (tls/ssl/false, default: tls)
-eus_smtp_from_address        | External User Service from address
-eus_smtp_replyto_address     | External User Service replyto address
+eus_smtp_from_name           | External User Service email from name
+eus_smtp_from_address        | External User Service email from address
+eus_smtp_replyto_name        | External User Service email reply-to name
+eus_smtp_replyto_address     | External User Service email reply-to address
 eus_mail_template            | External User Service mail template
 
 ### OpenID Connect (OIDC) configuration

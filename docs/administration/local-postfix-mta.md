@@ -38,8 +38,7 @@ In summary, using Postfix as a local MTA makes email delivery more resilient and
 
 Configuration consists of up to four parts:
 * Configure Postfix
-* Configure the EUS to send emails to the Postfix instance
-* Configure Yoda (ruleset) to send emails to the Postfix instance
+* Configure Yoda (ruleset) and EUS to send emails to the Postfix instance
 * Optionally configure canonical map entries for rewriting email addresses
 
 ### Postfix
@@ -56,20 +55,10 @@ postfix_relayhost_username: smtpaccount@myuniversity.nl
 postfix_relayhost_password: myPassword
 ```
 
-### EUS
-
-Configure the EUS to send email messages to the local Postfix instance:
-
-```
-eus_smtp_host: localhost
-eus_smtp_port: 25
-eus_smtp_auth: false
-eus_smtp_security: false
-```
-
 ### Yoda ruleset
 
-Configure the Yoda ruleset to send email messages to the local Postfix instance:
+Configure the Yoda ruleset and External User Service (EUS) to send email messages
+via the local Postfix instance:
 
 ```
 smtp_server: smtp://localhost:25
