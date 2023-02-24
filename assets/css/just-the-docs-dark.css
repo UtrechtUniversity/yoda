@@ -409,7 +409,7 @@ blockquote { margin: 10px 0; margin-block-start: 0; margin-inline-start: 0; padd
 @media (min-width: 66.5rem) { .side-bar { width: calc((100% - 1064px) / 2 + 264px); min-width: 264px; } }
 
 @media (min-width: 50rem) { .main { position: relative; max-width: 800px; margin-left: 248px; } }
-@media (min-width: 66.5rem) { .main { margin-left: calc( (100% - 1064px) / 2 + 264px ); } }
+@media (min-width: 66.5rem) { .main { margin-left: Max(264px, calc((100% - 1064px) / 2 + 264px)); } }
 
 .main-content-wrap { padding-right: 1rem; padding-left: 1rem; padding-top: 1rem; padding-bottom: 1rem; }
 @media (min-width: 50rem) { .main-content-wrap { padding-right: 2rem; padding-left: 2rem; } }
@@ -709,8 +709,12 @@ div.highlighter-rouge > button:active, div.listingblock > div.content > button:a
 div.highlighter-rouge > button:focus, div.listingblock > div.content > button:focus, figure.highlight > button:focus { opacity: 1; }
 div.highlighter-rouge:hover > button, div.listingblock > div.content:hover > button, figure.highlight:hover > button { cursor: copy; opacity: 1; }
 
-div.highlighter-rouge div.highlight, div.listingblock div.highlight { overflow-x: auto; padding: 0.75rem; margin: 0; border: 0; }
-div.highlighter-rouge pre.highlight, div.highlighter-rouge code, div.listingblock pre.highlight, div.listingblock code { padding: 0; margin: 0; border: 0; }
+div.highlighter-rouge div.highlight { overflow-x: auto; padding: 0.75rem; margin: 0; border: 0; }
+div.highlighter-rouge pre.highlight, div.highlighter-rouge code { padding: 0; margin: 0; border: 0; }
+
+div.listingblock { margin-top: 0; margin-bottom: 0.75rem; }
+div.listingblock div.content { overflow-x: auto; padding: 0.75rem; margin: 0; border: 0; }
+div.listingblock div.content > pre, div.listingblock code { padding: 0; margin: 0; border: 0; }
 
 figure.highlight pre, figure.highlight :not(pre) > code { overflow-x: auto; padding: 0.75rem; margin: 0; border: 0; }
 

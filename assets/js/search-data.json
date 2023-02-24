@@ -274,7 +274,7 @@
   },"39": {
     "doc": "Configuring Yoda",
     "title": "3. Configure (new) Yoda instance",
-    "content": "To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars). In case of a new Yoda instance we can copy a configuration of a full development (environments/development/full/) instance as base. The configuration is split in several parts. Below an overview of these parts and the configuration options available. Ansible configuration . | Variable | Description | . | ansible_user | Administrative user on instance for Ansible | . | ansible_ssh_private_key_file | Path to private key file of administrative user | . | repo_only | Only download packages from repos | . Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars). Yoda configuration . | Variable | Description | . | instance | Name of Yoda instance, as defined in hosts file | . | yoda_version | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5) | . | yoda_environment | Yoda environment: development, testing, acceptance or production | . | yoda_portal_fqdn | Yoda Portal fully qualified domain name (FQDN) | . | yoda_davrods_fqdn | Yoda Davrods WebDAV fully qualified domain name (FQDN) | . | yoda_davrods_anonymous_fqdn | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN) | . | yoda_davrods_logo_path | Path of the DavRODS logo on the portal. Defaults to the themed logo. | . | yoda_davrods_logo_link | URL that the DavRODS logo is linked to (default: https://www.uu.nl) | . | yoda_enable_httpd | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes) | . | httpd_log_forwarded_for | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer. | . | httpd_log_user_agent | Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false) | . | tcp_keepalive_time | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers. | . | tcp_keepalive_intvl | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers. | . iRODS configuration . | Variable | Description | . | irods_admin | iRODS admin username | . | irods_password | iRODS admin password | . | irods_database_user | The iRODS database username | . | irods_database_password | The password for the iRODS database username | . | irods_database_enable_yoda_indexes | Enable indexes to speed up Yoda search operations (default: false). This is mainly useful for medium-sized and large environments (millions of data objects or more). Please note that the indexes can take up a significant amount of diskspace (rough estimate: 10-30% increase in database size). They will be created asynchronously. This can take some time on existing environments with a significant amount of data, and temporarily decrease performance. | . | irods_zone | The name of the iRODS Zone | . | irods_icat_fqdn | iRODS iCAT fully qualified domain name (FQDN) | . | irods_database_fqdn | iRODS database fully qualified domain name (FQDN) | . | irods_resource_fqdn | iRODS resource fully qualified domain name (FQDN). Don’t define this variable if you have multiple resource servers. | . | irods_default_resc | iRODS default resource name | . | irods_resc_trigger_pol | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: [“^testResc$”,”^myResc$”] | . | irods_ssl_verify_server | Verify TLS certificate, use ‘cert’ for acceptance and production | . | irods_resources | Definition of iRODS resources of this Yoda instance | . | irods_service_type | Possible values: ‘sysv’ (System V) or ‘systemd’ | . | irods_max_open_files | Maximum number of open files for iRODS service (only effective when irods_service_type is set to ‘systemd’) | . | irods_enable_service | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes (only effective when irods_service_type is set to ‘systemd’) | . | irods_rum_job_enabled | Whether to enable the daily RUM job for removing unused metadata entries (default: true) | . | irods_rum_job_hour | Time to run RUM job - hour (default: 20) | . | irods_rum_job_minute | Time to run RUM job - minute (default: 0) | . S3 configuration - for iRODS S3 resource plugin and s3cmd utilities . | Variable | Description | . | enable_s3_resource | Enable iRODS S3 Resource Plugin. Default: false | . | s3_access_key | S3 access key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file) | . | s3_secret_key | S3 secret key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file) | . | s3_hostname | S3 server hostname (used by s3cmd; the hostname used by the S3 resource plugin is configured in the S3 resource contexts instead) | . Research module configuration . | Variable | Description | . | default_yoda_schema | Default Yoda XML scheme: default-0 or default-1 | . | enable_revisions | Enable revisions: yes (1) or no (0) | . | enable_revision_cleanup | Enable cleanup job for removing old revisions (true/false, default: true) | . | enable_async_replication | Enable asynchronous replication cronjob: yes (1) or no (0) | . | revision_strategy | Revision strategy: A, B, J or Simple | . | yoda_random_id_length | Length of random ID to add to persistent identifier | . | yoda_prefix | Prefix for internal portion of persistent identifier | . | update_rulesets | Update already installed rulesets with git | . | override_resc_install_rulesets | Install rulesets on server even if it is a resource server (default: false). This override parameter can be used on resource servers that have an additional role, e.g. DavRODS server | . | update_schemas | Update already installed schemas, formelements and stylesheets: yes (1) or no (0) | . | credential_files | Location of Yoda credentials files | . | temporary_files | List of temporary files for cleanup functionality | . | metadata_schemas | List of metadata schemas to install on the system | . Deposit module configuration . | Variable | Description | . | enable_deposit | Enable deposit module | . Intake module configuration . | Variable | Description | . | enable_intake | Enable intake module | . | intake_groups | List of intake groups (without the “grp-intake-“ prefix) | . | intake_extended_timeout | If the intake module is enabled, portal iRODS session timeouts and portal VHost timeouts will be changed to this value (in seconds), in order to be able to handle long synchronous operations, such as intake scans (default: 1800) | . Datarequest module configuration . | Variable | Description | . | enable_datarequest | Enable datarequest module | . | datarequest_help_contact_name | Help contact name | . | datarequest_help_contact_email | Help contact email address | . OpenSearch configuration . | Variable | Description | . | enable_open_search | Enable OpenSearch and indexing plugin | . | opensearch_server | FQDN of the OpenSearch server (typically the provider) | . Yoda notifications configuration . | Variable | Description | . | send_notifications | Enable notifications: yes (1) or no (0) | . | notifications_sender_email | Notifiations sender email address | . | notifications_reply_to | Notifiations Reply-To email address | . Yoda internal SMTP settings configuration . | Variable | Description | . | smtp_server | SMTP server to send mail to | . | smtp_username | SMTP server username | . | smtp_password | SMTP server password | . | smtp_auth | Whether to use SMTP authentication (true/false, default: true) | . | smtp_starttls | Whether to force StartTLS on non-SMTP connections (true/false, default: true) | . PostgreSQL database configuration . | Variable | Description | . | pgsql_version | PostgreSQL version (default: 11) | . | postgresql_max_connections | Maximum number of database connections (default: 100) | . | postgresql_shared_buffers | Amount of memory database should use for shared buffers. Rule of thumb: set to 25% of memory on dedicated database server; on a shared server, it should probably be lower. Default value: 32 MB. | . | postgresql_work_mem | Maximum amount of worker memory. Rule of thumb: increasing worker memory can help with improving performance, but it is necessary to ensure that sufficient memory is available, considering the maximum number of database connections. Default value: 1 MB. | . | postgresql_maintenance_work_mem | Maximum amount of memory for maintenance processes, such as VACUUM. Default value: 16 MB. | . | postgresql_effective_cache_size | Tells the query planner how much memory it can expect to be available for disk caching for the database. Rule of thumb: set to approximately 50-75% on dedicated database server. Default value: 128 MB. | . | postgresql_random_page_cost | Tells the query planner about the relative cost of random access versus sequential access. You could use a tool like fio to get an estimate, or use a ballpark estimate based on the type of storage of the database volume (e.g. 1.0 for SSD-based storage). Default value is 4.0. | . | postgresql_log_line_prefix: | Format of log message prefix in the PostgreSQL log, for adding timestamps etc. to log messages. The default value adds a timestamp and process number, which is sufficient for most purposes. It might be useful to log additional information in specific situations, such as when troubleshooting database issues. | . | postgresql_log_min_duration_statement | Minimum number of milliseconds for slow query logging (default: -1 / disabled) | . | postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled) | . | postgresql_timezone | Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam. | . PgBouncer configuration . | Variable | Description | . | enable_pgbouncer | Whether to enable PgBouncer (default: false) | . | pgbouncer_pool_mode | Specifies when a server connection can be reused by other clients (default: session) | . | pgbouncer_max_client_conn | Maximum number of client connections allowed (default: 200) | . | pgbouncer_default_pool_size | How many server connections to allow per user/database pair (default: 50) | . | pgbouncer_reserve_pool_size | How many additional connections to allow to a pool (default: 25) | . | pgbouncer_reserve_pool_timeout | If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2) | . Postfix configuration . | Variable | Description | . | enable_postfix | Whether to enable the Postfix local MTA (default: false) | . | postfix_myhostname | Hostname of server where Postfix will be installed (compulsory parameter if Postfix is enabled) | . | postfix_relayhost | Relay host, the server that Postfix should send emails to (compulsory parameter if Postfix is enabled) | . | postfix_relayhost_port | Port of relay host (default: 587) | . | postfix_relayhost_username | User name for authentication on relay host (compulsory parameter if Postfix is enabled) | . | postfix_relayhost_password | Password for authentication on relay host (compulsory parameter if Postfix is enabled) | . | postfix_smtp_enable_tls | Whether to enable TLS on connections to relay host. This also enables authentication on connections to the relay host (default: true) | . | postfix_enable_debugging | This enables additional logging on connections to the relay host. Useful for troubleshooting. (default: false) | . | postfix_myorigin | Sets origin domain for emails sent on the system. Defaults to the postfix_myhostname domain. | . | postfix_inet_protocols | Refers to Postfix inet_protocols setting. Can be useful for running Postfix in IPv4 only mode, if no IPv6 connectivity is available (default: “all”) | . | postfix_canonical_map | An optional dictionary of rewrite rules for email addresses. See the local Postfix MTA page for further information. | . DataCite Configuration . | Variable | Description | . | datacite_username | DataCite username | . | datacite_password | DataCite password | . | datacite_prefix | DataCite DOI prefix | . | datacite_rest_api_url | DataCite REST API URL | . EPIC PID Configuration . | Variable | Description | . | epic_url | EPIC PID server URI (undefined disables EPIC PID) | . | epic_handle_prefix | EPIC PID prefix | . | epic_key | EPIC PID key (base64 encoded) | . | epic_cert | EPIC PID cert (base64 encoded) | . Data Access Tokens configuration . | Variable | Description | . | enable_tokens | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be true or false | . | token_database | Location of the database that contain the tokens | . | token_database_password | Token database password | . | token_length | Length of data access tokens | . | token_lifetime | Lifetime of data access tokens (in hours) | . | token_expiration_notification | Send notification before token expiration (in hours) | . | enable_radius_fallback | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if enable_tokens is set to true.This is a legacy parameter that will be removed in a future version of Yoda. | . Public host configuration . | Variable | Description | . | yoda_public_host | Yoda public host | . | yoda_public_fqdn | Yoda public fully qualified domain name (FQDN) | . | upload_priv_key | Yoda public upload private key (base64 encoded) | . | upload_pub_key | Yoda public upload public key (base64 encoded) | . External user service configuration . | Variable | Description | . | yoda_eus_fqdn | Yoda External User Service fully qualified domain name (FQDN) | . | eus_api_fqdn | External User Service API fully qualified domain name (FQDN) | . | eus_api_port | External User Service API port | . | eus_api_secret | External User Service API secret | . | eus_db_password | External User Service database password | . | eus_smtp_host | External User Service SMTP host | . | eus_smtp_port | External User Service SMTP port | . | eus_smtp_user | External User Service SMTP user | . | eus_smtp_password | External User Service SMTP password | . | eus_smtp_auth | External User Service SMTP authentication (true/false, default: true) | . | eus_smtp_security | External User Service SMTP encryption (tls/ssl/false, default: tls) | . | eus_smtp_from_address | External User Service from address | . | eus_smtp_replyto_address | External User Service replyto address | . | eus_mail_template | External User Service mail template | . OpenID Connect (OIDC) configuration . | Variable | Description | . | oidc_active | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be true or false | . | oidc_domains | Domains that should use OIDC (list). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages. | . | oidc_client_id | OIDC Client Id | . | oidc_client_secret | OIDC Client Secret/Password | . | oidc_callback_url | OIDC Callback url | . | oidc_auth_base_uri | OIDC Authorization URI without parameters | . | oidc_login_hint | Boolean indicating whether login hint should be added to Authorization URI (default: True) | . | oidc_token_uri | OIDC Token URI | . | oidc_userinfo_uri | OIDC Userinfo URI | . | oidc_scopes | OIDC Scopes | . | oidc_acr_values | OIDC Authentication Context Class Reference Values | . | oidc_email_field | The identifier of the JSON field in the id_token containing the email address. Default: email the email address (default: email) | . | oidc_jwks_uri | The url where the JWKS can be found (Java web key sets) | . | oidc_jwt_issuer | The issuer of the JWT tokens (‘iss’ value in JWT, for verification) | . | oidc_req_exp | Check that exp (expiration) claim is present | . | oidc_req_iat | Check that iat (issued at) claim is present | . | oidc_req_nbf | Check that nbf (not before) claim is present | . | oidc_verify_aud | Check that aud (audience) claim matches audience | . | oidc_verify_iat | Check that iat (issued at) claim value is an integer | . | oidc_verify_exp | Check that exp (expiration) claim value is OK | . | oidc_verify_iss | Check that iss (issue) claim is as expected | . Mailpit configuration . | Variable | Description | . | enable_mailpit | Enable Mailpit for email testing. Should only be enabled on local development environments for security reasons. Mailpit and Postfix shouldn’t be enabled simultaneously. Default: false | . | mailpit_version | Mailpit version to install | . | mailpit_max_messages | Maximum number of messages to store (default: 10000) | . | mailpit_smtp_bind_address | Address to bind on for SMTP interface (default: 0.0.0.0) | . | mailpit_smtp_port | TCP port for SMTP interface (default: 25) | . Tooling . | Variable | Description | . | enable_irods_consistency_check | Install iRODS consistency checker tool (ichk) | . | irods_consistency_check_version | iRODS consistency checker (ichk) version | . | enable_icat_database_checker | Install iCAT database checker | . | icat_database_checker_version | iCAT database checker version | . ",
+    "content": "To configure a (new) Yoda instance we have to edit the instance configuration in the Yoda instance variables directory (group_vars). In case of a new Yoda instance we can copy a configuration of a full development (environments/development/full/) instance as base. The configuration is split in several parts. Below an overview of these parts and the configuration options available. Ansible configuration . | Variable | Description | . | ansible_user | Administrative user on instance for Ansible | . | ansible_ssh_private_key_file | Path to private key file of administrative user | . | repo_only | Only download packages from repos | . | centos_extras_repository | Name of the CentOS extras repository | . | centos_sclo_rh_repository | Name of the CentOS SCLO-RH repository | . Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars). Yoda configuration . | Variable | Description | . | instance | Name of Yoda instance, as defined in hosts file | . | yoda_version | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5) | . | yoda_environment | Yoda environment: development, testing, acceptance or production | . | yoda_portal_fqdn | Yoda Portal fully qualified domain name (FQDN) | . | yoda_davrods_fqdn | Yoda Davrods WebDAV fully qualified domain name (FQDN) | . | yoda_davrods_anonymous_fqdn | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN) | . | yoda_davrods_logo_path | Path of the DavRODS logo on the portal. Defaults to the themed logo. | . | yoda_davrods_logo_link | URL that the DavRODS logo is linked to (default: https://www.uu.nl) | . | yoda_enable_httpd | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes) | . | httpd_log_forwarded_for | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer. | . | httpd_log_user_agent | Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false) | . | tcp_keepalive_time | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers. | . | tcp_keepalive_intvl | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers. | . iRODS configuration . | Variable | Description | . | irods_admin | iRODS admin username | . | irods_password | iRODS admin password | . | irods_database_user | The iRODS database username | . | irods_database_password | The password for the iRODS database username | . | irods_database_enable_yoda_indexes | Enable indexes to speed up Yoda search operations (default: false). This is mainly useful for medium-sized and large environments (millions of data objects or more). Please note that the indexes can take up a significant amount of diskspace (rough estimate: 10-30% increase in database size). They will be created asynchronously. This can take some time on existing environments with a significant amount of data, and temporarily decrease performance. | . | irods_zone | The name of the iRODS Zone | . | irods_icat_fqdn | iRODS iCAT fully qualified domain name (FQDN) | . | irods_database_fqdn | iRODS database fully qualified domain name (FQDN) | . | irods_resource_fqdn | iRODS resource fully qualified domain name (FQDN). Don’t define this variable if you have multiple resource servers. | . | irods_default_resc | iRODS default resource name | . | irods_resc_trigger_pol | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: [“^testResc$”,”^myResc$”] | . | irods_ssl_verify_server | Verify TLS certificate, use ‘cert’ for acceptance and production | . | irods_resources | Definition of iRODS resources of this Yoda instance | . | irods_service_type | Possible values: ‘sysv’ (System V) or ‘systemd’ | . | irods_max_open_files | Maximum number of open files for iRODS service (only effective when irods_service_type is set to ‘systemd’) | . | irods_enable_service | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes (only effective when irods_service_type is set to ‘systemd’) | . | irods_rum_job_enabled | Whether to enable the daily RUM job for removing unused metadata entries (default: true) | . | irods_rum_job_hour | Time to run RUM job - hour (default: 20) | . | irods_rum_job_minute | Time to run RUM job - minute (default: 0) | . S3 configuration - for iRODS S3 resource plugin and s3cmd utilities . | Variable | Description | . | enable_s3_resource | Enable iRODS S3 Resource Plugin. Default: false | . | s3_access_key | S3 access key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file) | . | s3_secret_key | S3 secret key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file) | . | s3_hostname | S3 server hostname (used by s3cmd; the hostname used by the S3 resource plugin is configured in the S3 resource contexts instead) | . Research module configuration . | Variable | Description | . | default_yoda_schema | Default Yoda XML scheme: default-0 or default-1 | . | enable_revisions | Enable revisions: yes (1) or no (0) | . | enable_revision_cleanup | Enable cleanup job for removing old revisions (true/false, default: true) | . | enable_async_replication | Enable asynchronous replication cronjob: yes (1) or no (0) | . | revision_strategy | Revision strategy: A, B, J or Simple | . | yoda_random_id_length | Length of random ID to add to persistent identifier | . | yoda_prefix | Prefix for internal portion of persistent identifier | . | update_rulesets | Update already installed rulesets with git | . | override_resc_install_rulesets | Install rulesets on server even if it is a resource server (default: false). This override parameter can be used on resource servers that have an additional role, e.g. DavRODS server | . | update_schemas | Update already installed schemas, formelements and stylesheets: yes (1) or no (0) | . | credential_files | Location of Yoda credentials files | . | temporary_files | List of temporary files for cleanup functionality | . | metadata_schemas | List of metadata schemas to install on the system | . Deposit module configuration . | Variable | Description | . | enable_deposit | Enable deposit module | . Intake module configuration . | Variable | Description | . | enable_intake | Enable intake module | . | intake_groups | List of intake groups (without the “grp-intake-“ prefix) | . | intake_extended_timeout | If the intake module is enabled, portal iRODS session timeouts and portal VHost timeouts will be changed to this value (in seconds), in order to be able to handle long synchronous operations, such as intake scans (default: 1800) | . Datarequest module configuration . | Variable | Description | . | enable_datarequest | Enable datarequest module | . | datarequest_help_contact_name | Help contact name | . | datarequest_help_contact_email | Help contact email address | . OpenSearch configuration . | Variable | Description | . | enable_open_search | Enable OpenSearch and indexing plugin | . | opensearch_server | FQDN of the OpenSearch server (typically the provider) | . Yoda notifications configuration . | Variable | Description | . | send_notifications | Enable notifications: yes (1) or no (0) | . | notifications_sender_email | Notifiations sender email address | . | notifications_reply_to | Notifiations Reply-To email address | . Yoda internal SMTP settings configuration . | Variable | Description | . | smtp_server | SMTP server to send mail to | . | smtp_username | SMTP server username | . | smtp_password | SMTP server password | . | smtp_auth | Whether to use SMTP authentication (true/false, default: true) | . | smtp_starttls | Whether to force StartTLS on non-SMTP connections (true/false, default: true) | . PostgreSQL database configuration . | Variable | Description | . | pgsql_version | PostgreSQL version (default: 11) | . | postgresql_max_connections | Maximum number of database connections (default: 100) | . | postgresql_shared_buffers | Amount of memory database should use for shared buffers. Rule of thumb: set to 25% of memory on dedicated database server; on a shared server, it should probably be lower. Default value: 32 MB. | . | postgresql_work_mem | Maximum amount of worker memory. Rule of thumb: increasing worker memory can help with improving performance, but it is necessary to ensure that sufficient memory is available, considering the maximum number of database connections. Default value: 1 MB. | . | postgresql_maintenance_work_mem | Maximum amount of memory for maintenance processes, such as VACUUM. Default value: 16 MB. | . | postgresql_effective_cache_size | Tells the query planner how much memory it can expect to be available for disk caching for the database. Rule of thumb: set to approximately 50-75% on dedicated database server. Default value: 128 MB. | . | postgresql_random_page_cost | Tells the query planner about the relative cost of random access versus sequential access. You could use a tool like fio to get an estimate, or use a ballpark estimate based on the type of storage of the database volume (e.g. 1.0 for SSD-based storage). Default value is 4.0. | . | postgresql_log_line_prefix: | Format of log message prefix in the PostgreSQL log, for adding timestamps etc. to log messages. The default value adds a timestamp and process number, which is sufficient for most purposes. It might be useful to log additional information in specific situations, such as when troubleshooting database issues. | . | postgresql_log_min_duration_statement | Minimum number of milliseconds for slow query logging (default: -1 / disabled) | . | postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled) | . | postgresql_timezone | Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam. | . PgBouncer configuration . | Variable | Description | . | enable_pgbouncer | Whether to enable PgBouncer (default: false) | . | pgbouncer_pool_mode | Specifies when a server connection can be reused by other clients (default: session) | . | pgbouncer_max_client_conn | Maximum number of client connections allowed (default: 200) | . | pgbouncer_default_pool_size | How many server connections to allow per user/database pair (default: 50) | . | pgbouncer_reserve_pool_size | How many additional connections to allow to a pool (default: 25) | . | pgbouncer_reserve_pool_timeout | If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2) | . Postfix configuration . | Variable | Description | . | enable_postfix | Whether to enable the Postfix local MTA (default: false) | . | postfix_myhostname | Hostname of server where Postfix will be installed (compulsory parameter if Postfix is enabled) | . | postfix_relayhost | Relay host, the server that Postfix should send emails to (compulsory parameter if Postfix is enabled) | . | postfix_relayhost_port | Port of relay host (default: 587) | . | postfix_relayhost_username | User name for authentication on relay host (compulsory parameter if Postfix is enabled) | . | postfix_relayhost_password | Password for authentication on relay host (compulsory parameter if Postfix is enabled) | . | postfix_smtp_enable_tls | Whether to enable TLS on connections to relay host. This also enables authentication on connections to the relay host (default: true) | . | postfix_enable_debugging | This enables additional logging on connections to the relay host. Useful for troubleshooting. (default: false) | . | postfix_myorigin | Sets origin domain for emails sent on the system. Defaults to the postfix_myhostname domain. | . | postfix_inet_protocols | Refers to Postfix inet_protocols setting. Can be useful for running Postfix in IPv4 only mode, if no IPv6 connectivity is available (default: “all”) | . | postfix_canonical_map | An optional dictionary of rewrite rules for email addresses. See the local Postfix MTA page for further information. | . DataCite Configuration . | Variable | Description | . | datacite_username | DataCite username | . | datacite_password | DataCite password | . | datacite_prefix | DataCite DOI prefix | . | datacite_rest_api_url | DataCite REST API URL | . EPIC PID Configuration . | Variable | Description | . | epic_url | EPIC PID server URI (undefined disables EPIC PID) | . | epic_handle_prefix | EPIC PID prefix | . | epic_key | EPIC PID key (base64 encoded) | . | epic_cert | EPIC PID cert (base64 encoded) | . Data Access Tokens configuration . | Variable | Description | . | enable_tokens | Boolean indicating if Data Access Tokens for webDAV and iCommands are enabled. Must be true or false | . | token_database | Location of the database that contain the tokens | . | token_database_password | Token database password | . | token_length | Length of data access tokens | . | token_lifetime | Lifetime of data access tokens (in hours) | . | token_expiration_notification | Send notification before token expiration (in hours) | . | enable_radius_fallback | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if enable_tokens is set to true.This is a legacy parameter that will be removed in a future version of Yoda. | . Public host configuration . | Variable | Description | . | yoda_public_host | Yoda public host | . | yoda_public_fqdn | Yoda public fully qualified domain name (FQDN) | . | upload_priv_key | Yoda public upload private key (base64 encoded) | . | upload_pub_key | Yoda public upload public key (base64 encoded) | . External user service configuration . | Variable | Description | . | yoda_eus_fqdn | Yoda External User Service fully qualified domain name (FQDN) | . | eus_api_fqdn | External User Service API fully qualified domain name (FQDN) | . | eus_api_port | External User Service API port | . | eus_api_secret | External User Service API secret | . | eus_db_password | External User Service database password | . | eus_smtp_host | External User Service SMTP host | . | eus_smtp_port | External User Service SMTP port | . | eus_smtp_user | External User Service SMTP user | . | eus_smtp_password | External User Service SMTP password | . | eus_smtp_auth | External User Service SMTP authentication (true/false, default: true) | . | eus_smtp_security | External User Service SMTP encryption (tls/ssl/false, default: tls) | . | eus_smtp_from_address | External User Service from address | . | eus_smtp_replyto_address | External User Service replyto address | . | eus_mail_template | External User Service mail template | . OpenID Connect (OIDC) configuration . | Variable | Description | . | oidc_active | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be true or false | . | oidc_domains | Domains that should use OIDC (list). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages. | . | oidc_client_id | OIDC Client Id | . | oidc_client_secret | OIDC Client Secret/Password | . | oidc_callback_url | OIDC Callback url | . | oidc_auth_base_uri | OIDC Authorization URI without parameters | . | oidc_login_hint | Boolean indicating whether login hint should be added to Authorization URI (default: True) | . | oidc_token_uri | OIDC Token URI | . | oidc_userinfo_uri | OIDC Userinfo URI | . | oidc_scopes | OIDC Scopes | . | oidc_acr_values | OIDC Authentication Context Class Reference Values | . | oidc_email_field | The identifier of the JSON field in the id_token containing the email address. Default: email the email address (default: email) | . | oidc_jwks_uri | The url where the JWKS can be found (Java web key sets) | . | oidc_jwt_issuer | The issuer of the JWT tokens (‘iss’ value in JWT, for verification) | . | oidc_req_exp | Check that exp (expiration) claim is present | . | oidc_req_iat | Check that iat (issued at) claim is present | . | oidc_req_nbf | Check that nbf (not before) claim is present | . | oidc_verify_aud | Check that aud (audience) claim matches audience | . | oidc_verify_iat | Check that iat (issued at) claim value is an integer | . | oidc_verify_exp | Check that exp (expiration) claim value is OK | . | oidc_verify_iss | Check that iss (issue) claim is as expected | . Mailpit configuration . | Variable | Description | . | enable_mailpit | Enable Mailpit for email testing. Should only be enabled on local development environments for security reasons. Mailpit and Postfix shouldn’t be enabled simultaneously. Default: false | . | mailpit_version | Mailpit version to install | . | mailpit_max_messages | Maximum number of messages to store (default: 10000) | . | mailpit_smtp_bind_address | Address to bind on for SMTP interface (default: 0.0.0.0) | . | mailpit_smtp_port | TCP port for SMTP interface (default: 25) | . Tooling . | Variable | Description | . | enable_irods_consistency_check | Install iRODS consistency checker tool (ichk) | . | irods_consistency_check_version | iRODS consistency checker (ichk) version | . | enable_icat_database_checker | Install iCAT database checker | . | icat_database_checker_version | iCAT database checker version | . ",
     "url": "/yoda/administration/configuring-yoda.html#3-configure-new-yoda-instance",
     
     "relUrl": "/administration/configuring-yoda.html#3-configure-new-yoda-instance"
@@ -650,187 +650,187 @@
     
     "relUrl": "/administration/hotfixing-ruleset.html"
   },"93": {
-    "doc": "System Overview",
-    "title": "System overview",
-    "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
-    "url": "/yoda/design/overview/#system-overview",
-    
-    "relUrl": "/design/overview/#system-overview"
-  },"94": {
-    "doc": "System Overview",
-    "title": "Core modules",
-    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
-    "url": "/yoda/design/overview/#core-modules",
-    
-    "relUrl": "/design/overview/#core-modules"
-  },"95": {
-    "doc": "System Overview",
-    "title": "Additional modules",
-    "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
-    "url": "/yoda/design/overview/#additional-modules",
-    
-    "relUrl": "/design/overview/#additional-modules"
-  },"96": {
-    "doc": "System Overview",
-    "title": "Overview",
-    "content": ". ",
-    "url": "/yoda/design/overview/#overview",
-    
-    "relUrl": "/design/overview/#overview"
-  },"97": {
-    "doc": "System Overview",
-    "title": "System Overview",
-    "content": " ",
-    "url": "/yoda/design/overview/",
-    
-    "relUrl": "/design/overview/"
-  },"98": {
-    "doc": "Other",
-    "title": "Other",
-    "content": " ",
-    "url": "/yoda/design/other/",
-    
-    "relUrl": "/design/other/"
-  },"99": {
-    "doc": "Processes",
-    "title": "Processes",
-    "content": " ",
-    "url": "/yoda/design/processes/",
-    
-    "relUrl": "/design/processes/"
-  },"100": {
-    "doc": "Metadata",
-    "title": "Metadata",
-    "content": " ",
-    "url": "/yoda/design/metadata/",
-    
-    "relUrl": "/design/metadata/"
-  },"101": {
-    "doc": "Metadata",
-    "title": "Overview",
-    "content": "Yoda supports adding metadata to collections. This facilitates archiving and (especially) publishing a collection of data as a data package. Each community or group can have its own metadata schema, so that different departments or faculties can optionally adapt the metadata format to their field. This part of the documentation is about metadata in the context of Yoda data packages. iRODS metadata (AVUs) have a role in Yoda metadata, but can also be used for other purposes that are unrelated to Yoda data packages. Data request module metadata is also not in the scope of this page. Yoda metadata is primarily stored in data objects named yoda-metadata.json. ",
-    "url": "/yoda/design/metadata/#overview",
-    
-    "relUrl": "/design/metadata/#overview"
-  },"102": {
-    "doc": "Metadata",
-    "title": "Metadata schemas",
-    "content": "In Yoda, a metadata schema is used to validate the metadata of a data package. The schema also contains information regarding how the metadata should be displayed in the web portal. A Yoda metadata schema contains of two parts: . | A JSON schema file that is used to validate metadata of a data package. | A UI schema file that contains information for the web portal regarding how to display a metadata form for this schema, optionally including placeholders and help text for each field. | . Yoda environments have a default metadata schema. Additionally, specific metadata schemas can be configured for communities (also known as categories). As of Yoda 1.9, it is also possible to configure a metadata schema on a group level. For more information, see: . | Metadata schema configuration | Using JSON schema to define a metadata schema | . ",
-    "url": "/yoda/design/metadata/#metadata-schemas",
-    
-    "relUrl": "/design/metadata/#metadata-schemas"
-  },"103": {
-    "doc": "Metadata",
-    "title": "Schema names and identifiers",
-    "content": "Each schema has a globally unique identifier (URL) that is based on its name. For example, the default-2 schema is identified as https://yoda.uu.nl/schemas/default-2/metadata.json. For more information, see Architectural decision record schema identifier format . ",
-    "url": "/yoda/design/metadata/#schema-names-and-identifiers",
-    
-    "relUrl": "/design/metadata/#schema-names-and-identifiers"
-  },"104": {
-    "doc": "Metadata",
-    "title": "Exporting of metadata during publication",
-    "content": "When a data package is published, its metadata will be exported in three ways: . Landing page . The landing page HTML code is generated using a Jinja2 template. This template may need to be adapted in case of metadata schema changes. The template can be found in /etc/irods/yoda-ruleset/templates/landingpage.html.j2. The Ansible playbook activates this template by uploading it to the /zone/yoda/templates/ collection. JSON file for DataCite . A JSON file conforming to the DataCite v4 Schema is generated. The implementation can be found in /etc/irods/yoda-ruleset/json_datacite41.py. OAI-PMH data . The metadata will be copied to the OAI-PMH server (public server). Once there, it will be processed by MOAI so that it can be harvested using the OAI-PMH protocol by external systems. Only a subset of fields that map to Dublin core and DataCite are processed by MOAI. Any changes to these fields will result in the metadata being omitted from the stream. ",
-    "url": "/yoda/design/metadata/#exporting-of-metadata-during-publication",
-    
-    "relUrl": "/design/metadata/#exporting-of-metadata-during-publication"
-  },"105": {
-    "doc": "Metadata",
-    "title": "Metadata transformation",
-    "content": "As a general rule, metadata will have to comply with the latest version of a schema. For example, if a new version of Yoda has a new default-2 schema, all data packages using the default-1 schema will need to be updated to default-2.. Vault metadata is upgraded as a part of the upgrade process, as described in the release notes. Research metadata is updated when a user opens it. The transformation logic for updating to a newer version of a schema is defined in /etc/irods/yoda-ruleset/schema_transformations.py. ",
-    "url": "/yoda/design/metadata/#metadata-transformation",
-    
-    "relUrl": "/design/metadata/#metadata-transformation"
-  },"106": {
-    "doc": "Metadata",
-    "title": "Further information",
-    "content": ". | Information about metadata form implementation | Use of metadata in the vault | . ",
-    "url": "/yoda/design/metadata/#further-information",
-    
-    "relUrl": "/design/metadata/#further-information"
-  },"107": {
-    "doc": "API",
-    "title": "API",
-    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
-    "url": "/yoda/design/api/",
-    
-    "relUrl": "/design/api/"
-  },"108": {
-    "doc": "Software Design",
-    "title": "Software Design",
-    "content": " ",
-    "url": "/yoda/design/",
-    
-    "relUrl": "/design/"
-  },"109": {
-    "doc": "Software Design",
-    "title": "API",
-    "content": ". | API documentation | . ",
-    "url": "/yoda/design/#api",
-    
-    "relUrl": "/design/#api"
-  },"110": {
-    "doc": "Software Design",
-    "title": "System",
-    "content": ". | System overview | Research space | Vault space | Statistics module | Intake module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
-    "url": "/yoda/design/#system",
-    
-    "relUrl": "/design/#system"
-  },"111": {
-    "doc": "Software Design",
-    "title": "Metadata",
-    "content": ". | Metadata design overview | Metadata schema definition | Metadata schema - JSON configuration | Metadata schema identifier format | Metadata: use in the vault | Metadata: form implementation | . ",
-    "url": "/yoda/design/#metadata",
-    
-    "relUrl": "/design/#metadata"
-  },"112": {
-    "doc": "Software Design",
-    "title": "Processes",
-    "content": ". | Asynchronous and privileged execution | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
-    "url": "/yoda/design/#processes",
-    
-    "relUrl": "/design/#processes"
-  },"113": {
-    "doc": "Software Design",
-    "title": "Other",
-    "content": ". | Python plugin | Yoda drive | . ",
-    "url": "/yoda/design/#other",
-    
-    "relUrl": "/design/#other"
-  },"114": {
-    "doc": "Development",
-    "title": "Development",
-    "content": ". | Setting up development environment | Running API and UI tests | Setting up YodaDrive development environment | Mock tape archive | Development tips | Wall of Fame | . ",
-    "url": "/yoda/development/",
-    
-    "relUrl": "/development/"
-  },"115": {
     "doc": "Administration Tasks",
     "title": "Administration Tasks",
     "content": " ",
     "url": "/yoda/administration/",
     
     "relUrl": "/administration/"
-  },"116": {
+  },"94": {
     "doc": "Administration Tasks",
     "title": "Configuration and deployment",
     "content": "Main page: Configuring Yoda . Specific information: . | Configuring cleanup of temporary files | Configuring OIDC | Deploying Yoda | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Rulesets changes: . | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | . | Working with the local Postfix MTA | Upgrading metadata schemas | . ",
     "url": "/yoda/administration/#configuration-and-deployment",
     
     "relUrl": "/administration/#configuration-and-deployment"
-  },"117": {
+  },"95": {
     "doc": "Administration Tasks",
     "title": "Operations",
     "content": ". | Graciously stopping revision and replication jobs | Using Python-irodsclient | . ",
     "url": "/yoda/administration/#operations",
     
     "relUrl": "/administration/#operations"
-  },"118": {
+  },"96": {
     "doc": "Administration Tasks",
     "title": "Troubleshooting",
     "content": ". | Restoring a collection | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | . ",
     "url": "/yoda/administration/#troubleshooting",
     
     "relUrl": "/administration/#troubleshooting"
+  },"97": {
+    "doc": "Development",
+    "title": "Development",
+    "content": ". | Setting up development environment | Running API and UI tests | Setting up YodaDrive development environment | Mock tape archive | Development tips | Wall of Fame | . ",
+    "url": "/yoda/development/",
+    
+    "relUrl": "/development/"
+  },"98": {
+    "doc": "Metadata",
+    "title": "Metadata",
+    "content": " ",
+    "url": "/yoda/design/metadata/",
+    
+    "relUrl": "/design/metadata/"
+  },"99": {
+    "doc": "Metadata",
+    "title": "Overview",
+    "content": "Yoda supports adding metadata to collections. This facilitates archiving and (especially) publishing a collection of data as a data package. Each community or group can have its own metadata schema, so that different departments or faculties can optionally adapt the metadata format to their field. This part of the documentation is about metadata in the context of Yoda data packages. iRODS metadata (AVUs) have a role in Yoda metadata, but can also be used for other purposes that are unrelated to Yoda data packages. Data request module metadata is also not in the scope of this page. Yoda metadata is primarily stored in data objects named yoda-metadata.json. ",
+    "url": "/yoda/design/metadata/#overview",
+    
+    "relUrl": "/design/metadata/#overview"
+  },"100": {
+    "doc": "Metadata",
+    "title": "Metadata schemas",
+    "content": "In Yoda, a metadata schema is used to validate the metadata of a data package. The schema also contains information regarding how the metadata should be displayed in the web portal. A Yoda metadata schema contains of two parts: . | A JSON schema file that is used to validate metadata of a data package. | A UI schema file that contains information for the web portal regarding how to display a metadata form for this schema, optionally including placeholders and help text for each field. | . Yoda environments have a default metadata schema. Additionally, specific metadata schemas can be configured for communities (also known as categories). As of Yoda 1.9, it is also possible to configure a metadata schema on a group level. For more information, see: . | Metadata schema configuration | Using JSON schema to define a metadata schema | . ",
+    "url": "/yoda/design/metadata/#metadata-schemas",
+    
+    "relUrl": "/design/metadata/#metadata-schemas"
+  },"101": {
+    "doc": "Metadata",
+    "title": "Schema names and identifiers",
+    "content": "Each schema has a globally unique identifier (URL) that is based on its name. For example, the default-2 schema is identified as https://yoda.uu.nl/schemas/default-2/metadata.json. For more information, see Architectural decision record schema identifier format . ",
+    "url": "/yoda/design/metadata/#schema-names-and-identifiers",
+    
+    "relUrl": "/design/metadata/#schema-names-and-identifiers"
+  },"102": {
+    "doc": "Metadata",
+    "title": "Exporting of metadata during publication",
+    "content": "When a data package is published, its metadata will be exported in three ways: . Landing page . The landing page HTML code is generated using a Jinja2 template. This template may need to be adapted in case of metadata schema changes. The template can be found in /etc/irods/yoda-ruleset/templates/landingpage.html.j2. The Ansible playbook activates this template by uploading it to the /zone/yoda/templates/ collection. JSON file for DataCite . A JSON file conforming to the DataCite v4 Schema is generated. The implementation can be found in /etc/irods/yoda-ruleset/json_datacite41.py. OAI-PMH data . The metadata will be copied to the OAI-PMH server (public server). Once there, it will be processed by MOAI so that it can be harvested using the OAI-PMH protocol by external systems. Only a subset of fields that map to Dublin core and DataCite are processed by MOAI. Any changes to these fields will result in the metadata being omitted from the stream. ",
+    "url": "/yoda/design/metadata/#exporting-of-metadata-during-publication",
+    
+    "relUrl": "/design/metadata/#exporting-of-metadata-during-publication"
+  },"103": {
+    "doc": "Metadata",
+    "title": "Metadata transformation",
+    "content": "As a general rule, metadata will have to comply with the latest version of a schema. For example, if a new version of Yoda has a new default-2 schema, all data packages using the default-1 schema will need to be updated to default-2.. Vault metadata is upgraded as a part of the upgrade process, as described in the release notes. Research metadata is updated when a user opens it. The transformation logic for updating to a newer version of a schema is defined in /etc/irods/yoda-ruleset/schema_transformations.py. ",
+    "url": "/yoda/design/metadata/#metadata-transformation",
+    
+    "relUrl": "/design/metadata/#metadata-transformation"
+  },"104": {
+    "doc": "Metadata",
+    "title": "Further information",
+    "content": ". | Information about metadata form implementation | Use of metadata in the vault | . ",
+    "url": "/yoda/design/metadata/#further-information",
+    
+    "relUrl": "/design/metadata/#further-information"
+  },"105": {
+    "doc": "System Overview",
+    "title": "System overview",
+    "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
+    "url": "/yoda/design/overview/#system-overview",
+    
+    "relUrl": "/design/overview/#system-overview"
+  },"106": {
+    "doc": "System Overview",
+    "title": "Core modules",
+    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
+    "url": "/yoda/design/overview/#core-modules",
+    
+    "relUrl": "/design/overview/#core-modules"
+  },"107": {
+    "doc": "System Overview",
+    "title": "Additional modules",
+    "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
+    "url": "/yoda/design/overview/#additional-modules",
+    
+    "relUrl": "/design/overview/#additional-modules"
+  },"108": {
+    "doc": "System Overview",
+    "title": "Overview",
+    "content": ". ",
+    "url": "/yoda/design/overview/#overview",
+    
+    "relUrl": "/design/overview/#overview"
+  },"109": {
+    "doc": "System Overview",
+    "title": "System Overview",
+    "content": " ",
+    "url": "/yoda/design/overview/",
+    
+    "relUrl": "/design/overview/"
+  },"110": {
+    "doc": "API",
+    "title": "API",
+    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
+    "url": "/yoda/design/api/",
+    
+    "relUrl": "/design/api/"
+  },"111": {
+    "doc": "Processes",
+    "title": "Processes",
+    "content": " ",
+    "url": "/yoda/design/processes/",
+    
+    "relUrl": "/design/processes/"
+  },"112": {
+    "doc": "Other",
+    "title": "Other",
+    "content": " ",
+    "url": "/yoda/design/other/",
+    
+    "relUrl": "/design/other/"
+  },"113": {
+    "doc": "Software Design",
+    "title": "Software Design",
+    "content": " ",
+    "url": "/yoda/design/",
+    
+    "relUrl": "/design/"
+  },"114": {
+    "doc": "Software Design",
+    "title": "API",
+    "content": ". | API documentation | . ",
+    "url": "/yoda/design/#api",
+    
+    "relUrl": "/design/#api"
+  },"115": {
+    "doc": "Software Design",
+    "title": "System",
+    "content": ". | System overview | Research space | Vault space | Statistics module | Intake module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
+    "url": "/yoda/design/#system",
+    
+    "relUrl": "/design/#system"
+  },"116": {
+    "doc": "Software Design",
+    "title": "Metadata",
+    "content": ". | Metadata design overview | Metadata schema definition | Metadata schema - JSON configuration | Metadata schema identifier format | Metadata: use in the vault | Metadata: form implementation | . ",
+    "url": "/yoda/design/#metadata",
+    
+    "relUrl": "/design/#metadata"
+  },"117": {
+    "doc": "Software Design",
+    "title": "Processes",
+    "content": ". | Asynchronous and privileged execution | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
+    "url": "/yoda/design/#processes",
+    
+    "relUrl": "/design/#processes"
+  },"118": {
+    "doc": "Software Design",
+    "title": "Other",
+    "content": ". | Python plugin | Yoda drive | . ",
+    "url": "/yoda/design/#other",
+    
+    "relUrl": "/design/#other"
   },"119": {
     "doc": "Release Notes",
     "title": "Release Notes",
