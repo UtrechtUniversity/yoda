@@ -24,9 +24,14 @@
     state: absent
 
 
-- name: Install Python 3.8 for portal and MOAI
+- name: Install Python 3.8
   ansible.builtin.yum:
-    name: rh-python38-python,rh-python38-python-devel,rh-python38-python-libs,rh-python38-python-pip,rh-python38-python-pip-wheel
+    name:
+      - rh-python38-python
+      - rh-python38-python-devel
+      - rh-python38-python-libs
+      - rh-python38-python-pip
+      - rh-python38-python-pip-wheel
     enablerepo: "{{ centos_sclo_rh_repository }}"
   when: not ansible_check_mode
 
