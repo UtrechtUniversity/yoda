@@ -1,6 +1,20 @@
 ---
 # copyright Utrecht University
 
+- name: Check if icat-database-checker virtual environment is running Python 3.6
+  ansible.builtin.stat:
+    path: '/var/lib/irods/icat-database-checker/bin/pip3.6'
+  register: idbc_venv_python36
+
+
+# For upgrade to Yoda 1.9
+- name: Move old icat-database-checker virtual environment
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: "mv /var/lib/irods/icat-database-checker /var/lib/irods/icat-database-checker.backup-py3.6"
+  when: idbc_venv_python36.stat.exists
+
+
 - name: Ensure iCAT database checker virtualenv exists
   become_user: '{{ irods_service_account }}'
   become: true
