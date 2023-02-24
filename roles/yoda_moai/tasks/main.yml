@@ -37,13 +37,13 @@
 
 - name: Check if MOAI virtual environment is running Python 2.7
   ansible.builtin.stat:
-    path: '/var/www/moai/venv/bin/python2.7'
+    path: '/var/www/moai/yoda-moai/venv/bin/pip2.7'
   register: moai_venv_python27
 
 
 - name: Check if MOAI virtual environment is running Python 3.6
   ansible.builtin.stat:
-    path: '/var/www/moai/venv/bin/python3.6'
+    path: '/var/www/moai/yoda-moai/venv/bin/pip3.6'
   register: moai_venv_python36
 
 

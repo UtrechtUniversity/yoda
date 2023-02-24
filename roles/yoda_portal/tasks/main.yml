@@ -28,7 +28,7 @@
 
 - name: Check if Portal virtual environment is running Python 3.6
   ansible.builtin.stat:
-    path: '/var/www/yoda/venv/bin/python3.6'
+    path: '/var/www/yoda/venv/bin/pip3.6'
   register: portal_venv_python36
 
 
