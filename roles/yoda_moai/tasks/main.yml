@@ -7,6 +7,24 @@
     home: '{{ yoda_moai_home }}'
 
 
+- name: Check if MOAI local repository already exists
+  ansible.builtin.stat:
+    path: /var/www/moai/yoda-moai
+  register: moai_repo
+
+
+# This fixes existing instances which may have incorrect file ownership
+# as a result of being installed in Yoda 1.8 or before.
+- name: Fix ownership MOAI virtual environment files if needed
+  ansible.builtin.file:
+    state: directory
+    path: /var/www/moai/yoda-moai
+    owner: '{{ yoda_moai_user }}'
+    group: '{{ yoda_moai_user }}'
+    recurse: true
+  when: moai_repo.stat.exists
+
+
 - name: Check out Yoda MOAI
   become_user: '{{ yoda_moai_user }}'
   become: true
@@ -31,8 +49,6 @@
 
 # For upgrade to Yoda 1.9
 - name: Move old MOAI virtual environment
-  become_user: '{{ yoda_moai_user }}'
-  become: true
   ansible.builtin.command: "mv /var/www/moai/yoda-moai/venv /var/www/moai/venv.backup-pre-1.9"
   when: moai_venv_python27.stat.exists or moai_venv_python36.stat.exists
 
