@@ -1,5 +1,0 @@
----
-# copyright Utrecht University
-
-- name: Load custom SELinux module for WSGI with Python 3.8
-  ansible.builtin.command: semodule -i /root/my-httpd.pp

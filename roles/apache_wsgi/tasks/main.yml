@@ -39,4 +39,13 @@
     owner: root
     group: root
     mode: 0644
-  notify: Load custom SELinux module for WSGI with Python 3.8
+  register: python_selinux
+
+
+# Running as task instead of handler in order to prevent ordering issues
+# with Apache restart handler.
+- name: Apply SELinux policy
+  ansible.builtin.command:
+    cmd: semodule -i /root/my-httpd.pp
+  changed_when: false
+  when: python_selinux.changed
