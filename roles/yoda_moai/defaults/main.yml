@@ -12,3 +12,6 @@ yoda_metadata_inbox: "{{ yoda_moai_home }}/metadata"
 yoda_public_host: combined.yoda.test   # Yoda public host
 yoda_public_fqdn: public.yoda.test     # Yoda public fully qualified domain name (FQDN)
 yoda_public_port: 443
+
+centos_extras_repository: extras
+centos_sclo_rh_repository: centos-sclo-rh

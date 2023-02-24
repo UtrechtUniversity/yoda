@@ -7,6 +7,24 @@
     home: '{{ yoda_moai_home }}'
 
 
+- name: Check if MOAI local repository already exists
+  ansible.builtin.stat:
+    path: /var/www/moai/yoda-moai
+  register: moai_repo
+
+
+# This fixes existing instances which may have incorrect file ownership
+# as a result of being installed in Yoda 1.8 or before.
+- name: Fix ownership MOAI virtual environment files if needed
+  ansible.builtin.file:
+    state: directory
+    path: /var/www/moai/yoda-moai
+    owner: '{{ yoda_moai_user }}'
+    group: '{{ yoda_moai_user }}'
+    recurse: true
+  when: moai_repo.stat.exists
+
+
 - name: Check out Yoda MOAI
   become_user: '{{ yoda_moai_user }}'
   become: true
@@ -17,34 +35,68 @@
   register: repochanges
 
 
+- name: Check if MOAI virtual environment is running Python 2.7
+  ansible.builtin.stat:
+    path: '/var/www/moai/yoda-moai/venv/bin/pip2.7'
+  register: moai_venv_python27
+
+
+- name: Check if MOAI virtual environment is running Python 3.6
+  ansible.builtin.stat:
+    path: '/var/www/moai/yoda-moai/venv/bin/pip3.6'
+  register: moai_venv_python36
+
+
+# For upgrade to Yoda 1.9
+- name: Move old MOAI virtual environment
+  ansible.builtin.command: "mv /var/www/moai/yoda-moai/venv /var/www/moai/venv.backup-pre-1.9"
+  when: moai_venv_python27.stat.exists or moai_venv_python36.stat.exists
+
+
 - name: Ensure Yoda MOAI virtualenv exists
   become_user: '{{ yoda_moai_user }}'
   become: true
-  ansible.builtin.command: python3 -m virtualenv "{{ yoda_moai_home }}/yoda-moai/venv"
+  ansible.builtin.command: virtualenv --python /opt/rh/rh-python38/root/bin/python3 "{{ yoda_moai_home }}/yoda-moai/venv"
   args:
     creates: "{{ yoda_moai_home }}/yoda-moai/venv"
 
 
-- name: Ensure Yoda MOAI dependencies are installed
-  ansible.builtin.pip: # noqa no-handler
-    name: '{{ yoda_moai_home }}/yoda-moai'
-    extra_args: -e
-    virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
-    virtualenv_python: python3.6
-  when: repochanges.changed
-  notify: Restart Apache webserver
-
-
-- name: Install mod-wsgi
-  become_user: "root"
+- name: Upgrade pip in virtual environment
+  become_user: '{{ yoda_moai_user }}'
   become: true
-  ansible.builtin.shell: |
-    source {{ yoda_moai_home }}/yoda-moai/venv/bin/activate
-    mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf
-    exit
-  args:
-    creates: /etc/httpd/conf.modules.d/02-wsgi.conf
+  ansible.builtin.pip:
+    name:
+      - pip==23.0.1
+    executable: /var/www/moai/yoda-moai/venv/bin/pip3
+
+
+# Change detection in git repositories is unreliable in some Ansible versions, so we always
+# run this task, just to be sure.
+- name: Ensure Yoda MOAI dependencies are installed
+  become_user: '{{ yoda_moai_user }}'
+  become: true
+  ansible.builtin.pip:
+    name: '{{ yoda_moai_home }}/yoda-moai'
+    virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
+    extra_args: "-e"
+  environment:
+    C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8
+  changed_when: false
   notify: Restart Apache webserver
+
+
+# We need to patch SQLAlchemy because it is no longer compatible with
+# the ancient SQLite version in CentOS 7. Copy the file rather than fileinline
+# to avoid the need for hairy workarounds for limitations regarding nested quotes.
+- name: Patch SQLAlchemy to be compatible with ancient SQLite
+  become_user: '{{ yoda_moai_user }}'
+  become: true
+  ansible.builtin.copy:
+    src: pysqlite.py
+    dest: "{{ yoda_moai_home }}/yoda-moai/venv/lib/python3.8/site-packages/sqlalchemy/dialects/sqlite/pysqlite.py"
+    mode: 0644
+    owner: '{{ yoda_moai_user }}'
+    group: '{{ yoda_moai_user }}'
 
 
 - name: Ensure Yoda MOAI home is world readable
@@ -107,10 +159,18 @@
 
 - name: Set SELinux context for shared libraries
   community.general.sefcontext:
-    target: '{{ yoda_moai_home }}/yoda-moai/venv/.*\.so(\..*)?'
-    setype: httpd_sys_script_exec_t
+    target: '{{ yoda_moai_home }}/yoda-moai/venv/(.*)?'
+    setype: httpd_unconfined_script_exec_t
     state: present
   register: filescontext
+  when: ansible_selinux.status == "enabled"
+
+
+- name: Set SELinux context for lib64
+  community.general.sefcontext:
+    target: /var/www/moai/yoda-moai/venv/lib64
+    setype: httpd_sys_rw_content_t
+    state: present
   when: ansible_selinux.status == "enabled"
 
 
