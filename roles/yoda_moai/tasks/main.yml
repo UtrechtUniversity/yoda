@@ -81,6 +81,7 @@
     extra_args: "-e"
   environment:
     C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8
+  changed_when: false
   notify: Restart Apache webserver
 
 
