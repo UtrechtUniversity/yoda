@@ -151,6 +151,8 @@ httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache 
 httpd_log_user_agent         | Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false)
 tcp_keepalive_time           | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
 tcp_keepalive_intvl          | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
+yoda_theme                   | The theme to use for the Yoda Portal. See also [the theme documentation](../design/overview/theme-packages.md). By default, Yoda uses the UU theme.
+yoda_theme_path              | Path where themes for the Yoda Portal are retrieved from. See [the theme documentation](../design/overview/theme-packages.md) for more information.
 
 ### iRODS configuration
 
