@@ -49,6 +49,8 @@
 
 
 - name: Upgrade pip in virtual environment
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
   ansible.builtin.pip:
     name:
       - pip==23.0.1
