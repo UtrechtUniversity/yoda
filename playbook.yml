@@ -6,11 +6,11 @@
   hosts: localhost
   gather_facts: false
   pre_tasks:
-    - name: Verify Ansible version meets requirements
+    - name: Verify Ansible (core) version meets requirements
       ansible.builtin.assert:
-        that: "ansible_version.full is version('2.9', '>=')"
+        that: "ansible_version.full is version('2.11', '>=')"
         msg: >
-          "You must update Ansible to at least 2.9 to deploy Yoda."
+          "You must update Ansible (core) to at least 2.11 to deploy Yoda."
 
 
 - name: Check repository branches
