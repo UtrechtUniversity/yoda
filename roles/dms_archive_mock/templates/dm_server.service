@@ -6,8 +6,7 @@ Wants=network-online.target
 User={{ dm_server.user }}
 Group={{ dm_server.user }}
 
-ExecStart=source /var/lib/irods/dms-archive-mock/tape_archive_venv/bin/activate;
-/var/lib/irods/dms-archive-mock/tape_archive_venv/bin/dm_server --host 0.0.0.0 --port 5000
+ExecStart=/var/lib/irods/dms-archive-mock/tape_archive_venv/bin/dm_server --host 0.0.0.0 --port 5000
 
 StandardOutput=journal
 StandardError=inherit
