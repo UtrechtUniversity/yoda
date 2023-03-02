@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure all resources exist
-  become_user: irods
+  become_user: '{{ irods_service_account }}'
   become: true
   # noqa fqcn[action]
   irods_resource:
