@@ -28,7 +28,7 @@
     src: is-user-external.sh.j2
     dest: /usr/local/bin/is-user-external.sh
     owner: root
-    group: irods
+    group: '{{ irods_service_account }}'
     mode: 0750
   when: external_users
 
@@ -38,7 +38,7 @@
     src: external-auth.py.j2
     dest: /usr/local/bin/external-auth.py
     owner: root
-    group: irods
+    group: '{{ irods_service_account }}'
     mode: 0750
   no_log: true
   when: external_users
@@ -57,7 +57,7 @@
     src: token-auth.py.j2
     dest: /usr/local/bin/token-auth.py
     owner: root
-    group: irods
+    group: '{{ irods_service_account }}'
     mode: 0750
   no_log: true
   when: enable_tokens
@@ -77,8 +77,8 @@
   ansible.builtin.template:
     src: oidc.py.j2
     dest: /var/lib/irods/msiExecCmd_bin/oidc.py
-    owner: irods
-    group: irods
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
     mode: 0644
 
 
