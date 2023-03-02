@@ -32,7 +32,7 @@
 - name: Ensure S3 credentials file is present
   ansible.builtin.template:
     src: s3auth.j2
-    dest: /var/lib/irods/.s3auth
+    dest: "{{ /etc/irods/surfObjStore1.s3.keypair | default('/var/lib/irods/.s3auth') }}"
     owner: '{{ irods_service_account }}'
     group: irods
     mode: 0600
