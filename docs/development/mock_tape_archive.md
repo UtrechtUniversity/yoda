@@ -1,7 +1,7 @@
 ---
 parent: Development
 title: Mock tape archive
-nav_order: 4
+nav_order: 3
 ---
 # Mock tape archive
 This page describes how to use the mock DMF tape storage.

@@ -1,7 +1,7 @@
 ---
 parent: Development
 title: Wall of Fame
-nav_order: 2
+nav_order: 5
 ---
 # Wall of Fame
 

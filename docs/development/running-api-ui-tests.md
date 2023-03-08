@@ -1,7 +1,7 @@
 ---
 parent: Development
 title: Running API and UI tests
-nav_order: 2
+nav_order: 1
 ---
 
 # Running API and UI tests
