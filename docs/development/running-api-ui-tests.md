@@ -31,6 +31,11 @@ ansible-playbook -i environments/development/allinone playbook.yml --extra-vars 
 ```bash
 ansible-playbook -i environments/development/allinone playbook.yml -D
 ```
+    On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
+```bash
+vagrant ssh controller
+cd ~/yoda
+```
 
 5. Deploy the test data on the VM:
 ```bash
