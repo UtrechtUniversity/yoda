@@ -10,6 +10,24 @@
       - php-PHPMailer
     state: absent
 
+- name: Generate Flask secret key
+  ansible.builtin.shell: openssl rand -base64 32 > /var/www/yoda/flask_secret_key
+    creates=/var/www/yoda/flask_secret_key
+  when: not ansible_check_mode and flask_secret_key is not defined
+
+
+- name: Retrieve Flask secret key
+  ansible.builtin.slurp:
+    src: /var/www/yoda/flask_secret_key
+  register: secret_key
+  when: not ansible_check_mode and flask_secret_key is not defined
+
+
+- name: Store Flask secret key in variable
+  ansible.builtin.set_fact:
+    flask_secret_key: "{{ secret_key['content'] }}"
+  when: not ansible_check_mode and flask_secret_key is not defined
+
 
 # This is needed for for EUS to be able to load the bcrypt shared libraries
 - name: Ensure httpd_unified seboolean is enabled
@@ -24,13 +42,16 @@
     name: "{{ yoda_deployment_user }}"
 
 
-- name: Ensure yodadeployment has access to /var/www/extuser
+- name: Ensure parent directories for EUS repositories are accessible
   ansible.builtin.file:
-    path: /var/www/extuser
+    path: "{{ item }}"
     state: directory
     owner: "{{ yoda_deployment_user }}"
     group: "{{ yoda_deployment_user }}"
     mode: 0711
+  with_items:
+    - /var/www/extuser
+    - /var/www/yoda
 
 
 # EUS depends on the Yoda portal for theming information. So running mismatched versions
