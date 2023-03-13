@@ -9,4 +9,4 @@ with open(activate_this) as file_:
 
 from yoda_eus import app
 
-application = app.create_app(config_filename="/var/www/extuser/flask.cfg")
+application = app.create_app(config_filename="/var/www/extuser/flask.cfg", enable_api=True)

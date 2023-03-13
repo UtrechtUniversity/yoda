@@ -167,12 +167,15 @@
 
 - name: Upload WSGI file for External User Service
   ansible.builtin.copy:
-    src: yoda_eus.wsgi
-    dest: /var/www/extuser/yoda_eus.wsgi
+    src: '{{ item }}'
+    dest: '/var/www/extuser/{{ item }}'
     owner: '{{ yoda_deployment_user }}'
     group: '{{ yoda_deployment_user }}'
     mode: 0755
   notify: Restart Apache webserver
+  with_items:
+    - yoda_eus_api.wsgi
+    - yoda_eus_noapi.wsgi
 
 
 - name: Copy Yoda External User Service virtual host config for Apache
