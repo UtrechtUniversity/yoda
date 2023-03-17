@@ -7,7 +7,7 @@
     dest: /etc/httpd/conf.d/yoda-public-vhost.conf
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
