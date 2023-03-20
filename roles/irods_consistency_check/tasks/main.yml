@@ -1,10 +1,24 @@
 ---
 # copyright Utrecht University
 
+- name: Check if ichk virtual environment is running Python 3.6
+  ansible.builtin.stat:
+    path: '/var/lib/irods/irods-consistency-check/bin/pip3.6'
+  register: ichk_venv_python36
+
+
+# For upgrade to Yoda 1.9
+- name: Move old ichk virtual environment
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: "mv /var/lib/irods/irods-consistency-check /var/lib/irods/irods-consistency-check.backup-py3.6"
+  when: ichk_venv_python36.stat.exists
+
+
 - name: Ensure iRODS consistency check virtualenv exists
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: python3 -m virtualenv "/var/lib/irods/irods-consistency-check"
+  ansible.builtin.command: /usr/local/bin/python3 -m virtualenv "/var/lib/irods/irods-consistency-check"
   args:
     creates: /var/lib/irods/irods-consistency-check
 
@@ -15,4 +29,4 @@
   ansible.builtin.pip:
     name: "git+https://github.com/UtrechtUniversity/irods-consistency-check.git@v{{ irods_consistency_check_version }}"
     virtualenv: '/var/lib/irods/irods-consistency-check'
-    virtualenv_python: python3.6
+    virtualenv_python: python3

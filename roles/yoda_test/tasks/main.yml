@@ -15,3 +15,5 @@
   when: yoda_environment == "testing"
 - name: Install data
   ansible.builtin.import_tasks: install-data.yml
+- name: Run revision job
+  ansible.builtin.import_tasks: run-revision-job.yml

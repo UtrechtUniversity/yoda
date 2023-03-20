@@ -1,0 +1,26 @@
+# TE file included for information. It is not actually used by playbook
+
+module my-httpd 1.0;
+
+require {
+	type httpd_t;
+	type httpd_unconfined_script_exec_t;
+	type httpd_sys_content_t;
+	type httpd_sys_rw_content_t;
+	class lnk_file { getattr read };
+	class file { create execute rename unlink write };
+	class dir { add_name create read remove_name write };
+}
+
+#============= httpd_t ==============
+
+#!!!! This avc can be allowed using the boolean 'httpd_unified'
+allow httpd_t httpd_sys_content_t:dir { add_name create remove_name write };
+
+#!!!! This avc can be allowed using the boolean 'httpd_unified'
+allow httpd_t httpd_sys_content_t:file { create rename unlink write };
+
+allow httpd_t httpd_sys_rw_content_t:file execute;
+allow httpd_t httpd_unconfined_script_exec_t:dir { add_name read remove_name write };
+allow httpd_t httpd_unconfined_script_exec_t:file { create rename unlink write };
+allow httpd_t httpd_unconfined_script_exec_t:lnk_file { getattr read };
