@@ -129,7 +129,7 @@
     db: "{{ eus_db_name }}"
     name: "{{ eus_db_user }}"
     password: "{{ eus_db_password }}"
-    priv: ALL
+    priv: CREATE
   when: not ansible_check_mode
 
 
@@ -139,7 +139,7 @@
   community.postgresql.postgresql_privs:
     database: "{{ eus_db_name }}"
     state: present
-    privs: ALL
+    privs: SELECT,INSERT,UPDATE,DELETE,REFERENCES
     type: table
     roles: "{{ eus_db_user }}"
     objs: ALL_IN_SCHEMA
