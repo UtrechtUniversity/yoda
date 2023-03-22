@@ -16,3 +16,4 @@ dependencies:
   - apache_wsgi
   - postgresql
   - python3
+  - remove_php
