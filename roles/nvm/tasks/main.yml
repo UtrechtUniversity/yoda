@@ -6,12 +6,12 @@
   become: true
   ansible.builtin.shell: |
     set -o pipefail
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
   args:
     creates: "~/.nvm/nvm.sh"
 
 
-- name: Check if NPM v16 is installed
+- name: Check if NPM v17 is installed
   become_user: "{{ yoda_deployment_user }}"
   become: true
   ansible.builtin.shell: |
@@ -23,7 +23,7 @@
   changed_when: false
 
 
-- name: Ensure NPM v16 is installed
+- name: Ensure NPM v17 is installed
   become_user: "{{ yoda_deployment_user }}"
   become: true
   ansible.builtin.shell: |
