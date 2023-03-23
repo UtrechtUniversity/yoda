@@ -48,7 +48,7 @@
     state: directory
     owner: "{{ yoda_deployment_user }}"
     group: "{{ yoda_deployment_user }}"
-    mode: 0711
+    mode: '0711'
   with_items:
     - /var/www/extuser
     - /var/www/yoda
@@ -192,7 +192,7 @@
     dest: '/var/www/extuser/{{ item }}'
     owner: '{{ yoda_deployment_user }}'
     group: '{{ yoda_deployment_user }}'
-    mode: 0755
+    mode: '0755'
   notify: Restart Apache webserver
   with_items:
     - yoda_eus_api.wsgi

@@ -20,7 +20,7 @@
     url: '{{ davrods.url }}/{{ davrods.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     checksum: '{{ davrods.checksum }}'
-    mode: 0644
+    mode: '0644'
   when: not davrods_repo.results and not repo_only
 
 
@@ -68,7 +68,7 @@
     dest: /etc/httpd/irods/irods_environment.json
     owner: apache
     group: apache
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
@@ -78,7 +78,7 @@
     dest: /etc/httpd/conf.d/davrods-vhost.conf
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
@@ -89,7 +89,7 @@
     dest: /etc/httpd/conf.d/davrods-anonymous-vhost.conf
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
@@ -97,7 +97,7 @@
   ansible.builtin.copy:
     content: ""
     dest: '{{ item }}'
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
     force: false
@@ -110,7 +110,7 @@
   ansible.builtin.copy:
     content: ""
     dest: '{{ item }}'
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
     force: false
@@ -183,7 +183,7 @@
     dest: '/etc/httpd/irods/{{ item.dest }}'
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   with_items:
     - {src: head.html.j2, dest: 'head.html'}
     - {src: header.html.j2, dest: 'header.html'}

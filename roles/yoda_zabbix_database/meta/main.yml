@@ -5,11 +5,11 @@ galaxy_info:
   author: Lazlo Westerhof
   description: Install and configure Zabbix database monitoring
   license: GPLv3
-  min_ansible_version: 2.7
+  min_ansible_version: '2.11'
   platforms:
-    - name: CentOS
+    - name: EL
       version: 7
 
 
 dependencies:
-  - yoda_zabbix_system
+  - role: yoda_zabbix_system

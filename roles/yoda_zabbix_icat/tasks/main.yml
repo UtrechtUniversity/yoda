@@ -13,7 +13,7 @@
     path: /etc/zabbix/zabbix_agentd.d/yoda_icat.userparams.conf
     owner: zabbix
     group: zabbix
-    mode: 0400
+    mode: '0400'
 
 
 - name: Ensure yoda-zabbix-icat-sudoers exists
@@ -33,7 +33,7 @@
     path: /etc/sudoers.d/yoda-zabbix-icat-sudoers
     owner: root
     group: root
-    mode: 0440
+    mode: '0440'
 
 
 - name: Find Zabbix rule files
@@ -50,7 +50,7 @@
     remote_src: true
     owner: irods
     group: irods
-    mode: 0500
+    mode: '0500'
   with_items: "{{ icat_rule_files.files }}"
   notify: Restart Zabbix agent
 
@@ -69,6 +69,6 @@
     remote_src: true
     owner: zabbix
     group: zabbix
-    mode: 0500
+    mode: '0500'
   with_items: "{{ icat_script_files.files }}"
   notify: Restart Zabbix agent

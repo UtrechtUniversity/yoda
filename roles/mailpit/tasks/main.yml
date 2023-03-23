@@ -31,7 +31,7 @@
     dest: /etc/systemd/system/mailpit.service
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
 
 
 - name: Configure mailpit service
