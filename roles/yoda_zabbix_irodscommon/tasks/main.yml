@@ -13,7 +13,7 @@
     path: /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
     owner: zabbix
     group: zabbix
-    mode: 0400
+    mode: '0400'
 
 
 - name: Ensure yoda-zabbix-irodscommon.sudoers is present
@@ -28,7 +28,7 @@
     path: /etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
     owner: root
     group: root
-    mode: 0440
+    mode: '0440'
 
 
 - name: Find Yoda Zabbix scripts
@@ -45,7 +45,7 @@
     remote_src: true
     owner: zabbix
     group: zabbix
-    mode: 0500
+    mode: '0500'
   with_items: "{{ zabbix_irodscommon_scripts.files }}"
   notify: Restart Zabbix agent
 
@@ -53,7 +53,7 @@
 - name: Create directory for irods scripts if needed
   ansible.builtin.file:
     path: /var/lib/irods/bin
-    mode: 0770
+    mode: '0770'
     owner: irods
     group: irods
     state: directory
@@ -63,7 +63,7 @@
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/read-irods-logs.py
     dest: /var/lib/irods/bin
-    mode: 0770
+    mode: '0770'
     owner: irods
     group: irods
     remote_src: true
