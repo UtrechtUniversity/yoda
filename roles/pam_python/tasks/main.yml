@@ -7,4 +7,4 @@
     dest: "/usr/lib64/security/pam_python.so"
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'

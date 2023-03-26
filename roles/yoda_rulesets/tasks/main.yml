@@ -15,7 +15,7 @@
     url: '{{ item.url }}/{{ item.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ item.filename }}'
     checksum: '{{ item.checksum }}'
-    mode: 0644
+    mode: '0644'
   with_items:
     - {'url': '{{ sqlcipher.url }}', 'filename': '{{ sqlcipher.filename }}', 'checksum': '{{ sqlcipher.checksum }}'}
     - {'url': '{{ sqlcipher_dev.url }}', 'filename': '{{ sqlcipher_dev.filename }}', 'checksum': '{{ sqlcipher_dev.checksum }}'}
@@ -86,7 +86,7 @@
   ansible.builtin.copy: # noqa template-instead-of-copy
     dest: "/etc/irods/{{ item.name }}.patch"
     content: "{{ item['patch'] }}"
-    mode: "0644"
+    mode: '0644'
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item and 'patch' in item"
 
@@ -147,7 +147,7 @@
   ansible.builtin.copy:
     src: "core.py.template"
     dest: "/etc/irods/core.py"
-    mode: 0644
+    mode: '0644'
 
 
 - name: Install Yoda rulesets

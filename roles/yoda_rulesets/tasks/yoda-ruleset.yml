@@ -77,7 +77,7 @@
     dest: "/etc/irods/yoda-ruleset/rules_uu.cfg"
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-    mode: 0600
+    mode: '0600'
   no_log: true
   when: not ansible_check_mode
 
@@ -87,7 +87,7 @@
     path: /var/lib/irods/msiExecCmd_bin
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-    mode: 0755
+    mode: '0755'
     state: directory
   when: not ansible_check_mode
 
@@ -99,7 +99,7 @@
     remote_src: true
     src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: not ansible_check_mode
   with_items:
     - securecopy.sh
@@ -116,7 +116,7 @@
     remote_src: true
     src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: not ansible_check_mode and enable_open_search
   with_items:
     - enable-indexing.sh
@@ -130,7 +130,7 @@
     remote_src: true
     src: "/etc/irods/yoda-ruleset/tools/tape_archive/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: not ansible_check_mode and enable_tape_archive
   with_items:
     - admin-tape-archive-set-state.sh
@@ -591,7 +591,7 @@
     remote_src: true
     src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: enable_datarequest and not ansible_check_mode
   with_items:
     - admin-datarequestactions.sh

@@ -3,15 +3,9 @@
 
 galaxy_info:
   author: Lazlo Westerhof
-  description: Install and configure Yoda davrods
+  description: Install Yoda rulesets
   license: GPLv3
   min_ansible_version: '2.11'
   platforms:
     - name: EL
       version: 7
-
-
-dependencies:
-  - role: apache
-  - role: irods_icommands
-  - role: irods_runtime

@@ -6,7 +6,7 @@
     url: '{{ minio_rpm_url }}'
     dest: '/tmp/minio.rpm'
     checksum: '{{ minio_rpm_checksum }}'
-    mode: 0644
+    mode: '0644'
 
 
 - name: Install MinIO from downloaded RPM
@@ -42,7 +42,7 @@
     dest: /etc/default/minio
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart minio
 
 
@@ -52,7 +52,7 @@
     dest: /etc/systemd/system/minio.service
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart minio
 
 

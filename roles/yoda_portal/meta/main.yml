@@ -5,13 +5,13 @@ galaxy_info:
   author: Lazlo Westerhof
   description: Install Yoda web portal
   license: GPLv3
-  min_ansible_version: 2.7
+  min_ansible_version: '2.11'
   platforms:
-    - name: CentOS
+    - name: EL
       version: 7
 
 
 dependencies:
-  - apache
-  - apache_wsgi
-  - remove_php
+  - role: apache
+  - role: apache_wsgi
+  - role: remove_php

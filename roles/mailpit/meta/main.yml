@@ -2,13 +2,10 @@
 # copyright Utrecht University
 
 galaxy_info:
-  author: Lazlo Westerhof
-  description: Install and configure iRODS resource server
+  author: Sietse Snel
+  description: Install Mailpit
   license: GPLv3
   min_ansible_version: '2.11'
   platforms:
     - name: EL
       version: 7
-
-dependencies:
-  - role: python_irodsclient

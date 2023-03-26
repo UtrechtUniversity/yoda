@@ -17,7 +17,7 @@
     section:
     option: "{{ item.key }}"
     value: "{{ item.value }}"
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
   loop: "{{ postfix_params | dict2items }}"
@@ -40,7 +40,7 @@
     path: /etc/postfix/main.cf
     option: "{{ item.key }}"
     value: "{{ item.value }}"
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
   loop: "{{ postfix_params | dict2items }}"
@@ -61,7 +61,7 @@
     section:
     option: "{{ item.key }}"
     value: "{{ item.value }}"
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
   loop: "{{ postfix_params | dict2items }}"
