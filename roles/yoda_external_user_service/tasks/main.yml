@@ -90,6 +90,7 @@
   ansible.builtin.command:  # noqa no-changed-when command-instead-of-module
     chdir: /var/www/yoda
     cmd: git rev-parse HEAD
+  changed_when: false
   register: portal_git_commit
 
 
@@ -99,6 +100,7 @@
   ansible.builtin.command:  # noqa no-changed-when command-instead-of-module
     chdir: /var/www/extuser/yoda-external-user-service
     cmd: git rev-parse HEAD
+  changed_when: false
   register: eus_git_commit
 
 
@@ -181,6 +183,7 @@
     name: '/var/www/extuser/yoda-external-user-service'
     virtualenv: '/var/www/extuser/yoda-external-user-service/venv'
     extra_args: "-e"
+  changed_when: false
   environment:
     C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8
   notify: Restart Apache webserver
