@@ -13,5 +13,7 @@ galaxy_info:
 
 dependencies:
   - role: apache
+  - role: apache_wsgi
   - role: postgresql
-  - role: php
+  - role: python3
+  - role: remove_php

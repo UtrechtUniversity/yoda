@@ -1,15 +1,40 @@
 ---
 # copyright Utrecht University
 
-- name: Install Yoda External User Service dependencies
+- name: Remove no longer used Yoda External User Service dependencies
   ansible.builtin.package:
     name:
       - php-pdo
       - php-pgsql
       - php-password-compat
       - php-PHPMailer
-      - python-requests
-    state: present
+    state: absent
+
+- name: Generate Flask secret key
+  ansible.builtin.shell: openssl rand -base64 32 > /var/www/yoda/flask_secret_key
+    creates=/var/www/yoda/flask_secret_key
+  when: not ansible_check_mode and flask_secret_key is not defined
+
+
+- name: Retrieve Flask secret key
+  ansible.builtin.slurp:
+    src: /var/www/yoda/flask_secret_key
+  register: secret_key
+  when: not ansible_check_mode and flask_secret_key is not defined
+
+
+- name: Store Flask secret key in variable
+  ansible.builtin.set_fact:
+    flask_secret_key: "{{ secret_key['content'] }}"
+  when: not ansible_check_mode and flask_secret_key is not defined
+
+
+# This is needed for for EUS to be able to load the bcrypt shared libraries
+- name: Ensure httpd_unified seboolean is enabled
+  ansible.posix.seboolean:
+    name: httpd_unified
+    state: true
+    persistent: true
 
 
 - name: Ensure yodadeployment user exists
@@ -17,13 +42,25 @@
     name: "{{ yoda_deployment_user }}"
 
 
-- name: Ensure yodadeployment has access to /var/www/extuser
+- name: Ensure parent directories for EUS repositories are accessible
   ansible.builtin.file:
-    path: /var/www/extuser
+    path: "{{ item }}"
     state: directory
     owner: "{{ yoda_deployment_user }}"
     group: "{{ yoda_deployment_user }}"
     mode: '0711'
+  with_items:
+    - /var/www/extuser
+    - /var/www/yoda
+
+
+# EUS depends on the Yoda portal for theming information. So running mismatched versions
+# can result in unexpected errors.
+- name: Check whether Yoda portal version matches EUS version
+  ansible.builtin.fail:
+    msg: "Warning: mismatched EUS and portal version can result in EUS theming problems."
+  when: "yoda_portal_version != yoda_eus_version"
+  ignore_errors: true
 
 
 - name: Checkout Yoda External User Service source
@@ -32,23 +69,44 @@
   ansible.builtin.git:
     repo: "https://github.com/UtrechtUniversity/yoda-external-user-service.git"
     dest: "/var/www/extuser/yoda-external-user-service"
-    version: "{{ yoda_version }}"
+    version: "{{ yoda_eus_version }}"
+    force: true
 
 
-- name: Link public directories of Yoda External User Service
-  ansible.builtin.file:
-    src: "/var/www/extuser/yoda-external-user-service/{{ item }}"
-    dest: "/var/www/extuser/{{ item }}"
-    state: link
-  when: not ansible_check_mode
-  with_items:
-    - public
-    - api
+- name: Check out Yoda portal for themes used by External User Service
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
+  ansible.builtin.git:
+    repo: "https://github.com/UtrechtUniversity/yoda-portal.git"
+    dest: "/var/www/yoda"
+    version: "{{ yoda_portal_version }}"
+    force: true
+  when: "'portals' not in group_names"
+
+
+- name: Check portal version for cache buster
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
+  ansible.builtin.command:  # noqa no-changed-when command-instead-of-module
+    chdir: /var/www/yoda
+    cmd: git rev-parse HEAD
+  changed_when: false
+  register: portal_git_commit
+
+
+- name: Check EUS version for cache buster
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
+  ansible.builtin.command:  # noqa no-changed-when command-instead-of-module
+    chdir: /var/www/extuser/yoda-external-user-service
+    cmd: git rev-parse HEAD
+  changed_when: false
+  register: eus_git_commit
 
 
 - name: Allow public to API port for External User Service in firewall
   ansible.posix.firewalld:
-    port: '8443/tcp'
+    port: '{{ eus_api_port }}/tcp'
     permanent: true
     state: enabled
     immediate: true
@@ -73,24 +131,8 @@
     db: "{{ eus_db_name }}"
     name: "{{ eus_db_user }}"
     password: "{{ eus_db_password }}"
-    priv: ALL
+    priv: CREATE
   when: not ansible_check_mode
-
-
-- name: Select all from example table
-  become_user: postgres
-  become: true
-  ansible.builtin.command: "psql -c \"SELECT 1 FROM {{ eus_db_user_table }}\" {{ eus_db_name }}"
-  ignore_errors: true
-  changed_when: false
-  register: table_exists
-
-
-- name: Create external users table
-  become_user: postgres
-  become: true
-  ansible.builtin.command: "psql -d {{ eus_db_name }} -f /var/www/extuser/yoda-external-user-service/aux/db.sql"
-  when: not ansible_check_mode and table_exists.stderr
 
 
 - name: Make sure database user has permissions on tables
@@ -99,57 +141,65 @@
   community.postgresql.postgresql_privs:
     database: "{{ eus_db_name }}"
     state: present
-    privs: SELECT,INSERT,UPDATE,DELETE
+    privs: SELECT,INSERT,UPDATE,DELETE,REFERENCES
     type: table
     roles: "{{ eus_db_user }}"
-    objs: "{{ item }}"
-    grant_option: true
-  with_items:
-    - "{{ eus_db_user_table }}"
-    - "{{ eus_db_user_zones_table }}"
-  when: not ansible_check_mode
-
-
-- name: Make sure database user has permissions on sequences
-  become_user: postgres
-  become: true
-  community.postgresql.postgresql_privs:
-    database: "{{ eus_db_name }}"
-    state: present
-    privs: USAGE
-    type: sequence
-    roles: "{{ eus_db_user }}"
-    objs: "{{ eus_db_users_id_seq }}"
+    objs: ALL_IN_SCHEMA
     grant_option: true
   when: not ansible_check_mode
 
 
-- name: Create config_local.php
+- name: Create configuration file
   ansible.builtin.template:
-    src: config_local.php.j2
-    dest: /var/www/extuser/yoda-external-user-service/config_local.php
+    src: flask.cfg.j2
+    dest: /var/www/extuser/flask.cfg
     owner: "{{ yoda_deployment_user }}"
     mode: '0644'
 
 
-- name: Ensure public .htaccess is configured
-  ansible.builtin.copy:
-    src: /var/www/extuser/yoda-external-user-service/public/.htaccess.template-{{ yoda_environment }}
-    dest: /var/www/extuser/yoda-external-user-service/public/.htaccess
-    mode: '0644'
-    remote_src: true
-  notify: Restart Apache webserver
-  when: not ansible_check_mode
+- name: Ensure Yoda EUS virtualenv exists
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.command: virtualenv --python /opt/rh/rh-python38/root/bin/python3 "/var/www/extuser/yoda-external-user-service/venv"
+  args:
+    creates: "/var/www/extuser/yoda-external-user-service/venv"
 
 
-- name: Ensure API .htaccess is configured
-  ansible.builtin.copy:
-    src: /var/www/extuser/yoda-external-user-service/api/.htaccess.template-{{ yoda_environment }}
-    dest: /var/www/extuser/yoda-external-user-service/api/.htaccess
-    mode: '0644'
-    remote_src: true
+- name: Upgrade pip in EUS virtual environment
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.pip:
+    name:
+      - pip==23.0.1
+    executable: /var/www/extuser/yoda-external-user-service/venv/bin/pip3
+
+
+# Change detection in git repositories is unreliable in some Ansible versions, so we always
+# run this task, just to be sure.
+- name: Ensure Yoda EUS dependencies are installed
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.pip:
+    name: '/var/www/extuser/yoda-external-user-service'
+    virtualenv: '/var/www/extuser/yoda-external-user-service/venv'
+    extra_args: "-e"
+  changed_when: false
+  environment:
+    C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8
   notify: Restart Apache webserver
-  when: not ansible_check_mode
+
+
+- name: Upload WSGI file for External User Service
+  ansible.builtin.copy:
+    src: '{{ item }}'
+    dest: '/var/www/extuser/{{ item }}'
+    owner: '{{ yoda_deployment_user }}'
+    group: '{{ yoda_deployment_user }}'
+    mode: '0755'
+  notify: Restart Apache webserver
+  with_items:
+    - yoda_eus_api.wsgi
+    - yoda_eus_noapi.wsgi
 
 
 - name: Copy Yoda External User Service virtual host config for Apache
@@ -158,3 +208,9 @@
     dest: "/etc/httpd/conf.d/yoda-external-user-service-vhost.conf"
     mode: '0644'
   notify: Restart Apache webserver
+
+
+- name: Restore SELinux contexts on EUS files
+  ansible.builtin.command: 'restorecon -r /var/www/extuser'
+  when: ansible_selinux.status == "enabled"
+  changed_when: false

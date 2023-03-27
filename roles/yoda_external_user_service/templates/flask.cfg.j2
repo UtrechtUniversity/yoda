@@ -1,0 +1,34 @@
+# General configuration
+SECRET_KEY          = '{{ flask_secret_key }}'
+YODA_VERSION        = '{{ yoda_version }}'
+YODA_EUS_COMMIT     = '{{ yoda_eus_commit }}'
+YODA_EUS_FQDN       = '{{ yoda_eus_fqdn }}'
+CSRF_TOKENS_ENABLED = 'true'
+API_SECRET          = '{{ eus_api_secret }}'
+EUS_TITLE_TEXT      = 'Yoda External User Service'
+
+# Theming configuration
+YODA_THEME_PATH     = '{{ yoda_theme_path }}' # Path to location of themes
+YODA_THEME          = '{{ yoda_theme }}'      # Reference to actual theme directory in YODA_THEME_PATH
+
+# Email configuration
+SMTP_SERVER         = '{{ smtp_server }}'
+SMTP_USERNAME       = '{{ smtp_username }}'
+SMTP_PASSWORD       = '{{ smtp_password }}'
+SMTP_AUTH           = '{{ ["false", "true"][smtp_auth|int] }}'
+SMTP_STARTTLS       = '{{ ["false", "true"][smtp_starttls|int] }}'
+SMTP_FROM_NAME      = '{{ eus_smtp_from_name }}'
+SMTP_FROM_EMAIL     = '{{ eus_smtp_from_address }}'
+SMTP_REPLYTO_NAME   = '{{ eus_smtp_replyto_name }}'
+SMTP_REPLYTO_EMAIL  = '{{ eus_smtp_replyto_address }}'
+MAIL_ENABLED        = 'true'
+MAIL_TEMPLATE       = '{{ eus_mail_template }}'
+MAIL_TEMPLATE_DIR   = '/var/www/extuser/yoda-external-user-service/yoda_eus/templates/mail'
+
+# Database configuration
+DB_DIALECT          = 'postgresql+psycopg2'
+DB_HOST             = '{{ eus_db_host }}'
+DB_PORT             = '{{ eus_db_port }}'
+DB_NAME             = '{{ eus_db_name }}'
+DB_USER             = '{{ eus_db_user }}'
+DB_PASSWORD         = '{{ eus_db_password }}'

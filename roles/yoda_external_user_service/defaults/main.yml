@@ -3,7 +3,14 @@
 
 yoda_deployment_user: yodadeployment
 yoda_version: development
+yoda_eus_version: "{{ yoda_version }}"
 yoda_eus_fqdn: eus.yoda.test
+
+# Theming configuration
+yoda_theme: uu
+yoda_theme_path: /var/www/yoda/themes
+yoda_portal_version: "{{ yoda_version }}"    # EUS uses portal themes.
+yoda_eus_commit: "{{ portal_git_commit.stdout }}-{{ eus_git_commit.stdout }}"
 
 # External User Service configuration
 eus_api_fqdn: api.eus.yoda.test
@@ -15,21 +22,18 @@ eus_db_port: 5432
 eus_db_name: extuser
 eus_db_user: extuser
 eus_db_password: PLACEHOLDER
-eus_db_user_table: users
-eus_db_user_zones_table: user_zones
 eus_db_users_id_seq: users_id_seq
 
-eus_smtp_host: PLACEHOLDER
-eus_smtp_port: 587
-eus_smtp_user: PLACEHOLDER
-eus_smtp_password: PLACEHOLDER
-eus_smtp_auth: true
-eus_smtp_security: tls
+smtp_server: PLACEHOLDER                      # SMTP server to send mail to
+smtp_username: PLACEHOLDER                    # SMTP server username
+smtp_password: PLACEHOLDER                    # SMTP server password
+smtp_auth: true                               # Whether to use SMTP authentication
+smtp_starttls: true                           # Whether to force StartTLS on non-SMTPS connections
+
 eus_smtp_from_name: Yoda External User Service
 eus_smtp_from_address: PLACEHOLDER
 eus_smtp_replyto_name: PLACEHOLDER
 eus_smtp_replyto_address: PLACEHOLDER
-
 eus_mail_template: uu
 
 # OpenSSL configuration.
