@@ -960,7 +960,7 @@
   },"137": {
     "doc": "Installing metadata schemas",
     "title": "Yoda v1.9 and later",
-    "content": "From Yodq v1.9 and later it is possible to set metadata schemas on group level. For this a schema needs to be installed and marked selectable. Example to install (or update) schema ‘core-1’: . irsync -Krv -R irodsResc /etc/irods/yoda-ruleset/schemas/core-1/ i:/${RODSZONE}/yoda/schemas/core-1/ . Ensure the schema is selectable when creating a group in the group manager: . imeta set -C /${RODSZONE}/yoda/schemas/core-1 org_schema_user_selectable True . The above is legal bash if you define RODSZONE environment variable, for example: . export RODSZONE=tempZone . ",
+    "content": "From Yoda v1.9 and later it is possible to set metadata schemas on group level. For this a schema needs to be installed and marked selectable. Example to install (or update) schema ‘core-1’: . irsync -Krv -R irodsResc /etc/irods/yoda-ruleset/schemas/core-1/ i:/${RODSZONE}/yoda/schemas/core-1/ . Ensure the schema is selectable when creating a group in the group manager: . imeta set -C /${RODSZONE}/yoda/schemas/core-1 org_schema_user_selectable True . The above is legal bash if you define RODSZONE environment variable, for example: . export RODSZONE=tempZone . ",
     "url": "/yoda/administration/installing-metadata-schemas.html#yoda-v19-and-later",
     
     "relUrl": "/administration/installing-metadata-schemas.html#yoda-v19-and-later"
