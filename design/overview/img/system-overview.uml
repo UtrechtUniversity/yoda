@@ -1,10 +1,6 @@
 @startuml
+!include ../../../theme.puml
 
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
-skinparam padding 2
-skinparam shadowing false
-skinparam dpi 200
 
 rectangle "Yoda instance" {
 

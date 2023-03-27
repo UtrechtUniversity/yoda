@@ -1,11 +1,5 @@
 @startuml
-
-skinparam componentStyle uml2
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
-skinparam padding 2
-skinparam shadowing false
-skinparam dpi 200
+!include ../../../../theme.puml
 
 rectangle "External user server" {
 

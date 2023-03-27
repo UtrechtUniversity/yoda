@@ -1,34 +1,187 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1731.25px" preserveAspectRatio="none" style="width:2122px;height:1731px;background:#FFFFFF;" version="1.1" viewBox="0 0 2122 1731" width="2122.9167px" zoomAndPan="magnify"><defs/><g><!--MD5=[9a72c501110bab03ad61b62688d6f0a3]
-cluster External user server--><rect fill="#FFFFFF" height="979.1667" style="stroke:#000000;stroke-width:3.125;" width="558.3333" x="14.5833" y="464.5833"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacing" textLength="327.0833" x="130.2083" y="503.1291">External user server</text><!--MD5=[e9cbb9dd88ded91326c7c57ecf0f8dfc]
-cluster PostgreSQL--><path d="M64.5833,1179.1667 C64.5833,1158.3333 229.1667,1158.3333 229.1667,1158.3333 C229.1667,1158.3333 393.75,1158.3333 393.75,1179.1667 L393.75,1372.9167 C393.75,1393.75 229.1667,1393.75 229.1667,1393.75 C229.1667,1393.75 64.5833,1393.75 64.5833,1372.9167 L64.5833,1179.1667 " fill="#FFFFFF" style="stroke:#000000;stroke-width:3.125;"/><path d="M64.5833,1179.1667 C64.5833,1200 229.1667,1200 229.1667,1200 C229.1667,1200 393.75,1200 393.75,1179.1667 " fill="none" style="stroke:#000000;stroke-width:3.125;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacing" textLength="185.4167" x="136.4583" y="1238.5457">PostgreSQL</text><!--MD5=[0f82c5b863acc6f33562c91596508dc0]
-cluster Yoda iRODS server--><rect fill="#FFFFFF" height="385.4167" style="stroke:#000000;stroke-width:3.125;" width="1106.25" x="622.9167" y="308.3333"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacing" textLength="304.1667" x="1023.9583" y="346.8791">Yoda iRODS server</text><!--MD5=[8456d961f5f6728005693a85f4e68806]
-cluster iCAT--><path d="M1479.1667,429.1667 C1479.1667,408.3333 1579.1667,408.3333 1579.1667,408.3333 C1579.1667,408.3333 1679.1667,408.3333 1679.1667,429.1667 L1679.1667,622.9167 C1679.1667,643.75 1579.1667,643.75 1579.1667,643.75 C1579.1667,643.75 1479.1667,643.75 1479.1667,622.9167 L1479.1667,429.1667 " fill="#FFFFFF" style="stroke:#000000;stroke-width:3.125;"/><path d="M1479.1667,429.1667 C1479.1667,450 1579.1667,450 1579.1667,450 C1579.1667,450 1679.1667,450 1679.1667,429.1667 " fill="none" style="stroke:#000000;stroke-width:3.125;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacing" textLength="77.0833" x="1540.625" y="488.5457">iCAT</text><!--MD5=[ab796bbafe617553f50cf109ef492b64]
-cluster Yoda portal server--><rect fill="#FFFFFF" height="225" style="stroke:#000000;stroke-width:3.125;" width="387.5" x="668.75" y="14.5833"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacing" textLength="302.0833" x="711.4583" y="53.1291">Yoda portal server</text><!--MD5=[9ec8bea2e3593d6bd64a2af552918866]
-entity HTTP_UI--><ellipse cx="383.3333" cy="566.6667" fill="#FEFECE" rx="16.6667" ry="16.6667" style="stroke:#A80036;stroke-width:3.125;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="122.9167" x="321.875" y="636.4624">HTTP_UI</text><!--MD5=[244818d695f9e3222fa2f8083b8f9921]
-entity Webservice--><rect fill="#FEFECE" height="107.6375" style="stroke:#A80036;stroke-width:3.125;" width="258.3333" x="47.9167" y="871.875"/><rect fill="#FEFECE" height="20.8333" style="stroke:#A80036;stroke-width:3.125;" width="31.25" x="264.5833" y="882.2917"/><rect fill="#FEFECE" height="4.1667" style="stroke:#A80036;stroke-width:3.125;" width="8.3333" x="260.4167" y="886.4583"/><rect fill="#FEFECE" height="4.1667" style="stroke:#A80036;stroke-width:3.125;" width="8.3333" x="260.4167" y="894.7917"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="166.6667" x="83.3333" y="947.9207">Webservice</text><!--MD5=[99de319847354cc80693506d6a8b7ec0]
-entity HTTP_API--><ellipse cx="520.8333" cy="926.0417" fill="#FEFECE" rx="16.6667" ry="16.6667" style="stroke:#A80036;stroke-width:3.125;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="139.5833" x="451.0417" y="995.8374">HTTP_API</text><!--MD5=[cb789fc524e1555593d1fc5bff9b628e]
-entity extusers--><rect fill="#FFFFFF" height="86.8042" style="stroke:#000000;stroke-width:3.125;" width="262.5" x="97.9167" y="1272.9167"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="212.5" x="122.9167" y="1328.1291">External users</text><!--MD5=[4d994cc37e3b5b52d99266dfa14827c2]
-entity Group Manager Rules--><rect fill="#FEFECE" height="107.6375" style="stroke:#A80036;stroke-width:3.125;" width="410.4167" x="657.2917" y="512.5"/><rect fill="#FEFECE" height="20.8333" style="stroke:#A80036;stroke-width:3.125;" width="31.25" x="1026.0417" y="522.9167"/><rect fill="#FEFECE" height="4.1667" style="stroke:#A80036;stroke-width:3.125;" width="8.3333" x="1021.875" y="527.0833"/><rect fill="#FEFECE" height="4.1667" style="stroke:#A80036;stroke-width:3.125;" width="8.3333" x="1021.875" y="535.4167"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="318.75" x="692.7083" y="588.5457">Group Manager Rules</text><!--MD5=[8ab502f5efbcf7574955a573432ab6b8]
-entity iRODS Service--><rect fill="#FEFECE" height="107.6375" style="stroke:#A80036;stroke-width:3.125;" width="297.9167" x="1140.625" y="512.5"/><rect fill="#FEFECE" height="20.8333" style="stroke:#A80036;stroke-width:3.125;" width="31.25" x="1396.875" y="522.9167"/><rect fill="#FEFECE" height="4.1667" style="stroke:#A80036;stroke-width:3.125;" width="8.3333" x="1392.7083" y="527.0833"/><rect fill="#FEFECE" height="4.1667" style="stroke:#A80036;stroke-width:3.125;" width="8.3333" x="1392.7083" y="535.4167"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="206.25" x="1176.0417" y="588.5457">iRODS Service</text><!--MD5=[feb5939ce823acf5a8245c3205b3c7a1]
-entity Users--><rect fill="#FFFFFF" height="86.8042" style="stroke:#000000;stroke-width:3.125;" width="133.3333" x="1512.5" y="522.9167"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="83.3333" x="1537.5" y="578.1291">Users</text><!--MD5=[7a5d9a4033f8fec0fa3ff47525059faf]
-entity Group Manager--><rect fill="#FEFECE" height="107.6375" style="stroke:#A80036;stroke-width:3.125;" width="320.8333" x="702.0833" y="97.9167"/><rect fill="#FEFECE" height="20.8333" style="stroke:#A80036;stroke-width:3.125;" width="31.25" x="981.25" y="108.3333"/><rect fill="#FEFECE" height="4.1667" style="stroke:#A80036;stroke-width:3.125;" width="8.3333" x="977.0833" y="112.5"/><rect fill="#FEFECE" height="4.1667" style="stroke:#A80036;stroke-width:3.125;" width="8.3333" x="977.0833" y="120.8333"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="229.1667" x="737.5" y="173.9624">Group Manager</text><path d="M1762.5,478.125 L1762.5,654.5085 L2108.3333,654.5085 L2108.3333,498.9583 L2087.5,478.125 L1762.5,478.125 " fill="#FBFB77" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><path d="M2087.5,478.125 L2087.5,498.9583 L2108.3333,498.9583 L2087.5,478.125 " fill="#FBFB77" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="268.75" x="1779.1667" y="522.9207">External user can:</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="279.1667" x="1779.1667" y="559.7249">- Activate account</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="293.75" x="1779.1667" y="596.5291">- Change password</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="264.5833" x="1779.1667" y="633.3333">- Reset password</text><path d="M613.5417,837.5 L613.5417,917.7083 L539.6042,926.0417 L613.5417,934.375 L613.5417,1013.8835 A0,0 0 0 0 613.5417,1013.8835 L1090.625,1013.8835 A0,0 0 0 0 1090.625,1013.8835 L1090.625,858.3333 L1069.7917,837.5 L613.5417,837.5 A0,0 0 0 0 613.5417,837.5 " fill="#FBFB77" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><path d="M1069.7917,837.5 L1069.7917,858.3333 L1090.625,858.3333 L1069.7917,837.5 " fill="#FBFB77" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="408.3333" x="630.2083" y="882.2957">iRODS service account can:</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="425" x="630.2083" y="919.0999">- Authenticate external user</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="331.25" x="630.2083" y="955.9041">- Create external user</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="329.1667" x="630.2083" y="992.7083">- Delete external user</text><!--MD5=[fc2c71aa2d4bb2c20cdd0d7e43ea6cdc]
-entity SMTP--><ellipse cx="506.25" cy="1630.2083" fill="#FEFECE" rx="16.6667" ry="16.6667" style="stroke:#A80036;stroke-width:3.125;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="79.1667" x="466.6667" y="1700.0041">SMTP</text><path d="M597.9167,1541.6667 L597.9167,1621.875 L525.8125,1630.2083 L597.9167,1638.5417 L597.9167,1718.0501 A0,0 0 0 0 597.9167,1718.0501 L1468.75,1718.0501 A0,0 0 0 0 1468.75,1718.0501 L1468.75,1562.5 L1447.9167,1541.6667 L597.9167,1541.6667 A0,0 0 0 0 597.9167,1541.6667 " fill="#FBFB77" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><path d="M1447.9167,1541.6667 L1447.9167,1562.5 L1468.75,1562.5 L1447.9167,1541.6667 " fill="#FBFB77" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="443.75" x="614.5833" y="1586.4624">External user webservice can:</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="527.0833" x="614.5833" y="1623.2666">- Send invitation mail to new users</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="666.6667" x="614.5833" y="1660.0708">- Send password reset link to existing users</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="818.75" x="614.5833" y="1696.875">- Send user creation success status to group manager</text><!--MD5=[ef703612359e08237dc654ad40bb98bd]
-link HTTP_UI to Webservice--><path d="M373.3958,585.875 C343.6875,637.0208 254.8333,790.0417 207.5208,871.5417 " fill="none" id="HTTP_UI-Webservice" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="110.4167" x="291.6667" y="763.5457">provide</text><!--MD5=[0a2cf78a8c7601df10d7eb1b591f8410]
-link HTTP_API to Webservice--><path d="M501.6875,926.0417 C464.6667,926.0417 380.4375,926.0417 307.0417,926.0417 " fill="none" id="HTTP_API-Webservice" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="110.4167" x="348.9583" y="908.3374">provide</text><!--MD5=[bb714f82c05c67e6ee482b347b470044]
-link Webservice to extusers--><path d="M184.1042,980.25 C194.0625,1054.0833 212.1458,1188.3542 222.125,1262.2917 " fill="none" id="Webservice-to-extusers" style="stroke:#A80036;stroke-width:2.0833333333333335;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="223.5208,1272.75,229.2621,1253.0512,222.1227,1262.4276,212.7463,1255.2882,223.5208,1272.75" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="52.0833" x="210.4167" y="1113.5457">use</text><!--MD5=[28a20e9d59b6b1da6b87da0c31f1e8bf]
-link HTTP_UI to GMN12--><path d="M391.8125,547.4792 C419.5625,487.7917 514.375,307.3125 659.375,273.9583 C712.6042,261.7083 1589.4792,261.7083 1642.7083,273.9583 C1751.2708,298.9375 1835.6667,400.9583 1885.375,477.5833 " fill="none" id="HTTP_UI-GMN12" style="stroke:#A80036;stroke-width:2.0833333333333335;stroke-dasharray:7.0,7.0;"/><!--MD5=[afa1bb410d9eeb9d34b8498b8173152c]
-link Group Manager Rules to HTTP_API--><path d="M798.7917,620.9583 C738.0208,672.4792 645.8333,755.25 577.0833,837.5 C561.1875,856.5208 546.0417,880.2292 535.4792,898.0208 " fill="none" id="Group Manager Rules-to-HTTP_API" style="stroke:#A80036;stroke-width:2.0833333333333335;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="530.1042,907.2083,546.7573,895.2216,535.3584,898.2139,532.3661,886.8149,530.1042,907.2083" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="52.0833" x="685.4167" y="763.5457">use</text><!--MD5=[f9e4f8d66552670889cbeca897d87105]
-link iRODS Service to HTTP_API--><path d="M1233.6042,621.4583 C1198.7917,651.5833 1151.7083,687.7708 1104.1667,710.4167 C995.3958,762.2292 675.4792,767.9583 577.0833,837.5 C555.9167,852.4583 540.7083,878.1458 531.4792,897.6458 " fill="none" id="iRODS Service-to-HTTP_API" style="stroke:#A80036;stroke-width:2.0833333333333335;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="527.1875,907.1875,542.4812,893.5087,531.4621,897.6883,527.2825,886.6693,527.1875,907.1875" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="200" x="1062.5" y="763.5457">use (via PAM)</text><!--MD5=[714ab2c5e783171ff9f2db28bbb35e23]
-link Group Manager to Group Manager Rules--><path d="M862.5,206.9792 C862.5,282.3958 862.5,420.7292 862.5,501.4583 " fill="none" id="Group Manager-to-Group Manager Rules" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><polygon fill="#A80036" points="862.5,511.9792,870.8333,493.2292,862.5,501.5625,854.1667,493.2292,862.5,511.9792" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><!--MD5=[611be7f837ff731b3fc2e139852813e4]
-link Webservice to SMTP--><path d="M249.0208,981.0208 C297.125,1020.1458 357.9167,1077.6042 393.75,1141.6667 C481.7083,1298.9375 501,1521.5625 505.1458,1599.6875 " fill="none" id="Webservice-to-SMTP" style="stroke:#A80036;stroke-width:2.0833333333333335;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="505.6875,1610.9583,513.1014,1591.8261,505.1821,1600.5539,496.4543,1592.6347,505.6875,1610.9583" style="stroke:#A80036;stroke-width:2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacing" textLength="52.0833" x="495.8333" y="1329.1707">use</text><!--MD5=[5556f5c6db0260d2bd90a7d8aa612645]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1745.8333px" preserveAspectRatio="none" style="width:2070px;height:1745px;background:#282C34;" version="1.1" viewBox="0 0 2070 1745" width="2070.8333px" zoomAndPan="magnify"><defs/><g><!--MD5=[9a72c501110bab03ad61b62688d6f0a3]
+cluster External user server--><rect fill="#424856" height="973.9583" style="stroke: #61AFEF; stroke-width: 3.125;" width="525" x="45.8333" y="476.0417"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="347.9167" x="134.375" y="513.382">External user server</text><!--MD5=[e9cbb9dd88ded91326c7c57ecf0f8dfc]
+cluster PostgreSQL--><path d="M95.8333,1187.5 C95.8333,1166.6667 264.5833,1166.6667 264.5833,1166.6667 C264.5833,1166.6667 433.3333,1166.6667 433.3333,1187.5 L433.3333,1379.1667 C433.3333,1400 264.5833,1400 264.5833,1400 C264.5833,1400 95.8333,1400 95.8333,1379.1667 L95.8333,1187.5 " fill="#424856" style="stroke: #61AFEF; stroke-width: 3.125;"/><path d="M95.8333,1187.5 C95.8333,1208.3333 264.5833,1208.3333 264.5833,1208.3333 C264.5833,1208.3333 433.3333,1208.3333 433.3333,1187.5 " fill="none" style="stroke: #61AFEF; stroke-width: 3.125;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="204.1667" x="162.5" y="1245.6736">PostgreSQL</text><!--MD5=[0f82c5b863acc6f33562c91596508dc0]
+cluster Yoda iRODS server--><rect fill="#424856" height="383.3333" style="stroke: #61AFEF; stroke-width: 3.125;" width="1045.8333" x="620.8333" y="320.8333"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="322.9167" x="982.2917" y="358.1736">Yoda iRODS server</text><!--MD5=[8456d961f5f6728005693a85f4e68806]
+cluster iCAT--><path d="M1412.5,441.6667 C1412.5,420.8333 1514.5833,420.8333 1514.5833,420.8333 C1514.5833,420.8333 1616.6667,420.8333 1616.6667,441.6667 L1616.6667,633.3333 C1616.6667,654.1667 1514.5833,654.1667 1514.5833,654.1667 C1514.5833,654.1667 1412.5,654.1667 1412.5,633.3333 L1412.5,441.6667 " fill="#424856" style="stroke: #61AFEF; stroke-width: 3.125;"/><path d="M1412.5,441.6667 C1412.5,462.5 1514.5833,462.5 1514.5833,462.5 C1514.5833,462.5 1616.6667,462.5 1616.6667,441.6667 " fill="none" style="stroke: #61AFEF; stroke-width: 3.125;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="75" x="1477.0833" y="499.8403">iCAT</text><!--MD5=[ab796bbafe617553f50cf109ef492b64]
+cluster Yoda portal server--><rect fill="#424856" height="202.0833" style="stroke: #61AFEF; stroke-width: 3.125;" width="358.3333" x="664.5833" y="50"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="316.6667" x="685.4167" y="87.3403">Yoda portal server</text><!--MD5=[9ec8bea2e3593d6bd64a2af552918866]
+entity HTTP_UI--><ellipse cx="385.4167" cy="578.125" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="125" x="322.9167" y="646.7153">HTTP_UI</text><!--MD5=[244818d695f9e3222fa2f8083b8f9921]
+entity Webservice--><rect fill="#424856" height="86.377" style="stroke: #61AFEF; stroke-width: 3.125;" width="225" x="79.1667" y="892.7083"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="68.75" y="903.125"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="68.75" y="958.252"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="175" x="104.1667" y="946.7153">Webservice</text><!--MD5=[99de319847354cc80693506d6a8b7ec0]
+entity HTTP_API--><ellipse cx="518.75" cy="935.4167" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="141.6667" x="447.9167" y="1004.007">HTTP_API</text><!--MD5=[cb789fc524e1555593d1fc5bff9b628e]
+entity extusers--><rect fill="#424856" height="86.377" style="stroke: #61AFEF; stroke-width: 3.125;" width="270.8333" x="129.1667" y="1281.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="220.8333" x="154.1667" y="1335.257">External users</text><!--MD5=[4d994cc37e3b5b52d99266dfa14827c2]
+entity Group Manager Rules--><rect fill="#424856" height="86.377" style="stroke: #61AFEF; stroke-width: 3.125;" width="379.1667" x="654.1667" y="535.4167"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="643.75" y="545.8333"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="643.75" y="600.9603"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="329.1667" x="679.1667" y="589.4236">Group Manager Rules</text><!--MD5=[8ab502f5efbcf7574955a573432ab6b8]
+entity iRODS Service--><rect fill="#424856" height="86.377" style="stroke: #61AFEF; stroke-width: 3.125;" width="266.6667" x="1106.25" y="535.4167"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="1095.8333" y="545.8333"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="1095.8333" y="600.9603"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="216.6667" x="1131.25" y="589.4236">iRODS Service</text><!--MD5=[feb5939ce823acf5a8245c3205b3c7a1]
+entity Users--><rect fill="#424856" height="86.377" style="stroke: #61AFEF; stroke-width: 3.125;" width="137.5" x="1445.8333" y="535.4167"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="87.5" x="1470.8333" y="589.4236">Users</text><!--MD5=[7a5d9a4033f8fec0fa3ff47525059faf]
+entity Group Manager--><rect fill="#424856" height="86.377" style="stroke: #61AFEF; stroke-width: 3.125;" width="287.5" x="700" y="133.3333"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="689.5833" y="143.75"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="689.5833" y="198.877"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="237.5" x="725" y="187.3403">Group Manager</text><path d="M1700,490.625 L1700,665.2995 L2045.8333,665.2995 L2045.8333,511.4583 L2025,490.625 L1700,490.625 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M2025,490.625 L2025,511.4583 L2045.8333,511.4583 L2025,490.625 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="279.1667" x="1716.6667" y="534.2153">External user can:</text><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="275" x="1716.6667" y="570.5922">- Activate account</text><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="293.75" x="1716.6667" y="606.9692">- Change password</text><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="266.6667" x="1716.6667" y="643.3462">- Reset password</text><path d="M611.4583,847.9167 L611.4583,927.0833 L537.625,935.4167 L611.4583,943.75 L611.4583,1022.5911 A0,0 0 0 0 611.4583,1022.5911 L1092.7083,1022.5911 A0,0 0 0 0 1092.7083,1022.5911 L1092.7083,868.75 L1071.875,847.9167 L611.4583,847.9167 A0,0 0 0 0 611.4583,847.9167 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M1071.875,847.9167 L1071.875,868.75 L1092.7083,868.75 L1071.875,847.9167 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="418.75" x="628.125" y="891.507">iRODS service account can:</text><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="429.1667" x="628.125" y="927.8839">- Authenticate external user</text><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="337.5" x="628.125" y="964.2609">- Create external user</text><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="333.3333" x="628.125" y="1000.6378">- Delete external user</text><!--MD5=[fc2c71aa2d4bb2c20cdd0d7e43ea6cdc]
+entity SMTP--><ellipse cx="545.8333" cy="1635.4167" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="85.4167" x="503.125" y="1704.007">SMTP</text><path d="M638.5417,1547.9167 L638.5417,1627.0833 L564.6667,1635.4167 L638.5417,1643.75 L638.5417,1722.5911 A0,0 0 0 0 638.5417,1722.5911 L1523.9583,1722.5911 A0,0 0 0 0 1523.9583,1722.5911 L1523.9583,1568.75 L1503.125,1547.9167 L638.5417,1547.9167 A0,0 0 0 0 638.5417,1547.9167 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M1503.125,1547.9167 L1503.125,1568.75 L1523.9583,1568.75 L1503.125,1547.9167 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="460.4167" x="655.2083" y="1591.507">External user webservice can:</text><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="527.0833" x="655.2083" y="1627.8839">- Send invitation mail to new users</text><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="668.75" x="655.2083" y="1664.2609">- Send password reset link to existing users</text><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="833.3333" x="655.2083" y="1700.6378">- Send user creation success status to group manager</text><!--MD5=[ef703612359e08237dc654ad40bb98bd]
+link HTTP_UI to Webservice--><path d="M376.0625,597.25 C346.8125,650.5625 256.4375,815.2917 214.0417,892.5417 " fill="none" id="HTTP_UI-Webservice" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="110.4167" x="300" y="772.757">provide</text><!--MD5=[0a2cf78a8c7601df10d7eb1b591f8410]
+link HTTP_API to Webservice--><path d="M499.7083,935.4167 C462.1458,935.4167 375.9375,935.4167 304.2292,935.4167 " fill="none" id="HTTP_API-Webservice" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="110.4167" x="346.875" y="916.507">provide</text><!--MD5=[bb714f82c05c67e6ee482b347b470044]
+link Webservice to extusers--><path d="M199.4792,978.625 C212.8542,1049.1458 240.125,1192.9583 254.7708,1270.1458 " fill="none" id="Webservice-&gt;extusers" style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 7.0,7.0;"/><polygon fill="#61AFEF" points="256.8333,1281.0417,261.5405,1261.0704,254.8993,1270.8061,245.1636,1264.1649,256.8333,1281.0417" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="54.1667" x="233.3333" y="1120.6736">use</text><!--MD5=[28a20e9d59b6b1da6b87da0c31f1e8bf]
+link HTTP_UI to GMN12--><path d="M393.6875,559 C420.8125,499.4792 513.6042,319.5 657.2917,286.4583 C757.2292,263.4792 1480.2708,263.4792 1580.2083,286.4583 C1688.9167,311.4583 1773.5625,413.7083 1823.2708,490.125 " fill="none" id="HTTP_UI-GMN12" style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 7.0,7.0;"/><!--MD5=[afa1bb410d9eeb9d34b8498b8173152c]
+link Group Manager Rules to HTTP_API--><path d="M797.125,621.1875 C741.1042,671.6042 645.8125,761.2083 575,847.9167 C559.6458,866.7083 544.6458,889.7917 534.0208,907.2083 " fill="none" id="Group Manager Rules-&gt;HTTP_API" style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 7.0,7.0;"/><polygon fill="#61AFEF" points="528.5625,916.25,545.3839,904.5006,533.9437,907.3309,531.1134,895.8907,528.5625,916.25" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="54.1667" x="677.0833" y="772.757">use</text><!--MD5=[f9e4f8d66552670889cbeca897d87105]
+link iRODS Service to HTTP_API--><path d="M1201,621.1042 C1168.9792,652.7292 1120.75,695.3125 1070.8333,720.8333 C969.5625,772.625 667.6042,781.8542 575,847.9167 C554.5208,862.5417 539.4583,887.1458 530.125,906.2083 " fill="none" id="iRODS Service-&gt;HTTP_API" style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 7.0,7.0;"/><polygon fill="#61AFEF" points="525.5208,916.125,540.9875,902.6421,529.9161,906.681,525.8772,895.6096,525.5208,916.125" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="208.3333" x="1031.25" y="772.757">use (via PAM)</text><!--MD5=[714ab2c5e783171ff9f2db28bbb35e23]
+link Group Manager to Group Manager Rules--><path d="M843.75,219.2083 C843.75,292.0833 843.75,443.7917 843.75,523.8958 " fill="none" id="Group Manager-&gt;Group Manager Rules" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="843.75,535.1875,852.0833,516.4375,843.75,524.7708,835.4167,516.4375,843.75,535.1875" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><!--MD5=[611be7f837ff731b3fc2e139852813e4]
+link Webservice to SMTP--><path d="M257.3333,978.125 C312.7083,1015.875 389.7292,1077.125 433.3333,1150 C525.2708,1303.6875 542.0833,1526.4792 545.1458,1604.8125 " fill="none" id="Webservice-&gt;SMTP" style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 7.0,7.0;"/><polygon fill="#61AFEF" points="545.5417,1616.1042,553.2802,1597.1009,545.2135,1605.6927,536.6218,1597.626,545.5417,1616.1042" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="54.1667" x="537.5" y="1335.257">use</text><!--MD5=[dfd0bdbc42d27036000224274d9278db]
 @startuml
 
-skinparam componentStyle uml2
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
-skinparam padding 2
-skinparam shadowing false
-skinparam dpi 200
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
 
 rectangle "External user server" {
 
@@ -81,11 +234,13 @@ end note
 
 @enduml
 
-PlantUML version 1.2021.14(Fri Nov 12 17:46:50 CET 2021)
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.18+10-post-Debian-1deb11u1
+Operating System: Linux
 Default Encoding: UTF-8
-Language: nl
-Country: NL
+Language: en
+Country: US
 --></g></svg>

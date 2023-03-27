@@ -1,4 +1,6 @@
 @startuml
+!include ../../../../theme.puml
+
 actor "Researcher" as R
 actor "Datamanager" as DM
 actor "DACmember" as M1
