@@ -1,4 +1,6 @@
 @startuml
+!include ../../../../theme.puml
+
 actor User
 participant Yoda
 participant "Identity Server" as IS

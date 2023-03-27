@@ -1,6 +1,5 @@
 @startuml
-skinparam padding 2
-skinparam shadowing false
+!include ../../../../theme.puml
 
 actor       Researcher  as researcher
 actor       Datamanager as datamanager
