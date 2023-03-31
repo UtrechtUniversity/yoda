@@ -6,7 +6,7 @@
     url: '{{ opensearch.url }}/{{ opensearch.filename }}'
     dest: '{{ dest_dir }}/{{ opensearch.filename }}'
     checksum: '{{ opensearch.checksum }}'
-    mode: 0644
+    mode: '0644'
 
 
 - name: Create OpenSearch user
@@ -34,7 +34,7 @@
 - name: Create empty plugins directory
   ansible.builtin.file:
     path: '{{ opensearch.plugins }}'
-    mode: 0755
+    mode: '0755'
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
     state: directory
@@ -46,7 +46,7 @@
     dest: '{{ opensearch.config }}/opensearch.yml'
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
-    mode: 0600
+    mode: '0600'
     backup: true
 
 
@@ -56,7 +56,7 @@
     dest: '{{ opensearch.config }}/jvm.options'
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
-    mode: 0600
+    mode: '0600'
     force: true
 
 
@@ -71,7 +71,7 @@
   ansible.builtin.template:
     src: opensearch.service
     dest: '{{ systemd_dir }}/opensearch.service'
-    mode: 0644
+    mode: '0644'
 
 
 - name: Make sure OpenSearch is started

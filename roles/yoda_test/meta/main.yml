@@ -1,5 +1,15 @@
 ---
 # copyright Utrecht University
 
+galaxy_info:
+  author: Lazlo Westerhof
+  description: Install Yoda test users, groups and data
+  license: GPLv3
+  min_ansible_version: '2.11'
+  platforms:
+    - name: EL
+      version: 7
+
+
 dependencies:
-  - python_irodsclient
+  - role: python_irodsclient

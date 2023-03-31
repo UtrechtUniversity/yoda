@@ -31,7 +31,7 @@
     dest: /lib/systemd/system/irods.service
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Systemd daemon reload
   when: irods_service_type == "systemd"
 
@@ -233,7 +233,7 @@
   ansible.builtin.template:
     src: core.re.j2
     dest: /etc/irods/core.re
-    mode: 0644
+    mode: '0644'
 
 
 - name: Ensure core Python rules are present
@@ -242,7 +242,7 @@
   ansible.builtin.copy:
     content: ""
     dest: "/etc/irods/core.py"
-    mode: 0644
+    mode: '0644'
     force: false
 
 
@@ -353,7 +353,7 @@
 - name: Ensure iRODS has access to PKI files
   ansible.builtin.file:
     path: '{{ item }}'
-    mode: 0600
+    mode: '0600'
     group: '{{ irods_service_account }}'
     owner: '{{ irods_service_account }}'
     state: file
@@ -367,7 +367,7 @@
   ansible.builtin.file:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
-    mode: 0644
+    mode: '0644'
     group: 'root'
     owner: 'root'
     state: link
@@ -454,14 +454,14 @@
     section: postgres
     option: 'sslmode'
     value: 'require'
-    mode: 0600
+    mode: '0600'
 
 
 - name: Ensure iRODS .ssh directory has strict permissions
   ansible.builtin.file:
     path: /var/lib/irods/.ssh
     state: directory
-    mode: 0700
+    mode: '0700'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
 
@@ -473,7 +473,7 @@
     src: id_ed25519.j2
     dest: '/var/lib/irods/.ssh/id_ed25519'
     owner: '{{ irods_service_account }}'
-    mode: 0600
+    mode: '0600'
   no_log: true
   when: upload_priv_key is defined
 

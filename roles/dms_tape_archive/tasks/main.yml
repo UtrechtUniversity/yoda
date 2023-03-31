@@ -7,7 +7,7 @@
   ansible.builtin.copy:
     src: "tape_archive/scripts/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: not ansible_check_mode
   with_items:
     - dmattr

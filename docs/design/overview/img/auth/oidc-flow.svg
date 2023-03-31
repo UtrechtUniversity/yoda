@@ -1,5 +1,166 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="805px" preserveAspectRatio="none" style="width:909px;height:805px;" version="1.1" viewBox="0 0 909 805" width="909px" zoomAndPan="magnify"><defs><filter height="300%" id="f1l5oanrmiywig" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="27" x2="27" y1="86.2969" y2="718.2188"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="308.5" x2="308.5" y1="86.2969" y2="718.2188"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="523" x2="523" y1="86.2969" y2="718.2188"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="739" x2="739" y1="86.2969" y2="718.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="8" y="82.9951">User</text><ellipse cx="27" cy="13" fill="#FEFECE" filter="url(#f1l5oanrmiywig)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M27,21 L27,48 M14,29 L40,29 M27,48 L14,63 M27,48 L40,63 " fill="none" filter="url(#f1l5oanrmiywig)" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="8" y="730.2139">User</text><ellipse cx="27" cy="743.5156" fill="#FEFECE" filter="url(#f1l5oanrmiywig)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M27,751.5156 L27,778.5156 M14,759.5156 L40,759.5156 M27,778.5156 L14,793.5156 M27,778.5156 L40,793.5156 " fill="none" filter="url(#f1l5oanrmiywig)" style="stroke: #A80036; stroke-width: 2.0;"/><rect fill="#FEFECE" filter="url(#f1l5oanrmiywig)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="49" x="282.5" y="51"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="35" x="289.5" y="70.9951">Yoda</text><rect fill="#FEFECE" filter="url(#f1l5oanrmiywig)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="49" x="282.5" y="717.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="35" x="289.5" y="737.2139">Yoda</text><rect fill="#FEFECE" filter="url(#f1l5oanrmiywig)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="112" x="465" y="51"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="472" y="70.9951">Identity Server</text><rect fill="#FEFECE" filter="url(#f1l5oanrmiywig)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="112" x="465" y="717.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="472" y="737.2139">Identity Server</text><rect fill="#FEFECE" filter="url(#f1l5oanrmiywig)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="58" x="708" y="51"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="715" y="70.9951">iRODS</text><rect fill="#FEFECE" filter="url(#f1l5oanrmiywig)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="58" x="708" y="717.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="715" y="737.2139">iRODS</text><polygon fill="#A80036" points="297,113.4297,307,117.4297,297,121.4297,301,117.4297" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="27" x2="303" y1="117.4297" y2="117.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="95" x="34" y="112.3638">GET login page</text><polygon fill="#A80036" points="38,142.5625,28,146.5625,38,150.5625,34,146.5625" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="32" x2="308" y1="146.5625" y2="146.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="245" x="44" y="141.4966">REDIRECT to Identity Server login page</text><polygon fill="#A80036" points="511,171.6953,521,175.6953,511,179.6953,515,175.6953" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="27" x2="517" y1="175.6953" y2="175.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="95" x="34" y="170.6294">GET login page</text><polygon fill="#A80036" points="38,200.8281,28,204.8281,38,208.8281,34,204.8281" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="32" x2="522" y1="204.8281" y2="204.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="44" y="199.7622">RESPONSE login page</text><polygon fill="#A80036" points="511,229.9609,521,233.9609,511,237.9609,515,233.9609" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="27" x2="517" y1="233.9609" y2="233.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="142" x="34" y="228.895">POST login credentials</text><polygon fill="#A80036" points="38,259.0938,28,263.0938,38,267.0938,34,263.0938" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="32" x2="522" y1="263.0938" y2="263.0938"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="163" x="44" y="258.0278">RESPONSE Consent page</text><polygon fill="#A80036" points="511,288.2266,521,292.2266,511,296.2266,515,292.2266" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="27" x2="517" y1="292.2266" y2="292.2266"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="91" x="34" y="287.1606">POST Consent</text><polygon fill="#A80036" points="38,317.3594,28,321.3594,38,325.3594,34,321.3594" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="32" x2="522" y1="321.3594" y2="321.3594"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="248" x="44" y="316.2935">REDIRECT Yoda callback with auth code</text><polygon fill="#A80036" points="297,346.4922,307,350.4922,297,354.4922,301,350.4922" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="27" x2="303" y1="350.4922" y2="350.4922"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="186" x="34" y="345.4263">POST callback with auth code</text><polygon fill="#A80036" points="511,375.625,521,379.625,511,383.625,515,379.625" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="309" x2="517" y1="379.625" y2="379.625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="183" x="316" y="374.5591">GET Token (using auth code)</text><polygon fill="#A80036" points="320,404.7578,310,408.7578,320,412.7578,316,408.7578" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="314" x2="522" y1="408.7578" y2="408.7578"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="326" y="403.6919">RESPONSE Token</text><polygon fill="#A80036" points="511,433.8906,521,437.8906,511,441.8906,515,437.8906" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="309" x2="517" y1="437.8906" y2="437.8906"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="190" x="316" y="432.8247">GET Userinfo (with username)</text><polygon fill="#A80036" points="320,463.0234,310,467.0234,320,471.0234,316,467.0234" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="314" x2="522" y1="467.0234" y2="467.0234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="127" x="326" y="461.9575">RESPONSE Userinfo</text><polygon fill="#A80036" points="727,492.1563,737,496.1563,727,500.1563,731,496.1563" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="309" x2="733" y1="496.1563" y2="496.1563"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="406" x="316" y="491.0903">POST login with username from userinfo and token as password</text><polygon fill="#A80036" points="534,521.2891,524,525.2891,534,529.2891,530,525.2891" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="528" x2="738" y1="525.2891" y2="525.2891"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="82" x="540" y="520.2231">GET Userinfo</text><polygon fill="#A80036" points="727,550.4219,737,554.4219,727,558.4219,731,554.4219" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="523" x2="733" y1="554.4219" y2="554.4219"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="127" x="530" y="549.356">RESPONSE Userinfo</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="739" x2="781" y1="628.9531" y2="628.9531"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="781" x2="781" y1="628.9531" y2="641.9531"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="740" x2="781" y1="641.9531" y2="641.9531"/><polygon fill="#A80036" points="750,637.9531,740,641.9531,750,645.9531,746,641.9531" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="746" y="578.4888">Compares username</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="145" x="746" y="593.6216">received from Userinfo</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="151" x="746" y="608.7544">with the one from Yoda.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="50" x="746" y="623.8872">If equal:</text><polygon fill="#A80036" points="320,667.0859,310,671.0859,320,675.0859,316,671.0859" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="314" x2="738" y1="671.0859" y2="671.0859"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="197" x="326" y="666.02">RESPONSE User authenticated</text><polygon fill="#A80036" points="38,696.2188,28,700.2188,38,704.2188,34,700.2188" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="32" x2="308" y1="700.2188" y2="700.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="258" x="44" y="695.1528">RESPONSE Homepage logged in as user</text><!--MD5=[955ccf95af77aa24908e674511275d35]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1956.25px" preserveAspectRatio="none" style="width:2189px;height:1956px;background:#282C34;" version="1.1" viewBox="0 0 2189 1956" width="2189.5833px" zoomAndPan="magnify"><defs/><g><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="62.5" x2="62.5" y1="182.2103" y2="1763.7533"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="733.3333" x2="733.3333" y1="182.2103" y2="1763.7533"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="1254.1667" x2="1254.1667" y1="182.2103" y2="1763.7533"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="1775" x2="1775" y1="182.2103" y2="1763.7533"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="70.8333" x="20.8333" y="170.6736">User</text><ellipse cx="62.5" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M62.5,43.75 L62.5,100 M35.4167,60.4167 L89.5833,60.4167 M62.5,100 L35.4167,131.25 M62.5,100 L89.5833,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="70.8333" x="20.8333" y="1794.8435">User</text><ellipse cx="62.5" cy="1827.2135" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M62.5,1843.8802 L62.5,1900.1302 M35.4167,1860.5469 L89.5833,1860.5469 M62.5,1900.1302 L35.4167,1931.3802 M62.5,1900.1302 L89.5833,1931.3802 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="112.5" x="677.0833" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="75" x="695.8333" y="154.007">Yoda</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="112.5" x="677.0833" y="1761.6699"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="75" x="695.8333" y="1809.4269">Yoda</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="258.3333" x="1125" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="220.8333" x="1143.75" y="154.007">Identity Server</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="258.3333" x="1125" y="1761.6699"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="220.8333" x="1143.75" y="1809.4269">Identity Server</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="133.3333" x="1708.3333" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="1727.0833" y="154.007">iRODS</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="133.3333" x="1708.3333" y="1761.6699"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="1727.0833" y="1809.4269">iRODS</text><polygon fill="#61AFEF" points="708.3333,251.9206,729.1667,260.2539,708.3333,268.5872,716.6667,260.2539" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="62.5" x2="720.8333" y1="260.2539" y2="260.2539"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="227.0833" x="81.25" y="244.5506">GET login page</text><polygon fill="#61AFEF" points="85.4167,325.7975,64.5833,334.1309,85.4167,342.4642,77.0833,334.1309" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="72.9167" x2="731.25" y1="334.1309" y2="334.1309"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="585.4167" x="102.0833" y="318.4275">REDIRECT to Identity Server login page</text><polygon fill="#61AFEF" points="1229.1667,399.6745,1250,408.0078,1229.1667,416.3411,1237.5,408.0078" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="62.5" x2="1241.6667" y1="408.0078" y2="408.0078"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="227.0833" x="81.25" y="392.3045">GET login page</text><polygon fill="#61AFEF" points="85.4167,473.5514,64.5833,481.8848,85.4167,490.2181,77.0833,481.8848" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="72.9167" x2="1252.0833" y1="481.8848" y2="481.8848"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="331.25" x="102.0833" y="466.1814">RESPONSE login page</text><polygon fill="#61AFEF" points="1229.1667,547.4284,1250,555.7617,1229.1667,564.0951,1237.5,555.7617" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="62.5" x2="1241.6667" y1="555.7617" y2="555.7617"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="337.5" x="81.25" y="540.0584">POST login credentials</text><polygon fill="#61AFEF" points="85.4167,621.3053,64.5833,629.6387,85.4167,637.972,77.0833,629.6387" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="72.9167" x2="1252.0833" y1="629.6387" y2="629.6387"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="387.5" x="102.0833" y="613.9353">RESPONSE Consent page</text><polygon fill="#61AFEF" points="1229.1667,695.1823,1250,703.5156,1229.1667,711.849,1237.5,703.5156" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="62.5" x2="1241.6667" y1="703.5156" y2="703.5156"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="218.75" x="81.25" y="687.8123">POST Consent</text><polygon fill="#61AFEF" points="85.4167,769.0592,64.5833,777.3926,85.4167,785.7259,77.0833,777.3926" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="72.9167" x2="1252.0833" y1="777.3926" y2="777.3926"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="600" x="102.0833" y="761.6892">REDIRECT Yoda callback with auth code</text><polygon fill="#61AFEF" points="708.3333,842.9362,729.1667,851.2695,708.3333,859.6029,716.6667,851.2695" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="62.5" x2="720.8333" y1="851.2695" y2="851.2695"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="450" x="81.25" y="835.5662">POST callback with auth code</text><polygon fill="#61AFEF" points="1229.1667,916.8132,1250,925.1465,1229.1667,933.4798,1237.5,925.1465" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="733.3333" x2="1241.6667" y1="925.1465" y2="925.1465"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="441.6667" x="752.0833" y="909.4432">GET Token (using auth code)</text><polygon fill="#61AFEF" points="756.25,990.6901,735.4167,999.0234,756.25,1007.3568,747.9167,999.0234" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="743.75" x2="1252.0833" y1="999.0234" y2="999.0234"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="268.75" x="772.9167" y="983.3201">RESPONSE Token</text><polygon fill="#61AFEF" points="1229.1667,1064.5671,1250,1072.9004,1229.1667,1081.2337,1237.5,1072.9004" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="733.3333" x2="1241.6667" y1="1072.9004" y2="1072.9004"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="462.5" x="752.0833" y="1057.1971">GET Userinfo (with username)</text><polygon fill="#61AFEF" points="756.25,1138.444,735.4167,1146.7773,756.25,1155.1107,747.9167,1146.7773" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="743.75" x2="1252.0833" y1="1146.7773" y2="1146.7773"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="302.0833" x="772.9167" y="1131.074">RESPONSE Userinfo</text><polygon fill="#61AFEF" points="1750,1212.321,1770.8333,1220.6543,1750,1228.9876,1758.3333,1220.6543" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="733.3333" x2="1762.5" y1="1220.6543" y2="1220.6543"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="983.3333" x="752.0833" y="1204.951">POST login with username from userinfo and token as password</text><polygon fill="#61AFEF" points="1277.0833,1286.1979,1256.25,1294.5313,1277.0833,1302.8646,1268.75,1294.5313" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1264.5833" x2="1772.9167" y1="1294.5313" y2="1294.5313"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="197.9167" x="1293.75" y="1278.8279">GET Userinfo</text><polygon fill="#61AFEF" points="1750,1360.0749,1770.8333,1368.4082,1750,1376.7415,1758.3333,1368.4082" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1254.1667" x2="1762.5" y1="1368.4082" y2="1368.4082"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="302.0833" x="1272.9167" y="1352.7049">RESPONSE Userinfo</text><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1775" x2="1862.5" y1="1551.416" y2="1551.416"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1862.5" x2="1862.5" y1="1551.416" y2="1578.4993"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1777.0833" x2="1862.5" y1="1578.4993" y2="1578.4993"/><polygon fill="#61AFEF" points="1797.9167,1570.166,1777.0833,1578.4993,1797.9167,1586.8327,1789.5833,1578.4993" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="320.8333" x="1793.75" y="1426.5818">Compares username</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="345.8333" x="1793.75" y="1462.9588">received from Userinfo</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="370.8333" x="1793.75" y="1499.3357">with the one from Yoda.</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="118.75" x="1793.75" y="1535.7127">If equal:</text><polygon fill="#61AFEF" points="756.25,1644.043,735.4167,1652.3763,756.25,1660.7096,747.9167,1652.3763" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="743.75" x2="1772.9167" y1="1652.3763" y2="1652.3763"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="468.75" x="772.9167" y="1636.673">RESPONSE User authenticated</text><polygon fill="#61AFEF" points="85.4167,1717.9199,64.5833,1726.2533,85.4167,1734.5866,77.0833,1726.2533" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="72.9167" x2="731.25" y1="1726.2533" y2="1726.2533"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="612.5" x="102.0833" y="1710.5499">RESPONSE Homepage logged in as user</text><!--MD5=[4c92baa115b6c6e96b091ee361a664d2]
 @startuml
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
+
 actor User
 participant Yoda
 participant "Identity Server" as IS

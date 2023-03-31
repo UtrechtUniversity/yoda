@@ -94,7 +94,7 @@
   ansible.builtin.copy:
     src: pysqlite.py
     dest: "{{ yoda_moai_home }}/yoda-moai/venv/lib/python3.8/site-packages/sqlalchemy/dialects/sqlite/pysqlite.py"
-    mode: 0644
+    mode: '0644'
     owner: '{{ yoda_moai_user }}'
     group: '{{ yoda_moai_user }}'
 
@@ -102,7 +102,7 @@
 - name: Ensure Yoda MOAI home is world readable
   ansible.builtin.file:
     path: '{{ yoda_moai_home }}'
-    mode: 0755
+    mode: '0755'
     owner: '{{ yoda_moai_user }}'
     group: '{{ yoda_moai_user }}'
     state: directory
@@ -125,7 +125,7 @@
     path: '{{ yoda_metadata_inbox }}'
     owner: '{{ yoda_inbox_user }}'
     group: '{{ yoda_moai_user }}'
-    mode: 02750
+    mode: '02750'
     state: directory
 
 
@@ -135,7 +135,7 @@
     dest: '{{ yoda_moai_home }}/moai.wsgi'
     owner: '{{ yoda_moai_user }}'
     group: '{{ yoda_moai_user }}'
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
@@ -145,7 +145,7 @@
     dest: '{{ yoda_moai_home }}/settings.ini'
     owner: '{{ yoda_moai_user }}'
     group: '{{ yoda_moai_user }}'
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 

@@ -39,7 +39,7 @@ Mistakes are easily made as the commands are so similar, but different.
 So please take care.
 
 ## Yoda v1.9 and later
-From Yodq v1.9 and later it is possible to set metadata schemas on group level.
+From Yoda v1.9 and later it is possible to set metadata schemas on group level.
 For this a schema needs to be installed and marked selectable.
 
 Example to install (or update) schema 'core-1':

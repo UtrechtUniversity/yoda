@@ -202,7 +202,6 @@
   become: true
   roles:
     - apache
-    - php
     - yoda_external_user_service
     - role: postfix
       when: enable_postfix

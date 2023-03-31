@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/UtrechtUniversity/yoda">
-    <img src="docs/yoda.svg" alt="Yoda logo" width="340" height="140">
+    <img src="yoda.svg" alt="Yoda logo" width="652" height="212">
   </a>
 
   <p align="center">

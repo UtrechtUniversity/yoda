@@ -36,7 +36,7 @@
     url: "{{ item.item.value.url }}"
     dest: "{{ rpm_dest_dir }}/{{ item.item.value.filename }}"
     checksum: "{{ item.item.value.checksum }}"
-    mode: 0644
+    mode: '0644'
   when: not item.results and not repo_only
   with_items: "{{ irods_microservices_repo.results }}"
 

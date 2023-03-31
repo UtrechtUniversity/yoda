@@ -1,15 +1,178 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1891.6667px" preserveAspectRatio="none" style="width:1710px;height:1891px;" version="1.1" viewBox="0 0 1710 1891" width="1710.4167px" zoomAndPan="magnify"><defs/><g><rect fill="#FEFECE" height="1853.0436" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="1672.9167" x="12.5" y="16.6667"/><rect fill="#FFFFFF" height="1775" rx="26.0417" ry="26.0417" style="stroke: #FFFFFF; stroke-width: 2.0833333333333335;" width="1660.4167" x="18.75" y="88.4603"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="12.5" x2="1685.4167" y1="82.2103" y2="82.2103"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="181.25" x="758.3333" y="60.257">Vault Space</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="422.9167" x="35.4167" y="273.877"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="35.4167" x2="458.3333" y1="339.4206" y2="339.4206"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="193.75" x="150" y="317.4672">INCOMPLETE</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="372.9167" x="50" y="383.0109">Incomplete datapackage</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="362.5" x="1115.625" y="273.877"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="1115.625" x2="1478.125" y1="339.4206" y2="339.4206"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="164.5833" x="1214.5833" y="317.4672">COMPLETE</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="312.5" x="1130.2083" y="383.0109">Legacy datapackage</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="439.5833" x="495.8333" y="273.877"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="495.8333" x2="935.4167" y1="339.4206" y2="339.4206"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="216.6667" x="607.2917" y="317.4672">UNPUBLISHED</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="389.5833" x="510.4167" y="383.0109">Unpublished datapackage</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="525" x="703.125" y="528.0436"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="703.125" x2="1228.125" y1="593.5872" y2="593.5872"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="475" x="728.125" y="571.6339">SUBMITTED_FOR_PUBLICATION</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="381.25" x="717.7083" y="637.1775">Submitted for publication</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="514.5833" x="708.3333" y="782.2103"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="708.3333" x2="1222.9167" y1="847.7539" y2="847.7539"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="464.5833" x="733.3333" y="825.8006">APPROVED_FOR_PUBLICATION</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="289.5833" x="722.9167" y="891.3442">Publication pending</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="220.8333" x="855.2083" y="990.5436"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="855.2083" x2="1076.0417" y1="1056.0872" y2="1056.0872"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="170.8333" x="880.2083" y="1034.1339">PUBLISHED</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="141.6667" x="869.7917" y="1099.6775">Published</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="445.8333" x="565.625" y="1244.7103"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="565.625" x2="1011.4583" y1="1310.2539" y2="1310.2539"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="395.8333" x="590.625" y="1288.3006">PENDING_DEPUBLICATION</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="331.25" x="580.2083" y="1353.8442">Depublication pending</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="262.5" x="657.2917" y="1453.0436"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="657.2917" x2="919.7917" y1="1518.5872" y2="1518.5872"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="212.5" x="682.2917" y="1496.6339">DEPUBLISHED</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="183.3333" x="671.875" y="1562.1775">Depublished</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="443.75" x="745.8333" y="1707.2103"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="745.8333" x2="1189.5833" y1="1772.7539" y2="1772.7539"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="393.75" x="770.8333" y="1750.8006">PENDING_REPUBLICATION</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="329.1667" x="760.4167" y="1816.3442">Republication pending</text><ellipse cx="430.2083" cy="130.127" fill="#000000" rx="20.8333" ry="20.8333" style="stroke: none; stroke-width: 2.0833333333333335;"/><!--link *start*VaultSpace to UNPUBLISHED--><path d="M451.1433,131.8436 C488.5435,135.8582 567.7817,148.7615 619.7917,188.4603 C645.7408,208.267 666.5377,237.274 682.0383,264.5865 " fill="none" id="*start*VaultSpace-UNPUBLISHED" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="687.0919,273.7682,685.3511,253.3237,682.0689,264.6426,670.7501,261.3604,687.0919,273.7682" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="308.3333" x="669.7917" y="223.7172">Create datapackage</text><!--link *start*VaultSpace to INCOMPLETE--><path d="M409.436,133.9638 C380.6963,140.3272 328.9627,155.7524 298.9583,188.4603 C280.0877,209.0313 268.0046,236.7715 260.289,262.8651 " fill="none" id="*start*VaultSpace-INCOMPLETE" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="257.4417,273.1486,270.4763,257.3024,260.2214,263.1097,254.4141,252.8548,257.4417,273.1486" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="308.3333" x="305.2083" y="223.7172">Create datapackage</text><!--link UNPUBLISHED to SUBMITTED_FOR_PUBLICATION--><path d="M601.6085,405.6378 C571.824,431.2582 553.6094,461.4009 576.0417,490.5436 C593.3173,512.9872 638.6306,531.549 692.5198,546.4401 " fill="none" id="UNPUBLISHED-SUBMITTED_FOR_PUBLICATION" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="702.6771,549.1778,686.7424,536.2514,692.6195,546.4665,682.4043,552.3436,702.6771,549.1778" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="331.25" x="582.2917" y="477.8839">Submit for publication</text><!--link COMPLETE to SUBMITTED_FOR_PUBLICATION--><path d="M1284.159,405.7613 C1275.5848,434.9757 1261.4831,467.7686 1238.5417,490.5436 C1226.6346,502.3642 1213.2396,512.8526 1198.9408,522.1553 " fill="none" id="COMPLETE-SUBMITTED_FOR_PUBLICATION" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="1189.9265,527.7957,1210.2416,524.9147,1198.757,522.2705,1201.4013,510.7858,1189.9265,527.7957" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="331.25" x="1278.125" y="477.8839">Submit for publication</text><!--link SUBMITTED_FOR_PUBLICATION to APPROVED_FOR_PUBLICATION--><path d="M965.625,659.7845 C965.625,693.9086 965.625,735.7186 965.625,771.243 " fill="none" id="SUBMITTED_FOR_PUBLICATION-APPROVED_FOR_PUBLICATION" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="965.625,782.0505,973.9583,763.3005,965.625,771.6338,957.2917,763.3005,965.625,782.0505" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="347.9167" x="971.875" y="732.0506">Approve for publication</text><!--link SUBMITTED_FOR_PUBLICATION to UNPUBLISHED--><path d="M957.5144,527.883 C951.1763,499.1115 939.8892,466.5436 919.7917,442.627 C910.2433,431.2642 899.1315,421.0213 887.1156,411.8132 " fill="none" id="SUBMITTED_FOR_PUBLICATION-UNPUBLISHED" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="878.6608,405.6028,888.8385,423.4191,887.0559,411.7696,898.7054,409.987,878.6608,405.6028" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="270.8333" x="953.125" y="477.8839">Cancel publication</text><!--link APPROVED_FOR_PUBLICATION to PUBLISHED--><path d="M965.625,913.7532 C965.625,934.6522 965.625,957.9363 965.625,979.5222 " fill="none" id="APPROVED_FOR_PUBLICATION-PUBLISHED" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="965.625,989.9645,973.9583,971.2145,965.625,979.5478,957.2917,971.2145,965.625,989.9645" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><!--link PUBLISHED to PENDING_DEPUBLICATION--><path d="M854.3183,1097.6434 C828.1983,1112.9001 803.6127,1133.0765 788.5417,1159.2936 C775.8488,1181.3738 772.7871,1208.4409 773.8754,1233.5324 " fill="none" id="PUBLISHED-PENDING_DEPUBLICATION" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="774.5802,1244.1447,781.6524,1224.8835,773.8897,1233.7509,765.0223,1225.9883,774.5802,1244.1447" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="316.6667" x="794.7917" y="1194.5506">Depublish publication</text><!--link PENDING_DEPUBLICATION to DEPUBLISHED--><path d="M788.5417,1376.2532 C788.5417,1397.1522 788.5417,1420.4363 788.5417,1442.0222 " fill="none" id="PENDING_DEPUBLICATION-DEPUBLISHED" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="788.5417,1452.4645,796.875,1433.7145,788.5417,1442.0478,780.2083,1433.7145,788.5417,1452.4645" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><!--link DEPUBLISHED to PENDING_REPUBLICATION--><path d="M775.6596,1584.9538 C773.6021,1612.8392 775.9438,1644.574 790.625,1669.7103 C797.0733,1680.7505 805.2008,1690.7234 814.4092,1699.7109 " fill="none" id="DEPUBLISHED-PENDING_REPUBLICATION" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="822.3852,1707.0305,814.2049,1688.2132,814.7104,1699.9875,802.9361,1700.493,822.3852,1707.0305" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="314.5833" x="796.875" y="1657.0506">Republish publication</text><!--link PENDING_REPUBLICATION to PUBLISHED--><path d="M1088.4875,1707.1409 C1100.1473,1696.1503 1110.3521,1683.6947 1117.7083,1669.7103 C1223.319,1468.9413 1223.9631,1359.7224 1117.7083,1159.2936 C1109.5415,1143.8886 1097.9296,1130.3609 1084.7158,1118.6109 " fill="none" id="PENDING_REPUBLICATION-PUBLISHED" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="1076.2979,1111.5238,1085.2744,1129.9746,1084.2665,1118.2326,1096.0085,1117.2248,1076.2979,1111.5238" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1891.6667px" preserveAspectRatio="none" style="width:1250px;height:1891px;background:#282C34;" version="1.1" viewBox="0 0 1250 1891" width="1250px" zoomAndPan="magnify"><defs/><g><rect fill="#424856" height="1853.0436" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="1212.5" x="12.5" y="16.6667"/><rect fill="#282C34" height="1775" rx="26.0417" ry="26.0417" style="stroke: #282C34; stroke-width: 2.0833333333333335;" width="1200" x="18.75" y="88.4603"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="12.5" x2="1225" y1="82.2103" y2="82.2103"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="181.25" x="528.125" y="60.257">Vault Space</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="422.9167" x="35.4167" y="273.877"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="35.4167" x2="458.3333" y1="339.4206" y2="339.4206"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="193.75" x="150" y="317.4672">INCOMPLETE</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="372.9167" x="50" y="383.0109">Incomplete datapackage</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="439.5833" x="495.8333" y="273.877"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="495.8333" x2="935.4167" y1="339.4206" y2="339.4206"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="216.6667" x="607.2917" y="317.4672">UNPUBLISHED</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="389.5833" x="510.4167" y="383.0109">Unpublished datapackage</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="525" x="453.125" y="528.0436"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="453.125" x2="978.125" y1="593.5872" y2="593.5872"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="475" x="478.125" y="571.6339">SUBMITTED_FOR_PUBLICATION</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="381.25" x="467.7083" y="637.1775">Submitted for publication</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="514.5833" x="458.3333" y="782.2103"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="458.3333" x2="972.9167" y1="847.7539" y2="847.7539"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="464.5833" x="483.3333" y="825.8006">APPROVED_FOR_PUBLICATION</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="289.5833" x="472.9167" y="891.3442">Publication pending</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="220.8333" x="605.2083" y="990.5436"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="605.2083" x2="826.0417" y1="1056.0872" y2="1056.0872"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="170.8333" x="630.2083" y="1034.1339">PUBLISHED</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="141.6667" x="619.7917" y="1099.6775">Published</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="445.8333" x="315.625" y="1244.7103"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="315.625" x2="761.4583" y1="1310.2539" y2="1310.2539"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="395.8333" x="340.625" y="1288.3006">PENDING_DEPUBLICATION</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="331.25" x="330.2083" y="1353.8442">Depublication pending</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="262.5" x="407.2917" y="1453.0436"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="407.2917" x2="669.7917" y1="1518.5872" y2="1518.5872"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="212.5" x="432.2917" y="1496.6339">DEPUBLISHED</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="183.3333" x="421.875" y="1562.1775">Depublished</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="443.75" x="495.8333" y="1707.2103"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="495.8333" x2="939.5833" y1="1772.7539" y2="1772.7539"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="393.75" x="520.8333" y="1750.8006">PENDING_REPUBLICATION</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="329.1667" x="510.4167" y="1816.3442">Republication pending</text><ellipse cx="455.2083" cy="130.127" fill="#98C379" rx="20.8333" ry="20.8333" style="stroke: none; stroke-width: 2.0833333333333335;"/><!--MD5=[e570316a1f77a52702cef01c430b32bc]
+link *start*VaultSpace to UNPUBLISHED--><path d="M476.0208,134.8353 C509.4375,139.9811 575.8125,154.0228 619.7917,188.4603 C645.4583,208.5645 666.3125,237.5645 681.9167,264.627 " fill="none" id="*start*VaultSpace-&gt;UNPUBLISHED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="687.0208,273.7311,685.1202,253.3009,681.9267,264.6451,670.5825,261.4515,687.0208,273.7311" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="308.3333" x="667.7083" y="223.7172">Create datapackage</text><!--MD5=[fe9cb58d8a50cc1ba6c6d285f67ac502]
+link *start*VaultSpace to INCOMPLETE--><path d="M434.4792,134.0436 C401.375,138.0645 336.5,150.5645 298.9583,188.4603 C279.0417,208.5645 266.7083,236.6895 259.1042,263.1061 " fill="none" id="*start*VaultSpace-&gt;INCOMPLETE" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="256.3125,273.502,269.178,257.5181,258.9854,263.4341,253.0694,253.2414,256.3125,273.502" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="308.3333" x="305.2083" y="223.7172">Create datapackage</text><!--MD5=[9402decb6cea6702e915f4085bfc1dc9]
+link UNPUBLISHED to SUBMITTED_FOR_PUBLICATION--><path d="M554.875,405.3353 C541.9375,416.002 530.5208,428.3561 521.875,442.627 C503.4375,473.0436 517.8542,499.502 545.5625,521.3561 " fill="none" id="UNPUBLISHED-&gt;SUBMITTED_FOR_PUBLICATION" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="554.5833,527.9811,544.4405,510.1449,546.2003,521.7979,534.5473,523.5577,554.5833,527.9811" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="331.25" x="528.125" y="477.8839">Submit for publication</text><!--MD5=[d330076859218f3d517542ae0567bb59]
+link SUBMITTED_FOR_PUBLICATION to APPROVED_FOR_PUBLICATION--><path d="M715.625,659.4811 C715.625,693.5645 715.625,735.7311 715.625,771.3145 " fill="none" id="SUBMITTED_FOR_PUBLICATION-&gt;APPROVED_FOR_PUBLICATION" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="715.625,782.127,723.9583,763.377,715.625,771.7103,707.2917,763.377,715.625,782.127" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="347.9167" x="721.875" y="732.0506">Approve for publication</text><!--MD5=[268e8cdc42a8d9009be98a92f8d54fde]
+link SUBMITTED_FOR_PUBLICATION to UNPUBLISHED--><path d="M835.8125,527.6895 C864.5,503.6478 882.5208,474.377 865.625,442.627 C859.8542,431.7936 852.375,421.9186 843.7917,412.9603 " fill="none" id="SUBMITTED_FOR_PUBLICATION-&gt;UNPUBLISHED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="836.375,405.6478,843.8566,424.7536,843.7852,412.9687,855.5701,412.8973,836.375,405.6478" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="270.8333" x="878.125" y="477.8839">Cancel publication</text><!--MD5=[ec88c3c40fc41c5022366a89fcd4a7f7]
+link APPROVED_FOR_PUBLICATION to PUBLISHED--><path d="M715.625,913.9603 C715.625,934.8561 715.625,958.252 715.625,979.8353 " fill="none" id="APPROVED_FOR_PUBLICATION-&gt;PUBLISHED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="715.625,990.2728,723.9583,971.5228,715.625,979.8561,707.2917,971.5228,715.625,990.2728" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><!--MD5=[5997f2442d52424b66460e6eb74dcc72]
+link PUBLISHED to PENDING_DEPUBLICATION--><path d="M604.375,1098.4395 C578.25,1113.3978 553.6458,1133.2728 538.5417,1159.2936 C525.7083,1181.3978 522.7708,1208.6478 524.0208,1233.7728 " fill="none" id="PUBLISHED-&gt;PENDING_DEPUBLICATION" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="524.8125,1244.3978,531.7298,1225.0805,524.0386,1234.0099,515.1092,1226.3187,524.8125,1244.3978" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="316.6667" x="544.7917" y="1194.5506">Depublish publication</text><!--MD5=[c4467eb1488e6ef2f28eb9f2e8a7419d]
+link PENDING_DEPUBLICATION to DEPUBLISHED--><path d="M538.5417,1376.4603 C538.5417,1397.3561 538.5417,1420.752 538.5417,1442.3353 " fill="none" id="PENDING_DEPUBLICATION-&gt;DEPUBLISHED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="538.5417,1452.7728,546.875,1434.0228,538.5417,1442.3561,530.2083,1434.0228,538.5417,1452.7728" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><!--MD5=[072c69b00a4ac590ba0d47960b6670c4]
+link DEPUBLISHED to PENDING_REPUBLICATION--><path d="M525.8542,1584.7103 C523.625,1612.5645 525.7708,1644.5436 540.625,1669.7103 C547.0833,1680.6686 555.2292,1690.5436 564.4375,1699.4186 " fill="none" id="DEPUBLISHED-&gt;PENDING_REPUBLICATION" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="572.4375,1706.627,564.1152,1687.8721,564.7096,1699.6422,552.9395,1700.2366,572.4375,1706.627" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="314.5833" x="546.875" y="1657.0506">Republish publication</text><!--MD5=[1f8030dc668b1a915e34a7d5d72942ca]
+link PENDING_REPUBLICATION to PUBLISHED--><path d="M838.4583,1706.6895 C850.125,1695.877 860.3333,1683.5645 867.7083,1669.7103 C974.2708,1469.4395 974.9167,1359.2103 867.7083,1159.2936 C859.5208,1144.0228 847.8958,1130.6686 834.6875,1119.1061 " fill="none" id="PENDING_REPUBLICATION-&gt;PUBLISHED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="826.25,1112.1478,835.3665,1130.5298,834.2694,1118.7958,846.0033,1117.6988,826.25,1112.1478" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><!--MD5=[3b5e9f1df54241cf1837ee34f5529bee]
 @startuml
 
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
-skinparam padding 2
-skinparam shadowing false
-skinparam dpi 200
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
 
 state VaultSpace as "Vault Space" {
   INCOMPLETE : Incomplete datapackage
-  COMPLETE : Legacy datapackage
   UNPUBLISHED : Unpublished datapackage
   SUBMITTED_FOR_PUBLICATION : Submitted for publication
   APPROVED_FOR_PUBLICATION : Publication pending
@@ -21,7 +184,6 @@ state VaultSpace as "Vault Space" {
   [*] - -> UNPUBLISHED : Create datapackage
   [*] - -> INCOMPLETE : Create datapackage
   UNPUBLISHED - -> SUBMITTED_FOR_PUBLICATION : Submit for publication
-  COMPLETE - -> SUBMITTED_FOR_PUBLICATION : Submit for publication
   SUBMITTED_FOR_PUBLICATION - -> APPROVED_FOR_PUBLICATION : Approve for publication
   SUBMITTED_FOR_PUBLICATION - -> UNPUBLISHED : Cancel publication
   APPROVED_FOR_PUBLICATION - -> PUBLISHED
@@ -33,13 +195,12 @@ state VaultSpace as "Vault Space" {
 
 @enduml
 
-PlantUML version 1.2018.13(Mon Nov 26 18:11:51 CET 2018)
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.9.1+1-post-Debian-1deb10u2
+Java Version: 11.0.18+10-post-Debian-1deb11u1
 Operating System: Linux
-OS Version: 5.9.0-0.bpo.5-amd64
 Default Encoding: UTF-8
 Language: en
 Country: US

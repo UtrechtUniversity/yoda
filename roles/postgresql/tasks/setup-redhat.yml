@@ -5,7 +5,7 @@
   ansible.builtin.get_url:
     url: "{{ rpm_url }}/{{ rpm_redhat_repo }}"
     dest: "{{ rpm_dest_dir }}/{{ rpm_redhat_repo }}"
-    mode: 0644
+    mode: '0644'
 
 
 - name: Install PostgreSQL YUM repo package

@@ -5,6 +5,9 @@
 irods_service_account: irods
 irods_zone: tempZone                       # The name of the iRODS Zone
 
+# EUS configuration
+yoda_eus_fqdn: eus.yoda.test
+
 # Test configuration.
 test_password: test
 
