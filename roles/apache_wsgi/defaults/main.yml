@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+centos_extras_repository: extras
+centos_sclo_rh_repository: centos-sclo-rh

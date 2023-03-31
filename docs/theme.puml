@@ -1,0 +1,171 @@
+@startuml
+
+!$color_bg       = "#282c34"
+!$color_bg_light = "#424856"
+
+!$color_fg       = "#abb2bf"
+
+!$color_red      = "#e06c75"
+!$color_green    = "#98c379"
+!$color_yellow   = "#e5c07b"
+!$color_blue     = "#61afef"
+!$color_purple   = "#c678dd"
+
+!$color_primary  = $color_blue
+
+skinparam backgroundColor $color_bg
+
+skinparam {
+  ActivityBackgroundColor        $color_bg_light
+  ActivityBarColor               $color_fg
+  ActivityBorderColor            $color_primary
+
+  ActivityDiamondBackgroundColor $color_bg_light
+  ActivityDiamondBorderColor     $color_primary
+
+  ActivityEndColor               $color_red
+
+  ActivityStartColor             $color_green
+  ActivityStopColor              $color_red
+
+  ActorBackgroundColor        $color_bg_light
+  ActorBorderColor            $color_primary
+
+  ActorStereotypeFontColor    $color_fg
+
+  AgentBackgroundColor       $color_bg_light
+  AgentBorderColor           $color_primary
+
+  ArrowColor $color_primary
+
+  ArtifactBackgroundColor     $color_bg_light
+  ArtifactBorderColor         $color_primary
+
+  BackgroundColor $color_bg
+
+  BoundaryBackgroundColor     $color_bg_light
+  BoundaryBorderColor         $color_primary
+
+  CardBackgroundColor     $color_bg_light
+  CardBorderColor         $color_primary
+
+  ClassBackgroundColor   $color_bg_light
+  ClassBorderColor       $color_fg
+
+  CloudBackgroundColor        $color_bg_light
+  CloudBorderColor            $color_primary
+
+  CollectionsBackgroundColor $color_bg_light
+  CollectionsBorderColor     $color_primary
+
+  ComponentBackgroundColor       $color_bg_light
+  ComponentBorderColor           $color_primary
+
+  ControlBackgroundColor $color_bg_light
+  ControlBorderColor     $color_primary
+  ControlFontColor       $color_fg
+
+  ControlStereotypeFontColor $color_fg
+
+  DatabaseBackgroundColor       $color_bg_light
+  DatabaseBorderColor           $color_primary
+
+  DefaultFontColor $color_fg
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor $color_bg_light
+  EntityBorderColor     $color_primary
+
+  FileBackgroundColor $color_bg_light
+  FileBorderColor     $color_primary
+
+  FolderBackgroundColor $color_bg_light
+  FolderBorderColor     $color_primary
+
+  FrameBackgroundColor       $color_bg_light
+  FrameBorderColor           $color_primary
+
+  HexagonBackgroundColor $color_bg_light
+  HexagonBorderColor     $color_primary
+
+  InterfaceBackgroundColor       $color_bg_light
+  InterfaceBorderColor           $color_primary
+
+  LegendBackgroundColor   $color_bg_light
+  LegendBorderColor       $color_fg
+
+  NodeBackgroundColor       $color_bg_light
+  NodeBorderColor           $color_primary
+
+  NoteBackgroundColor   $color_yellow
+  NoteBorderColor       $color_bg
+
+  NoteFontColor         $color_bg
+
+  ObjectBackgroundColor       $color_bg_light
+  ObjectBorderColor           $color_primary
+
+  PackageBackgroundColor       $color_bg
+  PackageBorderColor           $color_primary
+
+  Padding 2
+  ParticipantBackgroundColor $color_bg_light
+  ParticipantBorderColor     $color_primary
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     $color_fg
+
+  PersonBackgroundColor $color_bg_light
+  PersonBorderColor     $color_primary
+
+  QueueBackgroundColor       $color_bg_light
+  QueueBorderColor           $color_primary
+
+  RectangleBackgroundColor       $color_bg_light
+  RectangleBorderColor           $color_primary
+
+  SequenceBoxBackgroundColor $color_bg_light
+  SequenceBoxBorderColor     $color_primary
+
+  SequenceDividerBackgroundColor   $color_bg_light
+  SequenceDividerBorderColor       $color_fg
+
+  SequenceGroupBackgroundColor       $color_bg_light
+
+  SequenceGroupBorderColor           $color_fg
+
+  SequenceLifeLineBackgroundColor   $color_bg
+  SequenceLifeLineBorderColor       $color_primary
+
+  SequenceNewpageSeparatorColor  $color_fg
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            $color_fg
+
+  SequenceReferenceHeaderBackgroundColor $color_bg_light
+
+  Shadowing false
+
+  StackBackgroundColor       $color_bg_light
+  StackBorderColor           $color_primary
+
+  StateBackgroundColor    $color_bg_light
+  StateBorderColor        $color_primary
+  StateEndColor           $color_red
+
+  StateStartColor         $color_green
+
+  StorageBackgroundColor $color_bg_light
+  StorageBorderColor     $color_fg
+
+  SwimlaneBorderColor            $color_fg
+
+  UsecaseBackgroundColor       $color_bg_light
+  UsecaseBorderColor           $color_primary
+}
+
+@enduml

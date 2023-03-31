@@ -3,10 +3,10 @@
 
 - name: Download MinIO RPM
   ansible.builtin.get_url:
-    url: 'https://dl.min.io/server/minio/release/linux-amd64/archive/minio-20221005145827.0.0.x86_64.rpm'
+    url: '{{ minio_rpm_url }}'
     dest: '/tmp/minio.rpm'
-    checksum: 'sha256:2f15a979045aba8acf6827a39deba9178fee6e1ace2e44cc272b5113ec892e31'
-    mode: 0644
+    checksum: '{{ minio_rpm_checksum }}'
+    mode: '0644'
 
 
 - name: Install MinIO from downloaded RPM
@@ -42,7 +42,7 @@
     dest: /etc/default/minio
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart minio
 
 
@@ -52,12 +52,12 @@
     dest: /etc/systemd/system/minio.service
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart minio
 
 
 - name: Allow public access to MinIO web console
-  ansible.builtin.firewalld:
+  ansible.posix.firewalld:
     port: '9090/tcp'
     permanent: true
     state: enabled
@@ -78,10 +78,13 @@
 - name: Check S3 bucket for Yoda is present
   become_user: irods
   become: true
-  ansible.builtin.shell: s3cmd ls | grep yoda  # noqa no-changed-when
+  ansible.builtin.shell: s3cmd ls | grep yoda
   register: bucket_check
   ignore_errors: true
   changed_when: false
+  until: bucket_check.rc != 1
+  retries: 5
+  delay: 10
 
 
 - name: Ensure S3 bucket for Yoda is present

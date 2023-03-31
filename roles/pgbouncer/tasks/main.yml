@@ -1,0 +1,69 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Ensure PgBouncer is installed
+  ansible.builtin.package:
+    name:
+      - pgbouncer
+    state: present
+
+
+- name: Ensure PgBouncer user list configuration is present
+  ansible.builtin.template:
+    src: userlist.txt.j2
+    dest: "{{ pgbouncer_config_path }}/userlist.txt"
+    group: '{{ pgbouncer_user }}'
+    owner: '{{ pgbouncer_user }}'
+    mode: '0600'
+  notify: Restart PgBouncer
+
+
+- name: Ensure private key file is available for PgBouncer
+  ansible.builtin.copy:
+    src: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
+    dest: '{{ pgbouncer_config_path }}/{{ openssl_key_signed }}'
+    group: '{{ pgbouncer_user }}'
+    owner: '{{ pgbouncer_user }}'
+    mode: '0600'
+    remote_src: true
+  when: not ansible_check_mode
+
+
+- name: Ensure certificate file is available for PgBouncer
+  ansible.builtin.copy:
+    src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
+    dest: '{{ pgbouncer_config_path }}/{{ openssl_crt_signed }}'
+    group: '{{ pgbouncer_user }}'
+    owner: '{{ pgbouncer_user }}'
+    mode: '0600'
+    remote_src: true
+  when: not ansible_check_mode
+
+
+- name: Ensure PgBouncer is configured
+  ansible.builtin.template:
+    src: pgbouncer-{{ ansible_os_family }}.ini.j2
+    dest: "{{ pgbouncer_config_path }}/pgbouncer.ini"
+    group: '{{ pgbouncer_user }}'
+    owner: '{{ pgbouncer_user }}'
+    mode: '0600'
+  notify: Restart PgBouncer
+
+
+- name: Enable and start pgbouncer service
+  ansible.builtin.service:
+    name: pgbouncer
+    enabled: true
+    state: started
+
+
+- name: Allow access to pgbouncer in firewall
+  ansible.posix.firewalld:
+    port: "6432/tcp"
+    permanent: true
+    state: enabled
+    immediate: true

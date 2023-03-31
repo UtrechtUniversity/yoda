@@ -4,7 +4,7 @@
 - name: Ensure Yoda landingpages root is world readable
   ansible.builtin.file:
     path: '{{ landingpages_root }}'
-    mode: 0755
+    mode: '0755'
     owner: '{{ yoda_inbox_user }}'
     group: 'apache'
     state: directory
@@ -26,7 +26,7 @@
   ansible.builtin.file:
     path: '{{ item }}'
     state: directory
-    mode: 0755
+    mode: '0755'
   with_items:
     - '{{ landingpages_root }}/static/css/'
     - '{{ landingpages_root }}/static/img/'
@@ -37,7 +37,7 @@
   ansible.builtin.copy:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
-    mode: 0644
+    mode: '0644'
   diff: '{{ item.diff | default(True) }}'
   with_items:
     - src: 'index.html'

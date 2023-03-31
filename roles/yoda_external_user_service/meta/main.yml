@@ -5,13 +5,15 @@ galaxy_info:
   author: Lazlo Westerhof
   description: Install Yoda external user service
   license: GPLv3
-  min_ansible_version: 2.7
+  min_ansible_version: '2.11'
   platforms:
-    - name: CentOS
+    - name: EL
       version: 7
 
 
 dependencies:
-  - apache
-  - postgresql
-  - php
+  - role: apache
+  - role: apache_wsgi
+  - role: postgresql
+  - role: python3
+  - role: remove_php

@@ -1,7 +1,165 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="864px" preserveAspectRatio="none" style="width:463px;height:864px;" version="1.1" viewBox="0 0 463 864" width="463px" zoomAndPan="magnify"><defs/><g><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="53" x2="53" y1="86.2969" y2="773.6875"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="159" x2="159" y1="86.2969" y2="773.6875"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="334" x2="334" y1="86.2969" y2="773.6875"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="80" x="10" y="80.9951">Researcher</text><ellipse cx="53" cy="13" fill="#FEFECE" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M53,21 L53,48 M40,29 L66,29 M53,48 L40,63 M53,48 L66,63 " fill="none" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="80" x="10" y="787.6826">Researcher</text><ellipse cx="53" cy="802.9844" fill="#FEFECE" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M53,810.9844 L53,837.9844 M40,818.9844 L66,818.9844 M53,837.9844 L40,852.9844 M53,837.9844 L66,852.9844 " fill="none" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="110" y="80.9951">Datamanager</text><ellipse cx="159.5" cy="13" fill="#FEFECE" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M159.5,21 L159.5,48 M146.5,29 L172.5,29 M159.5,48 L146.5,63 M159.5,48 L172.5,63 " fill="none" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="110" y="787.6826">Datamanager</text><ellipse cx="159.5" cy="802.9844" fill="#FEFECE" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M159.5,810.9844 L159.5,837.9844 M146.5,818.9844 L172.5,818.9844 M159.5,837.9844 L146.5,852.9844 M159.5,837.9844 L172.5,852.9844 " fill="none" style="stroke: #A80036; stroke-width: 2.0;"/><rect fill="#FEFECE" height="34.2969" style="stroke: #A80036; stroke-width: 1.5;" width="53" x="308" y="51"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="35" x="317" y="72.9951">Yoda</text><rect fill="#FEFECE" height="34.2969" style="stroke: #A80036; stroke-width: 1.5;" width="53" x="308" y="772.6875"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="35" x="317" y="794.6826">Yoda</text><rect fill="#EEEEEE" height="3" style="stroke: #EEEEEE; stroke-width: 1.0;" width="448" x="3" y="118.8633"/><line style="stroke: #000000; stroke-width: 1.0;" x1="3" x2="451" y1="118.8633" y2="118.8633"/><line style="stroke: #000000; stroke-width: 1.0;" x1="3" x2="451" y1="121.8633" y2="121.8633"/><rect fill="#EEEEEE" height="27.1328" style="stroke: #000000; stroke-width: 2.0;" width="203" x="125.5" y="106.2969"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="180" x="133.5" y="124.3638">Approved data package</text><polygon fill="#A80036" points="322.5,164.5625,332.5,168.5625,322.5,172.5625,326.5,168.5625" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="53" x2="328.5" y1="168.5625" y2="168.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="62" y="161.4966">Submit for publication</text><path d="M223,181.5625 L223,210.5625 L446,210.5625 L446,191.5625 L436,181.5625 L223,181.5625 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M436,181.5625 L436,191.5625 L446,191.5625 L436,181.5625 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="231" y="200.6294">SUBMITTED_FOR_PUBLICATION</text><polygon fill="#A80036" points="170.5,236.8281,160.5,240.8281,170.5,244.8281,166.5,240.8281" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="164.5" x2="333.5" y1="240.8281" y2="240.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="178.5" y="233.7622">Submitted notification</text><polygon fill="#A80036" points="322.5,269.9609,332.5,273.9609,322.5,277.9609,326.5,273.9609" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="159.5" x2="328.5" y1="273.9609" y2="273.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="168.5" y="266.895">Approve for publication</text><polygon fill="#A80036" points="64,303.0938,54,307.0938,64,311.0938,60,307.0938" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="58" x2="333.5" y1="307.0938" y2="307.0938"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="72" y="300.0278">Approved notification</text><path d="M225,320.0938 L225,349.0938 L444,349.0938 L444,330.0938 L434,320.0938 L225,320.0938 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M434,320.0938 L434,330.0938 L444,330.0938 L434,320.0938 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="233" y="339.1606">APPROVED_FOR_PUBLICATION</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="334.5" x2="376.5" y1="379.3594" y2="379.3594"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="376.5" x2="376.5" y1="379.3594" y2="392.3594"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="335.5" x2="376.5" y1="392.3594" y2="392.3594"/><polygon fill="#A80036" points="345.5,388.3594,335.5,392.3594,345.5,396.3594,341.5,392.3594" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="343.5" y="372.2935">Publish</text><path d="M285,405.3594 L285,434.3594 L384,434.3594 L384,415.3594 L374,405.3594 L285,405.3594 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M374,405.3594 L374,415.3594 L384,415.3594 L374,405.3594 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="74" x="293" y="424.4263">PUBLISHED</text><polygon fill="#A80036" points="64,460.625,54,464.625,64,468.625,60,464.625" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="58" x2="333.5" y1="464.625" y2="464.625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="72" y="457.5591">Published notification</text><polygon fill="#A80036" points="170.5,493.7578,160.5,497.7578,170.5,501.7578,166.5,497.7578" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="164.5" x2="333.5" y1="497.7578" y2="497.7578"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="178.5" y="490.6919">Published notification</text><rect fill="#EEEEEE" height="3" style="stroke: #EEEEEE; stroke-width: 1.0;" width="448" x="3" y="528.3242"/><line style="stroke: #000000; stroke-width: 1.0;" x1="3" x2="451" y1="528.3242" y2="528.3242"/><line style="stroke: #000000; stroke-width: 1.0;" x1="3" x2="451" y1="531.3242" y2="531.3242"/><rect fill="#EEEEEE" height="27.1328" style="stroke: #000000; stroke-width: 2.0;" width="199" x="127.5" y="515.7578"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="176" x="135.5" y="533.8247">Canceled data package</text><polygon fill="#A80036" points="322.5,574.0234,332.5,578.0234,322.5,582.0234,326.5,578.0234" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="53" x2="328.5" y1="578.0234" y2="578.0234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="62" y="570.9575">Submit for publication</text><path d="M223,591.0234 L223,620.0234 L446,620.0234 L446,601.0234 L436,591.0234 L223,591.0234 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M436,591.0234 L436,601.0234 L446,601.0234 L436,591.0234 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="231" y="610.0903">SUBMITTED_FOR_PUBLICATION</text><polygon fill="#A80036" points="170.5,646.2891,160.5,650.2891,170.5,654.2891,166.5,650.2891" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="164.5" x2="333.5" y1="650.2891" y2="650.2891"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="178.5" y="643.2231">Submitted notification</text><polygon fill="#A80036" points="322.5,679.4219,332.5,683.4219,322.5,687.4219,326.5,683.4219" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="159.5" x2="328.5" y1="683.4219" y2="683.4219"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="116" x="168.5" y="676.356">Cancel publication</text><polygon fill="#A80036" points="64,712.5547,54,716.5547,64,720.5547,60,716.5547" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="58" x2="333.5" y1="716.5547" y2="716.5547"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="133" x="72" y="709.4888">Canceled notification</text><path d="M275,729.5547 L275,758.5547 L394,758.5547 L394,739.5547 L384,729.5547 L275,729.5547 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M384,729.5547 L384,739.5547 L394,739.5547 L384,729.5547 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="94" x="283" y="748.6216">UNPUBLISHED</text><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1893.75px" preserveAspectRatio="none" style="width:1052px;height:1893px;background:#282C34;" version="1.1" viewBox="0 0 1052 1893" width="1052.0833px" zoomAndPan="magnify"><defs/><g><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="112.5" x2="112.5" y1="182.2103" y2="1701.5788"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="345.8333" x2="345.8333" y1="182.2103" y2="1701.5788"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="753.125" x2="753.125" y1="182.2103" y2="1701.5788"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="172.9167" x="20.8333" y="170.6736">Researcher</text><ellipse cx="113.5417" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M113.5417,43.75 L113.5417,100 M86.4583,60.4167 L140.625,60.4167 M113.5417,100 L86.4583,131.25 M113.5417,100 L140.625,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="172.9167" x="20.8333" y="1732.6691">Researcher</text><ellipse cx="113.5417" cy="1765.0391" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M113.5417,1781.7057 L113.5417,1837.9557 M86.4583,1798.3724 L140.625,1798.3724 M113.5417,1837.9557 L86.4583,1869.2057 M113.5417,1837.9557 L140.625,1869.2057 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="210.4167" x="235.4167" y="170.6736">Datamanager</text><ellipse cx="346.875" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M346.875,43.75 L346.875,100 M319.7917,60.4167 L373.9583,60.4167 M346.875,100 L319.7917,131.25 M346.875,100 L373.9583,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="210.4167" x="235.4167" y="1732.6691">Datamanager</text><ellipse cx="346.875" cy="1765.0391" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M346.875,1781.7057 L346.875,1837.9557 M319.7917,1798.3724 L373.9583,1798.3724 M346.875,1837.9557 L319.7917,1869.2057 M346.875,1837.9557 L373.9583,1869.2057 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="112.5" x="696.875" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="75" x="715.625" y="154.007">Yoda</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="112.5" x="696.875" y="1699.4954"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="75" x="715.625" y="1747.2524">Yoda</text><rect fill="#424856" height="6.25" style="stroke: #424856; stroke-width: 2.0833333333333335;" width="1020.8333" x="6.25" y="252.4821"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1027.0833" y1="252.4821" y2="252.4821"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1027.0833" y1="258.7321" y2="258.7321"/><rect fill="#424856" height="61.377" style="stroke: #ABB2BF; stroke-width: 4.166666666666667;" width="450" x="291.6667" y="223.877"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="402.0833" x="308.3333" y="265.3839">Approved data package</text><polygon fill="#61AFEF" points="728.125,354.9642,748.9583,363.2975,728.125,371.6309,736.4583,363.2975" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="113.5417" x2="740.625" y1="363.2975" y2="363.2975"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="331.25" x="132.2917" y="347.5942">Submit for publication</text><path d="M489.5833,390.3809 L489.5833,454.9642 L1016.6667,454.9642 L1016.6667,411.2142 L995.8333,390.3809 L489.5833,390.3809 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M995.8333,390.3809 L995.8333,411.2142 L1016.6667,411.2142 L995.8333,390.3809 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="475" x="506.25" y="433.9712">SUBMITTED_FOR_PUBLICATION</text><polygon fill="#61AFEF" points="369.7917,515.2181,348.9583,523.5514,369.7917,531.8848,361.4583,523.5514" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="357.2917" x2="751.0417" y1="523.5514" y2="523.5514"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="333.3333" x="386.4583" y="507.8481">Submitted notification</text><polygon fill="#61AFEF" points="728.125,589.0951,748.9583,597.4284,728.125,605.7617,736.4583,597.4284" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="346.875" x2="740.625" y1="597.4284" y2="597.4284"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="347.9167" x="365.625" y="581.7251">Approve for publication</text><polygon fill="#61AFEF" points="136.4583,662.972,115.625,671.3053,136.4583,679.6387,128.125,671.3053" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="123.9583" x2="751.0417" y1="671.3053" y2="671.3053"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="318.75" x="153.125" y="655.602">Approved notification</text><path d="M493.75,698.3887 L493.75,762.972 L1010.4167,762.972 L1010.4167,719.222 L989.5833,698.3887 L493.75,698.3887 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M989.5833,698.3887 L989.5833,719.222 L1010.4167,719.222 L989.5833,698.3887 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="464.5833" x="510.4167" y="741.979">APPROVED_FOR_PUBLICATION</text><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="753.125" x2="840.625" y1="831.5592" y2="831.5592"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="840.625" x2="840.625" y1="831.5592" y2="858.6426"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="755.2083" x2="840.625" y1="858.6426" y2="858.6426"/><polygon fill="#61AFEF" points="776.0417,850.3092,755.2083,858.6426,776.0417,866.9759,767.7083,858.6426" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="104.1667" x="771.875" y="815.8559">Publish</text><path d="M641.6667,885.7259 L641.6667,950.3092 L864.5833,950.3092 L864.5833,906.5592 L843.75,885.7259 L641.6667,885.7259 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M843.75,885.7259 L843.75,906.5592 L864.5833,906.5592 L843.75,885.7259 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="170.8333" x="658.3333" y="929.3162">PUBLISHED</text><polygon fill="#61AFEF" points="136.4583,1010.5632,115.625,1018.8965,136.4583,1027.2298,128.125,1018.8965" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="123.9583" x2="751.0417" y1="1018.8965" y2="1018.8965"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="316.6667" x="153.125" y="1003.1932">Published notification</text><polygon fill="#61AFEF" points="369.7917,1084.4401,348.9583,1092.7734,369.7917,1101.1068,361.4583,1092.7734" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="357.2917" x2="751.0417" y1="1092.7734" y2="1092.7734"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="316.6667" x="386.4583" y="1077.0701">Published notification</text><rect fill="#424856" height="6.25" style="stroke: #424856; stroke-width: 2.0833333333333335;" width="1020.8333" x="6.25" y="1158.8786"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1027.0833" y1="1158.8786" y2="1158.8786"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1027.0833" y1="1165.1286" y2="1165.1286"/><rect fill="#424856" height="61.377" style="stroke: #ABB2BF; stroke-width: 4.166666666666667;" width="443.75" x="294.7917" y="1130.2734"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="395.8333" x="311.4583" y="1171.7804">Canceled data package</text><polygon fill="#61AFEF" points="728.125,1261.3607,748.9583,1269.694,728.125,1278.0273,736.4583,1269.694" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="113.5417" x2="740.625" y1="1269.694" y2="1269.694"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="331.25" x="132.2917" y="1253.9907">Submit for publication</text><path d="M489.5833,1296.7773 L489.5833,1361.3607 L1016.6667,1361.3607 L1016.6667,1317.6107 L995.8333,1296.7773 L489.5833,1296.7773 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M995.8333,1296.7773 L995.8333,1317.6107 L1016.6667,1317.6107 L995.8333,1296.7773 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="475" x="506.25" y="1340.3676">SUBMITTED_FOR_PUBLICATION</text><polygon fill="#61AFEF" points="369.7917,1421.6146,348.9583,1429.9479,369.7917,1438.2813,361.4583,1429.9479" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="357.2917" x2="751.0417" y1="1429.9479" y2="1429.9479"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="333.3333" x="386.4583" y="1414.2446">Submitted notification</text><polygon fill="#61AFEF" points="728.125,1495.4915,748.9583,1503.8249,728.125,1512.1582,736.4583,1503.8249" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="346.875" x2="740.625" y1="1503.8249" y2="1503.8249"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="270.8333" x="365.625" y="1488.1215">Cancel publication</text><polygon fill="#61AFEF" points="136.4583,1569.3685,115.625,1577.7018,136.4583,1586.0352,128.125,1577.7018" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="123.9583" x2="751.0417" y1="1577.7018" y2="1577.7018"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="312.5" x="153.125" y="1561.9985">Canceled notification</text><path d="M618.75,1604.7852 L618.75,1669.3685 L887.5,1669.3685 L887.5,1625.6185 L866.6667,1604.7852 L618.75,1604.7852 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M866.6667,1604.7852 L866.6667,1625.6185 L887.5,1625.6185 L866.6667,1604.7852 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="216.6667" x="635.4167" y="1648.3754">UNPUBLISHED</text><!--MD5=[abb16b4c7e35eb23452f7858ddadc9a9]
 @startuml
-skinparam padding 2
-skinparam shadowing false
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
 
 actor       Researcher  as researcher
 actor       Datamanager as datamanager
@@ -27,13 +185,12 @@ yoda        - -> researcher  : Canceled notification
 note over yoda              : UNPUBLISHED
 @enduml
 
-PlantUML version 1.2018.13(Mon Nov 26 18:11:51 CET 2018)
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.9.1+1-post-Debian-1deb10u2
+Java Version: 11.0.18+10-post-Debian-1deb11u1
 Operating System: Linux
-OS Version: 5.9.0-0.bpo.5-amd64
 Default Encoding: UTF-8
 Language: en
 Country: US

@@ -28,4 +28,4 @@
     dest: /var/lib/irods/.s3auth
     owner: '{{ irods_service_account }}'
     group: irods
-    mode: 0600
+    mode: '0600'

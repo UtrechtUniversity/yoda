@@ -1,6 +1,26 @@
 ---
 # copyright Utrecht University
 
+
+- name: Request EUS index page to trigger schema creation if needed
+  become: false
+  ansible.builtin.get_url:
+    url: "https://{{ yoda_eus_fqdn }}"
+    dest: "./eus_index_page.tmp"  # /dev/null not supported, as per https://github.com/ansible/ansible/issues/34437
+    validate_certs: false  # Development VM uses self-signed certs
+  delegate_to: 127.0.0.1
+  changed_when: false
+
+
+- name: Remove EUS temp file
+  become: false
+  ansible.builtin.file:
+    name: "eus_index_page.tmp"
+    state: absent
+  delegate_to: 127.0.0.1
+  changed_when: false
+
+
 - name: Ensure Python pip is installed
   ansible.builtin.package:
     name: python-pip
@@ -21,7 +41,7 @@
   ansible.builtin.command: "psql -c \"DELETE FROM user_zones WHERE user_id IN (SELECT id FROM users WHERE username = '{{ item.name }}') \" extuser"
   ignore_errors: true
   with_items:
-    - '{{ delete_ext_test_users }}'
+    - '{{ eus_test_users }}'
 
 
 - name: Remove users of table users
@@ -30,7 +50,7 @@
   ansible.builtin.command: "psql -c \"DELETE FROM users WHERE username = '{{ item.name }}' \" extuser"
   ignore_errors: true
   with_items:
-    - '{{ delete_ext_test_users }}'
+    - '{{ eus_test_users }}'
 
 
 - name: Generate bcrypt password for External Users.
@@ -44,7 +64,7 @@
   ansible.builtin.command: "psql -c \"INSERT INTO users (id, username, password, creator_time, creator_user, creator_zone) VALUES ('{{ item.id }}', '{{ item.name }}', '{{ password.stdout }}', '2018-10-19 14:50:25', 'groupmanager', 'tempZone') \" extuser"
   ignore_errors: true
   with_items:
-    - '{{ create_ext_test_users }}'
+    - '{{ eus_test_users }}'
 
 
 - name: Insert zones in table user_zones
@@ -53,4 +73,4 @@
   ansible.builtin.command: "psql -c \"INSERT INTO user_zones (user_id, inviter_user, inviter_zone, inviter_time) VALUES ('{{ item.id }}', 'groupmanager', 'tempZone', '2018-10-19 14:50:25') \" extuser"
   ignore_errors: true
   with_items:
-    - '{{ create_ext_test_users }}'
+    - '{{ eus_test_users }}'

@@ -1,11 +1,34 @@
 ---
 # copyright Utrecht University
 
+# GCC is needed to install pysqlcipher3 for yoda-ruleset
 - name: Ensure Python dependencies are installed
   ansible.builtin.package:
     name:
       - python3-pip
+      - gcc
     state: present
+
+
+- name: Download sqlcipher rpms
+  ansible.builtin.get_url:
+    url: '{{ item.url }}/{{ item.filename }}'
+    dest: '{{ rpm_dest_dir }}/{{ item.filename }}'
+    checksum: '{{ item.checksum }}'
+    mode: '0644'
+  with_items:
+    - {'url': '{{ sqlcipher.url }}', 'filename': '{{ sqlcipher.filename }}', 'checksum': '{{ sqlcipher.checksum }}'}
+    - {'url': '{{ sqlcipher_dev.url }}', 'filename': '{{ sqlcipher_dev.filename }}', 'checksum': '{{ sqlcipher_dev.checksum }}'}
+
+
+- name: Install sqlcipher from downloaded rpms
+  ansible.builtin.package:
+    name: '{{ rpm_dest_dir }}/{{ item }}'
+    state: present
+  with_items:
+    - '{{ sqlcipher.filename }}'
+    - '{{ sqlcipher_dev.filename }}'
+  when: not ansible_check_mode
 
 
 - name: Sanity check ruleset names
@@ -63,7 +86,7 @@
   ansible.builtin.copy: # noqa template-instead-of-copy
     dest: "/etc/irods/{{ item.name }}.patch"
     content: "{{ item['patch'] }}"
-    mode: "0644"
+    mode: '0644'
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item and 'patch' in item"
 
@@ -92,7 +115,8 @@
   community.general.make:
     chdir: "/etc/irods/{{ item.0.name }}"
     target: install
-  when: item.1.changed or ( 'repo' in item.0 and 'patch' in item.0 )
+  when: "'repo' in item.0"
+  changed_when: item.1.changed or ( 'repo' in item.0 and 'patch' in item.0 )
   with_together:
     - "{{ extra_rulesets + core_rulesets }}"
     - "{{ repochanges.results }}"
@@ -124,7 +148,7 @@
   ansible.builtin.copy:
     src: "core.py.template"
     dest: "/etc/irods/core.py"
-    mode: 0644
+    mode: '0644'
 
 
 - name: Install Yoda rulesets

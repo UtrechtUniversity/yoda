@@ -29,7 +29,7 @@
     dest: /usr/local/bin/is-user-external.sh
     owner: root
     group: irods
-    mode: 0750
+    mode: '0750'
   when: external_users
 
 
@@ -39,31 +39,9 @@
     dest: /usr/local/bin/external-auth.py
     owner: root
     group: irods
-    mode: 0750
+    mode: '0750'
   no_log: true
   when: external_users
-
-
-- name: Download sqlcipher rpms
-  ansible.builtin.get_url:
-    url: '{{ item.url }}/{{ item.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ item.filename }}'
-    checksum: '{{ item.checksum }}'
-    mode: 0644
-  with_items:
-    - {'url': '{{ sqlcipher.url }}', 'filename': '{{ sqlcipher.filename }}', 'checksum': '{{ sqlcipher.checksum }}'}
-    - {'url': '{{ sqlcipher_dev.url }}', 'filename': '{{ sqlcipher_dev.filename }}', 'checksum': '{{ sqlcipher_dev.checksum }}'}
-  when: enable_tokens
-
-
-- name: Install sqlcipher from downloaded rpms
-  ansible.builtin.package:
-    name: '{{ rpm_dest_dir }}/{{ item }}'
-    state: present
-  with_items:
-    - '{{ sqlcipher.filename }}'
-    - '{{ sqlcipher_dev.filename }}'
-  when: enable_tokens and not ansible_check_mode
 
 
 - name: Ensure Python dependencies are installed
@@ -74,31 +52,13 @@
   when: enable_tokens
 
 
-# Installation of pysqlcipher3 package fails silently if
-# GCC is unavailable, so we need to ensure it has been installed.
-- name: Ensure GCC is installed
-  ansible.builtin.package:
-    name: gcc
-    state: present
-  when: enable_tokens
-
-
-- name: Ensure pysqlcipher3 is installed
-  ansible.builtin.pip:
-    name:
-      - pysqlcipher3==1.0.4
-    executable: pip3
-    state: present
-  when: enable_tokens
-
-
 - name: Ensure token authentication is present
   ansible.builtin.template:
     src: token-auth.py.j2
     dest: /usr/local/bin/token-auth.py
     owner: root
     group: irods
-    mode: 0750
+    mode: '0750'
   no_log: true
   when: enable_tokens
 
@@ -119,7 +79,7 @@
     dest: /var/lib/irods/msiExecCmd_bin/oidc.py
     owner: irods
     group: irods
-    mode: 0644
+    mode: '0644'
 
 
 - name: Ensure correct file ownership and mode on PamAuthCheck
@@ -127,5 +87,5 @@
     path: /usr/sbin/irodsPamAuthCheck
     owner: root
     group: root
-    mode: 04755
+    mode: '04755'
   when: not ansible_check_mode

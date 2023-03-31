@@ -1,0 +1,73 @@
+@startuml
+skinparam padding 2
+skinparam shadowing false
+
+title Yoda & SRAM
+
+actor       Researcher          as researcher
+actor       Datamanager         as datamanager
+participant Yoda                as yoda
+participant SRAM                as SRAM
+participant "Institutional IdP" as IdP
+
+== Create a group ==
+autonumber 1.0
+datamanager  -> yoda        : Create group
+activate yoda
+yoda         -> SRAM        : Create CO API
+activate SRAM
+SRAM        --> yoda        : 200 OK (CO identifier)
+deactivate SRAM
+yoda         -> yoda        : Associate CO identifier to group
+yoda        --> datamanager : Group created
+deactivate yoda
+
+== Add researcher to group ==
+autonumber 2.0
+datamanager  -> yoda        : Add researcher to group
+activate yoda
+yoda       -->> researcher  : Invitation mail (SRAM CO invite link)
+deactivate yoda
+hnote over yoda
+    https://sram.surf.nl/registration?collaboration=<CO identifier>
+endhnote
+...
+researcher   -> SRAM        : Follow SRAM CO invite link
+activate SRAM
+SRAM         -> IdP         : Redirect to IdP
+activate IdP
+IdP         --> SRAM        : Researcher authenticated
+deactivate IdP
+SRAM       -->> researcher  : Request motivation to join CO
+researcher   -> SRAM        : Request to join CO
+SRAM       -->> datamanager : New join request mail (approve / disapprove)
+deactivate SRAM
+...
+datamanager  -> SRAM        : Approve join request
+activate SRAM
+SRAM         -> SRAM        : Researcher added to CO
+deactivate SRAM
+
+== Remove researcher from group ==
+autonumber 3.0
+datamanager  -> yoda        : Remove researcher from group
+activate yoda
+yoda         -> SRAM        : Remove user from CO API
+activate SRAM
+SRAM        --> yoda        : 200 OK
+deactivate SRAM
+yoda        --> datamanager : Researcher removed from group
+deactivate yoda
+
+== Remove a group ==
+autonumber 4.0
+datamanager  -> yoda        : Remove group
+activate yoda
+yoda         -> SRAM        : Remove CO API
+activate SRAM
+SRAM        --> yoda        : 200 OK
+deactivate SRAM
+yoda        --> datamanager : Group removed
+deactivate yoda
+
+@enduml

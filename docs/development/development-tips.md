@@ -1,7 +1,7 @@
 ---
 parent: Development
 title: Development tips
-nav_order: 1
+nav_order: 4
 ---
 # Development tips
 
@@ -9,9 +9,9 @@ A collection of tips to make Yoda development easier.
 
 ## General
 
-Watch latest iRODS log without unnecessary noise:
+Watch latest iRODS log without unnecessary noise (as user irods):
 ```bash
-ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v "Agent process started for puser=rods"
+ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v "{rods#tempZone} Agent process started from 127.0.0.1"
 ```
 
 Watch flake8 check on Python code:

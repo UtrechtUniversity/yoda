@@ -1,26 +1,22 @@
 @startuml
+!include ../../../theme.puml
 
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
-skinparam padding 2
-skinparam shadowing false
-skinparam dpi 200
 
 rectangle "Yoda instance" {
 
     package "Yoda portal" {
         rectangle "Apache webserver" as portalweb {
-            rectangle "PHP" as portalphp {
+            rectangle "Python" as python {
             }
             rectangle "davrods" as davrods {
-            }		    
+            }
 	}
 
-        rectangle "iRODS iCommands" as icommands {	    
+        rectangle "iRODS iCommands" as icommands {
 	}
-	
+
         portalweb .d.> provider
-        icommands .d.> provider	
+        icommands .d.> provider
     }
 
     package "Yoda database" {
@@ -35,7 +31,7 @@ rectangle "Yoda instance" {
             rectangle "iRODS rules" as icatrules {
             }
             rectangle "iRODS microservices" as icatmicroservices {
-            }	    
+            }
         }
     }
 
@@ -62,21 +58,21 @@ rectangle "Yoda instance" {
         consumer .r-- provider
 	consumer .d.> [Storage 1]
 	consumer .d.> [Storage 2]
-	consumer .d.> [Storage ...]		
+	consumer .d.> [Storage ...]
     }
 
     provider .d.> iCAT : use
-    
+
 }
 
 rectangle "Yoda Public server" {
     rectangle "Apache webserver" as publicweb {
         rectangle "OAI-PMH service" as moai {
-        }    
+        }
     }
 
     cloud {
-      [XML storage]
+      [JSON storage]
     }
 
     cloud {
@@ -84,13 +80,13 @@ rectangle "Yoda Public server" {
     }
 
     publicweb .d.> [Landingpages]
-    moai .d.> [XML storage]
+    moai .d.> [JSON storage]
 }
 
 rectangle "Yoda External User service" {
     rectangle "Apache webserver" as extweb {
         rectangle "PHP" as extphp {
-        }      
+        }
     }
 
     database "PostgreSQL" as extdb {
@@ -105,7 +101,7 @@ HTTPS -- portalweb
 HTTPS -r- publicweb
 HTTPS -r- extweb
 iCommands -- icommands
-provider .d.> [XML storage] : SCP
+provider .d.> [JSON storage] : SCP
 provider .d.> [Landingpages] : SCP
 provider .d.> extweb : HTTPS-ALT
 

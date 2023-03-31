@@ -31,7 +31,7 @@
     dest: /lib/systemd/system/irods.service
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Systemd daemon reload
   when: irods_service_type == "systemd"
 
@@ -164,16 +164,7 @@
   ansible.builtin.template:
     src: core.re.j2
     dest: /etc/irods/core.re
-    mode: 0644
-
-
-- name: Ensure patched Python genquery module is present
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.copy:
-    src: "genquery.py"
-    dest: "/etc/irods/genquery.py"
-    mode: 0644
+    mode: '0644'
 
 
 - name: Ensure core Python rules are present
@@ -182,7 +173,7 @@
   ansible.builtin.copy:
     content: ""
     dest: "/etc/irods/core.py"
-    mode: 0644
+    mode: '0644'
     force: false
 
 
@@ -266,7 +257,7 @@
 - name: Ensure iRODS has access to PKI files
   ansible.builtin.file:
     path: '{{ item }}'
-    mode: 0644
+    mode: '0644'
     group: 'root'
     owner: 'root'
     state: file
@@ -280,7 +271,7 @@
   ansible.builtin.file:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
-    mode: 0644
+    mode: '0644'
     group: 'root'
     owner: 'root'
     state: link

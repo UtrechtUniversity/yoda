@@ -55,4 +55,4 @@ The deposit space implements a data deposit workflow to the vault space.
 [Technical design](deposit-space.md){: .btn }
 
 ## Overview
-![System overview](img/system-overview.png){: .btn }
+![System overview](img/system-overview.png)

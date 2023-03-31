@@ -1,6 +1,12 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure Python 3 is installed
+  ansible.builtin.package:
+    name: python3
+    state: present
+
+
 - name: Remove old yoda-zabbix repo from /etc/irods
   ansible.builtin.file:
     path: /etc/irods/yoda-zabbix
@@ -85,7 +91,7 @@
     path: /etc/zabbix/zabbix_agentd.psk
     owner: zabbix
     group: zabbix
-    mode: 0600
+    mode: '0600'
 
 
 - name: Configure Zabbix agent
@@ -94,7 +100,7 @@
     dest: /etc/zabbix/zabbix_agentd.conf
     owner: zabbix
     group: zabbix
-    mode: 0600
+    mode: '0600'
   notify: Restart Zabbix agent
 
 
@@ -117,7 +123,7 @@
     path: /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
     owner: zabbix
     group: zabbix
-    mode: 0400
+    mode: '0400'
 
 
 - name: Ensure yoda-zabbix-system-sudoers is present
@@ -132,7 +138,7 @@
     path: /etc/sudoers.d/yoda-zabbix-system-sudoers
     owner: root
     group: root
-    mode: 0440
+    mode: '0440'
 
 
 - name: Find Zabbix script files
@@ -149,6 +155,6 @@
     remote_src: true
     owner: zabbix
     group: zabbix
-    mode: 0500
+    mode: '0500'
   with_items: "{{ system_script_files.files }}"
   notify: Restart Zabbix agent

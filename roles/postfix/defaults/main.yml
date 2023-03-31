@@ -18,3 +18,4 @@ postfix_smtp_enable_tls: true
 postfix_enable_debugging: false
 postfix_myhostname: yoda
 postfix_myorigin: "$mydomain"
+postfix_canonical_map: {}

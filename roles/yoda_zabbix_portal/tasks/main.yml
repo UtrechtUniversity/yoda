@@ -13,7 +13,7 @@
     path: /etc/zabbix/zabbix_agentd.d/yoda_portal.userparams.conf
     owner: zabbix
     group: zabbix
-    mode: 0400
+    mode: '0400'
 
 
 - name: Ensure yoda-zabbix-portal-sudoers is present
@@ -28,13 +28,15 @@
     path: /etc/sudoers.d/yoda-zabbix-portal-sudoers
     owner: root
     group: root
-    mode: 0440
+    mode: '0440'
 
 
 - name: Find Zabbix script files
   ansible.builtin.find:
     path: /etc/zabbix/yoda-zabbix/zabbix-portal
-    pattern: "*.sh"
+    pattern:
+      - "*.sh"
+      - "read-apache-logs.py"
   register: portal_script_files
 
 
@@ -45,6 +47,6 @@
     remote_src: true
     owner: zabbix
     group: zabbix
-    mode: 0500
+    mode: '0500'
   with_items: "{{ portal_script_files.files }}"
   notify: Restart Zabbix agent

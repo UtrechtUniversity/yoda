@@ -77,7 +77,7 @@
     dest: "/etc/irods/yoda-ruleset/rules_uu.cfg"
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-    mode: 0600
+    mode: '0600'
   no_log: true
   when: not ansible_check_mode
 
@@ -87,7 +87,7 @@
     path: /var/lib/irods/msiExecCmd_bin
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-    mode: 0755
+    mode: '0755'
     state: directory
   when: not ansible_check_mode
 
@@ -99,7 +99,7 @@
     remote_src: true
     src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: not ansible_check_mode
   with_items:
     - securecopy.sh
@@ -117,7 +117,7 @@
     remote_src: true
     src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: not ansible_check_mode and enable_open_search
   with_items:
     - enable-indexing.sh
@@ -131,7 +131,7 @@
     remote_src: true
     src: "/etc/irods/yoda-ruleset/tools/tape_archive/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: not ansible_check_mode and enable_tape_archive
   with_items:
     - admin-tape-archive-set-state.sh
@@ -180,12 +180,25 @@
   become: true
   ansible.builtin.shell: |
     set -o pipefail
-    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item }}/ i:/{{ irods_zone }}/yoda/schemas/{{ item }}/ | grep sync
+    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item.name }}/ i:/{{ irods_zone }}/yoda/schemas/{{ item.name }}/ | grep sync
   register: metadata_schema
-  when: not ansible_check_mode and update_schemas == 1
+  when: not ansible_check_mode and update_schemas == 1 and item.install
   failed_when: metadata_schema.rc not in [0, 1]
   changed_when: metadata_schema.stdout_lines | length != 2
-  with_items: "{{ schemas }}"
+  with_items: "{{ metadata_schemas }}"
+
+
+- name: Set configuration AVUs for metatadata schemas
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa fqcn[action]
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda/schemas/{{ item.name }}"
+    irods_type: Collection
+    attribute: "org_schema_user_selectable"
+    value: "{{ item.active }}"
+  when: not ansible_check_mode and item.install
+  with_items: "{{ metadata_schemas }}"
 
 
 - name: Ensure default metadata schema is present
@@ -198,6 +211,18 @@
   when: not ansible_check_mode and update_schemas == 1
   failed_when: default_metadata.rc not in [0, 1]
   changed_when: default_metadata.stdout_lines | length != 2
+
+
+- name: Set configuration AVUs for default metatadata schema
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa fqcn[action]
+  irods_setavu:
+    name: "/{{ irods_zone }}/yoda/schemas/default"
+    irods_type: Collection
+    attribute: "org_schema_user_selectable"
+    value: true
+  when: not ansible_check_mode
 
 
 - name: Find out if terms and conditions system collection exists
@@ -350,6 +375,7 @@
     minute: '0'
     hour: '2'
     job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
+    state: '{{ "present" if enable_revision_cleanup else "absent" }}'
 
 
 - name: Ensure cronjob script for moving collections from intake to vault is installed
@@ -422,24 +448,24 @@
   when: (not ansible_check_mode) and (yoda_davrods_anonymous_enabled is defined) and (yoda_davrods_anonymous_enabled)
 
 
-- name: Enable asynchronous replication job
+- name: Configure asynchronous replication job
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
     name: 'asynchronous-replication'
     minute: '*/5'
     job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1'
-  when: enable_async_replication == 1
+    state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
 
 
-- name: Enable asynchronous revision creation job
+- name: Configure asynchronous revision creation job
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
     name: 'asynchronous-revisions'
     minute: '6,16,26,36,46,56'
     job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py >/dev/null 2>&1'
-  when: enable_revisions == 1
+    state: '{{ "present" if enable_revisions == 1 else "absent" }}'
 
 
 - name: Enable asynchronous tape archive replication job
@@ -449,7 +475,7 @@
     name: 'asynchronous-tape-archive-replication'
     minute: '3,13,23,33,43,53'
     job: '/bin/bash /etc/irods/yoda-ruleset/tools/tape_archive/async-tape-archive-replicate.sh >/dev/null 2>&1'
-  when: enable_tape_archive
+    state: '{{ "present" if enable_tape_archive else "absent" }}'
 
 
 - name: Configure cronjob to mail daily notification reports
@@ -482,6 +508,17 @@
     hour: '03'
     day: '1'
     job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-datamanager-retention.sh >/dev/null 2>&1'
+
+
+- name: Configure cronjob for research groups expiration date notifications
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'notification-groups-expiration-date.sh'
+    minute: '55'
+    hour: '03'
+    day: '1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-groups-expiration-date.sh >/dev/null 2>&1'
 
 
 - name: Configure cronjob for data access token expiry notifications
@@ -555,7 +592,7 @@
     remote_src: true
     src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: enable_datarequest and not ansible_check_mode
   with_items:
     - admin-datarequestactions.sh
@@ -567,9 +604,9 @@
   become: true
   ansible.builtin.cron:
     name: 'datarequest-check-review-period-expiration'
-    minute: '*'
+    hour: '*'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
-      /etc/irods/irods-ruleset-uu/tools/datarequest-check-review-period-expiration.r >/dev/null 2>&1'
+      /etc/irods/yoda-ruleset/tools/datarequest-check-review-period-expiration.r >/dev/null 2>&1'
   when: enable_datarequest and not ansible_check_mode
 
 
