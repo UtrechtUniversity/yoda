@@ -249,6 +249,12 @@ test_group_eus_users:
   - {groupName: grp-datamanager-test, user: datamanager@yoda.test, role: manager}
   - {groupName: grp-datamanager-test, user: rods,                  role: normal}
 
+  - {groupName: intake-test2,    user: researcher@yoda.test,   role: normal}
+  - {groupName: intake-test2,    user: groupmanager@yoda.test, role: manager}
+  - {groupName: intake-test2,    user: datamanager@yoda.test,  role: normal}
+
+  - {groupName: grp-datamanager-test2, user: datamanager@yoda.test, role: manager}
+
   - {groupName: datarequests-research-project-managers,      user: projectmanager@yoda.test, role: manager}
   - {groupName: datarequests-research-data-access-committee, user: dacmember@yoda.test,      role: manager}
   - {groupName: datarequests-research-datamanagers,          user: datamanager@yoda.test,    role: manager}
