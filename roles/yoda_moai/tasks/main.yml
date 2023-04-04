@@ -177,8 +177,8 @@
 - name: Ensure MOAI log file is present in order to be able to set SELinux context
   become: true
   become_user: '{{ yoda_moai_user }}'
-  ansible.builtin.command:
-    command: 'touch {{ yoda_moai_home }}/moai.log'
+  ansible.builtin.command: 'touch {{ yoda_moai_home }}/moai.log'
+  args:
     creates: '{{ yoda_moai_home }}/moai.log'
 
 
