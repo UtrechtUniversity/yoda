@@ -174,6 +174,28 @@
   when: ansible_selinux.status == "enabled"
 
 
+- name: Ensure MOAI log file is present in order to be able to set SELinux context
+  become: true
+  become_user: '{{ yoda_moai_user }}'
+  ansible.builtin.command: 'touch {{ yoda_moai_home }}/moai.log'
+  args:
+    creates: '{{ yoda_moai_home }}/moai.log'
+
+
+- name: Set SELinux context for MOAI log file
+  community.general.sefcontext:
+    target: '{{ yoda_moai_home }}/moai.log'
+    setype: httpd_sys_rw_content_t
+    state: present
+  register: moailog_context
+  when: ansible_selinux.status == "enabled"
+
+
+- name: Ensure selinux context is enforced on Yoda MOAI log
+  ansible.builtin.command: 'restorecon {{ yoda_moai_home }}/moai.log'
+  when: ansible_selinux.status == "enabled" and moailog_context.changed
+
+
 - name: Ensure selinux context is enforced on shared libraries
   ansible.builtin.command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
   when: ansible_selinux.status == "enabled" and filescontext.changed
