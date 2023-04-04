@@ -66,6 +66,9 @@ metadata_schemas:
   - name: core-1
     install: true
     active: true
+  - name: core-2
+    install: true
+    active: true
   - name: default-0
     install: true
     active: true
@@ -73,6 +76,9 @@ metadata_schemas:
     install: true
     active: true
   - name: default-2
+    install: true
+    active: true
+  - name: default-3
     install: true
     active: true
   - name: hptlab-0
