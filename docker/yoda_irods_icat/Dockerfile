@@ -111,5 +111,11 @@ COPY rules_uu.cfg /etc/irods/yoda-ruleset
 COPY cronjob-revision-cleanup.sh /tmp/cronjob-revision-cleanup.sh
 RUN install -o irods -g irods -m 0755 /tmp/cronjob-revision-cleanup.sh /var/lib/irods/.irods/cronjob-revision-cleanup.sh
 
+# Install init script
+# hadolint ignore=DL3033
+RUN yum install -y nc sudo && yum clean all
+COPY irods-icat-init.sh /var/lib/irods/scripts/irods-icat-init.sh
+RUN chmod 0755 /var/lib/irods/scripts/irods-icat-init.sh
+
 VOLUME [ "/sys/fs/cgroup" ]
-CMD ["/usr/sbin/init"]
+CMD ["/var/lib/irods/scripts/irods-icat-init.sh"]

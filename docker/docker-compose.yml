@@ -1,0 +1,28 @@
+version: "3"
+
+volumes:
+  icat_pg_data:
+  icat_yoda_ruleset:
+  icat_irods_logs:
+
+services:
+  provider:
+    container_name: combined.yoda
+    image: yoda_irods_icat
+    build:
+      context: yoda_irods_icat
+    restart: unless-stopped
+    volumes:
+      - icat_yoda_ruleset:/etc/irods/yoda-ruleset
+      - icat_irods_logs:/var/lib/irods/logs
+
+  db:
+    container_name: db.yoda
+    image: postgres:11-bullseye
+    environment:
+      - POSTGRES_DB=ICAT
+      - POSTGRES_USER=irodsdb
+      - POSTGRES_PASSWORD=yodadev
+    volumes:
+      - icat_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
