@@ -155,6 +155,7 @@
     dest: /var/www/extuser/flask.cfg
     owner: "{{ yoda_deployment_user }}"
     mode: '0644'
+  notify: Restart Apache webserver
 
 
 - name: Ensure Yoda EUS virtualenv exists

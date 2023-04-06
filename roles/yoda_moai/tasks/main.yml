@@ -174,9 +174,17 @@
   when: ansible_selinux.status == "enabled"
 
 
+- name: Ensure MOAI log file is present in order to be able to set SELinux context
+  become: true
+  become_user: '{{ yoda_moai_user }}'
+  ansible.builtin.command: 'touch {{ yoda_moai_home }}/moai.log'
+  args:
+    creates: '{{ yoda_moai_home }}/moai.log'
+
+
 - name: Set SELinux context for MOAI log file
   community.general.sefcontext:
-    target: '{{ yoda_moai_home }}//moai.log'
+    target: '{{ yoda_moai_home }}/moai.log'
     setype: httpd_sys_rw_content_t
     state: present
   register: moailog_context
