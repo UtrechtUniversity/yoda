@@ -227,6 +227,17 @@
     value: '10'
 
 
+- name: Ensure iRODS service account is owner of iRODS directories
+  ansible.builtin.file:
+    group: '{{ irods_service_account }}'
+    owner: '{{ irods_service_account }}'
+    recurse: true
+    path: '{{ item }}'
+  with_items:
+    - /var/lib/irods
+    - /etc/irods
+
+
 - name: Ensure core.re is configured
   become_user: '{{ irods_service_account }}'
   become: true
