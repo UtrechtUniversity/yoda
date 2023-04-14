@@ -44,8 +44,8 @@
   ansible.builtin.file:
     path: /var/lib/irods/bin
     mode: '0770'
-    owner: irods
-    group: irods
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
     state: directory
 
 
@@ -54,6 +54,6 @@
     src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/read-irods-logs.py
     dest: /var/lib/irods/bin
     mode: '0770'
-    owner: irods
-    group: irods
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
     remote_src: true
