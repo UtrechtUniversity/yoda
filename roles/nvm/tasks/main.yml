@@ -26,6 +26,7 @@
 - name: Ensure NPM v17 is installed
   become_user: "{{ yoda_deployment_user }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     source ~/.bashrc
     nvm install {{ npm_version }}

@@ -27,8 +27,11 @@
       - 's/^opensearch-{{ opensearch.version }}/opensearch/'
 
 
-- name: Disable plugins
-  ansible.builtin.command: creates='{{ opensearch.plugins }}.disabled' mv '{{ opensearch.plugins }}' '{{ opensearch.plugins }}.disabled'
+- name: Disable OpenSearch plugins
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: mv '{{ opensearch.plugins }}' '{{ opensearch.plugins }}.disabled'
+  args:
+    creates: '{{ opensearch.plugins }}.disabled'
 
 
 - name: Create empty plugins directory

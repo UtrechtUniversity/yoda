@@ -48,7 +48,8 @@
 
 
 - name: Ensure selinux context is enforced on davrods module
-  ansible.builtin.command: restorecon /etc/httpd/modules/{{ item.target }}
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: restorecon /etc/httpd/modules/{{ item.target }}
   when: filecontext is changed and ansible_selinux
   with_items:
     - {index: 0, target: 'mod_davrods.so'}
@@ -134,7 +135,8 @@
 
 
 - name: Ensure selinux context is enforced on iRODS network plugins
-  ansible.builtin.command: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
   when: filecontext.results[item.index] is changed and ansible_selinux
   with_items:
     - {index: 0, target: 'libtcp_client.so'}

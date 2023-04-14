@@ -27,5 +27,5 @@
     src: s3auth.j2
     dest: /var/lib/irods/.s3auth
     owner: '{{ irods_service_account }}'
-    group: irods
+    group: '{{ irods_service_account }}'
     mode: '0600'

@@ -11,7 +11,8 @@
 - name: Move old ichk virtual environment
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: "mv /var/lib/irods/irods-consistency-check /var/lib/irods/irods-consistency-check.backup-py3.6"
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "mv /var/lib/irods/irods-consistency-check /var/lib/irods/irods-consistency-check.backup-py3.6"
   when: ichk_venv_python36.stat.exists
 
 

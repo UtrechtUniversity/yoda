@@ -14,6 +14,7 @@
 - name: Install DMS archive mock service # noqa no-handler
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     cd /var/lib/irods/dms-archive-mock
     python3 -m virtualenv tape_archive_venv

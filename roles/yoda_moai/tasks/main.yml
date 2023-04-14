@@ -49,7 +49,8 @@
 
 # For upgrade to Yoda 1.9
 - name: Move old MOAI virtual environment
-  ansible.builtin.command: "mv /var/www/moai/yoda-moai/venv /var/www/moai/venv.backup-pre-1.9"
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "mv /var/www/moai/yoda-moai/venv /var/www/moai/venv.backup-pre-1.9"
   when: moai_venv_python27.stat.exists or moai_venv_python36.stat.exists
 
 
@@ -192,12 +193,14 @@
 
 
 - name: Ensure selinux context is enforced on Yoda MOAI log
-  ansible.builtin.command: 'restorecon {{ yoda_moai_home }}/moai.log'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: 'restorecon {{ yoda_moai_home }}/moai.log'
   when: ansible_selinux.status == "enabled" and moailog_context.changed
 
 
 - name: Ensure selinux context is enforced on shared libraries
-  ansible.builtin.command: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
   when: ansible_selinux.status == "enabled" and filescontext.changed
 
 
@@ -211,7 +214,8 @@
 
 
 - name: Ensure selinux context is enforced on Yoda MOAI database
-  ansible.builtin.command: 'restorecon {{ yoda_moai_home }}/moai.db'
+  ansible.builtin.command: # noqa no-changed-when
+    cdm: 'restorecon {{ yoda_moai_home }}/moai.db'
   when: ansible_selinux.status == "enabled" and filecontext is changed
 
 
