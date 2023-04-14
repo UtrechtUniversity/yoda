@@ -250,7 +250,7 @@
   ansible.builtin.template:
     src: core.re.j2
     dest: /etc/irods/core.re
-    mode: 0644
+    mode: '0644'
 
 
 - name: Ensure core Python rules are present
