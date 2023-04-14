@@ -186,6 +186,7 @@ enable_s3_resource                   | Enable [iRODS S3 Resource Plugin](https:/
 s3_access_key                        | S3 access key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
 s3_secret_key                        | S3 secret key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
 s3_hostname                          | S3 server hostname (used by s3cmd; the hostname used by the S3 resource plugin is configured in the S3 resource contexts instead)
+s3_auth_file                         | S3 authentication file name (default value: /var/lib/irods/.s3auth)
 
 ### Research module configuration
 

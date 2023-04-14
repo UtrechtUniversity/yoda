@@ -215,7 +215,7 @@
 
 - name: Ensure selinux context is enforced on Yoda MOAI database
   ansible.builtin.command: # noqa no-changed-when
-    cdm: 'restorecon {{ yoda_moai_home }}/moai.db'
+    cmd: 'restorecon {{ yoda_moai_home }}/moai.db'
   when: ansible_selinux.status == "enabled" and filecontext is changed
 
 
