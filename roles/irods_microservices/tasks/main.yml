@@ -73,3 +73,4 @@
   with_items:
     - {directory: '/var/lib/irods', recursive: 'no'}
     - {directory: '/var/lib/irods/plugins', recursive: 'yes'}
+    - {directory: '/etc/irods', recursive: 'no'}

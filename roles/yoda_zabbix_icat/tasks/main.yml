@@ -48,9 +48,9 @@
     src: "{{ item.path }}"
     dest: /etc/zabbix/zabbix_agentd.d/
     remote_src: true
-    owner: irods
-    group: irods
-    mode: 0500
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    mode: '0500'
   with_items: "{{ icat_rule_files.files }}"
   notify: Restart Zabbix agent
 

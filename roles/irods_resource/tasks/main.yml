@@ -155,7 +155,7 @@
     state: absent
 
 
-- name: Make iRODS service account owner of iRODS directories
+- name: Ensure iRODS service account is owner of iRODS directories
   ansible.builtin.file:
     group: '{{ irods_service_account }}'
     owner: '{{ irods_service_account }}'
