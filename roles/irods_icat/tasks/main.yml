@@ -273,7 +273,8 @@
 - name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: 'ils /{{ irods_zone }}/home'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: 'ils /{{ irods_zone }}/home'
   register: ils
   until: ils is succeeded
   retries: 5
@@ -313,7 +314,8 @@
 - name: Provide iRODS read access for all users on /zone/home
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: 'ichmod -M read public /{{ irods_zone }}/home'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: 'ichmod -M read public /{{ irods_zone }}/home'
   when: read_access is failed
 
 
@@ -508,7 +510,8 @@
 - name: Provide iRODS read access for anonymous user on /zone/home
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: 'ichmod -M read anonymous /{{ irods_zone }}/home'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: 'ichmod -M read anonymous /{{ irods_zone }}/home'
   when: read_access is failed
 
 
@@ -524,7 +527,8 @@
 - name: Remove public collection provided that it is empty
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: 'irmdir /{{ irods_zone }}/home/public'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: 'irmdir /{{ irods_zone }}/home/public'
   when: (not ansible_check_mode) and (public_coll.stdout.find('/home/public') >= 0)
 
 
@@ -542,7 +546,8 @@
 - name: Ensure unneeded iRODS specific queries are absent
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: 'iadmin rsq {{ item }}'
+  ansible.builtin.command: # noqa no-changed-when ignore-errors
+    cmd: 'iadmin rsq {{ item }}'
   ignore_errors: true
   with_items:
     - listQueryByAliasLike

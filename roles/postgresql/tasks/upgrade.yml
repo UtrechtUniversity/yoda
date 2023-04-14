@@ -20,6 +20,7 @@
     owner: postgres
     group: postgres
     state: directory
+    mode: '0700'
 
 
 - name: Install PostgreSQL 9 shims
@@ -72,6 +73,7 @@
 - name: Upgrade PostgreSQL database
   become_user: postgres
   become: true
+  # noqa no-changed-when
   ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/pg_upgrade \
 			   -b /var/lib/pgsql/shim \
 			   -B /usr/pgsql-{{ pgsql_version }}/bin \

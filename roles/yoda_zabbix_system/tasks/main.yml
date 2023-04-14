@@ -42,6 +42,7 @@
     url: '{{ zabbix_agent.url }}/{{ zabbix_agent.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
     checksum: '{{ zabbix_agent.checksum }}'
+    mode: '0644'
   when: not zabbix_agent_repo.results and not repo_only
 
 
@@ -115,30 +116,20 @@
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda_system.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
-    remote_src: true
-
-
-- name: Ensure right file ownership on yoda_system.userparams.conf
-  ansible.builtin.file:
-    path: /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
     owner: zabbix
     group: zabbix
     mode: '0400'
+    remote_src: true
 
 
 - name: Ensure yoda-zabbix-system-sudoers is present
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda-zabbix-system-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-system-sudoers
-    remote_src: true
-
-
-- name: Ensure right file ownership on yoda-zabbix-system-sudoers
-  ansible.builtin.file:
-    path: /etc/sudoers.d/yoda-zabbix-system-sudoers
     owner: root
     group: root
     mode: '0440'
+    remote_src: true
 
 
 - name: Find Zabbix script files

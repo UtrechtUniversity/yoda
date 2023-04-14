@@ -12,6 +12,7 @@
     url: '{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
     checksum: '{{ zabbix_postgres.checksum }}'
+    mode: '0644'
   when: not zabbix_postgres_repo.results and not repo_only
   notify: Restart Zabbix agent
 
