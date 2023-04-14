@@ -5,5 +5,6 @@ enable_s3_resource: false
 
 irods_service_account: irods
 
+s3_auth_file: /var/lib/irods/.s3auth
 s3_access_key: PLACEHOLDER
 s3_secret_key: PLACEHOLDER
