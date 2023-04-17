@@ -28,3 +28,14 @@ services:
     volumes:
       - icat_pg_data:/var/lib/postgresql/data
     restart: unless-stopped
+
+  mailpit:
+    container_name: mailpit.yoda
+    hostname: mailpit.yoda
+    image: mailpit
+    environment:
+      - TZ=Europe/Amsterdam
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    restart: unless-stopped
