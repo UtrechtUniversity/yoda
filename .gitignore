@@ -9,3 +9,4 @@ development_credentials.yml
 
 # Vagrant stuff
 /.vagrant
+vagrant/ssh/ssh - Shortcut.lnk
