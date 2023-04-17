@@ -7,8 +7,8 @@ volumes:
 
 services:
   provider:
-    container_name: combined.yoda
-    hostname: combined.yoda
+    container_name: provider.yoda
+    hostname: provider.yoda
     image: yoda_irods_icat
     build:
       context: yoda_irods_icat

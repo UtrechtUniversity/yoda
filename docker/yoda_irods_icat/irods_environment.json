@@ -9,7 +9,7 @@
     "irods_encryption_num_hash_rounds": 16, 
     "irods_encryption_salt_size": 8, 
     "irods_home": "/tempZone/home/rods", 
-    "irods_host": "combined.yoda.test", 
+    "irods_host": "provider.yoda",
     "irods_match_hash_policy": "compatible", 
     "irods_port": 1247, 
     "irods_ssl_ca_certificate_file": "/etc/irods/localhost_and_chain.crt", 

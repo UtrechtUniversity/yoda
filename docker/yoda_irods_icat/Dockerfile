@@ -11,6 +11,7 @@ ENV YUM_REPO_FILE_LOC "https://packages.irods.org/renci-irods.yum.repo"
 ENV YUM_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
 ENV YODA_RULESET_REPO "https://github.com/UtrechtUniversity/yoda-ruleset.git"
 ENV YODA_RULESET_BRANCH "development"
+ENV PRE_BUILD_RULESET_DEPENDENCIES "yes"
 
 # Network settings
 EXPOSE 1247
@@ -110,12 +111,31 @@ RUN install -o irods -g irods -m 0755 /tmp/run-intake-movetovault.sh /var/lib/ir
 COPY rules_uu.cfg /etc/irods/yoda-ruleset
 COPY cronjob-revision-cleanup.sh /tmp/cronjob-revision-cleanup.sh
 RUN install -o irods -g irods -m 0755 /tmp/cronjob-revision-cleanup.sh /var/lib/irods/.irods/cronjob-revision-cleanup.sh
+COPY service_account.config /tmp/service_account.config
+RUN install -o irods -g irods -m 0644 /tmp/service_account.config /etc/irods/service_account.config
 
 # Install init script
 # hadolint ignore=DL3033
 RUN yum install -y nc sudo && yum clean all
 COPY irods-icat-init.sh /var/lib/irods/scripts/irods-icat-init.sh
 RUN chmod 0755 /var/lib/irods/scripts/irods-icat-init.sh
+
+# Install configuration
+COPY odbc.ini /var/lib/irods/.odbc.ini
+COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
+COPY hosts_config.json /etc/irods/hosts_config.json
+COPY host_access_control_config.json /etc/irods/host_access_control_config.json
+COPY rules_uu.cfg /etc/irods/yoda-ruleset
+
+# Fix up file ownership iRODS files
+RUN chown -R irods:irods /var/lib/irods /etc/irods
+
+# Pre-build ruleset dependencies
+RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && git clone --branch "$YODA_RULESET_BRANCH" "$YODA_RULESET_REPO" /var/lib/irods/yoda-ruleset
+# hadolint ignore=DL3004
+RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && sudo -u irods pip2 install --user attrs==21.4.0
+# hadolint ignore=DL3004
+RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && sudo -u irods pip2 install --user -r /var/lib/irods/yoda-ruleset/requirements.txt
 
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/var/lib/irods/scripts/irods-icat-init.sh"]

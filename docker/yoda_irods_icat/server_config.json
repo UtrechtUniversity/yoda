@@ -12,7 +12,7 @@
         "transfer_chunk_size_for_parallel_transfer_in_megabytes": 40
     }, 
     "catalog_provider_hosts": [
-        "combined.yoda.test"
+        "provider.yoda"
     ], 
     "catalog_service_role": "provider", 
     "default_dir_mode": "0750", 
@@ -21,17 +21,17 @@
     "default_resource_name": "irodsResc", 
     "environment_variables": {}, 
     "federation": [], 
-    "icat_host": "combined.yoda.test", 
+    "icat_host": "provider.yoda",
     "match_hash_policy": "compatible", 
     "negotiation_key": "458ce56d4d4b631fac7c1a12b7a1f8a1", 
     "plugin_configuration": {
         "authentication": {}, 
         "database": {
             "postgres": {
-                "db_host": "db.yoda.test", 
+                "db_host": "db.yoda", 
                 "db_name": "ICAT", 
                 "db_odbc_driver": "PostgreSQL", 
-                "db_password": "irodsdev", 
+                "db_password": "yodadev", 
                 "db_port": 5432, 
                 "db_username": "irodsdb"
             }
@@ -64,28 +64,6 @@
             {
                 "instance_name": "irods_rule_engine_plugin-python-instance", 
                 "plugin_name": "irods_rule_engine_plugin-python", 
-                "plugin_specific_configuration": {}
-            }, 
-            {
-                "instance_name": "irods_rule_engine_plugin-indexing-instance", 
-                "plugin_name": "irods_rule_engine_plugin-indexing", 
-                "plugin_specific_configuration": {}
-            }, 
-            {
-                "instance_name": "irods_rule_engine_plugin-elasticsearch-instance", 
-                "plugin_name": "irods_rule_engine_plugin-elasticsearch", 
-                "plugin_specific_configuration": {
-                    "bulk_count": 100, 
-                    "es_version": "7.x", 
-                    "hosts": [
-                        "http://combined.yoda.test:9200/"
-                    ], 
-                    "read_size": 4194304
-                }
-            }, 
-            {
-                "instance_name": "irods_rule_engine_plugin-document_type-instance", 
-                "plugin_name": "irods_rule_engine_plugin-document_type", 
                 "plugin_specific_configuration": {}
             }, 
             {
