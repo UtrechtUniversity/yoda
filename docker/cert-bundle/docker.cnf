@@ -1,0 +1,13 @@
+[ req ]
+default_bits = 2048
+default_md = sha256
+prompt = no
+encrypt_key = no
+distinguished_name = dn
+req_extensions = req_ext
+
+[ dn ]
+CN = "provider.yoda"
+
+[ req_ext ]
+subjectAltName = "DNS:*.yoda"
