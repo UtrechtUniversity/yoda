@@ -29,7 +29,7 @@ RUN yum -y install centos-release-scl gcc python-virtualenv && \
 RUN yum -y install httpd httpd-devel mod_ssl openssl && yum clean all
 RUN rm /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.modules.d/00-lua.conf
 COPY httpd.conf /etc/httpd/conf/httpd.conf
-COPY ssl.conf /etc/httpd/conf/ssl.conf
+COPY ssl.conf /etc/httpd/conf.d/ssl.conf
 
 # Install and configure Apache ModWSGI
 RUN yum -y install  --enablerepo centos-sclo-rh rh-python38-python-mod_wsgi && yum clean all
