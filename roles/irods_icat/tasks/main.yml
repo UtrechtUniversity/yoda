@@ -231,11 +231,13 @@
   ansible.builtin.file:
     group: '{{ irods_service_account }}'
     owner: '{{ irods_service_account }}'
-    recurse: true
-    path: '{{ item }}'
+    recurse: '{{ item.recurse }}'
+    path: '{{ item.path }}'
   with_items:
-    - /var/lib/irods
-    - /etc/irods
+    - path: /var/lib/irods
+      recurse: true
+    - path: /etc/irods
+      recurse: false
 
 
 - name: Ensure core.re is configured
