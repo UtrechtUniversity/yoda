@@ -18,17 +18,18 @@ function progress_update {
 
 # Download and install certificates
 before_update "Downloading certificate bundle"
+mkdir /download
 wget -q "https://yoda.uu.nl/yoda-docker/${DATA_VERSION}.certbundle.tar.gz" -O "/download/${DATA_VERSION}.certbundle.tar.gz"
 progress_update "Downloaded certificate bundle."
 
 # Extract certificate bundle
 before_update "Extracting certificate data"
-mkdir /download
 cd /download
 tar xvfz "${DATA_VERSION}.certbundle.tar.gz"
-install -m 0644 -o irods -g irods docker.pem /etc/pki/tls/certs/localhost_and_chain.crt
-install -m 0644 -o irods -g irods docker.key /etc/pki/tls/private/localhost.key
-install -m 0644 -o irods -g irods dhparam.pem /etc/pki/tls/private/dhparams.pem
+install -m 0644 docker.pem /etc/pki/tls/certs/localhost.crt
+install -m 0644 docker.pem /etc/pki/tls/certs/localhost_and_chain.crt
+install -m 0644 docker.key /etc/pki/tls/private/localhost.key
+install -m 0644 dhparam.pem /etc/pki/tls/private/dhparams.pem
 progress_update "Certificate data extracted"
 
 # Configure the portal
@@ -136,4 +137,6 @@ progress_update "Portal configured"
 
 # Start Apache
 before_update "Starting Apache"
-/usr/sbin/httpd -DFOREGROUND
+/usr/sbin/httpd -DFOREGROUND || true
+echo "Error: http either terminated or would not start. Keeping container running for troubleshooting purposes."
+sleep infinity
