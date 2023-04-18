@@ -29,6 +29,14 @@ services:
       - icat_pg_data:/var/lib/postgresql/data
     restart: unless-stopped
 
+  portal:
+    container_name: portal.yoda
+    hostname: portal.yoda
+    image: yoda_portal
+    build:
+      context: yoda_portal
+    restart: unless-stopped
+
   mailpit:
     container_name: mailpit.yoda
     hostname: mailpit.yoda
