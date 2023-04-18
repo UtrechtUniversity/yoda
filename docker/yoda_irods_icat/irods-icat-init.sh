@@ -19,23 +19,23 @@ function progress_update {
 # Download test vault and iCAT data
 before_update "Downloading data"
 mkdir /download
-wget -q https://yoda.uu.nl/yoda-docker/dev-1.9.vault.tar.gz -O "/download/${DATA_VERSION}.vault.tar.gz"
+wget -q "https://yoda.uu.nl/yoda-docker/${DATA_VERSION}.vault.tar.gz" -O "/download/${DATA_VERSION}.vault.tar.gz"
 progress_update "Downloaded vault test data."
-wget -q https://yoda.uu.nl/yoda-docker/dev-1.9.icat.sql.gz -O "/download/${DATA_VERSION}.icat.sql.gz"
+wget -q "https://yoda.uu.nl/yoda-docker/${DATA_VERSION}.icat.sql.gz" -O "/download/${DATA_VERSION}.icat.sql.gz"
 progress_update "Downloaded iCAT test data."
-wget -q https://yoda.uu.nl/yoda-docker/dev-1.9.certbundle.tar.gz -O "/download/${DATA_VERSION}.certbundle.tar.gz"
+wget -q "https://yoda.uu.nl/yoda-docker/${DATA_VERSION}.certbundle.tar.gz" -O "/download/${DATA_VERSION}.certbundle.tar.gz"
 progress_update "Downloaded certificate bundle."
 
 # Extract vault test data
 before_update "Extracting vault data"
 cd /var/lib/irods
-sudo -iu irods tar xfz /download/dev-1.9.vault.tar.gz
+sudo -iu irods tar xfz "/download/${DATA_VERSION}.vault.tar.gz"
 progress_update "Vault data extracted"
 
 # Extract certificate bundle
 before_update "Extracting certificate data"
 cd /download
-tar xvfz dev-1.9.certbundle.tar.gz
+tar xvfz "$DATA_VERSION.certbundle.tar.gz"
 install -m 0644 -o irods -g irods docker.pem /etc/irods/localhost_and_chain.crt
 install -m 0644 -o irods -g irods docker.key /etc/irods/localhost.key
 install -m 0644 -o irods -g irods dhparam.pem /etc/irods/dhparams.pem
@@ -52,7 +52,7 @@ progress_update "PostgreSQL is now up."
 # Load iCAT test data
 before_update "Loading iCAT database data"
 export PGPASSWORD=yodadev
-gunzip -c /download/dev-1.9.icat.sql.gz | psql -U irodsdb -d ICAT -h db.yoda -p 5432
+gunzip -c "/download/${DATA_VERSION}.icat.sql.gz" | psql -U irodsdb -d ICAT -h db.yoda -p 5432
 progress_update "iCAT database data loaded"
 
 INSTALL_TIMESTAMP=$(date +'%Y-%m-%dT%H:%M:%S.000000')
