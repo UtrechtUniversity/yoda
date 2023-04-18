@@ -1764,18 +1764,18 @@
     "relUrl": "/administration/setting-job-flags.html"
   },"252": {
     "doc": "Setting job flags",
-    "title": "Replication flag",
-    "content": "Set: . itouch /tempZone/yoda/flags/stop_replication . Unset: . irm /tempZone/yoda/flags/stop_replication . ",
-    "url": "/yoda/administration/setting-job-flags.html#replication-flag",
+    "title": "For version &lt;= 1.8",
+    "content": "Replication flag . Set: . itouch /tempZone/yoda/flags/stop_replication . Unset: . irm /tempZone/yoda/flags/stop_replication . Revisions flag . Set: . itouch /tempZone/yoda/flags/stop_revisions . Unset: . irm /tempZone/yoda/flags/stop_revisions . ",
+    "url": "/yoda/administration/setting-job-flags.html#for-version--18",
     
-    "relUrl": "/administration/setting-job-flags.html#replication-flag"
+    "relUrl": "/administration/setting-job-flags.html#for-version--18"
   },"253": {
     "doc": "Setting job flags",
-    "title": "Revisions flag",
-    "content": "Set: . itouch /tempZone/yoda/flags/stop_revisions . Unset: . irm /tempZone/yoda/flags/stop_revisions . ",
-    "url": "/yoda/administration/setting-job-flags.html#revisions-flag",
+    "title": "For version &gt; 1.8",
+    "content": "Replication flag . Set: . imkdir /tempZone/yoda/flags/stop_replication . Unset: . irm -r /tempZone/yoda/flags/stop_replication . Revisions flag . Set: . imkdir /tempZone/yoda/flags/stop_revisions . Unset: . irm -r /tempZone/yoda/flags/stop_revisions . ",
+    "url": "/yoda/administration/setting-job-flags.html#for-version--18-1",
     
-    "relUrl": "/administration/setting-job-flags.html#revisions-flag"
+    "relUrl": "/administration/setting-job-flags.html#for-version--18-1"
   },"254": {
     "doc": "Setting up development environment",
     "title": "Setting up development environment",
