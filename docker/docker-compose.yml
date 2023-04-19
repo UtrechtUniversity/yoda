@@ -29,6 +29,18 @@ services:
       - icat_pg_data:/var/lib/postgresql/data
     restart: unless-stopped
 
+  extuserdb:
+    container_name: extuserdb.yoda
+    hostname: extuserdb.yoda
+    image: postgres:11-bullseye
+    environment:
+      - POSTGRES_DB=extuser
+      - POSTGRES_USER=extuser
+      - POSTGRES_PASSWORD=yodadev
+    volumes:
+      - extuser_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
   portal:
     container_name: portal.yoda
     hostname: portal.yoda
@@ -37,6 +49,19 @@ services:
       - "8443:443"
     build:
       context: yoda_portal
+    restart: unless-stopped
+
+  eus:
+    container_name: eus.yoda
+    hostname: eus.yoda
+    image: yoda_eus
+    depends_on:
+      - extuserdb
+      - mailpit
+    ports:
+      - "8444:8443"
+    build:
+      context: yoda_eus
     restart: unless-stopped
 
   mailpit:
@@ -49,3 +74,9 @@ services:
       - "8025:8025"
       - "1025:1025"
     restart: unless-stopped
+
+volumes:
+  extuser_pg_data:
+  icat_pg_data:
+  icat_irods_logs:
+  icat_yoda_ruleset:
