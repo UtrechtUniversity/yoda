@@ -27,38 +27,21 @@ most importantly:
 The cronjobs for revision creation, revision cleanup, archiving vault data etc. do not
 run automatically, but need to be started manually in this configuration.
 
-## Building the images
-
-The iRODS provider image:
-
-```bash
-cd docker/yoda_irods_icat
-./stage-uploads.sh
-./build.sh
-```
-
-The Mailpit image:
-
-```bash
-cd docker/mailpit
-./build.sh
-```
-
-The portal image:
-
-```bash
-cd docker/yoda_portal
-./build.sh
-```
-
 ## Starting the application
+
+If you haven't downloaded the Docker images yet, pull them first:
+
+```bash
+cd docker
+docker-compose pull
+```
 
 The application can be started using docker compose:
 ```bash
 docker-compose up
 ```
 
-Removing and old instance of the application:
+Removing and old instance of the application (including data):
 ```bash
 docker-compose down -v
 ```
@@ -75,3 +58,46 @@ After the application is started, the web interfaces will be available on:
 - Portal: https://portal.yoda:8443
 - EUS (port with API enabled): https://eus.yoda:8444
 - DavRODS: https://data.yoda:8445
+
+
+## Building the images
+
+Building a new image is only needed for development purposes. If you want to test
+an existing Dockerized version of Yoda, you can pull the images from the registry
+instead.
+
+### Yoda provider
+
+```bash
+cd docker/yoda_irods_icat
+./stage-uploads.sh
+./build.sh
+```
+
+### Mailpit
+
+```bash
+cd docker/mailpit
+./build.sh
+```
+
+### Yoda portal
+
+```bash
+cd docker/yoda_portal
+./build.sh
+```
+
+### DavRODS
+
+```bash
+cd docker/davrods
+./build.sh
+```
+
+### External user service
+
+```bash
+cd docker/yoda_eus
+./build.sh
+```
