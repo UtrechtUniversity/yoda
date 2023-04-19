@@ -70,6 +70,18 @@ services:
       context: yoda_eus
     restart: unless-stopped
 
+  davrods:
+    container_name: data.yoda
+    hostname: data.yoda
+    image: davrods
+    depends_on:
+      - provider
+    ports:
+      - "8445:443"
+    build:
+      context: davrods
+    restart: unless-stopped
+
   mailpit:
     container_name: mailpit.yoda
     hostname: mailpit.yoda
