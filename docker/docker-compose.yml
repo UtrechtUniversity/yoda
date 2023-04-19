@@ -1,9 +1,11 @@
 version: "3"
 
 volumes:
+  extuser_pg_data:
   icat_pg_data:
-  icat_yoda_ruleset:
   icat_irods_logs:
+  icat_yoda_ruleset:
+
 
 services:
   provider:
@@ -92,9 +94,3 @@ services:
       - "8025:8025"
       - "1025:1025"
     restart: unless-stopped
-
-volumes:
-  extuser_pg_data:
-  icat_pg_data:
-  icat_irods_logs:
-  icat_yoda_ruleset:
