@@ -100,7 +100,7 @@ OIDC_ENABLED        = True
 OIDC_DOMAINS        = ['yoda.dev']
 OIDC_CLIENT_ID      = 'myClientId'
 OIDC_CLIENT_SECRET  = 'myClientPassword'
-OIDC_CALLBACK_URI   = 'https://portal.yoda.test/user/callback'
+OIDC_CALLBACK_URI   = 'https://portal.yoda:8443/user/callback'
 OIDC_AUTH_BASE_URI  = 'https://oauth.mocklab.io/oauth/authorize'
 OIDC_AUTH_URI       = 'https://oauth.mocklab.io/oauth/authorize?response_type=code&client_id=myClientId&redirect_uri=https://portal.yoda.test/user/callback&scope=openid&acr_values='
 OIDC_LOGIN_HINT     = True
