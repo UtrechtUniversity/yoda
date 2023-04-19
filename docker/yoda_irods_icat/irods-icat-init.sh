@@ -43,7 +43,8 @@ progress_update "Certificate data extracted"
 
 # Wait for database container to become available
 before_update "Waiting for PostgreSQL container to come up ..."
-while ! nc -z db.yoda 5432; do
+export PGPASSWORD=yodadev
+while ! psql -U irodsdb -d ICAT -h db.yoda -p 5432 -c 'SELECT 1' >& /dev/null ; do
   printf "."
   sleep 0.5
 done
