@@ -10,6 +10,9 @@ services:
     container_name: provider.yoda
     hostname: provider.yoda
     image: yoda_irods_icat
+    depends_on:
+      - db
+      - mailpit
     build:
       context: yoda_irods_icat
     restart: unless-stopped
@@ -45,6 +48,9 @@ services:
     container_name: portal.yoda
     hostname: portal.yoda
     image: yoda_portal
+    depends_on:
+      - provider
+      - eus
     ports:
       - "8443:443"
     build:
