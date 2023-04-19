@@ -92,5 +92,4 @@ services:
       - TZ=Europe/Amsterdam
     ports:
       - "8025:8025"
-      - "1025:1025"
     restart: unless-stopped
