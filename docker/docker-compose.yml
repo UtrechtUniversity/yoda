@@ -11,7 +11,7 @@ services:
   provider:
     container_name: provider.yoda
     hostname: provider.yoda
-    image: yoda_irods_icat
+    image: yodaprovider.azurecr.io/dev1.9
     depends_on:
       - db
       - mailpit
@@ -49,7 +49,7 @@ services:
   portal:
     container_name: portal.yoda
     hostname: portal.yoda
-    image: yoda_portal
+    image: yodaportal.azurecr.io/dev1.9
     depends_on:
       - provider
       - eus
@@ -62,7 +62,7 @@ services:
   eus:
     container_name: eus.yoda
     hostname: eus.yoda
-    image: yoda_eus
+    image: yodaeus.azurecr.io/dev-1.9
     depends_on:
       - extuserdb
       - mailpit
@@ -75,7 +75,7 @@ services:
   davrods:
     container_name: data.yoda
     hostname: data.yoda
-    image: davrods
+    image: davrods.azurecr.io/dev-1.9
     depends_on:
       - provider
     ports:
@@ -87,7 +87,7 @@ services:
   mailpit:
     container_name: mailpit.yoda
     hostname: mailpit.yoda
-    image: mailpit
+    image: yodamailpit.azurecr.io/dev-1.9
     environment:
       - TZ=Europe/Amsterdam
     ports:

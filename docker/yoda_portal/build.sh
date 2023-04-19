@@ -1,3 +1,3 @@
 #!/bin/sh
 export DOCKER_SCAN_SUGGEST=false
-docker build . -t yoda_portal
+docker build . -t yodaportal.azurecr.io/dev-1.9

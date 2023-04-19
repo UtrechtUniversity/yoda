@@ -13,4 +13,4 @@ fi
 git clone https://github.com/axllent/mailpit.git
 cd mailpit
 git checkout v1.5.0
-docker build -t mailpit .
+docker build -t yodamailpit.azurecr.io/dev-1.9 .
