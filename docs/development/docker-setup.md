@@ -67,11 +67,11 @@ You need to have these entries in your /etc/hosts (or equivalent) file:
 
 ```
 # Docker setup Yoda
-127.0.0.1 portal.yoda
-127.0.0.1 eus.yoda
+127.0.0.1 portal.yoda eus.yoda data.yoda
 ```
 
 After the application is started, the web interfaces will be available on:
 - Mailpit: http://localhost:8025
 - Portal: https://portal.yoda:8443
 - EUS (port with API enabled): https://eus.yoda:8444
+- DavRODS: https://data.yoda:8445
