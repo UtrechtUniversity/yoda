@@ -41,9 +41,10 @@ RUN yum install -y epel-release wget git && \
     yum clean all
 
 # Install DavRODS and its dependencies
+# hadolint ignore=DL3033
 RUN yum -y install boost jansson && yum clean all && \
     mkdir /download && \
-    wget "$DAVRODS_RPM_URL/$DAVRODS_RPM_PACKAGE" -O "/download/$DAVRODS_RPM_PACKAGE" && \
+    wget -q "$DAVRODS_RPM_URL/$DAVRODS_RPM_PACKAGE" -O "/download/$DAVRODS_RPM_PACKAGE" && \
     rpm -ivh "/download/$DAVRODS_RPM_PACKAGE"
 
 # Copy DavRODS VHost and iRODS configuration files
