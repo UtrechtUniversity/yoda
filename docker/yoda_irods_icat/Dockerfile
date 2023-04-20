@@ -137,5 +137,10 @@ RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && sudo -u irods pip2 install
 # hadolint ignore=DL3004
 RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && sudo -u irods pip2 install --user -r /var/lib/irods/yoda-ruleset/requirements.txt
 
+# Create test accounts
+RUN for user in researcher viewer groupmanager datamanager functionaladmingroup functionaladmincategory functionaladminpriv technicaladmin projectmanager dacmember ; \
+    do useradd -m -p '$6$rounds=656000$UYCy5.rN8/Nr5ooZ$.D2DtHyqjMIwQePZ8oGBXkEKTtOeyVPsSK1Kzn/DtIBojPh8ZGxOzVtlrRFMumtgcO7CWzgMAQqxJUORvGiFy0' "$user" ; \
+    done
+
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/var/lib/irods/scripts/irods-icat-init.sh"]
