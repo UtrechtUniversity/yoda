@@ -16,7 +16,7 @@ The configuration is intended for local development and testing.
 
 Some components are not yet available in the containerized version of Yoda,
 most importantly:
-- The public server (landing pages and OAI-PMH). This also means the publication
+- The public server (landing pages and OAI-PMH). This also implies that publication
   functions are not yet available.
 - OpenSearch (used for searching in the deposit module)
 - The configuration uses Mailpit for testing email delivery. Email delivery using
@@ -25,7 +25,12 @@ most importantly:
   for replication.
 
 The cronjobs for revision creation, revision cleanup, archiving vault data etc. do not
-run automatically, but need to be started manually in this configuration.
+run automatically, but need to be started manually in this configuration. The `run-cronjob.sh`
+shell script can be used as a quick way to start the most commonly used cronjobs, e.g.:
+
+```
+run-cronjob.sh revision
+```
 
 ## Starting the application
 
