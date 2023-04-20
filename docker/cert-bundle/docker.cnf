@@ -10,6 +10,15 @@ x509_extensions = req_ext
 
 [ dn ]
 CN = "provider.yoda"
+C = NL
+O = Yoda
+OU = ITS
+L = Utrecht
 
 [ req_ext ]
-subjectAltName = "DNS:*.yoda"
+subjectAltName = @alt_names
+subjectKeyIdentifier = hash
+
+[ alt_names ]
+DNS.1 = provider.yoda
+DNS.2 = *.yoda
