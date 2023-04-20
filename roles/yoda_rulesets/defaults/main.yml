@@ -81,6 +81,9 @@ metadata_schemas:
   - name: default-3
     install: true
     active: true
+  - name: epos-0
+    install: true
+    active: true
   - name: hptlab-0
     install: true
     active: true
