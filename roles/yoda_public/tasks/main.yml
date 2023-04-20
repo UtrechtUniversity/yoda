@@ -7,12 +7,12 @@
     dest: /etc/httpd/conf.d/yoda-public-vhost.conf
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
 - name: Allow public to port for Yoda Public in firewall
-  firewalld:
+  ansible.posix.firewalld:
     port: '{{ yoda_public_port }}/tcp'
     permanent: true
     state: enabled

@@ -12,12 +12,12 @@
 
 
 - name: "Configure Postfix"
-  ini_file:
+  community.general.ini_file:
     path: /etc/postfix/main.cf
     section:
     option: "{{ item.key }}"
     value: "{{ item.value }}"
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
   loop: "{{ postfix_params | dict2items }}"
@@ -29,17 +29,18 @@
       myhostname: "{{ postfix_myhostname }}"
       myorigin: "{{ postfix_myorigin }}"
       mydestination: ""
+      canonical_maps: "hash:/etc/postfix/canonical"
   when: not ansible_check_mode
   notify: Restart Postfix
 
 
 - name: "Configure Postfix SASL for SMTP delivery via TLS"
-  ini_file:
+  community.general.ini_file:
     section:
     path: /etc/postfix/main.cf
     option: "{{ item.key }}"
     value: "{{ item.value }}"
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
   loop: "{{ postfix_params | dict2items }}"
@@ -55,12 +56,12 @@
 
 
 - name: "Configure Postfix debugging parameters"
-  ini_file:
+  community.general.ini_file:
     path: /etc/postfix/main.cf
     section:
     option: "{{ item.key }}"
     value: "{{ item.value }}"
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
   loop: "{{ postfix_params | dict2items }}"
@@ -70,6 +71,16 @@
       debug_peer_list: "{{ postfix_relayhost }}"
       debug_peer_level: "3"
   notify: Restart Postfix
+
+
+- name: Write input for Postfix canonical map
+  ansible.builtin.template:
+    src: canonical.j2
+    dest: "/etc/postfix/canonical"
+    owner: root
+    group: root
+    mode: '0600'
+  notify: Load Postfix Canonical Map
 
 
 - name: Create Postfix relayhost credentials file
@@ -94,17 +105,20 @@
   when: not ansible_check_mode
   notify: Restart Postfix
 
+
 - name: Ensure seboolean httpd_can_sendmail is enabled
   ansible.posix.seboolean:
     name: httpd_can_sendmail
     state: true
     persistent: true
 
+
 - name: Map Postfix relayhost credentials file
-  ansible.builtin.command: /usr/sbin/postmap sasl_passwd # noqa 301
+  ansible.builtin.command: /usr/sbin/postmap sasl_passwd # noqa no-changed-when
   when: not ansible_check_mode
   args:
     chdir: /etc/postfix
+
 
 - name: Ensure Postfix service is enabled and started
   ansible.builtin.service:

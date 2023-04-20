@@ -10,7 +10,7 @@
 environment                    = '{{ yoda_environment }}'
 
 resource_primary               = '{{ irods_default_resc }}'
-resource_replica               = '{{ irods_repl_resc }}'
+resource_replica               = '{{ irods_repl_resc | join (" ") }}'
 resource_research              = '{{ resource_research }}'
 resource_vault                 = '{{ resource_vault }}'
 resource_trigger_pol           = '{{ irods_resc_trigger_pol | join (" ") }}'
@@ -29,6 +29,7 @@ smtp_starttls                  = '{{ ["false", "true"][smtp_starttls|int] }}'
 datacite_rest_api_url          = 'https://{{ datacite_rest_api_url }}'
 datacite_username              = '{{ datacite_username }}'
 datacite_password              = '{{ datacite_password }}'
+datacite_publisher             = '{{ datacite_publisher }}'
 
 eus_api_fqdn                   = '{{ eus_api_fqdn }}'
 eus_api_port                   = '{{ eus_api_port }}'
@@ -38,9 +39,7 @@ enable_deposit                 = '{{ ["false", "true"][enable_deposit|int] }}'
 enable_open_search             = '{{ ["false", "true"][enable_open_search|int] }}'
 enable_intake                  = '{{ ["false", "true"][enable_intake|int] }}'
 enable_datarequest             = '{{ ["false", "true"][enable_datarequest|int] }}'
-{% if enable_datarequest %}
 yoda_portal_fqdn               = '{{ yoda_portal_fqdn }}'
-{% endif %}
 
 epic_pid_enabled               = '{{ ["false", "true"][epic_pid_enabled|int] }}'
 {% if epic_pid_enabled %}
@@ -58,8 +57,13 @@ token_database                 = '{{ token_database }}'
 token_database_password        = '{{ token_database_password }}'
 token_length                   = '{{ token_length }}'
 token_lifetime                 = '{{ token_lifetime }}'
+token_expiration_notification  = '{{ token_expiration_notification }}'
 {% endif %}
 
 enable_tape_archive            = '{{ ["false", "true"][enable_tape_archive|int] }}'
 
 temporary_files                = '{{ temporary_files | join (" ") }}'
+
+{% if external_users %}
+external_users_domain_filter   = '{{ external_users_domain_filter | replace (' ','') | replace('|', ' ')}}'
+{% endif %}

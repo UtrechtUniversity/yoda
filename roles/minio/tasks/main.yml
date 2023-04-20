@@ -1,0 +1,96 @@
+---
+# copyright Utrecht University
+
+- name: Download MinIO RPM
+  ansible.builtin.get_url:
+    url: '{{ minio_rpm_url }}'
+    dest: '/tmp/minio.rpm'
+    checksum: '{{ minio_rpm_checksum }}'
+    mode: '0644'
+
+
+- name: Install MinIO from downloaded RPM
+  ansible.builtin.package:
+    name: '/tmp/minio.rpm'
+    state: present
+
+
+- name: Ensure group minio-user exists
+  ansible.builtin.group:
+    name: minio-user
+    state: present
+
+
+- name: Ensure user minio-user exists
+  ansible.builtin.user:
+    name: minio-user
+    group: minio-user
+    create_home: false
+
+
+- name: Ensure minio-user has access to /mnt/data/minio-s3
+  ansible.builtin.file:
+    path: /mnt/data/minio-s3
+    state: directory
+    owner: minio-user
+    group: minio-user
+    mode: '0755'
+
+
+- name: Ensure MinIO configuration file is present
+  ansible.builtin.template:
+    src: minio.j2
+    dest: /etc/default/minio
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart minio
+
+
+- name: Ensure MinIO systemd service file is present
+  ansible.builtin.template:
+    src: minio.service.j2
+    dest: /etc/systemd/system/minio.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart minio
+
+
+- name: Allow public access to MinIO web console
+  ansible.posix.firewalld:
+    port: '9090/tcp'
+    permanent: true
+    state: enabled
+    immediate: true
+  notify: Restart firewall
+
+
+- name: Flush handlers to restart MinIO if needed
+  ansible.builtin.meta: flush_handlers
+
+
+- name: Ensure MinIO service is started
+  ansible.builtin.service:
+    name: minio
+    state: started
+
+
+- name: Check S3 bucket for Yoda is present
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.shell: s3cmd ls | grep yoda
+  register: bucket_check
+  ignore_errors: true
+  changed_when: false
+  until: bucket_check.rc != 1
+  retries: 5
+  delay: 10
+
+
+- name: Ensure S3 bucket for Yoda is present
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: s3cmd mb s3://yoda
+  when: bucket_check.stdout == ""

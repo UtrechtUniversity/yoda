@@ -1,9 +1,5 @@
 @startuml
-
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
-skinparam shadowing false
-skinparam dpi 200
+!include ../../../../theme.puml
 
 actor       "Group manager" as gm
 participant "Yoda portal" as portal

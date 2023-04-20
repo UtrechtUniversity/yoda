@@ -5,12 +5,20 @@
 irods_service_account: irods
 irods_zone: tempZone                       # The name of the iRODS Zone
 
+# EUS configuration
+yoda_eus_fqdn: eus.yoda.test
+
 # Test configuration.
 test_password: test
 
-delete_ext_test_users:
-  - name: alice@otherdomain.com
-
-create_ext_test_users:
-  - name: alice@otherdomain.com
-    id: 9000
+eus_test_users:
+  - {name: researcher@yoda.test,              password: '{{ test_password }}', type: rodsuser,  id: 9000}
+  - {name: viewer@yoda.test,                  password: '{{ test_password }}', type: rodsuser,  id: 9001}
+  - {name: groupmanager@yoda.test,            password: '{{ test_password }}', type: rodsuser,  id: 9002}
+  - {name: datamanager@yoda.test,             password: '{{ test_password }}', type: rodsuser,  id: 9003}
+  - {name: functionaladmingroup@yoda.test,    password: '{{ test_password }}', type: rodsuser,  id: 9004}
+  - {name: functionaladmincategory@yoda.test, password: '{{ test_password }}', type: rodsuser,  id: 9005}
+  - {name: functionaladminpriv@yoda.test,     password: '{{ test_password }}', type: rodsuser,  id: 9006}
+  - {name: technicaladmin@yoda.test,          password: '{{ test_password }}', type: rodsadmin, id: 9007}
+  - {name: projectmanager@yoda.test,          password: '{{ test_password }}', type: rodsuser,  id: 9008}
+  - {name: dacmember@yoda.test,               password: '{{ test_password }}', type: rodsuser,  id: 9009}

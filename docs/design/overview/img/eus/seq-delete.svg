@@ -1,1 +1,184 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="637.5px" style="width:1050px;height:637px;" version="1.1" viewBox="0 0 1050 637" width="1050px"><defs/><g><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="112.5" x2="112.5" y1="173.877" y2="477.7181"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="527.0833" x2="527.0833" y1="173.877" y2="477.7181"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="829.1667" x2="829.1667" y1="173.877" y2="477.7181"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="179.1667" x="16.6667" y="166.507">Yoda admin</text><ellipse cx="112.5" cy="27.0833" fill="#FEFECE" rx="16.6667" ry="16.6667" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><path d="M112.5,43.75 L112.5,100 M85.4167,60.4167 L139.5833,60.4167 M112.5,100 L85.4167,131.25 M112.5,100 L139.5833,131.25 " fill="#FEFECE" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="179.1667" x="16.6667" y="504.6417">Yoda admin</text><ellipse cx="112.5" cy="532.8451" fill="#FEFECE" rx="16.6667" ry="16.6667" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><path d="M112.5,549.5117 L112.5,605.7617 M85.4167,566.1784 L139.5833,566.1784 M112.5,605.7617 L85.4167,637.0117 M112.5,605.7617 L139.5833,637.0117 " fill="#FEFECE" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="125" x="464.5833" y="106.25"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="479.1667" y="149.8403">iRODS</text><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="125" x="464.5833" y="475.6348"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="479.1667" y="519.2251">iRODS</text><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="437.5" x="610.4167" y="106.25"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="408.3333" x="625" y="149.8403">External user service &amp; DB</text><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="437.5" x="610.4167" y="475.6348"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="408.3333" x="625" y="519.2251">External user service &amp; DB</text><polygon fill="#A80036" points="502.0833,234.2936,522.9167,242.627,502.0833,250.9603,510.4167,242.627" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="112.5" x2="514.5833" y1="242.627" y2="242.627"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="364.5833" x="127.0833" y="232.0506">Delete user from iRODS</text><polygon fill="#A80036" points="804.1667,299.8372,825,308.1706,804.1667,316.5039,812.5,308.1706" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="527.0833" x2="816.6667" y1="308.1706" y2="308.1706"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="175" x="541.6667" y="297.5942">Delete user</text><polygon fill="#A80036" points="550,365.3809,529.1667,373.7142,550,382.0475,541.6667,373.7142" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="537.5" x2="827.0833" y1="373.7142" y2="373.7142"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="562.5" y="363.1378">Ok</text><polygon fill="#A80036" points="135.4167,430.9245,114.5833,439.2578,135.4167,447.5911,127.0833,439.2578" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="122.9167" x2="525" y1="439.2578" y2="439.2578"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="147.9167" y="428.6814">Ok</text></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="710.4167px" preserveAspectRatio="none" style="width:1095px;height:710px;background:#282C34;" version="1.1" viewBox="0 0 1095 710" width="1095.8333px" zoomAndPan="magnify"><defs/><g><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="116.6667" x2="116.6667" y1="182.2103" y2="519.3848"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="539.5833" x2="539.5833" y1="182.2103" y2="519.3848"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="850" x2="850" y1="182.2103" y2="519.3848"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="179.1667" x="20.8333" y="170.6736">Yoda admin</text><ellipse cx="116.6667" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M116.6667,43.75 L116.6667,100 M89.5833,60.4167 L143.75,60.4167 M116.6667,100 L89.5833,131.25 M116.6667,100 L143.75,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="179.1667" x="20.8333" y="550.4751">Yoda admin</text><ellipse cx="116.6667" cy="582.8451" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M116.6667,599.5117 L116.6667,655.7617 M89.5833,616.1784 L143.75,616.1784 M116.6667,655.7617 L89.5833,687.0117 M116.6667,655.7617 L143.75,687.0117 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="133.3333" x="472.9167" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="491.6667" y="154.007">iRODS</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="133.3333" x="472.9167" y="517.3014"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="491.6667" y="565.0584">iRODS</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="445.8333" x="627.0833" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="408.3333" x="645.8333" y="154.007">External user service &amp; DB</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="445.8333" x="627.0833" y="517.3014"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="408.3333" x="645.8333" y="565.0584">External user service &amp; DB</text><polygon fill="#61AFEF" points="514.5833,251.9206,535.4167,260.2539,514.5833,268.5872,522.9167,260.2539" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="116.6667" x2="527.0833" y1="260.2539" y2="260.2539"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="364.5833" x="135.4167" y="244.5506">Delete user from iRODS</text><polygon fill="#61AFEF" points="825,325.7975,845.8333,334.1309,825,342.4642,833.3333,334.1309" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="539.5833" x2="837.5" y1="334.1309" y2="334.1309"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="175" x="558.3333" y="318.4275">Delete user</text><polygon fill="#61AFEF" points="562.5,399.6745,541.6667,408.0078,562.5,416.3411,554.1667,408.0078" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="550" x2="847.9167" y1="408.0078" y2="408.0078"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="579.1667" y="392.3045">Ok</text><polygon fill="#61AFEF" points="139.5833,473.5514,118.75,481.8848,139.5833,490.2181,131.25,481.8848" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="127.0833" x2="537.5" y1="481.8848" y2="481.8848"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="156.25" y="466.1814">Ok</text><!--MD5=[5cfb9832b00cb9946bd6cef3b1972510]
+@startuml
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
+
+actor       "Yoda admin" as ya
+participant "iRODS" as irods
+participant "External user service & DB" as eus
+
+ya      -> irods  : Delete user from iRODS
+irods   -> eus    : Delete user
+irods   <- eus    : Ok
+ya      <- irods  : Ok
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.18+10-post-Debian-1deb11u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

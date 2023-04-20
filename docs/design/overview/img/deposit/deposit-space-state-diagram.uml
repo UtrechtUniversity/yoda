@@ -1,10 +1,5 @@
 @startuml
-
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
-skinparam padding 2
-skinparam shadowing false
-skinparam dpi 200
+!include ../../../../theme.puml
 
 state DepositSpace as "Deposit Space" {
   FOLDER : Unlocked

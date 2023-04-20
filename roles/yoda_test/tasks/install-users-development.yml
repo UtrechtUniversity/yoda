@@ -1,0 +1,36 @@
+---
+# copyright Utrecht University
+
+- name: Ensure test users exists
+  ansible.builtin.user:
+    name: '{{ item.name }}'
+    password: "{{ item.password | password_hash('sha512') }}"
+  with_items: '{{ test_users }}'
+
+
+- name: Ensure Yoda test users exist
+  become_user: '{{ irods_service_account }}'
+  become: true
+  irods_mkuser:
+    name: '{{ item.name }}'
+  with_items: '{{ test_users + oidc_test_users + eus_test_users }}'
+
+
+- name: Ensure Yoda test users have type
+  become_user: '{{ irods_service_account }}'
+  become: true
+  irods_moduser:
+    name: '{{ item.name }}'
+    option: 'type'
+    value: '{{ item.type }}'
+  with_items: '{{ test_users + oidc_test_users + eus_test_users }}'
+
+
+- name: Ensure Yoda test users have password
+  become_user: '{{ irods_service_account }}'
+  become: true
+  irods_moduser:
+    name: '{{ item.name }}'
+    option: 'password'
+    value: '{{ item.password }}'
+  with_items: '{{ test_users }}'

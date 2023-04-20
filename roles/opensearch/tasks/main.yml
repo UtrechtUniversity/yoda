@@ -6,7 +6,7 @@
     url: '{{ opensearch.url }}/{{ opensearch.filename }}'
     dest: '{{ dest_dir }}/{{ opensearch.filename }}'
     checksum: '{{ opensearch.checksum }}'
-    mode: 0644
+    mode: '0644'
 
 
 - name: Create OpenSearch user
@@ -27,14 +27,17 @@
       - 's/^opensearch-{{ opensearch.version }}/opensearch/'
 
 
-- name: Disable plugins
-  ansible.builtin.command: creates='{{ opensearch.plugins }}.disabled' mv '{{ opensearch.plugins }}' '{{ opensearch.plugins }}.disabled'
+- name: Disable OpenSearch plugins
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: mv '{{ opensearch.plugins }}' '{{ opensearch.plugins }}.disabled'
+  args:
+    creates: '{{ opensearch.plugins }}.disabled'
 
 
 - name: Create empty plugins directory
   ansible.builtin.file:
     path: '{{ opensearch.plugins }}'
-    mode: 0755
+    mode: '0755'
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
     state: directory
@@ -46,7 +49,7 @@
     dest: '{{ opensearch.config }}/opensearch.yml'
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
-    mode: 0600
+    mode: '0600'
     backup: true
 
 
@@ -56,12 +59,12 @@
     dest: '{{ opensearch.config }}/jvm.options'
     owner: '{{ opensearch.user }}'
     group: '{{ opensearch.user }}'
-    mode: 0600
+    mode: '0600'
     force: true
 
 
 - name: Set vm.max_map_count in sysctl.conf
-  sysctl:
+  ansible.posix.sysctl:
     name: vm.max_map_count
     value: '262144'
     state: present
@@ -71,7 +74,7 @@
   ansible.builtin.template:
     src: opensearch.service
     dest: '{{ systemd_dir }}/opensearch.service'
-    mode: 0644
+    mode: '0644'
 
 
 - name: Make sure OpenSearch is started
@@ -82,7 +85,7 @@
 
 
 - name: Enable port for indexing
-  firewalld:
+  ansible.posix.firewalld:
     port: 9200/tcp
     permanent: true
     state: enabled

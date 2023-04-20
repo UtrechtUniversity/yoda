@@ -16,6 +16,7 @@
 - name: Ensure additional rods admin iRODS users are present
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_mkuser:
     name: "{{ item }}"
     type: rodsadmin

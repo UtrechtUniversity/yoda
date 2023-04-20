@@ -1,11 +1,170 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1385.4167px" preserveAspectRatio="none" style="width:633px;height:1385px;" version="1.1" viewBox="0 0 633 1385" width="633.3333px" zoomAndPan="magnify"><defs/><g><rect fill="#FEFECE" height="1346.7936" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="595.8333" x="12.5" y="16.6667"/><rect fill="#FFFFFF" height="1268.75" rx="26.0417" ry="26.0417" style="stroke: #FFFFFF; stroke-width: 2.0833333333333335;" width="583.3333" x="18.75" y="88.4603"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="12.5" x2="608.3333" y1="82.2103" y2="82.2103"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="218.75" x="201.0417" y="60.257">Deposit Space</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="187.5" x="113.5417" y="273.877"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="113.5417" x2="301.0417" y1="339.4206" y2="339.4206"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="122.9167" x="145.8333" y="317.4672">FOLDER</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="137.5" x="128.125" y="383.0109">Unlocked</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="343.75" x="35.4167" y="528.0436"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="35.4167" x2="379.1667" y1="593.5872" y2="593.5872"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="177.0833" x="118.75" y="571.6339">SUBMITTED</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="293.75" x="50" y="637.1775">Submitted for vault</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="327.0833" x="43.75" y="782.2103"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="43.75" x2="370.8333" y1="847.7539" y2="847.7539"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="160.4167" x="127.0833" y="825.8006">ACCEPTED</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="277.0833" x="58.3333" y="891.3442">Accepted for vault</text><rect fill="#FEFECE" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #A80036; stroke-width: 3.125;" width="293.75" x="60.4167" y="1036.377"/><line style="stroke: #A80036; stroke-width: 3.125;" x1="60.4167" x2="354.1667" y1="1101.9206" y2="1101.9206"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="145.8333" x="134.375" y="1079.9672">SECURED</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="243.75" x="75" y="1145.5109">Secured in vault</text><ellipse cx="207.2917" cy="130.127" fill="#000000" rx="20.8333" ry="20.8333" style="stroke: none; stroke-width: 2.0833333333333335;"/><ellipse cx="207.2917" cy="1311.377" fill="none" rx="20.8333" ry="20.8333" style="stroke: #000000; stroke-width: 2.0833333333333335;"/><ellipse cx="208.3333" cy="1312.4186" fill="#000000" rx="12.5" ry="12.5" style="stroke: none; stroke-width: 2.0833333333333335;"/><!--link *start*DepositSpace to FOLDER--><path d="M207.2917,150.968 C207.2917,176.8738 207.2917,222.5482 207.2917,262.4522 " fill="none" id="*start*DepositSpace-FOLDER" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="207.2917,273.5328,215.625,254.7828,207.2917,263.1161,198.9583,254.7828,207.2917,273.5328" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="318.75" x="213.5417" y="223.7172">Create deposit folder</text><!--link FOLDER to SUBMITTED--><path d="M207.2917,405.6178 C207.2917,439.742 207.2917,481.552 207.2917,517.0763 " fill="none" id="FOLDER-SUBMITTED" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="207.2917,527.8838,215.625,509.1338,207.2917,517.4672,198.9583,509.1338,207.2917,527.8838" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="108.3333" x="213.5417" y="477.8839">Submit</text><!--link SUBMITTED to ACCEPTED--><path d="M207.2917,659.7845 C207.2917,693.9086 207.2917,735.7186 207.2917,771.243 " fill="none" id="SUBMITTED-ACCEPTED" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="207.2917,782.0505,215.625,763.3005,207.2917,771.6338,198.9583,763.3005,207.2917,782.0505" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="104.1667" x="213.5417" y="732.0506">Accept</text><!--link ACCEPTED to SECURED--><path d="M207.2917,913.9511 C207.2917,948.0753 207.2917,989.8853 207.2917,1025.4097 " fill="none" id="ACCEPTED-SECURED" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="207.2917,1036.2172,215.625,1017.4672,207.2917,1025.8005,198.9583,1017.4672,207.2917,1036.2172" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="106.25" x="213.5417" y="986.2172">Secure</text><!--link SECURED to *end*DepositSpace--><path d="M207.2917,1167.6751 C207.2917,1204.9426 207.2917,1249.9074 207.2917,1279.498 " fill="none" id="SECURED-*end*DepositSpace" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><polygon fill="#A80036" points="207.2917,1290.4151,215.625,1271.6651,207.2917,1279.9984,198.9583,1271.6651,207.2917,1290.4151" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="314.5833" x="213.5417" y="1240.3839">Delete deposit folder</text><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1385.4167px" preserveAspectRatio="none" style="width:633px;height:1385px;background:#282C34;" version="1.1" viewBox="0 0 633 1385" width="633.3333px" zoomAndPan="magnify"><defs/><g><rect fill="#424856" height="1346.7936" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="595.8333" x="12.5" y="16.6667"/><rect fill="#282C34" height="1268.75" rx="26.0417" ry="26.0417" style="stroke: #282C34; stroke-width: 2.0833333333333335;" width="583.3333" x="18.75" y="88.4603"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="12.5" x2="608.3333" y1="82.2103" y2="82.2103"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="218.75" x="201.0417" y="60.257">Deposit Space</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="187.5" x="113.5417" y="273.877"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="113.5417" x2="301.0417" y1="339.4206" y2="339.4206"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="122.9167" x="145.8333" y="317.4672">FOLDER</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="137.5" x="128.125" y="383.0109">Unlocked</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="343.75" x="35.4167" y="528.0436"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="35.4167" x2="379.1667" y1="593.5872" y2="593.5872"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="177.0833" x="118.75" y="571.6339">SUBMITTED</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="293.75" x="50" y="637.1775">Submitted for vault</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="327.0833" x="43.75" y="782.2103"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="43.75" x2="370.8333" y1="847.7539" y2="847.7539"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="160.4167" x="127.0833" y="825.8006">ACCEPTED</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="277.0833" x="58.3333" y="891.3442">Accepted for vault</text><rect fill="#424856" height="131.0872" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="293.75" x="60.4167" y="1036.377"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="60.4167" x2="354.1667" y1="1101.9206" y2="1101.9206"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="145.8333" x="134.375" y="1079.9672">SECURED</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="243.75" x="75" y="1145.5109">Secured in vault</text><ellipse cx="207.2917" cy="130.127" fill="#98C379" rx="20.8333" ry="20.8333" style="stroke: none; stroke-width: 2.0833333333333335;"/><ellipse cx="207.2917" cy="1311.377" fill="none" rx="20.8333" ry="20.8333" style="stroke: #E06C75; stroke-width: 2.0833333333333335;"/><ellipse cx="208.3333" cy="1312.4186" fill="#E06C75" rx="12.5" ry="12.5" style="stroke: none; stroke-width: 2.0833333333333335;"/><!--MD5=[5120d5ef8b0714d842b5d04e4267dad3]
+link *start*DepositSpace to FOLDER--><path d="M207.2917,151.1478 C207.2917,176.3561 207.2917,222.4395 207.2917,262.4395 " fill="none" id="*start*DepositSpace-&gt;FOLDER" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="207.2917,273.5436,215.625,254.7936,207.2917,263.127,198.9583,254.7936,207.2917,273.5436" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="318.75" x="213.5417" y="223.7172">Create deposit folder</text><!--MD5=[34d3feb19cc62faae90b53cedf37e28c]
+link FOLDER to SUBMITTED--><path d="M207.2917,405.3145 C207.2917,439.3978 207.2917,481.5645 207.2917,517.1478 " fill="none" id="FOLDER-&gt;SUBMITTED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="207.2917,527.9603,215.625,509.2103,207.2917,517.5436,198.9583,509.2103,207.2917,527.9603" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="108.3333" x="213.5417" y="477.8839">Submit</text><!--MD5=[8d816e6ee2b7e5101f8fa805c4f23d67]
+link SUBMITTED to ACCEPTED--><path d="M207.2917,659.4811 C207.2917,693.5645 207.2917,735.7311 207.2917,771.3145 " fill="none" id="SUBMITTED-&gt;ACCEPTED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="207.2917,782.127,215.625,763.377,207.2917,771.7103,198.9583,763.377,207.2917,782.127" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="104.1667" x="213.5417" y="732.0506">Accept</text><!--MD5=[560f6d3428542feeaac5a9e1e5b58dda]
+link ACCEPTED to SECURED--><path d="M207.2917,913.6478 C207.2917,947.7311 207.2917,989.8978 207.2917,1025.4811 " fill="none" id="ACCEPTED-&gt;SECURED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="207.2917,1036.2936,215.625,1017.5436,207.2917,1025.877,198.9583,1017.5436,207.2917,1036.2936" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="106.25" x="213.5417" y="986.2172">Secure</text><!--MD5=[1fb11d8314a33a4d8f6c20c03a692e7d]
+link SECURED to *end*DepositSpace--><path d="M207.2917,1167.8978 C207.2917,1205.2728 207.2917,1250.7311 207.2917,1279.8353 " fill="none" id="SECURED-&gt;*end*DepositSpace" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="207.2917,1290.502,215.625,1271.752,207.2917,1280.0853,198.9583,1271.752,207.2917,1290.502" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="314.5833" x="213.5417" y="1240.3839">Delete deposit folder</text><!--MD5=[0e96ec26c3c88bca97815154f11b44a2]
 @startuml
 
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
-skinparam padding 2
-skinparam shadowing false
-skinparam dpi 200
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
 
 state DepositSpace as "Deposit Space" {
   FOLDER : Unlocked
@@ -22,13 +181,12 @@ state DepositSpace as "Deposit Space" {
 
 @enduml
 
-PlantUML version 1.2018.13(Mon Nov 26 18:11:51 CET 2018)
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.11+9-post-Debian-1deb10u1
+Java Version: 11.0.18+10-post-Debian-1deb11u1
 Operating System: Linux
-OS Version: 5.9.0-0.bpo.5-amd64
 Default Encoding: UTF-8
 Language: en
 Country: US

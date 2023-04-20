@@ -1,7 +1,165 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="865px" preserveAspectRatio="none" style="width:438px;height:865px;background:#FFFFFF;" version="1.1" viewBox="0 0 438 865" width="438px" zoomAndPan="magnify"><defs/><g><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="48" x2="48" y1="88.4883" y2="779.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="152" x2="152" y1="88.4883" y2="779.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="320.5" x2="320.5" y1="88.4883" y2="779.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="7" y="83.5352">Researcher</text><ellipse cx="48" cy="15" fill="#FEFECE" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M48,23 L48,50 M35,31 L61,31 M48,50 L35,65 M48,50 L61,65 " fill="none" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="7" y="793.6133">Researcher</text><ellipse cx="48" cy="808.5664" fill="#FEFECE" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M48,816.5664 L48,843.5664 M35,824.5664 L61,824.5664 M48,843.5664 L35,858.5664 M48,843.5664 L61,858.5664 " fill="none" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="103" y="83.5352">Datamanager</text><ellipse cx="152" cy="15" fill="#FEFECE" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M152,23 L152,50 M139,31 L165,31 M152,50 L139,65 M152,50 L165,65 " fill="none" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="103" y="793.6133">Datamanager</text><ellipse cx="152" cy="808.5664" fill="#FEFECE" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M152,816.5664 L152,843.5664 M139,824.5664 L165,824.5664 M152,843.5664 L139,858.5664 M152,843.5664 L165,858.5664 " fill="none" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" height="34.4883" style="stroke:#A80036;stroke-width:1.5;" width="53" x="294.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35" x="303.5" y="75.5352">Yoda</text><rect fill="#FEFECE" height="34.4883" style="stroke:#A80036;stroke-width:1.5;" width="53" x="294.5" y="778.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35" x="303.5" y="800.6133">Yoda</text><rect fill="#EEEEEE" height="3" style="stroke:#EEEEEE;stroke-width:1.0;" width="431" x="0" y="121.1436"/><line style="stroke:#000000;stroke-width:1.0;" x1="0" x2="431" y1="121.1436" y2="121.1436"/><line style="stroke:#000000;stroke-width:1.0;" x1="0" x2="431" y1="124.1436" y2="124.1436"/><rect fill="#EEEEEE" height="27.3105" style="stroke:#000000;stroke-width:2.0;" width="129" x="151" y="108.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="107" x="159" y="127.0566">Accepted folder</text><polygon fill="#A80036" points="309,167.1094,319,171.1094,309,175.1094,313,171.1094" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="48" x2="315" y1="171.1094" y2="171.1094"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="57" y="164.3672">Submit for vault</text><path d="M273,184.1094 L273,213.1094 L369,213.1094 L369,194.1094 L359,184.1094 L273,184.1094 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><path d="M359,184.1094 L359,194.1094 L369,194.1094 L359,184.1094 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71" x="281" y="203.6777">SUBMITTED</text><polygon fill="#A80036" points="163,239.7305,153,243.7305,163,247.7305,159,243.7305" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="157" x2="320" y1="243.7305" y2="243.7305"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="141" x="171" y="236.9883">Submitted notification</text><polygon fill="#A80036" points="309,273.041,319,277.041,309,281.041,313,277.041" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="152" x2="315" y1="277.041" y2="277.041"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="100" x="161" y="270.2988">Accept for vault</text><polygon fill="#A80036" points="59,306.3516,49,310.3516,59,314.3516,55,310.3516" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="53" x2="320" y1="310.3516" y2="310.3516"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135" x="67" y="303.6094">Accepted notification</text><path d="M275,323.3516 L275,352.3516 L366,352.3516 L366,333.3516 L356,323.3516 L275,323.3516 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><path d="M356,323.3516 L356,333.3516 L366,333.3516 L356,323.3516 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="283" y="342.9199">ACCEPTED</text><line style="stroke:#A80036;stroke-width:1.0;" x1="321" x2="363" y1="382.9727" y2="382.9727"/><line style="stroke:#A80036;stroke-width:1.0;" x1="363" x2="363" y1="382.9727" y2="395.9727"/><line style="stroke:#A80036;stroke-width:1.0;" x1="322" x2="363" y1="395.9727" y2="395.9727"/><polygon fill="#A80036" points="332,391.9727,322,395.9727,332,399.9727,328,395.9727" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="92" x="330" y="376.2305">Secure in vault</text><path d="M280,408.9727 L280,437.9727 L362,437.9727 L362,418.9727 L352,408.9727 L280,408.9727 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><path d="M352,408.9727 L352,418.9727 L362,418.9727 L352,408.9727 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="57" x="288" y="428.541">SECURED</text><polygon fill="#A80036" points="59,464.5938,49,468.5938,59,472.5938,55,468.5938" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="53" x2="320" y1="468.5938" y2="468.5938"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="126" x="67" y="461.8516">Secured notification</text><polygon fill="#A80036" points="163,497.9043,153,501.9043,163,505.9043,159,501.9043" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="157" x2="320" y1="501.9043" y2="501.9043"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="126" x="171" y="495.1621">Secured notification</text><rect fill="#EEEEEE" height="3" style="stroke:#EEEEEE;stroke-width:1.0;" width="431" x="0" y="532.5596"/><line style="stroke:#000000;stroke-width:1.0;" x1="0" x2="431" y1="532.5596" y2="532.5596"/><line style="stroke:#000000;stroke-width:1.0;" x1="0" x2="431" y1="535.5596" y2="535.5596"/><rect fill="#EEEEEE" height="27.3105" style="stroke:#000000;stroke-width:2.0;" width="124" x="153.5" y="519.9043"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="102" x="161.5" y="538.4727">Rejected folder</text><polygon fill="#A80036" points="309,578.5254,319,582.5254,309,586.5254,313,582.5254" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="48" x2="315" y1="582.5254" y2="582.5254"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="57" y="575.7832">Submit for vault</text><path d="M273,595.5254 L273,624.5254 L369,624.5254 L369,605.5254 L359,595.5254 L273,595.5254 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><path d="M359,595.5254 L359,605.5254 L369,605.5254 L359,595.5254 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71" x="281" y="615.0938">SUBMITTED</text><polygon fill="#A80036" points="163,651.1465,153,655.1465,163,659.1465,159,655.1465" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="157" x2="320" y1="655.1465" y2="655.1465"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="141" x="171" y="648.4043">Submitted notification</text><polygon fill="#A80036" points="309,684.457,319,688.457,309,692.457,313,688.457" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="152" x2="315" y1="688.457" y2="688.457"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="95" x="161" y="681.7148">Reject for vault</text><polygon fill="#A80036" points="59,717.7676,49,721.7676,59,725.7676,55,721.7676" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="53" x2="320" y1="721.7676" y2="721.7676"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="67" y="715.0254">Rejected notification</text><path d="M278,734.7676 L278,763.7676 L363,763.7676 L363,744.7676 L353,734.7676 L278,734.7676 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><path d="M353,734.7676 L353,744.7676 L363,744.7676 L353,734.7676 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="286" y="754.3359">REJECTED</text><!--MD5=[7aaa78babe9b9293a2e0edfc7a549839]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1893.75px" preserveAspectRatio="none" style="width:1025px;height:1893px;background:#282C34;" version="1.1" viewBox="0 0 1025 1893" width="1025px" zoomAndPan="magnify"><defs/><g><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="112.5" x2="112.5" y1="182.2103" y2="1701.5788"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="345.8333" x2="345.8333" y1="182.2103" y2="1701.5788"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="738.5417" x2="738.5417" y1="182.2103" y2="1701.5788"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="172.9167" x="20.8333" y="170.6736">Researcher</text><ellipse cx="113.5417" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M113.5417,43.75 L113.5417,100 M86.4583,60.4167 L140.625,60.4167 M113.5417,100 L86.4583,131.25 M113.5417,100 L140.625,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="172.9167" x="20.8333" y="1732.6691">Researcher</text><ellipse cx="113.5417" cy="1765.0391" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M113.5417,1781.7057 L113.5417,1837.9557 M86.4583,1798.3724 L140.625,1798.3724 M113.5417,1837.9557 L86.4583,1869.2057 M113.5417,1837.9557 L140.625,1869.2057 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="210.4167" x="235.4167" y="170.6736">Datamanager</text><ellipse cx="346.875" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M346.875,43.75 L346.875,100 M319.7917,60.4167 L373.9583,60.4167 M346.875,100 L319.7917,131.25 M346.875,100 L373.9583,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="210.4167" x="235.4167" y="1732.6691">Datamanager</text><ellipse cx="346.875" cy="1765.0391" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M346.875,1781.7057 L346.875,1837.9557 M319.7917,1798.3724 L373.9583,1798.3724 M346.875,1837.9557 L319.7917,1869.2057 M346.875,1837.9557 L373.9583,1869.2057 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="112.5" x="682.2917" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="75" x="701.0417" y="154.007">Yoda</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="112.5" x="682.2917" y="1699.4954"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="75" x="701.0417" y="1747.2524">Yoda</text><rect fill="#424856" height="6.25" style="stroke: #424856; stroke-width: 2.0833333333333335;" width="994.7917" x="6.25" y="252.4821"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1001.0417" y1="252.4821" y2="252.4821"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1001.0417" y1="258.7321" y2="258.7321"/><rect fill="#424856" height="61.377" style="stroke: #ABB2BF; stroke-width: 4.166666666666667;" width="316.6667" x="345.3125" y="223.877"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="268.75" x="361.9792" y="265.3839">Accepted folder</text><polygon fill="#61AFEF" points="713.5417,354.9642,734.375,363.2975,713.5417,371.6309,721.875,363.2975" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="113.5417" x2="726.0417" y1="363.2975" y2="363.2975"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="243.75" x="132.2917" y="347.5942">Submit for vault</text><path d="M622.9167,390.3809 L622.9167,454.9642 L852.0833,454.9642 L852.0833,411.2142 L831.25,390.3809 L622.9167,390.3809 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M831.25,390.3809 L831.25,411.2142 L852.0833,411.2142 L831.25,390.3809 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="177.0833" x="639.5833" y="433.9712">SUBMITTED</text><polygon fill="#61AFEF" points="369.7917,515.2181,348.9583,523.5514,369.7917,531.8848,361.4583,523.5514" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="357.2917" x2="736.4583" y1="523.5514" y2="523.5514"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="333.3333" x="386.4583" y="507.8481">Submitted notification</text><polygon fill="#61AFEF" points="713.5417,589.0951,734.375,597.4284,713.5417,605.7617,721.875,597.4284" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="346.875" x2="726.0417" y1="597.4284" y2="597.4284"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="239.5833" x="365.625" y="581.7251">Accept for vault</text><polygon fill="#61AFEF" points="136.4583,662.972,115.625,671.3053,136.4583,679.6387,128.125,671.3053" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="123.9583" x2="736.4583" y1="671.3053" y2="671.3053"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="316.6667" x="153.125" y="655.602">Accepted notification</text><path d="M631.25,698.3887 L631.25,762.972 L843.75,762.972 L843.75,719.222 L822.9167,698.3887 L631.25,698.3887 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M822.9167,698.3887 L822.9167,719.222 L843.75,719.222 L822.9167,698.3887 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="160.4167" x="647.9167" y="741.979">ACCEPTED</text><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="738.5417" x2="826.0417" y1="831.5592" y2="831.5592"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="826.0417" x2="826.0417" y1="831.5592" y2="858.6426"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="740.625" x2="826.0417" y1="858.6426" y2="858.6426"/><polygon fill="#61AFEF" points="761.4583,850.3092,740.625,858.6426,761.4583,866.9759,753.125,858.6426" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="225" x="757.2917" y="815.8559">Secure in vault</text><path d="M639.5833,885.7259 L639.5833,950.3092 L837.5,950.3092 L837.5,906.5592 L816.6667,885.7259 L639.5833,885.7259 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M816.6667,885.7259 L816.6667,906.5592 L837.5,906.5592 L816.6667,885.7259 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="145.8333" x="656.25" y="929.3162">SECURED</text><polygon fill="#61AFEF" points="136.4583,1010.5632,115.625,1018.8965,136.4583,1027.2298,128.125,1018.8965" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="123.9583" x2="736.4583" y1="1018.8965" y2="1018.8965"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="300" x="153.125" y="1003.1932">Secured notification</text><polygon fill="#61AFEF" points="369.7917,1084.4401,348.9583,1092.7734,369.7917,1101.1068,361.4583,1092.7734" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="357.2917" x2="736.4583" y1="1092.7734" y2="1092.7734"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="300" x="386.4583" y="1077.0701">Secured notification</text><rect fill="#424856" height="6.25" style="stroke: #424856; stroke-width: 2.0833333333333335;" width="994.7917" x="6.25" y="1158.8786"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1001.0417" y1="1158.8786" y2="1158.8786"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1001.0417" y1="1165.1286" y2="1165.1286"/><rect fill="#424856" height="61.377" style="stroke: #ABB2BF; stroke-width: 4.166666666666667;" width="306.25" x="350.5208" y="1130.2734"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="258.3333" x="367.1875" y="1171.7804">Rejected folder</text><polygon fill="#61AFEF" points="713.5417,1261.3607,734.375,1269.694,713.5417,1278.0273,721.875,1269.694" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="113.5417" x2="726.0417" y1="1269.694" y2="1269.694"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="243.75" x="132.2917" y="1253.9907">Submit for vault</text><path d="M622.9167,1296.7773 L622.9167,1361.3607 L852.0833,1361.3607 L852.0833,1317.6107 L831.25,1296.7773 L622.9167,1296.7773 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M831.25,1296.7773 L831.25,1317.6107 L852.0833,1317.6107 L831.25,1296.7773 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="177.0833" x="639.5833" y="1340.3676">SUBMITTED</text><polygon fill="#61AFEF" points="369.7917,1421.6146,348.9583,1429.9479,369.7917,1438.2813,361.4583,1429.9479" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="357.2917" x2="736.4583" y1="1429.9479" y2="1429.9479"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="333.3333" x="386.4583" y="1414.2446">Submitted notification</text><polygon fill="#61AFEF" points="713.5417,1495.4915,734.375,1503.8249,713.5417,1512.1582,721.875,1503.8249" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="346.875" x2="726.0417" y1="1503.8249" y2="1503.8249"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="229.1667" x="365.625" y="1488.1215">Reject for vault</text><polygon fill="#61AFEF" points="136.4583,1569.3685,115.625,1577.7018,136.4583,1586.0352,128.125,1577.7018" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="123.9583" x2="736.4583" y1="1577.7018" y2="1577.7018"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="306.25" x="153.125" y="1561.9985">Rejected notification</text><path d="M639.5833,1604.7852 L639.5833,1669.3685 L837.5,1669.3685 L837.5,1625.6185 L816.6667,1604.7852 L639.5833,1604.7852 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M816.6667,1604.7852 L816.6667,1625.6185 L837.5,1625.6185 L816.6667,1604.7852 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="145.8333" x="656.25" y="1648.3754">REJECTED</text><!--MD5=[e1a6a16055d75066ad17de9e33ebfa32]
 @startuml
-skinparam padding 2
-skinparam shadowing false
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
 
 actor       Researcher  as researcher
 actor       Datamanager as datamanager
@@ -27,11 +185,13 @@ yoda        - -> researcher  : Rejected notification
 note over yoda              : REJECTED
 @enduml
 
-PlantUML version 1.2021.14(Fri Nov 12 17:46:50 CET 2021)
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.18+10-post-Debian-1deb11u1
+Operating System: Linux
 Default Encoding: UTF-8
-Language: nl
-Country: NL
+Language: en
+Country: US
 --></g></svg>

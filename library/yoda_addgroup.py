@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017-2018 Utrecht University
+# Copyright (c) 2017-2022 Utrecht University
 # GNU General Public License v3.0
 
 ANSIBLE_METADATA = {
@@ -36,6 +36,8 @@ def main():
             groupName=dict(default=None, required=True),
             category=dict(default=None, required=True),
             subcategory=dict(default=None, required=True),
+            schema_id=dict(default=None, required=True),
+            retention_period=dict(default=None, required=True),            
             description=dict(default=None, required=True),
             dataClassification=dict(default=None, required=True),
             state=dict(default="present")
@@ -45,6 +47,8 @@ def main():
     groupName = module.params["groupName"]
     category = module.params["category"]
     subcategory = module.params["subcategory"]
+    schema_id = module.params["schema_id"]
+    retention_period = module.params["retention_period"]
     description = module.params["description"]
     dataClassification = module.params["dataClassification"]
     state = module.params["state"]
@@ -63,7 +67,7 @@ def main():
 
     # Rule to add a group to Yoda.
     rule_file = io.StringIO(u'''a {{
-                       uuGroupAdd(*groupName, *category, *subcategory, *description, *dataClassification, *status, *message);
+                       uuGroupAdd(*groupName, *category, *subcategory, *schema_id, *retention_period, *description, *dataClassification, *status, *message);
                      }}
                 ''')
 
@@ -72,6 +76,8 @@ def main():
         '*groupName': '"{groupName}"'.format(**locals()),
         '*category': '"{category}"'.format(**locals()),
         '*subcategory': '"{subcategory}"'.format(**locals()),
+        '*schema_id': '"{schema_id}"'.format(**locals()),
+        '*retention_period': '"{retention_period}"'.format(**locals()),
         '*description': '"{description}"'.format(**locals()),
         '*dataClassification': '"{dataClassification}"'.format(**locals())
     }

@@ -5,12 +5,20 @@
   ansible.builtin.package:
     name: perl-DBD-Pg
     state: present
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Ensure postgresqltuner.pl dependencies are present
+  ansible.builtin.package:
+    name: libdbd-pg-perl
+    state: present
+  when: ansible_os_family == 'Debian'
 
 
 - name: Ensure postgresqltuner.pl is present
   ansible.builtin.copy:
     src: 'postgresqltuner.pl'
-    dest: '/var/lib/pgsql/postgresqltuner.pl'
+    dest: '{{ postgresqltuner_dir }}/postgresqltuner.pl'
     group: 'postgres'
     owner: 'postgres'
     mode: u=rwx,g=rx,o=rx

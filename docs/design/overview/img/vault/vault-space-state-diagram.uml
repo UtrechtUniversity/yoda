@@ -1,14 +1,8 @@
 @startuml
-
-skinparam defaultFontName CMU Serif
-skinparam defaultFontSize 15
-skinparam padding 2
-skinparam shadowing false
-skinparam dpi 200
+!include ../../../../theme.puml
 
 state VaultSpace as "Vault Space" {
   INCOMPLETE : Incomplete datapackage
-  COMPLETE : Legacy datapackage
   UNPUBLISHED : Unpublished datapackage
   SUBMITTED_FOR_PUBLICATION : Submitted for publication
   APPROVED_FOR_PUBLICATION : Publication pending
@@ -20,7 +14,6 @@ state VaultSpace as "Vault Space" {
   [*] --> UNPUBLISHED : Create datapackage
   [*] --> INCOMPLETE : Create datapackage
   UNPUBLISHED --> SUBMITTED_FOR_PUBLICATION : Submit for publication
-  COMPLETE --> SUBMITTED_FOR_PUBLICATION : Submit for publication
   SUBMITTED_FOR_PUBLICATION --> APPROVED_FOR_PUBLICATION : Approve for publication
   SUBMITTED_FOR_PUBLICATION --> UNPUBLISHED : Cancel publication
   APPROVED_FOR_PUBLICATION --> PUBLISHED

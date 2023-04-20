@@ -2,14 +2,16 @@
 # copyright Utrecht University
 
 - name: Ensure all resources exist
-  become_user: irods
+  become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_resource:
     name: "{{ item.name }}"
     resource_type: "{{ item.resource_type }}"
     host: "{{ item.host | default('EMPTY_RESC_HOST') }}"
     vault_path: "{{ item.vault_path | default('EMPTY_RESC_PATH') }}"
     children: "{{ item.children | default([]) }}"
+    context: "{{ item.context | default('') }}"
   with_items: "{{ irods_resources }}"
   when: not ansible_check_mode
 
@@ -17,6 +19,7 @@
 - name: Ensure iRODS default resource is set in irods_environment.json
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: 'irods_default_resource'
@@ -26,6 +29,7 @@
 - name: Ensure iRODS default resource is set in server_config.json
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_config:
     path: '/etc/irods/server_config.json'
     key: 'default_resource_name'

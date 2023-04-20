@@ -7,19 +7,20 @@
   ansible.builtin.copy:
     src: 'dms-archive-mock'
     dest: '/var/lib/irods/'
-    mode: 0644
+    mode: '0644'
   register: dms_mock_changes
 
 
-- name: Install DMS archive mock service
+- name: Install DMS archive mock service # noqa no-handler
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     cd /var/lib/irods/dms-archive-mock
     python3 -m virtualenv tape_archive_venv
     . tape_archive_venv/bin/activate
     python3 setup.py install
-  when: dms_mock_changes
+  when: dms_mock_changes.changed
 
 
 - name: Ensure DMS archive mock service is configured
@@ -32,6 +33,7 @@
 - name: Ensure mock tape archive resource exist
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa fqcn[action]
   irods_resource:
     name: "mockTapeArchive"
     resource_type: "unixfilesystem"
@@ -46,7 +48,7 @@
   ansible.builtin.copy:
     src: "tape_archive/scripts/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: not ansible_check_mode
   with_items:
     - dmattr

@@ -4,7 +4,7 @@
 - name: Ensure Yoda landingpages root is world readable
   ansible.builtin.file:
     path: '{{ landingpages_root }}'
-    mode: 0755
+    mode: '0755'
     owner: '{{ yoda_inbox_user }}'
     group: 'apache'
     state: directory
@@ -16,7 +16,7 @@
 
 
 - name: Add upload user pub key to authorized_keys of inbox
-  authorized_key:
+  ansible.posix.authorized_key:
     user: '{{ yoda_inbox_user }}'
     key: '{{ upload_pub_key | b64decode }}'
     state: present
@@ -26,29 +26,18 @@
   ansible.builtin.file:
     path: '{{ item }}'
     state: directory
-    mode: 0755
+    mode: '0755'
   with_items:
     - '{{ landingpages_root }}/static/css/'
     - '{{ landingpages_root }}/static/img/'
     - '{{ landingpages_root }}/static/js/'
 
 
-- name: Ensure Yoda (< v1.5) landingpage static files are absent
-  ansible.builtin.file:
-    path: '{{ item }}'
-    state: absent
-  with_items:
-    - '{{ landingpages_root }}/static/css/yoda-landingpage.css'
-    - '{{ landingpages_root }}/static/img/logo-uu.svg'
-    - '{{ landingpages_root }}/static/js/jquery-3.2.1.min.js'
-    - '{{ landingpages_root }}/static/js/main.js'
-
-
 - name: Ensure Yoda landingpage static files are present
   ansible.builtin.copy:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
-    mode: 0644
+    mode: '0644'
   diff: '{{ item.diff | default(True) }}'
   with_items:
     - src: 'index.html'

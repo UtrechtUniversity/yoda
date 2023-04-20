@@ -20,7 +20,7 @@
     url: '{{ davrods.url }}/{{ davrods.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
     checksum: '{{ davrods.checksum }}'
-    mode: 0644
+    mode: '0644'
   when: not davrods_repo.results and not repo_only
 
 
@@ -39,7 +39,7 @@
 
 
 - name: Allow Apache to execute davrods module
-  sefcontext:
+  community.general.sefcontext:
     target: /etc/httpd/modules/mod_davrods.so
     setype: httpd_sys_script_exec_t
     state: present
@@ -48,14 +48,15 @@
 
 
 - name: Ensure selinux context is enforced on davrods module
-  ansible.builtin.command: restorecon /etc/httpd/modules/{{ item.target }}
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: restorecon /etc/httpd/modules/{{ item.target }}
   when: filecontext is changed and ansible_selinux
   with_items:
     - {index: 0, target: 'mod_davrods.so'}
 
 
 - name: Allow DavRODS connections to iCAT server
-  seboolean:
+  ansible.posix.seboolean:
     name: httpd_can_network_connect
     state: true
     persistent: true
@@ -68,7 +69,7 @@
     dest: /etc/httpd/irods/irods_environment.json
     owner: apache
     group: apache
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
@@ -78,7 +79,7 @@
     dest: /etc/httpd/conf.d/davrods-vhost.conf
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
@@ -89,7 +90,7 @@
     dest: /etc/httpd/conf.d/davrods-anonymous-vhost.conf
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
@@ -97,7 +98,7 @@
   ansible.builtin.copy:
     content: ""
     dest: '{{ item }}'
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
     force: false
@@ -110,7 +111,7 @@
   ansible.builtin.copy:
     content: ""
     dest: '{{ item }}'
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
     force: false
@@ -120,7 +121,7 @@
 
 
 - name: Allow Apache to execute iRODS network plugins
-  sefcontext:
+  community.general.sefcontext:
     target: '{{ item }}'
     setype: httpd_sys_script_exec_t
     state: present
@@ -134,7 +135,8 @@
 
 
 - name: Ensure selinux context is enforced on iRODS network plugins
-  ansible.builtin.command: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
   when: filecontext.results[item.index] is changed and ansible_selinux
   with_items:
     - {index: 0, target: 'libtcp_client.so'}
@@ -144,7 +146,7 @@
 
 
 - name: Allow public to ports for davrods in firewall
-  firewalld:
+  ansible.posix.firewalld:
     port: '{{ yoda_davrods_port }}/tcp'
     permanent: true
     state: enabled
@@ -161,7 +163,7 @@
 
 
 - name: Allow public to ports for anonymous davrods in firewall
-  firewalld:
+  ansible.posix.firewalld:
     port: '{{ yoda_davrods_anonymous_port }}/tcp'
     permanent: true
     state: enabled
@@ -183,7 +185,7 @@
     dest: '/etc/httpd/irods/{{ item.dest }}'
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   with_items:
     - {src: head.html.j2, dest: 'head.html'}
     - {src: header.html.j2, dest: 'header.html'}

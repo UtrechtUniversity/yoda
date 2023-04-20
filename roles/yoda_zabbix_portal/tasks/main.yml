@@ -5,36 +5,28 @@
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-portal/yoda_portal.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_portal.userparams.conf
-    remote_src: true
-
-
-- name: Ensure right file ownership on yoda_portal.userparams.conf
-  ansible.builtin.file:
-    path: /etc/zabbix/zabbix_agentd.d/yoda_portal.userparams.conf
     owner: zabbix
     group: zabbix
-    mode: 0400
+    mode: '0400'
+    remote_src: true
 
 
 - name: Ensure yoda-zabbix-portal-sudoers is present
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-portal/yoda-zabbix-portal-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-portal-sudoers
-    remote_src: true
-
-
-- name: Ensure right file ownership on zabbix_agentd.userparams.conf
-  ansible.builtin.file:
-    path: /etc/sudoers.d/yoda-zabbix-portal-sudoers
     owner: root
     group: root
-    mode: 0440
+    mode: '0440'
+    remote_src: true
 
 
 - name: Find Zabbix script files
   ansible.builtin.find:
     path: /etc/zabbix/yoda-zabbix/zabbix-portal
-    pattern: "*.sh"
+    pattern:
+      - "*.sh"
+      - "read-apache-logs.py"
   register: portal_script_files
 
 
@@ -45,6 +37,6 @@
     remote_src: true
     owner: zabbix
     group: zabbix
-    mode: 0500
+    mode: '0500'
   with_items: "{{ portal_script_files.files }}"
   notify: Restart Zabbix agent

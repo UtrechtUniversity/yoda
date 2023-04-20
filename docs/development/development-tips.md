@@ -1,7 +1,7 @@
 ---
 parent: Development
 title: Development tips
-nav_order: 1
+nav_order: 4
 ---
 # Development tips
 
@@ -9,9 +9,9 @@ A collection of tips to make Yoda development easier.
 
 ## General
 
-Watch latest iRODS log without unnecessary noise:
+Watch latest iRODS log without unnecessary noise (as user irods):
 ```bash
-ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v "Agent process started for puser=rods"
+ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v "{rods#tempZone} Agent process started from 127.0.0.1"
 ```
 
 Watch flake8 check on Python code:
@@ -32,21 +32,6 @@ cd /var/www/yoda && find /etc/irods/yoda-ruleset . \( -path *.swp -o -path */nod
 Rebuild portal Javascript assets on source file change:
 ```bash
 ./node_modules/.bin/webpack -d -w
-```
-
-## Testing
-Mount vagrant guest folder on host (e.g. `/etc/irods/yoda-ruleset/` so you can run `pytest` on the local machine):
-```bash
-# Mount
-sshfs -o IdentityFile=/home/dev/.vagrant.d/insecure_private_key -p 2222 vagrant@127.0.0.1:/etc/irods/yoda-ruleset yoda-ruleset
-
-# Umount
-fusermount -u yoda-ruleset
-```
-
-Run pytest from mounted folder (see previous tip):
-```bash
-mkdir -p /tmp/cache && pytest -o cache_dir=/tmp/cache
 ```
 
 ## Mailpit

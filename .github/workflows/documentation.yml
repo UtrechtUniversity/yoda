@@ -9,11 +9,10 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     # Cache Ruby dependencies across runs, in order to speed up jobs
     - uses: actions/cache@v1
@@ -23,10 +22,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gem-
 
-    - name: Set up Ruby 2.6
-      uses: actions/setup-ruby@v1
+    - name: Set up Ruby 2.7
+      uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6.x
+        ruby-version: '2.7'
+        bundler-cache: true
 
     - name: Install Jekyll dependencies
       run: |

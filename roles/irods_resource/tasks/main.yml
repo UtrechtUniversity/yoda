@@ -15,14 +15,14 @@
   ansible.builtin.service:
     name: irods
     state: stopped
-  when: ( ( irods_service_type == "sysv" and
-              'irods.service' in services and
-              services['irods.service']['source'] == "systemd" and
-              services['irods.service']['state'] == "running" )
-       or ( irods_service_type == "systemd" and
-              'irods' in services and
-              services['irods']['source'] == "sysv"  and
-              services['irods']['state'] == "running" ) )
+  when: ((irods_service_type == "sysv" and
+          'irods.service' in services and
+          services['irods.service']['source'] == "systemd" and
+          services['irods.service']['state'] == "running")
+         or (irods_service_type == "systemd" and
+          'irods' in services and
+          services['irods']['source'] == "sysv" and
+          services['irods']['state'] == "running"))
 
 
 - name: Ensure systemd unit file present
@@ -31,7 +31,7 @@
     dest: /lib/systemd/system/irods.service
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Systemd daemon reload
   when: irods_service_type == "systemd"
 
@@ -52,14 +52,14 @@
   ansible.builtin.service:
     name: irods
     state: started
-  when: ( ( irods_service_type == "sysv" and
-              'irods.service' in services and
-              services['irods.service']['source'] == "systemd" and
-              services['irods.service']['state'] == "running" )
-       or ( irods_service_type == "systemd" and
-              'irods' in services and
-              services['irods']['source'] == "sysv"  and
-              services['irods']['state'] == "running" ) )
+  when: ((irods_service_type == "sysv" and
+          'irods.service' in services and
+          services['irods.service']['source'] == "systemd" and
+          services['irods.service']['state'] == "running")
+         or (irods_service_type == "systemd" and
+          'irods' in services and
+          services['irods']['source'] == "sysv" and
+          services['irods']['state'] == "running"))
 
 
 - name: Ensure iRODS 4.2.7 packages are absent
@@ -155,7 +155,7 @@
     state: absent
 
 
-- name: Make iRODS service account owner of iRODS directories
+- name: Ensure iRODS service account is owner of iRODS directories
   ansible.builtin.file:
     group: '{{ irods_service_account }}'
     owner: '{{ irods_service_account }}'
@@ -172,16 +172,7 @@
   ansible.builtin.template:
     src: core.re.j2
     dest: /etc/irods/core.re
-    mode: 0644
-
-
-- name: Ensure patched Python genquery module is present
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.copy:
-    src: "genquery.py"
-    dest: "/etc/irods/genquery.py"
-    mode: 0644
+    mode: '0644'
 
 
 - name: Ensure core Python rules are present
@@ -190,7 +181,7 @@
   ansible.builtin.copy:
     content: ""
     dest: "/etc/irods/core.py"
-    mode: 0644
+    mode: '0644'
     force: false
 
 
@@ -221,7 +212,8 @@
 - name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: 'ils /{{ irods_zone }}/home'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: 'ils /{{ irods_zone }}/home'
   register: ils
   until: ils is succeeded
   retries: 5
@@ -232,13 +224,14 @@
 - name: Ensure Python plugin is configured
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_python:
     config_path: '/etc/irods/server_config.json'
   when: not ansible_check_mode
 
 
 - name: Enable ports for resource in firewall
-  firewalld:
+  ansible.posix.firewalld:
     port: '{{ item }}'
     permanent: true
     state: enabled
@@ -273,7 +266,7 @@
 - name: Ensure iRODS has access to PKI files
   ansible.builtin.file:
     path: '{{ item }}'
-    mode: 0644
+    mode: '0644'
     group: 'root'
     owner: 'root'
     state: file
@@ -287,7 +280,7 @@
   ansible.builtin.file:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
-    mode: 0644
+    mode: '0644'
     group: 'root'
     owner: 'root'
     state: link
@@ -300,6 +293,7 @@
 - name: Ensure iRODS is configured to use SSL
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_config:
     path: '/var/lib/irods/.irods/irods_environment.json'
     key: '{{ item.key }}'
@@ -320,6 +314,7 @@
 - name: Ensure iRODS server keys are synced
   become_user: '{{ irods_service_account }}'
   become: true
+  # noqa fqcn[action]
   irods_config:
     path: '/etc/irods/server_config.json'
     key: '{{ item.key }}'

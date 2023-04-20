@@ -1,6 +1,12 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure Python 3 is installed
+  ansible.builtin.package:
+    name: python3
+    state: present
+
+
 - name: Remove old yoda-zabbix repo from /etc/irods
   ansible.builtin.file:
     path: /etc/irods/yoda-zabbix
@@ -36,6 +42,7 @@
     url: '{{ zabbix_agent.url }}/{{ zabbix_agent.filename }}'
     dest: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
     checksum: '{{ zabbix_agent.checksum }}'
+    mode: '0644'
   when: not zabbix_agent_repo.results and not repo_only
 
 
@@ -61,14 +68,14 @@
 
 
 - name: Allow Zabbix agent to start
-  selinux_permissive:
+  community.general.selinux_permissive:
     name: zabbix_agent_t
     permissive: true
   when: ansible_selinux.status == "enabled"
 
 
 - name: Allow Zabbix agent to sudo
-  seboolean:
+  ansible.posix.seboolean:
     name: zabbix_run_sudo
     state: true
     persistent: true
@@ -85,7 +92,7 @@
     path: /etc/zabbix/zabbix_agentd.psk
     owner: zabbix
     group: zabbix
-    mode: 0600
+    mode: '0600'
 
 
 - name: Configure Zabbix agent
@@ -94,7 +101,7 @@
     dest: /etc/zabbix/zabbix_agentd.conf
     owner: zabbix
     group: zabbix
-    mode: 0600
+    mode: '0600'
   notify: Restart Zabbix agent
 
 
@@ -109,30 +116,20 @@
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda_system.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
-    remote_src: true
-
-
-- name: Ensure right file ownership on yoda_system.userparams.conf
-  ansible.builtin.file:
-    path: /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
     owner: zabbix
     group: zabbix
-    mode: 0400
+    mode: '0400'
+    remote_src: true
 
 
 - name: Ensure yoda-zabbix-system-sudoers is present
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda-zabbix-system-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-system-sudoers
-    remote_src: true
-
-
-- name: Ensure right file ownership on yoda-zabbix-system-sudoers
-  ansible.builtin.file:
-    path: /etc/sudoers.d/yoda-zabbix-system-sudoers
     owner: root
     group: root
-    mode: 0440
+    mode: '0440'
+    remote_src: true
 
 
 - name: Find Zabbix script files
@@ -149,6 +146,6 @@
     remote_src: true
     owner: zabbix
     group: zabbix
-    mode: 0500
+    mode: '0500'
   with_items: "{{ system_script_files.files }}"
   notify: Restart Zabbix agent

@@ -1,0 +1,20 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Ansible dependencies are installed
+  ansible.builtin.package:
+    name:
+      - policycoreutils-python-utils
+    state: present
+
+
+- name: Ensure basics (vim, bind-utils, etc.) are installed
+  ansible.builtin.package:
+    name:
+      - bind9-utils
+      - vim
+      - htop
+      - git
+      - tmux
+      - rsync
+    state: present

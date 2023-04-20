@@ -5,30 +5,20 @@
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda_irodscommon.userparams.conf
     dest: /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
-    remote_src: true
-
-
-- name: Ensure right file ownership on yoda_irodscommon.userparams.conf
-  ansible.builtin.file:
-    path: /etc/zabbix/zabbix_agentd.d/yoda_irodscommon.userparams.conf
     owner: zabbix
     group: zabbix
-    mode: 0400
+    mode: '0400'
+    remote_src: true
 
 
 - name: Ensure yoda-zabbix-irodscommon.sudoers is present
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda-zabbix-irodscommon-sudoers
     dest: /etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
-    remote_src: true
-
-
-- name: Ensure right file ownership on yoda-zabbix-irodscommon-sudoers
-  ansible.builtin.file:
-    path: /etc/sudoers.d/yoda-zabbix-irodscommon-sudoers
     owner: root
     group: root
-    mode: 0440
+    mode: '0440'
+    remote_src: true
 
 
 - name: Find Yoda Zabbix scripts
@@ -45,6 +35,25 @@
     remote_src: true
     owner: zabbix
     group: zabbix
-    mode: 0500
+    mode: '0500'
   with_items: "{{ zabbix_irodscommon_scripts.files }}"
   notify: Restart Zabbix agent
+
+
+- name: Create directory for irods scripts if needed
+  ansible.builtin.file:
+    path: /var/lib/irods/bin
+    mode: '0770'
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    state: directory
+
+
+- name: Copy irods log read script
+  ansible.builtin.copy:
+    src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/read-irods-logs.py
+    dest: /var/lib/irods/bin
+    mode: '0770'
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    remote_src: true

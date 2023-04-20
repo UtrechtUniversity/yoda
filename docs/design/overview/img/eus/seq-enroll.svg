@@ -1,1 +1,196 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="1293.75px" style="width:1679px;height:1293px;" version="1.1" viewBox="0 0 1679 1293" width="1679.1667px"><defs/><g><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="143.75" x2="143.75" y1="173.877" y2="1133.1543"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="467.7083" x2="467.7083" y1="173.877" y2="1133.1543"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="802.0833" x2="802.0833" y1="173.877" y2="1133.1543"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="1104.1667" x2="1104.1667" y1="173.877" y2="1133.1543"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="1581.25" x2="1581.25" y1="173.877" y2="1133.1543"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="241.6667" x="16.6667" y="166.507">Group manager</text><ellipse cx="143.75" cy="27.0833" fill="#FEFECE" rx="16.6667" ry="16.6667" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><path d="M143.75,43.75 L143.75,100 M116.6667,60.4167 L170.8333,60.4167 M143.75,100 L116.6667,131.25 M143.75,100 L170.8333,131.25 " fill="#FEFECE" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="241.6667" x="16.6667" y="1160.0779">Group manager</text><ellipse cx="143.75" cy="1188.2813" fill="#FEFECE" rx="16.6667" ry="16.6667" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><path d="M143.75,1204.9479 L143.75,1261.1979 M116.6667,1221.6146 L170.8333,1221.6146 M143.75,1261.1979 L116.6667,1292.4479 M143.75,1261.1979 L170.8333,1292.4479 " fill="#FEFECE" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="202.0833" x="367.7083" y="106.25"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="172.9167" x="382.2917" y="149.8403">Yoda portal</text><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="202.0833" x="367.7083" y="1131.071"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="172.9167" x="382.2917" y="1174.6613">Yoda portal</text><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="125" x="739.5833" y="106.25"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="754.1667" y="149.8403">iRODS</text><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="125" x="739.5833" y="1131.071"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="754.1667" y="1174.6613">iRODS</text><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="437.5" x="885.4167" y="106.25"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="408.3333" x="900" y="149.8403">External user service &amp; DB</text><rect fill="#FEFECE" height="65.5436" style="stroke: #A80036; stroke-width: 3.125;" width="437.5" x="885.4167" y="1131.071"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="408.3333" x="900" y="1174.6613">External user service &amp; DB</text><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="204.1667" x="1472.9167" y="166.507">External user</text><ellipse cx="1581.25" cy="27.0833" fill="#FEFECE" rx="16.6667" ry="16.6667" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><path d="M1581.25,43.75 L1581.25,100 M1554.1667,60.4167 L1608.3333,60.4167 M1581.25,100 L1554.1667,131.25 M1581.25,100 L1608.3333,131.25 " fill="#FEFECE" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="204.1667" x="1472.9167" y="1160.0779">External user</text><ellipse cx="1581.25" cy="1188.2813" fill="#FEFECE" rx="16.6667" ry="16.6667" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><path d="M1581.25,1204.9479 L1581.25,1261.1979 M1554.1667,1221.6146 L1608.3333,1221.6146 M1581.25,1261.1979 L1554.1667,1292.4479 M1581.25,1261.1979 L1608.3333,1292.4479 " fill="#FEFECE" style="stroke: #A80036; stroke-width: 4.166666666666667;"/><polygon fill="#A80036" points="443.75,234.2936,464.5833,242.627,443.75,250.9603,452.0833,242.627" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="143.75" x2="456.25" y1="242.627" y2="242.627"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="275" x="158.3333" y="232.0506">Add user to group</text><polygon fill="#A80036" points="1079.1667,299.8372,1100,308.1706,1079.1667,316.5039,1087.5,308.1706" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="468.75" x2="1091.6667" y1="308.1706" y2="308.1706"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="179.1667" x="483.3333" y="297.5942">Create user</text><polygon fill="#A80036" points="1556.25,365.3809,1577.0833,373.7142,1556.25,382.0475,1564.5833,373.7142" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="1104.1667" x2="1568.75" y1="373.7142" y2="373.7142"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="427.0833" x="1118.75" y="363.1378">Invite with hash URL by mail</text><polygon fill="#A80036" points="166.6667,430.9245,145.8333,439.2578,166.6667,447.5911,158.3333,439.2578" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="154.1667" x2="1102.0833" y1="439.2578" y2="439.2578"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="460.4167" x="179.1667" y="428.6814">Confirm invitation sent by mail</text><polygon fill="#A80036" points="825,496.4681,804.1667,504.8014,825,513.1348,816.6667,504.8014" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="812.5" x2="1102.0833" y1="504.8014" y2="504.8014"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="837.5" y="494.2251">Ok</text><polygon fill="#A80036" points="491.6667,562.0117,470.8333,570.3451,491.6667,578.6784,483.3333,570.3451" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="479.1667" x2="800" y1="570.3451" y2="570.3451"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="504.1667" y="559.7687">Ok</text><polygon fill="#A80036" points="777.0833,627.5553,797.9167,635.8887,777.0833,644.222,785.4167,635.8887" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="468.75" x2="789.5833" y1="635.8887" y2="635.8887"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="283.3333" x="483.3333" y="625.3123">Add user to iRODS</text><polygon fill="#A80036" points="491.6667,693.099,470.8333,701.4323,491.6667,709.7656,483.3333,701.4323" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="479.1667" x2="800" y1="701.4323" y2="701.4323"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="504.1667" y="690.8559">Ok</text><polygon fill="#A80036" points="166.6667,758.6426,145.8333,766.9759,166.6667,775.3092,158.3333,766.9759" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="154.1667" x2="466.6667" y1="766.9759" y2="766.9759"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="179.1667" y="756.3995">Ok</text><polygon fill="#A80036" points="1127.0833,824.1862,1106.25,832.5195,1127.0833,840.8529,1118.75,832.5195" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="1114.5833" x2="1579.1667" y1="832.5195" y2="832.5195"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="279.1667" x="1139.5833" y="821.9432">Visit invitation URL</text><polygon fill="#A80036" points="1556.25,889.7298,1577.0833,898.0632,1556.25,906.3965,1564.5833,898.0632" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="1104.1667" x2="1568.75" y1="898.0632" y2="898.0632"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="283.3333" x="1118.75" y="887.4868">Request password</text><polygon fill="#A80036" points="1127.0833,955.2734,1106.25,963.6068,1127.0833,971.9401,1118.75,963.6068" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="1114.5833" x2="1579.1667" y1="963.6068" y2="963.6068"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="268.75" x="1139.5833" y="953.0304">Provide password</text><polygon fill="#A80036" points="1556.25,1020.8171,1577.0833,1029.1504,1556.25,1037.4837,1564.5833,1029.1504" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="1104.1667" x2="1568.75" y1="1029.1504" y2="1029.1504"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="1118.75" y="1018.574">Ok</text><polygon fill="#A80036" points="166.6667,1086.3607,145.8333,1094.694,166.6667,1103.0273,158.3333,1094.694" style="stroke: #A80036; stroke-width: 2.0833333333333335;"/><line style="stroke: #A80036; stroke-width: 2.0833333333333335;" x1="154.1667" x2="1102.0833" y1="1094.694" y2="1094.694"/><text fill="#000000" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="447.9167" x="179.1667" y="1084.1176">Confirm user creation by mail</text></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1450px" preserveAspectRatio="none" style="width:1739px;height:1450px;background:#282C34;" version="1.1" viewBox="0 0 1739 1450" width="1739.5833px" zoomAndPan="magnify"><defs/><g><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="147.9167" x2="147.9167" y1="182.2103" y2="1258.1543"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="480.2083" x2="480.2083" y1="182.2103" y2="1258.1543"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="822.9167" x2="822.9167" y1="182.2103" y2="1258.1543"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="1133.3333" x2="1133.3333" y1="182.2103" y2="1258.1543"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="1618.75" x2="1618.75" y1="182.2103" y2="1258.1543"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="241.6667" x="20.8333" y="170.6736">Group manager</text><ellipse cx="147.9167" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M147.9167,43.75 L147.9167,100 M120.8333,60.4167 L175,60.4167 M147.9167,100 L120.8333,131.25 M147.9167,100 L175,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="241.6667" x="20.8333" y="1289.2446">Group manager</text><ellipse cx="147.9167" cy="1321.6146" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M147.9167,1338.2813 L147.9167,1394.5313 M120.8333,1354.9479 L175,1354.9479 M147.9167,1394.5313 L120.8333,1425.7813 M147.9167,1394.5313 L175,1425.7813 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="210.4167" x="376.0417" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="172.9167" x="394.7917" y="154.007">Yoda portal</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="210.4167" x="376.0417" y="1256.071"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="172.9167" x="394.7917" y="1303.8279">Yoda portal</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="133.3333" x="756.25" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="775" y="154.007">iRODS</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="133.3333" x="756.25" y="1256.071"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="95.8333" x="775" y="1303.8279">iRODS</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="445.8333" x="910.4167" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="408.3333" x="929.1667" y="154.007">External user service &amp; DB</text><rect fill="#424856" height="73.877" style="stroke: #61AFEF; stroke-width: 3.125;" width="445.8333" x="910.4167" y="1256.071"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="408.3333" x="929.1667" y="1303.8279">External user service &amp; DB</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="204.1667" x="1510.4167" y="170.6736">External user</text><ellipse cx="1618.75" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M1618.75,43.75 L1618.75,100 M1591.6667,60.4167 L1645.8333,60.4167 M1618.75,100 L1591.6667,131.25 M1618.75,100 L1645.8333,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="204.1667" x="1510.4167" y="1289.2446">External user</text><ellipse cx="1618.75" cy="1321.6146" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M1618.75,1338.2813 L1618.75,1394.5313 M1591.6667,1354.9479 L1645.8333,1354.9479 M1618.75,1394.5313 L1591.6667,1425.7813 M1618.75,1394.5313 L1645.8333,1425.7813 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><polygon fill="#61AFEF" points="456.25,251.9206,477.0833,260.2539,456.25,268.5872,464.5833,260.2539" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="147.9167" x2="468.75" y1="260.2539" y2="260.2539"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="275" x="166.6667" y="244.5506">Add user to group</text><polygon fill="#61AFEF" points="1108.3333,325.7975,1129.1667,334.1309,1108.3333,342.4642,1116.6667,334.1309" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="481.25" x2="1120.8333" y1="334.1309" y2="334.1309"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="179.1667" x="500" y="318.4275">Create user</text><polygon fill="#61AFEF" points="1593.75,399.6745,1614.5833,408.0078,1593.75,416.3411,1602.0833,408.0078" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1133.3333" x2="1606.25" y1="408.0078" y2="408.0078"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="427.0833" x="1152.0833" y="392.3045">Invite with hash URL by mail</text><polygon fill="#61AFEF" points="170.8333,473.5514,150,481.8848,170.8333,490.2181,162.5,481.8848" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="158.3333" x2="1131.25" y1="481.8848" y2="481.8848"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="460.4167" x="187.5" y="466.1814">Confirm invitation sent by mail</text><polygon fill="#61AFEF" points="845.8333,547.4284,825,555.7617,845.8333,564.0951,837.5,555.7617" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="833.3333" x2="1131.25" y1="555.7617" y2="555.7617"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="862.5" y="540.0584">Ok</text><polygon fill="#61AFEF" points="504.1667,621.3053,483.3333,629.6387,504.1667,637.972,495.8333,629.6387" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="491.6667" x2="820.8333" y1="629.6387" y2="629.6387"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="520.8333" y="613.9353">Ok</text><polygon fill="#61AFEF" points="797.9167,695.1823,818.75,703.5156,797.9167,711.849,806.25,703.5156" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="481.25" x2="810.4167" y1="703.5156" y2="703.5156"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="283.3333" x="500" y="687.8123">Add user to iRODS</text><polygon fill="#61AFEF" points="504.1667,769.0592,483.3333,777.3926,504.1667,785.7259,495.8333,777.3926" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="491.6667" x2="820.8333" y1="777.3926" y2="777.3926"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="520.8333" y="761.6892">Ok</text><polygon fill="#61AFEF" points="170.8333,842.9362,150,851.2695,170.8333,859.6029,162.5,851.2695" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="158.3333" x2="479.1667" y1="851.2695" y2="851.2695"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="187.5" y="835.5662">Ok</text><polygon fill="#61AFEF" points="1156.25,916.8132,1135.4167,925.1465,1156.25,933.4798,1147.9167,925.1465" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1143.75" x2="1616.6667" y1="925.1465" y2="925.1465"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="279.1667" x="1172.9167" y="909.4432">Visit invitation URL</text><polygon fill="#61AFEF" points="1593.75,990.6901,1614.5833,999.0234,1593.75,1007.3568,1602.0833,999.0234" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1133.3333" x2="1606.25" y1="999.0234" y2="999.0234"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="283.3333" x="1152.0833" y="983.3201">Request password</text><polygon fill="#61AFEF" points="1156.25,1064.5671,1135.4167,1072.9004,1156.25,1081.2337,1147.9167,1072.9004" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1143.75" x2="1616.6667" y1="1072.9004" y2="1072.9004"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="268.75" x="1172.9167" y="1057.1971">Provide password</text><polygon fill="#61AFEF" points="1593.75,1138.444,1614.5833,1146.7773,1593.75,1155.1107,1602.0833,1146.7773" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="1133.3333" x2="1606.25" y1="1146.7773" y2="1146.7773"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="41.6667" x="1152.0833" y="1131.074">Ok</text><polygon fill="#61AFEF" points="170.8333,1212.321,150,1220.6543,170.8333,1228.9876,162.5,1220.6543" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="158.3333" x2="1131.25" y1="1220.6543" y2="1220.6543"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="447.9167" x="187.5" y="1204.951">Confirm user creation by mail</text><!--MD5=[25dc44712edc1c913e0a7e8668c1d04d]
+@startuml
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
+
+actor       "Group manager" as gm
+participant "Yoda portal" as portal
+participant "iRODS" as irods
+participant "External user service & DB" as eus
+actor       "External user" as user
+
+gm      -> portal : Add user to group
+portal  -> eus    : Create user
+eus     -> user   : Invite with hash URL by mail
+gm      <- eus    : Confirm invitation sent by mail
+irods  <- - eus    : Ok
+portal <- - irods  : Ok
+portal  -> irods  : Add user to iRODS
+portal <- - irods  : Ok
+gm     <- - portal : Ok
+eus     <- user   : Visit invitation URL
+eus     -> user   : Request password
+eus     <- user   : Provide password
+eus    - -> user   : Ok
+gm      <- eus    : Confirm user creation by mail
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.18+10-post-Debian-1deb11u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

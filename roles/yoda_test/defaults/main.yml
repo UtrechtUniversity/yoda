@@ -9,53 +9,35 @@ irods_default_resc: irodsResc
 # Test configuration.
 test_password: test
 
-# Following users are created by Ansible as iRODS and UNIX users.
+# Following users are created as iRODS and UNIX users.
 test_users:
-  - name: researcher
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: viewer
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: groupmanager
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: datamanager
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: functionaladmingroup
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: functionaladmincategory
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: functionaladminpriv
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: technicaladmin
-    password: '{{ test_password }}'
-    type: rodsadmin
-  - name: projectmanager
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: dacmember
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: principalinvestigator
-    password: '{{ test_password }}'
-    type: rodsuser
-  - name: facultydean
-    password: '{{ test_password }}'
-    type: rodsuser
-
-# Following users are created as iRODS users only.
-oidc_test_users:
-  - name: researcher@yoda.test
-  - name: datamanager@yoda.test
+  - {name: researcher,              password: '{{ test_password }}', type: rodsuser}
+  - {name: viewer,                  password: '{{ test_password }}', type: rodsuser}
+  - {name: groupmanager,            password: '{{ test_password }}', type: rodsuser}
+  - {name: datamanager,             password: '{{ test_password }}', type: rodsuser}
+  - {name: functionaladmingroup,    password: '{{ test_password }}', type: rodsuser}
+  - {name: functionaladmincategory, password: '{{ test_password }}', type: rodsuser}
+  - {name: functionaladminpriv,     password: '{{ test_password }}', type: rodsuser}
+  - {name: technicaladmin,          password: '{{ test_password }}', type: rodsadmin}
+  - {name: projectmanager,          password: '{{ test_password }}', type: rodsuser}
+  - {name: dacmember,               password: '{{ test_password }}', type: rodsuser}
 
 # Following users are created as iRODS users only.
 eus_test_users:
-  - name: alice@otherdomain.com
+  - {name: researcher@yoda.test,              password: '{{ test_password }}', type: rodsuser,  id: 9000}
+  - {name: viewer@yoda.test,                  password: '{{ test_password }}', type: rodsuser,  id: 9001}
+  - {name: groupmanager@yoda.test,            password: '{{ test_password }}', type: rodsuser,  id: 9002}
+  - {name: datamanager@yoda.test,             password: '{{ test_password }}', type: rodsuser,  id: 9003}
+  - {name: functionaladmingroup@yoda.test,    password: '{{ test_password }}', type: rodsuser,  id: 9004}
+  - {name: functionaladmincategory@yoda.test, password: '{{ test_password }}', type: rodsuser,  id: 9005}
+  - {name: functionaladminpriv@yoda.test,     password: '{{ test_password }}', type: rodsuser,  id: 9006}
+  - {name: technicaladmin@yoda.test,          password: '{{ test_password }}', type: rodsadmin, id: 9007}
+  - {name: projectmanager@yoda.test,          password: '{{ test_password }}', type: rodsuser,  id: 9008}
+  - {name: dacmember@yoda.test,               password: '{{ test_password }}', type: rodsuser,  id: 9009}
+
+# Following users are created as iRODS users only.
+oidc_test_users:
+  - {name: alice@yoda.dev, password: '{{ test_password }}', type: rodsuser}
 
 # Following users are created in the regressiontest and need to be removed only.
 created_by_ta_users:
@@ -63,505 +45,261 @@ created_by_ta_users:
   - name: uidemote
 
 test_groups:
-  - groupName: research-default-0
-    category: default-0
-    subcategory: default-0
-    dataClassification: unspecified
-  - groupName: datamanager-default-0
-    category: default-0
-    subcategory: default-0
-    dataClassification:
+  - {groupName: datamanager-test-automation, category: test-automation, subcategory: test-automation, dataClassification: ""}
 
-  - groupName: research-default-1
-    category: default-1
-    subcategory: default-1
-    dataClassification: unspecified
-  - groupName: datamanager-default-1
-    category: default-1
-    subcategory: default-1
-    dataClassification:
+  - {groupName: research-initial,   category: test-automation, subcategory: initial, dataClassification: unspecified}
+  - {groupName: research-initial1,  category: test-automation, subcategory: initial, dataClassification: unspecified}
+  - {groupName: research-revisions, category: test-automation, subcategory: initial, dataClassification: unspecified}
 
-  - groupName: research-default-2
-    category: default-2
-    subcategory: default-2
-    dataClassification: unspecified
-  - groupName: datamanager-default-2
-    category: default-2
-    subcategory: default-2
-    dataClassification:
+  - {groupName: research-core-0,       category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: core-0}
+  - {groupName: research-core-1,       category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: core-1}
+  - {groupName: research-core-2,       category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: core-2}
+  - {groupName: research-dag-0,        category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: dag-0}
+  - {groupName: research-default-0,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: default-0}
+  - {groupName: research-default-1,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: default-1}
+  - {groupName: research-default-2,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: default-2}
+  - {groupName: research-default-3,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: default-3}
+  - {groupName: research-epos-0,       category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: epos-0}
+  - {groupName: research-hptlab-0,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: hptlab-0}
+  - {groupName: research-hptlab-1,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: hptlab-1}
+  - {groupName: research-teclab-0,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: teclab-0}
+  - {groupName: research-teclab-1,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: teclab-1}
+  - {groupName: research-vocabulary-0, category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: vocabulary-0}
+  - {groupName: research-vollmer-0,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: vollmer-0}
 
-  - groupName: research-hptlab-0
-    category: hptlab-0
-    subcategory: hptlab-0
-    dataClassification: unspecified
-  - groupName: datamanager-hptlab-0
-    category: hptlab-0
-    subcategory: hptlab-0
-    dataClassification:
+  - {groupName: deposit-pilot, category: test-automation, subcategory: data-archive-geo, dataClassification: unspecified, schema_id: dag-0}
 
-  - groupName: research-hptlab-1
-    category: hptlab-1
-    subcategory: hptlab-1
-    dataClassification: unspecified
-  - groupName: datamanager-hptlab-1
-    category: hptlab-1
-    subcategory: hptlab-1
-    dataClassification:
+  - {groupName: grp-intake-initial,      category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
+  - {groupName: grp-datamanager-initial, category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
+  - {groupName: grp-vault-initial,       category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
+  - {groupName: grp-intake-test,         category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
+  - {groupName: grp-datamanager-test,    category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
+  - {groupName: grp-vault-test,          category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
+  - {groupName: intake-test2,            category: intake-intake2,subcategory: intake-intake2,dataClassification: unspecified}
+  - {groupName: grp-datamanager-test2,   category: intake-intake2,subcategory: intake-intake2,dataClassification: unspecified}
+  - {groupName: grp-vault-test2,         category: intake-intake2,subcategory: intake-intake2,dataClassification: unspecified}
 
-  - groupName: research-teclab-0
-    category: teclab-0
-    subcategory: teclab-0
-    dataClassification: unspecified
-  - groupName: datamanager-teclab-0
-    category: teclab-0
-    subcategory: teclab-0
-    dataClassification:
+  - {groupName: datarequests-research-project-managers,      category: datarequests, subcategory: research, dataClassification: unspecified}
+  - {groupName: datarequests-research-data-access-committee, category: datarequests, subcategory: research, dataClassification: unspecified}
+  - {groupName: datarequests-research-datamanagers,          category: datarequests, subcategory: research, dataClassification: unspecified}
 
-  - groupName: research-teclab-1
-    category: teclab-1
-    subcategory: teclab-1
-    dataClassification: unspecified
-  - groupName: datamanager-teclab-1
-    category: teclab-1
-    subcategory: teclab-1
-    dataClassification:
+test_group_users:
+  - {groupName: priv-category-add, user: functionaladminpriv,               role: manager}
+  - {groupName: priv-category-add, user: functionaladmincategory,           role: manager}
 
-  - groupName: research-core-0
-    category: core-0
-    subcategory: core-0
-    dataClassification: unspecified
-  - groupName: datamanager-core-0
-    category: core-0
-    subcategory: core-0
-    dataClassification:
+  - {groupName: priv-group-add, user: functionaladminpriv,            role: manager}
+  - {groupName: priv-group-add, user: functionaladmingroup,           role: manager}
 
-  - groupName: research-core-1
-    category: core-1
-    subcategory: core-1
-    dataClassification: unspecified
-  - groupName: datamanager-core-1
-    category: core-1
-    subcategory: core-1
-    dataClassification:
+  - {groupName: research-initial, user: viewer,                        role: reader}
+  - {groupName: research-initial, user: researcher,                    role: normal}
+  - {groupName: research-initial, user: groupmanager,                  role: manager}
+  - {groupName: research-initial, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-dag-0
-    category: dag-0
-    subcategory: dag-0
-    dataClassification: unspecified
-  - groupName: datamanager-dag-0
-    category: dag-0
-    subcategory: dag-0
-    dataClassification:
-  - groupName: deposit-pilot
-    category: dag-0
-    subcategory: dag-0
-    dataClassification: unspecified
+  - {groupName: research-initial1, user: viewer,                        role: reader}
+  - {groupName: research-initial1, user: researcher,                    role: normal}
+  - {groupName: research-initial1, user: groupmanager,                  role: manager}
+  - {groupName: research-initial1, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-initial
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: research-initial1
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
-  - groupName: datamanager-initial
-    category: initial
-    subcategory: initial
-    dataClassification:
-  - groupName: grp-intake-initial
-    category: intake-intake
-    subcategory: intake-intake
-    dataClassification: unspecified
-  - groupName: grp-datamanager-initial
-    category: intake-intake
-    subcategory: intake-intake
-    dataClassification: unspecified
-  - groupName: grp-vault-initial
-    category: intake-intake
-    subcategory: intake-intake
-    dataClassification: unspecified
-  - groupName: grp-intake-test
-    category: intake-intake
-    subcategory: intake-intake
-    dataClassification: unspecified
-  - groupName: grp-datamanager-test
-    category: intake-intake
-    subcategory: intake-intake
-    dataClassification: unspecified
-  - groupName: grp-vault-test
-    category: intake-intake
-    subcategory: intake-intake
-    dataClassification: unspecified
-  - groupName: research-revisions
-    category: initial
-    subcategory: initial
-    dataClassification: unspecified
+  - {groupName: research-revisions, user: viewer,                        role: reader}
+  - {groupName: research-revisions, user: researcher,                    role: normal}
+  - {groupName: research-revisions, user: groupmanager,                  role: manager}
+  - {groupName: research-revisions, user: functionaladminpriv,           role: manager}
 
-  - groupName: datarequests-research-project-managers
-    category: datarequests
-    subcategory: research
-    dataClassification: unspecified
-  - groupName: datarequests-research-data-access-committee
-    category: datarequests
-    subcategory: research
-    dataClassification: unspecified
-  - groupName: datarequests-research-datamanagers
-    category: datarequests
-    subcategory: research
-    dataClassification: unspecified
-  - groupName: datarequests-research-principal-investigators
-    category: datarequests
-    subcategory: research
-    dataClassification: unspecified
-  - groupName: datarequests-research-faculty-deans
-    category: datarequests
-    subcategory: research
-    dataClassification: unspecified
+  - {groupName: datamanager-test-automation, user: datamanager,                   role: normal}
+  - {groupName: datamanager-test-automation, user: functionaladminpriv,           role: manager}
 
-test_groupusers:
-  - groupName: research-core-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-core-0
-    user: researcher
-    role: normal
-  - groupName: research-core-0
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-core-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-core-0
-    user: datamanager
-    role: manager
-  - groupName: datamanager-core-0
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-core-0, user: researcher,                    role: normal}
+  - {groupName: research-core-0, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-core-1
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-core-1
-    user: researcher
-    role: normal
-  - groupName: research-core-1
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-core-1
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-core-1
-    user: datamanager
-    role: manager
-  - groupName: datamanager-core-1
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-core-1, user: researcher,                    role: normal}
+  - {groupName: research-core-1, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-default-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-default-0
-    user: researcher
-    role: normal
-  - groupName: research-default-0
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-default-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-default-0
-    user: datamanager
-    role: manager
-  - groupName: datamanager-default-0
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-core-2, user: researcher,                    role: normal}
+  - {groupName: research-core-2, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-default-1
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-default-1
-    user: researcher
-    role: normal
-  - groupName: research-default-1
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-default-1
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-default-1
-    user: datamanager
-    role: manager
-  - groupName: datamanager-default-1
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-dag-0, user: researcher,                    role: normal}
+  - {groupName: research-dag-0, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-default-2
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-default-2
-    user: researcher
-    role: normal
-  - groupName: research-default-2
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-default-2
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-default-2
-    user: datamanager
-    role: manager
-  - groupName: datamanager-default-2
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-default-0, user: researcher,                    role: normal}
+  - {groupName: research-default-0, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-hptlab-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-hptlab-0
-    user: researcher
-    role: normal
-  - groupName: research-hptlab-0
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-hptlab-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-hptlab-0
-    user: datamanager
-    role: manager
-  - groupName: datamanager-hptlab-0
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-default-1, user: researcher,                    role: normal}
+  - {groupName: research-default-1, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-hptlab-1
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-hptlab-1
-    user: researcher
-    role: normal
-  - groupName: research-hptlab-1
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-hptlab-1
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-hptlab-1
-    user: datamanager
-    role: manager
-  - groupName: datamanager-hptlab-1
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-default-2, user: researcher,                    role: normal}
+  - {groupName: research-default-2, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-teclab-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-teclab-0
-    user: researcher
-    role: normal
-  - groupName: research-teclab-0
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-teclab-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-teclab-0
-    user: datamanager
-    role: manager
-  - groupName: datamanager-teclab-0
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-default-3, user: researcher,                    role: normal}
+  - {groupName: research-default-3, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-teclab-1
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-teclab-1
-    user: researcher
-    role: normal
-  - groupName: research-teclab-1
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-teclab-1
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-teclab-1
-    user: datamanager
-    role: manager
-  - groupName: datamanager-teclab-1
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-epos-0, user: researcher,                    role: normal}
+  - {groupName: research-epos-0, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-dag-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-dag-0
-    user: researcher
-    role: normal
-  - groupName: research-dag-0
-    user: researcher@yoda.test
-    role: normal
-  - groupName: datamanager-dag-0
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-dag-0
-    user: datamanager
-    role: manager
-  - groupName: datamanager-dag-0
-    user: datamanager@yoda.test
-    role: manager
+  - {groupName: research-hptlab-0, user: researcher,                    role: normal}
+  - {groupName: research-hptlab-0, user: functionaladminpriv,           role: manager}
 
-  - groupName: datarequests-research-project-managers
-    user: projectmanager
-    role: manager
-  - groupName: datarequests-research-data-access-committee
-    user: dacmember
-    role: manager
-  - groupName: datarequests-research-datamanagers
-    user: datamanager
-    role: manager
-  - groupName: datarequests-research-principal-investigators
-    user: principalinvestigator
-    role: manager
-  - groupName: datarequests-research-faculty-deans
-    user: facultydean
-    role: manager
+  - {groupName: research-hptlab-1, user: researcher,                    role: normal}
+  - {groupName: research-hptlab-1, user: functionaladminpriv,           role: manager}
 
-  - groupName: priv-category-add
-    user: functionaladminpriv
-    role: manager
-  - groupName: priv-category-add
-    user: functionaladmincategory
-    role: manager
+  - {groupName: research-teclab-0,  user: researcher,                    role: normal}
+  - {groupName: research-teclab-0,  user: functionaladminpriv,           role: manager}
 
-  - groupName: priv-group-add
-    user: functionaladminpriv
-    role: manager
-  - groupName: priv-group-add
-    user: functionaladmingroup
-    role: manager
+  - {groupName: research-teclab-1,  user: researcher,                    role: normal}
+  - {groupName: research-teclab-1,  user: functionaladminpriv,           role: manager}
 
-  - groupName: research-initial
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-initial
-    user: groupmanager
-    role: manager
-  - groupName: research-initial
-    user: researcher
-    role: normal
-  - groupName: research-initial
-    user: researcher@yoda.test
-    role: normal
-  - groupName: research-initial
-    user: viewer
-    role: reader
+  - {groupName: research-vocabulary-0, user: researcher,                    role: normal}
+  - {groupName: research-vocabulary-0, user: functionaladminpriv,           role: manager}
 
-  - groupName: deposit-pilot
-    user: functionaladminpriv
-    role: manager
-  - groupName: deposit-pilot
-    user: researcher
-    role: normal
-  - groupName: deposit-pilot
-    user: researcher@yoda.test
-    role: normal
-  - groupName: deposit-pilot
-    user: viewer
-    role: normal
+  - {groupName: research-vollmer-0, user: researcher,                    role: normal}
+  - {groupName: research-vollmer-0, user: functionaladminpriv,           role: manager}
 
-  - groupName: research-initial1
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-initial1
-    user: groupmanager
-    role: normal
-  - groupName: research-initial1
-    user: researcher
-    role: normal
-  - groupName: research-initial1
-    user: researcher@yoda.test
-    role: normal
-  - groupName: research-initial1
-    user: viewer
-    role: reader
+  - {groupName: deposit-pilot, user: viewer,                        role: normal}
+  - {groupName: deposit-pilot, user: researcher,                    role: normal}
+  - {groupName: deposit-pilot, user: functionaladminpriv,           role: manager}
 
-  - groupName: datamanager-initial
-    user: functionaladminpriv
-    role: manager
-  - groupName: datamanager-initial
-    user: datamanager
-    role: normal
-  - groupName: datamanager-initial
-    user: datamanager@yoda.test
-    role: normal
+  - {groupName: grp-intake-initial, user: researcher,             role: normal}
+  - {groupName: grp-intake-initial, user: groupmanager,           role: manager}
+  - {groupName: grp-intake-initial, user: datamanager,            role: normal}
 
-  - groupName: grp-intake-initial
-    user: researcher
-    role: normal
-  - groupName: grp-intake-initial
-    user: researcher@yoda.test
-    role: normal
-  - groupName: grp-intake-initial
-    user: groupmanager
-    role: manager
-  - groupName: grp-intake-initial
-    user: datamanager
-    role: normal
-  - groupName: grp-intake-initial
-    user: datamanager@yoda.test
-    role: normal
+  - {groupName: grp-datamanager-initial, user: datamanager,           role: manager}
+  - {groupName: grp-datamanager-initial, user: rods,                  role: normal}
 
-  - groupName: grp-datamanager-initial
-    user: datamanager
-    role: manager
+  - {groupName: grp-intake-test, user: researcher,             role: normal}
+  - {groupName: grp-intake-test, user: groupmanager,           role: manager}
+  - {groupName: grp-intake-test, user: datamanager,            role: normal}
 
-  - groupName: grp-intake-test
-    user: researcher
-    role: normal
-  - groupName: grp-intake-test
-    user: researcher@yoda.test
-    role: normal
-  - groupName: grp-intake-test
-    user: groupmanager
-    role: manager
-  - groupName: grp-intake-test
-    user: datamanager
-    role: normal
-  - groupName: grp-intake-test
-    user: datamanager@yoda.test
-    role: normal
+  - {groupName: grp-datamanager-test, user: datamanager,           role: manager}
+  - {groupName: grp-datamanager-test, user: rods,                  role: normal}
 
-  - groupName: grp-datamanager-test
-    user: datamanager
-    role: manager
+  - {groupName: intake-test2,    user: researcher,             role: normal}
+  - {groupName: intake-test2,    user: groupmanager,           role: manager}
+  - {groupName: intake-test2,    user: datamanager,            role: normal}
 
-  - groupName: research-revisions
-    user: functionaladminpriv
-    role: manager
-  - groupName: research-revisions
-    user: groupmanager
-    role: manager
-  - groupName: research-revisions
-    user: researcher
-    role: normal
-  - groupName: research-revisions
-    user: researcher@yoda.test
-    role:
-  - groupName: research-revisions
-    user: viewer
-    role: reader
+  - {groupName: grp-datamanager-test2, user: datamanager,           role: manager}
+  - {groupName: grp-datamanager-test2, user: rods,                  role: normal}
+
+  - {groupName: datarequests-research-project-managers,      user: projectmanager,           role: manager}
+  - {groupName: datarequests-research-data-access-committee, user: dacmember,                role: manager}
+  - {groupName: datarequests-research-datamanagers,          user: datamanager,              role: manager}
+
+test_group_eus_users:
+  - {groupName: priv-category-add, user: functionaladminpriv@yoda.test,     role: manager}
+  - {groupName: priv-category-add, user: functionaladmincategory@yoda.test, role: manager}
+
+  - {groupName: priv-group-add, user: functionaladminpriv@yoda.test,  role: manager}
+  - {groupName: priv-group-add, user: functionaladmingroup@yoda.test, role: manager}
+
+  - {groupName: research-initial, user: viewer@yoda.test,              role: reader}
+  - {groupName: research-initial, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-initial, user: groupmanager@yoda.test,        role: manager}
+  - {groupName: research-initial, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-initial1, user: viewer@yoda.test,              role: reader}
+  - {groupName: research-initial1, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-initial1, user: groupmanager@yoda.test,        role: manager}
+  - {groupName: research-initial1, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-revisions, user: viewer@yoda.test,              role: reader}
+  - {groupName: research-revisions, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-revisions, user: groupmanager@yoda.test,        role: manager}
+  - {groupName: research-revisions, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: datamanager-test-automation, user: datamanager@yoda.test,         role: normal}
+  - {groupName: datamanager-test-automation, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-core-0, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-core-0, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-core-1, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-core-1, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-core-2, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-core-2, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-dag-0, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-dag-0, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-default-0, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-default-0, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-default-1, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-default-1, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-default-2, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-default-2, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-default-3, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-default-3, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-epos-0, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-epos-0, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-hptlab-0, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-hptlab-0, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-hptlab-1, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-hptlab-1, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-teclab-0,  user: researcher@yoda.test,          role: normal}
+  - {groupName: research-teclab-0,  user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-teclab-1,  user: researcher@yoda.test,          role: normal}
+  - {groupName: research-teclab-1,  user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-vocabulary-0, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-vocabulary-0, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-vollmer-0, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-vollmer-0, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: deposit-pilot, user: viewer@yoda.test,              role: normal}
+  - {groupName: deposit-pilot, user: researcher@yoda.test,          role: normal}
+  - {groupName: deposit-pilot, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: grp-intake-initial, user: researcher@yoda.test,   role: normal}
+  - {groupName: grp-intake-initial, user: groupmanager@yoda.test, role: manager}
+  - {groupName: grp-intake-initial, user: datamanager@yoda.test,  role: normal}
+
+  - {groupName: grp-datamanager-initial, user: datamanager@yoda.test, role: manager}
+  - {groupName: grp-datamanager-initial, user: rods,                  role: normal}
+
+  - {groupName: grp-intake-test, user: researcher@yoda.test,   role: normal}
+  - {groupName: grp-intake-test, user: groupmanager@yoda.test, role: manager}
+  - {groupName: grp-intake-test, user: datamanager@yoda.test,  role: normal}
+
+  - {groupName: grp-datamanager-test, user: datamanager@yoda.test, role: manager}
+  - {groupName: grp-datamanager-test, user: rods,                  role: normal}
+
+  - {groupName: intake-test2,    user: researcher@yoda.test,   role: normal}
+  - {groupName: intake-test2,    user: groupmanager@yoda.test, role: manager}
+  - {groupName: intake-test2,    user: datamanager@yoda.test,  role: normal}
+
+  - {groupName: grp-datamanager-test2, user: datamanager@yoda.test, role: manager}
+
+  - {groupName: datarequests-research-project-managers,      user: projectmanager@yoda.test, role: manager}
+  - {groupName: datarequests-research-data-access-committee, user: dacmember@yoda.test,      role: manager}
+  - {groupName: datarequests-research-datamanagers,          user: datamanager@yoda.test,    role: manager}
+
+intake_datamanager_groups:
+  - grp-datamanager-initial
+  - grp-datamanager-test
 
 deletion_research_groups:
   - research: default-0
   - research: default-1
   - research: default-2
+  - research: default-3
+  - research: epos-0
   - research: hptlab-0
   - research: hptlab-1
   - research: teclab-0
   - research: teclab-1
   - research: core-0
   - research: core-1
+  - research: core-2
   - research: dag-0
+  - research: vocabulary-0
+  - research: vollmer-0
   - research: initial
   - research: initial1
   - research: revisions
@@ -570,34 +308,17 @@ deletion_deposit_groups:
   - deposit: pilot
 
 deletion_datamanager_groups:
-  - datamanager: default-0
-  - datamanager: default-1
-  - datamanager: default-2
-  - datamanager: hptlab-0
-  - datamanager: hptlab-1
-  - datamanager: teclab-0
-  - datamanager: teclab-1
-  - datamanager: core-0
-  - datamanager: core-1
-  - datamanager: dag-0
-  - datamanager: initial
+  - datamanager: test-automation
 
 deletion_grp_groups:
   - grp: datamanager-initial
   - grp: datamanager-test
+  - grp: datamanager-test2
   - grp: intake-initial
   - grp: intake-test
   - grp: vault-initial
   - grp: vault-test
+  - grp: vault-test2
 
 deletion_intake_groups:
-
-reset_tiers:
-  - dev001
-  - dev001_1
-  - dev001_2
-  - dev001_p1
-  - dev001_p2
-  - irodsResc
-  - irodsRescRepl
-  - bundleResc
+  - intake: test2

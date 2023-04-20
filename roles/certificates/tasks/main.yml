@@ -1,6 +1,10 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Ensure dependencies for Ansible OpenSSL module are present
   ansible.builtin.package:
     name: python-cryptography
@@ -84,7 +88,7 @@
 - name: Ensure certificate files have correct permissions
   ansible.builtin.file:
     path: '{{ item }}'
-    mode: 0644
+    mode: '0644'
     group: 'root'
     owner: 'root'
     state: file

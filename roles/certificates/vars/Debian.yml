@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+openssl_private_dir: '/etc/ssl/private/'
+openssl_certs_dir: '/etc/ssl/certs'

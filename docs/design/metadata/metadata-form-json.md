@@ -3,28 +3,29 @@ title: Metadata JSON schema
 grand_parent: Software Design
 parent: Metadata
 ---
-# JSON schema for Yoda
+# JSON schema structure for metadata
 
-Yoda uses the REACT library for its configurable metadata forms.
-The content of a specific form is held within a JSON schema. Thus each category (=community) can have its own metadata. And consequently its own metadata form.  
+Yoda uses [React](https://reactjs.org/) for its configurable metadata forms. The content of the form
+is defined in a metadata schema, which can be configured on an environment, community or group level.
 
 ## $id
-Each json schema starts with the id of the schema.  
+
+Each JSON schema starts with the id of the schema.
 This is used as a means to uniquely identify the schema.
-Also, it is used to be able to create XSD's with the JSONS2XSD-tool in determining the namespaces as well as location of the resulting XSD's.
 
 ```
  "$id": "https://yoda.uu.nl/schemas/default-0/metadata.json",
 ```
 
 ## Definitions - General
-Within JSON schema, within the definitions section, metadata can be described.
-Definitions
-Data type, length and enumerations
+
+JSON schema supports various field types. The rest of this section
+shows some examples.
 
 ### Strings
 
-Yoda string type defitions:
+Yoda string type definitions:
+
 ```
 "stringNormal": {
   "type": "string",
@@ -35,7 +36,7 @@ Yoda string type defitions:
   "maxLength": 2700
 },
 ```
-These definitions can be used for elements within the jsons form:
+These definitions can be used for fields in the metadata form:
 
 ```
 "properties": {
@@ -46,15 +47,16 @@ These definitions can be used for elements within the jsons form:
   "Description": {
     "$ref": "#/definitions/stringLong",
     "title": "Description"
-  },  
-```  
+  },
+```
 
-Thus describing a 'Title' element of datatype stringNormal.  
+Thus describing a 'Title' element of datatype stringNormal.
 And 'Description' of datatype stringLong.
 
 
 ### Enumerations
 
+Example:
 
 ```
 "optionsLicense": {
@@ -67,7 +69,8 @@ And 'Description' of datatype stringLong.
   ]
 },
 ```
-Form element 'License'  is described using optionsLicense
+
+Form element 'License'  is described using optionsLicense:
 
 ```
 "License": {
@@ -93,8 +96,6 @@ REACT form allows default values to be set.
 The default value is '' - an empty string (which is not part of the selection list optionsDiscipline)
 
 
-
-
 ### Multiplicity - type='array'
 Giving a user the possibility to add specific data multiple times is achieved by using the type 'array'.
 This is an indication that the element involved can be added multiple times.
@@ -111,12 +112,10 @@ This is an indication that the element involved can be added multiple times.
 
 The above example will show a Selection field holding all present options for disciplines.
 
-
-
-
 ## Complex structures - type='object'
 In order to be able to serve the need to create structures of data the type 'object' is used.
-Object in fact constructs a structure that it holds one ore more other elements. The properties attribute holds the elements that constitute this structure.
+Object in fact constructs a structure that contains one or more other elements. The properties attribute contains
+the elements that constitute this structure.
 
 ```
 "Collected": {
@@ -137,7 +136,8 @@ Object in fact constructs a structure that it holds one ore more other elements.
   },
 },
 ```
-The above example shows a structure of data  with title 'Collection process'.  
+
+The above example shows a structure of data  with title 'Collection process'.
 It will show two elements 'Start date' and 'End date'.
 The data itself is singular. I.e. only one start date and one end date can be added by the user.
 
@@ -169,42 +169,34 @@ Dependencies can be added between data. I.e. if data is present in one element, 
 },
 ```
 
-In the example above, Start date and end date are dependent fields.  
-I.e. if either one is holding data, the other field must hold data as well.  
+In the example above, `Start_Date` and `End_Date` are dependent fields.
+I.e. if either one is holding data, the other field must hold data as well.
 
 
+## Specific Yoda attributes
 
+Yoda:structure attributes
+- compound: A combination of form elements that can be regarded as one element.
+- subproperties: A subproperty structure consists of one main item and a properties section. This section can be an elaborate structure of form elements in itself.
 
-## Specific Yoda structure attributes
-yoda:structure @TODO  
--compound  
-A combination of form elements that can be regarded as one element.
--Subproperties  
-A subproperty structure is contstructed of 1 main item and a properties section. This section can be an elaborate structure of formelements in itself  
--required  
-
-
-"yoda:required": true  
-Yoda specific indication for handling of mandatoriness of array elements.
-
+The "yoda:required" attribute specifies whether an element is mandatory.
 
 ## Example of complex structure
-Following example show a complex datastructure for Contributor entity.  
 
+The following example shows a complex datastructure for a Contributor entity.
 
 ![Contributor data structure](img/metadata-contributor.png)
 
-
-*Main structure*   
-Main structure is a subproperty structure.  
+*Main structure*
+Main structure is a subproperty structure.
 It consists of Name as leadpropery and the entire structure below  as its subproperty.
 
 The entire Contributor structure can be duplicated. I.e. copied including the entire subpropery structure.
 
-*Subproperty structure*  
+*Subproperty structure*
 Consists of 2 elements (Contributor type and Affiliation) and 1 compound element Person identifier (holding 2 compound elements).
 
-Affiliation and Person Identifier can be added multiple times.  
+Affiliation and Person Identifier can be added multiple times.
 
 When a Person identifier type is added, a corresponding identifier is required as well. This is arranged by setting dependencies between the two fields.
 

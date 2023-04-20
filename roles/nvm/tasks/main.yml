@@ -1,0 +1,33 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Node Version Manager (nvm) is installed
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
+  ansible.builtin.shell: |
+    set -o pipefail
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  args:
+    creates: "~/.nvm/nvm.sh"
+
+
+- name: Check if NPM v17 is installed
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
+  ansible.builtin.shell: |
+    set -o pipefail
+    source ~/.bashrc
+    nvm ls {{ npm_version }} | grep {{ npm_version }}
+  register: npm_check
+  ignore_errors: true
+  changed_when: false
+
+
+- name: Ensure NPM v17 is installed
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
+  # noqa no-changed-when
+  ansible.builtin.shell: |
+    source ~/.bashrc
+    nvm install {{ npm_version }}
+  when: npm_check.stdout == ""

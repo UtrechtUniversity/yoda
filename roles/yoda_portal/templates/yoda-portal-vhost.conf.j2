@@ -19,6 +19,10 @@
         Require all granted
     </Directory>
 
+{% if enable_intake %}
+    Timeout {{ intake_extended_timeout }}
+{% endif %}
+
     Alias "/static/" "/var/www/yoda/static/"
     <Directory "/var/www/yoda/static/">
         Order allow,deny
@@ -33,6 +37,7 @@
 
     WSGIDaemonProcess yodaweb user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} threads=5 python-home=/var/www/yoda/venv
     WSGIProcessGroup yodaweb
+
 {% if yoda_environment == "development" %}
     WSGIScriptAlias / /var/www/yoda/yoda_debug.wsgi process-group=yodaweb
 {% else %}

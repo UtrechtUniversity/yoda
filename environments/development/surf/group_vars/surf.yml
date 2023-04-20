@@ -9,12 +9,12 @@ ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of 
 instance: surf                                     # Name of Yoda instance, as defined in hosts file
 yoda_version: development                          # Git branch, for example: development or release-1.5
 yoda_environment: development                      # Yoda environment: development, testing, acceptance or production
-yoda_portal_fqdn: portal.surfyoda.test                 # Yoda Portal fully qualified domain name (FQDN)
-yoda_davrods_fqdn: data.surfyoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_portal_fqdn: portal.surfyoda.test             # Yoda Portal fully qualified domain name (FQDN)
+yoda_davrods_fqdn: data.surfyoda.test              # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.surfyoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
-default_yoda_schema: default-1                     # Default Yoda metadata scheme: core-0 or default-1
+default_yoda_schema: default-2                     # Default Yoda metadata scheme: core-1 or default-2
 yoda_prefix: UU01                                  # Prefix for internal portion of persistent identifier
 update_schemas: 1                                  # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files: PLACEHOLDER                      # Location of Yoda credentials files
@@ -24,7 +24,7 @@ enable_research: true                              # Enable research module
 
 # OpenSearch module configuration
 enable_open_search: false                          # OpenSearch not needed (no deposit module)
-opensearch_server: PLACEHODLER
+opensearch_server: PLACEHOLDER
 
 # Deposit module configuration
 enable_deposit: false                              # Surf doesn't use deposit module
@@ -49,6 +49,10 @@ token_lifetime: 72                                      # Lifetime of data acces
 
 # DMF tape archive
 enable_tape_archive: false
+
+# iRODS check tooling
+enable_irods_consistency_check: true
+enable_icat_database_checker: true
 
 # Portal customization
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
@@ -128,6 +132,7 @@ datacite_rest_api_url: api.test.datacite.org  # DataCite API server URL
 datacite_username: PLACEHOLDER                # DataCite username
 datacite_password: PLACEHOLDER                # DataCite password
 datacite_prefix: 10.00012                     # DataCite DOI prefix
+datacite_publisher: Yoda development team     # DataCite publisher: the name of the entity that publishes
 
 # EPIC PID Configuration
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
@@ -177,11 +182,11 @@ eus_smtp_security: false
 eus_smtp_from_address: yoda@surfyoda.test
 eus_smtp_replyto_address: yoda@surfyoda.test
 eus_mail_template: uu
-external_users_domain_filter: uu.nl     # Domains to filter, separated by |
+external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated by |
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: true
-oidc_domains: ['yoda.test']                      # Domains that should use OIDC (list)
+oidc_domains: ['yoda.dev']                                    # Domains that should use OIDC (list)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
 oidc_callback_url: https://portal.surfyoda.test/user/callback     # OIDC Callback url

@@ -1,0 +1,11 @@
+[default]
+access_key = {{ s3_access_key }}
+secret_key = {{ s3_secret_key }}
+host_base = {{ s3_hostname }}
+host_bucket = {{ s3_hostname }}
+signature_v2 = True
+check_ssl_certificate = True
+check_ssl_hostname = True
+{% if yoda_environment == "development" %}
+use_https = False
+{% endif %}

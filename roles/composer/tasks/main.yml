@@ -1,7 +1,0 @@
----
-# copyright Utrecht University
-
-- name: Ensure Composer is installed
-  package:
-    name: composer
-    state: present

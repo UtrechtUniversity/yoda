@@ -18,6 +18,9 @@ yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test
 yoda_davrods_anonymous_port: 443
 
+yoda_davrods_logo_path: /assets/img/logo.svg
+yoda_davrods_logo_link: https://www.uu.nl
+
 yoda_portal_fqdn: portal.yoda.test          # Yoda Portal fully qualified domain name (FQDN)
 
 # iRODS configuration.
