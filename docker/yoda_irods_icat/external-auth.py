@@ -3,8 +3,8 @@ import requests
 import os
 import sys
 
-r = requests.post('https://eus.yoda.test/api/user/auth-check',
-                  headers={'X-Yoda-External-User-Secret': 'dummy_secret'},
+r = requests.post('https://eus.yoda:8443/api/user/auth-check',
+                  headers={'X-Yoda-External-User-Secret': 'PLACEHOLDER'},
                   auth=(os.getenv('PAM_USER'), sys.stdin.readline()),
                   verify=False)
 
