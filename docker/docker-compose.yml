@@ -10,6 +10,7 @@ volumes:
 services:
   provider:
     container_name: provider.yoda
+    platform: linux/amd64
     hostname: provider.yoda
     image: ghcr.io/utrechtuniversity/yoda-provider:dev-1.9
     depends_on:
@@ -24,6 +25,7 @@ services:
 
   db:
     container_name: db.yoda
+    platform: linux/amd64
     hostname: db.yoda
     image: postgres:11-bullseye
     environment:
@@ -36,6 +38,7 @@ services:
 
   extuserdb:
     container_name: extuserdb.yoda
+    platform: linux/amd64
     hostname: extuserdb.yoda
     image: postgres:11-bullseye
     environment:
@@ -48,6 +51,7 @@ services:
 
   portal:
     container_name: portal.yoda
+    platform: linux/amd64
     hostname: portal.yoda
     image: ghcr.io/utrechtuniversity/yoda-portal:dev-1.9
     depends_on:
@@ -61,6 +65,7 @@ services:
 
   eus:
     container_name: eus.yoda
+    platform: linux/amd64
     hostname: eus.yoda
     image: ghcr.io/utrechtuniversity/yoda-eus:dev-1.9
     depends_on:
@@ -74,6 +79,7 @@ services:
 
   davrods:
     container_name: data.yoda
+    platform: linux/amd64
     hostname: data.yoda
     image: ghcr.io/utrechtuniversity/davrods:dev-1.9
     depends_on:
@@ -86,6 +92,7 @@ services:
 
   mailpit:
     container_name: mailpit.yoda
+    platform: linux/amd64
     hostname: mailpit.yoda
     image: ghcr.io/utrechtuniversity/yoda-mailpit:dev-1.9
     environment:
