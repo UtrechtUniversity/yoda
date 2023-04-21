@@ -90,6 +90,8 @@ progress_update "iRODS started"
 
 before_update "Initializing authentication token"
 sudo -u irods bash -c "echo rods | iinit"
-before_update "Authentication token initialized"
+progress_update "Authentication token initialized"
+
+progress_update "Initialization complete. iRODS is running."
 
 sleep infinity

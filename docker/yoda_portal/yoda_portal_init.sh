@@ -136,7 +136,7 @@ FLASKCFG
 progress_update "Portal configured"
 
 # Start Apache
-before_update "Starting Apache"
+before_update "Initialization complete. Starting Apache"
 /usr/sbin/httpd -DFOREGROUND || true
 echo "Error: http either terminated or would not start. Keeping container running for troubleshooting purposes."
 sleep infinity
