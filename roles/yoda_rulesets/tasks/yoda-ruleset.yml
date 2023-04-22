@@ -489,7 +489,7 @@
     name: 'asynchronous-replication'
     minute: '*/5'
     job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1 --balance_id_min=49 --balance_id_max=64'
-    state: '{{ "present" if enable_async_replication == 1 else "absent" }}'    
+    state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
 
 
 - name: Configure asynchronous revision creation job
