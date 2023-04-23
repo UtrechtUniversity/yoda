@@ -3,17 +3,6 @@
 
 # Version of PostgreSQL to install (tested with 11-14)
 pgsql_version: 11
-prevent_upgrade: true             # Prevent upgrading to pgsql_version
-remove_postgresql_9_data: false   # Remove PostgreSQL 9 data and shim after upgrade
-
-# PostgreSQL RPM package repo
-rpm_dest_dir: /tmp
-rpm_redhat_repo: pgdg-redhat-repo-latest.noarch.rpm
-rpm_url: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64
-
-# PostgreSQL APT package repo
-apt_signing_key: https://www.postgresql.org/media/keys/ACCC4CF8.asc
-apt_repo: deb http://apt.postgresql.org/pub/repos/apt focal-pgdg main
 
 # OpenSSL configuration.
 openssl_private_dir: '/etc/pki/tls/private'
