@@ -1,13 +1,24 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure Ansible dependencies are installed
+- name: Ensure Ansible dependencies are installed (EL7)
   ansible.builtin.package:
     name:
       - libsemanage-python
       - libselinux-python
       - policycoreutils-python
     state: present
+  when: ansible_distribution_major_version == "7"
+
+
+- name: Ensure Ansible dependencies are installed (EL8)
+  ansible.builtin.package:
+    name:
+      - python3-libselinux
+      - python3-libsemanage
+      - python3-policycoreutils
+    state: present
+  when: ansible_distribution_major_version == "8"
 
 
 - name: Ensure basics (vim, bind-utils, etc.) are installed
