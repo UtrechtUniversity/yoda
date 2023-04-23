@@ -105,7 +105,7 @@
 
 - name: Upgrade PostgreSQL for RedHat family
   ansible.builtin.include_tasks: upgrade.yml
-  when: "'postgresql-server' in ansible_facts.packages and not prevent_upgrade"
+  when: "'postgresql-server' in ansible_facts.packages and postgresql_perform_db_upgrade"
 
 
 - name: Check that ODBC is configured for PostgreSQL
