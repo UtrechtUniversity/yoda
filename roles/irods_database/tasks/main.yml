@@ -34,5 +34,18 @@
     priv: ALL
 
 
+# Needed because of change in default permissions public schema as of PostgreSQL 15
+- name: Specifically grant iRODS database user access on public schema
+  become_user: postgres
+  become: true
+  community.postgresql.postgresql_privs:
+    database: "{{ irods_database_name }}"
+    roles: "{{ irods_database_user }}"
+    objs: public
+    privs: CREATE
+    type: schema
+  when: pgsql_version >= 15
+
+
 - name: Setup Yoda databases indexes
   ansible.builtin.include_tasks: "yoda_indexes.yml"
