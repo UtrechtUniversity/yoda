@@ -92,6 +92,7 @@
     mode: '0600'
   no_log: true
   when: postfix_smtp_enable_authentication
+  register: postfix_sasl_passwd
   notify: Restart Postfix
 
 
@@ -116,7 +117,7 @@
 
 - name: Map Postfix relayhost credentials file
   ansible.builtin.command: /usr/sbin/postmap sasl_passwd # noqa no-changed-when
-  when: not ansible_check_mode and postfix_smtp_enable_authentication
+  when: not ansible_check_mode and postfix_smtp_enable_authentication and postfix_sasl_passwd.changed
   args:
     chdir: /etc/postfix
 
