@@ -1,0 +1,24 @@
+[ req ]
+default_bits = 4096
+default_md = sha256
+prompt = no
+encrypt_key = no
+distinguished_name = dn
+# We need x509_extensions instead of req_extensions here, because we are
+# generating a self-signed certificate.
+x509_extensions = req_ext
+
+[ dn ]
+CN = "provider.yoda"
+C = NL
+O = Yoda
+OU = ITS
+L = Utrecht
+
+[ req_ext ]
+subjectAltName = @alt_names
+subjectKeyIdentifier = hash
+
+[ alt_names ]
+DNS.1 = provider.yoda
+DNS.2 = *.yoda
