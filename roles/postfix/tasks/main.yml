@@ -48,10 +48,10 @@
   vars:
     postfix_params:
       smtp_use_tls: "yes"
-      smtp_sasl_auth_enable: "yes"
-      smtp_sasl_password_maps: "hash:/etc/postfix/sasl_passwd"
-      smtp_sasl_security_options: "noanonymous"
-      smtp_sasl_tls_security_options: "noanonymous"
+      smtp_sasl_auth_enable: '{{ "yes" if postfix_smtp_enable_authentication else "no" }}'
+      smtp_sasl_password_maps: '{{ "hash:/etc/postfix/sasl_passwd" if postfix_smtp_enable_authentication else "" }}'
+      smtp_sasl_security_options: '{{ "noanonymous" if postfix_smtp_enable_authentication else "" }}'
+      smtp_sasl_tls_security_options: '{{ "noanonymous" if postfix_smtp_enable_authentication else "" }}'
   notify: Restart Postfix
 
 
@@ -91,6 +91,7 @@
     group: root
     mode: '0600'
   no_log: true
+  when: postfix_smtp_enable_authentication
   notify: Restart Postfix
 
 
@@ -115,9 +116,19 @@
 
 - name: Map Postfix relayhost credentials file
   ansible.builtin.command: /usr/sbin/postmap sasl_passwd # noqa no-changed-when
-  when: not ansible_check_mode
+  when: not ansible_check_mode and postfix_smtp_enable_authentication
   args:
     chdir: /etc/postfix
+
+
+- name: Remove Postfix relayhost credentials files
+  ansible.builtin.file:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/postfix/sasl_passwd
+    - /etc/postfix/sasl_passwd.db
+  when: not postfix_smtp_enable_authentication
 
 
 - name: Ensure Postfix service is enabled and started
