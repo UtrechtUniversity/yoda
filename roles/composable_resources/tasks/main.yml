@@ -21,7 +21,7 @@
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: "{{ irods_service_account_home | default('/var/lib/irods') }}/.irods/irods_environment.json"
     key: 'irods_default_resource'
     value: '{{ irods_default_resc }}'
 

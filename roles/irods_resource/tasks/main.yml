@@ -141,6 +141,13 @@
   when: not irods_config.stat.exists and not ansible_check_mode
 
 
+- name: Patch irods groupadd error
+  replace:
+    path: /var/lib/irods/scripts/setup_irods.py
+    regexp: "'groupadd', '-r', irods_group"
+    replace: "'groupadd', '-fr', irods_group"
+
+
 - name: Configure iRODS resource server
   become: true
   ansible.builtin.command: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_consumer.json
@@ -295,7 +302,7 @@
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: "{{ irods_service_account_home | default('/var/lib/irods') }}/.irods/irods_environment.json"
     key: '{{ item.key }}'
     value: '{{ item.value }}'
   with_items:

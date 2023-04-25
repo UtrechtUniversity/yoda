@@ -182,6 +182,13 @@
     timeout: 30
 
 
+- name: Patch irods groupadd error
+  replace:
+    path: /var/lib/irods/scripts/setup_irods.py
+    regexp: "'groupadd', '-r', irods_group"
+    replace: "'groupadd', '-fr', irods_group"
+
+
 - name: Configure iRODS iCAT server
   become: true
   ansible.builtin.command: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_provider.json
@@ -212,7 +219,7 @@
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: "{{ irods_service_account_home | default('/var/lib/irods') }}/.irods/irods_environment.json"
     key: 'irods_host'
     value: '{{ irods_icat_fqdn }}'
 
@@ -397,7 +404,7 @@
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: "{{ irods_service_account_home | default('/var/lib/irods') }}/.irods/irods_environment.json"
     key: '{{ item.key }}'
     value: '{{ item.value }}'
   with_items:
@@ -432,7 +439,7 @@
 
 - name: Ensure deprecated iRODS environment file for Python client is present
   ansible.builtin.file:
-    path: /var/lib/irods/.irods/python_client_environment.json
+    path: "{{ irods_service_account_home | default('/var/lib/irods') }}/.irods/python_client_environment.json"
     state: absent
 
 
@@ -465,7 +472,7 @@
 
 - name: Ensure iRODS is configured to use SSL connection to database
   community.general.ini_file:
-    path: /var/lib/irods/.odbc.ini
+    path: "{{ irods_service_account_home | default('/var/lib/irods') }}/.odbc.ini"
     section: postgres
     option: 'sslmode'
     value: 'require'
@@ -474,7 +481,7 @@
 
 - name: Ensure iRODS .ssh directory has strict permissions
   ansible.builtin.file:
-    path: /var/lib/irods/.ssh
+    path: "{{ irods_service_account_home | default('/var/lib/irods') }}/.ssh"
     state: directory
     mode: '0700'
     owner: '{{ irods_service_account }}'
@@ -486,10 +493,10 @@
   become: true
   ansible.builtin.template:
     src: id_ed25519.j2
-    dest: '/var/lib/irods/.ssh/id_ed25519'
+    dest: "{{ irods_service_account_home | default('/var/lib/irods') }}/.ssh/id_ed25519"
     owner: '{{ irods_service_account }}'
     mode: '0600'
-  no_log: true
+  no_log: false
   when: upload_priv_key is defined
 
 
@@ -498,7 +505,7 @@
   become: true
   ansible.builtin.shell: "ssh-keyscan {{ yoda_public_host }} >> ~/.ssh/known_hosts"
   args:
-    creates: '/var/lib/irods/.ssh/known_hosts'
+    creates: "{{ irods_service_account_home | default('/var/lib/irods') }}/.ssh/known_hosts"
   when: upload_priv_key is defined
 
 
