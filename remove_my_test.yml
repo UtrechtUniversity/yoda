@@ -1,0 +1,18 @@
+---
+- name: file module demo
+  hosts: all
+  tasks:
+    - name: Patch irods groupadd error
+      replace:
+        # path: /var/lib/irods/scripts/setup_irods.py
+        path: /tmp/setup_irods.py
+        regexp: "'groupadd', '-r', irods_group"
+        replace: "'groupadd', '-fr', irods_group"
+
+    # - name: Ensure new SQLite3 version has been installed
+    #   ansible.builtin.package:
+    #     name:
+    #       - sqlite33
+    #       - sqlite33-devel
+    #     state: present
+    #     update_cache: true

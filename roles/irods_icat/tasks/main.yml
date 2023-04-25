@@ -182,13 +182,6 @@
     timeout: 30
 
 
-- name: Patch irods groupadd error
-  replace:
-    path: /var/lib/irods/scripts/setup_irods.py
-    regexp: "'groupadd', '-r', irods_group"
-    replace: "'groupadd', '-fr', irods_group"
-
-
 - name: Configure iRODS iCAT server
   become: true
   ansible.builtin.command: python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/etc/irods/setup_irods_provider.json
