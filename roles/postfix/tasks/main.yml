@@ -44,10 +44,10 @@
     owner: root
     group: root
   loop: "{{ postfix_params | dict2items }}"
-  when: postfix_smtp_enable_tls and not ansible_check_mode
+  when: not ansible_check_mode
   vars:
     postfix_params:
-      smtp_use_tls: "yes"
+      smtp_use_tls: '{{ "yes" if postfix_smtp_enable_tls else "no" }}'
       smtp_sasl_auth_enable: '{{ "yes" if postfix_smtp_enable_authentication else "no" }}'
       smtp_sasl_password_maps: '{{ "hash:/etc/postfix/sasl_passwd" if postfix_smtp_enable_authentication else "" }}'
       smtp_sasl_security_options: '{{ "noanonymous" if postfix_smtp_enable_authentication else "" }}'
