@@ -8,13 +8,14 @@ enable_postfix: false
 
 # postfix_relayhost
 # postfix_myhostname:
-# postfix_relayhost_username:
-# postfix_relayhost_password:
+postfix_relayhost_username: PLACEHOLDER
+postfix_relayhost_password: PLACEHOLDER
 
 ### Default parameters
 postfix_inet_protocols: all
 postfix_relayhost_port: 587
 postfix_smtp_enable_tls: true
+postfix_smtp_enable_authentication: true
 postfix_enable_debugging: false
 postfix_myhostname: yoda
 postfix_myorigin: "$mydomain"
