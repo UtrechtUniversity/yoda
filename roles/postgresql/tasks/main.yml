@@ -135,7 +135,7 @@
     name: "{{ postgresql_daemon }}"
     enabled: true
     state: started
-  when: "not ansible_check_mode and ('postgresql-server' not in ansible_facts.packages or not prevent_upgrade)"
+  when: "not ansible_check_mode and ('postgresql-server' not in ansible_facts.packages or postgresql_perform_db_upgrade)"
 
 
 - name: Optimize PostgreSQL database
