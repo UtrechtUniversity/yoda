@@ -1,0 +1,145 @@
+---
+# copyright Utrecht University
+
+# This installs PostgreSQL 11 or higher (by default: 15)  using packages from the PostgreSQL
+# repository. This is default behaviour in Yoda 1.9, and has been backported as optional behaviour
+# to Yoda 1.8.7.
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Setup PostgreSQL for RedHat family
+  ansible.builtin.include_tasks: setup-redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Setup PostgreSQL for Debian family
+  ansible.builtin.include_tasks: setup-debian.yml
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure PostgreSQL data directory exists
+  ansible.builtin.file:
+    path: "{{ postgresql_data_dir }}"
+    owner: postgres
+    group: postgres
+    state: directory
+    mode: '0700'
+
+
+- name: Check if PostgreSQL database is initialized
+  ansible.builtin.stat:
+    path: "{{ postgresql_data_dir }}/PG_VERSION"
+  register: pg_version
+
+
+- name: Initialize PostgreSQL database
+  become_user: postgres
+  become: true
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "{{ postgresql_bin_path }}/initdb -D {{ postgresql_data_dir }}"
+  when: not pg_version.stat.exists
+
+
+- name: Password protect loopback IPv4 connections
+  ansible.builtin.lineinfile:
+    dest: "{{ postgresql_config_path }}/pg_hba.conf"
+    regexp: 'host\s+all\s+all\s+127.0.0.1/32'
+    line: 'host all all 127.0.0.1/32 md5'
+  notify: Restart PostgreSQL
+  when: not ansible_check_mode
+
+
+- name: Password protect loopback IPv6 connections
+  ansible.builtin.lineinfile:
+    dest: "{{ postgresql_config_path }}/pg_hba.conf"
+    regexp: 'host\s+all\s+all\s+::1/128'
+    line: 'host all all ::1/128 md5'
+  notify: Restart PostgreSQL
+  when: not ansible_check_mode
+
+
+- name: Allow access to port 5432 in firewall
+  ansible.posix.firewalld:
+    port: 5432/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+  notify: Restart firewall
+  when: (ansible_fqdn != irods_icat_fqdn)
+
+
+- name: Ensure private key file is available for PostgreSQL
+  ansible.builtin.copy:
+    src: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
+    dest: '{{ postgresql_config_path }}/{{ openssl_key_signed }}'
+    group: 'postgres'
+    owner: 'postgres'
+    mode: '0600'
+    remote_src: true
+  when: not ansible_check_mode
+
+
+- name: Ensure certificate file is available for PostgreSQL
+  ansible.builtin.copy:
+    src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
+    dest: '{{ postgresql_config_path }}/{{ openssl_crt_signed }}'
+    group: 'postgres'
+    owner: 'postgres'
+    mode: '0600'
+    remote_src: true
+  when: not ansible_check_mode
+
+
+- name: Ensure PostgreSQL is configured
+  ansible.builtin.template:
+    src: postgresql-{{ ansible_os_family }}.conf.j2
+    dest: "{{ postgresql_config_path }}/postgresql.conf"
+    owner: postgres
+    group: postgres
+    mode: '0600'
+  notify: Restart PostgreSQL
+
+
+- name: Upgrade PostgreSQL for RedHat family
+  ansible.builtin.include_tasks: upgrade.yml
+  when: "'postgresql-server' in ansible_facts.packages and postgresql_perform_db_upgrade"
+
+
+- name: Check that ODBC is configured for PostgreSQL
+  ansible.builtin.lineinfile:
+    path: "{{ odbc_config_path }}"
+    search_string: "pgsql-{{ pgsql_version }}"
+    state: absent
+  check_mode: true
+  changed_when: false
+  register: driver
+
+
+- name: Configure ODBC for PostgreSQL
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: odbcinst -i -d -r
+  args:
+    stdin: |
+      [PostgreSQL]
+      Description = PostgreSQL {{ pgsql_version }} ODBC Driver
+      Driver      = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbc.so
+      Setup       = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbcw.so
+  when: not driver.found
+
+
+- name: Ensure PostgreSQL is enabled and started
+  ansible.builtin.service:
+    name: "{{ postgresql_daemon }}"
+    enabled: true
+    state: started
+  when: "not ansible_check_mode and ('postgresql-server' not in ansible_facts.packages or postgresql_perform_db_upgrade)"
+
+
+- name: Optimize PostgreSQL database
+  become_user: postgres
+  become: true
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "/usr/pgsql-{{ pgsql_version }}/bin/vacuumdb --all"
+  when: "ansible_os_family == 'RedHat' and 'postgresql-server' in ansible_facts.packages"

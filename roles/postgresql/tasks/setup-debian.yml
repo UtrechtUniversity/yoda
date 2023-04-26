@@ -1,0 +1,13 @@
+---
+# copyright Utrecht University
+
+
+- name: Ensure PostgreSQL database and dependencies are installed
+  ansible.builtin.package:
+    name:
+      - "postgresql-{{ pgsql_version }}"
+      - "postgresql-contrib-{{ pgsql_version }}"
+      - python3-psycopg2
+      - unixodbc
+      - acl
+    state: present

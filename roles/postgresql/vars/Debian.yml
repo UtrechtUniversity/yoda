@@ -1,0 +1,14 @@
+---
+# copyright Utrecht University
+
+openssl_private_dir: '/etc/ssl/private/'
+openssl_certs_dir: '/etc/ssl/certs'
+
+postgresql_data_dir: "/var/lib/postgresql/{{ pgsql_version }}/main"
+postgresql_bin_path: "/usr/lib/postgresql/{{ __postgresql_version }}/bin"
+postgresql_config_path: "/etc/postgresql/{{ pgsql_version }}/main"
+postgresql_daemon: 'postgresql'
+
+odbc_config_path: '/etc/odbc.ini'
+
+postgresqltuner_dir: "/var/lib/postgresql"

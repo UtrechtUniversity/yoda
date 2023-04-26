@@ -251,6 +251,11 @@ postgresql_log_line_prefix:            | Format of log message prefix in the Pos
 postgresql_log_min_duration_statement  | Minimum number of milliseconds for slow query logging (default: -1 / disabled)
 postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled)
 postgresql_timezone                    | Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam.
+postgresql_use_native_packages         | Install PostgreSQL from OS native packages (default: true)
+pgsql_version                          | Version of PostgreSQL to install (default: 15, only used if postgresql_use_native_packages is set to false)
+postgresql_perform_db_upgrade          | Upgrade database from OS native version to new version (default: false)
+postgresql_remove_old_data_after_upgrade | After upgrading database from OS native version to new version, remove old data (default: false)
+
 
 ### PgBouncer configuration
 

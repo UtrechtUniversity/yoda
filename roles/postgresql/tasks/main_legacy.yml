@@ -1,0 +1,85 @@
+---
+# copyright Utrecht University
+
+# This installs PostgreSQL 9.2 using the distribution packages on CentOS 7,
+# which is default behaviour on 1.8.
+
+- name: Ensure PostgreSQL database and dependencies are installed
+  ansible.builtin.package:
+    name:
+      - postgresql-server
+      - postgresql-contrib
+      - python-psycopg2
+    state: present
+
+- name: Define PostgreSQL daemon
+  ansible.builtin.set_fact:
+    postgresql_daemon: postgresql
+
+
+- name: Initialize PostgreSQL database
+  ansible.builtin.command: postgresql-setup initdb
+    creates=/var/lib/pgsql/data/postgresql.conf
+
+
+- name: Password protect loopback IPv4 connections
+  ansible.builtin.lineinfile:
+    dest: /var/lib/pgsql/data/pg_hba.conf
+    regexp: 'host\s+all\s+all\s+127.0.0.1/32'
+    line: 'host all all 127.0.0.1/32 md5'
+  notify: Restart PostgreSQL
+
+
+- name: Password protect loopback IPv6 connections
+  ansible.builtin.lineinfile:
+    dest: /var/lib/pgsql/data/pg_hba.conf
+    regexp: 'host\s+all\s+all\s+::1/128'
+    line: 'host all all ::1/128 md5'
+  notify: Restart PostgreSQL
+
+
+- name: Allow access to port 5432 in firewall
+  ansible.posix.firewalld:
+    port: 5432/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+  notify: Restart firewall
+  when: (ansible_fqdn != irods_icat_fqdn)
+
+
+- name: Ensure private key file is available for PostgreSQL
+  ansible.builtin.copy:
+    src: '{{ openssl_private_dir }}/{{ openssl_key_signed }}'
+    dest: '/var/lib/pgsql/data/{{ openssl_key_signed }}'
+    group: 'postgres'
+    owner: 'postgres'
+    mode: 0600
+    remote_src: true
+
+
+- name: Ensure certificate file is available for PostgreSQL
+  ansible.builtin.copy:
+    src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
+    dest: '/var/lib/pgsql/data/{{ openssl_crt_signed }}'
+    group: 'postgres'
+    owner: 'postgres'
+    mode: 0600
+    remote_src: true
+
+
+- name: Ensure PostgreSQL is configured
+  ansible.builtin.template:
+    src: postgresql.conf.j2
+    dest: "/var/lib/pgsql/data/postgresql.conf"
+    owner: postgres
+    group: postgres
+    mode: 0600
+  notify: Restart PostgreSQL
+
+
+- name: Ensure PostgreSQL is enabled and started
+  ansible.builtin.service:
+    name: postgresql
+    enabled: true
+    state: started
