@@ -1,0 +1,11 @@
+---
+# copyright Utrecht University
+
+- name: Setup PostgreSQL for RedHat family
+  ansible.builtin.include_tasks: setup-redhat.yml
+  when: ansible_os_family == 'RedHat' and not postgresql_use_native_packages
+
+
+- name: Setup PostgreSQL for Debian family
+  ansible.builtin.include_tasks: setup-debian.yml
+  when: ansible_os_family == 'Debian' and not postgresql_use_native_packages
