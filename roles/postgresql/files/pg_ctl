@@ -1,0 +1,10 @@
+#!/bin/bash
+
+args=()
+for i in "$@"
+do
+	arg=`echo "$i" | sed s/unix_socket_directory/unix_socket_directories/`
+	args=("${args[@]}" "$arg")
+done
+
+/usr/bin/pg_ctl "${args[@]}"
