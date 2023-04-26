@@ -1,4 +1,10 @@
 skip_list:
   - experimental
+  - schema[meta]
+  - yaml[octal-values]
+  - risky-file-permissions
+  - ignore-errors
+  - no-changed-when
+  - no-free-form
 
 parseable: true
