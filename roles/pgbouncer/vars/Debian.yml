@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+pgbouncer_user: postgres
+pgbouncer_config_path: "/etc/pgbouncer"
+pgbouncer_log_path: "/var/log/postgresql/pgbouncer.log"
+
+openssl_private_dir: '/etc/ssl/private/'
+openssl_certs_dir: '/etc/ssl/certs'

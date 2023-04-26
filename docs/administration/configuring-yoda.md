@@ -252,6 +252,18 @@ postgresql_log_min_duration_statement  | Minimum number of milliseconds for slow
 postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled)
 postgresql_timezone                    | Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam.
 
+### PgBouncer configuration
+
+Variable                                     | Description
+---------------------------------------------|---------------------------------------------
+enable_pgbouncer                             | Whether to enable PgBouncer (default: false)
+pgbouncer_pool_mode                          | Specifies when a server connection can be reused by other clients (default: session)
+pgbouncer_max_client_conn                    | Maximum number of client connections allowed (default: 200)
+pgbouncer_default_pool_size                  | How many server connections to allow per user/database pair (default: 50) 
+pgbouncer_reserve_pool_size                  | How many additional connections to allow to a pool (default: 25) 
+pgbouncer_reserve_pool_timeout               | If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2)
+pgbouncer_override_ignore_startup_parameters | Adjust ignore_startup_parameters setting of PGbouncer (default: undefined / use OS default value)
+
 ### Postfix configuration
 
 Variable                     | Description
