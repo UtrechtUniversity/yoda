@@ -1,0 +1,21 @@
+---
+# copyright Utrecht University
+
+- name: Install PostgreSQL RPM key
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ postgresql_rpm_key_url }}"
+
+
+- name: Download PostgreSQL YUM repo package
+  ansible.builtin.get_url:
+    url: "{{ postgresql_rpm_url }}/{{ postgresql_rpm_redhat_repo }}"
+    dest: "{{ postgresql_rpm_dest_dir }}/{{ postgresql_rpm_redhat_repo }}"
+    mode: '0644'
+
+
+- name: Install PostgreSQL YUM repo package
+  ansible.builtin.yum:
+    name: "{{ postgresql_rpm_dest_dir }}/{{ postgresql_rpm_redhat_repo }}"
+    state: present
+  when: not ansible_check_mode
