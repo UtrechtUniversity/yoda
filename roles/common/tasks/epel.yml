@@ -1,7 +1,33 @@
 ---
 # copyright Utrecht University
 
-- name: Enable EPEL repository
+
+- name: Gather exact distribution version
+  ansible.builtin.command: "cat /etc/redhat-release"
+  register: redhat_version
+  changed_when: false
+
+
+- name: Enable EPEL repository (non-RHEL)
   ansible.builtin.package:
     name: epel-release
     state: present
+  when: "'Red Hat Enterprise Linux' not in redhat_version.stdout"
+
+
+- name: Enable CRB for RHEL because of EPEL dependencies
+  ansible.builtin.command: subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+  when: "'Red Hat Enterprise Linux' in redhat_version.stdout"
+  changed_when: false
+
+
+- name: Import the Fedora EPEL 8 RPM key for RHEL
+  ansible.builtin.rpm_key:
+    key: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8"
+    state: present
+  when: "'Red Hat Enterprise Linux' in redhat_version.stdout"
+
+
+- name: Enable EPEL repository (RHEL)
+  ansible.builtin.dnf: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+  when: "'Red Hat Enterprise Linux' in redhat_version.stdout"
