@@ -240,8 +240,8 @@ opensearch_server              | FQDN of the OpenSearch server (typically the pr
 Variable                     | Description
 -----------------------------|---------------------------------------------
 send_notifications           | Enable notifications: yes (1) or no (0)
-notifications_sender_email   | Notifiations sender email address
-notifications_reply_to       | Notifiations Reply-To email address
+notifications_sender_email   | Notifications sender email address
+notifications_reply_to       | Notifications Reply-To email address
 
 ### Yoda internal SMTP settings configuration
 
