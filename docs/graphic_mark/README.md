@@ -14,5 +14,5 @@ For the use of the graphic mark, please use the [Yoda identity manual](yoda_iden
 Only use the graphic mark in the way it is described in this manual.
 
 ## License
-This project is licensed under the GPL-v3 license.
+This project is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0).
 The full license can be found in [LICENSE](LICENSE).
