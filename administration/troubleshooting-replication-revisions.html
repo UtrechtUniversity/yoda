@@ -262,7 +262,25 @@ The replication and revision creation cronjobs process these data objects asynch
 <a href="/yoda/design/processes/asynchronous-processes.html">the page about background processes</a>. This page
 contains advice regarding how to troubleshoot these processes.</p>
 
-<p>If a data object is not replicated or does not get a new revision, consider first stopping and
+<p>In Yoda 1.9 and higher, the revision and replication jobs run in verbose mode by default, which means
+the rodsLog typically has information regarding which data objects are being processed by these
+jobs. A good first step is to look up in the rodsLog what the relevant job is doing and
+whether the jobs show any errors, in particular permission errors (which are a common cause of
+replication/revision errors). When in doubt about whether permissions are correct, you can use
+the <code class="language-plaintext highlighter-rouge">iget</code> command to verify that a data object is accessible to the rods account.</p>
+
+<p>If a job is not configured to run in verbose mode, you can run it in verbose mode manually
+(see below).</p>
+<h2 id="running-a-job-in-verbose-mode-manually">
+  
+  
+    <a href="#running-a-job-in-verbose-mode-manually" class="anchor-heading" aria-labelledby="running-a-job-in-verbose-mode-manually"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Running a job in verbose mode manually
+  
+  
+</h2>
+    
+
+<p>If a data object is not replicated or does not get a new revision, consider stopping and
 temporarily disabling the background process cronjob for troubleshooting. This can be done
 by temporarily setting the background process stop flag (<code class="language-plaintext highlighter-rouge">/ZONE/yoda/flags/stop_replication</code> or
 <code class="language-plaintext highlighter-rouge">/ZONE/yoda/flags/stop_revisions</code>) and waiting for the job to finish.</p>
@@ -282,10 +300,6 @@ command for the replication job:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py -v
 </code></pre></div></div>
-
-<p>Failures during revision creation are often caused by permission problems. First run the cron job in
-verbose mode to determine which data object is causing the problem. Then verify that the data object
-is accessible to the rods account, e.g. using an <code class="language-plaintext highlighter-rouge">iget</code> command.</p>
 
         
 
