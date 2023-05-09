@@ -155,7 +155,11 @@ pool_mode = {{ pgbouncer_pool_mode }}
 
 ;; Comma-separated list of parameters to ignore when given in startup
 ;; packet.  Newer JDBC versions require the extra_float_digits here.
+{% if pgbouncer_override_ignore_startup_parameters is defined %}
+ignore_startup_parameters = {{ pgbouncer_override_ignore_startup_parameters }}
+{% else %}
 ignore_startup_parameters = extra_float_digits, geqo
+{% endif %}
 
 ;; When taking idle server into use, this query is run first.
 ;server_check_query = select 1

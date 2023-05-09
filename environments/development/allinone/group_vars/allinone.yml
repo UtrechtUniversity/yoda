@@ -5,6 +5,9 @@
 ansible_user: vagrant                             # Administrative user on instance for Ansible
 ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of administrative user
 
+pgsql_version: 15
+postgresql_perform_db_upgrade: true
+
 # Yoda configuration
 instance: allinone                                 # Name of Yoda instance, as defined in hosts file
 yoda_version: development                          # Git branch, for example: development or release-1.8

@@ -458,37 +458,7 @@
   ansible.builtin.cron:
     name: 'asynchronous-replication'
     minute: '*/5'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1 --balance_id_min=1 --balance_id_max=16'
-    state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
-
-
-- name: Configure asynchronous replication job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-replication'
-    minute: '*/5'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1 --balance_id_min=17 --balance_id_max=32'
-    state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
-
-
-- name: Configure asynchronous replication job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-replication'
-    minute: '*/5'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1 --balance_id_min=33 --balance_id_max=48'
-    state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
-
-
-- name: Configure asynchronous replication job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-replication'
-    minute: '*/5'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1 --balance_id_min=49 --balance_id_max=64'
+    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py --balance_id_min=1 --balance_id_max=64 {{ "-v" if async_replication_verbose_mode else "" }} >/dev/null 2>&1'
     state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
 
 
@@ -498,37 +468,7 @@
   ansible.builtin.cron:
     name: 'asynchronous-revisions'
     minute: '6,16,26,36,46,56'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py >/dev/null 2>&1 --balance_id_min=1 --balance_id_max=16'
-    state: '{{ "present" if enable_revisions == 1 else "absent" }}'
-
-
-- name: Configure asynchronous revision creation job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-revisions'
-    minute: '6,16,26,36,46,56'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py >/dev/null 2>&1 --balance_id_min=17 --balance_id_max=32'
-    state: '{{ "present" if enable_revisions == 1 else "absent" }}'
-
-
-- name: Configure asynchronous revision creation job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-revisions'
-    minute: '6,16,26,36,46,56'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py >/dev/null 2>&1 --balance_id_min=33 --balance_id_max=48'
-    state: '{{ "present" if enable_revisions == 1 else "absent" }}'
-
-
-- name: Configure asynchronous revision creation job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-revisions'
-    minute: '6,16,26,36,46,56'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py >/dev/null 2>&1 --balance_id_min=49 --balance_id_max=64'
+    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py --balance_id_min=1 --balance_id_max=16 {{ "-v" if async_revision_verbose_mode else "" }} >/dev/null 2>&1'
     state: '{{ "present" if enable_revisions == 1 else "absent" }}'
 
 
