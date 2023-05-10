@@ -1,6 +1,9 @@
 ---
 # copyright Utrecht University
 
+- name: Include distribution version specific variables for Zabbix
+  ansible.builtin.include_vars: "rh{{ ansible_distribution_major_version }}.yml"
+
 - name: Ensure Python 3 is installed
   ansible.builtin.package:
     name: python3
@@ -43,6 +46,12 @@
     dest: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
     checksum: '{{ zabbix_agent.checksum }}'
   when: not zabbix_agent_repo.results and not repo_only
+
+
+- name: Install Zabbix RPM key
+  ansible.builtin.rpm_key:
+    key: "{{ zabbix_agent.rpm_key_loc }}"
+    state: present
 
 
 - name: Install Zabbix agent from downloaded rpm
