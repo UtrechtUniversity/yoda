@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+# Zabbix postgres rpm location and checksum
+zabbix_postgres:
+  package: libzbxpgsql-1.1.0-rh8
+  url: https://github.com/UtrechtUniversity/yoda-zabbix/releases/download/1.3-beta/
+  filename: libzbxpgsql-1.1.0-rh8.x86_64.rpm
+  checksum: sha256:123f1e95264339959e5ebff758eea6f224dd381f4479aa7760e9408346ca19c1
