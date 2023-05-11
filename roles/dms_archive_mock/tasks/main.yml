@@ -83,7 +83,7 @@
   ansible.builtin.template:
     src: dm_server.service
     dest: '{{ systemd_dir }}/dm_server.service'
-    mode: 0644
+    mode: '0644'
 
 
 - name: Make sure DMS mock service is started

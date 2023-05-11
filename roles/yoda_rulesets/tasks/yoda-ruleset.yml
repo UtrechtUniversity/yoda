@@ -145,7 +145,7 @@
     remote_src: true
     src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+    mode: '0755'
   when: not ansible_check_mode and enable_data_package_archive
   with_items:
     - admin-vault-archive.sh
