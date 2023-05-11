@@ -14,7 +14,6 @@
     name:
       - "postgresql{{ pgsql_version }}-server"
       - "postgresql{{ pgsql_version }}-contrib"
-      - "postgresql{{ pgsql_version }}-odbc"
       - unixODBC
     state: present
   when: not ansible_check_mode
