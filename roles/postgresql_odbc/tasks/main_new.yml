@@ -1,0 +1,37 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Setup ODBC for RedHat family
+  ansible.builtin.include_tasks: setup-redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Setup ODBC for Debian family
+  ansible.builtin.include_tasks: setup-debian.yml
+  when: ansible_os_family == 'Debian'
+
+
+- name: Check that ODBC is configured for PostgreSQL
+  ansible.builtin.lineinfile:
+    path: "{{ odbc_config_path }}"
+    search_string: "pgsql-{{ pgsql_version }}"
+    state: absent
+  check_mode: true
+  changed_when: false
+  register: driver
+
+
+- name: Configure ODBC for PostgreSQL
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: odbcinst -i -d -r
+  args:
+    stdin: |
+      [PostgreSQL]
+      Description = PostgreSQL {{ pgsql_version }} ODBC Driver
+      Driver      = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbc.so
+      Setup       = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbcw.so
+  when: not driver.found

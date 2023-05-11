@@ -1,0 +1,10 @@
+---
+# copyright Utrecht University
+
+# This setting is used to ensure the playbook does not inadvertently change the database
+# packages. It needs to be disabled to update to a newer PostgreSQL version.
+postgresql_use_native_packages: true
+
+# Version of PostgreSQL to install (tested with 11-15). Note that this setting only becomes
+# effective when postgresql_use_native_packages has been switched off.
+pgsql_version: 15

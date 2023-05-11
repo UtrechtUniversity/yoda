@@ -1,0 +1,17 @@
+---
+# copyright Utrecht University
+
+- name: Collect package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+
+- name: Note that ODBC role is not active with native packages
+  ansible.builtin.debug:
+    msg: "Not running PostgreSQL ODBC role because PostgreSQL has been installed from native packages."
+  when: postgresql_use_native_packages
+
+
+- name: Setup PostgreSQL using PostgreSQL packages
+  ansible.builtin.include_tasks: main_new.yml
+  when: not postgresql_use_native_packages
