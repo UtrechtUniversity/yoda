@@ -169,8 +169,9 @@ token_expiration_notification: 24                       # Send notification befo
 enable_tape_archive: false
 
 # Data Package Archive
-enable_data_package_archive: false      # Enable data package archive functionality
-data_package_limit: 1073741824          # 1 GB
+enable_data_package_archive: false          # Enable data package archive functionality
+data_package_archive_minimum: 1073741824    # Minimum data package archive size (1 GB), -1 for no limit
+data_package_archive_maximum: 107374182400  # Maximum data package archive size (100 GB), -1 for no limit
 
 yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
 

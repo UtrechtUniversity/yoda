@@ -51,6 +51,11 @@ token_lifetime: 72                                      # Lifetime of data acces
 # DMF tape archive
 enable_tape_archive: false
 
+# Data Package Archive
+enable_data_package_archive: false  # Enable data package archive functionality
+data_package_archive_minimum: 1024  # Minimum data package archive size (1 KB), -1 for no limit
+data_package_archive_maximum: -1    # Maximum data package archive size (no limit), -1 for no limit
+
 # Portal customization
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
