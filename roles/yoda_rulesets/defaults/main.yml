@@ -1,6 +1,5 @@
 ---
 # copyright Utrecht University
-
 yoda_version: development
 irods_service_account: irods
 credentials_store: /var/lib/irods/.credentials_store
@@ -10,7 +9,7 @@ core_rulesets:
   - name: yoda-ruleset
     repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "development-parallel-replivions"
     install_scripts: true
   - name: core
     ruleset_name: core
@@ -19,16 +18,20 @@ core_rulesets:
 
 extra_rulesets: []
 
-# UU Module specific configuration
-enable_async_replication: 1
+# Replication configuration
+enable_async_replication: 1            # Enable replication: yes (1) or no (0)
+async_replication_jobs: 1
 async_replication_verbose_mode: true
+
+# Revision configuration
+enable_revisions: 1               # Enable revisions: yes (1) or no (0)
+revision_strategy: B              # Revision strategy: A, B, J or Simple
+enable_revision_cleanup: true     # Enable revision cleanup job (true/false)
+async_revision_jobs: 1
+async_revision_verbose_mode: true
 
 # Research module specific configuration.
 default_yoda_schema: default-0   # Default Yoda metadata scheme: default-0 or default-1
-enable_revisions: 1              # Enable revisions: yes (1) or no (0)
-async_revision_verbose_mode: true
-enable_revision_cleanup: true    # Enable revision cleanup job (true/false)
-revision_strategy: B             # Revision strategy: A, B, J or Simple
 yoda_instance: "{{ instance }}"
 update_rulesets: true            # Update already installed rulesets with git
 update_schemas: 0                # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
