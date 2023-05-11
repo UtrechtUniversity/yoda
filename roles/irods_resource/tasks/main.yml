@@ -155,7 +155,7 @@
     state: absent
 
 
-- name: Make iRODS service account owner of iRODS directories
+- name: Ensure iRODS service account is owner of iRODS directories
   ansible.builtin.file:
     group: '{{ irods_service_account }}'
     owner: '{{ irods_service_account }}'
@@ -212,7 +212,8 @@
 - name: Wait until iRODS server is ready to receive requests
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: 'ils /{{ irods_zone }}/home'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: 'ils /{{ irods_zone }}/home'
   register: ils
   until: ils is succeeded
   retries: 5

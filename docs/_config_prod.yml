@@ -19,3 +19,5 @@ gh_edit_source: docs
 gh_edit_view_mode: "tree"
 
 footer_content: "Licensed under <a href=\"https://github.com/UtrechtUniversity/yoda/blob/development/LICENSE\">GPLv3</a>."
+
+exclude: ['graphic_mark', 'vendor']

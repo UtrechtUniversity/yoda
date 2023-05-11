@@ -36,7 +36,8 @@
 - name: Move old portal virtual environment
   become_user: '{{ yoda_deployment_user }}'
   become: true
-  ansible.builtin.command: "mv /var/www/yoda/venv /var/www/yoda/venv.backup-pre-1.9"
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "mv /var/www/yoda/venv /var/www/yoda/venv.backup-pre-1.9"
   when: portal_venv_python36.stat.exists
 
 

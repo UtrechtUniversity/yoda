@@ -38,7 +38,8 @@
 - name: Initialize PostgreSQL database
   become_user: postgres
   become: true
-  ansible.builtin.command: "{{ postgresql_bin_path }}/initdb -D {{ postgresql_data_dir }}"
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "{{ postgresql_bin_path }}/initdb -D {{ postgresql_data_dir }}"
   when: not pg_version.stat.exists
 
 
@@ -104,7 +105,7 @@
 
 - name: Upgrade PostgreSQL for RedHat family
   ansible.builtin.include_tasks: upgrade.yml
-  when: "'postgresql-server' in ansible_facts.packages and not prevent_upgrade"
+  when: "'postgresql-server' in ansible_facts.packages and postgresql_perform_db_upgrade"
 
 
 - name: Check that ODBC is configured for PostgreSQL
@@ -118,7 +119,8 @@
 
 
 - name: Configure ODBC for PostgreSQL
-  ansible.builtin.command: odbcinst -i -d -r
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: odbcinst -i -d -r
   args:
     stdin: |
       [PostgreSQL]
@@ -133,13 +135,14 @@
     name: "{{ postgresql_daemon }}"
     enabled: true
     state: started
-  when: "not ansible_check_mode and ('postgresql-server' not in ansible_facts.packages or not prevent_upgrade)"
+  when: "not ansible_check_mode and ('postgresql-server' not in ansible_facts.packages or postgresql_perform_db_upgrade)"
 
 
 - name: Optimize PostgreSQL database
   become_user: postgres
   become: true
-  ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/vacuumdb --all"
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "/usr/pgsql-{{ pgsql_version }}/bin/vacuumdb --all"
   when: "ansible_os_family == 'RedHat' and 'postgresql-server' in ansible_facts.packages"
 
 

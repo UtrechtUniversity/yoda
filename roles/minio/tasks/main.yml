@@ -28,12 +28,13 @@
     create_home: false
 
 
-- name: Ensure yodadeployment has access to /var/www/yoda
+- name: Ensure minio-user has access to /mnt/data/minio-s3
   ansible.builtin.file:
     path: /mnt/data/minio-s3
     state: directory
     owner: minio-user
     group: minio-user
+    mode: '0755'
 
 
 - name: Ensure MinIO configuration file is present
@@ -76,7 +77,7 @@
 
 
 - name: Check S3 bucket for Yoda is present
-  become_user: irods
+  become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.shell: s3cmd ls | grep yoda
   register: bucket_check
@@ -88,7 +89,8 @@
 
 
 - name: Ensure S3 bucket for Yoda is present
-  become_user: irods
+  become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: s3cmd mb s3://yoda
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: s3cmd mb s3://yoda
   when: bucket_check.stdout == ""

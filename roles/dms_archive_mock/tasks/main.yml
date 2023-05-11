@@ -36,6 +36,7 @@
 - name: Install DMS archive mock service # noqa no-handler
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     export PATH=/opt/rh/rh-python38/root/bin:$PATH
     cd /var/lib/irods/dms-archive-mock

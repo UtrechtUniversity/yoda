@@ -186,24 +186,27 @@ enable_s3_resource                   | Enable [iRODS S3 Resource Plugin](https:/
 s3_access_key                        | S3 access key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
 s3_secret_key                        | S3 secret key of S3 buckets (used by s3cmd, and optionally by S3 resource plugin, if S3 resource context points to .s3auth file)
 s3_hostname                          | S3 server hostname (used by s3cmd; the hostname used by the S3 resource plugin is configured in the S3 resource contexts instead)
+s3_auth_file                         | S3 authentication file name (default value: /var/lib/irods/.s3auth)
 
 ### Research module configuration
 
-Variable   | Description
------------|---------------------------------------------
-default_yoda_schema          | Default Yoda XML scheme: default-0 or default-1
-enable_revisions             | Enable revisions: yes (1) or no (0)
-enable_revision_cleanup      | Enable cleanup job for removing old revisions (true/false, default: true)
-enable_async_replication     | Enable asynchronous replication cronjob: yes (1) or no (0)
-revision_strategy            | Revision strategy: A, B, J or Simple
-yoda_random_id_length        | Length of random ID to add to persistent identifier
-yoda_prefix                  | Prefix for internal portion of persistent identifier
-update_rulesets              | Update already installed rulesets with git
+Variable                       | Description
+-------------------------------|---------------------------------------------
+default_yoda_schema            | Default Yoda XML scheme: default-0 or default-1
+enable_revisions               | Enable revisions: yes (1) or no (0)
+async_revision_verbose_mode    | Enable verbose logging revision job (true/false, default: true)
+enable_revision_cleanup        | Enable cleanup job for removing old revisions (true/false, default: true)
+enable_async_replication       | Enable asynchronous replication cronjob: yes (1) or no (0)
+async_replication_verbose_mode | Enable verbose logging replication job (true/false, default: true)
+revision_strategy              | Revision strategy: A, B, J or Simple
+yoda_random_id_length          | Length of random ID to add to persistent identifier
+yoda_prefix                    | Prefix for internal portion of persistent identifier
+update_rulesets                | Update already installed rulesets with git
 override_resc_install_rulesets | Install rulesets on server even if it is a resource server (default: false). This override parameter can be used on resource servers that have an additional role, e.g. DavRODS server
-update_schemas               | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
-credential_files             | Location of Yoda credentials files
-temporary_files              | List of temporary files for cleanup functionality
-metadata_schemas             | List of metadata schemas to install on the system
+update_schemas                 | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
+credential_files               | Location of Yoda credentials files
+temporary_files                | List of temporary files for cleanup functionality
+metadata_schemas               | List of metadata schemas to install on the system
 
 ### Deposit module configuration
 
@@ -239,8 +242,8 @@ opensearch_server              | FQDN of the OpenSearch server (typically the pr
 Variable                     | Description
 -----------------------------|---------------------------------------------
 send_notifications           | Enable notifications: yes (1) or no (0)
-notifications_sender_email   | Notifiations sender email address
-notifications_reply_to       | Notifiations Reply-To email address
+notifications_sender_email   | Notifications sender email address
+notifications_reply_to       | Notifications Reply-To email address
 
 ### Yoda internal SMTP settings configuration
 
@@ -272,30 +275,34 @@ postgresql_timezone                    | Timezone that PostgreSQL uses. Defaults
 
 ### PgBouncer configuration
 
-Variable                               | Description
----------------------------------------|---------------------------------------------
-enable_pgbouncer                       | Whether to enable PgBouncer (default: false)
-pgbouncer_pool_mode                    | Specifies when a server connection can be reused by other clients (default: session)
-pgbouncer_max_client_conn              | Maximum number of client connections allowed (default: 200)
-pgbouncer_default_pool_size            | How many server connections to allow per user/database pair (default: 50)
-pgbouncer_reserve_pool_size            | How many additional connections to allow to a pool (default: 25)
-pgbouncer_reserve_pool_timeout         | If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2)
+Variable                                     | Description
+---------------------------------------------|---------------------------------------------
+enable_pgbouncer                             | Whether to enable PgBouncer (default: false)
+pgbouncer_pool_mode                          | Specifies when a server connection can be reused by other clients (default: session)
+pgbouncer_max_client_conn                    | Maximum number of client connections allowed (default: 200)
+pgbouncer_default_pool_size                  | How many server connections to allow per user/database pair (default: 50)
+pgbouncer_reserve_pool_size                  | How many additional connections to allow to a pool (default: 25)
+pgbouncer_reserve_pool_timeout               | If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2)
+pgbouncer_override_ignore_startup_parameters | Adjust ignore_startup_parameters setting of PGbouncer (default: undefined / use OS default value)
 
 ### Postfix configuration
 
-Variable                     | Description
------------------------------|---------------------------------------------
-enable_postfix               | Whether to enable the Postfix local MTA (default: false)
-postfix_myhostname           | Hostname of server where Postfix will be installed (compulsory parameter if Postfix is enabled)
-postfix_relayhost            | Relay host, the server that Postfix should send emails to (compulsory parameter if Postfix is enabled)
-postfix_relayhost_port       | Port of relay host (default: 587)
-postfix_relayhost_username   | User name for authentication on relay host (compulsory parameter if Postfix is enabled)
-postfix_relayhost_password   | Password for authentication on relay host (compulsory parameter if Postfix is enabled)
-postfix_smtp_enable_tls      | Whether to enable TLS on connections to relay host. This also enables authentication on connections to the relay host (default: true)
-postfix_enable_debugging     | This enables additional logging on connections to the relay host. Useful for troubleshooting. (default: false)
-postfix_myorigin             | Sets origin domain for emails sent on the system. Defaults to the postfix_myhostname domain.
-postfix_inet_protocols       | Refers to Postfix inet_protocols setting. Can be useful for running Postfix in IPv4 only mode, if no IPv6 connectivity is available (default: "all")
-postfix_canonical_map        | An optional dictionary of rewrite rules for email addresses. See [the local Postfix MTA page](local-postfix-mta.md) for further information.
+Variable                           | Description
+-----------------------------------|---------------------------------------------
+enable_postfix                     | Whether to enable the Postfix local MTA (default: false)
+postfix_myhostname                 | Hostname of server where Postfix will be installed (compulsory parameter if Postfix is enabled)
+postfix_relayhost                  | Relay host, the server that Postfix should send emails to (compulsory parameter if Postfix is enabled)
+postfix_relayhost_port             | Port of relay host (default: 587)
+postfix_relayhost_username         | User name for authentication on relay host (compulsory parameter if Postfix is enabled)
+postfix_relayhost_password         | Password for authentication on relay host (compulsory parameter if Postfix is enabled)
+postfix_smtp_enable_tls            | Whether to enable TLS on connections to relay host. This also enables authentication on connections to the relay host (default: true)
+postfix_smtp_enable_authentication | Enables authentication on connection to relay host. Only works if TLS is also enabled.  (default: true)
+postfix_relayhost_username         | User name for authentication on relay host (compulsory parameter if authentication is enabled)
+postfix_relayhost_password         | Password for authentication on relay host (compulsory parameter if authentication is enabled)
+postfix_enable_debugging           | This enables additional logging on connections to the relay host. Useful for troubleshooting. (default: false)
+postfix_myorigin                   | Sets origin domain for emails sent on the system. Defaults to the postfix_myhostname domain.
+postfix_inet_protocols             | Refers to Postfix inet_protocols setting. Can be useful for running Postfix in IPv4 only mode, if no IPv6 connectivity is available (default: "all")
+postfix_canonical_map              | An optional dictionary of rewrite rules for email addresses. See [the local Postfix MTA page](local-postfix-mta.md) for further information.
 
 ### DataCite Configuration
 

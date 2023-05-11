@@ -96,6 +96,34 @@ Hello World!
 You need to have a rodsadmin account in order to run Python code this way. The rule function needs
 to be named `main`.
 
+### Calling rules from Python rule code
+
+You can also call other Python rules in the rulebase from a local rule. This example
+shows how to call a test rule that echoes back a number.
+
+Local rule file, e.g. `call-echo.r`:
+
+```python
+def main(rule_args, callback, rei):
+    number = global_vars['*number']
+    ret = callback.rule_echo_number(number, "")
+    callback.writeLine("stdout", "Received return value " + str(ret['arguments'][1]))
+
+input *number="4"
+output ruleExecOut
+```
+
+Remote rule code:
+
+```python
+@rule.make(inputs=[0], outputs=[1])
+def rule_echo_number(ctx, number):
+    """Test function that returns a number passed to it."""
+    return str(number)
+```
+
+The local rule can then be executed with `irule`: `irule -r irods_rule_engine_plugin-python-instance -F call-echo.r`
+
 ## Defining Python code in the ruleset
 
 iRODS Python code in the ruleset needs to ultimately be imported from `/etc/irods/core.py`. On Yoda environments,

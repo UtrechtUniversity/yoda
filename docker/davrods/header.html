@@ -1,0 +1,23 @@
+<!-- start header.html -->
+<div class="brandbar container">
+    <div class="logo pull-left">
+        <a href="https://www.uu.nl">
+            <img class="logo" src="https://portal.yoda:8443/assets/img/logo.svg" />
+        </a>
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Yoda Data</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container page yoda-table">
+    <p>You are viewing files in a web browser. For a better user experience we recommend that you open/map this location as a network drive using <span id="location">the complete URL</span> as location.</p>
+    <script type="text/javascript">
+        document.getElementById("location").textContent = window.location.toString();
+    </script>
+<!-- end header.html -->

@@ -57,7 +57,7 @@
 # EUS depends on the Yoda portal for theming information. So running mismatched versions
 # can result in unexpected errors.
 - name: Check whether Yoda portal version matches EUS version
-  ansible.builtin.fail:
+  ansible.builtin.fail: # noqa ignore-errors
     msg: "Warning: mismatched EUS and portal version can result in EUS theming problems."
   when: "yoda_portal_version != yoda_eus_version"
   ignore_errors: true

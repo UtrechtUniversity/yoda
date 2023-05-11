@@ -20,7 +20,8 @@
 - name: Configure group-manager privilege groups in iCAT database
   become_user: "{{ irods_service_account }}"
   become: true
-  ansible.builtin.command: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
   when: priv_groups.stdout.find('priv-group-add') == -1
 
 
@@ -162,9 +163,9 @@
 - name: Ensure that Yoda metadata schema collection exists
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     imkdir /{{ irods_zone }}/yoda
-
   when: not ansible_check_mode and system_collection.stderr.find('does not exist') >= 0
 
 
@@ -180,6 +181,7 @@
 - name: Ensure that Yoda metadata schema collection exists
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     imkdir /{{ irods_zone }}/yoda/schemas
     ichmod -rM inherit /{{ irods_zone }}/yoda/schemas
@@ -249,6 +251,7 @@
 - name: Install terms and conditions
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     iput -r /etc/irods/yoda-ruleset/terms /{{ irods_zone }}/yoda
     ichmod -rM inherit /{{ irods_zone }}/yoda/terms
@@ -268,6 +271,7 @@
 - name: Ensure that Yoda templates collection exists
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     imkdir /{{ irods_zone }}/yoda/templates
     ichmod -rM inherit /{{ irods_zone }}/yoda/templates
@@ -299,6 +303,7 @@
 - name: Install preservable file formats lists
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     iput -r /etc/irods/yoda-ruleset/file_formats /{{ irods_zone }}/yoda
     ichmod -rM inherit /{{ irods_zone }}/yoda/file_formats
@@ -466,7 +471,7 @@
   ansible.builtin.cron:
     name: 'asynchronous-replication'
     minute: '*/5'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1'
+    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py {{ "-v" if async_replication_verbose_mode else "" }} >/dev/null 2>&1'
     state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
 
 
@@ -476,7 +481,7 @@
   ansible.builtin.cron:
     name: 'asynchronous-revisions'
     minute: '6,16,26,36,46,56'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py >/dev/null 2>&1'
+    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py {{ "-v" if async_revision_verbose_mode else "" }} >/dev/null 2>&1'
     state: '{{ "present" if enable_revisions == 1 else "absent" }}'
 
 
@@ -567,6 +572,7 @@
 - name: Ensure datarequest system collection is present
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.shell: |
     imkdir /{{ irods_zone }}/yoda/datarequest
     ichmod read public /{{ irods_zone }}/yoda/datarequest
@@ -586,7 +592,8 @@
 - name: Install default datarequest module schemas if they do not exist
   become_user: "{{ irods_service_account }}"
   become: true
-  ansible.builtin.command: "/etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh '{{ irods_zone }}'"
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "/etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh '{{ irods_zone }}'"
   when: enable_datarequest and not ansible_check_mode and datarequest_schema_collection.stderr.find('does not exist') >= 0
 
 
@@ -603,7 +610,8 @@
 - name: Ensure datarequests data directory is present
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: '/etc/irods/yoda-ruleset/tools/create-data-directory.sh'
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: '/etc/irods/yoda-ruleset/tools/create-data-directory.sh'
   when: enable_datarequest and not ansible_check_mode and data_requests.stderr.find('does not exist') >= 0
 
 

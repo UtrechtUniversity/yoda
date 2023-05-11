@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Disable Postfix, if installed
-  ansible.builtin.service:
+  ansible.builtin.service: # noqa ignore-errors
     name: postfix
     enabled: false
     state: stopped
@@ -13,6 +13,7 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
+    mode: '0755'
   with_items:
     - /opt/mailpit
     - /opt/mailpit/data

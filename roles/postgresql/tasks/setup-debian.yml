@@ -1,18 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure PostgreSQL APT signing key is present
-  ansible.builtin.apt_key:
-    url: "{{ apt_signing_key }}"
-    state: present
-
-
-- name: Ensure PostgreSQL packages APT repository is enabled
-  ansible.builtin.apt_repository:
-    repo: "{{ apt_repo }}"
-    filename: pgdg
-    state: present
-
 
 - name: Ensure PostgreSQL database and dependencies are installed
   ansible.builtin.package:

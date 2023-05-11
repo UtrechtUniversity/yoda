@@ -11,7 +11,8 @@
 - name: Move old icat-database-checker virtual environment
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: "mv /var/lib/irods/icat-database-checker /var/lib/irods/icat-database-checker.backup-py3.6"
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "mv /var/lib/irods/icat-database-checker /var/lib/irods/icat-database-checker.backup-py3.6"
   when: idbc_venv_python36.stat.exists
 
 
