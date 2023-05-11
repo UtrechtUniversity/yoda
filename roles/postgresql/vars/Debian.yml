@@ -9,6 +9,4 @@ postgresql_bin_path: "/usr/lib/postgresql/{{ __postgresql_version }}/bin"
 postgresql_config_path: "/etc/postgresql/{{ pgsql_version }}/main"
 postgresql_daemon: 'postgresql'
 
-odbc_config_path: '/etc/odbc.ini'
-
 postgresqltuner_dir: "/var/lib/postgresql"

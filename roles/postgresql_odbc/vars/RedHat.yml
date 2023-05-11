@@ -1,0 +1,4 @@
+---
+# copyright Utrecht University
+
+odbc_config_path: '/etc/odbcinst.ini'
