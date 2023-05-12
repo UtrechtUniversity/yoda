@@ -165,13 +165,18 @@ token_length: 32                                        # Length of data access 
 token_lifetime: 72                                      # Lifetime of data access tokens (in hours)
 token_expiration_notification: 24                       # Send notification before token expiration (in hours)
 
-# DMF tape archive
+# DMF tape archive (legacy tape archive implementation)
 enable_tape_archive: false
 
 # Data Package Archive
+enable_data_package_archive: false                     # Enable data package archive functionality
+data_package_archive_fqdn: ""                          # Fully qualified domain name (FQDN) of iRODS server connected to data archive
+data_package_archive_minimum: 1073741824               # Minimum data package archive size (1 GB), -1 for no limit
+data_package_archive_maximum: 107374182400             # Maximum data package archive size (100 GB), -1 for no limit
+
+# Data Package Archive
 enable_data_package_archive: false          # Enable data package archive functionality
-data_package_archive_minimum: 1073741824    # Minimum data package archive size (1 GB), -1 for no limit
-data_package_archive_maximum: 107374182400  # Maximum data package archive size (100 GB), -1 for no limit
+
 
 yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
 
