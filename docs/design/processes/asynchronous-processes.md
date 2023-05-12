@@ -126,8 +126,8 @@ and communities.
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r              |
-| Purpose              | record size of data in group metadata                                       |
+| Script               | /etc/irods/yoda-ruleset/tools/storage-statistics.r              |
+| Purpose              | record size of storage data in group metadata                                       |
 | Lock file            | no lock file                                                                |
 | Typically started by | cronjob with a daily frequency as a minimum   |
 
