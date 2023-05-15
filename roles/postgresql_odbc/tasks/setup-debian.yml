@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+
+- name: Ensure ODBC has been installed
+  ansible.builtin.package:
+    name:
+      - unixodbc
+    state: present

@@ -108,28 +108,6 @@
   when: "'postgresql-server' in ansible_facts.packages and postgresql_perform_db_upgrade"
 
 
-- name: Check that ODBC is configured for PostgreSQL
-  ansible.builtin.lineinfile:
-    path: "{{ odbc_config_path }}"
-    search_string: "pgsql-{{ pgsql_version }}"
-    state: absent
-  check_mode: true
-  changed_when: false
-  register: driver
-
-
-- name: Configure ODBC for PostgreSQL
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: odbcinst -i -d -r
-  args:
-    stdin: |
-      [PostgreSQL]
-      Description = PostgreSQL {{ pgsql_version }} ODBC Driver
-      Driver      = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbc.so
-      Setup       = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbcw.so
-  when: not driver.found
-
-
 - name: Ensure PostgreSQL is enabled and started
   ansible.builtin.service:
     name: "{{ postgresql_daemon }}"
