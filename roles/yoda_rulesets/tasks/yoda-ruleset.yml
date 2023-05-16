@@ -54,7 +54,7 @@
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.stat:
-    path: /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
+    path: /etc/irods/yoda-ruleset/tools/storage-statistics.r
   register: storage_statistics
 
 
