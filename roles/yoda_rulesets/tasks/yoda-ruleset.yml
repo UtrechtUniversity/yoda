@@ -58,6 +58,14 @@
   register: storage_statistics
 
 
+- name: Remove legacy monthly storage statistics gathering cronjob
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'monthly-storage-statistics'
+    state: absent
+
+
 - name: Enable storage statistics gathering cronjob
   become_user: "{{ irods_service_account }}"
   become: true
@@ -65,7 +73,7 @@
     name: 'storage-statistics'
     minute: '0'
     hour: '5'
-    day: '1'
+    day: '*'
     job: >
       /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
       /etc/irods/yoda-ruleset/tools/storage-statistics.r >>/var/lib/irods/log/job_storage-statistics.log 2>&1
