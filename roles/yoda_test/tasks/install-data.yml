@@ -224,11 +224,11 @@
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /var/lib/irods/.irods/job_checksums.r >> /var/lib/irods/log/job_checksums.log 2>&1'
 
 
-- name: Run monthly storage statistics job
+- name: Run storage statistics job
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.command:
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/storage-statistics.r
   ignore_errors: true
 
 

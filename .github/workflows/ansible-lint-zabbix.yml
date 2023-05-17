@@ -20,6 +20,6 @@ jobs:
 
       - name: Run ansible-lint on Zabbix playbook
         # replace `main` with any valid ref, or tags like `v6`
-        uses: ansible-community/ansible-lint-action@main
+        uses: ansible-community/ansible-lint-action@v6.15.0
         with:
           path: "zabbix.yml"

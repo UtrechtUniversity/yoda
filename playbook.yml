@@ -115,6 +115,7 @@
   become: true
   roles:
     - pam_python
+    - postgresql_odbc
     - irods_icat
     - irods_runtime
     - role: irods_resource_plugin_s3

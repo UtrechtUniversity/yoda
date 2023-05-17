@@ -149,12 +149,26 @@
   when: not ansible_check_mode
 
 
+# Needed because of change in default permissions public schema as of PostgreSQL 15
+- name: Specifically grant EUS database user access on public schema
+  become_user: postgres
+  become: true
+  community.postgresql.postgresql_privs:
+    database: "{{ eus_db_name }}"
+    roles: "{{ eus_db_user }}"
+    objs: public
+    privs: CREATE
+    type: schema
+  when: pgsql_version >= 15
+
+
 - name: Create configuration file
   ansible.builtin.template:
     src: flask.cfg.j2
     dest: /var/www/extuser/flask.cfg
     owner: "{{ yoda_deployment_user }}"
     mode: '0644'
+  when: not ansible_check_mode
   notify: Restart Apache webserver
 
 

@@ -37,7 +37,7 @@ case "$1" in
     ;;
 
   statistics)
-    docker exec -it provider.yoda sudo -iu irods /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
+    docker exec -it provider.yoda sudo -iu irods /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/storage-statistics.r
     ;;
 
   weeklyreport)
