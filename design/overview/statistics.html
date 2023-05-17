@@ -140,6 +140,8 @@
                   </li><li class="nav-list-item ">
                     <a href="/yoda/design/overview/deposit-space.html" class="nav-list-link">Deposit space</a>
                   </li><li class="nav-list-item ">
+                    <a href="/yoda/design/overview/statistics_1.8.html" class="nav-list-link">Statistics module (v1.8 or earlier)</a>
+                  </li><li class="nav-list-item ">
                     <a href="/yoda/design/overview/theme-packages.html" class="nav-list-link">Theme packaging</a>
                   </li><li class="nav-list-item ">
                     <a href="/yoda/design/overview/intake.html" class="nav-list-link">Intake module</a>
@@ -186,6 +188,7 @@
           </a><a href="/yoda/administration/" class="nav-list-link">Administration Tasks</a><ul class="nav-list"><li class="nav-list-item "><a href="/yoda/administration/configuring-yoda.html" class="nav-list-link">Configuring Yoda</a></li><li class="nav-list-item "><a href="/yoda/administration/deploying-yoda.html" class="nav-list-link">Deploying Yoda</a></li><li class="nav-list-item "><a href="/yoda/administration/hotfixing-ruleset.html" class="nav-list-link">Hotfixing ruleset</a></li><li class="nav-list-item "><a href="/yoda/administration/local-ruleset-patch.html" class="nav-list-link">Local ruleset patches</a></li><li class="nav-list-item "><a href="/yoda/administration/installing-licenses.html" class="nav-list-link">Installing Licenses</a></li><li class="nav-list-item "><a href="/yoda/administration/installing-terms.html" class="nav-list-link">Installing Terms & Conditions</a></li><li class="nav-list-item "><a href="/yoda/administration/installing-preservable-file-formats.html" class="nav-list-link">Installing lists of preservable file formats</a></li><li class="nav-list-item "><a href="/yoda/administration/installing-metadata-schemas.html" class="nav-list-link">Installing metadata schemas</a></li><li class="nav-list-item "><a href="/yoda/administration/local-postfix-mta.html" class="nav-list-link">Local Postfix MTA</a></li><li class="nav-list-item "><a href="/yoda/administration/installing-datarequest-module.html" class="nav-list-link">Installing datarequest module</a></li><li class="nav-list-item "><a href="/yoda/administration/upgrading-metadata-schemas.html" class="nav-list-link">Upgrading metadata schemas</a></li><li class="nav-list-item "><a href="/yoda/administration/troubleshooting-publication.html" class="nav-list-link">Troubleshooting publication</a></li><li class="nav-list-item "><a href="/yoda/administration/using-python-irodsclient.html" class="nav-list-link">Using the python-irodsclient API</a></li><li class="nav-list-item "><a href="/yoda/administration/troubleshooting-email.html" class="nav-list-link">Troubleshooting email</a></li><li class="nav-list-item "><a href="/yoda/administration/configuring-openidc.html" class="nav-list-link">Configuring OIDC</a></li><li class="nav-list-item "><a href="/yoda/administration/troubleshooting-replication-revisions.html" class="nav-list-link">Troubleshooting replication and revision creation</a></li><li class="nav-list-item "><a href="/yoda/administration/configuring-cleanup-temporary-files.html" class="nav-list-link">Configuring cleanup functionality temporary files</a></li><li class="nav-list-item "><a href="/yoda/administration/configuring-data-access-passwords.html" class="nav-list-link">Configuring Data Access Passwords</a></li><li class="nav-list-item "><a href="/yoda/administration/restore-collection.html" class="nav-list-link">Restore collection</a></li><li class="nav-list-item "><a href="/yoda/administration/setting-job-flags.html" class="nav-list-link">Setting job flags</a></li><li class="nav-list-item "><a href="/yoda/administration/supported-distributions.html" class="nav-list-link">Supported distributions</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander" aria-label="toggle links in Development category">
             <svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg>
           </a><a href="/yoda/development/" class="nav-list-link">Development</a><ul class="nav-list"><li class="nav-list-item "><a href="/yoda/development/setting-up-development-environment.html" class="nav-list-link">Setting up development environment</a></li><li class="nav-list-item "><a href="/yoda/development/running-api-ui-tests.html" class="nav-list-link">Running API and UI tests</a></li><li class="nav-list-item "><a href="/yoda/development/yodadrive-development-environment.html" class="nav-list-link">Setting up YodaDrive development environment</a></li><li class="nav-list-item "><a href="/yoda/development/mock_tape_archive.html" class="nav-list-link">Mock tape archive</a></li><li class="nav-list-item "><a href="/yoda/development/development-tips.html" class="nav-list-link">Development tips</a></li><li class="nav-list-item "><a href="/yoda/development/wall-of-fame.html" class="nav-list-link">Wall of Fame</a></li></ul></li><li class="nav-list-item"><a href="/yoda/development/docker-setup.html" class="nav-list-link">Running Yoda using Docker Compose</a></li></ul>
+
     
   </nav>
 
@@ -230,20 +233,14 @@
 </div>
 
     <div id="main-content-wrap" class="main-content-wrap">
-      
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
   
-    <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-      <ol class="breadcrumb-nav-list">
-        
-          <li class="breadcrumb-nav-list-item"><a href="/yoda/design/">Software Design</a></li>
-          <li class="breadcrumb-nav-list-item"><a href="/yoda/design/overview/">System Overview</a></li>
-        
-        <li class="breadcrumb-nav-list-item"><span>Statistics module</span></li>
-      </ol>
-    </nav>
-  
-
-
+    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/">Software Design</a></li>
+    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/overview/">System Overview</a></li>
+  <li class="breadcrumb-nav-list-item"><span>Statistics module</span></li>
+  </ol>
+</nav>
       <div id="main-content" class="main-content" role="main">
         
           <h1 id="statistics-module">
@@ -254,21 +251,65 @@
   
 </h1>
     
-<h2 id="resources-and-tiers">
+<h2 id="change-in-focus-of-statistics-module">
   
   
-    <a href="#resources-and-tiers" class="anchor-heading" aria-labelledby="resources-and-tiers"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Resources and tiers
+    <a href="#change-in-focus-of-statistics-module" class="anchor-heading" aria-labelledby="change-in-focus-of-statistics-module"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Change in focus of statistics module
   
   
 </h2>
     
-<p>Any resources can be administratively assigned to one tier.
-A tier is an Yoda introduced entity, not standard iRODS
-A tier can be considered a price level of a resource.</p>
+<p>Starting from Yoda release 1.8 the statistics module gives deeper insight in storage consumption.
+From this release storage is broken down in research, revision and vault storage.
+In all <a href="/yoda/design/overview/statistics_1.8.html">previous</a> Yoda versions the storage consumption was related to resource tiers.
+This approach has been discarded following up requests made from within the Yoda community.</p>
 
-<p>metadata on resource level:<code class="language-plaintext highlighter-rouge">org_storage_tier  = ‘tape’</code></p>
+<p>In order to enable this new way of registering storage amounts two the following had the be taken care of:</p>
 
-<p>If no tier is assigned to a resource yet, this is considered the ‘Standard’ tier by default.</p>
+<ol>
+  <li>the storage collection job had to be redesigned</li>
+  <li>preservation of the already present (tier based) storage history</li>
+</ol>
+<h2 id="storage-collection-job">
+  
+  
+    <a href="#storage-collection-job" class="anchor-heading" aria-labelledby="storage-collection-job"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Storage collection job
+  
+  
+</h2>
+    
+<h3 id="changes-in-collection-of-storage">
+  
+  
+    <a href="#changes-in-collection-of-storage" class="anchor-heading" aria-labelledby="changes-in-collection-of-storage"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Changes in collection of storage
+  
+  
+</h3>
+    
+<p>Where yhe original job was based on a monthly premise and with a maximum of 12 months back, the new job however will be able to run anytime. This, with a minimum resolution of daily probes.<br />
+Where the original job was limited to a 12 month cyclic buffer, making it impossible to record for more than 1 year of historic data, the new collection method has no limit in registering storage data anymore.<br />
+In other words the entire storage history will be kept safely during the lifetime of the Yoda instance.</p>
+<h3 id="changes-in-storage-type">
+  
+  
+    <a href="#changes-in-storage-type" class="anchor-heading" aria-labelledby="changes-in-storage-type"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Changes in storage type
+  
+  
+</h3>
+    
+<p>Where the formally registered storage data that was fully tier based, in the new Yoda version a differentiation is created in collecting storage data for the research area, revisions area and vault area.
+Thus enabling the statistics module to show (historic) tables and graphs differentiating storage areas (research, revision, vault and total amounts).</p>
+<h2 id="transformation-of-original-storage-data">
+  
+  
+    <a href="#transformation-of-original-storage-data" class="anchor-heading" aria-labelledby="transformation-of-original-storage-data"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Transformation of original storage data
+  
+  
+</h2>
+    
+<p>In order to safeguard the already present storage history it is required to be transformed to the new data structure.
+Due to the limitation that it was registered tier-based, it is unclear to which area (research, revisions or vault) the data actually belongs to.<br />
+Therefore, the transformed tier-based data is added to the total and presented that way in the Statistics module</p>
 <h2 id="registering-usage-data">
   
   
@@ -277,52 +318,36 @@ A tier can be considered a price level of a resource.</p>
   
 </h2>
     
-<p>Once a month a cronjob registers storage data for each category, based upon each group in the category.
-Collection of storage amount is performed per group and per storage tier and stored as metadata on corresponding group.
-When collection fails the storage data of the previoues month is used as fallback.</p>
+<p>In previous Yoda versions a cronjob registers, once a month, all storage data for each category, based upon each group in the corresponding category.
+Starting from Yoda-version 1.8 the collection job can be run any moment with a daily basis as a minimum resolution.</p>
 
-<p>All determined storage data is recorded on group level.
-Each group holds the following metadata with key: <code class="language-plaintext highlighter-rouge">org_storage_data_month</code>.</p>
+<p>Collection of storage amount is performed per group and is differentiated in research, revision and vault data for that group. And consequently stored as metadata on corresponding group.</p>
 
-<p>This is postfixed with the month number, like:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org_storage_data_month01
-org_storage_data_month02
-org_storage_data_month03
-org_storage_data_month04
-org_storage_data_month05
-org_storage_data_month06
-org_storage_data_month07
-org_storage_data_month08
-org_storage_data_month09
-org_storage_data_month10
-org_storage_data_month11
-org_storage_data_month12
+<p>All determined storage data is recorded on its corresponding group level.
+Each group holds the following metadata with key: <code class="language-plaintext highlighter-rouge">org_storage_totals</code>.</p>
+
+<p>This is postfixed with the date (yyyy_mm_dd), like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org_storage_totals2023_05_01
+org_storage_totals2023_05_02
+org_storage_totals2023_05_03
 </code></pre></div></div>
-<p>Thus creating a full year cyclic buffer.</p>
 
-<p>Per entry, i.e. for a group every month, each metadata-entry holds category, tier and  storage information in a JSON format <code class="language-plaintext highlighter-rouge">['Categoryname', 'Tiername', '100']</code>.
-The frontend steps into this cyclic buffer starting from current month backward.
-Per month the front end gets tiername and storage data in a total array divided in
-tiername, months and storage.</p>
+<p>Per entry (i.e. per group) storage information is held in a JSON format:
+<code class="language-plaintext highlighter-rouge">['Categoryname', 'research value','vault value', 'revisions value', 'total value']</code>.</p>
 
 <p>Metadata attribute:
-<code class="language-plaintext highlighter-rouge">UUORGMETADATAPREFIX ++ 'storage_data_month' ++ *month;</code></p>
+<code class="language-plaintext highlighter-rouge">UUORGMETADATAPREFIX ++ 'storage_totals' ++ '2023_05_01';</code></p>
 
 <p>Metadata value:
-<code class="language-plaintext highlighter-rouge">*json_str = "[\"*category\", \"*tier\", \"*storageAmount\"]";</code></p>
+<code class="language-plaintext highlighter-rouge">*json_str = "[\"*category\", 100, 200, 300, 600]";</code></p>
+
+<p>Where in this example:
+research = 100,
+vault = 200,
+revisions = 300
+and total = 600</p>
 
 <p>The corresponding category is registered on group level as well as a group could possibly change category. So for historic purposes it is required to know to what category a group belonged.</p>
-<h2 id="twelve-month-registration">
-  
-  
-    <a href="#twelve-month-registration" class="anchor-heading" aria-labelledby="twelve-month-registration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Twelve month registration
-  
-  
-</h2>
-    
-<p>Per group one or more metadata attributes like this exist for a month.<br />
-This occurs for each month (<code class="language-plaintext highlighter-rouge">org_storageDataMonth01, … , org_storageDataMonth12</code>) thus setting up a cyclic buffer for registration with a maximum history  12 months history.
-After 12 months the previous values are overwritten automatically by the monthly cronjob.</p>
 <h2 id="collecting-data-for-reporting">
   
   
@@ -332,17 +357,7 @@ After 12 months the previous values are overwritten automatically by the monthly
 </h2>
     
 <p>To find all latest and historic data for a category metadata can be matched against <code class="language-plaintext highlighter-rouge">‘[\“’ ++ *cat ++ ‘\”%%’</code>.
-This will bring up all metadata storage metadata for this category. Combined with a specific month this will bring up all required data to calculate  the storage per tier for a specific category for a month.</p>
-<h2 id="which-month-does-registered-data-belong-to">
-  
-  
-    <a href="#which-month-does-registered-data-belong-to" class="anchor-heading" aria-labelledby="which-month-does-registered-data-belong-to"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Which month does registered data belong to?
-  
-  
-</h2>
-    
-<p>Registration takes place on the first day of a month, the data collected is linked to that month.
-I.e. data collected on 1st of June is linked to the month of June. And therefore registered under <code class="language-plaintext highlighter-rouge">org_storage_data_month06</code>.</p>
+This will bring up all metadata storage metadata for this category.</p>
 
         
 
