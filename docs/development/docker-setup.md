@@ -1,9 +1,7 @@
 ---
-layout: default
+parent: Development
 title: Running Yoda using Docker Compose
-nav_order: 5
-has_children: false
-has_toc: false
+nav_order: 1
 ---
 # Running Yoda using Docker Compose
 

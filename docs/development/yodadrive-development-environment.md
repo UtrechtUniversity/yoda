@@ -1,7 +1,7 @@
 ---
 parent: Development
 title: Setting up YodaDrive development environment
-nav_order: 2
+nav_order: 3
 ---
 # YodaDrive Development Environment
 This document describes setting up a development environment for YodaDrive. [YodaDrive](https://github.com/UtrechtUniversity/YodaDrive) is a WebDAV driver for Windows, written in C#. Development of YodaDrive requires a Windows development environment with Visual Studio Community 2017 or better.
