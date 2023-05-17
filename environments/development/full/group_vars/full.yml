@@ -47,8 +47,14 @@ token_database_password: test                           # Token database passwor
 token_length: 32                                        # Length of data access tokens
 token_lifetime: 72                                      # Lifetime of data access tokens (in hours)
 
-# DMF tape archive
+# DMF tape archive (legacy tape archive implementation)
 enable_tape_archive: false
+
+# Data Package Archive
+enable_data_package_archive: false                     # Enable data package archive functionality
+data_package_archive_fqdn: "{{ irods_resource_fqdn }}" # Fully qualified domain name (FQDN) of iRODS server connected to data archive
+data_package_archive_minimum: 1024                     # Minimum data package archive size (1 KB), -1 for no limit
+data_package_archive_maximum: -1                       # Maximum data package archive size (no limit), -1 for no limit
 
 # iRODS check tooling
 enable_irods_consistency_check: true

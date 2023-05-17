@@ -2,3 +2,8 @@
 # copyright Utrecht University
 
 enable_tape_archive: false
+
+systemd_dir: /etc/systemd/system
+
+dm_server:
+  user: irods

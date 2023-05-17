@@ -146,6 +146,19 @@
     - async-tape-archive-replicate.sh
 
 
+- name: Copy data package archive scripts to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: '0755'
+  when: not ansible_check_mode and enable_data_package_archive
+  with_items:
+    - admin-vault-archive.sh
+
+
 - name: Find out if system collection exists
   become_user: "{{ irods_service_account }}"
   become: true
@@ -478,6 +491,16 @@
     minute: '6,16,26,36,46,56'
     job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py {{ "-v" if async_revision_verbose_mode else "" }} >/dev/null 2>&1'
     state: '{{ "present" if enable_revisions == 1 else "absent" }}'
+
+
+- name: Enable asynchronous archival job
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'vault-archive.r'
+    minute: '*/6'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/vault-archive.r >/dev/null 2>&1'
+    state: '{{ "present" if enable_data_package_archive else "absent" }}'
 
 
 - name: Enable asynchronous tape archive replication job

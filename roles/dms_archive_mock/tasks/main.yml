@@ -1,6 +1,28 @@
 ---
 # copyright Utrecht University
 
+- name: Check for outdated mock service
+  ansible.builtin.stat:
+    path: '/var/lib/irods/dms-archive-mock/tape_archive_venv/bin/pip3.6'
+  ignore_errors: true
+  register: bad_bad_python
+
+
+- name: Stop outdated mock service
+  ansible.builtin.service:
+    name: dm_server
+    state: stopped
+    enabled: true
+  when: bad_bad_python.stat.exists
+
+
+- name: Remove outdated mock service
+  ansible.builtin.file:
+    state: absent
+    path: '/var/lib/irods/dms-archive-mock/'
+  when: bad_bad_python.stat.exists
+
+
 - name: Ensure DMS archive mock service files are present
   become_user: "{{ irods_service_account }}"
   become: true
@@ -16,6 +38,7 @@
   become: true
   # noqa no-changed-when
   ansible.builtin.shell: |
+    export PATH=/opt/rh/rh-python38/root/bin:$PATH
     cd /var/lib/irods/dms-archive-mock
     python3 -m virtualenv tape_archive_venv
     . tape_archive_venv/bin/activate
@@ -54,3 +77,17 @@
     - dmattr
     - dmget
     - dmput
+
+
+- name: Create systemd service
+  ansible.builtin.template:
+    src: dm_server.service
+    dest: '{{ systemd_dir }}/dm_server.service'
+    mode: '0644'
+
+
+- name: Make sure DMS mock service is started
+  ansible.builtin.service:
+    name: dm_server
+    state: started
+    enabled: true

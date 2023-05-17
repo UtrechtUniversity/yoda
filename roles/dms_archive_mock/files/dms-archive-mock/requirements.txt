@@ -1,3 +1,5 @@
 Flask==2.0.3
 requests==2.27.1
 numpy==1.19.5
+typing-extensions==4.1.1
+Werkzeug==2.0.3
