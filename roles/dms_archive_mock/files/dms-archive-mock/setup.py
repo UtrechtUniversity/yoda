@@ -16,7 +16,7 @@ setup(
                       'requests==2.27.1',
                       'numpy==1.19.5',
                       'typing-extensions==4.1.1',
-                      'Werkzeug==2.0.3'],
+                      'Werkzeug==2.2.3'],
     entry_points='''
     [console_scripts]
     dmattr=dm_mock:dmattr
