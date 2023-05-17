@@ -33,10 +33,22 @@ rm -f /lib/systemd/system/anaconda.target.wants/*;
 COPY stage/pam_python.so /tmp/pam_python.so
 RUN install -m 0755 -o root -g root /tmp/pam_python.so /usr/lib64/security/pam_python.so
 
+# Install EPEL and libZSTD for PostgreSQL 15
+# hadolint ignore=DL3033
+RUN yum install -y epel-release libzstd-devel && yum clean all
+
+# Install PostgreSQL 15 for checks whether database container is up, as well as troubleshooting
+# hadolint ignore=DL3033
+RUN yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
+    yum -y install postgresql15 postgresql15-odbc unixODBC && \
+    yum clean all
+COPY odbc-settings.txt /tmp/odbc-settings.txt
+RUN odbcinst -i -d -r < /tmp/odbc-settings.txt
+
 # Install iRODS
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3033
-RUN yum install -y epel-release wget git && \
+RUN yum install -y wget git && \
     yum clean all && \
     useradd -d /var/lib/irods irods && \
     rpm --import "$YUM_IRODS_REPO_SIGNING_KEY_LOC" && \

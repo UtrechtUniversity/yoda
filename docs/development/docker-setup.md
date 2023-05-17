@@ -62,6 +62,9 @@ After the application is started, the web interfaces will be available on:
 - EUS (port with API enabled): https://eus.yoda:8444
 - DavRODS: https://data.yoda:8445
 
+You can log in on the Yoda portal using any of the test account credentials, such as user name `researcher`
+and password `test`. A full list of test account credentials can be found in the
+[test_users list in the defaults file of the Yoda test role](https://github.com/UtrechtUniversity/yoda/blob/development/roles/yoda_test/defaults/main.yml).
 
 ## Building the images
 

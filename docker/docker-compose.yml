@@ -27,7 +27,7 @@ services:
     container_name: db.yoda
     platform: linux/amd64
     hostname: db.yoda
-    image: postgres:11-bullseye
+    image: postgres:15
     environment:
       - POSTGRES_DB=ICAT
       - POSTGRES_USER=irodsdb
@@ -40,7 +40,7 @@ services:
     container_name: extuserdb.yoda
     platform: linux/amd64
     hostname: extuserdb.yoda
-    image: postgres:11-bullseye
+    image: postgres:15
     environment:
       - POSTGRES_DB=extuser
       - POSTGRES_USER=extuser

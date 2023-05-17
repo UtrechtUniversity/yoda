@@ -13,7 +13,16 @@ EXPOSE 443
 
 # Install common tools (PostgreSQL is needed for psql commands in init script)
 # hadolint ignore=DL3033
-RUN yum install -y epel-release wget git postgresql nc && \
+RUN yum install -y epel-release wget git nc && \
+    yum clean all
+
+# Update packages
+RUN yum update -y
+
+# Install PostgreSQL 15 for checks whether database container is up, as well as troubleshooting
+# hadolint ignore=DL3033
+RUN yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
+    yum -y install libzstd-devel postgresql15 && \
     yum clean all
 
 # Install Python 3
