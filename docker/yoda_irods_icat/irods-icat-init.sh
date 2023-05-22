@@ -16,6 +16,25 @@ function progress_update {
   echo -e "[ ${GREEN}\xE2\x9C\x94${RESET} ] ${1}"
 }
 
+function start_service {
+  before_update "Starting iRODS"
+  sudo -u irods /var/lib/irods/irodsctl start || true
+  progress_update "iRODS started"
+
+  before_update "Initializing authentication token"
+  sudo -u irods bash -c "echo rods | iinit"
+  progress_update "Authentication token initialized"
+
+  progress_update "Container startup complete. iRODS is running."
+
+  sleep infinity
+}
+
+if [ -f "/container_initialized" ]
+then echo "Container has already been initialized. Starting service."
+     start_service
+fi
+
 # Download test vault and iCAT data
 before_update "Downloading data"
 mkdir /download
@@ -84,14 +103,5 @@ sudo -u irods pip2 install --user attrs==21.4.0
 sudo -u irods pip2 install --user -r /etc/irods/yoda-ruleset/requirements.txt
 progress_update "Ruleset dependencies updated"
 
-before_update "Starting iRODS"
-sudo -u irods /var/lib/irods/irodsctl start || true
-progress_update "iRODS started"
-
-before_update "Initializing authentication token"
-sudo -u irods bash -c "echo rods | iinit"
-progress_update "Authentication token initialized"
-
-progress_update "Initialization complete. iRODS is running."
-
-sleep infinity
+touch /container_initialized
+start_service

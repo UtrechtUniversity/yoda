@@ -16,6 +16,17 @@ function progress_update {
   echo -e "[ ${GREEN}\xE2\x9C\x94${RESET} ] ${1}"
 }
 
+function start_service {
+  /usr/sbin/httpd -DFOREGROUND || true
+  echo "Error: http either terminated or would not start. Keeping container running for troubleshooting purposes."
+  sleep infinity
+}
+
+if [ -f "/container_initialized" ]
+then echo "Container has already been initialized. Starting service."
+     start_service
+fi
+
 # Download and install certificates
 before_update "Downloading certificate bundle"
 mkdir /download
@@ -128,7 +139,6 @@ YODA_EUS_API
 progress_update "Portal configured"
 
 # Start Apache
+touch /container_initialized
 before_update "Initialization complete. Starting Apache"
-/usr/sbin/httpd -DFOREGROUND || true
-echo "Error: http either terminated or would not start. Keeping container running for troubleshooting purposes."
-sleep infinity
+start_service
