@@ -77,7 +77,7 @@
         ""
     ], 
     "schema_name": "server_config", 
-    "schema_validation_base_uri": "https://schemas.irods.org/configuration", 
+    "schema_validation_base_uri": "off",
     "schema_version": "v3", 
     "server_control_plane_encryption_algorithm": "AES-256-CBC", 
     "server_control_plane_encryption_num_hash_rounds": 16, 
