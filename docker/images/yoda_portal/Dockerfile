@@ -47,6 +47,10 @@ RUN virtualenv --python /opt/rh/rh-python38/root/bin/python3 /var/www/yoda/venv 
     /var/www/yoda/venv/bin/pip3 install pip==23.0.1 && \
     /var/www/yoda/venv/bin/pip3 install -r /var/www/yoda/requirements.txt
 
+# Make copy of data on volumes that can optionally be bind mounted, so the container init script
+# can restore it if needed.
+RUN cp -Rdp /var/www/yoda /var/www/yoda-copy
+
 # Initialize
 VOLUME [ "/sys/fs/cgroup" ]
 COPY yoda_portal_init.sh /var/lib/irods/scripts/yoda_portal_init.sh

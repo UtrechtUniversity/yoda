@@ -3,14 +3,18 @@ name: Lint Dockerfiles
 on:
   push:
     paths:
-    - 'docker/**'
+    - 'docker/images/davrods/Dockerfile'
+    - 'docker/images/mailpit/Dockerfile'
+    - 'docker/images/yoda_eus/Dockerfile'
+    - 'docker/images/yoda_irods_icat/Dockerfile'
+    - 'docker/images/yoda_portal/Dockerfile'
 
 jobs:
   build:
-   runs-on: ubuntu-latest
+   runs-on: ubuntu-22.04
    steps:
    - uses: actions/checkout@v2
-   - uses: hadolint/hadolint-action@v2.0.0
+   - uses: jbergstroem/hadolint-gh-action@v1
      with:
-       config: docker/hadolint.yml
-       dockerfile: docker/yoda_irods_icat/Dockerfile
+       config_file: docker/hadolint.yml
+       dockerfile: docker/images/**/Dockerfile

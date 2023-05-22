@@ -59,6 +59,13 @@ RUN virtualenv --python /opt/rh/rh-python38/root/bin/python3 /var/www/extuser/yo
     /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install pip==23.0.1 && \
     /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install /var/www/extuser/yoda-external-user-service
 
+# Make copy of data on volumes that can optionally be bind mounted, so the container init script
+# can restore it if needed.
+# hadolint ignore=DL3059
+RUN cp -Rdp /var/www/yoda /var/www/yoda-copy
+# hadolint ignore=DL3059
+RUN cp -Rdp /var/www/extuser /var/www/extuser-copy
+
 # Initialize
 VOLUME [ "/sys/fs/cgroup" ]
 COPY yoda_eus_init.sh /var/lib/irods/scripts/yoda_eus_init.sh

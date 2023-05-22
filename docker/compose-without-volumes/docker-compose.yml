@@ -3,9 +3,6 @@ version: "3"
 volumes:
   extuser_pg_data:
   icat_pg_data:
-  icat_irods_logs:
-  icat_yoda_ruleset:
-
 
 services:
   provider:
@@ -17,11 +14,8 @@ services:
       - db
       - mailpit
     build:
-      context: yoda_irods_icat
+      context: ../images/yoda_irods_icat
     restart: unless-stopped
-    volumes:
-      - icat_yoda_ruleset:/etc/irods/yoda-ruleset
-      - icat_irods_logs:/var/lib/irods/logs
 
   db:
     container_name: db.yoda
@@ -60,7 +54,7 @@ services:
     ports:
       - "8443:443"
     build:
-      context: yoda_portal
+      context: ../images/yoda_portal
     restart: unless-stopped
 
   eus:
@@ -74,7 +68,7 @@ services:
     ports:
       - "8444:8443"
     build:
-      context: yoda_eus
+      context: ../images/yoda_eus
     restart: unless-stopped
 
   davrods:
@@ -87,7 +81,7 @@ services:
     ports:
       - "8445:443"
     build:
-      context: davrods
+      context: ../images/davrods
     restart: unless-stopped
 
   mailpit:
@@ -97,6 +91,8 @@ services:
     image: ghcr.io/utrechtuniversity/yoda-mailpit:dev-1.9
     environment:
       - TZ=Europe/Amsterdam
+    build:
+      context: ../images/mailpit
     ports:
       - "8025:8025"
     restart: unless-stopped
