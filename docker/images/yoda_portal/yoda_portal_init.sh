@@ -43,6 +43,33 @@ install -m 0644 docker.key /etc/pki/tls/private/localhost.key
 install -m 0644 dhparam.pem /etc/pki/tls/private/dhparams.pem
 progress_update "Certificate data extracted"
 
+CURRENT_UID="$(id -u yodadeployment)"
+if [[ -f "/var/www/yoda/.docker.gitkeep" ]]
+then progress_update "Bind mount detected. Checking if application UID needs to be changed."
+     MOUNT_UID="$(stat -c "%u" /var/www/yoda)"
+     if [ "$MOUNT_UID" == "0" ]
+     then progress_update "Error: bind mount owned by root user. Cannot change application UID. Halting."
+          sleep infinity
+     elif [ "$MOUNT_UID" == "$CURRENT_UID" ]
+     then progress_update "Notice: bind mount UID matches application UID. No need to change application UID."
+     else before_update "Updating application UID ${CURRENT_UID} -> ${MOUNT_UID}"
+          usermod -u "$MOUNT_UID" yodadeployment
+          find / -xdev -user "$CURRENT_UID" -exec chown -h "${MOUNT_UID}" {} \;
+          progress_update "Application UID updated."
+     fi
+     if [[ -d "/var/www/yoda/.git" ]]
+     then echo "Git repo detected in bind mount. Skipping code copy in order not to overwrite local changes."
+     else
+         before_update "Fixing up permissions before copying application source code."
+         find /var/www/yoda-copy -type f -perm 0444 -exec chmod 0666 {} \;
+         progress_update "Permission fixes done."
+         before_update "Copying application source code to volume."
+         cp -R /var/www/yoda-copy/. /var/www/yoda
+         progress_update "Copying application source code finished."
+     fi
+else progress_update "Notice: no bind mount detected. Keeping current application UID ${CURRENT_UID}"
+fi
+
 # Configure the portal
 before_update "Configuring the portal"
 cd /var/www/yoda

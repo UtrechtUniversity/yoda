@@ -35,18 +35,23 @@ run-cronjob.sh revision
 If you haven't downloaded the Docker images yet, pull them first:
 
 ```bash
-cd docker
+cd docker/compose
 docker-compose pull
 ```
 
-The application can be started using docker compose:
+The application can then be started using docker compose:
 ```bash
-docker-compose up
+./up.sh
 ```
+
+The default Docker Compose configuration uses bind mounts so that the ruleset, portal
+and EUS application code can be edited easily. If that does not work on your system, there
+is an alternative Docker Compose configuration without these volumes in `docker/compose-without-volumes`
+that facilitates testing Yoda in situations where bind mounts cause problems.
 
 Removing and old instance of the application (including data):
 ```bash
-docker-compose down -v
+./down.sh -v
 ```
 
 You need to have these entries in your /etc/hosts (or equivalent) file:
@@ -75,7 +80,7 @@ instead.
 ### Yoda provider
 
 ```bash
-cd docker/yoda_irods_icat
+cd docker/images/yoda_irods_icat
 ./stage-uploads.sh
 ./build.sh
 ```
@@ -83,27 +88,27 @@ cd docker/yoda_irods_icat
 ### Mailpit
 
 ```bash
-cd docker/mailpit
+cd docker/images/mailpit
 ./build.sh
 ```
 
 ### Yoda portal
 
 ```bash
-cd docker/yoda_portal
+cd docker/images/yoda_portal
 ./build.sh
 ```
 
 ### DavRODS
 
 ```bash
-cd docker/davrods
+cd docker/images/davrods
 ./build.sh
 ```
 
 ### External user service
 
 ```bash
-cd docker/yoda_eus
+cd docker/images/yoda_eus
 ./build.sh
 ```

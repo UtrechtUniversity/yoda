@@ -87,6 +87,33 @@ cat > /var/lib/irods/VERSION.json << VERSION
 VERSION
 chown irods:irods /var/lib/irods/VERSION.json
 
+CURRENT_UID="$(id -u irods)"
+if [[ -f "/etc/irods/yoda-ruleset/.docker.gitkeep" ]]
+then progress_update "Bind mount detected. Checking if application UID needs to be changed."
+     MOUNT_UID="$(stat -c "%u" /etc/irods/yoda-ruleset)"
+     if [ "$MOUNT_UID" == "0" ]
+     then progress_update "Error: bind mount owned by root user. Cannot change application UID. Halting."
+          sleep infinity
+     elif [ "$MOUNT_UID" == "$CURRENT_UID" ]
+     then progress_update "Notice: bind mount UID matches application UID. No need to change application UID."
+     else before_update "Updating application UID ${CURRENT_UID} -> ${MOUNT_UID}"
+          usermod -u "$MOUNT_UID" irods
+          find / -xdev -user "$CURRENT_UID" -exec chown -h "${MOUNT_UID}" {} \;
+          progress_update "Application UID updated."
+     fi
+     if [ -d "/etc/irods/yoda-ruleset/.git" ]
+     then echo "Git repo detected in bind mount. Skipping code copy in order not to overwrite local changes."
+     else
+         before_update "Fixing up permissions before copying application source code."
+         find /etc/irods/yoda-ruleset-copy -type f -perm 0444 -exec chmod 0666 {} \;
+         progress_update "Permission fixes done."
+         before_update "Copying ruleset code to volume."
+         cp -R /etc/irods/yoda-ruleset-copy/. /etc/irods/yoda-ruleset
+         progress_update "Copying ruleset source code finished."
+     fi
+else progress_update "Notice: no bind mount detected. Keeping current application UID ${CURRENT_UID}"
+fi
+
 before_update "Creating DAP token database"
 sudo -iu irods /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db test
 progress_update "Creating DAP token database"

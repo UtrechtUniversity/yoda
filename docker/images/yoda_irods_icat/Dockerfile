@@ -156,5 +156,9 @@ RUN for user in researcher viewer groupmanager datamanager functionaladmingroup 
     do useradd -m -p '$6$rounds=656000$UYCy5.rN8/Nr5ooZ$.D2DtHyqjMIwQePZ8oGBXkEKTtOeyVPsSK1Kzn/DtIBojPh8ZGxOzVtlrRFMumtgcO7CWzgMAQqxJUORvGiFy0' "$user" ; \
     done
 
+# Make copy of data on volumes that can optionally be bind mounted, so the container init script
+# can restore it if needed.
+# hadolint ignore=DL3059
+RUN cp -Rdp /etc/irods/yoda-ruleset /etc/irods/yoda-ruleset-copy
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/var/lib/irods/scripts/irods-icat-init.sh"]

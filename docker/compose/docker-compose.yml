@@ -1,0 +1,116 @@
+version: "3"
+
+volumes:
+  extuser_pg_data:
+  icat_pg_data:
+
+services:
+  provider:
+    container_name: provider.yoda
+    platform: linux/amd64
+    hostname: provider.yoda
+    image: ghcr.io/utrechtuniversity/yoda-provider:dev-1.9
+    depends_on:
+      - db
+      - mailpit
+    build:
+      context: ../images/yoda_irods_icat
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ./v_yoda_ruleset
+        target: /etc/irods/yoda-ruleset
+      - type: bind
+        source: ./v_irods_logs
+        target: /var/lib/irods/log
+
+  db:
+    container_name: db.yoda
+    platform: linux/amd64
+    hostname: db.yoda
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=ICAT
+      - POSTGRES_USER=irodsdb
+      - POSTGRES_PASSWORD=yodadev
+    volumes:
+      - icat_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  extuserdb:
+    container_name: extuserdb.yoda
+    platform: linux/amd64
+    hostname: extuserdb.yoda
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=extuser
+      - POSTGRES_USER=extuser
+      - POSTGRES_PASSWORD=yodadev
+    volumes:
+      - extuser_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  portal:
+    container_name: portal.yoda
+    platform: linux/amd64
+    hostname: portal.yoda
+    image: ghcr.io/utrechtuniversity/yoda-portal:dev-1.9
+    depends_on:
+      - provider
+      - eus
+    ports:
+      - "8443:443"
+    build:
+      context: ../images/yoda_portal
+    volumes:
+      - type: bind
+        source: ./v_portal_app
+        target: /var/www/yoda
+    restart: unless-stopped
+
+  eus:
+    container_name: eus.yoda
+    platform: linux/amd64
+    hostname: eus.yoda
+    image: ghcr.io/utrechtuniversity/yoda-eus:dev-1.9
+    depends_on:
+      - extuserdb
+      - mailpit
+    ports:
+      - "8444:8443"
+    build:
+      context: ../images/yoda_eus
+    volumes:
+      - type: bind
+        source: ./v_extuser_app
+        target: /var/www/extuser
+      - type: bind
+        source: ./v_extuser_portal
+        target: /var/www/yoda
+    restart: unless-stopped
+
+  davrods:
+    container_name: data.yoda
+    platform: linux/amd64
+    hostname: data.yoda
+    image: ghcr.io/utrechtuniversity/davrods:dev-1.9
+    depends_on:
+      - provider
+    ports:
+      - "8445:443"
+    build:
+      context: ../images/davrods
+    restart: unless-stopped
+
+  mailpit:
+    container_name: mailpit.yoda
+    platform: linux/amd64
+    hostname: mailpit.yoda
+    image: ghcr.io/utrechtuniversity/yoda-mailpit:dev-1.9
+    environment:
+      - TZ=Europe/Amsterdam
+    build:
+      context: ../images/mailpit
+    ports:
+      - "8025:8025"
+    restart: unless-stopped
