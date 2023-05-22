@@ -2,11 +2,12 @@ FROM centos:7
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Application settings
-ENV IRODS_VERSION "4.2.11"
-ENV IRODS_PREP_VERSION "4.2.11.1"
-ENV IRODS_INDEX_VERSION "4.2.11.0-1"
-ENV IRODS_SUDO_MSVC_VERSION "4.2.11_1.0.0"
+ENV IRODS_VERSION "4.2.12"
+ENV IRODS_PREP_VERSION "4.2.12.0"
+ENV IRODS_INDEX_VERSION "4.2.12.0-1"
+ENV IRODS_SUDO_MSVC_VERSION "4.2.12_1.0.0"
 ENV IRODS_UU_MSVC_VERSION "0.8.2"
+ENV IRODS_UU_MSVC_VERSION_RELEASE "2"
 ENV YUM_REPO_FILE_LOC "https://packages.irods.org/renci-irods.yum.repo"
 ENV YUM_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
 ENV YODA_RULESET_REPO "https://github.com/UtrechtUniversity/yoda-ruleset.git"
@@ -68,9 +69,9 @@ RUN yum install -y wget git && \
 
 # Install iRODS microservices for Yoda and their dependencies
 # hadolint ignore=DL3033
-RUN yum -y install boost-locale jansson libxslt && yum clean all && \
+RUN yum -y install boost-locale jansson libxslt libarchive && yum clean all && \
     rpm -ivh "https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/${IRODS_SUDO_MSVC_VERSION}/irods-sudo-microservices-${IRODS_SUDO_MSVC_VERSION}-1.rpm" && \
-    rpm -ivh "https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v${IRODS_UU_MSVC_VERSION}/irods-uu-microservices-${IRODS_VERSION}_${IRODS_UU_MSVC_VERSION}-1.rpm" && \
+    rpm -ivh "https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v${IRODS_UU_MSVC_VERSION}/irods-uu-microservices-${IRODS_VERSION}_${IRODS_UU_MSVC_VERSION}-${IRODS_UU_MSVC_VERSION_RELEASE}.rpm" && \
     chown irods:irods /var/lib/irods
 
 # Remove default iRODS msiExecCMD files
