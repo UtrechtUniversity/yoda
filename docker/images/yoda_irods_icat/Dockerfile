@@ -49,7 +49,7 @@ RUN odbcinst -i -d -r < /tmp/odbc-settings.txt
 # Install iRODS
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3033
-RUN yum install -y wget git && \
+RUN yum install -y wget git sudo && \
     yum clean all && \
     useradd -d /var/lib/irods irods && \
     rpm --import "$YUM_IRODS_REPO_SIGNING_KEY_LOC" && \
@@ -107,7 +107,7 @@ COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
 # Install and configure rulesets
 RUN git clone -b ${YODA_RULESET_BRANCH} --single-branch ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
 RUN python -m pip --no-cache-dir install --user pip==20.2.4 && \
-    python -m pip --no-cache-dir install --user setuptools==44.1.1 && \ 
+    python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
     python -m pip --no-cache-dir install --user python-irodsclient==1.1.3 && \
     python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt
 COPY core.py.template /etc/irods/core.py
