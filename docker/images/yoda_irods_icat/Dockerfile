@@ -127,12 +127,6 @@ RUN install -o irods -g irods -m 0755 /tmp/cronjob-revision-cleanup.sh /var/lib/
 COPY service_account.config /tmp/service_account.config
 RUN install -o irods -g irods -m 0644 /tmp/service_account.config /etc/irods/service_account.config
 
-# Install init script
-# hadolint ignore=DL3033
-RUN yum install -y nc sudo && yum clean all
-COPY irods-icat-init.sh /var/lib/irods/scripts/irods-icat-init.sh
-RUN chmod 0755 /var/lib/irods/scripts/irods-icat-init.sh
-
 # Install configuration
 COPY odbc.ini /var/lib/irods/.odbc.ini
 COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
@@ -160,5 +154,12 @@ RUN for user in researcher viewer groupmanager datamanager functionaladmingroup 
 # can restore it if needed.
 # hadolint ignore=DL3059
 RUN cp -Rdp /etc/irods/yoda-ruleset /etc/irods/yoda-ruleset-copy
+
+# Install init script
+# hadolint ignore=DL3033
+RUN yum install -y nc && yum clean all
+COPY irods-icat-init.sh /var/lib/irods/scripts/irods-icat-init.sh
+RUN chmod 0755 /var/lib/irods/scripts/irods-icat-init.sh
+
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/var/lib/irods/scripts/irods-icat-init.sh"]
