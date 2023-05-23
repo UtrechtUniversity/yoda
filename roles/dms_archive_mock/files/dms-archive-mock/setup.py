@@ -13,7 +13,7 @@ setup(
     include_package_data=False,
     zip_safe=False,
     install_requires=['Flask==2.0.3',
-                      'requests==2.27.1',
+                      'requests==2.31.0',
                       'numpy==1.19.5',
                       'typing-extensions==4.1.1',
                       'Werkzeug==2.2.3'],
