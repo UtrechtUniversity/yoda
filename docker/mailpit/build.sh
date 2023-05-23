@@ -13,4 +13,4 @@ fi
 git clone https://github.com/axllent/mailpit.git
 cd mailpit
 git checkout v1.5.0
-docker build . -t ghcr.io/utrechtuniversity/yoda-mailpit:dev-1.9
+docker build . -t ghcr.io/utrechtuniversity/yoda-mailpit:dev-1.9 "$@"
