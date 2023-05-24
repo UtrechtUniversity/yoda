@@ -10,7 +10,7 @@ All the users of the Yoda instance that are not a member of any existing groups 
 
 Generate a list of users to be deprovisioned by using the following command:
 ```bash
-irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/deprovision-users.r
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/deprovision-users.r
 ```
 The iRODS admin can then delete the enlisted users by using the following command:
 ```bash
