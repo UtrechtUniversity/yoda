@@ -14,6 +14,6 @@ if ! [ -d ./stage ]
 then mkdir ./stage
 fi
 
-cp ../../roles/pam_python/files/pam_python.so stage
-cp ../../roles/irods_completion/files/irods_completion.sh stage
-cp ../../roles/yoda_rulesets/files/run-intake-movetovault.sh stage
+cp ../../../roles/pam_python/files/pam_python.so stage
+cp ../../../roles/irods_completion/files/irods_completion.sh stage
+cp ../../../roles/yoda_rulesets/files/run-intake-movetovault.sh stage
