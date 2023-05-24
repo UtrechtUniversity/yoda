@@ -293,16 +293,21 @@ shell script can be used as a quick way to start the most commonly used cronjobs
 
 <p>If you haven’t downloaded the Docker images yet, pull them first:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/compose
 docker-compose pull
 </code></pre></div></div>
 
-<p>The application can be started using docker compose:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up
+<p>The application can then be started using docker compose:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./up.sh
 </code></pre></div></div>
 
+<p>The default Docker Compose configuration uses bind mounts so that the ruleset, portal
+and EUS application code can be edited easily. If that does not work on your system, there
+is an alternative Docker Compose configuration without these volumes in <code class="language-plaintext highlighter-rouge">docker/compose-without-volumes</code>
+that facilitates testing Yoda in situations where bind mounts cause problems.</p>
+
 <p>Removing and old instance of the application (including data):</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose down <span class="nt">-v</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./down.sh <span class="nt">-v</span>
 </code></pre></div></div>
 
 <p>You need to have these entries in your /etc/hosts (or equivalent) file:</p>
@@ -343,7 +348,7 @@ instead.</p>
 </h3>
     
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/yoda_irods_icat
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/images/yoda_irods_icat
 ./stage-uploads.sh
 ./build.sh
 </code></pre></div></div>
@@ -356,7 +361,7 @@ instead.</p>
 </h3>
     
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/mailpit
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/images/mailpit
 ./build.sh
 </code></pre></div></div>
 <h3 id="yoda-portal">
@@ -368,7 +373,7 @@ instead.</p>
 </h3>
     
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/yoda_portal
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/images/yoda_portal
 ./build.sh
 </code></pre></div></div>
 <h3 id="davrods">
@@ -380,7 +385,7 @@ instead.</p>
 </h3>
     
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/davrods
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/images/davrods
 ./build.sh
 </code></pre></div></div>
 <h3 id="external-user-service">
@@ -392,7 +397,7 @@ instead.</p>
 </h3>
     
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/yoda_eus
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/images/yoda_eus
 ./build.sh
 </code></pre></div></div>
 
