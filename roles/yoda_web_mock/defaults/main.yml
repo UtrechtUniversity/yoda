@@ -1,0 +1,6 @@
+---
+# copyright Utrecht University
+
+yoda_deployment_user: yodadeployment
+yoda_version: development
+yoda_web_mock_version: "{{ yoda_version }}"

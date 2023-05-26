@@ -1,0 +1,16 @@
+---
+# copyright Utrecht University
+
+galaxy_info:
+  author: Sietse Snel
+  description: Set up Datacite mock from Yoda web mock service
+  license: GPLv3
+  min_ansible_version: '2.11'
+  platforms:
+    - name: EL
+      version: 7
+
+
+dependencies:
+  - role: apache
+  - role: yoda_web_mock
