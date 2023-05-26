@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+- name: Copy Yoda External User Service virtual host config for Apache
+  ansible.builtin.template:
+    src: "yoda-web-mock-datacite-vhost.conf.j2"
+    dest: "/etc/httpd/conf.d/yoda-web-mock-datacite-vhost.conf"
+    mode: '0644'
+  notify: Restart Apache webserver

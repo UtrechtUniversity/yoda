@@ -134,11 +134,11 @@ smtp_auth: false
 smtp_starttls: false
 
 # DataCite Configuration
-datacite_rest_api_url: api.test.datacite.org  # DataCite API server URL
-datacite_username: PLACEHOLDER                # DataCite username
-datacite_password: PLACEHOLDER                # DataCite password
-datacite_prefix: 10.00012                     # DataCite DOI prefix
-datacite_publisher: Yoda development team     # DataCite publisher: the name of the entity that publishes
+datacite_rest_api_url: datacite-mock.surfyoda.test # DataCite API server URL
+datacite_username: PLACEHOLDER                     # DataCite username
+datacite_password: PLACEHOLDER                     # DataCite password
+datacite_prefix: 10.00012                          # DataCite DOI prefix
+datacite_publisher: Yoda development team          # DataCite publisher: the name of the entity that publishes
 
 # EPIC PID Configuration
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
