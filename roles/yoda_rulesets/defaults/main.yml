@@ -125,6 +125,7 @@ datacite_rest_api_url: api.test.datacite.org  # DataCite API server URL
 datacite_username: PLACEHOLDER                # DataCite username
 datacite_password: PLACEHOLDER                # DataCite password
 datacite_publisher: Utrecht University        # DataCite publisher: the name of the entity that publishes
+datacite_tls_verify: 1                        # DataCite TLS verification is enabled by default
 
 epic_pid_enabled: 0                     # EPIC PID enabled: yes (1) or no (0)
 epic_url: PLACEHOLDER                   # EPIC PID server URL

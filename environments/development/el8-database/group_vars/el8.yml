@@ -167,6 +167,8 @@ datacite_rest_api_url: api.test.datacite.org  # DataCite API server URL
 datacite_username: PLACEHOLDER                # DataCite username
 datacite_password: PLACEHOLDER                # DataCite password
 datacite_prefix: 10.00012                     # DataCite DOI prefix
+datacite_tls_verify: 0                        # DataCite TLS verification / disabled on development environment
+                                              # since the mock service uses self-signed certificates.
 
 # EPIC PID Configuration
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)

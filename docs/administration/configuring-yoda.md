@@ -312,6 +312,7 @@ datacite_username            | DataCite username
 datacite_password            | DataCite password
 datacite_prefix              | DataCite DOI prefix
 datacite_rest_api_url        | DataCite REST API URL
+datacite_tls_verify          | Enable TLS verification for Datacite API calls (0: no, 1: yes). Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
 
 ### EPIC PID Configuration
 
