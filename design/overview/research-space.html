@@ -111,13 +111,13 @@
 </svg>
 
   <div class="side-bar">
-  <div class="site-header">
+  <div class="site-header" role="banner">
     <a href="/yoda/" class="site-title lh-tight">
-  <div class="site-logo"></div>
+  <div class="site-logo" role="img" aria-label="Yoda"></div>
 
 </a>
-    <a href="#" id="menu-button" class="site-button">
-      <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+    <button id="menu-button" class="site-button" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
     </a>
   </div>
   <nav aria-label="Main" id="site-nav" class="site-nav">
@@ -204,7 +204,7 @@
   
     
 
-<div class="search">
+<div class="search" role="search">
   <div class="search-input-wrap">
     <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Yoda" aria-label="Search Yoda" autocomplete="off">
     <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
@@ -241,9 +241,10 @@
   <li class="breadcrumb-nav-list-item"><span>Research space</span></li>
   </ol>
 </nav>
-      <div id="main-content" class="main-content" role="main">
-        
-          <h1 id="research-space">
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <h1 id="research-space">
   
   
     <a href="#research-space" class="anchor-heading" aria-labelledby="research-space"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Research space
@@ -284,10 +285,10 @@ The sequence diagram documents the interactions between the actors in the resear
 
 <p><img src="/yoda/design/overview/img/research/research-space-sequence-diagram.png" alt="Sequence diagram" /></p>
 
-        
+          
 
-        
-
+          
+        </main>
         
 
   <hr>
@@ -307,7 +308,6 @@ The sequence diagram documents the interactions between the actors in the resear
       </div>
     
   </footer>
-
 
 
       </div>
