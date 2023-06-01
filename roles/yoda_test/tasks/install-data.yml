@@ -1,6 +1,14 @@
 ---
 # copyright Utrecht University
 
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+
+
 - name: Ensure Yoda test groups exists
   become_user: '{{ irods_service_account }}'
   become: true
@@ -221,7 +229,7 @@
   ansible.builtin.cron:
     name: 'job_checksums.r'
     minute: '*/7'
-    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /var/lib/irods/.irods/job_checksums.r >> /var/lib/irods/log/job_checksums.log 2>&1'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F {{ irods_directory.stdout }}/.irods/job_checksums.r >> /var/lib/irods/log/job_checksums.log 2>&1'
 
 
 - name: Run storage statistics job
