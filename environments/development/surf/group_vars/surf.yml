@@ -141,6 +141,7 @@ datacite_prefix: 10.00012                          # DataCite DOI prefix
 datacite_publisher: Yoda development team          # DataCite publisher: the name of the entity that publishes
 datacite_tls_verify: 0                             # DataCite TLS verification / disabled on development environment
                                                    # since the mock service uses self-signed certificates.
+yoda_web_mock_datacite_fqdn: datacite-mock.surfyoda.test
 
 # EPIC PID Configuration
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
