@@ -116,14 +116,6 @@
   when: "not ansible_check_mode and ('postgresql-server' not in ansible_facts.packages or postgresql_perform_db_upgrade)"
 
 
-- name: Optimize PostgreSQL database
-  become_user: postgres
-  become: true
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: "/usr/pgsql-{{ pgsql_version }}/bin/vacuumdb --all"
-  when: "ansible_os_family == 'RedHat' and 'postgresql-server' in ansible_facts.packages"
-
-
 - name: Install postgresqltuner
   ansible.builtin.include_tasks: install-postgresqltuner.yml
   when: yoda_environment == "development" or yoda_environment == "testing"
