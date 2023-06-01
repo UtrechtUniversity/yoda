@@ -8,6 +8,14 @@
   when: not ansible_check_mode
 
 
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+
+
 - name: Find out if group-manager privilege groups are created
   become_user: "{{ irods_service_account }}"
   become: true
@@ -342,7 +350,7 @@
   become: true
   ansible.builtin.template:
     src: cronjob-revision-cleanup.sh.j2
-    dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
+    dest: '{{ irods_directory.stdout }}/.irods/cronjob-revision-cleanup.sh'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
@@ -353,7 +361,7 @@
   become: true
   ansible.builtin.template:
     src: job_movetovault.r.j2
-    dest: '~{{ irods_service_account }}/.irods/job_movetovault.r'
+    dest: '{{ irods_directory.stdout }}/.irods/job_movetovault.r'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
@@ -366,7 +374,7 @@
   become: true
   ansible.builtin.template:
     src: job_clearintakelocks.r.j2
-    dest: '~{{ irods_service_account }}/.irods/job_clearintakelocks.r'
+    dest: '{{ irods_directory.stdout }}/.irods/job_clearintakelocks.r'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
@@ -399,14 +407,16 @@
     name: 'cronjob-revision-cleanup.sh'
     minute: '0'
     hour: '2'
-    job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
+    job: '/bin/bash {{ irods_directory.stdout }}/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
     state: '{{ "present" if enable_revision_cleanup else "absent" }}'
 
 
 - name: Ensure cronjob script for moving collections from intake to vault is installed
+  become_user: "{{ irods_service_account }}"
+  become: true
   ansible.builtin.copy:
     src: run-intake-movetovault.sh
-    dest: '/var/lib/irods/.irods/run-intake-movetovault.sh'
+    dest: '{{ irods_directory.stdout }}/.irods/run-intake-movetovault.sh'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0755'
@@ -421,7 +431,7 @@
   ansible.builtin.cron:
     name: 'job_movetovault.r'
     minute: '*/5'
-    job: '/var/lib/irods/.irods/run-intake-movetovault.sh >& /dev/null'
+    job: '{{ irods_directory.stdout }}/.irods/run-intake-movetovault.sh >& /dev/null'
   when: enable_intake or yoda_environment in ["development", "testing"]
 
 
