@@ -203,12 +203,20 @@
     value: '{{ irods_icat_fqdn }}'
 
 
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+
+
 - name: Ensure iRODS host is defined
   become_user: '{{ irods_service_account }}'
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: '{{ irods_directory.stdout }}/.irods/irods_environment.json'
     key: 'irods_host'
     value: '{{ irods_icat_fqdn }}'
 
@@ -391,7 +399,7 @@
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: '{{ irods_directory.stdout }}/.irods/irods_environment.json'
     key: '{{ item.key }}'
     value: '{{ item.value }}'
   with_items:
@@ -422,12 +430,6 @@
       value: '{{ irods_database_fqdn }}'
     - key: 'db_port'
       value: '{{ irods_database_port }}'
-
-
-- name: Ensure deprecated iRODS environment file for Python client is present
-  ansible.builtin.file:
-    path: /var/lib/irods/.irods/python_client_environment.json
-    state: absent
 
 
 - name: Retrieve iRODS server config file
@@ -467,8 +469,10 @@
 
 
 - name: Ensure iRODS .ssh directory has strict permissions
+  become_user: '{{ irods_service_account }}'
+  become: true
   ansible.builtin.file:
-    path: /var/lib/irods/.ssh
+    path: ~/.ssh
     state: directory
     mode: 0700
     owner: '{{ irods_service_account }}'
@@ -480,7 +484,7 @@
   become: true
   ansible.builtin.template:
     src: id_ed25519.j2
-    dest: '/var/lib/irods/.ssh/id_ed25519'
+    dest: '~/.ssh/id_ed25519'
     owner: '{{ irods_service_account }}'
     mode: 0600
   no_log: true
@@ -492,7 +496,7 @@
   become: true
   ansible.builtin.shell: "ssh-keyscan {{ yoda_public_host }} >> ~/.ssh/known_hosts"
   args:
-    creates: '/var/lib/irods/.ssh/known_hosts'
+    creates: '~/.ssh/known_hosts'
   when: upload_priv_key is defined
 
 

@@ -290,12 +290,20 @@
   when: not ansible_check_mode
 
 
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+
+
 - name: Ensure iRODS is configured to use SSL
   become_user: '{{ irods_service_account }}'
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: "{{ irods_directory.stdout }}/.irods/irods_environment.json"
     key: '{{ item.key }}'
     value: '{{ item.value }}'
   with_items:
