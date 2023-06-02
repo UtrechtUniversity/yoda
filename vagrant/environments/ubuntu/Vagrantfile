@@ -51,6 +51,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         inline: "sudo echo \"192.168.56.10 api.eus.yoda.test\" | sudo tee -a /etc/hosts"
       machine.vm.provision "shell",
         inline: "sudo echo \"192.168.56.10 datacite-mock.yoda.test\" | sudo tee -a /etc/hosts"
+      machine.vm.provision "shell",
+        inline: "sudo echo \"192.168.56.10 sram-mock.yoda.test\" | sudo tee -a /etc/hosts"
     end
   end
 
