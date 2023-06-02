@@ -53,6 +53,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         inline: "sudo echo \"192.168.56.20 api.eus.surfyoda.test\" | sudo tee -a /etc/hosts"
       machine.vm.provision "shell",
         inline: "sudo echo \"192.168.56.20 datacite-mock.surfyoda.test\" | sudo tee -a /etc/hosts"
+      machine.vm.provision "shell",
+        inline: "sudo echo \"192.168.56.10 sram-mock.yoda.test\" | sudo tee -a /etc/hosts"
     end
   end
 

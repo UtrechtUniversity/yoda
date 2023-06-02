@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+- name: Copy Yoda Web Mock for SRAM virtual host config for Apache
+  ansible.builtin.template:
+    src: "yoda-web-mock-sram-vhost.conf.j2"
+    dest: "/etc/httpd/conf.d/yoda-web-mock-sram-vhost.conf"
+    mode: '0644'
+  notify: Restart Apache webserver

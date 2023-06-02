@@ -135,6 +135,8 @@
       when: (enable_tape_archive or enable_data_package_archive) and yoda_environment != "development"
     - role: yoda_web_mock_datacite
       when: yoda_environment == "development"
+    - role: yoda_web_mock_sram
+      when: yoda_environment == "development"
     - role: postfix
       when: enable_postfix
     - role: mailpit
