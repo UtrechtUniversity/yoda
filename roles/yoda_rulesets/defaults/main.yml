@@ -19,13 +19,13 @@ core_rulesets:
 extra_rulesets: []
 
 # Replication configuration
-enable_async_replication: 1            # Enable replication: yes (1) or no (0)
+enable_async_replication: 1            # Enable asynchronous replication: yes (1) or no (0)
 async_replication_jobs: 1              # Number of asynchronous replication jobs
 async_replication_batch_size: 1000     # Asynchronous replication jobs batch size
 async_replication_verbose_mode: true   # Run asynchronous replication job in verbose mode
 
 # Revision configuration
-enable_revisions: 1                # Enable revisions: yes (1) or no (0)
+enable_revisions: 1                # Enable asynchronous revisions: yes (1) or no (0)
 revision_strategy: B               # Revision strategy: A, B, J or Simple
 async_revision_jobs: 1             # Number of asynchronous replication jobs
 async_revision_batch_size: 1000    # Asynchronous revision jobs batch size
