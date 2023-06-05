@@ -654,30 +654,6 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>Default Yoda XML scheme: default-0 or default-1</td>
     </tr>
     <tr>
-      <td>enable_revisions</td>
-      <td>Enable revisions: yes (1) or no (0)</td>
-    </tr>
-    <tr>
-      <td>async_revision_verbose_mode</td>
-      <td>Enable verbose logging revision job (true/false, default: true)</td>
-    </tr>
-    <tr>
-      <td>enable_revision_cleanup</td>
-      <td>Enable cleanup job for removing old revisions (true/false, default: true)</td>
-    </tr>
-    <tr>
-      <td>enable_async_replication</td>
-      <td>Enable asynchronous replication cronjob: yes (1) or no (0)</td>
-    </tr>
-    <tr>
-      <td>async_replication_verbose_mode</td>
-      <td>Enable verbose logging replication job (true/false, default: true)</td>
-    </tr>
-    <tr>
-      <td>revision_strategy</td>
-      <td>Revision strategy: A, B, J or Simple</td>
-    </tr>
-    <tr>
       <td>yoda_random_id_length</td>
       <td>Length of random ID to add to persistent identifier</td>
     </tr>
@@ -708,6 +684,84 @@ The configuration is split in several parts. Below an overview of these parts an
     <tr>
       <td>metadata_schemas</td>
       <td>List of metadata schemas to install on the system</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="replication-configuration">
+  
+  
+    <a href="#replication-configuration" class="anchor-heading" aria-labelledby="replication-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Replication configuration
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>enable_async_replication</td>
+      <td>Enable asynchronous replication: yes (1) or no (0)</td>
+    </tr>
+    <tr>
+      <td>async_replication_jobs</td>
+      <td>Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)</td>
+    </tr>
+    <tr>
+      <td>async_replication_batch_size</td>
+      <td>Asynchronous replication jobs batch size (default: 1000)</td>
+    </tr>
+    <tr>
+      <td>async_replication_verbose_mode</td>
+      <td>Run asynchronous replication job in verbose mode (default: true)</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="revision-configuration">
+  
+  
+    <a href="#revision-configuration" class="anchor-heading" aria-labelledby="revision-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Revision configuration
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>enable_revisions</td>
+      <td>Enable asynchronous revisions: yes (1) or no (0)</td>
+    </tr>
+    <tr>
+      <td>revision_strategy</td>
+      <td>Revision strategy: A, B, J or Simple (default: B)</td>
+    </tr>
+    <tr>
+      <td>async_revision_jobs</td>
+      <td>Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)</td>
+    </tr>
+    <tr>
+      <td>async_revision_batch_size</td>
+      <td>Asynchronous revision jobs batch size (default: 1000)</td>
+    </tr>
+    <tr>
+      <td>async_revision_verbose_mode</td>
+      <td>Run asynchronous revision job in verbose mode (default: true)</td>
+    </tr>
+    <tr>
+      <td>enable_revision_cleanup: true</td>
+      <td>Enable revision cleanup job (true/false)</td>
     </tr>
   </tbody>
 </table></div>
