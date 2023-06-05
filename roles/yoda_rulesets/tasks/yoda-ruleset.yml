@@ -525,7 +525,7 @@
       /bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py
       --balance_id_min={{ (item * (64 / (async_revision_jobs | int)) - (64 / (async_revision_jobs | int))) | int + 1 }}
       --balance_id_max={{ (item * (64 / (async_revision_jobs | int))) | int }}
-      --batch_size_limit={{ ((async_revision_batch_size | int) / (async_replication_jobs | int)) | int }}
+      --batch_size_limit={{ ((async_revision_batch_size | int) / (async_revision_jobs | int)) | int }}
       {{ "-v" if async_revision_verbose_mode else "" }} >/dev/null 2>&1
     state: '{{ "present" if enable_revisions == 1 else "absent" }}'
   loop: "{{ range(1, (async_revision_jobs | int) + 1) | list }}"
