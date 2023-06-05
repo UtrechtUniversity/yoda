@@ -163,7 +163,7 @@
     src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
     dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
     mode: '0755'
-  when: not ansible_check_mode and enable_data_package_archive
+  when: not ansible_check_mode and (enable_data_package_archive or enable_data_package_download)
   with_items:
     - admin-vault-archive.sh
 
@@ -539,7 +539,7 @@
     name: 'vault-archive.r'
     minute: '*/6'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/vault-archive.r >/dev/null 2>&1'
-    state: '{{ "present" if enable_data_package_archive else "absent" }}'
+    state: '{{ "present" if enable_data_package_archive or enable_data_package_download else "absent" }}'
 
 
 - name: Enable asynchronous tape archive replication job
