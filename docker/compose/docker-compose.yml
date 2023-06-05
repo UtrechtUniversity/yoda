@@ -114,3 +114,19 @@ services:
     ports:
       - "8025:8025"
     restart: unless-stopped
+
+  datacite_mock:
+    container_name: datacite-mock.yoda
+    platform: linux/amd64
+    hostname: datacite-mock.yoda
+    image: ghcr.io/utrechtuniversity/yoda-web-mock:dev-1.9
+    environment:
+      - MOCKNAME=datacite
+      - MOCKFQDN=datacite-mock.yoda
+    build:
+      context: ../images/yoda_web_mock
+    volumes:
+      - type: bind
+        source: ./v_yoda_web_mock_datacite
+        target: /var/www/webmock/yoda-web-mock
+    restart: unless-stopped
