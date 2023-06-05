@@ -209,6 +209,7 @@
   ansible.builtin.command: echo ~
   register: irods_directory
   changed_when: false
+  check_mode: false
 
 
 - name: Ensure iRODS host is defined
