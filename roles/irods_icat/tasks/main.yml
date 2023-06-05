@@ -62,31 +62,17 @@
           services['irods']['state'] == "running"))
 
 
-- name: Ensure iRODS 4.2.7 packages are absent
+- name: Ensure old iRODS packages are absent
   ansible.builtin.package:
     name:
-      - irods-uu-microservices-4.2.7_0.8.1
-      - irods-sudo-microservices-4.2.7_1.0.0
-      - davrods-4.2.7_1.4.2
-      - irods-runtime-4.2.7
-      - irods-server-4.2.7
-      - irods-rule-engine-plugin-python-4.2.7
-      - irods-icommands-4.2.7
-      - irods-database-plugin-postgres-4.2.7
-      - irods-uu-microservices-4.2.10_0.8.2
-      - irods-sudo-microservices-4.2.10_1.0.0
-      - davrods-4.2.10_1.5.0
-      - irods-runtime-4.2.10-1
-      - irods-server-4.2.10-1
-      - irods-database-plugin-postgres-4.2.10-1
-      - irods-icommands-4.2.10-1
-      - irods-rule-engine-plugin-python-4.2.10.0-1
-      - irods-rule-engine-plugin-indexing-4.2.10.0-1
-      - irods-rule-engine-plugin-elasticsearch-4.2.10.0-1
-      - irods-rule-engine-plugin-document-type-4.2.10.0-1
-      - irods-rule-engine-plugin-indexing-4.2.10.1-1
-      - irods-rule-engine-plugin-elasticsearch-4.2.10.1-1
-      - irods-rule-engine-plugin-document-type-4.2.10.1-1
+      - irods-uu-microservices-4.2.11_0.8.2-1
+      - irods-sudo-microservices-4.2.11_1.0.0-1
+      - davrods-4.2.11_1.5.0-1
+      - irods-runtime-4.2.11-1
+      - irods-server-4.2.11-1
+      - irods-database-plugin-postgres-4.2.11-1
+      - irods-rule-engine-plugin-python-4.2.11.1-1
+      - irods-icommands-4.2.11-1
     state: absent
   notify: Restart iRODS
 
@@ -94,20 +80,30 @@
 - name: Ensure iRODS iCAT server and plugins are present
   ansible.builtin.package:
     name:
-      - irods-server-4.2.11-1
-      - irods-runtime-4.2.11-1
-      - irods-database-plugin-postgres-4.2.11-1
-      - irods-rule-engine-plugin-python-4.2.11.1-1
+      - irods-server-4.2.12-1
+      - irods-runtime-4.2.12-1
+      - irods-database-plugin-postgres-4.2.12-1
+      - irods-rule-engine-plugin-python-4.2.12.0-1
     state: present
   when: not ansible_check_mode
 
 
-- name: Ensure iRODS indexing plugins are present
+- name: Ensure old iRODS indexing plugins are present
   ansible.builtin.package:
     name:
       - irods-rule-engine-plugin-indexing-4.2.11.0-1
       - irods-rule-engine-plugin-elasticsearch-4.2.11.0-1
       - irods-rule-engine-plugin-document-type-4.2.11.0-1
+    state: absent
+  when: not ansible_check_mode and enable_open_search
+
+
+- name: Ensure iRODS indexing plugins are present
+  ansible.builtin.package:
+    name:
+      - irods-rule-engine-plugin-indexing-4.2.12.0-1
+      - irods-rule-engine-plugin-elasticsearch-4.2.12.0-1
+      - irods-rule-engine-plugin-document-type-4.2.12.0-1
     state: present
   when: not ansible_check_mode and enable_open_search
 
@@ -207,12 +203,20 @@
     value: '{{ irods_icat_fqdn }}'
 
 
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+
+
 - name: Ensure iRODS host is defined
   become_user: '{{ irods_service_account }}'
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: '{{ irods_directory.stdout }}/.irods/irods_environment.json'
     key: 'irods_host'
     value: '{{ irods_icat_fqdn }}'
 
@@ -397,7 +401,7 @@
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: '{{ irods_directory.stdout }}/.irods/irods_environment.json'
     key: '{{ item.key }}'
     value: '{{ item.value }}'
   with_items:
@@ -428,12 +432,6 @@
       value: '{{ irods_database_fqdn }}'
     - key: 'db_port'
       value: '{{ irods_database_port }}'
-
-
-- name: Ensure deprecated iRODS environment file for Python client is present
-  ansible.builtin.file:
-    path: /var/lib/irods/.irods/python_client_environment.json
-    state: absent
 
 
 - name: Retrieve iRODS server config file
@@ -473,8 +471,10 @@
 
 
 - name: Ensure iRODS .ssh directory has strict permissions
+  become_user: '{{ irods_service_account }}'
+  become: true
   ansible.builtin.file:
-    path: /var/lib/irods/.ssh
+    path: ~/.ssh
     state: directory
     mode: '0700'
     owner: '{{ irods_service_account }}'
@@ -486,7 +486,7 @@
   become: true
   ansible.builtin.template:
     src: id_ed25519.j2
-    dest: '/var/lib/irods/.ssh/id_ed25519'
+    dest: '~/.ssh/id_ed25519'
     owner: '{{ irods_service_account }}'
     mode: '0600'
   no_log: true
@@ -498,7 +498,7 @@
   become: true
   ansible.builtin.shell: "ssh-keyscan {{ yoda_public_host }} >> ~/.ssh/known_hosts"
   args:
-    creates: '/var/lib/irods/.ssh/known_hosts'
+    creates: '~/.ssh/known_hosts'
   when: upload_priv_key is defined
 
 

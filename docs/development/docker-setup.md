@@ -1,9 +1,7 @@
 ---
-layout: default
+parent: Development
 title: Running Yoda using Docker Compose
-nav_order: 5
-has_children: false
-has_toc: false
+nav_order: 1
 ---
 # Running Yoda using Docker Compose
 
@@ -37,18 +35,23 @@ run-cronjob.sh revision
 If you haven't downloaded the Docker images yet, pull them first:
 
 ```bash
-cd docker
+cd docker/compose
 docker-compose pull
 ```
 
-The application can be started using docker compose:
+The application can then be started using docker compose:
 ```bash
-docker-compose up
+./up.sh
 ```
+
+The default Docker Compose configuration uses bind mounts so that the ruleset, portal
+and EUS application code can be edited easily. If that does not work on your system, there
+is an alternative Docker Compose configuration without these volumes in `docker/compose-without-volumes`
+that facilitates testing Yoda in situations where bind mounts cause problems.
 
 Removing and old instance of the application (including data):
 ```bash
-docker-compose down -v
+./down.sh -v
 ```
 
 You need to have these entries in your /etc/hosts (or equivalent) file:
@@ -64,6 +67,9 @@ After the application is started, the web interfaces will be available on:
 - EUS (port with API enabled): https://eus.yoda:8444
 - DavRODS: https://data.yoda:8445
 
+You can log in on the Yoda portal using any of the test account credentials, such as user name `researcher`
+and password `test`. A full list of test account credentials can be found in the
+[test_users list in the defaults file of the Yoda test role](https://github.com/UtrechtUniversity/yoda/blob/development/roles/yoda_test/defaults/main.yml).
 
 ## Building the images
 
@@ -74,7 +80,7 @@ instead.
 ### Yoda provider
 
 ```bash
-cd docker/yoda_irods_icat
+cd docker/images/yoda_irods_icat
 ./stage-uploads.sh
 ./build.sh
 ```
@@ -82,27 +88,27 @@ cd docker/yoda_irods_icat
 ### Mailpit
 
 ```bash
-cd docker/mailpit
+cd docker/images/mailpit
 ./build.sh
 ```
 
 ### Yoda portal
 
 ```bash
-cd docker/yoda_portal
+cd docker/images/yoda_portal
 ./build.sh
 ```
 
 ### DavRODS
 
 ```bash
-cd docker/davrods
+cd docker/images/davrods
 ./build.sh
 ```
 
 ### External user service
 
 ```bash
-cd docker/yoda_eus
+cd docker/images/yoda_eus
 ./build.sh
 ```

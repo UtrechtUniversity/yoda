@@ -62,25 +62,17 @@
           services['irods']['state'] == "running"))
 
 
-- name: Ensure iRODS 4.2.7 packages are absent
+- name: Ensure old iRODS packages are absent
   ansible.builtin.package:
     name:
-      - irods-uu-microservices-4.2.7_0.8.1
-      - irods-sudo-microservices-4.2.7_1.0.0
-      - davrods-4.2.7_1.4.2
-      - irods-runtime-4.2.7
-      - irods-server-4.2.7
-      - irods-rule-engine-plugin-python-4.2.7
-      - irods-icommands-4.2.7
-      - irods-database-plugin-postgres-4.2.7
-      - irods-uu-microservices-4.2.10_0.8.2
-      - irods-sudo-microservices-4.2.10_1.0.0
-      - davrods-4.2.10_1.5.0
-      - irods-runtime-4.2.10-1
-      - irods-server-4.2.10-1
-      - irods-database-plugin-postgres-4.2.10-1
-      - irods-icommands-4.2.10-1
-      - irods-rule-engine-plugin-python-4.2.10.0-1
+      - irods-uu-microservices-4.2.11_0.8.2-1
+      - irods-sudo-microservices-4.2.11_1.0.0-1
+      - davrods-4.2.11_1.5.0-1
+      - irods-runtime-4.2.11-1
+      - irods-server-4.2.11-1
+      - irods-database-plugin-postgres-4.2.11-1
+      - irods-rule-engine-plugin-python-4.2.11.1-1
+      - irods-icommands-4.2.11-1
     state: absent
   notify: Restart iRODS
 
@@ -88,9 +80,9 @@
 - name: Ensure iRODS resource server is installed
   ansible.builtin.package:
     name:
-      - irods-server-4.2.11-1
-      - irods-runtime-4.2.11-1
-      - irods-rule-engine-plugin-python-4.2.11.0-1
+      - irods-server-4.2.12-1
+      - irods-runtime-4.2.12-1
+      - irods-rule-engine-plugin-python-4.2.12.0-1
     state: present
   when: not ansible_check_mode
 
@@ -290,12 +282,20 @@
   when: not ansible_check_mode
 
 
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+
+
 - name: Ensure iRODS is configured to use SSL
   become_user: '{{ irods_service_account }}'
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: '/var/lib/irods/.irods/irods_environment.json'
+    path: "{{ irods_directory.stdout }}/.irods/irods_environment.json"
     key: '{{ item.key }}'
     value: '{{ item.value }}'
   with_items:

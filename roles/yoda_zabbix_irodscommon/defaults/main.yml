@@ -1,4 +1,5 @@
 ---
 # copyright Utrecht University
 
+irods_service_account: irods
 zabbix_version: development

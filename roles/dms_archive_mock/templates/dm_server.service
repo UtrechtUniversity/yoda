@@ -1,0 +1,15 @@
+[Unit]
+Description=dm_server
+Wants=network-online.target
+
+[Service]
+User={{ dm_server.user }}
+Group={{ dm_server.user }}
+
+ExecStart=/var/lib/irods/dms-archive-mock/tape_archive_venv/bin/dm_server --host 0.0.0.0 --port 5000
+
+StandardOutput=journal
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

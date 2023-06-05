@@ -5,62 +5,65 @@ nav_order: 4
 ---
 # Statistics module
 
-## Resources and tiers
-Any resources can be administratively assigned to one tier.
-A tier is an Yoda introduced entity, not standard iRODS
-A tier can be considered a price level of a resource.
+## Change in focus of statistics module
+Starting from Yoda release 1.8 the statistics module gives deeper insight in storage consumption.
+From this release storage is broken down in research, revision and vault storage.
+In all [previous](statistics_1.8.md) Yoda versions the storage consumption was related to resource tiers.
+This approach has been discarded following up requests made from within the Yoda community.
 
-metadata on resource level:`org_storage_tier  = ‘tape’`
+In order to enable this new way of registering storage amounts two the following had the be taken care of:
 
-If no tier is assigned to a resource yet, this is considered the ‘Standard’ tier by default.
+1. the storage collection job had to be redesigned
+2. preservation of the already present (tier based) storage history
+
+## Storage collection job
+### Changes in collection of storage
+Where yhe original job was based on a monthly premise and with a maximum of 12 months back, the new job however will be able to run anytime. This, with a minimum resolution of daily probes.  
+Where the original job was limited to a 12 month cyclic buffer, making it impossible to record for more than 1 year of historic data, the new collection method has no limit in registering storage data anymore.  
+In other words the entire storage history will be kept safely during the lifetime of the Yoda instance.
+
+### Changes in storage type
+Where the formally registered storage data that was fully tier based, in the new Yoda version a differentiation is created in collecting storage data for the research area, revisions area and vault area.
+Thus enabling the statistics module to show (historic) tables and graphs differentiating storage areas (research, revision, vault and total amounts).
+
+## Transformation of original storage data
+In order to safeguard the already present storage history it is required to be transformed to the new data structure.
+Due to the limitation that it was registered tier-based, it is unclear to which area (research, revisions or vault) the data actually belongs to.  
+Therefore, the transformed tier-based data is added to the total and presented that way in the Statistics module
 
 ## Registering usage data
-Once a month a cronjob registers storage data for each category, based upon each group in the category.
-Collection of storage amount is performed per group and per storage tier and stored as metadata on corresponding group.
-When collection fails the storage data of the previoues month is used as fallback.
+In previous Yoda versions a cronjob registers, once a month, all storage data for each category, based upon each group in the corresponding category.
+Starting from Yoda-version 1.8 the collection job can be run any moment with a daily basis as a minimum resolution.
 
-All determined storage data is recorded on group level.
-Each group holds the following metadata with key: `org_storage_data_month`.
+Collection of storage amount is performed per group and is differentiated in research, revision and vault data for that group. And consequently stored as metadata on corresponding group.
 
-This is postfixed with the month number, like:
+All determined storage data is recorded on its corresponding group level.
+Each group holds the following metadata with key: `org_storage_totals`.
+
+This is postfixed with the date (yyyy_mm_dd), like:
 ```
-org_storage_data_month01
-org_storage_data_month02
-org_storage_data_month03
-org_storage_data_month04
-org_storage_data_month05
-org_storage_data_month06
-org_storage_data_month07
-org_storage_data_month08
-org_storage_data_month09
-org_storage_data_month10
-org_storage_data_month11
-org_storage_data_month12
+org_storage_totals2023_05_01
+org_storage_totals2023_05_02
+org_storage_totals2023_05_03
 ```
-Thus creating a full year cyclic buffer.
 
-Per entry, i.e. for a group every month, each metadata-entry holds category, tier and  storage information in a JSON format ``['Categoryname', 'Tiername', '100']``.
-The frontend steps into this cyclic buffer starting from current month backward.
-Per month the front end gets tiername and storage data in a total array divided in
-tiername, months and storage.
+Per entry (i.e. per group) storage information is held in a JSON format:
+``['Categoryname', 'research value','vault value', 'revisions value', 'total value']``.
 
 Metadata attribute:
-`UUORGMETADATAPREFIX ++ 'storage_data_month' ++ *month;`
+`UUORGMETADATAPREFIX ++ 'storage_totals' ++ '2023_05_01';`
 
 Metadata value:
-`*json_str = "[\"*category\", \"*tier\", \"*storageAmount\"]";`
+`*json_str = "[\"*category\", 100, 200, 300, 600]";`
+
+Where in this example:
+research = 100,
+vault = 200,
+revisions = 300
+and total = 600
 
 The corresponding category is registered on group level as well as a group could possibly change category. So for historic purposes it is required to know to what category a group belonged.
 
-## Twelve month registration
-Per group one or more metadata attributes like this exist for a month.  
-This occurs for each month (`org_storageDataMonth01, … , org_storageDataMonth12`) thus setting up a cyclic buffer for registration with a maximum history  12 months history.
-After 12 months the previous values are overwritten automatically by the monthly cronjob.
-
 ## Collecting data for reporting
 To find all latest and historic data for a category metadata can be matched against `‘[\“’ ++ *cat ++ ‘\”%%’`.
-This will bring up all metadata storage metadata for this category. Combined with a specific month this will bring up all required data to calculate  the storage per tier for a specific category for a month.
-
-## Which month does registered data belong to?
-Registration takes place on the first day of a month, the data collected is linked to that month.
-I.e. data collected on 1st of June is linked to the month of June. And therefore registered under `org_storage_data_month06`.
+This will bring up all metadata storage metadata for this category.

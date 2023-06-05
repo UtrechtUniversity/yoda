@@ -30,6 +30,7 @@ datacite_rest_api_url          = 'https://{{ datacite_rest_api_url }}'
 datacite_username              = '{{ datacite_username }}'
 datacite_password              = '{{ datacite_password }}'
 datacite_publisher             = '{{ datacite_publisher }}'
+datacite_tls_verify            = '{{ ["false", "true"][datacite_tls_verify|int] }}'
 
 eus_api_fqdn                   = '{{ eus_api_fqdn }}'
 eus_api_port                   = '{{ eus_api_port }}'
@@ -61,6 +62,13 @@ token_expiration_notification  = '{{ token_expiration_notification }}'
 {% endif %}
 
 enable_tape_archive            = '{{ ["false", "true"][enable_tape_archive|int] }}'
+
+enable_data_package_archive    = '{{ ["false", "true"][enable_data_package_archive|int] }}'
+{% if enable_data_package_archive %}
+data_package_archive_fqdn      = '{{ data_package_archive_fqdn }}'
+data_package_archive_minimum   = '{{ data_package_archive_minimum }}'
+data_package_archive_maximum   = '{{ data_package_archive_maximum }}'
+{% endif %}
 
 temporary_files                = '{{ temporary_files | join (" ") }}'
 

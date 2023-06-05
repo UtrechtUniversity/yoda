@@ -8,6 +8,14 @@
   when: not ansible_check_mode
 
 
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+
+
 - name: Find out if group-manager privilege groups are created
   become_user: "{{ irods_service_account }}"
   become: true
@@ -54,22 +62,30 @@
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.stat:
-    path: /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
-  register: monthly_storage_statistics
+    path: /etc/irods/yoda-ruleset/tools/storage-statistics.r
+  register: storage_statistics
+
+
+- name: Remove legacy monthly storage statistics gathering cronjob
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'monthly-storage-statistics'
+    state: absent
 
 
 - name: Enable storage statistics gathering cronjob
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
-    name: 'monthly-storage-statistics'
+    name: 'storage-statistics'
     minute: '0'
     hour: '5'
-    day: '1'
+    day: '*'
     job: >
       /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
-      /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r >>/var/lib/irods/log/job_monthly-storage-statistics.log 2>&1
-  when: monthly_storage_statistics.stat.exists
+      /etc/irods/yoda-ruleset/tools/storage-statistics.r >>/var/lib/irods/log/job_storage-statistics.log 2>&1
+  when: storage_statistics.stat.exists
 
 
 - name: Create local Yoda ruleset configuration
@@ -136,6 +152,19 @@
   with_items:
     - admin-tape-archive-set-state.sh
     - async-tape-archive-replicate.sh
+
+
+- name: Copy data package archive scripts to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: '0755'
+  when: not ansible_check_mode and enable_data_package_archive
+  with_items:
+    - admin-vault-archive.sh
 
 
 - name: Find out if system collection exists
@@ -321,7 +350,7 @@
   become: true
   ansible.builtin.template:
     src: cronjob-revision-cleanup.sh.j2
-    dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
+    dest: '{{ irods_directory.stdout }}/.irods/cronjob-revision-cleanup.sh'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
@@ -332,7 +361,7 @@
   become: true
   ansible.builtin.template:
     src: job_movetovault.r.j2
-    dest: '~{{ irods_service_account }}/.irods/job_movetovault.r'
+    dest: '{{ irods_directory.stdout }}/.irods/job_movetovault.r'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
@@ -345,7 +374,7 @@
   become: true
   ansible.builtin.template:
     src: job_clearintakelocks.r.j2
-    dest: '~{{ irods_service_account }}/.irods/job_clearintakelocks.r'
+    dest: '{{ irods_directory.stdout }}/.irods/job_clearintakelocks.r'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
@@ -378,14 +407,16 @@
     name: 'cronjob-revision-cleanup.sh'
     minute: '0'
     hour: '2'
-    job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
+    job: '/bin/bash {{ irods_directory.stdout }}/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
     state: '{{ "present" if enable_revision_cleanup else "absent" }}'
 
 
 - name: Ensure cronjob script for moving collections from intake to vault is installed
+  become_user: "{{ irods_service_account }}"
+  become: true
   ansible.builtin.copy:
     src: run-intake-movetovault.sh
-    dest: '/var/lib/irods/.irods/run-intake-movetovault.sh'
+    dest: '{{ irods_directory.stdout }}/.irods/run-intake-movetovault.sh'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0755'
@@ -400,7 +431,7 @@
   ansible.builtin.cron:
     name: 'job_movetovault.r'
     minute: '*/5'
-    job: '/var/lib/irods/.irods/run-intake-movetovault.sh >& /dev/null'
+    job: '{{ irods_directory.stdout }}/.irods/run-intake-movetovault.sh >& /dev/null'
   when: enable_intake or yoda_environment in ["development", "testing"]
 
 
@@ -498,6 +529,16 @@
       {{ "-v" if async_revision_verbose_mode else "" }} >/dev/null 2>&1
     state: '{{ "present" if enable_revisions == 1 else "absent" }}'
   loop: "{{ range(1, (async_revision_jobs | int) + 1) | list }}"
+
+
+- name: Enable asynchronous archival job
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'vault-archive.r'
+    minute: '*/6'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/vault-archive.r >/dev/null 2>&1'
+    state: '{{ "present" if enable_data_package_archive else "absent" }}'
 
 
 - name: Enable asynchronous tape archive replication job
