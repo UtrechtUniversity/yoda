@@ -89,6 +89,21 @@ services:
         target: /var/www/yoda
     restart: unless-stopped
 
+  public:
+    container_name: public.yoda
+    platform: linux/amd64
+    hostname: public.yoda
+    image: ghcr.io/utrechtuniversity/yoda-public:dev-1.9
+    ports:
+      - "8446:443"
+    build:
+      context: ../images/yoda_public
+    volumes:
+      - type: bind
+        source: ./v_moai_app
+        target: /var/www/moai/yoda-moai
+    restart: unless-stopped
+
   davrods:
     container_name: data.yoda
     platform: linux/amd64

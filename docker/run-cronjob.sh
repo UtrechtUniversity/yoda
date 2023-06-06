@@ -44,6 +44,10 @@ case "$1" in
     docker exec -it provider.yoda sudo -iu irods /bin/bash /etc/irods/yoda-ruleset/tools/mail/mail-weekly-report.sh
     ;;
 
+  moaiupdate)
+    docker exec -it public.yoda sudo -iu yodadeployment /var/www/moai/yoda-moai/venv/bin/update_moai --config /var/www/moai/settings.ini yoda_moai
+    ;;
+
   *)
     echo "No cronjob or invalid cronjob provided."
     ;;
