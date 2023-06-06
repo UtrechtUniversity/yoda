@@ -69,7 +69,6 @@ RUN /var/www/moai/yoda-moai/venv/bin/pip3 install -e /var/www/moai/yoda-moai
 ## Configure and initialize MOAI
 COPY moai-settings.ini /var/www/moai/settings.ini
 COPY moai.wsgi /var/www/moai/moai.wsgi
-RUN /var/www/moai/yoda-moai/venv/bin/update_moai --config /var/www/moai/settings.ini yoda_moai
 
 ## Install landing page directory structure and static assets
 RUN bash -c "mkdir -p /var/www/landingpages/static/{css,img,js}" && \

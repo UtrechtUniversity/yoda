@@ -80,7 +80,7 @@ fi
 
 # Initialize MOAI
 before_update "Initializing MOAI database."
-/var/www/moai/yoda-moai/venv/bin/update_moai --config /var/www/moai/settings.ini yoda_moai
+sudo -iu yodadeployment /var/www/moai/yoda-moai/venv/bin/update_moai --config /var/www/moai/settings.ini yoda_moai
 progress_update "MOAI database initialized."
 
 # Start Apache
