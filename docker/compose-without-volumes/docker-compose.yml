@@ -71,6 +71,17 @@ services:
       context: ../images/yoda_eus
     restart: unless-stopped
 
+  public:
+    container_name: public.yoda
+    platform: linux/amd64
+    hostname: public.yoda
+    image: ghcr.io/utrechtuniversity/yoda-public:dev-1.9
+    ports:
+      - "8446:443"
+    build:
+      context: ../images/yoda_public
+    restart: unless-stopped
+
   davrods:
     container_name: data.yoda
     platform: linux/amd64
