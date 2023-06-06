@@ -121,7 +121,6 @@ COPY stage/run-intake-movetovault.sh /tmp/run-intake-movetovault.sh
 COPY job_movetovault.r /var/lib/irods/.irods/job_movetovault.r
 COPY job_clearintakelocks.r /var/lib/irods/.irods/job_clearintakelocks.r
 RUN install -o irods -g irods -m 0755 /tmp/run-intake-movetovault.sh /var/lib/irods/.irods/run-intake-movetovault.sh
-COPY rules_uu.cfg /etc/irods/yoda-ruleset
 COPY cronjob-revision-cleanup.sh /tmp/cronjob-revision-cleanup.sh
 RUN install -o irods -g irods -m 0755 /tmp/cronjob-revision-cleanup.sh /var/lib/irods/.irods/cronjob-revision-cleanup.sh
 COPY service_account.config /tmp/service_account.config
