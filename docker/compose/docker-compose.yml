@@ -3,6 +3,8 @@ version: "3"
 volumes:
   extuser_pg_data:
   icat_pg_data:
+  public_metadata:
+  public_landingpages:
 
 services:
   provider:
@@ -23,6 +25,8 @@ services:
       - type: bind
         source: ./v_irods_logs
         target: /var/lib/irods/log
+      - public_metadata:/public/var/www/moai/metadata
+      - public_landingpages:/public/var/www/landingpages
 
   db:
     container_name: db.yoda
@@ -102,6 +106,8 @@ services:
       - type: bind
         source: ./v_moai_app
         target: /var/www/moai/yoda-moai
+      - public_metadata:/var/www/moai/metadata
+      - public_landingpages:/var/www/landingpages
     restart: unless-stopped
 
   davrods:

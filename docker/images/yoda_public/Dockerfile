@@ -80,6 +80,7 @@ COPY stage/bootstrap.min.css /var/www/landingpages/static/css/bootstrap.min.css
 COPY stage/uu.css /var/www/landingpages/static/css/uu.css
 COPY stage/logo.svg /var/www/landingpages/static/img/logo.svg
 COPY stage/logo_footer.svg /var/www/landingpages/static/img/logo_footer.svg
+RUN cp -Rdp /var/www/landingpages /var/www/landingpages-copy
 
 ## Configure public web server
 COPY yoda-public-vhost.conf /etc/httpd/conf.d/yoda-public-vhost.conf
