@@ -176,6 +176,7 @@ enable_tape_archive: false
 
 # Data Package Archive
 enable_data_package_archive: false                     # Enable data package archive functionality
+enable_data_package_download: false                    # Enable data package download functionality
 data_package_archive_fqdn: ""                          # Fully qualified domain name (FQDN) of iRODS server connected to data archive
 data_package_archive_minimum: 1073741824               # Minimum data package archive size (1 GB), -1 for no limit
 data_package_archive_maximum: 107374182400             # Maximum data package archive size (100 GB), -1 for no limit
