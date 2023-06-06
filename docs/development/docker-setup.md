@@ -14,13 +14,13 @@ The configuration is intended for local development and testing.
 
 Some components are not yet available in the containerized version of Yoda,
 most importantly:
-- The public server (landing pages and OAI-PMH). This also implies that publication
-  functions are not yet available.
 - OpenSearch (used for searching in the deposit module)
 - The configuration uses Mailpit for testing email delivery. Email delivery using
   Postfix is not yet available.
 - The Docker Compose configuration has only the iRODS provider, there is no consumer
   for replication.
+
+## Cronjobs
 
 The cronjobs for revision creation, revision cleanup, archiving vault data etc. do not
 run automatically, but need to be started manually in this configuration. The `run-cronjob.sh`
@@ -28,6 +28,19 @@ shell script can be used as a quick way to start the most commonly used cronjobs
 
 ```
 run-cronjob.sh revision
+```
+
+After accepting a data package for archiving in the vault, run:
+
+```
+./run-cronjob.sh copytovault
+```
+
+After accepting a data package for publication, run:
+
+```
+./run-cronjob.sh publication
+./run-cronjob.sh moaiupdate
 ```
 
 ## Starting the application
