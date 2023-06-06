@@ -71,6 +71,13 @@ then progress_update "Bind mount detected. Checking if application UID needs to 
 else progress_update "Notice: no bind mount detected. Keeping current application UID ${CURRENT_UID}"
 fi
 
+# Restore landing page files to volume if needed
+if ! [[ -f "/var/www/landingpages/index.html" ]]
+then before_update "Copying back landing page core contents to volume."
+     cp -Ru /var/www/landingpages-copy/. /var/www/landingpages
+     progress_update "Copying landing page core contents finished."
+fi
+
 # Initialize MOAI
 before_update "Initializing MOAI database."
 /var/www/moai/yoda-moai/venv/bin/update_moai --config /var/www/moai/settings.ini yoda_moai

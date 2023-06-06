@@ -24,6 +24,10 @@ case "$1" in
     docker exec -it provider.yoda sudo -iu irods /var/lib/irods/.irods/run-intake-movetovault.sh
     ;;
 
+  publication)
+    docker exec -it provider.yoda sudo -iu irods /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/process-publication.r
+    ;;
+
   revision)
     docker exec -it provider.yoda sudo -iu irods /bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py -v
     ;;
