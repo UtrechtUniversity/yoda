@@ -43,6 +43,12 @@ After accepting a data package for publication, run:
 ./run-cronjob.sh moaiupdate
 ```
 
+If you want to view the statistics, first run the statistics job:
+
+```
+./run-cronjob.sh statistics
+```
+
 ## Starting the application
 
 If you haven't downloaded the Docker images yet, pull them first:
