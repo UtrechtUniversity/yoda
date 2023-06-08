@@ -77,3 +77,9 @@ temporary_files                = '{{ temporary_files | join (" ") }}'
 {% if external_users %}
 external_users_domain_filter   = '{{ external_users_domain_filter | replace (' ','') | replace('|', ' ')}}'
 {% endif %}
+
+{% if enable_sram %}
+sram_rest_api_url          = 'https://{{ sram_rest_api_url }}'
+sram_api_key              = '{{ sram_api_key }}'
+sram_tls_verify            = '{{ ["false", "true"][sram_tls_verify|int] }}'
+{% endif %}
