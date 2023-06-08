@@ -193,3 +193,9 @@ yoda_davrods_anonymous_port: 443
 # External Users configuration
 external_users: true
 external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated by |
+
+# SRAM Configuration
+enable_sram: true                                             # Enable SRAM configuration
+sram_rest_api_url: 'acc.sram.surf.nl'                         # SRAM Rest API URL
+sram_api_key: 'A3uNTxEMqvH2eUKwomd4lzkG0c8_ZgAZ_z2aOBeQ0b34'  # SRAM Rest API key
+sram_tls_verify: 1                                            # SRAM TLS verification is enabled by default
