@@ -5,29 +5,94 @@ nav_order: 1
 ---
 # Running Yoda using Docker Compose
 
-A Docker Compose configuration for running Yoda is available in the
+Docker Compose configurations for running Yoda are available in the
 `/docker` directory.
 
 ## Intended use and limitations
 
-The configuration is intended for local development and testing.
+These configurations are intended for local development and testing.
 
-Some components are not yet available in the containerized version of Yoda,
+Some components are not (yet) available in the containerized version of Yoda,
 most importantly:
 - OpenSearch (used for searching in the deposit module)
-- The configuration uses Mailpit for testing email delivery. Email delivery using
-  Postfix is not yet available.
-- The Docker Compose configuration has only the iRODS provider, there is no consumer
-  for replication.
+- The containerized version does not actually deliver emails sent by Yoda. 
+  Instead, it has [Mailpit](https://github.com/axllent/mailpit) for testing email
+  delivery. Mailpit provides a web interface that can be used to view email messages
+  that would have been delivered by the application in a production configuration.
+- The Docker Compose configurations only have an iRODS provider; there is no consumer
+  for data replication.
 
-## Cronjobs
+## Starting the application
 
-The cronjobs for revision creation, revision cleanup, archiving vault data etc. do not
-run automatically, but need to be started manually in this configuration. The `run-cronjob.sh`
-shell script can be used as a quick way to start the most commonly used cronjobs, e.g.:
+If you haven't downloaded the Docker images yet, pull them first:
+
+```bash
+cd docker/compose
+docker-compose pull
+```
+
+Yoda has two Docker Compose configurations:
+1. The regular configuration. This is the most portable and fastest configuration.
+2. A configuration with bind mounts for the application source code. This configuration enables
+   editing the Yoda source code without having to work in the container, so that you can use your
+   host system IDE, editor, as well as other tools. However, bind mounts can be tricky to get working on
+   some container runtimes / host operating systems, and they can slow down the application
+   significantly in some setups.
+
+In general, it is recommended to use the regular configuration, unless you need the bind mounts.
+
+Start the regular configuration by running the start script in the `docker/compose` directory:
+
+```bash
+../up.sh
+```
+
+Start the configuration with bind mounts by running the start script in the `docker/compose-with-bind-mounts`
+directory:
+
+```bash
+cd ../compose-with-bind-mounts
+../up.sh
+```
+
+Removing and old instance of the application (including data):
+```bash
+../down.sh -v
+
+# And in the configuration with bind mounts:
+./clean.sh
+```
+
+You need to have these entries in your /etc/hosts (or equivalent) file:
 
 ```
-run-cronjob.sh revision
+# Docker setup Yoda
+127.0.0.1 portal.yoda eus.yoda data.yoda public.yoda
+```
+
+After the application is started, the web interfaces will be available on:
+- Mailpit: http://localhost:8025
+- Portal: https://portal.yoda:8443
+- EUS (port with API enabled): https://eus.yoda:8444
+- DavRODS: https://data.yoda:8445
+- Public: https://public.yoda:8446
+
+You can log in on the Yoda portal using any of the test account credentials, such as user name `researcher`
+and password `test`. A full list of test account credentials can be found in the
+[test_users list in the defaults file of the Yoda test role](https://github.com/UtrechtUniversity/yoda/blob/development/roles/yoda_test/defaults/main.yml).
+
+## Jobs
+
+Yoda uses jobs for various processes, such as creating revisions, archiving data in the vault, collecting
+statistics data, and processing data package publication changes. These jobs need to be started manually
+in the Docker Setup.
+
+The `run-cronjob.sh` shell script can be used as a convenient way to start jobs.
+
+For example, to asynchronously create revisions, run:
+
+```
+./run-cronjob.sh revision
 ```
 
 After accepting a data package for archiving in the vault, run:
@@ -49,47 +114,32 @@ If you want to view the statistics, first run the statistics job:
 ./run-cronjob.sh statistics
 ```
 
-## Starting the application
+## Troubleshooting
 
-If you haven't downloaded the Docker images yet, pull them first:
+### Cannot create container for service [...] : Conflict
+
+The Docker setup currently has static container names so that we can easily
+start jobs on containers, etc. This can however cause conflicts after, for example, the
+container runtime has crashed.
+
+If you don't have any other Docker containers running on your system, the easy way to
+resolve such conflicts is to just stop and remove all containers:
 
 ```bash
-cd docker/compose
-docker-compose pull
+docker kill $(docker ps -q)
+docker rm $(docker ps -a -q)
 ```
 
-The application can then be started using docker compose:
-```bash
-./up.sh
-```
+### Error: bind mount owned by root user. Cannot change application UID
 
-The default Docker Compose configuration uses bind mounts so that the ruleset, portal
-and EUS application code can be edited easily. If that does not work on your system, there
-is an alternative Docker Compose configuration without these volumes in `docker/compose-without-volumes`
-that facilitates testing Yoda in situations where bind mounts cause problems.
-
-Removing and old instance of the application (including data):
-```bash
-./down.sh -v
-```
-
-You need to have these entries in your /etc/hosts (or equivalent) file:
-
-```
-# Docker setup Yoda
-127.0.0.1 portal.yoda eus.yoda data.yoda public.yoda
-```
-
-After the application is started, the web interfaces will be available on:
-- Mailpit: http://localhost:8025
-- Portal: https://portal.yoda:8443
-- EUS (port with API enabled): https://eus.yoda:8444
-- DavRODS: https://data.yoda:8445
-- Public: https://public.yoda:8446
-
-You can log in on the Yoda portal using any of the test account credentials, such as user name `researcher`
-and password `test`. A full list of test account credentials can be found in the
-[test_users list in the defaults file of the Yoda test role](https://github.com/UtrechtUniversity/yoda/blob/development/roles/yoda_test/defaults/main.yml).
+Multiple situations can cause failures when preparing to change the application UID to match the host system user:
+1. One of the bind mount directories (`docker/compose-with-bind-mounts/v_*`) is owned by the root user, rather than a regular user.
+   In this case: use `chown` to change ownership of this directory on the host system.
+2. One of the bind mount directories (`docker/compose-with-bind-mounts/v_*`) is not present on the host system, which
+   causes it to default to root permissions. In this case, the directory needs to be re-created with a `.docker.gitkeep` dummy file.
+3. There is some kind of problem on the host system (e.g. SELinux denial, permission problem related to user mapping, etc.) that causes Docker
+   to do something unexpected related to the bind mounts. Checking the host system logs for any clues could be a first step for troubleshooting
+   in such a case.
 
 ## Building the images
 
@@ -138,5 +188,12 @@ cd docker/images/yoda_eus
 ```bash
 cd docker/images/yoda_public
 ./stage-uploads.sh
+./build.sh
+```
+
+### Yoda web mock
+
+```bash
+cd docker/images/yoda_web_mock
 ./build.sh
 ```
