@@ -349,6 +349,17 @@ token_lifetime                | Lifetime of data access tokens (in hours)
 token_expiration_notification | Send notification before token expiration (in hours)
 enable_radius_fallback        | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
 
+### Data Package Archive configuration
+
+Variable                      | Description
+------------------------------|------------------------------------------
+enable_data_package_archive   | Enable data package archive functionality
+enable_data_package_download  | Enable data package download functionality
+data_package_archive_fqdn     | Fully qualified domain name (FQDN) of iRODS server connected to data archive
+data_package_archive_minimum  | Minimum data package archive size (1 GB), -1 for no limit
+data_package_archive_maximum  | Maximum data package archive size (100 GB), -1 for no limit
+data_package_archive_resource | Resource to use for data package archive functionality
+
 ### Public host configuration
 
 Variable                     | Description
