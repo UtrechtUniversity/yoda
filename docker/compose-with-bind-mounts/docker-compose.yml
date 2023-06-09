@@ -17,10 +17,16 @@ services:
       - mailpit
     build:
       context: ../images/yoda_irods_icat
+    restart: unless-stopped
     volumes:
+      - type: bind
+        source: ./v_yoda_ruleset
+        target: /etc/irods/yoda-ruleset
+      - type: bind
+        source: ./v_irods_logs
+        target: /var/lib/irods/log
       - public_metadata:/public/var/www/moai/metadata
       - public_landingpages:/public/var/www/landingpages
-    restart: unless-stopped
 
   db:
     container_name: db.yoda
@@ -60,6 +66,10 @@ services:
       - "8443:443"
     build:
       context: ../images/yoda_portal
+    volumes:
+      - type: bind
+        source: ./v_portal_app
+        target: /var/www/yoda
     restart: unless-stopped
 
   eus:
@@ -74,6 +84,13 @@ services:
       - "8444:8443"
     build:
       context: ../images/yoda_eus
+    volumes:
+      - type: bind
+        source: ./v_extuser_app
+        target: /var/www/extuser
+      - type: bind
+        source: ./v_extuser_portal
+        target: /var/www/yoda
     restart: unless-stopped
 
   public:
@@ -86,6 +103,9 @@ services:
     build:
       context: ../images/yoda_public
     volumes:
+      - type: bind
+        source: ./v_moai_app
+        target: /var/www/moai/yoda-moai
       - public_metadata:/var/www/moai/metadata
       - public_landingpages:/var/www/landingpages
     restart: unless-stopped
@@ -126,4 +146,8 @@ services:
       - MOCKFQDN=datacite-mock.yoda
     build:
       context: ../images/yoda_web_mock
+    volumes:
+      - type: bind
+        source: ./v_yoda_web_mock_datacite
+        target: /var/www/webmock/yoda-web-mock
     restart: unless-stopped
