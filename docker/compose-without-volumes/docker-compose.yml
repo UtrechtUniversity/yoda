@@ -3,6 +3,8 @@ version: "3"
 volumes:
   extuser_pg_data:
   icat_pg_data:
+  public_metadata:
+  public_landingpages:
 
 services:
   provider:
@@ -15,6 +17,9 @@ services:
       - mailpit
     build:
       context: ../images/yoda_irods_icat
+    volumes:
+      - public_metadata:/public/var/www/moai/metadata
+      - public_landingpages:/public/var/www/landingpages
     restart: unless-stopped
 
   db:
@@ -80,6 +85,9 @@ services:
       - "8446:443"
     build:
       context: ../images/yoda_public
+    volumes:
+      - public_metadata:/var/www/moai/metadata
+      - public_landingpages:/var/www/landingpages
     restart: unless-stopped
 
   davrods:
