@@ -252,7 +252,7 @@
 </h1>
     
 
-<p>A Docker Compose configuration for running Yoda is available in the
+<p>Docker Compose configurations for running Yoda are available in the
 <code class="language-plaintext highlighter-rouge">/docker</code> directory.</p>
 <h2 id="intended-use-and-limitations">
   
@@ -263,26 +263,19 @@
 </h2>
     
 
-<p>The configuration is intended for local development and testing.</p>
+<p>These configurations are intended for local development and testing.</p>
 
-<p>Some components are not yet available in the containerized version of Yoda,
+<p>Some components are not (yet) available in the containerized version of Yoda,
 most importantly:</p>
 <ul>
-  <li>The public server (landing pages and OAI-PMH). This also implies that publication
-functions are not yet available.</li>
   <li>OpenSearch (used for searching in the deposit module)</li>
-  <li>The configuration uses Mailpit for testing email delivery. Email delivery using
-Postfix is not yet available.</li>
-  <li>The Docker Compose configuration has only the iRODS provider, there is no consumer
-for replication.</li>
+  <li>The containerized version does not actually deliver emails sent by Yoda. 
+Instead, it has <a href="https://github.com/axllent/mailpit">Mailpit</a> for testing email
+delivery. Mailpit provides a web interface that can be used to view email messages
+that would have been delivered by the application in a production configuration.</li>
+  <li>The Docker Compose configurations only have an iRODS provider; there is no consumer
+for data replication.</li>
 </ul>
-
-<p>The cronjobs for revision creation, revision cleanup, archiving vault data etc. do not
-run automatically, but need to be started manually in this configuration. The <code class="language-plaintext highlighter-rouge">run-cronjob.sh</code>
-shell script can be used as a quick way to start the most commonly used cronjobs, e.g.:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>run-cronjob.sh revision
-</code></pre></div></div>
 <h2 id="starting-the-application">
   
   
@@ -298,23 +291,41 @@ shell script can be used as a quick way to start the most commonly used cronjobs
 docker-compose pull
 </code></pre></div></div>
 
-<p>The application can then be started using docker compose:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./up.sh
+<p>Yoda has two Docker Compose configurations:</p>
+<ol>
+  <li>The regular configuration. This is the most portable and fastest configuration.</li>
+  <li>A configuration with bind mounts for the application source code. This configuration enables
+editing the Yoda source code without having to work in the container, so that you can use your
+host system IDE, editor, as well as other tools. However, bind mounts can be tricky to get working on
+some container runtimes / host operating systems, and they can slow down the application
+significantly in some setups.</li>
+</ol>
+
+<p>In general, it is recommended to use the regular configuration, unless you need the bind mounts.</p>
+
+<p>Start the regular configuration by running the start script in the <code class="language-plaintext highlighter-rouge">docker/compose</code> directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>../up.sh
 </code></pre></div></div>
 
-<p>The default Docker Compose configuration uses bind mounts so that the ruleset, portal
-and EUS application code can be edited easily. If that does not work on your system, there
-is an alternative Docker Compose configuration without these volumes in <code class="language-plaintext highlighter-rouge">docker/compose-without-volumes</code>
-that facilitates testing Yoda in situations where bind mounts cause problems.</p>
+<p>Start the configuration with bind mounts by running the start script in the <code class="language-plaintext highlighter-rouge">docker/compose-with-bind-mounts</code>
+directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ../compose-with-bind-mounts
+../up.sh
+</code></pre></div></div>
 
 <p>Removing and old instance of the application (including data):</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./down.sh <span class="nt">-v</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>../down.sh <span class="nt">-v</span>
+
+<span class="c"># And in the configuration with bind mounts:</span>
+./clean.sh
 </code></pre></div></div>
 
 <p>You need to have these entries in your /etc/hosts (or equivalent) file:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Docker setup Yoda
-127.0.0.1 portal.yoda eus.yoda data.yoda
+127.0.0.1 portal.yoda eus.yoda data.yoda public.yoda
 </code></pre></div></div>
 
 <p>After the application is started, the web interfaces will be available on:</p>
@@ -323,11 +334,93 @@ that facilitates testing Yoda in situations where bind mounts cause problems.</p
   <li>Portal: https://portal.yoda:8443</li>
   <li>EUS (port with API enabled): https://eus.yoda:8444</li>
   <li>DavRODS: https://data.yoda:8445</li>
+  <li>Public: https://public.yoda:8446</li>
 </ul>
 
 <p>You can log in on the Yoda portal using any of the test account credentials, such as user name <code class="language-plaintext highlighter-rouge">researcher</code>
 and password <code class="language-plaintext highlighter-rouge">test</code>. A full list of test account credentials can be found in the
 <a href="https://github.com/UtrechtUniversity/yoda/blob/development/roles/yoda_test/defaults/main.yml">test_users list in the defaults file of the Yoda test role</a>.</p>
+<h2 id="jobs">
+  
+  
+    <a href="#jobs" class="anchor-heading" aria-labelledby="jobs"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Jobs
+  
+  
+</h2>
+    
+
+<p>Yoda uses jobs for various processes, such as creating revisions, archiving data in the vault, collecting
+statistics data, and processing data package publication changes. These jobs need to be started manually
+in the Docker Setup.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">run-cronjob.sh</code> shell script can be used as a convenient way to start jobs.</p>
+
+<p>For example, to asynchronously create revisions, run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./run-cronjob.sh revision
+</code></pre></div></div>
+
+<p>After accepting a data package for archiving in the vault, run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./run-cronjob.sh copytovault
+</code></pre></div></div>
+
+<p>After accepting a data package for publication, run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./run-cronjob.sh publication
+./run-cronjob.sh moaiupdate
+</code></pre></div></div>
+
+<p>If you want to view the statistics, first run the statistics job:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./run-cronjob.sh statistics
+</code></pre></div></div>
+<h2 id="troubleshooting">
+  
+  
+    <a href="#troubleshooting" class="anchor-heading" aria-labelledby="troubleshooting"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Troubleshooting
+  
+  
+</h2>
+    
+<h3 id="cannot-create-container-for-service---conflict">
+  
+  
+    <a href="#cannot-create-container-for-service---conflict" class="anchor-heading" aria-labelledby="cannot-create-container-for-service---conflict"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Cannot create container for service […] : Conflict
+  
+  
+</h3>
+    
+
+<p>The Docker setup currently has static container names so that we can easily
+start jobs on containers, etc. This can however cause conflicts after, for example, the
+container runtime has crashed.</p>
+
+<p>If you don’t have any other Docker containers running on your system, the easy way to
+resolve such conflicts is to just stop and remove all containers:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">kill</span> <span class="si">$(</span>docker ps <span class="nt">-q</span><span class="si">)</span>
+docker <span class="nb">rm</span> <span class="si">$(</span>docker ps <span class="nt">-a</span> <span class="nt">-q</span><span class="si">)</span>
+</code></pre></div></div>
+<h3 id="error-bind-mount-owned-by-root-user-cannot-change-application-uid">
+  
+  
+    <a href="#error-bind-mount-owned-by-root-user-cannot-change-application-uid" class="anchor-heading" aria-labelledby="error-bind-mount-owned-by-root-user-cannot-change-application-uid"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Error: bind mount owned by root user. Cannot change application UID
+  
+  
+</h3>
+    
+
+<p>Multiple situations can cause failures when preparing to change the application UID to match the host system user:</p>
+<ol>
+  <li>One of the bind mount directories (<code class="language-plaintext highlighter-rouge">docker/compose-with-bind-mounts/v_*</code>) is owned by the root user, rather than a regular user.
+In this case: use <code class="language-plaintext highlighter-rouge">chown</code> to change ownership of this directory on the host system.</li>
+  <li>One of the bind mount directories (<code class="language-plaintext highlighter-rouge">docker/compose-with-bind-mounts/v_*</code>) is not present on the host system, which
+causes it to default to root permissions. In this case, the directory needs to be re-created with a <code class="language-plaintext highlighter-rouge">.docker.gitkeep</code> dummy file.</li>
+  <li>There is some kind of problem on the host system (e.g. SELinux denial, permission problem related to user mapping, etc.) that causes Docker
+to do something unexpected related to the bind mounts. Checking the host system logs for any clues could be a first step for troubleshooting
+in such a case.</li>
+</ol>
 <h2 id="building-the-images">
   
   
@@ -399,6 +492,31 @@ instead.</p>
     
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/images/yoda_eus
+./build.sh
+</code></pre></div></div>
+<h3 id="public">
+  
+  
+    <a href="#public" class="anchor-heading" aria-labelledby="public"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Public
+  
+  
+</h3>
+    
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/images/yoda_public
+./stage-uploads.sh
+./build.sh
+</code></pre></div></div>
+<h3 id="yoda-web-mock">
+  
+  
+    <a href="#yoda-web-mock" class="anchor-heading" aria-labelledby="yoda-web-mock"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Yoda web mock
+  
+  
+</h3>
+    
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>docker/images/yoda_web_mock
 ./build.sh
 </code></pre></div></div>
 
