@@ -52,8 +52,7 @@ RUN virtualenv --python /opt/rh/rh-python38/root/bin/python3 /var/www/webmock/ve
 # Make copy of data on volumes that can optionally be bind mounted, so the container init script
 # can restore it if needed.
 # hadolint ignore=DL3059
-RUN cp -Rdp /var/www/webmock/yoda-web-mock /var/www/webmock/yoda-web-mock-copy && \
-    touch /var/www/webmock/yoda-web-mock/.docker.gitkeep
+RUN cp -Rdp /var/www/webmock/yoda-web-mock /var/www/webmock/yoda-web-mock-copy
 
 # Initialize
 VOLUME [ "/sys/fs/cgroup" ]
