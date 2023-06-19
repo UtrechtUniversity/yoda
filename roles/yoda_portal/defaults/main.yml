@@ -14,7 +14,7 @@ yoda_theme_path: /var/www/yoda/themes              # Base path holding customise
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 
 # Yoda portal
-yoda_portal_version: "{{ yoda_version }}"
+yoda_portal_version: "YDA-5177-SRAM"
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name
@@ -58,3 +58,6 @@ datarequest_help_contact_email: PLACEHOLDER        # Help contact email
 # Data Access Tokens
 enable_tokens: false                               # Enable data access tokens for webDAV and iCommands
 token_lifetime: 72                                 # Lifetime of data access tokens (in hours)
+
+# SRAM Configuration
+enable_sram: false                                 # Enable SRAM configuration
