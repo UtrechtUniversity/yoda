@@ -12,6 +12,9 @@ Docker Compose configurations for running Yoda are available in the
 
 These configurations are intended for local development and testing.
 
+The configurations may not work on older versions of Docker / Docker Compose.
+Docker 20.10.x and better is known to work.
+
 Some components are not (yet) available in the containerized version of Yoda,
 most importantly:
 - OpenSearch (used for searching in the deposit module)
