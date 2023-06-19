@@ -505,7 +505,7 @@
   },"72": {
     "doc": "Running Yoda using Docker Compose",
     "title": "Intended use and limitations",
-    "content": "These configurations are intended for local development and testing. Some components are not (yet) available in the containerized version of Yoda, most importantly: . | OpenSearch (used for searching in the deposit module) | The containerized version does not actually deliver emails sent by Yoda. Instead, it has Mailpit for testing email delivery. Mailpit provides a web interface that can be used to view email messages that would have been delivered by the application in a production configuration. | The Docker Compose configurations only have an iRODS provider; there is no consumer for data replication. | . ",
+    "content": "These configurations are intended for local development and testing. The configurations may not work on older versions of Docker / Docker Compose. Docker 20.10.x and better is known to work. Some components are not (yet) available in the containerized version of Yoda, most importantly: . | OpenSearch (used for searching in the deposit module) | The containerized version does not actually deliver emails sent by Yoda. Instead, it has Mailpit for testing email delivery. Mailpit provides a web interface that can be used to view email messages that would have been delivered by the application in a production configuration. | The Docker Compose configurations only have an iRODS provider; there is no consumer for data replication. | . ",
     "url": "/yoda/development/docker-setup.html#intended-use-and-limitations",
     
     "relUrl": "/development/docker-setup.html#intended-use-and-limitations"
@@ -706,12 +706,12 @@
     
     "relUrl": "/administration/hotfixing-ruleset.html"
   },"101": {
-    "doc": "Other",
-    "title": "Other",
-    "content": " ",
-    "url": "/yoda/design/other/",
+    "doc": "Release Notes",
+    "title": "Release Notes",
+    "content": ". | Release Notes - Yoda v1.9 (TBA) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "url": "/yoda/release-notes/",
     
-    "relUrl": "/design/other/"
+    "relUrl": "/release-notes/"
   },"102": {
     "doc": "Processes",
     "title": "Processes",
@@ -720,47 +720,47 @@
     
     "relUrl": "/design/processes/"
   },"103": {
+    "doc": "Other",
+    "title": "Other",
+    "content": " ",
+    "url": "/yoda/design/other/",
+    
+    "relUrl": "/design/other/"
+  },"104": {
     "doc": "System Overview",
     "title": "System overview",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
     "url": "/yoda/design/overview/#system-overview",
     
     "relUrl": "/design/overview/#system-overview"
-  },"104": {
+  },"105": {
     "doc": "System Overview",
     "title": "Core modules",
     "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     
     "relUrl": "/design/overview/#core-modules"
-  },"105": {
+  },"106": {
     "doc": "System Overview",
     "title": "Additional modules",
     "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
     "url": "/yoda/design/overview/#additional-modules",
     
     "relUrl": "/design/overview/#additional-modules"
-  },"106": {
+  },"107": {
     "doc": "System Overview",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/#overview",
     
     "relUrl": "/design/overview/#overview"
-  },"107": {
+  },"108": {
     "doc": "System Overview",
     "title": "System Overview",
     "content": " ",
     "url": "/yoda/design/overview/",
     
     "relUrl": "/design/overview/"
-  },"108": {
-    "doc": "API",
-    "title": "API",
-    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
-    "url": "/yoda/design/api/",
-    
-    "relUrl": "/design/api/"
   },"109": {
     "doc": "Metadata",
     "title": "Metadata",
@@ -811,54 +811,54 @@
     
     "relUrl": "/design/metadata/#further-information"
   },"116": {
+    "doc": "API",
+    "title": "API",
+    "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
+    "url": "/yoda/design/api/",
+    
+    "relUrl": "/design/api/"
+  },"117": {
     "doc": "Software Design",
     "title": "Software Design",
     "content": " ",
     "url": "/yoda/design/",
     
     "relUrl": "/design/"
-  },"117": {
+  },"118": {
     "doc": "Software Design",
     "title": "API",
     "content": ". | API documentation | . ",
     "url": "/yoda/design/#api",
     
     "relUrl": "/design/#api"
-  },"118": {
+  },"119": {
     "doc": "Software Design",
     "title": "System",
     "content": ". | System overview | Research space | Vault space | Statistics module | Intake module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
     "url": "/yoda/design/#system",
     
     "relUrl": "/design/#system"
-  },"119": {
+  },"120": {
     "doc": "Software Design",
     "title": "Metadata",
     "content": ". | Metadata design overview | Metadata schema definition | Metadata schema - JSON configuration | Metadata schema identifier format | Metadata: use in the vault | Metadata: form implementation | . ",
     "url": "/yoda/design/#metadata",
     
     "relUrl": "/design/#metadata"
-  },"120": {
+  },"121": {
     "doc": "Software Design",
     "title": "Processes",
     "content": ". | Asynchronous and privileged execution | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
     "url": "/yoda/design/#processes",
     
     "relUrl": "/design/#processes"
-  },"121": {
+  },"122": {
     "doc": "Software Design",
     "title": "Other",
     "content": ". | Python plugin | Yoda drive | . ",
     "url": "/yoda/design/#other",
     
     "relUrl": "/design/#other"
-  },"122": {
-    "doc": "Release Notes",
-    "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v1.9 (TBA) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
-    "url": "/yoda/release-notes/",
-    
-    "relUrl": "/release-notes/"
   },"123": {
     "doc": "Administration Tasks",
     "title": "Administration Tasks",
