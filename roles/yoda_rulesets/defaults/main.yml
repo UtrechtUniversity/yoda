@@ -9,7 +9,7 @@ core_rulesets:
   - name: yoda-ruleset
     repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
-    version: "YDA-5177-SRAM"
+    version: "{{ yoda_version }}"
     install_scripts: true
   - name: core
     ruleset_name: core
@@ -181,16 +181,17 @@ data_package_archive_fqdn: ""                          # Fully qualified domain 
 data_package_archive_minimum: 1073741824               # Minimum data package archive size (1 GB), -1 for no limit
 data_package_archive_maximum: 107374182400             # Maximum data package archive size (100 GB), -1 for no limit
 
-# SRAM Configuration
-enable_sram: false                           # Enable SRAM configuration
-sram_rest_api_url: acc.sram.surf.nl          # SRAM Rest API URL
-sram_api_key: PLACEHOLDER                    # SRAM Rest API key
-sram_tls_verify: true                        # SRAM TLS verification is enabled by default
+# SRAM Configuration (experimental)
+enable_sram: false                                     # Enable SRAM configuration
+sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
+sram_api_key: PLACEHOLDER                              # SRAM Rest API key
+sram_verbose_logging: false                            # SRAM verbose logging
+sram_tls_verify: true                                  # Enable TLS verification for SRAM API calls. Enabled by default.
 
-yoda_portal_fqdn: PLACEHOLDER           # Yoda portal FQDN
+yoda_portal_fqdn: PLACEHOLDER                          # Yoda portal FQDN
 
-yoda_davrods_fqdn: data.yoda.test           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
-yoda_davrods_port: 443
+yoda_davrods_fqdn: data.yoda.test                      # Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_davrods_port: 443                                 # Yoda Davrods WebDAV port
 
 yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test
