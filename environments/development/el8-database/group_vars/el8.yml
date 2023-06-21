@@ -59,6 +59,13 @@ data_package_archive_minimum: 1024                     # Minimum data package ar
 data_package_archive_maximum: -1                       # Maximum data package archive size (no limit), -1 for no limit
 data_package_archive_resource: mockTapeArchive         # Resource to use for data package archive functionality
 
+# SRAM Configuration (experimental)
+enable_sram: false                                     # Enable SRAM configuration
+sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
+sram_api_key: PLACEHOLDER                              # SRAM Rest API key
+sram_verbose_logging: true                             # SRAM verbose logging
+sram_tls_verify: false                                 # Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
+
 # Portal customization
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)

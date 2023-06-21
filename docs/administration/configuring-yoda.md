@@ -328,6 +328,16 @@ datacite_prefix              | DataCite DOI prefix
 datacite_rest_api_url        | DataCite REST API URL
 datacite_tls_verify          | Enable TLS verification for Datacite API calls (0: no, 1: yes). Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
 
+### SRAM Configuration (experimental)
+
+Variable                     | Description
+-----------------------------|---------------------------------------------
+enable_sram                  | Enable SRAM configuration
+sram_rest_api_url            | SRAM Rest API URL
+sram_api_key                 | SRAM Rest API key
+sram_verbose_logging         | SRAM verbose logging
+sram_tls_verify              | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
+
 ### EPIC PID Configuration
 
 Variable                     | Description
