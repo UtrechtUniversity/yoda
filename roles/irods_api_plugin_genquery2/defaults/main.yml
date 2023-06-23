@@ -1,0 +1,15 @@
+---
+# copyright Utrecht University
+
+# Temporary directory to store downloaded rpm files.
+rpm_dest_dir: /tmp
+
+# iRODS microservices rpm locations and checksums
+irods_sudo_microservices:
+  package: irods-experimental-api-plugin-genquery2-4.2.12.0-1
+  url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.2/irods-experimental-api-plugin-genquery2-4.2.12.0-1.x86_64.rpm
+  filename: irods-experimental-api-plugin-genquery2-4.2.12.0-1.x86_64.rpm
+  checksum: sha256:fd2972d8ab69f8b9a326342e6206ef4146c58c74a5a402b7e25438c31bbc99f0
+
+# iRODS configuration.
+irods_service_account: irods

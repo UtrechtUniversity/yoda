@@ -122,6 +122,7 @@
       when: enable_s3_resource
     - role: minio
       when: enable_s3_resource and yoda_environment == "development"
+    - irods_api_plugin_genquery2
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
