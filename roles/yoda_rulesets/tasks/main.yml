@@ -131,6 +131,15 @@
     extra_args: --user
 
 
+- name: Ensure Python 3 jsonschema is installed
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.pip:
+    name: jsonschema==4.17.3
+    executable: /usr/local/bin/pip3
+    extra_args: --user
+
+
 - name: Ensure all rulesets are in server config
   become_user: "{{ irods_service_account }}"
   become: true
