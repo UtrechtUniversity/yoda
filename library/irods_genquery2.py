@@ -30,7 +30,7 @@ def main():
     # Find genquery2 plugin in server config.
     plugins = server_config["plugin_configuration"]["rule_engines"]
     for plugin in plugins:
-      if plugin["plugin_name"] == "irods_rule_engine-genquery2-instance":
+      if plugin["plugin_name"] == "irods_rule_engine_plugin-genquery2":
         genquery2 = plugin
       if plugin["plugin_name"] == "irods_rule_engine_plugin-cpp_default_policy":
         default_policy = plugin
