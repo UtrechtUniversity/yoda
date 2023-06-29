@@ -1386,48 +1386,64 @@ The configuration is split in several parts. Below an overview of these parts an
     <tr>
       <th>Variable</th>
       <th>Description</th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>yoda_eus_fqdn</td>
       <td>Yoda External User Service fully qualified domain name (FQDN)</td>
+      <td> </td>
     </tr>
     <tr>
       <td>eus_api_fqdn</td>
       <td>External User Service API fully qualified domain name (FQDN)</td>
+      <td> </td>
     </tr>
     <tr>
       <td>eus_api_port</td>
       <td>External User Service API port</td>
+      <td> </td>
     </tr>
     <tr>
       <td>eus_api_secret</td>
       <td>External User Service API secret</td>
+      <td> </td>
     </tr>
     <tr>
       <td>eus_db_password</td>
       <td>External User Service database password</td>
+      <td> </td>
     </tr>
     <tr>
       <td>eus_smtp_from_name</td>
       <td>External User Service email from name</td>
+      <td> </td>
     </tr>
     <tr>
       <td>eus_smtp_from_address</td>
       <td>External User Service email from address</td>
+      <td> </td>
     </tr>
     <tr>
       <td>eus_smtp_replyto_name</td>
       <td>External User Service email reply-to name</td>
+      <td> </td>
     </tr>
     <tr>
       <td>eus_smtp_replyto_address</td>
       <td>External User Service email reply-to address</td>
+      <td> </td>
     </tr>
     <tr>
       <td>eus_mail_template</td>
       <td>External User Service mail template</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>external_users_domain_filter</td>
+      <td>Domains to filter, separated by</td>
+      <td>and wildcard character *</td>
     </tr>
   </tbody>
 </table></div>
@@ -1454,7 +1470,7 @@ The configuration is split in several parts. Below an overview of these parts an
     </tr>
     <tr>
       <td>oidc_domains</td>
-      <td>Domains that should use OIDC (list). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.</td>
+      <td>Domains that should use OIDC (list, wildcard character *). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.</td>
     </tr>
     <tr>
       <td>oidc_client_id</td>

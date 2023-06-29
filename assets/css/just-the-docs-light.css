@@ -434,16 +434,16 @@ h6, .text-zeta { font-size: 0.6875rem !important; }
 
 .text-right { text-align: right !important; }
 
-.label, .label-blue { display: inline-block; padding: 0.16em 0.56em; margin-right: 0.5rem; margin-left: 0.5rem; color: #fff; text-transform: uppercase; vertical-align: middle; background-color: #2869e6; font-size: 0.6875rem !important; border-radius: 12px; }
-@media (min-width: 31.25rem) { .label, .label-blue { font-size: 0.75rem !important; } }
+.label:not(g), .label-blue:not(g) { display: inline-block; padding: 0.16em 0.56em; margin-right: 0.5rem; margin-left: 0.5rem; color: #fff; text-transform: uppercase; vertical-align: middle; background-color: #2869e6; font-size: 0.6875rem !important; border-radius: 12px; }
+@media (min-width: 31.25rem) { .label:not(g), .label-blue:not(g) { font-size: 0.75rem !important; } }
 
-.label-green { background-color: #009c7b; }
+.label-green:not(g) { background-color: #009c7b; }
 
-.label-purple { background-color: #5e41d0; }
+.label-purple:not(g) { background-color: #5e41d0; }
 
-.label-red { background-color: #e94c4c; }
+.label-red:not(g) { background-color: #e94c4c; }
 
-.label-yellow { color: #44434d; background-color: #f7d12e; }
+.label-yellow:not(g) { color: #44434d; background-color: #f7d12e; }
 
 .btn { display: inline-block; box-sizing: border-box; padding: 0.3em 1em; margin: 0; font-family: inherit; font-size: inherit; font-weight: 500; line-height: 1.5; color: #7253ed; text-decoration: none; vertical-align: baseline; cursor: pointer; background-color: #f7f7f7; border-width: 0; border-radius: 4px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08); appearance: none; }
 .btn:focus { text-decoration: none; outline: none; box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.25); }

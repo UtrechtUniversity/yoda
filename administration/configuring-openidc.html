@@ -286,7 +286,8 @@ The development group_vars contains examples for all of the variables.</p>
 
 <p>Finally, for customization purposes, you can also configure:</p>
 <ul>
-  <li>oidc_domains, which should be an array of domains with OIDC authentication, e.g. <code class="language-plaintext highlighter-rouge">["mydomain.com","myotherdomain.com"]</code>. By default, OIDC authentication is enabled for every domain (provided that oidc_active is set to <code class="language-plaintext highlighter-rouge">true</code>)</li>
+  <li>oidc_domains, which should be an array of domains with OIDC authentication, e.g. <code class="language-plaintext highlighter-rouge">["mydomain.com","myotherdomain.com","*.allsubdomains.com"]</code>.
+By default, OIDC authentication is enabled for every domain (provided that oidc_active is set to <code class="language-plaintext highlighter-rouge">true</code>)</li>
   <li>oidc_signin_text (deprecated since v1.8)</li>
 </ul>
 
