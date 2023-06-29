@@ -200,4 +200,4 @@ yoda_davrods_anonymous_port: 443
 
 # External Users configuration
 external_users: true
-external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated by |
+external_users_domain_filter: uu.nl | acc.uu.nl        # Domains that should use OIDC (list, wildcard character *)

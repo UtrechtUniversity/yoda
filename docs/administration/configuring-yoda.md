@@ -393,13 +393,14 @@ eus_smtp_from_address        | External User Service email from address
 eus_smtp_replyto_name        | External User Service email reply-to name
 eus_smtp_replyto_address     | External User Service email reply-to address
 eus_mail_template            | External User Service mail template
+external_users_domain_filter | Domains to filter, separated by | and wildcard character *
 
 ### OpenID Connect (OIDC) configuration
 
 Variable            | Description
 --------------------|---------------------------------------------
 oidc_active         | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
-oidc_domains        | Domains that should use OIDC (list). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
+oidc_domains        | Domains that should use OIDC (list, wildcard character *). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
 oidc_client_id      | OIDC Client Id
 oidc_client_secret  | OIDC Client Secret/Password
 oidc_callback_url   | OIDC Callback url
