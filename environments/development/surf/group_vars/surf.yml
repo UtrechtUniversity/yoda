@@ -200,11 +200,11 @@ eus_smtp_security: false
 eus_smtp_from_address: yoda@surfyoda.test
 eus_smtp_replyto_address: yoda@surfyoda.test
 eus_mail_template: uu
-external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated by |
+external_users_domain_filter: '*.yoda.dev'                    # Domains to filter, separated by | and wildcard character *
 
 # Openid Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: true
-oidc_domains: ['yoda.dev']                                    # Domains that should use OIDC (list)
+oidc_domains: ['*.yoda.dev']                                  # Domains that should use OIDC (list, wildcard character *)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
 oidc_callback_url: https://portal.surfyoda.test/user/callback     # OIDC Callback url
