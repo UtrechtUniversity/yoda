@@ -273,19 +273,15 @@ directory.</p>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant box update <span class="o">&amp;&amp;</span> vagrant up
 </code></pre></div>    </div>
   </li>
-  <li>Deploy the VM. In order to be able to complete the vault publication tests, you will need to pass Datacite test credentials when
-deploying the playbook. For example:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone playbook.yml <span class="nt">--extra-vars</span> <span class="s1">'datacite_username=MYUSERNAME datacite_password=MYPASSWORD'</span> <span class="nt">-D</span>
-</code></pre></div>    </div>
-    <p>If no Datacite test credentials are available, it is also possible to deploy the allinone VM without providing values for the Datacite parameters.
-In that case, the vault publication tests will fail. For example:</p>
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone playbook.yml <span class="nt">-D</span>
-</code></pre></div>    </div>
-    <p>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):</p>
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant ssh controller
-<span class="nb">cd</span> ~/yoda
-</code></pre></div>    </div>
-  </li>
+  <li>Deploy the VM.</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone playbook.yml <span class="nt">-D</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS): ```bash vagrant ssh controller cd ~/yoda ```
+</code></pre></div></div>
+
+<ol>
   <li>Deploy the test data on the VM:
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone test.yml <span class="nt">-D</span>
 </code></pre></div>    </div>
@@ -302,6 +298,20 @@ python3 <span class="nt">-m</span> pytest <span class="nt">-o</span> <span class
 </code></pre></div>    </div>
   </li>
 </ol>
+<h3 id="testing-against-datacite">
+  
+  
+    <a href="#testing-against-datacite" class="anchor-heading" aria-labelledby="testing-against-datacite"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Testing against Datacite
+  
+  
+</h3>
+    
+
+<p>By default, the development VM uses an internal mock Datacite service. If you want to test against a real Datacite environment,
+you will need to provide the Datacite server name and credentials when deploying the VM (step 4). For example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone playbook.yml <span class="nt">--extra-vars</span> <span class="s1">'datacite_server=api.test.datacite.org datacite_username=MYUSERNAME datacite_password=MYPASSWORD'</span> <span class="nt">-D</span>
+</code></pre></div></div>
 
           
 
