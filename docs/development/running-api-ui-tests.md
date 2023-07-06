@@ -21,13 +21,8 @@ directory.
 vagrant box update && vagrant up
 ```
 
-4. Deploy the VM. In order to be able to complete the vault publication tests, you will need to pass Datacite test credentials when
-   deploying the playbook. For example:
-```bash
-ansible-playbook -i environments/development/allinone playbook.yml --extra-vars 'datacite_username=MYUSERNAME datacite_password=MYPASSWORD' -D
-```
-   If no Datacite test credentials are available, it is also possible to deploy the allinone VM without providing values for the Datacite parameters.
-   In that case, the vault publication tests will fail. For example:
+4. Deploy the VM.
+
 ```bash
 ansible-playbook -i environments/development/allinone playbook.yml -D
 ```
@@ -53,4 +48,13 @@ python3 -m pip install -r requirements.txt
 ```bash
 test -d /tmp/cache || mkdir -p /tmp/cache
 python3 -m pytest -o cache_dir=/tmp/cache
+```
+
+### Testing against Datacite
+
+By default, the development VM uses an internal mock Datacite service. If you want to test against a real Datacite environment,
+you will need to provide the Datacite server name and credentials when deploying the VM (step 4). For example:
+
+```bash
+ansible-playbook -i environments/development/allinone playbook.yml --extra-vars 'datacite_server=api.test.datacite.org datacite_username=MYUSERNAME datacite_password=MYPASSWORD' -D
 ```
