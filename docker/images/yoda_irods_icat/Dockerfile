@@ -37,7 +37,7 @@ RUN yum -y install centos-release-scl gcc python-virtualenv && \
                    rh-python38-python rh-python38-python-devel rh-python38-python-libs \
                    rh-python38-python-pip rh-python38-python-pip-wheel  && yum clean all && \
     ln -s /opt/rh/rh-python38/root/bin/pip3 /usr/local/bin/pip3 && \
-    ln -s /opt/rh/rh-python38/root/bin/python3 /usr/local/bin/python33 && \
+    ln -s /opt/rh/rh-python38/root/bin/python3 /usr/local/bin/python3 && \
     /usr/local/bin/pip3 install virtualenv
 
 # Upload PAM Python library
