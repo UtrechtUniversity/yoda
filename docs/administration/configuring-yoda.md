@@ -192,7 +192,7 @@ s3_auth_file                         | S3 authentication file name (default valu
 
 Variable                       | Description
 -------------------------------|---------------------------------------------
-default_yoda_schema            | Default Yoda XML scheme: default-0 or default-1
+default_yoda_schema            | Default Yoda metadata scheme: default-3
 yoda_random_id_length          | Length of random ID to add to persistent identifier
 yoda_prefix                    | Prefix for internal portion of persistent identifier
 update_rulesets                | Update already installed rulesets with git
