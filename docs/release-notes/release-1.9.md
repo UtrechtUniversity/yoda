@@ -20,8 +20,10 @@ Released: TBA
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
 - Support for database connection pooling with PgBouncer
+- Experimental support for data archving workflow
+- Experimental support for groups connected to SRAM
 - Upgrade iRODS to v4.2.12
-- Upgrade python-irodsclient to v1.1.7
+- Upgrade python-irodsclient to v1.1.8
 - Upgrade to PostgreSQL 15
 
 ### Known issues
@@ -48,31 +50,51 @@ git checkout release-1.9
 yoda_version: release-1.9
 ```
 
-5. Install all Ansible collections needed to deploy Yoda:
+5. Change the default schema from `default-2` to `default-3` in the configuration.
+Person identifiers must be valid and new dependency between license and data access restriction.
+This requires an intervention by the responsible datamanager beforehand.
+```yaml
+default_yoda_schema: default-3
+```
+
+6. Metadata schemas are configurable per research group.
+To configure the metadata schemas available the `metadata_schemas` configuration can be used.
+See also [this](../administration/installing-metadata-schemas.md) documentation for more information on installing metadata schemas.
+```yaml
+metadata_schemas:
+  - name: default-2
+    install: true
+    active: false
+  - name: default-3
+    install: true
+    active: true
+```
+
+7. Install all Ansible collections needed to deploy Yoda:
 ```bash
 ansible-galaxy collection install -r requirements.yml
 ```
 
-6. Run the Ansible playbook in check mode.
+8. Run the Ansible playbook in check mode.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-7. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
+9. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-8. Update all metadata JSON in the vault to latest metadata JSON version (`default-1` to `default-2`).
+10. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-9. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+11. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
