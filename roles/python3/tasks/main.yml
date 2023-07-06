@@ -43,6 +43,7 @@
   with_items:
     - pip3
     - python3
+  when: not ansible_check_mode
 
 
 - name: Ensure Python 3 virtualenv is installed

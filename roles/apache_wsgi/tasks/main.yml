@@ -13,6 +13,7 @@
     dest: /usr/lib64/httpd/modules/mod_wsgi.so
     src: /opt/rh/rh-python38/root/usr/lib64/python3.8/site-packages/mod_wsgi/server/mod_wsgi-py38.cpython-38-x86_64-linux-gnu.so
     state: link
+  when: not ansible_check_mode
 
 
 - name: Configure WSGI module in Apache

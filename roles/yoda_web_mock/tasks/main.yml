@@ -43,6 +43,7 @@
     name:
       - pip==23.0.1
     executable: /var/www/webmock/venv/bin/pip3
+  when: not ansible_check_mode
 
 
 # Change detection in git repositories is unreliable in some Ansible versions, so we always
