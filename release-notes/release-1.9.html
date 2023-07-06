@@ -281,8 +281,10 @@
   <li>Support for multiple replication resources</li>
   <li>Support for configuring iRODS S3 resources</li>
   <li>Support for database connection pooling with PgBouncer</li>
+  <li>Experimental support for data archving workflow</li>
+  <li>Experimental support for groups connected to SRAM</li>
   <li>Upgrade iRODS to v4.2.12</li>
-  <li>Upgrade python-irodsclient to v1.1.7</li>
+  <li>Upgrade python-irodsclient to v1.1.8</li>
   <li>Upgrade to PostgreSQL 15</li>
 </ul>
 <h3 id="known-issues">
@@ -325,6 +327,24 @@ To view what files were changed from the defaults, run <code class="language-pla
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">release-1.9</span>
 </code></pre></div>    </div>
   </li>
+  <li>Change the default schema from <code class="language-plaintext highlighter-rouge">default-2</code> to <code class="language-plaintext highlighter-rouge">default-3</code> in the configuration.
+Person identifiers must be valid and new dependency between license and data access restriction.
+This requires an intervention by the responsible datamanager beforehand.
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">default_yoda_schema</span><span class="pi">:</span> <span class="s">default-3</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Metadata schemas are configurable per research group.
+To configure the metadata schemas available the <code class="language-plaintext highlighter-rouge">metadata_schemas</code> configuration can be used.
+See also <a href="/yoda/administration/installing-metadata-schemas.html">this</a> documentation for more information on installing metadata schemas.
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">metadata_schemas</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">default-2</span>
+ <span class="na">install</span><span class="pi">:</span> <span class="no">true</span>
+ <span class="na">active</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="s">- name</span><span class="pi">:</span> <span class="s">default-3</span>
+ <span class="na">install</span><span class="pi">:</span> <span class="no">true</span>
+ <span class="na">active</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div>    </div>
+  </li>
   <li>Install all Ansible collections needed to deploy Yoda:
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-galaxy collection <span class="nb">install</span> <span class="nt">-r</span> requirements.yml
 </code></pre></div>    </div>
@@ -341,7 +361,7 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
 ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml
 </code></pre></div>    </div>
   </li>
-  <li>Update all metadata JSON in the vault to latest metadata JSON version (<code class="language-plaintext highlighter-rouge">default-1</code> to <code class="language-plaintext highlighter-rouge">default-2</code>).
+  <li>Update all metadata JSON in the vault to latest metadata JSON version (<code class="language-plaintext highlighter-rouge">default-2</code> to <code class="language-plaintext highlighter-rouge">default-3</code>).
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 </code></pre></div>    </div>
   </li>
