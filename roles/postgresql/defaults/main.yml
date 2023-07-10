@@ -1,7 +1,8 @@
 ---
 # copyright Utrecht University
 
-# Version of PostgreSQL to install (tested with 11-15)
+# Version of PostgreSQL to install (the configuration templates are for PostgeSQL 15, and may need
+# to be adapted for other versions).
 pgsql_version: 15
 
 postgresql_perform_db_upgrade: false              # Whether to perform a DB upgrade from PostgreSQL 9
