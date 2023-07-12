@@ -82,6 +82,7 @@ irods_icat_fqdn: icat.yoda.test            # iRODS iCAT fully qualified domain n
 irods_database_fqdn: database.yoda.test    # iRODS database fully qualified domain name (FQDN)
 irods_resource_fqdn: resource.yoda.test    # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
+irods_enable_gocommands: false
 irods_resources:
   - name: dev001_1
     host: "{{ irods_icat_fqdn }}"
