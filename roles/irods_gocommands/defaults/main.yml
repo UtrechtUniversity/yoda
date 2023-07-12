@@ -1,0 +1,6 @@
+---
+# copyright Utrecht University
+
+irods_enable_gocommands: false
+irods_gocommands_version: 0.7.4
+irods_gocommands_archive_checksum: "md5:7ce94161cb3b4761018ed1eca8606a2d"
