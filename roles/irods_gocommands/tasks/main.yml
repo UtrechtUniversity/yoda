@@ -1,0 +1,48 @@
+---
+# copyright Utrecht University
+
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+  check_mode: false
+
+
+- name: Create GoCommands directories
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    mode: '0755'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+  with_items:
+    - '{{ irods_directory.stdout }}/gocommands'
+    - '{{ irods_directory.stdout }}/gocommands/{{ irods_gocommands_version }}'
+
+
+- name: Download GoCommands
+  ansible.builtin.get_url:
+    url: 'https://github.com/cyverse/gocommands/releases/download/v{{ irods_gocommands_version }}/gocmd-v{{ irods_gocommands_version }}-linux-amd64.tar.gz'
+    dest: '{{ irods_directory.stdout }}/gocommands/gocmd-v{{ irods_gocommands_version }}-linux-amd64.tar.gz'
+    checksum: '{{ irods_gocommands_archive_checksum }}'
+    mode: '0644'
+
+
+- name: Extract GoCommands archive
+  ansible.builtin.unarchive:
+    src: '{{ irods_directory.stdout }}/gocommands/gocmd-v{{ irods_gocommands_version }}-linux-amd64.tar.gz'
+    dest: '{{ irods_directory.stdout }}/gocommands/{{ irods_gocommands_version }}'
+    remote_src: true
+    creates: '{{ irods_directory.stdout }}/gocommands/{{ irods_gocommands_version }}/gocmd'
+
+
+- name: Sync GoCommands executable to path
+  ansible.builtin.copy:
+    src: '{{ irods_directory.stdout }}/gocommands/{{ irods_gocommands_version }}/gocmd'
+    remote_src: true
+    dest: '/usr/bin/gocmd'
+    owner: irods
+    group: irods
+    mode: '755'

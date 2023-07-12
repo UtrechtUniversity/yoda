@@ -63,6 +63,7 @@ irods_icat_fqdn: portal.surfyoda.test            # iRODS iCAT fully qualified do
 irods_database_fqdn: portal.surfyoda.test    # iRODS database fully qualified domain name (FQDN)
 #irods_resource_fqdn: resource.surfyoda.test    # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
+irods_enable_gocommands: false
 irods_resources:
   - name: dev001_1
     host: "{{ yoda_davrods_fqdn }}"

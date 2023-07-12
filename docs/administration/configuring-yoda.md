@@ -173,6 +173,9 @@ irods_enable_service                 | Whether to enable the iRODS service. Set 
 irods_rum_job_enabled                | Whether to enable the daily RUM job for removing unused metadata entries (default: true)
 irods_rum_job_hour                   | Time to run RUM job - hour (default: 20)
 irods_rum_job_minute                 | Time to run RUM job - minute (default: 0)
+irods_enable_gocommands              | Whether to install the GoCommands CLI (disabled by default)
+irods_gocommands_version             | GoCommands version
+irods_gocommands_archive_checksum    | MD5 checksum of the GoCommands archive for the version to be installed
 
 ### Research module configuration
 
