@@ -81,7 +81,7 @@ def main():
         '*retention_period': '"{retention_period}"'.format(**locals()),
         '*description': '"{description}"'.format(**locals()),
         '*dataClassification': '"{dataClassification}"'.format(**locals()),
-        '*co_identifier': '"{co_identifier}"'
+        '*co_identifier': '"{co_identifier}"'.format(**locals())
     }
 
     # Execute rule.
