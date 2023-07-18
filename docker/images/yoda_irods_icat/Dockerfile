@@ -116,11 +116,12 @@ COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
 
 # Install and configure rulesets
 RUN git clone -b ${YODA_RULESET_BRANCH} --single-branch ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
-RUN python -m pip --no-cache-dir install --user pip==20.2.4 && \
-    python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
-    python -m pip --no-cache-dir install --user python-irodsclient==1.1.3 && \
-    python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt && \
-    /usr/local/bin/pip3 install --user jsonschema==4.17.3
+# hadolint ignore=DL3004
+RUN sudo -u irods python -m pip --no-cache-dir install --user pip==20.2.4 && \
+    sudo -u irods python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
+    sudo -u irods python -m pip --no-cache-dir install --user python-irodsclient==1.1.3 && \
+    sudo -u irods python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt && \
+    sudo -u irods /usr/local/bin/pip3 install --user jsonschema==4.17.3
 COPY core.py.template /etc/irods/core.py
 RUN for script in scheduled-copytovault.sh admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh \
                   admin-vaultingest.sh enable-indexing.sh disable-indexing.sh  \
