@@ -145,10 +145,17 @@ yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified dom
 yoda_davrods_logo_path       | Path of the DavRODS logo on the portal. Defaults to the themed logo.
 yoda_davrods_logo_link       | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
 yoda_enable_httpd            | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
-httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.
-httpd_log_user_agent         | Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false)
 tcp_keepalive_time           | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
 tcp_keepalive_intvl          | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
+
+### Generic logging configuration
+
+Variable                           | Description
+-----------------------------------|---------------------------------------------
+httpd_log_forwarded_for            | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.
+httpd_log_user_agent               | Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false)
+yoda_portal_log_api_call_duration  | Whether to log duration and parameters of all API calls from the Yoda portal. This is mainly useful for performance testing (boolean, default value: false)
+
 
 ### iRODS configuration
 
