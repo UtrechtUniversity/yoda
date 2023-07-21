@@ -473,14 +473,6 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)</td>
     </tr>
     <tr>
-      <td>httpd_log_forwarded_for</td>
-      <td>Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.</td>
-    </tr>
-    <tr>
-      <td>httpd_log_user_agent</td>
-      <td>Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false)</td>
-    </tr>
-    <tr>
       <td>tcp_keepalive_time</td>
       <td>IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.</td>
     </tr>
@@ -495,6 +487,37 @@ The configuration is split in several parts. Below an overview of these parts an
     <tr>
       <td>yoda_theme_path</td>
       <td>Path where themes for the Yoda Portal are retrieved from. See <a href="/yoda/design/overview/theme-packages.html">the theme documentation</a> for more information.</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="generic-logging-configuration">
+  
+  
+    <a href="#generic-logging-configuration" class="anchor-heading" aria-labelledby="generic-logging-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Generic logging configuration
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>httpd_log_forwarded_for</td>
+      <td>Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.</td>
+    </tr>
+    <tr>
+      <td>httpd_log_user_agent</td>
+      <td>Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false)</td>
+    </tr>
+    <tr>
+      <td>yoda_portal_log_api_call_duration</td>
+      <td>Whether to log duration and parameters of all API calls from the Yoda portal. This is mainly useful for performance testing (boolean, default value: false)</td>
     </tr>
   </tbody>
 </table></div>
