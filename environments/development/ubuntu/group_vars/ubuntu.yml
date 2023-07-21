@@ -69,6 +69,7 @@ token_lifetime: 72                                      # Lifetime of data acces
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 portal_title_text: Yoda - Dev
+yoda_portal_log_api_call_duration: true
 
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
