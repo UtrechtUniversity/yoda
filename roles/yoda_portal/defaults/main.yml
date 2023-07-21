@@ -15,6 +15,7 @@ yoda_theme: uu                                     # Yoda theme: uu or vu (defau
 
 # Yoda portal
 yoda_portal_version: "{{ yoda_version }}"
+yoda_portal_log_api_call_duration: false
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name
