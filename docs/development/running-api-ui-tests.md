@@ -16,6 +16,8 @@ directory.
 
 1. To run the UI tests you need Firefox 102 ESR or later.
 2. Ensure that you have [geckodriver 0.32.0](https://github.com/mozilla/geckodriver/releases/tag/v0.32.0) installed for running the UI tests.
+   On Ubuntu 22.04 LTS, Geckodriver does not work with the default Firefox snap package when using default settings. One workaround
+   is to remove the Firefox snap package, and replace it with the Firefox deb package from the Mozilla PPA (`ppa:mozillateam/ppa`).
 3. Create the development VM using Vagrant:
 ```bash
 vagrant box update && vagrant up
