@@ -368,6 +368,8 @@ template { display: none; }
 /** Add the correct display in IE 10. */
 [hidden] { display: none; }
 
+:root { color-scheme: dark; }
+
 * { box-sizing: border-box; }
 
 html { font-size: 0.875rem !important; scroll-behavior: smooth; }

@@ -300,6 +300,33 @@ python3 <span class="nt">-m</span> pytest <span class="nt">-o</span> <span class
 </code></pre></div>    </div>
   </li>
 </ol>
+<h3 id="custom-test-options">
+  
+  
+    <a href="#custom-test-options" class="anchor-heading" aria-labelledby="custom-test-options"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Custom test options
+  
+  
+</h3>
+    
+
+<p>The test suite accepts the following custom options:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  --datarequest         Run datarequest tests
+  --deposit             Run deposit tests
+  --intake              Run intake tests
+  --archive             Run vault archive tests
+  --sram                Run group SRAM tests
+  --skip-ui             Skip UI tests
+  --skip-api            Skip API tests
+  --all                 Run all tests
+  --environment=ENVIRONMENT
+                        Specify configuration file
+  --verbose-test        Print additional information for troubleshooting purposes
+</code></pre></div></div>
+
+<p>The default configuration files are located in directory <code class="language-plaintext highlighter-rouge">tests/environments</code>.</p>
+
+<p>Option <code class="language-plaintext highlighter-rouge">--all</code> is incompatible with the <code class="language-plaintext highlighter-rouge">--skip-ui</code> and <code class="language-plaintext highlighter-rouge">--skip-api</code> options.</p>
 <h3 id="testing-against-datacite">
   
   
