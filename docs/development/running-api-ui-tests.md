@@ -52,6 +52,29 @@ test -d /tmp/cache || mkdir -p /tmp/cache
 python3 -m pytest -o cache_dir=/tmp/cache
 ```
 
+### Custom test options
+
+The test suite accepts the following custom options:
+
+```
+  --datarequest         Run datarequest tests
+  --deposit             Run deposit tests
+  --intake              Run intake tests
+  --archive             Run vault archive tests
+  --sram                Run group SRAM tests
+  --skip-ui             Skip UI tests
+  --skip-api            Skip API tests
+  --all                 Run all tests
+  --environment=ENVIRONMENT
+                        Specify configuration file
+  --verbose-test        Print additional information for troubleshooting purposes
+```
+
+The default configuration files are located in directory `tests/environments`.
+
+Option `--all` is incompatible with the `--skip-ui` and `--skip-api` options.
+
+
 ### Testing against Datacite
 
 By default, the development VM uses an internal mock Datacite service. If you want to test against a real Datacite environment,
