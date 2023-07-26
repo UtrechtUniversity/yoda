@@ -268,7 +268,7 @@ directory.</p>
 
 <ol>
   <li>To run the UI tests you need Firefox 102 ESR or later.</li>
-  <li>Ensure that you have <a href="https://github.com/mozilla/geckodriver/releases/tag/v0.32.0">geckodriver 0.32.0</a> installed for running the UI tests.
+  <li>Ensure that you have <a href="https://github.com/mozilla/geckodriver/releases/tag/v0.33.0">geckodriver 0.33.0</a> installed for running the UI tests.
 On Ubuntu 22.04 LTS, Geckodriver does not work with the default Firefox snap package when using default settings. One workaround
 is to remove the Firefox snap package, and replace it with the Firefox deb package from the Mozilla PPA (<code class="language-plaintext highlighter-rouge">ppa:mozillateam/ppa</code>).</li>
   <li>Create the development VM using Vagrant:
@@ -341,6 +341,18 @@ you will need to provide the Datacite server name and credentials when deploying
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone playbook.yml <span class="nt">--extra-vars</span> <span class="s1">'datacite_server=api.test.datacite.org datacite_username=MYUSERNAME datacite_password=MYPASSWORD'</span> <span class="nt">-D</span>
 </code></pre></div></div>
+<h2 id="development">
+  
+  
+    <a href="#development" class="anchor-heading" aria-labelledby="development"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Development
+  
+  
+</h2>
+    
+<ul>
+  <li>Tests are written with Pytest-BDD: https://pytest-bdd.readthedocs.io/en/latest/</li>
+  <li>UI tests use Splinter to automate browser actions: https://splinter.readthedocs.io/en/latest/index.html</li>
+</ul>
 
           
 
