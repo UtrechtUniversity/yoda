@@ -397,6 +397,7 @@ yoda_eus_fqdn                | Yoda External User Service fully qualified domain
 eus_api_fqdn                 | External User Service API fully qualified domain name (FQDN)
 eus_api_port                 | External User Service API port
 eus_api_secret               | External User Service API secret
+eus_api_tls_verify           | Enable TLS verification for EUS API calls. Enabled by default
 eus_db_password              | External User Service database password
 eus_smtp_from_name           | External User Service email from name
 eus_smtp_from_address        | External User Service email from address

@@ -228,6 +228,7 @@ upload_pub_key: |
 yoda_eus_fqdn: eus.yoda.test
 eus_api_fqdn: api.eus.yoda.test
 eus_api_secret: PLACEHOLDER
+eus_api_tls_verify: false
 eus_db_password: PLACEHOLDER
 eus_smtp_host: localhost
 eus_smtp_port: 25

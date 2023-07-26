@@ -141,6 +141,7 @@ epic_cert: PLACEHOLDER                  # inline EPIC cert (optional)
 eus_api_fqdn: api.eus.yoda.test         # External User Service API FQDN
 eus_api_port: 8443                      # External User Service API port
 eus_api_secret: PLACEHOLDER             # External User Service API secret
+eus_api_tls_verify: true                # Enable TLS verification for EUS API calls
 
 # Research module configuration
 enable_research: true                               # Enable research module
