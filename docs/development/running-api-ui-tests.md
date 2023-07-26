@@ -15,7 +15,7 @@ configuration automatically mounts the `/etc/irods/yoda-ruleset` directory in th
 directory.
 
 1. To run the UI tests you need Firefox 102 ESR or later.
-2. Ensure that you have [geckodriver 0.32.0](https://github.com/mozilla/geckodriver/releases/tag/v0.32.0) installed for running the UI tests.
+2. Ensure that you have [geckodriver 0.33.0](https://github.com/mozilla/geckodriver/releases/tag/v0.33.0) installed for running the UI tests.
    On Ubuntu 22.04 LTS, Geckodriver does not work with the default Firefox snap package when using default settings. One workaround
    is to remove the Firefox snap package, and replace it with the Firefox deb package from the Mozilla PPA (`ppa:mozillateam/ppa`).
 3. Create the development VM using Vagrant:
@@ -74,7 +74,6 @@ The default configuration files are located in directory `tests/environments`.
 
 Option `--all` is incompatible with the `--skip-ui` and `--skip-api` options.
 
-
 ### Testing against Datacite
 
 By default, the development VM uses an internal mock Datacite service. If you want to test against a real Datacite environment,
@@ -83,3 +82,7 @@ you will need to provide the Datacite server name and credentials when deploying
 ```bash
 ansible-playbook -i environments/development/allinone playbook.yml --extra-vars 'datacite_server=api.test.datacite.org datacite_username=MYUSERNAME datacite_password=MYPASSWORD' -D
 ```
+
+## Development
+- Tests are written with Pytest-BDD: https://pytest-bdd.readthedocs.io/en/latest/
+- UI tests use Splinter to automate browser actions: https://splinter.readthedocs.io/en/latest/index.html
