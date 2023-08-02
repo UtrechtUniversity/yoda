@@ -16,6 +16,9 @@ TOKENS_ENABLED      = {{ enable_tokens }}
 TOKEN_LIFETIME      = {{ token_lifetime }}
 JSON_SORT_KEYS      = False  # Check if this is still needed with Python v3.7?
 
+# Logging configuration
+LOG_API_CALL_DURATION       = {{ yoda_portal_log_api_call_duration }}
+
 # Flask-Session configuration
 SESSION_TYPE                = 'filesystem'
 SESSION_COOKIE_NAME         = '__Host-session'

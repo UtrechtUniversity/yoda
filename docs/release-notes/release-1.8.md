@@ -28,8 +28,9 @@ Released: July 2022
 - Added Mailpit for easier mail testing during [development](../development/development-tips.md)
 - DataCite connection uses REST API instead of legacy MDS
 - Several UX improvements to default theme
-- Upgrade iRODS to v4.2.11
-- Upgrade python-irodsclient to v1.1.3
+- Upgrade iRODS to v4.2.11 (Yoda 1.8.8+ has iRODS 4.2.12)
+- Upgrade python-irodsclient to v1.1.3 (Yoda 1.8.8+ has Python-irodsclient 1.1.8)
+- Support for PostgreSQL 15, as well as connection pooling for the iCAT database (in Yoda 1.8.7 and higher)
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
 
 ### Known issues

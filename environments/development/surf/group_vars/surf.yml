@@ -54,6 +54,7 @@ enable_tape_archive: false
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 portal_title_text: Yoda - Surf Config Test
+yoda_portal_log_api_call_duration: true
 
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
@@ -63,6 +64,7 @@ irods_icat_fqdn: portal.surfyoda.test            # iRODS iCAT fully qualified do
 irods_database_fqdn: portal.surfyoda.test    # iRODS database fully qualified domain name (FQDN)
 #irods_resource_fqdn: resource.surfyoda.test    # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
+irods_enable_gocommands: false
 irods_resources:
   - name: dev001_1
     host: "{{ yoda_davrods_fqdn }}"
