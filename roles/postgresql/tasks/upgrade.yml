@@ -79,6 +79,8 @@
 			   -B /usr/pgsql-{{ pgsql_version }}/bin \
 			   -d /var/lib/pgsql/data \
 			   -D /var/lib/pgsql/{{ pgsql_version }}/data"
+  args:
+    chdir: "/var/lib/pgsql"
   when: "'postgresql-server' in ansible_facts.packages"
 
 
