@@ -433,6 +433,12 @@
       value: '{{ irods_database_port }}'
 
 
+- name: Ensure deprecated iRODS environment file for Python client is absent
+  ansible.builtin.file:
+    path: /var/lib/irods/.irods/python_client_environment.json
+    state: absent
+
+
 - name: Retrieve iRODS server config file
   become_user: '{{ irods_service_account }}'
   become: true
