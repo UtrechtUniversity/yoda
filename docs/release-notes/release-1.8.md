@@ -38,9 +38,14 @@ Released: July 2022
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python [irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54)
 
 ## Upgrading from previous release
-Upgrade is supported by Ansible (2.9.x).
-Requires Yoda external user service to be on version 1.5.x or higher.
-Requires Yoda public server to be on version 1.6.x or higher.
+
+The playbook requires Ansible 2.9.x or higher.
+
+Version constraints:
+* Requires Yoda external user service to be on version 1.5.x or higher.
+* Requires Yoda public server to be on version 1.6.x or higher.
+* Upgrades from Yoda 1.7.x to Yoda 1.8.8 (or higher) need to follow this upgrade path: first upgrade from Yoda 1.7.x to Yoda 1.8.7; then upgrade to Yoda 1.8.8 (or higher).
+
 
 1. Backup/copy custom configurations made to Yoda version 1.7.
 To view what files were changed from the defaults, run `git diff`.
