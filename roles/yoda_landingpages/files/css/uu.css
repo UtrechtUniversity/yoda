@@ -122,8 +122,8 @@ header .logo {
     margin-left: 5%;
 }
 header .logo img {
-    width: 284px;
-    height: 77px;
+    height: 60px;
+    max-width: none;
 }
 
 header .header-title {
@@ -280,7 +280,7 @@ header .header-title h1 {
 }
 
 .questions {
-    margin-top: 100px;
+    margin-top: 60px;
 }
 .questions h2 {
     font-family: 'Open Sans', sans-serif;
@@ -295,7 +295,7 @@ header .header-title h1 {
 }
 
 footer {
-    background: #000000;
+    background: #262626;
     padding-left: 5%;
     height: 141px;
     width: 100%;
@@ -305,6 +305,6 @@ footer .logo {
     padding-top: 20px;
 }
 footer .logo img {
-    width: 377px;
-    height: 111px
+    max-width: none;
+    height: 111px;
 }
