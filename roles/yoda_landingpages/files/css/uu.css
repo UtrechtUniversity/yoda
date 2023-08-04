@@ -222,6 +222,24 @@ header .header-title h1 {
     font-weight: 700;
     font-size: 15px;
 }
+.row-override {
+    margin-right: 24px;
+    margin-left: 13px;
+}
+.version-div {
+    background: #f2f2f2;
+    margin-top: 17px;
+}
+.version-title {
+    font-family: 'Merriweather', serif;
+}
+.version-tbody {
+    font-size: 14px;
+}
+.version-a {
+    color: #333333;
+    text-decoration: underline;
+}
 .metadata {
     margin-top: 75px;
     padding-left: 5%;
