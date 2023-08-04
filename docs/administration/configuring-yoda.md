@@ -191,9 +191,11 @@ Variable                       | Description
 default_yoda_schema            | Default Yoda XML scheme: default-0 or default-1
 enable_revisions               | Enable revisions: yes (1) or no (0)
 async_revision_verbose_mode    | Enable verbose logging revision job (true/false, default: true)
+async_revision_delay_time      | Delay after last modification to data object before revision job can process it (in seconds, default: 0)
 enable_revision_cleanup        | Enable cleanup job for removing old revisions (true/false, default: true)
 enable_async_replication       | Enable asynchronous replication cronjob: yes (1) or no (0)
 async_replication_verbose_mode | Enable verbose logging replication job (true/false, default: true)
+async_replication_delay_time   | Delay after last modification to data object before replication job can process it (in seconds, default: 0)
 revision_strategy              | Revision strategy: A, B, J or Simple
 yoda_random_id_length          | Length of random ID to add to persistent identifier
 yoda_prefix                    | Prefix for internal portion of persistent identifier
