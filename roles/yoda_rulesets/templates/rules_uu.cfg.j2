@@ -64,6 +64,9 @@ token_lifetime                 = '{{ token_lifetime }}'
 token_expiration_notification  = '{{ token_expiration_notification }}'
 {% endif %}
 
+async_replication_delay_time   = '{{ async_replication_delay_time }}'
+async_revision_delay_time      = '{{ async_revision_delay_time }}'
+
 enable_tape_archive            = '{{ ["false", "true"][enable_tape_archive|int] }}'
 
 enable_data_package_archive    = '{{ ["false", "true"][enable_data_package_archive|int] }}'
