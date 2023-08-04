@@ -59,6 +59,9 @@ token_length                   = '{{ token_length }}'
 token_lifetime                 = '{{ token_lifetime }}'
 {% endif %}
 
+async_replication_delay_time   = '{{ async_replication_delay_time }}'
+async_revision_delay_time      = '{{ async_revision_delay_time }}'
+
 enable_tape_archive            = '{{ ["false", "true"][enable_tape_archive|int] }}'
 
 temporary_files                = '{{ temporary_files | join (" ") }}'
