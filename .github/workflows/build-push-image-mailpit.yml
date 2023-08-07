@@ -1,0 +1,39 @@
+---
+name: "Build mailpit image and push it to registry"
+
+on:
+  push:
+    branches:
+      - 'development'
+    paths:
+      - 'docker/images/mailpit/**'
+
+jobs:
+  push-image:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - name: Check out Yoda repository
+      uses: actions/checkout@v3
+      with:
+        path: yoda
+        repository: UtrechtUniversity/yoda
+        ref: development
+
+    - name: Authenticate to the container registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    # Use the manual build script rather than a regular build-push-action
+    # so that we don't have to duplicate version information across CI and
+    # the manual build script
+    - name: Build and push Docker image
+      run: |
+        cd yoda/docker/images/mailpit
+        ./build.sh
+        docker push ghcr.io/utrechtuniversity/yoda-mailpit:dev-1.9
