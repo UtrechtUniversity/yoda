@@ -141,6 +141,7 @@ Variable                     | Description
 instance                     | Name of Yoda instance, as defined in hosts file
 yoda_version                 | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
 yoda_ruleset_version         | Version of the main Yoda ruleset to use. Defaults to the value of `yoda_version`.
+yoda_portal_version          | Version of the Yoda portal to use. Defaults to the value of `yoda_version`.
 yoda_environment             | Yoda environment: development, testing, acceptance or production
 yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
@@ -389,12 +390,14 @@ yoda_public_host             | Yoda public host
 yoda_public_fqdn             | Yoda public fully qualified domain name (FQDN)
 upload_priv_key              | Yoda public upload private key (base64 encoded)
 upload_pub_key               | Yoda public upload public key (base64 encoded)
+yoda_moai_version            | Version of MOAI (the OAI-PMH server) to use. Defaults to the value of `yoda_version`.
 
 ### External user service configuration
 
 Variable                     | Description
 -----------------------------|---------------------------------------------
 yoda_eus_fqdn                | Yoda External User Service fully qualified domain name (FQDN)
+yoda_eus_version             | Version of External User Service to use. Defaults to the value of `yoda_version`.
 eus_api_fqdn                 | External User Service API fully qualified domain name (FQDN)
 eus_api_port                 | External User Service API port
 eus_api_secret               | External User Service API secret
