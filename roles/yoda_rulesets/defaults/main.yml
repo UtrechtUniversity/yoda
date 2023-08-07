@@ -5,11 +5,12 @@ irods_service_account: irods
 credentials_store: /var/lib/irods/.credentials_store
 
 # Ruleset configuration.
+yoda_ruleset_version: "{{ yoda_version }}"
 core_rulesets:
   - name: yoda-ruleset
     repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "{{ yoda_ruleset_version }}"
     install_scripts: true
   - name: core
     ruleset_name: core

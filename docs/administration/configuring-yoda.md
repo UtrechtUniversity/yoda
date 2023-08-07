@@ -140,6 +140,7 @@ Variable                     | Description
 -----------------------------|---------------------------------------------
 instance                     | Name of Yoda instance, as defined in hosts file
 yoda_version                 | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
+yoda_ruleset_version         | Version of the main Yoda ruleset to use. Defaults to the value of `yoda_version`.
 yoda_environment             | Yoda environment: development, testing, acceptance or production
 yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
