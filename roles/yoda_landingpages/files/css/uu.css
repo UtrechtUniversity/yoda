@@ -235,6 +235,9 @@ header .header-title h1 {
     color: #333333;
     text-decoration: underline;
 }
+.view-contents {
+    margin-left: 5%;
+}
 .metadata {
     margin-top: 75px;
     padding-left: 5%;
