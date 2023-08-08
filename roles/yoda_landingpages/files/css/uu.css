@@ -222,6 +222,22 @@ header .header-title h1 {
     font-weight: 700;
     font-size: 15px;
 }
+.version {
+    background: #f2f2f2;
+}
+.version h4 {
+    font-family: 'Merriweather', serif;
+}
+.version tbody {
+    font-size: 14px;
+}
+.version a {
+    color: #333333;
+    text-decoration: underline;
+}
+.view-contents {
+    margin-left: 5%;
+}
 .metadata {
     margin-top: 75px;
     padding-left: 5%;
