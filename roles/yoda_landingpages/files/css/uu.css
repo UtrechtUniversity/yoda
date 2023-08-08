@@ -222,21 +222,16 @@ header .header-title h1 {
     font-weight: 700;
     font-size: 15px;
 }
-.row-override {
-    margin-right: 24px;
-    margin-left: 13px;
-}
-.version-div {
+.version {
     background: #f2f2f2;
-    margin-top: 17px;
 }
-.version-title {
+.version h4 {
     font-family: 'Merriweather', serif;
 }
-.version-tbody {
+.version tbody {
     font-size: 14px;
 }
-.version-a {
+.version a {
     color: #333333;
     text-decoration: underline;
 }
