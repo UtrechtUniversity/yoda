@@ -265,10 +265,7 @@
 
 <p>These configurations are intended for local development and testing.</p>
 
-<p>The configurations may not work on older versions of Docker / Docker Compose.
-Docker 20.10.x and better is known to work.</p>
-
-<p>Some components are not (yet) available in the containerized version of Yoda,
+<p>Some components are not (yet) available in the containerized Yoda setup,
 most importantly:</p>
 <ul>
   <li>OpenSearch (used for searching in the deposit module)</li>
@@ -279,6 +276,23 @@ that would have been delivered by the application in a production configuration.
   <li>The Docker Compose configurations only have an iRODS provider; there is no consumer
 for data replication.</li>
 </ul>
+<h2 id="prerequisites">
+  
+  
+    <a href="#prerequisites" class="anchor-heading" aria-labelledby="prerequisites"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Prerequisites
+  
+  
+</h2>
+    
+
+<p>Running the containerized Yoda setup requires Docker. The Yoda Docker Compose
+configurations may not work on older versions of Docker / Docker Compose. Docker
+20.10.x and newer is known to work.</p>
+
+<p>For generic Docker installation instructions, see e.g.
+<a href="https://docs.docker.com/engine/install/">the Docker Engine installation docs</a>.
+MacOS users can <a href="https://github.com/abiosoft/colima">install Colima and Docker</a> using
+<a href="https://brew.sh">Homebrew</a>.</p>
 <h2 id="starting-the-application">
   
   
