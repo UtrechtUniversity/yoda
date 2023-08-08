@@ -763,6 +763,10 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>async_replication_verbose_mode</td>
       <td>Run asynchronous replication job in verbose mode (default: true)</td>
     </tr>
+    <tr>
+      <td>async_replication_delay_time</td>
+      <td>Delay after last modification to data object before replication job can process it (in seconds, default: 0)</td>
+    </tr>
   </tbody>
 </table></div>
 <h3 id="revision-configuration">
@@ -801,6 +805,10 @@ The configuration is split in several parts. Below an overview of these parts an
     <tr>
       <td>async_revision_verbose_mode</td>
       <td>Run asynchronous revision job in verbose mode (default: true)</td>
+    </tr>
+    <tr>
+      <td>async_revision_delay_time</td>
+      <td>Delay after last modification to data object before revision job can process it (in seconds, default: 0)</td>
     </tr>
     <tr>
       <td>enable_revision_cleanup: true</td>
