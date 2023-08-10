@@ -44,15 +44,15 @@ enable_data_package_reference: true                # Enable Data Package Referen
 enable_tape_archive: false
 
 # Data Package Archive
-enable_data_package_archive: false                     # Enable data package archive functionality
-enable_data_package_download: false                    # Enable data package download functionality
+enable_data_package_archive: true                      # Enable data package archive functionality
+enable_data_package_download: true                     # Enable data package download functionality
 data_package_archive_fqdn: "{{ irods_resource_fqdn }}" # Fully qualified domain name (FQDN) of iRODS server connected to data archive
 data_package_archive_minimum: 1024                     # Minimum data package archive size (1 KB), -1 for no limit
 data_package_archive_maximum: -1                       # Maximum data package archive size (no limit), -1 for no limit
 data_package_archive_resource: mockTapeArchive         # Resource to use for data package archive functionality
 
 # SRAM Configuration (experimental)
-enable_sram: false                                     # Enable SRAM configuration
+enable_sram: true                                      # Enable SRAM configuration
 sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
 sram_api_key: PLACEHOLDER                              # SRAM Rest API key
 sram_verbose_logging: true                             # SRAM verbose logging
@@ -81,7 +81,7 @@ irods_database_password: irodsdev          # The password for the iRODS database
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_icat_fqdn: portal.surfyoda.test            # iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn: portal.surfyoda.test    # iRODS database fully qualified domain name (FQDN)
-#irods_resource_fqdn: resource.surfyoda.test    # iRODS resource fully qualified domain name (FQDN)
+irods_resource_fqdn: resource.surfyoda.test    # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
 irods_enable_gocommands: false
 irods_resources:
@@ -116,25 +116,41 @@ irods_resources:
     children:
       - dev001
 
-  - name: dev002_1
-    resource_type: unixfilesystem
-    host: resource.surfyoda.test
-    vault_path: /var/lib/irods/Vault2_1
+  - name: dev003_1
+    resource_type: s3
+    host: "{{ irods_icat_fqdn }}"
+    vault_path: /yoda
+    context: "S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/.s3auth;S3_REGIONNAME=local-s3;S3_RETRY_COUNT=1;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=consistent;HOST_MODE=cacheless_attached"
 
-  - name: dev002_p1
+  - name: dev003_p1
     resource_type: passthru
     children:
-      - dev002_1
+      - dev003_1
 
-  - name: dev002
+  - name: dev003
     resource_type: random
     children:
-      - dev002_p1
+      - dev003_p1
 
-  - name: irodsRescRepl
+  - name: irodsRescS3
     resource_type: random
     children:
-      - dev002
+      - dev003
+
+# SURF config: separate resources for research and vault
+resource_research: irodsResc
+resource_vault: irodsRescS3
+
+override_resc_install_rulesets: True
+
+# Replication configuration
+enable_async_replication: 0            # Enable asynchronous replication: yes (1) or no (0)
+
+# S3 configuration
+enable_s3_resource: True
+s3_access_key: minioadmin
+s3_secret_key: minioadmin
+s3_hostname: localhost:9000
 
 # Mail notifications
 send_notifications: 1                             # Enable notifications: yes (1) or no (0)
@@ -145,14 +161,13 @@ smtp_auth: false
 smtp_starttls: false
 
 # DataCite Configuration
-datacite_rest_api_url: datacite-mock.surfyoda.test # DataCite API server URL
+datacite_rest_api_url: datacite-mock.yoda.test     # DataCite API server URL
 datacite_username: PLACEHOLDER                     # DataCite username
 datacite_password: PLACEHOLDER                     # DataCite password
 datacite_prefix: 10.00012                          # DataCite DOI prefix
 datacite_publisher: Yoda development team          # DataCite publisher: the name of the entity that publishes
 datacite_tls_verify: 0                             # DataCite TLS verification / disabled on development environment
                                                    # since the mock service uses self-signed certificates.
-yoda_web_mock_datacite_fqdn: datacite-mock.surfyoda.test
 
 # EPIC PID Configuration
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
