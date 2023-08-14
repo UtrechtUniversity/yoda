@@ -25,10 +25,12 @@ If a job is not configured to run in verbose mode, you can run it in verbose mod
 
 ## Running a job in verbose mode manually
 
-If a data object is not replicated or does not get a new revision, consider stopping and
-temporarily disabling the background process cronjob for troubleshooting. This can be done
-by temporarily setting the background process stop flag (`/ZONE/yoda/flags/stop_replication` or
-`/ZONE/yoda/flags/stop_revisions`) and waiting for the job to finish.
+If a data object is not replicated or does not get a new revision, first check whether this behaviour
+is caused by configured delay parameters (`async_replication_delay_time` and ` async_revision_delay_time`).
+If this is not the case, consider stopping and temporarily disabling the background process cronjob for
+troubleshooting. This can be done by temporarily setting the background process stop flag
+(`/ZONE/yoda/flags/stop_replication` or `/ZONE/yoda/flags/stop_revisions`) and waiting for the job to
+finish. See [the page about setting job flags](setting-job-flags.md) for more information.
 
 The iquest command can be used to print a list of data objects that are queued for replication
 or revision creation.  Example for replication:
