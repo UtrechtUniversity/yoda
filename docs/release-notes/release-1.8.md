@@ -33,6 +33,13 @@ Released: July 2022
 - Support for PostgreSQL 15, as well as connection pooling for the iCAT database (in Yoda 1.8.7 and higher)
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
 
+### Recommendations
+
+- Yoda 1.8.9 has two new parameters for delaying asynchronous replication and revision processing in order to reduce the risk
+  of problems due to concurrent access: `async_replication_delay_time` and `async_revision_delay_time`. These parameters are set
+  to `0` by default in order to preserve default behaviour. It is recommended to set these parameters to a larger value (e.g. `3600`)
+  after upgrading to Yoda 1.8.9.
+
 ### Known issues
 - Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python [irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54)
