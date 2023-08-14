@@ -278,10 +278,12 @@ the <code class="language-plaintext highlighter-rouge">iget</code> command to ve
 </h2>
     
 
-<p>If a data object is not replicated or does not get a new revision, consider stopping and
-temporarily disabling the background process cronjob for troubleshooting. This can be done
-by temporarily setting the background process stop flag (<code class="language-plaintext highlighter-rouge">/ZONE/yoda/flags/stop_replication</code> or
-<code class="language-plaintext highlighter-rouge">/ZONE/yoda/flags/stop_revisions</code>) and waiting for the job to finish.</p>
+<p>If a data object is not replicated or does not get a new revision, first check whether this behaviour
+is caused by configured delay parameters (<code class="language-plaintext highlighter-rouge">async_replication_delay_time</code> and ` async_revision_delay_time<code class="language-plaintext highlighter-rouge">).
+If this is not the case, consider stopping and temporarily disabling the background process cronjob for
+troubleshooting. This can be done by temporarily setting the background process stop flag
+(</code>/ZONE/yoda/flags/stop_replication<code class="language-plaintext highlighter-rouge"> or </code>/ZONE/yoda/flags/stop_revisions`) and waiting for the job to
+finish. See <a href="/yoda/administration/setting-job-flags.html">the page about setting job flags</a> for more information.</p>
 
 <p>The iquest command can be used to print a list of data objects that are queued for replication
 or revision creation.  Example for replication:</p>
