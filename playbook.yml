@@ -125,6 +125,7 @@
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
+    - irods_arb
     - role: irods_consistency_check
       when: enable_irods_consistency_check
     - role: icat_database_checker
@@ -157,6 +158,7 @@
     - irods_runtime
     - irods_microservices
     - irods_completion
+    - irods_arb
     - role: irods_gocommands
       when: irods_enable_gocommands
     - role: irods_consistency_check
