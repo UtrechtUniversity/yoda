@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+irods_service_account: irods
+
+irods_arb_enabled: false
+irods_arb_exempt_resources: ""
+irods_arb_min_gb_free: 0
+irods_arb_min_percent_free: 5
