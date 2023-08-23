@@ -186,14 +186,14 @@ header .header-title h1 {
     font-style: normal;
     font-size: 16px;
 }
-.content .keywords label {
+.content .tags label, .content .keywords label {
     width: 100%;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 14px;
 }
-.content .keywords .keyword {
+.content .tags .tag, .content .keywords .keyword {
     background: #f2f2f2;
     padding-left: 10px;
     padding-right: 10px;
