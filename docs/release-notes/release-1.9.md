@@ -11,7 +11,7 @@ Released: TBA
 
 ## What's new
 ### Features
-- Support for DOI versioning
+- Support for vault data package versioning
 - Support for configuring metadata schemas per research group
 - Support for configuring retention period per research group
 - Support for basic controlled vocabularies in metadata schemas
@@ -21,10 +21,11 @@ Released: TBA
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
 - Support for database connection pooling with PgBouncer
-- Experimental support for [vault archving](../design/overview/vault-archive.md) workflow
+- Experimental support for [vault archiving](../design/overview/vault-archive.md) workflow
 - Experimental support for groups connected to SRAM
 - Upgrade iRODS to v4.2.12
 - Upgrade python-irodsclient to v1.1.8
+- Upgrade davrods to v1.5.1
 - Upgrade to PostgreSQL 15
 
 ### Known issues
