@@ -1,0 +1,7 @@
+---
+# copyright Utrecht University
+
+- name: Restart Redis
+  ansible.builtin.service:
+    name: redis
+    state: started

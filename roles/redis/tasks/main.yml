@@ -1,0 +1,39 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Redis is installed
+  ansible.builtin.package:
+    name: redis
+    state: present
+
+
+- name: Ensure Redis is configured
+  ansible.builtin.template:
+    src: redis.conf.j2
+    dest: /etc/redis.conf
+    mode: "0644"
+  notify: Restart Redis
+
+
+- name: Set Linux kernel setting to improve Redis performance
+  ansible.posix.sysctl:
+    name: vm.overcommit_memory
+    value: 1
+    state: present
+  notify: Restart Redis
+
+
+- name: Allow Redis to listen on port 6379
+  community.general.seport:
+    ports: 6379
+    proto: tcp
+    setype: redis_port_t
+    state: present
+  notify: Restart Redis
+
+
+- name: Ensure Redis is running and enabled on boot
+  ansible.builtin.service:
+    name: redis
+    state: started
+    enabled: true
