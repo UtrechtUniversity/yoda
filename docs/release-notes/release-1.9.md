@@ -17,10 +17,11 @@ Released: TBA
 - Support for basic controlled vocabularies in metadata schemas
 - Support for [Data Access Passwords](../design/overview/authentication.md) expiration notifications
 - Support for research group retention period notifications
+- Support for color mode user setting
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
 - Support for database connection pooling with PgBouncer
-- Experimental support for data archving workflow
+- Experimental support for [vault archving](../design/overview/vault-archive.md) workflow
 - Experimental support for groups connected to SRAM
 - Upgrade iRODS to v4.2.12
 - Upgrade python-irodsclient to v1.1.8
@@ -31,9 +32,11 @@ Released: TBA
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python [irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54)
 
 ## Upgrading from previous release
-Upgrade is supported by Ansible (2.11.x).
-Requires Yoda external user service to be on version 1.8.x or higher.
-Requires Yoda public server to be on version 1.8.x or higher.
+The playbook requires Ansible 2.11.x or higher.
+
+Version constraints:
+* Requires Yoda external user service to be on version 1.9.x or higher.
+* Requires Yoda public server to be on version 1.9.x or higher.
 
 1. Backup/copy custom configurations made to Yoda version 1.8.
 To view what files were changed from the defaults, run `git diff`.
@@ -89,12 +92,17 @@ ansible-playbook -i <path-to-your-environment> playbook.yml
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-10. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
+10. Update all publication metadata to support DOI versioning.
+```bash
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/transform-existing-publications.r
+```
+
+11. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-11. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+12. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
