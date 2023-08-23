@@ -50,7 +50,7 @@ git checkout development
 
 4. Set the Yoda version to `release-1.9` in the configuration.
 ```yaml
-yoda_version: v1.9.0-beta.0
+yoda_version: v1.9.0-beta.1
 ```
 
 5. Change the default schema from `default-2` to `default-3` in the configuration.
