@@ -366,6 +366,12 @@ See also <a href="/yoda/administration/installing-metadata-schemas.html">this</a
  <span class="na">active</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div>    </div>
   </li>
+  <li>Set <code class="language-plaintext highlighter-rouge">postgresql_perform_db_upgrade</code> to <code class="language-plaintext highlighter-rouge">true</code> in the configuration to perform the database upgrase from Postgresql 9 to 15.
+Optionally set <code class="language-plaintext highlighter-rouge">postgresql_remove_old_data_after_upgrade</code> to <code class="language-plaintext highlighter-rouge">true</code> in the configuration to clean up PostgreSQL 9 data and shim after the upgrade.
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">postgresql_perform_db_upgrade</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">postgresql_remove_old_data_after_upgrade</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div>    </div>
+  </li>
   <li>Install all Ansible collections needed to deploy Yoda:
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-galaxy collection <span class="nb">install</span> <span class="nt">-r</span> requirements.yml
 </code></pre></div>    </div>
