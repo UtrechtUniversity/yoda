@@ -1,0 +1,13 @@
+@startuml
+!include ../../../../theme.puml
+
+state VaultArchive as "Vault Archive" {
+  ARCHIVED : Archived data package
+  UNARCHIVED : Unarchived data package
+
+  [*] --> ARCHIVED        : Archive data package
+  ARCHIVED --> UNARCHIVED : Unarchive data package
+  UNARCHIVED -> [*]
+}
+
+@enduml
