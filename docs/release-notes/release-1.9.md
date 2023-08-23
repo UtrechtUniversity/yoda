@@ -74,36 +74,43 @@ metadata_schemas:
     active: true
 ```
 
-7. Install all Ansible collections needed to deploy Yoda:
+7. Set `postgresql_perform_db_upgrade` to `true` in the configuration to perform the database upgrase from Postgresql 9 to 15.
+Optionally set `postgresql_remove_old_data_after_upgrade` to `true` in the configuration to clean up PostgreSQL 9 data and shim after the upgrade.
+```yaml
+postgresql_perform_db_upgrade: true
+postgresql_remove_old_data_after_upgrade: false
+```
+
+8. Install all Ansible collections needed to deploy Yoda:
 ```bash
 ansible-galaxy collection install -r requirements.yml
 ```
 
-8. Run the Ansible playbook in check mode.
+9. Run the Ansible playbook in check mode.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-9. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
+10. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-10. Update all publication metadata to support DOI versioning.
+11. Update all publication metadata to support DOI versioning.
 ```bash
 irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/transform-existing-publications.r
 ```
 
-11. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
+12. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-12. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+13. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
