@@ -429,7 +429,7 @@
     name: 'job_movetovault.r'
     minute: '*/5'
     job: '{{ irods_directory.stdout }}/.irods/run-intake-movetovault.sh >& /dev/null'
-  when: enable_intake or yoda_environment in ["development", "testing"]
+    state: '{{ "present" if enable_intake else "absent" }}'
 
 
 - name: Set configuration AVUs for research ruleset to system collection
