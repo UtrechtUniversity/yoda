@@ -672,6 +672,18 @@
     - admin-datarequest-temp-write-permission.sh
 
 
+- name: Remove data request module scripts from msiExecCmd if DR module not enabled
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.file:
+    path: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    state: absent
+  when: not enable_datarequest
+  with_items:
+    - admin-datarequestactions.sh
+    - admin-datarequest-temp-write-permission.sh
+
+
 - name: Configure cronjob to check datarequest review period expiration
   become_user: "{{ irods_service_account }}"
   become: true
@@ -680,7 +692,7 @@
     hour: '*'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
       /etc/irods/yoda-ruleset/tools/datarequest-check-review-period-expiration.r >/dev/null 2>&1'
-  when: enable_datarequest and not ansible_check_mode
+    state: '{{ "present" if enable_datarequest else "absent" }}'
 
 
 - name: Ensure token database is present
