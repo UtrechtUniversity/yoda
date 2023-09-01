@@ -1521,6 +1521,11 @@ The configuration is split in several parts. Below an overview of these parts an
       <td> </td>
     </tr>
     <tr>
+      <td>eus_mail_validate_address</td>
+      <td>External User Service: validate email address before sending email. If this option is enabled, EUS will only send emails to users if their username is a valid email address. It is intended to be used on environments where admins want to use an iRODS user with a non-email username to invite external users. This parameter is not meant to be enabled if the test data set installed by the test playbook has been loaded. Default value: false.</td>
+      <td> </td>
+    </tr>
+    <tr>
       <td>external_users_domain_filter</td>
       <td>Domains to filter, separated by</td>
       <td>and wildcard character *</td>
