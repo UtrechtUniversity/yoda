@@ -34,6 +34,7 @@ eus_smtp_from_name: Yoda External User Service
 eus_smtp_from_address: PLACEHOLDER
 eus_smtp_replyto_name: PLACEHOLDER
 eus_smtp_replyto_address: PLACEHOLDER
+eus_mail_validate_address: false
 eus_mail_template: uu
 
 # OpenSSL configuration.

@@ -22,6 +22,7 @@ SMTP_FROM_EMAIL     = '{{ eus_smtp_from_address }}'
 SMTP_REPLYTO_NAME   = '{{ eus_smtp_replyto_name }}'
 SMTP_REPLYTO_EMAIL  = '{{ eus_smtp_replyto_address }}'
 MAIL_ENABLED        = 'true'
+MAIL_ONLY_TO_VALID_ADDRESS = '{{ ["false", "true"][eus_mail_validate_address|int] }}'
 MAIL_TEMPLATE       = '{{ eus_mail_template }}'
 MAIL_TEMPLATE_DIR   = '/var/www/extuser/yoda-external-user-service/yoda_eus/templates/mail'
 

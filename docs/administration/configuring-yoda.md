@@ -411,6 +411,7 @@ eus_smtp_from_address        | External User Service email from address
 eus_smtp_replyto_name        | External User Service email reply-to name
 eus_smtp_replyto_address     | External User Service email reply-to address
 eus_mail_template            | External User Service mail template
+eus_mail_validate_address    | External User Service: validate email address before sending email. If this option is enabled, EUS will only send emails to users if their username is a valid email address. It is intended to be used on environments where admins want to use an iRODS user with a non-email username to invite external users. This parameter is not meant to be enabled if the test data set installed by the test playbook has been loaded. Default value: false.
 external_users_domain_filter | Domains to filter, separated by | and wildcard character *
 
 ### OpenID Connect (OIDC) configuration
