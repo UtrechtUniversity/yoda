@@ -316,6 +316,8 @@ By default, OIDC authentication is enabled for every domain (provided that oidc_
   <li>oidc_verify_exp (default: <code class="language-plaintext highlighter-rouge">true</code>)</li>
   <li>oidc_verify_iss (default: <code class="language-plaintext highlighter-rouge">true</code>)</li>
 </ul>
+
+<p>If your identity provider is in a different domain than the Yoda portal, you need to set <code class="language-plaintext highlighter-rouge">portal_session_cookie_samesite</code> to <code class="language-plaintext highlighter-rouge">Lax</code>.</p>
 <h2 id="verifying-oidc">
   
   

@@ -511,6 +511,10 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>yoda_theme_path</td>
       <td>Path where themes for the Yoda Portal are retrieved from. See <a href="/yoda/design/overview/theme-packages.html">the theme documentation</a> for more information.</td>
     </tr>
+    <tr>
+      <td>portal_session_cookie_samesite</td>
+      <td>Samesite setting for session cookies Yoda Portal. Should be ‘Lax’ if OIDC is enabled and identity provider is in different domain. Otherwise it should be ‘Strict’. Default value: ‘Strict’.</td>
+    </tr>
   </tbody>
 </table></div>
 <h3 id="generic-logging-configuration">
