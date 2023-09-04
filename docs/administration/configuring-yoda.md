@@ -136,23 +136,24 @@ Note: if one of these variables are different for a host then define them in the
 
 ### Yoda configuration
 
-Variable                     | Description
------------------------------|---------------------------------------------
-instance                     | Name of Yoda instance, as defined in hosts file
-yoda_version                 | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
-yoda_ruleset_version         | Version of the main Yoda ruleset to use. Defaults to the value of `yoda_version`.
-yoda_portal_version          | Version of the Yoda portal to use. Defaults to the value of `yoda_version`.
-yoda_environment             | Yoda environment: development, testing, acceptance or production
-yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
-yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
-yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
-yoda_davrods_logo_path       | Path of the DavRODS logo on the portal. Defaults to the themed logo.
-yoda_davrods_logo_link       | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
-yoda_enable_httpd            | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
-tcp_keepalive_time           | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
-tcp_keepalive_intvl          | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
-yoda_theme                   | The theme to use for the Yoda Portal. See also [the theme documentation](../design/overview/theme-packages.md). By default, Yoda uses the UU theme.
-yoda_theme_path              | Path where themes for the Yoda Portal are retrieved from. See [the theme documentation](../design/overview/theme-packages.md) for more information.
+Variable                       | Description
+-------------------------------|---------------------------------------------
+instance                       | Name of Yoda instance, as defined in hosts file
+yoda_version                   | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
+yoda_ruleset_version           | Version of the main Yoda ruleset to use. Defaults to the value of `yoda_version`.
+yoda_portal_version            | Version of the Yoda portal to use. Defaults to the value of `yoda_version`.
+yoda_environment               | Yoda environment: development, testing, acceptance or production
+yoda_portal_fqdn               | Yoda Portal fully qualified domain name (FQDN)
+yoda_davrods_fqdn              | Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_davrods_anonymous_fqdn    | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_logo_path         | Path of the DavRODS logo on the portal. Defaults to the themed logo.
+yoda_davrods_logo_link         | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
+yoda_enable_httpd              | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
+tcp_keepalive_time             | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
+tcp_keepalive_intvl            | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
+yoda_theme                     | The theme to use for the Yoda Portal. See also [the theme documentation](../design/overview/theme-packages.md). By default, Yoda uses the UU theme.
+yoda_theme_path                | Path where themes for the Yoda Portal are retrieved from. See [the theme documentation](../design/overview/theme-packages.md) for more information.
+portal_session_cookie_samesite | Samesite setting for session cookies Yoda Portal. Should be 'Lax' if OIDC is enabled and identity provider is in different domain. Otherwise it should be 'Strict'. Default value: 'Strict'.
 
 ### Generic logging configuration
 

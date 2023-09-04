@@ -41,6 +41,8 @@ For token verification there are also the following parameters which define what
 - oidc_verify_exp (default: `true`)
 - oidc_verify_iss (default: `true`)
 
+If your identity provider is in a different domain than the Yoda portal, you need to set `portal_session_cookie_samesite` to `Lax`.
+
 ## Verifying OIDC
 To verify whether the deployment/update went successfully, go to the Yoda portal and click the *Sign in* button, enter an email address and click *Next*.
 If configured correctly, you should now see an extra button with the text as configured with the `oidc_signin_text` variable (default: *Sign in with OIDC*).
