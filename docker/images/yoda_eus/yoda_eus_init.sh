@@ -113,18 +113,19 @@ YODA_THEME_PATH     = '/var/www/yoda/themes' # Path to location of themes
 YODA_THEME          = 'uu'      # Reference to actual theme directory in YODA_THEME_PATH
 
 # Email configuration
-SMTP_SERVER         = 'smtp://mailpit.yoda:1025'
-SMTP_USERNAME       = 'PLACEHOLDER'
-SMTP_PASSWORD       = 'PLACEHOLDER'
-SMTP_AUTH           = 'false'
-SMTP_STARTTLS       = 'false'
-SMTP_FROM_NAME      = 'Yoda External User Service'
-SMTP_FROM_EMAIL     = 'yoda@yoda.test'
-SMTP_REPLYTO_NAME   = 'PLACEHOLDER'
-SMTP_REPLYTO_EMAIL  = 'yoda@yoda.test'
-MAIL_ENABLED        = 'true'
-MAIL_TEMPLATE       = 'uu'
-MAIL_TEMPLATE_DIR   = '/var/www/extuser/yoda-external-user-service/yoda_eus/templates/mail'
+SMTP_SERVER                = 'smtp://mailpit.yoda:1025'
+SMTP_USERNAME              = 'PLACEHOLDER'
+SMTP_PASSWORD              = 'PLACEHOLDER'
+SMTP_AUTH                  = 'false'
+SMTP_STARTTLS              = 'false'
+SMTP_FROM_NAME             = 'Yoda External User Service'
+SMTP_FROM_EMAIL            = 'yoda@yoda.test'
+SMTP_REPLYTO_NAME          = 'PLACEHOLDER'
+SMTP_REPLYTO_EMAIL         = 'yoda@yoda.test'
+MAIL_ENABLED               = 'true'
+MAIL_TEMPLATE              = 'uu'
+MAIL_TEMPLATE_DIR          = '/var/www/extuser/yoda-external-user-service/yoda_eus/templates/mail'
+MAIL_ONLY_TO_VALID_ADDRESS = 'false'
 
 # Database configuration
 DB_DIALECT          = 'postgresql+psycopg2'
