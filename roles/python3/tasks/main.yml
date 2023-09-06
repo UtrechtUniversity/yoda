@@ -40,6 +40,7 @@
     state: link
     dest: "/usr/local/bin/{{ item }}"
     src: "/opt/rh/rh-python38/root/bin/{{ item }}"
+    force: true
   with_items:
     - pip3
     - python3
