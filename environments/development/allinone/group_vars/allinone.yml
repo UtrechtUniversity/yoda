@@ -232,10 +232,6 @@ eus_api_fqdn: api.eus.yoda.test
 eus_api_secret: PLACEHOLDER
 eus_api_tls_verify: false
 eus_db_password: PLACEHOLDER
-eus_smtp_host: localhost
-eus_smtp_port: 25
-eus_smtp_auth: false
-eus_smtp_security: false
 eus_smtp_from_address: yoda@yoda.test
 eus_smtp_replyto_address: yoda@yoda.test
 eus_mail_template: uu
