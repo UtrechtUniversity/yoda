@@ -74,43 +74,54 @@ metadata_schemas:
     active: true
 ```
 
-7. Set `postgresql_perform_db_upgrade` to `true` in the configuration to perform the database upgrase from Postgresql 9 to 15.
+7. If you use the External User Service (EUS): some EUS parameters have changed from Yoda 1.8 to 1.9. Yoda 1.9 performs server certificate validation of requests from the provider to the EUS server by default. This can be disabled by setting `eus_api_tls_verify` to `false`. For some SMTP parameters, EUS uses joint parameters with the provider in Yoda 1.9:
+
+| Old parameter (1.8) | New parameter  | Notes                                |
+|---------------------|----------------|--------------------------------------|
+| eus_smtp_host       | smtp_server    | New format. e.g. smtp://localhost:25 |
+| eus_smtp_port       | smtp_server    | New format. e.g. smtp://localhost:25 |
+| eus_smtp_auth       | smtp_auth      |                                      |
+| eus_smtp_security   | smtp_server    | New format. e.g. smtp://localhost:25 |
+
+Please see the [configuration guide](../administration/configuring-yoda.md) for more information.
+
+8. Set `postgresql_perform_db_upgrade` to `true` in the configuration to perform the database upgrade from Postgresql 9 to 15.
 Optionally set `postgresql_remove_old_data_after_upgrade` to `true` in the configuration to clean up PostgreSQL 9 data and shim after the upgrade.
 ```yaml
 postgresql_perform_db_upgrade: true
 postgresql_remove_old_data_after_upgrade: false
 ```
 
-8. Install all Ansible collections needed to deploy Yoda:
+9. Install all Ansible collections needed to deploy Yoda:
 ```bash
 ansible-galaxy collection install -r requirements.yml
 ```
 
-9. Run the Ansible playbook in check mode.
+10. Run the Ansible playbook in check mode.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-10. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
+11. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-11. Update all publication metadata to support DOI versioning.
+13. Update all publication metadata to support DOI versioning.
 ```bash
 irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/transform-existing-publications.r
 ```
 
-12. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
+14. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-13. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+15. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```

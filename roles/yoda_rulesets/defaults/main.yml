@@ -124,6 +124,8 @@ notifications_sender_name: "Yoda system"      # Notifiations sender name
 notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email address
 
 smtp_server: PLACEHOLDER                      # SMTP server to send mail to
+                                              # (smtp://server.name:port or smtps://server.name:port,
+                                              # e.g. smtp://localhost:25)
 smtp_username: PLACEHOLDER                    # SMTP server username
 smtp_password: PLACEHOLDER                    # SMTP server password
 smtp_auth: true                               # Whether to use SMTP authentication

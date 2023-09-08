@@ -281,7 +281,7 @@ These settings also affect the External User Service (EUS).
 
 Variable                     | Description
 -----------------------------|---------------------------------------------
-smtp_server                  | SMTP server to send mail to
+smtp_server                  | SMTP server to send mail to (smtp://server.name:port or smtps://server.name:port, e.g. smtp://localhost:25)
 smtp_username                | SMTP server username
 smtp_password                | SMTP server password
 smtp_auth                    | Whether to use SMTP authentication (true/false, default: true)
