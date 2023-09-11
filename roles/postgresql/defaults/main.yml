@@ -32,3 +32,9 @@ postgresql_random_page_cost: "4.0"
 postgresql_log_line_prefix: '%m [%p] '
 postgresql_log_min_duration_statement: -1
 postgresql_log_autovacuum_min_duration: -1
+
+# PostgreSQL locale configuration
+icat_database_encoding: UTF-8
+icat_database_lc_collate: en_US.UTF-8
+icat_database_lc_ctype: en_US.UTF-8
+icat_database_locale: en_US.UTF-8
