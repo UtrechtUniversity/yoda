@@ -173,6 +173,10 @@ irods_password                       | iRODS admin password
 irods_database_user                  | The iRODS database username
 irods_database_password              | The password for the iRODS database username
 irods_database_enable_yoda_indexes   | Enable indexes to speed up Yoda search operations (default: false). This is mainly useful for medium-sized and large environments (millions of data objects or more). Please note that the indexes can take up a significant amount of diskspace (rough estimate: 10-30% increase in database size). They will be created asynchronously. This can take some time on existing environments with a significant amount of data, and temporarily decrease performance.
+icat_database_encoding               | iRODS database encoding (default: UTF-8)
+icat_database_locale                 | iRODS database locale setting (default: en_US.UTF-8)
+icat_database_lc_collate             | iRODS database locale LC_COLLATE setting (default: en_US.UTF-8)
+icat_database_lc_ctype               | iRODS database locale LC_CTYPE setting (default: en_US.UTF-8)
 irods_zone                           | The name of the iRODS Zone
 irods_icat_fqdn                      | iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn                  | iRODS database fully qualified domain name (FQDN)
