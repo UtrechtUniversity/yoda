@@ -586,6 +586,22 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>Enable indexes to speed up Yoda search operations (default: false). This is mainly useful for medium-sized and large environments (millions of data objects or more). Please note that the indexes can take up a significant amount of diskspace (rough estimate: 10-30% increase in database size). They will be created asynchronously. This can take some time on existing environments with a significant amount of data, and temporarily decrease performance.</td>
     </tr>
     <tr>
+      <td>icat_database_encoding</td>
+      <td>iRODS database encoding (default: UTF-8)</td>
+    </tr>
+    <tr>
+      <td>icat_database_locale</td>
+      <td>iRODS database locale setting (default: en_US.UTF-8)</td>
+    </tr>
+    <tr>
+      <td>icat_database_lc_collate</td>
+      <td>iRODS database locale LC_COLLATE setting (default: en_US.UTF-8)</td>
+    </tr>
+    <tr>
+      <td>icat_database_lc_ctype</td>
+      <td>iRODS database locale LC_CTYPE setting (default: en_US.UTF-8)</td>
+    </tr>
+    <tr>
       <td>irods_zone</td>
       <td>The name of the iRODS Zone</td>
     </tr>
