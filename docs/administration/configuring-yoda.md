@@ -348,6 +348,13 @@ datacite_prefix              | DataCite DOI prefix
 datacite_rest_api_url        | DataCite REST API URL
 datacite_tls_verify          | Enable TLS verification for Datacite API calls (0: no, 1: yes). Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
 
+### Inactive Research Group Notifications configuration
+
+Variable                       | Description
+-------------------------------|-------------------------------------------
+enable_inactivity_notification | Enable notifications to datamanager groups of inactive research groups
+inactivity_cutoff_months       | Number of months a research group has to be inactive for datamanagers to be notified
+
 ### SRAM Configuration (experimental)
 
 Variable                     | Description
