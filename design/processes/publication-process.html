@@ -273,6 +273,15 @@ Credentials are pulled from the Yoda credential store (store_config.json).
 Each step has a rule with the configuration and state as arguments.
 Temporary collection will be rods owned and located at <code class="language-plaintext highlighter-rouge">UUSYSTEMCOLLECTION/publish</code>.</p>
 
+<p><strong>Versioning</strong>
+DOI versioning will be introduced in Yoda v1.9. 
+With the publication of first version of the data package, version DOI is registered by the publication process.
+When the data package is published for the second time, a new version DOI and base DOI is registered. The previous version of the data package is updated with the same base DOI so that the versions are linked.</p>
+
+<p>For further versions of the data package, a new version DOI is registered. The previously registered base DOI is added in the <code class="language-plaintext highlighter-rouge">*publicationState</code>.</p>
+
+<p>The base DOI will always resolve to the latest version of the data package.</p>
+
 <p><strong>Precondition:</strong></p>
 <ul>
   <li>Vault package has <code class="language-plaintext highlighter-rouge">APPROVED_FOR_PUBLICATION</code> status</li>
@@ -409,6 +418,9 @@ Temporary collection will be rods owned and located at <code class="language-pla
 <p><strong>Step 13:</strong> the vault package is given <code class="language-plaintext highlighter-rouge">PUBLISHED</code> status.</p>
 
 <p><img src="/yoda/design/processes/img/publication-process.png" alt="Publication process" /></p>
+
+<p>Further detailed diagram for each step is as follow:
+<img src="/yoda/design/processes/img/version-publication-process.png" alt="Versioned Publication process" /></p>
 <h1 id="depublication-process">
   
   
@@ -417,7 +429,7 @@ Temporary collection will be rods owned and located at <code class="language-pla
   
 </h1>
     
-<p>This is very similar to the publication process. The DOI and URLs were preserved in the <code class="language-plaintext highlighter-rouge">UUSYSTEMCOLLECTION</code> metadata, and are reused by the depublication process. <br />
+<p>This is very similar to the publication process. The DOIs and URLs were preserved in the <code class="language-plaintext highlighter-rouge">UUSYSTEMCOLLECTION</code> metadata, and are reused by the depublication process. <br />
 Depublication is performed with the differences noted below.</p>
 
 <p><strong>Precondition:</strong></p>
