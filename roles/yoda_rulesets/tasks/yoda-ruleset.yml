@@ -397,6 +397,17 @@
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r >/dev/null 2>&1'
 
 
+- name: Configure cronjob to lift embargos
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'lift-embargos.r'
+    minute: '1'
+    hour: '0'
+    day: '*'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/lift-embargos.r >/dev/null 2>&1'
+
+
 - name: Configure cronjob to clean up revisions
   become_user: "{{ irods_service_account }}"
   become: true
