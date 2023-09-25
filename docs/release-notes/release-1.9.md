@@ -85,8 +85,8 @@ metadata_schemas:
 
 Please see the [configuration guide](../administration/configuring-yoda.md) for more information.
 
-8. Set `postgresql_perform_db_upgrade` to `true` in the configuration to perform the database upgrade from Postgresql 9 to 15.
-Optionally set `postgresql_remove_old_data_after_upgrade` to `true` in the configuration to clean up PostgreSQL 9 data and shim after the upgrade.
+8. Unless your Yoda environment has already been upgraded to PostgreSQL 15, you should upgrade PostgreSQL during or immediately after the Yoda upgrade. Please consult [the PostgreSQL upgrade information page](../administration/upgrading-postgresql.md) for information about how to perform the upgrade. Example configuration:
+
 ```yaml
 postgresql_perform_db_upgrade: true
 postgresql_remove_old_data_after_upgrade: false
