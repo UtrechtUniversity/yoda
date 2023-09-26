@@ -136,7 +136,7 @@ sudo su yodadeployment
 cd /var/www/yoda-portal/static/src/
 
 # Install npm
-nvm install v16
+nvm install v18
 
 # Install sass compiler
 npm install
@@ -152,7 +152,7 @@ sass --style compressed build_vu.scss ../../themes/vu/static/css/yoda-portal.css
 ## DavRODS theming
 
 DavRODS uses different theming logic than the portal. By default, it uses the themed logo of the portal.
-The logo is linked to the UU website. Use the `yoda_davrods_logo_path` and `yoda_davrods_logo_link` 
+The logo is linked to the UU website. Use the `yoda_davrods_logo_path` and `yoda_davrods_logo_link`
 parameters to change this behaviour.
 
 For more advanced changes, it will be necessary to customize the [DavRODS layout templates](https://github.com/UtrechtUniversity/yoda/tree/development/roles/yoda_davrods/templates).
