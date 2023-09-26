@@ -1,4 +1,8 @@
 @startuml
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 9
+skinparam shadowing false
+
 start
 if (If user is rodsadmin) then (yes)
    if (Is vault status 'Published' or\n 'Approved for publication?') then (yes)
