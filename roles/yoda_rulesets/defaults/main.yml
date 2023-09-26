@@ -30,6 +30,7 @@ enable_revisions: 1              # Enable revisions: yes (1) or no (0)
 async_revision_verbose_mode: false
 async_revision_delay_time: 0       # Delay after last modification to data object before revision job can process it (sec)
 enable_revision_cleanup: true    # Enable revision cleanup job (true/false)
+revision_cleanup_verbose_mode: false # Print extra information in revision cleanup job for troubleshooting (true/false)
 revision_strategy: B             # Revision strategy: A, B, J or Simple
 yoda_instance: "{{ instance }}"
 update_rulesets: true            # Update already installed rulesets with git
