@@ -240,7 +240,8 @@ async_revision_jobs            | Number of asynchronous replication jobs, when d
 async_revision_batch_size      | Asynchronous revision jobs batch size (default: 1000)
 async_revision_verbose_mode    | Run asynchronous revision job in verbose mode (default: true)
 async_revision_delay_time      | Delay after last modification to data object before revision job can process it (in seconds, default: 0)
-enable_revision_cleanup: true  | Enable revision cleanup job (true/false)
+enable_revision_cleanup        | Enable revision cleanup job (true/false, default: true)
+revision_cleanup_verbose_mode  | Print extra information in revision cleanup job for troubleshooting (true/false, default: false)
 
 ### Deposit module configuration
 
