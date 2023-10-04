@@ -9,17 +9,39 @@
 
   <link rel="stylesheet" href="/yoda/assets/css/just-the-docs-default.css">
   
-  <style type="text/css">
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external):nth-child(2) > .nav-list > .nav-list-item:nth-child(4) > .nav-list-link { display: block; font-weight: 600; text-decoration: none; background-image: linear-gradient(-90deg, #201f23 0%, rgba(32, 31, 35, 0.8) 80%, rgba(32, 31, 35, 0) 100%); }
+  <link rel="stylesheet" href="/yoda/assets/css/just-the-docs-head-nav.css">
+  
+  <style id="jtd-nav-activation">
+  
 
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(2) > .nav-list-expander svg, .site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(2) > .nav-list > .nav-list-item:nth-child(4) > .nav-list-expander svg { transform: rotate(-90deg); }
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(2) > .nav-list, .site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(2) > .nav-list > .nav-list-item:nth-child(4) > .nav-list { display: block; }
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list-link,
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item:not(:nth-child(4)) > .nav-list-link,
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item > .nav-list > .nav-list-item > .nav-list-link {
+  background-image: none;
+}
 
-.site-nav > .nav-category-list > .nav-list-item > .nav-list-expander svg { transform: rotate(-90deg); }
-.site-nav > .nav-category-list > .nav-list-item > .nav-list { display: block; }
+.site-nav > .nav-list:not(:nth-child(1):not(.nav-category-list)) .nav-list-link,
+.site-nav .nav-list-link.external {
+  background-image: none;
+}
 
-</style>
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external):nth-child(2) > .nav-list > .nav-list-item:nth-child(4) > .nav-list-link {
+  font-weight: 600;
+  text-decoration: none;
+}
 
+.site-nav > .nav-category-list > .nav-list-item > .nav-list-expander svg,
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(2) > .nav-list-expander svg,
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(2) > .nav-list > .nav-list-item:nth-child(4) > .nav-list-expander svg {
+  transform: rotate(-90deg);
+}
+
+.site-nav > .nav-category-list > .nav-list-item > .nav-list,
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(2) > .nav-list,
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(2) > .nav-list > .nav-list-item:nth-child(4) > .nav-list {
+  display: block;
+}
+  </style>
 
   
 
@@ -133,10 +155,11 @@
       <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
     </button>
   </div>
+  
   <nav aria-label="Main" id="site-nav" class="site-nav">
-    
-    
-      <ul class="nav-list"><li class="nav-list-item"><a href="/yoda/" class="nav-list-link">Home</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Release Notes category" aria-pressed="false">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><a href="/yoda/" class="nav-list-link">Home</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Release Notes category" aria-pressed="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
     </button><a href="/yoda/release-notes/" class="nav-list-link">Release Notes</a><ul class="nav-list"><li class="nav-list-item"><a href="/yoda/release-notes/release-1.9.html" class="nav-list-link">v1.9</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.8.html" class="nav-list-link">v1.8</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.7.html" class="nav-list-link">v1.7</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.6.html" class="nav-list-link">v1.6</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.5.html" class="nav-list-link">v1.5</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.4.html" class="nav-list-link">v1.4</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.3.html" class="nav-list-link">v1.3</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.2.html" class="nav-list-link">v1.2</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.1.html" class="nav-list-link">v1.1</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.0.html" class="nav-list-link">v1.0</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-0.9.7.html" class="nav-list-link">v0.9.7</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Software Design category" aria-pressed="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
@@ -204,9 +227,10 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
     </button><a href="/yoda/development/" class="nav-list-link">Development</a><ul class="nav-list"><li class="nav-list-item"><a href="/yoda/development/setting-up-development-environment.html" class="nav-list-link">Setting up development environment</a></li><li class="nav-list-item"><a href="/yoda/development/docker-setup.html" class="nav-list-link">Running Yoda using Docker Compose</a></li><li class="nav-list-item"><a href="/yoda/development/running-api-ui-tests.html" class="nav-list-link">Running API and UI tests</a></li><li class="nav-list-item"><a href="/yoda/development/yodadrive-development-environment.html" class="nav-list-link">Setting up YodaDrive development environment</a></li><li class="nav-list-item"><a href="/yoda/development/mock_tape_archive.html" class="nav-list-link">Mock tape archive</a></li><li class="nav-list-item"><a href="/yoda/development/development-tips.html" class="nav-list-link">Development tips</a></li><li class="nav-list-item"><a href="/yoda/development/wall-of-fame.html" class="nav-list-link">Wall of Fame</a></li></ul></li></ul>
 
-    
-  </nav>
+  
+</nav>
 
+  
   
   
     <footer class="site-footer">&copy; 2017-2023 <a href="https://www.uu.nl/" title="Utrecht University website">Utrecht University</a></footer>
