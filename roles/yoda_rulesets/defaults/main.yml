@@ -197,6 +197,7 @@ inactivity_cutoff_months: 3
 enable_sram: false                                     # Enable SRAM configuration
 sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
 sram_api_key: PLACEHOLDER                              # SRAM Rest API key
+sram_flow: join_request                                # SRAM flow to use, 'join_request' or 'invitation'
 sram_verbose_logging: false                            # SRAM verbose logging
 sram_tls_verify: true                                  # Enable TLS verification for SRAM API calls. Enabled by default.
 
