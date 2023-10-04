@@ -115,7 +115,7 @@ RUN mkdir /var/lib/irods/.irods
 COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
 
 # Install and configure rulesets
-RUN git clone -b ${YODA_RULESET_BRANCH} --single-branch ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
+RUN git clone -b ${YODA_RULESET_BRANCH} ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
 # hadolint ignore=DL3004
 RUN sudo -u irods python -m pip --no-cache-dir install --user pip==20.2.4 && \
     sudo -u irods python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
