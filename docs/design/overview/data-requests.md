@@ -25,26 +25,57 @@ mapping the workflow is shown below.
 A researcher seeking to obtain research data stored in Yoda must be able to
 submit a request for this data.
 
-The request must belong to a research proposal, which is submitted along with
-the data request. The research proposal must describe the purpose for which the
-researcher wants to obtain the requested data.
+A researcher may submit two kinds of data request:
+- data requests made for the purpose of publishing the analysis results
+- data requests for data assessment only (DAO; e.g. project-internal quality
+  assurance)
+
+In the first case, a research proposal must be submitted along with the data
+request. The research proposal must describe the purpose for which the
+researcher wants to obtain the requested data. No research proposal is submitted
+along with a DAO data request.
+
+In the subsequent sections, the workflows for the processing of a data request
+for the purpose of publishing the analysis results will be described. DAO data
+requests are treated in a separate section.
 
 ### Management and review of data requests
-A delegate of a research programme's or study's project manager must be able to
-perform a cursory preliminary review of a data request.
+A project manager of a research group to which a data request is submitted must
+be able to perform a cursory preliminary review of this data request, choosing
+whether the request is accepted for further review, rejected with the
+possibility of resubmission, or rejected with no possibility of resubmission.
 
-Likewise, a data manager assigned as a custodian of (certain) data stored in
-Yoda must be also able to submit a review of a data request.
+Likewise, a data manager assigned as a custodian of data requested in a data
+request must be also able to submit a review of this data request, indicating as
+a recommendation to the project manager whether the data request should be
+accepted for further review, rejected with the possibility of resubmission, or
+rejected with no possibility of resubmission.
 
-After these preliminary reviews, a project manager must be able to assign a data
-request for review to one or more members of a Data Access Committee (DAC)
+After a positive preliminary review and after review the data manager's
+recommendation, a project manager must be able to assign a data request for
+review to one or more members of a Data Access Committee (DAC), or to reject the
+data request (either with or without the possibility of resubmission).
 
-The DAC member(s) must be able to review research proposals assigned to him.
+If a data request is assigned for review to the DAC, the project manager must be
+able to set the length of the review period.
 
-### Final evaluation of research proposals
+The DAC members must be able to review research proposals assigned to them, but
+only within the review period set by the project manager.
+
+### Final evaluation of data requests
 A project manager must be able to give a final evaluation of a research proposal
-based on the reviews by the data manager and the DAC member(s), thereby
-approving or rejecting the data request.
+based on the reviews by the data manager and the DAC member(s), therein
+approving or rejecting the data request (either with or without the possibility
+of resubmission).
+
+### Preregistration of research proposals
+After final approval of a data request by the project manager, the research
+proposal of the data request must be preregistered by the researcher in the
+research group's preregistry on the Open Science Framework.
+
+The project manager must be able to confirm that the research proposal is
+properly preregistered in the research group's preregistry on the Open Science
+Framework.
 
 ### Creation of data transfer agreements (DTAs)
 Once a data request and its accompanying research proposal have been approved,
@@ -122,3 +153,12 @@ The DTA created by the data manager is made available to the researcher. Once
 the researcher has created a signed copy of the document, he can upload it
 through a web form. The signed copy is saved in the subcollection. The data may
 now be made available to the researcher by the data manager.
+
+## Data assessment only (DAO) requests
+
+DAO requests follow the procedure of regular data requests, as described above,
+excluding the project manager's preliminary review, the data manager review, the
+DAC review, and the research proposal preregistration. In other words, after
+submission, a DAO request is immediately offered to the project manager for
+final evaluation, after which the procedure is identical to regular data
+requests.
