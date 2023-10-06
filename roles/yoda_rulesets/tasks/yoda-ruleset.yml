@@ -118,14 +118,12 @@
     - admin-vaultingest.sh
 
 
-- name: Copy indexing scripts to ExecCmd dir
+- name: Ensure old indexing scripts have been removed
   become_user: "{{ irods_service_account }}"
   become: true
-  ansible.builtin.copy:
-    remote_src: true
-    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
-    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: 0755
+  ansible.builtin.file:
+    path: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    state: absent
   when: not ansible_check_mode and enable_open_search
   with_items:
     - enable-indexing.sh
