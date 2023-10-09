@@ -21,15 +21,6 @@ datarequest_help_contact_name: the data manager
 datarequest_help_contact_email: help@yoda.instance
 ```
 
-Add the `yoda-portal-datarequest` repository to `extra_modules`.
-```
-extra_modules:
-  - name: datarequest
-    repo: "https://github.com/UtrechtUniversity/yoda-portal-datarequest.git"
-    dest: /var/www/yoda/yoda-portal/modules/datarequest
-    version: "{{ yoda_version }}"
-```
-
 ## After deployment using Ansible
 
 ### Creating and populating required groups
@@ -40,8 +31,6 @@ subcategory `research` and data classification `unspecified`:
     datarequests-research-datamanagers
     datarequests-research-project-managers
     datarequests-research-data-access-committee
-    datarequests-research-principal-investigators
-    datarequests-research-faculty-deans
     ```
 
 Instructions:
@@ -56,8 +45,6 @@ Instructions:
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "Project managers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-access-committee", "datarequest", "research", "Data Access Committee", "", *status, *message);' null ruleExecOut
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-principal-investigators", "datarequest", "research", "Principal investigators", "", *status, *message);' null ruleExecOut
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-faculty-deans", "datarequest", "research", "Faculty deans", "", *status, *message);' null ruleExecOut
     ```
 
 3. Confirm that the groups exist.
