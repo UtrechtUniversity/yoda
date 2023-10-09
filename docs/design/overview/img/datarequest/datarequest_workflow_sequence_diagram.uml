@@ -7,6 +7,7 @@ actor "DACmember" as M1
 actor "DACmember" as M2
 actor "Project manager" as P
 participant "System" as Y
+participant "Open Science Framework" as O
 
 R -> Y   : submit data request
 Y --> R  : confirm received
@@ -46,6 +47,10 @@ Y --> R  : 3c: approved
 note over Y
  3c: Approved
 end note
+Y --> R  : request OSF preregistration
+R --> O  : submit preregistration
+R --> Y  : submit OSF pregistration link
+P --> Y  : confirm OSF preregistration
 Y --> DM : prepare DTA
 DM -> Y  : upload unsigned DTA
 Y --> R  : please sign DTA
