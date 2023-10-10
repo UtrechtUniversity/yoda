@@ -82,7 +82,7 @@ irods_database_password: irodsdev          # The password for the iRODS database
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_icat_fqdn: portal.surfyoda.test        # iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn: portal.surfyoda.test    # iRODS database fully qualified domain name (FQDN)
-#irods_resource_fqdn: resource.surfyoda.test # iRODS resource fully qualified domain name (FQDN)
+# irods_resource_fqdn: resource.surfyoda.test # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none                # Verify TLS certificate, use 'cert' for acceptance and production
 irods_enable_gocommands: false
 irods_resources:
@@ -148,7 +148,7 @@ override_resc_install_rulesets: true
 enable_async_replication: 0            # Enable asynchronous replication: yes (1) or no (0)
 
 # S3 configuration
-enable_s3_resource: True
+enable_s3_resource: true
 s3_access_key: minioadmin
 s3_secret_key: minioadmin
 s3_hostname: localhost:9000
@@ -217,12 +217,12 @@ eus_smtp_replyto_address: yoda@surfyoda.test
 eus_mail_template: uu
 external_users_domain_filter: '*.yoda.dev'                    # Domains to filter, separated by | and wildcard character *
 
-# Openid Connect configuration (This configuration is for TESTING purposes!)
+# OpenID Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: true
 oidc_domains: ['*.yoda.dev']                                  # Domains that should use OIDC (list, wildcard character *)
 oidc_client_id: myClientId                                    # OIDC Client Id
 oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
-oidc_callback_url: https://portal.surfyoda.test/user/callback     # OIDC Callback url
+oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url
 oidc_auth_base_uri: https://oauth.mocklab.io/oauth/authorize  # OIDC Authorization URI without parameters
 oidc_token_uri: https://oauth.mocklab.io/oauth/token          # OIDC Token URI
 oidc_userinfo_uri: https://oauth.mocklab.io/userinfo          # OIDC Userinfo URI
@@ -231,13 +231,13 @@ oidc_acr_values: ""                                           # OIDC Authenticat
 oidc_email_field: email                                       # The identifier of the JSON field in the id_token containing the email address (default: email)
 oidc_jwks_uri: https://oauth.mocklab.io/.well-known/jwks.json # The url where the JWKS can be found (Java web key sets)
 oidc_jwt_issuer: https://oauth.mocklab.io                     # The issuer of the JWT tokens ('iss' value in JWT, for verification)
-oidc_req_exp: true      #check that exp (expiration) claim is present
-oidc_req_iat: false     #check that iat (issued at) claim is present
-oidc_req_nbf: false     #check that nbf (not before) claim is present
-oidc_verify_aud: true   #check that aud (audience) claim matches audience
-oidc_verify_iat: false  #check that iat (issued at) claim value is an integer
-oidc_verify_exp: true   #check that exp (expiration) claim value is OK
-oidc_verify_iss: true   #check that iss (issue) claim is as expected
+oidc_req_exp: true                                            # Check that exp (expiration) claim is present
+oidc_req_iat: false                                           # Check that iat (issued at) claim is present
+oidc_req_nbf: false                                           # Check that nbf (not before) claim is present
+oidc_verify_aud: true                                         # Check that aud (audience) claim matches audience
+oidc_verify_iat: false                                        # Check that iat (issued at) claim value is an integer
+oidc_verify_exp: true                                         # Check that exp (expiration) claim value is OK
+oidc_verify_iss: true                                         # Check that iss (issue) claim is as expected
 
 # Mail configuration
 enable_mailpit: true

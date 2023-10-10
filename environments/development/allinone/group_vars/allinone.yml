@@ -169,7 +169,7 @@ irods_repl_resc:
 async_replication_delay_time: 3600     # Delay after last modification to data object before replication job can process it (sec)
 
 # S3 configuration
-enable_s3_resource: False
+enable_s3_resource: false
 s3_access_key: minioadmin
 s3_secret_key: minioadmin
 s3_hostname: localhost:9000
@@ -238,7 +238,7 @@ eus_smtp_replyto_address: yoda@yoda.test
 eus_mail_template: uu
 external_users_domain_filter: '*.yoda.dev'                      # Domains to filter, separated by | and wildcard character *
 
-# Openid Connect configuration (This configuration is for TESTING purposes!)
+# OpenID Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: true
 oidc_domains: ['*.yoda.dev']                                  # Domains that should use OIDC (list, wildcard character *)
 oidc_client_id: myClientId                                    # OIDC Client Id
@@ -252,13 +252,13 @@ oidc_acr_values: ""                                           # OIDC Authenticat
 oidc_email_field: email                                       # The identifier of the JSON field in the id_token containing the email address (default: email)
 oidc_jwks_uri: https://oauth.mocklab.io/.well-known/jwks.json # The url where the JWKS can be found (Java web key sets)
 oidc_jwt_issuer: https://oauth.mocklab.io                     # The issuer of the JWT tokens ('iss' value in JWT, for verification)
-oidc_req_exp: true      #check that exp (expiration) claim is present
-oidc_req_iat: false     #check that iat (issued at) claim is present
-oidc_req_nbf: false     #check that nbf (not before) claim is present
-oidc_verify_aud: true   #check that aud (audience) claim matches audience
-oidc_verify_iat: false  #check that iat (issued at) claim value is an integer
-oidc_verify_exp: true   #check that exp (expiration) claim value is OK
-oidc_verify_iss: true   #check that iss (issue) claim is as expected
+oidc_req_exp: true                                            # Check that exp (expiration) claim is present
+oidc_req_iat: false                                           # Check that iat (issued at) claim is present
+oidc_req_nbf: false                                           # Check that nbf (not before) claim is present
+oidc_verify_aud: true                                         # Check that aud (audience) claim matches audience
+oidc_verify_iat: false                                        # Check that iat (issued at) claim value is an integer
+oidc_verify_exp: true                                         # Check that exp (expiration) claim value is OK
+oidc_verify_iss: true                                         # Check that iss (issue) claim is as expected
 
 # Mail configuration
 enable_mailpit: true

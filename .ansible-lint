@@ -3,6 +3,7 @@ profile: production
 skip_list:
   - experimental
   - var-naming
+  - yaml[line-length]
 
 parseable: true
 
@@ -22,4 +23,3 @@ exclude_paths:
   - docs/
   - roles/yoda_test/
   - roles/yoda_test_users_eus/
-  - environments/
