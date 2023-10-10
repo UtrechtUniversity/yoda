@@ -22,7 +22,7 @@
     dest: /etc/httpd/conf.modules.d/02-wsgi.conf
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   notify: Restart Apache webserver
 
 
@@ -39,13 +39,13 @@
     dest: /root/my-httpd.pp
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   register: python_selinux
 
 
 # Running as task instead of handler in order to prevent ordering issues
 # with Apache restart handler.
-- name: Apply SELinux policy
+- name: Apply SELinux policy # noqa no-handler
   ansible.builtin.command:
     cmd: semodule -i /root/my-httpd.pp
   changed_when: false

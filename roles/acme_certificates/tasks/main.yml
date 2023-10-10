@@ -20,7 +20,7 @@
   when: not letsencrypt_fullchain.stat.exists
 
 
-- name: Generate certificate if it  doesn't exist yet
+- name: Generate certificate if it  doesn't exist yet # noqa no-changed-when
   ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email l.r.westerhof@uu.nl -d {{ yoda_portal_fqdn }}"
   when: not letsencrypt_fullchain.stat.exists
 

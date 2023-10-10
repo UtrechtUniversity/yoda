@@ -7,7 +7,6 @@ on:
     - 'Vagrantfile'
     - 'docs/**'
     - 'docker/**'
-    - '.github/workflows/ansible-lint-zabbix.yml'
     - '.github/workflows/documentation.yml'
   pull_request:
     paths-ignore:
@@ -15,19 +14,13 @@ on:
     - 'Vagrantfile'
     - 'docker/**'
     - 'docs/**'
-    - '.github/workflows/ansible-lint-zabbix.yml'
     - '.github/workflows/documentation.yml'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # Important: This sets up your GITHUB_WORKSPACE environment variable
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Run ansible-lint
-        # replace `main` with any valid ref, or tags like `v6`
-        uses: ansible-community/ansible-lint-action@v6.15.0
-        with:
-          path: "playbook.yml"
+        uses: ansible/ansible-lint@v6.20.3
