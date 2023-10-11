@@ -97,3 +97,8 @@ sram_flow                  = '{{ sram_flow }}'
 sram_verbose_logging       = '{{ ["false", "true"][sram_verbose_logging|int] }}'
 sram_tls_verify            = '{{ ["false", "true"][sram_tls_verify|int] }}'
 {% endif %}
+
+arb_enabled                = '{{ ["false", "true"][irods_arb_enabled|int] }}'
+arb_exempt_resources       = '{{ irods_arb_exempt_resources }}'
+arb_min_gb_free            = '{{ irods_arb_min_gb_free }}'
+arb_min_percent_free       = '{{ irods_arb_min_percent_free }}'

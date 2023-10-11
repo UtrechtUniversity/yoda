@@ -12,5 +12,7 @@ galaxy_info:
 
 
 dependencies:
+  - role: python3
   - role: python_irodsclient
   - role: redis
+    when: "'icats' in group_names"

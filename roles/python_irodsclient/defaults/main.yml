@@ -3,4 +3,4 @@
 
 irods_service_account: irods
 
-irods_arb_enabled: false
+python_irodsclient_version: 1.1.8
