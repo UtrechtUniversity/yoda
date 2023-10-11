@@ -57,6 +57,10 @@ case "$1" in
     docker exec "$EXEC_OPTIONS" public.yoda sudo -iu yodadeployment /var/www/moai/yoda-moai/venv/bin/update_moai --config /var/www/moai/settings.ini yoda_moai
     ;;
 
+  arbupdate)
+    docker exec "$EXEC_OPTIONS" provider.yoda sudo -iu irods /usr/local/bin/python3 /etc/irods/yoda-ruleset/tools/arb-update-resources.py -v
+    ;;
+
   *)
     echo "No cronjob or invalid cronjob provided."
     ;;

@@ -33,6 +33,7 @@ has_toc: false
 
 ## Processes
 - [Asynchronous and privileged execution](processes/async-system-execution.md)
+- [Automatic Resource Balancing](processes/automatic-resource-balancing)
 - [List of asynchronous processes](processes/asynchronous-processes.md)
 - [Locking mechanism](processes/locking-mechanism.md)
 - [Publication process](processes/publication-process.md)

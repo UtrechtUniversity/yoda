@@ -4,14 +4,17 @@
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
-    name: 'update-ufs-resources.py'
+    name: 'arb-update-resources.py'
     minute: '*'
     hour: '*'
-    job: >
-      /usr/bin/python /etc/irods/yoda-ruleset/tools/update-ufs-resources.py
-      -e "{{ irods_arb_exempt_resources }}"
-      update
-      --min-percent-free "{{ irods_arb_min_percent_free }}"
-      --min-gb-free "{{ irods_arb_min_gb_free }}"
-      >& /dev/null
+    job: '/usr/local/bin/python3 /etc/irods/yoda-ruleset/tools/arb-update-resources.py > /dev/null'
     state: '{{ "present" if irods_arb_enabled else "absent" }}'
+
+
+- name: Ensure psutil is installed (Python 3)
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.pip:
+    name: "psutil==5.9.5"
+    executable: /usr/local/bin/pip3
+    extra_args: --user

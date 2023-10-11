@@ -16,8 +16,14 @@
     state: present
 
 
-- name: Ensure python-irodsclient is installed
+- name: Ensure python-irodsclient is installed (Python 2)
   ansible.builtin.pip:
     name:
-      - python-irodsclient==1.1.8
+      - "python-irodsclient=={{ python_irodsclient_version }}"
     state: present
+
+
+- name: Ensure python-irodsclient is installed (Python 3)
+  ansible.builtin.pip:
+    name: "python_irodsclient=={{ python_irodsclient_version }}"
+    executable: /usr/local/bin/pip3

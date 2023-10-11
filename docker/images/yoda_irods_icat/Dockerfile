@@ -121,7 +121,9 @@ RUN sudo -u irods python -m pip --no-cache-dir install --user pip==20.2.4 && \
     sudo -u irods python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
     sudo -u irods python -m pip --no-cache-dir install --user python-irodsclient==1.1.8 && \
     sudo -u irods python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt && \
-    sudo -u irods /usr/local/bin/pip3 install --user jsonschema==4.17.3
+    sudo -u irods /usr/local/bin/pip3 install --user jsonschema==4.17.3 && \
+    sudo -u irods /usr/local/bin/pip3 install --user python-irodsclient==1.1.8 && \
+    sudo -u irods /usr/local/bin/pip3 install --user psutil==5.9.5
 COPY core.py.template /etc/irods/core.py
 COPY core.re.template /etc/irods/core.re
 RUN for script in scheduled-copytovault.sh admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh \
