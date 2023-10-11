@@ -118,7 +118,7 @@
     - admin-vaultingest.sh
 
 
-- name: Remove legacy msiExecCmd indexing scripts
+- name: Ensure old indexing scripts have been removed
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.file:
