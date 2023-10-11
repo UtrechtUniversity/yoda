@@ -124,7 +124,7 @@
   ansible.builtin.file:
     path: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
     state: absent
-  when: not ansible_check_mode and enable_open_search
+  when: not ansible_check_mode
   with_items:
     - enable-indexing.sh
     - disable-indexing.sh
