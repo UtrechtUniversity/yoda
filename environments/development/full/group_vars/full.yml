@@ -236,26 +236,26 @@ eus_mail_template: uu
 external_users_domain_filter: '*.yoda.dev'                    # Domains to filter, separated by | and wildcard character *
 
 # OpenID Connect configuration (This configuration is for TESTING purposes!)
-oidc_active: true
-oidc_domains: ['*.yoda.dev']                                  # Domains that should use OIDC (list, wildcard character *)
-oidc_client_id: myClientId                                    # OIDC Client Id
-oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
-oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url
-oidc_auth_base_uri: https://oauth.mocklab.io/oauth/authorize  # OIDC Authorization URI without parameters
-oidc_token_uri: https://oauth.mocklab.io/oauth/token          # OIDC Token URI
-oidc_userinfo_uri: https://oauth.mocklab.io/userinfo          # OIDC Userinfo URI
-oidc_scopes: openid                                           # OIDC Scopes
-oidc_acr_values: ""                                           # OIDC Authentication Context Class Reference Values
-oidc_email_field: email                                       # The identifier of the JSON field in the id_token containing the email address (default: email)
-oidc_jwks_uri: https://oauth.mocklab.io/.well-known/jwks.json # The url where the JWKS can be found (Java web key sets)
-oidc_jwt_issuer: https://oauth.mocklab.io                     # The issuer of the JWT tokens ('iss' value in JWT, for verification)
-oidc_req_exp: true                                            # Check that exp (expiration) claim is present
-oidc_req_iat: false                                           # Check that iat (issued at) claim is present
-oidc_req_nbf: false                                           # Check that nbf (not before) claim is present
-oidc_verify_aud: true                                         # Check that aud (audience) claim matches audience
-oidc_verify_iat: false                                        # Check that iat (issued at) claim value is an integer
-oidc_verify_exp: true                                         # Check that exp (expiration) claim value is OK
-oidc_verify_iss: true                                         # Check that iss (issue) claim is as expected
+oidc_active: true                                                    # Boolean indicating whether OpenId Connect is enabled
+oidc_domains: ['*.yoda.dev']                                         # Domains that should use OIDC (list, wildcard character *)
+oidc_client_id: myClientId                                           # OIDC Client Id
+oidc_client_secret: myClientPassword                                 # OIDC Client Secret/Password
+oidc_callback_url: https://portal.yoda.test/user/callback            # OIDC Callback url
+oidc_auth_base_uri: https://oauth.wiremockapi.cloud/oauth/authorize  # OIDC Authorization URI without parameters
+oidc_token_uri: https://oauth.wiremockapi.cloud/oauth/token          # OIDC Token URI
+oidc_userinfo_uri: https://oauth.wiremockapi.cloud/userinfo          # OIDC Userinfo URI
+oidc_scopes: openid                                                  # OIDC Scopes
+oidc_acr_values: ""                                                  # OIDC Authentication Context Class Reference Values
+oidc_email_field: email                                              # The identifier of the JSON field in the id_token containing the email address (default: email)
+oidc_jwks_uri: https://oauth.wiremockapi.cloud/.well-known/jwks.json # The url where the JWKS can be found (Java web key sets)
+oidc_jwt_issuer: https://oauth.wiremockapi.cloud                     # The issuer of the JWT tokens ('iss' value in JWT, for verification)
+oidc_req_exp: true                                                   # Check that exp (expiration) claim is present
+oidc_req_iat: false                                                  # Check that iat (issued at) claim is present
+oidc_req_nbf: false                                                  # Check that nbf (not before) claim is present
+oidc_verify_aud: true                                                # Check that aud (audience) claim matches audience
+oidc_verify_iat: false                                               # Check that iat (issued at) claim value is an integer
+oidc_verify_exp: true                                                # Check that exp (expiration) claim value is OK
+oidc_verify_iss: true                                                # Check that iss (issue) claim is as expected
 
 # Mail configuration
 enable_mailpit: true
