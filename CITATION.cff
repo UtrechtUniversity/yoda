@@ -36,10 +36,14 @@ authors:
   given-names: Sietse
 - family-names: Zondergeld
   given-names: Jelmer
+- family-names: Kaur
+  given-names: Sirjan
+- family-names: Saliers
+  given-names: Claire
 repository-code: "https://github.com/utrechtuniversity/yoda"
 license: GPL-3.0-only
-version: "1.7.0"
-date-released: 2021-06-23
+version: "1.8.11"
+date-released: 2023-10-11
 contact:
 - name: Utrecht University Yoda Team
   email: yoda@uu.nl
