@@ -134,20 +134,22 @@ Note: if one of these variables are different for a host then define them in the
 
 ### Yoda configuration
 
-Variable   | Description
------------|---------------------------------------------
-instance                     | Name of Yoda instance, as defined in hosts file
-yoda_version                 | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
-yoda_ruleset_version         | Version of the main Yoda ruleset to use. Defaults to the value of `yoda_version`.
-yoda_environment             | Yoda environment: development, testing, acceptance or production
-yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
-yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
-yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
-yoda_davrods_logo_path       | Path of the DavRODS logo on the portal. Defaults to the themed logo.
-yoda_davrods_logo_link       | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
-yoda_enable_httpd            | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
-tcp_keepalive_time           | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
-tcp_keepalive_intvl          | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
+Variable                          | Description
+----------------------------------|---------------------------------------------
+instance                          | Name of Yoda instance, as defined in hosts file
+yoda_version                      | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
+yoda_ruleset_version              | Version of the main Yoda ruleset to use. Defaults to the value of `yoda_version`.
+yoda_environment                  | Yoda environment: development, testing, acceptance or production
+yoda_portal_fqdn                  | Yoda Portal fully qualified domain name (FQDN)
+yoda_davrods_fqdn                 | Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_davrods_anonymous_fqdn       | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_logo_path            | Path of the DavRODS logo on the portal. Defaults to the themed logo.
+yoda_davrods_logo_link            | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
+yoda_enable_httpd                 | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
+tcp_keepalive_time                | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
+tcp_keepalive_intvl               | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
+yoda_portal_wsgi_daemon_processes | The number of daemon processes that should be started in this process group (default: 1)
+yoda_portal_wsgi_daemon_threads   | The number of threads to be created to handle requests in each daemon process (default: 15)
 
 ### Generic logging configuration
 
