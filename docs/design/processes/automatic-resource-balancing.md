@@ -50,7 +50,7 @@ The current solution for this problem in Yoda is automatic resource balancing (A
     unixfilesystem resource.
   * EXEMPT: this resource has been manually configured to be ignored by ARB.
   * FULL: ARB applies to this resource; it has exceeded one of the trigger values
-  * AVAILABLE: ARB applies to this resource; it has not yet exceeded on of the trigger values.
+  * AVAILABLE: ARB applies to this resource; it has not yet exceeded one of the trigger values.
 
   These values are stored in both a Redis data structure store and a resource AVU. The Docker setup currently does not have a Redis store, so uses AVUs only if ARB is enabled.
 - When ARB is enabled, the `pep_resource_resolve_hierarchy_pre` policy retrieves the ARB value of a resource on create actions. It applies a write
