@@ -360,7 +360,7 @@ are assigned one of the following ARB values:</p>
 unixfilesystem resource.</li>
       <li>EXEMPT: this resource has been manually configured to be ignored by ARB.</li>
       <li>FULL: ARB applies to this resource; it has exceeded one of the trigger values</li>
-      <li>AVAILABLE: ARB applies to this resource; it has not yet exceeded on of the trigger values.</li>
+      <li>AVAILABLE: ARB applies to this resource; it has not yet exceeded one of the trigger values.</li>
     </ul>
 
     <p>These values are stored in both a Redis data structure store and a resource AVU. The Docker setup currently does not have a Redis store, so uses AVUs only if ARB is enabled.</p>
