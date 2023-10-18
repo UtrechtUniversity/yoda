@@ -15,8 +15,8 @@
   
 
 .site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list-link,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item:not(:nth-child(4)) > .nav-list-link,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item > .nav-list > .nav-list-item > .nav-list-link {
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item > .nav-list-link,
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item > .nav-list > .nav-list-item:not(:nth-child(3)) > .nav-list-link {
   background-image: none;
 }
 
@@ -25,20 +25,20 @@
   background-image: none;
 }
 
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external):nth-child(4) > .nav-list > .nav-list-item:nth-child(4) > .nav-list-link {
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external):nth-child(3) > .nav-list > .nav-list-item:nth-child(4) > .nav-list > .nav-list-item:nth-child(3) > .nav-list-link {
   font-weight: 600;
   text-decoration: none;
 }
 
 .site-nav > .nav-category-list > .nav-list-item > .nav-list-expander svg,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(4) > .nav-list-expander svg,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(4) > .nav-list > .nav-list-item:nth-child(4) > .nav-list-expander svg {
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list-expander svg,
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list > .nav-list-item:nth-child(4) > .nav-list-expander svg {
   transform: rotate(-90deg);
 }
 
 .site-nav > .nav-category-list > .nav-list-item > .nav-list,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(4) > .nav-list,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(4) > .nav-list > .nav-list-item:nth-child(4) > .nav-list {
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list,
+.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list > .nav-list-item:nth-child(4) > .nav-list {
   display: block;
 }
   </style>
@@ -60,18 +60,18 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Local ruleset patches | Yoda</title>
+<title>Automatic Resource Balancing | Yoda</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Local ruleset patches" />
+<meta property="og:title" content="Automatic Resource Balancing" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:site_name" content="Yoda" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Local ruleset patches" />
+<meta property="twitter:title" content="Automatic Resource Balancing" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Local ruleset patches","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/administration/local-ruleset-patch.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Automatic Resource Balancing","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/design/processes/automatic-resource-balancing.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -277,91 +277,117 @@
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
   
-    <li class="breadcrumb-nav-list-item"><a href="/yoda/administration/">Administration Tasks</a></li>
-  <li class="breadcrumb-nav-list-item"><span>Local ruleset patches</span></li>
+    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/">Software Design</a></li>
+    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/processes/">Processes</a></li>
+  <li class="breadcrumb-nav-list-item"><span>Automatic Resource Balancing</span></li>
   </ol>
 </nav>
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="local-ruleset-patches">
+            <h1 id="automatic-resource-balancing">
   
   
-    <a href="#local-ruleset-patches" class="anchor-heading" aria-labelledby="local-ruleset-patches"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Local ruleset patches
+    <a href="#automatic-resource-balancing" class="anchor-heading" aria-labelledby="automatic-resource-balancing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Automatic Resource Balancing
   
   
 </h1>
     
 
-<p>In some cases, you might want to make some local modifications to a ruleset in order to modify Yoda’s behaviour. This can
-be achieved by defining a <code class="language-plaintext highlighter-rouge">patch</code> parameter for a ruleset.</p>
-
-<p>You would usually create a <code class="language-plaintext highlighter-rouge">patch</code> value using a command like: <code class="language-plaintext highlighter-rouge">git diff | sed 's/^/    /'</code> on your modified ruleset.</p>
-
-<p>If <code class="language-plaintext highlighter-rouge">patch</code> is set to “” (empty string), no patch is applied. This effectively resets any earlier local changes
-deployed via Ansible. If you want to remove a local patch, you would first need to run the playbook with an empty patch value
-in order to reset earlier patches. After that, you can remove the patch value.</p>
-<h2 id="example">
+<p>This page contains information about Automatic Resource Balancing (ARB), the process that Yoda optionally uses to ensure that newly
+created data objects are stored on iRODS resources that still have enough space available.</p>
+<h2 id="background">
   
   
-    <a href="#example" class="anchor-heading" aria-labelledby="example"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Example
+    <a href="#background" class="anchor-heading" aria-labelledby="background"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Background
   
   
 </h2>
     
 
-<p>This example patch changes the UUPRIMARYRESOURCES constant in the ruleset code.</p>
+<p>One of the functions of iRODS is to facilitate storage abstraction: data can be stored on different types of back-end storage (e.g. object
+storage, NFS shares, etc), but is presented to the user in a unified way. iRODS keep track of storage areas, such as local filesystems or
+object storage buckets, as resources. Some resources can be scalable (e.g. object storage), whereas other are not scalable in practice
+(e.g. local filesystems, depending on the infrastructure).</p>
+<h2 id="problem-description">
+  
+  
+    <a href="#problem-description" class="anchor-heading" aria-labelledby="problem-description"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Problem description
+  
+  
+</h2>
+    
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>core_rulesets:
-  - name: yoda-ruleset
-    repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
-    ruleset_name: rules-uu
-    version: ""
-    patch: |
-      diff --git a/uuConstants.r b/uuConstants.r
-      index 5311d5c..aa44bad 100644
-      --- a/uuConstants.r
-      +++ b/uuConstants.r
-      @@ -36,7 +36,7 @@ UURESOURCETIERATTRNAME = UUORGMETADATAPREFIX ++ 'storage_tier';
-       UUMETADATASTORAGEMONTH =  UUORGMETADATAPREFIX ++ 'storage_data_month';
-    
-       # \constant UUPRIMARYRESOURCES
-      -UUPRIMARYRESOURCES = list("irodsResc");
-      +UUPRIMARYRESOURCES = list("irodsResc3");
-    
-       # \constant UUREPLICATIONRESOURCE
-       UUREPLICATIONRESOURCE = "irodsRescRepl";
-    install_scripts: yes
-  - name: core
-    ruleset_name: core
-    path: /etc/irods/core.re
-    install_scripts: no
-</code></pre></div></div>
-<h2 id="considerations">
+<p>When a non-scalable storage resource does not have enough space left for new data objects, iRODS needs to be configured to not store
+any new data on it, in order to prevent failures due to the resource running out of space. On environments with a small number of resources,
+manually moving resources out of the iRODS tree is workable, however this becomes cumbersome and prone to errors as the number of resources grows.
+Relying on manual administrator action also increases the risk that a resource will fill up outside of office hours, before an administrator
+has had time to move it out of the tree.</p>
+
+<p>Furthermore, moving resources out of the tree causes problems with writes to existing objects. We need to enforce a default resource on uploads of
+new files in order to be able to enforce a replica policy (e.g. a data object should have one replica in each of two datacenters). However, when a full
+resource is moved out of the tree, the default resource no longer matches with existing data objects on that resource, which results in errors when a user
+tries to update existing data objects. In order to resolve this issue, we need to keep full resources in the trees.</p>
+
+<p>iRODS has a built-in mechanism for enforcing minimum free space on unixfilesystem resources: the
+<a href="https://docs.irods.org/4.2.12/plugins/composable_resources/#unixfilesystem">minimum_free_space_for_create_in_bytes setting</a>. However, as of iRODS 4.2.12,
+this setting is incompatible with Python-iRODS-client (see e.g. https://github.com/irods/python-irodsclient/issues/462 and https://github.com/irods/irods/issues/7154).
+Therefore it is currently not usable in Yoda.</p>
+
+<p>Considering that we need to determine which resources are full on every data object creation, we need a solution that is optimized for
+frequent lookups.</p>
+<h2 id="solution">
   
   
-    <a href="#considerations" class="anchor-heading" aria-labelledby="considerations"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Considerations
+    <a href="#solution" class="anchor-heading" aria-labelledby="solution"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Solution
+  
+  
+</h2>
+    
+
+<p>The current solution for this problem in Yoda is automatic resource balancing (ARB). It consists of the following parts:</p>
+<ul>
+  <li>All iRODS systems in the zone (both provider and consumer) have a local cronjob named <code class="language-plaintext highlighter-rouge">arb-update-resources</code> that periodically retrieves
+total and available space for every local unixfilesystem resource. This information is submitted to an update rule in the ruleset.</li>
+  <li>
+    <p>The update rule compares available space to a relative trigger value (configuration setting <code class="language-plaintext highlighter-rouge">irods_arb_min_percent_free</code>) and absolute
+trigger value (configuration setting <code class="language-plaintext highlighter-rouge">irods_arb_min_gb_free</code>), and checks whether the resource has been
+manually configured to be exempt from ARB (configuration setting <code class="language-plaintext highlighter-rouge">irods_arb_exempt_resources</code>). Based on this, resources
+are assigned one of the following ARB values:</p>
+
+    <ul>
+      <li>IGNORE: this resource is irrelevant to ARB, because it is not a passthrough parent resource of a
+unixfilesystem resource.</li>
+      <li>EXEMPT: this resource has been manually configured to be ignored by ARB.</li>
+      <li>FULL: ARB applies to this resource; it has exceeded one of the trigger values</li>
+      <li>AVAILABLE: ARB applies to this resource; it has not yet exceeded on of the trigger values.</li>
+    </ul>
+
+    <p>These values are stored in both a Redis data structure store and a resource AVU. The Docker setup currently does not have a Redis store, so uses AVUs only if ARB is enabled.</p>
+  </li>
+  <li>When ARB is enabled, the <code class="language-plaintext highlighter-rouge">pep_resource_resolve_hierarchy_pre</code> policy retrieves the ARB value of a resource on create actions. It applies a write
+vote of <code class="language-plaintext highlighter-rouge">0.0</code> if the ARB value is <code class="language-plaintext highlighter-rouge">FULL</code>. If possible, the policy retrieves the ARB value from Redis; there is also a fallback lookup that uses 
+the resource AVU.</li>
+</ul>
+
+<p>Together, these components ensure that a resource does not get votes for creating new data objects after it has exceeded one of the trigger values
+for minimum amount of free space.</p>
+<h2 id="limitations">
+  
+  
+    <a href="#limitations" class="anchor-heading" aria-labelledby="limitations"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Limitations
   
   
 </h2>
     
 
 <ul>
-  <li>The playbook temporarily restores the original ruleset and then re-applies the patch. This could constitute a risk if the local modifications are related to safety or security.</li>
-  <li>You would need to verify for yourself that the patch is still compatible with the latest version of the ruleset before running the playbook. Having the playbook apply a patch that is no longer compatible with the ruleset code may cause Yoda to fail.</li>
+  <li>ARB checks available space once a minute by default. The configured trigger values need to take into account that some time can pass between
+a resource exceeding its minimum amount of free space, and ARB detecting this event.</li>
+  <li>ARB only affects creation of new data objects. Expansion of existing data objects is not considered. This needs to be taken into account
+when choosing trigger values.</li>
+  <li>ARB can currently only process unixfilesystem resources. Other storage resources are ignored.</li>
 </ul>
-<h2 id="see-also">
-  
-  
-    <a href="#see-also" class="anchor-heading" aria-labelledby="see-also"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> See also
-  
-  
-</h2>
-    
-
-<p>This page is about making local changes to rulesets that can be deployed via Ansible. This method is typically used for long-term
-changes. If you want to make a short-term change (e.g. a temporary change for testing), you might want to consider using
-<a href="/yoda/administration/hotfixing-ruleset.html">a hotfix</a> instead.</p>
 
           
 
@@ -380,7 +406,7 @@ changes. If you want to make a short-term change (e.g. a temporary change for te
         
         
           <p class="text-small text-grey-dk-000 mb-0">
-            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/administration/local-ruleset-patch.md" id="edit-this-page">Edit this page on GitHub.</a>
+            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/design/processes/automatic-resource-balancing.md" id="edit-this-page">Edit this page on GitHub.</a>
           </p>
         
       </div>

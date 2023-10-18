@@ -155,7 +155,7 @@
       <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
     </button>
   </div>
-  
+
   <nav aria-label="Main" id="site-nav" class="site-nav">
   
   
@@ -214,6 +214,8 @@
               </li><li class="nav-list-item">
                 <a href="/yoda/design/processes/asynchronous-processes.html" class="nav-list-link">Asynchronous processes</a>
               </li><li class="nav-list-item">
+                <a href="/yoda/design/processes/automatic-resource-balancing.html" class="nav-list-link">Automatic Resource Balancing</a>
+              </li><li class="nav-list-item">
                 <a href="/yoda/design/processes/locking-mechanism.html" class="nav-list-link">Folder Locking mechanism</a>
               </li><li class="nav-list-item">
                 <a href="/yoda/design/processes/publication-process.html" class="nav-list-link">Publication Process</a>
@@ -230,7 +232,7 @@
   
 </nav>
 
-  
+
   
   
     <footer class="site-footer">&copy; 2017-2023 <a href="https://www.uu.nl/" title="Utrecht University website">Utrecht University</a></footer>
@@ -731,6 +733,45 @@ The configuration is split in several parts. Below an overview of these parts an
     <tr>
       <td>s3_auth_file</td>
       <td>S3 authentication file name (default value: /var/lib/irods/.s3auth)</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="irods-automatic-resource-balancing">
+  
+  
+    <a href="#irods-automatic-resource-balancing" class="anchor-heading" aria-labelledby="irods-automatic-resource-balancing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> iRODS automatic resource balancing
+  
+  
+</h3>
+    
+
+<p>These parameters affect whether the Yoda ruleset configures iRODS to automatically stop creating
+new data objects on unixfilesystem resources that have less free storage space than a
+particular threshold.</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>irods_arb_enabled</td>
+      <td>Enable automatic resource balancing (default: false).</td>
+    </tr>
+    <tr>
+      <td>irods_arb_exempt_resources</td>
+      <td>Space-separated list of unixfilesystem resources that ARB should ignore (default: no resources are ignored)</td>
+    </tr>
+    <tr>
+      <td>irods_arb_min_gb_free</td>
+      <td>Minimum absolute amount of free space on unixfilesystem resources in GB (default: 0)</td>
+    </tr>
+    <tr>
+      <td>irods_arb_min_percent_free</td>
+      <td>Minimum relative amount of free space on unixfilesystem resources in % (default: 5)</td>
     </tr>
   </tbody>
 </table></div>
