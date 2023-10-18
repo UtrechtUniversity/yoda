@@ -21,6 +21,7 @@ Released: TBA
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
 - Support for database connection pooling with PgBouncer
+- Support for [Automatic Resource Balancing](../design/processes/automatic-resource-balancing.md)
 - Experimental support for [vault archiving](../design/overview/vault-archive.md) workflow
 - Experimental support for groups connected to SRAM
 - Upgrade iRODS to v4.2.12
@@ -44,9 +45,9 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After making sure the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Checkout tag `v1.9.0-beta.1` of the Yoda Git repository.
+3. Checkout tag `v1.9.0-rc.1` of the Yoda Git repository.
 ```bash
-git checkout v1.9.0-beta.1
+git checkout v1.9.0-rc.1
 ```
 
 4. Set the Yoda version to `release-1.9` in the configuration.
