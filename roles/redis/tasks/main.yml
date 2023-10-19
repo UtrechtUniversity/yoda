@@ -37,3 +37,4 @@
     name: redis
     state: started
     enabled: true
+  when: not ansible_check_mode
