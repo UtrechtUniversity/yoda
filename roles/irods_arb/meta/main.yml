@@ -15,4 +15,4 @@ dependencies:
   - role: python3
   - role: python_irodsclient
   - role: redis
-    when: "'icats' in group_names"
+    when: "'icats' in group_names and irods_arb_enabled"
