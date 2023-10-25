@@ -340,9 +340,21 @@ mapping the workflow is shown below.</p>
 <p>A researcher seeking to obtain research data stored in Yoda must be able to
 submit a request for this data.</p>
 
-<p>The request must belong to a research proposal, which is submitted along with
-the data request. The research proposal must describe the purpose for which the
-researcher wants to obtain the requested data.</p>
+<p>A researcher may submit two kinds of data request:</p>
+<ul>
+  <li>data requests made for the purpose of publishing the analysis results</li>
+  <li>data requests for data assessment only (DAO; e.g. project-internal quality
+assurance)</li>
+</ul>
+
+<p>In the first case, a research proposal must be submitted along with the data
+request. The research proposal must describe the purpose for which the
+researcher wants to obtain the requested data. No research proposal is submitted
+along with a DAO data request.</p>
+
+<p>In the subsequent sections, the workflows for the processing of a data request
+for the purpose of publishing the analysis results will be described. DAO data
+requests are treated in a separate section.</p>
 <h3 id="management-and-review-of-data-requests">
   
   
@@ -351,27 +363,54 @@ researcher wants to obtain the requested data.</p>
   
 </h3>
     
-<p>A delegate of a research programme’s or study’s project manager must be able to
-perform a cursory preliminary review of a data request.</p>
+<p>A project manager of a research group to which a data request is submitted must
+be able to perform a cursory preliminary review of this data request, choosing
+whether the request is accepted for further review, rejected with the
+possibility of resubmission, or rejected with no possibility of resubmission.</p>
 
-<p>Likewise, a data manager assigned as a custodian of (certain) data stored in
-Yoda must be also able to submit a review of a data request.</p>
+<p>Likewise, a data manager assigned as a custodian of data requested in a data
+request must be also able to submit a review of this data request, indicating as
+a recommendation to the project manager whether the data request should be
+accepted for further review, rejected with the possibility of resubmission, or
+rejected with no possibility of resubmission.</p>
 
-<p>After these preliminary reviews, a project manager must be able to assign a data
-request for review to one or more members of a Data Access Committee (DAC)</p>
+<p>After a positive preliminary review and after review the data manager’s
+recommendation, a project manager must be able to assign a data request for
+review to one or more members of a Data Access Committee (DAC), or to reject the
+data request (either with or without the possibility of resubmission).</p>
 
-<p>The DAC member(s) must be able to review research proposals assigned to him.</p>
-<h3 id="final-evaluation-of-research-proposals">
+<p>If a data request is assigned for review to the DAC, the project manager must be
+able to set the length of the review period.</p>
+
+<p>The DAC members must be able to review research proposals assigned to them, but
+only within the review period set by the project manager.</p>
+<h3 id="final-evaluation-of-data-requests">
   
   
-    <a href="#final-evaluation-of-research-proposals" class="anchor-heading" aria-labelledby="final-evaluation-of-research-proposals"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Final evaluation of research proposals
+    <a href="#final-evaluation-of-data-requests" class="anchor-heading" aria-labelledby="final-evaluation-of-data-requests"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Final evaluation of data requests
   
   
 </h3>
     
 <p>A project manager must be able to give a final evaluation of a research proposal
-based on the reviews by the data manager and the DAC member(s), thereby
-approving or rejecting the data request.</p>
+based on the reviews by the data manager and the DAC member(s), therein
+approving or rejecting the data request (either with or without the possibility
+of resubmission).</p>
+<h3 id="preregistration-of-research-proposals">
+  
+  
+    <a href="#preregistration-of-research-proposals" class="anchor-heading" aria-labelledby="preregistration-of-research-proposals"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Preregistration of research proposals
+  
+  
+</h3>
+    
+<p>After final approval of a data request by the project manager, the research
+proposal of the data request must be preregistered by the researcher in the
+research group’s preregistry on the Open Science Framework.</p>
+
+<p>The project manager must be able to confirm that the research proposal is
+properly preregistered in the research group’s preregistry on the Open Science
+Framework.</p>
 <h3 id="creation-of-data-transfer-agreements-dtas">
   
   
@@ -425,7 +464,7 @@ and modules are used to implement the functional requirements.</p>
 </h3>
     
 <p>To allow anyone, including newly registered Yoda users, to submit a data
-request, a public iRODS collection (named, for example, “datarequests”) must be
+request, a public iRODS collection named “datarequests-research” must be
 created. When a data request is submitted through a web form by a researcher, a
 subcollection is created which will act as a folder for all files related to the
 research proposal. The data request and research proposal is then saved to this
@@ -442,20 +481,21 @@ created, they cannot access data requests by other researchers.</p>
 </h3>
     
 <p>Project managers and data managers must be able to view all submitted data
-requests.
-They are enabled to do so by membership of a group (e.g.
-“brainmorphlab-datamanagers”; see Group Manager) that has group manager
-permissions on the public collection mentioned above (these include read and
-write permissions). Because these permissions are recursive, they also apply to
-the subcollections made by researchers.</p>
+requests and associated data (e.g. reviews).
+They are enabled to do so by membership of, respectively, the
+“datarequests-research-datamanagers” and “datarequests-research-project-managers”
+groups. Membership of these groups grant the appropriate permissions on the
+public collection mentioned above (these include read and write permissions).
+Because these permissions are recursive, they also apply to the subcollections
+made by researchers.</p>
 
 <p>Upon assignment of a research proposal for evaluation to a DAC member, the DAC
 member is granted read and write permissions on the subcollection in which the
 research proposal is stored.</p>
 
-<p>DAC membership is determined by membership of a particular group (e.g.
-“brainmorphlab-dac”), acting as a pool from which the data manager may pick an
-appropriate member.</p>
+<p>DAC membership is determined by membership of the
+“datarequests-research-data-access-committee” group, which acts as a pool from
+which the data manager may pick an appropriate member.</p>
 
 <p>A DAC member can evaluate a research proposal through a web form. The evaluation
 is saved as a JSON-formatted file in the subcollection that also holds the
@@ -465,18 +505,14 @@ research proposal itself.</p>
 and DAC groups may be created so that data requests meant for data of a
 particular research group can be handled by data managers associated with that
 research group.</p>
-<h3 id="final-evaluation-of-research-proposals-1">
+<h3 id="final-evaluation-of-research-proposals">
   
   
-    <a href="#final-evaluation-of-research-proposals-1" class="anchor-heading" aria-labelledby="final-evaluation-of-research-proposals-1"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Final evaluation of research proposals
+    <a href="#final-evaluation-of-research-proposals" class="anchor-heading" aria-labelledby="final-evaluation-of-research-proposals"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Final evaluation of research proposals
   
   
 </h3>
     
-<p>Project managers also belong to a particular group (e.g. “brainmorphlab-pm”.
-They have the same rights as those in the data manager group, thus allowing them
-to view the research proposal and associated reviews.</p>
-
 <p>A project manager can approve a research proposal through a web form that sets
 the value of the status AVU of the research proposal subcollection to
 “approved”.</p>
@@ -503,6 +539,21 @@ will receive a request to upload as signed copy of this document.</p>
 the researcher has created a signed copy of the document, he can upload it
 through a web form. The signed copy is saved in the subcollection. The data may
 now be made available to the researcher by the data manager.</p>
+<h2 id="data-assessment-only-dao-requests">
+  
+  
+    <a href="#data-assessment-only-dao-requests" class="anchor-heading" aria-labelledby="data-assessment-only-dao-requests"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Data assessment only (DAO) requests
+  
+  
+</h2>
+    
+
+<p>DAO requests follow the procedure of regular data requests, as described above,
+excluding the project manager’s preliminary review, the data manager review, the
+DAC review, and the research proposal preregistration. In other words, after
+submission, a DAO request is immediately offered to the project manager for
+final evaluation, after which the procedure is identical to regular data
+requests.</p>
 
           
 
