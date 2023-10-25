@@ -50,4 +50,4 @@ time bucket | number of revisions
 
 time bucket | number of revisions
 ------------|---------------------
-16 weeks    | 5
+16 weeks    | 16
