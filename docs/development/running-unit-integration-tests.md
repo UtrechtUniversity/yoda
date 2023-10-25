@@ -60,6 +60,22 @@ util.user.usertype.rodsadmin VERDICT_OK
 util.user.usertype.rodsuser VERDICT_OK
 ```
 
+# Running Yoda portal unit tests
+
+The Yoda portal uses the [unittest framework](https://docs.python.org/3/library/unittest.html) for the unit tests.
+The test suites can be found in the `unit-tests` subdirectory of the portal repository. Run them using Python 3:
+
+```bash
+$ cd unit-tests
+$ python3 -m unittest
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+```
+
 # Running external user service unit and integration tests
 
 The external user service (EUS) uses [pytest](https://pytest.org) for unit and integration tests.
