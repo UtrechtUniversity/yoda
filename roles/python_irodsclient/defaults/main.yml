@@ -3,4 +3,4 @@
 
 irods_service_account: irods
 
-python_irodsclient_version: 1.1.8
+python_irodsclient_version: 1.1.9

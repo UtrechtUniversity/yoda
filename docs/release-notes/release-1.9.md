@@ -25,7 +25,7 @@ Released: TBA
 - Experimental support for [vault archiving](../design/overview/vault-archive.md) workflow
 - Experimental support for groups connected to SRAM
 - Upgrade iRODS to v4.2.12
-- Upgrade python-irodsclient to v1.1.8
+- Upgrade python-irodsclient to v1.1.9
 - Upgrade davrods to v1.5.1
 - Upgrade to PostgreSQL 15
 
