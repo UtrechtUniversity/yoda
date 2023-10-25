@@ -99,7 +99,7 @@ and modules are used to implement the functional requirements.
 
 ### Submission of data requests
 To allow anyone, including newly registered Yoda users, to submit a data
-request, a public iRODS collection (named, for example, "datarequests") must be
+request, a public iRODS collection named "datarequests-research" must be
 created. When a data request is submitted through a web form by a researcher, a
 subcollection is created which will act as a folder for all files related to the
 research proposal. The data request and research proposal is then saved to this
@@ -110,20 +110,21 @@ created, they cannot access data requests by other researchers.
 
 ### Management and review of data requests
 Project managers and data managers must be able to view all submitted data
-requests.
-They are enabled to do so by membership of a group (e.g.
-"brainmorphlab-datamanagers"; see Group Manager) that has group manager
-permissions on the public collection mentioned above (these include read and
-write permissions). Because these permissions are recursive, they also apply to
-the subcollections made by researchers.
+requests and associated data (e.g. reviews).
+They are enabled to do so by membership of, respectively, the
+"datarequests-research-datamanagers" and "datarequests-research-project-managers"
+groups. Membership of these groups grant the appropriate permissions on the
+public collection mentioned above (these include read and write permissions).
+Because these permissions are recursive, they also apply to the subcollections
+made by researchers.
 
 Upon assignment of a research proposal for evaluation to a DAC member, the DAC
 member is granted read and write permissions on the subcollection in which the
 research proposal is stored.
 
-DAC membership is determined by membership of a particular group (e.g.
-"brainmorphlab-dac"), acting as a pool from which the data manager may pick an
-appropriate member.
+DAC membership is determined by membership of the
+"datarequests-research-data-access-committee" group, which acts as a pool from
+which the data manager may pick an appropriate member.
 
 A DAC member can evaluate a research proposal through a web form. The evaluation
 is saved as a JSON-formatted file in the subcollection that also holds the
@@ -135,10 +136,6 @@ particular research group can be handled by data managers associated with that
 research group.
 
 ### Final evaluation of research proposals
-Project managers also belong to a particular group (e.g. "brainmorphlab-pm".
-They have the same rights as those in the data manager group, thus allowing them
-to view the research proposal and associated reviews.
-
 A project manager can approve a research proposal through a web form that sets
 the value of the status AVU of the research proposal subcollection to
 "approved".
