@@ -42,9 +42,15 @@ Instructions:
 2. Create the groups.
 
     ```
+    # For Yoda versions prior to 1.9:
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "Project managers", "", *status, *message);' null ruleExecOut
     irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-access-committee", "datarequest", "research", "Data Access Committee", "", *status, *message);' null ruleExecOut
+
+    # For Yoda versions 1.9 and up:
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "", "", "Datamanagers", "", "", *status, *message);' null ruleExecOut
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "", "", "Project managers", "", "", *status, *message);' null ruleExecOut
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-access-committee", "datarequest", "research", "", "", "Data Access Committee", "", "", *status, *message);' null ruleExecOut
     ```
 
 3. Confirm that the groups exist.
