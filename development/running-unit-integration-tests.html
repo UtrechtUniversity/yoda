@@ -356,6 +356,27 @@ util.user.is_member_of.no VERDICT_OK
 util.user.usertype.rodsadmin VERDICT_OK
 util.user.usertype.rodsuser VERDICT_OK
 </code></pre></div></div>
+<h1 id="running-yoda-portal-unit-tests">
+  
+  
+    <a href="#running-yoda-portal-unit-tests" class="anchor-heading" aria-labelledby="running-yoda-portal-unit-tests"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Running Yoda portal unit tests
+  
+  
+</h1>
+    
+
+<p>The Yoda portal uses the <a href="https://docs.python.org/3/library/unittest.html">unittest framework</a> for the unit tests.
+The test suites can be found in the <code class="language-plaintext highlighter-rouge">unit-tests</code> subdirectory of the portal repository. Run them using Python 3:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>unit-tests
+<span class="nv">$ </span>python3 <span class="nt">-m</span> unittest
+<span class="nb">.</span>
+<span class="nt">----------------------------------------------------------------------</span>
+Ran 1 <span class="nb">test </span><span class="k">in </span>0.000s
+
+OK
+
+</code></pre></div></div>
 <h1 id="running-external-user-service-unit-and-integration-tests">
   
   
