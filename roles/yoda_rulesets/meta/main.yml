@@ -13,3 +13,4 @@ galaxy_info:
 
 dependencies:
   - role: python3
+  - role: python_irodsclient
