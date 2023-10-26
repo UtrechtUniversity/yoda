@@ -135,7 +135,7 @@
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.pip:
-    name: jsonschema==4.17.3
+    name: jsonschema==4.19.1
     executable: /usr/local/bin/pip3
     extra_args: --user
 
