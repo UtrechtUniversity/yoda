@@ -304,6 +304,38 @@
   changed_when: template_installed.stdout.find('sync') == -1
 
 
+- name: Find out if licenses system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.command: 'ils /{{ irods_zone }}/yoda/licenses'
+  ignore_errors: true
+  register: licenses_installed
+  changed_when: false
+
+
+- name: Ensure that licenses system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa no-changed-when
+  ansible.builtin.shell: |
+    imkdir /{{ irods_zone }}/yoda/licenses
+    ichmod -rM inherit /{{ irods_zone }}/yoda/licenses
+    ichmod -rM read public /{{ irods_zone }}/yoda/licenses
+  when: (not ansible_check_mode) and (licenses_installed.stderr.find('does not exist') >= 0)
+
+
+- name: Ensure licenses are present
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.shell: |
+    set -o pipefail
+    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/licenses/ i:/{{ irods_zone }}/yoda/schemas/licenses/ | grep sync
+  register: licenses
+  when: not ansible_check_mode
+  failed_when: licenses.rc not in [0, 1]
+  changed_when: licenses.stdout_lines | length != 18
+
+
 - name: Find out if preservable file formats lists system collection exists
   become_user: "{{ irods_service_account }}"
   become: true

@@ -15,6 +15,7 @@ Released: TBA
 - Support for configuring metadata schemas per research group
 - Support for configuring retention period per research group
 - Support for basic controlled vocabularies in metadata schemas
+- Support for Creative Commons (BY-ND, BY-NC, BY-NC-ND) and GPL v3 licenses
 - Support for [Data Access Passwords](../design/overview/authentication.md) expiration notifications
 - Support for research group retention period notifications
 - Support for color mode user setting
