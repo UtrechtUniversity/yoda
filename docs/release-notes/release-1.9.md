@@ -112,17 +112,22 @@ ansible-playbook -i <path-to-your-environment> playbook.yml
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-13. Update all publication metadata to support DOI versioning.
+13. Update statistics storage data to the latest format.
+```bash
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/transform-storage-data.r
+```
+
+14. Update all publication metadata to support DOI versioning.
 ```bash
 irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/transform-existing-publications.r
 ```
 
-14. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
+15. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-15. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+16. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
