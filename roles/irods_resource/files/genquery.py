@@ -1,7 +1,8 @@
 import itertools
+import re
 from collections import OrderedDict
 
-import irods_types
+def AUTO_CLOSE_QUERIES(): return True
 
 __all__ = [
     "Query",
@@ -35,13 +36,17 @@ class AS_DICT  (row_return_type): pass
 class AS_LIST  (row_return_type): pass
 class AS_TUPLE (row_return_type): pass
 
+class GenQuery_Options_Spec_Error(RuntimeError): pass
+class GenQuery_Columns_Type_Error(RuntimeError): pass
+class GenQuery_Row_Return_Type_Error(RuntimeError): pass
+
 
 class Query(object):
     """Generator-style genquery iterator.
 
     :param callback:       iRODS callback
     :param columns:        a list of SELECT column names, or columns as a comma-separated string.
-    :param condition:      (optional) where clause, as a string
+    :param conditions:     (optional) where clause, as a string
     :param output:         (optional) [default=AS_TUPLE] either AS_DICT/AS_LIST/AS_TUPLE
     :param offset:         (optional) starting row (0-based), can be used for pagination
     :param limit:          (optional) maximum amount of results, can be used for pagination
@@ -78,13 +83,16 @@ class Query(object):
 
         # Print the first 200-299 of data objects ordered descending by data
         # name, owned by a username containing 'r' or 'R', in a collection
-        # under (case-insensitive) '/tempzone/'.
+        # under (case-insensitive) '/TEMPzone/'.
         for x in Query(callback, 'COLL_NAME, ORDER_DESC(DATA_NAME), DATA_OWNER_NAME',
-                       "DATA_OWNER_NAME like '%r%' and COLL_NAME like '/tempzone/%'",
+                       "DATA_OWNER_NAME like '%r%' and COLL_NAME like '/TEMPzone/%'",
                        case_sensitive=False,
                        offset=200, limit=100):
             print('name: {}/{} - owned by {}'.format(*x))
     """
+
+    __parameter_names = tuple('columns,conditions,output,offset,limit,case_sensitive,options'.split(','))
+    __non_whitespace = re.compile('\S+')
 
     def __init__(self,
                  callback,
@@ -98,27 +106,35 @@ class Query(object):
 
         self.callback = callback
 
-        if type(columns) is str:
+        if isinstance(columns, str):
             # Convert to list for caller convenience.
-            columns = [x.strip() for x in columns.split(',')]
+            columns = [x.strip() for x in columns.split(',') if self.__non_whitespace.search(x)]
+        else:
+            try:    columns = list(columns)
+            except: raise GenQuery_Columns_Type_Error("'columns' should be a comma-separated string or sequence")
 
-        assert type(columns) is list
+        if not isinstance (columns, list):
+            raise GenQuery_Columns_Type_Error("'columns' could not be coerced to list type")
 
-        # Boilerplate.
-        self.columns    = columns
-        self.conditions = conditions
-        self.output     = output
-        self.offset     = offset
-        self.limit      = limit
-        self.options    = options
+        # Options as specified
+        self.columns        = columns     # - via 2nd argument to ctor; or copy() 'columns' keyword option
+        self.conditions     = conditions
+        self.output         = output
+        self.offset         = offset
+        self.limit          = limit
+        self.case_sensitive = case_sensitive
+        self.options        = options
 
-        assert self.output in (AS_TUPLE, AS_LIST, AS_DICT)
+        # The conditions string used in query (possibly uppercased). Appears in SQL-ish str(self) but not repr(self)
+        self.conditions_for_exec = conditions
 
-        if not case_sensitive:
-            # Uppercase the entire condition string. Should cause no problems,
-            # since query keywords are case insensitive as well.
+        if self.output not in (AS_TUPLE, AS_LIST, AS_DICT):
+            raise GenQuery_Row_Return_Type_Error()
+
+        if case_sensitive:
+            self.options   &= ~(Option.UPPER_CASE_WHERE)
+        else:
             self.options   |= Option.UPPER_CASE_WHERE
-            self.conditions = self.conditions.upper()
 
         self.gqi = None  # genquery inp
         self.gqo = None  # genquery out
@@ -127,13 +143,32 @@ class Query(object):
         # Filled when calling total_rows() on the Query.
         self._total = None
 
+    def __repr__(self, **kw):
+        return "Query(\n\t" + ",\n\t".join(
+            name + "=" + ( repr(getattr(self,name)) if name != 'output' else self.output.__name__ )
+            for name in self.__parameter_names
+        ) + "\n)"
+
+    @property
+    def parameters(self): return dict((name,getattr(self,name)) for name in self.__parameter_names)
+
+    def copy(self,**options):
+        incorrect = list(k for k in options if k not in self.__parameter_names)
+        if incorrect:
+            raise GenQuery_Options_Spec_Error('Incorrect option(s) to Query: '+', '.join(incorrect))
+        return Query(self.callback, **(dict(self.parameters.items() + options.items())))
+
     def exec_if_not_yet_execed(self):
         """Query execution is delayed until the first result or total row count is requested."""
         if self.gqi is not None:
             return
-
+        if self.options & Option.UPPER_CASE_WHERE:
+            # Uppercase the entire condition string. Should cause no problems,
+            # since query keywords are case insensitive as well.
+            self.conditions_for_exec = self.conditions.upper()
+        import irods_types
         self.gqi = self.callback.msiMakeGenQuery(', '.join(self.columns),
-                                                 self.conditions,
+                                                 self.conditions_for_exec,
                                                  irods_types.GenQueryInp())['arguments'][2]
         if self.offset > 0:
             self.gqi.rowOffset = self.offset
@@ -244,13 +279,16 @@ class Query(object):
 
     def first(self):
         """Get exactly one result (or None if no results are available)."""
+        result = None
         for x in self:
-            self._close()
-            return x
+            result = x
+            break
+        self._close()
+        return result
 
     def __str__(self):
         return 'select {}{}{}{}'.format(', '.join(self.columns),
-                                        ' where '+self.conditions   if self.conditions else '',
+                                        ' where '+self.conditions_for_exec  if self.conditions_for_exec else '',
                                         ' limit '+str(self.limit)   if self.limit is not None else '',
                                         ' offset '+str(self.offset) if self.offset else '')
 
@@ -260,20 +298,36 @@ class Query(object):
 
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# :::::              generator-style query iterator              :::::
-# :::::   --> yields one row  from query results per iteration   :::::
+# :::::               row-at-a-time query iterator               :::::
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 def row_iterator(  columns,     # comma-separated string, or list, of columns
                    conditions,  # genquery condition eg. "COLL_NAME not like '%/trash/%'"
                    row_return,  # AS_DICT or AS_LIST to specify rows as Python 'list's or 'dict's
                    callback     # fed in directly from rule call argument
                 ):
+    #
+    #  now returns a Python class instance iterator
+    #
     return Query(callback, columns, conditions, output=row_return)
 
 
+def row_generator (columns, conditions, row_return, callback):
+
+    #-=-=-=-=-=-  generator-style iterator -=-=-=-=-=-
+    #
+    # # - For reverse compatibility with the previous genquery.py
+    # # - (eg if you rely on the 'next' built-in):
+    # from genquery import *
+    # from genquery import (row_generator as row_iterator)
+    #
+    return (row for row in row_iterator(columns, conditions, row_return, callback))
+
+
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# :::::           Page-at-a-time query iterator                     ::::
+# ::              Page-at-a-time query iterator                       ::
+# ::-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=::
 # ::::: --> Yields one page of 0<N<=MAX_SQL_ROWS results as a list  ::::
 # :::::     of rows. As with the row_iterator, each row is either a ::::
 #::::::     list or dict object (dictated by the row_return param)  ::::
@@ -286,8 +340,7 @@ class paged_iterator (object):
 
         self.callback = callback
         self.set_rows_per_page ( N_rows_per_page , hard_limit_at_default = True )
-
-        self.generator =  row_iterator (columns, conditions, row_return, callback )
+        self.generator = row_generator (columns, conditions, row_return, callback )
 
     def __iter__(self): return self
     def __next__(self): return self.next()
