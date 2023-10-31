@@ -76,17 +76,16 @@ metadata_schemas:
 ```
 
 7. If you use the External User Service (EUS): some EUS parameters have changed from Yoda 1.8 to 1.9. Yoda 1.9 performs server certificate validation of requests from the provider to the EUS server by default. This can be disabled by setting `eus_api_tls_verify` to `false`. For some SMTP parameters, EUS uses joint parameters with the provider in Yoda 1.9. Please see the [configuration guide](../administration/configuring-yoda.md) for more information.
-
+```
 | Old parameter (1.8) | New parameter  | Notes                                |
 |---------------------|----------------|--------------------------------------|
 | eus_smtp_host       | smtp_server    | New format. e.g. smtp://localhost:25 |
 | eus_smtp_port       | smtp_server    | New format. e.g. smtp://localhost:25 |
 | eus_smtp_auth       | smtp_auth      |                                      |
 | eus_smtp_security   | smtp_server    | New format. e.g. smtp://localhost:25 |
-
+```
 
 8. Unless your Yoda environment has already been upgraded to PostgreSQL 15, you should upgrade PostgreSQL during or immediately after the Yoda upgrade. Please consult [the PostgreSQL upgrade information page](../administration/upgrading-postgresql.md) for information about how to perform the upgrade. Example configuration:
-
 ```yaml
 postgresql_perform_db_upgrade: true
 postgresql_remove_old_data_after_upgrade: false
