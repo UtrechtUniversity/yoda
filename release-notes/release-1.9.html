@@ -387,42 +387,15 @@ See also <a href="/yoda/administration/installing-metadata-schemas.html">this</a
  <span class="na">active</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div>    </div>
   </li>
-  <li>If you use the External User Service (EUS): some EUS parameters have changed from Yoda 1.8 to 1.9. Yoda 1.9 performs server certificate validation of requests from the provider to the EUS server by default. This can be disabled by setting <code class="language-plaintext highlighter-rouge">eus_api_tls_verify</code> to <code class="language-plaintext highlighter-rouge">false</code>. For some SMTP parameters, EUS uses joint parameters with the provider in Yoda 1.9. Please see the <a href="/yoda/administration/configuring-yoda.html">configuration guide</a> for more information.</li>
-</ol>
-
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>Old parameter (1.8)</th>
-      <th>New parameter</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>eus_smtp_host</td>
-      <td>smtp_server</td>
-      <td>New format. e.g. smtp://localhost:25</td>
-    </tr>
-    <tr>
-      <td>eus_smtp_port</td>
-      <td>smtp_server</td>
-      <td>New format. e.g. smtp://localhost:25</td>
-    </tr>
-    <tr>
-      <td>eus_smtp_auth</td>
-      <td>smtp_auth</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>eus_smtp_security</td>
-      <td>smtp_server</td>
-      <td>New format. e.g. smtp://localhost:25</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<ol>
+  <li>If you use the External User Service (EUS): some EUS parameters have changed from Yoda 1.8 to 1.9. Yoda 1.9 performs server certificate validation of requests from the provider to the EUS server by default. This can be disabled by setting <code class="language-plaintext highlighter-rouge">eus_api_tls_verify</code> to <code class="language-plaintext highlighter-rouge">false</code>. For some SMTP parameters, EUS uses joint parameters with the provider in Yoda 1.9. Please see the <a href="/yoda/administration/configuring-yoda.html">configuration guide</a> for more information.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| Old parameter (1.8) | New parameter  | Notes                                |
+|---------------------|----------------|--------------------------------------|
+| eus_smtp_host       | smtp_server    | New format. e.g. smtp://localhost:25 |
+| eus_smtp_port       | smtp_server    | New format. e.g. smtp://localhost:25 |
+| eus_smtp_auth       | smtp_auth      |                                      |
+| eus_smtp_security   | smtp_server    | New format. e.g. smtp://localhost:25 |
+</code></pre></div>    </div>
+  </li>
   <li>Unless your Yoda environment has already been upgraded to PostgreSQL 15, you should upgrade PostgreSQL during or immediately after the Yoda upgrade. Please consult <a href="/yoda/administration/upgrading-postgresql.html">the PostgreSQL upgrade information page</a> for information about how to perform the upgrade. Example configuration:
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">postgresql_perform_db_upgrade</span><span class="pi">:</span> <span class="no">true</span>
 <span class="na">postgresql_remove_old_data_after_upgrade</span><span class="pi">:</span> <span class="no">false</span>
