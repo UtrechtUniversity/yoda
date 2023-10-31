@@ -75,7 +75,7 @@ metadata_schemas:
     active: true
 ```
 
-7. If you use the External User Service (EUS): some EUS parameters have changed from Yoda 1.8 to 1.9. Yoda 1.9 performs server certificate validation of requests from the provider to the EUS server by default. This can be disabled by setting `eus_api_tls_verify` to `false`. For some SMTP parameters, EUS uses joint parameters with the provider in Yoda 1.9:
+7. If you use the External User Service (EUS): some EUS parameters have changed from Yoda 1.8 to 1.9. Yoda 1.9 performs server certificate validation of requests from the provider to the EUS server by default. This can be disabled by setting `eus_api_tls_verify` to `false`. For some SMTP parameters, EUS uses joint parameters with the provider in Yoda 1.9. Please see the [configuration guide](../administration/configuring-yoda.md) for more information.
 
 | Old parameter (1.8) | New parameter  | Notes                                |
 |---------------------|----------------|--------------------------------------|
@@ -84,7 +84,6 @@ metadata_schemas:
 | eus_smtp_auth       | smtp_auth      |                                      |
 | eus_smtp_security   | smtp_server    | New format. e.g. smtp://localhost:25 |
 
-Please see the [configuration guide](../administration/configuring-yoda.md) for more information.
 
 8. Unless your Yoda environment has already been upgraded to PostgreSQL 15, you should upgrade PostgreSQL during or immediately after the Yoda upgrade. Please consult [the PostgreSQL upgrade information page](../administration/upgrading-postgresql.md) for information about how to perform the upgrade. Example configuration:
 
@@ -112,17 +111,22 @@ ansible-playbook -i <path-to-your-environment> playbook.yml
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-13. Update all publication metadata to support DOI versioning.
+13. Update statistics storage data to the latest format.
+```bash
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/transform-storage-data.r
+```
+
+14. Update all publication metadata to support DOI versioning.
 ```bash
 irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/transform-existing-publications.r
 ```
 
-14. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
+15. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-15. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+16. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```

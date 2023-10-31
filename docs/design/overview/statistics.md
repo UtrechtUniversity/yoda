@@ -18,7 +18,7 @@ In order to enable this new way of registering storage amounts two the following
 
 ## Storage collection job
 ### Changes in collection of storage
-Where yhe original job was based on a monthly premise and with a maximum of 12 months back, the new job however will be able to run anytime. This, with a minimum resolution of daily probes.  
+Where the original job was based on a monthly premise and with a maximum of 12 months back, the new job however will be able to run anytime. This, with a minimum resolution of daily probes.  
 Where the original job was limited to a 12 month cyclic buffer, making it impossible to record for more than 1 year of historic data, the new collection method has no limit in registering storage data anymore.  
 In other words the entire storage history will be kept safely during the lifetime of the Yoda instance.
 
@@ -29,7 +29,7 @@ Thus enabling the statistics module to show (historic) tables and graphs differe
 ## Transformation of original storage data
 In order to safeguard the already present storage history it is required to be transformed to the new data structure.
 Due to the limitation that it was registered tier-based, it is unclear to which area (research, revisions or vault) the data actually belongs to.  
-Therefore, the transformed tier-based data is added to the total and presented that way in the Statistics module
+Therefore, the transformed tier-based data is added to the total and presented that way in the Statistics module.
 
 ## Registering usage data
 In previous Yoda versions a cronjob registers, once a month, all storage data for each category, based upon each group in the corresponding category.
