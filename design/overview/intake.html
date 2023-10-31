@@ -8,37 +8,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
   <link rel="stylesheet" href="/yoda/assets/css/just-the-docs-default.css">
-  
-  <link rel="stylesheet" href="/yoda/assets/css/just-the-docs-head-nav.css">
-  
+
+  <link rel="stylesheet" href="/yoda/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
   <style id="jtd-nav-activation">
   
 
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list-link,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item > .nav-list-link,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item > .nav-list > .nav-list-item:not(:nth-child(8)) > .nav-list-link {
+.site-nav > ul.nav-list:first-child > li > a,
+.site-nav > ul.nav-list:first-child > li > ul > li > a,
+.site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(8)) > a {
   background-image: none;
 }
 
-.site-nav > .nav-list:not(:nth-child(1):not(.nav-category-list)) .nav-list-link,
-.site-nav .nav-list-link.external {
+.site-nav > ul.nav-list:not(:first-child) a,
+.site-nav li.external a {
   background-image: none;
 }
 
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external):nth-child(3) > .nav-list > .nav-list-item:nth-child(2) > .nav-list > .nav-list-item:nth-child(8) > .nav-list-link {
+.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(2) > ul > li:nth-child(8) > a {
   font-weight: 600;
   text-decoration: none;
-}
-
-.site-nav > .nav-category-list > .nav-list-item > .nav-list-expander svg,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list-expander svg,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list > .nav-list-item:nth-child(2) > .nav-list-expander svg {
+}.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
+.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(2) > button svg {
   transform: rotate(-90deg);
-}
-
-.site-nav > .nav-category-list > .nav-list-item > .nav-list,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list > .nav-list-item:nth-child(2) > .nav-list {
+}.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list,
+.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(2) > ul.nav-list {
   display: block;
 }
   </style>

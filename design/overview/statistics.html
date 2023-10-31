@@ -8,37 +8,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
   <link rel="stylesheet" href="/yoda/assets/css/just-the-docs-default.css">
-  
-  <link rel="stylesheet" href="/yoda/assets/css/just-the-docs-head-nav.css">
-  
+
+  <link rel="stylesheet" href="/yoda/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
   <style id="jtd-nav-activation">
   
 
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list-link,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item > .nav-list-link,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external) > .nav-list > .nav-list-item > .nav-list > .nav-list-item:not(:nth-child(4)) > .nav-list-link {
+.site-nav > ul.nav-list:first-child > li > a,
+.site-nav > ul.nav-list:first-child > li > ul > li > a,
+.site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(4)) > a {
   background-image: none;
 }
 
-.site-nav > .nav-list:not(:nth-child(1):not(.nav-category-list)) .nav-list-link,
-.site-nav .nav-list-link.external {
+.site-nav > ul.nav-list:not(:first-child) a,
+.site-nav li.external a {
   background-image: none;
 }
 
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:not(.external):nth-child(3) > .nav-list > .nav-list-item:nth-child(2) > .nav-list > .nav-list-item:nth-child(4) > .nav-list-link {
+.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(2) > ul > li:nth-child(4) > a {
   font-weight: 600;
   text-decoration: none;
-}
-
-.site-nav > .nav-category-list > .nav-list-item > .nav-list-expander svg,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list-expander svg,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list > .nav-list-item:nth-child(2) > .nav-list-expander svg {
+}.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
+.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(2) > button svg {
   transform: rotate(-90deg);
-}
-
-.site-nav > .nav-category-list > .nav-list-item > .nav-list,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list,
-.site-nav > .nav-list:nth-child(1):not(.nav-category-list) > .nav-list-item:nth-child(3) > .nav-list > .nav-list-item:nth-child(2) > .nav-list {
+}.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list,
+.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(2) > ul.nav-list {
   display: block;
 }
   </style>
@@ -328,7 +322,7 @@ This approach has been discarded following up requests made from within the Yoda
   
 </h3>
     
-<p>Where yhe original job was based on a monthly premise and with a maximum of 12 months back, the new job however will be able to run anytime. This, with a minimum resolution of daily probes.<br />
+<p>Where the original job was based on a monthly premise and with a maximum of 12 months back, the new job however will be able to run anytime. This, with a minimum resolution of daily probes.<br />
 Where the original job was limited to a 12 month cyclic buffer, making it impossible to record for more than 1 year of historic data, the new collection method has no limit in registering storage data anymore.<br />
 In other words the entire storage history will be kept safely during the lifetime of the Yoda instance.</p>
 <h3 id="changes-in-storage-type">
@@ -351,7 +345,7 @@ Thus enabling the statistics module to show (historic) tables and graphs differe
     
 <p>In order to safeguard the already present storage history it is required to be transformed to the new data structure.
 Due to the limitation that it was registered tier-based, it is unclear to which area (research, revisions or vault) the data actually belongs to.<br />
-Therefore, the transformed tier-based data is added to the total and presented that way in the Statistics module</p>
+Therefore, the transformed tier-based data is added to the total and presented that way in the Statistics module.</p>
 <h2 id="registering-usage-data">
   
   
