@@ -1414,11 +1414,11 @@
     "relUrl": "/design/other/python-plugin.html#setting-avus-from-python"
   },"202": {
     "doc": "v0.9.7",
-    "title": "Release Notes - Yoda v0.9.7",
+    "title": "Release Notes v0.9.7",
     "content": "Version: 0.9.7 . Released: August 2017 . ",
-    "url": "/yoda/release-notes/release-0.9.7.html#release-notes---yoda-v097",
+    "url": "/yoda/release-notes/release-0.9.7.html#release-notes-v097",
     
-    "relUrl": "/release-notes/release-0.9.7.html#release-notes---yoda-v097"
+    "relUrl": "/release-notes/release-0.9.7.html#release-notes-v097"
   },"203": {
     "doc": "v0.9.7",
     "title": "What’s new",
@@ -1449,11 +1449,11 @@
     "relUrl": "/release-notes/release-0.9.7.html"
   },"207": {
     "doc": "v1.0",
-    "title": "Release Notes - Yoda v1.0",
+    "title": "Release Notes v1.0",
     "content": "Version: 1.0 . Released: November 2017 . ",
-    "url": "/yoda/release-notes/release-1.0.html#release-notes---yoda-v10",
+    "url": "/yoda/release-notes/release-1.0.html#release-notes-v10",
     
-    "relUrl": "/release-notes/release-1.0.html#release-notes---yoda-v10"
+    "relUrl": "/release-notes/release-1.0.html#release-notes-v10"
   },"208": {
     "doc": "v1.0",
     "title": "What’s new",
@@ -1484,11 +1484,11 @@
     "relUrl": "/release-notes/release-1.0.html"
   },"212": {
     "doc": "v1.1",
-    "title": "Release Notes - Yoda v1.1",
+    "title": "Release Notes v1.1",
     "content": "Version: 1.1 . Released: March 2018 . ",
-    "url": "/yoda/release-notes/release-1.1.html#release-notes---yoda-v11",
+    "url": "/yoda/release-notes/release-1.1.html#release-notes-v11",
     
-    "relUrl": "/release-notes/release-1.1.html#release-notes---yoda-v11"
+    "relUrl": "/release-notes/release-1.1.html#release-notes-v11"
   },"213": {
     "doc": "v1.1",
     "title": "What’s new",
@@ -1519,11 +1519,11 @@
     "relUrl": "/release-notes/release-1.1.html"
   },"217": {
     "doc": "v1.2",
-    "title": "Release Notes - Yoda v1.2",
+    "title": "Release Notes v1.2",
     "content": "Version: 1.2 . Released: May 2018 . ",
-    "url": "/yoda/release-notes/release-1.2.html#release-notes---yoda-v12",
+    "url": "/yoda/release-notes/release-1.2.html#release-notes-v12",
     
-    "relUrl": "/release-notes/release-1.2.html#release-notes---yoda-v12"
+    "relUrl": "/release-notes/release-1.2.html#release-notes-v12"
   },"218": {
     "doc": "v1.2",
     "title": "What’s new",
@@ -1554,11 +1554,11 @@
     "relUrl": "/release-notes/release-1.2.html"
   },"222": {
     "doc": "v1.3",
-    "title": "Release Notes - Yoda v1.3",
+    "title": "Release Notes v1.3",
     "content": "Version: 1.3 . Released: November 2018 . ",
-    "url": "/yoda/release-notes/release-1.3.html#release-notes---yoda-v13",
+    "url": "/yoda/release-notes/release-1.3.html#release-notes-v13",
     
-    "relUrl": "/release-notes/release-1.3.html#release-notes---yoda-v13"
+    "relUrl": "/release-notes/release-1.3.html#release-notes-v13"
   },"223": {
     "doc": "v1.3",
     "title": "What’s new",
@@ -1582,11 +1582,11 @@
     "relUrl": "/release-notes/release-1.3.html"
   },"226": {
     "doc": "v1.4",
-    "title": "Release Notes - Yoda v1.4",
+    "title": "Release Notes v1.4",
     "content": "Version: 1.4 . Released: December 2018 . ",
-    "url": "/yoda/release-notes/release-1.4.html#release-notes---yoda-v14",
+    "url": "/yoda/release-notes/release-1.4.html#release-notes-v14",
     
-    "relUrl": "/release-notes/release-1.4.html#release-notes---yoda-v14"
+    "relUrl": "/release-notes/release-1.4.html#release-notes-v14"
   },"227": {
     "doc": "v1.4",
     "title": "What’s new",
@@ -1610,11 +1610,11 @@
     "relUrl": "/release-notes/release-1.4.html"
   },"230": {
     "doc": "v1.5",
-    "title": "Release Notes - Yoda v1.5",
+    "title": "Release Notes v1.5",
     "content": "Version: 1.5 . Released: July 2019 . ",
-    "url": "/yoda/release-notes/release-1.5.html#release-notes---yoda-v15",
+    "url": "/yoda/release-notes/release-1.5.html#release-notes-v15",
     
-    "relUrl": "/release-notes/release-1.5.html#release-notes---yoda-v15"
+    "relUrl": "/release-notes/release-1.5.html#release-notes-v15"
   },"231": {
     "doc": "v1.5",
     "title": "What’s new",
@@ -1645,11 +1645,11 @@
     "relUrl": "/release-notes/release-1.5.html"
   },"235": {
     "doc": "v1.6",
-    "title": "Release Notes - Yoda v1.6",
+    "title": "Release Notes v1.6",
     "content": "Version: 1.6 . Released: November 2020 . ",
-    "url": "/yoda/release-notes/release-1.6.html#release-notes---yoda-v16",
+    "url": "/yoda/release-notes/release-1.6.html#release-notes-v16",
     
-    "relUrl": "/release-notes/release-1.6.html#release-notes---yoda-v16"
+    "relUrl": "/release-notes/release-1.6.html#release-notes-v16"
   },"236": {
     "doc": "v1.6",
     "title": "What’s new",
@@ -1673,11 +1673,11 @@
     "relUrl": "/release-notes/release-1.6.html"
   },"239": {
     "doc": "v1.7",
-    "title": "Release Notes - Yoda v1.7",
+    "title": "Release Notes v1.7",
     "content": "Version: 1.7 . Released: May 2021 . ",
-    "url": "/yoda/release-notes/release-1.7.html#release-notes---yoda-v17",
+    "url": "/yoda/release-notes/release-1.7.html#release-notes-v17",
     
-    "relUrl": "/release-notes/release-1.7.html#release-notes---yoda-v17"
+    "relUrl": "/release-notes/release-1.7.html#release-notes-v17"
   },"240": {
     "doc": "v1.7",
     "title": "What’s new",
@@ -1701,11 +1701,11 @@
     "relUrl": "/release-notes/release-1.7.html"
   },"243": {
     "doc": "v1.8",
-    "title": "Release Notes - Yoda v1.8",
+    "title": "Release Notes v1.8",
     "content": "Version: 1.8 . Released: July 2022 . ",
-    "url": "/yoda/release-notes/release-1.8.html#release-notes---yoda-v18",
+    "url": "/yoda/release-notes/release-1.8.html#release-notes-v18",
     
-    "relUrl": "/release-notes/release-1.8.html#release-notes---yoda-v18"
+    "relUrl": "/release-notes/release-1.8.html#release-notes-v18"
   },"244": {
     "doc": "v1.8",
     "title": "What’s new",
@@ -1716,7 +1716,7 @@
   },"245": {
     "doc": "v1.8",
     "title": "Upgrading from previous release",
-    "content": "The playbook requires Ansible 2.9.x or higher. Version constraints: . | Requires Yoda external user service to be on version 1.5.x or higher. | Requires Yoda public server to be on version 1.6.x or higher. | Upgrades from Yoda 1.7.x to Yoda 1.8.8 (or higher) need to follow this upgrade path: first upgrade from Yoda 1.7.x to Yoda 1.8.7; then upgrade to Yoda 1.8.8 (or higher). | . | Backup/copy custom configurations made to Yoda version 1.7. To view what files were changed from the defaults, run git diff. | After making sure the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Checkout branch release-1.8 of the Yoda Git repository. git checkout release-1.8 . | Set the Yoda version to release-1.8 in the configuration. yoda_version: release-1.8 . | Change the default schema from default-1 to default-2 in the configuration. Discipline must be present in all vault packages before migration. I.e. discipline must be manually added if not present yet. This requires an intervention by the responsible datamanager beforehand. default_yoda_schema: default-2 . | Two OpenID Connect configuration options have been added and one has been replaced. If OIDC is active (oidc_active), make sure you have configured, oidc_jwks_uri and oidc_jwt_issuer. Option oidc_domain is replaced with oidc_domains. Example: oidc_domains: ['domain1.tld', 'domain2.tld'] . | DataCite connection is now using REST API instead of legacy MDS. If DataCite is configured, the option datacite_server should be replaced with datacite_rest_api_url. Example: datacite_rest_api_url: api.test.datacite.org . | Install all Ansible collections needed to deploy Yoda: ansible-galaxy collection install -r requirements.yml . | Run the Ansible playbook in check mode. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update all metadata JSON in the vault to latest metadata JSON version (default-1 to default-2). irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | If the data request module is enabled, project managers, data managers and data committee members will only continue to receive emails regarding data requests if they have notifications enabled. The imeta command can be used to check whether a user has notifications enabled, and enable them if needed: | . imeta ls -u u.user@uu.nl org_settings_mail_notifications imeta set -u u.user@uu.nl org_settings_mail_notifications IMMEDIATE . | If the data request module is enabled, manually update the data request module schemas after upgrading (replace ZONENAME with the zone name of the environment): | . /etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh ZONENAME . ",
+    "content": "The playbook requires Ansible 2.9.x or higher. Version constraints: . | Requires Yoda external user service to be on version 1.5.x or higher. | Requires Yoda public server to be on version 1.6.x or higher. | Upgrades from Yoda 1.7.x to Yoda 1.8.8 (or higher) need to follow this upgrade path: first upgrade from Yoda 1.7.x to Yoda 1.8.7; then upgrade to Yoda 1.8.8 (or higher). | . | Backup/copy custom configurations made to Yoda version 1.7. To view what files were changed from the defaults, run git diff. | After making sure the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Checkout branch release-1.8 of the Yoda Git repository. git checkout release-1.8 . | Set the Yoda version to release-1.8 in the configuration. yoda_version: release-1.8 . | Change the default schema from default-1 to default-2 in the configuration. Discipline must be present in all vault packages before migration. I.e. discipline must be manually added if not present yet. This requires an intervention by the responsible datamanager beforehand. default_yoda_schema: default-2 . | Two OpenID Connect configuration options have been added and one has been replaced. If OIDC is active (oidc_active), make sure you have configured, oidc_jwks_uri and oidc_jwt_issuer. Option oidc_domain is replaced with oidc_domains. Example: oidc_domains: ['domain1.tld', 'domain2.tld'] . | DataCite connection is now using REST API instead of legacy MDS. If DataCite is configured, the option datacite_server should be replaced with datacite_rest_api_url. Example: datacite_rest_api_url: api.test.datacite.org . | Install all Ansible collections needed to deploy Yoda: ansible-galaxy collection install -r requirements.yml . | Run the Ansible playbook in check mode. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally. ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update all metadata JSON in the vault to latest metadata JSON version (default-1 to default-2). irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | If the data request module is enabled, project managers, data managers and data committee members will only continue to receive emails regarding data requests if they have notifications enabled. The imeta command can be used to check whether a user has notifications enabled, and enable them if needed: imeta ls -u u.user@uu.nl org_settings_mail_notifications imeta set -u u.user@uu.nl org_settings_mail_notifications IMMEDIATE . | If the data request module is enabled, manually update the data request module schemas after upgrading (replace ZONENAME with the zone name of the environment): /etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh ZONENAME . | . ",
     "url": "/yoda/release-notes/release-1.8.html#upgrading-from-previous-release",
     
     "relUrl": "/release-notes/release-1.8.html#upgrading-from-previous-release"
@@ -1729,11 +1729,11 @@
     "relUrl": "/release-notes/release-1.8.html"
   },"247": {
     "doc": "v1.9",
-    "title": "Release Notes - Yoda v1.9",
+    "title": "Release Notes v1.9",
     "content": "Version: 1.9 . Released: TBA . ",
-    "url": "/yoda/release-notes/release-1.9.html#release-notes---yoda-v19",
+    "url": "/yoda/release-notes/release-1.9.html#release-notes-v19",
     
-    "relUrl": "/release-notes/release-1.9.html#release-notes---yoda-v19"
+    "relUrl": "/release-notes/release-1.9.html#release-notes-v19"
   },"248": {
     "doc": "v1.9",
     "title": "What’s new",
