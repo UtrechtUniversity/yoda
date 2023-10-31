@@ -329,7 +329,7 @@
   become: true
   ansible.builtin.shell: |
     set -o pipefail
-    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/licenses/ i:/{{ irods_zone }}/yoda/schemas/licenses/ | grep sync
+    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/licenses/ i:/{{ irods_zone }}/yoda/licenses/ | grep sync
   register: licenses
   when: not ansible_check_mode
   failed_when: licenses.rc not in [0, 1]
