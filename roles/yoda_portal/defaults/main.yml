@@ -19,7 +19,6 @@ yoda_portal_log_api_call_duration: false
 
 # WSGIDaemonProcess configratuon
 # https://modwsgi.readthedocs.io/en/master/configuration-directives/WSGIDaemonProcess.html
-yoda_portal_wsgi_daemon_processes: 1
 yoda_portal_wsgi_daemon_threads: 15
 
 # iRODS configuration.
