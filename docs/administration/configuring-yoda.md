@@ -215,7 +215,7 @@ particular threshold.
 
 Variable                             | Description
 -------------------------------------|----------------------------------
-irods_arb_enabled                    | Enable automatic resource balancing (default: false). 
+irods_arb_enabled                    | Enable automatic resource balancing (default: false).
 irods_arb_exempt_resources           | Space-separated list of unixfilesystem resources that ARB should ignore (default: no resources are ignored)
 irods_arb_min_gb_free                | Minimum absolute amount of free space on unixfilesystem resources in GB (default: 0)
 irods_arb_min_percent_free           | Minimum relative amount of free space on unixfilesystem resources in % (default: 5)
@@ -451,7 +451,6 @@ oidc_active         | Boolean indicating whether OpenId Connect with the followi
 oidc_domains        | Domains that should use OIDC (list, wildcard character *). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
 oidc_client_id      | OIDC Client Id
 oidc_client_secret  | OIDC Client Secret/Password
-oidc_callback_url   | OIDC Callback url
 oidc_auth_base_uri  | OIDC Authorization URI without parameters
 oidc_login_hint     | Boolean indicating whether login hint should be added to Authorization URI (default: True)
 oidc_token_uri      | OIDC Token URI

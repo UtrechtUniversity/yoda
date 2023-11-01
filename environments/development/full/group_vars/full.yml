@@ -240,7 +240,6 @@ oidc_active: true                                                    # Boolean i
 oidc_domains: ['*.yoda.dev']                                         # Domains that should use OIDC (list, wildcard character *)
 oidc_client_id: myClientId                                           # OIDC Client Id
 oidc_client_secret: myClientPassword                                 # OIDC Client Secret/Password
-oidc_callback_url: https://portal.yoda.test/user/callback            # OIDC Callback url
 oidc_auth_base_uri: https://oauth.wiremockapi.cloud/oauth/authorize  # OIDC Authorization URI without parameters
 oidc_token_uri: https://oauth.wiremockapi.cloud/oauth/token          # OIDC Token URI
 oidc_userinfo_uri: https://oauth.wiremockapi.cloud/userinfo          # OIDC Userinfo URI
