@@ -378,6 +378,7 @@ Variable                     | Description
 enable_sram                  | Enable SRAM configuration
 sram_rest_api_url            | SRAM Rest API URL
 sram_api_key                 | SRAM Rest API key
+sram_service_entity_id       | SRAM Service Entity ID
 sram_flow                    | SRAM flow to use, 'join_request' or 'invitation'
 sram_verbose_logging         | SRAM verbose logging
 sram_tls_verify              | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.

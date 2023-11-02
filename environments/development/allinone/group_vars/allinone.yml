@@ -62,12 +62,13 @@ data_package_archive_maximum: -1                       # Maximum data package ar
 data_package_archive_resource: mockTapeArchive         # Resource to use for data package archive functionality
 
 # SRAM Configuration (experimental)
-enable_sram: false                                            # Enable SRAM configuration
-sram_rest_api_url: sram-mock.yoda.test                        # SRAM Rest API URL
-sram_api_key: PLACEHOLDER                                     # SRAM Rest API key
-sram_flow: join_request                                       # SRAM flow to use, 'join_request' or 'invitation'
-sram_verbose_logging: true                                    # SRAM verbose logging
-sram_tls_verify: false                                        # SRAM TLS verification is enabled by default
+enable_sram: false                                     # Enable SRAM configuration
+sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
+sram_api_key: PLACEHOLDER                              # SRAM Rest API key
+sram_service_entity_id: PLACEHOLDER                    # SRAM Service Entity ID
+sram_flow: invitation                                  # SRAM flow to use, 'join_request' or 'invitation'
+sram_verbose_logging: true                             # SRAM verbose logging
+sram_tls_verify: false                                 # Enable TLS verification for SRAM API calls. Enabled by default.
 
 # iRODS check tooling
 enable_irods_consistency_check: true
