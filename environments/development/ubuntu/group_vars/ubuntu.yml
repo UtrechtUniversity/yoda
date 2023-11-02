@@ -55,9 +55,10 @@ data_package_archive_resource: mockTapeArchive         # Resource to use for dat
 enable_sram: false                                     # Enable SRAM configuration
 sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
 sram_api_key: PLACEHOLDER                              # SRAM Rest API key
-sram_flow: join_request                                # SRAM flow to use, 'join_request' or 'invitation'
+sram_service_entity_id: PLACEHOLDER                    # SRAM Service Entity ID
+sram_flow: invitation                                  # SRAM flow to use, 'join_request' or 'invitation'
 sram_verbose_logging: true                             # SRAM verbose logging
-sram_tls_verify: false                                 # Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
+sram_tls_verify: false                                 # Enable TLS verification for SRAM API calls. Enabled by default.
 
 # Data Access Tokens
 enable_tokens: true                                     # Enable data access tokens for webDAV and iCommands
