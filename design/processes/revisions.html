@@ -288,7 +288,8 @@
 </h1>
     
 
-<p>For each new file or file modification Yoda creates a timestamped backup file in the revision store. The revision store is located at <code class="language-plaintext highlighter-rouge">/tempZone/yoda/revisions</code>.</p>
+<p>By default, Yoda stores revisions of data objects up to 2 GB, so that users can restore earlier versions of these data objects if needed.
+The revision store is located at <code class="language-plaintext highlighter-rouge">/tempZone/yoda/revisions</code> (where <code class="language-plaintext highlighter-rouge">tempZone</code> is the zone name).</p>
 <h2 id="revision-strategies">
   
   
@@ -297,9 +298,16 @@
   
 </h2>
     
-<p>Not all revisions are kept, only a predefined number of revisions are being kept per time bucket.
-A time bucket is a time offset from now into the past.
-Each revision strategy has a predefined set of time buckets and number of revisions stored in those buckets.</p>
+
+<p>Yoda uses a <em>revision strategy</em> that defines which revisions need to be kept. Revisions that don’t need to be kept as per
+this policy are removed by the daily revision cleanup job. A revision strategy consists of a series of successive time buckets, where
+the first bucket starts in the present.  For example, in strategy <code class="language-plaintext highlighter-rouge">A</code> (see table below), the first bucket refers to all revisions
+created in the last six hours, the second bucket refers to all revisions created in the twelve hours before that, and so forth.
+Yoda uses strategy <code class="language-plaintext highlighter-rouge">B</code> by default.</p>
+
+<p>If a data object has any revisions in a defined bucket, the cleanup job removes revisions that do not belong to any bucket. If a data object
+has no revisions in a defined bucket, the cleanup job removed all but the last revision. This ensures that at least one revision of data object
+is kept, so it can always be reverted to the previous version.</p>
 
 <p><strong>Strategy A:</strong></p>
 
