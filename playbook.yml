@@ -181,7 +181,6 @@
   become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: true
   tags:
     - icat
 
@@ -191,7 +190,6 @@
   become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: '{{ override_resc_install_rulesets | default(False) }}'
   tags:
     - resource
 

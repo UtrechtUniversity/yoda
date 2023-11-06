@@ -1,13 +1,5 @@
 # Copyright Utrecht University
 
-- name: Link ruleset directory
-  ansible.builtin.file:
-    src: yoda-ruleset
-    dest: /etc/irods/rules_uu
-    state: link
-  when: not ansible_check_mode
-
-
 - name: Get iRODS home directory
   become_user: '{{ irods_service_account }}'
   become: true
@@ -87,17 +79,6 @@
       /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
       /etc/irods/yoda-ruleset/tools/storage-statistics.r >>/var/lib/irods/log/job_storage-statistics.log 2>&1
   when: storage_statistics.stat.exists
-
-
-- name: Create local Yoda ruleset configuration
-  ansible.builtin.template:
-    src: rules_uu.cfg.j2
-    dest: "/etc/irods/yoda-ruleset/rules_uu.cfg"
-    owner: '{{ irods_service_account }}'
-    group: '{{ irods_service_account }}'
-    mode: '0600'
-  no_log: true
-  when: not ansible_check_mode
 
 
 - name: Ensure that ExecCmd dir exists

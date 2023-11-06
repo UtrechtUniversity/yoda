@@ -144,8 +144,6 @@ irods_resources:
 resource_research: irodsResc
 resource_vault: irodsRescS3
 
-override_resc_install_rulesets: true
-
 # Replication configuration
 enable_async_replication: 0            # Enable asynchronous replication: yes (1) or no (0)
 

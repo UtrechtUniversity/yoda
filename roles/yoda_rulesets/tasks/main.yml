@@ -140,6 +140,28 @@
     extra_args: --user
 
 
+- name: Link ruleset directory
+  ansible.builtin.file:
+    src: "{{ ruleset.name }}"
+    dest: "/etc/irods/{{ ruleset.ruleset_name | replace('-', '_') }}"
+    state: link
+  with_items: "{{ extra_rulesets + core_rulesets }}"
+  loop_control:
+    loop_var: ruleset
+  when: ruleset.install_scripts
+
+
+- name: Create local Yoda ruleset configuration
+  ansible.builtin.template:
+    src: rules_uu.cfg.j2
+    dest: "/etc/irods/yoda-ruleset/rules_uu.cfg"
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: '0600'
+  no_log: true
+  when: not ansible_check_mode
+
+
 - name: Ensure all rulesets are in server config
   become_user: "{{ irods_service_account }}"
   become: true
@@ -164,4 +186,4 @@
   with_items: "{{ extra_rulesets + core_rulesets }}"
   loop_control:
     loop_var: ruleset
-  when: ruleset.install_scripts and install_rulesets
+  when: ruleset.install_scripts and 'icats' in group_names
