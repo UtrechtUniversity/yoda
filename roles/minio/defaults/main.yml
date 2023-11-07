@@ -2,5 +2,5 @@
 # copyright Utrecht University
 
 # Latest stable version of MinIO: https://min.io/docs/minio/linux/index.html
-minio_rpm_url: https://dl.min.io/server/minio/release/linux-amd64/archive/minio-20230518000536.0.0.x86_64.rpm
-minio_rpm_checksum: sha256:8d278894fb60e38b216ff8d66def2a3b0cb4796fd5a3570acb5947245f3c2acb
+minio_rpm_url: https://dl.min.io/server/minio/release/linux-amd64/archive/minio-20231101183725.0.0.x86_64.rpm
+minio_rpm_checksum: sha256:d4892e45108477de088ddacc72913c672a386e515de8f9f1712aafd4bd1c7112
