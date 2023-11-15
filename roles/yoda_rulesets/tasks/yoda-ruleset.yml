@@ -757,3 +757,16 @@
   args:
     creates: "{{ token_database }}"
   when: enable_tokens
+
+
+- name: Enable SRAM group sync cronjob
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'sram-sync'
+    minute: '45'
+    hour: '3'
+    day: '*'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
+      /etc/irods/yoda-ruleset/tools/sram-sync.r >/dev/null 2>&1'
+    state: '{{ "present" if sram_auto_group_sync else "absent" }}'
