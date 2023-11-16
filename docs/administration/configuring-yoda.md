@@ -447,28 +447,29 @@ external_users_domain_filter | Domains to filter, separated by | and wildcard ch
 
 ### OpenID Connect (OIDC) configuration
 
-Variable            | Description
---------------------|---------------------------------------------
-oidc_active         | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
-oidc_domains        | Domains that should use OIDC (list, wildcard character *). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
-oidc_client_id      | OIDC Client Id
-oidc_client_secret  | OIDC Client Secret/Password
-oidc_auth_base_uri  | OIDC Authorization URI without parameters
-oidc_login_hint     | Boolean indicating whether login hint should be added to Authorization URI (default: True)
-oidc_token_uri      | OIDC Token URI
-oidc_userinfo_uri   | OIDC Userinfo URI
-oidc_scopes         | OIDC Scopes
-oidc_acr_values     | OIDC Authentication Context Class Reference Values
-oidc_email_field    | The identifier of the JSON field in the `id_token` containing the email address. Default: `email` the email address (default: email)
-oidc_jwks_uri       | The url where the JWKS can be found (Java web key sets)
-oidc_jwt_issuer     | The issuer of the JWT tokens ('iss' value in JWT, for verification)
-oidc_req_exp        | Check that exp (expiration) claim is present
-oidc_req_iat        | Check that iat (issued at) claim is present
-oidc_req_nbf        | Check that nbf (not before) claim is present
-oidc_verify_aud     | Check that aud (audience) claim matches audience
-oidc_verify_iat     | Check that iat (issued at) claim value is an integer
-oidc_verify_exp     | Check that exp (expiration) claim value is OK
-oidc_verify_iss     | Check that iss (issue) claim is as expected
+Variable             | Description
+---------------------|---------------------------------------------
+oidc_active          | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
+oidc_domains         | Domains that should use OIDC (list, wildcard character *). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
+oidc_always_redirect | Ignore OIDC domains and redirect all domains
+oidc_client_id       | OIDC Client Id
+oidc_client_secret   | OIDC Client Secret/Password
+oidc_auth_base_uri   | OIDC Authorization URI without parameters
+oidc_login_hint      | Boolean indicating whether login hint should be added to Authorization URI (default: True)
+oidc_token_uri       | OIDC Token URI
+oidc_userinfo_uri    | OIDC Userinfo URI
+oidc_scopes          | OIDC Scopes
+oidc_acr_values      | OIDC Authentication Context Class Reference Values
+oidc_email_field     | The identifier of the JSON field in the `id_token` containing the email address. Default: `email` the email address (default: email)
+oidc_jwks_uri        | The url where the JWKS can be found (Java web key sets)
+oidc_jwt_issuer      | The issuer of the JWT tokens ('iss' value in JWT, for verification)
+oidc_req_exp         | Check that exp (expiration) claim is present
+oidc_req_iat         | Check that iat (issued at) claim is present
+oidc_req_nbf         | Check that nbf (not before) claim is present
+oidc_verify_aud      | Check that aud (audience) claim matches audience
+oidc_verify_iat      | Check that iat (issued at) claim value is an integer
+oidc_verify_exp      | Check that exp (expiration) claim value is OK
+oidc_verify_iss      | Check that iss (issue) claim is as expected
 
 ### Mailpit configuration
 

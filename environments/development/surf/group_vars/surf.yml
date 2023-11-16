@@ -222,6 +222,7 @@ external_users_domain_filter: '*.yoda.dev'                    # Domains to filte
 # OpenID Connect configuration (This configuration is for TESTING purposes!)
 oidc_active: true                                                    # Boolean indicating whether OpenId Connect is enabled
 oidc_domains: ['*.yoda.dev']                                         # Domains that should use OIDC (list, wildcard character *)
+oidc_always_redirect: false                                          # Ignore OIDC domains and redirect all domains
 oidc_client_id: myClientId                                           # OIDC Client Id
 oidc_client_secret: myClientPassword                                 # OIDC Client Secret/Password
 oidc_auth_base_uri: https://oauth.wiremockapi.cloud/oauth/authorize  # OIDC Authorization URI without parameters
