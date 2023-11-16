@@ -769,4 +769,4 @@
     day: '*'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
       /etc/irods/yoda-ruleset/tools/sram-sync.r >/dev/null 2>&1'
-    state: '{{ "present" if sram_auto_group_sync else "absent" }}'
+    state: '{{ "present" if enable_sram and sram_auto_group_sync else "absent" }}'
