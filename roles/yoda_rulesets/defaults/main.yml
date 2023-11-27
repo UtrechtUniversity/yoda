@@ -24,15 +24,19 @@ enable_async_replication: 1            # Enable asynchronous replication: yes (1
 async_replication_jobs: 1              # Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab
 async_replication_batch_size: 1000     # Asynchronous replication jobs batch size
 async_replication_verbose_mode: true   # Run asynchronous replication job in verbose mode
+async_replication_dry_run: false       # Run asynchronous replication job as a trial run
 async_replication_delay_time: 0        # Delay after last modification to data object before replication job can process it (sec)
+async_replication_max_rss: 1000000000  # Limit the memory usage of a replication job
 
 # Revision configuration
 enable_revisions: 1                # Enable asynchronous revisions: yes (1) or no (0)
 revision_strategy: B               # Revision strategy: A, B, J or Simple
-async_revision_jobs: 1             # Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab
+async_revision_jobs: 1             # Number of asynchronous revision jobs, when decreasing the number of jobs, manually remove jobs from the crontab
 async_revision_batch_size: 1000    # Asynchronous revision jobs batch size
 async_revision_verbose_mode: true  # Run asynchronous revision job in verbose mode
+async_revision_dry_run: false      # Run asynchronous revision job as a trial run
 async_revision_delay_time: 0       # Delay after last modification to data object before revision job can process it (sec)
+async_revision_max_rss: 1000000000 # Limit the memory usage of a revision job
 enable_revision_cleanup: true      # Enable revision cleanup job (true/false)
 revision_cleanup_verbose_mode: false # Print extra information in revision cleanup job for troubleshooting (true/false)
 
