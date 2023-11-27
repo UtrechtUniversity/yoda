@@ -231,3 +231,13 @@
   ansible.builtin.command: 'restorecon -r /var/www/extuser'
   when: ansible_selinux.status == "enabled"
   changed_when: false
+
+
+# This is needed in case the EUS is on a different host than the Yoda portal
+# (e.g. in the full vagrant setup).
+- name: Allow EUS to connect to PostgreSQL
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+  when: ansible_selinux.status == "enabled"
