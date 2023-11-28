@@ -335,6 +335,16 @@ command for the replication job:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py -v
 </code></pre></div></div>
+<h2 id="running-a-job-in-dry-run-mode">
+  
+  
+    <a href="#running-a-job-in-dry-run-mode" class="anchor-heading" aria-labelledby="running-a-job-in-dry-run-mode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Running a job in dry run mode
+  
+  
+</h2>
+    
+
+<p>Both the replication and revision creation jobs can be run in dry run mode, which means that they will not create any replications or revisions, but simulate what would happen if they did. The parameters are <code class="language-plaintext highlighter-rouge">async_replication_dry_run</code> and ` async_revision_dry_run` for replication and revision, respectively.</p>
 
           
 

@@ -862,8 +862,16 @@ particular threshold.</p>
       <td>Run asynchronous replication job in verbose mode (default: true)</td>
     </tr>
     <tr>
+      <td>async_replication_dry_run</td>
+      <td>Run asynchronous replication job as a trial run (default: false)</td>
+    </tr>
+    <tr>
       <td>async_replication_delay_time</td>
       <td>Delay after last modification to data object before replication job can process it (in seconds, default: 0)</td>
+    </tr>
+    <tr>
+      <td>async_replication_max_rss</td>
+      <td>Limit the memory usage (in bytes) of a replication job before it stops processing. (default: 1000000000 or 1 GB)</td>
     </tr>
   </tbody>
 </table></div>
@@ -894,7 +902,7 @@ particular threshold.</p>
     </tr>
     <tr>
       <td>async_revision_jobs</td>
-      <td>Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)</td>
+      <td>Number of asynchronous revision jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)</td>
     </tr>
     <tr>
       <td>async_revision_batch_size</td>
@@ -905,8 +913,16 @@ particular threshold.</p>
       <td>Run asynchronous revision job in verbose mode (default: true)</td>
     </tr>
     <tr>
+      <td>async_revision_dry_run</td>
+      <td>Run asynchronous revision job as a trial run (default: false)</td>
+    </tr>
+    <tr>
       <td>async_revision_delay_time</td>
       <td>Delay after last modification to data object before revision job can process it (in seconds, default: 0)</td>
+    </tr>
+    <tr>
+      <td>async_revision_max_rss</td>
+      <td>Limit the memory usage (in bytes) of a revision job before it stops processing. If set to 0, there is no limit. (default: 1000000000 or 1 GB)</td>
     </tr>
     <tr>
       <td>enable_revision_cleanup</td>
