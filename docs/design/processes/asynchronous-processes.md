@@ -70,6 +70,9 @@ attributes is `org_replication_scheduled`.
 The script has a verbose mode (which can be enabled using the `-v` switch). This will log additional
 information for troubleshooting to the rodsLog.
 
+The script has a dry run mode (which can be enabled using the `-n` switch). This
+will not create any replications.
+
 If a flag data object named `/ZONE/yoda/flags/stop_replication` is present, the script will stop
 processing data objects.
 
@@ -98,6 +101,9 @@ attributes is `org_revision_scheduled`.
 
 The script has a verbose mode (which can be enabled using the `-v` switch). This will log additional
 information for troubleshooting to the rodsLog.
+
+The script has a dry run mode (which can be enabled using the `-n` switch). This
+will not create any revisions.
 
 If a flag data object named `/ZONE/yoda/flags/stop_revisions` is present, the script will stop
 processing data objects.

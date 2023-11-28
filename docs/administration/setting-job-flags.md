@@ -44,7 +44,7 @@ imkdir /tempZone/yoda/flags/stop_replication
 
 Unset:
 ```bash
-irm -r /tempZone/yoda/flags/stop_replication
+irmdir /tempZone/yoda/flags/stop_replication
 ```
 
 ### Revisions flag
@@ -55,5 +55,5 @@ imkdir /tempZone/yoda/flags/stop_revisions
 
 Unset:
 ```bash
-irm -r /tempZone/yoda/flags/stop_revisions
+irmdir /tempZone/yoda/flags/stop_revisions
 ```

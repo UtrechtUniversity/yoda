@@ -241,7 +241,9 @@ enable_async_replication       | Enable asynchronous replication: yes (1) or no 
 async_replication_jobs         | Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)
 async_replication_batch_size   | Asynchronous replication jobs batch size (default: 1000)
 async_replication_verbose_mode | Run asynchronous replication job in verbose mode (default: true)
+async_replication_dry_run      | Run asynchronous replication job as a trial run (default: false)
 async_replication_delay_time   | Delay after last modification to data object before replication job can process it (in seconds, default: 0)
+async_replication_max_rss      | Limit the memory usage (in bytes) of a replication job before it stops processing. (default: 1000000000 or 1 GB)
 
 
 ### Revision configuration
@@ -250,10 +252,12 @@ Variable                       | Description
 -------------------------------|---------------------------------------------
 enable_revisions               | Enable asynchronous revisions: yes (1) or no (0)
 revision_strategy              | Revision strategy: A, B, J or Simple (default: B)
-async_revision_jobs            | Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)
+async_revision_jobs            | Number of asynchronous revision jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)
 async_revision_batch_size      | Asynchronous revision jobs batch size (default: 1000)
 async_revision_verbose_mode    | Run asynchronous revision job in verbose mode (default: true)
+async_revision_dry_run         | Run asynchronous revision job as a trial run (default: false)
 async_revision_delay_time      | Delay after last modification to data object before revision job can process it (in seconds, default: 0)
+async_revision_max_rss         | Limit the memory usage (in bytes) of a revision job before it stops processing. If set to 0, there is no limit. (default: 1000000000 or 1 GB)
 enable_revision_cleanup        | Enable revision cleanup job (true/false, default: true)
 revision_cleanup_verbose_mode  | Print extra information in revision cleanup job for troubleshooting (true/false, default: false)
 
