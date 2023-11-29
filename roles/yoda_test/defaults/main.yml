@@ -22,6 +22,10 @@ test_users:
   - {name: projectmanager,          password: '{{ test_password }}', type: rodsuser}
   - {name: dacmember,               password: '{{ test_password }}', type: rodsuser}
 
+# Following users are created as UNIX users only
+pam_test_users:
+  - {name: pamuser, password: '{{ test_password }}'}
+
 # Following users are created as iRODS users only.
 eus_test_users:
   - {name: researcher@yoda.test,              password: '{{ test_password }}', type: rodsuser,  id: 9000}
