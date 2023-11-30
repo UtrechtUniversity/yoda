@@ -283,13 +283,6 @@ enable_datarequest             | Enable datarequest module
 datarequest_help_contact_name  | Help contact name
 datarequest_help_contact_email | Help contact email address
 
-### Help with registering configuration
-
-Variable                   | Description
----------------------------|---------------------
-login_help_contact_website | Help contact website (only in the case of someone who has a PAM account but not an iRODS account)
-login_help_contact_email   | Help contact email address (only in the case of someone who has a PAM account but not an iRODS account)
-
 ### OpenSearch configuration
 
 Variable                       | Description

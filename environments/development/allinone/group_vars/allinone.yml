@@ -40,10 +40,6 @@ enable_datarequest: true                           # Enable datarequest module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name
 datarequest_help_contact_email: PLACEHOLDER        # Help contact email
 
-# Registration help config
-login_help_contact_website: PLACEHOLDER
-login_help_contact_email: PLACEHOLDER
-
 # Data Package Reference
 enable_data_package_reference: true                # Enable Data Package References for vault data packages
 
