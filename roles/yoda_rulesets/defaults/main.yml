@@ -5,11 +5,12 @@ irods_service_account: irods
 credentials_store: /var/lib/irods/.credentials_store
 
 # Ruleset configuration.
+yoda_ruleset_version: "{{ yoda_version }}"
 core_rulesets:
   - name: yoda-ruleset
     repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
-    version: "{{ yoda_version }}"
+    version: "{{ yoda_ruleset_version }}"
     install_scripts: true
   - name: core
     ruleset_name: core
@@ -23,17 +24,24 @@ enable_async_replication: 1            # Enable asynchronous replication: yes (1
 async_replication_jobs: 1              # Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab
 async_replication_batch_size: 1000     # Asynchronous replication jobs batch size
 async_replication_verbose_mode: true   # Run asynchronous replication job in verbose mode
+async_replication_dry_run: false       # Run asynchronous replication job as a trial run
+async_replication_delay_time: 0        # Delay after last modification to data object before replication job can process it (sec)
+async_replication_max_rss: 1000000000  # Limit the memory usage of a replication job
 
 # Revision configuration
 enable_revisions: 1                # Enable asynchronous revisions: yes (1) or no (0)
 revision_strategy: B               # Revision strategy: A, B, J or Simple
-async_revision_jobs: 1             # Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab
+async_revision_jobs: 1             # Number of asynchronous revision jobs, when decreasing the number of jobs, manually remove jobs from the crontab
 async_revision_batch_size: 1000    # Asynchronous revision jobs batch size
 async_revision_verbose_mode: true  # Run asynchronous revision job in verbose mode
+async_revision_dry_run: false      # Run asynchronous revision job as a trial run
+async_revision_delay_time: 0       # Delay after last modification to data object before revision job can process it (sec)
+async_revision_max_rss: 1000000000 # Limit the memory usage of a revision job
 enable_revision_cleanup: true      # Enable revision cleanup job (true/false)
+revision_cleanup_verbose_mode: false # Print extra information in revision cleanup job for troubleshooting (true/false)
 
 # Research module specific configuration.
-default_yoda_schema: default-0   # Default Yoda metadata scheme: default-0 or default-1
+default_yoda_schema: default-3   # Default Yoda metadata scheme: core-2 or default-3
 yoda_instance: "{{ instance }}"
 update_rulesets: true            # Update already installed rulesets with git
 update_schemas: 0                # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
@@ -88,7 +96,7 @@ metadata_schemas:
   - name: default-3
     install: true
     active: true
-  - name: epos-0
+  - name: epos-msl-0
     install: true
     active: true
   - name: hptlab-0
@@ -121,6 +129,8 @@ notifications_sender_name: "Yoda system"      # Notifiations sender name
 notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email address
 
 smtp_server: PLACEHOLDER                      # SMTP server to send mail to
+                                              # (smtp://server.name:port or smtps://server.name:port,
+                                              # e.g. smtp://localhost:25)
 smtp_username: PLACEHOLDER                    # SMTP server username
 smtp_password: PLACEHOLDER                    # SMTP server password
 smtp_auth: true                               # Whether to use SMTP authentication
@@ -141,6 +151,7 @@ epic_cert: PLACEHOLDER                  # inline EPIC cert (optional)
 eus_api_fqdn: api.eus.yoda.test         # External User Service API FQDN
 eus_api_port: 8443                      # External User Service API port
 eus_api_secret: PLACEHOLDER             # External User Service API secret
+eus_api_tls_verify: true                # Enable TLS verification for EUS API calls
 
 # Research module configuration
 enable_research: true                               # Enable research module
@@ -182,10 +193,17 @@ data_package_archive_minimum: 1073741824               # Minimum data package ar
 data_package_archive_maximum: 107374182400             # Maximum data package archive size (100 GB), -1 for no limit
 data_package_archive_resource: mockTapeArchive         # Resource to use for data package archive functionality
 
+# Inactive Research Group Notification
+enable_inactivity_notification: true
+inactivity_cutoff_months: 3
+
 # SRAM Configuration (experimental)
 enable_sram: false                                     # Enable SRAM configuration
 sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
 sram_api_key: PLACEHOLDER                              # SRAM Rest API key
+sram_service_entity_id: PLACEHOLDER                    # SRAM Service Entity ID
+sram_flow: invitation                                  # SRAM flow to use, 'join_request' or 'invitation'
+sram_auto_group_sync: false                            # Automatic SRAM group sync
 sram_verbose_logging: false                            # SRAM verbose logging
 sram_tls_verify: true                                  # Enable TLS verification for SRAM API calls. Enabled by default.
 
@@ -201,3 +219,9 @@ yoda_davrods_anonymous_port: 443
 # External Users configuration
 external_users: true
 external_users_domain_filter: uu.nl | acc.uu.nl        # Domains that should use OIDC (list, wildcard character *)
+
+# Automatic resource balancing configuration
+irods_arb_enabled: false
+irods_arb_exempt_resources: ""
+irods_arb_min_gb_free: 0
+irods_arb_min_percent_free: 5

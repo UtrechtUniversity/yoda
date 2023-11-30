@@ -126,6 +126,7 @@
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
+    - irods_arb
     - role: irods_consistency_check
       when: enable_irods_consistency_check
     - role: icat_database_checker
@@ -142,6 +143,8 @@
       when: enable_postfix
     - role: mailpit
       when: enable_mailpit
+    - role: irods_gocommands
+      when: irods_enable_gocommands
   tags:
     - icat
 
@@ -156,6 +159,9 @@
     - irods_runtime
     - irods_microservices
     - irods_completion
+    - irods_arb
+    - role: irods_gocommands
+      when: irods_enable_gocommands
     - role: irods_consistency_check
       when: enable_irods_consistency_check
   tags:
@@ -176,7 +182,6 @@
   become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: true
   tags:
     - icat
 
@@ -186,7 +191,6 @@
   become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: '{{ override_resc_install_rulesets | default(False) }}'
   tags:
     - resource
 

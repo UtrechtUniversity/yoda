@@ -3,7 +3,7 @@ parent: Release Notes
 title: v1.6
 nav_order: 92
 ---
-# Release Notes - Yoda v1.6
+# Release Notes v1.6
 
 Version: 1.6
 

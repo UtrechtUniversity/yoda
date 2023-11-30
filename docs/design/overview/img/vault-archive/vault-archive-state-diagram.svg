@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="756.25px" preserveAspectRatio="none" style="width:691px;height:756px;background:#282C34;" version="1.1" viewBox="0 0 691 756" width="691.6667px" zoomAndPan="magnify"><defs/><g><rect fill="#424856" height="717.5628" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="654.1667" x="12.5" y="16.6667"/><rect fill="#282C34" height="633.3333" rx="26.0417" ry="26.0417" style="stroke: #282C34; stroke-width: 2.0833333333333335;" width="641.6667" x="18.75" y="94.6461"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="12.5" x2="666.6667" y1="88.3961" y2="88.3961"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="189.5833" x="244.7917" y="64.6565">Vault Archive</text><rect fill="#424856" height="143.4589" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="375" x="54.1667" y="286.3128"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="54.1667" x2="429.1667" y1="358.0423" y2="358.0423"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="150" x="166.6667" y="334.3026">ARCHIVED</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="325" x="68.75" y="406.0321">Archived data package</text><rect fill="#424856" height="143.4589" rx="26.0417" ry="26.0417" style="stroke: #61AFEF; stroke-width: 3.125;" width="412.5" x="35.4167" y="559.2295"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="35.4167" x2="447.9167" y1="630.9589" y2="630.9589"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="195.8333" x="143.75" y="607.2193">UNARCHIVED</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="362.5" x="50" y="678.9487">Unarchived data package</text><ellipse cx="241.6667" cy="136.3128" fill="#98C379" rx="20.8333" ry="20.8333" style="stroke: none; stroke-width: 2.0833333333333335;"/><ellipse cx="506.25" cy="631.1045" fill="none" rx="20.8333" ry="20.8333" style="stroke: #E06C75; stroke-width: 2.0833333333333335;"/><ellipse cx="507.2917" cy="632.1461" fill="#E06C75" rx="12.5" ry="12.5" style="stroke: none; stroke-width: 2.0833333333333335;"/><!--MD5=[fa3d324752b2b347abd344f12cf81cc2]
+link *start*VaultArchive to ARCHIVED--><path d="M241.6667,157.7086 C241.6667,184.0003 241.6667,232.6461 241.6667,275.167 " fill="none" id="*start*VaultArchive-&gt;ARCHIVED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="241.6667,285.8336,250,267.0836,241.6667,275.417,233.3333,267.0836,241.6667,285.8336" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="306.25" x="247.9167" y="234.3026">Archive data package</text><!--MD5=[4a975282a25c4c4f003307660773c8b3]
+link ARCHIVED to UNARCHIVED--><path d="M241.6667,430.1878 C241.6667,465.9795 241.6667,509.7711 241.6667,547.1461 " fill="none" id="ARCHIVED-&gt;UNARCHIVED" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="241.6667,558.5211,250,539.7711,241.6667,548.1045,233.3333,539.7711,241.6667,558.5211" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="343.75" x="247.9167" y="507.2193">Unarchive data package</text><!--MD5=[a457e8d385e6b19495984419c7840b4c]
+link UNARCHIVED to *end*VaultArchive--><path d="M448.375,631.1045 C456.8542,631.1045 465.3333,631.1045 473.8125,631.1045 " fill="none" id="UNARCHIVED-&gt;*end*VaultArchive" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="484.5417,631.1045,465.7917,622.7711,474.125,631.1045,465.7917,639.4378,484.5417,631.1045" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><!--MD5=[2de1f14a664d7898738ddc25e6fbc80e]
+@startuml
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
+
+state VaultArchive as "Vault Archive" {
+  ARCHIVED : Archived data package
+  UNARCHIVED : Unarchived data package
+
+  [*] - -> ARCHIVED        : Archive data package
+  ARCHIVED - -> UNARCHIVED : Unarchive data package
+  UNARCHIVED -> [*]
+}
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.8+7-Debian-1deb12u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

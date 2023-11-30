@@ -38,8 +38,15 @@
 - name: Initialize PostgreSQL database
   become_user: postgres
   become: true
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: "{{ postgresql_bin_path }}/initdb -D {{ postgresql_data_dir }}"
+  # noqa no-changed-when
+  ansible.builtin.command:
+    cmd: >
+         {{ postgresql_bin_path }}/initdb
+         -D "{{ postgresql_data_dir }}"
+         "--encoding={{ icat_database_encoding }}"
+         "--lc-ctype={{ icat_database_lc_ctype }}"
+         "--lc-collate={{ icat_database_lc_collate }}"
+         "--locale={{ icat_database_locale }}"
   when: not pg_version.stat.exists
 
 

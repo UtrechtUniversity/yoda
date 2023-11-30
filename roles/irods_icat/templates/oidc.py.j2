@@ -19,9 +19,9 @@ def validate_token(username, token, sub):
 
     # Check http status.
     if r.status_code != 200:
-        print('Failed to get a successful userinfo response '
+        print('Failed to get a successful userinfo response for {}'
               '\n{}\n{}'
-              .format(r.status_code, r.text.encode(r.encoding)))
+              .format(username, r.status_code, r.text.encode(r.encoding)))
         return False
 
     # Retrieve token email.
@@ -33,8 +33,8 @@ def validate_token(username, token, sub):
         userinfo_sub = r.json()['sub']
     except Exception:
         print('Unable to extract data from the userinfo  '
-              'response.\nKey: {}\nUserinfo:\n{}'
-              .format(EMAIL_FIELD, r.text))
+              'response for {}.\nKey: {}\nUserinfo:\n{}'
+              .format(username, EMAIL_FIELD, r.text))
         return False
 
     # Check if token email corresponds with username.
@@ -55,27 +55,27 @@ def pam_sm_authenticate(pamh, flags, argv):
     # Get the token.
     token = pamh.authtok
     if token is None:
-        print('Missing token')
+        print('Missing token for user {}'.format(username))
         return pamh.PAM_AUTH_ERR
 
     token = unescape_irods_pam_password(token)
 
     # Remove the prefix from the portal.
     if token[0:14] == '++oidc_token++':
-         token = token[14:]
-         try:
-             sub_ix = token.index('end_sub')
-             sub = token[0:sub_ix]
-             token = token[sub_ix + 7:]
-         except:
-             sub = ''
+        token = token[14:]
+        try:
+            sub_ix = token.index('end_sub')
+            sub = token[0:sub_ix]
+            token = token[sub_ix + 7:]
+        except Exception:
+            sub = ''
     else:
-        print('Not an oidc token')
+        print('Not an OIDC token for user {}'.format(username))
         return pamh.PAM_PERM_DENIED
 
     # Validate the token.
-    if(validate_token(username, token, sub)):
+    if validate_token(username, token, sub):
         return pamh.PAM_SUCCESS
 
-    print('Validation failed')
+    print('Validation failed for user {}'.format(username))
     return pamh.PAM_AUTH_ERR

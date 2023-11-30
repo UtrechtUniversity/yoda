@@ -7,5 +7,6 @@ rpm_dest_dir: /tmp
 zabbix_version: "{{ yoda_version }}"
 
 zabbix_server: 192.168.56.20
+zabbix_timeout: 15               # in seconds (range: 1-30)
 
 repo_only: false # Only download packages from repos.

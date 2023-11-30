@@ -35,7 +35,7 @@
         Allow from all
     </Directory>
 
-    WSGIDaemonProcess yodaweb user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} threads=5 python-home=/var/www/yoda/venv
+    WSGIDaemonProcess yodaweb user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} threads={{ yoda_portal_wsgi_daemon_threads }} python-home=/var/www/yoda/venv
     WSGIProcessGroup yodaweb
 
 {% if yoda_environment == "development" %}

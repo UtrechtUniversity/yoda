@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1297.9167px" preserveAspectRatio="none" style="width:714px;height:1297px;background:#282C34;" version="1.1" viewBox="0 0 714 1297" width="714.5833px" zoomAndPan="magnify"><defs/><g><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="125" x2="125" y1="188.3961" y2="1100.628"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="479.1667" x2="479.1667" y1="188.3961" y2="1100.628"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="195.8333" x="20.8333" y="175.0732">Datamanager</text><ellipse cx="125" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M125,43.75 L125,100 M97.9167,60.4167 L152.0833,60.4167 M125,100 L97.9167,131.25 M125,100 L152.0833,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="195.8333" x="20.8333" y="1136.1178">Datamanager</text><ellipse cx="125" cy="1170.2741" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M125,1186.9408 L125,1243.1908 M97.9167,1203.6075 L152.0833,1203.6075 M125,1243.1908 L97.9167,1274.4408 M125,1243.1908 L152.0833,1274.4408 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><rect fill="#424856" height="80.0628" style="stroke: #61AFEF; stroke-width: 3.125;" width="108.3333" x="425" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="70.8333" x="443.75" y="158.4065">Yoda</text><rect fill="#424856" height="80.0628" style="stroke: #61AFEF; stroke-width: 3.125;" width="108.3333" x="425" y="1098.5447"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="70.8333" x="443.75" y="1150.7011">Yoda</text><rect fill="#424856" height="6.25" style="stroke: #424856; stroke-width: 2.0833333333333335;" width="683.3333" x="6.25" y="261.7609"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="689.5833" y1="261.7609" y2="261.7609"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="689.5833" y1="268.0109" y2="268.0109"/><rect fill="#424856" height="67.5628" style="stroke: #ABB2BF; stroke-width: 4.166666666666667;" width="389.5833" x="153.125" y="230.0628"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="343.75" x="169.7917" y="275.9693">Archive data package</text><polygon fill="#61AFEF" points="454.1667,373.5217,475,381.8551,454.1667,390.1884,462.5,381.8551" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="125" x2="466.6667" y1="381.8551" y2="381.8551"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="225" x="143.75" y="364.3654">Archive on tape</text><path d="M297.9167,408.9384 L297.9167,479.7717 L660.4167,479.7717 L660.4167,429.7717 L639.5833,408.9384 L297.9167,408.9384 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M639.5833,408.9384 L639.5833,429.7717 L660.4167,429.7717 L639.5833,408.9384 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="310.4167" x="314.5833" y="456.9282">Scheduled for archive</text><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="479.1667" x2="566.6667" y1="554.4807" y2="554.4807"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="566.6667" x2="566.6667" y1="554.4807" y2="581.564"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="481.25" x2="566.6667" y1="581.564" y2="581.564"/><polygon fill="#61AFEF" points="502.0833,573.2307,481.25,581.564,502.0833,589.8973,493.75,581.564" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="108.3333" x="497.9167" y="536.991">Archive</text><path d="M389.5833,608.6473 L389.5833,679.4807 L568.75,679.4807 L568.75,629.4807 L547.9167,608.6473 L389.5833,608.6473 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M547.9167,608.6473 L547.9167,629.4807 L568.75,629.4807 L547.9167,608.6473 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="127.0833" x="406.25" y="656.6371">Archived</text><rect fill="#424856" height="6.25" style="stroke: #424856; stroke-width: 2.0833333333333335;" width="683.3333" x="6.25" y="743.3249"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="689.5833" y1="743.3249" y2="743.3249"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="689.5833" y1="749.5749" y2="749.5749"/><rect fill="#424856" height="67.5628" style="stroke: #ABB2BF; stroke-width: 4.166666666666667;" width="431.25" x="132.2917" y="711.6268"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="385.4167" x="148.9583" y="757.5333">Unarchive data package</text><polygon fill="#61AFEF" points="454.1667,855.0857,475,863.4191,454.1667,871.7524,462.5,863.4191" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="125" x2="466.6667" y1="863.4191" y2="863.4191"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="295.8333" x="143.75" y="845.9294">Unarchive from tape</text><path d="M279.1667,890.5024 L279.1667,961.3357 L679.1667,961.3357 L679.1667,911.3357 L658.3333,890.5024 L279.1667,890.5024 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M658.3333,890.5024 L658.3333,911.3357 L679.1667,911.3357 L658.3333,890.5024 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="347.9167" x="295.8333" y="938.4922">Scheduled for unarchive</text><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="479.1667" x2="566.6667" y1="1036.0447" y2="1036.0447"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="566.6667" x2="566.6667" y1="1036.0447" y2="1063.128"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="481.25" x2="566.6667" y1="1063.128" y2="1063.128"/><polygon fill="#61AFEF" points="502.0833,1054.7947,481.25,1063.128,502.0833,1071.4613,493.75,1063.128" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="145.8333" x="497.9167" y="1018.555">Unarchive</text><!--MD5=[b27eedd46a56a4470f0ae2d1031143f8]
+@startuml
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
+
+actor       Datamanager as datamanager
+participant Yoda        as yoda
+
+== Archive data package ==
+datamanager  -> yoda        : Archive on tape
+note over yoda              : Scheduled for archive
+yoda         -> yoda        : Archive
+note over yoda              : Archived
+== Unarchive data package ==
+datamanager  -> yoda        : Unarchive from tape
+note over yoda              : Scheduled for unarchive
+yoda         -> yoda        : Unarchive
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.8+7-Debian-1deb12u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

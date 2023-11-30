@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+daemonize yes
+pidfile /var/run/redis/redis.pid
+port 6379
+bind 127.0.0.1
+
+timeout 300
+
+loglevel "notice"
+logfile /var/log/redis/redis-server.log

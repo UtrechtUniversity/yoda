@@ -136,23 +136,35 @@ Note: if one of these variables are different for a host then define them in the
 
 ### Yoda configuration
 
-Variable                     | Description
------------------------------|---------------------------------------------
-instance                     | Name of Yoda instance, as defined in hosts file
-yoda_version                 | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
-yoda_environment             | Yoda environment: development, testing, acceptance or production
-yoda_portal_fqdn             | Yoda Portal fully qualified domain name (FQDN)
-yoda_davrods_fqdn            | Yoda Davrods WebDAV fully qualified domain name (FQDN)
-yoda_davrods_anonymous_fqdn  | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
-yoda_davrods_logo_path       | Path of the DavRODS logo on the portal. Defaults to the themed logo.
-yoda_davrods_logo_link       | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
-yoda_enable_httpd            | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
-httpd_log_forwarded_for      | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.
-httpd_log_user_agent         | Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false)
-tcp_keepalive_time           | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
-tcp_keepalive_intvl          | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
-yoda_theme                   | The theme to use for the Yoda Portal. See also [the theme documentation](../design/overview/theme-packages.md). By default, Yoda uses the UU theme.
-yoda_theme_path              | Path where themes for the Yoda Portal are retrieved from. See [the theme documentation](../design/overview/theme-packages.md) for more information.
+Variable                          | Description
+----------------------------------|---------------------------------------------
+instance                          | Name of Yoda instance, as defined in hosts file
+yoda_version                      | Yoda version. Use a git branch (e.g. release-1.8) or a tag (e.g. v1.8.5)
+yoda_ruleset_version              | Version of the main Yoda ruleset to use. Defaults to the value of `yoda_version`.
+yoda_portal_version               | Version of the Yoda portal to use. Defaults to the value of `yoda_version`.
+yoda_environment                  | Yoda environment: development, testing, acceptance or production
+yoda_portal_fqdn                  | Yoda Portal fully qualified domain name (FQDN)
+yoda_davrods_fqdn                 | Yoda Davrods WebDAV fully qualified domain name (FQDN)
+yoda_davrods_anonymous_fqdn       | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_logo_path            | Path of the DavRODS logo on the portal. Defaults to the themed logo.
+yoda_davrods_logo_link            | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
+yoda_enable_httpd                 | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
+tcp_keepalive_time                | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
+tcp_keepalive_intvl               | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
+yoda_theme                        | The theme to use for the Yoda Portal. See also [the theme documentation](../design/overview/theme-packages.md). By default, Yoda uses the UU theme.
+yoda_theme_path                   | Path where themes for the Yoda Portal are retrieved from. See [the theme documentation](../design/overview/theme-packages.md) for more information.
+portal_session_cookie_samesite    | Samesite setting for session cookies Yoda Portal. Should be 'Lax' if OIDC is enabled and identity provider is in different domain. Otherwise it should be 'Strict'. Default value: 'Strict'.
+yoda_portal_wsgi_daemon_processes | The number of daemon processes that should be started in this process group (default: 1)
+yoda_portal_wsgi_daemon_threads   | The number of threads to be created to handle requests in each daemon process (default: 15)
+
+### Generic logging configuration
+
+Variable                           | Description
+-----------------------------------|---------------------------------------------
+httpd_log_forwarded_for            | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.
+httpd_log_user_agent               | Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false)
+yoda_portal_log_api_call_duration  | Whether to log duration and parameters of all API calls from the Yoda portal. This is mainly useful for performance testing (boolean, default value: false)
+
 
 ### iRODS configuration
 
@@ -163,6 +175,10 @@ irods_password                       | iRODS admin password
 irods_database_user                  | The iRODS database username
 irods_database_password              | The password for the iRODS database username
 irods_database_enable_yoda_indexes   | Enable indexes to speed up Yoda search operations (default: false). This is mainly useful for medium-sized and large environments (millions of data objects or more). Please note that the indexes can take up a significant amount of diskspace (rough estimate: 10-30% increase in database size). They will be created asynchronously. This can take some time on existing environments with a significant amount of data, and temporarily decrease performance.
+icat_database_encoding               | iRODS database encoding (default: UTF-8)
+icat_database_locale                 | iRODS database locale setting (default: en_US.UTF-8)
+icat_database_lc_collate             | iRODS database locale LC_COLLATE setting (default: en_US.UTF-8)
+icat_database_lc_ctype               | iRODS database locale LC_CTYPE setting (default: en_US.UTF-8)
 irods_zone                           | The name of the iRODS Zone
 irods_icat_fqdn                      | iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn                  | iRODS database fully qualified domain name (FQDN)
@@ -177,6 +193,9 @@ irods_enable_service                 | Whether to enable the iRODS service. Set 
 irods_rum_job_enabled                | Whether to enable the daily RUM job for removing unused metadata entries (default: true)
 irods_rum_job_hour                   | Time to run RUM job - hour (default: 20)
 irods_rum_job_minute                 | Time to run RUM job - minute (default: 0)
+irods_enable_gocommands              | Whether to install the GoCommands CLI (disabled by default)
+irods_gocommands_version             | GoCommands version
+irods_gocommands_archive_checksum    | MD5 checksum of the GoCommands archive for the version to be installed
 
 ### S3 configuration - for iRODS S3 resource plugin and s3cmd utilities
 
@@ -188,15 +207,27 @@ s3_secret_key                        | S3 secret key of S3 buckets (used by s3cm
 s3_hostname                          | S3 server hostname (used by s3cmd; the hostname used by the S3 resource plugin is configured in the S3 resource contexts instead)
 s3_auth_file                         | S3 authentication file name (default value: /var/lib/irods/.s3auth)
 
+### iRODS automatic resource balancing
+
+These parameters affect whether the Yoda ruleset configures iRODS to automatically stop creating
+new data objects on unixfilesystem resources that have less free storage space than a
+particular threshold.
+
+Variable                             | Description
+-------------------------------------|----------------------------------
+irods_arb_enabled                    | Enable automatic resource balancing (default: false).
+irods_arb_exempt_resources           | Space-separated list of unixfilesystem resources that ARB should ignore (default: no resources are ignored)
+irods_arb_min_gb_free                | Minimum absolute amount of free space on unixfilesystem resources in GB (default: 0)
+irods_arb_min_percent_free           | Minimum relative amount of free space on unixfilesystem resources in % (default: 5)
+
 ### Research module configuration
 
 Variable                       | Description
 -------------------------------|---------------------------------------------
-default_yoda_schema            | Default Yoda XML scheme: default-0 or default-1
+default_yoda_schema            | Default Yoda metadata scheme: default-3
 yoda_random_id_length          | Length of random ID to add to persistent identifier
 yoda_prefix                    | Prefix for internal portion of persistent identifier
 update_rulesets                | Update already installed rulesets with git
-override_resc_install_rulesets | Install rulesets on server even if it is a resource server (default: false). This override parameter can be used on resource servers that have an additional role, e.g. DavRODS server
 update_schemas                 | Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files               | Location of Yoda credentials files
 temporary_files                | List of temporary files for cleanup functionality
@@ -210,6 +241,10 @@ enable_async_replication       | Enable asynchronous replication: yes (1) or no 
 async_replication_jobs         | Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)
 async_replication_batch_size   | Asynchronous replication jobs batch size (default: 1000)
 async_replication_verbose_mode | Run asynchronous replication job in verbose mode (default: true)
+async_replication_dry_run      | Run asynchronous replication job as a trial run (default: false)
+async_replication_delay_time   | Delay after last modification to data object before replication job can process it (in seconds, default: 0)
+async_replication_max_rss      | Limit the memory usage (in bytes) of a replication job before it stops processing. (default: 1000000000 or 1 GB)
+
 
 ### Revision configuration
 
@@ -217,10 +252,14 @@ Variable                       | Description
 -------------------------------|---------------------------------------------
 enable_revisions               | Enable asynchronous revisions: yes (1) or no (0)
 revision_strategy              | Revision strategy: A, B, J or Simple (default: B)
-async_revision_jobs            | Number of asynchronous replication jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)
+async_revision_jobs            | Number of asynchronous revision jobs, when decreasing the number of jobs, manually remove jobs from the crontab (default: 1)
 async_revision_batch_size      | Asynchronous revision jobs batch size (default: 1000)
 async_revision_verbose_mode    | Run asynchronous revision job in verbose mode (default: true)
-enable_revision_cleanup: true  | Enable revision cleanup job (true/false)
+async_revision_dry_run         | Run asynchronous revision job as a trial run (default: false)
+async_revision_delay_time      | Delay after last modification to data object before revision job can process it (in seconds, default: 0)
+async_revision_max_rss         | Limit the memory usage (in bytes) of a revision job before it stops processing. If set to 0, there is no limit. (default: 1000000000 or 1 GB)
+enable_revision_cleanup        | Enable revision cleanup job (true/false, default: true)
+revision_cleanup_verbose_mode  | Print extra information in revision cleanup job for troubleshooting (true/false, default: false)
 
 ### Deposit module configuration
 
@@ -265,7 +304,7 @@ These settings also affect the External User Service (EUS).
 
 Variable                     | Description
 -----------------------------|---------------------------------------------
-smtp_server                  | SMTP server to send mail to
+smtp_server                  | SMTP server to send mail to (smtp://server.name:port or smtps://server.name:port, e.g. smtp://localhost:25)
 smtp_username                | SMTP server username
 smtp_password                | SMTP server password
 smtp_auth                    | Whether to use SMTP authentication (true/false, default: true)
@@ -328,6 +367,13 @@ datacite_prefix              | DataCite DOI prefix
 datacite_rest_api_url        | DataCite REST API URL
 datacite_tls_verify          | Enable TLS verification for Datacite API calls (0: no, 1: yes). Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
 
+### Inactive Research Group Notifications configuration
+
+Variable                       | Description
+-------------------------------|-------------------------------------------
+enable_inactivity_notification | Enable notifications to datamanager groups of inactive research groups
+inactivity_cutoff_months       | Number of months a research group has to be inactive for datamanagers to be notified
+
 ### SRAM Configuration (experimental)
 
 Variable                     | Description
@@ -335,6 +381,9 @@ Variable                     | Description
 enable_sram                  | Enable SRAM configuration
 sram_rest_api_url            | SRAM Rest API URL
 sram_api_key                 | SRAM Rest API key
+sram_service_entity_id       | SRAM Service Entity ID
+sram_flow                    | SRAM flow to use, 'join_request' or 'invitation'
+sram_auto_group_sync         | Automatic SRAM group sync
 sram_verbose_logging         | SRAM verbose logging
 sram_tls_verify              | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
 
@@ -378,48 +427,52 @@ yoda_public_host             | Yoda public host
 yoda_public_fqdn             | Yoda public fully qualified domain name (FQDN)
 upload_priv_key              | Yoda public upload private key (base64 encoded)
 upload_pub_key               | Yoda public upload public key (base64 encoded)
+yoda_moai_version            | Version of MOAI (the OAI-PMH server) to use. Defaults to the value of `yoda_version`.
 
 ### External user service configuration
 
 Variable                     | Description
 -----------------------------|---------------------------------------------
 yoda_eus_fqdn                | Yoda External User Service fully qualified domain name (FQDN)
+yoda_eus_version             | Version of External User Service to use. Defaults to the value of `yoda_version`.
 eus_api_fqdn                 | External User Service API fully qualified domain name (FQDN)
 eus_api_port                 | External User Service API port
 eus_api_secret               | External User Service API secret
+eus_api_tls_verify           | Enable TLS verification for EUS API calls. Enabled by default
 eus_db_password              | External User Service database password
 eus_smtp_from_name           | External User Service email from name
 eus_smtp_from_address        | External User Service email from address
 eus_smtp_replyto_name        | External User Service email reply-to name
 eus_smtp_replyto_address     | External User Service email reply-to address
 eus_mail_template            | External User Service mail template
+eus_mail_validate_address    | External User Service: validate email address before sending email. If this option is enabled, EUS will only send emails to users if their username is a valid email address. It is intended to be used on environments where admins want to use an iRODS user with a non-email username to invite external users. This parameter is not meant to be enabled if the test data set installed by the test playbook has been loaded. Default value: false.
 external_users_domain_filter | Domains to filter, separated by | and wildcard character *
 
 ### OpenID Connect (OIDC) configuration
 
-Variable            | Description
---------------------|---------------------------------------------
-oidc_active         | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
-oidc_domains        | Domains that should use OIDC (list, wildcard character *). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
-oidc_client_id      | OIDC Client Id
-oidc_client_secret  | OIDC Client Secret/Password
-oidc_callback_url   | OIDC Callback url
-oidc_auth_base_uri  | OIDC Authorization URI without parameters
-oidc_login_hint     | Boolean indicating whether login hint should be added to Authorization URI (default: True)
-oidc_token_uri      | OIDC Token URI
-oidc_userinfo_uri   | OIDC Userinfo URI
-oidc_scopes         | OIDC Scopes
-oidc_acr_values     | OIDC Authentication Context Class Reference Values
-oidc_email_field    | The identifier of the JSON field in the `id_token` containing the email address. Default: `email` the email address (default: email)
-oidc_jwks_uri       | The url where the JWKS can be found (Java web key sets)
-oidc_jwt_issuer     | The issuer of the JWT tokens ('iss' value in JWT, for verification)
-oidc_req_exp        | Check that exp (expiration) claim is present
-oidc_req_iat        | Check that iat (issued at) claim is present
-oidc_req_nbf        | Check that nbf (not before) claim is present
-oidc_verify_aud     | Check that aud (audience) claim matches audience
-oidc_verify_iat     | Check that iat (issued at) claim value is an integer
-oidc_verify_exp     | Check that exp (expiration) claim value is OK
-oidc_verify_iss     | Check that iss (issue) claim is as expected
+Variable             | Description
+---------------------|---------------------------------------------
+oidc_active          | Boolean indicating whether OpenId Connect with the following parameters is enabled of not. Must be `true` or `false`
+oidc_domains         | Domains that should use OIDC (list, wildcard character *). If this parameter is set, the first domain in the list is also used to generate the user name placeholder on the portal gate and login pages.
+oidc_always_redirect | Ignore OIDC domains and redirect all domains
+oidc_client_id       | OIDC Client Id
+oidc_client_secret   | OIDC Client Secret/Password
+oidc_auth_base_uri   | OIDC Authorization URI without parameters
+oidc_login_hint      | Boolean indicating whether login hint should be added to Authorization URI (default: True)
+oidc_token_uri       | OIDC Token URI
+oidc_userinfo_uri    | OIDC Userinfo URI
+oidc_scopes          | OIDC Scopes
+oidc_acr_values      | OIDC Authentication Context Class Reference Values
+oidc_email_field     | The identifier of the JSON field in the `id_token` containing the email address. Default: `email` the email address (default: email)
+oidc_jwks_uri        | The url where the JWKS can be found (Java web key sets)
+oidc_jwt_issuer      | The issuer of the JWT tokens ('iss' value in JWT, for verification)
+oidc_req_exp         | Check that exp (expiration) claim is present
+oidc_req_iat         | Check that iat (issued at) claim is present
+oidc_req_nbf         | Check that nbf (not before) claim is present
+oidc_verify_aud      | Check that aud (audience) claim matches audience
+oidc_verify_iat      | Check that iat (issued at) claim value is an integer
+oidc_verify_exp      | Check that exp (expiration) claim value is OK
+oidc_verify_iss      | Check that iss (issue) claim is as expected
 
 ### Mailpit configuration
 

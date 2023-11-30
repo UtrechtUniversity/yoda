@@ -25,6 +25,7 @@ Specific information:
     - [Applying a permanent local change to a ruleset](local-ruleset-patch.md)
 - [Working with the local Postfix MTA](local-postfix-mta.md)
 - [Upgrading metadata schemas](upgrading-metadata-schemas.md)
+- [Upgrading PostgreSQL](upgrading-postgresql.md)
 
 ## Operations
 

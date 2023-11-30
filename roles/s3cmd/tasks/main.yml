@@ -13,4 +13,4 @@
     dest: /var/lib/irods/.s3cfg
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-    mode: 0600
+    mode: '0600'

@@ -6,10 +6,10 @@ rpm_dest_dir: /tmp
 
 # davrods RPM location and checksum
 davrods:
-  package: davrods-4.2.12_1.5.0-1
-  url: https://github.com/UtrechtUniversity/davrods/releases/download/4.2.12_1.5.0/
-  filename: davrods-4.2.12_1.5.0-1.rpm
-  checksum: sha256:d259cb9cd49d62b935d2ec83f527180b8fbdb0bcfe7202e20c181d280787b36a
+  package: davrods-4.2.12_1.5.1-1
+  url: https://github.com/UtrechtUniversity/davrods/releases/download/4.2.12_1.5.1/
+  filename: davrods-4.2.12_1.5.1-1.rpm
+  checksum: sha256:dcd1e17aa1295ec1347c050d3e7936d670379ee51b1ec0ec15ce5d9311837e34
 
 yoda_davrods_fqdn: data.yoda.test           # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_port: 443
@@ -18,7 +18,6 @@ yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test
 yoda_davrods_anonymous_port: 443
 
-yoda_davrods_logo_path: /assets/img/logo.svg
 yoda_davrods_logo_link: https://www.uu.nl
 
 yoda_portal_fqdn: portal.yoda.test          # Yoda Portal fully qualified domain name (FQDN)

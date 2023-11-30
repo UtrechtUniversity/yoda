@@ -3,7 +3,7 @@ parent: Release Notes
 title: v1.8
 nav_order: 90
 ---
-# Release Notes - Yoda v1.8
+# Release Notes v1.8
 
 Version: 1.8
 
@@ -28,8 +28,9 @@ Released: July 2022
 - Added Mailpit for easier mail testing during [development](../development/development-tips.md)
 - DataCite connection uses REST API instead of legacy MDS
 - Several UX improvements to default theme
-- Upgrade iRODS to v4.2.11
-- Upgrade python-irodsclient to v1.1.3
+- Upgrade iRODS to v4.2.11 (Yoda 1.8.8+ has iRODS 4.2.12)
+- Upgrade python-irodsclient to v1.1.3 (Yoda 1.8.8+ has Python-irodsclient 1.1.8)
+- Support for PostgreSQL 15, as well as connection pooling for the iCAT database (in Yoda 1.8.7 and higher)
 - Removed `legacy_tls` flag (legacy TLS support, TLS 1.0 and 1.1)
 
 ### Known issues
@@ -37,9 +38,14 @@ Released: July 2022
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python [irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54)
 
 ## Upgrading from previous release
-Upgrade is supported by Ansible (2.9.x).
-Requires Yoda external user service to be on version 1.5.x or higher.
-Requires Yoda public server to be on version 1.6.x or higher.
+
+The playbook requires Ansible 2.9.x or higher.
+
+Version constraints:
+* Requires Yoda external user service to be on version 1.5.x or higher.
+* Requires Yoda public server to be on version 1.6.x or higher.
+* Upgrades from Yoda 1.7.x to Yoda 1.8.8 (or higher) need to follow this upgrade path: first upgrade from Yoda 1.7.x to Yoda 1.8.7; then upgrade to Yoda 1.8.8 (or higher).
+
 
 1. Backup/copy custom configurations made to Yoda version 1.7.
 To view what files were changed from the defaults, run `git diff`.
@@ -106,14 +112,12 @@ irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yod
 13. If the data request module is enabled, project managers, data managers and data committee members will only continue
     to receive emails regarding data requests if they have notifications enabled. The `imeta` command can be used to check
     whether a user has notifications enabled, and enable them if needed:
-
 ```bash
 imeta ls -u u.user@uu.nl org_settings_mail_notifications
 imeta set -u u.user@uu.nl org_settings_mail_notifications IMMEDIATE
 ```
 
 14. If the data request module is enabled, manually update the data request module schemas after upgrading (replace ZONENAME with the zone name of the environment):
-
 ```bash
 /etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh ZONENAME
 ```

@@ -1,0 +1,96 @@
+@startuml
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 9
+skinparam shadowing false
+
+start
+if (If user is rodsadmin) then (yes)
+   if (Is vault status 'Published' or\n 'Approved for publication?') then (yes)
+      if (Is the package new version \nof an existing publication?) then (yes)
+         if (if version 1 of the data package exists) then (yes)
+         else (no)
+         :Create version 1 of the data package;
+         endif
+      else (no)
+      endif
+   else (no)
+     stop
+   endif
+else (no)
+   stop
+endif
+:Ensure publication date is in publication state;
+if (Yoda DOI is not in publication state) then (yes)
+  :Generate preliminary DOI;
+else (no)
+  if ('DOIAvailable' key is in publication state) then (yes)
+     if ('DOIAvailable' has value 'No') then (yes)
+        :Generate preliminary DOI;
+        :Reset DataCite JSON Path and Combi JSON Path in publication state;
+     else (no)
+     endif
+  else (no)
+  endif
+endif
+:Update modification date;
+:Generate Combi JSON for user and system metadata;
+if (Error generating Combi JSON) then (yes)
+  #pink:Set publication status to 'Unrecoverable';
+  stop
+else (no)
+endif
+:Create Landing Page URL;
+:Generate DataCite JSON;
+if (Error generating DataCite JSON) then (yes)
+  #pink:Set publication status to 'Unrecoverable';
+  stop
+else (no)
+endif
+:Check DOI Availability;
+if (Error while checking DOI Availability) then (yes)
+  #pink:Set publication status to 'Retry';
+  stop
+endif
+:Send DataCite JSON;
+if (Error while sending metadata to DataCite) then (yes)
+  #pink:Set publication status to 'Retry';
+  stop
+endif
+:Create Landing Page;
+if (Error creating landing page) then (yes)
+  #pink:Set publication status to 'Unrecoverable';
+  stop
+endif
+:Upload Landing Page to public host;
+if (Error while uploadng landing page to public host) then (yes)
+  #pink:Set publication status to 'Retry';
+  stop
+endif
+:Upload Combi JSON to MOAI server;
+if (Error while uploading combi JSON to MOAI server) then (yes)
+  #pink:Set publication status to 'Retry';
+  stop
+endif
+:Set access restrictions for vault package;
+if (Error while setting access restrictions for vault package) then (yes)
+  #pink:Set publication status to 'Retry';
+  stop
+endif
+if ('DOIMinted' key is not in publication state) then (yes)
+  :Mint Yoda DOI;
+  if (Error during minting DOI) then (yes)
+    #pink:Set publication status to 'Unrecoverable' or 'Retry';
+    stop
+  else (no)
+    :Set the publication status as 'OK';
+    :Set the vault status to 'PUBLISHED';
+    if (Is the package is a new version of existing publication?) then (yes)
+       :Update previous AVU version;
+    else (no)
+    endif
+  endif
+else (no)
+  :Add 'Publication updated' to the provenance log;
+endif
+end
+@enduml

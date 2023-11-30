@@ -12,10 +12,7 @@ Docker Compose configurations for running Yoda are available in the
 
 These configurations are intended for local development and testing.
 
-The configurations may not work on older versions of Docker / Docker Compose.
-Docker 20.10.x and better is known to work.
-
-Some components are not (yet) available in the containerized version of Yoda,
+Some components are not (yet) available in the containerized Yoda setup,
 most importantly:
 - OpenSearch (used for searching in the deposit module)
 - The containerized version does not actually deliver emails sent by Yoda. 
@@ -24,6 +21,17 @@ most importantly:
   that would have been delivered by the application in a production configuration.
 - The Docker Compose configurations only have an iRODS provider; there is no consumer
   for data replication.
+
+## Prerequisites
+
+Running the containerized Yoda setup requires Docker. The Yoda Docker Compose
+configurations may not work on older versions of Docker / Docker Compose. Docker
+20.10.x and newer is known to work.
+
+For generic Docker installation instructions, see e.g.
+[the Docker Engine installation docs]( https://docs.docker.com/engine/install/).
+MacOS users can [install Colima and Docker](https://github.com/abiosoft/colima) using
+[Homebrew](https://brew.sh).
 
 ## Starting the application
 

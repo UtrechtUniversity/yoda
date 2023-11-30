@@ -15,6 +15,11 @@ yoda_theme: uu                                     # Yoda theme: uu or vu (defau
 
 # Yoda portal
 yoda_portal_version: "{{ yoda_version }}"
+yoda_portal_log_api_call_duration: false
+
+# WSGIDaemonProcess configratuon
+# https://modwsgi.readthedocs.io/en/master/configuration-directives/WSGIDaemonProcess.html
+yoda_portal_wsgi_daemon_threads: 15
 
 # iRODS configuration.
 irods_default_resc: irodsResc              # iRODS default resource name
@@ -36,6 +41,7 @@ flask_session_file_dir: '/tmp/flask_session/'   # default flask_session under cu
 
 # portal customization
 portal_title_text: Yoda Portal                     # e.g. "Yoda - development"
+portal_session_cookie_samesite: Strict             # 'Strict' (no OIDC, or OIDC IDP in same domain) or 'Lax'
 
 # Research module configuration
 enable_research: true                              # Enable research module

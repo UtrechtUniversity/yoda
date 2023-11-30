@@ -5,3 +5,7 @@ irods_database_name: ICAT
 irods_database_user: irodsdb
 irods_database_password: irodsdev
 irods_database_enable_yoda_indexes: false
+
+icat_database_encoding: UTF-8
+icat_database_lc_collate: en_US.UTF-8
+icat_database_lc_ctype: en_US.UTF-8

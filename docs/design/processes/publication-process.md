@@ -9,6 +9,16 @@ Credentials are pulled from the Yoda credential store (store_config.json).
 Each step has a rule with the configuration and state as arguments.
 Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publish``.
 
+**Versioning**
+DOI versioning will be introduced in Yoda v1.9. 
+With the publication of first version of the data package, version DOI is registered by the publication process.
+When the data package is published for the second time, a new version DOI and base DOI is registered. The previous version of the data package is updated with the same base DOI so that the versions are linked. 
+
+For further versions of the data package, a new version DOI is registered. The previously registered base DOI is added in the ``*publicationState``.
+
+The base DOI will always resolve to the latest version of the data package.
+
+
 **Precondition:**
 - Vault package has ```APPROVED_FOR_PUBLICATION``` status
 - Actor is rodsadmin
@@ -90,8 +100,11 @@ Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publ
 
 ![Publication process](img/publication-process.png)
 
+Further detailed diagram for each step is as follow:
+![Versioned Publication process](img/version-publication-process.png)
+
 # Depublication process
-This is very similar to the publication process. The DOI and URLs were preserved in the ```UUSYSTEMCOLLECTION``` metadata, and are reused by the depublication process.   
+This is very similar to the publication process. The DOIs and URLs were preserved in the ```UUSYSTEMCOLLECTION``` metadata, and are reused by the depublication process.   
 Depublication is performed with the differences noted below.
 
 **Precondition:**

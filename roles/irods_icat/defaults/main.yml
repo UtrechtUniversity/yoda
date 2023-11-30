@@ -38,9 +38,12 @@ pam_radius_config: |
 external_users: true
 external_users_domain_filter: uu.nl | acc.uu.nl  # Domains to filter, separated by |
 external_users_exact_match: false                # Controls whether the external user domains should match exactly
-eus_api_fqdn: eus.yoda.test
-eus_api_port: 8443
-eus_api_secret: PLACEHOLDER
+
+eus_api_fqdn: api.eus.yoda.test         # External User Service API FQDN
+eus_api_port: 8443                      # External User Service API port
+eus_api_secret: PLACEHOLDER             # External User Service API secret
+eus_api_tls_verify: true                # Enable TLS verification for EUS API calls
+
 
 # OpenSSL configuration
 openssl_private_dir: '/etc/pki/tls/private'

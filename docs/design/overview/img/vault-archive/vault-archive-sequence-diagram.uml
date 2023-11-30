@@ -1,0 +1,16 @@
+@startuml
+!include ../../../../theme.puml
+
+actor       Datamanager as datamanager
+participant Yoda        as yoda
+
+== Archive data package ==
+datamanager  -> yoda        : Archive on tape
+note over yoda              : Scheduled for archive
+yoda         -> yoda        : Archive
+note over yoda              : Archived
+== Unarchive data package ==
+datamanager  -> yoda        : Unarchive from tape
+note over yoda              : Scheduled for unarchive
+yoda         -> yoda        : Unarchive
+@enduml

@@ -14,7 +14,7 @@ yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully q
 yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 
-default_yoda_schema: default-2                     # Default Yoda metadata scheme: core-1 or default-2
+default_yoda_schema: default-3                     # Default Yoda metadata scheme: core-2 or default-3
 yoda_prefix: UU01                                  # Prefix for internal portion of persistent identifier
 update_schemas: 1                                  # Update already installed schemas, formelements and stylesheets: yes (1) or no (0)
 credential_files: PLACEHOLDER                      # Location of Yoda credentials files
@@ -62,8 +62,11 @@ data_package_archive_resource: mockTapeArchive         # Resource to use for dat
 enable_sram: false                                     # Enable SRAM configuration
 sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
 sram_api_key: PLACEHOLDER                              # SRAM Rest API key
+sram_service_entity_id: PLACEHOLDER                    # SRAM Service Entity ID
+sram_flow: invitation                                  # SRAM flow to use, 'join_request' or 'invitation'
+sram_auto_group_sync: false                            # Automatic SRAM group sync
 sram_verbose_logging: true                             # SRAM verbose logging
-sram_tls_verify: false                                 # Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
+sram_tls_verify: false                                 # Enable TLS verification for SRAM API calls. Enabled by default.
 
 # iRODS check tooling
 enable_irods_consistency_check: true
@@ -73,6 +76,7 @@ enable_icat_database_checker: true
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 portal_title_text: Yoda - Dev
+yoda_portal_log_api_call_duration: true
 
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
@@ -82,6 +86,7 @@ irods_icat_fqdn: icat.yoda.test            # iRODS iCAT fully qualified domain n
 irods_database_fqdn: database.yoda.test    # iRODS database fully qualified domain name (FQDN)
 irods_resource_fqdn: resource.yoda.test    # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
+irods_enable_gocommands: false
 irods_resources:
   - name: dev001_1
     host: "{{ irods_icat_fqdn }}"
@@ -160,8 +165,10 @@ irods_repl_resc:
   - irodsRescRepl
   - irodsRescReplS3
 
+async_replication_delay_time: 3600     # Delay after last modification to data object before replication job can process it (sec)
+
 # S3 configuration
-enable_s3_resource: False
+enable_s3_resource: false
 s3_access_key: minioadmin
 s3_secret_key: minioadmin
 s3_hostname: localhost:9000
@@ -223,37 +230,34 @@ upload_pub_key: |
 yoda_eus_fqdn: eus.yoda.test
 eus_api_fqdn: api.eus.yoda.test
 eus_api_secret: PLACEHOLDER
+eus_api_tls_verify: false
 eus_db_password: PLACEHOLDER
-eus_smtp_host: localhost
-eus_smtp_port: 25
-eus_smtp_auth: false
-eus_smtp_security: false
 eus_smtp_from_address: yoda@yoda.test
 eus_smtp_replyto_address: yoda@yoda.test
 eus_mail_template: uu
 external_users_domain_filter: '*.yoda.dev'                    # Domains to filter, separated by | and wildcard character *
 
-# Openid Connect configuration (This configuration is for TESTING purposes!)
-oidc_active: true
-oidc_domains: ['*.yoda.dev']                                  # Domains that should use OIDC (list, wildcard character *)
-oidc_client_id: myClientId                                    # OIDC Client Id
-oidc_client_secret: myClientPassword                          # OIDC Client Secret/Password
-oidc_callback_url: https://portal.yoda.test/user/callback     # OIDC Callback url
-oidc_auth_base_uri: https://oauth.mocklab.io/oauth/authorize  # OIDC Authorization URI without parameters
-oidc_token_uri: https://oauth.mocklab.io/oauth/token          # OIDC Token URI
-oidc_userinfo_uri: https://oauth.mocklab.io/userinfo          # OIDC Userinfo URI
-oidc_scopes: openid                                           # OIDC Scopes
-oidc_acr_values: ""                                           # OIDC Authentication Context Class Reference Values
-oidc_email_field: email                                       # The identifier of the JSON field in the id_token containing the email address (default: email)
-oidc_jwks_uri: https://oauth.mocklab.io/.well-known/jwks.json # The url where the JWKS can be found (Java web key sets)
-oidc_jwt_issuer: https://oauth.mocklab.io                     # The issuer of the JWT tokens ('iss' value in JWT, for verification)
-oidc_req_exp: true      #check that exp (expiration) claim is present
-oidc_req_iat: false     #check that iat (issued at) claim is present
-oidc_req_nbf: false     #check that nbf (not before) claim is present
-oidc_verify_aud: true   #check that aud (audience) claim matches audience
-oidc_verify_iat: false  #check that iat (issued at) claim value is an integer
-oidc_verify_exp: true   #check that exp (expiration) claim value is OK
-oidc_verify_iss: true   #check that iss (issue) claim is as expected
+# OpenID Connect configuration (This configuration is for TESTING purposes!)
+oidc_active: true                                                    # Boolean indicating whether OpenId Connect is enabled
+oidc_domains: ['*.yoda.dev']                                         # Domains that should use OIDC (list, wildcard character *)
+oidc_always_redirect: false                                          # Ignore OIDC domains and redirect all domains
+oidc_client_id: myClientId                                           # OIDC Client Id
+oidc_client_secret: myClientPassword                                 # OIDC Client Secret/Password
+oidc_auth_base_uri: https://oauth.wiremockapi.cloud/oauth/authorize  # OIDC Authorization URI without parameters
+oidc_token_uri: https://oauth.wiremockapi.cloud/oauth/token          # OIDC Token URI
+oidc_userinfo_uri: https://oauth.wiremockapi.cloud/userinfo          # OIDC Userinfo URI
+oidc_scopes: openid                                                  # OIDC Scopes
+oidc_acr_values: ""                                                  # OIDC Authentication Context Class Reference Values
+oidc_email_field: email                                              # The identifier of the JSON field in the id_token containing the email address (default: email)
+oidc_jwks_uri: https://oauth.wiremockapi.cloud/.well-known/jwks.json # The url where the JWKS can be found (Java web key sets)
+oidc_jwt_issuer: https://oauth.wiremockapi.cloud                     # The issuer of the JWT tokens ('iss' value in JWT, for verification)
+oidc_req_exp: true                                                   # Check that exp (expiration) claim is present
+oidc_req_iat: false                                                  # Check that iat (issued at) claim is present
+oidc_req_nbf: false                                                  # Check that nbf (not before) claim is present
+oidc_verify_aud: true                                                # Check that aud (audience) claim matches audience
+oidc_verify_iat: false                                               # Check that iat (issued at) claim value is an integer
+oidc_verify_exp: true                                                # Check that exp (expiration) claim value is OK
+oidc_verify_iss: true                                                # Check that iss (issue) claim is as expected
 
 # Mail configuration
 enable_mailpit: true

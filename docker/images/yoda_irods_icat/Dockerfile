@@ -30,6 +30,16 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
+# Install Python 3.8 (needed for jsonschema execnet)
+# hadolint ignore=DL3033
+RUN yum -y install centos-release-scl gcc python-virtualenv && \
+    yum -y install --enablerepo centos-sclo-rh \
+                   rh-python38-python rh-python38-python-devel rh-python38-python-libs \
+                   rh-python38-python-pip rh-python38-python-pip-wheel  && yum clean all && \
+    ln -s /opt/rh/rh-python38/root/bin/pip3 /usr/local/bin/pip3 && \
+    ln -s /opt/rh/rh-python38/root/bin/python3 /usr/local/bin/python3 && \
+    /usr/local/bin/pip3 install virtualenv
+
 # Upload PAM Python library
 COPY stage/pam_python.so /tmp/pam_python.so
 RUN install -m 0755 -o root -g root /tmp/pam_python.so /usr/lib64/security/pam_python.so
@@ -105,12 +115,17 @@ RUN mkdir /var/lib/irods/.irods
 COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
 
 # Install and configure rulesets
-RUN git clone -b ${YODA_RULESET_BRANCH} --single-branch ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
-RUN python -m pip --no-cache-dir install --user pip==20.2.4 && \
-    python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
-    python -m pip --no-cache-dir install --user python-irodsclient==1.1.3 && \
-    python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt
+RUN git clone -b ${YODA_RULESET_BRANCH} ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
+# hadolint ignore=DL3004
+RUN sudo -u irods python -m pip --no-cache-dir install --user pip==20.2.4 && \
+    sudo -u irods python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
+    sudo -u irods python -m pip --no-cache-dir install --user python-irodsclient==1.1.9 && \
+    sudo -u irods python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt && \
+    sudo -u irods /usr/local/bin/pip3 install --user jsonschema==4.17.3 && \
+    sudo -u irods /usr/local/bin/pip3 install --user python-irodsclient==1.1.9 && \
+    sudo -u irods /usr/local/bin/pip3 install --user psutil==5.9.5
 COPY core.py.template /etc/irods/core.py
+COPY core.re.template /etc/irods/core.re
 RUN for script in scheduled-copytovault.sh admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh \
                   admin-vaultingest.sh enable-indexing.sh disable-indexing.sh  \
                   admin-datarequestactions.sh admin-datarequest-temp-write-permission.sh ; \

@@ -53,3 +53,9 @@
     - src: 'img/logo_footer.svg'
       dest: '{{ landingpages_root }}/static/img/logo_footer.svg'
       diff: false
+    - src: 'css/leaflet-1.5.1.css'
+      dest: '{{ landingpages_root }}/static/css/leaflet-1.5.1.css'
+      diff: false
+    - src: 'js/leaflet-1.5.1.js'
+      dest: '{{ landingpages_root }}/static/js/leaflet-1.5.1.js'
+      diff: false

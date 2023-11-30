@@ -5,16 +5,17 @@ actor "Researcher" as R
 actor "Datamanager" as DM
 actor "DACmember" as M1
 actor "DACmember" as M2
-actor "BODmember" as B
+actor "Project manager" as P
 participant "System" as Y
+participant "Open Science Framework" as O
 
 R -> Y   : submit data request
 Y --> R  : confirm received
 note over Y
  Submitted
 end note
-Y --> B  : request preliminary review
-B -> Y   : preliminary review
+Y --> P  : request preliminary review
+P -> Y   : preliminary review
 Y --> R  : 1a: preliminary reject
 Y --> R  : 1b: preliminary resubmit
 note over Y
@@ -22,15 +23,15 @@ note over Y
 end note
 Y --> DM : request datamanager review
 DM -> Y  : datamanager review
-Y --> B  : 2a: datamanager reject
+Y --> P  : 2a: datamanager reject
 Y --> R  : 2a: rejected after datamanager review
-Y --> B  : 2b: datamanager resubmit
+Y --> P  : 2b: datamanager resubmit
 Y --> R  : 2b: resubmit after datamanager review
-Y --> B  : 2c: datamanager accept
+Y --> P  : 2c: datamanager accept
 note over Y
  2c: Datamanager Accept
 end note
-B -> Y   : assign reviewer(s)
+P -> Y   : assign reviewer(s)
 Y --> M1 : please review
 Y --> M2 : please review
 note over Y
@@ -38,14 +39,18 @@ note over Y
 end note
 M1 -> Y  : review
 M2 -> Y  : review
-Y --> B  : request evaluation
-B -> Y   : evaluation
+Y --> P  : request evaluation
+P -> Y   : evaluation
 Y --> R  : 3a: rejected
 Y --> R  : 3b: resubmit
 Y --> R  : 3c: approved
 note over Y
  3c: Approved
 end note
+Y --> R  : request OSF preregistration
+R --> O  : submit preregistration
+R --> Y  : submit OSF pregistration link
+P --> Y  : confirm OSF preregistration
 Y --> DM : prepare DTA
 DM -> Y  : upload unsigned DTA
 Y --> R  : please sign DTA

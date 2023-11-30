@@ -159,32 +159,6 @@
     - 'yoda-metadata.json'
 
 
-- name: Ensure Yoda licenses directory is present
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command:
-    imkdir /{{ irods_zone }}/yoda/licenses
-  ignore_errors: true
-
-
-- name: Ensure licenses are present in Yoda
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command:
-    iput -f '/etc/irods/yoda-ruleset/licenses/{{ item }}' '/{{ irods_zone }}/yoda/licenses/{{ item }}'
-  with_items:
-    - "Creative Commons Attribution 4.0 International Public License.txt"
-    - "Creative Commons Attribution 4.0 International Public License.uri"
-    - "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.txt"
-    - "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.uri"
-    - "Creative Commons Attribution-ShareAlike 4.0 International Public License.txt"
-    - "Creative Commons Attribution-ShareAlike 4.0 International Public License.uri"
-    - "Creative Commons Zero v1.0 Universal.txt"
-    - "Creative Commons Zero v1.0 Universal.uri"
-    - "Open Data Commons Attribution License (ODC-By) v1.0.txt"
-    - "Open Data Commons Attribution License (ODC-By) v1.0.uri"
-
-
 - name: Ensure Yoda preservable file formats directory is present
   become_user: '{{ irods_service_account }}'
   become: true
