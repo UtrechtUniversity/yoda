@@ -10,6 +10,7 @@ parseable: true
 mock_modules:
   - irods_advanced
   - irods_config
+  - irods_genquery2
   - irods_indexing
   - irods_mkuser
   - irods_postgres
