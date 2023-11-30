@@ -4,6 +4,7 @@
 yoda_deployment_user: yodadeployment
 
 yoda_version: development
+yoda_environment: development                      # Yoda environment: development, testing, acceptance or production
 
 yoda_portal_fqdn: portal.yoda.test
 yoda_eus_fqdn: eus.yoda.test
