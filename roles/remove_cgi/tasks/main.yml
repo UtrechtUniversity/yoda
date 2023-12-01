@@ -1,0 +1,13 @@
+---
+# copyright Utrecht University
+
+
+- name: Remove CGI files used by older versions of Yoda
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /cgi-bin/
+    - /var/www/cgi-bin/
+    - /usr/lib/cgi-bin/
+    - /etc/httpd/conf.modules.d/01-cgi.conf

@@ -17,3 +17,4 @@ dependencies:
   - role: postgresql
   - role: python3
   - role: remove_php
+  - role: remove_cgi

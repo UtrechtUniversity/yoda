@@ -15,3 +15,4 @@ dependencies:
   - role: apache
   - role: apache_wsgi
   - role: remove_php
+  - role: remove_cgi

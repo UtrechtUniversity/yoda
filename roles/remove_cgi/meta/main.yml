@@ -1,0 +1,11 @@
+---
+# copyright Utrecht University
+
+galaxy_info:
+  author: Claire Saliers
+  description: Removes CGI
+  license: GPLv3
+  min_ansible_version: '2.7'
+  platforms:
+    - name: EL
+      version: 7

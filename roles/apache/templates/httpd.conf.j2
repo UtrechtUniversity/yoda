@@ -129,7 +129,7 @@ ServerAdmin root@localhost
 # documents. By default, all requests are taken from this directory, but
 # symbolic links and aliases may be used to point to other locations.
 #
-DocumentRoot "/var/www/html"
+DocumentRoot "/var/www/yoda"
 
 #
 # Relax access to content within /var/www.
@@ -137,35 +137,6 @@ DocumentRoot "/var/www/html"
 <Directory "/var/www">
     AllowOverride None
     # Allow open access:
-    Require all granted
-</Directory>
-
-# Further relax access to the default document root:
-<Directory "/var/www/html">
-    #
-    # Possible values for the Options directive are "None", "All",
-    # or any combination of:
-    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
-    #
-    # Note that "MultiViews" must be named *explicitly* --- "Options All"
-    # doesn't give it to you.
-    #
-    # The Options directive is both complicated and important.  Please see
-    # http://httpd.apache.org/docs/2.4/mod/core.html#options
-    # for more information.
-    #
-    Options Indexes FollowSymLinks
-
-    #
-    # AllowOverride controls what directives may be placed in .htaccess files.
-    # It can be "All", "None", or any combination of the keywords:
-    #   Options FileInfo AuthConfig Limit
-    #
-    AllowOverride None
-
-    #
-    # Controls who can get stuff from this server.
-    #
     Require all granted
 </Directory>
 
@@ -260,19 +231,9 @@ LogLevel warn
     # client.  The same rules about trailing "/" apply to ScriptAlias
     # directives as to Alias.
     #
-    ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
+    #ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
 
 </IfModule>
-
-#
-# "/var/www/cgi-bin" should be changed to whatever your ScriptAliased
-# CGI directory exists, if you have that configured.
-#
-<Directory "/var/www/cgi-bin">
-    AllowOverride None
-    Options None
-    Require all granted
-</Directory>
 
 <IfModule mime_module>
     #

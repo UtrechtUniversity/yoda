@@ -14,3 +14,9 @@
   ansible.builtin.yum_repository:
     name: remi-php74
     state: absent
+
+
+- name: Remove PHP configuration file used by older versions of Yoda
+  ansible.builtin.file:
+    path: /etc/httpd/conf.modules.d/15-php.conf
+    state: absent
