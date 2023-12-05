@@ -48,35 +48,15 @@
     - /etc/httpd/conf.d/autoindex.conf
 
 
-- name: Ensure Apache mod_lua is disabled
-  ansible.builtin.file:
-    path: /etc/httpd/conf.modules.d/00-lua.conf
-    state: absent
-  notify: Restart Apache webserver
-
-
-- name: Remove CGI files used by older versions of Yoda
+- name: Ensure unused Apache configurations are removed
   ansible.builtin.file:
     path: "{{ item }}"
     state: absent
-  with_items:
-    - /cgi-bin/
-    - /var/www/cgi-bin/
-    - /usr/lib/cgi-bin/
-    - /etc/httpd/conf.modules.d/01-cgi.conf
-
-
-- name: Remove PHP configuration file used by older versions of Yoda
-  ansible.builtin.file:
-    path: /etc/httpd/conf.modules.d/15-php.conf
-    state: absent
-
-
-- name: Remove old WSGI configuration in Apache
-  ansible.builtin.file:
-    path: /etc/httpd/conf.modules.d/10-wsgi.conf
-    state: absent
   notify: Restart Apache webserver
+  with_items:
+    - /etc/httpd/conf.modules.d/00-lua.conf
+    - /etc/httpd/conf.modules.d/01-cgi.conf
+    - /etc/httpd/conf.modules.d/15-php.conf
 
 
 - name: Ensure Apache service is configured
