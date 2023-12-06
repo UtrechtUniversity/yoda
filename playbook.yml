@@ -14,7 +14,7 @@
 
 
 - name: Check repository branches
-  hosts: all
+  hosts: databases,davrods,development,eus,icats,portals,publics,resources
   gather_facts: false
   pre_tasks:
     - name: Determine whether yoda version matches playbook version (branch or lightweight tag)
@@ -58,7 +58,7 @@
 
 
 - name: Provision common software and certificates
-  hosts: all
+  hosts: databases,davrods,development,eus,icats,portals,publics,resources
   become: true
   roles:
     - common
