@@ -4,7 +4,7 @@ set -e
 set -u
 set -x
 
-export MAILPIT_VERSION=1.10.2
+export MAILPIT_VERSION=1.10.4
 export DOCKER_SCAN_SUGGEST=false
 
 if [ -d "mailpit" ]
