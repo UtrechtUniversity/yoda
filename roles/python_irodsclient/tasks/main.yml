@@ -27,3 +27,4 @@
   ansible.builtin.pip:
     name: "python_irodsclient=={{ python_irodsclient_version }}"
     executable: /usr/local/bin/pip3
+  when: not ansible_check_mode
