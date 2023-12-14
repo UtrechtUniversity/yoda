@@ -164,6 +164,12 @@ irods_repl_resc:
 
 async_replication_delay_time: 3600     # Delay after last modification to data object before replication job can process it (sec)
 
+# Automatic resource balancing configuration
+irods_arb_enabled: true
+irods_arb_exempt_resources: ""
+irods_arb_min_gb_free: 0
+irods_arb_min_percent_free: 5
+
 # S3 configuration
 enable_s3_resource: false
 s3_access_key: minioadmin
