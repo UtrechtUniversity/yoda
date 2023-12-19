@@ -56,3 +56,4 @@ The deposit space implements a data deposit workflow to the vault space.
 
 ## Overview
 ![System overview](img/system-overview.png)
+![Use cases overview](img/yoda-usecases-top.png)
