@@ -55,6 +55,23 @@
   notify: Restart Postfix
 
 
+- name: "Configure Postfix to address SMTP smuggling"
+  community.general.ini_file:
+    path: /etc/postfix/main.cf
+    section: ""
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    mode: '0644'
+    owner: root
+    group: root
+  loop: "{{ postfix_params | dict2items }}"
+  vars:
+    postfix_params:
+      smtpd_data_restrictions: "reject_unauth_pipelining"
+      smtpd_discard_ehlo_keywords: "chunking, silent-discard"
+  notify: Restart Postfix
+
+
 - name: "Configure Postfix debugging parameters"
   community.general.ini_file:
     path: /etc/postfix/main.cf
