@@ -30,7 +30,7 @@ rectangle "Authenticated User" as USER {
   actor "guest researcher" as GUEST
   actor "data access committee member" as DAC
   actor "project manager" as PM
-  actor "lab assistent" as L
+  actor "lab assistant" as L
 }
 
 rectangle "Anonymous user" {
