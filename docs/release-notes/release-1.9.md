@@ -18,6 +18,7 @@ Released: TBA
 - Support for Creative Commons (BY-ND, BY-NC, BY-NC-ND) and GPL v3 licenses
 - Support for [Data Access Passwords](../design/overview/authentication.md) expiration notifications
 - Support for research group retention period notifications
+- Support for CSV group imports
 - Support for color mode user setting
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
@@ -25,6 +26,7 @@ Released: TBA
 - Support for [Automatic Resource Balancing](../design/processes/automatic-resource-balancing.md)
 - Experimental support for [vault archiving](../design/overview/vault-archive.md) workflow
 - Experimental support for groups connected to SRAM
+- Improved overwrite actions in research space
 - Upgrade iRODS to v4.2.12
 - Upgrade python-irodsclient to v1.1.9
 - Upgrade davrods to v1.5.1
@@ -46,14 +48,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After making sure the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Checkout tag `v1.9.0-rc.4` of the Yoda Git repository.
+3. Checkout tag `v1.9.0-rc.5` of the Yoda Git repository.
 ```bash
-git checkout v1.9.0-rc.4
+git checkout v1.9.0-rc.5
 ```
 
 4. Set the Yoda version to `release-1.9` in the configuration.
 ```yaml
-yoda_version: v1.9.0-rc.4
+yoda_version: v1.9.0-rc.5
 ```
 
 5. Change the default schema from `default-2` to `default-3` in the configuration.
