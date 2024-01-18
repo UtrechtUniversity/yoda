@@ -314,6 +314,7 @@
   <li>Support for Creative Commons (BY-ND, BY-NC, BY-NC-ND) and GPL v3 licenses</li>
   <li>Support for <a href="/yoda/design/overview/authentication.html">Data Access Passwords</a> expiration notifications</li>
   <li>Support for research group retention period notifications</li>
+  <li>Support for CSV group imports</li>
   <li>Support for color mode user setting</li>
   <li>Support for multiple replication resources</li>
   <li>Support for configuring iRODS S3 resources</li>
@@ -321,6 +322,7 @@
   <li>Support for <a href="/yoda/design/processes/automatic-resource-balancing.html">Automatic Resource Balancing</a></li>
   <li>Experimental support for <a href="/yoda/design/overview/vault-archive.html">vault archiving</a> workflow</li>
   <li>Experimental support for groups connected to SRAM</li>
+  <li>Improved overwrite actions in research space</li>
   <li>Upgrade iRODS to v4.2.12</li>
   <li>Upgrade python-irodsclient to v1.1.9</li>
   <li>Upgrade davrods to v1.5.1</li>
@@ -362,12 +364,12 @@ To view what files were changed from the defaults, run <code class="language-pla
   <li>
     <p>After making sure the configurations are stored safely in another folder, reset the Yoda folder using <code class="language-plaintext highlighter-rouge">git stash</code> or when you want to delete all changes made: <code class="language-plaintext highlighter-rouge">git reset --hard</code>.</p>
   </li>
-  <li>Checkout tag <code class="language-plaintext highlighter-rouge">v1.9.0-rc.4</code> of the Yoda Git repository.
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout v1.9.0-rc.4
+  <li>Checkout tag <code class="language-plaintext highlighter-rouge">v1.9.0-rc.5</code> of the Yoda Git repository.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout v1.9.0-rc.5
 </code></pre></div>    </div>
   </li>
   <li>Set the Yoda version to <code class="language-plaintext highlighter-rouge">release-1.9</code> in the configuration.
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v1.9.0-rc.4</span>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v1.9.0-rc.5</span>
 </code></pre></div>    </div>
   </li>
   <li>Change the default schema from <code class="language-plaintext highlighter-rouge">default-2</code> to <code class="language-plaintext highlighter-rouge">default-3</code> in the configuration.
