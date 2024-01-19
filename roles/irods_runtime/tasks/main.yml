@@ -19,3 +19,23 @@
   ansible.builtin.package:
     name: irods-runtime-4.2.12-1
     state: present
+
+
+- name: Determine current checksum of irods_server library
+  ansible.builtin.command: "sha256sum /usr/lib/libirods_server.so.4.2.12"
+  register: libirods_server_checksum
+  changed_when: false
+
+
+- name: Install local patch for iRODS 4.2.12
+  ansible.builtin.get_url:
+    url: https://yoda.uu.nl/irods-patches/libirods_server.so.4.2.12
+    dest: /usr/lib/libirods_server.so.4.2.12
+    checksum: sha256:11bb77ff1f17faac1052b891cf6d75a0f55a55814a4ecbad53e1469aca96c1d2
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: '0644'
+    force: true
+    backup: true
+  notify: Restart iRODS
+  when: libirods_server_checksum.stdout.split()[0] != '11bb77ff1f17faac1052b891cf6d75a0f55a55814a4ecbad53e1469aca96c1d2'
