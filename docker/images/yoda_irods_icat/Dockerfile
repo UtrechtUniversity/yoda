@@ -75,7 +75,9 @@ RUN yum install -y wget git sudo && \
        yum -y install "$package-${IRODS_INDEX_VERSION}"  && yum clean all; \
        done && \
     yum -y install "irods-rule-engine-plugin-python-${IRODS_PREP_VERSION}"  && \
-    yum clean all
+    yum clean all && \
+    wget https://yoda.uu.nl/irods-patches/libirods_server.so.4.2.12 && \
+    install -m 0644 libirods_server.so.4.2.12 /usr/lib/libirods_server.so.4.2.12
 
 # Install iRODS microservices for Yoda and their dependencies
 # hadolint ignore=DL3033
