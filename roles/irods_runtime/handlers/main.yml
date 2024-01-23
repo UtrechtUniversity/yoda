@@ -5,3 +5,5 @@
   ansible.builtin.service:
     name: irods
     state: restarted
+  # Only trigger a restart if the irods service is active.
+  when: not ansible_check_mode and irods_runtime_irods_service_status.rc == 0
