@@ -1,6 +1,13 @@
 ---
 # copyright Utrecht University
 
+- name: Check required parameters Postfix role
+  ansible.builtin.fail:
+    msg: 'If Postfix is enabled, postfix_relayhost needs to be configured.'
+  when: postfix_relayhost is not defined
+  check_mode: false
+
+
 - name: Ensure Postfix and related software is installed
   ansible.builtin.package:
     name:
