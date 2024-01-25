@@ -469,6 +469,7 @@
     option: 'sslmode'
     value: 'require'
     mode: '0600'
+    no_extra_spaces: true
 
 
 - name: Ensure iRODS .ssh directory has strict permissions
