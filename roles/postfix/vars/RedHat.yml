@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+postfix_sasl_package: cyrus-sasl-plain
+postfix_mailx_package: 'mailx'
