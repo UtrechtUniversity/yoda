@@ -1,0 +1,11 @@
+---
+# copyright Utrecht University
+
+- name: Install Python 2.7 for Debian family
+  ansible.builtin.include_tasks: install-debian.yml
+  when: ansible_os_family == 'Debian'
+
+
+- name: Install Python 2.7 for RedHat family
+  ansible.builtin.include_tasks: install-redhat.yml
+  when: ansible_os_family == 'RedHat'

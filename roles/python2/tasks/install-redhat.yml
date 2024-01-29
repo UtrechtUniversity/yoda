@@ -1,0 +1,18 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Python 2.7 is installed
+  ansible.builtin.yum:
+    name:
+      - gcc
+      - python
+      - python-pip
+    state: present
+
+
+- name: Update Python 2.7 pip version
+  ansible.builtin.pip:
+    name:
+      - pip==20.2.4
+    executable: /usr/bin/pip
+    state: present
