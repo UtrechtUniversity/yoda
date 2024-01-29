@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+redis_config_file: /etc/redis.conf
+redis_config_template: redis.conf.el7.j2
