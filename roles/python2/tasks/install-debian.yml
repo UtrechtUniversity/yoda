@@ -1,0 +1,24 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Python 2.7 is installed
+  ansible.builtin.apt:
+    name:
+      - gcc
+      - python2.7
+      - python2.7-dev
+    state: present
+
+
+- name: Download get-pip script for Python 2.7
+  ansible.builtin.get_url:
+    url: 'https://bootstrap.pypa.io/pip/2.7/get-pip.py'
+    dest: '/usr/local/bin/get-pip.py'
+    checksum: 'sha256:40ee07eac6674b8d60fce2bbabc148cf0e2f1408c167683f110fd608b8d6f416'
+    mode: '0755'
+
+
+- name: Install pip for Python 2.7
+  ansible.builtin.command:
+    cmd: /usr/bin/python2.7 /usr/local/bin/get-pip.py
+    creates: /usr/local/bin/pip2

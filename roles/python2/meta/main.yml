@@ -1,0 +1,17 @@
+---
+# copyright Utrecht University
+
+galaxy_info:
+  author: Sietse Snel
+  description: Install Python 2.7
+  license: GPLv3
+  min_ansible_version: '2.11'
+  platforms:
+    - name: EL
+      version: 7
+    - name: Ubuntu
+      version: focal
+
+dependencies:
+  # For apt update
+  - role: common

@@ -1,5 +1,10 @@
 ---
 # copyright Utrecht University
+#
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
 
 - name: Ensure Ansible dependencies are installed
   ansible.builtin.package:
