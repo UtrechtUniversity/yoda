@@ -1,6 +1,10 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Ensure Redis is installed
   ansible.builtin.package:
     name: redis
@@ -9,8 +13,8 @@
 
 - name: Ensure Redis is configured
   ansible.builtin.template:
-    src: redis.conf.j2
-    dest: /etc/redis.conf
+    src: "{{ redis_config_template }}"
+    dest: "{{ redis_config_file }}"
     mode: "0644"
   notify: Restart Redis
 
@@ -30,6 +34,7 @@
     setype: redis_port_t
     state: present
   notify: Restart Redis
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Ensure Redis is running and enabled on boot
