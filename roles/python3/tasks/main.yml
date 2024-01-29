@@ -1,54 +1,11 @@
 ---
 # copyright Utrecht University
 
-- name: Install SCLO-RH repository for Python 3.8
-  ansible.builtin.package:
-    name: centos-release-scl
-    enablerepo: "{{ centos_extras_repository }}"
+- name: Install Python 3 for RedHat family
+  ansible.builtin.include_tasks: install-redhat.yml
+  when: ansible_os_family == 'RedHat'
 
 
-- name: Ensure Python dependencies are installed
-  ansible.builtin.yum:
-    name:
-      - gcc
-      - python-virtualenv
-    state: present
-
-
-- name: Ensure Python 3.6 packages are installed
-  ansible.builtin.yum:
-    name:
-      - python3
-      - python3-devel
-    state: present
-
-
-- name: Ensure Python 3.8 packages are installed
-  ansible.builtin.yum:
-    name:
-      - rh-python38-python
-      - rh-python38-python-devel
-      - rh-python38-python-libs
-      - rh-python38-python-pip
-      - rh-python38-python-pip-wheel
-    enablerepo: "{{ centos_sclo_rh_repository }}"
-  when: not ansible_check_mode
-
-
-- name: Link to Python 3.8 executables
-  ansible.builtin.file:
-    state: link
-    dest: "/usr/local/bin/{{ item }}"
-    src: "/opt/rh/rh-python38/root/bin/{{ item }}"
-    force: true
-  with_items:
-    - pip3
-    - python3
-  when: not ansible_check_mode
-
-
-- name: Ensure Python 3 virtualenv is installed
-  ansible.builtin.pip:
-    name: virtualenv
-    executable: /usr/local/bin/pip3
-  when: not ansible_check_mode
+- name: Install Python 3 for Debian family
+  ansible.builtin.include_tasks: install-debian.yml
+  when: ansible_os_family == 'Debian'
