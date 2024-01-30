@@ -1,14 +1,24 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Ensure Apache webserver is installed
   ansible.builtin.package:
     name:
-      - httpd
-      - httpd-devel
-      - mod_ssl
-      - openssl
+      - "{{ apache_main_package }}"
+      - "{{ apache_dev_package }}"
+      - "{{ apache_openssl_package }}"
     state: present
+
+
+- name: Ensure Apache ModSSL is installed
+  ansible.builtin.package:
+    name: mod_ssl
+    state: present
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Allow public to ports for Apache in firewall
@@ -25,16 +35,16 @@
 
 - name: Ensure customized httpd config is present
   ansible.builtin.template:
-    src: 'httpd.conf.j2'
-    dest: '/etc/httpd/conf/httpd.conf'
+    src: '{{ apache_main_config_template }}'
+    dest: '{{ apache_main_config_file }}'
     mode: '0600'
   notify: Restart Apache webserver
 
 
 - name: Ensure customized SSL config is present
   ansible.builtin.template:
-    src: 'ssl.conf.j2'
-    dest: '/etc/httpd/conf.d/ssl.conf'
+    src: '{{ apache_ssl_config_template }}'
+    dest: '{{ apache_ssl_config_file }}'
     mode: '0600'
   notify: Restart Apache webserver
 
@@ -46,6 +56,7 @@
   notify: Restart Apache webserver
   with_items:
     - /etc/httpd/conf.d/autoindex.conf
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Ensure unused Apache configurations are removed
@@ -57,10 +68,23 @@
     - /etc/httpd/conf.modules.d/00-lua.conf
     - /etc/httpd/conf.modules.d/01-cgi.conf
     - /etc/httpd/conf.modules.d/15-php.conf
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "/etc/apache2/mods-available/{{ item }}.load"
+    dest: "/etc/apache2/mods-enabled/{{ item }}.load"
+    state: link
+  notify: Restart Apache webserver
+  with_items:
+    - headers
+    - ssl
+  when: ansible_os_family == 'Debian'
 
 
 - name: Ensure Apache service is configured
   ansible.builtin.service:
-    name: httpd
+    name: "{{ apache_service_name }}"
     state: started
     enabled: '{{ yoda_enable_httpd }}'
