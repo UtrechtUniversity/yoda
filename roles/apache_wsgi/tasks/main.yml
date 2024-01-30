@@ -1,11 +1,17 @@
 ---
 # copyright Utrecht University
 
-- name: Install Mod-WSGI for Python 3.8
+- name: Install Mod-WSGI for Python 3.8 (EL)
   ansible.builtin.yum:
     name: rh-python38-python-mod_wsgi
     enablerepo: "{{ centos_sclo_rh_repository }}"
-  when: not ansible_check_mode
+  when: not ansible_check_mode and ansible_os_family == 'RedHat'
+
+
+- name: Install Mod-WSGI for Python (Ubuntu)
+  ansible.builtin.apt:
+    name: libapache2-mod-wsgi-py3
+  when: ansible_os_family == 'Debian'
 
 
 - name: Link Python 3 Mod_WSGI to Apache Modules
@@ -13,7 +19,7 @@
     dest: /usr/lib64/httpd/modules/mod_wsgi.so
     src: /opt/rh/rh-python38/root/usr/lib64/python3.8/site-packages/mod_wsgi/server/mod_wsgi-py38.cpython-38-x86_64-linux-gnu.so
     state: link
-  when: not ansible_check_mode
+  when: not ansible_check_mode and ansible_os_family == 'RedHat'
 
 
 - name: Configure WSGI module in Apache
@@ -24,6 +30,7 @@
     group: root
     mode: '0644'
   notify: Restart Apache webserver
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Remove old WSGI configuration in Apache
@@ -31,6 +38,7 @@
     path: /etc/httpd/conf.modules.d/10-wsgi.conf
     state: absent
   notify: Restart Apache webserver
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Upload custom SELinux module for WSGI with Python 3.8
@@ -41,6 +49,7 @@
     group: root
     mode: '0644'
   register: python_selinux
+  when: ansible_os_family == 'RedHat'
 
 
 # Running as task instead of handler in order to prevent ordering issues
@@ -49,4 +58,4 @@
   ansible.builtin.command:
     cmd: semodule -i /root/my-httpd.pp
   changed_when: false
-  when: python_selinux.changed
+  when: ansible_os_family == 'RedHat' and not ansible_check_mode and python_selinux.changed
