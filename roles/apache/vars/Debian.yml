@@ -1,0 +1,13 @@
+---
+# copyright Utrecht University
+
+apache_main_package: apache2
+apache_dev_package: apache2-dev
+apache_openssl_package: openssl
+
+apache_main_config_file: /etc/apache2/apache2.conf
+apache_main_config_template: main.conf.focal.j2
+apache_ssl_config_file: /etc/apache2/mods-available/ssl.conf
+apache_ssl_config_template: ssl.conf.focal.j2
+
+apache_service_name: apache2
