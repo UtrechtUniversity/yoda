@@ -9,6 +9,7 @@
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
   args:
     creates: "~/.nvm/nvm.sh"
+    executable: /bin/bash
 
 
 - name: Check if NPM v17 is installed
@@ -16,8 +17,10 @@
   become: true
   ansible.builtin.shell: |
     set -o pipefail
-    source ~/.bashrc
+    source ~/.profile
     nvm ls {{ npm_version }} | grep {{ npm_version }}
+  args:
+    executable: /bin/bash
   register: npm_check
   ignore_errors: true
   changed_when: false
@@ -28,6 +31,8 @@
   become: true
   # noqa no-changed-when
   ansible.builtin.shell: |
-    source ~/.bashrc
+    source ~/.profile
     nvm install {{ npm_version }}
+  args:
+    executable: /bin/bash
   when: npm_check.stdout == ""
