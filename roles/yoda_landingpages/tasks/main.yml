@@ -1,18 +1,22 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure Yoda landingpages root is world readable
-  ansible.builtin.file:
-    path: '{{ landingpages_root }}'
-    mode: '0755'
-    owner: '{{ yoda_inbox_user }}'
-    group: 'apache'
-    state: directory
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
 - name: Ensure inbox user exists
   ansible.builtin.user:
     name: '{{ yoda_inbox_user }}'
+
+
+- name: Ensure Yoda landingpages root is world readable
+  ansible.builtin.file:
+    path: '{{ landingpages_root }}'
+    mode: '0755'
+    owner: '{{ yoda_inbox_user }}'
+    group: '{{ yoda_public_landingpage_group }}'
+    state: directory
 
 
 - name: Add upload user pub key to authorized_keys of inbox
