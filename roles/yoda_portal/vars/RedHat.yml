@@ -1,0 +1,11 @@
+---
+# copyright Utrecht University
+
+openssl_private_dir: '/etc/pki/tls/private'
+openssl_certs_dir: '/etc/pki/tls/certs'
+
+yoda_portal_python3_path: /opt/rh/rh-python38/root/bin/python3
+yoda_portal_python3_include_path: /opt/rh/rh-python38/root/usr/include/python3.8
+yoda_portal_site_config_dir: /etc/apache2/sites-available
+yoda_portal_site_config_file: yoda-portal-vhost.conf
+yoda_portal_apache_log_dir: /var/log/httpd

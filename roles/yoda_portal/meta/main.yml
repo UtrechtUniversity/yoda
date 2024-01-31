@@ -9,9 +9,12 @@ galaxy_info:
   platforms:
     - name: EL
       version: 7
-
+    - name: Ubuntu
+      version: focal
 
 dependencies:
   - role: apache
   - role: apache_wsgi
+  - role: certificates
   - role: remove_php
+    when: ansible_os_family == 'RedHat'
