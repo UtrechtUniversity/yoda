@@ -1,12 +1,15 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Ensure new SQLite3 version has been installed
   ansible.builtin.package:
-    name:
-      - sqlite33
-      - sqlite33-devel
+    name: "{{ item }}"
     state: present
+  with_items: "{{ yoda_moai_sqlite3_packages }}"
   when: not ansible_check_mode
 
 
@@ -66,7 +69,7 @@
 - name: Ensure Yoda MOAI virtualenv exists
   become_user: '{{ yoda_moai_user }}'
   become: true
-  ansible.builtin.command: virtualenv --python /opt/rh/rh-python38/root/bin/python3 "{{ yoda_moai_home }}/yoda-moai/venv"
+  ansible.builtin.command: "virtualenv --python {{ yoda_moai_python3_path }} {{ yoda_moai_home }}/yoda-moai/venv"
   args:
     creates: "{{ yoda_moai_home }}/yoda-moai/venv"
 
@@ -89,8 +92,8 @@
     name: pysqlite3==0.5.0
     virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
   environment:
-    C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8:/usr/sqlite330/include
-    LIBRARY_PATH: /usr/sqlite330/lib
+    C_INCLUDE_PATH: "{{ yoda_moai_python3_include_path }}:{{ yoda_moai_sqlite3_include_path }}"
+    LIBRARY_PATH: "{{ yoda_moai_sqlite3_lib_path }}"
   notify: Restart Apache webserver
 
 
@@ -104,7 +107,7 @@
     virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
     extra_args: "-e"
   environment:
-    C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8
+    C_INCLUDE_PATH: "{{ yoda_moai_python3_include_path }}"
   changed_when: false
   notify: Restart Apache webserver
 
@@ -164,6 +167,7 @@
   become: true
   ansible.builtin.command: '{{ yoda_moai_home }}/yoda-moai/venv/bin/update_moai -q --config {{ yoda_moai_home }}/settings.ini yoda_moai &> /dev/null'
   args:
+    chdir: '{{ yoda_moai_home }}'
     creates: '{{ yoda_moai_home }}/moai.db'
 
 
@@ -173,7 +177,7 @@
     setype: httpd_unconfined_script_exec_t
     state: present
   register: filescontext
-  when: ansible_selinux.status == "enabled"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
 - name: Set SELinux context for lib64
@@ -181,7 +185,7 @@
     target: /var/www/moai/yoda-moai/venv/lib64
     setype: httpd_sys_rw_content_t
     state: present
-  when: ansible_selinux.status == "enabled"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
 - name: Ensure MOAI log file is present in order to be able to set SELinux context
@@ -198,19 +202,19 @@
     setype: httpd_sys_rw_content_t
     state: present
   register: moailog_context
-  when: ansible_selinux.status == "enabled"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
 - name: Ensure selinux context is enforced on Yoda MOAI log
   ansible.builtin.command: # noqa no-changed-when
     cmd: 'restorecon {{ yoda_moai_home }}/moai.log'
-  when: ansible_selinux.status == "enabled" and moailog_context.changed
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled" and moailog_context.changed
 
 
 - name: Ensure selinux context is enforced on shared libraries
   ansible.builtin.command: # noqa no-changed-when
     cmd: 'restorecon -r {{ yoda_moai_home }}/yoda-moai/venv'
-  when: ansible_selinux.status == "enabled" and filescontext.changed
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled" and filescontext.changed
 
 
 - name: Set SELinux context for Yoda MOAI database
@@ -219,13 +223,13 @@
     setype: httpd_sys_rw_content_t
     state: present
   register: filecontext
-  when: ansible_selinux.status == "enabled"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
 - name: Ensure selinux context is enforced on Yoda MOAI database
   ansible.builtin.command: # noqa no-changed-when
     cmd: 'restorecon {{ yoda_moai_home }}/moai.db'
-  when: ansible_selinux.status == "enabled" and filecontext is changed
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled" and filecontext is changed
 
 
 - name: Configure cronjob to update MOAI database
