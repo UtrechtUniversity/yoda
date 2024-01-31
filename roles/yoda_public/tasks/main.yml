@@ -1,14 +1,27 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Copy Yoda Public Apache configuration
   ansible.builtin.template:
     src: yoda-public-vhost.conf.j2
-    dest: /etc/httpd/conf.d/yoda-public-vhost.conf
+    dest: "{{ yoda_public_site_config_dir }}/{{ yoda_public_site_config_file }}"
     owner: root
     group: root
     mode: '0644'
   notify: Restart Apache webserver
+
+
+- name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ yoda_public_site_config_dir }}//{{ yoda_public_site_config_file }}"
+    dest: "{{ yoda_public_site_enabled_config_dir }}//{{ yoda_public_site_config_file }}"
+    state: link
+  notify: Restart Apache webserver
+  when: ansible_os_family == 'Debian'
 
 
 - name: Allow public to port for Yoda Public in firewall
@@ -26,3 +39,4 @@
     proto: tcp
     setype: http_port_t
     state: present
+  when: ansible_os_family == 'RedHat'
