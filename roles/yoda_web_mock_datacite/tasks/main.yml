@@ -1,9 +1,22 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Copy Yoda Web Mock for Datacite virtual host config for Apache
   ansible.builtin.template:
     src: "yoda-web-mock-datacite-vhost.conf.j2"
-    dest: "/etc/httpd/conf.d/yoda-web-mock-datacite-vhost.conf"
+    dest: "{{ yoda_web_mock_datacite_site_config_dir }}/{{ yoda_web_mock_datacite_site_config_file }}"
     mode: '0644'
   notify: Restart Apache webserver
+
+
+- name: Ensure Yoda Web Mock for Datacite vhost is enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ yoda_web_mock_datacite_site_config_dir }}//{{ yoda_web_mock_datacite_site_config_file }}"
+    dest: "{{ yoda_web_mock_datacite_site_enabled_config_dir }}//{{ yoda_web_mock_datacite_site_config_file }}"
+    state: link
+  notify: Restart Apache webserver
+  when: ansible_os_family == 'Debian'
