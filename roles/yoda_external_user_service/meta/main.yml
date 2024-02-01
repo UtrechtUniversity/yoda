@@ -9,6 +9,8 @@ galaxy_info:
   platforms:
     - name: EL
       version: 7
+    - name: Ubuntu
+      version: focal
 
 
 dependencies:
@@ -17,3 +19,4 @@ dependencies:
   - role: postgresql
   - role: python3
   - role: remove_php
+    when: ansible_os_family == 'RedHat'
