@@ -49,6 +49,8 @@ ansible-playbook -i environments/development/allinone/ playbook.yml
 192.168.56.10 public.data.yoda.test
 192.168.56.10 public.yoda.test
 192.168.56.10 eus.yoda.test
+192.168.56.10 datacite-mock.yoda.test
+192.168.56.10 sram-mock.yoda.test
 ```
 
 6. Provision Yoda with test data:
