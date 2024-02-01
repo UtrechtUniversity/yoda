@@ -2,3 +2,9 @@
 # copyright Utrecht University
 
 yoda_web_mock_datacite_fqdn: datacite-mock.yoda.test
+
+# OpenSSL configuration.
+openssl_key_signed: localhost.key
+openssl_crt_signed: localhost.crt
+openssl_crt_signed_and_chain: localhost_and_chain.crt
+openssl_chain: chain.crt
