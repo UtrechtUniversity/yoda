@@ -1,0 +1,15 @@
+---
+# copyright Utrecht University
+
+galaxy_info:
+  author: Sietse Snel
+  description: Install specific dependencies that are needed to run iRODS on Ubuntu
+  license: GPLv3
+  min_ansible_version: '2.11'
+  platforms:
+    - name: Ubuntu
+      version: focal
+
+
+dependencies:
+  - role: common
