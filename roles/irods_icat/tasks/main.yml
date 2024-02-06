@@ -88,7 +88,7 @@
   when: not ansible_check_mode
 
 
-- name: Ensure old iRODS indexing plugins are present
+- name: Ensure old iRODS indexing plugins are absent
   ansible.builtin.package:
     name:
       - irods-rule-engine-plugin-indexing-4.2.11.0-1
