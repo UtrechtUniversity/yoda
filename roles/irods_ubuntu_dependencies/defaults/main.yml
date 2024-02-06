@@ -1,0 +1,22 @@
+---
+# copyright Utrecht University
+
+irods_ubuntu_libssl_package_name: "libssl1.0.0"
+irods_ubuntu_libssl_package_filename: "libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb"
+irods_ubuntu_libssl_package_url_prefix: "http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0"
+
+irods_ubuntu_py_jsonschema_package_name: "py_jsonschema"
+irods_ubuntu_py_jsonschema_package_filename: "python-jsonschema_2.3.0-1build1_all.deb"
+irods_ubuntu_py_jsonschema_package_url_prefix: "http://security.ubuntu.com/ubuntu/pool/main/p/python-jsonschema"
+
+irods_ubuntu_py_odbc_package_name: "py_odbc"
+irods_ubuntu_py_odbc_package_filename: "python-pyodbc_4.0.17-1_amd64.deb"
+irods_ubuntu_py_odbc_package_url_prefix: "http://security.ubuntu.com/ubuntu/pool/universe/p/pyodbc"
+
+irods_ubuntu_py_requests_package_name: "py_requests"
+irods_ubuntu_py_requests_package_filename: "python-requests_2.18.4-2ubuntu0.1_all.deb"
+irods_ubuntu_py_requests_package_url_prefix: "http://security.ubuntu.com/ubuntu/pool/main/r/requests"
+
+irods_ubuntu_py_urllib_package_name: "py_urllib3"
+irods_ubuntu_py_urllib_package_filename: "python-urllib3_1.22-1ubuntu0.18.04.2_all.deb"
+irods_ubuntu_py_urllib_package_url_prefix: "http://security.ubuntu.com/ubuntu/pool/main/p/python-urllib3"
