@@ -11,3 +11,6 @@ galaxy_info:
       version: 7
     - name: Ubuntu
       version: focal
+
+dependencies:
+  - role: yoda_portal
