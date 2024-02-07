@@ -23,7 +23,7 @@
 - name: Check that ODBC is configured for PostgreSQL
   ansible.builtin.lineinfile:
     path: "{{ odbc_config_path }}"
-    search_string: "pgsql-{{ pgsql_version }}"
+    search_string: "{{ postgresql_odbc_version_search_string }}"
     state: absent
   check_mode: true
   changed_when: false
@@ -37,6 +37,7 @@
     stdin: |
       [PostgreSQL]
       Description = PostgreSQL {{ pgsql_version }} ODBC Driver
-      Driver      = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbc.so
-      Setup       = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbcw.so
-  when: not driver.found
+      Driver      = {{ postgresql_odbc_lib_dir }}/{{ postgresql_odbc_driver_lib }}
+      Setup       = {{ postgresql_odbc_lib_dir }}/{{ postgresql_odbc_setup_lib }}
+  when: ( ('found' in driver and not driver.found ) or
+          ('msg' in driver and driver.msg == 'file not present' ) )
