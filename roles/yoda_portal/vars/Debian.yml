@@ -10,3 +10,5 @@ yoda_portal_site_config_dir: /etc/apache2/sites-available
 yoda_portal_site_enabled_config_dir: /etc/apache2/sites-enabled
 yoda_portal_site_config_file: 001-yoda-portal-vhost.conf
 yoda_portal_apache_log_dir: /var/log/apache2
+
+apache_service_name: apache2
