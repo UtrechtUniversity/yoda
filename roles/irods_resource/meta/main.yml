@@ -9,6 +9,13 @@ galaxy_info:
   platforms:
     - name: EL
       version: 7
+    - name: Ubuntu
+      version: focal
+
 
 dependencies:
+  - role: irods_ubuntu_dependencies
+    when: ansible_os_family == 'Debian'
+  - role: irods_remove_old_version
+  - role: python2
   - role: python_irodsclient

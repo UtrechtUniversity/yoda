@@ -1,0 +1,14 @@
+---
+# copyright Utrecht University
+
+irods_uu_microservices_package_old: irods-uu-microservices=4.2.11_0.8.2-1
+irods_sudo_microservices_package_old: irods-sudo-microservices=4.2.11_1.0.0-1
+irods_runtime_package_old: irods-runtime=4.2.11-1~bionic
+irods_server_package_old: irods-server=4.2.11-1~bionic
+irods_icommands_package_old: irods-icommands=4.2.11-1~bionic
+irods_prep_package_old: irods-rule-engine-plugin-python=4.2.11.1-1~bionic
+irods_pgp_package_old: irods-database-plugin-postgres=4.2.11-1~bionic
+irods_idp_package_old: irods-rule-engine-plugin-indexing=4.2.11.0-1~bionic
+irods_esp_package_old: irods-rule-engine-plugin-elasticsearch=4.2.11.0-1~bionic
+irods_dtp_package_old: irods-rule-engine-plugin-document-type=4.2.11.0-1~bionic
+irods_davrods_package_old: davrods=4.2.11_1.5.0-1

@@ -44,10 +44,7 @@ eus_api_port: 8443                      # External User Service API port
 eus_api_secret: PLACEHOLDER             # External User Service API secret
 eus_api_tls_verify: true                # Enable TLS verification for EUS API calls
 
-
 # OpenSSL configuration
-openssl_private_dir: '/etc/pki/tls/private'
-openssl_certs_dir: '/etc/pki/tls/certs'
 openssl_dhparams: dhparams.pem
 openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
@@ -55,7 +52,7 @@ openssl_crt_signed_and_chain: localhost_and_chain.crt
 # OpenID Connect configuration
 oidc_userinfo_uri: ''
 
-# Service type. Possible values: 'sysv' and 'systemd'
+# Service type. Possible values: 'sysv' and 'systemd' (Ubuntu only supports systemd)
 irods_service_type: 'systemd'
 
 # Whether to start iRODS at boot time.

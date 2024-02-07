@@ -18,8 +18,6 @@ irods_schema_uri: https://schemas.irods.org/configuration
 irods_ssl_verify_server: cert
 
 # OpenSSL configuration
-openssl_private_dir: '/etc/pki/tls/private'
-openssl_certs_dir: '/etc/pki/tls/certs'
 openssl_dhparams: dhparams.pem
 openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt

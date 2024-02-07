@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+openssl_private_dir: '/etc/ssl/private/'
+openssl_certs_dir: '/etc/ssl/certs'
+
+irods_runtime_package_new: irods-runtime=4.2.12-1~bionic
+irods_server_package_new: irods-server=4.2.12-1~bionic
+irods_prep_package_new: irods-rule-engine-plugin-python=4.2.12.0-1~bionic
