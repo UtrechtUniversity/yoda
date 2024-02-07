@@ -18,6 +18,7 @@
   ansible.builtin.shell: |
     set -o pipefail
     source ~/.profile
+    source ~/.bashrc
     nvm ls {{ npm_version }} | grep {{ npm_version }}
   args:
     executable: /bin/bash
@@ -32,6 +33,7 @@
   # noqa no-changed-when
   ansible.builtin.shell: |
     source ~/.profile
+    source ~/.bashrc
     nvm install {{ npm_version }}
   args:
     executable: /bin/bash
