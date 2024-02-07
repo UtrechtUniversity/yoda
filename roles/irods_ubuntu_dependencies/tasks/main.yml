@@ -6,7 +6,8 @@
   ansible.builtin.command: # noqa no-changed-when
     cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_libssl_package_name }}"
   register: irods_ubuntu_libssl_status
-  ignore_errors: true
+  failed_when: false
+  changed_when: false
 
 
 - name: Install OpenSSL 1.0
@@ -19,7 +20,8 @@
   ansible.builtin.command: # noqa no-changed-when
     cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_py_jsonschema_package_name }}"
   register: irods_ubuntu_py_jsonschema_status
-  ignore_errors: true
+  failed_when: false
+  changed_when: false
 
 
 - name: Install JSONSchema for Python 2
@@ -32,7 +34,8 @@
   ansible.builtin.command: # noqa no-changed-when
     cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_py_odbc_package_name }}"
   register: irods_ubuntu_py_odbc_status
-  ignore_errors: true
+  failed_when: false
+  changed_when: false
 
 
 - name: Install ODBC for Python 2
@@ -45,7 +48,8 @@
   ansible.builtin.command: # noqa no-changed-when
     cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_py_urllib_package_name }}"
   register: irods_ubuntu_py_urllib_status
-  ignore_errors: true
+  failed_when: false
+  changed_when: false
 
 
 - name: Install URLLib 3 for Python 2
@@ -58,7 +62,8 @@
   ansible.builtin.command: # noqa no-changed-when
     cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_py_requests_package_name }}"
   register: irods_ubuntu_py_requests_status
-  ignore_errors: true
+  failed_when: false
+  changed_when: false
 
 
 - name: Install Requests for Python 2
