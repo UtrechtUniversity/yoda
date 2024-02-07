@@ -7,7 +7,7 @@ nav_order: 5
 Preservable file formats are read from iRODS and presented to the user.
 It needs to be a JSON (.json) file which validates against the JSON schema below.
 
-The naming scheme is up to the administrator, the lists ar presented alphabetically.
+The naming scheme is up to the administrator, the lists are presented alphabetically.
 In order for every user to be able to read the terms, a read ACL for public needs to be set.
 
 ```bash
