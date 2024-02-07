@@ -9,6 +9,6 @@
 
 - name: Ensure iRODS packages APT repository is enabled
   ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://packages.irods.org/apt/ focal main
+    repo: deb [arch=amd64] https://packages.irods.org/apt/ bionic main
     filename: renci-irods
     state: present
