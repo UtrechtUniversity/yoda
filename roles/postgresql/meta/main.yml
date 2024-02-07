@@ -15,4 +15,5 @@ galaxy_info:
       version: focal
 
 dependencies:
+  - role: certificates
   - role: postgresql_repository
