@@ -1,0 +1,63 @@
+---
+# copyright Utrecht University
+
+- name: Allow Apache to execute davrods module
+  community.general.sefcontext:
+    target: /etc/httpd/modules/mod_davrods.so
+    setype: httpd_sys_script_exec_t
+    state: present
+  register: filecontext
+
+
+- name: Ensure selinux context is enforced on davrods module
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: restorecon /etc/httpd/modules/{{ item.target }}
+  when: filecontext is changed and ansible_selinux
+  with_items:
+    - {index: 0, target: 'mod_davrods.so'}
+
+
+- name: Allow DavRODS connections to iCAT server
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+
+
+- name: Allow Apache to execute iRODS network plugins
+  community.general.sefcontext:
+    target: '{{ item }}'
+    setype: httpd_sys_script_exec_t
+    state: present
+  register: filecontext
+  with_items:
+    - /usr/lib/irods/plugins/network/libtcp_client.so
+    - /usr/lib/irods/plugins/network/libssl_client.so
+    - /usr/lib/irods/plugins/network/libtcp_server.so
+    - /usr/lib/irods/plugins/network/libssl_server.so
+
+
+- name: Ensure selinux context is enforced on iRODS network plugins
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
+  when: filecontext.results[item.index] is changed and ansible_selinux
+  with_items:
+    - {index: 0, target: 'libtcp_client.so'}
+    - {index: 1, target: 'libssl_client.so'}
+    - {index: 2, target: 'libtcp_server.so'}
+    - {index: 3, target: 'libssl_server.so'}
+
+- name: Allow Apache to listen to davrods port
+  community.general.seport:
+    ports: "{{ yoda_davrods_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+
+
+- name: Allow Apache to listen to anonymous davrods port
+  community.general.seport:
+    ports: "{{ yoda_davrods_anonymous_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
