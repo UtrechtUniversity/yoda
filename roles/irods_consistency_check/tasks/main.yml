@@ -1,6 +1,10 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Check if ichk virtual environment is running Python 3.6
   ansible.builtin.stat:
     path: '/var/lib/irods/irods-consistency-check/bin/pip3.6'
@@ -19,7 +23,7 @@
 - name: Ensure iRODS consistency check virtualenv exists
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.command: /usr/local/bin/python3 -m virtualenv "/var/lib/irods/irods-consistency-check"
+  ansible.builtin.command: "{{ irods_consistency_check_python3_path }} -m virtualenv /var/lib/irods/irods-consistency-check"
   args:
     creates: /var/lib/irods/irods-consistency-check
 
