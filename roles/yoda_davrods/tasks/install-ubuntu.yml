@@ -1,0 +1,31 @@
+---
+# copyright Utrecht University
+
+- name: Check whether DavRODS has been installed
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "dpkg-query -W --showformat='${Status}\n' davrods"
+  register: davrods_current_package_status
+  ignore_errors: true
+
+
+- name: Check current DavRODS version
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "dpkg-query -W --showformat='${Version}\n' davrods"
+  register: davrods_current_package_version
+  ignore_errors: true
+
+
+- name: Download DavRODS package
+  ansible.builtin.get_url:
+    url: "https://github.com/UtrechtUniversity/davrods/releases/download/{{ yoda_davrods_version | replace('-', '_') }}/davrods-{{ yoda_davrods_version }}.deb"
+    dest: "/tmp/davrods-{{ yoda_davrods_version }}.deb"
+    mode: "0644"
+  when: "'install ok installed' not in davrods_current_package_status.stdout or davrods_current_package_status.stdout != yoda_davrods_version"
+
+
+- name: Install DaVRODS
+  # Use a command instead of apt module to work around Ansible apt module apparently not being able
+  # to handle dependency resolution for this package.
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "/usr/bin/dpkg -i /tmp/davrods-{{ yoda_davrods_version }}.deb"
+  when: "'install ok installed' not in davrods_current_package_status.stdout or davrods_current_package_status.stdout != yoda_davrods_version"

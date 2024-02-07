@@ -1,74 +1,38 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
 - name: Ensure davrods prerequisites are installed
   ansible.builtin.package:
     name:
-      - boost
-      - jansson
+      - "{{ yoda_davrods_boost_package }}"
+      - "{{ yoda_davrods_jansson_package }}"
     state: present
 
 
-- name: Check if davrods is installable from repository
-  ansible.builtin.yum:
-    list: '{{ davrods.package }}'
-  register: davrods_repo
+- name: Install DavRODS (EL)
+  ansible.builtin.import_tasks: install-redhat.yml
+  when: ansible_os_family == 'RedHat'
 
 
-- name: Download davrods rpm
-  ansible.builtin.get_url:
-    url: '{{ davrods.url }}/{{ davrods.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
-    checksum: '{{ davrods.checksum }}'
-    mode: '0644'
-  when: not davrods_repo.results and not repo_only
+- name: Install DavRODS (Ubuntu)
+  ansible.builtin.import_tasks: install-ubuntu.yml
+  when: ansible_os_family == 'Debian'
 
 
-- name: Install davrods from downloaded rpm
-  ansible.builtin.package:
-    name: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
-    state: present
-  when: not davrods_repo.results and not ansible_check_mode and not repo_only
+- name: Setup SELinux for DavRODS (EL)
+  ansible.builtin.import_tasks: setup-selinux.yml
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
-- name: Ensure davrods rpm is installed
-  ansible.builtin.package:
-    name: '{{ davrods.package }}'
-    state: present
-  when: davrods_repo.results and not ansible_check_mode
-
-
-- name: Allow Apache to execute davrods module
-  community.general.sefcontext:
-    target: /etc/httpd/modules/mod_davrods.so
-    setype: httpd_sys_script_exec_t
-    state: present
-  register: filecontext
-  when: ansible_selinux.status == "enabled"
-
-
-- name: Ensure selinux context is enforced on davrods module
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: restorecon /etc/httpd/modules/{{ item.target }}
-  when: filecontext is changed and ansible_selinux
-  with_items:
-    - {index: 0, target: 'mod_davrods.so'}
-
-
-- name: Allow DavRODS connections to iCAT server
-  ansible.posix.seboolean:
-    name: httpd_can_network_connect
-    state: true
-    persistent: true
-  when: ansible_selinux.status == "enabled"
-
-
-- name: Copy irods_environment.json to /etc/httpd/irods/irods_environment.json
+- name: Copy irods_environment.json to config directory
   ansible.builtin.template:
     src: irods_environment.j2
-    dest: /etc/httpd/irods/irods_environment.json
-    owner: apache
-    group: apache
+    dest: "{{ yoda_davrods_config_dir }}/irods_environment.json"
+    owner: "{{ yoda_davrods_user }}"
+    group: "{{ yoda_davrods_user }}"
     mode: '0644'
   notify: Restart Apache webserver
 
@@ -76,7 +40,7 @@
 - name: Copy davrods Apache configuration
   ansible.builtin.template:
     src: davrods-vhost.conf.j2
-    dest: /etc/httpd/conf.d/davrods-vhost.conf
+    dest: "{{ yoda_davrods_site_config_dir }}/{{ yoda_davrods_config_file }}"
     owner: root
     group: root
     mode: '0644'
@@ -87,7 +51,7 @@
   when: (yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled
   ansible.builtin.template:
     src: davrods-anonymous-vhost.conf.j2
-    dest: /etc/httpd/conf.d/davrods-anonymous-vhost.conf
+    dest: "{{ yoda_davrods_site_config_dir }}/{{ yoda_davrods_anon_config_file }}"
     owner: root
     group: root
     mode: '0644'
@@ -103,8 +67,9 @@
     group: root
     force: false
   with_items:
-    - /var/log/httpd/webdav_access.log
+    - "{{ yoda_davrods_apache_log_dir }}/webdav_access.log"
   notify: Restart Apache webserver
+
 
 - name: Ensure webdav logfiles for anonymous access exist
   when: (yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled
@@ -116,33 +81,8 @@
     group: root
     force: false
   with_items:
-    - /var/log/httpd/webdav_anon_access.log
+    - "{{ yoda_davrods_apache_log_dir }}/webdav_anon_access.log"
   notify: Restart Apache webserver
-
-
-- name: Allow Apache to execute iRODS network plugins
-  community.general.sefcontext:
-    target: '{{ item }}'
-    setype: httpd_sys_script_exec_t
-    state: present
-  register: filecontext
-  with_items:
-    - /usr/lib/irods/plugins/network/libtcp_client.so
-    - /usr/lib/irods/plugins/network/libssl_client.so
-    - /usr/lib/irods/plugins/network/libtcp_server.so
-    - /usr/lib/irods/plugins/network/libssl_server.so
-  when: ansible_selinux.status == "enabled"
-
-
-- name: Ensure selinux context is enforced on iRODS network plugins
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: restorecon /usr/lib/irods/plugins/network/{{ item.target }}
-  when: filecontext.results[item.index] is changed and ansible_selinux
-  with_items:
-    - {index: 0, target: 'libtcp_client.so'}
-    - {index: 1, target: 'libssl_client.so'}
-    - {index: 2, target: 'libtcp_server.so'}
-    - {index: 3, target: 'libssl_server.so'}
 
 
 - name: Allow public to ports for davrods in firewall
@@ -154,14 +94,6 @@
   notify: Restart firewall
 
 
-- name: Allow Apache to listen to davrods port
-  community.general.seport:
-    ports: "{{ yoda_davrods_port }}"
-    proto: tcp
-    setype: http_port_t
-    state: present
-
-
 - name: Allow public to ports for anonymous davrods in firewall
   ansible.posix.firewalld:
     port: '{{ yoda_davrods_anonymous_port }}/tcp'
@@ -171,18 +103,10 @@
   notify: Restart firewall
 
 
-- name: Allow Apache to listen to anonymous davrods port
-  community.general.seport:
-    ports: "{{ yoda_davrods_anonymous_port }}"
-    proto: tcp
-    setype: http_port_t
-    state: present
-
-
 - name: Ensure styling of davrods directory listing is present
   ansible.builtin.template:
     src: '{{ item.src }}'
-    dest: '/etc/httpd/irods/{{ item.dest }}'
+    dest: '{{ yoda_davrods_config_dir }}/{{ item.dest }}'
     owner: root
     group: root
     mode: '0644'
