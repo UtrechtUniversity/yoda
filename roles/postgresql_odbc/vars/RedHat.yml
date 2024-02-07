@@ -2,3 +2,7 @@
 # copyright Utrecht University
 
 odbc_config_path: '/etc/odbcinst.ini'
+postgresql_odbc_version_search_string: "pgsql-{{ pgsql_version }}"
+postgresql_odbc_lib_dir: /usr/pgsql-{{ pgsql_version }}/lib
+postgresql_odbc_driver_lib: psqlodbc.so
+postgresql_odbc_setup_lib: psqlodbcw.so
