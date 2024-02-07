@@ -86,7 +86,7 @@
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.command:
-    imkdir /{{ irods_zone }}/home/research-initial/{{ item }}
+    imkdir "/{{ irods_zone }}/home/research-initial/{{ item }}"
   ignore_errors: true
   with_items:
     - testdata
