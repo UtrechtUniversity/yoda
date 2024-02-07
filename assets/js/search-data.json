@@ -755,47 +755,47 @@
     
     "relUrl": "/administration/hotfixing-ruleset.html"
   },"108": {
-    "doc": "Development",
-    "title": "Development",
-    "content": ". | Setting up development environment | Running Yoda using Docker Compose | Running API and UI tests | Running unit and integration tests | Setting up YodaDrive development environment | Mock tape archive | Development tips | Wall of Fame | . ",
-    "url": "/yoda/development/",
-    
-    "relUrl": "/development/"
-  },"109": {
-    "doc": "Administration Tasks",
-    "title": "Administration Tasks",
-    "content": " ",
-    "url": "/yoda/administration/",
-    
-    "relUrl": "/administration/"
-  },"110": {
-    "doc": "Administration Tasks",
-    "title": "Configuration and deployment",
-    "content": "Main page: Configuring Yoda . Specific information: . | Configuring cleanup of temporary files | Configuring OIDC | Deploying Yoda | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Rulesets changes: . | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | . | Working with the local Postfix MTA | Upgrading metadata schemas | Upgrading PostgreSQL | . ",
-    "url": "/yoda/administration/#configuration-and-deployment",
-    
-    "relUrl": "/administration/#configuration-and-deployment"
-  },"111": {
-    "doc": "Administration Tasks",
-    "title": "Operations",
-    "content": ". | Graciously stopping revision and replication jobs | Using Python-irodsclient | . ",
-    "url": "/yoda/administration/#operations",
-    
-    "relUrl": "/administration/#operations"
-  },"112": {
-    "doc": "Administration Tasks",
-    "title": "Troubleshooting",
-    "content": ". | Restoring a collection | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | . ",
-    "url": "/yoda/administration/#troubleshooting",
-    
-    "relUrl": "/administration/#troubleshooting"
-  },"113": {
     "doc": "Release Notes",
     "title": "Release Notes",
     "content": ". | Release Notes - Yoda v1.9 (TBA) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
     "url": "/yoda/release-notes/",
     
     "relUrl": "/release-notes/"
+  },"109": {
+    "doc": "Development",
+    "title": "Development",
+    "content": ". | Setting up development environment | Running Yoda using Docker Compose | Running API and UI tests | Running unit and integration tests | Setting up YodaDrive development environment | Mock tape archive | Development tips | Wall of Fame | . ",
+    "url": "/yoda/development/",
+    
+    "relUrl": "/development/"
+  },"110": {
+    "doc": "Administration Tasks",
+    "title": "Administration Tasks",
+    "content": " ",
+    "url": "/yoda/administration/",
+    
+    "relUrl": "/administration/"
+  },"111": {
+    "doc": "Administration Tasks",
+    "title": "Configuration and deployment",
+    "content": "Main page: Configuring Yoda . Specific information: . | Configuring cleanup of temporary files | Configuring OIDC | Deploying Yoda | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Rulesets changes: . | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | . | Working with the local Postfix MTA | Upgrading metadata schemas | Upgrading PostgreSQL | . ",
+    "url": "/yoda/administration/#configuration-and-deployment",
+    
+    "relUrl": "/administration/#configuration-and-deployment"
+  },"112": {
+    "doc": "Administration Tasks",
+    "title": "Operations",
+    "content": ". | Graciously stopping revision and replication jobs | Using Python-irodsclient | . ",
+    "url": "/yoda/administration/#operations",
+    
+    "relUrl": "/administration/#operations"
+  },"113": {
+    "doc": "Administration Tasks",
+    "title": "Troubleshooting",
+    "content": ". | Restoring a collection | Troubleshooting email | Troubleshooting publication | Troubleshooting replication and revision creation | . ",
+    "url": "/yoda/administration/#troubleshooting",
+    
+    "relUrl": "/administration/#troubleshooting"
   },"114": {
     "doc": "Metadata",
     "title": "Metadata",
@@ -846,54 +846,54 @@
     
     "relUrl": "/design/metadata/#further-information"
   },"121": {
-    "doc": "Processes",
-    "title": "Processes",
-    "content": " ",
-    "url": "/yoda/design/processes/",
-    
-    "relUrl": "/design/processes/"
-  },"122": {
     "doc": "System Overview",
     "title": "System overview",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
     "url": "/yoda/design/overview/#system-overview",
     
     "relUrl": "/design/overview/#system-overview"
-  },"123": {
+  },"122": {
     "doc": "System Overview",
     "title": "Core modules",
     "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     
     "relUrl": "/design/overview/#core-modules"
-  },"124": {
+  },"123": {
     "doc": "System Overview",
     "title": "Additional modules",
     "content": "Intake . This module processes uploaded YOUth programme experiment data, and facilitate its archival in the vault by a data manager. Technical design . Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
     "url": "/yoda/design/overview/#additional-modules",
     
     "relUrl": "/design/overview/#additional-modules"
-  },"125": {
+  },"124": {
     "doc": "System Overview",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/#overview",
     
     "relUrl": "/design/overview/#overview"
-  },"126": {
+  },"125": {
     "doc": "System Overview",
     "title": "System Overview",
     "content": " ",
     "url": "/yoda/design/overview/",
     
     "relUrl": "/design/overview/"
-  },"127": {
+  },"126": {
     "doc": "API",
     "title": "API",
     "content": "Core API . | Core API documentation | . Module API . | Intake API documentation | Datarequest API documentation | . ",
     "url": "/yoda/design/api/",
     
     "relUrl": "/design/api/"
+  },"127": {
+    "doc": "Processes",
+    "title": "Processes",
+    "content": " ",
+    "url": "/yoda/design/processes/",
+    
+    "relUrl": "/design/processes/"
   },"128": {
     "doc": "Other",
     "title": "Other",
@@ -1072,7 +1072,7 @@
   },"153": {
     "doc": "Installing lists of preservable file formats",
     "title": "Installing lists of preservable file formats",
-    "content": "Preservable file formats are read from iRODS and presented to the user. It needs to be a JSON (.json) file which validates against the JSON schema below. The naming scheme is up to the administrator, the lists ar presented alphabetically. In order for every user to be able to read the terms, a read ACL for public needs to be set. iput -r /etc/irods/yoda-ruleset/tools/file_formats /${RODSZONE}/yoda ichmod -rM inherit /${RODSZONE}/yoda/file_formats ichmod -rM read public /${RODSZONE}/yoda/file_formats . To add a new list of preservable file formats just put a JSON file in the /${RODSZONE}/yoda/file_formats collection with a new name. iput \"${FILE_FORMATS}.json\" \"/${RODSZONE}/yoda/file_formats/${FILE_FORMATS}.json\" . JSON schema for preservable file formats: . { \"definitions\": {}, \"$schema\": \"http://json-schema.org/draft-07/schema#\", \"$id\": \"preservable_file_formats.json\", \"type\": \"object\", \"title\": \"List of preservable file formats\", \"required\": [ \"name\", \"formats\" ], \"properties\": { \"name\": { \"$id\": \"#/properties/name\", \"type\": \"string\", \"title\": \"File formats list name\", \"default\": \"\", \"examples\": [ \"DANS Preferred formats\" ], \"pattern\": \"^(.*)$\" }, \"help\": { \"$id\": \"#/properties/help\", \"type\": \"string\", \"title\": \"File formats list help text\", \"default\": \"\", \"pattern\": \"^(.*)$\" }, \"advice\": { \"$id\": \"#/properties/advice\", \"type\": \"string\", \"title\": \"File formats list advice text\", \"default\": \"\", \"pattern\": \"^(.*)$\" }, \"formats\": { \"$id\": \"#/properties/formats\", \"type\": \"array\", \"title\": \"List of file formats\", \"default\": null, \"items\": { \"$id\": \"#/properties/formats/items\", \"type\": \"string\", \"title\": \"Preservable file formats\", \"default\": \"\", \"examples\": [ \"pdf\", \"txt\", \"xml\", \"html\", \"css\", \"ods\", \"csv\", \"sql\", \"jpg\", \"tiff\", \"png\", \"svg\" ], \"pattern\": \"^(.*)$\" } } } } . ",
+    "content": "Preservable file formats are read from iRODS and presented to the user. It needs to be a JSON (.json) file which validates against the JSON schema below. The naming scheme is up to the administrator, the lists are presented alphabetically. In order for every user to be able to read the terms, a read ACL for public needs to be set. iput -r /etc/irods/yoda-ruleset/tools/file_formats /${RODSZONE}/yoda ichmod -rM inherit /${RODSZONE}/yoda/file_formats ichmod -rM read public /${RODSZONE}/yoda/file_formats . To add a new list of preservable file formats just put a JSON file in the /${RODSZONE}/yoda/file_formats collection with a new name. iput \"${FILE_FORMATS}.json\" \"/${RODSZONE}/yoda/file_formats/${FILE_FORMATS}.json\" . JSON schema for preservable file formats: . { \"definitions\": {}, \"$schema\": \"http://json-schema.org/draft-07/schema#\", \"$id\": \"preservable_file_formats.json\", \"type\": \"object\", \"title\": \"List of preservable file formats\", \"required\": [ \"name\", \"formats\" ], \"properties\": { \"name\": { \"$id\": \"#/properties/name\", \"type\": \"string\", \"title\": \"File formats list name\", \"default\": \"\", \"examples\": [ \"DANS Preferred formats\" ], \"pattern\": \"^(.*)$\" }, \"help\": { \"$id\": \"#/properties/help\", \"type\": \"string\", \"title\": \"File formats list help text\", \"default\": \"\", \"pattern\": \"^(.*)$\" }, \"advice\": { \"$id\": \"#/properties/advice\", \"type\": \"string\", \"title\": \"File formats list advice text\", \"default\": \"\", \"pattern\": \"^(.*)$\" }, \"formats\": { \"$id\": \"#/properties/formats\", \"type\": \"array\", \"title\": \"List of file formats\", \"default\": null, \"items\": { \"$id\": \"#/properties/formats/items\", \"type\": \"string\", \"title\": \"Preservable file formats\", \"default\": \"\", \"examples\": [ \"pdf\", \"txt\", \"xml\", \"html\", \"css\", \"ods\", \"csv\", \"sql\", \"jpg\", \"tiff\", \"png\", \"svg\" ], \"pattern\": \"^(.*)$\" } } } } . ",
     "url": "/yoda/administration/installing-preservable-file-formats.html",
     
     "relUrl": "/administration/installing-preservable-file-formats.html"
