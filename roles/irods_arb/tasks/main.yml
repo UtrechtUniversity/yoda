@@ -1,5 +1,9 @@
 # Copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Configure cronjob to update resource storage data
   become_user: "{{ irods_service_account }}"
   become: true
@@ -16,5 +20,5 @@
   become: true
   ansible.builtin.pip:
     name: "psutil==5.9.5"
-    executable: /usr/local/bin/pip3
+    executable: "{{ irods_arb_pip3_location }}"
     extra_args: --user
