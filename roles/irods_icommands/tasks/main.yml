@@ -1,28 +1,18 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Find out if we need to install iRODS iCommands rpm
   ansible.builtin.stat:
     path: '/etc/irods'
   register: irods_server
 
 
-- name: Ensure old iRODS packages are absent
-  ansible.builtin.package:
-    name:
-      - irods-uu-microservices-4.2.11_0.8.2-1
-      - irods-sudo-microservices-4.2.11_1.0.0-1
-      - davrods-4.2.11_1.5.0-1
-      - irods-runtime-4.2.11-1
-      - irods-server-4.2.11-1
-      - irods-database-plugin-postgres-4.2.11-1
-      - irods-rule-engine-plugin-python-4.2.11.1-1
-      - irods-icommands-4.2.11-1
-    state: absent
-
-
 - name: Ensure iRODS iCommands is installed
-  ansible.builtin.yum:
-    name: irods-icommands-4.2.12-1
+  ansible.builtin.package:
+    name: '{{ irods_icommands_package_new }}'
     state: present
   when: not irods_server.stat.exists and not ansible_check_mode

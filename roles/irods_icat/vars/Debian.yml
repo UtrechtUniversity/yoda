@@ -1,0 +1,17 @@
+---
+# copyright Utrecht University
+
+openssl_private_dir: '/etc/ssl/private/'
+openssl_certs_dir: '/etc/ssl/certs'
+
+pam_radius_package: libpam-radius-auth
+
+irods_icat_pip2_path: /usr/local/bin/pip2
+
+irods_runtime_package_new: irods-runtime=4.2.12-1~bionic
+irods_server_package_new: irods-server=4.2.12-1~bionic
+irods_prep_package_new: irods-rule-engine-plugin-python=4.2.12.0-1~bionic
+irods_pgp_package_new: irods-database-plugin-postgres=4.2.12-1~bionic
+irods_idp_package_new: irods-rule-engine-plugin-indexing=4.2.12.0-1~bionic
+irods_esp_package_new: irods-rule-engine-plugin-elasticsearch=4.2.12.0-1~bionic
+irods_dtp_package_new: irods-rule-engine-plugin-document-type=4.2.12.0-1~bionic
