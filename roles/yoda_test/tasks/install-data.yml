@@ -90,7 +90,7 @@
   ignore_errors: true
   with_items:
     - testdata
-    - folder spaces
+    - folder space
 
 
 - name: Ensure Yoda test data directory is present
