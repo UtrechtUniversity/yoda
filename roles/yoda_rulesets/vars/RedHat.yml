@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+yoda_rulesets_pip2_path: /usr/bin/pip
+yoda_rulesets_pip3_path: /usr/local/bin/pip3

@@ -1,6 +1,8 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
 - name: Sanity check ruleset names
@@ -101,6 +103,7 @@
   ansible.builtin.pip:
     requirements: /etc/irods/yoda-ruleset/requirements.txt
     extra_args: --user
+    executable: "{{ yoda_rulesets_pip2_path }}"
 
 
 - name: Ensure Python 3 jsonschema is installed
@@ -108,7 +111,7 @@
   become: true
   ansible.builtin.pip:
     name: jsonschema==4.19.1
-    executable: /usr/local/bin/pip3
+    executable: "{{ yoda_rulesets_pip3_path }}"
     extra_args: --user
 
 

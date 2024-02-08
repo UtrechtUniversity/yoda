@@ -189,6 +189,8 @@
   ansible.builtin.shell: |
     set -o pipefail
     irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item.name }}/ i:/{{ irods_zone }}/yoda/schemas/{{ item.name }}/ | grep sync
+  args:
+    executable: /bin/bash
   register: metadata_schema
   when: not ansible_check_mode and update_schemas == 1 and item.install
   failed_when: metadata_schema.rc not in [0, 1]
@@ -215,6 +217,8 @@
   ansible.builtin.shell: |
     set -o pipefail
     irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ default_yoda_schema }}/ i:/{{ irods_zone }}/yoda/schemas/default/ | grep sync
+  args:
+    executable: /bin/bash
   register: default_metadata
   when: not ansible_check_mode and update_schemas == 1
   failed_when: default_metadata.rc not in [0, 1]
@@ -311,6 +315,8 @@
   ansible.builtin.shell: |
     set -o pipefail
     irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/licenses/ i:/{{ irods_zone }}/yoda/licenses/ | grep sync
+  args:
+    executable: /bin/bash
   register: licenses
   when: not ansible_check_mode
   failed_when: licenses.rc not in [0, 1]
