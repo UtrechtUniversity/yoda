@@ -63,12 +63,10 @@ test_groups:
   - {groupName: research-default-1,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: default-1}
   - {groupName: research-default-2,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: default-2}
   - {groupName: research-default-3,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: default-3}
-  - {groupName: research-epos-msl-0,   category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: epos-msl-0}
   - {groupName: research-hptlab-0,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: hptlab-0}
   - {groupName: research-hptlab-1,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: hptlab-1}
   - {groupName: research-teclab-0,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: teclab-0}
   - {groupName: research-teclab-1,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: teclab-1}
-  - {groupName: research-vocabulary-0, category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: vocabulary-0}
   - {groupName: research-vollmer-0,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: vollmer-0}
 
   - {groupName: deposit-pilot, category: test-automation, subcategory: data-archive-geo, dataClassification: unspecified, schema_id: dag-0}
@@ -136,9 +134,6 @@ test_group_users:
   - {groupName: research-default-3, user: researcher,                    role: normal}
   - {groupName: research-default-3, user: functionaladminpriv,           role: manager}
 
-  - {groupName: research-epos-msl-0, user: researcher,                    role: normal}
-  - {groupName: research-epos-msl-0, user: functionaladminpriv,           role: manager}
-
   - {groupName: research-hptlab-0, user: researcher,                    role: normal}
   - {groupName: research-hptlab-0, user: functionaladminpriv,           role: manager}
 
@@ -150,9 +145,6 @@ test_group_users:
 
   - {groupName: research-teclab-1,  user: researcher,                    role: normal}
   - {groupName: research-teclab-1,  user: functionaladminpriv,           role: manager}
-
-  - {groupName: research-vocabulary-0, user: researcher,                    role: normal}
-  - {groupName: research-vocabulary-0, user: functionaladminpriv,           role: manager}
 
   - {groupName: research-vollmer-0, user: researcher,                    role: normal}
   - {groupName: research-vollmer-0, user: functionaladminpriv,           role: manager}
@@ -235,9 +227,6 @@ test_group_eus_users:
   - {groupName: research-default-3, user: researcher@yoda.test,          role: normal}
   - {groupName: research-default-3, user: functionaladminpriv@yoda.test, role: manager}
 
-  - {groupName: research-epos-msl-0, user: researcher@yoda.test,          role: normal}
-  - {groupName: research-epos-msl-0, user: functionaladminpriv@yoda.test, role: manager}
-
   - {groupName: research-hptlab-0, user: researcher@yoda.test,          role: normal}
   - {groupName: research-hptlab-0, user: functionaladminpriv@yoda.test, role: manager}
 
@@ -249,9 +238,6 @@ test_group_eus_users:
 
   - {groupName: research-teclab-1,  user: researcher@yoda.test,          role: normal}
   - {groupName: research-teclab-1,  user: functionaladminpriv@yoda.test, role: manager}
-
-  - {groupName: research-vocabulary-0, user: researcher@yoda.test,          role: normal}
-  - {groupName: research-vocabulary-0, user: functionaladminpriv@yoda.test, role: manager}
 
   - {groupName: research-vollmer-0, user: researcher@yoda.test,          role: normal}
   - {groupName: research-vollmer-0, user: functionaladminpriv@yoda.test, role: manager}
@@ -293,7 +279,6 @@ deletion_research_groups:
   - research: default-1
   - research: default-2
   - research: default-3
-  - research: epos-msl-0
   - research: hptlab-0
   - research: hptlab-1
   - research: teclab-0
@@ -302,7 +287,6 @@ deletion_research_groups:
   - research: core-1
   - research: core-2
   - research: dag-0
-  - research: vocabulary-0
   - research: vollmer-0
   - research: initial
   - research: initial1

@@ -96,9 +96,6 @@ metadata_schemas:
   - name: default-3
     install: true
     active: true
-  - name: epos-msl-0
-    install: true
-    active: true
   - name: hptlab-0
     install: true
     active: true
@@ -112,9 +109,6 @@ metadata_schemas:
     install: true
     active: true
   - name: dag-0
-    install: true
-    active: true
-  - name: vocabulary-0
     install: true
     active: true
   - name: vollmer-0
