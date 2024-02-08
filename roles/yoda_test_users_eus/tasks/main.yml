@@ -1,6 +1,9 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
 
 - name: Request EUS index page to trigger schema creation if needed
   become: false
@@ -21,17 +24,12 @@
   changed_when: false
 
 
-- name: Ensure Python pip is installed
-  ansible.builtin.package:
-    name: python-pip
-    state: present
-
-
 - name: Install passlib and dependencies
   ansible.builtin.pip:
     name:
       - bcrypt==3.1.7
       - passlib
+    executable: "{{ yoda_test_pip3_path }}"
     state: present
 
 
@@ -54,7 +52,7 @@
 
 
 - name: Generate bcrypt password for External Users.
-  ansible.builtin.shell: "python -c \"from passlib.hash import bcrypt; print bcrypt.using(ident='2y').using(rounds=10).hash('{{ test_password }}')\""
+  ansible.builtin.shell: "{{ yoda_test_python3_path }} -c \"from passlib.hash import bcrypt; print(bcrypt.using(ident='2y').using(rounds=10).hash('{{ test_password }}'))\""
   register: password
 
 
