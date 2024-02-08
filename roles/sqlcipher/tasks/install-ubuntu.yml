@@ -1,0 +1,10 @@
+---
+# copyright Utrecht University
+
+- name: Ensure SQLCipher has been installed
+  ansible.builtin.package:
+    name:
+      - libsqlcipher0
+      - sqlcipher
+      - libsqlcipher-dev
+    state: present
