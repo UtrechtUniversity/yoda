@@ -1,0 +1,16 @@
+---
+# copyright Utrecht University
+
+irods_microservices_data:
+  irods_sudo_microservices:
+    package: irods-sudo-microservices
+    version: 4.2.12_1.0.0-1
+    url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/4.2.12_1.0.0/irods-sudo-microservices-4.2.12-1.0.0-1.deb
+    filename: irods-sudo-microservices-4.2.12_1.0.0-1.rpm
+    checksum: sha256:508cf7284353b832a95e4f818760bf631456607feb5946af0297e849207fdfb4
+  irods_uu_microservices:
+    package: irods-uu-microservices
+    version: 4.2.12_0.8.3-1
+    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.3/irods-uu-microservices-4.2.12-0.8.3-0.deb
+    filename: irods-uu-microservices-4.2.12_0.8.3-1.rpm
+    checksum: sha256:9e17cd437d97ec51bd7eb0e2dc77be7e665d30c1796536581147bd59c3fd26ae

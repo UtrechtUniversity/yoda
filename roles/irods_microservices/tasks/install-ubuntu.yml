@@ -1,0 +1,42 @@
+---
+# copyright Utrecht University
+
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: apt
+
+
+- name: Ensure iRODS microservices prerequisites are installed
+  ansible.builtin.package:
+    name: "libc++1"
+    state: present
+
+
+- name: Download iRODS microservice packages
+  ansible.builtin.get_url:
+    url: "{{ item.value.url }}"
+    dest: "{{ irods_microservices_package_dest_dir }}/{{ item.value.filename }}"
+    checksum: "{{ item.value.checksum }}"
+    mode: '0644'
+  when: not ansible_check_mode and ( item.value.package not in ansible_facts.packages or item.value.version != ansible_facts.packages[item.value.package] )
+  with_dict: "{{ irods_microservices_data }}"
+
+
+- name: Install iRODS microservice packages from downloaded package
+  ansible.builtin.apt:
+    deb: "{{ irods_microservices_package_dest_dir }}/{{ item.value.filename }}"
+    state: present
+  when: not ansible_check_mode and ( item.value.package not in ansible_facts.packages or item.value.version != ansible_facts.packages[item.value.package] )
+  with_dict: "{{ irods_microservices_data }}"
+
+
+- name: Undo the ownership modifications by the microservices installation
+  ansible.builtin.file:
+    path: "{{ item.directory }}"
+    recurse: "{{ item.recursive }}"
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+  with_items:
+    - {directory: '/var/lib/irods', recursive: 'no'}
+    - {directory: '/var/lib/irods/plugins', recursive: 'yes'}
+    - {directory: '/etc/irods', recursive: 'no'}
