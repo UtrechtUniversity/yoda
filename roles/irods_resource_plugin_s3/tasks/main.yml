@@ -1,24 +1,13 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure old iRODS packages are absent
-  ansible.builtin.package:
-    name:
-      - irods-uu-microservices-4.2.11_0.8.2-1
-      - irods-sudo-microservices-4.2.11_1.0.0-1
-      - davrods-4.2.11_1.5.0-1
-      - irods-runtime-4.2.11-1
-      - irods-server-4.2.11-1
-      - irods-database-plugin-postgres-4.2.11-1
-      - irods-rule-engine-plugin-python-4.2.11.1-1
-      - irods-icommands-4.2.11-1
-    state: absent
-  notify: Restart iRODS
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
 - name: Ensure iRODS resource plugin S3 is installed
   ansible.builtin.package:
-    name: irods-resource-plugin-s3-4.2.12.0-1
+    name: "{{ irods_resource_plugin_s3_package }}"
     state: present
 
 
