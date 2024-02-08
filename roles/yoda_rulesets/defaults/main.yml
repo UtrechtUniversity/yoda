@@ -51,21 +51,6 @@ irods_repl_resc:                 # List of replication resources
   - irodsRescRepl
 irods_resc_trigger_pol: []
 
-# sqlcipher RPM locations and checksum
-sqlcipher:
-  package: sqlcipher-4.5.1-0
-  url: https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/
-  filename: sqlcipher-4.5.1-0.el7.x86_64.rpm
-  checksum: sha256:b256727666088dbb34dee1fbb0673b6fed02547e8e140c1022f864c82973e829
-
-sqlcipher_dev:
-  package: sqlcipher-devel-4.5.1-0
-  url: https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/
-  filename: sqlcipher-devel-4.5.1-0.el7.x86_64.rpm
-  checksum: sha256:2bf78f64075a5c39c36055d338b4e89d49a5b3e0f0d6d6a210abce669405a31e
-
-rpm_dest_dir: /tmp
-
 # SURF config: separate resources for research and vault
 resource_research: "{{ irods_default_resc }}"
 resource_vault: "{{ irods_default_resc }}"

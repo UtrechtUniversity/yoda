@@ -21,3 +21,4 @@ dependencies:
   - role: irods_icommands
   - role: python2
   - role: python_irodsclient
+  - role: sqlcipher
