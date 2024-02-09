@@ -12,6 +12,9 @@ services:
     platform: linux/amd64
     hostname: provider.yoda
     image: ghcr.io/utrechtuniversity/yoda-provider:dev-1.9
+    ports:
+      - "8247:1247"
+      - "20000-20199:20000-20199"
     depends_on:
       - db
       - mailpit
