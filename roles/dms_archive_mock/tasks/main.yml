@@ -1,6 +1,10 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Check for outdated mock service
   ansible.builtin.stat:
     path: '/var/lib/irods/dms-archive-mock/tape_archive_venv/bin/pip3.6'
@@ -38,11 +42,10 @@
   become: true
   # noqa no-changed-when
   ansible.builtin.shell: |
-    export PATH=/opt/rh/rh-python38/root/bin:$PATH
     cd /var/lib/irods/dms-archive-mock
-    python3 -m virtualenv tape_archive_venv
+    {{ dms_archive_mock_python3_path }} -m virtualenv tape_archive_venv
     . tape_archive_venv/bin/activate
-    python3 setup.py install
+    tape_archive_venv/bin/python3 setup.py install
   when: dms_mock_changes.changed
 
 
