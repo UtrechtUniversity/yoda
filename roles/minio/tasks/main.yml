@@ -1,18 +1,18 @@
 ---
 # copyright Utrecht University
 
-- name: Download MinIO RPM
-  ansible.builtin.get_url:
-    url: '{{ minio_rpm_url }}'
-    dest: '/tmp/minio.rpm'
-    checksum: '{{ minio_rpm_checksum }}'
-    mode: '0644'
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
-- name: Install MinIO from downloaded RPM
-  ansible.builtin.package:
-    name: '/tmp/minio.rpm'
-    state: present
+- name: Install MinIO (EL)
+  ansible.builtin.import_tasks: install-redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Install MinIO (Ubuntu)
+  ansible.builtin.import_tasks: install-ubuntu.yml
+  when: ansible_os_family == 'Debian'
 
 
 - name: Ensure group minio-user exists
