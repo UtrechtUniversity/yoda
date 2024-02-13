@@ -102,3 +102,6 @@ YODA_EUS_FQDN = '{{ yoda_eus_fqdn | default("") }}'
 # Data request module configuration
 DATAREQUEST_HELP_CONTACT_NAME  = '{{ datarequest_help_contact_name }}'
 DATAREQUEST_HELP_CONTACT_EMAIL = '{{ datarequest_help_contact_email }}'
+
+# Text file extensions configuration
+TEXT_FILE_EXTENSIONS = {{ text_file_extensions | default(['txt'])}}
