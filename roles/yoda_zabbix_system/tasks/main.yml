@@ -1,13 +1,14 @@
 ---
 # copyright Utrecht University
 
-- name: Include distribution version specific variables for Zabbix
+- name: Include distribution version specific variables for Zabbix (EL)
   ansible.builtin.include_vars: "rh{{ ansible_distribution_major_version }}.yml"
+  when: ansible_os_family == 'RedHat'
 
-- name: Ensure Python 3 is installed
-  ansible.builtin.package:
-    name: python3
-    state: present
+
+- name: Include distribution version specific variables for Zabbix (Ubuntu)
+  ansible.builtin.include_vars: "ubuntu.yml"
+  when: ansible_os_family == 'Debian'
 
 
 - name: Remove old yoda-zabbix repo from /etc/irods
@@ -34,39 +35,14 @@
     state: absent
 
 
-- name: Check if Zabbix agent is installable from repository
-  ansible.builtin.yum:
-    list: '{{ zabbix_agent.package }}'
-  register: zabbix_agent_repo
+- name: Install Zabbix package for Debian family
+  ansible.builtin.include_tasks: install-debian.yml
+  when: ansible_os_family == 'Debian'
 
 
-- name: Download Zabbix agent rpm
-  ansible.builtin.get_url:
-    url: '{{ zabbix_agent.url }}/{{ zabbix_agent.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
-    checksum: '{{ zabbix_agent.checksum }}'
-    mode: '0644'
-  when: not zabbix_agent_repo.results and not repo_only
-
-
-- name: Install Zabbix RPM key
-  ansible.builtin.rpm_key:
-    key: "{{ zabbix_agent.rpm_key_loc }}"
-    state: present
-
-
-- name: Install Zabbix agent from downloaded rpm
-  ansible.builtin.package:
-    name: '{{ rpm_dest_dir }}/{{ zabbix_agent.filename }}'
-    state: present
-  when: not zabbix_agent_repo.results and not repo_only and not ansible_check_mode
-
-
-- name: Ensure Zabbix agent rpm is installed
-  ansible.builtin.package:
-    name: '{{ zabbix_agent.package }}'
-    state: present
-  when: zabbix_agent_repo.results
+- name: Install Zabbix package for RedHat family
+  ansible.builtin.include_tasks: install-redhat.yml
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Enable the Zabbix agent service
@@ -80,7 +56,7 @@
   community.general.selinux_permissive:
     name: zabbix_agent_t
     permissive: true
-  when: ansible_selinux.status == "enabled"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
 - name: Allow Zabbix agent to sudo
@@ -88,6 +64,7 @@
     name: zabbix_run_sudo
     state: true
     persistent: true
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
 - name: Generate Zabbix agent PSK

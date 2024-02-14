@@ -1,0 +1,36 @@
+---
+# copyright Utrecht University
+
+
+- name: Check whether Zabbix agent has been installed
+  ansible.builtin.command:
+    cmd: "dpkg-query -W --showformat='${Status}\n' {{ zabbix_agent.package }}"
+  register: zabbix_agent_current_package_status
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+
+
+- name: Check current Zabbix agent version
+  ansible.builtin.command:
+    cmd: "dpkg-query -W --showformat='${Version}\n' {{ zabbix_agent.package }}"
+  register: zabbix_agent_current_package_version
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+
+
+- name: Download Zabbix agent package
+  ansible.builtin.get_url:
+    url: '{{ zabbix_agent.url }}/{{ zabbix_agent.filename }}'
+    dest: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent.filename }}'
+    checksum: '{{ zabbix_agent.checksum }}'
+    mode: '0644'
+  when: not ansible_check_mode and ('install ok installed' not in zabbix_agent_current_package_status.stdout or zabbix_agent_current_package_version.stdout != zabbix_agent.package_version)
+
+
+- name: Install Zabbix agent from package
+  ansible.builtin.apt:
+    deb: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent.filename }}'
+    state: present
+  when: not ansible_check_mode and ('install ok installed' not in zabbix_agent_current_package_status.stdout or zabbix_agent_current_package_version.stdout != zabbix_agent.package_version)

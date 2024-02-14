@@ -1,12 +1,14 @@
 ---
 # copyright Utrecht University
 
-# Temporary directory to store downloaded rpm files.
-rpm_dest_dir: /tmp
+# Temporary directory to store downloaded files.
+yoda_zabbix_package_dir: /tmp
 
+# Version of the zabbix monitoring scripts for Yoda
 zabbix_version: "{{ yoda_version }}"
 
 zabbix_server: 192.168.56.20
 zabbix_timeout: 15               # in seconds (range: 1-30)
 
-repo_only: false # Only download packages from repos.
+# Only download packages from repos (only applies to EL/CentOS, not to Ubuntu)
+repo_only: false
