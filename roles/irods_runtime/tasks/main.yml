@@ -27,4 +27,3 @@
   ansible.builtin.package:
     name: irods-runtime-4.3.0-1
     state: present
-
