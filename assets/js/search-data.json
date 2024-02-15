@@ -757,7 +757,7 @@
   },"108": {
     "doc": "Release Notes",
     "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v1.9 (TBA) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "content": ". | Release Notes - Yoda v1.9 (February 2024) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
     "url": "/yoda/release-notes/",
     
     "relUrl": "/release-notes/"
@@ -967,7 +967,7 @@
   },"138": {
     "doc": "Home",
     "title": "Latest release",
-    "content": ". | Release Notes - Yoda v1.8 (July 2022) | . ",
+    "content": ". | Release Notes - Yoda v1.9 (February 2024) | . ",
     "url": "/yoda/#latest-release",
     
     "relUrl": "/#latest-release"
