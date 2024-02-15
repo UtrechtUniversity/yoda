@@ -70,6 +70,9 @@ attributes is `org_replication_scheduled`.
 The script has a verbose mode (which can be enabled using the `-v` switch). This will log additional
 information for troubleshooting to the rodsLog.
 
+The script has a dry run mode (which can be enabled using the `-n` switch). This
+will not create any replications.
+
 If a flag data object named `/ZONE/yoda/flags/stop_replication` is present, the script will stop
 processing data objects.
 
@@ -99,6 +102,9 @@ attributes is `org_revision_scheduled`.
 The script has a verbose mode (which can be enabled using the `-v` switch). This will log additional
 information for troubleshooting to the rodsLog.
 
+The script has a dry run mode (which can be enabled using the `-n` switch). This
+will not create any revisions.
+
 If a flag data object named `/ZONE/yoda/flags/stop_revisions` is present, the script will stop
 processing data objects.
 
@@ -126,10 +132,10 @@ and communities.
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r              |
-| Purpose              | record size of data in group metadata                                       |
+| Script               | /etc/irods/yoda-ruleset/tools/storage-statistics.r              |
+| Purpose              | record size of storage data in group metadata                                       |
 | Lock file            | no lock file                                                                |
-| Typically started by | monthly cronjob                                                             |
+| Typically started by | cronjob with a daily frequency as a minimum   |
 
 <a name="archiving"/>
 

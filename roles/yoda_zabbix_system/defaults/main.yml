@@ -6,13 +6,7 @@ rpm_dest_dir: /tmp
 
 zabbix_version: "{{ yoda_version }}"
 
-# Zabbix agent rpm location and checksum
-zabbix_agent:
-  package: zabbix-agent-3.4.15-1
-  url: http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/
-  filename: zabbix-agent-3.4.15-1.el7.x86_64.rpm
-  checksum: sha256:103a35356250597152eb2f346f83760e8767f7943a1911d9de78a3743996323a
-
 zabbix_server: 192.168.56.20
+zabbix_timeout: 15               # in seconds (range: 1-30)
 
 repo_only: false # Only download packages from repos.

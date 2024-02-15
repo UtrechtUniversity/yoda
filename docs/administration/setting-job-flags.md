@@ -9,7 +9,9 @@ When these flags are set, iRODS-level changes can be performed without having to
 The jobs check for the presence a flag before processing each data object.
 If it is present, the job stops and logs a message that it is stopped.
 
-## Replication flag
+## For version <= 1.8
+
+### Replication flag
 Set:
 ```bash
 itouch /tempZone/yoda/flags/stop_replication
@@ -20,7 +22,7 @@ Unset:
 irm /tempZone/yoda/flags/stop_replication
 ```
 
-## Revisions flag
+### Revisions flag
 Set:
 ```bash
 itouch /tempZone/yoda/flags/stop_revisions
@@ -29,4 +31,29 @@ itouch /tempZone/yoda/flags/stop_revisions
 Unset:
 ```bash
 irm /tempZone/yoda/flags/stop_revisions
+```
+
+## For version > 1.8
+
+### Replication flag
+
+Set:
+```bash
+imkdir /tempZone/yoda/flags/stop_replication
+```
+
+Unset:
+```bash
+irmdir /tempZone/yoda/flags/stop_replication
+```
+
+### Revisions flag
+Set:
+```bash
+imkdir /tempZone/yoda/flags/stop_revisions
+```
+
+Unset:
+```bash
+irmdir /tempZone/yoda/flags/stop_revisions
 ```

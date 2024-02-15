@@ -5,6 +5,7 @@ from flask import current_app as app
 SECRET_KEY          = '{{ flask_secret_key }}'
 PORTAL_TITLE_TEXT   = '{{ portal_title_text }}'
 YODA_VERSION        = '{{ yoda_version }}'
+YODA_ENVIRONMENT    = '{{ yoda_environment }}'
 YODA_COMMIT         = '{{ yoda_commit }}'
 RESEARCH_ENABLED    = {{ enable_research }}
 OPEN_SEARCH_ENABLED = {{ enable_open_search }}
@@ -14,14 +15,17 @@ INTAKE_EXT_TIMEOUT  = {{ intake_extended_timeout }}
 DATAREQUEST_ENABLED = {{ enable_datarequest }}
 TOKENS_ENABLED      = {{ enable_tokens }}
 TOKEN_LIFETIME      = {{ token_lifetime }}
-JSON_SORT_KEYS      = False  # Check if this is still needed with Python v3.7?
+SRAM_ENABLED        = {{ enable_sram }}
+
+# Logging configuration
+LOG_API_CALL_DURATION       = {{ yoda_portal_log_api_call_duration }}
 
 # Flask-Session configuration
 SESSION_TYPE                = 'filesystem'
 SESSION_COOKIE_NAME         = '__Host-session'
 SESSION_COOKIE_HTTPONLY     = True
 SESSION_COOKIE_SECURE       = True
-SESSION_COOKIE_SAMESITE     = 'Strict'
+SESSION_COOKIE_SAMESITE     = '{{ portal_session_cookie_samesite }}'
 PERMANENT_SESSION_LIFETIME  = {{ flask_permanent_session_lifetime }}
 SESSION_USE_SIGNER          = True
 SESSION_FILE_DIR            = '{{ flask_session_file_dir }}'
@@ -60,22 +64,23 @@ IRODS_SESSION_OPTIONS = {
     set oidc_callback_uri =  "https://" ~ yoda_portal_fqdn ~ "/user/callback"
 %}
 # OIDC configuration
-OIDC_ENABLED        = {{ oidc_active | default(False) }}
-OIDC_DOMAINS        = {{ oidc_domains | default([""]) }}
-OIDC_CLIENT_ID      = '{{ oidc_client_id     | default("") }}'
-OIDC_CLIENT_SECRET  = '{{ oidc_client_secret | default("") }}'
-OIDC_CALLBACK_URI   = '{{ oidc_callback_uri | default("") }}'
-OIDC_AUTH_BASE_URI  = '{{ oidc_auth_base_uri | default("") }}'
-OIDC_AUTH_URI       = '{{ oidc_auth_base_uri ~ "?response_type=code&client_id=" ~ oidc_client_id ~ "&redirect_uri=" ~ oidc_callback_uri ~ "&scope=" ~ oidc_scopes ~ "&acr_values=" ~ oidc_acr_values | default("") }}'
-OIDC_LOGIN_HINT     = {{ oidc_login_hint | default(True) }}
-OIDC_TOKEN_URI      = '{{ oidc_token_uri     | default("") }}'
-OIDC_SCOPES         = '{{ oidc_scopes        | default("openid") }}'
-OIDC_ACR_VALUES     = '{{ oidc_acr_values    | default("") }}'
-OIDC_USERINFO_URI   = '{{ oidc_userinfo_uri  | default("") }}'
-OIDC_EMAIL_FIELD    = '{{ oidc_email_field   | default("email") }}'
-OIDC_JWKS_URI       = '{{ oidc_jwks_uri      | default("") }}'
-OIDC_JWT_ISSUER     = '{{ oidc_jwt_issuer    | default("") }}'
-OIDC_JWT_OPTIONS    = {
+OIDC_ENABLED         = {{ oidc_active | default(False) }}
+OIDC_DOMAINS         = {{ oidc_domains | default([""]) }}
+OIDC_ALWAYS_REDIRECT = {{ oidc_always_redirect | default(False) }}
+OIDC_CLIENT_ID       = '{{ oidc_client_id     | default("") }}'
+OIDC_CLIENT_SECRET   = '{{ oidc_client_secret | default("") }}'
+OIDC_CALLBACK_URI    = '{{ oidc_callback_uri | default("") }}'
+OIDC_AUTH_BASE_URI   = '{{ oidc_auth_base_uri | default("") }}'
+OIDC_AUTH_URI        = '{{ oidc_auth_base_uri ~ "?response_type=code&client_id=" ~ oidc_client_id ~ "&redirect_uri=" ~ oidc_callback_uri ~ "&scope=" ~ oidc_scopes ~ "&acr_values=" ~ oidc_acr_values | default("") }}'
+OIDC_LOGIN_HINT      = {{ oidc_login_hint | default(True) }}
+OIDC_TOKEN_URI       = '{{ oidc_token_uri     | default("") }}'
+OIDC_SCOPES          = '{{ oidc_scopes        | default("openid") }}'
+OIDC_ACR_VALUES      = '{{ oidc_acr_values    | default("") }}'
+OIDC_USERINFO_URI    = '{{ oidc_userinfo_uri  | default("") }}'
+OIDC_EMAIL_FIELD     = '{{ oidc_email_field   | default("email") }}'
+OIDC_JWKS_URI        = '{{ oidc_jwks_uri      | default("") }}'
+OIDC_JWT_ISSUER      = '{{ oidc_jwt_issuer    | default("") }}'
+OIDC_JWT_OPTIONS     = {
     "require_exp": {{ oidc_req_exp | default(True) }},      #check that exp (expiration) claim is present
     "require_iat": {{ oidc_req_iat | default(False) }},     #check that iat (issued at) claim is present
     "require_nbf": {{ oidc_req_nbf | default(False) }},     #check that nbf (not before) claim is present
@@ -97,3 +102,6 @@ YODA_EUS_FQDN = '{{ yoda_eus_fqdn | default("") }}'
 # Data request module configuration
 DATAREQUEST_HELP_CONTACT_NAME  = '{{ datarequest_help_contact_name }}'
 DATAREQUEST_HELP_CONTACT_EMAIL = '{{ datarequest_help_contact_email }}'
+
+# Text file extensions configuration
+TEXT_FILE_EXTENSIONS = {{ text_file_extensions | default(['txt'])}}

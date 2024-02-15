@@ -2,32 +2,32 @@
 # copyright Utrecht University
 
 - name: Ensure that credentials store exists
-  file:
+  ansible.builtin.file:
     path: '{{ credentials_store }}'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-    mode: 0700
+    mode: '0700'
     state: directory
   when: not ansible_check_mode
 
 
 - name: Configure credentials in credentials store
-  template:
+  ansible.builtin.template:
     src: store_config.j2
     dest: '{{ credentials_store }}/store_config.json'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-    mode: 0600
+    mode: '0600'
   when: not ansible_check_mode
 
 
 - name: Ensure EPIC credentials are present in credentials store
-  copy:
+  ansible.builtin.copy:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-    mode: 0600
+    mode: '0600'
   with_items:
     - src: '{{ credential_files }}/epic_key.pem'
       dest: '{{ credentials_store }}/epic_key.pem'
@@ -39,12 +39,12 @@
 
 
 - name: Ensure EPIC credentials are present in credentials store
-  copy:
+  ansible.builtin.copy:
     content: '{{ item.src | b64decode }}'
     dest: '{{ item.dest }}'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
-    mode: 0600
+    mode: '0600'
   with_items:
     - src: '{{ epic_key }}'
       dest: '{{ credentials_store }}/epic_key.pem'

@@ -17,4 +17,5 @@
       - git
       - tmux
       - rsync
+      - jq
     state: present

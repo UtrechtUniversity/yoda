@@ -1,11 +1,12 @@
 # Copyright Utrecht University
 
-- name: Link ruleset directory
-  ansible.builtin.file:
-    src: yoda-ruleset
-    dest: /etc/irods/rules_uu
-    state: link
-  when: not ansible_check_mode
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+  check_mode: false
 
 
 - name: Find out if group-manager privilege groups are created
@@ -54,33 +55,30 @@
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.stat:
-    path: /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
-  register: monthly_storage_statistics
+    path: /etc/irods/yoda-ruleset/tools/storage-statistics.r
+  register: storage_statistics
+
+
+- name: Remove legacy monthly storage statistics gathering cronjob
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'monthly-storage-statistics'
+    state: absent
 
 
 - name: Enable storage statistics gathering cronjob
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
-    name: 'monthly-storage-statistics'
+    name: 'storage-statistics'
     minute: '0'
     hour: '5'
-    day: '1'
+    day: '*'
     job: >
       /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
-      /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r >>/var/lib/irods/log/job_monthly-storage-statistics.log 2>&1
-  when: monthly_storage_statistics.stat.exists
-
-
-- name: Create local Yoda ruleset configuration
-  ansible.builtin.template:
-    src: rules_uu.cfg.j2
-    dest: "/etc/irods/yoda-ruleset/rules_uu.cfg"
-    owner: '{{ irods_service_account }}'
-    group: '{{ irods_service_account }}'
-    mode: '0600'
-  no_log: true
-  when: not ansible_check_mode
+      /etc/irods/yoda-ruleset/tools/storage-statistics.r >>/var/lib/irods/log/job_storage-statistics.log 2>&1
+  when: storage_statistics.stat.exists
 
 
 - name: Ensure that ExecCmd dir exists
@@ -111,14 +109,10 @@
     - admin-vaultingest.sh
 
 
-- name: Copy indexing scripts to ExecCmd dir
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.copy:
-    remote_src: true
-    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
-    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: '0755'
+- name: Ensure that indexing scripts are not present in ExecCmd dir
+  ansible.builtin.file:
+    path: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    state: absent
   when: not ansible_check_mode and enable_open_search
   with_items:
     - enable-indexing.sh
@@ -137,6 +131,19 @@
   with_items:
     - admin-tape-archive-set-state.sh
     - async-tape-archive-replicate.sh
+
+
+- name: Copy data package archive scripts to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/etc/irods/yoda-ruleset/tools/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: '0755'
+  when: not ansible_check_mode and (enable_data_package_archive or enable_data_package_download)
+  with_items:
+    - admin-vault-archive.sh
 
 
 - name: Find out if system collection exists
@@ -279,6 +286,38 @@
   changed_when: template_installed.stdout.find('sync') == -1
 
 
+- name: Find out if licenses system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.command: 'ils /{{ irods_zone }}/yoda/licenses'
+  ignore_errors: true
+  register: licenses_installed
+  changed_when: false
+
+
+- name: Ensure that licenses system collection exists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa no-changed-when
+  ansible.builtin.shell: |
+    imkdir /{{ irods_zone }}/yoda/licenses
+    ichmod -rM inherit /{{ irods_zone }}/yoda/licenses
+    ichmod -rM read public /{{ irods_zone }}/yoda/licenses
+  when: (not ansible_check_mode) and (licenses_installed.stderr.find('does not exist') >= 0)
+
+
+- name: Ensure licenses are present
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.shell: |
+    set -o pipefail
+    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/licenses/ i:/{{ irods_zone }}/yoda/licenses/ | grep sync
+  register: licenses
+  when: not ansible_check_mode
+  failed_when: licenses.rc not in [0, 1]
+  changed_when: licenses.stdout_lines | length != 18
+
+
 - name: Find out if preservable file formats lists system collection exists
   become_user: "{{ irods_service_account }}"
   become: true
@@ -322,7 +361,7 @@
   become: true
   ansible.builtin.template:
     src: cronjob-revision-cleanup.sh.j2
-    dest: '~{{ irods_service_account }}/.irods/cronjob-revision-cleanup.sh'
+    dest: '{{ irods_directory.stdout }}/.irods/cronjob-revision-cleanup.sh'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
@@ -333,7 +372,7 @@
   become: true
   ansible.builtin.template:
     src: job_movetovault.r.j2
-    dest: '~{{ irods_service_account }}/.irods/job_movetovault.r'
+    dest: '{{ irods_directory.stdout }}/.irods/job_movetovault.r'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
@@ -346,7 +385,7 @@
   become: true
   ansible.builtin.template:
     src: job_clearintakelocks.r.j2
-    dest: '~{{ irods_service_account }}/.irods/job_clearintakelocks.r'
+    dest: '{{ irods_directory.stdout }}/.irods/job_clearintakelocks.r'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0644'
@@ -372,6 +411,17 @@
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r >/dev/null 2>&1'
 
 
+- name: Configure cronjob to lift embargos
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'lift-embargos.r'
+    minute: '1'
+    hour: '0'
+    day: '*'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/lift-embargos.r >/dev/null 2>&1'
+
+
 - name: Configure cronjob to clean up revisions
   become_user: "{{ irods_service_account }}"
   become: true
@@ -379,14 +429,16 @@
     name: 'cronjob-revision-cleanup.sh'
     minute: '0'
     hour: '2'
-    job: '/bin/bash /var/lib/irods/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
+    job: '/bin/bash {{ irods_directory.stdout }}/.irods/cronjob-revision-cleanup.sh >> /var/lib/irods/log/cronjob-revision-cleanup.log 2>&1'
     state: '{{ "present" if enable_revision_cleanup else "absent" }}'
 
 
 - name: Ensure cronjob script for moving collections from intake to vault is installed
+  become_user: "{{ irods_service_account }}"
+  become: true
   ansible.builtin.copy:
     src: run-intake-movetovault.sh
-    dest: '/var/lib/irods/.irods/run-intake-movetovault.sh'
+    dest: '{{ irods_directory.stdout }}/.irods/run-intake-movetovault.sh'
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0755'
@@ -401,8 +453,8 @@
   ansible.builtin.cron:
     name: 'job_movetovault.r'
     minute: '*/5'
-    job: '/var/lib/irods/.irods/run-intake-movetovault.sh >& /dev/null'
-  when: enable_intake or yoda_environment in ["development", "testing"]
+    job: '{{ irods_directory.stdout }}/.irods/run-intake-movetovault.sh >& /dev/null'
+    state: '{{ "present" if enable_intake else "absent" }}'
 
 
 - name: Set configuration AVUs for research ruleset to system collection
@@ -453,24 +505,64 @@
   when: (not ansible_check_mode) and (yoda_davrods_anonymous_enabled is defined) and (yoda_davrods_anonymous_enabled)
 
 
-- name: Configure asynchronous replication job
+- name: Remove legacy asynchronous replication job
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
     name: 'asynchronous-replication'
-    minute: '*/5'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py >/dev/null 2>&1'
-    state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
+    state: absent
 
 
-- name: Configure asynchronous revision creation job
+- name: Configure parallel asynchronous replication job(s)
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.cron:
-    name: 'asynchronous-revisions'
+    name: 'asynchronous-replication-{{ item }}'
+    minute: '*/5'
+    job: >
+      /bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py
+      --balance_id_min={{ (item * (64 / (async_replication_jobs | int)) - (64 / (async_replication_jobs | int))) | int + 1 }}
+      --balance_id_max={{ (item * (64 / (async_replication_jobs | int))) | int }}
+      --batch_size_limit={{ ((async_replication_batch_size | int) / (async_replication_jobs | int)) | int }}
+      {{ "-v" if async_replication_verbose_mode else "" }}
+      {{ "-n" if async_replication_dry_run else "" }} >/dev/null 2>&1
+    state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
+  loop: "{{ range(1, (async_replication_jobs | int) + 1) | list }}"
+
+
+- name: Remove legacy asynchronous revision creation job
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'asynchronous-replication'
+    state: absent
+
+
+- name: Configure parallel asynchronous revision creation job
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'asynchronous-revisions-{{ item }}'
     minute: '6,16,26,36,46,56'
-    job: '/bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py >/dev/null 2>&1'
+    job: >
+      /bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py
+      --balance_id_min={{ (item * (64 / (async_revision_jobs | int)) - (64 / (async_revision_jobs | int))) | int + 1 }}
+      --balance_id_max={{ (item * (64 / (async_revision_jobs | int))) | int }}
+      --batch_size_limit={{ ((async_revision_batch_size | int) / (async_revision_jobs | int)) | int }}
+      {{ "-v" if async_revision_verbose_mode else "" }}
+      {{ "-n" if async_revision_dry_run else "" }} >/dev/null 2>&1
     state: '{{ "present" if enable_revisions == 1 else "absent" }}'
+  loop: "{{ range(1, (async_revision_jobs | int) + 1) | list }}"
+
+
+- name: Enable asynchronous archival job
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'vault-archive.r'
+    minute: '*/6'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/vault-archive.r >/dev/null 2>&1'
+    state: '{{ "present" if enable_data_package_archive or enable_data_package_download else "absent" }}'
 
 
 - name: Enable asynchronous tape archive replication job
@@ -535,6 +627,18 @@
     hour: '04'
     day: '1'
     job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-data-access-token-expiry.sh >/dev/null 2>&1'
+    state: '{{ "present" if enable_tokens else "absent" }}'
+
+
+- name: Configure cronjob for research groups inactivity notifications
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'notification-groups-inactivity.sh'
+    minute: '10'
+    hour: '05'
+    day: '1'
+    job: '/bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-groups-inactivity.sh >/dev/null 2>&1'
 
 
 - name: Find out if datarequest system collection exists
@@ -607,6 +711,18 @@
     - admin-datarequest-temp-write-permission.sh
 
 
+- name: Remove data request module scripts from msiExecCmd if DR module not enabled
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.file:
+    path: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    state: absent
+  when: not enable_datarequest
+  with_items:
+    - admin-datarequestactions.sh
+    - admin-datarequest-temp-write-permission.sh
+
+
 - name: Configure cronjob to check datarequest review period expiration
   become_user: "{{ irods_service_account }}"
   become: true
@@ -615,7 +731,7 @@
     hour: '*'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
       /etc/irods/yoda-ruleset/tools/datarequest-check-review-period-expiration.r >/dev/null 2>&1'
-  when: enable_datarequest and not ansible_check_mode
+    state: '{{ "present" if enable_datarequest else "absent" }}'
 
 
 - name: Ensure token database is present
@@ -625,3 +741,16 @@
   args:
     creates: "{{ token_database }}"
   when: enable_tokens
+
+
+- name: Enable SRAM group sync cronjob
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'sram-sync'
+    minute: '45'
+    hour: '3'
+    day: '*'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
+      /etc/irods/yoda-ruleset/tools/sram-sync.r >/dev/null 2>&1'
+    state: '{{ "present" if enable_sram and sram_auto_group_sync else "absent" }}'

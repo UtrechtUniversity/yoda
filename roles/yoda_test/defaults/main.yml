@@ -22,6 +22,10 @@ test_users:
   - {name: projectmanager,          password: '{{ test_password }}', type: rodsuser}
   - {name: dacmember,               password: '{{ test_password }}', type: rodsuser}
 
+# Following users are created as UNIX users only
+pam_test_users:
+  - {name: pamuser, password: '{{ test_password }}'}
+
 # Following users are created as iRODS users only.
 eus_test_users:
   - {name: researcher@yoda.test,              password: '{{ test_password }}', type: rodsuser,  id: 9000}
@@ -63,7 +67,6 @@ test_groups:
   - {groupName: research-hptlab-1,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: hptlab-1}
   - {groupName: research-teclab-0,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: teclab-0}
   - {groupName: research-teclab-1,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: teclab-1}
-  - {groupName: research-vocabulary-0, category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: vocabulary-0}
   - {groupName: research-vollmer-0,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: vollmer-0}
 
   - {groupName: deposit-pilot, category: test-automation, subcategory: data-archive-geo, dataClassification: unspecified, schema_id: dag-0}
@@ -142,9 +145,6 @@ test_group_users:
 
   - {groupName: research-teclab-1,  user: researcher,                    role: normal}
   - {groupName: research-teclab-1,  user: functionaladminpriv,           role: manager}
-
-  - {groupName: research-vocabulary-0, user: researcher,                    role: normal}
-  - {groupName: research-vocabulary-0, user: functionaladminpriv,           role: manager}
 
   - {groupName: research-vollmer-0, user: researcher,                    role: normal}
   - {groupName: research-vollmer-0, user: functionaladminpriv,           role: manager}
@@ -239,9 +239,6 @@ test_group_eus_users:
   - {groupName: research-teclab-1,  user: researcher@yoda.test,          role: normal}
   - {groupName: research-teclab-1,  user: functionaladminpriv@yoda.test, role: manager}
 
-  - {groupName: research-vocabulary-0, user: researcher@yoda.test,          role: normal}
-  - {groupName: research-vocabulary-0, user: functionaladminpriv@yoda.test, role: manager}
-
   - {groupName: research-vollmer-0, user: researcher@yoda.test,          role: normal}
   - {groupName: research-vollmer-0, user: functionaladminpriv@yoda.test, role: manager}
 
@@ -290,7 +287,6 @@ deletion_research_groups:
   - research: core-1
   - research: core-2
   - research: dag-0
-  - research: vocabulary-0
   - research: vollmer-0
   - research: initial
   - research: initial1
@@ -314,13 +310,3 @@ deletion_grp_groups:
 
 deletion_intake_groups:
   - intake: test2
-
-reset_tiers:
-  - dev001
-  - dev001_1
-  - dev001_2
-  - dev001_p1
-  - dev001_p2
-  - irodsResc
-  - irodsRescRepl
-  - bundleResc

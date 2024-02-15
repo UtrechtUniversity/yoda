@@ -1,6 +1,15 @@
 ---
 # copyright Utrecht University
 
+- name: Ensure new SQLite3 version has been installed
+  ansible.builtin.package:
+    name:
+      - sqlite33
+      - sqlite33-devel
+    state: present
+  when: not ansible_check_mode
+
+
 - name: Ensure Yoda MOAI user exists
   ansible.builtin.user:
     name: '{{ yoda_moai_user }}'
@@ -71,6 +80,20 @@
     executable: /var/www/moai/yoda-moai/venv/bin/pip3
 
 
+# We use the PySqlite3 dialect to avoid compatibility issues between SQLAlchemy
+# and the old SQlite version bundled with CentOS 7
+- name: Ensure PySQLite3 is installed in MOAI virtual environment
+  become_user: '{{ yoda_moai_user }}'
+  become: true
+  ansible.builtin.pip:
+    name: pysqlite3==0.5.0
+    virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
+  environment:
+    C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8:/usr/sqlite330/include
+    LIBRARY_PATH: /usr/sqlite330/lib
+  notify: Restart Apache webserver
+
+
 # Change detection in git repositories is unreliable in some Ansible versions, so we always
 # run this task, just to be sure.
 - name: Ensure Yoda MOAI dependencies are installed
@@ -84,20 +107,6 @@
     C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8
   changed_when: false
   notify: Restart Apache webserver
-
-
-# We need to patch SQLAlchemy because it is no longer compatible with
-# the ancient SQLite version in CentOS 7. Copy the file rather than fileinline
-# to avoid the need for hairy workarounds for limitations regarding nested quotes.
-- name: Patch SQLAlchemy to be compatible with ancient SQLite
-  become_user: '{{ yoda_moai_user }}'
-  become: true
-  ansible.builtin.copy:
-    src: pysqlite.py
-    dest: "{{ yoda_moai_home }}/yoda-moai/venv/lib/python3.8/site-packages/sqlalchemy/dialects/sqlite/pysqlite.py"
-    mode: '0644'
-    owner: '{{ yoda_moai_user }}'
-    group: '{{ yoda_moai_user }}'
 
 
 - name: Ensure Yoda MOAI home is world readable

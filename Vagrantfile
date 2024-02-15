@@ -50,6 +50,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
       machine.vm.provision "shell",
         inline: "sudo echo \"192.168.56.10 api.eus.yoda.test\" | sudo tee -a /etc/hosts"
+      machine.vm.provision "shell",
+        inline: "sudo echo \"192.168.56.10 datacite-mock.yoda.test\" | sudo tee -a /etc/hosts"
+      machine.vm.provision "shell",
+        inline: "sudo echo \"192.168.56.10 sram-mock.yoda.test\" | sudo tee -a /etc/hosts"
     end
   end
 
@@ -66,6 +70,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.synced_folder ".", "/vagrant", disabled: true
       controller.vm.provision "shell",
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
+      controller.vm.provision "shell",
+        inline: "sudo echo \"192.168.56.10 eus.yoda.test\" | sudo tee -a /etc/hosts"
     end
   end
 end

@@ -38,8 +38,15 @@
 - name: Initialize PostgreSQL database
   become_user: postgres
   become: true
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: "{{ postgresql_bin_path }}/initdb -D {{ postgresql_data_dir }}"
+  # noqa no-changed-when
+  ansible.builtin.command:
+    cmd: >
+         {{ postgresql_bin_path }}/initdb
+         -D "{{ postgresql_data_dir }}"
+         "--encoding={{ icat_database_encoding }}"
+         "--lc-ctype={{ icat_database_lc_ctype }}"
+         "--lc-collate={{ icat_database_lc_collate }}"
+         "--locale={{ icat_database_locale }}"
   when: not pg_version.stat.exists
 
 
@@ -105,29 +112,7 @@
 
 - name: Upgrade PostgreSQL for RedHat family
   ansible.builtin.include_tasks: upgrade.yml
-  when: "'postgresql-server' in ansible_facts.packages and not prevent_upgrade"
-
-
-- name: Check that ODBC is configured for PostgreSQL
-  ansible.builtin.lineinfile:
-    path: "{{ odbc_config_path }}"
-    search_string: "pgsql-{{ pgsql_version }}"
-    state: absent
-  check_mode: true
-  changed_when: false
-  register: driver
-
-
-- name: Configure ODBC for PostgreSQL
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: odbcinst -i -d -r
-  args:
-    stdin: |
-      [PostgreSQL]
-      Description = PostgreSQL {{ pgsql_version }} ODBC Driver
-      Driver      = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbc.so
-      Setup       = /usr/pgsql-{{ pgsql_version }}/lib/psqlodbcw.so
-  when: not driver.found
+  when: "'postgresql-server' in ansible_facts.packages and postgresql_perform_db_upgrade"
 
 
 - name: Ensure PostgreSQL is enabled and started
@@ -135,15 +120,7 @@
     name: "{{ postgresql_daemon }}"
     enabled: true
     state: started
-  when: "not ansible_check_mode and ('postgresql-server' not in ansible_facts.packages or not prevent_upgrade)"
-
-
-- name: Optimize PostgreSQL database
-  become_user: postgres
-  become: true
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: "/usr/pgsql-{{ pgsql_version }}/bin/vacuumdb --all"
-  when: "ansible_os_family == 'RedHat' and 'postgresql-server' in ansible_facts.packages"
+  when: "not ansible_check_mode and ('postgresql-server' not in ansible_facts.packages or postgresql_perform_db_upgrade)"
 
 
 - name: Install postgresqltuner

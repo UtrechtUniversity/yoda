@@ -1,16 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Set storage tiers to Standard
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command:
-    imeta set -R '{{ item }}' org_storage_tier Standard
-  ignore_errors: true
-  with_items:
-    - "{{ reset_tiers }}"
-
-
 - name: Prepare test data research-groups for removal
   become_user: '{{ irods_service_account }}'
   become: true

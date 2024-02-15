@@ -5,7 +5,7 @@
   ansible.builtin.user:
     name: '{{ item.name }}'
     password: "{{ item.password | password_hash('sha512') }}"
-  with_items: '{{ test_users }}'
+  with_items: '{{ test_users + pam_test_users }}'
 
 
 - name: Ensure Yoda test users exist

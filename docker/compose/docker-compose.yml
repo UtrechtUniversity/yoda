@@ -1,0 +1,132 @@
+version: "3"
+
+volumes:
+  extuser_pg_data:
+  icat_pg_data:
+  public_metadata:
+  public_landingpages:
+
+services:
+  provider:
+    container_name: provider.yoda
+    platform: linux/amd64
+    hostname: provider.yoda
+    image: ghcr.io/utrechtuniversity/yoda-provider:dev-1.9
+    ports:
+      - "8247:1247"
+      - "20000-20199:20000-20199"
+    depends_on:
+      - db
+      - mailpit
+    build:
+      context: ../images/yoda_irods_icat
+    volumes:
+      - public_metadata:/public/var/www/moai/metadata
+      - public_landingpages:/public/var/www/landingpages
+    restart: unless-stopped
+
+  db:
+    container_name: db.yoda
+    platform: linux/amd64
+    hostname: db.yoda
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=ICAT
+      - POSTGRES_USER=irodsdb
+      - POSTGRES_PASSWORD=yodadev
+    volumes:
+      - icat_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  extuserdb:
+    container_name: extuserdb.yoda
+    platform: linux/amd64
+    hostname: extuserdb.yoda
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=extuser
+      - POSTGRES_USER=extuser
+      - POSTGRES_PASSWORD=yodadev
+    volumes:
+      - extuser_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  portal:
+    container_name: portal.yoda
+    platform: linux/amd64
+    hostname: portal.yoda
+    image: ghcr.io/utrechtuniversity/yoda-portal:dev-1.9
+    depends_on:
+      - provider
+      - eus
+    ports:
+      - "8443:443"
+    build:
+      context: ../images/yoda_portal
+    restart: unless-stopped
+
+  eus:
+    container_name: eus.yoda
+    platform: linux/amd64
+    hostname: eus.yoda
+    image: ghcr.io/utrechtuniversity/yoda-eus:dev-1.9
+    depends_on:
+      - extuserdb
+      - mailpit
+    ports:
+      - "8444:8443"
+    build:
+      context: ../images/yoda_eus
+    restart: unless-stopped
+
+  public:
+    container_name: public.yoda
+    platform: linux/amd64
+    hostname: public.yoda
+    image: ghcr.io/utrechtuniversity/yoda-public:dev-1.9
+    ports:
+      - "8446:443"
+    build:
+      context: ../images/yoda_public
+    volumes:
+      - public_metadata:/var/www/moai/metadata
+      - public_landingpages:/var/www/landingpages
+    restart: unless-stopped
+
+  davrods:
+    container_name: data.yoda
+    platform: linux/amd64
+    hostname: data.yoda
+    image: ghcr.io/utrechtuniversity/davrods:dev-1.9
+    depends_on:
+      - provider
+    ports:
+      - "8445:443"
+    build:
+      context: ../images/davrods
+    restart: unless-stopped
+
+  mailpit:
+    container_name: mailpit.yoda
+    platform: linux/amd64
+    hostname: mailpit.yoda
+    image: ghcr.io/utrechtuniversity/yoda-mailpit:dev-1.9
+    environment:
+      - TZ=Europe/Amsterdam
+    build:
+      context: ../images/mailpit
+    ports:
+      - "8025:8025"
+    restart: unless-stopped
+
+  datacite_mock:
+    container_name: datacite-mock.yoda
+    platform: linux/amd64
+    hostname: datacite-mock.yoda
+    image: ghcr.io/utrechtuniversity/yoda-web-mock:dev-1.9
+    environment:
+      - MOCKNAME=datacite
+      - MOCKFQDN=datacite-mock.yoda
+    build:
+      context: ../images/yoda_web_mock
+    restart: unless-stopped

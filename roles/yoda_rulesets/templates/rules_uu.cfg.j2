@@ -9,6 +9,8 @@
 
 environment                    = '{{ yoda_environment }}'
 
+default_yoda_schema            = '{{ default_yoda_schema }}'
+
 resource_primary               = '{{ irods_default_resc }}'
 resource_replica               = '{{ irods_repl_resc | join (" ") }}'
 resource_research              = '{{ resource_research }}'
@@ -30,10 +32,12 @@ datacite_rest_api_url          = 'https://{{ datacite_rest_api_url }}'
 datacite_username              = '{{ datacite_username }}'
 datacite_password              = '{{ datacite_password }}'
 datacite_publisher             = '{{ datacite_publisher }}'
+datacite_tls_verify            = '{{ ["false", "true"][datacite_tls_verify|int] }}'
 
 eus_api_fqdn                   = '{{ eus_api_fqdn }}'
 eus_api_port                   = '{{ eus_api_port }}'
 eus_api_secret                 = '{{ eus_api_secret }}'
+eus_api_tls_verify             = '{{ ["false", "true"][eus_api_tls_verify|int] }}'
 
 enable_deposit                 = '{{ ["false", "true"][enable_deposit|int] }}'
 enable_open_search             = '{{ ["false", "true"][enable_open_search|int] }}'
@@ -60,10 +64,46 @@ token_lifetime                 = '{{ token_lifetime }}'
 token_expiration_notification  = '{{ token_expiration_notification }}'
 {% endif %}
 
+async_replication_delay_time   = '{{ async_replication_delay_time }}'
+async_replication_max_rss      = '{{ async_replication_max_rss }}'
+async_revision_delay_time      = '{{ async_revision_delay_time }}'
+async_revision_max_rss         = '{{ async_revision_max_rss }}'
+
 enable_tape_archive            = '{{ ["false", "true"][enable_tape_archive|int] }}'
+
+enable_inactivity_notification = '{{ ["false", "true"][enable_inactivity_notification|int] }}'
+{% if enable_inactivity_notification %}
+inactivity_cutoff_months       = '{{ inactivity_cutoff_months }}'
+{% endif %}
+
+enable_data_package_archive    = '{{ ["false", "true"][enable_data_package_archive|int] }}'
+enable_data_package_download   = '{{ ["false", "true"][enable_data_package_download|int] }}'
+{% if enable_data_package_archive %}
+data_package_archive_fqdn      = '{{ data_package_archive_fqdn }}'
+data_package_archive_minimum   = '{{ data_package_archive_minimum }}'
+data_package_archive_maximum   = '{{ data_package_archive_maximum }}'
+data_package_archive_resource  = '{{ data_package_archive_resource }}'
+{% endif %}
 
 temporary_files                = '{{ temporary_files | join (" ") }}'
 
 {% if external_users %}
 external_users_domain_filter   = '{{ external_users_domain_filter | replace (' ','') | replace('|', ' ')}}'
 {% endif %}
+
+enable_sram                = '{{ ["false", "true"][enable_sram|int] }}'
+{% if enable_sram %}
+sram_rest_api_url          = 'https://{{ sram_rest_api_url }}'
+sram_api_key               = '{{ sram_api_key }}'
+sram_service_entity_id     = '{{ sram_service_entity_id }}'
+sram_flow                  = '{{ sram_flow }}'
+sram_verbose_logging       = '{{ ["false", "true"][sram_verbose_logging|int] }}'
+sram_tls_verify            = '{{ ["false", "true"][sram_tls_verify|int] }}'
+{% endif %}
+
+arb_enabled                = '{{ ["false", "true"][irods_arb_enabled|int] }}'
+arb_exempt_resources       = '{{ irods_arb_exempt_resources }}'
+arb_min_gb_free            = '{{ irods_arb_min_gb_free }}'
+arb_min_percent_free       = '{{ irods_arb_min_percent_free }}'
+
+text_file_extensions       = '{{ text_file_extensions | join (" ") }}'

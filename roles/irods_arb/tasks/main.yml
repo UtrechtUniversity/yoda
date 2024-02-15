@@ -1,0 +1,20 @@
+# Copyright Utrecht University
+
+- name: Configure cronjob to update resource storage data
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'arb-update-resources.py'
+    minute: '*'
+    hour: '*'
+    job: '/usr/local/bin/python3 /etc/irods/yoda-ruleset/tools/arb-update-resources.py > /dev/null'
+    state: '{{ "present" if irods_arb_enabled else "absent" }}'
+
+
+- name: Ensure psutil is installed (Python 3)
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.pip:
+    name: "psutil==5.9.5"
+    executable: /usr/local/bin/pip3
+    extra_args: --user

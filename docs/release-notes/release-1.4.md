@@ -3,7 +3,7 @@ parent: Release Notes
 title: v1.4
 nav_order: 94
 ---
-# Release Notes - Yoda v1.4
+# Release Notes v1.4
 
 Version: 1.4
 

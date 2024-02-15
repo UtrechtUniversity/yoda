@@ -1,30 +1,30 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure iRODS 4.2.11 packages are absent
+- name: Check if systemd service is active for handler
+  # noqa command-instead-of-module
+  ansible.builtin.command: "systemctl is-active irods"
+  register: irods_runtime_irods_service_status
+  ignore_errors: true
+  changed_when: false
+
+
+- name: Ensure old iRODS packages are absent
   ansible.builtin.package:
     name:
-      - irods-uu-microservices-4.2.11_0.8.2
-      - irods-sudo-microservices-4.2.11_1.0.0
-      - davrods-4.2.11_1.5.0
-      - irods-runtime-4.2.11-1
-      - irods-server-4.2.11-1
-      - irods-database-plugin-postgres-4.2.11-1
-      - irods-icommands-4.2.11-1
-      - irods-rule-engine-plugin-python-4.2.11.1-1
+      - irods-uu-microservices-4.2.12_0.8.3-1
+      - irods-sudo-microservices-4.2.12_1.0.0-1
+      - davrods-4.2.12_1.5.1-1
+      - irods-runtime-4.2.12-1
+      - irods-server-4.2.12-1
+      - irods-database-plugin-postgres-4.2.12-1
+      - irods-rule-engine-plugin-python-4.2.12.0-1
+      - irods-icommands-4.2.12-1
     state: absent
 
 
-- name: Download iRODS runtime package
-  ansible.builtin.get_url:
-    url: "{{ irods_runtime.url }}"
-    dest: "{{ rpm_dest_dir }}/{{ irods_runtime.filename }}"
-    checksum: "{{ irods_runtime.checksum }}"
-    mode: '0644'
-
-
-- name: Install iRODS runtime package from downloaded rpm
-  ansible.builtin.yum:
-    name: "{{ rpm_dest_dir }}/{{ irods_runtime.filename }}"
+- name: Ensure iRODS runtime is installed
+  ansible.builtin.package:
+    name: irods-runtime-4.3.0-1
     state: present
-  when: not ansible_check_mode
+

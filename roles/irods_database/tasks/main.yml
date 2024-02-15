@@ -18,9 +18,9 @@
   become: true
   community.postgresql.postgresql_db:
     name: "{{ irods_database_name }}"
-    encoding: UTF-8
-    lc_collate: en_US.UTF-8
-    lc_ctype: en_US.UTF-8
+    encoding: "{{ icat_database_encoding }}"
+    lc_collate: "{{ icat_database_lc_collate }}"
+    lc_ctype: "{{ icat_database_lc_ctype }}"
     template: template0
 
 
@@ -32,6 +32,19 @@
     name: "{{ irods_database_user }}"
     password: "{{ irods_database_password }}"
     priv: ALL
+
+
+# Needed because of change in default permissions public schema as of PostgreSQL 15
+- name: Specifically grant iRODS database user access on public schema
+  become_user: postgres
+  become: true
+  community.postgresql.postgresql_privs:
+    database: "{{ irods_database_name }}"
+    roles: "{{ irods_database_user }}"
+    objs: public
+    privs: CREATE
+    type: schema
+  when: pgsql_version >= 15
 
 
 - name: Setup Yoda databases indexes

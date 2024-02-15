@@ -4,6 +4,7 @@
 import os
 from datetime import datetime
 from traceback import print_exc
+from re import match
 
 from pysqlcipher3 import dbapi2 as sqlite3
 
@@ -15,6 +16,9 @@ def pam_sm_authenticate(pamh, flags, argv):
         user_id = pamh.get_user()
     except Exception:
         return pamh.PAM_USER_UNKNOWN
+
+    if match("^[ -~]+$", user_id) is None:
+        return pamh.PAM_AUTH_ERR
 
     token = pamh.authtok
     if token is None:

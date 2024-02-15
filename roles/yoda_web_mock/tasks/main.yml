@@ -1,0 +1,59 @@
+---
+# copyright Utrecht University
+
+- name: Ensure yodadeployment user exists
+  ansible.builtin.user:
+    name: "{{ yoda_deployment_user }}"
+
+
+- name: Ensure parent directory for web mock repository is accessible
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0755'
+  with_items:
+    - "/var/www/webmock"
+    - "/var/www/webmock/log"
+
+
+- name: Check out Yoda web mock service source code
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
+  ansible.builtin.git:
+    repo: "https://github.com/UtrechtUniversity/yoda-web-mock.git"
+    dest: "/var/www/webmock/yoda-web-mock"
+    version: "{{ yoda_web_mock_version }}"
+    force: true
+
+
+- name: Ensure Yoda web mock virtualenv exists
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.command: virtualenv --python /opt/rh/rh-python38/root/bin/python3 "/var/www/webmock/venv"
+  args:
+    creates: "/var/www/webmock/venv"
+
+
+- name: Upgrade pip in Yoda web mock environment
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.pip:
+    name:
+      - pip==23.0.1
+    executable: /var/www/webmock/venv/bin/pip3
+  when: not ansible_check_mode
+
+
+# Change detection in git repositories is unreliable in some Ansible versions, so we always
+# run this task, just to be sure.
+- name: Ensure Yoda web mock dependencies are installed
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.pip:
+    name: '/var/www/webmock/yoda-web-mock'
+    virtualenv: '/var/www/webmock/venv'
+    extra_args: "-e"
+  changed_when: false
+  notify: Restart Apache webserver

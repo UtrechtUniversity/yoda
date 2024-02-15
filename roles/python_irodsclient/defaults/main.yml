@@ -1,0 +1,6 @@
+---
+# copyright Utrecht University
+
+irods_service_account: irods
+
+python_irodsclient_version: 1.1.9

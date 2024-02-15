@@ -4,7 +4,7 @@
 - name: Last step before the upgrade
   ansible.builtin.fail:
     msg: PostgreSQL database upgrade prevented
-  when: prevent_upgrade
+  when: not postgresql_perform_db_upgrade
 
 
 - name: Stop PostgreSQL 9 service
@@ -79,6 +79,8 @@
 			   -B /usr/pgsql-{{ pgsql_version }}/bin \
 			   -d /var/lib/pgsql/data \
 			   -D /var/lib/pgsql/{{ pgsql_version }}/data"
+  args:
+    chdir: "/var/lib/pgsql"
   when: "'postgresql-server' in ansible_facts.packages"
 
 
@@ -100,4 +102,4 @@
     - /var/lib/pgsql/data
     - /var/lib/pgsql/shim
     - /var/lib/pgsql/initdb.log
-  when: remove_postgresql_9_data
+  when: postgresql_remove_old_data_after_upgrade

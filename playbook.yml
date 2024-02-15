@@ -14,7 +14,7 @@
 
 
 - name: Check repository branches
-  hosts: all
+  hosts: databases,davrods,development,eus,icats,portals,publics,resources
   gather_facts: false
   pre_tasks:
     - name: Determine whether yoda version matches playbook version (branch or lightweight tag)
@@ -58,7 +58,7 @@
 
 
 - name: Provision common software and certificates
-  hosts: all
+  hosts: databases,davrods,development,eus,icats,portals,publics,resources
   become: true
   roles:
     - common
@@ -74,9 +74,9 @@
       when: enable_open_search
     - python3
     - yoda_portal
-    - role: irods_runtime
-      when: "'davrods' not in group_names"
     - role: irods_icommands
+      when: "'davrods' not in group_names"
+    - role: irods_runtime
       when: "'davrods' not in group_names"
     - role: yoda_davrods
       when: "'davrods' not in group_names"
@@ -91,8 +91,8 @@
   become: true
   roles:
     - apache
-    - irods_runtime
     - irods_icommands
+    - irods_runtime
     - yoda_davrods
   tags:
     - davrods
@@ -116,8 +116,9 @@
   roles:
     - python3
     - pam_python
-    - irods_runtime
+    - postgresql_odbc
     - irods_icat
+    - irods_runtime
     - role: irods_resource_plugin_s3
       when: enable_s3_resource
     - role: minio
@@ -125,18 +126,25 @@
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
+    - irods_arb
     - role: irods_consistency_check
       when: enable_irods_consistency_check
     - role: icat_database_checker
       when: enable_icat_database_checker
     - role: dms_archive_mock
-      when: enable_tape_archive and yoda_environment == "development"
+      when: (enable_tape_archive or enable_data_package_archive) and yoda_environment == "development"
     - role: dms_tape_archive
-      when: enable_tape_archive and yoda_environment != "development"
+      when: (enable_tape_archive or enable_data_package_archive) and yoda_environment != "development"
+    - role: yoda_web_mock_datacite
+      when: yoda_environment == "development"
+    - role: yoda_web_mock_sram
+      when: yoda_environment == "development"
     - role: postfix
       when: enable_postfix
     - role: mailpit
       when: enable_mailpit
+    - role: irods_gocommands
+      when: irods_enable_gocommands
   tags:
     - icat
 
@@ -146,13 +154,15 @@
   become: true
   roles:
     - python3
-    - irods_runtime
     - irods_resource
     - role: irods_resource_plugin_s3
       when: enable_s3_resource
     - irods_runtime
     - irods_microservices
     - irods_completion
+    - irods_arb
+    - role: irods_gocommands
+      when: irods_enable_gocommands
     - role: irods_consistency_check
       when: enable_irods_consistency_check
   tags:
@@ -173,7 +183,6 @@
   become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: true
   tags:
     - icat
 
@@ -183,7 +192,6 @@
   become: true
   roles:
     - role: yoda_rulesets
-      install_rulesets: '{{ override_resc_install_rulesets | default(False) }}'
   tags:
     - resource
 

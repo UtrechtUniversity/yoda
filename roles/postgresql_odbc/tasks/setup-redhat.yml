@@ -1,0 +1,18 @@
+---
+# copyright Utrecht University
+
+# Not supported by DNF module, so just run the command instead.
+- name: "Disable RHEL PostgreSQL module (EL8)"
+  ansible.builtin.command:  # noqa no-changed-when
+    cmd: "dnf -qy module disable postgresql"
+  changed_when: false
+  when: ansible_distribution_major_version == "8"
+
+
+- name: Ensure PostgreSQL ODBC dependencies are installed
+  ansible.builtin.package:
+    name:
+      - "postgresql{{ pgsql_version }}-odbc"
+      - unixODBC
+    state: present
+  when: not ansible_check_mode

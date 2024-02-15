@@ -12,5 +12,5 @@ galaxy_info:
 
 
 dependencies:
-  - apache
-  - python3
+  - role: apache
+  - role: python3

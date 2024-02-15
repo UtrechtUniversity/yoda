@@ -1,0 +1,75 @@
+@startuml
+title "Yoda Use Cases - level 0 view"
+left to right direction
+
+' USE CASES
+
+rectangle "Yoda" as YODA {
+  usecase "Manage user" as UC_USER 
+  usecase "Manage groups" as UC_GROUPS
+  usecase "Manage research data" as UC_RESEARCH
+    usecase "Transfer data" as UC_TRANSFER
+    usecase "Manage metadata" as UC_METADATA
+  usecase "Archive data" as UC_ARCHIVE
+  usecase "Publish data" as UC_PUBLISH
+  rectangle "Reuse published data" as UC_REUSE {
+    usecase "Download open data" as UC_REUSE_OPEN
+    usecase "Download closed data" as UC_REUSE_CLOSED
+    usecase "Provide dataset info" as UC_HARVEST
+  }
+  usecase "Request closed data" as UC_DATA_REQUEST
+  usecase "Ingest experiment data" as UC_INTAKE
+}
+
+' INTERNAL ACTORS
+
+rectangle "Authenticated User" as USER {
+  actor "group manager" as GM
+  actor "datamanager" as DM
+  actor "researcher" as R
+  actor "guest researcher" as GUEST
+  actor "data access committee member" as DAC
+  actor "project manager" as PM
+  actor "lab assistant" as L
+}
+
+rectangle "Anonymous user" {
+  actor "Anonymous reseacher" as ANONYMOUS
+}
+
+' EXTERNAL ACTORS
+
+rectangle "Datacite" <<external>> as DATACITE
+
+rectangle "Harvester" <<external>> AS HARVESTER
+
+
+
+' RELATIONSHIPS BETWEEN ACTORS AND USE CASES
+
+GM --> UC_GROUPS
+R --> UC_RESEARCH
+R --> UC_ARCHIVE
+DM --> UC_ARCHIVE
+R --> UC_PUBLISH
+DM --> UC_PUBLISH
+L --> UC_INTAKE
+DM --> UC_INTAKE
+DM --> UC_DATA_REQUEST
+DAC --> UC_DATA_REQUEST
+PM --> UC_DATA_REQUEST
+GUEST --> UC_DATA_REQUEST 
+GUEST --> UC_REUSE_CLOSED
+UC_HARVEST <-- HARVESTER 
+USER --> UC_USER
+UC_REUSE_OPEN <-- ANONYMOUS
+UC_PUBLISH --> DATACITE
+
+' RELATIONSHIPS BETWEEN USE CASES
+
+UC_PUBLISH .. UC_REUSE
+UC_RESEARCH --> UC_TRANSFER : include
+UC_RESEARCH <-- UC_METADATA : extend
+UC_DATA_REQUEST --> UC_REUSE_CLOSED : include
+
+@enduml

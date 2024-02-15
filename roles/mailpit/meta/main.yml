@@ -9,3 +9,7 @@ galaxy_info:
   platforms:
     - name: EL
       version: 7
+
+
+dependencies:
+  - role: common

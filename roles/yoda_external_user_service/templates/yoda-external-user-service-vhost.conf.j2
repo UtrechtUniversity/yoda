@@ -75,7 +75,8 @@ Listen {{ eus_api_port }}
     #   the certificate is encrypted, then you will be prompted for a
     #   pass phrase.  Note that a kill -HUP will prompt again.  A new
     #   certificate can be generated using the genkey(1) command.
-    SSLCertificateFile      {{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}
+    SSLCertificateFile      {{ openssl_certs_dir }}/{{ openssl_crt_signed }}
+    SSLCertificateChainFile {{ openssl_certs_dir }}/{{ openssl_chain }}
 
     #   Server Private Key:
     #   If the key is not combined with the certificate, use this

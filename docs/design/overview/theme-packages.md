@@ -133,10 +133,10 @@ Putting templates and css together results in following theme package structure
 Building theme CSS:
 ```
 sudo su yodadeployment
-cd /var/www/yoda-portal/static/src/
+cd /var/www/yoda/static/src/
 
 # Install npm
-nvm install v16
+nvm install v18
 
 # Install sass compiler
 npm install
@@ -149,10 +149,32 @@ sass --style compressed build_uu.scss ../../static/css/yoda-portal.css
 sass --style compressed build_vu.scss ../../themes/vu/static/css/yoda-portal.css
 ```
 
+### Select2 theming in the group manager
+
+To match the select2 fields in the group-manager with the colors of the main theme, the select2 theme must be compiled.
+
+Assuming that the steps to compile the main theme CSS for all of Yoda have already been followed, the following can be run to compile the select2 bootstrap theme, for example for the (default) uu theme:
+```
+sudo su yodadeployment
+cd /var/www/yoda/static/src/select2-bootstrap-5-theme/src
+sass --style compressed select2-theme-uu.scss ../../../../group_manager/static/group_manager/lib/select2-bootstrap-5-theme/select2-bootstrap-5-theme.css
+```
+
+For other themes the css is similarly an override of the default select2 uu theme. For the vu theme:
+```
+sass --style compressed select2-theme-vu.scss ../../../../themes/vu/group_manager/static/group_manager/lib/select2-bootstrap-5-theme/select2-bootstrap-5-theme.css
+```
+
+To create another select2 theme first copy the select2-theme-uu.scss file, and then change "uu" to the name of your theme in this line:
+```scss
+@import "../../uu/variables";
+```
+The theming is based on this [select2 bootstrap 5 theme](https://github.com/g10f/select2-bootstrap-5-theme) fork.
+
 ## DavRODS theming
 
 DavRODS uses different theming logic than the portal. By default, it uses the themed logo of the portal.
-The logo is linked to the UU website. Use the `yoda_davrods_logo_path` and `yoda_davrods_logo_link` 
+The logo is linked to the UU website. Use the `yoda_davrods_logo_path` and `yoda_davrods_logo_link`
 parameters to change this behaviour.
 
 For more advanced changes, it will be necessary to customize the [DavRODS layout templates](https://github.com/UtrechtUniversity/yoda/tree/development/roles/yoda_davrods/templates).

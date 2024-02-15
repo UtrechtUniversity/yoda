@@ -52,7 +52,18 @@
   when: enable_tokens
 
 
-- name: Ensure token authentication is present
+# When data access tokens are enabled, pysqlcipher3 needs to be
+# installed globally too for the token authentication script
+# (in addition to the user-level installation for the ruleset).
+- name: Ensure pysqlcipher3 is installed globally for token authentication script
+  ansible.builtin.pip:
+    name:
+      - pysqlcipher3==1.0.4
+    state: present
+  when: enable_tokens
+
+
+- name: Ensure token authentication script is present
   ansible.builtin.template:
     src: token-auth.py.j2
     dest: /usr/local/bin/token-auth.py

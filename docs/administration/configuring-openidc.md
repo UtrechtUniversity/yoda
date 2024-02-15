@@ -28,7 +28,8 @@ Additionally, depending on the authorization server, you may need to configure t
 - oidc_login_hint (default: `true`)
 
 Finally, for customization purposes, you can also configure:
-- oidc_domains, which should be an array of domains with OIDC authentication, e.g. `["mydomain.com","myotherdomain.com"]`. By default, OIDC authentication is enabled for every domain (provided that oidc_active is set to `true`)
+- oidc_domains, which should be an array of domains with OIDC authentication, e.g. `["mydomain.com","myotherdomain.com","*.allsubdomains.com"]`.
+  By default, OIDC authentication is enabled for every domain (provided that oidc_active is set to `true`)
 - oidc_signin_text (deprecated since v1.8)
 
 For token verification there are also the following parameters which define what checks are done when verifying a JWT. Take caution when setting values to `false`, as this makes verification less strict. Details can be found in the group_vars file.
@@ -39,6 +40,8 @@ For token verification there are also the following parameters which define what
 - oidc_verify_iat (default: `false`)
 - oidc_verify_exp (default: `true`)
 - oidc_verify_iss (default: `true`)
+
+If your identity provider is in a different domain than the Yoda portal, you need to set `portal_session_cookie_samesite` to `Lax`.
 
 ## Verifying OIDC
 To verify whether the deployment/update went successfully, go to the Yoda portal and click the *Sign in* button, enter an email address and click *Next*.

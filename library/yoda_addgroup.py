@@ -37,7 +37,7 @@ def main():
             category=dict(default=None, required=True),
             subcategory=dict(default=None, required=True),
             schema_id=dict(default=None, required=True),
-            retention_period=dict(default=None, required=True),            
+            retention_period=dict(default=None, required=True),
             description=dict(default=None, required=True),
             dataClassification=dict(default=None, required=True),
             state=dict(default="present")
@@ -52,6 +52,7 @@ def main():
     description = module.params["description"]
     dataClassification = module.params["dataClassification"]
     state = module.params["state"]
+    co_identifier = ''
 
     if IRODSCLIENT_AVAILABLE:
         try:
@@ -67,7 +68,7 @@ def main():
 
     # Rule to add a group to Yoda.
     rule_file = io.StringIO(u'''a {{
-                       uuGroupAdd(*groupName, *category, *subcategory, *schema_id, *retention_period, *description, *dataClassification, *status, *message);
+                       uuGroupAdd(*groupName, *category, *subcategory, *schema_id, *retention_period, *description, *dataClassification, *co_identifier, *status, *message);
                      }}
                 ''')
 
@@ -79,7 +80,8 @@ def main():
         '*schema_id': '"{schema_id}"'.format(**locals()),
         '*retention_period': '"{retention_period}"'.format(**locals()),
         '*description': '"{description}"'.format(**locals()),
-        '*dataClassification': '"{dataClassification}"'.format(**locals())
+        '*dataClassification': '"{dataClassification}"'.format(**locals()),
+        '*co_identifier': '"{co_identifier}"'.format(**locals())
     }
 
     # Execute rule.

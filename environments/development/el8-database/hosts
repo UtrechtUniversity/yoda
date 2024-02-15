@@ -1,0 +1,78 @@
+###############
+# Full instance
+###############
+# Define all hosts in instance here:
+[el8:children]
+el8_portal
+el8_davrods
+el8_database
+el8_icat
+el8_resource
+el8_public
+el8_eus
+
+# Define portal host here:
+[el8_portal]
+combined
+
+# Define davrods host here:
+[el8_davrods]
+combined
+
+# Define database host here:
+[el8_database]
+database
+
+# Define icat host here:
+[el8_icat]
+combined
+
+# Define resource host here:
+[el8_resource]
+
+
+# Define public host here:
+[el8_public]
+combined
+
+# Define external user service host here:
+[el8_eus]
+combined
+
+###############
+# All instances
+###############
+# Define all portal hosts here:
+[portals:children]
+el8_portal
+
+# Define all davrods hosts here:
+[davrods:children]
+el8_davrods
+
+# Define all database hosts here:
+[databases:children]
+el8_database
+
+# Define all icat hosts here:
+[icats:children]
+el8_icat
+
+# Define all resource hosts here:
+[resources:children]
+el8_resource
+
+# Define all public hosts here:
+[publics:children]
+el8_public
+
+# Define external user service host here:
+[eus:children]
+el8_eus
+
+# Provision instances with test data:
+[test:children]
+el8_icat
+
+[development:children]
+el8

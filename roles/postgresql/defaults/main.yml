@@ -1,19 +1,14 @@
 ---
 # copyright Utrecht University
 
-# Version of PostgreSQL to install (tested with 11-14)
-pgsql_version: 11
-prevent_upgrade: true             # Prevent upgrading to pgsql_version
-remove_postgresql_9_data: false   # Remove PostgreSQL 9 data and shim after upgrade
+# Version of PostgreSQL to install (the configuration templates are for PostgeSQL 15, and may need
+# to be adapted for other versions).
+pgsql_version: 15
 
-# PostgreSQL RPM package repo
-rpm_dest_dir: /tmp
-rpm_redhat_repo: pgdg-redhat-repo-latest.noarch.rpm
-rpm_url: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64
-
-# PostgreSQL APT package repo
-apt_signing_key: https://www.postgresql.org/media/keys/ACCC4CF8.asc
-apt_repo: deb http://apt.postgresql.org/pub/repos/apt focal-pgdg main
+postgresql_perform_db_upgrade: false              # Whether to perform a DB upgrade from PostgreSQL 9
+                                                  # Note that this is about upgrading the PostgreSQL data,
+                                                  # not about the packages.
+postgresql_remove_old_data_after_upgrade: false   # Remove PostgreSQL 9 data and shim after upgrade
 
 # OpenSSL configuration.
 openssl_private_dir: '/etc/pki/tls/private'
@@ -37,3 +32,9 @@ postgresql_random_page_cost: "4.0"
 postgresql_log_line_prefix: '%m [%p] '
 postgresql_log_min_duration_statement: -1
 postgresql_log_autovacuum_min_duration: -1
+
+# PostgreSQL locale configuration
+icat_database_encoding: UTF-8
+icat_database_lc_collate: en_US.UTF-8
+icat_database_lc_ctype: en_US.UTF-8
+icat_database_locale: en_US.UTF-8

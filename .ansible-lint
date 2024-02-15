@@ -1,4 +1,25 @@
+profile: production
+
 skip_list:
   - experimental
+  - var-naming
+  - yaml[line-length]
 
 parseable: true
+
+mock_modules:
+  - irods_advanced
+  - irods_config
+  - irods_indexing
+  - irods_mkuser
+  - irods_postgres
+  - irods_python
+  - irods_resource
+  - irods_rulesets
+
+exclude_paths:
+  - .github/
+  - docker/
+  - docs/
+  - roles/yoda_test/
+  - roles/yoda_test_users_eus/

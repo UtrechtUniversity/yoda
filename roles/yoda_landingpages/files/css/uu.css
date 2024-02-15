@@ -122,8 +122,8 @@ header .logo {
     margin-left: 5%;
 }
 header .logo img {
-    width: 284px;
-    height: 77px;
+    height: 60px;
+    max-width: none;
 }
 
 header .header-title {
@@ -146,7 +146,6 @@ header .header-title h1 {
 
 /* Main */
 .creators {
-	padding-left: 5%;
     font-weight: 400;
     font-style: normal;
     font-size: 21px;
@@ -187,14 +186,14 @@ header .header-title h1 {
     font-style: normal;
     font-size: 16px;
 }
-.content .tags label {
+.content .tags label, .content .keywords label {
     width: 100%;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 14px;
 }
-.content .tags .tag {
+.content .tags .tag, .content .keywords .keyword {
     background: #f2f2f2;
     padding-left: 10px;
     padding-right: 10px;
@@ -221,6 +220,22 @@ header .header-title h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 15px;
+}
+.version {
+    background: #f2f2f2;
+}
+.version h4 {
+    font-family: 'Merriweather', serif;
+}
+.version tbody {
+    font-size: 14px;
+}
+.version a {
+    color: #333333;
+    text-decoration: underline;
+}
+.view-contents {
+    margin-left: 5%;
 }
 .metadata {
     margin-top: 75px;
@@ -280,7 +295,7 @@ header .header-title h1 {
 }
 
 .questions {
-    margin-top: 100px;
+    margin-top: 60px;
 }
 .questions h2 {
     font-family: 'Open Sans', sans-serif;
@@ -295,7 +310,7 @@ header .header-title h1 {
 }
 
 footer {
-    background: #000000;
+    background: #262626;
     padding-left: 5%;
     height: 141px;
     width: 100%;
@@ -305,6 +320,6 @@ footer .logo {
     padding-top: 20px;
 }
 footer .logo img {
-    width: 377px;
-    height: 111px
+    max-width: none;
+    height: 111px;
 }

@@ -1,6 +1,15 @@
 ---
 # copyright Utrecht University
 
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+  check_mode: false
+
+
 - name: Ensure Yoda test groups exists
   become_user: '{{ irods_service_account }}'
   become: true
@@ -73,12 +82,15 @@
     - grp-vault-test2
 
 
-- name: Ensure Yoda test data directory research-initial/testdata is present in Yoda
+- name: Ensure Yoda test data directories are present in Yoda
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.command:
-    imkdir /{{ irods_zone }}/home/research-initial/testdata
+    imkdir "/{{ irods_zone }}/home/research-initial/{{ item }}"
   ignore_errors: true
+  with_items:
+    - testdata
+    - folder space
 
 
 - name: Ensure Yoda test data directory is present
@@ -106,6 +118,8 @@
     dest: '~/testdata/{{ item }}'
     mode: 0644
   with_items:
+    - 'image.txt'
+    - 'large-file.html'
     - 'lorem.txt'
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
     - 'yoda-metadata.json'
@@ -117,6 +131,8 @@
   ansible.builtin.command:
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-initial/testdata
   with_items:
+    - 'image.txt'
+    - 'large-file.html'
     - 'lorem.txt'
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
 
@@ -148,32 +164,6 @@
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-teclab-0
   with_items:
     - 'yoda-metadata.json'
-
-
-- name: Ensure Yoda licenses directory is present
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command:
-    imkdir /{{ irods_zone }}/yoda/licenses
-  ignore_errors: true
-
-
-- name: Ensure licenses are present in Yoda
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command:
-    iput -f '/etc/irods/yoda-ruleset/licenses/{{ item }}' '/{{ irods_zone }}/yoda/licenses/{{ item }}'
-  with_items:
-    - "Creative Commons Attribution 4.0 International Public License.txt"
-    - "Creative Commons Attribution 4.0 International Public License.uri"
-    - "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.txt"
-    - "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.uri"
-    - "Creative Commons Attribution-ShareAlike 4.0 International Public License.txt"
-    - "Creative Commons Attribution-ShareAlike 4.0 International Public License.uri"
-    - "Creative Commons Zero v1.0 Universal.txt"
-    - "Creative Commons Zero v1.0 Universal.uri"
-    - "Open Data Commons Attribution License (ODC-By) v1.0.txt"
-    - "Open Data Commons Attribution License (ODC-By) v1.0.uri"
 
 
 - name: Ensure Yoda preservable file formats directory is present
@@ -221,14 +211,14 @@
   ansible.builtin.cron:
     name: 'job_checksums.r'
     minute: '*/7'
-    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /var/lib/irods/.irods/job_checksums.r >> /var/lib/irods/log/job_checksums.log 2>&1'
+    job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F {{ irods_directory.stdout }}/.irods/job_checksums.r >> /var/lib/irods/log/job_checksums.log 2>&1'
 
 
-- name: Run monthly storage statistics job
+- name: Run storage statistics job
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.command:
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/monthly-storage-statistics.r
+    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/storage-statistics.r
   ignore_errors: true
 
 

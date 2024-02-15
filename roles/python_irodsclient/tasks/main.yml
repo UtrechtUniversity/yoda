@@ -2,22 +2,29 @@
 # copyright Utrecht University
 
 - name: Ensure Python dependencies are installed
-  package:
+  ansible.builtin.package:
     name:
       - python-pip
     state: present
 
 
 - name: Ensure python-irodsclient dependencies are installed
-  pip:
+  ansible.builtin.pip:
     name:
       - pip==20.2.4
       - setuptools==44.1.1
     state: present
 
 
-- name: Ensure python-irodsclient is installed
-  pip:
+- name: Ensure python-irodsclient is installed (Python 2)
+  ansible.builtin.pip:
     name:
-      - python-irodsclient==1.1.6
+      - "python-irodsclient=={{ python_irodsclient_version }}"
     state: present
+
+
+- name: Ensure python-irodsclient is installed (Python 3)
+  ansible.builtin.pip:
+    name: "python_irodsclient=={{ python_irodsclient_version }}"
+    executable: /usr/local/bin/pip3
+  when: not ansible_check_mode

@@ -1,0 +1,12 @@
+---
+# copyright Utrecht University
+
+# PostgreSQL RPM package repo
+postgresql_rpm_dest_dir: /tmp
+postgresql_rpm_redhat_repo: pgdg-redhat-repo-latest.noarch.rpm
+postgresql_rpm_url: "https://download.postgresql.org/pub/repos/yum/reporpms/EL-{{ ansible_distribution_major_version }}-x86_64"
+postgresql_rpm_key_url: https://download.postgresql.org/pub/repos/yum/keys/PGDG-RPM-GPG-KEY-RHEL
+
+# PostgreSQL APT package repo
+postgresql_apt_signing_key: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+postgresql_apt_repo: deb http://apt.postgresql.org/pub/repos/apt focal-pgdg main

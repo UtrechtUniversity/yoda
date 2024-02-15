@@ -1,0 +1,45 @@
+---
+name: "Build public web server image and push it to registry"
+
+on:
+  push:
+    branches:
+      - 'development'
+    paths:
+      - 'docker/images/yoda_public/**'
+      - 'roles/yoda_landingpages/files/**'
+
+jobs:
+  push-image:
+    if: github.repository == 'utrechtuniversity/yoda'
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - name: Check out Yoda repository
+      uses: actions/checkout@v3
+      with:
+        path: yoda
+        repository: UtrechtUniversity/yoda
+        ref: development
+
+    - name: Authenticate to the container registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Stage landing page files for Docker image
+      run: |
+        cd yoda/docker/images/yoda_public
+        ./stage-uploads.sh
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: yoda/docker/images/yoda_public
+        file: yoda/docker/images/yoda_public/Dockerfile
+        push: true
+        tags: ghcr.io/utrechtuniversity/yoda-public:dev-1.9
