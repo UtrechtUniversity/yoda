@@ -119,17 +119,27 @@ ansible-playbook -i /environments/development/allinone playbook.yml
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/transform-storage-data.r
 ```
 
-14. Update all publication metadata to support DOI versioning.
+14. Report vault data package metadata containing invalid ORCID person identifiers.
+```bash
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/vault-check-orcid-format.r
+```
+
+15. Correct vault data package metadata containing invalid ORCID person identifiers.
+```bash
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/metadatavault-correct-orcid-format.r
+```
+
+16. Update all publication metadata to support DOI versioning.
 ```bash
 irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/transform-existing-publications.r
 ```
 
-15. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
+17. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-16. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+18. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
