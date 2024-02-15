@@ -105,3 +105,5 @@ arb_enabled                = '{{ ["false", "true"][irods_arb_enabled|int] }}'
 arb_exempt_resources       = '{{ irods_arb_exempt_resources }}'
 arb_min_gb_free            = '{{ irods_arb_min_gb_free }}'
 arb_min_percent_free       = '{{ irods_arb_min_percent_free }}'
+
+text_file_extensions       = '{{ text_file_extensions | join (" ") }}'
