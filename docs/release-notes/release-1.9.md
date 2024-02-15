@@ -7,7 +7,7 @@ nav_order: 89
 
 Version: 1.9
 
-Released: TBA
+Released: February 2024
 
 ## What's new
 ### Features
@@ -24,6 +24,7 @@ Released: TBA
 - Support for configuring iRODS S3 resources
 - Support for database connection pooling with PgBouncer
 - Support for [Automatic Resource Balancing](../design/processes/automatic-resource-balancing.md)
+- Support for viewing text files in portal
 - Experimental support for [vault archiving](../design/overview/vault-archive.md) workflow
 - Experimental support for groups connected to SRAM
 - Improved overwrite actions in research space
@@ -48,14 +49,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After making sure the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Checkout tag `v1.9.0-rc.6` of the Yoda Git repository.
+3. Checkout tag `v1.9.0` of the Yoda Git repository.
 ```bash
-git checkout v1.9.0-rc.6
+git checkout v1.9.0
 ```
 
-4. Set the Yoda version to `v1.9.0-rc.6` in the configuration.
+4. Set the Yoda version to `v1.9.0` in the configuration.
 ```yaml
-yoda_version: v1.9.0-rc.6
+yoda_version: v1.9.0
 ```
 
 5. Change the default schema from `default-2` to `default-3` in the configuration.
