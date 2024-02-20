@@ -105,6 +105,23 @@
   register: eus_git_commit
 
 
+- name: Allow public to port for Yoda EUS in firewall
+  ansible.posix.firewalld:
+    port: '{{ yoda_eus_port }}/tcp'
+    permanent: true
+    state: enabled
+    immediate: true
+  notify: Restart firewall
+
+
+- name: Allow Apache to listen to Yoda EUS port
+  community.general.seport:
+    ports: "{{ yoda_eus_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+
+
 - name: Allow public to API port for External User Service in firewall
   ansible.posix.firewalld:
     port: '{{ eus_api_port }}/tcp'

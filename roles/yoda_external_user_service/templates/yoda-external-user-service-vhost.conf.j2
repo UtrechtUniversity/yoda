@@ -5,10 +5,18 @@
     ServerName {{ yoda_eus_fqdn }}
 
     # Always redirect to https.
-    Redirect / https://{{ yoda_eus_fqdn }}/
+    {% if yoda_eus_port == 443 %}
+        Redirect / https://{{ yoda_eus_fqdn }}/
+    {% else %}
+        Redirect / https://{{ yoda_eus_fqdn }}:{{ yoda_eus_port | string }}/
+    {% endif %}
 </VirtualHost>
 
-<VirtualHost *:443>
+{% if yoda_eus_port != 443 %}
+Listen {{ yoda_eus_port }}
+{% endif %}
+
+<VirtualHost *:{{ yoda_eus_port }}>
     ServerName {{ yoda_eus_fqdn }}
     <Directory /var/www/extuser>
         AllowOverride All
