@@ -1,0 +1,7 @@
+---
+# copyright Utrecht University
+
+- name: Restart iRODS
+  ansible.builtin.service:
+    name: irods
+    state: restarted
