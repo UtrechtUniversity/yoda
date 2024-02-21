@@ -7,17 +7,17 @@ DOC = \
 
 setup(
     name='dm-mock',
-    version='0.8.3',
+    version='0.8.4',
     long_description=DOC,
     packages=['dm_mock', 'dm_server', 'dm_server'],
     include_package_data=False,
     zip_safe=False,
-    install_requires=['Flask==2.0.3',
+    install_requires=['Flask==3.0.2',
                       'requests==2.31.0',
                       'numpy==1.19.5',
                       'typing-extensions==4.1.1',
                       'urllib3>=1.21.1,<2',
-                      'Werkzeug==2.2.3'],
+                      'Werkzeug==3.0.1'],
     entry_points='''
     [console_scripts]
     dmattr=dm_mock:dmattr
