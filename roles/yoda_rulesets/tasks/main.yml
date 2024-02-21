@@ -24,6 +24,7 @@
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item and 'patch' not in item"
   register: repochanges
+  notify: Restart iRODS
 
 
 - name: Check out rulesets with local patches from Github
@@ -37,6 +38,7 @@
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item and 'patch' in item"
   register: patch_repochanges
+  notify: Restart iRODS
 
 
 - name: Sync rulesets with repos before applying patches
@@ -73,6 +75,7 @@
     cmd: "git apply /etc/irods/{{ item.name }}.patch"
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'repo' in item and 'patch' in item and item['patch'] not in ['']"
+  notify: Restart iRODS
 
 
 - name: Remove temporary rule and cache files
