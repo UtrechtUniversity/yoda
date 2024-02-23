@@ -307,12 +307,15 @@ directory.</p>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant box update <span class="o">&amp;&amp;</span> vagrant up
 </code></pre></div>    </div>
   </li>
-  <li>Deploy the VM.</li>
+  <li>Deploy the VM.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone playbook.yml <span class="nt">-D</span>
+</code></pre></div>    </div>
+  </li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone playbook.yml <span class="nt">-D</span>
-</code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS): ```bash vagrant ssh controller cd ~/yoda ```
+<p>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant ssh controller
+<span class="nb">cd</span> ~/yoda
 </code></pre></div></div>
 
 <ol>
