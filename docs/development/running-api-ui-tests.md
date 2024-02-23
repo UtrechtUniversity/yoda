@@ -15,20 +15,18 @@ configuration automatically mounts the `/etc/irods/yoda-ruleset` directory in th
 directory.
 
 1. To run the UI tests you need Firefox 102 ESR or later.
-2. Ensure that you have [geckodriver 0.33.0](https://github.com/mozilla/geckodriver/releases/tag/v0.33.0) installed for running the UI tests.
-   On Ubuntu 22.04 LTS, Geckodriver does not work with the default Firefox snap package when using default settings. One workaround
-   is to remove the Firefox snap package, and replace it with the Firefox deb package from the Mozilla PPA (`ppa:mozillateam/ppa`).
+2. Ensure that you have [geckodriver 0.34.0](https://github.com/mozilla/geckodriver/releases/tag/v0.34.0) installed for running the UI tests.
 3. Create the development VM using Vagrant:
 ```bash
 vagrant box update && vagrant up
 ```
 
 4. Deploy the VM.
-
 ```bash
 ansible-playbook -i environments/development/allinone playbook.yml -D
 ```
-    On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
+
+On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
 ```bash
 vagrant ssh controller
 cd ~/yoda
