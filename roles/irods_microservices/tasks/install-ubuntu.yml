@@ -1,11 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Gather package facts
-  ansible.builtin.package_facts:
-    manager: apt
-
-
 - name: Ensure iRODS microservices prerequisites are installed
   ansible.builtin.package:
     name: "libc++1"

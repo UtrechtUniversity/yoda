@@ -7,6 +7,11 @@
   changed_when: false
 
 
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: apt
+
+
 - name: Ensure Ansible dependencies are installed
   ansible.builtin.package:
     name:
