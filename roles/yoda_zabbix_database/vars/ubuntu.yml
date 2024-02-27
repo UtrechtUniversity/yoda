@@ -3,9 +3,8 @@
 
 # Zabbix postgres rpm location and checksum
 zabbix_postgres:
-  package: libzbxpgsql-1.1.0-1
-  url: https://github.com/UtrechtUniversity/yoda-zabbix/releases/download/1.3-beta/
-  filename: libzbxpgsql-1.1.0-1.el7.x86_64.rpm
-  checksum: sha256:b6e7051bb41aceec9edfaa20189e83ab5403ae4cd8d5b67bfffe20f30d93fb23
-
-rpm_extract_root_dir: /var/libzbxpgsql
+  package: libzbxpgsql
+  version: 1.1.0-1
+  url: https://github.com/UtrechtUniversity/yoda-zabbix/releases/download/1.3-beta/libzbxpgsql-1.1.0-1.x86_64.deb
+  filename: libzbxpgsql-1.1.0-1.x86_64.deb
+  checksum: sha256:daa63f69c9451c92c7ccfd7a996a7f5446f433730ce7d77c69e72e53402ea856

@@ -5,47 +5,10 @@
   ansible.builtin.package:
     name:
       - "libconfig-dev"
-      - "rpm2cpio"
     state: present
 
 
-- name: Ensure directories related to PostgreSQL monitoring package are present
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    mode: "0755"
-    owner: "root"
-    group: "root"
-  with_items:
-    - "{{ rpm_extract_root_dir }}"
-    - "{{ rpm_extract_root_dir }}/{{ zabbix_postgres.package }}"
-    - "/usr/lib64/zabbix/modules"
-
-
-- name: Download Zabbix PostgreSQL monitoring package
-  ansible.builtin.get_url:
-    url: "{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}"
-    dest: "{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}"
-    checksum: "{{ zabbix_postgres.checksum }}"
-    mode: '0644'
-
-
-- name: Extract files from Zabbix PostgreSQL monitoring package
-  ansible.builtin.shell:
-    cmd: |
-      set -o pipefail
-      rpm2cpio {{ rpm_dest_dir }}/{{ zabbix_postgres.filename }} | cpio -idmv
-    chdir: "{{ rpm_extract_root_dir }}/{{ zabbix_postgres.package }}"
-    creates: "{{ rpm_extract_root_dir }}/{{ zabbix_postgres.package }}/usr"
-    executable: "/bin/bash"
-
-
-- name: Install files from Zabbix PostgreSQL monitoring package
-  ansible.posix.synchronize:
-    src: "{{ rpm_extract_root_dir }}/{{ zabbix_postgres.package }}{{ item }}"
-    dest: "{{ item }}"
-  delegate_to: "{{ inventory_hostname }}"
-  with_items:
-    - /etc/zabbix/libzbxpgsql.conf
-    - /etc/zabbix/zabbix_agentd.d/libzbxpgsql.conf
-    - /usr/lib64/zabbix/modules/libzbxpgsql.so
+- name: Install Zabbix PostgreSQL monitoring package
+  ansible.builtin.apt:
+    deb: "{{ zabbix_postgres.url }}"
+  when: not ansible_check_mode and ( zabbix_postgres.package not in ansible_facts.packages or zabbix_postgres.version != ansible_facts.packages[zabbix_postgres.package][0]['version'] )
