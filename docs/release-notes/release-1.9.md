@@ -121,12 +121,12 @@ irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yod
 
 14. Report vault data package metadata containing invalid ORCID person identifiers.
 ```bash
-irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/vault-check-orcid-format.r
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/metadata/vault-check-orcid-format.r
 ```
 
 15. Correct vault data package metadata containing invalid ORCID person identifiers.
 ```bash
-irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/metadatavault-correct-orcid-format.r
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/metadata/vault-correct-orcid-format.r
 ```
 
 16. Update all publication metadata to support DOI versioning.
