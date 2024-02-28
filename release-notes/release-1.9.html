@@ -425,11 +425,11 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
 </code></pre></div>    </div>
   </li>
   <li>Report vault data package metadata containing invalid ORCID person identifiers.
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-python-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/vault-check-orcid-format.r
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-python-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/metadata/vault-check-orcid-format.r
 </code></pre></div>    </div>
   </li>
   <li>Correct vault data package metadata containing invalid ORCID person identifiers.
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-python-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/metadatavault-correct-orcid-format.r
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/metadata/vault-correct-orcid-format.r
 </code></pre></div>    </div>
   </li>
   <li>Update all publication metadata to support DOI versioning.
