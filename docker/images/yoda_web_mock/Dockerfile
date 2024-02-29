@@ -2,6 +2,7 @@ FROM centos:7
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Application settings
+ARG TAG=development
 ENV YODA_MOCK_REPO "https://github.com/UtrechtUniversity/yoda-web-mock.git"
 ENV YODA_MOCK_BRANCH "development"
 
@@ -58,4 +59,5 @@ RUN cp -Rdp /var/www/webmock/yoda-web-mock /var/www/webmock/yoda-web-mock-copy
 VOLUME [ "/sys/fs/cgroup" ]
 COPY yoda_web_mock_init.sh /yoda_web_mock_init.sh
 RUN chmod 0755 /yoda_web_mock_init.sh
-CMD ["/yoda_web_mock_init.sh"]
+ENV TAG=${TAG}
+CMD exec /yoda_web_mock_init.sh $TAG

@@ -5,7 +5,9 @@ on:
   push:
     branches:
       - 'development'
+      - 'release-1.9'
     paths:
+      - '.github/workflows/build-push-image-provider.yml'
       - 'docker/images/yoda_irods_icat/**'
       - 'roles/irods_completion/files/irods_completion.sh'
       - 'roles/pam_python/files/pam_python.so'
@@ -19,12 +21,17 @@ jobs:
       contents: read
       packages: write
     steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: extract_branch
+
     - name: Check out Yoda repository
       uses: actions/checkout@v3
       with:
         path: yoda
         repository: UtrechtUniversity/yoda
-        ref: development
+        ref: ${{ steps.extract_branch.outputs.branch }}
 
     - name: Authenticate to the container registry
       uses: docker/login-action@v2
@@ -44,4 +51,7 @@ jobs:
         context: yoda/docker/images/yoda_irods_icat
         file: yoda/docker/images/yoda_irods_icat/Dockerfile
         push: true
-        tags: ghcr.io/utrechtuniversity/yoda-provider:dev-1.9
+        tags: ghcr.io/utrechtuniversity/yoda-provider:${{ steps.extract_branch.outputs.branch }}
+        build-args: |
+          TAG=${{ steps.extract_branch.outputs.branch }}
+
