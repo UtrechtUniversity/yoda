@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="958px" preserveAspectRatio="none" style="width:1135px;height:958px;" version="1.1" viewBox="0 0 1135 958" width="1135px" zoomAndPan="magnify"><defs><filter height="300%" id="fmzrclzirvu38" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="283" x="437.5" y="16.708">"Yoda Use Cases - level 0 view"</text><!--MD5=[079dbb714ad3dd24b45af7f06b1b7779]
+cluster YODA--><rect fill="#FFFFFF" filter="url(#fmzrclzirvu38)" height="506" style="stroke: #000000; stroke-width: 1.5;" width="561" x="342" y="98.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="39" x="603" y="113.9482">Yoda</text><!--MD5=[e2cdf3589e96aad7cbc72040f12901be]
+cluster UC_REUSE--><rect fill="#FFFFFF" filter="url(#fmzrclzirvu38)" height="275" style="stroke: #000000; stroke-width: 1.5;" width="227" x="644" y="297.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="170" x="672.5" y="312.9482">Reuse published data</text><!--MD5=[740a8b848f952eeae18108992429e46a]
+cluster USER--><rect fill="#FFFFFF" filter="url(#fmzrclzirvu38)" height="864" style="stroke: #000000; stroke-width: 1.5;" width="271" x="30" y="83.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="153" x="89" y="98.9482">Authenticated User</text><!--MD5=[77754b67a5522d9a7b3cc4978640b8c0]
+cluster Anonymous user--><rect fill="#FFFFFF" filter="url(#fmzrclzirvu38)" height="133" style="stroke: #000000; stroke-width: 1.5;" width="188" x="936" y="303.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="134" x="963" y="318.9482">Anonymous user</text><ellipse cx="450.7036" cy="149.0938" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="63.7036" ry="15.1407" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="405.7036" y="153.7423">Manage user</text><ellipse cx="450.6456" cy="215.9822" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="70.6456" ry="16.5291" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="108" x="396.6456" y="220.6307">Manage groups</text><ellipse cx="450.6144" cy="287.876" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="90.1144" ry="20.4229" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="154" x="373.6144" y="292.5245">Manage research data</text><ellipse cx="757.5752" cy="259.1682" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="64.0752" ry="15.215" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="91" x="712.0752" y="263.8166">Transfer data</text><ellipse cx="757.6884" cy="190.7908" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="77.1884" ry="17.8377" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="124" x="695.6884" y="195.4393">Manage metadata</text><ellipse cx="450.5143" cy="358.156" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="61.5143" ry="14.7029" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="408.5143" y="362.8044">Archive data</text><ellipse cx="450.5143" cy="422.156" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="61.5143" ry="14.7029" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="408.5143" y="426.8044">Publish data</text><ellipse cx="450.2932" cy="568.9118" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="85.2932" ry="19.4586" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="143" x="378.7932" y="573.5602">Request closed data</text><ellipse cx="450.3318" cy="492.8195" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="92.3318" ry="20.8664" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="159" x="370.8318" y="497.4679">Ingest experiment data</text><ellipse cx="757.2932" cy="379.9118" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="85.2932" ry="19.4586" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="143" x="685.7932" y="384.5602">Download open data</text><ellipse cx="757.6728" cy="454.7877" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="89.6728" ry="20.3346" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="153" x="681.1728" y="459.4361">Download closed data</text><ellipse cx="757.2712" cy="529.8074" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="82.2712" ry="18.8542" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="136" x="689.2712" y="534.4558">Provide dataset info</text><!--MD5=[e1c8081d9970b9b7b83adc32ee9c7782]
+entity GM--><ellipse cx="165.5" cy="155.9531" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M165.5,163.9531 L165.5,190.9531 M152.5,171.9531 L178.5,171.9531 M165.5,190.9531 L152.5,205.9531 M165.5,190.9531 L178.5,205.9531 " fill="none" filter="url(#fmzrclzirvu38)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="106" x="112.5" y="224.4482">group manager</text><!--MD5=[9c7b37a068f1cdf47f6f3f682bb1812d]
+entity DM--><ellipse cx="165.5" cy="387.9531" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M165.5,395.9531 L165.5,422.9531 M152.5,403.9531 L178.5,403.9531 M165.5,422.9531 L152.5,437.9531 M165.5,422.9531 L178.5,437.9531 " fill="none" filter="url(#fmzrclzirvu38)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="91" x="120" y="456.4482">datamanager</text><!--MD5=[ca4fca654d8994778fee589c6b3ae58e]
+entity R--><ellipse cx="165.5" cy="271.9531" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M165.5,279.9531 L165.5,306.9531 M152.5,287.9531 L178.5,287.9531 M165.5,306.9531 L152.5,321.9531 M165.5,306.9531 L178.5,321.9531 " fill="none" filter="url(#fmzrclzirvu38)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="75" x="128" y="340.4482">researcher</text><!--MD5=[fe067aa7e98a9b02b3bc10be26dbd487]
+entity GUEST--><ellipse cx="165.5" cy="735.9531" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M165.5,743.9531 L165.5,770.9531 M152.5,751.9531 L178.5,751.9531 M165.5,770.9531 L152.5,785.9531 M165.5,770.9531 L178.5,785.9531 " fill="none" filter="url(#fmzrclzirvu38)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="106" y="804.4482">guest researcher</text><!--MD5=[1240995e1a5c7946ae238581d45e25f6]
+entity DAC--><ellipse cx="165.5" cy="619.9531" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M165.5,627.9531 L165.5,654.9531 M152.5,635.9531 L178.5,635.9531 M165.5,654.9531 L152.5,669.9531 M165.5,654.9531 L178.5,669.9531 " fill="none" filter="url(#fmzrclzirvu38)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="223" x="54" y="688.4482">data access committee member</text><!--MD5=[1035515eb14b5228f153ae78bdf69e99]
+entity PM--><ellipse cx="165.5" cy="851.9531" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M165.5,859.9531 L165.5,886.9531 M152.5,867.9531 L178.5,867.9531 M165.5,886.9531 L152.5,901.9531 M165.5,886.9531 L178.5,901.9531 " fill="none" filter="url(#fmzrclzirvu38)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="109" y="920.4482">project manager</text><!--MD5=[1200cabd2a84086424de0b397dfd2f71]
+entity L--><ellipse cx="165.5" cy="503.9531" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M165.5,511.9531 L165.5,538.9531 M152.5,519.9531 L178.5,519.9531 M165.5,538.9531 L152.5,553.9531 M165.5,538.9531 L178.5,553.9531 " fill="none" filter="url(#fmzrclzirvu38)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="86" x="122.5" y="572.4482">lab assistant</text><!--MD5=[14f8f90d98852887e9e69c764468f2e9]
+entity ANONYMOUS--><ellipse cx="1030" cy="348.9531" fill="#FEFECE" filter="url(#fmzrclzirvu38)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M1030,356.9531 L1030,383.9531 M1017,364.9531 L1043,364.9531 M1030,383.9531 L1017,398.9531 M1030,383.9531 L1043,398.9531 " fill="none" filter="url(#fmzrclzirvu38)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="156" x="952" y="417.4482">Anonymous reseacher</text><!--MD5=[e56e4366cde3eef872d9e747b8a95682]
+entity DATACITE--><rect fill="#FEFECE" filter="url(#fmzrclzirvu38)" height="52.5938" style="stroke: #000000; stroke-width: 1.5;" width="94" x="710.5" y="29.4531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="74" x="720.5" y="52.4482">«external»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="729" y="68.7451">Datacite</text><!--MD5=[c4022ee788ff3edb7044c5acd797ed54]
+entity HARVESTER--><rect fill="#FEFECE" filter="url(#fmzrclzirvu38)" height="52.5938" style="stroke: #000000; stroke-width: 1.5;" width="94" x="983" y="503.4531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="74" x="993" y="526.4482">«external»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="997" y="542.7451">Harvester</text><!--MD5=[d0d0bfe917071b4720f5ae9dc2f6272d]
+link GM to UC_GROUPS--><path d="M218.74,192.3031 C264.29,196.9731 330.69,203.7831 380.59,208.8931 " fill="none" id="GM-&gt;UC_GROUPS" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="385.67,209.4131,377.1155,204.5326,380.6951,208.9128,376.3149,212.4924,385.67,209.4131" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[c28959c3ebc4a99f70bba4326002ce7b]
+link R to UC_RESEARCH--><path d="M203.21,301.0031 C242.11,298.9431 305.05,295.6131 357.57,292.8231 " fill="none" id="R-&gt;UC_RESEARCH" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="362.61,292.5631,353.4164,289.0307,357.6166,292.8199,353.8273,297.0201,362.61,292.5631" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[35939ce8ef223e41f701b589dfea4a68]
+link R to UC_ARCHIVE--><path d="M203.21,310.0831 C252.71,319.7031 341.15,336.8931 397.49,347.8431 " fill="none" id="R-&gt;UC_ARCHIVE" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="402.5,348.8231,394.4149,343.199,397.5896,347.881,392.9075,351.0557,402.5,348.8231" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[88df24b3b0681a94a482dabad978cb00]
+link DM to UC_ARCHIVE--><path d="M211.03,409.3531 C262.15,398.3331 345.8,380.3031 399.22,368.7931 " fill="none" id="DM-&gt;UC_ARCHIVE" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="404.29,367.6931,394.6476,365.6869,399.4031,368.7505,396.3395,373.506,404.29,367.6931" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[959e93bfd2ea252321f1c1520643af80]
+link R to UC_PUBLISH--><path d="M203.17,309.8631 C236.04,317.6131 284.03,332.9431 317,360.9531 C328.39,370.6231 322.16,380.8431 334,389.9531 C350.04,402.2831 370.57,409.8731 389.85,414.5231 " fill="none" id="R-&gt;UC_PUBLISH" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="394.72,415.6531,386.8385,409.747,389.8459,414.5382,385.0547,417.5456,394.72,415.6531" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[63db14231ec1503f10d9190fb776da05]
+link DM to UC_PUBLISH--><path d="M211.03,419.4231 C257.47,419.9131 330.77,420.6931 383.86,421.2531 " fill="none" id="DM-&gt;UC_PUBLISH" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="388.93,421.3131,379.9763,417.2105,383.9303,421.256,379.8849,425.21,388.93,421.3131" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[526237dd458a812c29177d12e55313dc]
+link L to UC_INTAKE--><path d="M208.56,528.7131 C250.4,522.5031 315.7,512.8131 367.76,505.0831 " fill="none" id="L-&gt;UC_INTAKE" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="372.76,504.3431,363.2729,501.6983,367.8134,505.0722,364.4395,509.6128,372.76,504.3431" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[0b4d6cad728b7c9aadc3f67c3e71ccd5]
+link DM to UC_INTAKE--><path d="M211.03,430.5931 C257.55,442.7631 331.01,461.9731 384.11,475.8531 " fill="none" id="DM-&gt;UC_INTAKE" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="389.19,477.1831,381.4838,471.0501,384.3504,475.9268,379.4737,478.7935,389.19,477.1831" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[e2504ef4c50ca23326aeb84ab057aafa]
+link DM to UC_DATA_REQUEST--><path d="M211.17,425.5131 C244.61,432.6831 289.21,447.3531 317,476.9531 C334.22,495.2931 316.32,513.0431 334,530.9531 C345.36,542.4531 360.25,550.4831 375.56,556.0731 " fill="none" id="DM-&gt;UC_DATA_REQUEST" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="380.32,557.7331,373.1376,550.9942,375.5985,556.0877,370.505,558.5487,380.32,557.7331" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8877f63ea25807e0cd4e3a6dcf2f2e10]
+link DAC to UC_DATA_REQUEST--><path d="M277.13,618.8931 C316.43,607.5131 359.08,595.1531 392.12,585.5831 " fill="none" id="DAC-&gt;UC_DATA_REQUEST" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="396.92,584.1831,387.16,582.8631,392.12,585.5831,389.4,590.5431,396.92,584.1831" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[b3f4f90e8be502631093cacae934d628]
+link PM to UC_DATA_REQUEST--><path d="M222.09,871.7931 C252.97,863.2531 290.41,848.7731 317,824.9531 C390.16,759.4131 429.02,643.9031 443.17,593.5631 " fill="none" id="PM-&gt;UC_DATA_REQUEST" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="444.54,588.6131,438.2957,596.2295,443.2136,593.434,446.0091,598.3518,444.54,588.6131" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ff85c8bf42830b8db1feceec3377e6e8]
+link GUEST to UC_DATA_REQUEST--><path d="M225.16,751.0731 C254.27,741.5731 289.09,727.6631 317,708.9531 C365.49,676.4631 409.41,623.2531 432.48,592.6431 " fill="none" id="GUEST-&gt;UC_DATA_REQUEST" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="435.73,588.2931,427.13,593.0931,432.73,592.2931,433.53,597.8931,435.73,588.2931" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[b69a84dc61f577be818d712c7f2e2827]
+link GUEST to UC_REUSE_CLOSED--><path d="M225.29,746.9431 C255.44,736.6231 292.73,723.7431 326,711.9531 C457.07,665.5131 536.23,715.9431 620,604.9531 C635.03,585.0331 612.36,512.3931 628,492.9531 C638.77,479.5631 654.02,470.7331 670.27,464.9531 " fill="none" id="GUEST-&gt;UC_REUSE_CLOSED" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="675.34,463.2531,665.5336,462.3398,670.6023,464.8514,668.0908,469.9201,675.34,463.2531" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[d3bf33afb7863546b40eeb020965a696]
+reverse link UC_HARVEST to HARVESTER--><path d="M845.26,529.9531 C890.89,529.9531 945,529.9531 982.64,529.9531 " fill="none" id="UC_HARVEST&lt;-HARVESTER" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="840.03,529.9531,849.03,533.9531,845.03,529.9531,849.03,525.9531,840.03,529.9531" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[280c92c0271229eada25db9e7ac08618]
+link USER to UC_USER--><path d="M301.3315,127.8618 C302.3899,128.0017 303.4462,128.1416 304.4999,128.2814 C308.7149,128.8407 312.8894,129.3988 317,129.9531 C341.3,133.2331 368.08,137.0331 391.17,140.3731 " fill="none" id="USER-&gt;UC_USER" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="396.34,141.1231,388.0046,135.877,391.3914,140.408,386.8604,143.7948,396.34,141.1231" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[787ab6edb776164f18a0309c48eba408]
+reverse link UC_REUSE_OPEN to ANONYMOUS--><path d="M848.67,379.9531 C882.09,379.9531 919.65,379.9531 951.8,379.9531 " fill="none" id="UC_REUSE_OPEN&lt;-ANONYMOUS" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="843.35,379.9531,852.35,383.9531,848.35,379.9531,852.35,375.9531,843.35,379.9531" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[6b09f42fbeff5b3b820019f122f13dc9]
+link UC_PUBLISH to DATACITE--><path d="M502.84,414.2931 C517.8,409.6131 532.84,402.0731 543,389.9531 C596.51,326.1131 543.48,282.8431 573,204.9531 C589.21,162.1731 593.86,148.4031 628,117.9531 C650.36,98.0131 680.28,83.0731 705.63,72.8531 " fill="none" id="UC_PUBLISH-&gt;DATACITE" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="710.3,71.0031,700.4592,70.6056,705.6527,72.8477,703.4106,78.0413,710.3,71.0031" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[7b3eef7215b8a2b9285679c3705d6780]
+link UC_PUBLISH to UC_REUSE--><path d="M488.53,410.5031 C505.39,404.9031 525.45,397.7131 543,389.9531 C582.29,372.5831 587.24,357.5231 628,343.9531 C631.37,342.8313 634.8117,341.7755 638.3036,340.782 C640.0495,340.2853 641.808,339.8041 643.5763,339.3379 " fill="none" id="UC_PUBLISH-UC_REUSE" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><!--MD5=[a40695db226b50ea548b934bde61367d]
+link UC_RESEARCH to UC_TRANSFER--><path d="M534.04,280.1031 C583.81,275.3731 646.28,269.4331 692.34,265.0531 " fill="none" id="UC_RESEARCH-&gt;UC_TRANSFER" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="697.59,264.5531,688.2446,261.4446,692.6136,265.0379,689.0203,269.4069,697.59,264.5531" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="574" y="269.02">include</text><!--MD5=[330aca98aae4420c978446d4b1253577]
+reverse link UC_RESEARCH to UC_METADATA--><path d="M503.46,268.5931 C538.44,255.8331 585.74,239.1131 628,225.9531 C653.06,218.1531 681.15,210.3831 704.67,204.1631 " fill="none" id="UC_RESEARCH&lt;-UC_METADATA" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="498.39,270.4531,508.2182,271.091,503.081,268.7226,505.4494,263.5854,498.39,270.4531" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="44" x="574.5" y="226.02">extend</text><!--MD5=[025f7911db79e784b56f08b9c5b115dc]
+link UC_DATA_REQUEST to UC_REUSE_CLOSED--><path d="M493.05,551.9731 C508.74,545.4831 526.73,537.9631 543,530.9531 C581,514.5731 589.18,507.2931 628,492.9531 C649.01,485.1931 672.39,477.8931 693.39,471.8031 " fill="none" id="UC_DATA_REQUEST-&gt;UC_REUSE_CLOSED" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="698.39,470.3631,688.6347,469.0086,693.5851,471.7461,690.8476,476.6965,698.39,470.3631" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="574" y="493.02">include</text><!--MD5=[d9b392420056e1b590ab655652941304]
+@startuml
+title "Yoda Use Cases - level 0 view"
+left to right direction
+
+
+rectangle "Yoda" as YODA {
+  usecase "Manage user" as UC_USER 
+  usecase "Manage groups" as UC_GROUPS
+  usecase "Manage research data" as UC_RESEARCH
+    usecase "Transfer data" as UC_TRANSFER
+    usecase "Manage metadata" as UC_METADATA
+  usecase "Archive data" as UC_ARCHIVE
+  usecase "Publish data" as UC_PUBLISH
+  rectangle "Reuse published data" as UC_REUSE {
+    usecase "Download open data" as UC_REUSE_OPEN
+    usecase "Download closed data" as UC_REUSE_CLOSED
+    usecase "Provide dataset info" as UC_HARVEST
+  }
+  usecase "Request closed data" as UC_DATA_REQUEST
+  usecase "Ingest experiment data" as UC_INTAKE
+}
+
+
+rectangle "Authenticated User" as USER {
+  actor "group manager" as GM
+  actor "datamanager" as DM
+  actor "researcher" as R
+  actor "guest researcher" as GUEST
+  actor "data access committee member" as DAC
+  actor "project manager" as PM
+  actor "lab assistant" as L
+}
+
+rectangle "Anonymous user" {
+  actor "Anonymous reseacher" as ANONYMOUS
+}
+
+
+rectangle "Datacite" <<external>> as DATACITE
+
+rectangle "Harvester" <<external>> AS HARVESTER
+
+
+
+
+GM - -> UC_GROUPS
+R - -> UC_RESEARCH
+R - -> UC_ARCHIVE
+DM - -> UC_ARCHIVE
+R - -> UC_PUBLISH
+DM - -> UC_PUBLISH
+L - -> UC_INTAKE
+DM - -> UC_INTAKE
+DM - -> UC_DATA_REQUEST
+DAC - -> UC_DATA_REQUEST
+PM - -> UC_DATA_REQUEST
+GUEST - -> UC_DATA_REQUEST 
+GUEST - -> UC_REUSE_CLOSED
+UC_HARVEST <- - HARVESTER 
+USER - -> UC_USER
+UC_REUSE_OPEN <- - ANONYMOUS
+UC_PUBLISH - -> DATACITE
+
+
+UC_PUBLISH .. UC_REUSE
+UC_RESEARCH - -> UC_TRANSFER : include
+UC_RESEARCH <- - UC_METADATA : extend
+UC_DATA_REQUEST - -> UC_REUSE_CLOSED : include
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.21+9-post-Ubuntu-0ubuntu122.04
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

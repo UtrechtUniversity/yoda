@@ -1,0 +1,36 @@
+---
+# copyright Utrecht University
+
+- name: Check if Zabbix agent is installable from repository
+  ansible.builtin.yum:
+    list: '{{ zabbix_agent.package }}'
+  register: zabbix_agent_repo
+
+
+- name: Download Zabbix agent rpm
+  ansible.builtin.get_url:
+    url: '{{ zabbix_agent.url }}/{{ zabbix_agent.filename }}'
+    dest: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent.filename }}'
+    checksum: '{{ zabbix_agent.checksum }}'
+    mode: '0644'
+  when: not zabbix_agent_repo.results and not repo_only
+
+
+- name: Install Zabbix RPM key
+  ansible.builtin.rpm_key:
+    key: "{{ zabbix_agent.rpm_key_loc }}"
+    state: present
+
+
+- name: Install Zabbix agent from downloaded rpm
+  ansible.builtin.package:
+    name: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent.filename }}'
+    state: present
+  when: not zabbix_agent_repo.results and not repo_only and not ansible_check_mode
+
+
+- name: Ensure Zabbix agent rpm is installed
+  ansible.builtin.package:
+    name: '{{ zabbix_agent.package }}'
+    state: present
+  when: zabbix_agent_repo.results

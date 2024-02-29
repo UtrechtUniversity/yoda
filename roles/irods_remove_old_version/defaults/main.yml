@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+# OpenSearch module configuration
+enable_open_search: false                          # Enable OpenSearch module

@@ -6,6 +6,7 @@
 # Configuration variables.
 VAGRANTFILE_API_VERSION = "2"
 
+BOX = 'generic/ubuntu2004'
 GUI = false
 CPU = 2
 RAM = 4096
@@ -15,8 +16,7 @@ NETWORK = "192.168.56."
 NETMASK = "255.255.255.0"
 
 HOSTS = {
-  "combined" => [NETWORK+"10", CPU, RAM, GUI, 'generic/centos7'],
-  "database" => [NETWORK+"11", CPU, RAM, GUI, 'generic/ubuntu2004'],
+  "combined" => [NETWORK+"10", CPU, RAM, GUI, BOX],
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -34,6 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vbox.memory = ram
         vbox.name   = name
         vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+        vbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       end
 
       machine.vm.provider :libvirt do |libvirt|

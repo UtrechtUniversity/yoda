@@ -5,10 +5,18 @@
     ServerName {{ yoda_eus_fqdn }}
 
     # Always redirect to https.
-    Redirect / https://{{ yoda_eus_fqdn }}/
+    {% if yoda_eus_port == 443 %}
+        Redirect / https://{{ yoda_eus_fqdn }}/
+    {% else %}
+        Redirect / https://{{ yoda_eus_fqdn }}:{{ yoda_eus_port | string }}/
+    {% endif %}
 </VirtualHost>
 
-<VirtualHost *:443>
+{% if yoda_eus_port != 443 %}
+Listen {{ yoda_eus_port }}
+{% endif %}
+
+<VirtualHost *:{{ yoda_eus_port }}>
     ServerName {{ yoda_eus_fqdn }}
     <Directory /var/www/extuser>
         AllowOverride All
@@ -75,7 +83,8 @@ Listen {{ eus_api_port }}
     #   the certificate is encrypted, then you will be prompted for a
     #   pass phrase.  Note that a kill -HUP will prompt again.  A new
     #   certificate can be generated using the genkey(1) command.
-    SSLCertificateFile      {{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}
+    SSLCertificateFile      {{ openssl_certs_dir }}/{{ openssl_crt_signed }}
+    SSLCertificateChainFile {{ openssl_certs_dir }}/{{ openssl_chain }}
 
     #   Server Private Key:
     #   If the key is not combined with the certificate, use this

@@ -1,12 +1,23 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Check required parameters Postfix role
+  ansible.builtin.fail:
+    msg: 'If Postfix is enabled, postfix_relayhost needs to be configured.'
+  when: postfix_relayhost is not defined
+  check_mode: false
+
+
 - name: Ensure Postfix and related software is installed
   ansible.builtin.package:
     name:
       - postfix
-      - mailx
-      - cyrus-sasl-plain
+      - '{{ postfix_mailx_package }}'
+      - '{{ postfix_sasl_package }}'
     state: present
   notify: Systemd daemon reload
 
@@ -52,6 +63,23 @@
       smtp_sasl_password_maps: '{{ "hash:/etc/postfix/sasl_passwd" if postfix_smtp_enable_authentication else "" }}'
       smtp_sasl_security_options: '{{ "noanonymous" if postfix_smtp_enable_authentication else "" }}'
       smtp_sasl_tls_security_options: '{{ "noanonymous" if postfix_smtp_enable_authentication else "" }}'
+  notify: Restart Postfix
+
+
+- name: "Configure Postfix to address SMTP smuggling"
+  community.general.ini_file:
+    path: /etc/postfix/main.cf
+    section: ""
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    mode: '0644'
+    owner: root
+    group: root
+  loop: "{{ postfix_params | dict2items }}"
+  vars:
+    postfix_params:
+      smtpd_data_restrictions: "reject_unauth_pipelining"
+      smtpd_discard_ehlo_keywords: "chunking, silent-discard"
   notify: Restart Postfix
 
 
@@ -113,6 +141,7 @@
     name: httpd_can_sendmail
     state: true
     persistent: true
+  when: ansible_distribution == "RedHat"
 
 
 - name: Map Postfix relayhost credentials file

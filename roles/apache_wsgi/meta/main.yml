@@ -9,8 +9,11 @@ galaxy_info:
   platforms:
     - name: EL
       version: 7
-
+    - name: Ubuntu
+      version: focal
 
 dependencies:
+  # For apt update
+  - role: common
   - role: apache
   - role: python3

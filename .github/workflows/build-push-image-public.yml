@@ -11,6 +11,7 @@ on:
 
 jobs:
   push-image:
+    if: github.repository == 'utrechtuniversity/yoda'
     runs-on: ubuntu-22.04
     permissions:
       contents: read

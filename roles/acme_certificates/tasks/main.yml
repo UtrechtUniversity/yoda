@@ -1,9 +1,13 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Ensure Certbot for Let's Encrypt is installed
   ansible.builtin.package:
-    name: python-certbot-apache
+    name: "{{ acme_certificates_certbot_package }}"
     state: present
 
 
@@ -15,19 +19,19 @@
 
 - name: Ensure Apache is stopped
   ansible.builtin.service:
-    name: httpd
+    name: "{{ apache_service_name }}"
     state: stopped
   when: not letsencrypt_fullchain.stat.exists
 
 
 - name: Generate certificate if it  doesn't exist yet # noqa no-changed-when
-  ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email l.r.westerhof@uu.nl -d {{ yoda_portal_fqdn }}"
+  ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email {{ acme_certificates_email_contact }} -d {{ yoda_portal_fqdn }}"
   when: not letsencrypt_fullchain.stat.exists
 
 
 - name: Ensure Apache is started
   ansible.builtin.service:
-    name: httpd
+    name: "{{ apache_service_name }}"
     state: started
   when: not letsencrypt_fullchain.stat.exists
 
@@ -35,7 +39,7 @@
 - name: Add cronjob for Certbot renewal
   ansible.builtin.cron:
     name: Certbot automatic renewal
-    job: "sudo certbot renew --quiet --pre-hook 'systemctl stop httpd' --post-hook 'systemctl start httpd'"
+    job: "sudo certbot renew --quiet --pre-hook 'systemctl stop {{ apache_service_name }}' --post-hook 'systemctl start {{ apache_service_name }}'"
     minute: 25
     hour: 0,12
 
@@ -48,12 +52,12 @@
     remote_src: true
   with_items:
     - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem'
-      dest: '/etc/pki/tls/certs/localhost_and_chain.crt'
+      dest: '{{ openssl_certs_dir }}/localhost_and_chain.crt'
       mode: '0644'
     - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem'
-      dest: '/etc/pki/tls/certs/localhost.crt'
+      dest: '{{ openssl_certs_dir }}/localhost.crt'
       mode: '0644'
     - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/privkey.pem'
-      dest: '/etc/pki/tls/private/localhost.key'
+      dest: '{{ openssl_private_dir }}/localhost.key'
       mode: '0600'
   when: not ansible_check_mode

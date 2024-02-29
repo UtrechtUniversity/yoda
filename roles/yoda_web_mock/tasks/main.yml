@@ -1,6 +1,10 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Ensure yodadeployment user exists
   ansible.builtin.user:
     name: "{{ yoda_deployment_user }}"
@@ -31,7 +35,7 @@
 - name: Ensure Yoda web mock virtualenv exists
   become_user: '{{ yoda_deployment_user }}'
   become: true
-  ansible.builtin.command: virtualenv --python /opt/rh/rh-python38/root/bin/python3 "/var/www/webmock/venv"
+  ansible.builtin.command: "virtualenv --python {{ yoda_web_mock_python3_path }} /var/www/webmock/venv"
   args:
     creates: "/var/www/webmock/venv"
 

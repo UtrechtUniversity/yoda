@@ -82,12 +82,15 @@
     - grp-vault-test2
 
 
-- name: Ensure Yoda test data directory research-initial/testdata is present in Yoda
+- name: Ensure Yoda test data directories are present in Yoda
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.command:
-    imkdir /{{ irods_zone }}/home/research-initial/testdata
+    imkdir "/{{ irods_zone }}/home/research-initial/{{ item }}"
   ignore_errors: true
+  with_items:
+    - testdata
+    - folder space
 
 
 - name: Ensure Yoda test data directory is present
@@ -115,6 +118,8 @@
     dest: '~/testdata/{{ item }}'
     mode: 0644
   with_items:
+    - 'image.txt'
+    - 'large-file.html'
     - 'lorem.txt'
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
     - 'yoda-metadata.json'
@@ -126,6 +131,8 @@
   ansible.builtin.command:
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-initial/testdata
   with_items:
+    - 'image.txt'
+    - 'large-file.html'
     - 'lorem.txt'
     - 'SIPI_Jelly_Beans_4.1.07.tiff'
 

@@ -75,7 +75,9 @@ RUN yum install -y wget git sudo && \
        yum -y install "$package-${IRODS_INDEX_VERSION}"  && yum clean all; \
        done && \
     yum -y install "irods-rule-engine-plugin-python-${IRODS_PREP_VERSION}"  && \
-    yum clean all
+    yum clean all && \
+    wget https://yoda.uu.nl/irods-patches/libirods_server.so.4.2.12 && \
+    install -m 0644 libirods_server.so.4.2.12 /usr/lib/libirods_server.so.4.2.12
 
 # Install iRODS microservices for Yoda and their dependencies
 # hadolint ignore=DL3033
@@ -119,10 +121,10 @@ RUN git clone -b ${YODA_RULESET_BRANCH} ${YODA_RULESET_REPO} /etc/irods/yoda-rul
 # hadolint ignore=DL3004
 RUN sudo -u irods python -m pip --no-cache-dir install --user pip==20.2.4 && \
     sudo -u irods python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
-    sudo -u irods python -m pip --no-cache-dir install --user python-irodsclient==1.1.9 && \
+    sudo -u irods python -m pip --no-cache-dir install --user python-irodsclient==2.0.0 && \
     sudo -u irods python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt && \
     sudo -u irods /usr/local/bin/pip3 install --user jsonschema==4.17.3 && \
-    sudo -u irods /usr/local/bin/pip3 install --user python-irodsclient==1.1.9 && \
+    sudo -u irods /usr/local/bin/pip3 install --user python-irodsclient==2.0.0 && \
     sudo -u irods /usr/local/bin/pip3 install --user psutil==5.9.5
 COPY core.py.template /etc/irods/core.py
 COPY core.re.template /etc/irods/core.re

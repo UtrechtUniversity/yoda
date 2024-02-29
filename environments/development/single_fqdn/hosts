@@ -1,0 +1,67 @@
+###################
+# single_fqdn instance
+###################
+# Define all hosts in instance here:
+[single_fqdn:children]
+single_fqdn_portal
+single_fqdn_database
+single_fqdn_icat
+single_fqdn_resource
+single_fqdn_public
+single_fqdn_eus
+
+# Define portal host here:
+[single_fqdn_portal]
+combined
+
+# Define database host here:
+[single_fqdn_database]
+combined
+
+# Define icat host here:
+[single_fqdn_icat]
+combined
+
+# Define resource host here:
+[single_fqdn_resource]
+
+# Define public host here:
+[single_fqdn_public]
+combined
+
+# Define external user service host here:
+[single_fqdn_eus]
+combined
+
+###############
+# All instances
+###############
+# Define all portal hosts here:
+[portals:children]
+single_fqdn_portal
+
+# Define all database hosts here:
+[databases:children]
+single_fqdn_database
+
+# Define all icat hosts here:
+[icats:children]
+single_fqdn_icat
+
+# Define all resource hosts here:
+[resources:children]
+single_fqdn_resource
+
+# Define all public hosts here:
+[publics:children]
+single_fqdn_public
+
+# Define external user service host here:
+[eus:children]
+single_fqdn_eus
+
+# Provision instances with test data:
+[test:children]
+single_fqdn_icat
+
+[development:children]

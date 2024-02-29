@@ -5,6 +5,7 @@ from flask import current_app as app
 SECRET_KEY          = '{{ flask_secret_key }}'
 PORTAL_TITLE_TEXT   = '{{ portal_title_text }}'
 YODA_VERSION        = '{{ yoda_version }}'
+YODA_ENVIRONMENT    = '{{ yoda_environment }}'
 YODA_COMMIT         = '{{ yoda_commit }}'
 RESEARCH_ENABLED    = {{ enable_research }}
 OPEN_SEARCH_ENABLED = {{ enable_open_search }}
@@ -101,3 +102,6 @@ YODA_EUS_FQDN = '{{ yoda_eus_fqdn | default("") }}'
 # Data request module configuration
 DATAREQUEST_HELP_CONTACT_NAME  = '{{ datarequest_help_contact_name }}'
 DATAREQUEST_HELP_CONTACT_EMAIL = '{{ datarequest_help_contact_email }}'
+
+# Text file extensions configuration
+TEXT_FILE_EXTENSIONS = {{ text_file_extensions | default(['txt'])}}

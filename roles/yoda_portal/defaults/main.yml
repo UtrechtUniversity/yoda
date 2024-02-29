@@ -4,6 +4,7 @@
 yoda_deployment_user: yodadeployment
 
 yoda_version: development
+yoda_environment: development                      # Yoda environment: development, testing, acceptance or production
 
 yoda_portal_fqdn: portal.yoda.test
 yoda_eus_fqdn: eus.yoda.test
@@ -17,6 +18,9 @@ yoda_theme: uu                                     # Yoda theme: uu or vu (defau
 yoda_portal_version: "{{ yoda_version }}"
 yoda_portal_log_api_call_duration: false
 
+# Text file extensions configuration
+text_file_extensions: ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'fortran', 'gams', 'gauss', 'go', 'graphql', 'ini', 'irpf90', 'java', 'js', 'json', 'julia', 'julia-repl', 'kotlin', 'less', 'lua', 'makefile', 'markdown', 'md', 'mathematica', 'matlab', 'maxima', 'mizar', 'objectivec', 'openscad', 'perl', 'php', 'php-template', 'plaintext', 'txt', 'python', 'py', 'python-repl', 'r', 'ruby', 'rust', 'sas', 'scilab', 'scss', 'shell', 'sh', 'sql', 'stan', 'stata', 'swift', 'typescript', 'ts', 'vbnet', 'wasm', 'xml', 'yaml', 'html']
+
 # WSGIDaemonProcess configratuon
 # https://modwsgi.readthedocs.io/en/master/configuration-directives/WSGIDaemonProcess.html
 yoda_portal_wsgi_daemon_threads: 15
@@ -29,8 +33,6 @@ irods_icat_fqdn: icat.yoda.test            # iRODS iCAT fully qualified domain n
 irods_icat_port: 1247
 
 # OpenSSL configuration.
-openssl_private_dir: '/etc/pki/tls/private'
-openssl_certs_dir: '/etc/pki/tls/certs'
 openssl_key_signed: localhost.key
 openssl_crt_signed_and_chain: localhost_and_chain.crt
 

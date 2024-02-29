@@ -1,0 +1,72 @@
+---
+# copyright Utrecht University
+
+
+- name: Check whether OpenSSL 1.0 has already been installed
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_libssl_package_name }}"
+  register: irods_ubuntu_libssl_status
+  failed_when: false
+  changed_when: false
+
+
+- name: Install OpenSSL 1.0
+  ansible.builtin.apt:
+    deb: "{{ irods_ubuntu_libssl_package_url_prefix }}/{{ irods_ubuntu_libssl_package_filename }}"
+  when: "'install ok installed' not in irods_ubuntu_libssl_status.stdout and irods_ubuntu_libssl_status.rc == 1"
+
+
+- name: Check whether JSONschema for Python 2 has already been installed
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_py_jsonschema_package_name }}"
+  register: irods_ubuntu_py_jsonschema_status
+  failed_when: false
+  changed_when: false
+
+
+- name: Install JSONSchema for Python 2
+  ansible.builtin.apt:
+    deb: "{{ irods_ubuntu_py_jsonschema_package_url_prefix }}/{{ irods_ubuntu_py_jsonschema_package_filename }}"
+  when: "'install ok installed' not in irods_ubuntu_py_jsonschema_status.stdout and irods_ubuntu_py_jsonschema_status.rc == 1"
+
+
+- name: Check whether ODBC for Python 2 has already been installed
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_py_odbc_package_name }}"
+  register: irods_ubuntu_py_odbc_status
+  failed_when: false
+  changed_when: false
+
+
+- name: Install ODBC for Python 2
+  ansible.builtin.apt:
+    deb: "{{ irods_ubuntu_py_odbc_package_url_prefix }}/{{ irods_ubuntu_py_odbc_package_filename }}"
+  when: "'install ok installed' not in irods_ubuntu_py_odbc_status.stdout and irods_ubuntu_py_odbc_status.rc == 1"
+
+
+- name: Check whether URLLib 3 for Python 2 has already been installed
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_py_urllib_package_name }}"
+  register: irods_ubuntu_py_urllib_status
+  failed_when: false
+  changed_when: false
+
+
+- name: Install URLLib 3 for Python 2
+  ansible.builtin.apt:
+    deb: "{{ irods_ubuntu_py_urllib_package_url_prefix }}/{{ irods_ubuntu_py_urllib_package_filename }}"
+  when: "'install ok installed' not in irods_ubuntu_py_urllib_status.stdout and irods_ubuntu_py_urllib_status.rc == 1"
+
+
+- name: Check whether Requests for Python 2 has already been installed
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: "dpkg-query -W --showformat='${Status}\n' {{ irods_ubuntu_py_requests_package_name }}"
+  register: irods_ubuntu_py_requests_status
+  failed_when: false
+  changed_when: false
+
+
+- name: Install Requests for Python 2
+  ansible.builtin.apt:
+    deb: "{{ irods_ubuntu_py_requests_package_url_prefix }}/{{ irods_ubuntu_py_requests_package_filename }}"
+  when: "'install ok installed' not in irods_ubuntu_py_requests_status.stdout and irods_ubuntu_py_requests_status.rc == 1"

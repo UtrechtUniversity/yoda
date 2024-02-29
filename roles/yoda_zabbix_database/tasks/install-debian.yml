@@ -1,0 +1,14 @@
+---
+# copyright Utrecht University
+
+- name: Ensure dependencies for Zabbix PostgreSQL monitoring package are present
+  ansible.builtin.package:
+    name:
+      - "libconfig-dev"
+    state: present
+
+
+- name: Install Zabbix PostgreSQL monitoring package
+  ansible.builtin.apt:
+    deb: "{{ zabbix_postgres.url }}"
+  when: not ansible_check_mode and ( zabbix_postgres.package not in ansible_facts.packages or zabbix_postgres.version != ansible_facts.packages[zabbix_postgres.package][0]['version'] )

@@ -7,7 +7,7 @@ nav_order: 89
 
 Version: 1.9
 
-Released: TBA
+Released: February 2024
 
 ## What's new
 ### Features
@@ -18,13 +18,16 @@ Released: TBA
 - Support for Creative Commons (BY-ND, BY-NC, BY-NC-ND) and GPL v3 licenses
 - Support for [Data Access Passwords](../design/overview/authentication.md) expiration notifications
 - Support for research group retention period notifications
+- Support for CSV group imports
 - Support for color mode user setting
 - Support for multiple replication resources
 - Support for configuring iRODS S3 resources
 - Support for database connection pooling with PgBouncer
 - Support for [Automatic Resource Balancing](../design/processes/automatic-resource-balancing.md)
+- Support for viewing text files in portal
 - Experimental support for [vault archiving](../design/overview/vault-archive.md) workflow
 - Experimental support for groups connected to SRAM
+- Improved overwrite actions in research space
 - Upgrade iRODS to v4.2.12
 - Upgrade python-irodsclient to v1.1.9
 - Upgrade davrods to v1.5.1
@@ -46,14 +49,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After making sure the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Checkout tag `v1.9.0-rc.3` of the Yoda Git repository.
+3. Checkout tag `v1.9.0` of the Yoda Git repository.
 ```bash
-git checkout v1.9.0-rc.3
+git checkout v1.9.0
 ```
 
-4. Set the Yoda version to `release-1.9` in the configuration.
+4. Set the Yoda version to `v1.9.0` in the configuration.
 ```yaml
-yoda_version: v1.9.0-rc.3
+yoda_version: v1.9.0
 ```
 
 5. Change the default schema from `default-2` to `default-3` in the configuration.
@@ -116,17 +119,27 @@ ansible-playbook -i /environments/development/allinone playbook.yml
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/transform-storage-data.r
 ```
 
-14. Update all publication metadata to support DOI versioning.
+14. Report vault data package metadata containing invalid ORCID person identifiers.
+```bash
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/metadata/vault-check-orcid-format.r
+```
+
+15. Correct vault data package metadata containing invalid ORCID person identifiers.
+```bash
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/metadata/vault-correct-orcid-format.r
+```
+
+16. Update all publication metadata to support DOI versioning.
 ```bash
 irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/transform-existing-publications.r
 ```
 
-15. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
+17. Update all metadata JSON in the vault to latest metadata JSON version (`default-2` to `default-3`).
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-16. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+18. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```

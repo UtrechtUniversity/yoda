@@ -6,10 +6,11 @@ on:
     - development
     paths:
     - 'docs/**'
+    - '.github/workflows/documentation.yml'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
@@ -17,23 +18,20 @@ jobs:
     # Cache Ruby dependencies across runs, in order to speed up jobs
     - uses: actions/cache@v1
       with:
-        path: vendor/bundle
+        path: docs/vendor/bundle
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
 
-    - name: Set up Ruby 2.7
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '2.7'
-        bundler-cache: true
-
     - name: Install Jekyll dependencies
       run: |
         cd docs
-        gem install bundler --no-document
+        sudo apt-get update
+        sudo apt-get install -y ruby ruby-dev make racc gcc g++
+        sudo gem install bundler -v 2.5.4 --no-document
         bundle config path vendor/bundle
         bundle install --jobs 4
+        bundle add webrick
 
     - name: Build test site
       run: |
@@ -44,7 +42,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y libxslt-dev libxml2-dev zlib1g-dev
-        gem install html-proofer --no-document -v 3.19.4
+        sudo gem install html-proofer --no-document -v 3.19.4
         cd docs
         htmlproofer _site --url-ignore "/#.*/" --disable-external
       env:

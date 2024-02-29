@@ -1,6 +1,10 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 # EUS depends on the Yoda portal for theming information. So running mismatched versions
 # can result in unexpected errors.
 - name: Check whether Yoda portal version matches EUS version
@@ -18,6 +22,7 @@
       - php-password-compat
       - php-PHPMailer
     state: absent
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Ensure yodadeployment user exists
@@ -73,6 +78,7 @@
     name: httpd_unified
     state: true
     persistent: true
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Checkout Yoda External User Service source
@@ -103,6 +109,24 @@
     cmd: git rev-parse HEAD
   changed_when: false
   register: eus_git_commit
+
+
+- name: Allow public to port for Yoda EUS in firewall
+  ansible.posix.firewalld:
+    port: '{{ yoda_eus_port }}/tcp'
+    permanent: true
+    state: enabled
+    immediate: true
+  notify: Restart firewall
+
+
+- name: Allow Apache to listen to Yoda EUS port
+  community.general.seport:
+    ports: "{{ yoda_eus_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
 - name: Allow public to API port for External User Service in firewall
@@ -176,7 +200,7 @@
 - name: Ensure Yoda EUS virtualenv exists
   become_user: '{{ yoda_deployment_user }}'
   become: true
-  ansible.builtin.command: virtualenv --python /opt/rh/rh-python38/root/bin/python3 "/var/www/extuser/yoda-external-user-service/venv"
+  ansible.builtin.command: "virtualenv --python {{ yoda_external_user_service_python3_path }} /var/www/extuser/yoda-external-user-service/venv"
   args:
     creates: "/var/www/extuser/yoda-external-user-service/venv"
 
@@ -202,7 +226,7 @@
     extra_args: "-e"
   changed_when: false
   environment:
-    C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8
+    C_INCLUDE_PATH: '{{ yoda_external_user_service_python3_include_path }}'
   notify: Restart Apache webserver
 
 
@@ -222,14 +246,22 @@
 - name: Copy Yoda External User Service virtual host config for Apache
   ansible.builtin.template:
     src: "yoda-external-user-service-vhost.conf.j2"
-    dest: "/etc/httpd/conf.d/yoda-external-user-service-vhost.conf"
+    dest: "{{ yoda_external_user_service_site_config_dir }}/{{ yoda_external_user_service_site_config_file }}"
     mode: '0644'
   notify: Restart Apache webserver
+
+- name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ yoda_external_user_service_site_config_dir }}//{{ yoda_external_user_service_site_config_file }}"
+    dest: "{{ yoda_external_user_service_site_enabled_config_dir }}//{{ yoda_external_user_service_site_config_file }}"
+    state: link
+  notify: Restart Apache webserver
+  when: ansible_os_family == 'Debian'
 
 
 - name: Restore SELinux contexts on EUS files
   ansible.builtin.command: 'restorecon -r /var/www/extuser'
-  when: ansible_selinux.status == "enabled"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
   changed_when: false
 
 
@@ -240,4 +272,4 @@
     name: httpd_can_network_connect
     state: true
     persistent: true
-  when: ansible_selinux.status == "enabled"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"

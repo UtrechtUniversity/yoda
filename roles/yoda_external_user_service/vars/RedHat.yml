@@ -1,0 +1,14 @@
+---
+# copyright Utrecht University
+
+openssl_private_dir: '/etc/pki/tls/private'
+openssl_certs_dir: '/etc/pki/tls/certs'
+
+yoda_external_user_service_python3_path: /opt/rh/rh-python38/root/bin/python3
+yoda_external_user_service_python3_include_path: /opt/rh/rh-python38/root/usr/include/python3.8
+
+yoda_external_user_service_site_config_dir: /etc/httpd/conf.d
+yoda_external_user_service_site_config_file: yoda-external-user-service-vhost.conf
+yoda_external_user_service_apache_log_dir: /var/log/httpd
+
+apache_service_name: httpd

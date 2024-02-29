@@ -3,23 +3,11 @@
 
 rolename: irods-microservices
 
-# Temporary directory to store downloaded rpm files.
-rpm_dest_dir: /tmp
-
-# iRODS microservices rpm locations and checksums
-microservices:
-  irods_sudo_microservices:
-    package: irods-sudo-microservices-4.2.12_1.0.0-1
-    url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/4.2.12_1.0.0/irods-sudo-microservices-4.2.12_1.0.0-1.rpm
-    filename: irods-sudo-microservices-4.2.12_1.0.0-1.rpm
-    checksum: sha256:72b6714b0ef1f24084e770efc5377a17e7bde15165c05ddb2d3a56b2de4521b9
-  irods_uu_microservices:
-    package: irods-uu-microservices-4.2.12_0.8.2-2
-    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.2/irods-uu-microservices-4.2.12_0.8.2-2.rpm
-    filename: irods-uu-microservices-4.2.12_0.8.2-2.rpm
-    checksum: sha256:4d691b58799869247ec89ceacf1fc63dea7c9da7964caa17d36cb96808c5370f
-
 # iRODS configuration.
 irods_service_account: irods
 
-repo_only: false  # Only download packages from repos.
+# Temporary directory to store downloaded package files.
+irods_microservices_package_dest_dir: /tmp
+
+
+repo_only: false  # Only download packages from repos (this only applies to CentOS/RHEL)

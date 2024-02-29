@@ -1,6 +1,10 @@
 ---
 # copyright Utrecht University
 
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Ensure yodadeployment user exists
   ansible.builtin.user:
     name: "{{ yoda_deployment_user }}"
@@ -44,7 +48,7 @@
 - name: Ensure Yoda portal virtualenv exists
   become_user: "{{ yoda_deployment_user }}"
   become: true
-  ansible.builtin.command: virtualenv --python /opt/rh/rh-python38/root/bin/python3 /var/www/yoda/venv
+  ansible.builtin.command: "virtualenv --python {{ yoda_portal_python3_path }} /var/www/yoda/venv"
   args:
     creates: /var/www/yoda/venv
 
@@ -66,7 +70,7 @@
     virtualenv: '/var/www/yoda/venv'
     virtualenv_python: python3.8
   environment:
-    C_INCLUDE_PATH: /opt/rh/rh-python38/root/usr/include/python3.8
+    C_INCLUDE_PATH: "{{ yoda_portal_python3_include_path }}"
   notify: Restart Apache webserver
 
 
@@ -79,6 +83,7 @@
     exit
   args:
     creates: /etc/httpd/conf.modules.d/02-wsgi.conf
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Generate Flask secret key
@@ -101,12 +106,12 @@
 
 
 - name: Copy Yoda Portal config for Flask
-  become_user: "{{ yoda_deployment_user }}"
-  become: true
   ansible.builtin.template:
     src: "flask.cfg.j2"
     dest: "/var/www/yoda/flask.cfg"
     mode: '0644'
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
   when: not ansible_check_mode
   notify: Restart Apache webserver
 
@@ -114,9 +119,18 @@
 - name: Copy Yoda Portal virtual host config for Apache
   ansible.builtin.template:
     src: "yoda-portal-vhost.conf.j2"
-    dest: "/etc/httpd/conf.d/yoda-portal-vhost.conf"
+    dest: "{{ yoda_portal_site_config_dir }}/{{ yoda_portal_site_config_file }}"
     mode: '0644'
   notify: Restart Apache webserver
+
+
+- name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ yoda_portal_site_config_dir }}//{{ yoda_portal_site_config_file }}"
+    dest: "{{ yoda_portal_site_enabled_config_dir }}//{{ yoda_portal_site_config_file }}"
+    state: link
+  notify: Restart Apache webserver
+  when: ansible_os_family == 'Debian'
 
 
 - name: Set SELinux context for shared libraries
@@ -125,14 +139,14 @@
     setype: httpd_sys_script_exec_t
     state: present
   register: filescontext
-  when: ansible_selinux.status == "enabled"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
 # Only running when context changed works unreliably, so just
 # run always when SELinux is enabled.
 - name: Ensure selinux context is enforced on shared libraries
   ansible.builtin.command: 'restorecon -r /var/www/yoda/venv'
-  when: ansible_selinux.status == "enabled"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
   changed_when: false
 
 
@@ -141,4 +155,4 @@
     name: httpd_can_network_connect
     state: true
     persistent: true
-  when: ansible_selinux.status == "enabled" and enable_open_search
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled" and enable_open_search

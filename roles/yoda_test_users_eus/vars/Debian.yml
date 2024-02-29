@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+yoda_test_python3_path: /usr/bin/python3
+yoda_test_pip3_path: /usr/bin/pip3

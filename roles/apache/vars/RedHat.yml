@@ -1,0 +1,13 @@
+---
+# copyright Utrecht University
+
+apache_main_package: httpd
+apache_dev_package: httpd-devel
+apache_openssl_package: openssl
+
+apache_main_config_file: /etc/httpd/conf/httpd.conf
+apache_main_config_template: main.conf.el7.j2
+apache_ssl_config_file: /etc/httpd/conf.d/ssl.conf
+apache_ssl_config_template: ssl.conf.el7.j2
+
+apache_service_name: httpd

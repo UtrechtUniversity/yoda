@@ -9,7 +9,10 @@ galaxy_info:
   platforms:
     - name: EL
       version: 7
+    - name: Ubuntu
+      version: focal
 
 
 dependencies:
+  - role: python3
   - role: yoda_zabbix_system
