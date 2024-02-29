@@ -582,7 +582,7 @@
   },"83": {
     "doc": "Running Yoda using Docker Compose",
     "title": "Building the images",
-    "content": "Building a new image is only needed for development purposes. If you want to test an existing Dockerized version of Yoda, you can pull the images from the registry instead. Yoda provider . cd docker/images/yoda_irods_icat ./stage-uploads.sh ./build.sh . Mailpit . cd docker/images/mailpit ./build.sh . Yoda portal . cd docker/images/yoda_portal ./build.sh . DavRODS . cd docker/images/davrods ./build.sh . External user service . cd docker/images/yoda_eus ./build.sh . Public . cd docker/images/yoda_public ./stage-uploads.sh ./build.sh . Yoda web mock . cd docker/images/yoda_web_mock ./build.sh . ",
+    "content": "Building a new image is only needed for development purposes. If you want to test an existing Dockerized version of Yoda, you can pull the images from the registry instead. Yoda provider . cd docker/images/yoda_irods_icat ./stage-uploads.sh ./build.sh . Mailpit . cd docker/images/mailpit ./build.sh development . Yoda portal . cd docker/images/yoda_portal ./build.sh . DavRODS . cd docker/images/davrods ./build.sh . External user service . cd docker/images/yoda_eus ./build.sh . Public . cd docker/images/yoda_public ./stage-uploads.sh ./build.sh . Yoda web mock . cd docker/images/yoda_web_mock ./build.sh . ",
     "url": "/yoda/development/docker-setup.html#building-the-images",
     
     "relUrl": "/development/docker-setup.html#building-the-images"
