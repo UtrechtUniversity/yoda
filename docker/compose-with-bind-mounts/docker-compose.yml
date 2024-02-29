@@ -36,6 +36,7 @@ services:
     platform: linux/amd64
     hostname: db.yoda
     image: postgres:15
+    command: postgres -c standard_conforming_strings=off
     environment:
       - POSTGRES_DB=ICAT
       - POSTGRES_USER=irodsdb
