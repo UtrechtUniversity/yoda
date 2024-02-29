@@ -2,6 +2,7 @@ FROM centos:7
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Application settings
+ARG TAG=development
 ENV IRODS_VERSION "4.2.12"
 ENV IRODS_PREP_VERSION "4.2.12.0"
 ENV IRODS_INDEX_VERSION "4.2.12.0-1"
@@ -182,4 +183,4 @@ COPY irods-icat-init.sh /var/lib/irods/scripts/irods-icat-init.sh
 RUN chmod 0755 /var/lib/irods/scripts/irods-icat-init.sh
 
 VOLUME [ "/sys/fs/cgroup" ]
-CMD ["/var/lib/irods/scripts/irods-icat-init.sh"]
+CMD ["/var/lib/irods/scripts/irods-icat-init.sh", "${TAG}"]

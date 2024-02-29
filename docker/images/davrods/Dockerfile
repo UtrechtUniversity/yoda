@@ -6,6 +6,7 @@ EXPOSE 80
 EXPOSE 443
 
 # Application settings
+ARG TAG=development
 ENV IRODS_VERSION="4.2.11"
 ENV YUM_REPO_FILE_LOC "https://packages.irods.org/renci-irods.yum.repo"
 ENV YUM_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
@@ -61,4 +62,4 @@ COPY footer.html /etc/httpd/irods/footer.html
 VOLUME [ "/sys/fs/cgroup" ]
 COPY davrods_init.sh /var/lib/irods/scripts/davrods_init.sh
 RUN chmod 0755 /var/lib/irods/scripts/davrods_init.sh
-CMD ["/var/lib/irods/scripts/davrods_init.sh"]
+CMD ["/var/lib/irods/scripts/davrods_init.sh", "${TAG}"]

@@ -4,7 +4,12 @@ set -e
 set -o pipefail
 set -u
 
-DATA_VERSION="dev-1.9"
+DATA_VERSION="$1"
+
+if [ -z "$DATA_VERSION" ]
+then echo "Error: no data version argument provided."
+     exit 1
+fi
 
 function before_update {
   echo -e "[...] ${1}"

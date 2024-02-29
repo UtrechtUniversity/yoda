@@ -2,6 +2,7 @@ FROM centos:7
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Application settings
+ARG TAG=development
 ENV YODA_PORTAL_REPO "https://github.com/UtrechtUniversity/yoda-portal.git"
 ENV YODA_PORTAL_BRANCH "development"
 
@@ -55,4 +56,4 @@ RUN cp -Rdp /var/www/yoda /var/www/yoda-copy
 VOLUME [ "/sys/fs/cgroup" ]
 COPY yoda_portal_init.sh /var/lib/irods/scripts/yoda_portal_init.sh
 RUN chmod 0755 /var/lib/irods/scripts/yoda_portal_init.sh
-CMD ["/var/lib/irods/scripts/yoda_portal_init.sh"]
+CMD ["/var/lib/irods/scripts/yoda_portal_init.sh", "${TAG}"]

@@ -170,7 +170,7 @@ cd docker/images/yoda_irods_icat
 
 ```bash
 cd docker/images/mailpit
-./build.sh
+./build.sh development
 ```
 
 ### Yoda portal

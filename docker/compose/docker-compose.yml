@@ -11,7 +11,7 @@ services:
     container_name: provider.yoda
     platform: linux/amd64
     hostname: provider.yoda
-    image: ghcr.io/utrechtuniversity/yoda-provider:dev-1.9
+    image: ghcr.io/utrechtuniversity/yoda-provider:development
     ports:
       - "8247:1247"
       - "20000-20199:20000-20199"
@@ -55,7 +55,7 @@ services:
     container_name: portal.yoda
     platform: linux/amd64
     hostname: portal.yoda
-    image: ghcr.io/utrechtuniversity/yoda-portal:dev-1.9
+    image: ghcr.io/utrechtuniversity/yoda-portal:development
     depends_on:
       - provider
       - eus
@@ -69,7 +69,7 @@ services:
     container_name: eus.yoda
     platform: linux/amd64
     hostname: eus.yoda
-    image: ghcr.io/utrechtuniversity/yoda-eus:dev-1.9
+    image: ghcr.io/utrechtuniversity/yoda-eus:development
     depends_on:
       - extuserdb
       - mailpit
@@ -83,7 +83,7 @@ services:
     container_name: public.yoda
     platform: linux/amd64
     hostname: public.yoda
-    image: ghcr.io/utrechtuniversity/yoda-public:dev-1.9
+    image: ghcr.io/utrechtuniversity/yoda-public:development
     ports:
       - "8446:443"
     build:
@@ -97,7 +97,7 @@ services:
     container_name: data.yoda
     platform: linux/amd64
     hostname: data.yoda
-    image: ghcr.io/utrechtuniversity/davrods:dev-1.9
+    image: ghcr.io/utrechtuniversity/davrods:development
     depends_on:
       - provider
     ports:
@@ -110,7 +110,7 @@ services:
     container_name: mailpit.yoda
     platform: linux/amd64
     hostname: mailpit.yoda
-    image: ghcr.io/utrechtuniversity/yoda-mailpit:dev-1.9
+    image: ghcr.io/utrechtuniversity/yoda-mailpit:development
     environment:
       - TZ=Europe/Amsterdam
     build:
@@ -123,7 +123,7 @@ services:
     container_name: datacite-mock.yoda
     platform: linux/amd64
     hostname: datacite-mock.yoda
-    image: ghcr.io/utrechtuniversity/yoda-web-mock:dev-1.9
+    image: ghcr.io/utrechtuniversity/yoda-web-mock:development
     environment:
       - MOCKNAME=datacite
       - MOCKFQDN=datacite-mock.yoda

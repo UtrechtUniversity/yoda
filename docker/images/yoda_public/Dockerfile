@@ -2,6 +2,7 @@ FROM centos:7
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Application settings
+ARG TAG=development
 ENV MOAI_REPO "https://github.com/UtrechtUniversity/yoda-moai.git"
 ENV MOAI_BRANCH "development"
 
@@ -96,4 +97,4 @@ RUN cp -Rdp /var/www/moai/yoda-moai /var/www/moai/yoda-moai-copy
 VOLUME [ "/sys/fs/cgroup" ]
 COPY yoda_public_init.sh /yoda_public_init.sh
 RUN chmod 0755 /yoda_public_init.sh
-CMD ["/yoda_public_init.sh"]
+CMD ["/yoda_public_init.sh", "${TAG}"]
