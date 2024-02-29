@@ -1,0 +1,16 @@
+---
+# copyright Utrecht University
+
+- name: Download iRODS API plugin GenQuery2 package
+  ansible.builtin.get_url:
+    url: "{{ irods_api_plugin_genquery.url }}"
+    dest: "{{ irods_api_plugin_genquery_dest_dir }}/{{ irods_api_plugin_genquery.filename }}"
+    checksum: "{{ irods_api_plugin_genquery.checksum }}"
+    mode: '0644'
+
+
+- name: Install iRODS microservice packages from downloaded package
+  ansible.builtin.yum:
+    name: "{{ irods_api_plugin_genquery_dest_dir }}/{{ irods_api_plugin_genquery.filename }}"
+    state: present
+  when: not ansible_check_mode

@@ -1,0 +1,8 @@
+---
+# copyright Utrecht University
+
+irods_api_plugin_genquery:
+  package: irods-experimental-api-plugin-genquery2-4.2.12.0-1
+  url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.2/irods-experimental-api-plugin-genquery2-4.2.12.0-1.x86_64.rpm
+  filename: irods-experimental-api-plugin-genquery2-4.2.12.0-1.x86_64.rpm
+  checksum: sha256:a69b93d48c649aa15d1d4b55ae962bf4c21da52cfbcd26a40a3e37d1f66309d8

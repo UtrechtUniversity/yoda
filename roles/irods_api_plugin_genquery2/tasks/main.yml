@@ -1,34 +1,18 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure old iRODS packages are absent
-  ansible.builtin.package:
-    name:
-      - irods-uu-microservices-4.2.11_0.8.2-1
-      - irods-sudo-microservices-4.2.11_1.0.0-1
-      - davrods-4.2.11_1.5.0-1
-      - irods-runtime-4.2.11-1
-      - irods-server-4.2.11-1
-      - irods-database-plugin-postgres-4.2.11-1
-      - irods-rule-engine-plugin-python-4.2.11.1-1
-      - irods-icommands-4.2.11-1
-    state: absent
-  notify: Restart iRODS
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
-- name: Download iRODS API plugin GenQuery2 package
-  ansible.builtin.get_url:
-    url: "{{ irods_sudo_microservices.url }}"
-    dest: "{{ rpm_dest_dir }}/{{ irods_sudo_microservices.filename }}"
-    checksum: "{{ irods_sudo_microservices.checksum }}"
-    mode: '0644'
+- name: Install iRODS API plugin GenQuery2 (EL)
+  ansible.builtin.import_tasks: install-redhat.yml
+  when: ansible_os_family == 'RedHat'
 
 
-- name: Install iRODS API plugin GenQuery2 packages from downloaded rpm
-  ansible.builtin.yum:
-    name: "{{ rpm_dest_dir }}/{{ irods_sudo_microservices.filename }}"
-    state: present
-  when: not ansible_check_mode
+- name: Install iRODS API plugin GenQuery2 (Ubuntu)
+  ansible.builtin.import_tasks: install-ubuntu.yml
+  when: ansible_os_family == 'Debian'
 
 
 - name: Ensure iRODS API plugin GenQuery2 is configured
@@ -42,6 +26,6 @@
 
 
 - name: Ensure jq is installed
-  ansible.builtin.yum:
+  ansible.builtin.package:
     name: jq
     state: present

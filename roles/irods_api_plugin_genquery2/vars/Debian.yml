@@ -1,0 +1,8 @@
+---
+# copyright Utrecht University
+
+irods_api_plugin_genquery:
+  package: irods-experimental-api-plugin-genquery2_4.2.12.0-1~bionic_amd64
+  url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.2/irods-experimental-api-plugin-genquery2_4.2.12.0-1.bionic_amd64.deb
+  filename: irods-experimental-api-plugin-genquery2_4.2.12.0-1~bionic_amd64.deb
+  checksum: sha256:c9c5f137c55044baf5540404f2a737f0297dc06b4825368268c643bebabc498f
