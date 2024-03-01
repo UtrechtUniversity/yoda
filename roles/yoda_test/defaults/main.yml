@@ -70,6 +70,7 @@ test_groups:
   - {groupName: research-vollmer-0,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: vollmer-0}
 
   - {groupName: deposit-pilot, category: test-automation, subcategory: data-archive-geo, dataClassification: unspecified, schema_id: dag-0}
+  - {groupName: deposit-pilot1, category: test-automation, subcategory: data-archive-geo, dataClassification: unspecified, schema_id: dag-0}
 
   - {groupName: grp-intake-initial,      category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
   - {groupName: grp-datamanager-initial, category: intake-intake, subcategory: intake-intake, dataClassification: unspecified}
@@ -152,6 +153,8 @@ test_group_users:
   - {groupName: deposit-pilot, user: viewer,                        role: normal}
   - {groupName: deposit-pilot, user: researcher,                    role: normal}
   - {groupName: deposit-pilot, user: functionaladminpriv,           role: manager}
+
+  - {groupName: deposit-pilot1, user: viewer,                    role: normal}
 
   - {groupName: grp-intake-initial, user: researcher,             role: normal}
   - {groupName: grp-intake-initial, user: groupmanager,           role: manager}
