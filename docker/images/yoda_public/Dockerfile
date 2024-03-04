@@ -97,4 +97,5 @@ RUN cp -Rdp /var/www/moai/yoda-moai /var/www/moai/yoda-moai-copy
 VOLUME [ "/sys/fs/cgroup" ]
 COPY yoda_public_init.sh /yoda_public_init.sh
 RUN chmod 0755 /yoda_public_init.sh
-CMD ["/yoda_public_init.sh", "${TAG}"]
+ENV TAG=${TAG}
+CMD exec /yoda_public_init.sh $TAG

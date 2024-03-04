@@ -71,4 +71,5 @@ RUN cp -Rdp /var/www/extuser /var/www/extuser-copy
 VOLUME [ "/sys/fs/cgroup" ]
 COPY yoda_eus_init.sh /var/lib/irods/scripts/yoda_eus_init.sh
 RUN chmod 0755 /var/lib/irods/scripts/yoda_eus_init.sh
-CMD ["/var/lib/irods/scripts/yoda_eus_init.sh", "${TAG}"]
+ENV TAG=${TAG}
+CMD exec /var/lib/irods/scripts/yoda_eus_init.sh $TAG

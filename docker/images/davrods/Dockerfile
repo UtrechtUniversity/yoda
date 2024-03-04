@@ -62,4 +62,5 @@ COPY footer.html /etc/httpd/irods/footer.html
 VOLUME [ "/sys/fs/cgroup" ]
 COPY davrods_init.sh /var/lib/irods/scripts/davrods_init.sh
 RUN chmod 0755 /var/lib/irods/scripts/davrods_init.sh
-CMD ["/var/lib/irods/scripts/davrods_init.sh", "${TAG}"]
+ENV TAG=${TAG}
+CMD exec /var/lib/irods/scripts/davrods_init.sh $TAG

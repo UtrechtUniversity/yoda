@@ -56,4 +56,5 @@ RUN cp -Rdp /var/www/yoda /var/www/yoda-copy
 VOLUME [ "/sys/fs/cgroup" ]
 COPY yoda_portal_init.sh /var/lib/irods/scripts/yoda_portal_init.sh
 RUN chmod 0755 /var/lib/irods/scripts/yoda_portal_init.sh
-CMD ["/var/lib/irods/scripts/yoda_portal_init.sh", "${TAG}"]
+ENV TAG=${TAG}
+CMD exec /var/lib/irods/scripts/yoda_portal_init.sh $TAG

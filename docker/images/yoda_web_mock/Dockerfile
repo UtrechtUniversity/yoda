@@ -59,4 +59,6 @@ RUN cp -Rdp /var/www/webmock/yoda-web-mock /var/www/webmock/yoda-web-mock-copy
 VOLUME [ "/sys/fs/cgroup" ]
 COPY yoda_web_mock_init.sh /yoda_web_mock_init.sh
 RUN chmod 0755 /yoda_web_mock_init.sh
-CMD ["/yoda_web_mock_init.sh", "${TAG}"]
+ENV TAG=${TAG}
+CMD exec /yoda_web_mock_init.sh $TAG
+
