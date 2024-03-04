@@ -4,7 +4,7 @@ LABEL maintainer="Yoda team <yoda@uu.nl>"
 # Application settings
 ARG TAG=development
 ENV MOAI_REPO "https://github.com/UtrechtUniversity/yoda-moai.git"
-ENV MOAI_BRANCH "development"
+ENV MOAI_BRANCH "$TAG"
 
 # Network settings
 EXPOSE 80

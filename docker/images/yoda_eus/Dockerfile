@@ -4,9 +4,9 @@ LABEL maintainer="Yoda team <yoda@uu.nl>"
 # Application settings
 ARG TAG=development
 ENV YODA_EUS_REPO "https://github.com/UtrechtUniversity/yoda-external-user-service.git"
-ENV YODA_EUS_BRANCH "development"
+ENV YODA_EUS_BRANCH "$TAG"
 ENV YODA_PORTAL_REPO "https://github.com/UtrechtUniversity/yoda-portal.git"
-ENV YODA_PORTAL_BRANCH "development"
+ENV YODA_PORTAL_BRANCH "$TAG"
 
 # Network settings
 EXPOSE 80

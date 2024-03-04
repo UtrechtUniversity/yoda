@@ -12,7 +12,7 @@ ENV IRODS_UU_MSVC_VERSION_RELEASE "2"
 ENV YUM_REPO_FILE_LOC "https://packages.irods.org/renci-irods.yum.repo"
 ENV YUM_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
 ENV YODA_RULESET_REPO "https://github.com/UtrechtUniversity/yoda-ruleset.git"
-ENV YODA_RULESET_BRANCH "development"
+ENV YODA_RULESET_BRANCH "$TAG"
 ENV PRE_BUILD_RULESET_DEPENDENCIES "yes"
 
 # Network settings
