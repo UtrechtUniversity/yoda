@@ -4,7 +4,7 @@ LABEL maintainer="Yoda team <yoda@uu.nl>"
 # Application settings
 ARG TAG=development
 ENV YODA_MOCK_REPO "https://github.com/UtrechtUniversity/yoda-web-mock.git"
-ENV YODA_MOCK_BRANCH "development"
+ENV YODA_MOCK_BRANCH "$TAG"
 
 # Network settings
 EXPOSE 80
