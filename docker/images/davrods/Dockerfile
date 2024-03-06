@@ -7,11 +7,11 @@ EXPOSE 443
 
 # Application settings
 ARG TAG=development
-ENV IRODS_VERSION="4.2.11"
+ENV IRODS_VERSION="4.2.12"
 ENV YUM_REPO_FILE_LOC "https://packages.irods.org/renci-irods.yum.repo"
 ENV YUM_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
-ENV DAVRODS_RPM_URL="https://github.com/UtrechtUniversity/davrods/releases/download/4.2.11_1.5.0/"
-ENV DAVRODS_RPM_PACKAGE="davrods-4.2.11_1.5.0-1.rpm"
+ENV DAVRODS_RPM_URL="https://github.com/UtrechtUniversity/davrods/releases/download/4.2.12_1.5.1/"
+ENV DAVRODS_RPM_PACKAGE="davrods-4.2.12_1.5.1-1.rpm"
 
 # Install common tools
 # hadolint ignore=DL3033
