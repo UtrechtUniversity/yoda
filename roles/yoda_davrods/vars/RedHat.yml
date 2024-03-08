@@ -21,5 +21,6 @@ yoda_davrods_site_config_dir: /etc/httpd/conf.d
 yoda_davrods_config_file: davrods-vhost.conf
 yoda_davrods_anon_config_file: davrods-anonymous-vhost.conf
 yoda_davrods_apache_log_dir: /var/log/httpd
+yoda_davrods_irods_dir: /etc/httpd/irods
 yoda_davrods_config_dir: /etc/httpd/irods
 yoda_davrods_user: apache

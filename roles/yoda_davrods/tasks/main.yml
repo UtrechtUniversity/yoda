@@ -58,6 +58,32 @@
   notify: Restart Apache webserver
 
 
+- name: Ensure DavRODS virtual hosts are enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ yoda_davrods_site_config_dir }}//{{ item }}"
+    dest: "{{ yoda_davrods_site_enabled_config_dir }}//{{ item }}"
+    state: link
+  notify: Restart Apache webserver
+  with_items:
+    - "{{ yoda_davrods_config_file }}"
+    - "{{ yoda_davrods_anon_config_file }}"
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure DavRODS-related modules are enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ yoda_davrods_module_config_dir }}/{{ item }}.load"
+    dest: "{{ yoda_davrods_module_enabled_config_dir }}/{{ item }}.load"
+    state: link
+  notify: Restart Apache webserver
+  with_items:
+    - "dav"
+    - "dav_fs"
+    - "dav_lock"
+    - "davrods"
+  when: ansible_os_family == 'Debian'
+
+
 - name: Ensure webdav logfiles exist
   ansible.builtin.copy:
     content: ""

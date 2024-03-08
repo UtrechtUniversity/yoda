@@ -72,7 +72,7 @@ Listen {{ yoda_davrods_port }}
         # iRODS server, the values specified in the iRODS environment file are
         # NOT used.
         #
-        DavRodsEnvFile  /etc/httpd/irods/irods_environment.json
+        DavRodsEnvFile  {{ yoda_davrods_irods_dir }}/irods_environment.json
 
         # The following options can be used to customize davrods for your environment.
         # These options and their default values are provided below.
@@ -189,14 +189,14 @@ Listen {{ yoda_davrods_port }}
         # - DavRodsHtmlHeader is inserted at the top of the listing's BODY tag.
         # - DavRodsHtmlFooter is inserted at the bottom of the listing's BODY tag.
         #
-        # Example HTML files are provided in /etc/httpd/irods. You should edit these
+        # Example HTML files are provided in {{ yoda_davrods_irods_dir }}. You should edit these
         # before enabling them.
         #
         # To see an example, uncomment the following three lines:
         #
-        DavRodsHtmlHead   "/etc/httpd/irods/head.html"
-        DavRodsHtmlHeader "/etc/httpd/irods/header.html"
-        DavRodsHtmlFooter "/etc/httpd/irods/footer.html"
+        DavRodsHtmlHead   "{{ yoda_davrods_irods_dir }}/head.html"
+        DavRodsHtmlHeader "{{ yoda_davrods_irods_dir }}/header.html"
+        DavRodsHtmlFooter "{{ yoda_davrods_irods_dir }}/footer.html"
 
         # Depending on file type, web browser clients will either display
         # files directly or offer a download to the user.

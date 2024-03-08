@@ -11,6 +11,9 @@ yoda_davrods_version: 4.2.12-1.5.1
 
 yoda_davrods_site_config_dir: /etc/apache2/sites-available
 yoda_davrods_site_enabled_config_dir: /etc/apache2/sites-enabled
+yoda_davrods_module_config_dir: /etc/apache2/mods-available
+yoda_davrods_module_enabled_config_dir: /etc/apache2/mods-enabled
+yoda_davrods_irods_dir: /etc/apache2/irods
 yoda_davrods_config_file: 005-davrods-vhost.conf
 yoda_davrods_anon_config_file: 006-davrods-anonymous-vhost.conf
 yoda_davrods_apache_log_dir: /var/log/apache2
