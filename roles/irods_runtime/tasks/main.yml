@@ -19,6 +19,16 @@
     state: present
 
 
+- name: Ensure iRODS runtime is pinned
+  ansible.builtin.template:
+    src: 'irods_runtime.pref.j2'
+    dest: '/etc/apt/preferences.d/irods_runtime.pref'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+  when: ansible_os_family == 'Debian'
+
+
 - name: Determine current checksum of irods_server library
   ansible.builtin.command: "sha256sum /usr/lib/libirods_server.so.4.2.12"
   register: libirods_server_checksum

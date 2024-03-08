@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+
+{% set irods_idp = irods_idp_package_new.split('=') %}
+Explanation: Pin added by role: irods_icat
+Package: {{ irods_idp[0] }}
+Pin: version {{ irods_idp[1] }}
+Pin-Priority: 999
+
+{% set irods_esp = irods_esp_package_new.split('=') %}
+Explanation: Pin added by role: irods_icat
+Package: {{ irods_esp[0] }}
+Pin: version {{ irods_esp[1] }}
+Pin-Priority: 999
+
+{% set irods_dtp = irods_dtp_package_new.split('=') %}
+Explanation: Pin added by role: irods_icat
+Package: {{ irods_dtp[0] }}
+Pin: version {{ irods_dtp[1] }}
+Pin-Priority: 999

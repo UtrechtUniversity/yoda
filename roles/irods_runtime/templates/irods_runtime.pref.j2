@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+
+{% set irods_runtime = irods_runtime_package_new.split('=') %}
+Explanation: Pin added by role: irods_runtime
+Package: {{ irods_runtime[0] }}
+Pin: version {{ irods_runtime[1] }}
+Pin-Priority: 999
