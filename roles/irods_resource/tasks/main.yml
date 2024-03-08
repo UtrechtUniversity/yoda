@@ -76,6 +76,16 @@
   when: not ansible_check_mode
 
 
+- name: Ensure iRODS resource server is pinned
+  ansible.builtin.template:
+    src: 'irods_resource.pref.j2'
+    dest: '/etc/apt/preferences.d/irods_resource.pref'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+  when: ansible_os_family == 'Debian'
+
+
 - name: Flush handlers to restart iRODS if needed
   ansible.builtin.meta: flush_handlers
 

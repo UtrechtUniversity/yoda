@@ -79,6 +79,16 @@
   when: not ansible_check_mode
 
 
+- name: Ensure iRODS iCAT server and plugins are pinned
+  ansible.builtin.template:
+    src: 'irods_icat.pref.j2'
+    dest: '/etc/apt/preferences.d/irods_icat.pref'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+  when: ansible_os_family == 'Debian'
+
+
 - name: Ensure iRODS indexing plugins are present
   ansible.builtin.package:
     name:
@@ -87,6 +97,16 @@
       - "{{ irods_dtp_package_new }}"
     state: present
   when: not ansible_check_mode and enable_open_search
+
+
+- name: Ensure iRODS indexing plugins are pinned
+  ansible.builtin.template:
+    src: 'irods_indexing.pref.j2'
+    dest: '/etc/apt/preferences.d/irods_indexing.pref'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+  when: ansible_os_family == 'Debian' and enable_open_search
 
 
 - name: Flush handlers to restart iRODS if needed
