@@ -661,16 +661,12 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>Definition of iRODS resources of this Yoda instance</td>
     </tr>
     <tr>
-      <td>irods_service_type</td>
-      <td>Possible values: ‘sysv’ (System V) or ‘systemd’</td>
-    </tr>
-    <tr>
       <td>irods_max_open_files</td>
-      <td>Maximum number of open files for iRODS service (only effective when irods_service_type is set to ‘systemd’)</td>
+      <td>Maximum number of open files for iRODS service</td>
     </tr>
     <tr>
       <td>irods_enable_service</td>
-      <td>Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes (only effective when irods_service_type is set to ‘systemd’)</td>
+      <td>Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes</td>
     </tr>
     <tr>
       <td>irods_rum_job_enabled</td>
