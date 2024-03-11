@@ -37,14 +37,13 @@
 
 - name: Install local patch for iRODS 4.2.12
   ansible.builtin.get_url:
-    url: https://yoda.uu.nl/irods-patches/libirods_server.so.4.2.12
+    url: "{{ irods_runtime_server_patch_url }}"
     dest: /usr/lib/libirods_server.so.4.2.12
-    checksum: sha256:11bb77ff1f17faac1052b891cf6d75a0f55a55814a4ecbad53e1469aca96c1d2
+    checksum: "sha256:{{ irods_runtime_server_patch_sha256sum }}"
     owner: 'root'
     group: 'root'
     mode: '0644'
     force: true
     backup: true
   notify: Restart iRODS
-  # This patch is not yet available for Ubuntu
-  when: ansible_os_family == 'RedHat'  and not ansible_check_mode and libirods_server_checksum.stdout.split()[0] != '11bb77ff1f17faac1052b891cf6d75a0f55a55814a4ecbad53e1469aca96c1d2'
+  when: not ansible_check_mode and libirods_server_checksum.stdout.split()[0] != irods_runtime_server_patch_sha256sum

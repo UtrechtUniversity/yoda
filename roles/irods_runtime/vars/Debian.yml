@@ -2,3 +2,5 @@
 # copyright Utrecht University
 
 irods_runtime_package_new: irods-runtime=4.2.12-1~bionic
+irods_runtime_server_patch_url: https://yoda.uu.nl/irods-patches/libirods_server.so.4.2.12.ubuntu2004
+irods_runtime_server_patch_sha256sum: 44b656e07954d41fc36a23400101690a5b7c150aa3ab8887b3df24b338525e9c
