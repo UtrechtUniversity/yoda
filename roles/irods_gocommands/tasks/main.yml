@@ -28,6 +28,7 @@
     dest: '{{ irods_directory.stdout }}/gocommands/gocmd-v{{ irods_gocommands_version }}-linux-amd64.tar.gz'
     checksum: '{{ irods_gocommands_archive_checksum }}'
     mode: '0644'
+  when: not ansible_check_mode
 
 
 - name: Extract GoCommands archive
@@ -36,6 +37,7 @@
     dest: '{{ irods_directory.stdout }}/gocommands/{{ irods_gocommands_version }}'
     remote_src: true
     creates: '{{ irods_directory.stdout }}/gocommands/{{ irods_gocommands_version }}/gocmd'
+  when: not ansible_check_mode
 
 
 - name: Sync GoCommands executable to path
@@ -46,3 +48,4 @@
     owner: irods
     group: irods
     mode: '755'
+  when: not ansible_check_mode
