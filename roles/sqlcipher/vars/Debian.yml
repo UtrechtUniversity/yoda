@@ -1,2 +1,25 @@
 ---
 # copyright Utrecht University
+
+# sqlcipher RPM locations and checksum
+sqlcipher_packages:
+  sqlcipher:
+    package: sqlcipher4
+    version: 4.5.6-1
+    url: https://yoda.uu.nl/packages-irods-4.2.12-focal/sqlcipher4.deb
+    filename: sqlcipher4.deb
+    checksum: sha256:5d113bb1b72756b3dcf2328ceb668b802b9c3406f4583bcc3544da3cef6b4679
+  sqlcipher_lib:
+    package: libsqlcipher4
+    version: 4.5.6-1
+    url: https://yoda.uu.nl/packages-irods-4.2.12-focal/libsqlcipher4.deb
+    filename: libsqlcipher4.deb
+    checksum: sha256:68ad31b7523a38975a35f9f33d37e0e94af1f3f663650d1be4e7e03f640a497e
+  sqlcipher_dev:
+    package: libsqlcipher4-dev
+    version: 4.5.6-1
+    url: https://yoda.uu.nl/packages-irods-4.2.12-focal/libsqlcipher4-dev.deb
+    filename: libsqlcipher4-dev.deb
+    checksum: sha256:814cdc08fad1c6644935cddd98466283da3a83bf42e62c1b11c13785a770fb15
+
+sqlcipher_package_dir: /tmp
