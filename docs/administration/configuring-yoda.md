@@ -386,6 +386,7 @@ sram_flow                    | SRAM flow to use, 'join_request' or 'invitation'
 sram_auto_group_sync         | Automatic SRAM group sync
 sram_verbose_logging         | SRAM verbose logging
 sram_tls_verify              | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
+sram_co_logo_url             | URL to image used as default SRAM CO logo
 
 ### EPIC PID Configuration
 
