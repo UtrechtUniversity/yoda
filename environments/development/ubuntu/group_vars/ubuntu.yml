@@ -54,7 +54,7 @@ data_package_archive_minimum: 1024                     # Minimum data package ar
 data_package_archive_maximum: -1                       # Maximum data package archive size (no limit), -1 for no limit
 data_package_archive_resource: mockTapeArchive         # Resource to use for data package archive functionality
 
-# SRAM Configuration (experimental)
+# SRAM configuration
 enable_sram: false                                     # Enable SRAM configuration
 sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
 sram_api_key: PLACEHOLDER                              # SRAM Rest API key
