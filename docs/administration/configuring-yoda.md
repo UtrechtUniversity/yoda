@@ -373,7 +373,7 @@ Variable                       | Description
 enable_inactivity_notification | Enable notifications to datamanager groups of inactive research groups
 inactivity_cutoff_months       | Number of months a research group has to be inactive for datamanagers to be notified
 
-### SRAM Configuration (experimental)
+### SRAM configuration
 
 Variable                     | Description
 -----------------------------|---------------------------------------------

@@ -25,8 +25,9 @@ Released: February 2024
 - Support for database connection pooling with PgBouncer
 - Support for [Automatic Resource Balancing](../design/processes/automatic-resource-balancing.md)
 - Support for viewing text files in portal
+- Support for multiple deposit groups
+- Support for groups connected to SRAM
 - Experimental support for [vault archiving](../design/overview/vault-archive.md) workflow
-- Experimental support for groups connected to SRAM
 - Improved overwrite actions in research space
 - Upgrade iRODS to v4.2.12
 - Upgrade python-irodsclient to v1.1.9
@@ -49,14 +50,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After making sure the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Checkout tag `v1.9.0` of the Yoda Git repository.
+3. Checkout tag `v1.9.1` of the Yoda Git repository.
 ```bash
-git checkout v1.9.0
+git checkout v1.9.1
 ```
 
-4. Set the Yoda version to `v1.9.0` in the configuration.
+4. Set the Yoda version to `v1.9.1` in the configuration.
 ```yaml
-yoda_version: v1.9.0
+yoda_version: v1.9.1
 ```
 
 5. Change the default schema from `default-2` to `default-3` in the configuration.
