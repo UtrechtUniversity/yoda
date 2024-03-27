@@ -6,7 +6,7 @@
 # Configuration variables.
 VAGRANTFILE_API_VERSION = "2"
 
-BOX = 'generic/ubuntu2004'
+BOX = 'generic/centos7'
 GUI = false
 CPU = 2
 RAM = 4096
