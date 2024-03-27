@@ -3,3 +3,5 @@
 
 tcp_keepalive_time: 7200
 tcp_keepalive_intvl: 75
+
+enable_apparmor: true

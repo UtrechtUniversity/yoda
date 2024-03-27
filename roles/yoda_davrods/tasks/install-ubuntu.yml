@@ -9,7 +9,7 @@
   when: not ansible_check_mode and ( 'davrods' not in ansible_facts.packages or yoda_davrods_version != ansible_facts.packages['davrods'][0]['version'] )
 
 
-- name: Install DaVRODS
+- name: Install DavRODS
   # Use a command instead of apt module to work around Ansible apt module apparently not being able
   # to handle dependency resolution for this package.
   ansible.builtin.command: # noqa no-changed-when

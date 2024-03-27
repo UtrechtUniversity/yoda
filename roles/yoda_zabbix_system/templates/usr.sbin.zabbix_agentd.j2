@@ -1,0 +1,22 @@
+# {{ ansible_managed }}
+# vim:syntax=apparmor
+# AppArmor policy for zabbix_agentd
+# ###AUTHOR###
+# ###COPYRIGHT###
+# ###COMMENT###
+
+#include <tunables/global>
+
+# No template variables specified
+
+/usr/sbin/zabbix_agentd flags=(complain) {
+  #include <abstractions/base>
+
+  # No abstractions specified
+
+  # No policy groups specified
+
+  # No read paths specified
+
+  # No write paths specified
+}

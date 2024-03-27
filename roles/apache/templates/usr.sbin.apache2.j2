@@ -1,0 +1,63 @@
+# {{ ansible_managed }}
+# Last Modified: Mon Mar 18 14:57:33 2024
+#include <tunables/global>
+
+# vim:syntax=apparmor
+# AppArmor policy for apache2
+# No template variables specified
+
+
+/usr/sbin/apache2 {
+  #include <abstractions/apache2-common>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/dovecot-common>
+  #include <abstractions/nameservice>
+  #include <abstractions/nis>
+  #include <abstractions/openssl>
+  #include <abstractions/postfix-common>
+  #include <abstractions/python>
+  #include <abstractions/ssl_keys>
+  #include <abstractions/user-tmp>
+  #include <abstractions/web-data>
+
+  capability chown,
+  capability kill,
+
+  deny owner /etc/*.load r,
+
+  /etc/apache2/irods/* r,
+  /etc/gss/mech.d/ r,
+  /etc/magic r,
+  /etc/mime.types r,
+  /proc/*/fd/ r,
+  /run/apache2/wsgi.*.sock rw,
+  /usr/bin/dash ix,
+  /usr/bin/uname mrix,
+  /usr/sbin/ldconfig* mrix,
+  /var/log/apache2/*.log w,
+  /var/www/landingpages/** r,
+  /var/www/yoda/** r,
+  owner /etc/apache2/** r,
+  owner /opt/irods-externals/** mr,
+  owner /run/apache2/apache2.pid rw,
+  owner /var/www/extuser/** r,
+  owner /var/www/extuser/yoda-external-user-service/** m,
+  owner /var/www/moai/** m,
+  owner /var/www/moai/** r,
+  owner /var/www/moai/moai.db wk,
+  owner /var/www/moai/yoda-moai/moai/__pycache__/* w,
+  owner /var/www/webmock/** m,
+  owner /var/www/webmock/** r,
+  owner /var/www/webmock/log/*.log w,
+  owner /var/www/yoda/ r,
+  owner /var/www/yoda/** m,
+
+
+  ^DEFAULT_URI {
+  }
+
+  ^HANDLING_UNTRUSTED_INPUT {
+  }
+}
+
