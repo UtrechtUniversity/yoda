@@ -8,7 +8,6 @@
 - name: Ensure yodadeployment user exists
   ansible.builtin.user:
     name: "{{ yoda_deployment_user }}"
-    shell: /bin/bash
 
 
 - name: Ensure yodadeployment has access to /var/www/yoda
