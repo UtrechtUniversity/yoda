@@ -112,6 +112,7 @@ YODA_EUS_FQDN       = 'eus.yoda'
 CSRF_TOKENS_ENABLED = 'true'
 API_SECRET          = 'PLACEHOLDER'
 EUS_TITLE_TEXT      = 'Yoda External User Service'
+SESSION_TYPE        = 'filesystem'
 
 # Theming configuration
 YODA_THEME_PATH     = '/var/www/yoda/themes' # Path to location of themes
