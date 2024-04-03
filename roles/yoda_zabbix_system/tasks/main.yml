@@ -101,12 +101,13 @@
   when: ansible_os_family == 'Debian' and enable_apparmor
 
 
-# - name: Put Zabbix agent in complain mode
-#   ansible.builtin.shell: |
-#     aa-complain /usr/sbin/zabbix_agentd
-#     apparmor_parser -r /etc/apparmor.d/usr.sbin.zabbix_agentd
-#   notify: Restart Zabbix agent
-#   when: ansible_os_family == 'Debian' and enable_apparmor
+- name: Put Zabbix agent in complain mode
+  ansible.builtin.shell: |
+    aa-complain /usr/sbin/zabbix_agentd
+    apparmor_parser -r /etc/apparmor.d/usr.sbin.zabbix_agentd
+  notify: Restart Zabbix agent
+  changed_when: true
+  when: ansible_os_family == 'Debian' and enable_apparmor
 
 
 - name: Checkout Yoda Zabbix scripts and rules

@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-# Last Modified: Mon Mar 18 14:57:33 2024
+# Last Modified: Tue Apr  2 13:40:06 2024
 #include <tunables/global>
 
 # vim:syntax=apparmor
@@ -24,6 +24,8 @@
   capability chown,
   capability kill,
 
+  signal send set=term peer=unconfined,
+
   deny owner /etc/*.load r,
 
   /etc/apache2/irods/* r,
@@ -39,6 +41,8 @@
   /var/www/landingpages/** r,
   /var/www/yoda/** r,
   owner /etc/apache2/** r,
+  owner /home/yodadeployment/flask_session/ r,
+  owner /home/yodadeployment/flask_session/* rw,
   owner /opt/irods-externals/** mr,
   owner /run/apache2/apache2.pid rw,
   owner /var/www/extuser/** r,
@@ -60,4 +64,5 @@
   ^HANDLING_UNTRUSTED_INPUT {
   }
 }
+
 

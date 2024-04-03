@@ -141,7 +141,76 @@
     name: httpd_can_sendmail
     state: true
     persistent: true
-  when: ansible_distribution == "RedHat"
+  when: ansible_distribution == "RedHat" and ansible_selinux
+
+
+- name: Configure default Postfix AppArmor profile
+  ansible.builtin.copy:
+    src: '/usr/share/apparmor/extra-profiles/{{ item }}'
+    dest: '/etc/apparmor.d/{{ item }}'
+    mode: '0644'
+    remote_src: true
+  with_items:
+    - usr.bin.procmail
+    - usr.lib.postfix.anvil
+    - usr.lib.postfix.bounce
+    - usr.lib.postfix.cleanup
+    - usr.lib.postfix.discard
+    - usr.lib.postfix.error
+    - usr.lib.postfix.flush
+    - usr.lib.postfix.lmtp
+    - usr.lib.postfix.local
+    - usr.lib.postfix.master
+    - usr.lib.postfix.nqmgr
+    - usr.lib.postfix.oqmgr
+    - usr.lib.postfix.pickup
+    - usr.lib.postfix.pipe
+    - usr.lib.postfix.proxymap
+    - usr.lib.postfix.qmgr
+    - usr.lib.postfix.qmqpd
+    - usr.lib.postfix.scache
+    - usr.lib.postfix.showq
+    - usr.lib.postfix.smtp
+    - usr.lib.postfix.smtpd
+    - usr.lib.postfix.spawn
+    - usr.lib.postfix.tlsmgr
+    - usr.lib.postfix.trivial-rewrite
+    - usr.lib.postfix.verify
+    - usr.lib.postfix.virtual
+    - usr.sbin.postalias
+    - usr.sbin.postmap
+    - usr.sbin.sendmail.postfix
+  when: ansible_os_family == "Debian" and enable_apparmor
+
+
+- name: Configure Postfix custom AppArmor profiles
+  ansible.builtin.template:
+    src: '{{ item.src }}'
+    dest: '/etc/apparmor.d/{{ item.dest }}'
+    owner: root
+    group: root
+    mode: '0644'
+  with_items:
+    - src: 'usr.sbin.postfix.j2'
+      dest: 'usr.sbin.postfix'
+    - src: 'usr.sbin.postdrop.j2'
+      dest: 'usr.sbin.postdrop'
+    - src: 'usr.sbin.postqueue.j2'
+      dest: 'usr.sbin.postqueue'
+    - src: 'usr.sbin.sendmail.j2'
+      dest: 'usr.sbin.sendmail'
+  when: ansible_os_family == "Debian" and enable_apparmor
+
+
+- name: Enforce Postfix AppArmor profiles
+  ansible.builtin.shell: |
+    aa-enforce /etc/apparmor.d/*postfix*
+    aa-enforce /etc/apparmor.d/usr.sbin.post*
+    aa-enforce /etc/apparmor.d/usr.bin.procmail
+    aa-enforce /etc/apparmor.d/usr.sbin.sendmail
+  notify: Restart Postfix
+  changed_when: false
+  when: ansible_os_family == "Debian" and enable_apparmor
 
 
 - name: Map Postfix relayhost credentials file

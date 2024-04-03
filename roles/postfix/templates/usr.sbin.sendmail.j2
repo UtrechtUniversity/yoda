@@ -1,0 +1,94 @@
+# {{ ansible_managed }}
+# Last Modified: Thu Mar 28 12:02:39 2024
+#include <tunables/global>
+
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+# Sendmail in Red Hat 7.3 got moved to /usr/sbin/sendmail.sendmail to
+# support /etc/alternatives/ -- SuSE has no such mechanism. So, this
+# file supports _BOTH_ sendmail's sendmail and postfix's sendmail.
+
+
+/usr/sbin/sendmail {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/kerberosclient>
+  #include <abstractions/nameservice>
+  #include <abstractions/postfix-common>
+  #include <abstractions/user-tmp>
+
+  /etc/aliases rw,
+  /etc/aliases.db rw,
+  /etc/fstab r,
+  /etc/hosts.allow r,
+  /etc/hosts.deny r,
+  /etc/ldap.conf r,
+  /etc/mail/* r,
+  /etc/mail/statistics rw,
+  /etc/mtab r,
+  /etc/postfix r,
+  /etc/postfix/aliases r,
+  /etc/postfix/aliases.db rw,
+  /etc/postfix/dynamicmaps.cf.d/ r,
+  /etc/postfix/main.cf r,
+  /etc/postfix/postfix-script Px,
+  /etc/sendmail.cf r,
+  /etc/sendmail.cw r,
+  /etc/shells r,
+  /root/.forward rw,
+  /root/dead.letter w,
+  /usr/bin/procmail Px,
+  /usr/kerberos/lib/lib*.so* mr,
+  /usr/lib/postfix r,
+  /usr/lib/postfix/master Px,
+  /usr/lib/postfix/showq Px,
+  /usr/lib/postfix/smtpd Px,
+  /usr/lib/sasl r,
+  /usr/lib/sasl/* mr,
+  /usr/lib/sasl2 r,
+  /usr/lib/sasl2/* mr,
+  /usr/sbin/postalias Px,
+  /usr/sbin/postdrop Px,
+  /usr/sbin/postfix Px,
+  /usr/sbin/postqueue Px,
+  /usr/sbin/sendmail mrix,
+  /usr/sbin/sendmail.postfix mrix,
+  /usr/sbin/sendmail.sendmail mrix,
+  /var/lib/sendmail/statistics rwl,
+  /var/spool/clientmqueue r,
+  /var/spool/clientmqueue/* rwl,
+  /var/spool/mail rwl,
+  /var/spool/mail/* rwl,
+  /var/spool/mqueue rwl,
+  /var/spool/mqueue/* rwl,
+  /var/spool/postfix r,
+  /var/spool/postfix/active r,
+  /var/spool/postfix/bounce r,
+  /var/spool/postfix/corrupt r,
+  /var/spool/postfix/defer r,
+  /var/spool/postfix/deferred r,
+  /var/spool/postfix/incoming r,
+  /var/spool/postfix/maildrop r,
+  /var/spool/postfix/maildrop/* rwl,
+  /var/spool/postfix/pid r,
+  /var/spool/postfix/private r,
+  /var/spool/postfix/public r,
+  /var/spool/postfix/public/pickup w,
+  /var/spool/postfix/public/qmgr w,
+  /var/spool/postfix/public/showq w,
+  /var/spool/postfix/saved r,
+  /{,var/}run/sendmail.pid rwl,
+  /{,var/}run/sendmail/control rw,
+  /{,var/}run/sm-client.pid rwl,
+  /{,var/}run/utmp rw,
+  @{PROC}/loadavg r,
+  @{PROC}/net/if_inet6 r,
+
+}

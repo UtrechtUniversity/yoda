@@ -93,12 +93,13 @@
   when: ansible_os_family == 'Debian' and enable_apparmor
 
 
-# - name: Put Apache in complain mode
-#   ansible.builtin.shell: |
-#     aa-enforce /usr/sbin/apache2
-#     apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
-#   notify: Restart Apache webserver
-#   when: ansible_os_family == 'Debian' and enable_apparmor
+- name: Put Apache in AppArmor enforce mode
+  ansible.builtin.shell: |
+    aa-enforce /usr/sbin/apache2
+    apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
+  notify: Restart Apache webserver
+  changed_when: true
+  when: ansible_os_family == 'Debian' and enable_apparmor
 
 
 - name: Ensure Apache service is configured

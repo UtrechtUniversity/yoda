@@ -24,8 +24,6 @@
     name: apparmor
     enabled: "{{ enable_apparmor }}"
     use: service
-  when: enable_apparmor
-  # TODO should the when be here?
 
 
 - name: Ensure AppArmor tools are installed
