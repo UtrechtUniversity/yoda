@@ -59,14 +59,6 @@
   register: storage_statistics
 
 
-- name: Remove legacy monthly storage statistics gathering cronjob
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'monthly-storage-statistics'
-    state: absent
-
-
 - name: Enable storage statistics gathering cronjob
   become_user: "{{ irods_service_account }}"
   become: true
@@ -510,14 +502,6 @@
   when: (not ansible_check_mode) and (yoda_davrods_anonymous_enabled is defined) and (yoda_davrods_anonymous_enabled)
 
 
-- name: Remove legacy asynchronous replication job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-replication'
-    state: absent
-
-
 - name: Configure parallel asynchronous replication job(s)
   become_user: "{{ irods_service_account }}"
   become: true
@@ -533,14 +517,6 @@
       {{ "-n" if async_replication_dry_run else "" }} >/dev/null 2>&1
     state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
   loop: "{{ range(1, (async_replication_jobs | int) + 1) | list }}"
-
-
-- name: Remove legacy asynchronous revision creation job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-replication'
-    state: absent
 
 
 - name: Configure parallel asynchronous revision creation job
