@@ -18,5 +18,3 @@ dependencies:
   - role: apache_wsgi
   - role: postgresql
   - role: python3
-  - role: remove_php
-    when: ansible_os_family == 'RedHat'
