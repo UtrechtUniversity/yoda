@@ -103,5 +103,8 @@ YODA_EUS_FQDN = '{{ yoda_eus_fqdn | default("") }}'
 DATAREQUEST_HELP_CONTACT_NAME  = '{{ datarequest_help_contact_name }}'
 DATAREQUEST_HELP_CONTACT_EMAIL = '{{ datarequest_help_contact_email }}'
 
+# Upload function configuration
+UPLOAD_PART_FILES              = {{ yoda_portal_upload_part_files }}
+
 # Text file extensions configuration
 TEXT_FILE_EXTENSIONS = {{ text_file_extensions | default(['txt'])}}

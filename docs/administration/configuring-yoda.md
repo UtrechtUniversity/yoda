@@ -155,6 +155,7 @@ yoda_theme                        | The theme to use for the Yoda Portal. See al
 yoda_theme_path                   | Path where themes for the Yoda Portal are retrieved from. See [the theme documentation](../design/overview/theme-packages.md) for more information.
 portal_session_cookie_samesite    | Samesite setting for session cookies Yoda Portal. Should be 'Lax' if OIDC is enabled and identity provider is in different domain. Otherwise it should be 'Strict'. Default value: 'Strict'.
 yoda_portal_wsgi_daemon_threads   | The number of threads to be created to handle requests in each daemon process (default: 15)
+yoda_portal_upload_part_files     | Whether the portal uploader function should upload multi-chunk files as .part files initially and rename them to their final name later (boolean value, default: true). It is generally recommended to keep this enabled, so that users can easily see when an upload failed and the result is partial. However, on storage systems where renaming data objects takes much time, such as S3 object storage in consistent mode, it may be necessary to switch use of .part files off.
 
 ### Generic logging configuration
 
