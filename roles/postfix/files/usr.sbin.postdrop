@@ -1,5 +1,4 @@
-# {{ ansible_managed }}
-# Last Modified: Thu Mar 28 12:09:44 2024
+# Last Modified: Thu Mar 28 12:02:38 2024
 #include <tunables/global>
 
 # ------------------------------------------------------------------
@@ -11,27 +10,28 @@
 #    License published by the Free Software Foundation.
 #
 # ------------------------------------------------------------------
+# vim:syntax=apparmor
 
 
-/usr/sbin/postqueue {
+/usr/sbin/postdrop {
   #include <abstractions/base>
-  #include <abstractions/consoles>
   #include <abstractions/kerberosclient>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
   capability dac_override,
+  capability dac_read_search,
 
   /etc/postfix r,
-  /usr/lib/postfix/showq Px,
-  /usr/sbin/postqueue mrix,
+  /etc/postfix/dynamicmaps.cf.d/ r,
+  /etc/postfix/main.cf r,
+  /etc/postfix/postfix-script mrix,
+  /usr/sbin/postdrop mrix,
   /var/spool/postfix r,
   /var/spool/postfix/maildrop r,
   /var/spool/postfix/maildrop/* rwl,
   /var/spool/postfix/pid r,
-  /var/spool/postfix/public/pickup w,
-  /var/spool/postfix/public/qmgr w,
-  /var/spool/postfix/public/showq w,
-  owner /etc/postfix/dynamicmaps.cf.d/ r,
+  /var/spool/postfix/public/pickup rw,
+  @{PROC}/net/if_inet6 r,
 
 }

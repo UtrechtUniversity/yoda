@@ -1,4 +1,3 @@
-# {{ ansible_managed }}
 # vim:syntax=apparmor
 # AppArmor policy for zabbix_agentd
 # ###AUTHOR###

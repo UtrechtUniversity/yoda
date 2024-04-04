@@ -91,13 +91,14 @@
   notify: Restart Zabbix agent
 
 
-- name: Configure Zabbix apparmor profile
-  ansible.builtin.template:
-    src: usr.sbin.zabbix_agentd.j2
+- name: Configure Zabbix AppArmor profile
+  ansible.builtin.copy:
+    src: usr.sbin.zabbix_agentd
     dest: /etc/apparmor.d/usr.sbin.zabbix_agentd
     owner: root
     group: root
     mode: '0644'
+  register: zabbix_apparmor
   when: ansible_os_family == 'Debian' and enable_apparmor
 
 
@@ -107,7 +108,7 @@
     apparmor_parser -r /etc/apparmor.d/usr.sbin.zabbix_agentd
   notify: Restart Zabbix agent
   changed_when: true
-  when: ansible_os_family == 'Debian' and enable_apparmor
+  when: ansible_os_family == 'Debian' and enable_apparmor and zabbix_apparmor.changed
 
 
 - name: Checkout Yoda Zabbix scripts and rules
