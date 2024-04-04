@@ -99,7 +99,7 @@
     group: root
     mode: '0644'
   register: zabbix_apparmor
-  when: ansible_os_family == 'Debian' and enable_apparmor
+  when: ansible_os_family == 'Debian'
 
 
 - name: Put Zabbix agent in AppArmor complain mode
@@ -108,7 +108,7 @@
     apparmor_parser -r /etc/apparmor.d/usr.sbin.zabbix_agentd
   notify: Restart Zabbix agent
   changed_when: true
-  when: ansible_os_family == 'Debian' and enable_apparmor and zabbix_apparmor.changed
+  when: ansible_os_family == 'Debian' and zabbix_apparmor.changed
 
 
 - name: Checkout Yoda Zabbix scripts and rules

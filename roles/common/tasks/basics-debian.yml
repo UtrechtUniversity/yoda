@@ -22,7 +22,7 @@
 - name: Configure AppArmor systemd service
   ansible.builtin.service:
     name: apparmor
-    enabled: "{{ enable_apparmor }}"
+    enabled: true
     use: service
 
 
@@ -32,7 +32,6 @@
       - apparmor-profiles
       - apparmor-utils
     state: present
-  when: enable_apparmor
 
 
 - name: Ensure basics (vim, bind-utils, etc.) are installed
