@@ -154,7 +154,6 @@ tcp_keepalive_intvl               | IPv4 TCP keepalives: time between keepalives
 yoda_theme                        | The theme to use for the Yoda Portal. See also [the theme documentation](../design/overview/theme-packages.md). By default, Yoda uses the UU theme.
 yoda_theme_path                   | Path where themes for the Yoda Portal are retrieved from. See [the theme documentation](../design/overview/theme-packages.md) for more information.
 portal_session_cookie_samesite    | Samesite setting for session cookies Yoda Portal. Should be 'Lax' if OIDC is enabled and identity provider is in different domain. Otherwise it should be 'Strict'. Default value: 'Strict'.
-yoda_portal_wsgi_daemon_processes | The number of daemon processes that should be started in this process group (default: 1)
 yoda_portal_wsgi_daemon_threads   | The number of threads to be created to handle requests in each daemon process (default: 15)
 
 ### Generic logging configuration
