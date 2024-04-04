@@ -180,6 +180,7 @@
     - usr.sbin.postalias
     - usr.sbin.postmap
     - usr.sbin.sendmail.postfix
+  register: postfix_apparmor_default
   when: ansible_os_family == "Debian" and enable_apparmor
 
 
@@ -199,6 +200,7 @@
       dest: 'usr.sbin.postqueue'
     - src: 'usr.sbin.sendmail.j2'
       dest: 'usr.sbin.sendmail'
+  register: postfix_apparmor_custom
   when: ansible_os_family == "Debian" and enable_apparmor
 
 
@@ -210,7 +212,7 @@
     aa-enforce /etc/apparmor.d/usr.sbin.sendmail
   notify: Restart Postfix
   changed_when: false
-  when: ansible_os_family == "Debian" and enable_apparmor
+  when: ansible_os_family == "Debian" and enable_apparmor and (postfix_apparmor_default.changed or postfix_apparmor_custom.changed)
 
 
 - name: Map Postfix relayhost credentials file
