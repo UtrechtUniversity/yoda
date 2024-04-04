@@ -49,6 +49,7 @@ portal_session_cookie_samesite: Strict             # 'Strict' (no OIDC, or OIDC 
 
 # Research module configuration
 enable_research: true                              # Enable research module
+yoda_portal_upload_part_files: true                # Allow use of .part data objects for the portal upload function
 
 # OpenSearch module configuration
 enable_open_search: false                          # Enable OpenSearch module

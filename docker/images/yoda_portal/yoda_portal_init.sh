@@ -176,6 +176,8 @@ YODA_EUS_FQDN = 'eus.yoda.test'
 DATAREQUEST_HELP_CONTACT_NAME  = 'PLACEHOLDER'
 DATAREQUEST_HELP_CONTACT_EMAIL = 'PLACEHOLDER'
 
+UPLOAD_PART_FILES              = True
+
 # Text file extensions configuration
 TEXT_FILE_EXTENSIONS = ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'fortran', 'gams', 'gauss', 'go', 'graphql', 'ini', 'irpf90', 'java', 'js', 'json', 'julia', 'julia-repl', 'kotlin', 'less', 'lua', 'makefile', 'markdown', 'md', 'mathematica', 'matlab', 'maxima', 'mizar', 'objectivec', 'openscad', 'perl', 'php', 'php-template', 'plaintext', 'txt', 'python', 'py', 'python-repl', 'r', 'ruby', 'rust', 'sas', 'scilab', 'scss', 'shell', 'sh', 'sql', 'stan', 'stata', 'swift', 'typescript', 'ts', 'vbnet', 'wasm', 'xml', 'yaml', 'html']
 FLASKCFG
