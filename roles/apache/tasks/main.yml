@@ -84,13 +84,12 @@
 
 
 - name: Configure Apache apparmor profile
-  ansible.builtin.copy:
-    src: usr.sbin.apache2
+  ansible.builtin.template:
+    src: usr.sbin.apache2.j2
     dest: /etc/apparmor.d/usr.sbin.apache2
     owner: root
     group: root
     mode: '0644'
-  register: apache_apparmor
   when: ansible_os_family == 'Debian' and enable_apparmor
 
 
@@ -100,7 +99,7 @@
     apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
   notify: Restart Apache webserver
   changed_when: true
-  when: ansible_os_family == 'Debian' and enable_apparmor and apache_apparmor.changed
+  when: ansible_os_family == 'Debian' and enable_apparmor
 
 
 - name: Ensure Apache service is configured
