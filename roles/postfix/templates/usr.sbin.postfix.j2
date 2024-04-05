@@ -1,0 +1,76 @@
+# {{ ansible_managed }}
+# Last Modified: Tue Apr  2 13:40:07 2024
+#include <tunables/global>
+
+# vim:syntax=apparmor
+# AppArmor policy for postfix
+# No template variables specified
+
+
+/usr/sbin/postfix {
+  #include <abstractions/apache2-common>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/openssl>
+  #include <abstractions/postfix-common>
+  #include <abstractions/ssl_keys>
+  #include <abstractions/ubuntu-browsers.d/plugins-common>
+
+  capability dac_read_search,
+  capability kill,
+
+  signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/bounce,
+  signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/cleanup,
+  signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/pickup,
+  signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/qmgr,
+  signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/scache,
+  signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/smtp,
+  signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/tlsmgr,
+  signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/trivial-rewrite,
+
+  /usr/bin/cmp mrix,
+  /usr/bin/dash ix,
+  /usr/bin/egrep mrix,
+  /usr/bin/find mrix,
+  /usr/bin/readlink mrix,
+  /usr/bin/sleep mrix,
+  /usr/bin/sort mrix,
+  /usr/bin/tr mrix,
+  /usr/bin/uname mrix,
+  /usr/lib/postfix/sbin/bounce mrix,
+  /usr/lib/postfix/sbin/cleanup mrix,
+  /usr/lib/postfix/sbin/master mrix,
+  /usr/lib/postfix/sbin/pickup mrix,
+  /usr/lib/postfix/sbin/postfix-script mrix,
+  /usr/lib/postfix/sbin/proxymap mrix,
+  /usr/lib/postfix/sbin/qmgr mrix,
+  /usr/lib/postfix/sbin/scache mrix,
+  /usr/lib/postfix/sbin/smtp mrix,
+  /usr/lib/postfix/sbin/smtpd mrix,
+  /usr/lib/postfix/sbin/tlsmgr mrix,
+  /usr/lib/postfix/sbin/trivial-rewrite mrix,
+  /usr/sbin/postconf mrix,
+  /usr/sbin/postlog mrix,
+  /usr/sbin/postsuper mrix,
+  /var/lib/postfix/ r,
+  /var/lib/postfix/master.lock rw,
+  /var/spool/postfix/** rw,
+  /var/spool/postfix/defer/** r,
+  /var/spool/postfix/deferred/** r,
+  /var/spool/postfix/maildrop/* rw,
+  /var/spool/postfix/pid/* rwk,
+  owner /etc/aliases.db rk,
+  owner /etc/postfix/ r,
+  owner /etc/postfix/dynamicmaps.cf.d/ r,
+  owner /etc/postfix/postfix-files r,
+  owner /etc/postfix/postfix-files.d/ r,
+  owner /etc/postfix/sasl/ r,
+  owner /usr/sbin/sendmail r,
+  owner /var/lib/postfix/master.lock rwk,
+  owner /var/lib/postfix/prng_exch k,
+  owner /var/lib/postfix/prng_exch rw,
+  owner /var/lib/postfix/smtp_scache.db rwk,
+  owner /var/spool/postfix/ r,
+  owner /var/spool/postfix/** rk,
+
+}

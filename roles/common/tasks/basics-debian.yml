@@ -19,6 +19,21 @@
     state: present
 
 
+- name: Configure AppArmor systemd service
+  ansible.builtin.service:
+    name: apparmor
+    enabled: true
+    use: service
+
+
+- name: Ensure AppArmor tools are installed
+  ansible.builtin.package:
+    name:
+      - apparmor-profiles
+      - apparmor-utils
+    state: present
+
+
 - name: Ensure basics (vim, bind-utils, etc.) are installed
   ansible.builtin.package:
     name:

@@ -83,6 +83,26 @@
   when: ansible_os_family == 'Debian'
 
 
+- name: Configure Apache apparmor profile
+  ansible.builtin.template:
+    src: usr.sbin.apache2.j2
+    dest: /etc/apparmor.d/usr.sbin.apache2
+    owner: root
+    group: root
+    mode: '0644'
+  register: apache_apparmor
+  when: ansible_os_family == 'Debian'
+
+
+- name: Put Apache in AppArmor enforce mode
+  ansible.builtin.shell: |
+    aa-enforce /usr/sbin/apache2
+    apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
+  notify: Restart Apache webserver
+  changed_when: true
+  when: ansible_os_family == 'Debian' and apache_apparmor.changed
+
+
 - name: Ensure Apache service is configured
   ansible.builtin.service:
     name: "{{ apache_service_name }}"
