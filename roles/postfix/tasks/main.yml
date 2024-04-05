@@ -181,7 +181,7 @@
     - usr.sbin.postmap
     - usr.sbin.sendmail.postfix
   register: postfix_apparmor_default
-  when: ansible_os_family == "Debian"
+  when: not ansible_check_mode and ansible_os_family == "Debian"
 
 
 - name: Configure Postfix custom AppArmor profiles
