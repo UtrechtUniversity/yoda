@@ -31,5 +31,5 @@
   ansible.builtin.apt:
     deb: '{{ sqlcipher_package_dir }}/{{ item.value.filename }}'
     state: present
-  when: not ansible_check_mode and item.value.package not in ansible_facts.packages or item.value.version != ansible_facts.packages[item.value.package][0]['version']
+  when: not ansible_check_mode and (item.value.package not in ansible_facts.packages or item.value.version != ansible_facts.packages[item.value.package][0]['version'])
   with_dict: '{{ sqlcipher_packages }}'
