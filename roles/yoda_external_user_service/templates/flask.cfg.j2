@@ -6,7 +6,16 @@ YODA_EUS_FQDN       = '{{ yoda_eus_fqdn }}'
 CSRF_TOKENS_ENABLED = 'true'
 API_SECRET          = '{{ eus_api_secret }}'
 EUS_TITLE_TEXT      = 'Yoda External User Service'
-SESSION_TYPE        = 'filesystem'
+
+# Flask-Session configuration
+SESSION_TYPE                = 'filesystem'
+SESSION_COOKIE_NAME         = '__Host-session'
+SESSION_COOKIE_HTTPONLY     = True
+SESSION_COOKIE_SECURE       = True
+SESSION_COOKIE_SAMESITE     = '{{ yoda_eus_cookie_samesite }}'
+PERMANENT_SESSION_LIFETIME  = {{ yoda_eus_session_lifetime }}
+SESSION_USE_SIGNER          = True
+SESSION_FILE_DIR            = '{{ yoda_eus_session_dir }}'
 
 # Theming configuration
 YODA_THEME_PATH     = '{{ yoda_theme_path }}' # Path to location of themes
