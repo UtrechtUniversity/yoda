@@ -9,6 +9,12 @@
 # Feel free to improve!
 #
 
+# This command-line completion script is bash-specific. Don't run
+# it on accounts that use other shells, such as dash.
+if [ -z "$BASH_VERSION" ]
+then return
+fi
+
 # Irods command to auto-complete
 command_list="ibun icd ichksum ichmod icp iget ils imeta imkdir imv iphybun iphymv irm irmtrash irsync itrim iput"
 
