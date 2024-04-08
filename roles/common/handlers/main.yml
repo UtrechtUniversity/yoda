@@ -5,3 +5,6 @@
   ansible.builtin.service:
     name: firewalld
     state: restarted
+
+- name: Reset Ansible connection
+  ansible.builtin.meta: reset_connection

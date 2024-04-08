@@ -29,3 +29,7 @@
 
 - name: Setup kernel parameters
   ansible.builtin.import_tasks: kernel.yml
+
+- name: Configure default umask
+  ansible.builtin.import_tasks: set_umask.yml
+  when: ansible_os_family == 'Debian' or ( ansible_os_family == 'RedHat' and ansible_distribution_major_version == "8" )

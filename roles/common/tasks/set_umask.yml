@@ -1,0 +1,15 @@
+---
+# copyright Utrecht University
+
+- name: Set default umask
+  ansible.builtin.template:
+    src: templates/set_umask.sh.j2
+    dest: /etc/profile.d/set_umask.sh
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reset Ansible connection
+
+
+- name: Flush handlers to use new umask, if needed
+  ansible.builtin.meta: flush_handlers
