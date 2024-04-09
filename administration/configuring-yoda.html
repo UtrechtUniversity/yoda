@@ -538,6 +538,10 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>yoda_portal_wsgi_daemon_threads</td>
       <td>The number of threads to be created to handle requests in each daemon process (default: 15)</td>
     </tr>
+    <tr>
+      <td>yoda_portal_upload_part_files</td>
+      <td>Whether the portal uploader function should upload multi-chunk files as .part files initially and rename them to their final name later (boolean value, default: true). It is generally recommended to keep this enabled, so that users can easily see when an upload failed and the result is partial. However, on storage systems where renaming data objects takes much time, such as S3 object storage in consistent mode, it may be necessary to switch use of .part files off.</td>
+    </tr>
   </tbody>
 </table></div>
 <h3 id="generic-logging-configuration">
