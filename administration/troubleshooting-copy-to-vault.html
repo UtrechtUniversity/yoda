@@ -15,7 +15,7 @@
   
 
 .site-nav > ul.nav-list:first-child > li > a,
-.site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(1)) > a,
+.site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(24)) > a,
 .site-nav > ul.nav-list:first-child > li > ul > li > ul > li > a {
   background-image: none;
 }
@@ -25,14 +25,14 @@
   background-image: none;
 }
 
-.site-nav > ul.nav-list:first-child > li:nth-child(5) > ul > li:nth-child(1) > a {
+.site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(24) > a {
   font-weight: 600;
   text-decoration: none;
-}.site-nav > ul.nav-list:first-child > li:nth-child(5) > button svg,
-.site-nav > ul.nav-list:first-child > li:nth-child(5) > ul > li:nth-child(1) > button svg {
+}.site-nav > ul.nav-list:first-child > li:nth-child(4) > button svg,
+.site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(24) > button svg {
   transform: rotate(-90deg);
-}.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(5) > ul.nav-list,
-.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(5) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
+}.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list,
+.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list > li.nav-list-item:nth-child(24) > ul.nav-list {
   display: block;
 }
   </style>
@@ -54,18 +54,18 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Setting up development environment | Yoda</title>
+<title>Troubleshooting data package archival in the vault | Yoda</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Setting up development environment" />
+<meta property="og:title" content="Troubleshooting data package archival in the vault" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:site_name" content="Yoda" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Setting up development environment" />
+<meta property="twitter:title" content="Troubleshooting data package archival in the vault" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Setting up development environment","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/development/setting-up-development-environment.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Troubleshooting data package archival in the vault","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/administration/troubleshooting-copy-to-vault.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -270,187 +270,136 @@
     <div class="main-content-wrap">
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
-    <li class="breadcrumb-nav-list-item"><a href="/yoda/development/">Development</a></li>
-    <li class="breadcrumb-nav-list-item"><span>Setting up development environment</span></li>
+    <li class="breadcrumb-nav-list-item"><a href="/yoda/administration/">Administration Tasks</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Troubleshooting data package archival in the vault</span></li>
   </ol>
 </nav>
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="setting-up-development-environment">
+            <h1 id="troubleshooting-data-package-archival-in-the-vault">
   
   
-    <a href="#setting-up-development-environment" class="anchor-heading" aria-labelledby="setting-up-development-environment"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setting up development environment
-  
-  
-</h1>
-    
-<p>Setting up a Yoda development environment is easy, you only need the following:</p>
-
-<ul>
-  <li><a href="https://www.virtualbox.org/manual/ch02.html">VirtualBox</a> or <a href="https://libvirt.org/">libvirt</a></li>
-  <li><a href="https://www.vagrantup.com/docs/installation/">Vagrant</a> (&gt;= 2.0)</li>
-</ul>
-
-<p>On GNU/Linux or macOS you also need:</p>
-<ul>
-  <li><a href="https://docs.ansible.com/ansible/intro_installation.html">Ansible</a> (&gt;= 2.11)</li>
-</ul>
-
-<p>The guide below will deploy an ‘allinone’ instance (all functional roles in one virtual machine) with the default configuration.</p>
-
-<ol>
-  <li>Clone the Yoda repository and checkout the development branch:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/UtrechtUniversity/yoda.git
-<span class="nb">cd </span>yoda
-git checkout development
-</code></pre></div>    </div>
-  </li>
-  <li>Configure the virtual machines for development:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up
-</code></pre></div>    </div>
-  </li>
-  <li>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant ssh controller
-<span class="nb">cd</span> ~/yoda
-</code></pre></div>    </div>
-    <p>On a GNU/Linux or macOS host make sure the SSH keys have the right permissions (skip this step on Windows):</p>
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>0600 ~/yoda/vagrant/ssh/vagrant
-</code></pre></div>    </div>
-  </li>
-  <li>Deploy Yoda to the virtual machines:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-galaxy collection <span class="nb">install</span> <span class="nt">-r</span> requirements.yml
-ansible-playbook <span class="nt">-i</span> environments/development/allinone/ playbook.yml
-</code></pre></div>    </div>
-  </li>
-  <li>Add following hosts to <code class="language-plaintext highlighter-rouge">/etc/hosts</code> (GNU/Linux or macOS) or  <code class="language-plaintext highlighter-rouge">%SystemRoot%\System32\drivers\etc\hosts</code> (Windows):
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>192.168.56.10 portal.yoda.test
-192.168.56.10 data.yoda.test
-192.168.56.10 public.data.yoda.test
-192.168.56.10 public.yoda.test
-192.168.56.10 eus.yoda.test
-192.168.56.10 datacite-mock.yoda.test
-192.168.56.10 sram-mock.yoda.test
-</code></pre></div>    </div>
-  </li>
-  <li>Provision Yoda with test data:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone/ test.yml
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>[OPTIONAL] Provision Yoda with <a href="https://www.zabbix.com/">Zabbix</a> agent and monitoring scripts:</p>
-
-    <p>Configure Zabbix server in <code class="language-plaintext highlighter-rouge">environments/development/allinone/group_vars/allinone.yml</code> and make sure a Zabbix server is running on this address, you could use a <a href="https://www.zabbix.com/download_appliance">Zabbix appliance</a> in Virtualbox.</p>
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">zabbix_server</span><span class="pi">:</span> <span class="s">192.168.56.20</span>
-</code></pre></div>    </div>
-    <p>Run the Zabbix playbook</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ansible-playbook -i environments/development/allinone/ zabbix.yml
-</code></pre></div>    </div>
-  </li>
-</ol>
-<h2 id="upgrading-your-yoda-development-environment">
-  
-  
-    <a href="#upgrading-your-yoda-development-environment" class="anchor-heading" aria-labelledby="upgrading-your-yoda-development-environment"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Upgrading your Yoda development environment
-  
-  
-</h2>
-    
-<p>Upgrading the Yoda development environment to the latest version can be done by running the Ansible playbooks again.</p>
-
-<ol>
-  <li>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant ssh controller
-<span class="nb">cd</span> ~/yoda
-</code></pre></div>    </div>
-  </li>
-  <li>Upgrade Ansible scripts:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git pull
-</code></pre></div>    </div>
-  </li>
-  <li>Upgrade Yoda development environment:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone/ playbook.yml
-</code></pre></div>    </div>
-  </li>
-</ol>
-<h2 id="development-environment-test-users-and-data">
-  
-  
-    <a href="#development-environment-test-users-and-data" class="anchor-heading" aria-labelledby="development-environment-test-users-and-data"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Development environment test users and data
-  
-  
-</h2>
-    
-<p>When you have set up an Yoda development environment and provisioned it with test data the following users are created:</p>
-
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Role</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>viewer</td>
-      <td>Viewer with read only access to research groups</td>
-    </tr>
-    <tr>
-      <td>researcher</td>
-      <td>Researcher with read / write access to research groups</td>
-    </tr>
-    <tr>
-      <td>groupmanager</td>
-      <td>Groupmanager  with user management rights on research groups</td>
-    </tr>
-    <tr>
-      <td>datamanager</td>
-      <td>Datamanager of the research groups</td>
-    </tr>
-    <tr>
-      <td>technicaladmin</td>
-      <td>Technical administrator with rodsadmin access</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<p>Password for all test users is <code class="language-plaintext highlighter-rouge">test</code>.</p>
-
-<p>In research group <code class="language-plaintext highlighter-rouge">research-initial</code> a folder <code class="language-plaintext highlighter-rouge">testdata</code> is created with some example data.</p>
-<h1 id="surf-development-environment">
-  
-  
-    <a href="#surf-development-environment" class="anchor-heading" aria-labelledby="surf-development-environment"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Surf development environment
+    <a href="#troubleshooting-data-package-archival-in-the-vault" class="anchor-heading" aria-labelledby="troubleshooting-data-package-archival-in-the-vault"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Troubleshooting data package archival in the vault
   
   
 </h1>
     
 
-<p>Surf uses the following setup:</p>
+<p>After a data manager approves a data package for archiving in the vault, the
+<code class="language-plaintext highlighter-rouge">retry-copy-to-vault.r</code> cronjob asynchronously archives the data package.
+This involves copying its data from the research collection to the vault
+collection, among other things. By default, this process happens automatically.
+Please consult <a href="/yoda/design/processes/vault-process.html">the vault process design documentation</a>
+for more details.</p>
+
+<p>This page contains an explanation of how to troubleshoot the process if something
+goes wrong.</p>
+<h2 id="detecting-failed-archiving-jobs">
+  
+  
+    <a href="#detecting-failed-archiving-jobs" class="anchor-heading" aria-labelledby="detecting-failed-archiving-jobs"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Detecting failed archiving jobs
+  
+  
+</h2>
+    
+
+<p>Archival jobs that have failed can be detected using the
+<a href="https://github.com/UtrechtUniversity/yoda-clienttools?tab=readme-ov-file#yreport_datapackagestatus">data package status report tool</a>,
+which is part of the <a href="https://github.com/UtrechtUniversity/yoda-clienttools">Yoda client tools</a>.</p>
+
+<p>You can also run this tool in a cronjob to send a report of data packages that
+are in the process of being archived or published for a long time, which suggests
+that something might have gone wrong.</p>
+
+<p>Example command for compiling a list of data packages that have been in the process
+of being archived or published for more than approximately four hours, and sending
+the list to an administrator if there are any:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yreport_datapackagestatus --pending --stale --email a.admin@uu.nl
+</code></pre></div></div>
+
+<p>This will also report data packages that are waiting for approval to be archived
+or published. In such cases, no technical troubleshooting is needed.</p>
+<h2 id="finding-the-cause">
+  
+  
+    <a href="#finding-the-cause" class="anchor-heading" aria-labelledby="finding-the-cause"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Finding the cause
+  
+  
+</h2>
+    
+
+<p>If the data package has been approved for archiving in the vault (status <code class="language-plaintext highlighter-rouge">ACCEPTED</code>),
+first see if the cause of the problem can be found in the rodsLog files. Find the
+<code class="language-plaintext highlighter-rouge">iiCopyFolderToVault</code> message for the data package in the rodsLog. Then grep for other
+messages by the same pid on the same day, and look for error messages.</p>
+
+<p>Possible causes include:</p>
 <ul>
-  <li>Portal server: runs Yoda portal, iRODS iCAT server (provider), iCAT database and EUS</li>
-  <li>WebDAV server: runs DavRODS and public server, as well as iRODS resource server (consumer)</li>
-  <li>Resource server: additional iRODS resource server</li>
+  <li>An issue with one of the source data objects in the research collection results in a failure
+when copying it. For example: a data object that is in an intermediate state cannot be copied.</li>
+  <li>A restart of the iRODS service while the copy-to-vault process was running.</li>
+  <li>A storage issue, such as a storage resource without free space available.</li>
 </ul>
 
-<p>To deploy it on local VMs, add the following entries to your hosts file:</p>
+<p>If the root cause is not transient, it needs to be resolved first. Otherwise restarting
+the process would just result in the same problem occurring again.</p>
+<h2 id="restart-options">
+  
+  
+    <a href="#restart-options" class="anchor-heading" aria-labelledby="restart-options"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Restart options
+  
+  
+</h2>
+    
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Surf Yoda test
-192.168.56.20 portal.surfyoda.test
-192.168.56.21 data.surfyoda.test
-192.168.56.21 public.data.surfyoda.test
-192.168.56.21 public.surfyoda.test
-192.168.56.20 eus.surfyoda.test
-192.168.56.22 resource.surfyoda.test
+<p>There are two ways to restart the transfer:</p>
+<h3 id="trigger-a-complete-restart-of-the-copy-to-vault-process-for-the-data-package">
+  
+  
+    <a href="#trigger-a-complete-restart-of-the-copy-to-vault-process-for-the-data-package" class="anchor-heading" aria-labelledby="trigger-a-complete-restart-of-the-copy-to-vault-process-for-the-data-package"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Trigger a complete restart of the copy-to-vault process for the data package
+  
+  
+</h3>
+    
+
+<p>Signal the copy-to-vault job to retry the archiving operation by setting the
+<code class="language-plaintext highlighter-rouge">org_cronjob_copy_to_vault</code> AVU to <code class="language-plaintext highlighter-rouge">CRONJOB_RETRY</code>. The job will then copy the
+data packages to a new vault folder.</p>
+
+<p>Example command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>imeta set -C /tempZone/home/vault-collection/data-package[1234567890] org_cronjob_copy_to_vault CRONJOB_RETRY
 </code></pre></div></div>
 
-<p>And run the following commands in the root of the Yoda repository:</p>
+<p>Afterwards, you will need to remove the vault collection that was created on the first try manually.</p>
+<h3 id="finish-the-archiving-process-manually">
+  
+  
+    <a href="#finish-the-archiving-process-manually" class="anchor-heading" aria-labelledby="finish-the-archiving-process-manually"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Finish the archiving process manually
+  
+  
+</h3>
+    
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp vagrant/environment/surf/Vagrantfile .
-vagrant box update
-vagrant up
-ansible-playbook -DK -i environments/development/surf playbook.yml
+<p>If the error occurred during copying the contents of the data packages, it is also possible to finish
+the copy job manually. This can be useful if the data package is large and retrying the complete transfer
+would take a lot of time.</p>
+
+<p>First, complete the synchronization process using the <code class="language-plaintext highlighter-rouge">irsync</code> command in a <code class="language-plaintext highlighter-rouge">tmux</code> session. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irsync -r -V -s "i:/zoneName/home/research-groupname/data-package" "i:/zoneName/home/vault-groupname/data-package[1234567890]/original"
 </code></pre></div></div>
+
+<p>After <code class="language-plaintext highlighter-rouge">irsync</code> has finished, complete the copy-to-vault process manually using the <code class="language-plaintext highlighter-rouge">secure-in-vault</code> rule. Example command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/secure-in-vault.r '*researchCollection="'""/zoneName/home/research-groupname/data-package'"' '*vaultCollection="'"/zoneName/home/vault-groupname/data-package[1234567890]"'"'
+</code></pre></div></div>
+
+<p>Finally, check in the portal that the status of the data package in the research collection is <code class="language-plaintext highlighter-rouge">Secured</code>,
+the publication status is <code class="language-plaintext highlighter-rouge">Unpublished</code>, and the metadata of the vault package can be viewed. Also check the
+rodsLog for errors.</p>
 
           
 
@@ -469,7 +418,7 @@ ansible-playbook -DK -i environments/development/surf playbook.yml
         
         
           <p class="text-small text-grey-dk-000 mb-0">
-            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/development/setting-up-development-environment.md" id="edit-this-page">Edit this page on GitHub.</a>
+            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/administration/troubleshooting-copy-to-vault.md" id="edit-this-page">Edit this page on GitHub.</a>
           </p>
         
       </div>
