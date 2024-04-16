@@ -178,7 +178,6 @@
     - usr.lib.postfix.verify
     - usr.lib.postfix.virtual
     - usr.sbin.postalias
-    - usr.sbin.postmap
     - usr.sbin.sendmail.postfix
   register: postfix_apparmor_default
   when: not ansible_check_mode and ansible_os_family == "Debian"
@@ -192,10 +191,12 @@
     group: root
     mode: '0644'
   with_items:
-    - src: 'usr.sbin.postfix.j2'
-      dest: 'usr.sbin.postfix'
     - src: 'usr.sbin.postdrop.j2'
       dest: 'usr.sbin.postdrop'
+    - src: 'usr.sbin.postfix.j2'
+      dest: 'usr.sbin.postfix'
+    - src: 'usr.sbin.postmap.j2'
+      dest: 'usr.sbin.postmap'
     - src: 'usr.sbin.postqueue.j2'
       dest: 'usr.sbin.postqueue'
     - src: 'usr.sbin.sendmail.j2'
