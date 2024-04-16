@@ -13,3 +13,119 @@
     name: net.ipv4.tcp_keepalive_intvl
     value: '{{ tcp_keepalive_intvl }}'
     sysctl_set: true
+
+
+- name: Set networking parameters for kernel hardening
+  ansible.posix.sysctl:
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+    sysctl_set: true
+  with_items:
+    - name: 'net.ipv4.conf.all.accept_redirects'
+      value: '0'
+    - name: 'net.ipv4.conf.all.secure_redirects'
+      value: '0'
+    - name: 'net.ipv4.conf.all.log_martians'
+      value: '1'
+    - name: 'net.ipv4.conf.all.rp_filter'
+      value: '1'
+    - name: 'net.ipv4.conf.all.send_redirects'
+      value: '0'
+    - name: 'net.ipv4.conf.default.accept_redirects'
+      value: '0'
+    - name: 'net.ipv4.conf.default.accept_source_route'
+      value: '0'
+    - name: 'net.ipv4.conf.default.log_martians'
+      value: '1'
+    - name: 'net.ipv6.conf.all.accept_ra'
+      value: '0'
+    - name: 'net.ipv6.conf.all.accept_redirects'
+      value: '0'
+    - name: 'net.ipv6.conf.default.accept_ra'
+      value: '0'
+    - name: 'net.ipv6.conf.default.accept_redirects'
+      value: '0'
+    - name: 'net.ipv4.conf.default.rp_filter'
+      value: '1'
+    - name: 'net.ipv4.conf.default.secure_redirects'
+      value: '0'
+    - name: 'net.ipv4.conf.default.send_redirects'
+      value: '0'
+  when: ansible_os_family == 'Debian'
+
+
+- name: Set parameters for kernel self-protection hardening
+  ansible.posix.sysctl:
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+    sysctl_set: true
+  with_items:
+    - name: 'dev.tty.ldisc_autoload'
+      value: '0'
+    - name: 'kernel.core_uses_pid'
+      value: '1'
+    - name: 'kernel.dmesg_restrict'
+      value: '1'
+    - name: 'kernel.kptr_restrict'
+      value: '2'
+    - name: 'kernel.sysrq'
+      value: '0'
+    - name: 'kernel.unprivileged_bpf_disabled'
+      value: '1'
+    - name: 'net.core.bpf_jit_harden'
+      value: '2'
+  when: ansible_os_family == 'Debian'
+
+
+- name: Set SUID parameter for kernel hardening
+  ansible.posix.sysctl:
+    name: fs.suid_dumpable
+    value: '0'
+    sysctl_set: true
+    reload: true
+  when: ansible_os_family == 'Debian'
+
+
+- name: Set protected fifos parameter for kernel hardening
+  ansible.posix.sysctl:
+    name: fs.protected_fifos
+    value: '2'
+    sysctl_set: true
+    reload: true
+  when: ansible_os_family == 'Debian'
+
+
+- name: Blacklist unused file systems
+  community.general.kernel_blacklist:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - freevxfs
+    - hfs
+    - hfsplus
+    - jffs2
+    - squashfs
+    - udf
+
+
+- name: Blacklist unused drivers
+  community.general.kernel_blacklist:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - usb-storage
+    - wlan
+
+
+- name: Disable unused network protocols
+  ansible.builtin.lineinfile:
+    path: /etc/modprobe.d/disable_unused_network_protocols.conf
+    regexp: 'install\s*{{ item }}\s*/bin/true'
+    line: "install {{ item }} /bin/true"
+    create: true
+    mode: '0644'
+  loop:
+    - dccp
+    - sctp
+    - rds
+    - tipc
