@@ -49,6 +49,15 @@
   notify: Restart Apache webserver
 
 
+- name: Ensure config for other VHosts is present (Ubuntu)
+  ansible.builtin.template:
+    src: other-vhosts-access-log.conf.j2
+    dest: /etc/apache2/conf-available/other-vhosts-access-log.conf
+    mode: '0644'
+  notify: Restart Apache webserver
+  when: ansible_os_family == 'Debian'
+
+
 - name: Ensure autoindex.conf is absent
   ansible.builtin.file:
     path: '{{ item }}'

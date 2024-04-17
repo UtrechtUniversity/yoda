@@ -29,6 +29,8 @@ Listen {{ yoda_public_port }}
     WSGIScriptAlias /oai {{ yoda_moai_home }}/moai.wsgi
     WSGIScriptReloading On
 
+    CustomLog {{ yoda_public_apache_log_dir }}/public_access.log common
+
     <Directory {{ yoda_moai_home }}>
         AllowOverride All
         Require all granted

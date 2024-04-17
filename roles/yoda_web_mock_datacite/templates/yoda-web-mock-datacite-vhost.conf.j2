@@ -21,6 +21,8 @@
     WSGIScriptReloading On
     WSGIPassAuthorization On
 
+    CustomLog {{ yoda_web_mock_datacite_apache_log_dir }}/web_mock_datacite_access.log common
+
     # intermediate TLS configuration
     SSLEngine               on
     SSLProtocol             all -SSLv3 -TLSv1 -TLSv1.1

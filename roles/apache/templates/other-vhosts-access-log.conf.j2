@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+# Define an access log for VirtualHosts that don't define their own logfile
+CustomLog ${APACHE_LOG_DIR}/other_vhosts_access.log common
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet

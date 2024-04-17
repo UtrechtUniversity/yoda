@@ -7,5 +7,6 @@ openssl_certs_dir: '/etc/ssl/certs'
 yoda_public_site_config_dir: /etc/apache2/sites-available
 yoda_public_site_enabled_config_dir: /etc/apache2/sites-enabled
 yoda_public_site_config_file: 002-yoda-public-vhost.conf
+yoda_public_apache_log_dir: /var/log/apache2
 
 apache_service_name: apache2

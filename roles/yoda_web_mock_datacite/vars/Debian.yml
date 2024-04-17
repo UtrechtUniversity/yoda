@@ -7,3 +7,4 @@ openssl_certs_dir: '/etc/ssl/certs'
 yoda_web_mock_datacite_site_config_dir: /etc/apache2/sites-available
 yoda_web_mock_datacite_site_config_file: 010-yoda-web-mock-datacite-vhost.conf
 yoda_web_mock_datacite_site_enabled_config_dir: /etc/apache2/sites-enabled
+yoda_web_mock_datacite_apache_log_dir: /var/log/apache2
