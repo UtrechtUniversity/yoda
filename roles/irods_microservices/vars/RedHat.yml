@@ -8,7 +8,7 @@ irods_microservices_data:
     filename: irods-sudo-microservices-4.2.12_1.0.0-1.rpm
     checksum: sha256:72b6714b0ef1f24084e770efc5377a17e7bde15165c05ddb2d3a56b2de4521b9
   irods_uu_microservices:
-    package: irods-uu-microservices-4.2.12_0.8.3-1
-    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v0.8.3/irods-uu-microservices-4.2.12_0.8.3-1.rpm
-    filename: irods-uu-microservices-4.2.12_0.8.3-1.rpm
-    checksum: sha256:ef8870fdf9e02ac420a99b9aabc1cf1536158a8348bb43abf498d3ca03220e04
+    package: irods-uu-microservices-4.2.12_1.0.0
+    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v1.0.0/irods-uu-microservices-4.2.12_1.0.0-0.rpm
+    filename: irods-uu-microservices-4.2.12_1.0.0-0.rpm
+    checksum: sha256:9a98e449b54e83eaab4679702df6be4c8ce8cd8963735c59f6338a32e83e6069
