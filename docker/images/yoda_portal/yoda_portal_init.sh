@@ -22,8 +22,8 @@ function progress_update {
 }
 
 function start_service {
-  /usr/sbin/httpd -DFOREGROUND || true
-  echo "Error: httpd either terminated or would not start. Keeping container running for troubleshooting purposes."
+  apache2ctl -D FOREGROUND || true
+  echo "Error: Apache either terminated or would not start. Keeping container running for troubleshooting purposes."
   sleep infinity
 }
 
@@ -42,10 +42,10 @@ progress_update "Downloaded certificate bundle."
 before_update "Extracting certificate data"
 cd /download
 tar xvfz "${DATA_VERSION}.certbundle.tar.gz"
-install -m 0644 docker.pem /etc/pki/tls/certs/localhost.crt
-install -m 0644 docker.pem /etc/pki/tls/certs/localhost_and_chain.crt
-install -m 0644 docker.key /etc/pki/tls/private/localhost.key
-install -m 0644 dhparam.pem /etc/pki/tls/private/dhparams.pem
+install -m 0644 docker.pem /etc/ssl/certs/localhost.crt
+install -m 0644 docker.pem /etc/ssl/certs/localhost_and_chain.crt
+install -m 0644 docker.key /etc/ssl/private/localhost.key
+install -m 0644 dhparam.pem /etc/ssl/private/dhparams.pem
 progress_update "Certificate data extracted"
 
 CURRENT_UID="$(id -u yodadeployment)"
@@ -114,7 +114,7 @@ IRODS_ICAT_HOSTNAME = 'provider.yoda'
 IRODS_ICAT_PORT     = '1247'
 IRODS_DEFAULT_ZONE  = 'tempZone'
 IRODS_DEFAULT_RESC  = 'irodsResc'
-IRODS_SSL_CA_FILE   = '/etc/pki/tls/certs/localhost_and_chain.crt'
+IRODS_SSL_CA_FILE   = '/etc/ssl/certs/localhost_and_chain.crt'
 IRODS_AUTH_SCHEME   = 'PAM'
 IRODS_CLIENT_OPTIONS_FOR_SSL = {
     "irods_client_server_policy": "CS_NEG_REQUIRE",

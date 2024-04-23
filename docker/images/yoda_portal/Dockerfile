@@ -1,52 +1,52 @@
-FROM centos:7
+FROM ubuntu:20.04
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Application settings
 ARG TAG=development
 ENV YODA_PORTAL_REPO "https://github.com/UtrechtUniversity/yoda-portal.git"
 ENV YODA_PORTAL_BRANCH="$TAG"
+ENV DEBIAN_FRONTEND="noninteractive"
 
 # Network settings
 EXPOSE 80
 EXPOSE 443
 
+# Update packages
+RUN apt-get update
+
 # Install common tools
 # hadolint ignore=DL3033
-RUN yum install -y epel-release wget git && \
-    yum clean all
+RUN apt-get install -y wget git
 
 # Install Python 3
 # hadolint ignore=DL3033
-RUN yum -y install centos-release-scl gcc python-virtualenv && \
-    yum -y install --enablerepo centos-sclo-rh \
-                   rh-python38-python rh-python38-python-devel rh-python38-python-libs \
-                   rh-python38-python-pip rh-python38-python-pip-wheel  && yum clean all && \
-    ln -s /opt/rh/rh-python38/root/bin/pip3 /usr/local/bin/pip3 && \
-    ln -s /opt/rh/rh-python38/root/bin/python3 /usr/local/bin/python33 && \
-    /usr/local/bin/pip3 install virtualenv
+RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
+                       python3-wheel python3.8-venv virtualenv
 
 # Install and configure Apache
 # hadolint ignore=DL3033
-RUN yum -y install httpd httpd-devel mod_ssl openssl && yum clean all
-RUN rm /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.modules.d/00-lua.conf
-COPY httpd.conf /etc/httpd/conf/httpd.conf
-COPY ssl.conf /etc/httpd/conf.d/ssl.conf
+RUN apt-get install -y apache2 apache2-dev openssl
+RUN ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
+COPY apache2.conf /etc/apache2/apache2.conf
+COPY ssl.conf /etc/apache2/mods-available/ssl.conf
+RUN ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
 
-# Install and configure Apache ModWSGI
-RUN yum -y install  --enablerepo centos-sclo-rh rh-python38-python-mod_wsgi && yum clean all
-COPY 02-wsgi.conf /etc/httpd/conf.modules.d/02-wsgi.conf
-RUN ln -s /opt/rh/rh-python38/root/usr/lib64/python3.8/site-packages/mod_wsgi/server/mod_wsgi-py38.cpython-38-x86_64-linux-gnu.so /usr/lib64/httpd/modules/mod_wsgi.so
+# Install Apache ModWSGI
+RUN apt-get install -y libapache2-mod-wsgi-py3
 
 # Yoda Portal
-ENV C_INCLUDE_PATH /opt/rh/rh-python38/root/usr/include/python3.8
 RUN useradd yodadeployment && \
+    mkdir /home/yodadeployment && \
+    chown yodadeployment:yodadeployment /home/yodadeployment && \
     mkdir /var/www/yoda && \
     chown yodadeployment:yodadeployment /var/www/yoda && \
-    git clone --branch $YODA_PORTAL_BRANCH $YODA_PORTAL_REPO /var/www/yoda
-COPY yoda-portal-vhost.conf /etc/httpd/conf.d/yoda-portal-vhost.conf
-RUN virtualenv --python /opt/rh/rh-python38/root/bin/python3 /var/www/yoda/venv && \
-    /var/www/yoda/venv/bin/pip3 install pip==23.0.1 && \
-    /var/www/yoda/venv/bin/pip3 install -r /var/www/yoda/requirements.txt
+    git clone --branch $YODA_PORTAL_BRANCH $YODA_PORTAL_REPO /var/www/yoda && \
+    git config --global --add safe.directory /var/www/yoda
+COPY yoda-portal-vhost.conf /etc/apache2/sites-available/001-yoda-portal-vhost.conf
+RUN ln -s /etc/apache2/sites-available/001-yoda-portal-vhost.conf /etc/apache2/sites-enabled/001-yoda-portal-vhost.conf
+RUN virtualenv --python /usr/bin/python3 /var/www/yoda/venv && \
+    /var/www/yoda/venv/bin/pip3 install --no-cache-dir pip==23.0.1 && \
+    /var/www/yoda/venv/bin/pip3 install --no-cache-dir -r /var/www/yoda/requirements.txt
 
 # Make copy of data on volumes that can optionally be bind mounted, so the container init script
 # can restore it if needed.
