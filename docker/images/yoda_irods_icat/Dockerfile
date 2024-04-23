@@ -1,19 +1,22 @@
-FROM centos:7
+FROM ubuntu:20.04
 LABEL maintainer="Yoda team <yoda@uu.nl>"
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Application settings
 ARG TAG=development
-ENV IRODS_VERSION "4.2.12"
-ENV IRODS_PREP_VERSION "4.2.12.0"
-ENV IRODS_INDEX_VERSION "4.2.12.0-1"
-ENV IRODS_SUDO_MSVC_VERSION "4.2.12_1.0.0"
+ENV IRODS_VERSION "4.2.12-1~bionic"
+ENV IRODS_PREP_VERSION "4.2.12.0-1~bionic"
+ENV IRODS_INDEX_VERSION "4.2.12.0-1~bionic"
+ENV IRODS_MSVC_IRODS_VERSION "4.2.12"
+ENV IRODS_SUDO_MSVC_VERSION "1.0.0"
 ENV IRODS_UU_MSVC_VERSION "1.0.0"
 ENV IRODS_UU_MSVC_VERSION_RELEASE "0"
-ENV YUM_REPO_FILE_LOC "https://packages.irods.org/renci-irods.yum.repo"
-ENV YUM_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
+ENV APT_REPO_CONFIG="deb [arch=amd64] https://packages.irods.org/apt/ bionic main"
+ENV APT_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
 ENV YODA_RULESET_REPO "https://github.com/UtrechtUniversity/yoda-ruleset.git"
 ENV YODA_RULESET_BRANCH "$TAG"
 ENV PRE_BUILD_RULESET_DEPENDENCIES "yes"
+ENV DEBIAN_FRONTEND="noninteractive"
 
 # Network settings
 EXPOSE 1247
@@ -31,83 +34,121 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-# Install Python 3.8 (needed for jsonschema execnet)
+# Update packages
+RUN apt-get update
+
+# Install common tools
 # hadolint ignore=DL3033
-RUN yum -y install centos-release-scl gcc python-virtualenv && \
-    yum -y install --enablerepo centos-sclo-rh \
-                   rh-python38-python rh-python38-python-devel rh-python38-python-libs \
-                   rh-python38-python-pip rh-python38-python-pip-wheel  && yum clean all && \
-    ln -s /opt/rh/rh-python38/root/bin/pip3 /usr/local/bin/pip3 && \
-    ln -s /opt/rh/rh-python38/root/bin/python3 /usr/local/bin/python3 && \
-    /usr/local/bin/pip3 install virtualenv
+RUN apt-get install -y wget git sudo netcat gcc
+
+# Install Python 2.7
+RUN apt-get install -y python2 python2-dev && \
+    wget -q -O /usr/local/bin/get-pip.py https://bootstrap.pypa.io/pip/2.7/get-pip.py && \
+    /usr/bin/python2 /usr/local/bin/get-pip.py
+
+# Install Python 3.8
+# hadolint ignore=DL3033
+RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
+                       python3-wheel python3.8-venv
 
 # Upload PAM Python library
 COPY stage/pam_python.so /tmp/pam_python.so
-RUN install -m 0755 -o root -g root /tmp/pam_python.so /usr/lib64/security/pam_python.so
+RUN install -m 0755 -o root -g root /tmp/pam_python.so  /usr/lib/x86_64-linux-gnu/security/pam_python.so
 
-# Install EPEL and libZSTD for PostgreSQL 15
+# Install PostgreSQL 15 for ODBC drivers, checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033
-RUN yum install -y epel-release libzstd-devel && yum clean all
-
-# Install PostgreSQL 15 for checks whether database container is up, as well as troubleshooting
-# hadolint ignore=DL3033
-RUN yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
-    yum -y install postgresql15 postgresql15-odbc unixODBC && \
-    yum clean all
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
+RUN apt-get update
+RUN apt-get -y install postgresql-15 unixodbc python3-psycopg2 acl
 COPY odbc-settings.txt /tmp/odbc-settings.txt
 RUN odbcinst -i -d -r < /tmp/odbc-settings.txt
 
+# Install iRODS dependencies
+RUN apt-get -y install aptitude libboost-locale-dev libpython2-stdlib libpython2.7-minimal \
+          libpython2.7-stdlib \
+          python-is-python2 python-six python2 python2-minimal python2.7 python2.7-minimal \
+          python-certifi python-chardet python-idna python-pkg-resources python-setuptools \
+          python-funcsigs python-mock python-pbr libodbc1
+ENV PY_URLLIB_PREFIX="http://security.ubuntu.com/ubuntu/pool/main/p/python-urllib3"
+ENV PY_URLLIB_FILENAME="python-urllib3_1.22-1ubuntu0.18.04.2_all.deb"
+ENV PY_REQUESTS_PREFIX="http://security.ubuntu.com/ubuntu/pool/main/r/requests"
+ENV PY_REQUESTS_FILENAME="python-requests_2.18.4-2ubuntu0.1_all.deb"
+ENV OPENSSL_PREFIX="http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0"
+ENV OPENSSL_FILENAME="libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb"
+ENV PY_JSONSCHEMA_PREFIX="http://security.ubuntu.com/ubuntu/pool/main/p/python-jsonschema"
+ENV PY_JSONSCHEMA_FILENAME="python-jsonschema_2.3.0-1build1_all.deb"
+ENV PY_ODBC_PREFIX="http://security.ubuntu.com/ubuntu/pool/universe/p/pyodbc"
+ENV PY_ODBC_FILENAME="python-pyodbc_4.0.17-1_amd64.deb"
+RUN wget -q ${PY_URLLIB_PREFIX}/${PY_URLLIB_FILENAME} && \
+    wget -q ${PY_REQUESTS_PREFIX}/${PY_REQUESTS_FILENAME} && \
+    wget -q ${OPENSSL_PREFIX}/${OPENSSL_FILENAME} && \
+    wget -q ${PY_JSONSCHEMA_PREFIX}/${PY_JSONSCHEMA_FILENAME} && \
+    wget -q ${PY_ODBC_PREFIX}/${PY_ODBC_FILENAME} && \
+    dpkg -i ${PY_URLLIB_FILENAME} && \
+    dpkg -i ${PY_REQUESTS_FILENAME} && \
+    dpkg -i ${OPENSSL_FILENAME} && \
+    dpkg -i ${PY_JSONSCHEMA_FILENAME} && \
+    dpkg -i ${PY_ODBC_FILENAME} && \
+    rm ${PY_URLLIB_FILENAME} && \
+    rm ${PY_REQUESTS_FILENAME} && \
+    rm ${OPENSSL_FILENAME} && \
+    rm ${PY_JSONSCHEMA_FILENAME} && \
+    rm ${PY_ODBC_FILENAME}
+
 # Install iRODS
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-# hadolint ignore=DL3033
-RUN yum install -y wget git sudo && \
-    yum clean all && \
-    useradd -d /var/lib/irods irods && \
-    rpm --import "$YUM_IRODS_REPO_SIGNING_KEY_LOC" && \
-    yum update -y ca-certificates && \
-    wget -qO - "$YUM_REPO_FILE_LOC" | tee /etc/yum.repos.d/renci-irods.yum.repo && \
-    yum -y update && \
+# hadolint ignore=DL3033,DL3047
+RUN useradd -d /var/lib/irods irods && \
+    wget -qO - "$APT_IRODS_REPO_SIGNING_KEY_LOC" | apt-key add - && \
+    echo "$APT_REPO_CONFIG" | tee /etc/apt/sources.list.d/irods.list && \
+    apt-get update && \
     for package in irods-runtime irods-icommands irods-server irods-database-plugin-postgres; \
     do echo "Installing package ${package} and its dependencies ..."; \
-       yum -y install "$package-${IRODS_VERSION}"  && yum clean all; \
+       apt-get -y install "$package=${IRODS_VERSION}" ; \
     done && \
     for package in irods-rule-engine-plugin-indexing irods-rule-engine-plugin-elasticsearch irods-rule-engine-plugin-document-type; \
     do echo "Installing package ${package} and its dependencies ..."; \
-       yum -y install "$package-${IRODS_INDEX_VERSION}"  && yum clean all; \
+       apt-get -y install "$package=${IRODS_INDEX_VERSION}";  \
        done && \
-    yum -y install "irods-rule-engine-plugin-python-${IRODS_PREP_VERSION}"  && \
-    yum clean all && \
-    wget https://yoda.uu.nl/irods-patches/libirods_server.so.4.2.12 && \
-    install -m 0644 libirods_server.so.4.2.12 /usr/lib/libirods_server.so.4.2.12
+    apt-get -y install "irods-rule-engine-plugin-python=${IRODS_PREP_VERSION}"  && \
+    wget https://yoda.uu.nl/irods-patches/libirods_server.so.4.2.12.ubuntu2004 && \
+    install -m 0644 libirods_server.so.4.2.12.ubuntu2004 /usr/lib/libirods_server.so.4.2.12
 
-# Install iRODS microservices for Yoda and their dependencies
+# Install iRODS microservices for Yoda
 # hadolint ignore=DL3033
-RUN yum -y install boost-locale jansson libxslt libarchive && yum clean all && \
-    rpm -ivh "https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/${IRODS_SUDO_MSVC_VERSION}/irods-sudo-microservices-${IRODS_SUDO_MSVC_VERSION}-1.rpm" && \
-    rpm -ivh "https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v${IRODS_UU_MSVC_VERSION}/irods-uu-microservices-${IRODS_VERSION}_${IRODS_UU_MSVC_VERSION}-${IRODS_UU_MSVC_VERSION_RELEASE}.rpm" && \
+RUN apt-get -y install libc++1 libjansson4 && \
+    wget -q "https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/${IRODS_MSVC_IRODS_VERSION}_${IRODS_SUDO_MSVC_VERSION}/irods-sudo-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_SUDO_MSVC_VERSION}-1.deb" && \
+    dpkg -i irods-sudo-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_SUDO_MSVC_VERSION}-1.deb && \
+    rm irods-sudo-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_SUDO_MSVC_VERSION}-1.deb && \
+    wget -q "https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v${IRODS_UU_MSVC_VERSION}/irods-uu-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_UU_MSVC_VERSION}-${IRODS_UU_MSVC_VERSION_RELEASE}.deb" && \
+    dpkg -i irods-uu-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_UU_MSVC_VERSION}-${IRODS_UU_MSVC_VERSION_RELEASE}.deb && \
+    rm irods-uu-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_UU_MSVC_VERSION}-${IRODS_UU_MSVC_VERSION_RELEASE}.deb && \
     chown irods:irods /var/lib/irods
 
 # Remove default iRODS msiExecCMD files
 # hadolint ignore=DL3059
 RUN for file in irodsServerMonPerf test_execstream.py univMSSInterface.sh.template ; do rm "/var/lib/irods/msiExecCmd_bin/${file}" ; done
 
-# Install iRODS autocompletion
+# Install iRODS iCommands autocompletion
 COPY stage/irods_completion.sh /tmp/irods_completion.sh
 RUN install -m 0644 -o root -g root /tmp/irods_completion.sh /etc/profile.d/irods_completion.sh
 
 # Set up PAM authentication
 # hadolint ignore=DL3033
-RUN yum -y install gcc python-pip && \
-    yum clean all && \
-    pip --no-cache-dir install pysqlcipher3==1.0.4
+RUN pip --no-cache-dir install pysqlcipher3==1.0.4
 COPY is-user-external.sh /tmp/is-user-external.sh
 COPY external-auth.py /tmp/external-auth.py
 RUN install -m 0750 -o root -g irods /tmp/is-user-external.sh /usr/local/bin/is-user-external.sh && \
     install -m 0750 -o root -g irods /tmp/external-auth.py /usr/local/bin/external-auth.py && \
-    wget -nv https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/sqlcipher-4.5.1-0.el7.x86_64.rpm -O sqlcipher-4.5.1-0.el7.x86_64.rpm && \
-    wget -nv https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/sqlcipher-devel-4.5.1-0.el7.x86_64.rpm -O sqlcipher-devel-4.5.1-0.el7.x86_64.rpm && \
-    rpm -ivh sqlcipher-4.5.1-0.el7.x86_64.rpm && \
-    rpm -ivh sqlcipher-devel-4.5.1-0.el7.x86_64.rpm && \
+    wget -q https://yoda.uu.nl/packages-irods-4.2.12-focal/sqlcipher4.deb && \
+    dpkg -i sqlcipher4.deb && \
+    rm sqlcipher4.deb && \
+    wget -q https://yoda.uu.nl/packages-irods-4.2.12-focal/libsqlcipher4.deb && \
+    dpkg -i libsqlcipher4.deb && \
+    rm libsqlcipher4.deb && \
+    wget -q https://yoda.uu.nl/packages-irods-4.2.12-focal/libsqlcipher4-dev.deb && \
+    dpkg -i libsqlcipher4-dev.deb && \
+    rm libsqlcipher4-dev.deb && \
     chmod 04755 /usr/sbin/irodsPamAuthCheck
 COPY irods.pam /tmp/irods.pam
 RUN install -m 0644 /tmp/irods.pam /etc/pam.d/irods
@@ -124,9 +165,9 @@ RUN sudo -u irods python -m pip --no-cache-dir install --user pip==20.2.4 && \
     sudo -u irods python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
     sudo -u irods python -m pip --no-cache-dir install --user python-irodsclient==2.0.0 && \
     sudo -u irods python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt && \
-    sudo -u irods /usr/local/bin/pip3 install --user jsonschema==4.17.3 && \
-    sudo -u irods /usr/local/bin/pip3 install --user python-irodsclient==2.0.0 && \
-    sudo -u irods /usr/local/bin/pip3 install --user psutil==5.9.5
+    sudo -u irods python3 -m pip install --user jsonschema==4.17.3 && \
+    sudo -u irods python3 -m pip install --user python-irodsclient==2.0.0 && \
+    sudo -u irods python3 -m pip install --user psutil==5.9.5
 COPY core.py.template /etc/irods/core.py
 COPY core.re.template /etc/irods/core.re
 RUN for script in scheduled-copytovault.sh admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh \
@@ -178,7 +219,6 @@ RUN install -m 0755 -o irods -g irods /var/lib/irods/securecopy.sh /var/lib/irod
 
 # Install init script
 # hadolint ignore=DL3033
-RUN yum install -y nc && yum clean all
 COPY irods-icat-init.sh /var/lib/irods/scripts/irods-icat-init.sh
 RUN chmod 0755 /var/lib/irods/scripts/irods-icat-init.sh
 
