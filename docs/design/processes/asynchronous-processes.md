@@ -73,8 +73,8 @@ information for troubleshooting to the rodsLog.
 The script has a dry run mode (which can be enabled using the `-n` switch). This
 will not create any replications.
 
-If a flag data object or collection named `/ZONE/yoda/flags/stop_replication` is present, the script will stop
-processing data objects.
+If a flag named `/ZONE/yoda/flags/stop_replication` is present, the script will stop
+processing data objects. See [the page about setting job flags](../../administration/setting-job-flags.md) for more information.
 
 <a name="revision-management"/>
 
@@ -105,8 +105,8 @@ information for troubleshooting to the rodsLog.
 The script has a dry run mode (which can be enabled using the `-n` switch). This
 will not create any revisions.
 
-If a flag data object or collection named `/ZONE/yoda/flags/stop_revisions` is present, the script will stop
-processing data objects.
+If a flag named `/ZONE/yoda/flags/stop_revisions` is present, the script will stop
+processing data objects. See [the page about setting job flags](../../administration/setting-job-flags.md) for more information.
 
 <a name="revision-cleanup-job"/>
 
