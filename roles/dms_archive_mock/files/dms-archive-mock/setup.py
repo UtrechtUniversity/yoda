@@ -17,7 +17,7 @@ setup(
                       'numpy==1.19.5',
                       'typing-extensions==4.1.1',
                       'urllib3>=1.21.1,<2',
-                      'Werkzeug==3.0.1'],
+                      'Werkzeug==3.0.3'],
     entry_points='''
     [console_scripts]
     dmattr=dm_mock:dmattr

@@ -2,4 +2,4 @@ Flask==3.0.2
 requests==2.31.0
 numpy==1.19.5
 typing-extensions==4.1.1
-Werkzeug==3.0.1
+Werkzeug==3.0.3
