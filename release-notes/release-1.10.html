@@ -287,6 +287,7 @@
     
 <ul>
   <li>Support for Ubuntu 20.04 LTS</li>
+  <li>Support for multiple deposit groups</li>
 </ul>
 <h3 id="known-issues">
   
@@ -308,11 +309,47 @@
   
 </h2>
     
-<p>Upgrade is supported by Ansible (2.11.x).
-Requires Yoda external user service to be on version 1.9.x or higher.
-Requires Yoda public server to be on version 1.9.x or higher.</p>
+<p>Upgrade is supported by Ansible (2.11.x).</p>
 
-<p>(TODO: add upgrade procedure)</p>
+<p>Version constraints:</p>
+<ul>
+  <li>Requires Yoda external user service to be on version 1.9.x or higher.</li>
+  <li>Requires Yoda public server to be on version 1.9.x or higher.</li>
+</ul>
+
+<ol>
+  <li>
+    <p>Backup/copy custom configurations made to Yoda version 1.9.
+To view what files were changed from the defaults, run <code class="language-plaintext highlighter-rouge">git diff</code>.</p>
+  </li>
+  <li>
+    <p>After making sure the configurations are stored safely in another folder, reset the Yoda folder using <code class="language-plaintext highlighter-rouge">git stash</code> or when you want to delete all changes made: <code class="language-plaintext highlighter-rouge">git reset --hard</code>.</p>
+  </li>
+  <li>Checkout tag <code class="language-plaintext highlighter-rouge">v1.10.0-beta.0</code> of the Yoda Git repository.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout v1.10.0-beta.0
+</code></pre></div>    </div>
+  </li>
+  <li>Set the Yoda version to <code class="language-plaintext highlighter-rouge">v1.10.0-beta.0</code> in the configuration.
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v1.10.0-beta.0</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Install all Ansible collections needed to deploy Yoda:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-galaxy collection <span class="nb">install</span> <span class="nt">-r</span> requirements.yml
+</code></pre></div>    </div>
+  </li>
+  <li>Run the Ansible playbook in check mode.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> &lt;path-to-your-environment&gt; playbook.yml <span class="nt">--check</span>
+<span class="c">### EXAMPLE ###</span>
+ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml <span class="nt">--check</span>
+</code></pre></div>    </div>
+  </li>
+  <li>If the playbook has finished successfully in check mode, run the Ansible playbook normally.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> &lt;path-to-your-environment&gt; playbook.yml
+<span class="c">### EXAMPLE ###</span>
+ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml
+</code></pre></div>    </div>
+  </li>
+</ol>
 
           
 
