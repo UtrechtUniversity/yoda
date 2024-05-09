@@ -15,6 +15,7 @@
 - name: Ensure Ansible dependencies are installed
   ansible.builtin.package:
     name:
+      - acl
       - policycoreutils-python-utils
     state: present
 
