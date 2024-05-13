@@ -5,3 +5,7 @@ tcp_keepalive_time: 7200
 tcp_keepalive_intvl: 75
 
 commons_default_umask: "0027"
+
+common_custom_dns_enable: false
+common_custom_dns_primary: 8.8.8.8
+common_custom_dns_secondary: 8.8.4.4

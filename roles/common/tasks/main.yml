@@ -4,6 +4,10 @@
 - name: Setup hostname
   ansible.builtin.import_tasks: hostname.yml
 
+- name: Update local DNS settings
+  ansible.builtin.import_tasks: custom_dns.yml
+  when: common_use_custom_dns and ansible_os_family == 'Debian'
+
 - name: Setup EPEL repository
   ansible.builtin.import_tasks: epel.yml
   when: ansible_os_family == 'RedHat'
