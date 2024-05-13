@@ -131,6 +131,9 @@ ansible_ssh_private_key_file | Path to private key file of administrative user
 repo_only                    | Only download packages from repos
 centos_extras_repository     | Name of the CentOS extras repository
 centos_sclo_rh_repository    | Name of the CentOS SCLO-RH repository
+common_custom_dns_enable     | Set custom DNS servers (default: false, only supported only on Ubuntu)
+common_custom_dns_primary    | Primary custom DNS server (default: Google DNS servers, only supported on Ubuntu)
+common_custom_dns_secondary  | Secondary custom DNS server (default: Google DNS servers, only supported on Ubuntu)
 
 Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars).
 
