@@ -6,7 +6,7 @@
 
 - name: Update local DNS settings
   ansible.builtin.import_tasks: custom_dns.yml
-  when: common_use_custom_dns and ansible_os_family == 'Debian'
+  when: common_custom_dns_enable and ansible_os_family == 'Debian'
 
 - name: Setup EPEL repository
   ansible.builtin.import_tasks: epel.yml
