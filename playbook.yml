@@ -131,9 +131,9 @@
     - role: icat_database_checker
       when: enable_icat_database_checker
     - role: dms_archive_mock
-      when: (enable_tape_archive or enable_data_package_archive) and yoda_environment == "development"
+      when: enable_data_package_archive and yoda_environment == "development"
     - role: dms_tape_archive
-      when: (enable_tape_archive or enable_data_package_archive) and yoda_environment != "development"
+      when: enable_data_package_archive and yoda_environment != "development"
     - role: yoda_web_mock_datacite
       when: yoda_environment == "development"
     - role: yoda_web_mock_sram

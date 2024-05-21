@@ -1,7 +1,6 @@
 ---
 # copyright Utrecht University
 
-enable_tape_archive: false
 enable_data_package_archive: false
 
 systemd_dir: /etc/systemd/system
