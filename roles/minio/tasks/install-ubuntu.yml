@@ -4,6 +4,7 @@
 - name: Include OS-specific variables
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
+
 - name: Download MinIO package
   ansible.builtin.get_url:
     url: '{{ minio_deb_url }}'
