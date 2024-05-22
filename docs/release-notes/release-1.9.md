@@ -39,7 +39,7 @@ Released: February 2024
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python [irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54)
 
 ## Upgrading from previous release
-The playbook requires Ansible 2.11.x or higher.
+The playbook requires Ansible 2.11.x or higher. Ansible 2.17.0 and higher is not yet supported.
 
 Version constraints:
 * Requires Yoda external user service to be on version 1.9.x or higher.
