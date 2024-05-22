@@ -50,14 +50,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After making sure the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Checkout tag `v1.9.1` of the Yoda Git repository.
+3. Checkout tag `v1.9.2` of the Yoda Git repository.
 ```bash
-git checkout v1.9.1
+git checkout v1.9.2
 ```
 
-4. Set the Yoda version to `v1.9.1` in the configuration.
+4. Set the Yoda version to `v1.9.2` in the configuration.
 ```yaml
-yoda_version: v1.9.1
+yoda_version: v1.9.2
 ```
 
 5. Change the default schema from `default-2` to `default-3` in the configuration.
