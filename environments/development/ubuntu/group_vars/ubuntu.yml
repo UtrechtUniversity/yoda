@@ -195,12 +195,6 @@ datacite_tls_verify: 0                         # DataCite TLS verification / dis
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
 epic_handle_prefix: PLACEHOLDER    # EPIC PID prefix
 
-# PAM Radius configuration
-# server, shared secret, timeout (s)
-pam_radius_config: |
-  127.0.0.1     secret         1
-  other-server  other-secret   3
-
 # Zabbix configuration
 zabbix_server: PLACEHOLDER
 

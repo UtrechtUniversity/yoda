@@ -410,7 +410,6 @@ token_database_password       | Token database password
 token_length                  | Length of data access tokens
 token_lifetime                | Lifetime of data access tokens (in hours)
 token_expiration_notification | Send notification before token expiration (in hours)
-enable_radius_fallback        | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
 
 ### Data Package Archive configuration
 

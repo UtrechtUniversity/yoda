@@ -111,7 +111,7 @@ e-mail address as their username.
 
 ### Authentication
 External users will authenticate to iRODS using PAM. A PAM rule must be
-added (after `pam_unix` and `pam_radius_auth`) that will authenticate
+added (after `pam_unix`) that will authenticate
 against the external user database.
 
 The PAM `succeed_if` module must be used in combination with "skip"
