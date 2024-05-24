@@ -303,10 +303,10 @@ This page explains how to run them locally.</p>
 The test suites can be found in the <code class="language-plaintext highlighter-rouge">unit-tests</code> subdirectory of the ruleset. Run them using Python 2.7. Example:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>unit-tests
-<span class="nv">$ </span>python <span class="nt">-m</span> unittest unit_tests
-.................
+<span class="nv">$ </span>python2 <span class="nt">-m</span> unittest unit_tests
+.............................................
 <span class="nt">----------------------------------------------------------------------</span>
-Ran 17 tests <span class="k">in </span>0.001s
+Ran 45 tests <span class="k">in </span>0.021s
 
 OK
 </code></pre></div></div>
@@ -365,12 +365,11 @@ The test suites can be found in the <code class="language-plaintext highlighter-
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>unit-tests
 <span class="nv">$ </span>python3 <span class="nt">-m</span> unittest
-<span class="nb">.</span>
+......
 <span class="nt">----------------------------------------------------------------------</span>
-Ran 1 <span class="nb">test </span><span class="k">in </span>0.000s
+Ran 6 tests <span class="k">in </span>0.001s
 
 OK
-
 </code></pre></div></div>
 <h1 id="running-external-user-service-unit-and-integration-tests">
   

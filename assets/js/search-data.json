@@ -1842,7 +1842,7 @@
   },"263": {
     "doc": "Running unit and integration tests",
     "title": "Running ruleset unit tests",
-    "content": "The ruleset uses the unittest framework for the unit tests. The test suites can be found in the unit-tests subdirectory of the ruleset. Run them using Python 2.7. Example: . $ cd unit-tests $ python -m unittest unit_tests ................. ---------------------------------------------------------------------- Ran 17 tests in 0.001s OK . ",
+    "content": "The ruleset uses the unittest framework for the unit tests. The test suites can be found in the unit-tests subdirectory of the ruleset. Run them using Python 2.7. Example: . $ cd unit-tests $ python2 -m unittest unit_tests ............................................. ---------------------------------------------------------------------- Ran 45 tests in 0.021s OK . ",
     "url": "/yoda/development/running-unit-integration-tests.html#running-ruleset-unit-tests",
     
     "relUrl": "/development/running-unit-integration-tests.html#running-ruleset-unit-tests"
@@ -1856,7 +1856,7 @@
   },"265": {
     "doc": "Running unit and integration tests",
     "title": "Running Yoda portal unit tests",
-    "content": "The Yoda portal uses the unittest framework for the unit tests. The test suites can be found in the unit-tests subdirectory of the portal repository. Run them using Python 3: . $ cd unit-tests $ python3 -m unittest . ---------------------------------------------------------------------- Ran 1 test in 0.000s OK . ",
+    "content": "The Yoda portal uses the unittest framework for the unit tests. The test suites can be found in the unit-tests subdirectory of the portal repository. Run them using Python 3: . $ cd unit-tests $ python3 -m unittest ...... ---------------------------------------------------------------------- Ran 6 tests in 0.001s OK . ",
     "url": "/yoda/development/running-unit-integration-tests.html#running-yoda-portal-unit-tests",
     
     "relUrl": "/development/running-unit-integration-tests.html#running-yoda-portal-unit-tests"
