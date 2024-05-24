@@ -16,10 +16,10 @@ The test suites can be found in the `unit-tests` subdirectory of the ruleset. Ru
 
 ```bash
 $ cd unit-tests
-$ python -m unittest unit_tests
-.................
+$ python2 -m unittest unit_tests
+.............................................
 ----------------------------------------------------------------------
-Ran 17 tests in 0.001s
+Ran 45 tests in 0.021s
 
 OK
 ```
@@ -68,12 +68,11 @@ The test suites can be found in the `unit-tests` subdirectory of the portal repo
 ```bash
 $ cd unit-tests
 $ python3 -m unittest
-.
+......
 ----------------------------------------------------------------------
-Ran 1 test in 0.000s
+Ran 6 tests in 0.001s
 
 OK
-
 ```
 
 # Running external user service unit and integration tests
