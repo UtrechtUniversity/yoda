@@ -6,6 +6,7 @@ has_children: true
 has_toc: false
 ---
 # Development
+- [Overview of repositories](overview-repositories.md)
 - [Setting up development environment](setting-up-development-environment.md)
 - [Running Yoda using Docker Compose](docker-setup.md)
 - [Running API and UI tests](running-api-ui-tests.md)
