@@ -45,4 +45,5 @@
       - tmux
       - rsync
       - jq
+      - curl
     state: present
