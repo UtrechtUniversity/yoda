@@ -70,4 +70,4 @@ The datamanager is allowed to use the sudo microservice msiSudoObjAclSet to gran
 allowed to do is set permissions starting from the root of a vault package to read for the research group with the same basename as the vault.
 
 ## No datamanager
-When there is no datamanager is present the permissions can only be managed by the rodsadmin. Read-only for the research group by default could be implemented.
+When there is no datamanager present the permissions can only be managed by the rodsadmin. Read-only for the research group by default could be implemented.
