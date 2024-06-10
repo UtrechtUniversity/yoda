@@ -57,7 +57,7 @@ submission.
 
 ## Copy to vault
 The **copy-accepted-folders-to-vault.r** cronjob in the tools directory of the research ruleset will copy any folder in 'ACCEPTED' state to the vault and set it to
-'SECURED' state when successful. The copy is done recursively using the uuTreeWalk rule starting from the the 'ACCEPTED' folder. The metadata will be copied as well.
+'SECURED' state when successful. The copy uses `irsync` starting from the the 'ACCEPTED' folder. The metadata will be copied as well. The **retry-copy-to-vault.r** cronjob follows the same process, only with folders that have previously failed to copy and thus have a 'RETRY' status.
 
 ## Research vault
 For each research group a vault group with a vault collection is created. Only the rodsadmin will be a member. This folder is read-only for managers
