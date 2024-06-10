@@ -69,6 +69,9 @@ async_replication_max_rss      = '{{ async_replication_max_rss }}'
 async_revision_delay_time      = '{{ async_revision_delay_time }}'
 async_revision_max_rss         = '{{ async_revision_max_rss }}'
 
+copy_backoff_time              = '{{ copy_backoff_time }}'
+copy_max_retries               = '{{ copy_max_retries }}'
+
 enable_inactivity_notification = '{{ ["false", "true"][enable_inactivity_notification|int] }}'
 {% if enable_inactivity_notification %}
 inactivity_cutoff_months       = '{{ inactivity_cutoff_months }}'

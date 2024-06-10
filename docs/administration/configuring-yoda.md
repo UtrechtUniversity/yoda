@@ -263,6 +263,13 @@ async_revision_max_rss         | Limit the memory usage (in bytes) of a revision
 enable_revision_cleanup        | Enable revision cleanup job (true/false, default: true)
 revision_cleanup_verbose_mode  | Print extra information in revision cleanup job for troubleshooting (true/false, default: false)
 
+### Copy to vault configuration
+
+Variable          | Description
+------------------|---------------------------------------------
+copy_backoff_time | How many seconds to wait before trying to copy a certain folder to vault again (default: 300 = 5 minutes)
+copy_max_retries  | How many times to retry copy to vault on particular folder before failing and sending notification (default: 5)
+
 ### Deposit module configuration
 
 Variable                     | Description
