@@ -106,6 +106,8 @@ arb_exempt_resources           = '{{ irods_arb_exempt_resources }}'
 arb_min_gb_free                = '{{ irods_arb_min_gb_free }}'
 arb_min_percent_free           = '{{ irods_arb_min_percent_free }}'
 
+remote_anonymous_access        = '{{ irods_anonymous_account_permit_addresses | join (" ") }}'
+
 text_file_extensions           = '{{ text_file_extensions | join (" ") }}'
 vault_copy_multithread_enabled = '{{ ["false", "true"][yoda_rulesets_vault_copy_multithread_enabled|int] }}'
 notifications_enabled          = '{{ ["false", "true"][send_notifications|int] }}'
