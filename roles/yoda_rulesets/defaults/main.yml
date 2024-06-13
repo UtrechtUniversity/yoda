@@ -40,10 +40,6 @@ async_revision_max_rss: 1000000000 # Limit the memory usage of a revision job
 enable_revision_cleanup: true      # Enable revision cleanup job (true/false)
 revision_cleanup_verbose_mode: false # Print extra information in revision cleanup job for troubleshooting (true/false)
 
-# Copy to vault configuration
-copy_backoff_time: 300           # How many seconds to wait before trying to copy a certain folder to vault again
-copy_max_retries: 5              # How many times to retry copy to vault on particular folder before failing and sending notification
-
 # Research module specific configuration.
 default_yoda_schema: default-3   # Default Yoda metadata scheme: core-2 or default-3
 yoda_instance: "{{ instance }}"
@@ -213,3 +209,7 @@ text_file_extensions: ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'fort
 
 # Number of threads for msiDataObjCopy
 yoda_rulesets_vault_copy_multithread_enabled: true
+
+# Copy to vault configuration
+vault_copy_backoff_time: 300           # How many seconds to wait before trying to copy a certain folder to vault again
+vault_copy_max_retries: 5              # How many times to retry copy to vault on particular folder before failing and sending notification
