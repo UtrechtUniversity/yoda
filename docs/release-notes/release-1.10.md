@@ -22,6 +22,10 @@ Version constraints:
 * Requires Yoda external user service to be on version 1.9.x or higher.
 * Requires Yoda public server to be on version 1.9.x or higher.
 
+Configuration changes:
+* Yoda 1.10 blocks remote access to the anonymous account via the iRODS protocol by default. If you run DavRODS on a different server from the provider, you need to add
+  its network address to the `irods_anonymous_account_permit_addresses` configuration parameter.
+
 1. Backup/copy custom configurations made to Yoda version 1.9.
 To view what files were changed from the defaults, run `git diff`.
 
