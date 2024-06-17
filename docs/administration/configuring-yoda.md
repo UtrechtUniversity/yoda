@@ -198,6 +198,7 @@ irods_rum_job_minute                 | Time to run RUM job - minute (default: 0)
 irods_enable_gocommands              | Whether to install the GoCommands CLI (disabled by default)
 irods_gocommands_version             | GoCommands version
 irods_gocommands_archive_checksum    | MD5 checksum of the GoCommands archive for the version to be installed
+irods_anonymous_account_permit_addresses  | List of network addresses that can log in on the anonymous account using the iRODS protocol. Localhost (127.0.0.1) is always allowed.
 
 ### S3 configuration - for iRODS S3 resource plugin and s3cmd utilities
 
