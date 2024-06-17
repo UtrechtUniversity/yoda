@@ -318,6 +318,12 @@
   <li>Requires Yoda public server to be on version 1.9.x or higher.</li>
 </ul>
 
+<p>Configuration changes:</p>
+<ul>
+  <li>Yoda 1.10 blocks remote access to the anonymous account via the iRODS protocol by default. If you run DavRODS on a different server from the provider, you need to add
+its network address to the <code class="language-plaintext highlighter-rouge">irods_anonymous_account_permit_addresses</code> configuration parameter.</li>
+</ul>
+
 <ol>
   <li>
     <p>Backup/copy custom configurations made to Yoda version 1.9.
