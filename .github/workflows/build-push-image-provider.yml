@@ -46,7 +46,7 @@ jobs:
         ./stage-uploads.sh
 
     - name: Build and push Docker image
-      uses: docker/build-push-action@v5
+      uses: docker/build-push-action@v6
       with:
         context: yoda/docker/images/yoda_irods_icat
         file: yoda/docker/images/yoda_irods_icat/Dockerfile
