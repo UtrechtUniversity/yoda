@@ -295,7 +295,7 @@ Each step has a rule with the configuration and state as arguments.
 Temporary collection will be rods owned and located at <code class="language-plaintext highlighter-rouge">UUSYSTEMCOLLECTION/publish</code>.</p>
 
 <p><strong>Versioning</strong>
-DOI versioning will be introduced in Yoda v1.9. 
+DOI versioning was introduced in Yoda v1.9. 
 With the publication of first version of the data package, version DOI is registered by the publication process.
 When the data package is published for the second time, a new version DOI and base DOI is registered. The previous version of the data package is updated with the same base DOI so that the versions are linked.</p>
 
@@ -322,7 +322,7 @@ When the data package is published for the second time, a new version DOI and ba
 <p><strong>Step 2:</strong> Generate Yoda DOI</p>
 <ul>
   <li>Generate Random ID</li>
-  <li>set random ID in state</li>
+  <li>Set random ID in state</li>
   <li>Add prefixes</li>
   <li>Set Yoda DOI</li>
 </ul>
@@ -369,7 +369,7 @@ When the data package is published for the second time, a new version DOI and ba
 <ul>
   <li>Retrieve DataCite url and DataCite credentials from credentials store</li>
   <li>API request to metadata endpoint with DataCite JSON</li>
-  <li>put result in state</li>
+  <li>Put result in state</li>
   <li>On request failure:
     <ul>
       <li>Flag package for retry</li>
@@ -440,7 +440,7 @@ When the data package is published for the second time, a new version DOI and ba
 
 <p><img src="/yoda/design/processes/img/publication-process.png" alt="Publication process" /></p>
 
-<p>Further detailed diagram for each step is as follow:
+<p>Further detailed diagram for each step is as follows:
 <img src="/yoda/design/processes/img/version-publication-process.png" alt="Versioned Publication process" /></p>
 <h1 id="depublication-process">
   

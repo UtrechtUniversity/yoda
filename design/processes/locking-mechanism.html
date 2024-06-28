@@ -323,7 +323,7 @@ users from putting new files into a locked collection the files are removed in t
 This rule should not be directly run, but triggered from folder status transitions.
 Please refer to the folder status design document for details on which transition should lock the folder.
 The rules in iiFolderStatusTransitions.r called by the front-end to initiate a status change will attempt a metadata change on the <code class="language-plaintext highlighter-rouge">org_status</code> attribute.
-This will trigger an metadata PEP, which will run the lock change when the current user is allowed to.
+This will trigger a metadata PEP, which will run the lock change when the current user is allowed to.
 Every folder status transition is checked for preconditions by the iiCanModifyFolderStatus rule in iiPolicyChecks.r.</p>
 
 <p>When the locking fails, the modification of the <code class="language-plaintext highlighter-rouge">org_status</code> change will be interrupted by calling msiOprDisallowed.

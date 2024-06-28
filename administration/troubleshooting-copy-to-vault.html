@@ -289,11 +289,16 @@
     
 
 <p>After a data manager approves a data package for archiving in the vault, the
-<code class="language-plaintext highlighter-rouge">retry-copy-to-vault.r</code> cronjob asynchronously archives the data package.
+<code class="language-plaintext highlighter-rouge">copy-one-coll-to-vault.r</code> script asynchronously archives the data package.
 This involves copying its data from the research collection to the vault
-collection, among other things. By default, this process happens automatically.
+collection, among other things. When the script fails to archive a data package
+part way, the copy to vault cronjob status is set to <code class="language-plaintext highlighter-rouge">RETRY</code>. At a later time
+the <code class="language-plaintext highlighter-rouge">retry-copy-to-vault.r</code> cronjob is run to try to finish archiving all data
+packages that are in status <code class="language-plaintext highlighter-rouge">PENDING</code> or <code class="language-plaintext highlighter-rouge">RETRY</code>. By default, this whole process happens automatically.
 Please consult <a href="/yoda/design/processes/vault-process.html">the vault process design documentation</a>
 for more details.</p>
+
+<p>Note that in Yoda versions 1.9 and older the process is slightly different. The script <code class="language-plaintext highlighter-rouge">copy-accepted-folders-to-vault.r</code> asynchronously archives the data package, and if the archival fails in certain situations the status is set to <code class="language-plaintext highlighter-rouge">RETRY</code>. The <code class="language-plaintext highlighter-rouge">retry-copy-to-vault.r</code> cronjob runs periodically to try to archive any data packages with such a <code class="language-plaintext highlighter-rouge">RETRY</code> status.</p>
 
 <p>This page contains an explanation of how to troubleshoot the process if something
 goes wrong.</p>
@@ -334,8 +339,8 @@ or published. In such cases, no technical troubleshooting is needed.</p>
 
 <p>If the data package has been approved for archiving in the vault (status <code class="language-plaintext highlighter-rouge">ACCEPTED</code>),
 first see if the cause of the problem can be found in the rodsLog files. Find the
-<code class="language-plaintext highlighter-rouge">iiCopyFolderToVault</code> message for the data package in the rodsLog. Then grep for other
-messages by the same pid on the same day, and look for error messages.</p>
+<code class="language-plaintext highlighter-rouge">copy_to_vault</code> or <code class="language-plaintext highlighter-rouge">folder_secure</code> message for the data package in the rodsLog.
+In Yoda versions 1.9 or lower look for the message <code class="language-plaintext highlighter-rouge">iiCopyFolderToVault</code>. Then grep for other messages by the same pid on the same day, and look for error messages.</p>
 
 <p>Possible causes include:</p>
 <ul>
