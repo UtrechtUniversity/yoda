@@ -30,7 +30,7 @@ The locks are set and removed with the iiFolderLockChange rule in the iiFolderSt
 This rule should not be directly run, but triggered from folder status transitions.
 Please refer to the folder status design document for details on which transition should lock the folder.
 The rules in iiFolderStatusTransitions.r called by the front-end to initiate a status change will attempt a metadata change on the `org_status` attribute.
-This will trigger an metadata PEP, which will run the lock change when the current user is allowed to.
+This will trigger a metadata PEP, which will run the lock change when the current user is allowed to.
 Every folder status transition is checked for preconditions by the iiCanModifyFolderStatus rule in iiPolicyChecks.r.
 
 When the locking fails, the modification of the `org_status` change will be interrupted by calling msiOprDisallowed.
