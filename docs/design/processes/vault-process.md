@@ -56,8 +56,7 @@ A research group without a datamanager can submit packages to the vault directly
 submission.
 
 ## Copy to vault
-The **copy-accepted-folders-to-vault.r** cronjob in the tools directory of the research ruleset will copy any folder in 'ACCEPTED' state to the vault and set it to
-'SECURED' state when successful. The copy uses `irsync` starting from the the 'ACCEPTED' folder. The metadata will be copied as well. The **retry-copy-to-vault.r** cronjob follows the same process, only with folders that have previously failed to copy and thus have a 'RETRY' status.
+The **retry-copy-to-vault.r** cronjob in the tools directory of the research ruleset will copy any folder with a 'PENDING' or 'RETRY' cronjob copy state to the vault and set it to 'SECURED' state when successful. In Yoda versions 1.9 or lower this is only done with folders with a 'RETRY' state. The copy uses `irsync` in versions 1.10 and higher. The metadata is copied as well. Folders with 'RETRY' status have previously failed to copy.
 
 ## Research vault
 For each research group a vault group with a vault collection is created. Only the rodsadmin will be a member. This folder is read-only for managers

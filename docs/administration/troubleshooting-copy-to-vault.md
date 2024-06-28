@@ -6,11 +6,16 @@ nav_order: 16
 # Troubleshooting data package archival in the vault
 
 After a data manager approves a data package for archiving in the vault, the
-`retry-copy-to-vault.r` cronjob asynchronously archives the data package.
+`copy-one-coll-to-vault.r` script asynchronously archives the data package.
 This involves copying its data from the research collection to the vault
-collection, among other things. By default, this process happens automatically.
+collection, among other things. When the script fails to archive a data package
+part way, the copy to vault cronjob status is set to `RETRY`. At a later time
+the `retry-copy-to-vault.r` cronjob is run to try to finish archiving all data
+packages that are in status `PENDING` or `RETRY`. By default, this whole process happens automatically.
 Please consult [the vault process design documentation](../design/processes/vault-process.md)
 for more details.
+
+Note that in Yoda versions 1.9 and older the process is slightly different. The script `copy-accepted-folders-to-vault.r` asynchronously archives the data package, and if the archival fails in certain situations the status is set to `RETRY`. The `retry-copy-to-vault.r` cronjob runs periodically to try to archive any data packages with such a `RETRY` status.
 
 This page contains an explanation of how to troubleshoot the process if something
 goes wrong.
@@ -40,8 +45,8 @@ or published. In such cases, no technical troubleshooting is needed.
 
 If the data package has been approved for archiving in the vault (status `ACCEPTED`),
 first see if the cause of the problem can be found in the rodsLog files. Find the
-`iiCopyFolderToVault` message for the data package in the rodsLog. Then grep for other
-messages by the same pid on the same day, and look for error messages.
+`copy_to_vault` or `folder_secure` message for the data package in the rodsLog.
+In Yoda versions 1.9 or lower look for the message `iiCopyFolderToVault`. Then grep for other messages by the same pid on the same day, and look for error messages.
 
 Possible causes include:
 - An issue with one of the source data objects in the research collection results in a failure
