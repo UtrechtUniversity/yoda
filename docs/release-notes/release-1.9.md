@@ -50,14 +50,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After making sure the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Checkout tag `v1.9.2` of the Yoda Git repository.
+3. Checkout tag `v1.9.3` of the Yoda Git repository.
 ```bash
-git checkout v1.9.2
+git checkout v1.9.3
 ```
 
-4. Set the Yoda version to `v1.9.2` in the configuration.
+4. Set the Yoda version to `v1.9.3` in the configuration.
 ```yaml
-yoda_version: v1.9.2
+yoda_version: v1.9.3
 ```
 
 5. Change the default schema from `default-2` to `default-3` in the configuration.
@@ -80,7 +80,9 @@ metadata_schemas:
     active: true
 ```
 
-7. If you use the External User Service (EUS): some EUS parameters have changed from Yoda 1.8 to 1.9. Yoda 1.9 performs server certificate validation of requests from the provider to the EUS server by default. This can be disabled by setting `eus_api_tls_verify` to `false`. For some SMTP parameters, EUS uses joint parameters with the provider in Yoda 1.9. Please see the [configuration guide](../administration/configuring-yoda.md) for more information.
+7. Yoda version 1.9 restricts access to the anonymous account. If you run DavRODS on a separate server from the provider, you need to configure Yoda to permit access to the anonymous account from the DavRODS server using the new irods_anonymous_account_permit_addresses [configuration](../administration/configuring-yoda.md) parameter.
+
+8. If you use the External User Service (EUS): some EUS parameters have changed from Yoda 1.8 to 1.9. Yoda 1.9 performs server certificate validation of requests from the provider to the EUS server by default. This can be disabled by setting `eus_api_tls_verify` to `false`. For some SMTP parameters, EUS uses joint parameters with the provider in Yoda 1.9. Please see the [configuration guide](../administration/configuring-yoda.md) for more information.
 ```
 | Old parameter (1.8) | New parameter  | Notes                                |
 |---------------------|----------------|--------------------------------------|
@@ -90,25 +92,25 @@ metadata_schemas:
 | eus_smtp_security   | smtp_server    | New format. e.g. smtp://localhost:25 |
 ```
 
-8. Unless your Yoda environment has already been upgraded to PostgreSQL 15, you should upgrade PostgreSQL during or immediately after the Yoda upgrade. Please consult [the PostgreSQL upgrade information page](../administration/upgrading-postgresql.md) for information about how to perform the upgrade. Example configuration:
+9. Unless your Yoda environment has already been upgraded to PostgreSQL 15, you should upgrade PostgreSQL during or immediately after the Yoda upgrade. Please consult [the PostgreSQL upgrade information page](../administration/upgrading-postgresql.md) for information about how to perform the upgrade. Example configuration:
 ```yaml
 postgresql_perform_db_upgrade: true
 postgresql_remove_old_data_after_upgrade: false
 ```
 
-9. Install all Ansible collections needed to deploy Yoda:
+10. Install all Ansible collections needed to deploy Yoda:
 ```bash
 ansible-galaxy collection install -r requirements.yml
 ```
 
-10. Run the Ansible playbook in check mode.
+11. Run the Ansible playbook in check mode.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-11. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
+12. If the playbook has finished successfully in check mode, run the Ansible playbook normally.
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
