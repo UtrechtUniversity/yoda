@@ -94,7 +94,6 @@ test_group_users:
   - {groupName: priv-group-add, user: functionaladmingroup,           role: manager}
 
   - {groupName: priv-admin, user: functionaladminpriv,               role: manager}
-  - {groupName: priv-category-add, user: functionaladmincategory,           role: manager}
 
   - {groupName: research-initial, user: viewer,                        role: reader}
   - {groupName: research-initial, user: researcher,                    role: normal}
