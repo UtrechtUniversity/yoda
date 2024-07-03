@@ -14,7 +14,7 @@
   become: true
   ansible.builtin.command: 'iadmin lg'
   register: priv_groups
-  changed_when: priv_groups.stdout.find('priv-group-add') == -1
+  changed_when: priv_groups.stdout.find('priv-admin') == -1
   check_mode: false
 
 
@@ -23,7 +23,7 @@
   become: true
   ansible.builtin.command: # noqa no-changed-when
     cmd: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
-  when: priv_groups.stdout.find('priv-group-add') == -1
+  when: priv_groups.stdout.find('priv-admin') == -1
 
 
 - name: Find out which system collections are present
