@@ -10,7 +10,7 @@ irods_microservices_data:
     checksum: sha256:508cf7284353b832a95e4f818760bf631456607feb5946af0297e849207fdfb4
   irods_uu_microservices:
     package: irods-uu-microservices
-    version: 4.2.12_1.0.0-0
-    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v1.0.0/irods-uu-microservices-4.2.12-1.0.0-0.deb
-    filename: irods-uu-microservices-4.2.12-1.0.0-0.deb
-    checksum: sha256:21a636fdc4ff27aef4ba0e6f48c05e5dfc53891a47ce99e9740ad500c08b8787
+    version: 4.2.12_1.1.1-0
+    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v1.1.1/irods-uu-microservices-4.2.12-1.1.1-0.deb
+    filename: irods-uu-microservices-4.2.12-1.1.1-0.deb
+    checksum: sha256:a4891b51a6d9f89e9d625a9ec10ee58a59c5ecf80368f71eb2765b53ffb5e384
