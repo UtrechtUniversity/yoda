@@ -171,6 +171,7 @@ irods_repl_resc:
   - irodsRescReplS3
 
 async_replication_delay_time: 3600     # Delay after last modification to data object before replication job can process it (sec)
+vault_copy_backoff_time: 300           # How many seconds to wait before trying to copy a certain folder to vault again
 
 # Automatic resource balancing configuration
 irods_arb_enabled: true

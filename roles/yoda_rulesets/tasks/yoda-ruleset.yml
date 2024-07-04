@@ -388,9 +388,10 @@
 - name: Configure cronjob to retry copy-to-vault
   become_user: "{{ irods_service_account }}"
   become: true
+  # offset from the time revisions and replications are run
   ansible.builtin.cron:
     name: 'retry-copy-to-vault.r'
-    minute: '*'
+    minute: '2-59/5'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r >/dev/null 2>&1'
 
 

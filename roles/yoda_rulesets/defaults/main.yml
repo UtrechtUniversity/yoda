@@ -213,5 +213,5 @@ text_file_extensions: ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'fort
 yoda_rulesets_vault_copy_multithread_enabled: true
 
 # Copy to vault configuration
-vault_copy_backoff_time: 300           # How many seconds to wait before trying to copy a certain folder to vault again
+vault_copy_backoff_time: 900           # How many seconds to wait before trying to copy a certain folder to vault again
 vault_copy_max_retries: 5              # How many times to retry copy to vault on particular folder before failing and sending notification
