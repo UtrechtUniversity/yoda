@@ -148,6 +148,8 @@ resource_vault: irodsRescS3
 # Replication configuration
 enable_async_replication: 0            # Enable asynchronous replication: yes (1) or no (0)
 
+vault_copy_backoff_time: 300           # How many seconds to wait before trying to copy a certain folder to vault again
+
 # S3 configuration
 enable_s3_resource: true
 s3_access_key: minioadmin
