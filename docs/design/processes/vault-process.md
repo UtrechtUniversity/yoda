@@ -58,6 +58,8 @@ submission.
 ## Copy to vault
 The **retry-copy-to-vault.r** cronjob in the tools directory of the research ruleset will copy any folder with a 'PENDING' or 'RETRY' cronjob copy state to the vault and set it to 'SECURED' state when successful. In Yoda versions 1.9 or lower this is only done with folders with a 'RETRY' state. The copy uses `irsync` in versions 1.10 and higher. The metadata is copied as well. Folders with 'RETRY' status have previously failed to copy.
 
+See [Copy to vault diagrams](copy-to-vault-diagrams.md) for diagrams of the copy to vault process.
+
 ## Research vault
 For each research group a vault group with a vault collection is created. Only the rodsadmin will be a member. This folder is read-only for managers
 and normal users of the research group. When a datamanager group for the category is present it will get read-only access as well. Inheritance is
