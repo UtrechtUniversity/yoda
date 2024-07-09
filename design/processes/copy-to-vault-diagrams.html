@@ -15,8 +15,8 @@
   
 
 .site-nav > ul.nav-list:first-child > li > a,
-.site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(10)) > a,
-.site-nav > ul.nav-list:first-child > li > ul > li > ul > li > a {
+.site-nav > ul.nav-list:first-child > li > ul > li > a,
+.site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(4)) > a {
   background-image: none;
 }
 
@@ -25,14 +25,14 @@
   background-image: none;
 }
 
-.site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(10) > a {
+.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(4) > ul > li:nth-child(4) > a {
   font-weight: 600;
   text-decoration: none;
-}.site-nav > ul.nav-list:first-child > li:nth-child(4) > button svg,
-.site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(10) > button svg {
+}.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
+.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(4) > button svg {
   transform: rotate(-90deg);
-}.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list,
-.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list > li.nav-list-item:nth-child(10) > ul.nav-list {
+}.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list,
+.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(4) > ul.nav-list {
   display: block;
 }
   </style>
@@ -54,18 +54,18 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Installing datarequest module | Yoda</title>
+<title>Copy to vault diagrams | Yoda</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Installing datarequest module" />
+<meta property="og:title" content="Copy to vault diagrams" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:site_name" content="Yoda" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Installing datarequest module" />
+<meta property="twitter:title" content="Copy to vault diagrams" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Installing datarequest module","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/administration/installing-datarequest-module.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Copy to vault diagrams","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/design/processes/copy-to-vault-diagrams.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -274,120 +274,27 @@
     <div class="main-content-wrap">
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
-    <li class="breadcrumb-nav-list-item"><a href="/yoda/administration/">Administration Tasks</a></li>
-    <li class="breadcrumb-nav-list-item"><span>Installing datarequest module</span></li>
+    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/">Software Design</a></li>
+    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/processes/">Processes</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Copy to vault diagrams</span></li>
   </ol>
 </nav>
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="installing-datarequest-module">
+            <h1 id="copy-to-vault-diagrams">
   
   
-    <a href="#installing-datarequest-module" class="anchor-heading" aria-labelledby="installing-datarequest-module"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Installing datarequest module
+    <a href="#copy-to-vault-diagrams" class="anchor-heading" aria-labelledby="copy-to-vault-diagrams"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Copy to vault diagrams
   
   
 </h1>
     
-<h2 id="before-deployment-using-ansible">
-  
-  
-    <a href="#before-deployment-using-ansible" class="anchor-heading" aria-labelledby="before-deployment-using-ansible"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Before deployment using Ansible
-  
-  
-</h2>
-    
-<h3 id="enable-the-datarequest-module-in-ansible">
-  
-  
-    <a href="#enable-the-datarequest-module-in-ansible" class="anchor-heading" aria-labelledby="enable-the-datarequest-module-in-ansible"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Enable the datarequest module in Ansible
-  
-  
-</h3>
-    
-<p>Set <code class="language-plaintext highlighter-rouge">enable_datarequest</code> to <code class="language-plaintext highlighter-rouge">true</code> in configuration.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>enable_datarequest: true
-</code></pre></div></div>
-<h3 id="set-ansible-parameters-specific-to-the-datarequest-module">
-  
-  
-    <a href="#set-ansible-parameters-specific-to-the-datarequest-module" class="anchor-heading" aria-labelledby="set-ansible-parameters-specific-to-the-datarequest-module"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Set Ansible parameters specific to the datarequest module
-  
-  
-</h3>
-    
-<p>Users can contact a helpdesk email address for questions regarding the
-datarequest procedure. Set the fields below to specify the help contact.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>datarequest_help_contact_name: the data manager
-datarequest_help_contact_email: help@yoda.instance
-</code></pre></div></div>
-<h2 id="after-deployment-using-ansible">
-  
-  
-    <a href="#after-deployment-using-ansible" class="anchor-heading" aria-labelledby="after-deployment-using-ansible"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> After deployment using Ansible
-  
-  
-</h2>
-    
-<h3 id="creating-and-populating-required-groups">
-  
-  
-    <a href="#creating-and-populating-required-groups" class="anchor-heading" aria-labelledby="creating-and-populating-required-groups"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Creating and populating required groups
-  
-  
-</h3>
-    
+<p>The following is a diagram of the state transitions of the cronjob status (not the folder status):
+<img src="/yoda/design/processes/img/copy-to-vault-state-diagram.png" alt="State transition diagram" /></p>
 
-<p>Ensure that the following groups exists, each with category <code class="language-plaintext highlighter-rouge">datarequests</code>,
-subcategory <code class="language-plaintext highlighter-rouge">research</code> and data classification <code class="language-plaintext highlighter-rouge">unspecified</code>:
-    <code class="language-plaintext highlighter-rouge">
-    datarequests-research-datamanagers
-    datarequests-research-project-managers
-    datarequests-research-data-access-committee
-   </code></p>
-
-<p>Instructions:</p>
-
-<ol>
-  <li>
-    <p>Log into an account on the server with permission to create new groups.</p>
-
-    <p><code class="language-plaintext highlighter-rouge">sudo su irods</code></p>
-  </li>
-  <li>
-    <p>Create the groups.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> # For Yoda versions prior to 1.9:
- irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "Datamanagers", "", *status, *message);' null ruleExecOut
- irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "Project managers", "", *status, *message);' null ruleExecOut
- irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-access-committee", "datarequest", "research", "Data Access Committee", "", *status, *message);' null ruleExecOut
-
- # For Yoda versions 1.9 and up:
- irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-datamanagers", "datarequest", "research", "", "", "Datamanagers", "", "", *status, *message);' null ruleExecOut
- irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-project-managers", "datarequest", "research", "", "", "Project managers", "", "", *status, *message);' null ruleExecOut
- irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd("datarequests-research-data-access-committee", "datarequest", "research", "", "", "Data Access Committee", "", "", *status, *message);' null ruleExecOut
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Confirm that the groups exist.</p>
-
-    <p><code class="language-plaintext highlighter-rouge">iadmin lg</code></p>
-  </li>
-</ol>
-
-<p>Using the group manager, populate these groups with appropriate members.</p>
-<h3 id="updating-the-data-request-module-schemas">
-  
-  
-    <a href="#updating-the-data-request-module-schemas" class="anchor-heading" aria-labelledby="updating-the-data-request-module-schemas"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Updating the data request module schemas
-  
-  
-</h3>
-    
-
-<p>If data request module schemas are already present, they will not be overwritten when the Ansible playbook is executed.</p>
-
-<p>The data request module schemas can be updated by executing <code class="language-plaintext highlighter-rouge">/etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh $zoneName</code>.</p>
+<p>The following is a diagram of the process of securing an individual folder for Yoda versions 1.10 and higher:
+<img src="/yoda/design/processes/img/copy-to-vault-process-activity-diagram.png" alt="Folder secure process diagram" /></p>
 
           
 
@@ -406,7 +313,7 @@ subcategory <code class="language-plaintext highlighter-rouge">research</code> a
         
         
           <p class="text-small text-grey-dk-000 mb-0">
-            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/administration/installing-datarequest-module.md" id="edit-this-page">Edit this page on GitHub.</a>
+            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/design/processes/copy-to-vault-diagrams.md" id="edit-this-page">Edit this page on GitHub.</a>
           </p>
         
       </div>

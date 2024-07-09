@@ -16,7 +16,7 @@
 
 .site-nav > ul.nav-list:first-child > li > a,
 .site-nav > ul.nav-list:first-child > li > ul > li > a,
-.site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(7)) > a {
+.site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(8)) > a {
   background-image: none;
 }
 
@@ -25,7 +25,7 @@
   background-image: none;
 }
 
-.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(4) > ul > li:nth-child(7) > a {
+.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(4) > ul > li:nth-child(8) > a {
   font-weight: 600;
   text-decoration: none;
 }.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
@@ -211,6 +211,8 @@
               </li><li class="nav-list-item">
                 <a href="/yoda/design/processes/automatic-resource-balancing.html" class="nav-list-link">Automatic Resource Balancing</a>
               </li><li class="nav-list-item">
+                <a href="/yoda/design/processes/copy-to-vault-diagrams.html" class="nav-list-link">Copy to vault diagrams</a>
+              </li><li class="nav-list-item">
                 <a href="/yoda/design/processes/locking-mechanism.html" class="nav-list-link">Folder Locking mechanism</a>
               </li><li class="nav-list-item">
                 <a href="/yoda/design/processes/publication-process.html" class="nav-list-link">Publication Process</a>
@@ -365,6 +367,8 @@ submission.</p>
 </h2>
     
 <p>The <strong>retry-copy-to-vault.r</strong> cronjob in the tools directory of the research ruleset will copy any folder with a ‘PENDING’ or ‘RETRY’ cronjob copy state to the vault and set it to ‘SECURED’ state when successful. In Yoda versions 1.9 or lower this is only done with folders with a ‘RETRY’ state. The copy uses <code class="language-plaintext highlighter-rouge">irsync</code> in versions 1.10 and higher. The metadata is copied as well. Folders with ‘RETRY’ status have previously failed to copy.</p>
+
+<p>See <a href="/yoda/design/processes/copy-to-vault-diagrams.html">Copy to vault diagrams</a> for diagrams of the copy to vault process.</p>
 <h2 id="research-vault">
   
   
