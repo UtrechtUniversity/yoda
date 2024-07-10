@@ -118,6 +118,7 @@
     dest: '~/testdata/{{ item }}'
     mode: 0644
   with_items:
+    - 'creatures.json'
     - 'image.txt'
     - 'large-file.html'
     - 'lorem.txt'
@@ -131,6 +132,7 @@
   ansible.builtin.command:
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-initial/testdata
   with_items:
+    - 'creatures.json'    
     - 'image.txt'
     - 'large-file.html'
     - 'lorem.txt'
