@@ -331,8 +331,16 @@ This information is stored in files named <code class="language-plaintext highli
   
 </h2>
     
+<h3 id="research-and-deposit-groups">
+  
+  
+    <a href="#research-and-deposit-groups" class="anchor-heading" aria-labelledby="research-and-deposit-groups"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Research and deposit groups
+  
+  
+</h3>
+    
 
-<p>In Yoda, metadata schemas can be defined on three levels:</p>
+<p>In Yoda, metadata schemas of research and deposit groups can be defined on three levels:</p>
 <ol>
   <li>On the environment level (the <em>default schema</em>)</li>
   <li>On the community (also known as category) level</li>
@@ -351,6 +359,21 @@ for instructions about how to replace a schema.</p>
 
 <p>Group level schemas are configured by the user who creates the group. The schema name is stored
 in the <code class="language-plaintext highlighter-rouge">schema_id</code> AVU that is set on the research group.</p>
+<h3 id="vault-groups">
+  
+  
+    <a href="#vault-groups" class="anchor-heading" aria-labelledby="vault-groups"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Vault groups
+  
+  
+</h3>
+    
+
+<p>In Yoda 1.9.3 and lower, a vault group always has the metadata schema of its
+research or deposit group.</p>
+
+<p>In newer versions of Yoda, a technical admin can override the metadata schema of the vault group by
+adding a <code class="language-plaintext highlighter-rouge">schema_id</code> AVU to the vault group itself. Furthermore, if a vault group has no matching research
+group, no matching deposit group, and no <code class="language-plaintext highlighter-rouge">schema_id</code> AVU, it uses the environment default schema.</p>
 
           
 
