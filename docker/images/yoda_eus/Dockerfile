@@ -19,7 +19,7 @@ RUN apt-get update
 
 # Install common tools (PostgreSQL is needed for psql commands in init script)
 # hadolint ignore=DL3033
-RUN apt-get install -y wget git netcat gnupg
+RUN apt-get install -y wget git netcat gnupg vim
 
 # Install PostgreSQL 15 for checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033

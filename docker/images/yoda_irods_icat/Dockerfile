@@ -39,7 +39,7 @@ RUN apt-get update
 
 # Install common tools
 # hadolint ignore=DL3033
-RUN apt-get install -y wget git sudo netcat gcc
+RUN apt-get install -y wget git sudo netcat gcc vim
 
 # Install Python 2.7
 RUN apt-get install -y python2 python2-dev && \

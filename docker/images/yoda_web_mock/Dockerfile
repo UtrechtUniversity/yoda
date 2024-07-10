@@ -16,7 +16,7 @@ RUN apt-get update
 
 # Install common tools (PostgreSQL is needed for psql commands in init script)
 # hadolint ignore=DL3033
-RUN apt-get install -y wget git netcat gnupg
+RUN apt-get install -y wget git netcat gnupg vim
 
 # Install Python 3
 # hadolint ignore=DL3033
