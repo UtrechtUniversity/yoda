@@ -118,6 +118,7 @@
     dest: '~/testdata/{{ item }}'
     mode: 0644
   with_items:
+    - 'creatures.json'
     - 'image.txt'
     - 'large-file.html'
     - 'lorem.txt'
