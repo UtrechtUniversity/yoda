@@ -5,6 +5,7 @@
 
 # Configuration variables.
 VAGRANTFILE_API_VERSION = "2"
+ENV['VAGRANT_DEFAULT_PROVIDER'] = "libvirt"
 
 BOX = 'generic/ubuntu2004'
 GUI = false
