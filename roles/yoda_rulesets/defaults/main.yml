@@ -10,7 +10,7 @@ core_rulesets:
   - name: yoda-ruleset
     repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
     ruleset_name: rules-uu
-    version: "{{ yoda_ruleset_version }}"
+    version: "yda-5789"
     install_scripts: true
   - name: core
     ruleset_name: core
@@ -205,6 +205,7 @@ irods_arb_min_gb_free: 0
 irods_arb_min_percent_free: 5
 
 irods_anonymous_account_permit_addresses: []
+irods_user_max_connections: 3                          # Limit the number of iRODS connections per user
 
 # Text file extensions configuration
 text_file_extensions: ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'fortran', 'gams', 'gauss', 'go', 'graphql', 'ini', 'irpf90', 'java', 'js', 'json', 'julia', 'julia-repl', 'kotlin', 'less', 'lua', 'makefile', 'markdown', 'md', 'mathematica', 'matlab', 'maxima', 'mizar', 'objectivec', 'openscad', 'perl', 'php', 'php-template', 'plaintext', 'txt', 'python', 'py', 'python-repl', 'r', 'ruby', 'rust', 'sas', 'scilab', 'scss', 'shell', 'sh', 'sql', 'stan', 'stata', 'swift', 'typescript', 'ts', 'vbnet', 'wasm', 'xml', 'yaml', 'html']
