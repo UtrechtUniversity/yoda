@@ -29,3 +29,19 @@
     name: "{{ zabbix_database_user }}"
     priv: "CONNECT"
     role_attr_flags: NOSUPERUSER,NOCREATEDB,NOCREATEROLE
+
+
+# This is needed for monitoring diskspace usage of tablespaces on newer
+# PostgreSQL versions.
+- name: Explicitly grant Zabbix users permissions on tablespaces
+  become_user: postgres
+  become: true
+  community.postgresql.postgresql_privs:
+    db: "{{ zabbix_database_name }}"
+    role: "{{ zabbix_database_user }}"
+    priv: "CREATE"
+    type: tablespace
+    objs: "{{ item }}"
+  with_items:
+    - "pg_global"
+    - "pg_default"

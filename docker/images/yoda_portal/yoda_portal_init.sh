@@ -4,7 +4,12 @@ set -e
 set -o pipefail
 set -u
 
-DATA_VERSION="dev-1.9"
+DATA_VERSION="$1"
+
+if [ -z "$DATA_VERSION" ]
+then echo "Error: no data version argument provided."
+     exit 1
+fi
 
 function before_update {
   echo -e "[...] ${1}"
@@ -17,8 +22,8 @@ function progress_update {
 }
 
 function start_service {
-  /usr/sbin/httpd -DFOREGROUND || true
-  echo "Error: httpd either terminated or would not start. Keeping container running for troubleshooting purposes."
+  apache2ctl -D FOREGROUND || true
+  echo "Error: Apache either terminated or would not start. Keeping container running for troubleshooting purposes."
   sleep infinity
 }
 
@@ -37,10 +42,10 @@ progress_update "Downloaded certificate bundle."
 before_update "Extracting certificate data"
 cd /download
 tar xvfz "${DATA_VERSION}.certbundle.tar.gz"
-install -m 0644 docker.pem /etc/pki/tls/certs/localhost.crt
-install -m 0644 docker.pem /etc/pki/tls/certs/localhost_and_chain.crt
-install -m 0644 docker.key /etc/pki/tls/private/localhost.key
-install -m 0644 dhparam.pem /etc/pki/tls/private/dhparams.pem
+install -m 0644 docker.pem /etc/ssl/certs/localhost.crt
+install -m 0644 docker.pem /etc/ssl/certs/localhost_and_chain.crt
+install -m 0644 docker.key /etc/ssl/private/localhost.key
+install -m 0644 dhparam.pem /etc/ssl/private/dhparams.pem
 progress_update "Certificate data extracted"
 
 CURRENT_UID="$(id -u yodadeployment)"
@@ -85,7 +90,7 @@ PORTAL_TITLE_TEXT   = 'Yoda - Dev (Docker)'
 YODA_VERSION        = 'development'
 YODA_COMMIT         = '$YODA_COMMIT'
 RESEARCH_ENABLED    = True
-OPEN_SEARCH_ENABLED = True
+OPEN_SEARCH_ENABLED = False
 DEPOSIT_ENABLED     = True
 INTAKE_ENABLED      = True
 INTAKE_EXT_TIMEOUT  = 1800
@@ -109,7 +114,7 @@ IRODS_ICAT_HOSTNAME = 'provider.yoda'
 IRODS_ICAT_PORT     = '1247'
 IRODS_DEFAULT_ZONE  = 'tempZone'
 IRODS_DEFAULT_RESC  = 'irodsResc'
-IRODS_SSL_CA_FILE   = '/etc/pki/tls/certs/localhost_and_chain.crt'
+IRODS_SSL_CA_FILE   = '/etc/ssl/certs/localhost_and_chain.crt'
 IRODS_AUTH_SCHEME   = 'PAM'
 IRODS_CLIENT_OPTIONS_FOR_SSL = {
     "irods_client_server_policy": "CS_NEG_REQUIRE",
@@ -170,6 +175,8 @@ YODA_EUS_FQDN = 'eus.yoda.test'
 # Data request module configuration
 DATAREQUEST_HELP_CONTACT_NAME  = 'PLACEHOLDER'
 DATAREQUEST_HELP_CONTACT_EMAIL = 'PLACEHOLDER'
+
+UPLOAD_PART_FILES              = True
 
 # Text file extensions configuration
 TEXT_FILE_EXTENSIONS = ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'fortran', 'gams', 'gauss', 'go', 'graphql', 'ini', 'irpf90', 'java', 'js', 'json', 'julia', 'julia-repl', 'kotlin', 'less', 'lua', 'makefile', 'markdown', 'md', 'mathematica', 'matlab', 'maxima', 'mizar', 'objectivec', 'openscad', 'perl', 'php', 'php-template', 'plaintext', 'txt', 'python', 'py', 'python-repl', 'r', 'ruby', 'rust', 'sas', 'scilab', 'scss', 'shell', 'sh', 'sql', 'stan', 'stata', 'swift', 'typescript', 'ts', 'vbnet', 'wasm', 'xml', 'yaml', 'html']

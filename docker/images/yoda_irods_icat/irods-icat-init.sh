@@ -4,7 +4,12 @@ set -e
 set -o pipefail
 set -u
 
-DATA_VERSION="dev-1.9"
+DATA_VERSION="$1"
+
+if [ -z "$DATA_VERSION" ]
+then echo "Error: no data version argument provided."
+     exit 1
+fi
 
 function before_update {
   echo -e "[...] ${1}"
@@ -79,10 +84,10 @@ INSTALL_TIMESTAMP=$(date +'%Y-%m-%dT%H:%M:%S.000000')
 cat > /var/lib/irods/VERSION.json << VERSION
 {
     "catalog_schema_version": 8, 
-    "commit_id": "bc6f9f1cdef6c4ec01ea14402428988892615321", 
+    "commit_id": "2ed549ca7fe455aaa7755becc6c14b233dcbc0b4",
     "configuration_schema_version": 3, 
     "installation_time": "$INSTALL_TIMESTAMP", 
-    "irods_version": "4.2.11"
+    "irods_version": "4.2.12"
 }
 VERSION
 chown irods:irods /var/lib/irods/VERSION.json

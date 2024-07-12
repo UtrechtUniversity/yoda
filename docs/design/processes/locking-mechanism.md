@@ -9,7 +9,7 @@ iRODS ACL system could not be used, because researcher should be able to lock/un
 the technical implementation of the locking mechanism in the research ruleset.
 
 
-Locks are represented by metadata on the folder, it's children and it's parents. The lock consists of a AVU with org_lock (defined in iiConstants.r) as attribute name and the collection where
+Locks are represented by metadata on the folder, its children and its parents. The lock consists of an AVU with org_lock (defined in iiConstants.r) as attribute name and the collection where
 the lock is started (rootCollection). Whenever a lock is set this AVU is put on every child using a treewalk and every parent using iteration until the ``/{rodsZone}/home/research-{groupName}`` collection is found. Every relevant static Policy Enforcement Point that could be triggered because of a modification in the research area is checked for the metadata and in general the following rules are enforced:
 
 - if the root collection of the lock is on the current collection or a parent collection disallow the action.
@@ -30,7 +30,7 @@ The locks are set and removed with the iiFolderLockChange rule in the iiFolderSt
 This rule should not be directly run, but triggered from folder status transitions.
 Please refer to the folder status design document for details on which transition should lock the folder.
 The rules in iiFolderStatusTransitions.r called by the front-end to initiate a status change will attempt a metadata change on the `org_status` attribute.
-This will trigger an metadata PEP, which will run the lock change when the current user is allowed to.
+This will trigger a metadata PEP, which will run the lock change when the current user is allowed to.
 Every folder status transition is checked for preconditions by the iiCanModifyFolderStatus rule in iiPolicyChecks.r.
 
 When the locking fails, the modification of the `org_status` change will be interrupted by calling msiOprDisallowed.

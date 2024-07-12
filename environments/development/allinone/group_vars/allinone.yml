@@ -53,9 +53,6 @@ token_database_password: test                           # Token database passwor
 token_length: 32                                        # Length of data access tokens
 token_lifetime: 72                                      # Lifetime of data access tokens (in hours)
 
-# DMF tape archive (legacy tape archive implementation)
-enable_tape_archive: false
-
 # Data Package Archive
 enable_data_package_archive: false                     # Enable data package archive functionality
 enable_data_package_download: false                    # Enable data package download functionality
@@ -64,7 +61,7 @@ data_package_archive_minimum: 1024                     # Minimum data package ar
 data_package_archive_maximum: -1                       # Maximum data package archive size (no limit), -1 for no limit
 data_package_archive_resource: mockTapeArchive         # Resource to use for data package archive functionality
 
-# SRAM Configuration (experimental)
+# SRAM configuration
 enable_sram: false                                     # Enable SRAM configuration
 sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
 sram_api_key: PLACEHOLDER                              # SRAM Rest API key
@@ -172,6 +169,7 @@ irods_repl_resc:
   - irodsRescReplS3
 
 async_replication_delay_time: 3600     # Delay after last modification to data object before replication job can process it (sec)
+vault_copy_backoff_time: 300           # How many seconds to wait before trying to copy a certain folder to vault again
 
 # Automatic resource balancing configuration
 irods_arb_enabled: true
@@ -205,12 +203,6 @@ datacite_tls_verify: 0                         # DataCite TLS verification / dis
 # EPIC PID Configuration
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
 epic_handle_prefix: PLACEHOLDER    # EPIC PID prefix
-
-# PAM Radius configuration
-# server, shared secret, timeout (s)
-pam_radius_config: |
-  127.0.0.1     secret         1
-  other-server  other-secret   3
 
 # Zabbix configuration
 zabbix_server: PLACEHOLDER

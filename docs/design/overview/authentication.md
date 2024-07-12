@@ -19,12 +19,11 @@ Instead, if you encounter issues with authentication, contact your functional ad
 
 The default PAM stack for Yoda (which is the one for iRODS) has two modules for authentication:
  1. Local users on the system: *pam_unix*
- 2. Radius server:  *pam_radius_auth*
 
  Additionally, one can configure two more authentication methods:
- 3. For external users: uses *is-user-external.sh* and *external-auth.py*
- 4. For authentication via OIDC protocol: *oidc.py*
- 5. For data access passwords: *token_auth.py*
+ 2. For external users: uses *is-user-external.sh* and *external-auth.py*
+ 3. For authentication via OIDC protocol: *oidc.py*
+ 4. For data access passwords: *token_auth.py*
 
 For configuring the additional authentication methods, please look at the relevant documentation.
 

@@ -14,7 +14,7 @@
   become: true
   ansible.builtin.command: 'iadmin lg'
   register: priv_groups
-  changed_when: priv_groups.stdout.find('priv-group-add') == -1
+  changed_when: priv_groups.stdout.find('priv-admin') == -1
   check_mode: false
 
 
@@ -23,7 +23,7 @@
   become: true
   ansible.builtin.command: # noqa no-changed-when
     cmd: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
-  when: priv_groups.stdout.find('priv-group-add') == -1
+  when: priv_groups.stdout.find('priv-admin') == -1
 
 
 - name: Find out which system collections are present
@@ -57,14 +57,6 @@
   ansible.builtin.stat:
     path: /etc/irods/yoda-ruleset/tools/storage-statistics.r
   register: storage_statistics
-
-
-- name: Remove legacy monthly storage statistics gathering cronjob
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'monthly-storage-statistics'
-    state: absent
 
 
 - name: Enable storage statistics gathering cronjob
@@ -116,20 +108,6 @@
   with_items:
     - enable-indexing.sh
     - disable-indexing.sh
-
-
-- name: Copy tape archive scripts to ExecCmd dir
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.copy:
-    remote_src: true
-    src: "/etc/irods/yoda-ruleset/tools/tape_archive/{{ item }}"
-    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
-    mode: '0755'
-  when: not ansible_check_mode and enable_tape_archive
-  with_items:
-    - admin-tape-archive-set-state.sh
-    - async-tape-archive-replicate.sh
 
 
 - name: Copy data package archive scripts to ExecCmd dir
@@ -410,9 +388,10 @@
 - name: Configure cronjob to retry copy-to-vault
   become_user: "{{ irods_service_account }}"
   become: true
+  # offset from the time revisions and replications are run
   ansible.builtin.cron:
     name: 'retry-copy-to-vault.r'
-    minute: '*'
+    minute: '2-59/5'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r >/dev/null 2>&1'
 
 
@@ -510,14 +489,6 @@
   when: (not ansible_check_mode) and (yoda_davrods_anonymous_enabled is defined) and (yoda_davrods_anonymous_enabled)
 
 
-- name: Remove legacy asynchronous replication job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-replication'
-    state: absent
-
-
 - name: Configure parallel asynchronous replication job(s)
   become_user: "{{ irods_service_account }}"
   become: true
@@ -533,14 +504,6 @@
       {{ "-n" if async_replication_dry_run else "" }} >/dev/null 2>&1
     state: '{{ "present" if enable_async_replication == 1 else "absent" }}'
   loop: "{{ range(1, (async_replication_jobs | int) + 1) | list }}"
-
-
-- name: Remove legacy asynchronous revision creation job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-replication'
-    state: absent
 
 
 - name: Configure parallel asynchronous revision creation job
@@ -568,16 +531,6 @@
     minute: '*/6'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/vault-archive.r >/dev/null 2>&1'
     state: '{{ "present" if enable_data_package_archive or enable_data_package_download else "absent" }}'
-
-
-- name: Enable asynchronous tape archive replication job
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.cron:
-    name: 'asynchronous-tape-archive-replication'
-    minute: '3,13,23,33,43,53'
-    job: '/bin/bash /etc/irods/yoda-ruleset/tools/tape_archive/async-tape-archive-replicate.sh >/dev/null 2>&1'
-    state: '{{ "present" if enable_tape_archive else "absent" }}'
 
 
 - name: Configure cronjob to mail daily notification reports

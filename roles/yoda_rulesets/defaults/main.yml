@@ -161,9 +161,6 @@ token_length: 32                                        # Length of data access 
 token_lifetime: 72                                      # Lifetime of data access tokens (in hours)
 token_expiration_notification: 24                       # Send notification before token expiration (in hours)
 
-# DMF tape archive (legacy tape archive implementation)
-enable_tape_archive: false
-
 # Data Package Archive
 enable_data_package_archive: false                     # Enable data package archive functionality
 enable_data_package_download: false                    # Enable data package download functionality
@@ -185,6 +182,8 @@ sram_flow: invitation                                  # SRAM flow to use, 'join
 sram_auto_group_sync: false                            # Automatic SRAM group sync
 sram_verbose_logging: false                            # SRAM verbose logging
 sram_tls_verify: true                                  # Enable TLS verification for SRAM API calls. Enabled by default.
+sram_co_default_label: yoda                            # Default label for created COs
+sram_co_logo_url: https://raw.githubusercontent.com/UtrechtUniversity/yoda/development/docs/graphic_mark/png/UU_Beeldmerk_Yoda_FC_DEF.png  # URL to image used as default SRAM CO logo
 
 yoda_portal_fqdn: PLACEHOLDER                          # Yoda portal FQDN
 
@@ -205,5 +204,14 @@ irods_arb_exempt_resources: ""
 irods_arb_min_gb_free: 0
 irods_arb_min_percent_free: 5
 
+irods_anonymous_account_permit_addresses: []
+
 # Text file extensions configuration
 text_file_extensions: ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'fortran', 'gams', 'gauss', 'go', 'graphql', 'ini', 'irpf90', 'java', 'js', 'json', 'julia', 'julia-repl', 'kotlin', 'less', 'lua', 'makefile', 'markdown', 'md', 'mathematica', 'matlab', 'maxima', 'mizar', 'objectivec', 'openscad', 'perl', 'php', 'php-template', 'plaintext', 'txt', 'python', 'py', 'python-repl', 'r', 'ruby', 'rust', 'sas', 'scilab', 'scss', 'shell', 'sh', 'sql', 'stan', 'stata', 'swift', 'typescript', 'ts', 'vbnet', 'wasm', 'xml', 'yaml', 'html']
+
+# Number of threads for msiDataObjCopy
+yoda_rulesets_vault_copy_multithread_enabled: true
+
+# Copy to vault configuration
+vault_copy_backoff_time: 900           # How many seconds to wait before trying to copy a certain folder to vault again
+vault_copy_max_retries: 5              # How many times to retry copy to vault on particular folder before failing and sending notification

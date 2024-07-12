@@ -8,6 +8,8 @@ nav_order: 2
 
 Yoda uses [pytest](https://pytest.org) for API and UI tests.
 
+On Linux, install xclip, xsel, or wl-clipboard (for “wayland” sessions) via package manager.
+
 ## Running tests on the allinone VM
 
 In order to run the tests on the Vagrant-based development environment, the allinone (default) Vagrant

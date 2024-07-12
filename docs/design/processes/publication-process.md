@@ -10,7 +10,7 @@ Each step has a rule with the configuration and state as arguments.
 Temporary collection will be rods owned and located at ``UUSYSTEMCOLLECTION/publish``.
 
 **Versioning**
-DOI versioning will be introduced in Yoda v1.9. 
+DOI versioning was introduced in Yoda v1.9. 
 With the publication of first version of the data package, version DOI is registered by the publication process.
 When the data package is published for the second time, a new version DOI and base DOI is registered. The previous version of the data package is updated with the same base DOI so that the versions are linked. 
 
@@ -33,7 +33,7 @@ The base DOI will always resolve to the latest version of the data package.
 
 **Step 2:** Generate Yoda DOI
 - Generate Random ID
-- set random ID in state
+- Set random ID in state
 - Add prefixes
 - Set Yoda DOI
 
@@ -61,7 +61,7 @@ The base DOI will always resolve to the latest version of the data package.
 **Step 7:** Send DataCite JSON
 - Retrieve DataCite url and DataCite credentials from credentials store
 - API request to metadata endpoint with DataCite JSON
-- put result in state
+- Put result in state
 - On request failure:
 	- Flag package for retry
 	- Bail
@@ -100,7 +100,7 @@ The base DOI will always resolve to the latest version of the data package.
 
 ![Publication process](img/publication-process.png)
 
-Further detailed diagram for each step is as follow:
+Further detailed diagram for each step is as follows:
 ![Versioned Publication process](img/version-publication-process.png)
 
 # Depublication process

@@ -4,7 +4,12 @@ set -e
 set -o pipefail
 set -u
 
-DATA_VERSION="dev-1.9"
+DATA_VERSION="$1"
+
+if [ -z "$DATA_VERSION" ]
+then echo "Error: no data version argument provided."
+     exit 1
+fi
 
 function before_update {
   echo -e "[...] ${1}"
@@ -17,8 +22,8 @@ function progress_update {
 }
 
 function start_service {
-  /usr/sbin/httpd -DFOREGROUND || true
-  echo "Error: http either terminated or would not start. Keeping container running for troubleshooting purposes."
+  apache2ctl -D FOREGROUND || true
+  echo "Error: Apache either terminated or would not start. Keeping container running for troubleshooting purposes."
   sleep infinity
 }
 
@@ -36,10 +41,10 @@ progress_update "Downloaded certificate bundle."
 before_update "Extracting certificate data"
 cd /download
 tar xvfz "${DATA_VERSION}.certbundle.tar.gz"
-install -m 0644 docker.pem /etc/pki/tls/certs/localhost.crt
-install -m 0644 docker.pem /etc/pki/tls/certs/localhost_and_chain.crt
-install -m 0644 docker.key /etc/pki/tls/private/localhost.key
-install -m 0644 dhparam.pem /etc/pki/tls/private/dhparams.pem
+install -m 0644 docker.pem /etc/ssl/certs/localhost.crt
+install -m 0644 docker.pem /etc/ssl/certs/localhost_and_chain.crt
+install -m 0644 docker.key /etc/ssl/private/localhost.key
+install -m 0644 dhparam.pem /etc/ssl/private/dhparams.pem
 progress_update "Certificate data extracted"
 
 # Start Apache

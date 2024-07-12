@@ -1,0 +1,16 @@
+@startuml
+!include ../../../theme.puml
+
+state CopyToVaultCronjob as "Copy to Vault Cronjob Status" {
+    [*] --> PENDING
+    PENDING --> PROCESSING
+    PROCESSING --> OK
+    OK --> [*]
+    PENDING --> RETRY : Error in setup
+    PROCESSING --> RETRY : Error
+    RETRY --> RETRY
+    RETRY --> PROCESSING
+    RETRY --> UNRECOVERABLE : Attempts > max allowed attempts
+}
+
+@enduml

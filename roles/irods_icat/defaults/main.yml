@@ -29,10 +29,6 @@ irods_rum_job_minute: 0
 
 # PAM configuration.
 pam_fail_delay: 1000000                    # PAM fail delay in micro-seconds
-enable_radius_fallback: false
-pam_radius_config: |
-  127.0.0.1     secret         1
-  other-server  other-secret   3
 
 # External Users configuration
 external_users: true
@@ -52,14 +48,9 @@ openssl_crt_signed_and_chain: localhost_and_chain.crt
 # OpenID Connect configuration
 oidc_userinfo_uri: ''
 
-# Service type. Possible values: 'sysv' and 'systemd' (Ubuntu only supports systemd)
-irods_service_type: 'systemd'
-
 # Whether to start iRODS at boot time.
 irods_enable_service: true
 
-# The max number of open files is only effective when
-# irods_service_type has been set to 'systemd'.
 irods_max_open_files: 131072
 
 # Data Access Tokens

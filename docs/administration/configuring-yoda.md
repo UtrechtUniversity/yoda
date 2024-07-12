@@ -131,6 +131,9 @@ ansible_ssh_private_key_file | Path to private key file of administrative user
 repo_only                    | Only download packages from repos
 centos_extras_repository     | Name of the CentOS extras repository
 centos_sclo_rh_repository    | Name of the CentOS SCLO-RH repository
+common_custom_dns_enable     | Set custom DNS servers (default: false, only supported only on Ubuntu)
+common_custom_dns_primary    | Primary custom DNS server (default: Google DNS servers, only supported on Ubuntu)
+common_custom_dns_secondary  | Secondary custom DNS server (default: Google DNS servers, only supported on Ubuntu)
 
 Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars).
 
@@ -154,8 +157,8 @@ tcp_keepalive_intvl               | IPv4 TCP keepalives: time between keepalives
 yoda_theme                        | The theme to use for the Yoda Portal. See also [the theme documentation](../design/overview/theme-packages.md). By default, Yoda uses the UU theme.
 yoda_theme_path                   | Path where themes for the Yoda Portal are retrieved from. See [the theme documentation](../design/overview/theme-packages.md) for more information.
 portal_session_cookie_samesite    | Samesite setting for session cookies Yoda Portal. Should be 'Lax' if OIDC is enabled and identity provider is in different domain. Otherwise it should be 'Strict'. Default value: 'Strict'.
-yoda_portal_wsgi_daemon_processes | The number of daemon processes that should be started in this process group (default: 1)
 yoda_portal_wsgi_daemon_threads   | The number of threads to be created to handle requests in each daemon process (default: 15)
+yoda_portal_upload_part_files     | Whether the portal uploader function should upload multi-chunk files as .part files initially and rename them to their final name later (boolean value, default: true). It is generally recommended to keep this enabled, so that users can easily see when an upload failed and the result is partial. However, on storage systems where renaming data objects takes much time, such as S3 object storage in consistent mode, it may be necessary to switch use of .part files off.
 
 ### Generic logging configuration
 
@@ -187,15 +190,15 @@ irods_default_resc                   | iRODS default resource name
 irods_resc_trigger_pol               | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
 irods_ssl_verify_server              | Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources                      | Definition of iRODS resources of this Yoda instance
-irods_service_type                   | Possible values: 'sysv' (System V) or 'systemd'
-irods_max_open_files                 | Maximum number of open files for iRODS service (only effective when irods_service_type is set to 'systemd')
-irods_enable_service                 | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes (only effective when irods_service_type is set to 'systemd')
+irods_max_open_files                 | Maximum number of open files for iRODS service
+irods_enable_service                 | Whether to enable the iRODS service. Set to false if manual actions are needed before starting iRODS, e.g. mounting encrypted volumes
 irods_rum_job_enabled                | Whether to enable the daily RUM job for removing unused metadata entries (default: true)
 irods_rum_job_hour                   | Time to run RUM job - hour (default: 20)
 irods_rum_job_minute                 | Time to run RUM job - minute (default: 0)
 irods_enable_gocommands              | Whether to install the GoCommands CLI (disabled by default)
 irods_gocommands_version             | GoCommands version
 irods_gocommands_archive_checksum    | MD5 checksum of the GoCommands archive for the version to be installed
+irods_anonymous_account_permit_addresses  | List of network addresses that can log in on the anonymous account using the iRODS protocol. Localhost (127.0.0.1) is always allowed.
 
 ### S3 configuration - for iRODS S3 resource plugin and s3cmd utilities
 
@@ -260,6 +263,13 @@ async_revision_delay_time      | Delay after last modification to data object be
 async_revision_max_rss         | Limit the memory usage (in bytes) of a revision job before it stops processing. If set to 0, there is no limit. (default: 1000000000 or 1 GB)
 enable_revision_cleanup        | Enable revision cleanup job (true/false, default: true)
 revision_cleanup_verbose_mode  | Print extra information in revision cleanup job for troubleshooting (true/false, default: false)
+
+### Copy to vault configuration
+
+Variable          | Description
+------------------|---------------------------------------------
+vault_copy_backoff_time | How many seconds to wait before trying to copy a certain folder to vault again (default: 300 = 5 minutes)
+vault_copy_max_retries  | How many times to retry copy to vault on particular folder before failing and sending notification (default: 5)
 
 ### Deposit module configuration
 
@@ -374,7 +384,7 @@ Variable                       | Description
 enable_inactivity_notification | Enable notifications to datamanager groups of inactive research groups
 inactivity_cutoff_months       | Number of months a research group has to be inactive for datamanagers to be notified
 
-### SRAM Configuration (experimental)
+### SRAM configuration
 
 Variable                     | Description
 -----------------------------|---------------------------------------------
@@ -386,6 +396,8 @@ sram_flow                    | SRAM flow to use, 'join_request' or 'invitation'
 sram_auto_group_sync         | Automatic SRAM group sync
 sram_verbose_logging         | SRAM verbose logging
 sram_tls_verify              | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
+sram_co_default_label        | Default label for created COs
+sram_co_logo_url             | URL to image used as default SRAM CO logo
 
 ### EPIC PID Configuration
 
@@ -406,7 +418,6 @@ token_database_password       | Token database password
 token_length                  | Length of data access tokens
 token_lifetime                | Lifetime of data access tokens (in hours)
 token_expiration_notification | Send notification before token expiration (in hours)
-enable_radius_fallback        | Fall back on RADIUS authentication if token authentication fails (default: false). Only enables RADIUS fallback if `enable_tokens` is set to `true`.This is a legacy parameter that will be removed in a future version of Yoda.
 
 ### Data Package Archive configuration
 
@@ -492,3 +503,9 @@ enable_irods_consistency_check  | Install iRODS consistency checker tool (ichk)
 irods_consistency_check_version | iRODS consistency checker (ichk) version
 enable_icat_database_checker    | Install iCAT database checker
 icat_database_checker_version   | iCAT database checker version
+
+### Multithreading
+
+Variable                                     | Description
+---------------------------------------------|--------------------------------
+yoda_rulesets_vault_copy_multithread_enabled | Enable multithreading when copying files to the vault.

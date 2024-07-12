@@ -6,3 +6,4 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 
 yoda_web_mock_datacite_site_config_dir: /etc/httpd/conf.d
 yoda_web_mock_datacite_site_config_file: yoda-web-mock-datacite-vhost.conf
+yoda_web_mock_datacite_apache_log_dir: /var/log/httpd

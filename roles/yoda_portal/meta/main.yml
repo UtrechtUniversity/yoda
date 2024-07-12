@@ -16,5 +16,3 @@ dependencies:
   - role: apache
   - role: apache_wsgi
   - role: certificates
-  - role: remove_php
-    when: ansible_os_family == 'RedHat'

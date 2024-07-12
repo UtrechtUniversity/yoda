@@ -1,10 +1,35 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure SQLCipher has been installed
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+# Ubuntu 20.04 LTS includes SQLCipher 3 by default. We need SQLCipher 4,
+# so that we can migrate token databases created on SQLCipher 4 to Ubuntu
+# 20.04 LTS servers.
+- name: Ensure standard SQLCipher packages are not installed
   ansible.builtin.package:
     name:
       - libsqlcipher0
       - sqlcipher
       - libsqlcipher-dev
+    state: absent
+
+
+- name: Download SQLCipher packages
+  ansible.builtin.get_url:
+    url: '{{ item.value.url }}'
+    dest: '{{ sqlcipher_package_dir }}/{{ item.value.filename }}'
+    checksum: '{{ item.value.checksum }}'
+    mode: '0644'
+  when: item.value.package not in ansible_facts.packages or item.value.version != ansible_facts.packages[item.value.package][0]['version']
+  with_dict: '{{ sqlcipher_packages }}'
+
+
+- name: Install SQLCipher from downloaded package files
+  ansible.builtin.apt:
+    deb: '{{ sqlcipher_package_dir }}/{{ item.value.filename }}'
     state: present
+  when: not ansible_check_mode and (item.value.package not in ansible_facts.packages or item.value.version != ansible_facts.packages[item.value.package][0]['version'])
+  with_dict: '{{ sqlcipher_packages }}'

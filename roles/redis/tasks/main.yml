@@ -37,6 +37,29 @@
   when: ansible_os_family == 'RedHat'
 
 
+# This patch works around an issue that causes Redis server service tasks
+# to hang.
+# See https://github.com/redis/redis/issues/7361#issuecomment-1136528254
+- name: Apply workaround for Redis service file issue (Ubuntu)
+  ansible.builtin.template:
+    src: redis-server.service.j2
+    dest: /lib/systemd/system/redis-server.service
+    mode: "0644"
+    owner: root
+    group: root
+  register: redis_patch_service_file
+  notify: Systemd daemon reload
+  when: ansible_os_family == 'Debian'
+
+
+# Using a task rather than a handler because we need the reload before
+# executing the next service task.
+- name: Systemd daemon reload after patching Redis service file (Ubuntu)
+  ansible.builtin.systemd:
+    daemon_reload: true
+  when: ansible_os_family == 'Debian' and redis_patch_service_file.changed
+
+
 - name: Ensure Redis is running and enabled on boot
   ansible.builtin.service:
     name: redis

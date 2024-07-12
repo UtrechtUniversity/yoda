@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+
+{% set irods_resource_plugin_s3 = irods_resource_plugin_s3_package.split('=') %}
+Explanation: Pin added by role: irods_resource_plugin_s3
+Package: {{ irods_resource_plugin_s3[0] }}
+Pin: version {{ irods_resource_plugin_s3[1] }}
+Pin-Priority: 999

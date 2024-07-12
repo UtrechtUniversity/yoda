@@ -36,5 +36,6 @@ Specific information:
 
 - [Restoring a collection](restore-collection.md)
 - [Troubleshooting email](troubleshooting-email.md)
+- [Troubleshooting data package archival in the vault](troubleshooting-copy-to-vault.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
 - [Troubleshooting replication and revision creation](troubleshooting-replication-revisions.md)

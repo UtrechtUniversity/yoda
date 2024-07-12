@@ -49,6 +49,15 @@
   notify: Restart Apache webserver
 
 
+- name: Ensure config for other VHosts is present (Ubuntu)
+  ansible.builtin.template:
+    src: other-vhosts-access-log.conf.j2
+    dest: /etc/apache2/conf-available/other-vhosts-access-log.conf
+    mode: '0644'
+  notify: Restart Apache webserver
+  when: ansible_os_family == 'Debian'
+
+
 - name: Ensure autoindex.conf is absent
   ansible.builtin.file:
     path: '{{ item }}'
@@ -81,6 +90,26 @@
     - headers
     - ssl
   when: ansible_os_family == 'Debian'
+
+
+- name: Configure Apache apparmor profile
+  ansible.builtin.template:
+    src: usr.sbin.apache2.j2
+    dest: /etc/apparmor.d/usr.sbin.apache2
+    owner: root
+    group: root
+    mode: '0644'
+  register: apache_apparmor
+  when: ansible_os_family == 'Debian'
+
+
+- name: Put Apache in AppArmor enforce mode
+  ansible.builtin.shell: |
+    aa-enforce /usr/sbin/apache2
+    apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
+  notify: Restart Apache webserver
+  changed_when: true
+  when: ansible_os_family == 'Debian' and apache_apparmor.changed
 
 
 - name: Ensure Apache service is configured

@@ -43,9 +43,6 @@ surfdatarequest_help_contact_email: PLACEHOLDER        # Help contact email
 # Data Package Reference
 enable_data_package_reference: true                # Enable Data Package References for vault data packages
 
-# DMF tape archive (legacy tape archive implementation)
-enable_tape_archive: false
-
 # Data Package Archive
 enable_data_package_archive: true                      # Enable data package archive functionality
 enable_data_package_download: true                     # Enable data package download functionality
@@ -54,7 +51,7 @@ data_package_archive_minimum: 1024                     # Minimum data package ar
 data_package_archive_maximum: -1                       # Maximum data package archive size (no limit), -1 for no limit
 data_package_archive_resource: mockTapeArchive         # Resource to use for data package archive functionality
 
-# SRAM Configuration (experimental)
+# SRAM configuration
 enable_sram: false                                     # Enable SRAM configuration
 sram_rest_api_url: sram-mock.yoda.test                 # SRAM Rest API URL
 sram_api_key: PLACEHOLDER                              # SRAM Rest API key
@@ -90,6 +87,7 @@ irods_database_fqdn: portal.surfyoda.test    # iRODS database fully qualified do
 # irods_resource_fqdn: resource.surfyoda.test # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none                # Verify TLS certificate, use 'cert' for acceptance and production
 irods_enable_gocommands: false
+irods_anonymous_account_permit_addresses: ['192.168.56.21']
 irods_resources:
   - name: dev001_1
     host: "{{ yoda_davrods_fqdn }}"
@@ -150,6 +148,8 @@ resource_vault: irodsRescS3
 # Replication configuration
 enable_async_replication: 0            # Enable asynchronous replication: yes (1) or no (0)
 
+vault_copy_backoff_time: 300           # How many seconds to wait before trying to copy a certain folder to vault again
+
 # S3 configuration
 enable_s3_resource: true
 s3_access_key: minioadmin
@@ -176,12 +176,6 @@ datacite_tls_verify: 0                             # DataCite TLS verification /
 # EPIC PID Configuration
 epic_url: PLACEHOLDER              # EPIC PID server URI (undefined disables EPIC PID)
 epic_handle_prefix: PLACEHOLDER    # EPIC PID prefix
-
-# PAM Radius configuration
-# server, shared secret, timeout (s)
-pam_radius_config: |
-  127.0.0.1     secret         1
-  other-server  other-secret   3
 
 # Zabbix configuration
 zabbix_server: PLACEHOLDER

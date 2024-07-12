@@ -26,7 +26,9 @@ A minimal schema is available as the `core-1` schema.
 
 ## Schema configuration
 
-In Yoda, metadata schemas can be defined on three levels:
+### Research and deposit groups
+
+In Yoda, metadata schemas of research and deposit groups can be defined on three levels:
 1. On the environment level (the *default schema*)
 2. On the community (also known as category) level
 3. On the group level (in Yoda 1.9 and higher)
@@ -43,3 +45,12 @@ for instructions about how to replace a schema.
 
 Group level schemas are configured by the user who creates the group. The schema name is stored
 in the `schema_id` AVU that is set on the research group.
+
+### Vault groups
+
+In Yoda 1.9.3 and lower, a vault group always has the metadata schema of its
+research or deposit group.
+
+In newer versions of Yoda, a technical admin can override the metadata schema of the vault group by
+adding a `schema_id` AVU to the vault group itself. Furthermore, if a vault group has no matching research
+group, no matching deposit group, and no `schema_id` AVU, it uses the environment default schema.

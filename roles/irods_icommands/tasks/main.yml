@@ -16,3 +16,13 @@
     name: '{{ irods_icommands_package_new }}'
     state: present
   when: not irods_server.stat.exists and not ansible_check_mode
+
+
+- name: Ensure iRODS iCommands is pinned
+  ansible.builtin.template:
+    src: 'irods_icommands.pref.j2'
+    dest: '/etc/apt/preferences.d/irods_icommands.pref'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+  when: ansible_os_family == 'Debian'

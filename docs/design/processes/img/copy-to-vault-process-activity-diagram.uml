@@ -1,0 +1,93 @@
+@startuml
+skinparam defaultFontName CMU Serif
+skinparam defaultFontSize 9
+skinparam shadowing false
+
+start
+if (If user is rodsadmin \nand correct copy to vault start status \nand last run time is not too soon) then (yes)
+else (no)
+   stop
+endif
+if (If can allow rodsadmin access \nand there have not been too many retry attempts \nand last run time is not too soon) then (yes)
+    :Set copy to vault cronjob status to 'PROCESSING';
+    if (Set cronjob status successfully) then (no)
+        #pink:Attempt to set folder to retry;
+        stop
+    else (yes)
+    endif
+else (no)
+    #pink:Attempt to set folder to retry;
+    note right
+    {{
+    skinparam backgroundcolor transparent
+    start
+    if (If retry count greater than limit) then (yes)
+        :Remove copy to vault AVUs;
+        :Set copy to vault cronjob status to 'UNRECOVERABLE';
+        :Send notification to datamanagers of fail;
+        stop
+    else (no)
+        :Set copy to vault cronjob status to 'RETRY';
+        if (If could set cronjob status) then (yes)
+        else (no)
+            :Send notification to datamanagers of fail;
+            stop
+        endif
+    endif
+
+    stop
+    }}
+    end note
+    stop
+endif
+:Get or create target vault;
+if (If no (possible) target found) then (yes)
+    #pink:Attempt to set folder to retry;
+    stop
+endif
+:Copy folder to vault;
+if (If copy failed) then (yes)
+    #pink:Attempt to set folder to retry;
+    stop
+endif
+if (If data package reference) then (yes)
+    :Generate and set data package reference on target;
+    if (If set data package reference failed) then (yes)
+        #pink:Attempt to set folder to retry;
+        stop
+    endif
+endif
+:Copy metadata and license to vault;
+if (If group is deposit group) then (yes)
+    :Enable indexing on vault;
+endif
+:Copy provenance log;
+if (If EPIC PID enabled) then (yes)
+    :Set EPIC PID;
+    if (If set EPIC PID failed) then (yes)
+        #pink:Attempt to set folder to retry;
+        stop
+    endif
+endif
+:Set permissions on vault;
+if (If setting permissions failed) then (yes)
+    #pink:Attempt to set folder to retry;
+    stop
+endif
+:Set vault state to "UNPUBLISHED";
+if (If set state failed) then (yes)
+    #pink:Attempt to set folder to retry;
+    stop
+endif
+:Set admin write permissions on source folder;
+:Note vault location on source folder;
+:Set and remove appropriate attributes on source folder to indicate successful copy;
+if (If set/rm attributes failed) then (yes)
+    #pink:Attempt to set folder to retry;
+    stop
+endif
+:Remove admin permissions on source folder;
+
+
+end
+@enduml

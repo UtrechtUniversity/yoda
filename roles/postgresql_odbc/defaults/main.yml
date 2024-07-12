@@ -1,4 +1,4 @@
 ---
 # copyright Utrecht University
 
-pgsql_version: 11
+pgsql_version: 15

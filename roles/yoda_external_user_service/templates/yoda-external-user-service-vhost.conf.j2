@@ -29,6 +29,8 @@ Listen {{ yoda_eus_port }}
     WSGIScriptReloading On
     WSGIPassAuthorization On
 
+    CustomLog {{ yoda_external_user_service_apache_log_dir }}/eus_access.log common
+
     # intermediate TLS configuration
     SSLEngine               on
     SSLProtocol             all -SSLv3 -TLSv1 -TLSv1.1
@@ -67,6 +69,8 @@ Listen {{ eus_api_port }}
     WSGIScriptAlias / /var/www/extuser/yoda_eus_api.wsgi
     WSGIScriptReloading On
     WSGIPassAuthorization On
+
+    CustomLog {{ yoda_external_user_service_apache_log_dir }}/eus_access.log common
 
     # intermediate TLS configuration
     SSLEngine               on

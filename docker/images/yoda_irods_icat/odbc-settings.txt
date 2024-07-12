@@ -1,4 +1,4 @@
 [PostgreSQL]
-Description = PostgreSQL 15 ODBC Driver
-Driver      = /usr/pgsql-15/lib/psqlodbc.so
-Setup       = /usr/pgsql-15/lib/psqlodbcw.so
+Description=PostgreSQL 15 ODBC Driver
+Driver=/usr/lib/x86_64-linux-gnu/odbc/psqlodbca.so
+Setup=/usr/lib/x86_64-linux-gnu/odbc/libodbcpsqlS.so

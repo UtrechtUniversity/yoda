@@ -5,26 +5,16 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
-- name: Install pam_radius if needed for fallback
+- name: Ensure pam_radius is absent
   ansible.builtin.package:
     name: '{{ pam_radius_package }}'
-    state: '{{ "present" if enable_radius_fallback else "absent" }}'
+    state: absent
 
 
-- name: Ensure /etc/pam_radius.conf is configured if needed for fallback
-  ansible.builtin.template:
-    src: 'pam_radius.conf.j2'
-    dest: '/etc/pam_radius.conf'
-    mode: '0600'
-  no_log: true
-  when: enable_radius_fallback
-
-
-- name: Ensure /etc/pam_radius.conf is removed if no fallback is configured
+- name: Ensure deprecated RADIUS fallback is not  is configured
   ansible.builtin.file:
     path: /etc/pam_radius.conf
     state: absent
-  when: not enable_radius_fallback
 
 
 - name: Ensure external user check is present

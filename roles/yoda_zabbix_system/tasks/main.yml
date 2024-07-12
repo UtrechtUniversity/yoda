@@ -91,6 +91,26 @@
   notify: Restart Zabbix agent
 
 
+- name: Configure Zabbix AppArmor profile
+  ansible.builtin.template:
+    src: usr.sbin.zabbix_agentd.j2
+    dest: /etc/apparmor.d/usr.sbin.zabbix_agentd
+    owner: root
+    group: root
+    mode: '0644'
+  register: zabbix_apparmor
+  when: ansible_os_family == 'Debian'
+
+
+- name: Put Zabbix agent in AppArmor complain mode
+  ansible.builtin.shell: |
+    aa-complain /usr/sbin/zabbix_agentd
+    apparmor_parser -r /etc/apparmor.d/usr.sbin.zabbix_agentd
+  notify: Restart Zabbix agent
+  changed_when: true
+  when: ansible_os_family == 'Debian' and zabbix_apparmor.changed
+
+
 - name: Checkout Yoda Zabbix scripts and rules
   ansible.builtin.git:
     repo: "https://github.com/UtrechtUniversity/yoda-zabbix.git"

@@ -73,8 +73,8 @@ information for troubleshooting to the rodsLog.
 The script has a dry run mode (which can be enabled using the `-n` switch). This
 will not create any replications.
 
-If a flag data object named `/ZONE/yoda/flags/stop_replication` is present, the script will stop
-processing data objects.
+If a flag named `/ZONE/yoda/flags/stop_replication` is present, the script will stop
+processing data objects. See [the page about setting job flags](../../administration/setting-job-flags.md) for more information.
 
 <a name="revision-management"/>
 
@@ -105,8 +105,8 @@ information for troubleshooting to the rodsLog.
 The script has a dry run mode (which can be enabled using the `-n` switch). This
 will not create any revisions.
 
-If a flag data object named `/ZONE/yoda/flags/stop_revisions` is present, the script will stop
-processing data objects.
+If a flag named `/ZONE/yoda/flags/stop_revisions` is present, the script will stop
+processing data objects. See [the page about setting job flags](../../administration/setting-job-flags.md) for more information.
 
 <a name="revision-cleanup-job"/>
 
@@ -150,10 +150,10 @@ as well as to process publications.
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r                     |
-| Purpose              | copy data packages from research groups to the vault                        |
-| Lock file            | no lock file, but collection metadata attribute records processing status   |
-| Typically started by | cronjob, runs every minute                                                  |
+| Script               | /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r                       |
+| Purpose              | copy data packages from research groups to the vault                      |
+| Lock file            | no lock file, but collection metadata attribute records processing status |
+| Typically started by | cronjob, runs every 15 minutes (or every 5 minutes on development)                |
 
 By default, groups that are to be copied to the vault are marked with a metadata attribute named
 `cronjob_copy_to_vault`.

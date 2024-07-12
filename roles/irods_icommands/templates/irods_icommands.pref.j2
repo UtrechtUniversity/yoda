@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+
+{% set irods_icommands = irods_icommands_package_new.split('=') %}
+Explanation: Pin added by role: irods_icommands
+Package: {{ irods_icommands[0] }}
+Pin: version {{ irods_icommands[1] }}
+Pin-Priority: 999

@@ -15,7 +15,23 @@
 - name: Ensure Ansible dependencies are installed
   ansible.builtin.package:
     name:
+      - acl
       - policycoreutils-python-utils
+    state: present
+
+
+- name: Configure AppArmor systemd service
+  ansible.builtin.service:
+    name: apparmor
+    enabled: true
+    use: service
+
+
+- name: Ensure AppArmor tools are installed
+  ansible.builtin.package:
+    name:
+      - apparmor-profiles
+      - apparmor-utils
     state: present
 
 
@@ -29,4 +45,5 @@
       - tmux
       - rsync
       - jq
+      - curl
     state: present

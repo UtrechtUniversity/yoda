@@ -5,28 +5,8 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
-- name: Check iRODS service type is supported
-  ansible.builtin.fail:
-    msg: 'Error: irods_service_type value not supported'
-  when: irods_service_type not in ["sysv", "systemd"]
-
-
 - name: Populate service facts
   ansible.builtin.service_facts:
-
-
-- name: Stop iRODS service before switching between init systems
-  ansible.builtin.service:
-    name: irods
-    state: stopped
-  when: ((irods_service_type == "sysv" and
-          'irods.service' in services and
-          services['irods.service']['source'] == "systemd" and
-          services['irods.service']['state'] == "running")
-         or (irods_service_type == "systemd" and
-          'irods' in services and
-          services['irods']['source'] == "sysv" and
-          services['irods']['state'] == "running"))
 
 
 - name: Ensure systemd unit file present
@@ -37,33 +17,6 @@
     group: root
     mode: '0644'
   notify: Systemd daemon reload
-  when: irods_service_type == "systemd"
-
-
-- name: Ensure systemd unit file absent
-  ansible.builtin.file:
-    path: /lib/systemd/system/irods.service
-    state: absent
-  notify: Systemd daemon reload
-  when: irods_service_type == "sysv"
-
-
-- name: Flush handlers to trigger daemon reload after switching between init systems
-  ansible.builtin.meta: flush_handlers
-
-
-- name: Start iRODS service after switching between init systems
-  ansible.builtin.service:
-    name: irods
-    state: started
-  when: ((irods_service_type == "sysv" and
-          'irods.service' in services and
-          services['irods.service']['source'] == "systemd" and
-          services['irods.service']['state'] == "running")
-         or (irods_service_type == "systemd" and
-          'irods' in services and
-          services['irods']['source'] == "sysv" and
-          services['irods']['state'] == "running"))
 
 
 - name: Ensure iRODS resource server is installed
@@ -74,6 +27,16 @@
       - "{{ irods_prep_package_new }}"
     state: present
   when: not ansible_check_mode
+
+
+- name: Ensure iRODS resource server is pinned
+  ansible.builtin.template:
+    src: 'irods_resource.pref.j2'
+    dest: '/etc/apt/preferences.d/irods_resource.pref'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+  when: ansible_os_family == 'Debian'
 
 
 - name: Flush handlers to restart iRODS if needed
@@ -187,7 +150,6 @@
     name: irods
     enabled: "{{ irods_enable_service }}"
     use: service
-  when: irods_service_type == "systemd"
 
 
 - name: Wait until iRODS server is ready to receive requests

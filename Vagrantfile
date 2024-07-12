@@ -5,8 +5,9 @@
 
 # Configuration variables.
 VAGRANTFILE_API_VERSION = "2"
+ENV['VAGRANT_DEFAULT_PROVIDER'] = "libvirt"
 
-BOX = 'generic/centos7'
+BOX = 'generic/ubuntu2004'
 GUI = false
 CPU = 2
 RAM = 4096

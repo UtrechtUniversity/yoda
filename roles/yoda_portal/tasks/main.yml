@@ -124,7 +124,7 @@
   notify: Restart Apache webserver
 
 
-- name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
+- name: Ensure Yoda Portal virtual host is enabled (Ubuntu)
   ansible.builtin.file:
     src: "{{ yoda_portal_site_config_dir }}//{{ yoda_portal_site_config_file }}"
     dest: "{{ yoda_portal_site_enabled_config_dir }}//{{ yoda_portal_site_config_file }}"
