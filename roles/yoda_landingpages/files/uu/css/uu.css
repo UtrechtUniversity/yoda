@@ -1,0 +1,325 @@
+/* Fonts */
+
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN_r8OXOhpOqc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN_r8OUuhp.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v16/mem8YaGs126MiZpBA-UFW50bbck.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v16/mem8YaGs126MiZpBA-UFVZ0b.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Merriweather Regular'), local('Merriweather-Regular'), url(https://fonts.gstatic.com/s/merriweather/v20/u-440qyriQwlOrhSvowK_l5-ciZMZ-Y.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Merriweather Regular'), local('Merriweather-Regular'), url(https://fonts.gstatic.com/s/merriweather/v20/u-440qyriQwlOrhSvowK_l5-fCZM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Merriweather Bold'), local('Merriweather-Bold'), url(https://fonts.gstatic.com/s/merriweather/v20/u-4n0qyriQwlOrhSvowK_l52xwNZVsf6lvg.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Merriweather Bold'), local('Merriweather-Bold'), url(https://fonts.gstatic.com/s/merriweather/v20/u-4n0qyriQwlOrhSvowK_l52xwNZWMf6.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN7rgOXOhpOqc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN7rgOUuhp.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Media queries */
+/* UU Container fix, full width on small devices */
+@media (max-width: 1620px) {
+    .container {
+        min-width: 100%;
+    }
+}
+
+@media (min-width: 1621px) {
+    .container {
+        min-width: 80%;
+    }
+}
+
+.no-padding {
+    padding: 0;
+}
+
+body {
+    background: #f6f6f6;
+}
+
+/* Header */
+header .logo {
+    margin-left: 5%;
+}
+header .logo img {
+    height: 60px;
+    max-width: none;
+}
+
+header .header-title {
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    margin-top: 5px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 5%;
+    color: #C63556;
+}
+header .header-title h1 {
+    font-weight: 200;
+    margin-bottom: 0;
+    font-style: normal;
+    font-size: 32px;
+    font-family: 'Open Sans', sans-serif;
+}
+/* /Header */
+
+/* Main */
+.creators {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 21px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+.content {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.content h2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 32px;
+    text-align: left;
+}
+.content .meta label {
+	font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+}
+.content .meta span {
+	margin-right: 35px;
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+}
+.content .meta span.date {
+    font-weight: 700;
+}
+.content .description {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 16px;
+}
+.content .tags label, .content .keywords label {
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+}
+.content .tags .tag, .content .keywords .keyword {
+    background: #f2f2f2;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 400;
+    font-size: 13px;
+    color: #333333;
+    margin-right: 7px;
+    margin-top: 7px;
+    display: inline-block;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+.content hr {
+    background-color: #999999;
+    height: 1px;
+    border: 0;
+}
+.content .access-btn {
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+}
+.version {
+    background: #f2f2f2;
+}
+.version h4 {
+    font-family: 'Merriweather', serif;
+}
+.version tbody {
+    font-size: 14px;
+}
+.version a {
+    color: #333333;
+    text-decoration: underline;
+}
+.view-contents {
+    margin-left: 5%;
+}
+.metadata {
+    margin-top: 75px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 4%;
+    background: #ffcd00;
+}
+.metadata h2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 32;
+}
+
+.metadata .list .group {
+    padding-bottom: 60px;
+}
+.metadata .list .group:last-child {
+    padding-bottom: 20px;
+}
+.metadata .list .group .row:first-child {
+    border-top: 2px solid #797979;
+}
+.metadata .list label {
+    font-family: 'Merriweather', serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 18px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 1;
+    margin: 0;
+}
+.metadata .list span {
+    width: 100%;
+    display: block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 1;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+}
+.metadata .list span a {
+    color: #333333;
+    text-decoration: underline;
+}
+.metadata .list .group .row {
+    border-bottom: 1px solid #797979;
+    margin: 0;
+}
+.metadata .list .group .row div {
+    padding: 0;
+}
+
+.questions {
+    margin-top: 60px;
+}
+.questions h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.questions .support-btn {
+    text-transform: uppercase;
+}
+
+footer {
+    background: #262626;
+    padding-left: 5%;
+    height: 141px;
+    width: 100%;
+    margin-top: 60px;
+}
+footer .logo {
+    padding-top: 20px;
+}
+footer .logo img {
+    max-width: none;
+    height: 111px;
+}
