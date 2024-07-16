@@ -199,7 +199,7 @@ irods_enable_gocommands              | Whether to install the GoCommands CLI (di
 irods_gocommands_version             | GoCommands version
 irods_gocommands_archive_checksum    | MD5 checksum of the GoCommands archive for the version to be installed
 irods_anonymous_account_permit_addresses  | List of network addresses that can log in on the anonymous account using the iRODS protocol. Localhost (127.0.0.1) is always allowed.
-irods_user_max_connections           | Limit the number of iRODS connections per user
+irods_user_max_connections           | Limit the number of iRODS connections per user (default: 4). This limit does not apply to rodsadmin users (technical admins) and to the anonymous user.
 
 ### S3 configuration - for iRODS S3 resource plugin and s3cmd utilities
 
