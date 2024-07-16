@@ -4,7 +4,7 @@
 - name: Include OS-specific variables
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
-
+    
 - name: Ensure inbox user exists
   ansible.builtin.user:
     name: '{{ yoda_inbox_user }}'
@@ -36,9 +36,10 @@
     - '{{ landingpages_root }}/static/img/'
     - '{{ landingpages_root }}/static/js/'
 
-- name: Set yoda_theme if not defined or empty
-  set_fact:
-    landingpage_theme: "{{ yoda_theme | default('uu') | ternary(yoda_theme, 'uu') }}"
+
+- name: Set landingpage_theme based on yoda_theme
+  ansible.builtin.set_fact:
+    landingpage_theme: "{{ yoda_theme | default('uu') }}"
 
 
 - name: Ensure Yoda landingpage static files are present
