@@ -37,11 +37,6 @@
     - '{{ landingpages_root }}/static/js/'
 
 
-- name: Set landingpage_theme based on yoda_theme
-  ansible.builtin.set_fact:
-    landingpage_theme: "{{ yoda_theme | default('uu') }}"
-
-
 - name: Ensure Yoda landingpage static files are present
   ansible.builtin.copy:
     src: '{{ item.src }}'
@@ -57,9 +52,9 @@
     - src: '{{ landingpage_theme }}/css/{{ landingpage_theme }}.css'
       dest: '{{ landingpages_root }}/static/css/landingpage.css'
     - src: '{{ landingpage_theme }}/img/logo.svg'
-      dest: '{{ landingpages_root }}/static/img/landingpage_logo.svg'
+      dest: '{{ landingpages_root }}/static/img/logo.svg'
       diff: false
-    - src: 'img/logo_footer.svg'
+    - src: '{{ landingpage_theme }}/img/logo_footer.svg'
       dest: '{{ landingpages_root }}/static/img/logo_footer.svg'
       diff: false
     - src: 'css/leaflet-1.5.1.css'
