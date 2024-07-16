@@ -11,8 +11,8 @@ yoda_eus_fqdn: eus.yoda.test
 update_portal: true
 
 # Yoda theme
-yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
-yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
+yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes #TODO:
+yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu) #TODO
 
 # Yoda portal
 yoda_portal_version: "{{ yoda_version }}"
