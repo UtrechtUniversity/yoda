@@ -442,6 +442,13 @@ upload_priv_key              | Yoda public upload private key (base64 encoded)
 upload_pub_key               | Yoda public upload public key (base64 encoded)
 yoda_moai_version            | Version of MOAI (the OAI-PMH server) to use. Defaults to the value of `yoda_version`.
 
+### Landingpages configuration
+
+Variable          | Description
+------------------|--------------------------------
+landingpages_root | Root of landingpages on server
+landingpage_theme | Name of landingpage theme
+
 ### External user service configuration
 
 Variable                     | Description

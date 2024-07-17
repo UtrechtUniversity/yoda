@@ -1,4 +1,5 @@
 ---
 # copyright Utrecht University
 
-landingpages_root: /var/www/landingpages
+landingpages_root: /var/www/landingpages  # Root of landingpages on servers
+landingpage_theme: "uu"                   # Name of landingpage theme
