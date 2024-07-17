@@ -1,5 +1,5 @@
 ---
 # copyright Utrecht University
 
-landingpages_root: /var/www/landingpages
-landingpage_theme: "{{ yoda_theme | default('uu') }}"
+landingpages_root: /var/www/landingpages  # Root of landingpages on servers
+landingpage_theme: "uu"                   # Name of landingpage theme
