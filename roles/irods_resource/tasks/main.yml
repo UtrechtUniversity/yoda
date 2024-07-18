@@ -279,3 +279,35 @@
     - key: 'negotiation_key'
       value: "{{ irods_negotiation_key }}"
   when: not ansible_check_mode
+
+
+- name: Ensure iRODS .ssh directory has strict permissions
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.file:
+    path: ~/.ssh
+    state: directory
+    mode: '0700'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+
+
+- name: Install private upload key
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.template:
+    src: id_ed25519.j2
+    dest: '~/.ssh/id_ed25519'
+    owner: '{{ irods_service_account }}'
+    mode: '0600'
+  no_log: true
+  when: upload_priv_key is defined
+
+
+- name: Scan public host pub key
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.shell: "ssh-keyscan {{ yoda_public_host }} >> ~/.ssh/known_hosts"
+  args:
+    creates: '~/.ssh/known_hosts'
+  when: upload_priv_key is defined
