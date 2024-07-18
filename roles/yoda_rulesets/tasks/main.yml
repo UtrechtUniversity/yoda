@@ -159,6 +159,17 @@
     mode: '0644'
 
 
+- name: Copy securecopy script to ExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/etc/irods/yoda-ruleset/tools/securecopy.sh"
+    dest: "/var/lib/irods/msiExecCmd_bin/securecopy.sh"
+    mode: '0755'
+  when: not ansible_check_mode
+
+
 - name: Install Yoda rulesets
   ansible.builtin.include_tasks: "{{ ruleset.name }}.yml"
   with_items: "{{ extra_rulesets + core_rulesets }}"

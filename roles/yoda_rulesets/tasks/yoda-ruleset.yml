@@ -93,7 +93,6 @@
     mode: '0755'
   when: not ansible_check_mode
   with_items:
-    - securecopy.sh
     - scheduled-copytovault.sh
     - admin-remove-orphan-vault-if-empty.sh
     - admin-vaultactions.sh
