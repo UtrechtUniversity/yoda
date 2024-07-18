@@ -106,7 +106,7 @@ For example, to asynchronously create revisions, run:
 ./run-cronjob.sh revision
 ```
 
-After accepting a data package for archiving in the vault, run:
+After accepting a data package for archiving in the vault, it should automatically be copied to the vault. If a package has been in the 'accepted' state for some time, issues may have occurred during the process. To retry copy to vault, run:
 
 ```
 ./run-cronjob.sh copytovault
