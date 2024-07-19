@@ -30,10 +30,11 @@ The ruleset has a custom rule for running the integration tests. These tests ver
 with iRODS. You need to run the tests on either the [Docker setup](docker-setup.md) or on a development VM that has the test dataset. Please consult the
 [API and UI tests manual page](running-api-ui-tests.md) for instructions on how to install test data on a development VM.
 
-You can then run the integration tests from the `irods` account by invoking the integration test rule:
+You can then run the integration tests from the `irods` account using the integration test script.
 
 ```
-$ /usr/bin/irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/run-integration-tests.r
+$ /etc/irods/yoda-ruleset/tools/run-integration-tests.sh
+[... output omitted]
 util.collection.exists.yes VERDICT_OK
 util.collection.exists.no VERDICT_OK
 util.collection.owner VERDICT_OK
@@ -42,22 +43,26 @@ util.data_object.exists.yes VERDICT_OK
 util.data_object.exists.no VERDICT_OK
 util.data_object.owner VERDICT_OK
 util.data_object.size VERDICT_OK
-util.resource.exists.yes VERDICT_OK
-util.resource.exists.no VERDICT_OK
-util.resource.get_all_resource_names VERDICT_OK
-util.resource.get_children_by_name VERDICT_OK
-util.resource.get_parent_by_name VERDICT_OK
-util.resource.get_resource_names_by_type VERDICT_OK
-util.resource.get_type_by_name VERDICT_OK
-util.resource.to_from_id VERDICT_OK
-util.user.exists.yes VERDICT_OK
-util.user.exists.no VERDICT_OK
-util.user.is_admin.yes VERDICT_OK
-util.user.is_admin.no VERDICT_OK
-util.user.is_member_of.yes VERDICT_OK
-util.user.is_member_of.no VERDICT_OK
-util.user.usertype.rodsadmin VERDICT_OK
-util.user.usertype.rodsuser VERDICT_OK
+[... output omitted]
+```
+
+In order to run only a single test, add the test name as a parameter, like this:
+
+```
+$ /etc/irods/yoda-ruleset/tools/run-integration-tests.sh util.collection.owner
+util.collection.owner VERDICT_OK
+
+```
+
+In order to run all integration tests with a particular prefix, add a * after the prefix. For example:
+
+```
+$ /etc/irods/yoda-ruleset/tools/run-integration-tests.sh util.collection.*
+util.collection.exists.yes VERDICT_OK
+util.collection.exists.no VERDICT_OK
+util.collection.owner VERDICT_OK
+util.collection.to_from_id VERDICT_OK
+
 ```
 
 # Running Yoda portal unit tests
