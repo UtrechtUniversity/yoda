@@ -166,6 +166,7 @@ Variable                           | Description
 -----------------------------------|---------------------------------------------
 httpd_log_forwarded_for            | Whether to log X-Forwarded-For headers in Apache logs (boolean, default value: false). This logs source IP addresses of requests if requests to the Yoda web portal and/or WebDAV interface are routed via a load balancer.
 httpd_log_user_agent               | Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false)
+httpd_log_request_duration         | Whether to log how much time it took to respond to web server requests (boolean, default value: false). Time is logged in both microseconds, and in seconds (rounded down).
 yoda_portal_log_api_call_duration  | Whether to log duration and parameters of all API calls from the Yoda portal. This is mainly useful for performance testing (boolean, default value: false)
 
 
