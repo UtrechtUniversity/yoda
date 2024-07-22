@@ -9,6 +9,7 @@ Released: TBA
 ### Features
 - Support for Ubuntu 20.04 LTS
 - Support for multiple deposit groups
+- Support for landingpage themes
 - Removed RADIUS fallback option
 
 ### Known issues

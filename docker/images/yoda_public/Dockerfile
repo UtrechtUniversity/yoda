@@ -70,7 +70,7 @@ RUN bash -c "mkdir -p /var/www/landingpages/static/{css,img,js}" && \
     chown -R yodadeployment:yodadeployment /var/www/landingpages
 COPY stage/index.html /var/www/landingpages/index.html
 COPY stage/bootstrap.min.css /var/www/landingpages/static/css/bootstrap.min.css
-COPY stage/uu.css /var/www/landingpages/static/css/uu.css
+COPY stage/uu.css /var/www/landingpages/static/css/landingpage.css
 COPY stage/logo.svg /var/www/landingpages/static/img/logo.svg
 COPY stage/logo_footer.svg /var/www/landingpages/static/img/logo_footer.svg
 COPY stage/leaflet-1.5.1.css /var/www/landingpages/static/css/leaflet-1.5.1.css

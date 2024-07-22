@@ -16,8 +16,8 @@ fi
 
 cp ../../../roles/yoda_landingpages/files/index.html stage
 cp ../../../roles/yoda_landingpages/files/css/bootstrap.min.css stage
-cp ../../../roles/yoda_landingpages/files/css/uu.css stage
-cp ../../../roles/yoda_landingpages/files/img/logo.svg stage
-cp ../../../roles/yoda_landingpages/files/img/logo_footer.svg stage
+cp ../../../roles/yoda_landingpages/files/uu/css/uu.css stage
+cp ../../../roles/yoda_landingpages/files/uu/img/logo.svg stage
+cp ../../../roles/yoda_landingpages/files/uu/img/logo_footer.svg stage
 cp ../../../roles/yoda_landingpages/files/css/leaflet-1.5.1.css stage
 cp ../../../roles/yoda_landingpages/files/js/leaflet-1.5.1.js stage
