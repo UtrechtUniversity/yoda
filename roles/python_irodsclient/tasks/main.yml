@@ -1,17 +1,27 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure Python dependencies are installed
-  ansible.builtin.package:
-    name:
-      - python-pip
-    state: present
+- name: Download get-pip script for Python 2.7
+  ansible.builtin.get_url:
+    url: 'https://bootstrap.pypa.io/pip/2.7/get-pip.py'
+    dest: '/usr/local/bin/get-pip.py'
+    checksum: 'sha256:40ee07eac6674b8d60fce2bbabc148cf0e2f1408c167683f110fd608b8d6f416'
+    mode: '0755'
+
+
+# The packaged pip2 version on CentOS 7 is so ancient that it can't talk
+# to pypi anymore, so we need to use the get-pip script to be able to
+# bootstrap pip for Python 2
+- name: Install pip for Python 2.7
+  become: true
+  ansible.builtin.command:
+    cmd: /usr/bin/python2.7 /usr/local/bin/get-pip.py --prefix /usr
+    creates: /usr/local/bin/pip2
 
 
 - name: Ensure python-irodsclient dependencies are installed
   ansible.builtin.pip:
     name:
-      - pip==20.2.4
       - setuptools==44.1.1
     state: present
 
