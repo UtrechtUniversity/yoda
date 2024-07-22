@@ -28,6 +28,7 @@ theme_mapping: {
     "vu": "Vrije University Amsterdam",
     "wur": "Wageningen University & Research"
 }
+
 # Yoda portal
 yoda_portal_version: "{{ yoda_version }}"
 yoda_portal_log_api_call_duration: false
