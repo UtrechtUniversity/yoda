@@ -81,20 +81,7 @@ yoda_theme_path: /var/www/yoda/themes              # Base path holding customise
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
 portal_title_text: Yoda - Dev
 yoda_portal_log_api_call_duration: true
-theme_mapping: {
-    "uu": "Utrecht University - default",
-    "uu_its": "Utrecht University - ITS",
-    "uu_gw": "Utrecht University - Humanities",
-    "uu_youth": "Utrecht University - YOUth",
-    "uu_i-lab": "Utrecht University - i-lab",
-    "uu_science": "Utrecht University - Science",
-    "uu_fsw": "Utrecht University - Social Science",
-    "uu_geo": "Utrecht University - Geo",
-    "uu_dgk": "Utrecht University - Veterinary Medicine",
-    "uu_dag": "Utrecht University - Data Archive for Geosciences (DAG)",
-    "vu": "Vrije University Amsterdam",
-    "wur": "Wageningen University & Research"
-}
+theme_mapping: {"uu": "Utrecht University - default", "uu_its": "Utrecht University - ITS", "uu_gw": "Utrecht University - Humanities", "uu_youth": "Utrecht University - YOUth", "uu_i-lab": "Utrecht University - i-lab", "uu_science": "Utrecht University - Science", "uu_fsw": "Utrecht University - Social Science", "uu_geo": "Utrecht University - Geo", "uu_dgk": "Utrecht University - Veterinary Medicine", "uu_dag": "Utrecht University - Data Archive for Geosciences (DAG)", "vu": "Vrije University Amsterdam", "wur": "Wageningen University & Research"}
 
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
