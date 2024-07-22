@@ -5,7 +5,6 @@
 - name: Ensure Python dependencies are installed
   ansible.builtin.package:
     name:
-      - python-pip
       - gcc
     state: present
 

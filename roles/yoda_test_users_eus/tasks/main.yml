@@ -21,12 +21,6 @@
   changed_when: false
 
 
-- name: Ensure Python pip is installed
-  ansible.builtin.package:
-    name: python-pip
-    state: present
-
-
 - name: Install passlib and dependencies
   ansible.builtin.pip:
     name:

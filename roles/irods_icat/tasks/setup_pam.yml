@@ -44,14 +44,6 @@
   when: external_users
 
 
-- name: Ensure Python dependencies are installed
-  ansible.builtin.package:
-    name:
-      - python-pip
-    state: present
-  when: enable_tokens
-
-
 # When data access tokens are enabled, pysqlcipher3 needs to be
 # installed globally too for the token authentication script
 # (in addition to the user-level installation for the ruleset).
