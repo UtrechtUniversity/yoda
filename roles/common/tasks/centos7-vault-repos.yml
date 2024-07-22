@@ -1,0 +1,20 @@
+---
+# copyright Utrecht University
+
+- name: Configure yum vault repositories
+  ansible.builtin.copy:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
+    mode: "0644"
+    owner: "root"
+    group: "root"
+    backup: true
+  with_items:
+    - { "src": "CentOS-Base.repo",
+        "dest": "/etc/yum.repos.d/CentOS-Base.repo" }
+    - { "src": "CentOS-x86_64-kernel.repo",
+        "dest": "/etc/yum.repos.d/CentOS-x86_64-kernel.repo" }
+    - { "src": "CentOS-SCLo-scl-rh.repo",
+        "dest": "/etc/yum.repos.d/CentOS-SCLo-scl-rh.repo" }
+    - { "src": "CentOS-SCLo-scl.repo",
+        "dest": "/etc/yum.repos.d/CentOS-SCLo-scl.repo" }
