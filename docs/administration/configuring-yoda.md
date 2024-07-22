@@ -129,6 +129,7 @@ Variable                     | Description
 ansible_user                 | Administrative user on instance for Ansible
 ansible_ssh_private_key_file | Path to private key file of administrative user
 repo_only                    | Only download packages from repos
+centos_use_vault_repos       | Configure Yum to use vault repositories on CentOS 7, so that Yoda can still be deployed on CentOS 7 even though the original repository mirrors no longer exist  (default: false). Enabling this parameter is meant to be permanent, so disabling it after it has been enabled has no effect. Backups of the original repo configurations are stored in /etc/yum.repos.d when using the vault repos is enabled.
 centos_extras_repository     | Name of the CentOS extras repository
 centos_sclo_rh_repository    | Name of the CentOS SCLO-RH repository
 

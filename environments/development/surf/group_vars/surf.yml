@@ -5,6 +5,8 @@
 ansible_user: vagrant                             # Administrative user on instance for Ansible
 ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of administrative user
 
+centos_use_vault_repos: true
+
 # Yoda configuration
 instance: surf                                     # Name of Yoda instance, as defined in hosts file
 yoda_version: release-1.9                          # Git branch, for example: development or release-1.5

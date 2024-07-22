@@ -4,6 +4,10 @@
 - name: Setup hostname
   ansible.builtin.import_tasks: hostname.yml
 
+- name: Configure CentOS 7 server to use vault repositories
+  ansible.builtin.import_tasks: centos7-vault-repos.yml
+  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7' and centos_use_vault_repos
+
 - name: Setup EPEL repository
   ansible.builtin.import_tasks: epel.yml
   when: ansible_os_family == 'RedHat'
