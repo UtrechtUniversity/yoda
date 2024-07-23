@@ -95,7 +95,8 @@ OIDC_JWT_OPTIONS     = {
 # Portal theme configuration
 YODA_THEME_PATH = '{{ yoda_theme_path  | default("/var/www/yoda/themes") }}' # Path to location of themes
 YODA_THEME = '{{ yoda_theme | default("uu") }}'                              # Reference to actual theme directory in YODA_THEME_PATH
-
+YODA_MAIN_PATH = '{{ yoda_main_path | default("/var/www/yoda") }}'
+YODA_THEME_MAPPING = {{ theme_mapping | default("{}") }}
 # External User Service configuration
 YODA_EUS_FQDN = '{{ yoda_eus_fqdn | default("") }}'
 
