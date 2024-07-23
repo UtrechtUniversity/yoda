@@ -586,6 +586,10 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>Whether to log the user agent of browsers and WebDAV clients in the Apache logs (boolean, default value: false)</td>
     </tr>
     <tr>
+      <td>httpd_log_request_duration</td>
+      <td>Whether to log how much time it took to respond to web server requests (boolean, default value: false). Time is logged in both microseconds, and in seconds (rounded down).</td>
+    </tr>
+    <tr>
       <td>yoda_portal_log_api_call_duration</td>
       <td>Whether to log duration and parameters of all API calls from the Yoda portal. This is mainly useful for performance testing (boolean, default value: false)</td>
     </tr>
