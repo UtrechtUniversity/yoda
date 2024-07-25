@@ -69,6 +69,8 @@ test_groups:
   - {groupName: research-teclab-1,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: teclab-1}
   - {groupName: research-vollmer-0,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: vollmer-0}
 
+  - {groupName: research-smoke-test,    category: test-automation, subcategory: smoke-test, dataClassification: unspecified, schema_id: default-3}
+
   - {groupName: deposit-pilot, category: test-automation, subcategory: data-archive-geo, dataClassification: unspecified, schema_id: dag-0}
   - {groupName: deposit-pilot1, category: test-automation, subcategory: data-archive-geo, dataClassification: unspecified, schema_id: dag-0}
 
@@ -151,6 +153,10 @@ test_group_users:
 
   - {groupName: research-vollmer-0, user: researcher,                    role: normal}
   - {groupName: research-vollmer-0, user: functionaladminpriv,           role: manager}
+
+  - {groupName: research-smoke-test, user: researcher,                    role: normal}
+  - {groupName: research-smoke-test, user: datamanager,                   role: manager}
+  - {groupName: research-smoke-test, user: functionaladminpriv,           role: manager}
 
   - {groupName: deposit-pilot, user: viewer,                        role: normal}
   - {groupName: deposit-pilot, user: researcher,                    role: normal}
@@ -246,6 +252,10 @@ test_group_eus_users:
 
   - {groupName: research-vollmer-0, user: researcher@yoda.test,          role: normal}
   - {groupName: research-vollmer-0, user: functionaladminpriv@yoda.test, role: manager}
+
+  - {groupName: research-smoke-test, user: researcher@yoda.test,          role: normal}
+  - {groupName: research-smoke-test, user: datamanager@yoda.test,         role: manager}
+  - {groupName: research-smoke-test, user: functionaladminpriv@yoda.test, role: manager}
 
   - {groupName: deposit-pilot, user: viewer@yoda.test,              role: normal}
   - {groupName: deposit-pilot, user: researcher@yoda.test,          role: normal}
