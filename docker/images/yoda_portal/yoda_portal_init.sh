@@ -166,10 +166,24 @@ OIDC_JWT_OPTIONS    = {
 }
 
 # Portal theme configuration
-YODA_THEME_PATH = '/var/www/yoda/themes' # Path to location of themes
-YODA_THEME = 'uu'                              # Reference to actual theme directory in YODA_THEME_PATH
-YODA_MAIN_PATH = '/var/www/yoda'
-YODA_THEME_MAPPING = {'uu': 'Utrecht University - default', 'uu_its': 'Utrecht University - ITS', 'uu_gw': 'Utrecht University - Humanities', 'uu_youth': 'Utrecht University - YOUth', 'uu_i-lab': 'Utrecht University - i-lab', 'uu_science': 'Utrecht University - Science', 'uu_fsw': 'Utrecht University - Social Science', 'uu_geo': 'Utrecht University - Geo', 'uu_dgk': 'Utrecht University - Veterinary Medicine', 'uu_dag': 'Utrecht University - Data Archive for Geosciences (DAG)', 'vu': 'Vrije University Amsterdam', 'wur': 'Wageningen University & Research'}
+YODA_THEME_PATH     = '/var/www/yoda/themes' # Path to location of themes
+YODA_THEME          = 'uu'                   # Reference to actual theme directory in YODA_THEME_PATH
+YODA_MAIN_PATH      = '/var/www/yoda'        # Path to location of yoda portal
+CONFIG_FOLDER_PATH  = '/var/www/yoda/config'
+YODA_THEME_MAPPING  = {
+    'uu': 'Utrecht University - default',
+    'uu_its': 'Utrecht University - ITS',
+    'uu_gw': 'Utrecht University - Humanities',
+    'uu_youth': 'Utrecht University - YOUth',
+    'uu_i-lab': 'Utrecht University - i-lab',
+    'uu_science': 'Utrecht University - Science',
+    'uu_fsw': 'Utrecht University - Social Science',
+    'uu_geo': 'Utrecht University - Geo',
+    'uu_dgk': 'Utrecht University - Veterinary Medicine',
+    'uu_dag': 'Utrecht University - Data Archive for Geosciences (DAG)',
+    'vu': 'Vrije University Amsterdam',
+    'wur': 'Wageningen University & Research'
+}
 
 # External User Service configuration
 YODA_EUS_FQDN = 'eus.yoda.test'
