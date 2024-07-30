@@ -165,11 +165,13 @@ OIDC_JWT_OPTIONS    = {
     "verify_signature": True                                #verify the JWT cryptographic signature
 }
 
+# Yoda portal
+YODA_MAIN_PATH      = '/var/www/yoda'        # Path to location of portal
+CONFIG_FOLDER_PATH  = '/var/www/yoda/config' # Path to portal's shared configuration
+
 # Portal theme configuration
 YODA_THEME_PATH     = '/var/www/yoda/themes' # Path to location of themes
 YODA_THEME          = 'uu'                   # Reference to actual theme directory in YODA_THEME_PATH
-YODA_MAIN_PATH      = '/var/www/yoda'        # Path to location of yoda portal
-CONFIG_FOLDER_PATH  = '/var/www/yoda/config'
 YODA_THEME_MAPPING  = {
     'uu': 'Utrecht University - default',
     'uu_its': 'Utrecht University - ITS',
