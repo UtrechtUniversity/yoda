@@ -109,3 +109,7 @@ UPLOAD_PART_FILES              = {{ yoda_portal_upload_part_files }}
 
 # Text file extensions configuration
 TEXT_FILE_EXTENSIONS = {{ text_file_extensions | default(['txt'])}}
+
+# Monitor thread configuration
+MONITOR_OUTPUT_DIR = "{{ yoda_portal_monitor_output_dir }}"
+MONITOR_SIGNAL_FILE = "{{ yoda_portal_monitor_signal_file }}"
