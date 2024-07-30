@@ -12,6 +12,8 @@
   ansible.builtin.package:
     name:
       - irods-uu-microservices-4.2.11_0.8.2-1
+      - irods-uu-microservices-4.2.12_1.0.0
+      - irods-uu-microservices-4.2.12_1.1.1
       - irods-sudo-microservices-4.2.11_1.0.0-1
       - davrods-4.2.11_1.5.0-1
       - irods-runtime-4.2.11-1
