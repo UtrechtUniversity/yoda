@@ -7,9 +7,8 @@ state ResearchSpace as "Research Space" {
   SUBMITTED : Submitted for vault
   ACCEPTED : Accepted for vault
   REJECTED : Rejected for vault
-  SECURED : Secured in vault
 
-  [*] --> FOLDER : Create folder (WebDAV)
+  [*] --> FOLDER : Create folder
   FOLDER --> LOCKED : Lock
   FOLDER --> SUBMITTED : Submit
   LOCKED --> FOLDER : Unlock
@@ -19,10 +18,7 @@ state ResearchSpace as "Research Space" {
   SUBMITTED --> REJECTED : Reject
   REJECTED --> LOCKED : Lock
   REJECTED --> SUBMITTED : Submit
-  ACCEPTED --> SECURED : Secure
-  SECURED --> LOCKED : Lock
-  SECURED --> SUBMITTED : Submit
-  SECURED --> [*] : Delete folder (WebDAV)
+  ACCEPTED --> FOLDER : Secure
 }
 
 @enduml
