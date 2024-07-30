@@ -13,7 +13,6 @@ datamanager  -> yoda        : Accept for vault
 yoda        --> researcher  : Accepted notification
 note over yoda              : ACCEPTED
 yoda         -> yoda        : Secure in vault
-note over yoda              : SECURED
 yoda        --> researcher  : Secured notification
 yoda        --> datamanager : Secured notification
 == Rejected folder ==
