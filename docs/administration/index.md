@@ -34,6 +34,7 @@ Specific information:
 
 ## Troubleshooting
 
+- [Collecting portal technical support information](portal-tech-support-info.md)
 - [Restoring a collection](restore-collection.md)
 - [Troubleshooting email](troubleshooting-email.md)
 - [Troubleshooting data package archival in the vault](troubleshooting-copy-to-vault.md)
