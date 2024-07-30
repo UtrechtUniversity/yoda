@@ -32,7 +32,7 @@ IIFOLDERTRANSITIONS = list((FOLDER, LOCKED),
 			   (REJECTED, LOCKED),
 			   (REJECTED, FOLDER),
 			   (REJECTED, SUBMITTED),
-			   (ACCEPTED, SECURED),
+			   (ACCEPTED, FOLDER),
 			   (SECURED, LOCKED),
 			   (SECURED, FOLDER),
 			   (SECURED, SUBMITTED))
@@ -56,7 +56,7 @@ A research group without a datamanager can submit packages to the vault directly
 submission.
 
 ## Copy to vault
-The **retry-copy-to-vault.r** cronjob in the tools directory of the research ruleset will copy any folder with a 'PENDING' or 'RETRY' cronjob copy state to the vault and set it to 'SECURED' state when successful. In Yoda versions 1.9 or lower this is only done with folders with a 'RETRY' state. The copy uses `irsync` in versions 1.10 and higher. The metadata is copied as well. Folders with 'RETRY' status have previously failed to copy.
+The **retry-copy-to-vault.r** cronjob in the tools directory of the research ruleset will copy any folder with a 'PENDING' or 'RETRY' cronjob copy state to the vault and set back to 'FOLDER' state when successful. In Yoda versions 1.9 or lower this is only done with folders with a 'RETRY' state. The copy uses `irsync` in versions 1.10 and higher. The metadata is copied as well. Folders with 'RETRY' status have previously failed to copy.
 
 See [Copy to vault diagrams](copy-to-vault-diagrams.md) for diagrams of the copy to vault process.
 
