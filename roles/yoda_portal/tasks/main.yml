@@ -106,6 +106,7 @@
 
 
 - name: Ensure the portal config directory exists
+  become_user: "{{ yoda_deployment_user }}"
   ansible.builtin.file:
     path: "{{ config_folder_path }}"
     state: directory
@@ -113,7 +114,6 @@
     group: "{{ yoda_deployment_user }}"
     mode: '0775'
   become: true
-  become_user: "root"
 
 
 - name: Copy Yoda Portal config for Flask
