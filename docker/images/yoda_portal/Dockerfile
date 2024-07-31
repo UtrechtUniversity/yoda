@@ -42,10 +42,13 @@ RUN useradd yodadeployment && \
     chown yodadeployment:yodadeployment /var/www/yoda && \
     git clone --branch $YODA_PORTAL_BRANCH $YODA_PORTAL_REPO /var/www/yoda && \
     git config --global --add safe.directory /var/www/yoda
-# Create portal's shared config folder
+
+# Create Yoda Portal config folder
 RUN mkdir -p /var/www/yoda/config && \
     chown yodadeployment:yodadeployment /var/www/yoda/config && \
     chmod 0775 /var/www/yoda/config
+
+# Copy Yoda Portal virtual host config for Apache
 COPY yoda-portal-vhost.conf /etc/apache2/sites-available/001-yoda-portal-vhost.conf
 RUN ln -s /etc/apache2/sites-available/001-yoda-portal-vhost.conf /etc/apache2/sites-enabled/001-yoda-portal-vhost.conf
 RUN virtualenv --python /usr/bin/python3 /var/www/yoda/venv && \
