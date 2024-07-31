@@ -13,8 +13,7 @@ update_portal: true
 # Yoda theme
 yoda_theme_path: /var/www/yoda/themes              # Base path holding customised portal themes
 yoda_theme: uu                                     # Yoda theme: uu or vu (default: uu)
-yoda_main_path: /var/www/yoda                      # Yoda portal installation path
-theme_mapping:
+yoda_theme_mapping:
   uu: "Utrecht University - default"
   uu_its: "Utrecht University - ITS"
   uu_gw: "Utrecht University - Humanities"
@@ -31,6 +30,8 @@ theme_mapping:
 # Yoda portal
 yoda_portal_version: "{{ yoda_version }}"
 yoda_portal_log_api_call_duration: false
+yoda_portal_path: /var/www/yoda              # Path to location of portal
+yoda_config_path: '/var/www/yoda/config' # Path to portal's shared configuration
 
 # Text file extensions configuration
 text_file_extensions: ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'fortran', 'gams', 'gauss', 'go', 'graphql', 'ini', 'irpf90', 'java', 'js', 'json', 'julia', 'julia-repl', 'kotlin', 'less', 'lua', 'makefile', 'markdown', 'md', 'mathematica', 'matlab', 'maxima', 'mizar', 'objectivec', 'openscad', 'perl', 'php', 'php-template', 'plaintext', 'txt', 'python', 'py', 'python-repl', 'r', 'ruby', 'rust', 'sas', 'scilab', 'scss', 'shell', 'sh', 'sql', 'stan', 'stata', 'swift', 'typescript', 'ts', 'vbnet', 'wasm', 'xml', 'yaml', 'html']
