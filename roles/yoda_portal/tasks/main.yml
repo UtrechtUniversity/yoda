@@ -108,7 +108,7 @@
 - name: Ensure the portal config directory exists
   become_user: "{{ yoda_deployment_user }}"
   ansible.builtin.file:
-    path: "{{ config_folder_path }}"
+    path: "{{ yoda_config_path }}"
     state: directory
     owner: "{{ yoda_deployment_user }}"
     group: "{{ yoda_deployment_user }}"

@@ -166,8 +166,8 @@ OIDC_JWT_OPTIONS    = {
 }
 
 # Yoda portal
-YODA_MAIN_PATH      = '/var/www/yoda'        # Path to location of portal
-CONFIG_FOLDER_PATH  = '/var/www/yoda/config' # Path to portal's shared configuration
+YODA_PORTAL_PATH      = '/var/www/yoda'        # Path to location of portal
+YODA_CONFIG_PATH  = '/var/www/yoda/config' # Path to portal's shared configuration
 
 # Portal theme configuration
 YODA_THEME_PATH     = '/var/www/yoda/themes' # Path to location of themes
