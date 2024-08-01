@@ -10,7 +10,13 @@ Released: TBA
 - Support for Ubuntu 20.04 LTS
 - Support for multiple deposit groups
 - Support for landingpage themes
+- Added new Administration page, enables functional administration task in the portal
+- Added new Data Transfer page, with ready to use configurations for data transfers
 - Removed RADIUS fallback option
+- Removed `Secured` status from research space
+- Improved support for [vault archiving](../design/overview/vault-archive.md) workflow
+- Improved performance in portal
+- Upgrade python-irodsclient to v2.0.1
 
 ### Known issues
 - Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
@@ -59,4 +65,9 @@ ansible-playbook -i /environments/development/allinone playbook.yml --check
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml
+```
+
+8. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+```bash
+irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
