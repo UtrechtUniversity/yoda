@@ -291,7 +291,13 @@
   <li>Support for Ubuntu 20.04 LTS</li>
   <li>Support for multiple deposit groups</li>
   <li>Support for landingpage themes</li>
+  <li>Added new Administration page, enables functional administration task in the portal</li>
+  <li>Added new Data Transfer page, with ready to use configurations for data transfers</li>
   <li>Removed RADIUS fallback option</li>
+  <li>Removed <code class="language-plaintext highlighter-rouge">Secured</code> status from research space</li>
+  <li>Improved support for <a href="/yoda/design/overview/vault-archive.html">vault archiving</a> workflow</li>
+  <li>Improved performance in portal</li>
+  <li>Upgrade python-irodsclient to v2.0.1</li>
 </ul>
 <h3 id="known-issues">
   
@@ -357,6 +363,10 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> &lt;path-to-your-environment&gt; playbook.yml
 <span class="c">### EXAMPLE ###</span>
 ansible-playbook <span class="nt">-i</span> /environments/development/allinone playbook.yml
+</code></pre></div>    </div>
+  </li>
+  <li>Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/update-publications.r
 </code></pre></div>    </div>
   </li>
 </ol>
