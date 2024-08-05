@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+{{ yoda_moai_home }}/*.log {
+    weekly
+    missingok
+    rotate 4
+    compress
+    delaycompress
+    notifempty
+    su {{ yoda_moai_user }} {{ yoda_moai_user }}
+}
