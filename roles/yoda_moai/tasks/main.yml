@@ -196,6 +196,17 @@
     creates: '{{ yoda_moai_home }}/moai.log'
 
 
+- name: Install logrotate settings for MOAI log files
+  ansible.builtin.template:
+    src: moai.j2
+    dest: /etc/logrotate.d/moai
+    owner: root
+    group: root
+    mode: '0644'
+  # TODO enable for RedHat as well once determined the needed selinux changes?
+  when: ansible_os_family == 'Debian'
+
+
 - name: Set SELinux context for MOAI log file
   community.general.sefcontext:
     target: '{{ yoda_moai_home }}/moai.log'
