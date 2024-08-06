@@ -15,7 +15,7 @@
   
 
 .site-nav > ul.nav-list:first-child > li > a,
-.site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(4)) > a,
+.site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(26)) > a,
 .site-nav > ul.nav-list:first-child > li > ul > li > ul > li > a {
   background-image: none;
 }
@@ -25,14 +25,14 @@
   background-image: none;
 }
 
-.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(4) > a {
+.site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(26) > a {
   font-weight: 600;
   text-decoration: none;
-}.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
-.site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(4) > button svg {
+}.site-nav > ul.nav-list:first-child > li:nth-child(4) > button svg,
+.site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(26) > button svg {
   transform: rotate(-90deg);
-}.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list,
-.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(4) > ul.nav-list {
+}.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list,
+.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list > li.nav-list-item:nth-child(26) > ul.nav-list {
   display: block;
 }
   </style>
@@ -54,18 +54,18 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Processes | Yoda</title>
+<title>Troubleshooting problems with vault metadata | Yoda</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Processes" />
+<meta property="og:title" content="Troubleshooting problems with vault metadata" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:site_name" content="Yoda" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Processes" />
+<meta property="twitter:title" content="Troubleshooting problems with vault metadata" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Processes","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/design/processes/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Troubleshooting problems with vault metadata","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/administration/troubleshooting-vault-metadata.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -274,62 +274,97 @@
     <div class="main-content-wrap">
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
-    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/">Software Design</a></li>
-    <li class="breadcrumb-nav-list-item"><span>Processes</span></li>
+    <li class="breadcrumb-nav-list-item"><a href="/yoda/administration/">Administration Tasks</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Troubleshooting problems with vault metadata</span></li>
   </ol>
 </nav>
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="processes">
+            <h1 id="troubleshooting-problems-with-updating-vault-metadata">
   
   
-    <a href="#processes" class="anchor-heading" aria-labelledby="processes"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Processes
+    <a href="#troubleshooting-problems-with-updating-vault-metadata" class="anchor-heading" aria-labelledby="troubleshooting-problems-with-updating-vault-metadata"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Troubleshooting problems with updating vault metadata
   
   
 </h1>
+    
 
-          
+<p>The vault module in the Yoda portal includes functionality to view
+metadata of a data package using the <code class="language-plaintext highlighter-rouge">Metadata</code> button. Users with
+datamanager permissions on the vault group’s category can also update
+metadata of a data package using the vault module.</p>
 
-          
-            <hr>
-<h2 class="text-delta">Table of contents</h2>
-
+<p>There are some situations where this standard functionality cannot be used:</p>
 <ul>
-
-  <li>
-    <a href="/yoda/design/processes/async-system-execution.html">Asynchronous and Privileged Execution</a>
-  </li>
-
-  <li>
-    <a href="/yoda/design/processes/asynchronous-processes.html">Asynchronous processes</a>
-  </li>
-
-  <li>
-    <a href="/yoda/design/processes/automatic-resource-balancing.html">Automatic Resource Balancing</a>
-  </li>
-
-  <li>
-    <a href="/yoda/design/processes/copy-to-vault-diagrams.html">Copy to vault diagrams</a>
-  </li>
-
-  <li>
-    <a href="/yoda/design/processes/locking-mechanism.html">Folder Locking mechanism</a>
-  </li>
-
-  <li>
-    <a href="/yoda/design/processes/publication-process.html">Publication Process</a>
-  </li>
-
-  <li>
-    <a href="/yoda/design/processes/revisions.html">Revision management</a>
-  </li>
-
-  <li>
-    <a href="/yoda/design/processes/vault-process.html">To vault process in research module</a>
-  </li>
-
+  <li>The vault group has no data managers, for instance if it belongs to
+a category that has no datamanager group.</li>
+  <li>The vault group no longer has a research group associated with it.</li>
+  <li>The data package metadata no longer matches the active metadata schema.
+This can happen after something went wrong with a schema upgrade, for
+example.</li>
 </ul>
+
+<p>In such cases, a technical admin will need to update the metadata. In older
+versions of Yoda, this was done manually. In Yoda 1.10.0 and later, the
+<code class="language-plaintext highlighter-rouge">edit-vault-metadata</code> tool can be used to partially automate such updates.
+The sections below describe how to apply this tool in various situations.</p>
+<h2 id="updating-metadata-if-the-group-has-no-data-managers">
+  
+  
+    <a href="#updating-metadata-if-the-group-has-no-data-managers" class="anchor-heading" aria-labelledby="updating-metadata-if-the-group-has-no-data-managers"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Updating metadata if the group has no data managers
+  
+  
+</h2>
+    
+
+<p>If the vault group does not have a research group anymore or the research
+group category has no datamanager group, the metadata generally can’t be updated
+by a datamanager. If an update of the metadata is needed, it will have to be performed by
+a technical admin.</p>
+
+<p>You will have to use the <code class="language-plaintext highlighter-rouge">edit-vault-metadata</code> tool in direct mode. This
+bypasses the normal process by which metadata is updated by (or on behalf
+of) a datamanager.</p>
+
+<p>Example usage:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ /etc/irods/yoda-ruleset/tools/edit-vault-metadata.py --direct /tempZone/home/vault-default-3/testpackage[1722869873]
+</code></pre></div></div>
+<h2 id="updating-metadata-that-does-not-match-the-schema">
+  
+  
+    <a href="#updating-metadata-that-does-not-match-the-schema" class="anchor-heading" aria-labelledby="updating-metadata-that-does-not-match-the-schema"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Updating metadata that does not match the schema
+  
+  
+</h2>
+    
+
+<p>It is possible to end up with metadata that no longer matches the metadata
+schema in some situations, for example if something went wrong during a metadata
+schema upgrade.</p>
+
+<p>In such cases, the metadata form in the vault module can’t be edited using the
+vault module anymore.  However, when a person who has access to the metadata
+(such as a data manager) tries to open the metadata, the portal will typically
+provide an error message that indicate what fields do not match the schema.
+For example:</p>
+
+<p><img src="/yoda/administration/img/screenshot-schema-mismatch-vault.png" alt="Vault module shows metadata validation errors" /></p>
+
+<p>After checking in the portal to see what fields need to be updated, a technical
+admin can fix these validation errors by editing the metadata. If the vault group
+has a research group and data manager group, the edit tool can
+be used in default mode (without the <code class="language-plaintext highlighter-rouge">--direct</code> option), otherwise you need to provide
+the <code class="language-plaintext highlighter-rouge">--direct</code> option. For example, if the vault group’s category has a datamanager
+group:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ /etc/irods/yoda-ruleset/tools/edit-vault-metadata.py /tempZone/home/vault-default-3/testpackage[1722869873]
+</code></pre></div></div>
+
+<p>After any schema validation issues have been resolved by the technical admin, data managers
+will again be able to update the metadata themselves using the vault module.</p>
+
+          
 
           
         </main>
@@ -346,7 +381,7 @@
         
         
           <p class="text-small text-grey-dk-000 mb-0">
-            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/design/processes/index.md" id="edit-this-page">Edit this page on GitHub.</a>
+            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/administration/troubleshooting-vault-metadata.md" id="edit-this-page">Edit this page on GitHub.</a>
           </p>
         
       </div>
