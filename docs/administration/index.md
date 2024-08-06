@@ -39,3 +39,4 @@ Specific information:
 - [Troubleshooting email](troubleshooting-email.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
 - [Troubleshooting replication and revision creation](troubleshooting-replication-revisions.md)
+- [Troubleshooting data package metadata issues in the vault](troubleshooting-vault-metadata.md)
