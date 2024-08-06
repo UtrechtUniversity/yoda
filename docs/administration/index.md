@@ -40,3 +40,4 @@ Specific information:
 - [Troubleshooting data package archival in the vault](troubleshooting-copy-to-vault.md)
 - [Troubleshooting publication](troubleshooting-publication.md)
 - [Troubleshooting replication and revision creation](troubleshooting-replication-revisions.md)
+- [Troubleshooting data package metadata issues in the vault](troubleshooting-vault-metadata.md)
