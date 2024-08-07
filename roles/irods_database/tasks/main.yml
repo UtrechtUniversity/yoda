@@ -45,7 +45,3 @@
     privs: CREATE
     type: schema
   when: pgsql_version >= 15
-
-
-- name: Setup Yoda databases indexes
-  ansible.builtin.include_tasks: "yoda_indexes.yml"

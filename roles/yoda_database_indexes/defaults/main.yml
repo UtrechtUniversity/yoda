@@ -1,0 +1,5 @@
+---
+# copyright Utrecht University
+
+irods_database_name: ICAT
+irods_database_enable_yoda_indexes: false
