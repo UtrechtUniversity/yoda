@@ -148,6 +148,15 @@
     - icat
 
 
+- name: Provision Yoda-specific database indexes
+  hosts: databases
+  become: true
+  roles:
+    - role: yoda_database_indexes
+  tags:
+    - database
+
+
 - name: Provision resource server
   hosts: resources
   become: true
