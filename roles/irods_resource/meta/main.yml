@@ -11,4 +11,5 @@ galaxy_info:
       version: 7
 
 dependencies:
+  - role: irods_icommands
   - role: python_irodsclient
