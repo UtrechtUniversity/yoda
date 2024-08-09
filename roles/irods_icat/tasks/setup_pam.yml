@@ -46,7 +46,7 @@
     name: pysqlcipher3==1.0.4
     executable: "{{ irods_icat_pip2_path }}"
     state: present
-    extra_args: "--ignore-installed"
+    extra_args: "--user --ignore-installed"
   when: enable_tokens
 
 
