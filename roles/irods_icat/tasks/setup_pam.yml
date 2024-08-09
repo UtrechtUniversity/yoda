@@ -46,7 +46,17 @@
     name: pysqlcipher3==1.0.4
     executable: "{{ irods_icat_pip2_path }}"
     state: present
+  when: enable_tokens
+
+
+- name: Ensure pysqlcipher3 is installed globally for token authentication script
+  ansible.builtin.pip:
+    name: pysqlcipher3==1.0.4
+    executable: "{{ irods_icat_pip2_path }}"
+    state: present
     extra_args: "--user --ignore-installed"
+  become: true
+  become_user: irods
   when: enable_tokens
 
 
