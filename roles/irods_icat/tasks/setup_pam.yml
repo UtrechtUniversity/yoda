@@ -56,7 +56,7 @@
     state: present
     extra_args: "--user --ignore-installed"
   become: true
-  become_user: irods
+  become_user: "{{ irods_service_account }}"
   when: enable_tokens
 
 
