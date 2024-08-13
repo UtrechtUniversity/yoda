@@ -705,8 +705,8 @@
   become: true
   ansible.builtin.cron:
     name: 'sram-sync'
-    minute: '45'
-    hour: '3'
+    minute: '42'
+    hour: '*'
     day: '*'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
       /etc/irods/yoda-ruleset/tools/sram-sync.r >/dev/null 2>&1'
