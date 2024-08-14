@@ -16,7 +16,7 @@ Released: TBA
 - Removed `Secured` status from research space
 - Improved support for [vault archiving](../design/overview/vault-archive.md) workflow
 - Improved performance in portal
-- Upgrade python-irodsclient to v2.0.1
+- Upgrade python-irodsclient to v2.1.0
 
 ### Known issues
 - Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
