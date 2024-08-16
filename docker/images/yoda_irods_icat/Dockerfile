@@ -135,7 +135,7 @@ RUN install -m 0644 -o root -g root /tmp/irods_completion.sh /etc/profile.d/irod
 
 # Set up PAM authentication
 # hadolint ignore=DL3033
-RUN pip --no-cache-dir install pysqlcipher3==1.0.4
+RUN python -m easy_install --user https://github.com/UtrechtUniversity/pysqlcipher3/releases/download/v1.2.1/pysqlcipher3-1.2.1-py2.7-linux-x86_64.egg
 COPY is-user-external.sh /tmp/is-user-external.sh
 COPY external-auth.py /tmp/external-auth.py
 RUN install -m 0750 -o root -g irods /tmp/is-user-external.sh /usr/local/bin/is-user-external.sh && \
@@ -165,6 +165,7 @@ RUN sudo -u irods python -m pip --no-cache-dir install --user pip==20.2.4 && \
     sudo -u irods python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
     sudo -u irods python -m pip --no-cache-dir install --user python-irodsclient==2.1.0 && \
     sudo -u irods python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt && \
+    sudo -u irods python -m easy_install --user https://github.com/UtrechtUniversity/pysqlcipher3/releases/download/v1.2.1/pysqlcipher3-1.2.1-py2.7-linux-x86_64.egg
     sudo -u irods python3 -m pip install --user jsonschema==4.17.3 && \
     sudo -u irods python3 -m pip install --user python-irodsclient==2.1.0 && \
     sudo -u irods python3 -m pip install --user psutil==5.9.5
