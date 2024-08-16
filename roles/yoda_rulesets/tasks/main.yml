@@ -109,6 +109,44 @@
     executable: "{{ yoda_rulesets_pip2_path }}"
 
 
+- name: Ensure pysqlcipher3 is installed
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.pip:
+    name: pysqlcipher3==1.0.4
+    executable: "{{ yoda_rulesets_pip2_path }}"
+    extra_args: --user
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Check installed version of pysqlcipher3
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.shell: "{{ yoda_rulesets_pip2_path }} show pysqlcipher3 | grep Version | cut -d ' ' -f 2"
+  ignore_errors: true
+  changed_when: false
+  register: pysqlcipher3_version
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure PyPi build of pysqlcipher3 is absent
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.pip:
+    name: pysqlcipher3==1.0.4
+    executable: "{{ yoda_rulesets_pip2_path }}"
+    state: absent
+  when: ansible_os_family == 'Debian' and '1.0.4' in pysqlcipher3_version.stdout
+
+
+- name: Ensure custom build of pysqlcipher3 is installed globally for ruleset
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: python2 -m easy_install --user https://github.com/UtrechtUniversity/pysqlcipher3/releases/download/v1.2.1/pysqlcipher3-1.2.1-py2.7-linux-x86_64.egg
+  when: ansible_os_family == 'Debian' and '1.2.1' not in pysqlcipher3_version.stdout
+
+
 - name: Ensure Python 3 jsonschema is installed
   become_user: '{{ irods_service_account }}'
   become: true

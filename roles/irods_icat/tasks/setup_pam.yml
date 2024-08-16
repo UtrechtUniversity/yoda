@@ -46,7 +46,29 @@
     name: pysqlcipher3==1.0.4
     executable: "{{ irods_icat_pip2_path }}"
     state: present
-  when: enable_tokens
+  when: enable_tokens and ansible_os_family == 'RedHat'
+
+
+- name: Check installed version of pysqlcipher3
+  ansible.builtin.shell: "{{ irods_icat_pip2_path }} show pysqlcipher3 | grep Version | cut -d ' ' -f 2"
+  ignore_errors: true
+  changed_when: false
+  register: pysqlcipher3_version
+  when: enable_tokens and ansible_os_family == 'Debian'
+
+
+- name: Ensure PyPi build of pysqlcipher3 is absent
+  ansible.builtin.pip:
+    name: pysqlcipher3==1.0.4
+    executable: "{{ irods_icat_pip2_path }}"
+    state: absent
+  when: enable_tokens and ansible_os_family == 'Debian' and '1.0.4' in pysqlcipher3_version.stdout
+
+
+- name: Ensure custom build of pysqlcipher3 is installed globally for token authentication script
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: python2 -m easy_install https://github.com/UtrechtUniversity/pysqlcipher3/releases/download/v1.2.1/pysqlcipher3-1.2.1-py2.7-linux-x86_64.egg
+  when: enable_tokens and ansible_os_family == 'Debian' and '1.2.1' not in pysqlcipher3_version.stdout
 
 
 - name: Ensure token authentication script is present
