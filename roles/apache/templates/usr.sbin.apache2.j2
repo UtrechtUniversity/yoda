@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-# Last Modified: Mon Apr 15 16:09:01 2024
+# Last Modified: Thu Aug 22 14:42:18 2024
 #include <tunables/global>
 
 # vim:syntax=apparmor
@@ -45,10 +45,11 @@
   owner /home/yodadeployment/flask_session/* rw,
   owner /opt/irods-externals/** mr,
   owner /run/apache2/apache2.pid rw,
+  owner /var/lib/davrods/__db.lockdb_locallock rw,
+  owner /var/lib/davrods/lockdb_locallock rw,
   owner /var/www/extuser/** r,
   owner /var/www/extuser/yoda-external-user-service/** m,
-  owner /var/www/moai/** m,
-  owner /var/www/moai/** r,
+  owner /var/www/moai/** mrw,
   owner /var/www/moai/moai.db wk,
   owner /var/www/moai/yoda-moai/moai/__pycache__/* w,
   owner /var/www/webmock/** m,
