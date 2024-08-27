@@ -16,7 +16,7 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Install Zabbix PostgresSQL monitoring package for RedHat family
+- name: Install Zabbix PostgreSQL monitoring package for RedHat family
   ansible.builtin.include_tasks: install-redhat.yml
   when: ansible_os_family == 'RedHat'
 
