@@ -4,7 +4,7 @@ skinparam defaultFontSize 9
 skinparam shadowing false
 
 start
-if (If user is rodsadmin \nand correct copy to vault start status \nand last run time is not too soon) then (yes)
+if (If user is rodsadmin \nand correct copy to vault start status \nand in research/deposit space \nand last run time is not too soon) then (yes)
 else (no)
    stop
 endif
