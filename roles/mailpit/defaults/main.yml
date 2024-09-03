@@ -3,7 +3,7 @@
 
 enable_mailpit: false
 
-mailpit_version: v1.20.2            # Mailpit releases: https://github.com/axllent/mailpit/releases
+mailpit_version: v1.20.3            # Mailpit releases: https://github.com/axllent/mailpit/releases
 mailpit_max_messages: 10000         # Maximum number of messages to store. Mailpit will periodically delete the oldest messages if greater than this.
 mailpit_smtp_bind_address: 0.0.0.0  # SMTP bind interface.
 mailpit_smtp_port: 25               # SMTP port.
