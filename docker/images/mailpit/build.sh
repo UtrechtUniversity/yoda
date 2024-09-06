@@ -4,7 +4,7 @@ set -e
 set -u
 set -x
 
-export MAILPIT_VERSION=1.20.3
+export MAILPIT_VERSION=1.20.4
 export DOCKER_SCAN_SUGGEST=false
 DOCKER_TAG="$1"
 
