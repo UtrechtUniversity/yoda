@@ -14,6 +14,7 @@ Released: TBA
 - Added new Data Transfer page, with ready to use configurations for data transfers
 - Removed RADIUS fallback option
 - Removed `Secured` status from research space
+- Improved copy to vault with irsync
 - Improved support for [vault archiving](../design/overview/vault-archive.md) workflow
 - Improved performance in portal
 - Upgrade python-irodsclient to v2.1.0
@@ -38,14 +39,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After making sure the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Checkout tag `v1.10.0-beta.0` of the Yoda Git repository.
+3. Checkout tag `v1.10.0-beta.1` of the Yoda Git repository.
 ```bash
-git checkout v1.10.0-beta.0
+git checkout v1.10.0-beta.1
 ```
 
-4. Set the Yoda version to `v1.10.0-beta.0` in the configuration.
+4. Set the Yoda version to `v1.10.0-beta.1` in the configuration.
 ```yaml
-yoda_version: v1.10.0-beta.0
+yoda_version: v1.10.0-beta.1
 ```
 
 5. Install all Ansible collections needed to deploy Yoda:
