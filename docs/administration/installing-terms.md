@@ -22,4 +22,8 @@ To add a new terms file just put it in the `/${RODSZONE}/yoda/terms` collection 
 iput "${TERMS}.txt" "/${RODSZONE}/yoda/terms/${TERMS}.html"
 ```
 
+Alternatively, from Yoda v1.10 onwards, managing publication terms is streamlined through a new GUI on the Administration page. Administrators can enter and save publication terms in the provided text windows. The terms are rendered as an html page, stored at `/var/www/yoda/config/publication_terms.html`.  See the picture below for an example:
+
+![Example of Publication Terms GUI](./img/image_publication_terms.png)
+
 All vault packages with an action log record "submitted for publication" from before the create time of the new terms file were accepted under the old terms.
