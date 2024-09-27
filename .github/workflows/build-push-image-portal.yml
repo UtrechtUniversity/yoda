@@ -6,6 +6,7 @@ on:
     branches:
       - 'development'
       - 'release-1.9'
+      - 'release-1.10'
     paths:
       - '.github/workflows/build-push-image-portal.yml'
       - 'docker/images/yoda_portal/**'
