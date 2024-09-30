@@ -26,6 +26,7 @@ From version 1.10, Yoda simplifies managing publication terms with a new GUI on 
 
 <div style="text-align: center;">
     <img src="./img/yoda-admin-terms.png" alt="Example of Publication Terms GUI" style="width: 50%; height: auto;">
+    <p style="color: gray;">    Example of Publication Terms GUI</p>
 </div>
 
 All vault packages with an action log record "submitted for publication" from before the create time of the new terms file were accepted under the old terms.

@@ -35,12 +35,6 @@ When building a webpage yoda software first looks into the yoda/themes/vu direct
 If so, this will be used (thus overriding the default supplied template).  
 If not, the software will use the default template as supplied in the default (Utrecht University) situation.
 
-From version 1.10, Yoda simplifies setting the portal theme with a new GUI on the Admin page. Once the templates are configured in the `yoda/themes/`, just select the theme  directly in the dropdown list; the theme is instantly updated. See the example below for changing the theme to VU.
-
-<div style="text-align: center;">
-    <img src="./img/yoda-admin-theme.png" alt="Example of Publication Terms GUI" style="width: 50%; height: auto;">
-</div>
-
 The structure under yoda/themes/vu must be the same as the default structure as well as the template names must be the same.  
 E.g.:  
 
@@ -176,6 +170,9 @@ To create another select2 theme first copy the select2-theme-uu.scss file, and t
 @import "../../uu/variables";
 ```
 The theming is based on this [select2 bootstrap 5 theme](https://github.com/g10f/select2-bootstrap-5-theme) fork.
+
+## Theme change via Admin GUI
+From version 1.10 onward, Yoda supports changing themes through the admin GUI; to make themes available, add their packages (including templates and static files) to `/var/www/yoda/themes`, where the admin page recognizes available themes by reading the folder names—as Flask scans this directory for themes. Once you select a new theme via the admin page, it updates the theme configuration in `/var/www/yoda/config/adminsetting.json` under the YODA_THEME key (e.g., "YODA_THEME": "uu").
 
 ## DavRODS theming
 
