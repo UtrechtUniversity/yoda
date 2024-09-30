@@ -1,7 +1,7 @@
 ---
 parent: Administration Tasks
-title: Setting maintenance banner
-nav_order: 19
+title: Setting portal themes via Admin GUI
+nav_order: 20
 ---
 # Setting portal themes via Admin GUI  
 From version 1.10, Yoda simplifies setting portal themes with a new GUI on the Admin page. Once the templates are installed in the `yoda/themes/`, just select the theme  directly in the dropdown list; the theme is instantly updated. See the example below for changing the theme to VU.
