@@ -4,7 +4,7 @@ title: Setting maintenance banner
 nav_order: 19
 ---
 # Setting portal themes via Admin GUI  
-From version 1.10, Yoda simplifies setting portal themes with a new GUI on the Admin page. Once the templates are configured in the `yoda/themes/`, just select the theme  directly in the dropdown list; the theme is instantly updated. See the example below for changing the theme to VU.
+From version 1.10, Yoda simplifies setting portal themes with a new GUI on the Admin page. Once the templates are installed in the `yoda/themes/`, just select the theme  directly in the dropdown list; the theme is instantly updated. See the example below for changing the theme to VU.
 
 <div style="text-align: center;">
     <img src="./img/yoda-admin-theme.png" alt="Example of Setting Themes GUI" style="width: 50%; height: auto;">
@@ -26,4 +26,4 @@ Below is a list of the pre-installed theme options available. Each theme is pres
     vu: Vrije University Amsterdam
     wur: Wageningen University & Research
 
-To add a new theme to be selected, users need to prepare a theme template following the instructions provided in the [Theme Packages](../design/overview/theme-packages.md) documentation. 
+To install a new theme to be selected, users need to prepare the theme package following the instructions provided in the [Theme Packages](../design/overview/theme-packages.md) documentation. 
