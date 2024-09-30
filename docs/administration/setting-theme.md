@@ -7,8 +7,8 @@ nav_order: 20
 From version 1.10, Yoda simplifies setting portal themes with a new GUI on the Admin page. Once the templates are installed in the `yoda/themes/`, just select the theme  directly in the dropdown list; the theme is instantly updated. See the example below for changing the theme to VU.
 
 <div style="text-align: center;">
-    <img src="./img/yoda-admin-theme.png" alt="Example of Setting Themes GUI" style="width: 50%; height: auto;">
-    <p style="color: gray;">Example of Setting Themes GUI</p>
+    <img src="./img/yoda-admin-theme.png" alt="Example of Setting Themes with GUI" style="width: 50%; height: auto;">
+    <p style="color: gray;">Example of Setting Themes with GUI</p>
 </div>
 
 Below is a list of the pre-installed theme options available. Each theme is presented in the format of template folder : displayed name.

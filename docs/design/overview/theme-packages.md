@@ -172,7 +172,7 @@ To create another select2 theme first copy the select2-theme-uu.scss file, and t
 The theming is based on this [select2 bootstrap 5 theme](https://github.com/g10f/select2-bootstrap-5-theme) fork.
 
 ## Theme change via Admin GUI
-From version 1.10 onward, Yoda supports changing themes through the admin GUI; to make themes available, add their packages (including templates and static files) to `/var/www/yoda/themes`, where the admin page recognizes available themes by reading the folder names—as Flask scans this directory for themes. Once you select a new theme via the admin page, it updates the theme configuration in `/var/www/yoda/config/adminsetting.json` under the YODA_THEME key (e.g., "YODA_THEME": "uu").
+From version 1.10 onward, Yoda supports changing themes through the admin GUI; to make themes available, add their packages (including templates and static files) to `/var/www/yoda/themes`, where the admin page recognizes available themes by reading the folder names—as Flask scans this directory for themes. Once you select a new theme via the admin page, it updates the theme configuration in `/var/www/yoda/config/admin_settings.json` under the YODA_THEME key (e.g., "YODA_THEME": "uu").
 
 ## DavRODS theming
 
