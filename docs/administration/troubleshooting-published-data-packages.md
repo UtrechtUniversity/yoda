@@ -53,18 +53,17 @@ python3 troubleshoot-published-data.py -p <package-name>
 ```
 e.g, research-initial[1725262507]
 
-### **3. Check with logging result **
-To save the output to a log file for offline analysis:
+### **3. Log results and offline mode**
+By default, the results are displayed in terminal (stdout). Furthermore, to save the detailed output to a log file executre:
 ```bash
 python3 troubleshoot-published-data.py -l -o
 ```
-- T
-he -l option enables logging mode.
-- The -o option specifies that the output should be written to a log file rather than the terminal.
+- The -l option enables logging mode.
+- The -o option enables off mode, which skips several tests related to connecting to remote server. 
 
 e.g, research-initial[1725262507]
 ## Note
-
+For more info, see...(design) documentation 
 TODO: go over the codes and jira text for better understanding 
 
 How does PUBLISHED defined. 
