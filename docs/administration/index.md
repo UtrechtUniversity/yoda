@@ -20,6 +20,7 @@ Specific information:
 - [Installing preservable file formats](installing-preservable-file-formats.md)
 - [Installing metadata schemas](installing-metadata-schemas.md)
 - [Installing datarequest module](installing-datarequest-module.md)
+- [Setting portal themes via Admin GUI](setting-theme.md)
 - Rulesets changes:
     - [Applying a temporary local change to a ruleset](hotfixing-ruleset.md)
     - [Applying a permanent local change to a ruleset](local-ruleset-patch.md)
@@ -31,6 +32,8 @@ Specific information:
 
 - [Graciously stopping revision and replication jobs](setting-job-flags.md)
 - [Using Python-irodsclient](using-python-irodsclient.md)
+- [Setting a maintenance banner via Admin GUI](setting-maintenance-banner.md)
+
 
 ## Troubleshooting
 
