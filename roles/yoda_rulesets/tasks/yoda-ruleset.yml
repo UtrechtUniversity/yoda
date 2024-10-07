@@ -323,6 +323,7 @@
 - name: Ensure admin has permissions to make changes to file formats
   become_user: "{{ irods_service_account }}"
   become: true
+  # noqa no-changed-when
   ansible.builtin.command:
     ichmod -rM own priv-admin /{{ irods_zone }}/yoda/file_formats
   when: priv_groups.stdout.find('priv-admin') != -1
