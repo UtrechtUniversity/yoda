@@ -11,7 +11,7 @@ Alternatively, the tool can diagnose a specific data package when provided with 
 
 **Requirement:** Python 3 or higher required, Yoda version 1.10 or later, rodsadmin user
 
-## **Check Steps**
+## Check Steps
 
 The tool performs the following checks:
 
