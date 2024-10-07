@@ -5,9 +5,11 @@ nav_order: 21
 ---
 # How to troubleshoot published data packages
 
-This documentaion explains how users can diagnose issues with all existing published data packages, the tool performs a series of checks to verify the integrity and compliance of data packages. This published data packages include data with status (?what AVU) that is published (?format), or failed-to-published packages (AVU status = unpublished ?format).
+This documentation explains how users can diagnose issues with all existing published data packages using our new software tool. The tool performs a series of checks to verify the integrity and compliance of data packages. The scope of this tool includes both data packages that have been successfully published and those that have failed to publish (packages that initiated the publication process but did not succeed). Specifically, it targets data packages with their Attribute-Value Units (AVUs) including `org_publication_status` of `OK`, `Retry`, `Unrecoverable`, or `Unknown`. Note, the `org_` may vary in different Yoda instance as it is a constant variable of `UUORGMETADATAPREFIX` stored in `constant.py`
 
-**Requirement:** Python 3 or higher required, Yoda version 1.10 or later, rodsadmin privilege
+Alternatively, the tool can diagnose a specific data package when provided with its name.
+
+**Requirement:** Python 3 or higher required, Yoda version 1.10 or later, rodsadmin user
 
 ## **Check Steps**
 
@@ -20,25 +22,20 @@ This step verifies that the metadata of the data package conforms to the associa
 
 ### **System AVUs Verification:**
 
-This step checks whether the data package has the expected system Attribute-Value Units (AVUs). This is done by comparing AVUs starting with `publication_` (format?) compling with groud truth AVU keys, consequently, the check results reveal if there are missing AVUs or unexpected AVUs. If there were, will be printed to terminal and logfile. 
+This step checks whether the data package has the expected system Attribute-Value Units (AVUs). It does this by comparing AVUs that start with `org_publication` against the expected AVU keys (ground truth). The check results reveal if there are missing or unexpected AVUs, which will be printed to the terminal and the logfile.
 
 ### **DOI Registration Status:**
 
-This step checks the registration status of both `versionDOI`(if there are) and `baseDOI` from the DataCite API. This is done by checking `versionDOI`  and `baseDOI` from metadata AVUs of the package are registered or not in DataCite by sending a API request to access this DOI in DataCite. 
+This step checks the registration status of both `versionDOI` (if available) and `baseDOI` using the DataCite API. It retrieves the DOIs from the package's metadata AVUs and sends API requests to DataCite to verify if these DOIs are registered.
 
-4. **Landing Page Integrity:**
+### **Landing Page Integrity:**
 
-This step Compares the contents of the local landing page file with the landingpage in remote server to ensure they match. This is done by sending a url request to download content from landingpage of the data package, and compare the content with the local landingpage html file. Note, enable off line mode if no internet connection. In off_line (format?) mode, this step checks if there are content in the local landing page url, but it does not verify the correctness of the content. 
+This step compares the contents of the local landing page file with the remote landing page to ensure they match. It does this by sending a URL request to download the HTML of the data package's landing page and comparing it with the local HTML file. Note that if there is no internet connection, you should enable the `offline` mode. In offline mode, this step checks if the local landing page file exists but does not verify the correctness of its content.
 
-5. **Combined JSON Integrity:**
+### **Combined JSON Integrity:**
 
-This step Checks the integrity of the combined JSON file by verifying its URL online and confirming the existence of the file. 
+This step checks the integrity of the combined JSON file by verifying its URL online and confirming the existence of the file. It accomplishes this by checking if the metadata JSON sent to OAI-PMH server can be found in the OAI-PMH repository. In offline mode, it only checks whether package's `combi_json` file exists locally
 
-This is Done by checking the metadata json sent to OAI-PMH, for if they can be found in OAI-PMH. 
-
-In offline mode, it only checks whether the `combi_json` file exists locally.
-
----
 
 ## Commands
 
@@ -60,7 +57,7 @@ To inspect a single data package:
 python3 troubleshoot-published-data.py -p <package-name>
 ```
 
-An example of data package name" `research-core-0[1722266819]`
+An example of data package name is `research-core-0[1722266819]`
 
 ### **3. Log results and offline mode**
 
@@ -70,14 +67,13 @@ By default, the results are displayed to terminal (stdout). Furthermore, to save
 python3 troubleshoot-published-data.py -l -o
 ```
 
-- The -l option enables logging mode. Saving log to `/var/lib/irods/log/troubleshoot_publications.log"`
-- The -o option enables off mode, which skips several tests related to connecting to remote server.
+- The -l option enables logging mode. Saving log to `/var/lib/irods/log/troubleshoot_publications.log`
+- The -o option enables offline mode, which skips several tests related to connecting to remote server.
 
+## **Example output:**
 
-### Example output:
-For a single package check 
+When checking a single data package, the output containing successful and failed checks displayed in the terminal is as follows:
 
-Failed case: 
 ```
 Troubleshooting data package: /tempZone/home/vault-core-0/research-core-0[1722266819]
 compare_local_remote_landingpage: File contents at irods path </tempZone/yoda/publication/JCY2C2.html> and remote landing page <https://public.yoda.test/allinone/UU01/JCY2C2.html> do not match.
@@ -92,6 +88,4 @@ Landing page matches: False
 Combined JSON matches: True
 ```
 
-Success case:
-
-TODO: add
+For checks involving multiple data packages, the output for each package is aggregated, displaying the results consecutively in the terminal. This allows for a comprehensive view of the results across different packages.
