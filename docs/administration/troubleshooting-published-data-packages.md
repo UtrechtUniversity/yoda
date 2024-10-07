@@ -5,7 +5,7 @@ nav_order: 21
 ---
 # How to troubleshoot published data packages
 
-This documentation explains how users can diagnose issues with all existing published data packages using our new software tool. The tool performs a series of checks to verify the integrity and compliance of data packages. The scope of this tool includes both data packages that have been successfully published and those that have failed to publish (packages that initiated the publication process but did not succeed). Specifically, it targets data packages with their Attribute-Value Units (AVUs) including `org_publication_status` of `OK`, `Retry`, `Unrecoverable`, or `Unknown`. Note, the `org_` may vary in different Yoda instance as it is a constant variable of `UUORGMETADATAPREFIX` stored in `constant.py`
+This documentation explains how users can diagnose issues with all existing published data packages using our new troubleshooting tool. The tool performs a series of checks to verify the integrity and compliance of data packages. The scope of this tool includes both data packages that have been successfully published and those that have failed to publish (packages that initiated the publication process but did not succeed). Specifically, it targets data packages with their Attribute-Value Units (AVUs) including `org_publication_status` of `OK`, `Retry`, `Unrecoverable`, or `Unknown`. Note, the `org_` prefix may vary in different Yoda instance as it is a constant variable of `UUORGMETADATAPREFIX` stored in `constant.py`
 
 Alternatively, the tool can diagnose a specific data package when provided with its name.
 
@@ -34,7 +34,7 @@ This step compares the contents of the local landing page file with the remote l
 
 ### **Combined JSON Integrity:**
 
-This step checks the integrity of the combined JSON file by verifying its URL online and confirming the existence of the file. It accomplishes this by checking if the metadata JSON sent to OAI-PMH server can be found in the OAI-PMH repository. In offline mode, it only checks whether package's `combi_json` file exists locally
+This step checks the integrity of the combined JSON file by verifying its URL online and confirming the existence of the file. It accomplishes this by checking if the metadata JSON sent to OAI-PMH server can be found in the OAI-PMH repository. In offline mode, it only checks whether package's `-combi.json` file exists locally
 
 
 ## Commands
