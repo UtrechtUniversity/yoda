@@ -320,16 +320,16 @@
   when: (not ansible_check_mode) and (formats_installed.stderr.find('does not exist') >= 0)
 
 
-- name: Check admin has ownership to make changes to file_formats
+- name: Check if priv-admin group has ownership to make changes to preservable file formats lists
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.shell: 'ils -A /{{ irods_zone }}/yoda/file_formats | grep "g:priv-admin#tempZone:own"'
+  ansible.builtin.shell: 'ils -A /{{ irods_zone }}/yoda/file_formats | grep "g:priv-admin#{{ irods_zone }}:own"'
   register: file_formats_access
   ignore_errors: true
   changed_when: file_formats_access.rc != 0
 
 
-- name: Ensure admin has ownership to make changes to file formats
+- name: Ensure priv-admin group has ownership to make changes to preservable file formats lists
   become_user: "{{ irods_service_account }}"
   become: true
   # noqa no-changed-when
