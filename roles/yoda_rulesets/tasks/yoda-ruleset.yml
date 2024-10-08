@@ -320,6 +320,24 @@
   when: (not ansible_check_mode) and (formats_installed.stderr.find('does not exist') >= 0)
 
 
+- name: Check if priv-admin group has ownership to make changes to preservable file formats lists
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.shell: 'ils -A /{{ irods_zone }}/yoda/file_formats | grep "g:priv-admin#{{ irods_zone }}:own"'
+  register: file_formats_access
+  ignore_errors: true
+  changed_when: file_formats_access.rc != 0
+
+
+- name: Ensure priv-admin group has ownership to make changes to preservable file formats lists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa no-changed-when
+  ansible.builtin.command:
+    ichmod -rM own priv-admin /{{ irods_zone }}/yoda/file_formats
+  when: (not ansible_check_mode) and priv_groups.stdout.find('priv-admin') != -1 and file_formats_access.rc != 0
+
+
 - name: Ensure that Yoda publication directory is present
   become_user: '{{ irods_service_account }}'
   become: true
