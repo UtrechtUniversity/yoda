@@ -22,6 +22,16 @@ git checkout development
 ```
 
 2. Configure the virtual machines for development:
+
+If you are using VirtualBox, open the `Vagrantfile` in an editor and change the `DEFAULT_VAGRANT_PROVIDER` line near
+the top of the file so that it uses VirtualBox:
+
+```bash
+ENV['VAGRANT_DEFAULT_PROVIDER'] = "virtualbox"
+```
+
+Then use Vagrant to create the virtual machine (this applies to both VirtualBox and Libvirt):
+
 ```bash
 vagrant up
 ```
