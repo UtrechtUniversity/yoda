@@ -258,10 +258,21 @@
 git checkout development
 </code></pre></div>    </div>
   </li>
-  <li>Configure the virtual machines for development:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up
-</code></pre></div>    </div>
-  </li>
+  <li>Configure the virtual machines for development:</li>
+</ol>
+
+<p>If you are using VirtualBox, open the <code class="language-plaintext highlighter-rouge">Vagrantfile</code> in an editor and change the <code class="language-plaintext highlighter-rouge">DEFAULT_VAGRANT_PROVIDER</code> line near
+the top of the file so that it uses VirtualBox:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ENV[<span class="s1">'VAGRANT_DEFAULT_PROVIDER'</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"virtualbox"</span>
+</code></pre></div></div>
+
+<p>Then use Vagrant to create the virtual machine (this applies to both VirtualBox and Libvirt):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up
+</code></pre></div></div>
+
+<ol>
   <li>On a Windows host first SSH into the Ansible controller virtual machine (skip this step on GNU/Linux or macOS):
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant ssh controller
 <span class="nb">cd</span> ~/yoda
