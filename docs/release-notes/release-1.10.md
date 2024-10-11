@@ -6,17 +6,17 @@ Version: 1.10
 Released: 11 October 2024
 
 ## What's new
-### Features
+### Major changes
 - Support for Ubuntu 20.04 LTS
 - Support for multiple deposit groups
-- Support for landingpage themes
-- Added new Administration page, enables functional administration task in the portal
-- Added new Data Transfer page, with ready to use configurations for data transfers
+- Support for landing page themes
+- Added an administration page so that functional administration tasks can be performed via the portal
+- Added a data transfer page, with ready-to-use configurations for data transfer tools
 - Removed RADIUS fallback option
 - Removed `Secured` status from research space
-- Improved copy to vault with irsync
+- Improved reliability of the data package archiving process ("copy to vault")
 - Improved support for [vault archiving](../design/overview/vault-archive.md) workflow
-- Improved performance in portal
+- Improved performance of the portal
 - Upgrade python-irodsclient to v2.1.0
 
 ### Known issues
