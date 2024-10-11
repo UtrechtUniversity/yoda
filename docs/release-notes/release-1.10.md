@@ -3,7 +3,7 @@
 
 Version: 1.10
 
-Released: TBA
+Released: 11 October 2024
 
 ## What's new
 ### Features
