@@ -44,3 +44,4 @@ Specific information:
 - [Troubleshooting publication](troubleshooting-publication.md)
 - [Troubleshooting replication and revision creation](troubleshooting-replication-revisions.md)
 - [Troubleshooting data package metadata issues in the vault](troubleshooting-vault-metadata.md)
+- [Troubleshooting published data packages](troubleshooting-published-data-packages.md)
