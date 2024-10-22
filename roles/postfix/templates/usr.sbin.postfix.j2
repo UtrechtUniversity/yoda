@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-# Last Modified: Tue Apr  2 13:40:07 2024
+# Last Modified: Tue Oct 22 15:17:36 2024
 #include <tunables/global>
 
 # vim:syntax=apparmor
@@ -39,12 +39,14 @@
   /usr/bin/uname mrix,
   /usr/lib/postfix/sbin/bounce mrix,
   /usr/lib/postfix/sbin/cleanup mrix,
+  /usr/lib/postfix/sbin/error mrix,
   /usr/lib/postfix/sbin/master mrix,
   /usr/lib/postfix/sbin/pickup mrix,
   /usr/lib/postfix/sbin/postfix-script mrix,
   /usr/lib/postfix/sbin/proxymap mrix,
   /usr/lib/postfix/sbin/qmgr mrix,
   /usr/lib/postfix/sbin/scache mrix,
+  /usr/lib/postfix/sbin/showq mrix,
   /usr/lib/postfix/sbin/smtp mrix,
   /usr/lib/postfix/sbin/smtpd mrix,
   /usr/lib/postfix/sbin/tlsmgr mrix,
@@ -60,6 +62,7 @@
   /var/spool/postfix/maildrop/* rw,
   /var/spool/postfix/pid/* rwk,
   owner /etc/aliases.db rk,
+  owner /etc/gss/mech.d/ r,
   owner /etc/postfix/ r,
   owner /etc/postfix/dynamicmaps.cf.d/ r,
   owner /etc/postfix/postfix-files r,
