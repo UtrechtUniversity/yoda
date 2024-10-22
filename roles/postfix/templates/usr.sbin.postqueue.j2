@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-# Last Modified: Thu Mar 28 12:09:44 2024
+# Last Modified: Tue Oct 22 13:36:14 2024
 #include <tunables/global>
 
 # ------------------------------------------------------------------
@@ -23,6 +23,8 @@
   capability dac_override,
 
   /etc/postfix r,
+  /etc/postfix/dynamicmaps.cf.d/ r,
+  /usr/lib/postfix/sbin/showq mrix,
   /usr/lib/postfix/showq Px,
   /usr/sbin/postqueue mrix,
   /var/spool/postfix r,
@@ -31,7 +33,6 @@
   /var/spool/postfix/pid r,
   /var/spool/postfix/public/pickup w,
   /var/spool/postfix/public/qmgr w,
-  /var/spool/postfix/public/showq w,
-  owner /etc/postfix/dynamicmaps.cf.d/ r,
+  /var/spool/postfix/public/showq rw,
 
 }
