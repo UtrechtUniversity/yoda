@@ -11,7 +11,7 @@
     name: 'arb-update-resources.py'
     minute: '*'
     hour: '*'
-    job: '/usr/local/bin/python3 /etc/irods/yoda-ruleset/tools/arb-update-resources.py > /dev/null'
+    job: '/usr/bin/python3 /etc/irods/yoda-ruleset/tools/arb-update-resources.py > /dev/null'
     state: '{{ "present" if irods_arb_enabled else "absent" }}'
 
 
