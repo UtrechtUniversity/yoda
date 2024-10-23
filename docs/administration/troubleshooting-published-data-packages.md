@@ -68,7 +68,8 @@ python3 troubleshoot-published-data.py -l -o
 ```
 
 - The -l option enables logging mode. Saving log to `/var/lib/irods/log/troubleshoot_publications.log`
-- The -o option enables offline mode, which skips several tests related to connecting to remote server.
+- The -o option enables offline mode, which skips several tests related to connecting to remote servers. This is useful when testing on a local development environment.
+- The -n option enables no datacite mode, which skips the datacite checks. This is also useful when testing on a local development environment.
 
 ## Example output
 
