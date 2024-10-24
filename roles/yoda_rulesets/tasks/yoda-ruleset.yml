@@ -175,7 +175,7 @@
   with_items: "{{ metadata_schemas }}"
 
 
-- name: Set configuration AVUs for metatadata schemas
+- name: Set configuration AVUs for metadata schemas
   become_user: "{{ irods_service_account }}"
   become: true
   # noqa fqcn[action]
@@ -202,7 +202,7 @@
   changed_when: default_metadata.stdout_lines | length != 2
 
 
-- name: Set configuration AVUs for default metatadata schema
+- name: Set configuration AVUs for default metadata schema
   become_user: "{{ irods_service_account }}"
   become: true
   # noqa fqcn[action]

@@ -178,8 +178,8 @@ s3_hostname: localhost:9000
 
 # Mail notifications
 send_notifications: 1                         # Enable notifications: yes (1) or no (0)
-notifications_sender_email: noreply@yoda.test # Notifiations sender email address
-notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email address
+notifications_sender_email: noreply@yoda.test # Notifications sender email address
+notifications_reply_to: noreply@yoda.test     # Notifications reply-To email address
 smtp_server: smtp://localhost:25
 smtp_auth: false
 smtp_starttls: false

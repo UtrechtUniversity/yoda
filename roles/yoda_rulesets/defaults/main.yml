@@ -103,9 +103,9 @@ metadata_schemas:
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 
 # Ruleset-uu configuration
-notifications_sender_email: noreply@yoda.test # Notifiations sender email address
-notifications_sender_name: "Yoda system"      # Notifiations sender name
-notifications_reply_to: noreply@yoda.test     # Notifiations Reply-To email address
+notifications_sender_email: noreply@yoda.test # Notifications sender email address
+notifications_sender_name: "Yoda system"      # Notifications sender name
+notifications_reply_to: noreply@yoda.test     # Notifications reply-To email address
 
 smtp_server: PLACEHOLDER                      # SMTP server to send mail to
                                               # (smtp://server.name:port or smtps://server.name:port,
