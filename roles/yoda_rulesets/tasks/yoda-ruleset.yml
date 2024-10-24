@@ -454,7 +454,7 @@
   ansible.builtin.cron:
     name: 'job_movetovault.r'
     minute: '*/5'
-    job: '{{ irods_directory.stdout }}/.irods/run-intake-movetovault.sh >& /dev/null'
+    job: '{{ irods_directory.stdout }}/.irods/run-intake-movetovault.sh >/dev/null 2>&1'
     state: '{{ "present" if enable_intake else "absent" }}'
 
 
