@@ -390,7 +390,7 @@ TLSAccept=psk
 # Mandatory: no
 # Default:
 # TLSPSKIdentity=
-TLSPSKIdentity=PSK-{{ ansible_fqdn }}
+TLSPSKIdentity=PSK-{{ ansible_host }}
 
 ### Option: TLSPSKFile
 #	Full pathname of a file containing the pre-shared key.
