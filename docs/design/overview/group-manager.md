@@ -12,7 +12,7 @@ The main goal of the group-manager is to enable the distribution of access right
 ## Yoda roles
 ***normal*** Has read and write access to the data of the group it belongs to. Most researchers will be assigned this role.
 
-***reader*** Has read access to the data. This role could be assigned to users with interest in the data like master students.
+***reader*** Has read access to the data. This role could be assigned to users with interest in the data like master students. This role is often displayed in the portal as "viewer".
 
 ***groupmanager*** Can add users to a group and assign them roles. Every group should have at least one groupmanager. This role is typically assigned to a principal investigator.
 
@@ -52,7 +52,7 @@ To enable ordinary rodsusers to create groups and manage members in groups, with
 ## How are the roles in Yoda implemented on top of the iRODS permission system?
 *Normal* users are added to a group with the same name as its workspace. Example: normal users of *research-breakthrough* are added to the rodsgroup *research-breakthrough*. During group creation by the group-manager this group will get permission 'own' on the `/{rodsZone}/home/research-breakthrough` workspace and inheritance is enabled.
 
-A *reader* cannot be added to the main group, because that will grant them 'own' permissions. Instead a shadow group is created prefixed with 'read-'. This group gets read permissions on the 'research-' or 'intake-' group of the same basename. Inheritance is enabled
+A *reader* cannot be added to the main group, because that will grant them 'own' permissions. Instead a shadow group is created prefixed with 'read-'. This group gets read permissions on the 'research-' or 'intake-' group of the same basename. Inheritance is enabled.
 
 A group *manager* has all the same characteristics as a normal user but in addition metadata is set on the group to list managers. The attribute name is 'manager' and the attribute value is the username (including zone). There are two special groups under the System category to grant managers extra privileges. These are:
   - *priv-group-add* --
@@ -84,4 +84,4 @@ uuGroup (Group manager portal functions) -> uuGroupPolicyChecks
 Users and groups are in same namespace, so checks are in place to prevent creating a group with the same name as a user.
 
 ## Vault
-The vault group has only rods as member. the base group should get read-only access. Removal of a vault group through the group-manager is impossible.
+The vault group has only rods as member. The base group should get read-only access. Removal of a vault group through the group-manager is impossible.
