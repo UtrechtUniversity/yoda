@@ -9,7 +9,10 @@ This documentation explains how users can diagnose issues with all existing publ
 
 Alternatively, the tool can diagnose a specific data package when provided with its name.
 
-**Requirement:** Python 3 or higher required, Yoda version 1.10 or later, rodsadmin user
+**Requirements:**
+- Python 3 or higher
+- Yoda version 1.10 or later
+- Script must be run as rodsadmin user
 
 ## Check Steps
 
@@ -22,7 +25,7 @@ This step verifies that the metadata of the data package conforms to the associa
 
 ### System AVUs Verification
 
-This step checks whether the data package has the expected system Attribute-Value Units (AVUs). It does this by comparing AVUs that start with `org_publication` against the expected AVU keys (ground truth). The check results reveal if there are missing or unexpected AVUs, which will be printed to the terminal and the logfile.
+This step checks whether the data package has the expected system Attribute-Value Units (AVUs). It does this by comparing AVUs that start with `org_publication` against the expected AVU keys (ground truth). The check results reveal if there are missing or unexpected AVUs, which will be printed to the terminal and the log file.
 
 ### DOI Registration Status
 
@@ -57,7 +60,7 @@ To inspect a single data package:
 python3 troubleshoot-published-data.py -p <package-name>
 ```
 
-An example of data package name is `research-core-0[1722266819]`
+The package can either be specified as the short name (the name of the folder that you see in the vault), for example `research-core-0[1722266819]`, or the path to the package, for example: `vault-core-0/research-core-0[1722266819]`. Be aware that if  the package short name contains spaces then the package must be specified in quotes.
 
 ### 3. Log results and offline mode
 
@@ -67,8 +70,8 @@ By default, the results are displayed to terminal (stdout). Furthermore, to save
 python3 troubleshoot-published-data.py -l -o
 ```
 
-- The -l option enables logging mode. Saving log to `/var/lib/irods/log/troubleshoot_publications.log`
-- The -o option enables offline mode, which skips several tests related to connecting to remote servers. This is useful when testing on a local development environment.
+- The -l option enables logging mode. This saves the log to `/var/lib/irods/log/troubleshoot_publications.log`
+- The -o option enables offline mode, which skips several tests related to connecting to remote servers, but does not skip the datacite test. This is useful when testing on a local development environment.
 - The -n option enables no datacite mode, which skips the datacite checks. This is also useful when testing on a local development environment.
 
 ## Example output
