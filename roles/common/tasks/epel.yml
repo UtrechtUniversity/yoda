@@ -10,7 +10,7 @@
 
 
 - name: Enable CRB for RHEL because of EPEL dependencies
-  ansible.builtin.command: subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+  ansible.builtin.command: "subscription-manager repos --enable codeready-builder-for-rhel-{{ ansible_distribution_major_version }}-x86_64-rpms"
   when: ansible_distribution == "RedHat"
   changed_when: false
 
