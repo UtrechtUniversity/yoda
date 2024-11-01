@@ -71,7 +71,7 @@ The package can either be specified as the short name (the name of the folder th
 By default, the results are displayed to terminal (stdout). Furthermore, to save the detailed output to a log file execute:
 
 ```bash
-python3 troubleshoot-published-data.py -l -o
+python3 troubleshoot-published-data.py -l
 ```
 
 - The -l option enables logging mode. This saves the log to `/var/lib/irods/log/troubleshoot_publications.log`
