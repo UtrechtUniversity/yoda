@@ -25,10 +25,6 @@ case "$1" in
     docker exec "$EXEC_OPTIONS" provider.yoda sudo -iu irods /bin/bash /etc/irods/yoda-ruleset/tools/notification/notification-data-access-token-expiry.sh
     ;;
 
-  intakevault)
-    docker exec "$EXEC_OPTIONS" provider.yoda sudo -iu irods /var/lib/irods/.irods/run-intake-movetovault.sh
-    ;;
-
   publication)
     docker exec "$EXEC_OPTIONS" provider.yoda sudo -iu irods /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/process-publication.r
     ;;

@@ -32,9 +32,6 @@ opensearch_server: PLACEHOLDER
 # Deposit module configuration
 enable_deposit: false                              # Surf doesn't use deposit module
 
-# Intake module configuration
-enable_intake: false                               # Surf doesn't use intake module
-
 # Datarequest module configuration
 enable_datarequest: false                          # Surf doesn't use DR module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name

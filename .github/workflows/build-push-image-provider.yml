@@ -12,7 +12,6 @@ on:
       - 'docker/images/yoda_irods_icat/**'
       - 'roles/irods_completion/files/irods_completion.sh'
       - 'roles/pam_python/files/pam_python.so'
-      - 'roles/yoda_rulesets/files/run-intake-movetovault.sh'
 
 jobs:
   push-image:
@@ -55,4 +54,3 @@ jobs:
         tags: ghcr.io/utrechtuniversity/yoda-provider:${{ steps.extract_branch.outputs.branch }}
         build-args: |
           TAG=${{ steps.extract_branch.outputs.branch }}
-
