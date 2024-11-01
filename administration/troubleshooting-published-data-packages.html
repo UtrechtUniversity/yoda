@@ -15,10 +15,9 @@
   
 
     .site-nav > ul.nav-list:first-child > li > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li > a,
     
-    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(3)) > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li > ul > li a {
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(29)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
       background-image: none;
     }
 
@@ -27,16 +26,14 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(3) > ul > li:nth-child(3) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(29) > a {
       font-weight: 600;
       text-decoration: none;
-    }.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(3) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(3) > ul > li:nth-child(3) > button svg {
+    }.site-nav > ul.nav-list:first-child > li:nth-child(4) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(29) > button svg {
       transform: rotate(-90deg);
-    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(3) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(3) > ul.nav-list {
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list > li.nav-list-item:nth-child(29) > ul.nav-list {
       display: block;
     }
   </style>
@@ -58,18 +55,18 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Metadata form implementation | Yoda</title>
+<title>Troubleshooting published data packages | Yoda</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Metadata form implementation" />
+<meta property="og:title" content="Troubleshooting published data packages" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:site_name" content="Yoda" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Metadata form implementation" />
+<meta property="twitter:title" content="Troubleshooting published data packages" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Metadata form implementation","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/design/metadata/metadata-form.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Troubleshooting published data packages","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/administration/troubleshooting-published-data-packages.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -223,9 +220,8 @@
     <div class="main-content-wrap">
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
-    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/">Software Design</a></li>
-    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/metadata/">Metadata</a></li>
-    <li class="breadcrumb-nav-list-item"><span>Metadata form implementation</span></li>
+    <li class="breadcrumb-nav-list-item"><a href="/yoda/administration/">Administration Tasks</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Troubleshooting published data packages</span></li>
   </ol>
 </nav>
 
@@ -233,46 +229,170 @@
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="metadata-form-implementation">
+            <h1 id="how-to-troubleshoot-published-data-packages">
   
   
-    <a href="#metadata-form-implementation" class="anchor-heading" aria-labelledby="metadata-form-implementation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Metadata form implementation
+    <a href="#how-to-troubleshoot-published-data-packages" class="anchor-heading" aria-labelledby="how-to-troubleshoot-published-data-packages"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> How to troubleshoot published data packages
   
   
 </h1>
     
 
-<p>This page contains implementation information about the metadata form functionality.</p>
-<h2 id="form-functionality">
+<p>This documentation explains how users can diagnose issues with all existing published data packages using our new troubleshooting tool. The tool performs a series of checks to verify the integrity and compliance of data packages. The scope of this tool includes both data packages that have been successfully published and those that have failed to publish (packages that initiated the publication process but did not succeed). Specifically, it targets data packages with their Attribute-Value Units (AVUs) including <code class="language-plaintext highlighter-rouge">org_publication_status</code> of <code class="language-plaintext highlighter-rouge">OK</code>, <code class="language-plaintext highlighter-rouge">Retry</code>, <code class="language-plaintext highlighter-rouge">Unrecoverable</code>, or <code class="language-plaintext highlighter-rouge">Unknown</code>. Note, the <code class="language-plaintext highlighter-rouge">org_</code> prefix is defined by the constant variable of <code class="language-plaintext highlighter-rouge">UUORGMETADATAPREFIX</code> stored in <code class="language-plaintext highlighter-rouge">constants.py</code> in the ruleset.</p>
+
+<p>Alternatively, the tool can diagnose a specific data package when provided with its name.</p>
+
+<p><strong>Requirements:</strong></p>
+<ul>
+  <li>Python 3 or higher</li>
+  <li>Yoda version 1.10 or later</li>
+  <li>Script must be run as rodsadmin user</li>
+</ul>
+<h2 id="check-steps">
   
   
-    <a href="#form-functionality" class="anchor-heading" aria-labelledby="form-functionality"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Form functionality
+    <a href="#check-steps" class="anchor-heading" aria-labelledby="check-steps"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Check Steps
   
   
 </h2>
     
 
-<p>The metadata form can be used in two ways. Firstly, regular users can use the form
-to view and edit the metadata of a data package. Secondly, the form can show data package
-metadata in readonly mode, if metadata cannot be edited by the present user.</p>
+<p>The tool performs the following checks:</p>
+<h3 id="metadata-schema-conformance">
+  
+  
+    <a href="#metadata-schema-conformance" class="anchor-heading" aria-labelledby="metadata-schema-conformance"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Metadata Schema Conformance
+  
+  
+</h3>
+    
 
-<p>The form can be configured using metadata schemas (see <a href="/yoda/design/metadata/schema-configuration.html">schema configuration</a>
-for details). Based on the configured schema, the form shows feedback to the user
-regarding the completeness and validity of entered metadata. If the metadata is complete
-and valid, the user can save it. In that case, it is stored in a user-editable <code class="language-plaintext highlighter-rouge">yoda-metadata.json</code>
-file, and also copied to iRODS metadata (AVUs) of the collection. After a user has entered metadata,
-the data package can optionally be submitted to the vault for archiving and/or publication.</p>
-<h2 id="integration-of-react-form-within-yoda">
+<p>This step verifies that the metadata of the data package conforms to the associated schema.</p>
+<h3 id="system-avus-verification">
   
   
-    <a href="#integration-of-react-form-within-yoda" class="anchor-heading" aria-labelledby="integration-of-react-form-within-yoda"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Integration of React form within Yoda
+    <a href="#system-avus-verification" class="anchor-heading" aria-labelledby="system-avus-verification"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> System AVUs Verification
+  
+  
+</h3>
+    
+
+<p>This step checks whether the data package has the expected system Attribute-Value Units (AVUs). It does this by comparing AVUs that start with <code class="language-plaintext highlighter-rouge">org_publication</code> against the expected AVU keys (ground truth). The check results reveal if there are missing or unexpected AVUs, which will be printed to the terminal and the log file.</p>
+<h3 id="doi-registration-status">
+  
+  
+    <a href="#doi-registration-status" class="anchor-heading" aria-labelledby="doi-registration-status"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> DOI Registration Status
+  
+  
+</h3>
+    
+
+<p>This step checks the registration status of both <code class="language-plaintext highlighter-rouge">versionDOI</code> (if available) and <code class="language-plaintext highlighter-rouge">baseDOI</code> using the DataCite API. It retrieves the DOIs from the package’s metadata AVUs and sends API requests to DataCite to verify if these DOIs are registered.</p>
+<h3 id="landing-page-integrity">
+  
+  
+    <a href="#landing-page-integrity" class="anchor-heading" aria-labelledby="landing-page-integrity"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Landing Page Integrity
+  
+  
+</h3>
+    
+
+<p>This step compares the contents of the local landing page file with the remote landing page to ensure they match. It does this by sending a URL request to download the HTML of the data package’s landing page and comparing it with the local HTML file. Note that if there is no internet connection, you should enable the <code class="language-plaintext highlighter-rouge">offline</code> mode. In offline mode, this step checks if the local landing page file exists but does not verify the correctness of its content.</p>
+<h3 id="combined-json-integrity">
+  
+  
+    <a href="#combined-json-integrity" class="anchor-heading" aria-labelledby="combined-json-integrity"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Combined JSON Integrity
+  
+  
+</h3>
+    
+
+<p>This step checks the integrity of the combined JSON file by verifying its URL online and confirming the existence of the file. It accomplishes this by checking if the metadata JSON sent to OAI-PMH server can be found in the OAI-PMH repository. In offline mode, it only checks whether package’s <code class="language-plaintext highlighter-rouge">-combi.json</code> file exists locally</p>
+<h2 id="commands-execution-guide">
+  
+  
+    <a href="#commands-execution-guide" class="anchor-heading" aria-labelledby="commands-execution-guide"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Commands Execution Guide
   
   
 </h2>
     
 
-<p>The directory <code class="language-plaintext highlighter-rouge">/research/metadata-form/src</code> in the Yoda-portal repository contains Yoda-specific JavaScript code
-for the React form.</p>
+<p>The tool can be used with various options as detailed below. Ensure you are logged in as an irodsadmin user for the necessary permissions and navigate to the ‘yoda-ruleset/tools’ directory before running any commands, e.g.,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/irods/yoda-ruleset/tools
+</code></pre></div></div>
+<h3 id="1-general-check">
+  
+  
+    <a href="#1-general-check" class="anchor-heading" aria-labelledby="1-general-check"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1. General Check
+  
+  
+</h3>
+    
+
+<p>To perform checks on all published data packages:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 troubleshoot-published-data.py
+</code></pre></div></div>
+<h3 id="2-specific-package-check">
+  
+  
+    <a href="#2-specific-package-check" class="anchor-heading" aria-labelledby="2-specific-package-check"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 2. Specific Package Check
+  
+  
+</h3>
+    
+
+<p>To inspect a single data package:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 troubleshoot-published-data.py <span class="nt">-p</span> &lt;package-name&gt;
+</code></pre></div></div>
+
+<p>The package can either be specified as the short name (the name of the folder that you see in the vault), for example <code class="language-plaintext highlighter-rouge">research-core-0[1722266819]</code>, or the path to the package, for example: <code class="language-plaintext highlighter-rouge">vault-core-0/research-core-0[1722266819]</code>. Be aware that if  the package short name contains spaces then the package must be specified in quotes.</p>
+<h3 id="3-log-results-and-offline-mode">
+  
+  
+    <a href="#3-log-results-and-offline-mode" class="anchor-heading" aria-labelledby="3-log-results-and-offline-mode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 3. Log results and offline mode
+  
+  
+</h3>
+    
+
+<p>By default, the results are displayed to terminal (stdout). Furthermore, to save the detailed output to a log file execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 troubleshoot-published-data.py <span class="nt">-l</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The -l option enables logging mode. This saves the log to <code class="language-plaintext highlighter-rouge">/var/lib/irods/log/troubleshoot_publications.log</code></li>
+  <li>The -o option enables offline mode, which skips several tests related to connecting to remote servers, but does not skip the datacite test. This is useful when testing on a local development environment.</li>
+  <li>The -n option enables no datacite mode, which skips the datacite checks. This is also useful when testing on a local development environment.</li>
+</ul>
+<h2 id="example-output">
+  
+  
+    <a href="#example-output" class="anchor-heading" aria-labelledby="example-output"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Example output
+  
+  
+</h2>
+    
+
+<p>When checking a single data package, the output containing successful and failed checks displayed in the terminal is as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Troubleshooting data package: /tempZone/home/vault-core-0/research-core-0[1722266819]
+compare_local_remote_landingpage: File contents at irods path &lt;/tempZone/yoda/publication/JCY2C2.html&gt; and remote landing page &lt;https://public.yoda.test/allinone/UU01/JCY2C2.html&gt; do not match.
+Results for: /tempZone/home/vault-core-0/research-core-0[1722266819]
+Package FAILED one or more tests:
+Schema matches: True
+All expected AVUs exist: True
+No unexpected AVUs: True
+Version DOI matches: False
+Base DOI matches: False
+Landing page matches: False
+Combined JSON matches: True
+</code></pre></div></div>
+
+<p>For checks involving multiple data packages, the output for each package is aggregated, displaying the results consecutively in the terminal. This allows for a comprehensive view of the results across different packages.</p>
 
           
 
@@ -293,7 +413,7 @@ for the React form.</p>
         
         
           <p class="text-small text-grey-dk-000 mb-0">
-            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/design/metadata/metadata-form.md" id="edit-this-page">Edit this page on GitHub.</a>
+            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/administration/troubleshooting-published-data-packages.md" id="edit-this-page">Edit this page on GitHub.</a>
           </p>
         
       </div>
