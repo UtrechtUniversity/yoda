@@ -40,9 +40,13 @@ This step compares the contents of the local landing page file with the remote l
 This step checks the integrity of the combined JSON file by verifying its URL online and confirming the existence of the file. It accomplishes this by checking if the metadata JSON sent to OAI-PMH server can be found in the OAI-PMH repository. In offline mode, it only checks whether package's `-combi.json` file exists locally
 
 
-## Commands
+## Commands Execution Guide
 
-The tool can be used with various options as detailed below.
+The tool can be used with various options as detailed below. Ensure you are logged in as an irodsadmin user for the necessary permissions and navigate to the 'yoda-ruleset/tools' directory before running any commands, e.g.,
+
+```bash
+cd /etc/irods/yoda-ruleset/tools
+```
 
 ### 1. General Check
 
