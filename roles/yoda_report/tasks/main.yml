@@ -43,15 +43,6 @@
     owner: "{{ irods_service_account }}"
     group: "{{ irods_service_account }}"
     mode: '0770'
-  
-# - name: Add cron job to collect financial stats every day at 1:00 AM
-#   cron:
-#     name: "Gather group statistics every data at 1:00 AM"
-#     minute: "0"
-#     hour: "1"
-#     job: /var/gather-group-statistics.py
-#     user: "{{ irods_service_account }}" 
-#     state: present
 
 
 - name: Add cron job to collect financial stats every day at 2:00 AM
