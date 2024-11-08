@@ -227,3 +227,12 @@
       when: enable_mailpit
   tags:
     - eus
+
+
+- name: Yoda report
+  hosts: icats
+  become: true
+  roles:
+    - yoda_report
+  tags:
+    - yoda_report

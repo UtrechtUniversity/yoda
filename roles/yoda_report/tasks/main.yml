@@ -1,0 +1,74 @@
+---
+# copyright Utrecht University
+
+- name: Install private download key
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.template:
+    src: yoda_report.j2
+    dest: '~/.ssh/yoda_report'
+    owner: '{{ irods_service_account }}'
+    mode: '0600'
+  when: download_priv_key is defined
+
+
+- name: Scan public host pub key
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.shell: "ssh-keyscan {{ yoda_public_host }} >> ~/.ssh/known_hosts"
+  args:
+    creates: '~/.ssh/known_hosts'
+  when: download_priv_key is defined
+
+
+- name: Create directory /var/yoda-financial-data
+  file:    
+    path: /var/yoda-financial-data
+    state: directory
+    mode: '0770'
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account}}"
+
+- name: Ensure correct ownership and permissions for /var/yoda-financial-data
+  file:
+    path: /var/yoda-financial-data
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    mode: '0770'
+
+- name: Copy file to remote /tmp directory
+  copy:
+    src: gather-group-statistics.py
+    dest: /var/gather-group-statistics.py
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    mode: '0770'
+  
+# - name: Add cron job to collect financial stats every day at 1:00 AM
+#   cron:
+#     name: "Gather group statistics every data at 1:00 AM"
+#     minute: "0"
+#     hour: "1"
+#     job: /var/gather-group-statistics.py
+#     user: "{{ irods_service_account }}" 
+#     state: present
+
+
+- name: Add cron job to collect financial stats every day at 2:00 AM
+  cron:
+    name: "Gather group statistics every day at 2:00 AM"
+    minute: 0
+    hour: 1
+    job: /var/gather-group-statistics.py
+    user: "{{ irods_service_account }}"
+    state: present
+
+
+- name: Add cron job to transfer financial stats to reporting server every day at 3:00 AM
+  cron:
+    name: "Transfer financial statistics to reporting server every day at 3:00 AM"
+    minute: 0
+    hour: 3
+    job: scp -i {{ reporting_server_priv_key_loc }} /var/yoda-financial-data/stats.yaml {{ reporting_server_user_account }}@{{ reporting_server_host }}:{{ reporting_server_dir }}/{{ ansible_fqdn }}.yml
+    user: "{{ irods_service_account }}" 
+    state: present
