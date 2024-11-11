@@ -60,6 +60,6 @@
     name: "Transfer financial statistics to reporting server every day at 3:00 AM"
     minute: 0
     hour: 3
-    job: scp -i {{ reporting_server_priv_key_loc }} /var/yoda-financial-data/stats.yaml {{ reporting_server_user_account }}@{{ reporting_server_host }}:{{ reporting_server_dir }}/{{ ansible_fqdn }}.yaml
+    job: scp -i {{ reporting_server_priv_key_loc }} /var/yoda-financial-data/stats.yaml {{ reporting_server_user_account }}@{{ reporting_server_host }}:{{ reporting_server_dir }}/statistics-data/{{ ansible_fqdn }}.yaml
     user: "{{ irods_service_account }}" 
     state: present
