@@ -4,7 +4,7 @@
 irods_service_account: irods
 
 # Yoda report upload private key (base64 encoded)
-# These keys are the "insecure" public/private keypair we offer for use in development instances 
+# These keys are the "insecure" public/private keypair we offer for use in development instances
 # to communicate with the reporting server.
 # If you use this instance for anything other than development, you should create your own keypair.
 # ssh-keygen -t ed25519 -> base64
