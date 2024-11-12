@@ -9,7 +9,7 @@
     dest: '~/.ssh/yoda_report'
     owner: '{{ irods_service_account }}'
     mode: '0600'
-  when: download_priv_key is defined
+  when: yoda_report_upload_priv_key is defined
 
 
 - name: Scan public host pub key
@@ -18,7 +18,7 @@
   ansible.builtin.shell: "ssh-keyscan {{ yoda_public_host }} >> ~/.ssh/known_hosts"
   args:
     creates: '~/.ssh/known_hosts'
-  when: download_priv_key is defined
+  when: yoda_report_upload_priv_key is defined
 
 
 - name: Create directory /var/yoda-financial-data
