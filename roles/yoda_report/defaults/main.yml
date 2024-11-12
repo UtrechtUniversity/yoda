@@ -14,7 +14,6 @@ upload_priv_key: |
   VEUgS0VZLS0tLS0K
 
 reporting_server_user_account: yoda_report
-reporting_server_host: 192.168.56.46
+reporting_server_host: 192.168.121.245
 reporting_server_dir: /tmp/yoda-financial-data
-
 reporting_server_priv_key_loc: ~/.ssh/yoda_report
