@@ -38,7 +38,7 @@
     mode: '0770'
 
 
-- name: Copy file to remote /tmp directory
+- name: Copy file to remote /var directory
   ansible.builtin.copy:
     src: gather-group-statistics.py
     dest: /var/gather-group-statistics.py
