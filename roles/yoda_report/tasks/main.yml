@@ -22,16 +22,16 @@
 
 
 - name: Create directory /var/yoda-financial-data
-  file:    
+  ansible.builtin.file:
     path: /var/yoda-financial-data
     state: directory
     mode: '0770'
     owner: "{{ irods_service_account }}"
-    group: "{{ irods_service_account}}"
+    group: "{{ irods_service_account }}"
 
 
 - name: Ensure correct ownership and permissions for /var/yoda-financial-data
-  file:
+  ansible.builtin.file:
     path: /var/yoda-financial-data
     owner: "{{ irods_service_account }}"
     group: "{{ irods_service_account }}"
@@ -39,7 +39,7 @@
 
 
 - name: Copy file to remote /tmp directory
-  copy:
+  ansible.builtin.copy:
     src: gather-group-statistics.py
     dest: /var/gather-group-statistics.py
     owner: "{{ irods_service_account }}"
@@ -48,7 +48,7 @@
 
 
 - name: Add cron job to collect financial stats every day at 2:00 AM
-  cron:
+  ansible.builtin.cron:
     name: "Gather group statistics every day at 2:00 AM"
     minute: 0
     hour: 1
@@ -58,7 +58,7 @@
 
 
 - name: Add cron job to transfer financial stats to reporting server every day at 3:00 AM
-  cron:
+  ansible.builtin.cron:
     name: "Transfer financial statistics to reporting server every day at 3:00 AM"
     minute: 0
     hour: 3
