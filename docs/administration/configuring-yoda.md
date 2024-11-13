@@ -521,3 +521,10 @@ icat_database_checker_version   | iCAT database checker version
 Variable                                     | Description
 ---------------------------------------------|--------------------------------
 yoda_rulesets_vault_copy_multithread_enabled | Enable multithreading when copying files to the vault.
+
+
+### Yoda report
+
+Variable            | Description
+--------------------|-----------------------------------------------------------
+enable_yoda_report: | Enable installation of yoda report for financial reporting

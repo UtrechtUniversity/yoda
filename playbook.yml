@@ -190,6 +190,8 @@
   become: true
   roles:
     - role: yoda_rulesets
+    - role: yoda_report
+      when: enable_yoda_report
   tags:
     - icat
 
@@ -227,12 +229,3 @@
       when: enable_mailpit
   tags:
     - eus
-
-
-- name: Yoda report
-  hosts: icats
-  become: true
-  roles:
-    - yoda_report
-  tags:
-    - yoda_report
