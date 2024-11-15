@@ -1,0 +1,22 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+# GCC is needed to install pysqlcipher3 for yoda-ruleset
+- name: Ensure Python dependencies are installed
+  ansible.builtin.package:
+    name: gcc
+    state: present
+
+
+- name: Install SQLCipher (EL)
+  ansible.builtin.import_tasks: install-redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Install SQLCipher (Ubuntu)
+  ansible.builtin.import_tasks: install-ubuntu.yml
+  when: ansible_os_family == 'Debian'
