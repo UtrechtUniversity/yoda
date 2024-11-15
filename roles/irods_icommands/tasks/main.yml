@@ -1,28 +1,11 @@
 ---
 # copyright Utrecht University
 
-- name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+- name: Run irods_icommands tasks if role has not run yet
+  ansible.builtin.include_tasks: main-tasks.yml
+  when: '"yoda_irods_icommands_role_has_run" not in hostvars[inventory_hostname]'
 
-
-- name: Find out if we need to install iRODS iCommands rpm
-  ansible.builtin.stat:
-    path: '/etc/irods'
-  register: irods_server
-
-
-- name: Ensure iRODS iCommands is installed
-  ansible.builtin.package:
-    name: '{{ irods_icommands_package_new }}'
-    state: present
-  when: not irods_server.stat.exists and not ansible_check_mode
-
-
-- name: Ensure iRODS iCommands is pinned
-  ansible.builtin.template:
-    src: 'irods_icommands.pref.j2'
-    dest: '/etc/apt/preferences.d/irods_icommands.pref'
-    mode: '0644'
-    owner: 'root'
-    group: 'root'
-  when: ansible_os_family == 'Debian'
+- name: Register that irods_icommands role has run
+  ansible.builtin.set_fact:
+    yoda_irods_icommands_role_has_run: true
+  when: '"yoda_irods_icommands_role_has_run" not in hostvars[inventory_hostname]'
