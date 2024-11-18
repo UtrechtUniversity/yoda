@@ -132,7 +132,7 @@
   ansible.builtin.command:
     iput -f ~/testdata/{{ item }} /{{ irods_zone }}/home/research-initial/testdata
   with_items:
-    - 'creatures.json'    
+    - 'creatures.json'
     - 'image.txt'
     - 'large-file.html'
     - 'lorem.txt'
@@ -194,26 +194,26 @@
   ignore_errors: true
 
 
-- name: Ensure intake module rule files are present
+- name: Ensure intake module rule files are absent
   become_user: '{{ irods_service_account }}'
   become: true
-  ansible.builtin.copy:
-    src: '{{ item }}'
-    dest: '~/.irods/{{ item }}'
-    mode: 0644
-  with_items:
+  ansible.builtin.file:
+    path: '~/.irods/{{ item }}'
+    state: absent
+  loop:
     - 'job_movetovault.r'
     - 'job_checksums.r'
     - 'job_clearintakelocks.r'
 
 
-- name: Configure cronjob to make checksums of datapackages in grp-vault-*
+- name: Ensure cronjob to make checksums of datapackages in grp-vault-* is absent
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.cron:
     name: 'job_checksums.r'
     minute: '*/7'
     job: '/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F {{ irods_directory.stdout }}/.irods/job_checksums.r >> /var/lib/irods/log/job_checksums.log 2>&1'
+    state: absent
 
 
 - name: Run storage statistics job

@@ -37,9 +37,6 @@ opensearch_server: combined.yoda.test
 # Deposit module configuration
 enable_deposit: true                               # Enable deposit module
 
-# Intake module configuration
-enable_intake: true                                # Enable intake module
-
 # Datarequest module configuration
 enable_datarequest: true                           # Enable datarequest module
 datarequest_help_contact_name: PLACEHOLDER         # Help contact name

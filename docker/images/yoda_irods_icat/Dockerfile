@@ -177,10 +177,6 @@ RUN for script in scheduled-copytovault.sh admin-remove-orphan-vault-if-empty.sh
     do install -m 0755 /etc/irods/yoda-ruleset/tools/${script} /var/lib/irods/msiExecCmd_bin/${script} ; \
     done && \
     /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db test
-COPY stage/run-intake-movetovault.sh /tmp/run-intake-movetovault.sh
-COPY job_movetovault.r /var/lib/irods/.irods/job_movetovault.r
-COPY job_clearintakelocks.r /var/lib/irods/.irods/job_clearintakelocks.r
-RUN install -o irods -g irods -m 0755 /tmp/run-intake-movetovault.sh /var/lib/irods/.irods/run-intake-movetovault.sh
 COPY cronjob-revision-cleanup.sh /tmp/cronjob-revision-cleanup.sh
 RUN install -o irods -g irods -m 0755 /tmp/cronjob-revision-cleanup.sh /var/lib/irods/.irods/cronjob-revision-cleanup.sh
 COPY service_account.config /tmp/service_account.config

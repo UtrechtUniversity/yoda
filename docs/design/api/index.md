@@ -11,5 +11,4 @@ has_toc: false
 - [Core API documentation](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/yoda-ruleset/api_core.json)
 
 ### Module API
-- [Intake API documentation](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/yoda-ruleset/api_intake.json)
 - [Datarequest API documentation](https://petstore.swagger.io/?url=https://utrechtuniversity.github.io/yoda-ruleset/api_datarequest.json)
