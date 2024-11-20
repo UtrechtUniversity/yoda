@@ -14,7 +14,6 @@ galaxy_info:
 
 
 dependencies:
-  - role: python2
   - role: python3
   - role: python_irodsclient
   - role: sqlcipher

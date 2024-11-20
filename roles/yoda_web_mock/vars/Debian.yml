@@ -1,4 +1,4 @@
 ---
 # copyright Utrecht University
 
-yoda_web_mock_python3_path: /usr/bin/python3
+yoda_web_mock_python3_path: /var/www/webmock/venv/bin/python3

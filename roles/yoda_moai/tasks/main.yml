@@ -47,40 +47,30 @@
   register: repochanges
 
 
-- name: Check if MOAI virtual environment is running Python 2.7
-  ansible.builtin.stat:
-    path: '/var/www/moai/yoda-moai/venv/bin/pip2.7'
-  register: moai_venv_python27
+- name: Ensure Yoda MOAI venv exists
+  become_user: '{{ yoda_moai_user }}'
+  become: true
+  ansible.builtin.command: "{{ yoda_moai_python3_path }} -m venv {{ yoda_moai_home }}/yoda-moai/venv"
+  args:
+    creates: "{{ yoda_moai_home }}/yoda-moai/venv/bin/activate_this.py"
 
 
-- name: Check if MOAI virtual environment is running Python 3.6
-  ansible.builtin.stat:
-    path: '/var/www/moai/yoda-moai/venv/bin/pip3.6'
-  register: moai_venv_python36
-
-
-# For upgrade to Yoda 1.9
-- name: Move old MOAI virtual environment
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: "mv /var/www/moai/yoda-moai/venv /var/www/moai/venv.backup-pre-1.9"
-  when: moai_venv_python27.stat.exists or moai_venv_python36.stat.exists
+- name: Upgrade pip and virtualenv in Yoda MOAI environment
+  become_user: '{{ yoda_moai_user }}'
+  become: true
+  ansible.builtin.pip:
+    name:
+      - pip==24.3.1
+      - virtualenv==20.28.0
+    executable: /var/www/moai/yoda-moai/venv/bin/pip3
 
 
 - name: Ensure Yoda MOAI virtualenv exists
   become_user: '{{ yoda_moai_user }}'
   become: true
-  ansible.builtin.command: "virtualenv --python {{ yoda_moai_python3_path }} {{ yoda_moai_home }}/yoda-moai/venv"
+  ansible.builtin.command: "{{ yoda_moai_home }}/yoda-moai/venv/bin/python3 -m virtualenv {{ yoda_moai_home }}/yoda-moai/venv"
   args:
-    creates: "{{ yoda_moai_home }}/yoda-moai/venv"
-
-
-- name: Upgrade pip in virtual environment
-  become_user: '{{ yoda_moai_user }}'
-  become: true
-  ansible.builtin.pip:
-    name:
-      - pip==23.0.1
-    executable: /var/www/moai/yoda-moai/venv/bin/pip3
+    creates: "{{ yoda_moai_home }}/yoda-moai/venv/bin/activate_this.py"
 
 
 # We use the PySqlite3 dialect to avoid compatibility issues between SQLAlchemy

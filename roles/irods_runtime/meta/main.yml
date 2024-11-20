@@ -8,12 +8,10 @@ galaxy_info:
   min_ansible_version: '2.11'
   platforms:
     - name: EL
-      version: 7
+      version: 8
     - name: Ubuntu
-      version: focal
+      version: noble
 
 
 dependencies:
-  - role: irods_ubuntu_dependencies
-    when: ansible_os_family == 'Debian'
   - role: irods_remove_old_version

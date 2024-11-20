@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2021 Utrecht University
+# Copyright (c) 2021-2024 Utrecht University
 # GNU General Public License v3.0
 
 ANSIBLE_METADATA = {
@@ -55,11 +55,6 @@ def main():
           "instance_name": "irods_rule_engine_plugin-elasticsearch-instance",
           "plugin_name": "irods_rule_engine_plugin-elasticsearch",
           "plugin_specific_configuration": config
-        },
-        {
-          "instance_name": "irods_rule_engine_plugin-document_type-instance",
-          "plugin_name": "irods_rule_engine_plugin-document_type",
-          "plugin_specific_configuration": {}
         },
         default_policy
       ])

@@ -6,4 +6,6 @@
   ansible.builtin.package:
     name:
       - unixodbc
+      - unixodbc-dev
+      - odbcinst
     state: present

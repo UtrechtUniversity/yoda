@@ -65,10 +65,10 @@
   when: enable_tokens and ansible_os_family == 'Debian' and '1.0.4' in pysqlcipher3_version.stdout
 
 
-- name: Ensure custom build of pysqlcipher3 is installed globally for token authentication script
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: python2 -m easy_install https://github.com/UtrechtUniversity/pysqlcipher3/releases/download/v1.2.1/pysqlcipher3-1.2.1-py2.7-linux-x86_64.egg
-  when: enable_tokens and ansible_os_family == 'Debian' and '1.2.1' not in pysqlcipher3_version.stdout
+# - name: Ensure custom build of pysqlcipher3 is installed globally for token authentication script
+#   ansible.builtin.command: # noqa no-changed-when
+#     cmd: python3 -m easy_install https://github.com/UtrechtUniversity/pysqlcipher3/releases/download/v1.2.1/pysqlcipher3-1.2.1-py2.7-linux-x86_64.egg
+#   when: enable_tokens and ansible_os_family == 'Debian' and '1.2.1' not in pysqlcipher3_version.stdout
 
 
 - name: Ensure token authentication script is present

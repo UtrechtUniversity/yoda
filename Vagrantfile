@@ -7,7 +7,7 @@
 VAGRANTFILE_API_VERSION = "2"
 ENV['VAGRANT_DEFAULT_PROVIDER'] = "libvirt"
 
-BOX = 'generic/ubuntu2004'
+BOX = 'alvistack/ubuntu-24.04'
 GUI = false
 CPU = 2
 RAM = 4096
@@ -47,6 +47,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine.vm.hostname = name + DOMAIN
       machine.vm.network 'private_network', ip: ipaddr, netmask: NETMASK
       machine.vm.synced_folder ".", "/vagrant", disabled: true
+      machine.vm.provision "shell" do |s|
+        s.inline = "sudo hostnamectl hostname $1"
+        s.args   = name + DOMAIN
+      end
       machine.vm.provision "shell",
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
       machine.vm.provision "shell",
@@ -64,7 +68,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.provider :virtualbox do |vbox|
         vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
       end
-      controller.vm.box = 'generic/ubuntu2004'
+      controller.vm.box = 'alvistack/ubuntu-24.04'
       controller.vm.hostname = "controller"
       controller.vm.network :private_network, ip: "192.168.56.5", netmask: NETMASK
       controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh"

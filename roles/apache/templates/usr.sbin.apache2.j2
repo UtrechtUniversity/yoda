@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-# Last Modified: Fri Oct 18 15:12:08 2024
+# Last Modified: Tue Nov 26 15:11:10 2024
 #include <tunables/global>
 
 # vim:syntax=apparmor
@@ -25,6 +25,8 @@
   capability kill,
 
   signal send set=term peer=unconfined,
+  signal send set=usr1 peer=unconfined,
+  signal send set=winch peer=unconfined,
 
   deny owner /etc/*.load r,
 
@@ -38,6 +40,8 @@
   /usr/bin/uname mrix,
   /usr/sbin/ldconfig* mrix,
   /var/log/apache2/*.log w,
+  /var/run/apache2/ r,
+  /var/run/apache2/** rw,
   /var/www/landingpages/** r,
   /var/www/yoda/** r,
   owner /dev/shm/* mrwl,
@@ -46,6 +50,7 @@
   owner /home/yodadeployment/flask_session/* rw,
   owner /opt/irods-externals/** mr,
   owner /run/apache2/apache2.pid rw,
+  owner /run/apache2/apache2.pid.* rw,
   owner /var/lib/davrods/__db.lockdb_locallock rw,
   owner /var/lib/davrods/lockdb_locallock rw,
   owner /var/www/extuser/** rw,
