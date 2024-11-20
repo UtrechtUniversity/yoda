@@ -47,14 +47,14 @@
     mode: '0770'
 
 
-- name: Add cron job to collect financial stats every day at 2:00 AM
+- name: Add cron job to collect financial stats every day at 1:00 AM
   ansible.builtin.cron:
-    name: "Gather group statistics every day at 2:00 AM"
+    name: "Gather group statistics every day at 1:00 AM"
     minute: 0
     hour: 1
     job: /var/gather-group-statistics.py
     user: "{{ irods_service_account }}"
-    state: present
+    state: "{{ 'present' if enable_yoda_report else 'absent' }}"
 
 
 - name: Add cron job to transfer financial stats to reporting server every day at 3:00 AM
@@ -64,4 +64,4 @@
     hour: 3
     job: scp -i {{ reporting_server_priv_key_loc }} /var/yoda-financial-data/stats.yaml {{ reporting_server_user_account }}@{{ reporting_server_host }}:{{ reporting_server_dir }}/{{ instance }}.stats.yml
     user: "{{ irods_service_account }}"
-    state: present
+    state: "{{ 'present' if enable_yoda_report else 'absent' }}"

@@ -191,7 +191,6 @@
   roles:
     - role: yoda_rulesets
     - role: yoda_report
-      when: enable_yoda_report
   tags:
     - icat
 
