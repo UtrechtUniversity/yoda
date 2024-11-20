@@ -3,7 +3,7 @@
 
 yoda_deployment_user: yodadeployment
 yoda_version: development
-yoda_eus_version: "{{ yoda_version }}"
+yoda_eus_version: "development-irods-4.3"
 yoda_eus_fqdn: eus.yoda.test
 yoda_eus_port: 443
 

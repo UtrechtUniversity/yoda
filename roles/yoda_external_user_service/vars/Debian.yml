@@ -5,7 +5,7 @@ openssl_private_dir: '/etc/ssl/private/'
 openssl_certs_dir: '/etc/ssl/certs'
 
 yoda_external_user_service_python3_path: /usr/bin/python3
-yoda_external_user_service_python3_include_path: /usr/include/python3.8
+yoda_external_user_service_python3_include_path: /usr/include/python3.12
 yoda_external_user_service_site_config_dir: /etc/apache2/sites-available
 yoda_external_user_service_site_enabled_config_dir: /etc/apache2/sites-enabled
 yoda_external_user_service_site_config_file: 003-yoda-eus-vhost.conf

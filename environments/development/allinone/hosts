@@ -12,26 +12,26 @@ allinone_eus
 
 # Define portal host here:
 [allinone_portal]
-combined
+combined.yoda.test
 
 # Define database host here:
 [allinone_database]
-combined
+combined.yoda.test
 
 # Define icat host here:
 [allinone_icat]
-combined
+combined.yoda.test
 
 # Define resource host here:
 [allinone_resource]
 
 # Define public host here:
 [allinone_public]
-combined
+combined.yoda.test
 
 # Define external user service host here:
 [allinone_eus]
-combined
+combined.yoda.test
 
 ###############
 # All instances

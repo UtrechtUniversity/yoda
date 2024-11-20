@@ -32,22 +32,31 @@
     force: true
 
 
-- name: Ensure Yoda web mock virtualenv exists
+- name: Ensure Yoda web mock venv exists
   become_user: '{{ yoda_deployment_user }}'
   become: true
-  ansible.builtin.command: "virtualenv --python {{ yoda_web_mock_python3_path }} /var/www/webmock/venv"
+  ansible.builtin.command: "python3 -m venv /var/www/webmock/venv"
   args:
     creates: "/var/www/webmock/venv"
 
 
-- name: Upgrade pip in Yoda web mock environment
+- name: Upgrade pip and virtualenv in Yoda web mock environment
   become_user: '{{ yoda_deployment_user }}'
   become: true
   ansible.builtin.pip:
     name:
-      - pip==23.0.1
+      - pip==24.3.1
+      - virtualenv==20.28.0
     executable: /var/www/webmock/venv/bin/pip3
   when: not ansible_check_mode
+
+
+- name: Ensure Yoda web mock virtualenv exists
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.command: "{{ yoda_web_mock_python3_path }} -m virtualenv /var/www/webmock/venv"
+  args:
+    creates: "/var/www/webmock/venv/bin/activate_this.py"
 
 
 # Change detection in git repositories is unreliable in some Ansible versions, so we always

@@ -29,21 +29,21 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Determine current checksum of irods_server library
-  ansible.builtin.command: "sha256sum /usr/lib/libirods_server.so.4.2.12"
-  register: libirods_server_checksum
-  changed_when: false
+# - name: Determine current checksum of irods_server library
+#   ansible.builtin.command: "sha256sum /usr/lib/libirods_server.so.4.2.12"
+#   register: libirods_server_checksum
+#   changed_when: false
 
 
-- name: Install local patch for iRODS 4.2.12
-  ansible.builtin.get_url:
-    url: "{{ irods_runtime_server_patch_url }}"
-    dest: /usr/lib/libirods_server.so.4.2.12
-    checksum: "sha256:{{ irods_runtime_server_patch_sha256sum }}"
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
-    force: true
-    backup: true
-  notify: Restart iRODS
-  when: not ansible_check_mode and libirods_server_checksum.stdout.split()[0] != irods_runtime_server_patch_sha256sum
+# - name: Install local patch for iRODS 4.2.12
+#   ansible.builtin.get_url:
+#     url: "{{ irods_runtime_server_patch_url }}"
+#     dest: /usr/lib/libirods_server.so.4.2.12
+#     checksum: "sha256:{{ irods_runtime_server_patch_sha256sum }}"
+#     owner: 'root'
+#     group: 'root'
+#     mode: '0644'
+#     force: true
+#     backup: true
+#   notify: Restart iRODS
+#   when: not ansible_check_mode and libirods_server_checksum.stdout.split()[0] != irods_runtime_server_patch_sha256sum

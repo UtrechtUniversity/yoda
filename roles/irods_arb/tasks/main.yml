@@ -15,10 +15,10 @@
     state: '{{ "present" if irods_arb_enabled else "absent" }}'
 
 
-- name: Ensure psutil is installed (Python 3)
+- name: Ensure psutil is installed
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.pip:
     name: "psutil==5.9.5"
     executable: "{{ irods_arb_pip3_location }}"
-    extra_args: --user
+    extra_args: --user --break-system-packages

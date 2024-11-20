@@ -30,25 +30,10 @@
   register: portalchanges
 
 
-- name: Check if Portal virtual environment is running Python 3.6
-  ansible.builtin.stat:
-    path: '/var/www/yoda/venv/bin/pip3.6'
-  register: portal_venv_python36
-
-
-# For upgrade to Yoda 1.9
-- name: Move old portal virtual environment
-  become_user: '{{ yoda_deployment_user }}'
-  become: true
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: "mv /var/www/yoda/venv /var/www/yoda/venv.backup-pre-1.9"
-  when: portal_venv_python36.stat.exists
-
-
 - name: Ensure Yoda portal virtualenv exists
   become_user: "{{ yoda_deployment_user }}"
   become: true
-  ansible.builtin.command: "virtualenv --python {{ yoda_portal_python3_path }} /var/www/yoda/venv"
+  ansible.builtin.command: "{{ yoda_portal_python3_path }} -m venv /var/www/yoda/venv"
   args:
     creates: /var/www/yoda/venv
 
@@ -58,7 +43,7 @@
   become: true
   ansible.builtin.pip:
     name:
-      - pip==23.0.1
+      - pip==24.3.1
     executable: /var/www/yoda/venv/bin/pip3
 
 
@@ -68,7 +53,7 @@
   ansible.builtin.pip:
     requirements: /var/www/yoda/requirements.txt
     virtualenv: '/var/www/yoda/venv'
-    virtualenv_python: python3.8
+    virtualenv_python: python3.12
   environment:
     C_INCLUDE_PATH: "{{ yoda_portal_python3_include_path }}"
   notify: Restart Apache webserver

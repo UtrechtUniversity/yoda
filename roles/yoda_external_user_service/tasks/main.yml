@@ -197,22 +197,30 @@
   notify: Restart Apache webserver
 
 
-- name: Ensure Yoda EUS virtualenv exists
+- name: Ensure Yoda EUS venv exists
   become_user: '{{ yoda_deployment_user }}'
   become: true
-  ansible.builtin.command: "virtualenv --python {{ yoda_external_user_service_python3_path }} /var/www/extuser/yoda-external-user-service/venv"
+  ansible.builtin.command: "{{ yoda_external_user_service_python3_path }} -m venv /var/www/extuser/yoda-external-user-service/venv"
   args:
-    creates: "/var/www/extuser/yoda-external-user-service/venv"
+    creates: "/var/www/extuser/yoda-external-user-service/venv/bin/activate_this.py"
 
 
-- name: Upgrade pip in EUS virtual environment
+- name: Upgrade pip and virtualenv in Yoda EUS virtual environment
   become_user: '{{ yoda_deployment_user }}'
   become: true
   ansible.builtin.pip:
     name:
-      - pip==23.0.1
+      - pip==24.3.1
+      - virtualenv==20.28.0
     executable: /var/www/extuser/yoda-external-user-service/venv/bin/pip3
-  when: not ansible_check_mode
+
+
+- name: Ensure Yoda EUS virtualenv exists
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.command: "/var/www/extuser/yoda-external-user-service/venv/bin/python3 -m virtualenv /var/www/extuser/yoda-external-user-service/venv"
+  args:
+    creates: "/var/www/extuser/yoda-external-user-service/venv/bin/activate_this.py"
 
 
 # Change detection in git repositories is unreliable in some Ansible versions, so we always

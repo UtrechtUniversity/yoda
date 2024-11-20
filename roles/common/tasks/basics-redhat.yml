@@ -21,6 +21,16 @@
   when: ansible_distribution_major_version == "8"
 
 
+- name: Ensure Ansible dependencies are installed (EL9)
+  ansible.builtin.package:
+    name:
+      - python3-libselinux
+      - python3-libsemanage
+      - python3-policycoreutils
+    state: present
+  when: ansible_distribution_major_version == "9"
+
+
 - name: Ensure basics (vim, bind-utils, etc.) are installed
   ansible.builtin.package:
     name:

@@ -5,4 +5,4 @@
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.command:
-    /bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py
+    /bin/python3 /etc/irods/yoda-ruleset/tools/async-data-revision.py

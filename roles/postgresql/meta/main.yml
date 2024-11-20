@@ -9,10 +9,10 @@ galaxy_info:
   platforms:
     - name: EL
       version:
-        - 7
         - 8
+        - 9
     - name: Ubuntu
-      version: focal
+      version: noble
 
 dependencies:
   - role: certificates
