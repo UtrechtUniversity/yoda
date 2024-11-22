@@ -12,7 +12,7 @@
   when: enable_yoda_report and yoda_report_upload_priv_key is defined
 
 
-- name: Scan yoda reporting server host pub key
+- name: Scan yoda reporting server host pub key # noqa no-changed-when
   become_user: '{{ irods_service_account }}'
   become: true
   ansible.builtin.shell: "ssh-keyscan {{ yoda_report_server_host }} >> ~/.ssh/known_hosts"
@@ -65,7 +65,7 @@
   when: enable_yoda_report
 
 
-- name: Install requirements in the virtual environment
+- name: Install requirements in the virtual environment # noqa no-changed-when
   ansible.builtin.shell: >
     source /var/yoda-financial-data/yoda_report_venv/bin/activate &&
     pip install -r /var/yoda-financial-data/requirements.txt
