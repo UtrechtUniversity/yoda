@@ -1,0 +1,2 @@
+humanize~=3.13.1
+PyYAML~=6.0
