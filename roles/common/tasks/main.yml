@@ -1,35 +1,11 @@
 ---
 # copyright Utrecht University
 
-- name: Setup hostname
-  ansible.builtin.import_tasks: hostname.yml
+- name: Run common tasks if role has not run yet
+  ansible.builtin.include_tasks: main-tasks.yml
+  when: '"yoda_common_role_has_run" not in hostvars[inventory_hostname]'
 
-- name: Configure CentOS 7 server to use vault repositories
-  ansible.builtin.import_tasks: centos7-vault-repos.yml
-  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7' and centos_use_vault_repos
-
-- name: Setup EPEL repository
-  ansible.builtin.import_tasks: epel.yml
-  when: ansible_os_family == 'RedHat'
-
-- name: Setup iRODS repository
-  ansible.builtin.import_tasks: irods-redhat.yml
-  when: ansible_os_family == 'RedHat'
-
-- name: Setup iRODS repository
-  ansible.builtin.import_tasks: irods-debian.yml
-  when: ansible_os_family == 'Debian'
-
-- name: Setup firewalld
-  ansible.builtin.import_tasks: firewalld.yml
-
-- name: Setup basics
-  ansible.builtin.import_tasks: basics-redhat.yml
-  when: ansible_os_family == 'RedHat'
-
-- name: Setup basics
-  ansible.builtin.import_tasks: basics-debian.yml
-  when: ansible_os_family == 'Debian'
-
-- name: Setup kernel parameters
-  ansible.builtin.import_tasks: kernel.yml
+- name: Register that common role has run
+  ansible.builtin.set_fact:
+    yoda_common_role_has_run: true
+  when: '"yoda_common_role_has_run" not in hostvars[inventory_hostname]'

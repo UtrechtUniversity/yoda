@@ -1,11 +1,11 @@
 ---
 # copyright Utrecht University
 
-- name: Setup PostgreSQL for RedHat family
-  ansible.builtin.include_tasks: setup-redhat.yml
-  when: ansible_os_family == 'RedHat'
+- name: Run postgresql_repository tasks if role has not run yet
+  ansible.builtin.include_tasks: main-tasks.yml
+  when: '"yoda_postgresql_repository_role_has_run" not in hostvars[inventory_hostname]'
 
-
-- name: Setup PostgreSQL for Debian family
-  ansible.builtin.include_tasks: setup-debian.yml
-  when: ansible_os_family == 'Debian'
+- name: Register that postgresql_repository role has run
+  ansible.builtin.set_fact:
+    yoda_postgresql_repository_role_has_run: true
+  when: '"yoda_postgresql_repository_role_has_run" not in hostvars[inventory_hostname]'
