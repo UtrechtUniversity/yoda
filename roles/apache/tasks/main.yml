@@ -1,66 +1,11 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure Apache webserver is installed
-  ansible.builtin.package:
-    name:
-      - httpd
-      - httpd-devel
-      - mod_ssl
-      - openssl
-    state: present
+- name: Run apache tasks if role has not run yet
+  ansible.builtin.include_tasks: main-tasks.yml
+  when: '"yoda_apache_role_has_run" not in hostvars[inventory_hostname]'
 
-
-- name: Allow public to ports for Apache in firewall
-  ansible.posix.firewalld:
-    port: '{{ item }}'
-    permanent: true
-    state: enabled
-    immediate: true
-  with_items:
-    - 80/tcp
-    - 443/tcp
-  notify: Restart firewall
-
-
-- name: Ensure customized httpd config is present
-  ansible.builtin.template:
-    src: 'httpd.conf.j2'
-    dest: '/etc/httpd/conf/httpd.conf'
-    mode: '0600'
-  notify: Restart Apache webserver
-
-
-- name: Ensure customized SSL config is present
-  ansible.builtin.template:
-    src: 'ssl.conf.j2'
-    dest: '/etc/httpd/conf.d/ssl.conf'
-    mode: '0600'
-  notify: Restart Apache webserver
-
-
-- name: Ensure autoindex.conf is absent
-  ansible.builtin.file:
-    path: '{{ item }}'
-    state: absent
-  notify: Restart Apache webserver
-  with_items:
-    - /etc/httpd/conf.d/autoindex.conf
-
-
-- name: Ensure unused Apache configurations are removed
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: absent
-  notify: Restart Apache webserver
-  with_items:
-    - /etc/httpd/conf.modules.d/00-lua.conf
-    - /etc/httpd/conf.modules.d/01-cgi.conf
-    - /etc/httpd/conf.modules.d/15-php.conf
-
-
-- name: Ensure Apache service is configured
-  ansible.builtin.service:
-    name: httpd
-    state: started
-    enabled: '{{ yoda_enable_httpd }}'
+- name: Register that apache role has run
+  ansible.builtin.set_fact:
+    yoda_apache_role_has_run: true
+  when: '"yoda_apache_role_has_run" not in hostvars[inventory_hostname]'
