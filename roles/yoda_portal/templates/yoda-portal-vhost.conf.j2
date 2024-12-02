@@ -13,6 +13,7 @@
 <VirtualHost *:443>
     DocumentRoot "/var/www/yoda/public"
     ServerName {{ yoda_portal_fqdn }}
+    Timeout {{ yoda_portal_timeout }}
 
     <Directory /var/www/yoda>
         AllowOverride All
