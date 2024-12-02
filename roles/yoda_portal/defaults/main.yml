@@ -82,6 +82,9 @@ token_lifetime: 72                                 # Lifetime of data access tok
 # SRAM Configuration
 enable_sram: false                                 # Enable SRAM configuration
 
+# Apache timeout for Yoda portal vhost in seconds
+yoda_portal_timeout: 60
+
 # Monitor thread configuration for extracting tech support information
 yoda_portal_monitor_output_dir: /tmp
 yoda_portal_monitor_signal_file: /var/www/yoda/show-tech.sig
