@@ -21,6 +21,8 @@
 
 {% if enable_intake %}
     Timeout {{ intake_extended_timeout }}
+{% else %}
+    Timeout {{ yoda_portal_timeout }}
 {% endif %}
 
     Alias "/static/" "/var/www/yoda/static/"
