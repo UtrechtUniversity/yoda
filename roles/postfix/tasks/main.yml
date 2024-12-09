@@ -180,6 +180,7 @@
     - usr.sbin.postalias
     - usr.sbin.sendmail.postfix
   register: postfix_apparmor_default
+  notify: Reload Apparmor
   when: not ansible_check_mode and ansible_os_family == "Debian"
 
 
@@ -202,6 +203,7 @@
     - src: 'usr.sbin.sendmail.j2'
       dest: 'usr.sbin.sendmail'
   register: postfix_apparmor_custom
+  notify: Reload Apparmor
   when: ansible_os_family == "Debian"
 
 
