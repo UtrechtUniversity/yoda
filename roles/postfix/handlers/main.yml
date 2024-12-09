@@ -8,6 +8,12 @@
   when: not ansible_check_mode
 
 
+- name: Reload Apparmor
+  ansible.builtin.service:
+    name: apparmor
+    state: reloaded
+
+
 - name: Systemd daemon reload
   ansible.builtin.systemd:
     daemon_reload: true

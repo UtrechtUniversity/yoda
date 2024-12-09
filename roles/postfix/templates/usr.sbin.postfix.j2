@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-# Last Modified: Tue Oct 22 15:17:36 2024
+# Last Modified: Mon Dec  9 14:18:33 2024
 #include <tunables/global>
 
 # vim:syntax=apparmor
@@ -24,6 +24,7 @@
   signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/pickup,
   signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/qmgr,
   signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/scache,
+  signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/showq,
   signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/smtp,
   signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/tlsmgr,
   signal send set=term peer=/usr/sbin/postfix//null-/usr/lib/postfix/sbin/trivial-rewrite,
@@ -69,6 +70,7 @@
   owner /etc/postfix/postfix-files.d/ r,
   owner /etc/postfix/sasl/ r,
   owner /usr/sbin/sendmail r,
+  owner /var/lib/postfix/__db.smtp_scache.db rw,
   owner /var/lib/postfix/master.lock rwk,
   owner /var/lib/postfix/prng_exch k,
   owner /var/lib/postfix/prng_exch rw,
