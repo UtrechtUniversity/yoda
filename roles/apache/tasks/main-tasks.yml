@@ -58,6 +58,16 @@
   when: ansible_os_family == 'Debian'
 
 
+- name: Copy Apache ports configuration file (Ubuntu)
+  ansible.builtin.copy:
+    src: ports.conf.focal
+    dest: /etc/apache2/ports.conf
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_os_family == 'Debian'
+
+
 - name: Ensure autoindex.conf is absent
   ansible.builtin.file:
     path: '{{ item }}'
@@ -89,6 +99,16 @@
   with_items:
     - headers
     - ssl
+    - socache_shmcb
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure Apache global SSL configuration is loaded (Ubuntu)
+  ansible.builtin.file:
+    src: "/etc/apache2/mods-available/ssl.conf"
+    dest: "/etc/apache2/mods-enabled/ssl.conf"
+    state: link
+  notify: Restart Apache webserver
   when: ansible_os_family == 'Debian'
 
 
