@@ -30,7 +30,7 @@ case "$1" in
     ;;
 
   revision)
-    docker exec "$EXEC_OPTIONS" provider.yoda sudo -iu irods /bin/python /etc/irods/yoda-ruleset/tools/async-data-revision.py -v
+    docker exec "$EXEC_OPTIONS" provider.yoda sudo -iu irods /bin/python3 /etc/irods/yoda-ruleset/tools/async-data-revision.py -v
     ;;
 
   revisioncleanup)

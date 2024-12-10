@@ -28,7 +28,7 @@ yoda_theme_mapping:
   wur: "Wageningen University & Research"
 
 # Yoda portal
-yoda_portal_version: "development-irods-4.3"
+yoda_portal_version: "{{ yoda_version }}"
 yoda_portal_log_api_call_duration: false
 yoda_portal_path: /var/www/yoda              # Path to location of portal
 yoda_config_path: '/var/www/yoda/config' # Path to portal's shared configuration

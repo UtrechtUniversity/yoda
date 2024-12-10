@@ -1,12 +1,13 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
+# FROM --platform=linux/amd64 ubuntu:24.04
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Application settings
 ARG TAG=development
-ENV YODA_EUS_REPO "https://github.com/UtrechtUniversity/yoda-external-user-service.git"
-ENV YODA_EUS_BRANCH "$TAG"
-ENV YODA_PORTAL_REPO "https://github.com/UtrechtUniversity/yoda-portal.git"
-ENV YODA_PORTAL_BRANCH "$TAG"
+ENV YODA_EUS_REPO="https://github.com/UtrechtUniversity/yoda-external-user-service.git"
+ENV YODA_EUS_BRANCH="$TAG"
+ENV YODA_PORTAL_REPO="https://github.com/UtrechtUniversity/yoda-portal.git"
+ENV YODA_PORTAL_BRANCH="$TAG"
 ENV DEBIAN_FRONTEND="noninteractive"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -19,19 +20,19 @@ RUN apt-get update
 
 # Install common tools (PostgreSQL is needed for psql commands in init script)
 # hadolint ignore=DL3033
-RUN apt-get install -y wget git netcat gnupg vim
+RUN apt-get install -y wget git netcat-traditional gnupg vim
 
 # Install PostgreSQL 15 for checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
 RUN apt-get update
-RUN apt-get -y install postgresql-15 python3-psycopg2 acl
+RUN apt-get -y install postgresql-15 libpq-dev python3-psycopg2 acl
 
 # Install Python 3
 # hadolint ignore=DL3033
 RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
-                       python3-wheel python3.8-venv virtualenv
+                       python3-wheel python3.12-venv virtualenv
 
 # Install and configure Apache
 # hadolint ignore=DL3033
@@ -57,7 +58,9 @@ RUN useradd yodadeployment && \
 COPY yoda-external-user-service-vhost.conf /etc/apache2/sites-available/003-yoda-eus-vhost.conf
 RUN ln -s /etc/apache2/sites-available/003-yoda-eus-vhost.conf /etc/apache2/sites-enabled/003-yoda-eus-vhost.conf
 RUN virtualenv --python /usr/bin/python3  /var/www/extuser/yoda-external-user-service/venv && \
-    /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir pip==23.0.1 && \
+    /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir pip==24.3.1 && \
+    /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir virtualenv==20.28.0 && \
+    /var/www/extuser/yoda-external-user-service/venv/bin/python3 -m virtualenv /var/www/extuser/yoda-external-user-service/venv && \
     /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir /var/www/extuser/yoda-external-user-service
 
 # Make copy of data on volumes that can optionally be bind mounted, so the container init script
