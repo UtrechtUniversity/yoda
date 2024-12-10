@@ -1,10 +1,10 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Application settings
 ARG TAG=development
-ENV YODA_PORTAL_REPO "https://github.com/UtrechtUniversity/yoda-portal.git"
-ENV YODA_PORTAL_BRANCH="$TAG"
+ENV YODA_PORTAL_REPO="https://github.com/UtrechtUniversity/yoda-portal.git"
+ENV YODA_PORTAL_BRANCH="development-irods-4.3"
 ENV DEBIAN_FRONTEND="noninteractive"
 
 # Network settings
@@ -21,7 +21,7 @@ RUN apt-get install -y wget git vim
 # Install Python 3
 # hadolint ignore=DL3033
 RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
-                       python3-wheel python3.8-venv virtualenv
+                       python3-wheel python3.12-venv virtualenv
 
 # Install and configure Apache
 # hadolint ignore=DL3033
@@ -52,7 +52,7 @@ RUN mkdir -p /var/www/yoda/config && \
 COPY yoda-portal-vhost.conf /etc/apache2/sites-available/001-yoda-portal-vhost.conf
 RUN ln -s /etc/apache2/sites-available/001-yoda-portal-vhost.conf /etc/apache2/sites-enabled/001-yoda-portal-vhost.conf
 RUN virtualenv --python /usr/bin/python3 /var/www/yoda/venv && \
-    /var/www/yoda/venv/bin/pip3 install --no-cache-dir pip==23.0.1 && \
+    /var/www/yoda/venv/bin/pip3 install --no-cache-dir pip==24.3.1 && \
     /var/www/yoda/venv/bin/pip3 install --no-cache-dir -r /var/www/yoda/requirements.txt
 
 # Make copy of data on volumes that can optionally be bind mounted, so the container init script

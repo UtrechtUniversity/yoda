@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Network settings
@@ -7,11 +7,11 @@ EXPOSE 443
 
 # Application settings
 ARG TAG=development
-ENV IRODS_PACKAGE_VERSION="4.2.12-1~bionic"
-ENV APT_REPO_CONFIG="deb [arch=amd64] https://packages.irods.org/apt/ bionic main"
+ENV IRODS_PACKAGE_VERSION="4.3.3-0~noble"
+ENV APT_REPO_CONFIG="deb [arch=amd64] https://packages.irods.org/apt/ noble main"
 ENV APT_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
-ENV DAVRODS_APT_URL="https://github.com/UtrechtUniversity/davrods/releases/download/4.2.12_1.5.1"
-ENV DAVRODS_APT_PACKAGE="davrods-4.2.12-1.5.1.deb"
+ENV DAVRODS_APT_URL="https://github.com/UtrechtUniversity/davrods/releases/download/4.3.3_1.5.1"
+ENV DAVRODS_APT_PACKAGE="davrods-4.3.3-1.5.1.deb"
 ENV DEBIAN_FRONTEND="noninteractive"
 
 # Update packages
@@ -24,7 +24,7 @@ RUN apt-get install -y wget vim
 # Install Python 3
 # hadolint ignore=DL3033
 RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
-                       python3-wheel python3.8-venv
+                       python3-wheel python3.12-venv
 
 # Install and configure Apache
 # hadolint ignore=DL3033
@@ -38,27 +38,6 @@ RUN ln -s /etc/apache2/mods-available/dav_fs.load /etc/apache2/mods-enabled/dav_
 RUN ln -s /etc/apache2/mods-available/dav_lock.load /etc/apache2/mods-enabled/dav_lock.load
 RUN ln -s /etc/apache2/mods-available/davrods.load /etc/apache2/mods-enabled/davrods.load
 
-# Install iRODS dependencies
-RUN apt-get -y install aptitude libboost-locale-dev libpython2-stdlib libpython2.7-minimal \
-          libpython2.7-stdlib \
-          python-is-python2 python-six python2 python2-minimal python2.7 python2.7-minimal \
-          python-certifi python-chardet python-idna python-pkg-resources python-setuptools
-ENV PY_URLLIB_PREFIX="http://security.ubuntu.com/ubuntu/pool/main/p/python-urllib3"
-ENV PY_URLLIB_FILENAME="python-urllib3_1.22-1ubuntu0.18.04.2_all.deb"
-ENV PY_REQUESTS_PREFIX="http://security.ubuntu.com/ubuntu/pool/main/r/requests"
-ENV PY_REQUESTS_FILENAME="python-requests_2.18.4-2ubuntu0.1_all.deb"
-ENV OPENSSL_PREFIX="http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0"
-ENV OPENSSL_FILENAME="libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb"
-RUN wget -q ${PY_URLLIB_PREFIX}/${PY_URLLIB_FILENAME} && \
-    wget -q ${PY_REQUESTS_PREFIX}/${PY_REQUESTS_FILENAME} && \
-    wget -q ${OPENSSL_PREFIX}/${OPENSSL_FILENAME} && \
-    dpkg -i ${PY_URLLIB_FILENAME} && \
-    dpkg -i ${PY_REQUESTS_FILENAME} && \
-    dpkg -i ${OPENSSL_FILENAME} && \
-    rm ${PY_URLLIB_FILENAME} && \
-    rm ${PY_REQUESTS_FILENAME} && \
-    rm ${OPENSSL_FILENAME}
-  
 # Install iRODS components: iCommands and runtime
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3033

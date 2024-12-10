@@ -87,7 +87,7 @@ cat > /var/lib/irods/VERSION.json << VERSION
     "commit_id": "2ed549ca7fe455aaa7755becc6c14b233dcbc0b4",
     "configuration_schema_version": 3, 
     "installation_time": "$INSTALL_TIMESTAMP", 
-    "irods_version": "4.2.12"
+    "irods_version": "4.3.3"
 }
 VERSION
 chown irods:irods /var/lib/irods/VERSION.json
@@ -131,8 +131,8 @@ make install
 progress_update "Ruleset updated"
 
 before_update "Updating ruleset dependencies"
-sudo -u irods pip2 install --user attrs==21.4.0
-sudo -u irods pip2 install --user -r /etc/irods/yoda-ruleset/requirements.txt
+sudo -u irods pip3 install --user attrs==24.2.0
+sudo -u irods pip3 install --user -r /etc/irods/yoda-ruleset/requirements.txt
 progress_update "Ruleset dependencies updated"
 
 touch /container_initialized

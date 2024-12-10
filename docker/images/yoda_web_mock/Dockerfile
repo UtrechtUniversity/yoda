@@ -1,10 +1,10 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 LABEL maintainer="Yoda team <yoda@uu.nl>"
 
 # Application settings
 ARG TAG=development
-ENV YODA_MOCK_REPO "https://github.com/UtrechtUniversity/yoda-web-mock.git"
-ENV YODA_MOCK_BRANCH "$TAG"
+ENV YODA_MOCK_REPO="https://github.com/UtrechtUniversity/yoda-web-mock.git"
+ENV YODA_MOCK_BRANCH="$TAG"
 ENV DEBIAN_FRONTEND="noninteractive"
 
 # Network settings
@@ -16,12 +16,12 @@ RUN apt-get update
 
 # Install common tools (PostgreSQL is needed for psql commands in init script)
 # hadolint ignore=DL3033
-RUN apt-get install -y wget git netcat gnupg vim
+RUN apt-get install -y wget git netcat-traditional gnupg vim
 
 # Install Python 3
 # hadolint ignore=DL3033
 RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
-                       python3-wheel python3.8-venv virtualenv
+                       python3-wheel python3.12-venv virtualenv
 
 # Install and configure Apache
 # hadolint ignore=DL3033
@@ -45,7 +45,9 @@ RUN useradd yodadeployment && \
 COPY yoda-web-mock-vhost.conf /etc/apache2/sites-available/yoda-web-mock-vhost.conf
 RUN ln -s /etc/apache2/sites-available/yoda-web-mock-vhost.conf /etc/apache2/sites-enabled/yoda-web-mock-vhost.conf
 RUN virtualenv --python /usr/bin/python3 /var/www/webmock/venv && \
-    /var/www/webmock/venv/bin/pip3 install pip==23.0.1 && \
+    /var/www/webmock/venv/bin/pip3 install pip==24.3.1 && \
+    /var/www/webmock/venv/bin/pip3 install virtualenv==20.28.0 && \
+    /var/www/webmock/venv/bin/python3 -m virtualenv /var/www/webmock/venv && \
     /var/www/webmock/venv/bin/pip3 install -e /var/www/webmock/yoda-web-mock
 
 # Make copy of data on volumes that can optionally be bind mounted, so the container init script
