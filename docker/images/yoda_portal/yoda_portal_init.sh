@@ -88,6 +88,7 @@ from flask import current_app as app
 SECRET_KEY          = '$SECRET_KEY'
 PORTAL_TITLE_TEXT   = 'Yoda - Dev (Docker)'
 YODA_VERSION        = 'development'
+YODA_ENVIRONMENT    = 'development'
 YODA_COMMIT         = '$YODA_COMMIT'
 RESEARCH_ENABLED    = True
 OPEN_SEARCH_ENABLED = False
@@ -95,7 +96,10 @@ DEPOSIT_ENABLED     = True
 DATAREQUEST_ENABLED = True
 TOKENS_ENABLED      = True
 TOKEN_LIFETIME      = 72
-JSON_SORT_KEYS      = False  # Check if this is still needed with Python v3.7?
+SRAM_ENABLED        = False
+
+# Logging configuration
+LOG_API_CALL_DURATION       = True
 
 # Flask-Session configuration
 SESSION_TYPE                = 'filesystem'
@@ -113,7 +117,7 @@ IRODS_ICAT_PORT     = '1247'
 IRODS_DEFAULT_ZONE  = 'tempZone'
 IRODS_DEFAULT_RESC  = 'irodsResc'
 IRODS_SSL_CA_FILE   = '/etc/ssl/certs/localhost_and_chain.crt'
-IRODS_AUTH_SCHEME   = 'PAM'
+IRODS_AUTH_SCHEME   = 'pam_password'
 IRODS_CLIENT_OPTIONS_FOR_SSL = {
     "irods_client_server_policy": "CS_NEG_REQUIRE",
     "irods_client_server_negotiation": "request_server_negotiation",
@@ -137,35 +141,37 @@ IRODS_SESSION_OPTIONS = {
 }
 
 # OIDC configuration
-OIDC_ENABLED        = True
-OIDC_DOMAINS        = ['yoda.dev']
-OIDC_CLIENT_ID      = 'myClientId'
-OIDC_CLIENT_SECRET  = 'myClientPassword'
-OIDC_CALLBACK_URI   = 'https://portal.yoda:8443/user/callback'
-OIDC_AUTH_BASE_URI  = 'https://oauth.mocklab.io/oauth/authorize'
-OIDC_AUTH_URI       = 'https://oauth.mocklab.io/oauth/authorize?response_type=code&client_id=myClientId&redirect_uri=https://portal.yoda.test/user/callback&scope=openid&acr_values='
-OIDC_LOGIN_HINT     = True
-OIDC_TOKEN_URI      = 'https://oauth.mocklab.io/oauth/token'
-OIDC_SCOPES         = 'openid'
-OIDC_ACR_VALUES     = ''
-OIDC_USERINFO_URI   = 'https://oauth.mocklab.io/userinfo'
-OIDC_EMAIL_FIELD    = 'email'
-OIDC_JWKS_URI       = 'https://oauth.mocklab.io/.well-known/jwks.json'
-OIDC_JWT_ISSUER     = 'https://oauth.mocklab.io'
-OIDC_JWT_OPTIONS    = {
+OIDC_ENABLED         = True
+OIDC_DOMAINS         = ['*.yoda.dev']
+OIDC_ALWAYS_REDIRECT = False
+OIDC_CLIENT_ID       = 'myClientId'
+OIDC_CLIENT_SECRET   = 'myClientPassword'
+OIDC_CALLBACK_URI    = 'https://portal.yoda:8443/user/callback'
+OIDC_AUTH_BASE_URI   = 'https://oauth.wiremockapi.cloud/oauth/authorize'
+OIDC_AUTH_URI        = 'https://oauth.wiremockapi.cloud/oauth/authorize?response_type=code&client_id=myClientId&redirect_uri=https://portal.yoda:8443/user/callback&scope=openid&acr_values='
+OIDC_LOGIN_HINT      = True
+OIDC_TOKEN_URI       = 'https://oauth.wiremockapi.cloud/oauth/token'
+OIDC_SCOPES          = 'openid'
+OIDC_ACR_VALUES      = ''
+OIDC_USERINFO_URI    = 'https://oauth.wiremockapi.cloud/userinfo'
+OIDC_EMAIL_FIELD     = 'email'
+OIDC_JWKS_URI        = 'https://oauth.wiremockapi.cloud/.well-known/jwks.json'
+OIDC_JWT_ISSUER      = 'https://oauth.wiremockapi.cloud'
+OIDC_JWT_OPTIONS     = {
     "require_exp": True,      #check that exp (expiration) claim is present
     "require_iat": False,     #check that iat (issued at) claim is present
     "require_nbf": False,     #check that nbf (not before) claim is present
-    "verify_aud": True,    #check that aud (audience) claim matches audience
-    "verify_iat": False,   #check that iat (issued at) claim value is an integer
-    "verify_exp": True,    #check that exp (expiration) claim value is OK
-    "verify_iss": True,    #check that iss (issuer) claim matches issuer
-    "verify_signature": True                                #verify the JWT cryptographic signature
+    "verify_aud": True,       #check that aud (audience) claim matches audience
+    "verify_iat": False,      #check that iat (issued at) claim value is an integer
+    "verify_exp": True,       #check that exp (expiration) claim value is OK
+    "verify_iss": True,       #check that iss (issuer) claim matches issuer
+    "verify_signature": True  #verify the JWT cryptographic signature
 }
 
-# Yoda portal
-YODA_PORTAL_PATH      = '/var/www/yoda'        # Path to location of portal
-YODA_CONFIG_PATH  = '/var/www/yoda/config' # Path to portal's shared configuration
+# Portal configuration
+YODA_PORTAL_PATH = '/var/www/yoda'         # Path to location of portal
+YODA_CONFIG_PATH = '/var/www/yoda/config'  # Path to portal's shared configuration
+
 
 # Portal theme configuration
 YODA_THEME_PATH     = '/var/www/yoda/themes' # Path to location of themes
@@ -192,6 +198,7 @@ YODA_EUS_FQDN = 'eus.yoda.test'
 DATAREQUEST_HELP_CONTACT_NAME  = 'PLACEHOLDER'
 DATAREQUEST_HELP_CONTACT_EMAIL = 'PLACEHOLDER'
 
+# Upload function configuration
 UPLOAD_PART_FILES              = True
 
 # Text file extensions configuration
@@ -200,6 +207,7 @@ TEXT_FILE_EXTENSIONS = ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'for
 # Monitor thread configuration
 MONITOR_OUTPUT_DIR = "/tmp"
 MONITOR_SIGNAL_FILE = "/var/www/yoda/show-tech.sig"
+
 FLASKCFG
 progress_update "Portal configured"
 
