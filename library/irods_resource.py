@@ -1,12 +1,8 @@
 #!/usr/bin/python
-# Copyright (c) 2017-2022 Utrecht University
+# Copyright (c) 2017-2024 Utrecht University
 # GNU General Public License v3.0
 
-ANSIBLE_METADATA = {
-    'metadata_version': '1.1',
-    'supported_by': 'community',
-    'status': ['preview']
-}
+ANSIBLE_METADATA = {"metadata_version": "1.1", "supported_by": "community", "status": ["preview"]}
 
 from ansible.module_utils.basic import *
 
@@ -23,7 +19,7 @@ else:
 
 
 def get_session():
-    env_file = os.path.expanduser('~/.irods/irods_environment.json')
+    env_file = os.path.expanduser("~/.irods/irods_environment.json")
     with open(env_file) as data_file:
         ienv = json.load(data_file)
     return (iRODSSession(irods_env_file=env_file), ienv)
@@ -39,9 +35,11 @@ def main():
             children=dict(default=None, type="list"),
             resource_type=dict(default=None),
             context=dict(default=None),
-            state=dict(default="present")
-            ),
-        supports_check_mode=True)
+            modify=dict(default=False),
+            state=dict(default="present"),
+        ),
+        supports_check_mode=True,
+    )
 
     name = module.params["name"]
     host = module.params["host"]
@@ -55,15 +53,14 @@ def main():
     if not context:
         context = None
 
+    modify = module.params["modify"]
     state = module.params["state"]
 
     if IRODSCLIENT_AVAILABLE:
         try:
             session, ienv = get_session()
         except iRODSException:
-            module.fail_json(
-                msg="Could not establish irods connection. Please check ~/.irods/irods_environment.json"
-            )
+            module.fail_json(msg="Could not establish irods connection. Please check ~/.irods/irods_environment.json")
     else:
         module.fail_json(msg="python-irodsclient needs to be installed")
 
@@ -73,32 +70,51 @@ def main():
     try:
         resource = session.resources.get(name)
     except ResourceDoesNotExist:
-        if state == 'present' and not module.check_mode:
-            resource = session.resources.create(
-                name, resource_type, host=host,
-                path=vault_path, context=context)
+        if state == "present" and not module.check_mode:
+            resource = session.resources.create(name, resource_type, host=host, path=vault_path, context=context)
             changed = True
-        elif state == 'absent':
+        elif state == "absent":
             module.exit_json(changed=False, msg="Resource {} is not present".format(name))
     else:
-        if state == 'absent':
-            module.fail_json(msg="python-irodsclient fails to remove resources in version 0.6")
-        elif state == 'present':
+        if state == "absent":
+            module.fail_json(msg="This module does not remove resources, use iadmin rmresc")
+        elif state == "present":
             if host != resource.location:
-                warnings.append(
-                        "Resource {name} has location set to '{resource.location}' instead of '{host}'"
-                        .format(**locals()))
+                if modify:
+                    resource = session.resources.modify(name, "host", host)
+                    changed = True
+                else:
+                    warnings.append(
+                        "Resource {name} has location set to '{resource.location}' instead of '{host}'".format(**locals())
+                    )
             if vault_path != resource.vault_path:
-                warnings.append(
-                        "Resource {name} has vault_path set to '{resource.vault_path}' instead of '{vault_path}'"
-                        .format(**locals()))
+                if modify:
+                    resource = session.resources.modify(name, "path", vault_path)
+                    changed = True
+                else:
+                    warnings.append(
+                        "Resource {name} has vault_path set to '{resource.vault_path}' instead of '{vault_path}'".format(
+                            **locals()
+                        )
+                    )
             if resource_type != resource.type:
-                warnings.append("Resource {name} has resource_type set to '{resource.type}' instead of '{resource_type}'"
-                        .format(**locals()))
+                if modify:
+                    resource = session.resources.modify(name, "type", resource_type)
+                    changed = True
+                else:
+                    warnings.append(
+                        "Resource {name} has resource_type set to '{resource.type}' instead of '{resource_type}'".format(
+                            **locals()
+                        )
+                    )
             if context != resource.context:
-                warnings.append(
-                        "Resource {name} has context set to '{resource.context}' instead of '{context}'"
-                        .format(**locals()))
+                if modify:
+                    resource = session.resources.modify(name, "context", context)
+                    changed = True
+                else:
+                    warnings.append(
+                        "Resource {name} has context set to '{resource.context}' instead of '{context}'".format(**locals())
+                    )
 
     # Build list of resource children names.
     names = []
@@ -115,16 +131,18 @@ def main():
             changed = True
 
     module.exit_json(
-            changed=changed,
-            resource=dict(
-                name=resource.name,
-                zone=resource.zone_name,
-                parent=resource.parent,
-                context=resource.context,
-                status=resource.status),
-            warnings=warnings,
-            irods_environment=ienv)
+        changed=changed,
+        resource=dict(
+            name=resource.name,
+            zone=resource.zone_name,
+            parent=resource.parent,
+            context=resource.context,
+            status=resource.status,
+        ),
+        warnings=warnings,
+        irods_environment=ienv,
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
