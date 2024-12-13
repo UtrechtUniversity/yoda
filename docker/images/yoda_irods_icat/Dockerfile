@@ -5,7 +5,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Application settings
 ARG TAG=development
 ENV IRODS_VERSION "4.3.3-0~noble"
-ENV IRODS_INDEX_PREP_VERSION "4.3.3.0-0+4.3.3~noble"
+ENV IRODS_PLUS_VERSION "4.3.3.0-0+4.3.3~noble"
 ENV IRODS_MSVC_IRODS_VERSION "4.3.3"
 ENV IRODS_SUDO_MSVC_VERSION "1.0.0"
 ENV IRODS_UU_MSVC_VERSION "1.2.0"
@@ -40,10 +40,13 @@ RUN apt-get update
 # hadolint ignore=DL3033
 RUN apt-get install -y wget git sudo netcat-traditional gcc vim
 
+# Install rsyslog
+# hadolint ignore=DL3033
+RUN apt-get install -y rsyslog
+
 # Install Python 3.12
 # hadolint ignore=DL3033
-RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
-                       python3-wheel python3.12-venv
+RUN apt-get install -y gcc python3 python3-dev python3-pip python3.12-venv python3-virtualenv python3-wheel python3-magic
 
 # Upload PAM Python library
 COPY stage/pam_python.so /tmp/pam_python.so
@@ -68,11 +71,10 @@ RUN useradd -d /var/lib/irods irods && \
     do echo "Installing package ${package} and its dependencies ..."; \
        apt-get -y install "$package=${IRODS_VERSION}" ; \
     done && \
-    for package in irods-rule-engine-plugin-indexing irods-rule-engine-plugin-elasticsearch; \
+    for package in irods-rule-engine-plugin-python irods-rule-engine-plugin-indexing irods-rule-engine-plugin-elasticsearch; \
     do echo "Installing package ${package} and its dependencies ..."; \
-       apt-get -y install "$package=${IRODS_INDEX_PREP_VERSION}";  \
+       apt-get -y install "$package=${IRODS_PLUS_VERSION}";  \
        done
-
 
 # Install iRODS microservices for Yoda
 # hadolint ignore=DL3033

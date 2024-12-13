@@ -42,10 +42,7 @@ fi
 
 # Download test vault and iCAT data
 before_update "Downloading data"
-if [ ! -d /download ] 
-then
-    mkdir /download
-fi
+mkdir /download
 wget -q "https://yoda.uu.nl/yoda-docker/${DATA_VERSION}.vault.tar.gz" -O "/download/${DATA_VERSION}.vault.tar.gz"
 progress_update "Downloaded vault test data."
 wget -q "https://yoda.uu.nl/yoda-docker/${DATA_VERSION}.icat.sql.gz" -O "/download/${DATA_VERSION}.icat.sql.gz"
