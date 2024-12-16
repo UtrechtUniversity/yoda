@@ -24,14 +24,27 @@ Run flake8 check on source file change (requires the `entr` package):
 ls *py | entr flake8
 ```
 
+## Yoda portal
 Reload Flask on project change (requires the `entr` package; run as root):
 ```bash
 cd /var/www/yoda && find /etc/irods/yoda-ruleset . \( -path *.swp -o -path */node_modules/* -o -path ./venv -o -path ./.git \) -prune -o -print | entr touch yoda_debug.wsgi
 ```
 
+### Yoda portal metadata form page
+To change how the metadata form module looks and behaves (but *not* for changing a particular metadata or ui schema):
+1. Go into the metadata form folder: `cd /var/www/yoda/metadata_form/src`
+2. Install npm: `npm install`
+3. Make your changes to the js code
+4. Run: `npm run build-all`. This will build the metadata forms for research, deposit, and vault modules, for production.
+
+Some other commands you can run with `npm run` in this directory:
+- `build-all-dev`: build metadata forms for research, deposit, and vault but in development mode, which allows you to debug code more easily.
+- `build-[module]`: you can specify an individual module (research, deposit, or vault) to build the metadata form for, for example: `build-research`
+- `build-[module]-dev`: you can specify an individual module (research, deposit, or vault) to build the metadata form for, and to build it in development mode for easier debugging
+
 Rebuild portal Javascript assets on source file change:
 ```bash
-./node_modules/.bin/webpack -d -w
+./node_modules/.bin/webpack -w --name all --mode development
 ```
 
 ## Mailpit
