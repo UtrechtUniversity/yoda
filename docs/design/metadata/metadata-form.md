@@ -21,5 +21,4 @@ the data package can optionally be submitted to the vault for archiving and/or p
 
 ## Integration of React form within Yoda
 
-The directory `/research/metadata-form/src` in the Yoda-portal repository contains Yoda-specific JavaScript code
-for the React form.
+The directories `/metadata_form` and `/research/metadata-form/src` in the Yoda-portal repository contains Yoda-specific JavaScript code for the React form.
