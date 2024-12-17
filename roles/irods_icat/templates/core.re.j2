@@ -5,7 +5,7 @@
 # - CS_NEG_REFUSE - No SSL
 # - CS_NEG_DONT_CARE - Depends on the Client request
 # - CS_NEG_REQUIRE - Require SSL
-acPreConnect(*OUT) { *OUT="CS_NEG_REFUSE"; }
+acPreConnect(*OUT) { *OUT="CS_NEG_DONT_CARE"; }
 
 acCreateUser {
   acPreProcForCreateUser;
