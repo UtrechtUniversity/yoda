@@ -10,7 +10,7 @@ Setting up a Yoda development environment is easy, you only need the following:
 * [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 2.0)
 
 On GNU/Linux or macOS you also need:
-* [Ansible](https://docs.ansible.com/ansible/intro_installation.html) (>= 2.11)
+* [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) (>= 2.11)
 
 The guide below will deploy an 'allinone' instance (all functional roles in one virtual machine) with the default configuration.
 
