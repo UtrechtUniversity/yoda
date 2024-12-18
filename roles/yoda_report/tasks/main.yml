@@ -38,10 +38,20 @@
   when: enable_yoda_report
 
 
-- name: Copy file to remote /var directory
+- name: Copy file for gathering group stats to remote /var directory
   ansible.builtin.copy:
     src: gather-group-statistics.py
     dest: /var/yoda-financial-data/gather-group-statistics.py
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    mode: '0700'
+  when: enable_yoda_report
+
+
+- name: Copy file for gathering capacity stats to remote /var directory
+  ansible.builtin.copy:
+    src: gather-capacity-stats.py
+    dest: /var/yoda-financial-data/gather-capacity-stats.py
     owner: "{{ irods_service_account }}"
     group: "{{ irods_service_account }}"
     mode: '0700'
@@ -96,5 +106,31 @@
       scp -i {{ yoda_report_server_priv_key_loc }}
       /var/yoda-financial-data/stats.yaml
       {{ yoda_report_server_user_account }}@{{ yoda_report_server_host }}:{{ yoda_report_server_dir }}/{{ instance }}.stats.yml
+    user: "{{ irods_service_account }}"
+    state: "{{ 'present' if enable_yoda_report else 'absent' }}"
+
+
+- name: Add cron job to gather capacity statistics
+  ansible.builtin.cron:
+    name: "yoda-report-gather-capacity-statistics"
+    minute: "*/2"
+    hour: "*"
+    job: >
+      source /var/yoda-financial-data/yoda_report_venv/bin/activate &&
+      python /var/yoda-financial-data/gather-capacity-stats.py
+    user: "{{ irods_service_account }}"
+    state: "{{ 'present' if enable_yoda_report else 'absent' }}"
+
+
+- name: Add cron job to transfer capacity statistics to reporting server
+  ansible.builtin.cron:
+    name: "yoda-report-copy-capacity-statistics"
+    minute: "*/5"
+    hour: "*"
+    job: >
+      source /var/yoda-financial-data/yoda_report_venv/bin/activate &&
+      scp -i {{ yoda_report_server_priv_key_loc }}
+      /var/yoda-financial-data/*.capacity.yaml
+      {{ yoda_report_server_user_account }}@{{ yoda_report_server_host }}:{{ yoda_report_server_dir }}/{{ instance }}.capacity.stats.yml
     user: "{{ irods_service_account }}"
     state: "{{ 'present' if enable_yoda_report else 'absent' }}"
