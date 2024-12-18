@@ -113,8 +113,8 @@
 - name: Add cron job to gather capacity statistics
   ansible.builtin.cron:
     name: "yoda-report-gather-capacity-statistics"
-    minute: "*/2"
-    hour: "*"
+    minute: 0
+    hour: 1
     job: >
       source /var/yoda-financial-data/yoda_report_venv/bin/activate &&
       python /var/yoda-financial-data/gather-capacity-stats.py
@@ -125,8 +125,8 @@
 - name: Add cron job to transfer capacity statistics to reporting server
   ansible.builtin.cron:
     name: "yoda-report-copy-capacity-statistics"
-    minute: "*/5"
-    hour: "*"
+    minute: 0
+    hour: 3
     job: >
       source /var/yoda-financial-data/yoda_report_venv/bin/activate &&
       scp -i {{ yoda_report_server_priv_key_loc }}
