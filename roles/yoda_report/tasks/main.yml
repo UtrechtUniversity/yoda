@@ -105,7 +105,7 @@
       source /var/yoda-financial-data/yoda_report_venv/bin/activate &&
       scp -i {{ yoda_report_server_priv_key_loc }}
       /var/yoda-financial-data/stats.yaml
-      {{ yoda_report_server_user_account }}@{{ yoda_report_server_host }}:{{ yoda_report_server_dir }}/{{ instance }}.stats.yml
+      {{ yoda_report_server_user_account }}@{{ yoda_report_server_host }}:{{ yoda_report_server_financial_data_dir }}/{{ instance }}.stats.yml
     user: "{{ irods_service_account }}"
     state: "{{ 'present' if enable_yoda_report else 'absent' }}"
 
@@ -131,6 +131,6 @@
       source /var/yoda-financial-data/yoda_report_venv/bin/activate &&
       scp -i {{ yoda_report_server_priv_key_loc }}
       /var/yoda-financial-data/*.capacity.yaml
-      {{ yoda_report_server_user_account }}@{{ yoda_report_server_host }}:{{ yoda_report_server_dir }}/{{ instance }}.capacity.stats.yml
+      {{ yoda_report_server_user_account }}@{{ yoda_report_server_host }}:{{ yoda_report_server_capacity_data_dir }}/{{ instance }}.capacity.stats.yml
     user: "{{ irods_service_account }}"
     state: "{{ 'present' if enable_yoda_report else 'absent' }}"
