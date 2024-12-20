@@ -281,7 +281,8 @@ vault_copy_max_retries  | How many times to retry copy to vault on particular fo
 
 Variable                     | Description
 -----------------------------|---------------------
-enable_deposit               | Enable deposit module
+enable_deposit               | Enable deposit module (default: false). If the deposit module is enabled, `enable_data_package_reference` should also be set to True.
+enable_data_package_reference| Enable data package references for vault data packages (default: false). Set to true if deposit module is enabled.
 
 ### Datarequest module configuration
 

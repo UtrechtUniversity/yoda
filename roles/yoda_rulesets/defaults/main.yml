@@ -143,7 +143,8 @@ enable_datarequest: false               # Enable datarequest module
 enable_open_search: true                # Enable OpenSearch module
 
 # Deposit module configuration
-enable_deposit: false                   # Enable deposit module
+enable_deposit: false                   # Enable deposit module. If enabled, enable_data_package_reference also
+                                        # needs to be set to true.
 
 # Data Package Reference
 enable_data_package_reference: false    # Enable Data Package References for vault data packages

@@ -68,7 +68,8 @@ yoda_portal_upload_part_files: true                # Allow use of .part data obj
 enable_open_search: false                          # Enable OpenSearch module
 
 # Deposit module configuration
-enable_deposit: false                              # Enable deposit module
+enable_deposit: false                              # Enable deposit module. If enabled, enable_data_package_reference also
+                                                   # needs to be set to true.
 
 # Datarequest module configuration
 enable_datarequest: false                          # Enable datarequest module
