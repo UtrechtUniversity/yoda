@@ -1,15 +1,10 @@
 # {{ ansible_managed }}
-# iRODS Rule Base
-#  The new rule language is used to express all policies
-#  Recovery procedures are included for a micro-service after " ::: "
+# iRODS core.re Rule Base
 #
-#Test Rules
-printHello { print_hello; }
-
-#
-#
-# These are sys admin rules for creating and deleting users and renaming
-# the local zone.
+# Defines the SSL (client-server negotiation) policy for this server
+# - CS_NEG_REFUSE - No SSL
+# - CS_NEG_DONT_CARE - Depends on the Client request
+# - CS_NEG_REQUIRE - Require SSL
 acPreConnect(*OUT) { *OUT="CS_NEG_DONT_CARE"; }
 
 acCreateUser {
@@ -55,8 +50,8 @@ acDeleteCollByAdminIfPresent(*parColl,*childColl) {
 acDeleteCollByAdmin(*parColl,*childColl) {
   msiDeleteCollByAdmin(*parColl,*childColl); }
 #
-acRenameLocalZone(*oldZone,*newZone) {
-  msiRenameCollection("/"++str(*oldZone)++"",*newZone) ::: msiRollback;
+acRenameLocalZone(*oldZone, *newZone) {
+  msiRenameLocalZoneCollection(*newZone) ::: msiRollback;
   msiRenameLocalZone(*oldZone,*newZone) ::: msiRollback;
   msiCommit; }
 #
@@ -163,8 +158,8 @@ acCheckPasswordStrength(*password) { }
 # acSetRescSchemeForCreate {msiSetDefaultResc("demoResc","null"); msiSetRescSortScheme("random"); msiSetRescSortScheme("byRescClass"); }
 # acSetRescSchemeForCreate {msiSetDefaultResc("demoResc7%demoResc8","preferred"); }
 # acSetRescSchemeForCreate {ON($objPath like "/tempZone/home/rods/protected/*") {msiOprDisallowed;} }
-acSetRescSchemeForCreate {msiSetDefaultResc("{{ irods_default_resc }}","null"); }
-acSetRescSchemeForRepl {msiSetDefaultResc("{{ irods_default_resc }}","null"); }
+acSetRescSchemeForCreate {msiSetDefaultResc("{{ irods_default_resc }}","forced"); }
+acSetRescSchemeForRepl {msiSetDefaultResc("{{ irods_default_resc }}","forced"); }
 # acSetRescSchemeForCreate {msiGetSessionVarValue("all","all"); msiSetDefaultResc("demoResc","null"); }
 # acSetRescSchemeForCreate {msiSetDefaultResc("demoResc","forced"); msiSetRescSortScheme("random"); msiSetRescSortScheme("byRescClass"); }
 #
@@ -180,22 +175,10 @@ acSetRescSchemeForRepl {msiSetDefaultResc("{{ irods_default_resc }}","null"); }
 #    msiSetDataObjAvoidResc(avoidResc) - set the resource to avoid when
 #      opening an object. The copy stored in this resource will not be picked
 #      unless this is the only copy.
-#    msiSortDataObj(sortingScheme) - Sort the copies of the data object using
-#      this scheme. Currently, "random" and "byRescClass" sorting scheme are
-#      supported. If "byRescClass" is set, data objects in the "cache"
-#      resources will be placed ahead of of those in the "archive" resources.
-#      The sorting schemes can also be chained. e.g.,
-#      msiSortDataObj(random); msiSortDataObj(byRescClass) means that
-#      the data objects will be sorted randomly first and then separated
-#      by class.
-#    msiStageDataObj(cacheResc) - stage a copy of the data object in the
-#      cacheResc before opening the data object.
 #    The $writeFlag session variable has been created to be used as a condition
 #    for differentiating between open for read ($writeFlag == "0") and
 #    write ($writeFlag == "1"). e.g. :
-# acPreprocForDataObjOpen {ON($writeFlag == "0") {msiStageDataObj("demoResc8"); } }
 # acPreprocForDataObjOpen {ON($writeFlag == "1") { } }
-# acPreprocForDataObjOpen {msiSortDataObj("random"); msiSetDataObjPreferredResc("xyz%demoResc8%abc"); msiStageDataObj("demoResc8"); }
 # acPreprocForDataObjOpen {msiSetDataObjPreferredResc("demoResc7%demoResc8"); }
 acPreprocForDataObjOpen { }
 # acPreprocForDataObjOpen {msiGetSessionVarValue("all","all"); }
@@ -222,30 +205,12 @@ acSetMultiReplPerResc { }
 # in sequence by these rules.
 #    msiExtractNaraMetadata - extract and register metadata from the just
 #     upload NARA files.
-#    msiSysReplDataObj(replResc, flag) - can be used to replicate a copy of
-#    the file just uploaded or copied data object to the specified replResc
-#    Valid values for the "flag" input are "all", "updateRepl" and
-#    "rbudpTransfer". More than one flag values can be set using the
-#    "%" character as separator. e.g., "all%updateRepl". "updateRepl" means
-#    update an existing stale copy to the latest copy. The "all" flag means
-#    update all stale
-#    copies if the "updateRepl" flag is also set. "rbudpTransfer" means
-#    the RBUDP protocol will be used for the transfer.
-#
-#    msiSysChksumDataObj - checksum the just uploaded or copied data object.
-# acPostProcForPut {msiSysChksumDataObj; msiSysReplDataObj("demoResc8","all"); }
-# acPostProcForPut {msiSysReplDataObj("demoResc8","all"); }
-# acPostProcForPut {msiSysChksumDataObj; }
-# acPostProcForPut {delay("<A></A>") {msiSysReplDataObj('demoResc8','all'); } }
 # acWriteLine(*A,*B) {writeLine(*A,*B); }
 # acPostProcForPut {delay("<PLUSET>1m</PLUSET>") {acWriteLine('serverLog','delayed by a minute message1'); acWriteLine('serverLog','delayed by a minute message2'); } }
-# acPostProcForPut {ON($objPath like "/tempZone/home/rods/nvo/*") {delay("<PLUSET>1m</PLUSET>") {msiSysReplDataObj('nvoReplResc','null'); } } }
-# acPostProcForPut {msiSysReplDataObj("demoResc8","all"); }
 #acPostProcForPut {msiSetDataTypeFromExt; }
-#acPostProcForPut {ON($objPath like "/tempZone/home/rods/tg/*") {msiSysReplDataObj("nvoReplResc","null"); } }
 #acPostProcForPut {ON($objPath like "/tempZone/home/rods/mytest/*") {writeLine("serverLog","File Path is "++$filePath); } }
 #acPostProcForPut {ON($objPath like "/tempZone/home/rods/mytest/*") {writeLine("serverLog","File Path is "++$filePath); msiSplitPath($filePath,*fileDir,*fileName); msiExecCmd("send.sh", "*fileDir *fileName", "null", "null","null",*Junk); writeLine("serverLog","After File Path is *fileDir *fileName"); } }
-#acPostProcForPut { ON($objPath like "\*txt") {writeLine("serverLog","File $objPath"); } }
+# acPostProcForPut { ON($objPath like "\*txt") {writeLine("serverLog","File $objPath"); } }
 acPostProcForPut { }
 acPostProcForCopy { }
 acPostProcForFilePathReg { }
@@ -373,15 +338,6 @@ acChkHostAccessControl { }
 # taken out.
 # acSetVaultPathPolicy {msiSetRandomScheme; }
 acSetVaultPathPolicy {msiSetGraftPathScheme("no","1"); }
-#
-# 17) acSetReServerNumProc - This rule set the policy for the number of processes
-# to use when running jobs in the irodsReServer. The irodsReServer can now
-# multi-task such that one or two long running jobs cannot block the execution
-# of other jobs. One function can be called:
-#    msiSetReServerNumProc(numProc) - numProc can be "default" or a number
-#    in the range 1-4. numProc will be set to 1 if "default" is the input.
-#
-acSetReServerNumProc {msiSetReServerNumProc("default"); }
 #
 # 18) acPreProcForCollCreate - This is the PreProcessing rule for creating
 # a collection. Currently there is no function written specifically
@@ -699,47 +655,16 @@ acPreProcForExecCmd(*cmd, *args, *addr, *hint) { }
 acPreProcForServerPortal(*oprType, *lAddr, *lPort, *pAddr, *pPort, *load) { }
 acPostProcForServerPortal(*oprType, *lAddr, *lPort, *pAddr, *pPort, *load) { }
 acPreProcForWriteSessionVariable(*var) {
-    on(*var == "status") {
-        succeed;
-    }
-    or {
-        failmsg(-1, "Update session variable $*var not allowed!");
-    }
+	on(*var == "status") {
+		succeed;
+	}
+	or {
+		failmsg(-1, "Update session variable $*var not allowed!");
+	}
 }
 
 getSessionVar(*name, *output) {
     *output = eval("str($"++*name++")");
-}
-
-# ----------------------------------------------------------------------------
-# These rules are for testing only
-#acDataObjCreate {acSetCreateConditions; acDOC; }
-acSetCreateConditions {msiGetNewObjDescriptor ::: recover_msiGetNewObjDescriptor; acSetResourceList; }
-acDOC {msiPhyDataObjCreate ::: recover_msiPhyDataObjCreate; acRegisterData ::: msiRollback; msiCommit; }
-acSetResourceList {msiSetResourceList; }
-acSetCopyNumber {msiSetCopyNumber; }
-acRegisterData {msiRegisterData ::: msiRollback; }
-#
-#These are actions for getting iCAT results for performing iRODS operations.
-#These rules generate the genQueryOut_ structure for each action for the given condition
-#
-acGetIcatResults(*Action,*Condition,*GenQOut) {ON((*Action == "replicate") %% (*Action == "trim") %% (*Action == "chksum") %% (*Action == "copy") %% (*Action == "remove")) {msiMakeQuery("DATA_NAME, COLL_NAME",*Condition,*Query); msiExecStrCondQuery(*Query, *GenQOut); cut; } }
-acGetIcatResults(*Action,*Condition,*GenQOut) {ON(*Action == "chksumRescLoc") {msiMakeQuery("DATA_NAME, COLL_NAME, RESC_LOC",*Condition,*Query); msiExecStrCondQuery(*Query, *GenQOut); cut; } }
-acGetIcatResults(*Action,*Condition,*GenQOut) {ON(*Action == "list") {msiMakeQuery("DATA_NAME, COLL_NAME, DATA_RESC_NAME, DATA_REPL_NUM, DATA_SIZE",*Condition,*Query); msiExecStrCondQuery(*Query, *GenQOut); cut; } }
-#
-#rules for purging a file which have expired
-#
-acPurgeFiles(*Condition) {ON((*Condition == "null") %% (*Condition == "")) {msiGetIcatTime(*Time,"unix"); acGetIcatResults("remove","DATA_EXPIRY < '*Time'",*List); foreach(*List) {msiDataObjUnlink(*List,*Status); msiGetValByKey(*List,"DATA_NAME",*D); msiGetValByKey(*List,"COLL_NAME",*E); writeLine("stdout","Purged File *E/*D at *Time"); } } }
-acPurgeFiles(*Condition) {msiGetIcatTime(*Time,"unix"); acGetIcatResults("remove","DATA_EXPIRY < '*Time' AND *Condition",*List); foreach(*List) {msiDataObjUnlink(*List,*Status); msiGetValByKey(*List,"DATA_NAME",*D); msiGetValByKey(*List,"COLL_NAME",*E); writeLine("stdout","Purged File *E/*D at *Time"); } }
-acConvertToInt(*R) {assign(*A,$sysUidClient); assign($sysUidClient,*R); assign(*K, $sysUidClient); assign(*R,*K); assign($sysUidClient,*A); }
-
-#
-#  rule for running a workflow
-#
-acRunWorkFlow(*File, *R_BUF) {
-   msiDataObjOpen("objPath=*File++++openFlags=O_RDONLY",*S_FD);
-   msiDataObjRead(*S_FD,33554412,*R_BUF);
-   msiDataObjClose(*S_FD,*Status2);
 }
 
 acPostProcForParallelTransferReceived(*leaf_resource) {}
@@ -748,12 +673,12 @@ acPostProcForDataCopyReceived(*leaf_resource) {}
 
 # =-=-=-=-=-=-=-
 # examples of API dynamic policy enforcement points
-# pep_api_data_obj_put_pre(*COMM, *DATAOBJINP, *BUFFER, *PORTAL_OPR_OUT) {  }
-# pep_api_data_obj_put_post(*COMM, *DATAOBJINP, *BUFFER, *PORTAL_OPR_OUT) {  }
+# pep_api_data_obj_put_pre(*INSTANCE_NAME, *COMM, *DATAOBJINP, *BUFFER, *PORTAL_OPR_OUT) {  }
+# pep_api_data_obj_put_post(*INSTANCE_NAME, *COMM, *DATAOBJINP, *BUFFER, *PORTAL_OPR_OUT) {  }
 
 # =-=-=-=-=-=-=-
 # policy controlling when a dataObject is staged to cache from archive in a compound coordinating resource
-#  - the default is to stage when cache is not present ("when_necessary")
+#  - the default is to stage when cache is stale or not present ("when_necessary")
 # =-=-=-=-=-=-=-
 # pep_resource_resolve_hierarchy_pre(*INSTANCE, *CONTEXT, *OUT, *OPERATION, *HOST, *PARSER, *VOTE){*OUT="compound_resource_cache_refresh_policy=when_necessary";}  # default
 # pep_resource_resolve_hierarchy_pre(*INSTANCE, *CONTEXT, *OUT, *OPERATION, *HOST, *PARSER, *VOTE){*OUT="compound_resource_cache_refresh_policy=always";}
