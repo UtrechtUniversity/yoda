@@ -45,7 +45,6 @@
     name:
       - "{{ irods_idp_package_new }}"
       - "{{ irods_esp_package_new }}"
-#      - "{{ irods_dtp_package_new }}"
     state: present
   when: not ansible_check_mode and enable_open_search
 
