@@ -249,14 +249,20 @@ This page explains how to run them locally.</p>
 </h2>
     
 
-<p>The ruleset uses the <a href="https://docs.python.org/2.7/library/unittest.html">unittest framework</a> for the unit tests.
-The test suites can be found in the <code class="language-plaintext highlighter-rouge">unit-tests</code> subdirectory of the ruleset. Run them using Python 2.7. Example:</p>
+<p>The ruleset uses the <a href="https://docs.python.org/3/library/unittest.html">unittest framework</a> for the unit tests.
+The test suites can be found in the <code class="language-plaintext highlighter-rouge">unit-tests</code> subdirectory of the ruleset. Example commands for running them
+manually:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>unit-tests
-<span class="nv">$ </span>python2 <span class="nt">-m</span> unittest unit_tests
-.............................................
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python <span class="nt">-m</span> venv venv
+<span class="nv">$ </span><span class="nb">source </span>venv/bin/activate
+<span class="nv">$ </span>python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">--upgrade</span> pip
+<span class="nv">$ </span>python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<span class="nv">$ </span><span class="nb">cd </span>unit-tests
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="si">$(</span><span class="nb">cd</span> ../util <span class="p">;</span> <span class="nb">pwd</span><span class="si">)</span>:<span class="nv">$PYTHONPATH</span>
+<span class="nv">$ </span>python <span class="nt">-m</span> unittest unit_tests
+..............................................................
 <span class="nt">----------------------------------------------------------------------</span>
-Ran 45 tests <span class="k">in </span>0.021s
+Ran 62 tests <span class="k">in </span>0.009s
 
 OK
 </code></pre></div></div>

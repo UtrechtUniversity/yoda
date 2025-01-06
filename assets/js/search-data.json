@@ -1849,7 +1849,7 @@
   },"264": {
     "doc": "Running unit and integration tests",
     "title": "Running ruleset unit tests",
-    "content": "The ruleset uses the unittest framework for the unit tests. The test suites can be found in the unit-tests subdirectory of the ruleset. Run them using Python 2.7. Example: . $ cd unit-tests $ python2 -m unittest unit_tests ............................................. ---------------------------------------------------------------------- Ran 45 tests in 0.021s OK . ",
+    "content": "The ruleset uses the unittest framework for the unit tests. The test suites can be found in the unit-tests subdirectory of the ruleset. Example commands for running them manually: . $ python -m venv venv $ source venv/bin/activate $ python -m pip install --upgrade pip $ python -m pip install -r requirements.txt $ cd unit-tests $ export PYTHONPATH=$(cd ../util ; pwd):$PYTHONPATH $ python -m unittest unit_tests .............................................................. ---------------------------------------------------------------------- Ran 62 tests in 0.009s OK . ",
     "url": "/yoda/development/running-unit-integration-tests.html#running-ruleset-unit-tests",
     
     "relUrl": "/development/running-unit-integration-tests.html#running-ruleset-unit-tests"
