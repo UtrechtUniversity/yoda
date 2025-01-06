@@ -11,15 +11,21 @@ This page explains how to run them locally.
 
 ## Running ruleset unit tests
 
-The ruleset uses the [unittest framework](https://docs.python.org/2.7/library/unittest.html) for the unit tests.
-The test suites can be found in the `unit-tests` subdirectory of the ruleset. Run them using Python 2.7. Example:
+The ruleset uses the [unittest framework](https://docs.python.org/3/library/unittest.html) for the unit tests.
+The test suites can be found in the `unit-tests` subdirectory of the ruleset. Example commands for running them
+manually:
 
 ```bash
+$ python -m venv venv
+$ source venv/bin/activate
+$ python -m pip install --upgrade pip
+$ python -m pip install -r requirements.txt
 $ cd unit-tests
-$ python2 -m unittest unit_tests
-.............................................
+$ export PYTHONPATH=$(cd ../util ; pwd):$PYTHONPATH
+$ python -m unittest unit_tests
+..............................................................
 ----------------------------------------------------------------------
-Ran 45 tests in 0.021s
+Ran 62 tests in 0.009s
 
 OK
 ```
