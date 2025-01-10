@@ -396,6 +396,22 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 </code></pre></div>    </div>
   </li>
+  <li>In most cases, the previous steps will transform metadata of vault data packages to the new schema. In some
+specific cases, in particular when the metadata contains person identifiers in an unexpected format, you
+may need to edit vault metadata manually in order to make it compliant with the new schema.</li>
+</ol>
+
+<p>In order to do this, first run a metadata schema report to see which data packages have metadata that is not yet
+compliant with the new schema:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/bin/irule <span class="nt">-r</span> irods_rule_engine_plugin-python-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/metadata/vault-metadata-schema-report.r
+</code></pre></div></div>
+
+<p>If the metadata schema report shows that any data packages have metadata that is not compliant with the
+schema, please consult the <a href="/yoda/administration/troubleshooting-vault-metadata.html">vault metadata troubleshooting documentation</a>
+for instructions on how to resolve this manually.</p>
+
+<ol>
   <li>Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/update-publications.r
 </code></pre></div>    </div>
