@@ -15,7 +15,7 @@
 
 
 - name: Install PostgreSQL YUM repo package
-  ansible.builtin.yum:
+  ansible.builtin.yum: # noqa fqcn[action-core]
     name: "{{ postgresql_rpm_dest_dir }}/{{ postgresql_rpm_redhat_repo }}"
     state: present
   when: not ansible_check_mode

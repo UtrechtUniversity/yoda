@@ -73,7 +73,8 @@
 
 - name: Generate Flask secret key
   ansible.builtin.shell: openssl rand -base64 32 > /var/www/yoda/flask_secret_key
-    creates=/var/www/yoda/flask_secret_key
+  args:
+    creates: /var/www/yoda/flask_secret_key
   when: not ansible_check_mode
 
 

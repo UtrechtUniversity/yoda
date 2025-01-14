@@ -69,7 +69,8 @@
 
 - name: Generate Zabbix agent PSK
   ansible.builtin.shell: openssl rand -hex 256 > /etc/zabbix/zabbix_agentd.psk
-    creates=/etc/zabbix/zabbix_agentd.psk
+  args:
+    creates: /etc/zabbix/zabbix_agentd.psk
   when: not ansible_check_mode
 
 

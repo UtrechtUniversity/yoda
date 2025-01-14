@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Check if davrods is installable from repository
-  ansible.builtin.yum:
+  ansible.builtin.yum: # noqa fqcn[action-core]
     list: '{{ davrods.package }}'
   register: davrods_repo
 

@@ -55,7 +55,8 @@
 
 - name: Generate Flask secret key
   ansible.builtin.shell: openssl rand -base64 32 > /var/www/extuser/flask_secret_key
-    creates=/var/www/extuser/flask_secret_key
+  args:
+    creates: /var/www/extuser/flask_secret_key
   when: not ansible_check_mode and flask_secret_key is not defined
 
 
