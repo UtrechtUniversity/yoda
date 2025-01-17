@@ -395,7 +395,7 @@ sram_auto_group_sync         | Automatic SRAM group sync
 sram_verbose_logging         | SRAM verbose logging
 sram_tls_verify              | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
 sram_co_default_label        | Default label for created COs
-sram_co_logo_url             | URL to image used as default SRAM CO logo
+sram_co_logo                 | Base64 encoded image used as default SRAM CO logo (by default it has an image of the Yoda logo; see the default value for the exact format)
 
 ### EPIC PID Configuration
 
