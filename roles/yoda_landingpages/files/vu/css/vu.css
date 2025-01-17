@@ -210,6 +210,10 @@ header .header-title h1 {
     font-weight: 400;
     font-size: 16px;
 }
+.content .tags .tag a, .content .keywords .keyword a {
+    color: #333333;
+    text-decoration: underline;
+}
 .content hr {
     background-color: #999999;
     height: 1px;
