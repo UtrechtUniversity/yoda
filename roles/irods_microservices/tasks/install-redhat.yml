@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Check if iRODS microservices are installable from repository
-  ansible.builtin.yum:
+  ansible.builtin.yum: # noqa fqcn[action-core]
     list: "{{ item.value.package }}"
   with_dict: "{{ irods_microservices_data }}"
   register: irods_microservices_repo
@@ -19,7 +19,7 @@
 
 
 - name: Install iRODS microservice packages from downloaded rpm
-  ansible.builtin.yum:
+  ansible.builtin.yum: # noqa fqcn[action-core]
     name: "{{ irods_microservices_package_dest_dir }}/{{ item.item.value.filename }}"
     state: present
   when: not item.results and not ansible_check_mode and not repo_only
@@ -27,7 +27,7 @@
 
 
 - name: Ensure microservice packages from downloaded rpm
-  ansible.builtin.yum:
+  ansible.builtin.yum: # noqa fqcn[action-core]
     name: "{{ item.item.value.package }}"
     state: present
   when: not item.results and not ansible_check_mode

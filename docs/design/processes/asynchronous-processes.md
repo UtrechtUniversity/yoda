@@ -58,12 +58,15 @@ contains the source and destination resource, separated by commas.
 |   |   |
 |---|---|
 | Script               | /etc/irods/yoda-ruleset/tools/async-data-replicate.py                   |
-| Purpose              | replicate data objects to consumer                                          |
+| Purpose              | replicate data objects, also handles checksumming                       |
 | Lock file            | /tmp/irods-async-data-replicate.py.lock                                     |
 | Scheduling           | cronjob, data object queue based on data object metadata attributes         |
 | Typically started by | cronjob runs every five minutes                                             |
 
-Data objects are marked for revision creation using a metadata attribute. The default name of these
+The replication job handles replicating data objects to a replication resource. It also
+adds checksums to data objects that do not have a checksum yet.
+
+Data objects are marked for replication using a metadata attribute. The default name of these
 attributes is `org_replication_scheduled`.
 
 The script has a verbose mode (which can be enabled using the `-v` switch). This will log additional
@@ -93,7 +96,7 @@ and revision cleanup are handled asynchronously.
 | Purpose              | create revisions of data objects                                            |
 | Lock file            | /tmp/irods-async-data-revision.py.lock                                      |
 | Scheduling           | cronjob, queue based on data object metadata attributes                     |
-| Typically started by | cronjob runs every five minutes                                             |
+| Typically started by | cronjob runs every ten minutes                                             |
 
 Data objects are marked for revision creation using a metadata attribute. The default name of these
 attributes is `org_revision_scheduled`.

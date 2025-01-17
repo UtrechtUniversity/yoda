@@ -142,11 +142,26 @@ irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/too
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 ```
 
-18. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+18. In most cases, the previous steps will transform metadata of vault data packages to the new schema. In some
+specific cases, in particular when the metadata contains person identifiers in an unexpected format, you
+may need to edit vault metadata manually in order to make it compliant with the new schema.
+
+In order to do this, first run a metadata schema report to see which data packages have metadata that is not yet
+compliant with the new schema:
+
+```bash
+/usr/bin/irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/metadata/vault-metadata-schema-report.r
+```
+
+If the metadata schema report shows that any data packages have metadata that is not compliant with the
+schema, please consult the [vault metadata troubleshooting documentation](../administration/troubleshooting-vault-metadata.md)
+for instructions on how to resolve this manually.
+
+19. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
 
-19. When upgrading an SRAM-enabled environment to Yoda 1.9.5 or later, please note that the `sram_co_logo_url` parameter (which took a URL)
+20. When upgrading an SRAM-enabled environment to Yoda 1.9.5 or later, please note that the `sram_co_logo_url` parameter (which took a URL)
     has been changed to `sram_co_logo` (which takes a BASE64-encoded image). If you have defined a custom logo, you will need to change this
     parameter in your configuration.

@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Check if Zabbix PostgreSQL monitoring RPM is installable from repository
-  ansible.builtin.yum:
+  ansible.builtin.yum: # noqa fqcn[action-core]
     list: '{{ zabbix_postgres.package }}'
   register: zabbix_postgres_repo
 
@@ -18,7 +18,7 @@
 
 
 - name: Install Zabbix PostgreSQL monitoring from downloaded RPM
-  ansible.builtin.yum:
+  ansible.builtin.yum: # noqa fqcn[action-core]
     name: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
     state: present
     disable_gpg_check: true

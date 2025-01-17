@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Install Mod-WSGI for Python 3.8 (EL)
-  ansible.builtin.yum:
+  ansible.builtin.yum: # noqa fqcn[action-core]
     name: rh-python38-python-mod_wsgi
     enablerepo: "{{ centos_sclo_rh_repository }}"
   when: not ansible_check_mode and ansible_os_family == 'RedHat'
