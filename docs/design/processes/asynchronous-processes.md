@@ -96,7 +96,7 @@ and revision cleanup are handled asynchronously.
 | Purpose              | create revisions of data objects                                            |
 | Lock file            | /tmp/irods-async-data-revision.py.lock                                      |
 | Scheduling           | cronjob, queue based on data object metadata attributes                     |
-| Typically started by | cronjob runs every five minutes                                             |
+| Typically started by | cronjob runs every ten minutes                                             |
 
 Data objects are marked for revision creation using a metadata attribute. The default name of these
 attributes is `org_revision_scheduled`.
