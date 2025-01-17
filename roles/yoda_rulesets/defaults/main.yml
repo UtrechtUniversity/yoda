@@ -179,7 +179,41 @@ sram_auto_group_sync: false                            # Automatic SRAM group sy
 sram_verbose_logging: false                            # SRAM verbose logging
 sram_tls_verify: true                                  # Enable TLS verification for SRAM API calls. Enabled by default.
 sram_co_default_label: yoda                            # Default label for created COs
-sram_co_logo_url: https://raw.githubusercontent.com/UtrechtUniversity/yoda/development/docs/graphic_mark/png/UU_Beeldmerk_Yoda_FC_DEF.png  # URL to image used as default SRAM CO logo
+# Base64 encoded logo for Surf COs (default value has the Yoda logo)
+sram_co_logo: >
+  data:image/png;base64,
+  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
 
 yoda_portal_fqdn: PLACEHOLDER                          # Yoda portal FQDN
 
