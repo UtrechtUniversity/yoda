@@ -362,7 +362,7 @@ contains the source and destination resource, separated by commas.</p>
     </tr>
     <tr>
       <td>Purpose</td>
-      <td>replicate data objects to consumer</td>
+      <td>replicate data objects, also handles checksumming</td>
     </tr>
     <tr>
       <td>Lock file</td>
@@ -379,7 +379,10 @@ contains the source and destination resource, separated by commas.</p>
   </tbody>
 </table></div>
 
-<p>Data objects are marked for revision creation using a metadata attribute. The default name of these
+<p>The replication job handles replicating data objects to a replication resource. It also
+adds checksums to data objects that do not have a checksum yet.</p>
+
+<p>Data objects are marked for replication using a metadata attribute. The default name of these
 attributes is <code class="language-plaintext highlighter-rouge">org_replication_scheduled</code>.</p>
 
 <p>The script has a verbose mode (which can be enabled using the <code class="language-plaintext highlighter-rouge">-v</code> switch). This will log additional
@@ -441,7 +444,7 @@ and revision cleanup are handled asynchronously.</p>
     </tr>
     <tr>
       <td>Typically started by</td>
-      <td>cronjob runs every five minutes</td>
+      <td>cronjob runs every ten minutes</td>
     </tr>
   </tbody>
 </table></div>
