@@ -162,3 +162,6 @@ for instructions on how to resolve this manually.
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
 
+20. When upgrading an SRAM-enabled environment to Yoda 1.9.5 or later, please note that the `sram_co_logo_url` parameter (which took a URL)
+    has been changed to `sram_co_logo` (which takes a BASE64-encoded image). If you have defined a custom logo, you will need to change this
+    parameter in your configuration.
