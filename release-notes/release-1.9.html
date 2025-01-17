@@ -416,6 +416,9 @@ for instructions on how to resolve this manually.</p>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/update-publications.r
 </code></pre></div>    </div>
   </li>
+  <li>When upgrading an SRAM-enabled environment to Yoda 1.9.5 or later, please note that the <code class="language-plaintext highlighter-rouge">sram_co_logo_url</code> parameter (which took a URL)
+has been changed to <code class="language-plaintext highlighter-rouge">sram_co_logo</code> (which takes a BASE64-encoded image). If you have defined a custom logo, you will need to change this
+parameter in your configuration.</li>
 </ol>
 
           
