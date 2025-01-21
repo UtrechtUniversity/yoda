@@ -200,6 +200,7 @@
   become: true
   roles:
     - role: yoda_rulesets
+    - role: yoda_report
   tags:
     - resource
 
