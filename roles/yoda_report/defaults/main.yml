@@ -20,5 +20,6 @@ yoda_report_upload_priv_key: |
 
 yoda_report_server_user_account: yoda_report
 yoda_report_server_host: 192.168.121.245
-yoda_report_server_dir: /home/yoda_report/yoda-financial-data
+yoda_report_server_financial_data_dir: /home/yoda_report/yoda-financial-data
+yoda_report_server_capacity_data_dir: /home/yoda_report/yoda-capacity-data
 yoda_report_server_priv_key_loc: ~/.ssh/yoda_report
