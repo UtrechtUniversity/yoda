@@ -103,7 +103,6 @@
     minute: 0
     hour: 3
     job: >
-      source /var/yoda-financial-data/yoda_report_venv/bin/activate &&
       scp -i {{ yoda_report_server_priv_key_loc }}
       /var/yoda-financial-data/stats.yaml
       {{ yoda_report_server_user_account }}@{{ yoda_report_server_host }}:{{ yoda_report_server_financial_data_dir }}/{{ instance }}.stats.yml
@@ -130,7 +129,6 @@
     minute: 0
     hour: 3
     job: >
-      source /var/yoda-financial-data/yoda_report_venv/bin/activate &&
       scp -i {{ yoda_report_server_priv_key_loc }}
       /var/yoda-financial-data/*.capacity.yaml
       {{ yoda_report_server_user_account }}@{{ yoda_report_server_host }}:{{ yoda_report_server_capacity_data_dir }}/{{ inventory_hostname.split('.')[0] }}.capacity.yaml
