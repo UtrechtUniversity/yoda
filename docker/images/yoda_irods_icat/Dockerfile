@@ -19,6 +19,12 @@ ENV PRE_BUILD_RULESET_DEPENDENCIES "yes"
 EXPOSE 1247
 EXPOSE 20000-20199
 
+# Update CentOS repos to vault
+COPY CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
+COPY CentOS-SCLo-scl.repo /etc/yum.repos.d/CentOS-SCLo-scl.repo
+COPY CentOS-SCLo-scl-rh.repo /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo
+COPY CentOS-x86_64-kernel.repo /etc/yum.repos.d/CentOS-x86_64-kernel.repo
+
 # Suggested base image configuration for systemd, as per
 # https://hub.docker.com/_/centos
 WORKDIR /lib/systemd/system/sysinit.target.wants/

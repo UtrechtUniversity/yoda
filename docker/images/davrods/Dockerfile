@@ -13,6 +13,12 @@ ENV YUM_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key
 ENV DAVRODS_RPM_URL="https://github.com/UtrechtUniversity/davrods/releases/download/4.2.11_1.5.0/"
 ENV DAVRODS_RPM_PACKAGE="davrods-4.2.11_1.5.0-1.rpm"
 
+# Update CentOS repos to vault
+COPY CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
+COPY CentOS-SCLo-scl.repo /etc/yum.repos.d/CentOS-SCLo-scl.repo
+COPY CentOS-SCLo-scl-rh.repo /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo
+COPY CentOS-x86_64-kernel.repo /etc/yum.repos.d/CentOS-x86_64-kernel.repo
+
 # Install common tools
 # hadolint ignore=DL3033
 RUN yum install -y epel-release wget && \

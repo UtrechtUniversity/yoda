@@ -8,6 +8,12 @@ ENV YODA_EUS_BRANCH "$TAG"
 ENV YODA_PORTAL_REPO "https://github.com/UtrechtUniversity/yoda-portal.git"
 ENV YODA_PORTAL_BRANCH "$TAG"
 
+# Update CentOS repos to vault
+COPY CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
+COPY CentOS-SCLo-scl.repo /etc/yum.repos.d/CentOS-SCLo-scl.repo
+COPY CentOS-SCLo-scl-rh.repo /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo
+COPY CentOS-x86_64-kernel.repo /etc/yum.repos.d/CentOS-x86_64-kernel.repo
+
 # Network settings
 EXPOSE 80
 EXPOSE 443

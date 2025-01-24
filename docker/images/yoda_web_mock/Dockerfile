@@ -10,6 +10,12 @@ ENV YODA_MOCK_BRANCH "$TAG"
 EXPOSE 80
 EXPOSE 443
 
+# Update CentOS repos to vault
+COPY CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
+COPY CentOS-SCLo-scl.repo /etc/yum.repos.d/CentOS-SCLo-scl.repo
+COPY CentOS-SCLo-scl-rh.repo /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo
+COPY CentOS-x86_64-kernel.repo /etc/yum.repos.d/CentOS-x86_64-kernel.repo
+
 # Install common tools
 # hadolint ignore=DL3033
 RUN yum install -y epel-release wget git nc && \
