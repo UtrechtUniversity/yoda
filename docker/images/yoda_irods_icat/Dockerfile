@@ -105,7 +105,7 @@ RUN install -m 0644 -o root -g root /tmp/irods_completion.sh /etc/profile.d/irod
 # hadolint ignore=DL3033
 RUN yum -y install gcc python-pip && \
     yum clean all && \
-    pip --no-cache-dir install pysqlcipher3==1.0.4
+    pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --no-cache-dir install pysqlcipher3==1.0.4
 COPY is-user-external.sh /tmp/is-user-external.sh
 COPY external-auth.py /tmp/external-auth.py
 RUN install -m 0750 -o root -g irods /tmp/is-user-external.sh /usr/local/bin/is-user-external.sh && \
@@ -126,10 +126,10 @@ COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
 # Install and configure rulesets
 RUN git clone -b ${YODA_RULESET_BRANCH} ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
 # hadolint ignore=DL3004
-RUN sudo -u irods python -m pip --no-cache-dir install --user pip==20.2.4 && \
-    sudo -u irods python -m pip --no-cache-dir install --user setuptools==44.1.1 && \
-    sudo -u irods python -m pip --no-cache-dir install --user python-irodsclient==2.1.0 && \
-    sudo -u irods python -m pip --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt && \
+RUN sudo -u irods python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --no-cache-dir install --user pip==20.2.4 && \
+    sudo -u irods python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --no-cache-dir install --user setuptools==44.1.1 && \
+    sudo -u irods python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --no-cache-dir install --user python-irodsclient==2.1.0 && \
+    sudo -u irods python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --no-cache-dir install --user -r /etc/irods/yoda-ruleset/requirements.txt && \
     sudo -u irods /usr/local/bin/pip3 install --user jsonschema==4.17.3 && \
     sudo -u irods /usr/local/bin/pip3 install --user python-irodsclient==2.1.0 && \
     sudo -u irods /usr/local/bin/pip3 install --user psutil==5.9.5
