@@ -46,6 +46,8 @@ authors:
     given-names: Dylan
   - family-names: Triantafyllou
     given-names: Leonidas
+  - family-names: Laudisa
+    given-names: Costanza
 
 repository-code: 'https://github.com/utrechtuniversity/yoda'
 abstract: >-
