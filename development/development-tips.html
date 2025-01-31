@@ -259,13 +259,41 @@
 <p>Run flake8 check on source file change (requires the <code class="language-plaintext highlighter-rouge">entr</code> package):</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="k">*</span>py | entr flake8
 </code></pre></div></div>
-
+<h2 id="yoda-portal">
+  
+  
+    <a href="#yoda-portal" class="anchor-heading" aria-labelledby="yoda-portal"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Yoda portal
+  
+  
+</h2>
+    
 <p>Reload Flask on project change (requires the <code class="language-plaintext highlighter-rouge">entr</code> package; run as root):</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /var/www/yoda <span class="o">&amp;&amp;</span> find /etc/irods/yoda-ruleset <span class="nb">.</span> <span class="se">\(</span> <span class="nt">-path</span> <span class="k">*</span>.swp <span class="nt">-o</span> <span class="nt">-path</span> <span class="k">*</span>/node_modules/<span class="k">*</span> <span class="nt">-o</span> <span class="nt">-path</span> ./venv <span class="nt">-o</span> <span class="nt">-path</span> ./.git <span class="se">\)</span> <span class="nt">-prune</span> <span class="nt">-o</span> <span class="nt">-print</span> | entr <span class="nb">touch </span>yoda_debug.wsgi
 </code></pre></div></div>
+<h3 id="yoda-portal-metadata-form-page">
+  
+  
+    <a href="#yoda-portal-metadata-form-page" class="anchor-heading" aria-labelledby="yoda-portal-metadata-form-page"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Yoda portal metadata form page
+  
+  
+</h3>
+    
+<p>To change how the metadata form module looks and behaves (but <em>not</em> for changing a particular metadata or ui schema):</p>
+<ol>
+  <li>Go into the metadata form folder: <code class="language-plaintext highlighter-rouge">cd /var/www/yoda/metadata_form/src</code></li>
+  <li>Install npm: <code class="language-plaintext highlighter-rouge">npm install</code></li>
+  <li>Make your changes to the js code</li>
+  <li>Run: <code class="language-plaintext highlighter-rouge">npm run build-all</code>. This will build the metadata forms for research, deposit, and vault modules, for production.</li>
+</ol>
+
+<p>Some other commands you can run with <code class="language-plaintext highlighter-rouge">npm run</code> in this directory:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">build-[module]</code>: you can specify an individual module (research, deposit, or vault) to build the metadata form for, for example: <code class="language-plaintext highlighter-rouge">build-research</code></li>
+  <li><code class="language-plaintext highlighter-rouge">build-[module]-dev</code>: you can specify an individual module (research, deposit, or vault) to build the metadata form for, and to build it in development mode for easier debugging.</li>
+</ul>
 
 <p>Rebuild portal Javascript assets on source file change:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./node_modules/.bin/webpack <span class="nt">-d</span> <span class="nt">-w</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./node_modules/.bin/webpack <span class="nt">-w</span> <span class="nt">--name</span> all <span class="nt">--mode</span> development
 </code></pre></div></div>
 <h2 id="mailpit">
   
