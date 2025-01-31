@@ -38,9 +38,8 @@ To change how the metadata form module looks and behaves (but *not* for changing
 4. Run: `npm run build-all`. This will build the metadata forms for research, deposit, and vault modules, for production.
 
 Some other commands you can run with `npm run` in this directory:
-- `build-all-dev`: build metadata forms for research, deposit, and vault but in development mode, which allows you to debug code more easily.
 - `build-[module]`: you can specify an individual module (research, deposit, or vault) to build the metadata form for, for example: `build-research`
-- `build-[module]-dev`: you can specify an individual module (research, deposit, or vault) to build the metadata form for, and to build it in development mode for easier debugging
+- `build-[module]-dev`: you can specify an individual module (research, deposit, or vault) to build the metadata form for, and to build it in development mode for easier debugging.
 
 Rebuild portal Javascript assets on source file change:
 ```bash
