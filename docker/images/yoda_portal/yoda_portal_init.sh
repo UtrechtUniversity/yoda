@@ -187,6 +187,7 @@ YODA_THEME_MAPPING  = {
     'uu_geo': 'Utrecht University - Geo',
     'uu_dgk': 'Utrecht University - Veterinary Medicine',
     'uu_dag': 'Utrecht University - Data Archive for Geosciences (DAG)',
+    'uu_surf': 'Utrecht University - SURF',
     'vu': 'Vrije University Amsterdam',
     'wur': 'Wageningen University & Research'
 }
