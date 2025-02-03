@@ -205,7 +205,7 @@ sram_verbose_logging: false                            # SRAM verbose logging
 sram_tls_verify: true                                  # Enable TLS verification for SRAM API calls. Enabled by default.
 sram_co_default_label: yoda                            # Default label for created COs
 # Base64 encoded logo for Surf COs (default value has the Yoda logo)
-sram_co_logo: >
+sram_co_logo: >-
   data:image/png;base64,
   iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
   WXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH6QERDRQzsfzcsAAABpdJREFUaN7VmnuIVUUYwH9nVzN3
