@@ -311,3 +311,18 @@
   args:
     creates: '~/.ssh/known_hosts'
   when: upload_priv_key is defined
+
+
+# Needed in order to avoid log spam if these settings are not configured.
+- name: Configure iRODS caching settings
+  become_user: '{{ irods_service_account }}'
+  become: true
+  # noqa fqcn[action]
+  irods_config:
+    path: '/etc/irods/server_config.json'
+    key: '{{ item.key }}'
+    key_separator: '/'
+    value: '{{ item.value }}'
+    convert_int: "yes"
+  loop: "{{ irods_resource_caching_settings | dict2items }}"
+  notify: Restart iRODS

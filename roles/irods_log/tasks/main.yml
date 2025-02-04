@@ -1,0 +1,57 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Ensure iRODS log directory is writable for rsyslogd
+  ansible.builtin.file:
+    path: /var/lib/irods-log
+    state: directory
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_log_syslog_group }}"
+    mode: "0775"
+
+
+- name: Upload iRODS log transform script for rsyslogd
+  ansible.builtin.copy:
+    src: irods-log-transform.py
+    dest: /usr/local/bin/irods-log-transform.py
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    mode: "0755"
+
+
+- name: Add iRODS-specific rules to AppArmor profile rsyslogd
+  ansible.builtin.template:
+    src: rsyslogd-irods.profile.j2
+    dest: /etc/apparmor.d/rsyslog.d/irods
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart AppArmor
+  when: ansible_os_family == 'Debian'
+
+
+- name: Add rsyslog configuration for iRODS
+  ansible.builtin.template:
+    src: rsyslogd-irods.conf.j2
+    dest: /etc/rsyslog.d/40-irods.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart rsyslogd
+
+
+- name: Configure iRODS log levels
+  become_user: '{{ irods_service_account }}'
+  become: true
+  # noqa fqcn[action]
+  irods_config:
+    path: '/etc/irods/server_config.json'
+    key: 'log_level/{{ item.key }}'
+    key_separator: '/'
+    value: '{{ item.value }}'
+  loop: "{{ irods_log_settings_levels | dict2items }}"
+  notify: Restart iRODS

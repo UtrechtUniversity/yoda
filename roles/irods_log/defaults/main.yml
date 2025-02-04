@@ -1,0 +1,22 @@
+---
+# copyright Utrecht University
+
+irods_service_account: irods
+
+# Please note that the value below has also been hardcoded into the
+# log-transform.py script
+irods_log_directory: /var/lib/irods-log
+
+irods_log_settings_levels:
+  agent: info
+  agent_factory: info
+  api: info
+  authentication: info
+  database: info
+  delay_server: info
+  legacy: info
+  microservice: info
+  network: info
+  resource: info
+  rule_engine: info
+  server: debug  # Debug level is needed to print log output from rule code
