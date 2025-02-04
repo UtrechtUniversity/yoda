@@ -84,5 +84,4 @@ ansible-playbook -i environments/development/allinone playbook.yml --extra-vars 
 ```
 
 ## Development
-- Tests are written with Pytest-BDD: https://pytest-bdd.readthedocs.io/en/latest/
-- UI tests use Splinter to automate browser actions: https://splinter.readthedocs.io/en/latest/index.html
+Tests are written with [Pytest-BDD](https://pytest-bdd.readthedocs.io/en/latest/). UI tests use [Splinter](https://splinter.readthedocs.io/en/latest/index.html) to automate browser actions.
