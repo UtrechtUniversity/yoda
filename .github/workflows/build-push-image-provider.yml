@@ -12,6 +12,7 @@ on:
       - 'docker/images/yoda_irods_icat/**'
       - 'roles/irods_completion/files/irods_completion.sh'
       - 'roles/pam_python/files/Debian/pam_python3.so'
+      - 'roles/irods_log/files/irods-log-transform.py'
 
 jobs:
   push-image:

@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+
+$WorkDirectory {{ irods_log_directory }}
+$FileOwner {{ irods_service_account }}
+$FileGroup {{ irods_service_account }}
+$FileCreateMode 0644
+$DirCreateMode 0755
+
+module(load="omprog")
+
+if ($programname == 'irodsServer' or $programname == "irodsReServer") then {
+        action(type="omprog" name="transformer" binary="/usr/local/bin/irods-log-transform.py")
+        stop
+}

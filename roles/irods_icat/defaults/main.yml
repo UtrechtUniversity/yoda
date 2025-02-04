@@ -23,6 +23,12 @@ irods_control_plane_port: 1248
 irods_schema_uri: https://schemas.irods.org/configuration
 irods_ssl_verify_server: cert
 
+irods_icat_caching_settings:
+  advanced_settings/dns_cache/eviction_age_in_seconds: 3600
+  advanced_settings/dns_cache/shared_memory_size_in_bytes: 5000000
+  advanced_settings/hostname_cache/eviction_age_in_seconds: 3600
+  advanced_settings/hostname_cache/shared_memory_size_in_bytes: 2500000
+
 irods_rum_job_enabled: true
 irods_rum_job_hour: 20
 irods_rum_job_minute: 0

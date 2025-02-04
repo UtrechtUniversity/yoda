@@ -22,6 +22,10 @@ function progress_update {
 }
 
 function start_service {
+  before_update "Starting rsyslogd"
+  sudo /usr/sbin/rsyslogd
+  progress_update "Rsyslogd started"
+
   before_update "Starting iRODS"
   sudo -u irods /var/lib/irods/irodsctl start || true
   progress_update "iRODS started"

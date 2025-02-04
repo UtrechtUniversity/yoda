@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+#
+# This allows Rsyslogd to write iRODS log files via the
+# log transform script. The transform script rewrites
+# JSON log messages in a form that is easier to read for humans.
+{{ irods_log_directory }}/** rw,
+/usr/local/bin/irods-log-transform.py mrix,
+/usr/local/lib/python3.12/** r,
+/usr/bin/python3.12 ix,
+/usr/bin/python3 ix,

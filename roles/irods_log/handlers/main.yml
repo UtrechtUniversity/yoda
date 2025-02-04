@@ -1,0 +1,19 @@
+---
+# copyright Utrecht University
+
+- name: Restart AppArmor
+  ansible.builtin.service:
+    name: apparmor
+    state: restarted
+
+
+- name: Restart rsyslogd
+  ansible.builtin.service:
+    name: rsyslog
+    state: restarted
+
+
+- name: Restart iRODS
+  ansible.builtin.service:
+    name: irods
+    state: restarted

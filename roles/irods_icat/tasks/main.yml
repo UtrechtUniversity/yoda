@@ -544,6 +544,21 @@
     name: 'iRODS RUM job for removing unused metadata entries'
 
 
+# Needed in order to avoid log spam if these settings are not configured.
+- name: Configure iRODS caching settings
+  become_user: '{{ irods_service_account }}'
+  become: true
+  # noqa fqcn[action]
+  irods_config:
+    path: '/etc/irods/server_config.json'
+    key: '{{ item.key }}'
+    key_separator: '/'
+    convert_int: "yes"
+    value: '{{ item.value }}'
+  loop: "{{ irods_icat_caching_settings | dict2items }}"
+  notify: Restart iRODS
+
+
 - name: Setup PAM
   ansible.builtin.include_tasks: setup_pam.yml
   when: irods_authentication_scheme == "pam_password"

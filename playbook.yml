@@ -117,6 +117,7 @@
     - pam_python
     - postgresql_odbc
     - irods_icat
+    - irods_log
     - irods_runtime
     - role: irods_resource_plugin_s3
       when: enable_s3_resource
@@ -166,6 +167,7 @@
   become: true
   roles:
     - irods_resource
+    - irods_log
     - role: irods_resource_plugin_s3
       when: enable_s3_resource
     - role: nfs_client
