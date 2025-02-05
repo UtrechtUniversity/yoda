@@ -24,7 +24,7 @@ Within a Yoda community multiple workspaces can be created of different types. T
 
 ***research*** Collaboration workspace for a research group. No restrictions on the organization of data in folders. Metadata can be added to a folder. When all required metadata has been added a folder can be archived.
 
-***intake***A strict folder structure and filename structure is required to extract metadata and archive data in an intake workspace.
+***intake*** A strict folder structure and filename structure is required to extract metadata and archive data in an intake workspace.
 
 ***grp*** Legacy workspaces are prefixed with grp-. They were created before the development of research workspaces. The current group-manager will prohibit the creation of new grp groups, but supports managing existing ones.
 
@@ -84,4 +84,7 @@ uuGroup (Group manager portal functions) -> uuGroupPolicyChecks
 Users and groups are in same namespace, so checks are in place to prevent creating a group with the same name as a user.
 
 ## Vault
-The vault group has only rods as member. The base group should get read-only access. Removal of a vault group through the group-manager is impossible.
+The vault group has only *rods* as member. The base group should get read-only access. Removal of a vault group through the group-manager is impossible.
+
+## Priv-admin
+The priv-admin group includes both *rods* and *functionaladminpriv* (functional administrator) as its default members. Members of this group are granted full privileges within Yoda, which encompasses managing the membership of the priv-admin group itself. In addition, members of the priv-admin group have access to the Admin GUI, which is introduced as a new feature in Yoda version 1.10.
