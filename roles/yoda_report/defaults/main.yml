@@ -3,6 +3,8 @@
 
 irods_service_account: irods
 
+enable_yoda_report: false
+
 # Yoda report upload private key (base64 encoded)
 # These keys are the "insecure" public/private keypair we offer for use in development instances
 # to communicate with the reporting server.
