@@ -1842,7 +1842,7 @@
   },"263": {
     "doc": "Running API and UI tests",
     "title": "Development",
-    "content": ". | Tests are written with Pytest-BDD: https://pytest-bdd.readthedocs.io/en/latest/ | UI tests use Splinter to automate browser actions: https://splinter.readthedocs.io/en/latest/index.html | . ",
+    "content": "Tests are written with Pytest-BDD. UI tests use Splinter to automate browser actions. ",
     "url": "/yoda/development/running-api-ui-tests.html#development",
     
     "relUrl": "/development/running-api-ui-tests.html#development"
