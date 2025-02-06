@@ -6,7 +6,9 @@ from datetime import datetime
 from traceback import print_exc
 from re import match
 
-from pysqlcipher3 import dbapi2 as sqlite3
+import sys
+sys.path.append("{{ sqlcipher3_venv_path }}")
+from sqlcipher3 import dbapi2 as sqlite3
 
 TOKEN_DB = '{{ token_database }}'
 

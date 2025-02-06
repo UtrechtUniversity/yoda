@@ -8,6 +8,6 @@ galaxy_info:
   min_ansible_version: '2.11'
   platforms:
     - name: EL
-      version: 7
+      version: 9
     - name: Ubuntu
-      version: focal
+      version: noble

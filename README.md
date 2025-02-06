@@ -36,7 +36,7 @@ This is the main repository of Yoda. It contains the [Ansible](https://docs.ansi
 * [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 2.3.x)
 
 ### Managed node requirements
-* [Ubuntu 20.04 LTS](https://ubuntu.com/). See also the [supported distribution list](docs/administration/supported-distributions.md)
+* [Ubuntu 24.04 LTS](https://ubuntu.com/). See also the [supported distribution list](docs/administration/supported-distributions.md)
 
 ## Documentation
 Documentation is hosted on: https://utrechtuniversity.github.io/yoda/

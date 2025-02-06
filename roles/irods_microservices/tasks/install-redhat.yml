@@ -1,44 +1,22 @@
 ---
 # copyright Utrecht University
 
-- name: Check if iRODS microservices are installable from repository
-  ansible.builtin.yum: # noqa fqcn[action-core]
-    list: "{{ item.value.package }}"
-  with_dict: "{{ irods_microservices_data }}"
-  register: irods_microservices_repo
-
-
 - name: Download iRODS microservice packages
   ansible.builtin.get_url:
-    url: "{{ item.item.value.url }}"
-    dest: "{{ irods_microservices_package_dest_dir }}/{{ item.item.value.filename }}"
-    checksum: "{{ item.item.value.checksum }}"
+    url: "{{ item.value.url }}"
+    dest: "{{ irods_microservices_package_dest_dir }}/{{ item.value.filename }}"
+    checksum: "{{ item.value.checksum }}"
     mode: '0644'
-  when: not item.results and not repo_only
-  with_items: "{{ irods_microservices_repo.results }}"
+  when: not ansible_check_mode and ( item.value.package not in ansible_facts.packages or item.value.version != ansible_facts.packages[item.value.package] )
+  with_dict: "{{ irods_microservices_data }}"
 
 
-- name: Install iRODS microservice packages from downloaded rpm
-  ansible.builtin.yum: # noqa fqcn[action-core]
-    name: "{{ irods_microservices_package_dest_dir }}/{{ item.item.value.filename }}"
+- name: Install iRODS microservice packages from downloaded package
+  ansible.builtin.dnf:
+    name: "{{ irods_microservices_package_dest_dir }}/{{ item.value.filename }}"
+    disable_gpg_check: true
     state: present
-  when: not item.results and not ansible_check_mode and not repo_only
-  with_items: "{{ irods_microservices_repo.results }}"
-
-
-- name: Ensure microservice packages from downloaded rpm
-  ansible.builtin.yum: # noqa fqcn[action-core]
-    name: "{{ item.item.value.package }}"
-    state: present
-  when: not item.results and not ansible_check_mode
-  with_items: "{{ irods_microservices_repo.results }}"
-
-
-- name: Ensure available microservices are installed from repository
-  ansible.builtin.package:
-    name: "{{ item.value.package }}"
-    state: present
-  when: not ansible_check_mode
+  when: not ansible_check_mode and ( item.value.package not in ansible_facts.packages or item.value.version != ansible_facts.packages[item.value.package] )
   with_dict: "{{ irods_microservices_data }}"
 
 

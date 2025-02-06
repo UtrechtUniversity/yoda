@@ -107,6 +107,16 @@
     requirements: /etc/irods/yoda-ruleset/requirements.txt
     extra_args: --user --break-system-packages
     executable: "{{ yoda_rulesets_pip3_path }}"
+  when: ansible_os_family == 'Debian'
+
+
+- name: Install requirements for ruleset
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.pip:
+    requirements: /etc/irods/yoda-ruleset/requirements.txt
+    executable: "{{ yoda_rulesets_pip3_path }}"
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Link ruleset directory

@@ -22,3 +22,13 @@
     name: "psutil==5.9.5"
     executable: "{{ irods_arb_pip3_location }}"
     extra_args: --user --break-system-packages
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure psutil is installed
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.pip:
+    name: "psutil==5.9.5"
+    executable: "{{ irods_arb_pip3_location }}"
+  when: ansible_os_family == 'RedHat'

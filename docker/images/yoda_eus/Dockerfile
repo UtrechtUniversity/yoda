@@ -58,7 +58,7 @@ RUN useradd yodadeployment && \
 COPY yoda-external-user-service-vhost.conf /etc/apache2/sites-available/003-yoda-eus-vhost.conf
 RUN ln -s /etc/apache2/sites-available/003-yoda-eus-vhost.conf /etc/apache2/sites-enabled/003-yoda-eus-vhost.conf
 RUN virtualenv --python /usr/bin/python3  /var/www/extuser/yoda-external-user-service/venv && \
-    /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir pip==24.3.1 && \
+    /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir pip==25.0 && \
     /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir virtualenv==20.28.0 && \
     /var/www/extuser/yoda-external-user-service/venv/bin/python3 -m virtualenv /var/www/extuser/yoda-external-user-service/venv && \
     /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir /var/www/extuser/yoda-external-user-service

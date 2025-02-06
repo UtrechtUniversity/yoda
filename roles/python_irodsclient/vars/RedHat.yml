@@ -1,4 +1,4 @@
 ---
 # copyright Utrecht University
 
-python_irodsclient_pip3_path: /usr/local/bin/pip3
+python_irodsclient_pip3_path: /usr/bin/pip3.12

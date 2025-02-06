@@ -1,16 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure iRODS packages YUM repository is enabled (EL7)
-  ansible.builtin.yum_repository:
-    name: iRODS-packages
-    description: YUM repositories for the iRODS Consortium
-    baseurl: https://packages.irods.org/yum/pool/centos7/x86_64/
-    gpgkey: https://packages.irods.org/irods-signing-key.asc
-    gpgcheck: true
-  when: ansible_distribution_major_version == "7"
-
-
 - name: Ensure iRODS packages YUM repository is enabled (EL8)
   ansible.builtin.yum_repository:
     name: iRODS-packages
@@ -19,3 +9,13 @@
     gpgkey: https://packages.irods.org/irods-signing-key.asc
     gpgcheck: true
   when: ansible_distribution_major_version == "8"
+
+
+- name: Ensure iRODS packages YUM repository is enabled (EL9)
+  ansible.builtin.yum_repository:
+    name: iRODS-packages
+    description: YUM repositories for the iRODS Consortium
+    baseurl: https://packages.irods.org/yum/pool/el9/x86_64/
+    gpgkey: https://packages.irods.org/irods-signing-key.asc
+    gpgcheck: true
+  when: ansible_distribution_major_version == "9"

@@ -43,8 +43,8 @@
   become: true
   ansible.builtin.pip:
     name:
-      - pip==24.3.1
-    executable: /var/www/yoda/venv/bin/pip3
+      - pip==25.0
+    executable: /var/www/yoda/venv/bin/pip3.12
 
 
 - name: Ensure Yoda portal dependencies are installed
@@ -137,6 +137,18 @@
     state: present
   register: filescontext
   when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+
+
+- name: Ensure wsgi files for for Yoda portal are accessible
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: file
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0644'
+  with_items:
+    - "/var/www/yoda/yoda.wsgi"
+    - "/var/www/yoda/yoda_debug.wsgi"
 
 
 # Only running when context changed works unreliably, so just
