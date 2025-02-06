@@ -7,14 +7,14 @@ nav_order: 15
 
 The table below contains a list of supported distributions for each role:
 
-| role                 | CentOS 7  | EL8      | Ubuntu 20.04 LTS  |
-|----------------------|-----------|----------|-------------------|
-| iCAT (provider)      | up to 1.9 |          |    From 1.10      |
-| Resource (consumer)  | up to 1.9 |          |    From 1.10      |
-| Database             | up to 1.9 | 1.9/1.10 |    From 1.10      |
-| EUS                  | up to 1.9 |          |    From 1.10      |
-| Portal               | up to 1.9 |          |    From 1.10      |
-| DavRODS              | up to 1.9 |          |    From 1.10      |
-| Public               | up to 1.9 |          |    From 1.10      |
+| role                 | CentOS 7   | EL8      | Ubuntu 20.04 LTS | EL 9      | Ubuntu 20.04 LTS  |
+|----------------------|------------|----------|------------------|-----------|-------------------|
+| iCAT (provider)      | up to v1.9 |          | v1.10            | from v2.0 | from v2.0         |
+| Resource (consumer)  | up to v1.9 |          | v1.10            | from v2.0 | from v2.0         |
+| Database             | up to v1.9 | 1.9/1.10 | v1.10            | from v2.0 | from v2.0         |
+| EUS                  | up to v1.9 |          | v1.10            | from v2.0 | from v2.0         |
+| Portal               | up to v1.9 |          | v1.10            | from v2.0 | from v2.0         |
+| DavRODS              | up to v1.9 |          | v1.10            | from v2.0 | from v2.0         |
+| Public               | up to v1.9 |          | v1.10            | from v2.0 | from v2.0         |
 
-EL8 refers to either RHEL 8 or AlmaLinux 8
+EL8/9 refers to either RHEL 8/9 or AlmaLinux 8/9

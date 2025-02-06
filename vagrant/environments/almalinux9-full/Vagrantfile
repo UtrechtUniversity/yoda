@@ -6,6 +6,7 @@
 # Configuration variables.
 VAGRANTFILE_API_VERSION = "2"
 
+BOX = 'almalinux/9'
 GUI = false
 CPU = 2
 RAM = 4096
@@ -15,8 +16,11 @@ NETWORK = "192.168.56."
 NETMASK = "255.255.255.0"
 
 HOSTS = {
-  "combined" => [NETWORK+"10", CPU, RAM, GUI, 'generic/centos7'],
-  "database" => [NETWORK+"11", CPU, RAM, GUI, 'almalinux/8'],
+  "portal"   => [NETWORK+"10", CPU, RAM, GUI, BOX],
+  "database" => [NETWORK+"11", CPU, 3072, GUI, BOX],
+  "icat"     => [NETWORK+"12", CPU, 6144, GUI, BOX],
+  "resource" => [NETWORK+"13", CPU, 6144, GUI, BOX],
+  "public"   => [NETWORK+"14", CPU, 3072, GUI, BOX],
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -45,10 +49,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine.vm.hostname = name + DOMAIN
       machine.vm.network 'private_network', ip: ipaddr, netmask: NETMASK
       machine.vm.synced_folder ".", "/vagrant", disabled: true
+      machine.vm.provision "shell" do |s|
+        s.inline = "sudo hostnamectl hostname $1"
+        s.args   = name + DOMAIN
+      end
       machine.vm.provision "shell",
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
       machine.vm.provision "shell",
-        inline: "sudo echo \"192.168.56.10 api.eus.yoda.test\" | sudo tee -a /etc/hosts"
+        inline: "sudo dnf -y install glibc-langpack-en"
+      machine.vm.provision "shell",
+        inline: "sudo localectl set-locale en_US.UTF-8"
+      machine.vm.provision "shell",
+        inline: "sudo echo \"192.168.56.14 api.eus.yoda.test\" | sudo tee -a /etc/hosts"
       machine.vm.provision "shell",
         inline: "sudo echo \"192.168.56.10 datacite-mock.yoda.test\" | sudo tee -a /etc/hosts"
       machine.vm.provision "shell",
@@ -62,7 +74,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.provider :virtualbox do |vbox|
         vbox.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
       end
-      controller.vm.box = 'generic/ubuntu2004'
+      controller.vm.box = 'alvistack/ubuntu-24.04'
       controller.vm.hostname = "controller"
       controller.vm.network :private_network, ip: "192.168.56.5", netmask: NETMASK
       controller.vm.provision "shell", privileged: false, path: "vagrant/provision_controller.sh"
@@ -70,7 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.provision "shell",
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
       controller.vm.provision "shell",
-        inline: "sudo echo \"192.168.56.10 eus.yoda.test\" | sudo tee -a /etc/hosts"
+        inline: "sudo echo \"192.168.56.14 eus.yoda.test\" | sudo tee -a /etc/hosts"
     end
   end
 end

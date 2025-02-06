@@ -454,6 +454,14 @@
   when: upload_priv_key is defined
 
 
+- name: Ensure python-irodsclient is installed (Python 3)
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.pip:
+    name: "python_irodsclient=={{ python_irodsclient_version }}"
+  when: ansible_os_family == 'RedHat'
+
+
 - name: Ensure Yoda anonymous user exists
   become_user: '{{ irods_service_account }}'
   become: true

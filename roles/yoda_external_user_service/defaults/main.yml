@@ -21,7 +21,7 @@ eus_api_secret: PLACEHOLDER
 # Flask-session configuration
 yoda_eus_cookie_samesite: Strict             # 'Strict' or 'Lax'
 yoda_eus_session_lifetime: 30 * 60           # in seconds, so 30 minutes
-yoda_eus_session_dir: '/tmp/eus_session/'    # default flask session dir
+yoda_eus_session_dir: '/tmp/flask_session/'  # default flask session dir
 
 eus_db_host: localhost
 eus_db_port: 5432

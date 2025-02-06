@@ -49,8 +49,8 @@ RUN apt-get install -y rsyslog
 RUN apt-get install -y gcc python3 python3-dev python3-pip python3.12-venv python3-virtualenv python3-wheel python3-magic
 
 # Upload PAM Python library
-COPY stage/pam_python.so /tmp/pam_python.so
-RUN install -m 0755 -o root -g root /tmp/pam_python.so  /usr/lib/x86_64-linux-gnu/security/pam_python.so
+COPY stage/pam_python3.so /tmp/pam_python3.so
+RUN install -m 0755 -o root -g root /tmp/pam_python3.so  /usr/lib/x86_64-linux-gnu/security/pam_python3.so
 
 # Install PostgreSQL 15 for ODBC drivers, checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033
@@ -113,7 +113,7 @@ COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
 # Install and configure rulesets
 RUN git clone -b ${YODA_RULESET_BRANCH} ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
 # hadolint ignore=DL3004
-RUN sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages pip==24.3.1 && \
+RUN sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages pip==25.0 && \
     sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages -r /etc/irods/yoda-ruleset/requirements.txt && \
     sudo -u irods python3 -m pip install --user --break-system-packages python-irodsclient==2.2.0 && \
     sudo -u irods python3 -m pip install --user --break-system-packages psutil==6.1.0

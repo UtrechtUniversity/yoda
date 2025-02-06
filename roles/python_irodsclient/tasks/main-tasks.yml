@@ -5,7 +5,6 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
-# TODO install in venv
 - name: Ensure python-irodsclient is installed (Python 3)
   ansible.builtin.pip:
     name: "python_irodsclient=={{ python_irodsclient_version }}"

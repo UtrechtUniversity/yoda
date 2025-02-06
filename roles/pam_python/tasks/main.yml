@@ -7,8 +7,8 @@
 
 - name: Ensure PAM Python module is present
   ansible.builtin.copy:
-    src: "pam_python.so"
-    dest: "{{ pam_python_library_dir }}/pam_python.so"
+    src: "pam_python3.so"
+    dest: "{{ pam_python_library_dir }}/pam_python3.so"
     owner: root
     group: root
     mode: '0755'

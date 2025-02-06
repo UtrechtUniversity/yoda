@@ -49,7 +49,7 @@ RUN mkdir -p /var/www/moai /var/www/moai/metadata && \
     chmod 0755 /var/www/moai /var/www/moai/metadata && \
     chown -R yodadeployment:yodadeployment /var/www/moai && \
     virtualenv --python /usr/bin/python3 /var/www/moai/yoda-moai/venv && \
-    /var/www/moai/yoda-moai/venv/bin/pip3 install pip==24.3.1
+    /var/www/moai/yoda-moai/venv/bin/pip3 install pip==25.0
 
 ## Install PySQLite3 for MOAI
 ENV C_INCLUDE_PATH /usr/include/python3.12:/usr/include

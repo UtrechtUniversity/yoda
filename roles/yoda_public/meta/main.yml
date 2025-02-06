@@ -10,7 +10,7 @@ galaxy_info:
     - name: EL
       version: 7
     - name: Ubuntu
-      version: focal
+      version: noble
 
 dependencies:
   - role: apache

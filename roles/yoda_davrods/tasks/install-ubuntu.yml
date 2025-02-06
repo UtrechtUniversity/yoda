@@ -5,6 +5,7 @@
   ansible.builtin.get_url:
     url: "https://github.com/UtrechtUniversity/davrods/releases/download/{{ yoda_davrods_version | replace('-', '_') }}/davrods-{{ yoda_davrods_version }}.deb"
     dest: "/tmp/davrods-{{ yoda_davrods_version }}.deb"
+    checksum: '{{ yoda_davrods_checksum }}'
     mode: "0644"
   when: not ansible_check_mode and ( 'davrods' not in ansible_facts.packages or yoda_davrods_version != ansible_facts.packages['davrods'][0]['version'] )
 

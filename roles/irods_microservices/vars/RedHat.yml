@@ -3,12 +3,14 @@
 
 irods_microservices_data:
   irods_sudo_microservices:
-    package: irods-sudo-microservices-4.2.12_1.0.0-1
-    url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/4.2.12_1.0.0/irods-sudo-microservices-4.2.12_1.0.0-1.rpm
-    filename: irods-sudo-microservices-4.2.12_1.0.0-1.rpm
-    checksum: sha256:72b6714b0ef1f24084e770efc5377a17e7bde15165c05ddb2d3a56b2de4521b9
+    package: irods-sudo-microservices
+    version: 4.3.3-1.0.0-1
+    url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/4.3.3_1.0.0/irods-sudo-microservices-4.3.3_1.0.0-1.rpm
+    filename: irods-sudo-microservices-4.3.3-1.0.0-1.rpm
+    checksum: sha256:fdaf51d0e6b70422c7f79433096489c2305eea053e0afc9dd88fe1b22d4b969b
   irods_uu_microservices:
-    package: irods-uu-microservices-4.2.12_1.2.0-0
-    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v1.2.0/irods-uu-microservices-4.2.12_1.2.0-0.rpm
-    filename: irods-uu-microservices-4.2.12_1.2.0-0.rpm
-    checksum: sha256:05bf20873c1ef4e4ec279621ea9edabf6663d93f68f6d4b1cd9a6bd76fa8c47a
+    package: irods-uu-microservices
+    version: 4.3.3-1.2.0-0
+    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v1.2.0/irods-uu-microservices-4.3.3_1.2.0-0.rpm
+    filename: irods-uu-microservices-4.3.3-1.2.0-0.rpm
+    checksum: sha256:888e1d2dded9c010328324025fb38523ddafddb4e3884bd4cec21453f9e32261
