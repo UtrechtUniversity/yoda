@@ -70,7 +70,7 @@ enable_pgbouncer: true
 postgresql_use_native_packages: false
 pgsql_version: 15
 ```
-   
+
    Ensure that locale settings for the old and new database server are identical, and that basic performance
    tuning has been configured (e.g. setting `effective_cache_size`).
 

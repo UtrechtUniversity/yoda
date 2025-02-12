@@ -6,7 +6,7 @@ nav_order: 2
 # Local ruleset patches
 
 In some cases, you might want to make some local modifications to a ruleset in order to modify Yoda's behaviour. This can
-be achieved by defining a `patch` parameter for a ruleset. 
+be achieved by defining a `patch` parameter for a ruleset.
 
 You would usually create a `patch` value using a command like: `git diff | sed 's/^/    /'` on your modified ruleset.
 
@@ -31,11 +31,11 @@ core_rulesets:
       +++ b/uuConstants.r
       @@ -36,7 +36,7 @@ UURESOURCETIERATTRNAME = UUORGMETADATAPREFIX ++ 'storage_tier';
        UUMETADATASTORAGEMONTH =  UUORGMETADATAPREFIX ++ 'storage_data_month';
-    
+
        # \constant UUPRIMARYRESOURCES
       -UUPRIMARYRESOURCES = list("irodsResc");
       +UUPRIMARYRESOURCES = list("irodsResc3");
-    
+
        # \constant UUREPLICATIONRESOURCE
        UUREPLICATIONRESOURCE = "irodsRescRepl";
     install_scripts: yes
@@ -48,7 +48,7 @@ core_rulesets:
 
 ## Considerations
 
-* The playbook temporarily restores the original ruleset and then re-applies the patch. This could constitute a risk if the local modifications are related to safety or security. 
+* The playbook temporarily restores the original ruleset and then re-applies the patch. This could constitute a risk if the local modifications are related to safety or security.
 * You would need to verify for yourself that the patch is still compatible with the latest version of the ruleset before running the playbook. Having the playbook apply a patch that is no longer compatible with the ruleset code may cause Yoda to fail.
 
 ## See also
