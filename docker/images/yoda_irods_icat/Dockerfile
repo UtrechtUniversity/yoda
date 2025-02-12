@@ -50,7 +50,8 @@ RUN apt-get install -y gcc python3 python3-dev python3-pip python3.12-venv pytho
 
 # Upload PAM Python library
 COPY stage/pam_python3.so /tmp/pam_python3.so
-RUN install -m 0755 -o root -g root /tmp/pam_python3.so  /usr/lib/x86_64-linux-gnu/security/pam_python3.so
+RUN mkdir /usr/lib/security
+RUN install -m 0755 -o root -g root /tmp/pam_python3.so  /usr/lib/security/pam_python3.so
 
 # Install PostgreSQL 15 for ODBC drivers, checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033

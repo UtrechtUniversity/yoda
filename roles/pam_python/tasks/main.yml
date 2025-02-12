@@ -4,10 +4,19 @@
 - name: Include OS-specific variables
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
+- name: Create PAM security directory
+  ansible.builtin.file:
+    path: '{{ pam_python_library_dir }}'
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+  when: ansible_os_family == 'Debian'
+
 
 - name: Ensure PAM Python module is present
   ansible.builtin.copy:
-    src: "pam_python3.so"
+    src: "{{ ansible_os_family }}/pam_python3.so"
     dest: "{{ pam_python_library_dir }}/pam_python3.so"
     owner: root
     group: root
