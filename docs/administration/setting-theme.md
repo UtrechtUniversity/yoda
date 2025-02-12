@@ -26,4 +26,4 @@ Below is a list of the pre-installed theme options available. Each theme is pres
     vu: Vrije University Amsterdam
     wur: Wageningen University & Research
 
-To install a new theme to be selected, users need to prepare the theme package following the instructions provided in the [Theme Packages](../design/overview/theme-packages.md) documentation. 
+To install a new theme to be selected, users need to prepare the theme package following the instructions provided in the [Theme Packages](../design/overview/theme-packages.md) documentation.
