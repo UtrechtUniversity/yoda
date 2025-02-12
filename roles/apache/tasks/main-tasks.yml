@@ -21,6 +21,13 @@
   when: ansible_os_family == 'RedHat'
 
 
+- name: Ensure Apache mod_evasive is installed
+  ansible.builtin.package:
+    name: libapache2-mod-evasive
+    state: present
+  when: ansible_os_family == 'Debian'
+
+
 - name: Allow public to ports for Apache in firewall
   ansible.posix.firewalld:
     port: '{{ item }}'
@@ -47,6 +54,16 @@
     dest: '{{ apache_ssl_config_file }}'
     mode: '0600'
   notify: Restart Apache webserver
+
+
+- name: Ensure config for Apache mod_evasive is present (Ubuntu)
+  ansible.builtin.template:
+    src: evasive.conf.focal.j2
+    dest: /etc/apache2/mods-available/evasive.conf
+    mode: '0600'
+    owner: root
+    group: root
+  when: ansible_os_family == 'Debian'
 
 
 - name: Ensure config for other VHosts is present (Ubuntu)
@@ -92,14 +109,16 @@
 
 - name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
   ansible.builtin.file:
-    src: "/etc/apache2/mods-available/{{ item }}.load"
-    dest: "/etc/apache2/mods-enabled/{{ item }}.load"
+    src: "/etc/apache2/mods-available/{{ item }}"
+    dest: "/etc/apache2/mods-enabled/{{ item }}"
     state: link
   notify: Restart Apache webserver
   with_items:
-    - headers
-    - ssl
-    - socache_shmcb
+    - headers.load
+    - ssl.load
+    - socache_shmcb.load
+    - evasive.load
+    - evasive.conf
   when: ansible_os_family == 'Debian'
 
 
