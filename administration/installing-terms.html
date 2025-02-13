@@ -253,7 +253,7 @@ ichmod <span class="nt">-rM</span> <span class="nb">read </span>public /<span cl
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iput <span class="s2">"</span><span class="k">${</span><span class="nv">TERMS</span><span class="k">}</span><span class="s2">.txt"</span> <span class="s2">"/</span><span class="k">${</span><span class="nv">RODSZONE</span><span class="k">}</span><span class="s2">/yoda/terms/</span><span class="k">${</span><span class="nv">TERMS</span><span class="k">}</span><span class="s2">.html"</span>
 </code></pre></div></div>
 
-<p>From version 1.10, Yoda simplifies managing publication terms with a new GUI on the Admin page.  Just enter and save terms directly in the GUI; they’re instantly updated and stored as an HTML page at <code class="language-plaintext highlighter-rouge">/var/www/yoda/config/publication_terms.html</code>. The system now checks this folder first before looking at the iRODS server for any terms. See the picture below for an example.</p>
+<p>From version 1.10, Yoda simplifies managing publication terms with a new GUI on the Admin page. This feature is accessible to administrators and members of the priv-admin group. Just enter and save terms directly in the GUI; they’re instantly updated and stored as an HTML page at <code class="language-plaintext highlighter-rouge">/var/www/yoda/config/publication_terms.html</code>. The system now checks this folder first before looking at the iRODS server for any terms. See the picture below for an example.</p>
 
 <div style="text-align: center;">
     <img src="./img/yoda-admin-terms.png" alt="Example of Installing Terms with GUI" style="width: 50%; height: auto;" />
