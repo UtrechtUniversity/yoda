@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# If you change this, change oidc.py.j2 in the ansible as well!
 
 import requests
 
@@ -8,7 +9,7 @@ EMAIL_FIELD = "email"
 
 
 def unescape_irods_pam_password(password):
-    return password.replace('\@', '@')
+    return password.replace('\\@', '@')
 
 
 def validate_token(username, token, sub):
