@@ -98,13 +98,17 @@ RUN install -m 0644 -o root -g root /tmp/irods_completion.sh /etc/profile.d/irod
 
 # Set up PAM authentication
 # hadolint ignore=DL3033
-COPY is-user-external.sh /tmp/is-user-external.sh
 COPY external-auth.py /tmp/external-auth.py
-RUN install -m 0750 -o root -g irods /tmp/is-user-external.sh /usr/local/bin/is-user-external.sh && \
-    install -m 0750 -o root -g irods /tmp/external-auth.py /usr/local/bin/external-auth.py && \
+COPY is-user-external.sh /tmp/is-user-external.sh
+COPY token-auth.py /tmp/token-auth.py
+RUN install -m 0750 -o root -g irods /tmp/external-auth.py /usr/local/bin/external-auth.py && \
+    install -m 0750 -o root -g irods /tmp/is-user-external.sh /usr/local/bin/is-user-external.sh && \
+    install -m 0750 -o root -g irods /tmp/token-auth.py /usr/local/bin/token-auth.py && \
     chmod 04755 /usr/sbin/irodsPamAuthCheck
 COPY irods.pam /tmp/irods.pam
-RUN install -m 0644 /tmp/irods.pam /etc/pam.d/irods
+COPY oidc.py /tmp/oidc.py
+RUN install -m 0644 /tmp/irods.pam /etc/pam.d/irods && \
+    install -m 0644 -o irods -g irods /tmp/oidc.py /var/lib/irods/msiExecCmd_bin/oidc.py
 
 # Configure iRODS
 COPY server_config.json /etc/irods/server_config.json

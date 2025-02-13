@@ -119,6 +119,14 @@ then progress_update "Bind mount detected. Checking if application UID needs to 
 else progress_update "Notice: no bind mount detected. Keeping current application UID ${CURRENT_UID}"
 fi
 
+before_update "Creating sqlcipher3 virtualenv"
+sudo -u irods python3 -m venv /var/lib/irods/sqlcipher3-venv
+progress_update "Installing sqlcipher3 venv"
+
+before_update "Installing pysqlcipher3 for token authentication script"
+sudo -u irods bash -c "source /var/lib/irods/sqlcipher3-venv/bin/activate; pip3 install sqlcipher3-binary==0.5.4"
+progress_update "Installing pysqlcipher3 for token authentication script"
+
 before_update "Creating DAP token database"
 sudo -iu irods /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db test
 progress_update "Creating DAP token database"

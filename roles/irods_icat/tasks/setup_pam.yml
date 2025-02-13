@@ -49,7 +49,7 @@
 # When data access tokens are enabled, sqlcipher3-binary needs to be
 # installed in a venv too for the token authentication script
 # (in addition to the user-level installation for the ruleset).
-- name: Ensure pysqlcipher3 is installed globally for token authentication script
+- name: Ensure pysqlcipher3 is installed for token authentication script
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.pip:
