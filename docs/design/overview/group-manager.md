@@ -54,7 +54,10 @@ To enable ordinary rodsusers to create groups and manage members in groups, with
 
 A *reader* cannot be added to the main group, because that will grant them 'own' permissions. Instead a shadow group is created prefixed with 'read-'. This group gets read permissions on the 'research-' or 'intake-' group of the same basename. Inheritance is enabled.
 
-A group *manager* has all the same characteristics as a normal user but in addition metadata is set on the group to list managers. The attribute name is 'manager' and the attribute value is the username (including zone). There are two special groups under the System category to grant managers extra privileges. These are:
+A group *manager* has all the same characteristics as a normal user but in addition metadata is set on the group to list managers. The attribute name is 'manager' and the attribute value is the username (including zone). There are three special groups under the System category to grant managers extra privileges. These are:
+	- *priv-admin* --
+    Membership of this group is checked to determine if a user can perform administritative tasks using the Administration module. The Administration module is introduced as a new feature in Yoda version 1.10.
+
   - *priv-group-add* --
     Membership of this group is checked to determine if a user can create groups. The user also needs to be manager in one of the groups belonging to the same category.
 
@@ -85,6 +88,3 @@ Users and groups are in same namespace, so checks are in place to prevent creati
 
 ## Vault
 The vault group has only *rods* as member. The base group should get read-only access. Removal of a vault group through the group-manager is impossible.
-
-## Priv-admin
-The priv-admin group includes both *rods* and *functionaladminpriv* (functional administrator) as its default members. Members of this group are granted full privileges within Yoda, which encompasses managing the membership of the priv-admin group itself. In addition, members of the priv-admin group have access to the Admin GUI, which is introduced as a new feature in Yoda version 1.10.
