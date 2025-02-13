@@ -23,7 +23,7 @@
     cd /var/lib/irods/dms-archive-mock
     {{ dms_archive_mock_python3_path }} -m venv tape_archive_venv
     . tape_archive_venv/bin/activate
-    tape_archive_venv/bin/python3 setup.py install
+    pip install .
   when: dms_mock_changes.changed
 
 
