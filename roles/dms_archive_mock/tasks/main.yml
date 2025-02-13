@@ -21,7 +21,7 @@
   # noqa no-changed-when
   ansible.builtin.shell: |
     cd /var/lib/irods/dms-archive-mock
-    {{ dms_archive_mock_python3_path }} -m virtualenv tape_archive_venv
+    {{ dms_archive_mock_python3_path }} -m venv tape_archive_venv
     . tape_archive_venv/bin/activate
     tape_archive_venv/bin/python3 setup.py install
   when: dms_mock_changes.changed
