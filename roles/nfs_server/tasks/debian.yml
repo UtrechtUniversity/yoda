@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Ensure NFS utilities are installed.
-  apt:
+  ansible.builtin.apt:
     name:
       - nfs-common
       - nfs-kernel-server
