@@ -1,0 +1,61 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Ensure NFS server is installed (Debian)
+  ansible.builtin.package:
+    name: nfs-kernel-server
+    state: present
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure NFS utilities are installed (RedHat)
+  ansible.builtin.package:
+    name: nfs-utils
+    state: present
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Ensure NFS share directories exist
+  ansible.builtin.file:
+    path: /var/nfs
+    state: directory
+    owner: irods
+    group: irods
+    mode: '0755'
+
+
+- name: Ensure NFS share directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: irods
+    group: irods
+    mode: '0755'
+  loop: "{{ nfs_exports if nfs_exports is iterable else [] }}"
+
+
+- name: Ensure NFS exports are configured
+  ansible.builtin.template:
+    src: exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Reload NFS
+  when: nfs_exports is iterable
+
+
+- name: Ensure NFS deamon is running
+  ansible.builtin.service:
+    name: "{{ nfs_server_daemon }}"
+    state: started
+    enabled: true
+  when: nfs_exports is iterable
+
+
+- name: Flush handlers to apply NFS exports
+  ansible.builtin.meta: flush_handlers
