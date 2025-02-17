@@ -1,0 +1,10 @@
+---
+# copyright Utrecht University
+
+nfs_export_base: "/var/nfs"
+
+# NFS exports for development environment.
+nfs_exports:
+  - "{{ nfs_export_base }}/Vault1_1"
+  - "{{ nfs_export_base }}/Vault1_2"
+  - "{{ nfs_export_base }}/Vault2_1"

@@ -1,0 +1,37 @@
+---
+# copyright Utrecht University
+
+- name: Ensure NFS utilities are installed (Debian)
+  ansible.builtin.package:
+    name: nfs-common
+    state: present
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure NFS utilities are installed (RedHat)
+  ansible.builtin.package:
+    name: nfs-utils
+    state: present
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Ensure NFS mount points exist
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: irods
+    group: irods
+    mode: '0755'
+  loop: "{{ nfs_mounts if nfs_mounts is iterable else [] }}"
+
+
+- name: Ensure NFS shares are mounted and present in /etc/fstab
+  ansible.posix.mount:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    fstype: nfs
+    opts: rw,sync,hard,intr
+    state: mounted
+    dump: 0
+    passno: 0
+  loop: "{{ nfs_mounts if nfs_mounts is iterable else [] }}"
