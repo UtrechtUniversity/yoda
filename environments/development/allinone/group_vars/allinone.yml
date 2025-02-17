@@ -98,13 +98,13 @@ irods_enable_gocommands: false
 irods_resources:
   - name: dev001_1
     host: "{{ irods_icat_fqdn }}"
-    vault_path: /var/lib/irods/Vault1_1
+    vault_path: /nfs/Vault1_1
     resource_type: unixfilesystem
 
   - name: dev001_2
     resource_type: unixfilesystem
     host: "{{ irods_icat_fqdn }}"
-    vault_path: /var/lib/irods/Vault1_2
+    vault_path: /nfs/Vault1_2
 
   - name: dev001_p1
     resource_type: passthru
@@ -130,7 +130,7 @@ irods_resources:
   - name: dev002_1
     resource_type: unixfilesystem
     host: "{{ irods_resource_fqdn }}"
-    vault_path: /var/lib/irods/Vault2_1
+    vault_path: /nfs/Vault2_1
 
   - name: dev002_p1
     resource_type: passthru
@@ -187,6 +187,16 @@ enable_s3_resource: false
 s3_access_key: minioadmin
 s3_secret_key: minioadmin
 s3_hostname: localhost:9000
+
+# NFS configuration
+enable_nfs_resource: true
+nfs_mounts:
+  - src: "{{ ansible_host }}:/var/nfs/Vault1_1"
+    path: "/nfs/Vault1_1"
+  - src: "{{ ansible_host }}:/var/nfs/Vault1_2"
+    path: "/nfs/Vault1_2"
+  - src: "{{ ansible_host }}:/var/nfs/Vault2_1"
+    path: "/nfs/Vault2_1"
 
 # Mail notifications
 send_notifications: 1                         # Enable notifications: yes (1) or no (0)
