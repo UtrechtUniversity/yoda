@@ -9,6 +9,7 @@
     dest: '{{ yoda_report_server_priv_key_loc }}'
     owner: '{{ irods_service_account }}'
     mode: '0600'
+  no_log: true
   when: enable_yoda_report and yoda_report_upload_priv_key is defined
 
 
