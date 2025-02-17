@@ -106,10 +106,8 @@ RUN install -m 0644 -o root -g root /tmp/irods_completion.sh /etc/profile.d/irod
 RUN yum -y install gcc python-pip && \
     yum clean all && \
     pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --no-cache-dir install pysqlcipher3==1.0.4
-COPY is-user-external.sh /tmp/is-user-external.sh
 COPY external-auth.py /tmp/external-auth.py
-RUN install -m 0750 -o root -g irods /tmp/is-user-external.sh /usr/local/bin/is-user-external.sh && \
-    install -m 0750 -o root -g irods /tmp/external-auth.py /usr/local/bin/external-auth.py && \
+RUN install -m 0750 -o root -g irods /tmp/external-auth.py /usr/local/bin/external-auth.py && \
     wget -nv https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/sqlcipher-4.5.1-0.el7.x86_64.rpm -O sqlcipher-4.5.1-0.el7.x86_64.rpm && \
     wget -nv https://github.com/UtrechtUniversity/sqlcipher/releases/download/v4.5.1/sqlcipher-devel-4.5.1-0.el7.x86_64.rpm -O sqlcipher-devel-4.5.1-0.el7.x86_64.rpm && \
     rpm -ivh sqlcipher-4.5.1-0.el7.x86_64.rpm && \
