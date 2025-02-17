@@ -122,6 +122,8 @@
       when: enable_s3_resource
     - role: minio
       when: enable_s3_resource and yoda_environment == "development"
+    - role: nfs_server
+      when: enable_nfs_server and yoda_environment == "development"
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
