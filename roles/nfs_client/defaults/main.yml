@@ -1,0 +1,13 @@
+---
+# copyright Utrecht University
+
+nfs_mounts:
+
+# Example configuration for development environment.
+# nfs_mounts:
+#   - src: "{{ ansible_host }}:/var/nfs/Vault1_1"
+#    path: "/nfs/Vault1_1"
+#  - src: "{{ ansible_host }}:/var/nfs/Vault1_2"
+#    path: "/nfs/Vault1_2"
+#  - src: "{{ ansible_host }}:/var/nfs/Vault2_1"
+#    path: "/nfs/Vault2_1"
