@@ -1,5 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: reload nfs
-  command: 'exportfs -ra'
+- name: Reload nfs
+  ansible.builtin.command: 'exportfs -ra'
+  changed_when: false

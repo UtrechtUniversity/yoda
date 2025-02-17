@@ -2,31 +2,31 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family | lower }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_os_family | lower }}.yml"
 
 
 - name: Ensure setup/install tasks
-  include_tasks: "{{ ansible_os_family | lower }}.yml"
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
 
 
 - name: Extract vault paths for NFS exports, excluding /yoda and filtering by Vault and unixfilesystem
-  set_fact:
+  ansible.builtin.set_fact:
     nfs_exports: "{{ irods_resources | selectattr('vault_path', 'defined') | selectattr('resource_type', 'equalto', 'unixfilesystem') | selectattr('vault_path', 'search', '^/mnt/nfs/irods/Vault') | map(attribute='vault_path') | list }}"
 
 
 - name: Copy exports file.
-  template:
+  ansible.builtin.template:
     src: exports.j2
     dest: /etc/exports
     owner: root
     group: root
     mode: 0644
-  notify: reload nfs
+  ansible.builtin.notify: reload nfs
 
 
 - name: Ensure NFS is running.
-  service:
+  ansible.builtin.service:
     name: "{{ nfs_server_daemon }}"
     state: started
-    enabled: yes
+    enabled: true
   when: nfs_exports | length > 0
