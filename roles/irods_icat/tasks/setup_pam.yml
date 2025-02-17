@@ -17,14 +17,11 @@
     state: absent
 
 
-- name: Ensure external user check is present
-  ansible.builtin.template:
-    src: is-user-external.sh.j2
-    dest: /usr/local/bin/is-user-external.sh
-    owner: root
-    group: "{{ irods_service_account }}"
-    mode: '0750'
-  when: external_users
+# The new version of this script is part of the ruleset
+- name: Ensure old user type check script is absent
+  ansible.builtin.file:
+    path: /usr/local/bin/is-user-external.sh
+    state: absent
 
 
 - name: Ensure external user authentication is present
