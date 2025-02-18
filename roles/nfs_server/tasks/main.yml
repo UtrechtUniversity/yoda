@@ -14,6 +14,17 @@
     nfs_exports: "{{ irods_resources | selectattr('vault_path', 'defined') | selectattr('resource_type', 'equalto', 'unixfilesystem') | selectattr('vault_path', 'search', '^/var/lib/irods/Vault') | map(attribute='vault_path') | list }}"
 
 
+- name: Ensure NFS export directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop: "{{ nfs_exports }}"
+  when: nfs_exports | length > 0
+
+
 - name: Copy exports file.
   ansible.builtin.template:
     src: exports.j2
