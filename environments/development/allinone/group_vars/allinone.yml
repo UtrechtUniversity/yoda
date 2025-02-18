@@ -87,13 +87,13 @@ irods_enable_gocommands: false
 irods_resources:
   - name: dev001_1
     host: "{{ irods_icat_fqdn }}"
-    vault_path: /mnt/nfs/irods/Vault1_1
+    vault_path: /var/lib/irods/Vault1_1
     resource_type: unixfilesystem
 
   - name: dev001_2
     resource_type: unixfilesystem
     host: "{{ irods_icat_fqdn }}"
-    vault_path: /mnt/nfs/irods/Vault1_2
+    vault_path: /var/lib/irods/Vault1_2
 
   - name: dev001_p1
     resource_type: passthru
@@ -119,7 +119,7 @@ irods_resources:
   - name: dev002_1
     resource_type: unixfilesystem
     host: "{{ irods_resource_fqdn }}"
-    vault_path: /mnt/nfs/irods/Vault2_1
+    vault_path: /var/lib/irods/Vault2_1
 
   - name: dev002_p1
     resource_type: passthru

@@ -9,9 +9,9 @@
   ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
 
 
-- name: Extract vault paths for NFS exports, excluding /yoda and filtering by Vault and unixfilesystem
+- name: Extract vault paths for NFS exports, filtering by Vault and unixfilesystem
   ansible.builtin.set_fact:
-    nfs_exports: "{{ irods_resources | selectattr('vault_path', 'defined') | selectattr('resource_type', 'equalto', 'unixfilesystem') | selectattr('vault_path', 'search', '^/mnt/nfs/irods/Vault') | map(attribute='vault_path') | list }}"
+    nfs_exports: "{{ irods_resources | selectattr('vault_path', 'defined') | selectattr('resource_type', 'equalto', 'unixfilesystem') | selectattr('vault_path', 'search', '^/var/lib/irods/Vault') | map(attribute='vault_path') | list }}"
 
 
 - name: Copy exports file.
@@ -21,7 +21,7 @@
     owner: root
     group: root
     mode: "0644"
-  notify: reload nfs
+  notify: Reload nfs
 
 
 - name: Ensure NFS is running.
