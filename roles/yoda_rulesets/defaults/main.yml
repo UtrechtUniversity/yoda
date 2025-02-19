@@ -204,6 +204,8 @@ sram_auto_group_sync: false                            # Automatic SRAM group sy
 sram_verbose_logging: false                            # SRAM verbose logging
 sram_tls_verify: true                                  # Enable TLS verification for SRAM API calls. Enabled by default.
 sram_co_default_label: yoda                            # Default label for created COs
+sram_co_default_admins: []                             # List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email
+
 # Base64 encoded logo for Surf COs (default value has the Yoda logo)
 sram_co_logo: >-
   data:image/png;base64,
