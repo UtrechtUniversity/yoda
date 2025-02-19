@@ -102,6 +102,7 @@ sram_verbose_logging           = '{{ ["false", "true"][sram_verbose_logging|int]
 sram_tls_verify                = '{{ ["false", "true"][sram_tls_verify|int] }}'
 sram_co_default_label          = '{{ sram_co_default_label }}'
 sram_co_logo                   = '{{ sram_co_logo }}'
+sram_co_default_admins         = '{{ sram_co_default_admins | join (" ") }}'
 {% endif %}
 
 arb_enabled                    = '{{ ["false", "true"][irods_arb_enabled|int] }}'
