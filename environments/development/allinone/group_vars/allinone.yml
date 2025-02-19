@@ -65,6 +65,7 @@ sram_flow: invitation                                  # SRAM flow to use, 'join
 sram_auto_group_sync: false                            # Automatic SRAM group sync
 sram_verbose_logging: true                             # SRAM verbose logging
 sram_tls_verify: false                                 # Enable TLS verification for SRAM API calls. Enabled by default.
+sram_co_default_admins: ['sram-admin@yoda.test']       # List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email
 
 # iRODS check tooling
 enable_irods_consistency_check: true
