@@ -29,6 +29,8 @@
 
 
 - name: Ensure Apache mod_evasive is installed (EL9)
+  when: ansible_distribution_major_version == "9"
+  become: true
   block:
     - name: Install wget
       ansible.builtin.package:
@@ -46,8 +48,6 @@
         name: /tmp/mod_evasive-1.10.1-33.el9.x86_64.rpm
         state: present
 
-  when: ansible_distribution_major_version == "9"
-  become: true
 
 
 - name: Allow public to ports for Apache in firewall
@@ -96,7 +96,6 @@
     owner: root
     group: root
   when: ansible_distribution_major_version == "9"
-
 
 
 - name: Ensure config for other VHosts is present (Ubuntu)
