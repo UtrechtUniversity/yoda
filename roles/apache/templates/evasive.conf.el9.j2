@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+#
+# Apache mod_evasive Configuration
+# This configuration helps protect against Fuzzer, DDoS, and brute force attacks by
+# blocking overly frequent requests from the same IP address.
+# For more information on each directive and additional configuration options, refer to:
+# https://docs.cpanel.net/ea4/apache/apache-modules/apache-module-evasive/
+
+# Note: Restart the Apache server is needed after changing this configuration.
+
+<IfModule mod_evasive24.c>
+    DOSHashTableSize    3097
+    DOSPageCount        10
+    DOSSiteCount        50
+    DOSPageInterval     1
+    DOSSiteInterval     1
+    DOSBlockingPeriod   10
+</IfModule>
