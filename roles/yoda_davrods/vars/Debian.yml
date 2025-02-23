@@ -8,6 +8,7 @@ yoda_davrods_boost_package: libboost-all-dev
 yoda_davrods_jansson_package: libjansson4
 
 yoda_davrods_version: 4.3.3-1.5.1
+yoda_davrods_checksum: sha256:0a5033ed8c35274a24064aa11b209efcfdf1ee42b7e77f533e3dea7c85c70ee9
 
 yoda_davrods_site_config_dir: /etc/apache2/sites-available
 yoda_davrods_site_enabled_config_dir: /etc/apache2/sites-enabled

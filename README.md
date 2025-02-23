@@ -31,12 +31,12 @@ This is the main repository of Yoda. It contains the [Ansible](https://docs.ansi
 
 ## Requirements
 ### Control machine requirements
-* [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) (>= 2.11.x, <2.17.0)
+* [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) (>= 2.16.x)
 * [VirtualBox](https://www.virtualbox.org/manual/ch02.html) or [libvirt](https://libvirt.org/)
 * [Vagrant](https://www.vagrantup.com/docs/installation/) (>= 2.3.x)
 
 ### Managed node requirements
-* [Ubuntu 20.04 LTS](https://ubuntu.com/). See also the [supported distribution list](docs/administration/supported-distributions.md)
+* [Ubuntu 24.04 LTS](https://ubuntu.com/). See also the [supported distribution list](docs/administration/supported-distributions.md)
 
 ## Documentation
 Documentation is hosted on: https://utrechtuniversity.github.io/yoda/

@@ -18,13 +18,6 @@
   when: not ansible_check_mode
 
 
-# - name: Ensure PsycoPG2 is installed (EL7)
-#   ansible.builtin.package:
-#     name: python-psycopg2
-#     state: present
-#   when: "ansible_distribution_major_version == '7' and not ansible_check_mode"
-
-
 - name: Ensure PsycoPG2 is installed (EL8 and EL9)
   ansible.builtin.package:
     name: python3-psycopg2

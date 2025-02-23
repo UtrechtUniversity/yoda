@@ -14,17 +14,6 @@
   ignore_errors: true
 
 
-- name: Remove no longer used Yoda External User Service dependencies
-  ansible.builtin.package:
-    name:
-      - php-pdo
-      - php-pgsql
-      - php-password-compat
-      - php-PHPMailer
-    state: absent
-  when: ansible_os_family == 'RedHat'
-
-
 - name: Ensure yodadeployment user exists
   ansible.builtin.user:
     name: "{{ yoda_deployment_user }}"
@@ -211,7 +200,7 @@
   become: true
   ansible.builtin.pip:
     name:
-      - pip==24.3.1
+      - pip==25.0
       - virtualenv==20.28.0
     executable: /var/www/extuser/yoda-external-user-service/venv/bin/pip3
 
@@ -258,6 +247,7 @@
     dest: "{{ yoda_external_user_service_site_config_dir }}/{{ yoda_external_user_service_site_config_file }}"
     mode: '0644'
   notify: Restart Apache webserver
+
 
 - name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
   ansible.builtin.file:

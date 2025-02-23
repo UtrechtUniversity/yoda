@@ -1,30 +1,16 @@
 ---
 # copyright Utrecht University
 
-- name: Check if davrods is installable from repository
-  ansible.builtin.yum: # noqa fqcn[action-core]
-    list: '{{ davrods.package }}'
-  register: davrods_repo
-
-
-- name: Download davrods rpm
+- name: Download DavRODS package
   ansible.builtin.get_url:
-    url: '{{ davrods.url }}/{{ davrods.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
-    checksum: '{{ davrods.checksum }}'
-    mode: '0644'
-  when: not davrods_repo.results and not repo_only
+    url: "{{ yoda_davrods_url }}"
+    dest: "/tmp/davrods-{{ yoda_davrods_version }}.rpm"
+    checksum: '{{ yoda_davrods_checksum }}'
+    mode: "0644"
 
 
-- name: Install davrods from downloaded rpm
-  ansible.builtin.package:
-    name: '{{ rpm_dest_dir }}/{{ davrods.filename }}'
+- name: Install DavRODS
+  ansible.builtin.dnf:
+    name: "/tmp/davrods-{{ yoda_davrods_version }}.rpm"
+    disable_gpg_check: true
     state: present
-  when: not davrods_repo.results and not ansible_check_mode and not repo_only
-
-
-- name: Ensure davrods rpm is installed
-  ansible.builtin.package:
-    name: '{{ davrods.package }}'
-    state: present
-  when: davrods_repo.results and not ansible_check_mode

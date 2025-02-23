@@ -1,4 +1,7 @@
 ---
 # copyright Utrecht University
 
-pam_python_library_dir: /usr/lib/x86_64-linux-gnu/security
+# Note that the actual location of all the other pam files is:
+# /usr/lib/x86_64-linux-gnu/security
+# but irods looks for the file here:
+pam_python_library_dir: /usr/lib/security

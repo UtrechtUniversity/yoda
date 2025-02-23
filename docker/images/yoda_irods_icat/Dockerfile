@@ -49,8 +49,9 @@ RUN apt-get install -y rsyslog
 RUN apt-get install -y gcc python3 python3-dev python3-pip python3.12-venv python3-virtualenv python3-wheel python3-magic
 
 # Upload PAM Python library
-COPY stage/pam_python.so /tmp/pam_python.so
-RUN install -m 0755 -o root -g root /tmp/pam_python.so  /usr/lib/x86_64-linux-gnu/security/pam_python.so
+COPY stage/pam_python3.so /tmp/pam_python3.so
+RUN mkdir /usr/lib/security
+RUN install -m 0755 -o root -g root /tmp/pam_python3.so  /usr/lib/security/pam_python3.so
 
 # Install PostgreSQL 15 for ODBC drivers, checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033
@@ -97,13 +98,17 @@ RUN install -m 0644 -o root -g root /tmp/irods_completion.sh /etc/profile.d/irod
 
 # Set up PAM authentication
 # hadolint ignore=DL3033
-COPY is-user-external.sh /tmp/is-user-external.sh
 COPY external-auth.py /tmp/external-auth.py
-RUN install -m 0750 -o root -g irods /tmp/is-user-external.sh /usr/local/bin/is-user-external.sh && \
-    install -m 0750 -o root -g irods /tmp/external-auth.py /usr/local/bin/external-auth.py && \
+COPY is-user-external.sh /tmp/is-user-external.sh
+COPY token-auth.py /tmp/token-auth.py
+RUN install -m 0750 -o root -g irods /tmp/external-auth.py /usr/local/bin/external-auth.py && \
+    install -m 0750 -o root -g irods /tmp/is-user-external.sh /usr/local/bin/is-user-external.sh && \
+    install -m 0750 -o root -g irods /tmp/token-auth.py /usr/local/bin/token-auth.py && \
     chmod 04755 /usr/sbin/irodsPamAuthCheck
 COPY irods.pam /tmp/irods.pam
-RUN install -m 0644 /tmp/irods.pam /etc/pam.d/irods
+COPY oidc.py /tmp/oidc.py
+RUN install -m 0644 /tmp/irods.pam /etc/pam.d/irods && \
+    install -m 0644 -o irods -g irods /tmp/oidc.py /var/lib/irods/msiExecCmd_bin/oidc.py
 
 # Configure iRODS
 COPY server_config.json /etc/irods/server_config.json
@@ -113,7 +118,7 @@ COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
 # Install and configure rulesets
 RUN git clone -b ${YODA_RULESET_BRANCH} ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
 # hadolint ignore=DL3004
-RUN sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages pip==24.3.1 && \
+RUN sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages pip==25.0 && \
     sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages -r /etc/irods/yoda-ruleset/requirements.txt && \
     sudo -u irods python3 -m pip install --user --break-system-packages python-irodsclient==2.2.0 && \
     sudo -u irods python3 -m pip install --user --break-system-packages psutil==6.1.0

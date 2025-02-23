@@ -7,15 +7,9 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 yoda_davrods_boost_package: boost
 yoda_davrods_jansson_package: jansson
 
-# Temporary directory to store downloaded rpm files.
-rpm_dest_dir: /tmp
-
-# davrods RPM location and checksum
-davrods:
-  package: davrods-4.3.3_1.5.1-1
-  url: https://github.com/UtrechtUniversity/davrods/releases/tag/4.3.3_1.5.1/
-  filename: davrods-4.3.3_1.5.1-1.rpm
-  checksum: sha256:ea5f3667123fe73a01f705d7d684689569ca5d3a4eea27b96678f3583593da62
+yoda_davrods_url: https://github.com/UtrechtUniversity/davrods/releases/download/4.3.3_1.5.1/davrods-4.3.3_1.5.1-1.rpm
+yoda_davrods_version: 4.3.3-1.5.1
+yoda_davrods_checksum: sha1:ff317930eb903f87a8e5747eb939ea5687903d4a
 
 yoda_davrods_site_config_dir: /etc/httpd/conf.d
 yoda_davrods_config_file: davrods-vhost.conf

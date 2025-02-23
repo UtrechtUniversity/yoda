@@ -26,3 +26,10 @@
     owner: 'root'
     group: 'root'
   when: ansible_os_family == 'Debian'
+
+
+- name: Ensure iRODS iCommands version is locked
+  community.general.dnf_versionlock:
+    name: '{{ irods_icommands_package_new }}'
+    state: present
+  when: ansible_os_family == 'RedHat'

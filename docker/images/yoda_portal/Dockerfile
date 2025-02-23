@@ -52,7 +52,7 @@ RUN mkdir -p /var/www/yoda/config && \
 COPY yoda-portal-vhost.conf /etc/apache2/sites-available/001-yoda-portal-vhost.conf
 RUN ln -s /etc/apache2/sites-available/001-yoda-portal-vhost.conf /etc/apache2/sites-enabled/001-yoda-portal-vhost.conf
 RUN virtualenv --python /usr/bin/python3 /var/www/yoda/venv && \
-    /var/www/yoda/venv/bin/pip3 install --no-cache-dir pip==24.3.1 && \
+    /var/www/yoda/venv/bin/pip3 install --no-cache-dir pip==25.0 && \
     /var/www/yoda/venv/bin/pip3 install --no-cache-dir -r /var/www/yoda/requirements.txt
 
 # Make copy of data on volumes that can optionally be bind mounted, so the container init script

@@ -5,12 +5,12 @@ galaxy_info:
   author: Lazlo Westerhof
   description: Install Yoda landingpages
   license: GPLv3
-  min_ansible_version: '2.11'
+  min_ansible_version: '2.16'
   platforms:
     - name: EL
-      version: 7
+      version: 9
     - name: Ubuntu
-      version: focal
+      version: noble
 
 
 dependencies:

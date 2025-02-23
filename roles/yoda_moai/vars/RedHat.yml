@@ -4,12 +4,12 @@
 openssl_private_dir: '/etc/ssl/private/'
 openssl_certs_dir: '/etc/ssl/certs'
 
-yoda_moai_python3_path: /opt/rh/rh-python38/root/bin/python3
-yoda_moai_python3_include_path: /opt/rh/rh-python38/root/usr/include/python3.8
+yoda_moai_python3_path: /usr/bin/python3.12
+yoda_moai_python3_include_path: /usr/include/python3.12
 
-yoda_moai_sqlite3_include_path: /usr/sqlite330/include
-yoda_moai_sqlite3_lib_path: /usr/sqlite330/lib
+yoda_moai_sqlite3_include_path: /usr/include
+yoda_moai_sqlite3_lib_path: /usr/lib/x86_64-linux-gnu
 
 yoda_moai_sqlite3_packages:
-  - sqlite33
-  - sqlite33-devel
+  - sqlite
+  - sqlite-devel

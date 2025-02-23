@@ -78,4 +78,3 @@ Thread ID: 140688071923456
   /var/www/yoda/connman.py:50 [gc]
      time.sleep(1)
 ```
-

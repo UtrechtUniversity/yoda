@@ -5,12 +5,10 @@ galaxy_info:
   author: Sietse Snel
   description: Install Mailpit
   license: GPLv3
-  min_ansible_version: '2.11'
+  min_ansible_version: '2.16'
   platforms:
     - name: EL
-      version:
-        - 8
-        - 9
+      version: 9
     - name: Ubuntu
       version: noble
 

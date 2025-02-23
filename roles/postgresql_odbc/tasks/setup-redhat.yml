@@ -14,6 +14,5 @@
     name:
       - "postgresql{{ pgsql_version }}-odbc"
       - unixODBC
-      - unixODBC-devel
     state: present
   when: not ansible_check_mode

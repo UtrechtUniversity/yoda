@@ -22,7 +22,7 @@ To add a new terms file just put it in the `/${RODSZONE}/yoda/terms` collection 
 iput "${TERMS}.txt" "/${RODSZONE}/yoda/terms/${TERMS}.html"
 ```
 
-From version 1.10, Yoda simplifies managing publication terms with a new GUI on the Admin page.  Just enter and save terms directly in the GUI; they're instantly updated and stored as an HTML page at `/var/www/yoda/config/publication_terms.html`. The system now checks this folder first before looking at the iRODS server for any terms. See the picture below for an example.
+From version 1.10, Yoda simplifies managing publication terms with a new GUI on the Admin page. This feature is accessible to administrators and members of the priv-admin group. Just enter and save terms directly in the GUI; they're instantly updated and stored as an HTML page at `/var/www/yoda/config/publication_terms.html`. The system now checks this folder first before looking at the iRODS server for any terms. See the picture below for an example.
 
 <div style="text-align: center;">
     <img src="./img/yoda-admin-terms.png" alt="Example of Installing Terms with GUI" style="width: 50%; height: auto;">

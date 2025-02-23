@@ -15,7 +15,7 @@ These configurations are intended for local development and testing.
 Some components are not (yet) available in the containerized Yoda setup,
 most importantly:
 - OpenSearch (used for searching in the deposit module)
-- The containerized version does not actually deliver emails sent by Yoda. 
+- The containerized version does not actually deliver emails sent by Yoda.
   Instead, it has [Mailpit](https://github.com/axllent/mailpit) for testing email
   delivery. Mailpit provides a web interface that can be used to view email messages
   that would have been delivered by the application in a production configuration.

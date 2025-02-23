@@ -77,7 +77,7 @@
 
 - name: Copy Apache ports configuration file (Ubuntu)
   ansible.builtin.copy:
-    src: ports.conf.focal
+    src: ports.conf.noble
     dest: /etc/apache2/ports.conf
     owner: root
     group: root

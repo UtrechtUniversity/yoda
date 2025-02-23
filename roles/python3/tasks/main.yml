@@ -5,6 +5,7 @@
   ansible.builtin.include_tasks: main-tasks.yml
   when: '"yoda_python3_role_has_run" not in hostvars[inventory_hostname]'
 
+
 - name: Register that python3 role has run
   ansible.builtin.set_fact:
     yoda_python3_role_has_run: true
