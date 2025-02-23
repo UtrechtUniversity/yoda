@@ -49,7 +49,6 @@
         state: present
 
 
-
 - name: Allow public to ports for Apache in firewall
   ansible.posix.firewalld:
     port: '{{ item }}'
