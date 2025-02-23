@@ -28,6 +28,28 @@
   when: ansible_os_family == 'Debian'
 
 
+- name: Ensure Apache mod_evasive is installed (EL9)
+  block:
+    - name: Install wget
+      ansible.builtin.package:
+        name: wget
+        state: present
+
+    - name: Download mod_evasive RPM package
+      ansible.builtin.get_url:
+        url: https://pkgs.sysadmins.ws/el9/modular/x86_64/httpd/mod_evasive-1.10.1-33.el9.x86_64.rpm
+        dest: /tmp/mod_evasive-1.10.1-33.el9.x86_64.rpm
+        mode: '0644'
+
+    - name: Install mod_evasive package
+      ansible.builtin.package:
+        name: /tmp/mod_evasive-1.10.1-33.el9.x86_64.rpm
+        state: present
+
+  when: ansible_distribution_major_version == "9"
+  become: true
+
+
 - name: Allow public to ports for Apache in firewall
   ansible.posix.firewalld:
     port: '{{ item }}'
@@ -56,7 +78,7 @@
   notify: Restart Apache webserver
 
 
-- name: Ensure config for Apache mod_evasive is present (Ubuntu)
+- name: Ensure config for Apache mod_evasive is present (Debian)
   ansible.builtin.template:
     src: evasive.conf.focal.j2
     dest: /etc/apache2/mods-available/evasive.conf
@@ -64,6 +86,17 @@
     owner: root
     group: root
   when: ansible_os_family == 'Debian'
+
+
+- name: Ensure config for Apache mod_evasive is present (EL9)
+  ansible.builtin.template:
+    src: evasive.conf.el9.j2
+    dest: /etc/httpd/conf.d/mod_evasive.conf
+    mode: '0600'
+    owner: root
+    group: root
+  when: ansible_distribution_major_version == "9"
+
 
 
 - name: Ensure config for other VHosts is present (Ubuntu)
