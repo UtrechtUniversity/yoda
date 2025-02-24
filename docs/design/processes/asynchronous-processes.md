@@ -18,8 +18,8 @@ This page contains an overview of asynchronous processes in Yoda.
 * [Statistics](#statistics)
 * [Statistics job](#statistics-job)
 * [Archiving](#archiving)
-* [Archiving - retry-copy-to-vault job](#archiving-retry-copy-job)
 * [Archiving - intake to vault job](#archiving-intake-to-vault-job)
+* [Archiving - copy-to-vault job](#archiving-copy-job)
 * [Archiving - publication job](#archiving-publication-job)
 
 <a name="metadata"/>
@@ -144,16 +144,16 @@ and communities.
 Asynchronous jobs are also used to copy data packages from a research or intake folder to the vault,
 as well as to process publications.
 
-<a name="archiving-retry-copy-job"/>
+<a name="archiving-copy-job"/>
 
-### Retry copy to vault job
+### Copy to vault job
 
 |   |   |
 |---|---|
-| Script               | /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r                       |
+| Script               | /etc/irods/yoda-ruleset/tools/copy-to-vault.r                             |
 | Purpose              | copy data packages from research groups to the vault                      |
 | Lock file            | no lock file, but collection metadata attribute records processing status |
-| Typically started by | cronjob, runs every 15 minutes (or every 5 minutes on development)                |
+| Typically started by | cronjob, runs every 5 minutes                                             |
 
 By default, groups that are to be copied to the vault are marked with a metadata attribute named
 `cronjob_copy_to_vault`.
