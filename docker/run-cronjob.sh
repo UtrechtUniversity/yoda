@@ -14,7 +14,7 @@ fi
 case "$1" in
 
   copytovault)
-    docker exec "$EXEC_OPTIONS" provider.yoda sudo -iu irods /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r
+    docker exec "$EXEC_OPTIONS" provider.yoda sudo -iu irods /bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/copy-to-vault.r
     ;;
 
   dailyreport)
