@@ -6,11 +6,11 @@ nav_order: 16
 # Troubleshooting data package archival in the vault
 
 After a data manager approves a data package for archiving in the vault, the
-`copy-one-coll-to-vault.r` script asynchronously archives the data package.
-This involves copying its data from the research collection to the vault
-collection, among other things. When the script fails to archive a data package
-part way, the copy to vault cronjob status is set to `RETRY`. At a later time
-the `retry-copy-to-vault.r` cronjob is run to try to finish archiving all data
+`copy-to-vault.r` script asynchronously archives all data packages that are in
+ status `PENDING` or `RETRY`. This involves copying its data from the research
+collection to the vault collection, among other things. When the script fails to
+archive a data package part way, the copy to vault cronjob status is set to `RETRY`.
+At a later time the `copy-to-vault.r` cronjob is run to try to finish archiving all data
 packages that are in status `PENDING` or `RETRY`. By default, this whole process happens automatically.
 Please consult [the vault process design documentation](../design/processes/vault-process.md)
 for more details.
