@@ -5,6 +5,6 @@ collections:
   - name: community.general
     version: 10.1.0
   - name: community.crypto
-    version: 2.22.3
+    version: 2.25.0
   - name: community.postgresql
     version: 3.9.0
