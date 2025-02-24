@@ -263,7 +263,7 @@
   <li><a href="#statistics">Statistics</a></li>
   <li><a href="#statistics-job">Statistics job</a></li>
   <li><a href="#archiving">Archiving</a></li>
-  <li><a href="#archiving-retry-copy-job">Archiving - retry-copy-to-vault job</a></li>
+  <li><a href="#archiving-copy-job">Archiving - copy-to-vault job</a></li>
   <li><a href="#archiving-publication-job">Archiving - publication job</a></li>
 </ul>
 
@@ -561,11 +561,11 @@ and communities.</p>
 <p>Asynchronous jobs are also used to copy data packages from a research folder to the vault,
 as well as to process publications.</p>
 
-<p><a name="archiving-retry-copy-job"></a></p>
-<h3 id="retry-copy-to-vault-job">
+<p><a name="archiving-copy-job"></a></p>
+<h3 id="copy-to-vault-job">
   
   
-    <a href="#retry-copy-to-vault-job" class="anchor-heading" aria-labelledby="retry-copy-to-vault-job"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Retry copy to vault job
+    <a href="#copy-to-vault-job" class="anchor-heading" aria-labelledby="copy-to-vault-job"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Copy to vault job
   
   
 </h3>
@@ -581,7 +581,7 @@ as well as to process publications.</p>
   <tbody>
     <tr>
       <td>Script</td>
-      <td>/etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r</td>
+      <td>/etc/irods/yoda-ruleset/tools/copy-to-vault.r</td>
     </tr>
     <tr>
       <td>Purpose</td>
@@ -593,7 +593,7 @@ as well as to process publications.</p>
     </tr>
     <tr>
       <td>Typically started by</td>
-      <td>cronjob, runs every 15 minutes (or every 5 minutes on development)</td>
+      <td>cronjob, runs every 5 minutes</td>
     </tr>
   </tbody>
 </table></div>

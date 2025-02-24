@@ -85,7 +85,7 @@
   },"12": {
     "doc": "Asynchronous processes",
     "title": "Table of contents",
-    "content": ". | Metadata | Metadata schema update job | Replication | Replication job | Revision management | Revision management - creation job | Revision management - cleanup job | Statistics | Statistics job | Archiving | Archiving - retry-copy-to-vault job | Archiving - publication job | . ",
+    "content": ". | Metadata | Metadata schema update job | Replication | Replication job | Revision management | Revision management - creation job | Revision management - cleanup job | Statistics | Statistics job | Archiving | Archiving - copy-to-vault job | Archiving - publication job | . ",
     "url": "/yoda/design/processes/asynchronous-processes.html#table-of-contents",
     
     "relUrl": "/design/processes/asynchronous-processes.html#table-of-contents"
@@ -120,7 +120,7 @@
   },"17": {
     "doc": "Asynchronous processes",
     "title": "Archiving and publication",
-    "content": "Asynchronous jobs are also used to copy data packages from a research folder to the vault, as well as to process publications. Retry copy to vault job . |   |   | . | Script | /etc/irods/yoda-ruleset/tools/retry-copy-to-vault.r | . | Purpose | copy data packages from research groups to the vault | . | Lock file | no lock file, but collection metadata attribute records processing status | . | Typically started by | cronjob, runs every 15 minutes (or every 5 minutes on development) | . By default, groups that are to be copied to the vault are marked with a metadata attribute named cronjob_copy_to_vault. Process publication job . |   |   | . | Script | /etc/irods/yoda-ruleset/tools/process-publication.r | . | Purpose | Asynchronously handles publication and depublication of data packages | . | Lock file | no lock file, but status is recorded in metadata | . | Typically started by | cronjob, runs every minute | . ",
+    "content": "Asynchronous jobs are also used to copy data packages from a research folder to the vault, as well as to process publications. Copy to vault job . |   |   | . | Script | /etc/irods/yoda-ruleset/tools/copy-to-vault.r | . | Purpose | copy data packages from research groups to the vault | . | Lock file | no lock file, but collection metadata attribute records processing status | . | Typically started by | cronjob, runs every 5 minutes | . By default, groups that are to be copied to the vault are marked with a metadata attribute named cronjob_copy_to_vault. Process publication job . |   |   | . | Script | /etc/irods/yoda-ruleset/tools/process-publication.r | . | Purpose | Asynchronously handles publication and depublication of data packages | . | Lock file | no lock file, but status is recorded in metadata | . | Typically started by | cronjob, runs every minute | . ",
     "url": "/yoda/design/processes/asynchronous-processes.html#archiving-and-publication",
     
     "relUrl": "/design/processes/asynchronous-processes.html#archiving-and-publication"
@@ -316,7 +316,7 @@
   },"45": {
     "doc": "Copy to vault diagrams",
     "title": "Copy to vault diagrams",
-    "content": "The following is a diagram of the state transitions of the cronjob status (not the folder status): . The following is a diagram of the process of securing an individual folder for Yoda versions 1.10 and higher: . ",
+    "content": "The following is a diagram of the state transitions of the cronjob status (not the folder status): . The following is a diagram of the process of securing an individual folder for Yoda versions 1.9.5 and higher: . ",
     "url": "/yoda/design/processes/copy-to-vault-diagrams.html",
     
     "relUrl": "/design/processes/copy-to-vault-diagrams.html"
@@ -2157,7 +2157,7 @@
   },"308": {
     "doc": "Troubleshooting data package archival in the vault",
     "title": "Troubleshooting data package archival in the vault",
-    "content": "After a data manager approves a data package for archiving in the vault, the copy-one-coll-to-vault.r script asynchronously archives the data package. This involves copying its data from the research collection to the vault collection, among other things. When the script fails to archive a data package part way, the copy to vault cronjob status is set to RETRY. At a later time the retry-copy-to-vault.r cronjob is run to try to finish archiving all data packages that are in status PENDING or RETRY. By default, this whole process happens automatically. Please consult the vault process design documentation for more details. Note that in Yoda versions 1.9 and older the process is slightly different. The script copy-accepted-folders-to-vault.r asynchronously archives the data package, and if the archival fails in certain situations the status is set to RETRY. The retry-copy-to-vault.r cronjob runs periodically to try to archive any data packages with such a RETRY status. This page contains an explanation of how to troubleshoot the process if something goes wrong. ",
+    "content": "After a data manager approves a data package for archiving in the vault, the copy-to-vault.r script asynchronously archives all data packages that are in status PENDING or RETRY. This involves copying its data from the research collection to the vault collection, among other things. When the script fails to archive a data package part way, the copy to vault cronjob status is set to RETRY. At a later time the copy-to-vault.r cronjob is run to try to finish archiving all data packages that are in status PENDING or RETRY. By default, this whole process happens automatically. Please consult the vault process design documentation for more details. Note that in Yoda versions 1.9 and older the process is slightly different. The script copy-accepted-folders-to-vault.r asynchronously archives the data package, and if the archival fails in certain situations the status is set to RETRY. The retry-copy-to-vault.r cronjob runs periodically to try to archive any data packages with such a RETRY status. This page contains an explanation of how to troubleshoot the process if something goes wrong. ",
     "url": "/yoda/administration/troubleshooting-copy-to-vault.html",
     
     "relUrl": "/administration/troubleshooting-copy-to-vault.html"
@@ -2430,7 +2430,7 @@
   },"347": {
     "doc": "To vault process in research module",
     "title": "Copy to vault",
-    "content": "The retry-copy-to-vault.r cronjob in the tools directory of the research ruleset will copy any folder with a ‘PENDING’ or ‘RETRY’ cronjob copy state to the vault and set it to ‘SECURED’ state when successful. For Yoda version 1.10 or higher, the state will be set to ‘FOLDER’ upon success. In Yoda versions 1.9 or lower this is only done with folders with a ‘RETRY’ state. The copy uses irsync in versions 1.10 and higher. The metadata is copied as well. Folders with ‘RETRY’ status have previously failed to copy. See Copy to vault diagrams for diagrams of the copy to vault process. ",
+    "content": "The copy-to-vault.r cronjob in the tools directory of the research ruleset will copy any folder with a ‘PENDING’ or ‘RETRY’ cronjob copy state to the vault and set it to ‘SECURED’ state when successful. For Yoda version 1.10 or higher, the state will be set to ‘FOLDER’ upon success. In Yoda versions 1.9 or lower this is only done with folders with a ‘RETRY’ state. The copy uses irsync in versions 1.9.5 and higher. The metadata is copied as well. Folders with ‘RETRY’ status have previously failed to copy. See Copy to vault diagrams for diagrams of the copy to vault process. ",
     "url": "/yoda/design/processes/vault-process.html#copy-to-vault",
     
     "relUrl": "/design/processes/vault-process.html#copy-to-vault"

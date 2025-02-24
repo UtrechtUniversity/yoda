@@ -239,11 +239,11 @@
     
 
 <p>After a data manager approves a data package for archiving in the vault, the
-<code class="language-plaintext highlighter-rouge">copy-one-coll-to-vault.r</code> script asynchronously archives the data package.
-This involves copying its data from the research collection to the vault
-collection, among other things. When the script fails to archive a data package
-part way, the copy to vault cronjob status is set to <code class="language-plaintext highlighter-rouge">RETRY</code>. At a later time
-the <code class="language-plaintext highlighter-rouge">retry-copy-to-vault.r</code> cronjob is run to try to finish archiving all data
+<code class="language-plaintext highlighter-rouge">copy-to-vault.r</code> script asynchronously archives all data packages that are in
+ status <code class="language-plaintext highlighter-rouge">PENDING</code> or <code class="language-plaintext highlighter-rouge">RETRY</code>. This involves copying its data from the research
+collection to the vault collection, among other things. When the script fails to
+archive a data package part way, the copy to vault cronjob status is set to <code class="language-plaintext highlighter-rouge">RETRY</code>.
+At a later time the <code class="language-plaintext highlighter-rouge">copy-to-vault.r</code> cronjob is run to try to finish archiving all data
 packages that are in status <code class="language-plaintext highlighter-rouge">PENDING</code> or <code class="language-plaintext highlighter-rouge">RETRY</code>. By default, this whole process happens automatically.
 Please consult <a href="/yoda/design/processes/vault-process.html">the vault process design documentation</a>
 for more details.</p>
