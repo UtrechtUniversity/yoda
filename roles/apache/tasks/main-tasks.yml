@@ -21,11 +21,19 @@
   when: ansible_os_family == 'RedHat'
 
 
-- name: Ensure Apache mod_evasive is installed (Ubuntu)
-  ansible.builtin.package:
-    name: libapache2-mod-evasive
-    state: present
-  when: ansible_os_family == 'Debian'
+- name: Ensure Apache mod_evasive is installed and enabled (Ubuntu)
+  become: true
+  tasks:
+    - name: Ensure Apache mod_evasive is installed
+      ansible.builtin.package:
+        name: libapache2-mod-evasive
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: Enable mod_evasive module
+      ansible.builtin.command:
+        cmd: a2enmod evasive
+      when: ansible_os_family == 'Debian'
 
 
 - name: Ensure Apache mod_evasive is installed (EL9)
