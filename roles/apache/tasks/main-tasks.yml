@@ -21,7 +21,7 @@
   when: ansible_os_family == 'RedHat'
 
 
-- name: Ensure Apache mod_evasive is installed
+- name: Ensure Apache mod_evasive is installed (Ubuntu)
   ansible.builtin.package:
     name: libapache2-mod-evasive
     state: present
@@ -29,7 +29,6 @@
 
 
 - name: Ensure Apache mod_evasive is installed (EL9)
-  when: ansible_distribution_major_version == "9"
   become: true
   block:
     - name: Install wget
@@ -47,6 +46,7 @@
       ansible.builtin.package:
         name: /tmp/mod_evasive-1.10.1-33.el9.x86_64.rpm
         state: present
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Allow public to ports for Apache in firewall
@@ -77,14 +77,15 @@
   notify: Restart Apache webserver
 
 
-- name: Ensure config for Apache mod_evasive is present (Debian)
+- name: Ensure config for Apache mod_evasive is present (Ubuntu)
   ansible.builtin.template:
-    src: evasive.conf.focal.j2
+    src: evasive.conf.noble.j2
     dest: /etc/apache2/mods-available/evasive.conf
     mode: '0600'
     owner: root
     group: root
   when: ansible_os_family == 'Debian'
+  notify: Restart Apache webserver
 
 
 - name: Ensure config for Apache mod_evasive is present (EL9)
@@ -94,7 +95,8 @@
     mode: '0600'
     owner: root
     group: root
-  when: ansible_distribution_major_version == "9"
+  when: ansible_os_family == 'RedHat'
+  notify: Restart Apache webserver
 
 
 - name: Ensure config for other VHosts is present (Ubuntu)
