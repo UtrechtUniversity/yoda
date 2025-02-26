@@ -8,6 +8,9 @@
 
 # Note: Restart the Apache server is needed after changing this configuration.
 
+# mod_evasive configuration
+LoadModule evasive20_module modules/mod_evasive24.so
+
 <IfModule mod_evasive24.c>
     DOSHashTableSize    3097
     DOSPageCount        10
