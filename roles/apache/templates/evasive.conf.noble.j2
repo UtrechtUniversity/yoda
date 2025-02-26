@@ -6,7 +6,7 @@
 # For more information on each directive and additional configuration options, refer to:
 # https://docs.cpanel.net/ea4/apache/apache-modules/apache-module-evasive/
 
-# The logging of evasive actions can be found in Apache's log (e.g, /var/log/httpd/error_log for EL9, or )
+# The logging of evasive actions can be found in Apache's error log 
 
 <IfModule mod_evasive20.c>
     DOSHashTableSize    {{mod_evasive_conf['hash_table_size']}}

@@ -35,13 +35,13 @@
   become: true
   when: ansible_os_family == 'RedHat'
   block:
-    - name: Download mod_evasive RPM package
+    - name: Download mod_evasive RPM package (EL9)
       ansible.builtin.get_url:
         url: https://pkgs.sysadmins.ws/el9/modular/x86_64/httpd/mod_evasive-1.10.1-33.el9.x86_64.rpm
         dest: /tmp/mod_evasive-1.10.1-33.el9.x86_64.rpm
         mode: '0644'
-        checksum: "sha256:e2741df78705d51561c0bdd3219fe2d4bad1a7946b94eb3fed19ed8ca4e593d2"  
-    - name: Install mod_evasive package
+        checksum: "sha256:e2741df78705d51561c0bdd3219fe2d4bad1a7946b94eb3fed19ed8ca4e593d2"
+    - name: Install mod_evasive package (EL9)
       ansible.builtin.package:
         name: /tmp/mod_evasive-1.10.1-33.el9.x86_64.rpm
         state: present
