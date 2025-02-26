@@ -32,27 +32,25 @@
     - name: Enable mod_evasive module
       ansible.builtin.command:
         cmd: a2enmod evasive
+
   when: ansible_os_family == 'Debian'
 
 
 - name: Ensure Apache mod_evasive is installed (EL9)
   become: true
   block:
-    - name: Install wget
-      ansible.builtin.package:
-        name: wget
-        state: present
-
     - name: Download mod_evasive RPM package
       ansible.builtin.get_url:
         url: https://pkgs.sysadmins.ws/el9/modular/x86_64/httpd/mod_evasive-1.10.1-33.el9.x86_64.rpm
         dest: /tmp/mod_evasive-1.10.1-33.el9.x86_64.rpm
         mode: '0644'
-
+        checksum: "sha256:e2741df78705d51561c0bdd3219fe2d4bad1a7946b94eb3fed19ed8ca4e593d2"  # actual checksum of the file
     - name: Install mod_evasive package
       ansible.builtin.package:
         name: /tmp/mod_evasive-1.10.1-33.el9.x86_64.rpm
         state: present
+        disable_gpg_check: true
+
   when: ansible_os_family == 'RedHat'
 
 
@@ -95,15 +93,15 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Ensure config for Apache mod_evasive is present (EL9)
-  ansible.builtin.template:
-    src: evasive.conf.el9.j2
-    dest: /etc/httpd/conf.d/mod_evasive.conf
-    mode: '0600'
-    owner: root
-    group: root
-  notify: Restart Apache webserver
-  when: ansible_os_family == 'RedHat'
+#- name: Ensure config for Apache mod_evasive is present (EL9)
+#  ansible.builtin.template:
+#    src: evasive.conf.el9.j2
+#    dest: /etc/httpd/conf.d/mod_evasive.conf
+#    mode: '0600'
+#    owner: root
+#    group: root
+#  notify: Restart Apache webserver
+#  when: ansible_os_family == 'RedHat'
 
 
 - name: Ensure config for other VHosts is present (Ubuntu)
