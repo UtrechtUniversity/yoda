@@ -4,3 +4,12 @@ yoda_enable_httpd: true
 httpd_log_forwarded_for: false
 httpd_log_user_agent: false
 httpd_log_request_duration: false
+
+# Sensible defaults
+mod_evasive_conf:
+  hash_table_size: 3097
+  page_count: 5
+  site_count: 50
+  page_interval: 1
+  site_interval: 1
+  block_period: 10

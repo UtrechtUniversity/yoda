@@ -30,18 +30,6 @@
         name: libapache2-mod-evasive
         state: present
 
-    - name: Check if mod_evasive is enabled
-      ansible.builtin.shell:
-        cmd: a2query -m evasive
-      register: mod_evasive_status
-      failed_when: mod_evasive_status.rc not in [0,1]
-      changed_when: false
-
-    - name: Enable mod_evasive module
-      ansible.builtin.command:
-        cmd: a2enmod evasive
-      when: mod_evasive_status.rc == 1
-
 
 - name: Ensure Apache mod_evasive is installed (EL9)
   become: true
