@@ -192,11 +192,14 @@ s3_hostname: localhost:9000
 # NFS configuration
 enable_nfs_resource: true
 nfs_mounts:
-  - src: "{{ ansible_host }}:/var/nfs/Vault1_1"
+  - host: combined.yoda.test
+    src: "{{ ansible_host }}:/var/nfs/Vault1_1"
     path: "/nfs/Vault1_1"
-  - src: "{{ ansible_host }}:/var/nfs/Vault1_2"
+  - host: combined.yoda.test
+    src: "{{ ansible_host }}:/var/nfs/Vault1_2"
     path: "/nfs/Vault1_2"
-  - src: "{{ ansible_host }}:/var/nfs/Vault2_1"
+  - host: combined.yoda.test
+    src: "{{ ansible_host }}:/var/nfs/Vault2_1"
     path: "/nfs/Vault2_1"
 
 # Mail notifications
