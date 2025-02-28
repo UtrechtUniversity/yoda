@@ -23,6 +23,7 @@
     group: irods
     mode: '0755'
   loop: "{{ nfs_mounts if nfs_mounts is iterable else [] }}"
+  when: item.host == ansible_fqdn
 
 
 - name: Ensure NFS shares are mounted and present in /etc/fstab
@@ -35,3 +36,4 @@
     dump: 0
     passno: 0
   loop: "{{ nfs_mounts if nfs_mounts is iterable else [] }}"
+  when: item.host == ansible_fqdn
