@@ -12,8 +12,9 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Configure /etc/resolv.conf via Ansible (EL9)
-  become: true  
+- name: Update resolv.conf to use Google DNS servers (EL9)
+  become: true
+  when: ansible_os_family == 'RedHat'
   block:
     - name: Create manually configured DNS settings file
       ansible.builtin.copy:
@@ -36,8 +37,7 @@
         src: /etc/resolv.conf.manually-configured
         dest: /etc/resolv.conf
         state: link
-        force: yes
-  when: ansible_os_family == 'RedHat'
+        force: true
 
 - name: Flush handlers for immediate effect of changing DNS configuration
   ansible.builtin.meta: flush_handlers
