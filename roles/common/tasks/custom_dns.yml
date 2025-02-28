@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-- name: Update systemd-resolved config to use Google DNS servers
+- name: Update systemd-resolved config to use Google DNS servers (Ubuntu)
   ansible.builtin.template:
     src: resolved.conf.j2
     dest: /etc/systemd/resolved.conf
@@ -9,7 +9,35 @@
     group: root
     mode: "0644"
   notify: Restart systemd-resolved
+  when: ansible_os_family == 'Debian'
 
+
+- name: Configure /etc/resolv.conf via Ansible (EL9)
+  become: true  
+  block:
+    - name: Create manually configured DNS settings file
+      ansible.builtin.copy:
+        dest: /etc/resolv.conf.manually-configured
+        content: |
+          search yoda.test
+          nameserver {{ common_custom_dns_primary }}
+          nameserver {{ common_custom_dns_secondary }}
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Remove existing /etc/resolv.conf
+      ansible.builtin.file:
+        path: /etc/resolv.conf
+        state: absent
+
+    - name: Create symlink for /etc/resolv.conf
+      ansible.builtin.file:
+        src: /etc/resolv.conf.manually-configured
+        dest: /etc/resolv.conf
+        state: link
+        force: yes
+  when: ansible_os_family == 'RedHat'
 
 - name: Flush handlers for immediate effect of changing DNS configuration
   ansible.builtin.meta: flush_handlers
