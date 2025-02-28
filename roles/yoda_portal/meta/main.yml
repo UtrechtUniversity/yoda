@@ -16,3 +16,5 @@ dependencies:
   - role: apache
   - role: apache_wsgi
   - role: certificates
+  - role: redis
+    when: "enable_portal_caching"
