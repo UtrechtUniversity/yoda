@@ -4,6 +4,6 @@
 openssl_private_dir: '/etc/ssl/private/'
 openssl_certs_dir: '/etc/ssl/certs'
 
-irods_runtime_package_new: irods-runtime=4.3.3-0~noble
-irods_server_package_new: irods-server=4.3.3-0~noble
-irods_prep_package_new: irods-rule-engine-plugin-python=4.3.3.0-0+4.3.3~noble
+irods_runtime_package_new: irods-runtime=4.3.4-0~noble
+irods_server_package_new: irods-server=4.3.4-0~noble
+irods_prep_package_new: irods-rule-engine-plugin-python=4.3.4.0-0+4.3.4~noble

@@ -7,6 +7,7 @@ Released: TBA
 
 ## What's new
 ### Major changes
+- Upgrade iRODS to v4.3.4
 - Upgrade python-irodsclient to v2.2.0
 
 ### Known issues
