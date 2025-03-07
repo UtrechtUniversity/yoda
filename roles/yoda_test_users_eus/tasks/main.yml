@@ -24,10 +24,9 @@
   changed_when: false
 
 
-- name: Install passlib and dependencies
+- name: Install passlib
   ansible.builtin.pip:
     name:
-      - bcrypt==4.2.1
       - passlib
     executable: "{{ yoda_test_pip3_path }}"
     extra_args: --break-system-packages
@@ -35,10 +34,9 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Install passlib and dependencies
+- name: Install passlib
   ansible.builtin.pip:
     name:
-      - bcrypt==4.2.1
       - passlib
     executable: "{{ yoda_test_pip3_path }}"
     state: present
