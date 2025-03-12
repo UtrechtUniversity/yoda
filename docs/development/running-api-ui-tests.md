@@ -80,7 +80,7 @@ By default, the development VM uses an internal mock Datacite service. If you wa
 you will need to provide the Datacite server name and credentials when deploying the VM (step 4). For example:
 
 ```bash
-ansible-playbook -i environments/development/allinone playbook.yml --extra-vars 'datacite_server=api.test.datacite.org datacite_username=MYUSERNAME datacite_password=MYPASSWORD' -D
+ansible-playbook -i environments/development/allinone playbook.yml --extra-vars 'datacite_rest_api_url=api.test.datacite.org datacite_username=MYUSERNAME datacite_password=MYPASSWORD' -D
 ```
 
 ## Development
