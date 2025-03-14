@@ -24,25 +24,6 @@
   changed_when: false
 
 
-- name: Install passlib
-  ansible.builtin.pip:
-    name:
-      - passlib
-    executable: "{{ yoda_test_pip3_path }}"
-    extra_args: --break-system-packages
-    state: present
-  when: ansible_os_family == 'Debian'
-
-
-- name: Install passlib
-  ansible.builtin.pip:
-    name:
-      - passlib
-    executable: "{{ yoda_test_pip3_path }}"
-    state: present
-  when: ansible_os_family == 'RedHat'
-
-
 - name: Remove users of table user_zones
   become_user: postgres
   become: true
@@ -62,7 +43,9 @@
 
 
 - name: Generate bcrypt password for External Users.
-  ansible.builtin.shell: "{{ yoda_test_python3_path }} -c \"from passlib.hash import bcrypt; print(bcrypt.using(ident='2y').using(rounds=10).hash('{{ test_password }}'))\""
+  ansible.builtin.shell: "source /var/www/extuser/yoda-external-user-service/venv/bin/activate; python -c \"import bcrypt; print(bcrypt.hashpw('{{ test_password }}'.encode('utf-8'), bcrypt.gensalt()).decode('utf-8'))\""
+  args:
+    executable: /bin/bash
   register: password
 
 
