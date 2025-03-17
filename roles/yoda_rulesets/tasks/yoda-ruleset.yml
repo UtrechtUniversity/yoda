@@ -163,15 +163,12 @@
 - name: Ensure metadata schemas are present
   become_user: "{{ irods_service_account }}"
   become: true
-  ansible.builtin.shell: |
-    set -o pipefail
-    irsync -Krv -R {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item.name }}/ i:/{{ irods_zone }}/yoda/schemas/{{ item.name }}/ | grep sync
-  args:
-    executable: /bin/bash
-  register: metadata_schema
+  ansible.builtin.command: |
+    /etc/irods/yoda-ruleset/tools/update-schema.py --default-resource  {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item.name }} /{{ irods_zone }}/yoda/schemas/{{ item.name }}
+  register: schema_update
   when: not ansible_check_mode and update_schemas == 1 and item.install
-  failed_when: metadata_schema.rc not in [0, 1]
-  changed_when: metadata_schema.stdout_lines | length != 2
+  failed_when: schema_update.rc != 0
+  changed_when: '"Changed" in schema_update.stdout_lines'
   with_items: "{{ metadata_schemas }}"
 
 
