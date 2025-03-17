@@ -1,3 +1,6 @@
 # Copyright Utrecht University
 
 irods_arb_pip3_location: /usr/bin/pip3
+
+openssl_private_dir: '/etc/ssl/private/'
+openssl_certs_dir: '/etc/ssl/certs'

@@ -4,3 +4,5 @@
 irods_service_account: irods
 
 irods_arb_enabled: false
+
+openssl_chain: chain.crt
