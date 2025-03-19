@@ -160,6 +160,18 @@
   when: not ansible_check_mode and schemas_installed.stderr.find('does not exist') >= 0
 
 
+- name: Ensure each metadata schema collection exists
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa no-changed-when
+  ansible.builtin.shell: |
+    imkdir /{{ irods_zone }}/yoda/schemas/{{ item.name }}
+    ichmod -rM inherit /{{ irods_zone }}/yoda/schemas/{{ item.name }}
+    ichmod -rM read public /{{ irods_zone }}/yoda/schemas/{{ item.name }}
+  when: not ansible_check_mode and update_schemas == 1 and item.install and schemas_installed.stdout.find(item.name) == -1
+  with_items: "{{ metadata_schemas }}"
+
+
 - name: Ensure metadata schemas are present
   become_user: "{{ irods_service_account }}"
   become: true
