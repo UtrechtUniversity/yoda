@@ -5,3 +5,8 @@
   ansible.builtin.service:
     name: redis
     state: started
+
+
+- name: Systemd daemon reload
+  ansible.builtin.systemd:
+    daemon_reload: true
