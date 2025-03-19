@@ -182,6 +182,7 @@
     src: flask.cfg.j2
     dest: /var/www/extuser/flask.cfg
     owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
     mode: '0644'
   when: not ansible_check_mode
   notify: Restart Apache webserver
