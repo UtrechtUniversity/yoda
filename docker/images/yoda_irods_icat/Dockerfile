@@ -118,7 +118,7 @@ RUN git clone -b ${YODA_RULESET_BRANCH} ${YODA_RULESET_REPO} /etc/irods/yoda-rul
 # hadolint ignore=DL3004
 RUN sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages pip==25.0 && \
     sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages -r /etc/irods/yoda-ruleset/requirements.txt && \
-    sudo -u irods python3 -m pip install --user --break-system-packages python-irodsclient==2.2.0 && \
+    sudo -u irods python3 -m pip install --user --break-system-packages python-irodsclient==3.0.0 && \
     sudo -u irods python3 -m pip install --user --break-system-packages psutil==6.1.0
 COPY core.py.template /etc/irods/core.py
 COPY core.re.template /etc/irods/core.re
