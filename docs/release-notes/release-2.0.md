@@ -8,7 +8,7 @@ Released: TBA
 ## What's new
 ### Major changes
 - Upgrade iRODS to v4.3.4
-- Upgrade python-irodsclient to v2.2.0
+- Upgrade python-irodsclient to v3.1.0
 
 ### Known issues
 - Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
