@@ -224,17 +224,50 @@
   
 </h2>
     
-<h3 id="major-changes">
+<h3 id="new-features">
   
   
-    <a href="#major-changes" class="anchor-heading" aria-labelledby="major-changes"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Major changes
+    <a href="#new-features" class="anchor-heading" aria-labelledby="new-features"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> New Features
   
   
 </h3>
     
 <ul>
-  <li>Upgrade iRODS to v4.3.4</li>
-  <li>Upgrade python-irodsclient to v3.1.0</li>
+  <li>Added new epos-msl-0 schema</li>
+  <li>Added new keyword selector to metadata forms with support for controlled vocabularies</li>
+  <li>Added <a href="/yoda/administration/supported-distributions.html">support</a> for Ubuntu 24.04 and AlmaLinux 9</li>
+  <li>Added support for modifying resources through Ansible</li>
+  <li>Added new admin privilege group (priv-admin)</li>
+  <li>Added support for configuring NFS shares as resources</li>
+  <li>Added support for jumping to the file in file browsers when searching</li>
+  <li>Added SURF portal theme</li>
+  <li>Experimental portal view and API caching</li>
+</ul>
+<h3 id="improvements">
+  
+  
+    <a href="#improvements" class="anchor-heading" aria-labelledby="improvements"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Improvements
+  
+  
+</h3>
+    
+<ul>
+  <li>Upgraded iRODS to v4.3.4</li>
+  <li>Upgrade ruleset to Python 3.12</li>
+  <li>Upgraded python-irodsclient to v3.1.0</li>
+  <li>Upgraded Flask and dependencies to v3.1.0</li>
+  <li>Upgraded GoCommands to v0.10.19</li>
+</ul>
+<h3 id="deprecations">
+  
+  
+    <a href="#deprecations" class="anchor-heading" aria-labelledby="deprecations"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Deprecations
+  
+  
+</h3>
+    
+<ul>
+  <li>Deprecated intake module</li>
 </ul>
 <h3 id="known-issues">
   
@@ -247,6 +280,7 @@
 <ul>
   <li>Collections with single apex “’” in the name do not work <a href="https://github.com/irods/irods/issues/5727">irods/irods#5727</a></li>
   <li>Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python <a href="https://github.com/irods/irods_rule_engine_plugin_python/issues/54">irods_rule_engine_plugin_python#54</a></li>
+  <li>Workaround kvpair issue <a href="https://github.com/irods/irods/issues/8265">irods/irods#8265</a></li>
 </ul>
 <h2 id="upgrading-from-previous-release">
   
