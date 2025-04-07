@@ -81,20 +81,25 @@ python3 troubleshoot-published-data.py -l
 
 ## Example output
 
-When checking a single data package, the output containing successful and failed checks displayed in the terminal is as follows:
+When checking a single data package, the output containing successful and failed checks displayed in the terminal is as follows. 
+
+- In human-readable mode:
 
 ```
-Troubleshooting data package: /tempZone/home/vault-core-0/research-core-0[1722266819]
-compare_local_remote_landingpage: File contents at irods path </tempZone/yoda/publication/JCY2C2.html> and remote landing page <https://public.yoda.test/allinone/UU01/JCY2C2.html> do not match.
-Results for: /tempZone/home/vault-core-0/research-core-0[1722266819]
+Troubleshooting Results for: /tempZone/home/vault-default-3/research-default-3[1744029023]
 Package FAILED one or more tests:
-Schema matches: True
-All expected AVUs exist: True
-No unexpected AVUs: True
-Version DOI matches: False
-Base DOI matches: False
-Landing page matches: False
-Combined JSON matches: True
+Schema Check: Pass
+Missing AVUs Check: Pass
+Unexpected AVUs Check: Pass
+Version DOI Check: Fail
+Landing Page Check: Pass
+Combi JSON Check: Pass
 ```
 
-For checks involving multiple data packages, the output for each package is aggregated, displaying the results consecutively in the terminal. This allows for a comprehensive view of the results across different packages.
+- In csv mode:
+
+```
+/tempZone/home/vault-default-3/research-default-3[1744029023],Pass,Pass,Pass,Fail,N/A,Pass,Pass
+```
+
+Note: "N/A" indicates checks skipped due to irrelevance (e.g., base DOI validation for packages without prior versions). And for checks involving multiple data packages, the output for each package is aggregated, displaying the results consecutively in the terminal. This allows for a comprehensive view of the results across different packages.
