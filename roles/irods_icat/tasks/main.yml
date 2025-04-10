@@ -173,14 +173,16 @@
     value: '{{ irods_icat_fqdn }}'
 
 
-- name: Set delayed rule sleep time to 10 seconds
+- name: Set delayed rule sleep time
   become_user: '{{ irods_service_account }}'
   become: true
   # noqa fqcn[action]
-  irods_advanced:
+  irods_config:
     path: '/etc/irods/server_config.json'
-    key: 'rule_engine_server_sleep_time_in_seconds'
+    key: 'advanced_settings/rule_engine_server_sleep_time_in_seconds'
+    key_separator: '/'
     value: '10'
+    convert_int: 'yes'
 
 
 - name: Ensure iRODS service account is owner of iRODS directories
@@ -374,9 +376,11 @@
   become_user: '{{ irods_service_account }}'
   become: true
   # noqa fqcn[action]
-  irods_postgres:
+  irods_config:
     path: '/etc/irods/server_config.json'
-    key: '{{ item.key }}'
+    key: 'plugin_configuration/database/postgres/{{ item.key }}'
+    key_separator: '/'
+    convert_int: '{{ "yes" if item.key == "db_port" else "no" }}'
     value: '{{ item.value }}'
   with_items:
     - key: 'db_host'
