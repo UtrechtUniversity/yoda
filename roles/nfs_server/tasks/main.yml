@@ -49,7 +49,7 @@
   when: nfs_exports is iterable
 
 
-- name: Ensure NFS deamon is running
+- name: Ensure NFS daemon is running
   ansible.builtin.service:
     name: "{{ nfs_server_daemon }}"
     state: started
