@@ -99,6 +99,7 @@ Combi JSON Check: Pass
 - In csv mode:
 
 ```
+Package,Schema Check,Missing AVUs Check,Unexpected AVUs Check,Version DOI Check,Base DOI Check,Landing Page Check,Combi JSON Check
 /tempZone/home/vault-default-3/research-default-3[1744029023],Pass,Pass,Pass,Fail,N/A,Pass,Pass
 ```
 
