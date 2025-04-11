@@ -9,6 +9,8 @@
 # Feel free to improve!
 #
 
+# shellcheck disable=SC2034,SC2166,SC2207
+
 # This command-line completion script is bash-specific. Don't run
 # it on accounts that use other shells, such as dash.
 if [ -z "$BASH_VERSION" ]
@@ -36,9 +38,9 @@ _ils() {
     dirname=$cur
     basename=""
   else
-    dirname="$(dirname ${cur})/"
+    dirname="$(dirname "${cur}")/"
     if [[ $dirname == "." ]] ; then dirname="" ; fi
-    basename=$(basename ${cur})
+    basename=$(basename "${cur}")
   fi
 
   # Turn relative paths into absolute paths, because ils does not respect the
@@ -48,7 +50,7 @@ _ils() {
   else
       ilspath="$(ipwd)/${dirname}"
   fi
-  list=`ils "$ilspath" | sed '/^[^ ]/d; s/^\s*//; s@^C.*/\(.*\)@\1/@' 2>/dev/null`
+  list=$(ils "$ilspath" | sed '/^[^ ]/d; s/^\s*//; s@^C.*/\(.*\)@\1/@' 2>/dev/null)
 
   # Count the number of arguments that are not options
   # (that do not begin by a dash)
@@ -56,26 +58,26 @@ _ils() {
   # to be used in place of $COMP_CWORD into the following tests
 
   # Case of "iput", first arg is a local file
-  if [ $1 = "iput" -a $COMP_CWORD -eq 1 ]; then
-    COMPREPLY=( $(compgen -o default ${cur}) )
+  if [ "$1" = "iput" -a "$COMP_CWORD" -eq 1 ]; then
+    COMPREPLY=( $(compgen -o default "${cur}") )
 
   # Case of "iget", second arg is a local file
-  elif [ $1 = "iget" -a $COMP_CWORD -eq 2 ]; then
-    COMPREPLY=( $(compgen -o default ${cur}) )
+  elif [ "$1" = "iget" -a "$COMP_CWORD" -eq 2 ]; then
+    COMPREPLY=( $(compgen -o default "${cur}") )
 
   # Case of "irsync", manage i: prefix
-  elif [ $1 = "irsync" ]; then
+  elif [ "$1" = "irsync" ]; then
     if [[ $cur == i:* ]]; then
       base=${cur:2}
-      COMPREPLY=( $(compgen -W "$list \ " ${base} ) )
+      COMPREPLY=( $(compgen -W "$list \ " "${base}" ) )
     else
-      COMPREPLY=( $(compgen -P i: -W "$list \ " ${cur} ) )
-      COMPREPLY+=( $(compgen -o default ${cur}) )
+      COMPREPLY=( $(compgen -P i: -W "$list \ " "${cur}" ) )
+      COMPREPLY+=( $(compgen -o default "${cur}") )
     fi
 
   # General case
   else
-    COMPREPLY=( $(compgen -P "$dirname" -W "$list" ${basename}) )
+    COMPREPLY=( $(compgen -P "$dirname" -W "$list" "${basename}") )
   fi
 }
 
@@ -85,7 +87,7 @@ _complete_user() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=`iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE != 'rodsgroup'"`
+  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE != 'rodsgroup'")
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -96,7 +98,7 @@ _complete_group() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=`iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE = 'rodsgroup'"`
+  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE = 'rodsgroup'")
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -107,7 +109,7 @@ _complete_resource() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=`iquest --no-page "%s" "SELECT RESC_NAME"`
+  tmp=$(iquest --no-page "%s" "SELECT RESC_NAME")
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -118,7 +120,7 @@ _complete_zone() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=`iquest --no-page '%s' 'SELECT ZONE_NAME'`
+  tmp=$(iquest --no-page '%s' 'SELECT ZONE_NAME')
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -169,4 +171,4 @@ _iadmin() {
 complete -o nospace -F _iadmin iadmin
 
 # Complete the specified commands
-complete -o nospace -F _ils $command_list
+complete -o nospace -F _ils "$command_list"

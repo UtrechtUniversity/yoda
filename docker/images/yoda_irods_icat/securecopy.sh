@@ -8,10 +8,9 @@ set -e
 set -x
 
 PHYPATH=$1
-HOST=$2
 USER=$3
 DESTINATION=$4
-DESTDIR=$(dirname $DESTINATION)
+DESTDIR=$(dirname "$DESTINATION")
 
 mkdir -p "/public/$DESTDIR"
 cp "$PHYPATH" "/public/$DESTINATION"
