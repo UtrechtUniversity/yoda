@@ -14,7 +14,7 @@ irods_icat_port: 1247
 irods_service_account: irods
 irods_vault_directory: /var/lib/irods/Vault
 irods_control_plane_port: 1248
-irods_schema_uri: https://schemas.irods.org/configuration
+irods_schema_uri: /var/lib/irods/configuration_schemas
 irods_ssl_verify_server: cert
 
 irods_resource_caching_settings:

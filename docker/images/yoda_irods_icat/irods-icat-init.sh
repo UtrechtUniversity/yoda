@@ -89,7 +89,7 @@ cat > /var/lib/irods/VERSION.json << VERSION
 {
     "catalog_schema_version": 8,
     "commit_id": "2ed549ca7fe455aaa7755becc6c14b233dcbc0b4",
-    "configuration_schema_version": 3,
+    "configuration_schema_version": 4, #TODO: 4 or v4?
     "installation_time": "$INSTALL_TIMESTAMP",
     "irods_version": "4.3.4"
 }
