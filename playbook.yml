@@ -123,9 +123,9 @@
     - role: minio
       when: enable_s3_resource and yoda_environment == "development"
     - role: nfs_server
-      when: enable_nfs_resource and yoda_environment == "development"
+      when: enable_nfs_resource_playbook and yoda_environment == "development"
     - role: nfs_client
-      when: enable_nfs_resource
+      when: enable_nfs_resource_playbook
     - irods_microservices
     - irods_completion
     - irods_rodsadmin
@@ -150,6 +150,8 @@
       when: irods_enable_gocommands
   tags:
     - icat
+  vars:
+    enable_nfs_resource_playbook: "{{ enable_nfs_resource | default(false) }}"
 
 
 - name: Provision Yoda-specific database indexes
@@ -169,7 +171,7 @@
     - role: irods_resource_plugin_s3
       when: enable_s3_resource
     - role: nfs_client
-      when: enable_nfs_resource
+      when: enable_nfs_resource_playbook
     - irods_runtime
     - irods_microservices
     - irods_completion
@@ -180,6 +182,8 @@
       when: enable_irods_consistency_check
   tags:
     - resource
+  vars:
+    enable_nfs_resource_playbook: "{{ enable_nfs_resource | default(false) }}"
 
 
 - name: Provision iRODS resources
