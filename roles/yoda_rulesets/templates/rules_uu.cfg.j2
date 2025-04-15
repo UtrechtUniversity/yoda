@@ -114,6 +114,6 @@ remote_anonymous_access        = '{{ irods_anonymous_account_permit_addresses | 
 user_max_connections_enabled   = '{{ ["false", "true"][irods_user_max_connections_enabled|int] }}'
 user_max_connections_number    = '{{ irods_user_max_connections_number }}'
 
-
+measure_coverage               = '{{ ["false", "true"][yoda_rulesets_measure_coverage|int] }}'
 text_file_extensions           = '{{ text_file_extensions | join (" ") }}'
 notifications_enabled          = '{{ ["false", "true"][send_notifications|int] }}'
