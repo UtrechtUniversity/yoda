@@ -133,7 +133,7 @@ RUN sudo -u irods python -m pip --trusted-host pypi.org --trusted-host pypi.pyth
     sudo -u irods /usr/local/bin/pip3 install --user psutil==5.9.5
 COPY core.py.template /etc/irods/core.py
 COPY core.re.template /etc/irods/core.re
-RUN for script in scheduled-copytovault.sh admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh \
+RUN for script in admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh \
                   admin-vaultingest.sh enable-indexing.sh disable-indexing.sh  \
                   admin-datarequestactions.sh admin-datarequest-temp-write-permission.sh ; \
     do install -m 0755 /etc/irods/yoda-ruleset/tools/${script} /var/lib/irods/msiExecCmd_bin/${script} ; \
