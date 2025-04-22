@@ -47,6 +47,7 @@ RUN apt-get install -y libapache2-mod-wsgi-py3
 
 # Yoda EUS (and portal for theming data)
 RUN useradd yodadeployment && \
+    chsh --shell /bin/bash yodadeployment && \
     mkdir /home/yodadeployment && \
     chown yodadeployment:yodadeployment /home/yodadeployment && \
     mkdir /var/www/yoda /var/www/extuser && \

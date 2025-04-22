@@ -173,6 +173,9 @@ RUN cp -Rdp /etc/irods/yoda-ruleset /etc/irods/yoda-ruleset-copy
 COPY securecopy.sh /var/lib/irods/securecopy.sh
 RUN install -m 0755 -o irods -g irods /var/lib/irods/securecopy.sh /var/lib/irods/msiExecCmd_bin/securecopy.sh
 
+# Set login shell for irods account
+RUN chsh --shell /bin/bash irods
+
 # Install init script
 # hadolint ignore=DL3033
 COPY irods-icat-init.sh /var/lib/irods/scripts/irods-icat-init.sh

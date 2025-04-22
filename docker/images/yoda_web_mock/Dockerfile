@@ -36,6 +36,7 @@ RUN apt-get install -y libapache2-mod-wsgi-py3
 
 # Install Yoda web mock
 RUN useradd yodadeployment && \
+    chsh --shell /bin/bash yodadeployment && \
     mkdir /home/yodadeployment && \
     chown yodadeployment:yodadeployment /home/yodadeployment && \
     mkdir -p /var/www/webmock/log && \

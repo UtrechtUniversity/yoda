@@ -36,7 +36,8 @@ RUN apt-get install -y libapache2-mod-wsgi-py3
 
 # Install account for MOAI and landing pages
 # hadolint ignore=DL3059
-RUN useradd yodadeployment -d /var/www/moai
+RUN useradd yodadeployment -d /var/www/moai && \
+    chsh --shell /bin/bash yodadeployment
 
 # Install MOAI dependencies
 # hadolint ignore=DL3033
