@@ -1,6 +1,24 @@
 ---
 # copyright Utrecht University
 
+# In case NFS resources are enabled, creating mount points is handled
+# by the nfs_client role instead.
+- name: Create vault directories on development environment
+  with_items: "{{ irods_resources }}"
+  ansible.builtin.file:
+    path: "{{ item.vault_path }}"
+    state: directory
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    mode: "0755"
+  when: |
+    yoda_environment == "development"
+    and not enable_nfs_resource
+    and 'vault_path' in item
+    and 'host' in item
+    and item.host == ansible_fqdn
+
+
 - name: Ensure all resources exist
   become_user: '{{ irods_service_account }}'
   become: true

@@ -1,2 +1,9 @@
+---
+# copyright Utrecht University
+
 irods_service_account: irods
 irods_default_resc: irodsResc              # iRODS default resource name
+
+yoda_environment: development
+
+enable_nfs_resource: false
