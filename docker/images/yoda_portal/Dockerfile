@@ -16,7 +16,7 @@ RUN apt-get update
 
 # Install common tools
 # hadolint ignore=DL3033
-RUN apt-get install -y wget git vim
+RUN apt-get install -y wget git vim sudo
 
 # Install Python 3
 # hadolint ignore=DL3033
