@@ -62,7 +62,7 @@
   when: not ansible_check_mode and flask_secret_key is not defined
 
 
-# This is needed for for EUS to be able to load the bcrypt shared libraries
+# This is needed for EUS to be able to load the bcrypt shared libraries
 - name: Ensure httpd_unified seboolean is enabled
   ansible.posix.seboolean:
     name: httpd_unified
