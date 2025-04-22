@@ -1,13 +1,22 @@
 name: Lint Dockerfiles
 
 on:
-  push:
+  pull_request:
     paths:
     - 'docker/images/davrods/Dockerfile'
-    - 'docker/images/mailpit/Dockerfile'
     - 'docker/images/yoda_eus/Dockerfile'
     - 'docker/images/yoda_irods_icat/Dockerfile'
     - 'docker/images/yoda_portal/Dockerfile'
+    - 'docker/images/yoda_public/Dockerfile'
+    - 'docker/images/yoda_web_mock/Dockerfile'
+  push:
+    paths:
+    - 'docker/images/davrods/Dockerfile'
+    - 'docker/images/yoda_eus/Dockerfile'
+    - 'docker/images/yoda_irods_icat/Dockerfile'
+    - 'docker/images/yoda_portal/Dockerfile'
+    - 'docker/images/yoda_public/Dockerfile'
+    - 'docker/images/yoda_web_mock/Dockerfile'
 
 jobs:
   build:
