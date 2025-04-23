@@ -112,7 +112,7 @@
   ignore_errors: true
   register: irods_config
 
-
+  # TODO: Note this task is only executed if the config file does not exist.
 - name: Copy setup JSON for setup_irods.py
   ansible.builtin.template:
     src: setup_irods_provider.json.j2
@@ -152,6 +152,15 @@
     path: '/etc/irods/server_config.json'
     key: 'icat_host'
     value: '{{ irods_icat_fqdn }}'
+
+
+- name: Ensure schema_validation_base_uri is defined
+  become_user: '{{ irods_service_account }}'
+  become: true
+  irods_config:
+    path: '/etc/irods/server_config.json'
+    key: 'schema_validation_base_uri'
+    value: '{{ irods_schema_uri }}'
 
 
 - name: Get iRODS home directory
