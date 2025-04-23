@@ -37,3 +37,20 @@
     passno: 0
   loop: "{{ nfs_mounts if nfs_mounts is iterable else [] }}"
   when: item.host == ansible_fqdn
+
+
+- name: Ensure systemd unit file to mount NFS volumes is present
+  ansible.builtin.template:
+    src: mount-nfs-volumes.service.j2
+    dest: /etc/systemd/system/mount-nfs-volumes.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Systemd daemon reload
+
+
+- name: Enable or disable service to mount NFS volumes
+  ansible.builtin.service:
+    name: mount-nfs-volumes
+    state: '{{ "started" if nfs_client_mount_volumes_on_boot else "stopped" }}'
+    enabled: '{{ nfs_client_mount_volumes_on_boot }}'
