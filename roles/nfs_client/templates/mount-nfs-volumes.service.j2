@@ -1,0 +1,18 @@
+[Unit]
+Description=Mount all NFS volumes in /etc/fstab
+DefaultDependencies=no
+After=network.target
+Before=irods.service
+Wants=network-online.target
+After=network-online.target
+{% if yoda_environment == "development" %}
+After=nfs-server.service
+{% endif %}
+
+[Service]
+Type=oneshot
+ExecStart=/bin/mount -a -t nfs,nfs4
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

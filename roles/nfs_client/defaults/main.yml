@@ -1,6 +1,8 @@
 ---
 # copyright Utrecht University
 
+nfs_client_mount_volumes_on_boot: true
+
 nfs_mounts:
 
 # Example configuration for development environment.
