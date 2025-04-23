@@ -19,7 +19,7 @@ RUN apt-get update
 
 # Install common tools
 # hadolint ignore=DL3033
-RUN apt-get install -y wget vim
+RUN apt-get install -y wget vim sudo
 
 # Install Python 3
 # hadolint ignore=DL3033
@@ -42,6 +42,7 @@ RUN ln -s /etc/apache2/mods-available/davrods.load /etc/apache2/mods-enabled/dav
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3033
 RUN useradd -d /var/lib/irods irods && \
+    chsh --shell /bin/bash irods && \
     wget -qO - "$APT_IRODS_REPO_SIGNING_KEY_LOC" | apt-key add - && \
     echo "$APT_REPO_CONFIG" | tee /etc/apt/sources.list.d/irods.list && \
     apt-get update && \

@@ -16,7 +16,7 @@ RUN apt-get update
 
 # Install common tools (PostgreSQL is needed for psql commands in init script)
 # hadolint ignore=DL3033
-RUN apt-get install -y wget git netcat-traditional gnupg vim
+RUN apt-get install -y wget git netcat-traditional gnupg vim sudo
 
 # Install Python 3
 # hadolint ignore=DL3033
@@ -36,6 +36,7 @@ RUN apt-get install -y libapache2-mod-wsgi-py3
 
 # Install Yoda web mock
 RUN useradd yodadeployment && \
+    chsh --shell /bin/bash yodadeployment && \
     mkdir /home/yodadeployment && \
     chown yodadeployment:yodadeployment /home/yodadeployment && \
     mkdir -p /var/www/webmock/log && \

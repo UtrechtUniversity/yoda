@@ -20,7 +20,7 @@ RUN apt-get update
 
 # Install common tools (PostgreSQL is needed for psql commands in init script)
 # hadolint ignore=DL3033
-RUN apt-get install -y wget git netcat-traditional gnupg vim
+RUN apt-get install -y wget git netcat-traditional gnupg vim sudo
 
 # Install PostgreSQL 15 for checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033
@@ -47,6 +47,7 @@ RUN apt-get install -y libapache2-mod-wsgi-py3
 
 # Yoda EUS (and portal for theming data)
 RUN useradd yodadeployment && \
+    chsh --shell /bin/bash yodadeployment && \
     mkdir /home/yodadeployment && \
     chown yodadeployment:yodadeployment /home/yodadeployment && \
     mkdir /var/www/yoda /var/www/extuser && \

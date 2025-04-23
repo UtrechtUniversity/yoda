@@ -139,7 +139,7 @@
   when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
-- name: Ensure wsgi files for for Yoda portal are accessible
+- name: Ensure Yoda portal wsgi files are accessible
   ansible.builtin.file:
     path: "{{ item }}"
     state: file

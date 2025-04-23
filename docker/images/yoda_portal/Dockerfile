@@ -16,7 +16,7 @@ RUN apt-get update
 
 # Install common tools
 # hadolint ignore=DL3033
-RUN apt-get install -y wget git vim
+RUN apt-get install -y wget git vim sudo
 
 # Install Python 3
 # hadolint ignore=DL3033
@@ -36,6 +36,7 @@ RUN apt-get install -y libapache2-mod-wsgi-py3
 
 # Yoda Portal
 RUN useradd yodadeployment && \
+    chsh --shell /bin/bash yodadeployment && \
     mkdir /home/yodadeployment && \
     chown yodadeployment:yodadeployment /home/yodadeployment && \
     mkdir /var/www/yoda && \
