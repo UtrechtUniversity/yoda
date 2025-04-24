@@ -102,6 +102,7 @@
         ""
     ],
     "schema_name": "server_config",
+    "client_api_allowlist_policy": "enforce",
     "schema_validation_base_uri": "off",
     "schema_version": "v4",
     "server_control_plane_encryption_algorithm": "AES-256-CBC",

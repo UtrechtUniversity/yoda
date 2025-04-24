@@ -18,5 +18,6 @@
     "irods_ssl_dh_params_file": "/etc/irods/dhparams.pem",
     "irods_ssl_verify_server": "none",
     "irods_user_name": "rods",
-    "irods_zone_name": "tempZone"
+    "irods_zone_name": "tempZone",
+    "schema_version": "v4"
 }
