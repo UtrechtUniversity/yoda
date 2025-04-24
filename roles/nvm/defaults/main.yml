@@ -3,5 +3,5 @@
 
 yoda_deployment_user: yodadeployment
 
-nvm_version: v0.40.2
+nvm_version: v0.40.3
 npm_version: v18
