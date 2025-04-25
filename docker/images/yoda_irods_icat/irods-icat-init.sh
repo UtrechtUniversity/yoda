@@ -46,7 +46,7 @@ fi
 
 # Download test vault and iCAT data
 before_update "Downloading data"
-mkdir /download
+mkdir /download -p # add -p arg to skip error if the directory already exists
 wget -q "https://yoda.uu.nl/yoda-docker/${DATA_VERSION}.vault.tar.gz" -O "/download/${DATA_VERSION}.vault.tar.gz"
 progress_update "Downloaded vault test data."
 wget -q "https://yoda.uu.nl/yoda-docker/${DATA_VERSION}.icat.sql.gz" -O "/download/${DATA_VERSION}.icat.sql.gz"
@@ -69,7 +69,7 @@ install -m 0644 -o irods -g irods docker.key /etc/irods/localhost.key
 install -m 0644 -o irods -g irods dhparam.pem /etc/irods/dhparams.pem
 progress_update "Certificate data extracted"
 
-# Wait for database container to become available
+# Wait for database container to become available #TODO: Issue for indefinite wait
 before_update "Waiting for PostgreSQL container to come up ..."
 export PGPASSWORD=yodadev
 while ! psql -U irodsdb -d ICAT -h db.yoda -p 5432 -c 'SELECT 1' >& /dev/null ; do
@@ -84,17 +84,20 @@ export PGPASSWORD=yodadev
 gunzip -c "/download/${DATA_VERSION}.icat.sql.gz" | psql -U irodsdb -d ICAT -h db.yoda -p 5432
 progress_update "iCAT database data loaded"
 
-INSTALL_TIMESTAMP=$(date +'%Y-%m-%dT%H:%M:%S.000000')
-cat > /var/lib/irods/VERSION.json << VERSION
+INSTALL_TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%S.000000Z')  
+cat > /var/lib/irods/version.json << VERSION
 {
-    "catalog_schema_version": 8,
+    "catalog_schema_version": 11,
     "commit_id": "2ed549ca7fe455aaa7755becc6c14b233dcbc0b4",
-    "configuration_schema_version": 4, #TODO: 4 or v4?
+    "configuration_schema_version": 4,  
     "installation_time": "$INSTALL_TIMESTAMP",
-    "irods_version": "4.3.4"
+    "irods_version": "4.3.4",
+    "schema_name": "version",
+    "schema_version": "v4"
 }
 VERSION
-chown irods:irods /var/lib/irods/VERSION.json
+chown irods:irods /var/lib/irods/version.json
+cp /var/lib/irods/version.json /var/lib/irods/VERSION.json
 
 CURRENT_UID="$(id -u irods)"
 if [[ -f "/etc/irods/yoda-ruleset/.docker.gitkeep" ]]

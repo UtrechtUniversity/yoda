@@ -103,7 +103,7 @@
     ],
     "schema_name": "server_config",
     "client_api_allowlist_policy": "enforce",
-    "schema_validation_base_uri": "off",
+    "schema_validation_base_uri": "file:///var/lib/irods/configuration_schemas/",
     "schema_version": "v4",
     "server_control_plane_encryption_algorithm": "AES-256-CBC",
     "server_control_plane_encryption_num_hash_rounds": 16,
@@ -117,5 +117,12 @@
     "zone_key": "bf68b8f4ada270902708a513fd339f0d",
     "zone_name": "tempZone",
     "zone_port": 1247,
-    "zone_user": "rods"
+    "zone_user": "rods",
+    "controlled_user_connection_list": {
+      "control_type": "denylist",
+      "users": []
+    },
+    "host_access_control": {
+        "access_entries": []
+      }
 }

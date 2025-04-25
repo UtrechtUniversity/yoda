@@ -24,5 +24,8 @@
     "irods_ssl_certificate_chain_file": "/etc/irods/localhost_and_chain.crt",
     "irods_ssl_certificate_key_file": "/etc/irods/localhost.key",
     "irods_ssl_dh_params_file": "/etc/irods/dhparams.pem",
-    "irods_ssl_verify_server": "none"
+    "irods_ssl_verify_server": "none",
+    "irods_connection_pool_refresh_time_in_seconds": 300,
+    "schema_name": "service_account_environment",
+    "schema_version": "v4"
 }
