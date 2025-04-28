@@ -20,6 +20,9 @@
   "host_access_control_config": {
     "access_entries": []
   },
+  "host_access_control": {
+    "access_entries": []
+  },
   "hosts_config": {
     "host_entries": []
   },
@@ -45,6 +48,27 @@
     "catalog_provider_hosts": [
       "{{ irods_icat_fqdn }}"
     ],
+    "client_api_allowlist_policy": "enforce",
+    "controlled_user_connection_list": {
+      "control_type": "denylist",
+      "users": []
+    },
+    "log_level": {
+      "agent": "info",
+      "agent_factory": "info",
+      "api": "info",
+      "authentication": "info",
+      "database": "info",
+      "delay_server": "info",
+      "genquery2": "info",
+      "legacy": "info",
+      "microservice": "info",
+      "network": "info",
+      "resource": "info",
+      "rule_engine": "info",
+      "server": "info",
+      "sql": "info"
+    },
     "catalog_service_role": "consumer",
     "default_dir_mode": "0750",
     "default_file_mode": "0600",
