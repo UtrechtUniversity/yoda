@@ -7,7 +7,6 @@ on:
       - 'development'
       - 'release-1.9'
       - 'release-1.10'
-      - 'yda-6312-bug-fix-for-adding-local-json-validation'
     paths:
       - '.github/workflows/build-push-image-provider.yml'
       - 'docker/images/yoda_irods_icat/**'
