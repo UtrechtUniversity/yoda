@@ -1,14 +1,14 @@
 {
   "admin_password": "{{ irods_password }}",
   "default_resource_name": "{{ irods_default_resc }}",
-  "host_access_control_config": {
+  "host_access_control": {
     "access_entries": []
   },
   "host_system_information": {
     "service_account_group_name": "{{ irods_service_account }}",
     "service_account_user_name": "{{ irods_service_account }}"
   },
-  "hosts_config": {
+  "host_resolution.json": {
     "host_entries": []
   },
   "server_config": {
@@ -112,7 +112,6 @@
     "server_control_plane_timeout_milliseconds": 10000,
     "server_port_range_end": {{ irods_port_range_end }},
     "server_port_range_start": {{ irods_port_range_begin }},
-    "xmsg_port": 1279,
     "zone_auth_scheme": "native",
     "zone_key": "{{ irods_zone_key }}",
     "zone_name": "{{ irods_zone }}",
