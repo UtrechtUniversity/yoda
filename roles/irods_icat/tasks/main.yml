@@ -112,7 +112,7 @@
   ignore_errors: true
   register: irods_config
 
-  # TODO: Note this task is only executed if the config file does not exist.
+
 - name: Copy setup JSON for setup_irods.py
   ansible.builtin.template:
     src: setup_irods_provider.json.j2

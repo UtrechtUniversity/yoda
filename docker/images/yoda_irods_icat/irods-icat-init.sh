@@ -69,7 +69,7 @@ install -m 0644 -o irods -g irods docker.key /etc/irods/localhost.key
 install -m 0644 -o irods -g irods dhparam.pem /etc/irods/dhparams.pem
 progress_update "Certificate data extracted"
 
-# Wait for database container to become available #TODO: Issue for indefinite wait
+# Wait for database container to become available
 before_update "Waiting for PostgreSQL container to come up ..."
 export PGPASSWORD=yodadev
 while ! psql -U irodsdb -d ICAT -h db.yoda -p 5432 -c 'SELECT 1' >& /dev/null ; do
