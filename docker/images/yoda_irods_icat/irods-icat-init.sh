@@ -97,7 +97,6 @@ cat > /var/lib/irods/version.json << VERSION
 }
 VERSION
 chown irods:irods /var/lib/irods/version.json
-cp /var/lib/irods/version.json /var/lib/irods/VERSION.json
 
 CURRENT_UID="$(id -u irods)"
 if [[ -f "/etc/irods/yoda-ruleset/.docker.gitkeep" ]]
