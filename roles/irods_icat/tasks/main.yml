@@ -188,7 +188,7 @@
   # noqa fqcn[action]
   irods_config:
     path: '/etc/irods/server_config.json'
-    key: 'advanced_settings/rule_engine_server_sleep_time_in_seconds'
+    key: 'advanced_settings/delay_server_sleep_time_in_seconds'
     key_separator: '/'
     value: '10'
     convert_int: 'yes'
