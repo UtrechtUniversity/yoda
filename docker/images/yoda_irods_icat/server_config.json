@@ -83,8 +83,8 @@
                         "core"
                     ],
                     "re_rulebase_set": [
-                        "core",
-                        "rules-uu"
+                        "rules-uu",
+                        "core"
                     ],
                     "regexes_for_supported_peps": [
                         "ac[^ ]*",
