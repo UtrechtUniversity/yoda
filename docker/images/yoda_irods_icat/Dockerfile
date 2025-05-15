@@ -144,8 +144,6 @@ RUN install -o irods -g irods -m 0644 /tmp/service_account.config /etc/irods/ser
 # Install configuration
 COPY odbc.ini /var/lib/irods/.odbc.ini
 COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
-COPY hosts_config.json /etc/irods/hosts_config.json
-COPY host_access_control_config.json /etc/irods/host_access_control_config.json
 COPY rules_uu.cfg /etc/irods/yoda-ruleset
 
 # Fix up file ownership iRODS files
