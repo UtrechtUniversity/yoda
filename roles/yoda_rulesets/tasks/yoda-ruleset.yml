@@ -19,20 +19,20 @@
 
 
 - name: Configure group-manager groups and update registry
+  when: priv_groups.stdout.find('priv-admin') == -1
   block:
-    - name: Create privilege groups
+    - name: Create priv-admin groups
       become_user: "{{ irods_service_account }}"
       become: true
       ansible.builtin.command:
         cmd: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
-      
+      changed_when: true 
+
     - name: Refresh priv_groups list
       become_user: "{{ irods_service_account }}"
       become: true
       ansible.builtin.command: 'iadmin lg'
       register: priv_groups
-      changed_when: false
-  when: priv_groups.stdout.find('priv-admin') == -1
 
 
 - name: Find out which system collections are present
