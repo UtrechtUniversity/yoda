@@ -18,11 +18,20 @@
   check_mode: false
 
 
-- name: Configure group-manager privilege groups in iCAT database
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
+- name: Configure group-manager groups and update registry
+  block:
+    - name: Create privilege groups
+      become_user: "{{ irods_service_account }}"
+      become: true
+      ansible.builtin.command:
+        cmd: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
+      
+    - name: Refresh priv_groups list
+      become_user: "{{ irods_service_account }}"
+      become: true
+      ansible.builtin.command: 'iadmin lg'
+      register: priv_groups
+      changed_when: false
   when: priv_groups.stdout.find('priv-admin') == -1
 
 
