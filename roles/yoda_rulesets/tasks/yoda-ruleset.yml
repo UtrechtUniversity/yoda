@@ -18,22 +18,13 @@
   check_mode: false
 
 
-- name: Configure group-manager privilege groups and update registry
+- name: Configure group-manager privilege groups in iCAT database
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
   when: priv_groups.stdout.find('priv-admin') == -1
-  block:
-    - name: Create groups
-      become_user: "{{ irods_service_account }}"
-      become: true
-      ansible.builtin.command:
-        cmd: '/etc/irods/yoda-ruleset/tools/group-manager-setup.sh'
-      changed_when: true
 
-    - name: Refresh priv_groups list
-      become_user: "{{ irods_service_account }}"
-      become: true
-      ansible.builtin.command: 'iadmin lg'
-      register: priv_groups
-      changed_when: false
 
 - name: Find out which system collections are present
   become_user: "{{ irods_service_account }}"
@@ -352,7 +343,7 @@
   # noqa no-changed-when
   ansible.builtin.command:
     ichmod -rM own priv-admin /{{ irods_zone }}/yoda/file_formats
-  when: (not ansible_check_mode) and priv_groups.stdout.find('priv-admin') != -1 and file_formats_access.rc != 0
+  when: not ansible_check_mode and file_formats_access.rc != 0
 
 
 - name: Ensure that Yoda publication directory is present
