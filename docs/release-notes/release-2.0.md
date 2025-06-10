@@ -22,7 +22,7 @@ Released: TBA
 ### Other changes
 - iRODS: update to v4.3.4
 - Python: update rulesets to 3.12
-- Python-irodsclient: update to v3.1.0
+- Python-irodsclient: update to v3.1.1
 - Flask and dependencies: update to v3.1.0
 - Mailpit: update to v1.23.2
 - GoCommands: update to v0.10.19
