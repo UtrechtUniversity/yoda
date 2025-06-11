@@ -327,18 +327,20 @@
 
 <p>A <em>reader</em> cannot be added to the main group, because that will grant them ‘own’ permissions. Instead a shadow group is created prefixed with ‘read-‘. This group gets read permissions on the ‘research-‘ or ‘intake-‘ group of the same basename. Inheritance is enabled.</p>
 
-<p>A group <em>manager</em> has all the same characteristics as a normal user but in addition metadata is set on the group to list managers. The attribute name is ‘manager’ and the attribute value is the username (including zone). There are three special groups under the System category to grant managers extra privileges. These are:
-	- <em>priv-admin</em> –
-    Membership of this group is checked to determine if a user can perform administritative tasks using the Administration module. The Administration module is introduced as a new feature in Yoda version 1.10.</p>
+<p>A group <em>manager</em> has all the same characteristics as a normal user but in addition metadata is set on the group to list managers. The attribute name is ‘manager’ and the attribute value is the username (including zone). There are three special groups under the System category to grant managers extra privileges. These are:</p>
 
 <ul>
   <li>
+    <p><em>priv-admin</em> –
+ Membership of this group is checked to determine if a user can perform administrative tasks using the Administration module. The Administration module is introduced as a new feature in Yoda version 1.10.</p>
+  </li>
+  <li>
     <p><em>priv-group-add</em> –
-Membership of this group is checked to determine if a user can create groups. The user also needs to be manager in one of the groups belonging to the same category.</p>
+ Membership of this group is checked to determine if a user can create groups. The user also needs to be manager in one of the groups belonging to the same category.</p>
   </li>
   <li>
     <p><em>priv-category-add</em> –
-Members of this group can create new categories. This is done when a new group is created. Because categories are implemented as metadata on groups, removing all groups from a category removes that category.</p>
+ Members of this group can create new categories. This is done when a new group is created. Because categories are implemented as metadata on groups, removing all groups from a category removes that category.</p>
   </li>
 </ul>
 
