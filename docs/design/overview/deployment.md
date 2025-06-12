@@ -7,7 +7,7 @@ nav_order: 11
 # Deployment
 
 ## Ansible Playbook
-The master playbook for automated deployment of Yoda can be found in [playbook.yml](https://github.com/UtrechtUniversity/yoda/playbook.yml).
+The master playbook for automated deployment of Yoda can be found in [playbook.yml](https://github.com/UtrechtUniversity/yoda/blob/development/playbook.yml).
 It consists of four tier which implements four distinct functional roles:
 * Yoda webportal
 * iRODS database
