@@ -1,0 +1,15 @@
+[Unit]
+Description=da_server
+Wants=network-online.target
+
+[Service]
+User={{ da_server.user }}
+Group={{ da_server.user }}
+
+ExecStart=/var/lib/irods/data-archive-mock/data_archive_venv/bin/da_server --host 0.0.0.0 --port 5000
+
+StandardOutput=journal
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

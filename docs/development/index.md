@@ -12,6 +12,6 @@ has_toc: false
 - [Running API and UI tests](running-api-ui-tests.md)
 - [Running unit and integration tests](running-unit-integration-tests.md)
 - [Setting up YodaDrive development environment](yodadrive-development-environment.md)
-- [Mock tape archive](mock_tape_archive.md)
+- [Data Archive Mock](data_archive_mock.md)
 - [Development tips](development-tips.md)
 - [Wall of Fame](wall-of-fame.md)

@@ -1,0 +1,5 @@
+#!/usr/bin/env python3
+from da_mock.da_mock import daattr
+
+if __name__ == "__main__":
+    daattr()

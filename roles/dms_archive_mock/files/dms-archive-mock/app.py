@@ -1,5 +1,0 @@
-from dm_mock.app import run_app
-
-
-if __name__ == "__main__":
-    run_app()
