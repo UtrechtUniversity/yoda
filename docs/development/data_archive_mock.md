@@ -3,7 +3,7 @@ parent: Development
 title: Data Archive Mock
 nav_order: 4
 ---
-# Mock tape archive
+# Data Archive Mock
 This page describes how to use the Data Archive mock (tape storage).
 The Data Archive mock is installed in Yoda development environments.
 
@@ -19,7 +19,7 @@ Example to add a data object to the tape archive and put it offline:
 ```bash
 $ iput -R mockDataArchive test.json
 $ daattr /var/lib/irods/Vault3/home/rods/test.json
-$ darelease -r /var/lib/irods/Vault3/home/rods/test.json
+$ darelease /var/lib/irods/Vault3/home/rods/test.json
 ```
 
 ## More information
