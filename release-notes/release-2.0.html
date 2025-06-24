@@ -249,9 +249,10 @@
     
 <ul>
   <li>Add <a href="/yoda/administration/supported-distributions.html">support</a> for Ubuntu 24.04 and AlmaLinux 9</li>
-  <li>Add new admin privilege group (priv-admin)</li>
-  <li>Add support for modifying resources through Ansible</li>
-  <li>Add support for configuring NFS shares as resources</li>
+  <li>Add new admin privilege group (<a href="../design/overview/group-manager.html#how-are-the-roles-in-yoda-implemented-on-top-of-the-irods-permission-system">priv-admin</a>)</li>
+  <li>Add Ansible library to modify iRODS resources</li>
+  <li>Add Ansible role for configuring NFS shares as iRODS resources</li>
+  <li>Add support for rsyslog so that iRODS messages are logged in a readable format</li>
 </ul>
 <h3 id="other-changes">
   
@@ -262,12 +263,13 @@
 </h3>
     
 <ul>
-  <li>iRODS: update to v4.3.4</li>
   <li>Python: update rulesets to 3.12</li>
+  <li>iRODS: update to v4.3.4</li>
   <li>Python-irodsclient: update to v3.1.1</li>
-  <li>Flask and dependencies: update to v3.1.0</li>
-  <li>Mailpit: update to v1.23.2</li>
-  <li>GoCommands: update to v0.10.19</li>
+  <li>GoCommands: update to v0.10.24</li>
+  <li>Flask and dependencies: update to v3.1.1</li>
+  <li>Bootstrap: update to v5.3.6</li>
+  <li>Mailpit: update to v1.26.2</li>
 </ul>
 <h3 id="known-issues">
   
@@ -278,9 +280,10 @@
 </h3>
     
 <ul>
-  <li>Collections with single apex “’” in the name do not work <a href="https://github.com/irods/irods/issues/5727">irods/irods#5727</a></li>
-  <li>Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python <a href="https://github.com/irods/irods_rule_engine_plugin_python/issues/54">irods_rule_engine_plugin_python#54</a></li>
-  <li>Deallocation of KeyValPair results in bad AVU or error <a href="https://github.com/irods/irods/issues/8265">irods/irods#8265</a></li>
+  <li>Collections with single apex “’” in the name do not work (<a href="https://github.com/irods/irods/issues/5727">irods/irods#5727</a>)</li>
+  <li>Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python (<a href="https://github.com/irods/irods_rule_engine_plugin_python/issues/54">irods_rule_engine_plugin_python#54</a>)</li>
+  <li>Deallocation of KeyValPair results in bad AVU or error (<a href="https://github.com/irods/irods/issues/8265">irods/irods#8265</a>)</li>
+  <li>Renaming collection with multi-byte characters mangles subcollection paths (<a href="https://github.com/irods/irods/issues/6239">irods/irods#6239</a>)</li>
 </ul>
 <h2 id="upgrading-from-previous-release">
   
