@@ -15,22 +15,25 @@ Released: TBA
 
 ### Changes affecting technical administrators
 - Add [support](../administration/supported-distributions.md) for Ubuntu 24.04 and AlmaLinux 9
-- Add new admin privilege group (priv-admin)
-- Add support for modifying resources through Ansible
-- Add support for configuring NFS shares as resources
+- Add new admin privilege group ([priv-admin](../design/overview/group-manager.html#how-are-the-roles-in-yoda-implemented-on-top-of-the-irods-permission-system))
+- Add Ansible library to modify iRODS resources
+- Add Ansible role for configuring NFS shares as iRODS resources
+- Add support for rsyslog so that iRODS messages are logged in a readable format
 
 ### Other changes
-- iRODS: update to v4.3.4
 - Python: update rulesets to 3.12
+- iRODS: update to v4.3.4
 - Python-irodsclient: update to v3.1.1
-- Flask and dependencies: update to v3.1.0
-- Mailpit: update to v1.23.2
-- GoCommands: update to v0.10.19
+- GoCommands: update to v0.10.24
+- Flask and dependencies: update to v3.1.1
+- Bootstrap: update to v5.3.6
+- Mailpit: update to v1.26.2
 
 ### Known issues
-- Collections with single apex "'" in the name do not work [irods/irods#5727](https://github.com/irods/irods/issues/5727)
-- Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python [irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54)
-- Deallocation of KeyValPair results in bad AVU or error [irods/irods#8265](https://github.com/irods/irods/issues/8265)
+- Collections with single apex "'" in the name do not work ([irods/irods#5727](https://github.com/irods/irods/issues/5727))
+- Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python ([irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54))
+- Deallocation of KeyValPair results in bad AVU or error ([irods/irods#8265](https://github.com/irods/irods/issues/8265))
+- Renaming collection with multi-byte characters mangles subcollection paths ([irods/irods#6239](https://github.com/irods/irods/issues/6239))
 
 ## Upgrading from previous release
 The playbook requires Ansible 2.16.x or higher.
