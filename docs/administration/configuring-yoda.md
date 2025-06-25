@@ -439,6 +439,7 @@ yoda_public_fqdn             | Yoda public fully qualified domain name (FQDN)
 upload_priv_key              | Yoda public upload private key (base64 encoded)
 upload_pub_key               | Yoda public upload public key (base64 encoded)
 yoda_moai_version            | Version of MOAI (the OAI-PMH server) to use. Defaults to the value of `yoda_version`.
+yoda_inbox_authorized_keys   | Path of inbox user SSH authorized keys file (may need to be adjusted if SSH daemon AuthorizedKeysFile setting uses something other than .ssh/authorized_keys)
 
 ### Landingpages configuration
 
