@@ -7,6 +7,8 @@ yoda_moai_home: /var/www/moai
 yoda_moai_database_connection_string: "sqlite:///{{ yoda_moai_home }}/moai.db"
 
 yoda_inbox_user: inbox
+yoda_inbox_authorized_keys: "/home/{{ yoda_inbox_user }}/.ssh/authorized_keys"
+
 yoda_metadata_inbox: "{{ yoda_moai_home }}/metadata"
 
 yoda_public_host: combined.yoda.test   # Yoda public host
