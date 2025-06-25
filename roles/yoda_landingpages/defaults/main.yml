@@ -3,3 +3,6 @@
 
 landingpages_root: /var/www/landingpages  # Root of landingpages on servers
 landingpage_theme: "uu"                   # Name of landingpage theme
+
+yoda_inbox_user: inbox
+yoda_inbox_authorized_keys: "/home/{{ yoda_inbox_user }}/.ssh/authorized_keys"

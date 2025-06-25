@@ -120,6 +120,7 @@
   ansible.posix.authorized_key:
     user: '{{ yoda_inbox_user }}'
     key: '{{ upload_pub_key | b64decode }}'
+    path: '{{ yoda_inbox_authorized_keys }}'
     state: present
 
 
