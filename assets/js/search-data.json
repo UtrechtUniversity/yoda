@@ -412,908 +412,908 @@
     
     "relUrl": "/design/overview/data-requests.html#data-assessment-only-dao-requests"
   },"59": {
+    "doc": "Data Archive Mock",
+    "title": "Data Archive Mock",
+    "content": "This page describes how to use the Data Archive mock (tape storage). The Data Archive mock is installed in Yoda development environments. ",
+    "url": "/yoda/development/data_archive_mock.html",
+    
+    "relUrl": "/development/data_archive_mock.html"
+  },"60": {
+    "doc": "Data Archive Mock",
+    "title": "Usage:",
+    "content": "The Data Archive mock is installed in a virtualenv, active to use it: . $ sudo su irods $ cd ~ $ . data-archive-mock/data_archive_venv/bin/activate . Example to add a data object to the tape archive and put it offline: . $ iput -R mockDataArchive test.json $ daattr /var/lib/irods/Vault3/home/rods/test.json $ darelease /var/lib/irods/Vault3/home/rods/test.json . ",
+    "url": "/yoda/development/data_archive_mock.html#usage",
+    
+    "relUrl": "/development/data_archive_mock.html#usage"
+  },"61": {
+    "doc": "Data Archive Mock",
+    "title": "More information",
+    "content": "Several of the Data Archive commands are described here: https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/166920963/DAcommands+Documentation . ",
+    "url": "/yoda/development/data_archive_mock.html#more-information",
+    
+    "relUrl": "/development/data_archive_mock.html#more-information"
+  },"62": {
     "doc": "Data Package Reference",
     "title": "Data Package Reference",
     "content": "The Data Package Reference is available from the moment the a Data Package has been submitted into the Vault Space This reference can be used to communicate with other users and refer to the Data Package and making references to existing Data Packages, when archiving a new Data Package. The reference is be globally unique and leads to the Vault Space for that Data Package. An example Data Package Reference is yda/2bb04907-97cb-4a35-bc68-b56025bee47e. An example of a complete link to this Data Package would be https://portal.yoda.test/vault/yda/2bb04907-97cb-4a35-bc68-b56025bee47e. ",
     "url": "/yoda/design/overview/data_package_reference.html",
     
     "relUrl": "/design/overview/data_package_reference.html"
-  },"60": {
+  },"63": {
     "doc": "Data Package Reference",
     "title": "Adding Data Package Reference to existing vault packages",
     "content": "To add the Data Package Reference to existing vault packages without a reference is script is available: . irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/generate-data-package-references.r . ",
     "url": "/yoda/design/overview/data_package_reference.html#adding-data-package-reference-to-existing-vault-packages",
     
     "relUrl": "/design/overview/data_package_reference.html#adding-data-package-reference-to-existing-vault-packages"
-  },"61": {
+  },"64": {
     "doc": "Deploying Yoda",
     "title": "Deploying Yoda",
     "content": "Instructions needed for deploying a (new) Yoda instance. ",
     "url": "/yoda/administration/deploying-yoda.html",
     
     "relUrl": "/administration/deploying-yoda.html"
-  },"62": {
+  },"65": {
     "doc": "Deploying Yoda",
     "title": "Deploying new instance",
     "content": "Configure the new instance and run the Yoda playbook to deploy. For example, deploying the instance ‘yoda’ in an environment called ‘production’: . ansible-galaxy collection install -r requirements.yml ansible-playbook -i environments/development playbook.yml --limit=yoda -K . ",
     "url": "/yoda/administration/deploying-yoda.html#deploying-new-instance",
     
     "relUrl": "/administration/deploying-yoda.html#deploying-new-instance"
-  },"63": {
+  },"66": {
     "doc": "Deploying Yoda",
     "title": "Upgrading existing instance",
     "content": "To upgrade an existing Yoda instance update your Yoda Ansible repository to include the latest changes: . git pull . Install all Ansible collections needed to deploy Yoda: . ansible-galaxy collection install -r requirements.yml . Upgrade the configuration of the Yoda Instance and then run the Yoda playbook: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -K . You may want to run the Yoda playbook in check mode first to see the changes it will make: . ansible-playbook -i environments/development/allinone playbook.yml --limit=yoda -CDK . ",
     "url": "/yoda/administration/deploying-yoda.html#upgrading-existing-instance",
     
     "relUrl": "/administration/deploying-yoda.html#upgrading-existing-instance"
-  },"64": {
+  },"67": {
     "doc": "Deployment",
     "title": "Deployment",
     "content": " ",
     "url": "/yoda/design/overview/deployment.html",
     
     "relUrl": "/design/overview/deployment.html"
-  },"65": {
+  },"68": {
     "doc": "Deployment",
     "title": "Ansible Playbook",
     "content": "The master playbook for automated deployment of Yoda can be found in playbook.yml. It consists of four tier which implements four distinct functional roles: . | Yoda webportal | iRODS database | iRODS provider (catalog) server | iRODS consumer (resource) server | . Yoda webportal tier . The Yoda webportal tier provisions the host with the following: . | Apache webserver | Python | iRODS iCommands &amp; runtime | Yoda portal and davrods | . iCAT database tier . The iCAT database tier provisions the host with the following: . | PostgreSQL database | iRODS database plugin | . iCAT server . The iCAT server tier provisions the host with the following: . | iRODS iCAT server &amp; runtime | iRODS microservices | iRODS resource configuration | Yoda ruleset | . iRODS resource server . The iRODS resource server tier provisions the host with the following: . | iRODS resource server &amp; runtime | iRODS microservices | Yoda ruleset | . ",
     "url": "/yoda/design/overview/deployment.html#ansible-playbook",
     
     "relUrl": "/design/overview/deployment.html#ansible-playbook"
-  },"66": {
+  },"69": {
     "doc": "Deployment",
     "title": "Roles",
     "content": "All the roles can be found in the roles directory using the following content organization: . roles/ common/ # this hierarchy represents a \"role\" tasks/ # main.yml # tasks file can include smaller files if warranted handlers/ # main.yml # handlers file templates/ # files for use with the template resource ntp.conf.j2 # templates end in .j2 files/ # bar.txt # files for use with the copy resource foo.sh # script files for use with the script resource defaults/ # main.yml # default variables for this role meta/ # main.yml # role dependencies apache/ # same kind of structure as \"common\" was above, done for the apache role certificates/ # \"\" composable-resources/ # \"\" hostentries/ # \"\" irods-database/ # \"\" irods-icat/ # \"\" irods-icommands/ # \"\" irods-microservices/ # \"\" irods-resource/ # \"\" irods-runtime/ # \"\" postgresql/ # \"\" python-irodsclient/ # \"\" python3/ # \"\" yoda-davrods/ # \"\" yoda-landingpages/ # \"\" yoda-moai/ # \"\" yoda-portal/ # \"\" yoda-rulesets/ # \"\" yoda-test/ # used in the test.yml playbook yoda-zabbixagent # used in the zabbix.yml playbook yoda-zabbixdatabase # used in the zabbix.yml playbook yoda-zabbixyodaitems # used in the zabbix.yml playbook . ",
     "url": "/yoda/design/overview/deployment.html#roles",
     
     "relUrl": "/design/overview/deployment.html#roles"
-  },"67": {
+  },"70": {
     "doc": "Deployment",
     "title": "Environments",
     "content": "The playbook can be used with different environments. Each environment has its own inventory (hosts) with all instances. Each instance is configured in group variables (group_vars). Host specific variables (host_vars) may exist for each host. environments/ development/ allinone/ hosts # inventory file for allinone instance group_vars/ allinone.yml # here we assign variables to particular groups host_vars/ combined # if systems need specific variables, put them here full/ hosts # inventory file for full instance group_vars/ full.yml # here we assign variables to particular groups host_vars/ portal # if systems need specific variables, put them here database # \"\" icat # \"\" resource # \"\" public # \"\" testing/ instance/ hosts # inventory file for testing environment group_vars/ instance.yml # here we assign variables to particular groups host_vars/ hostname1 # if systems need specific variables, put them here hostname2 # \"\" acceptance/ instance/ hosts # inventory file for acceptance environment group_vars/ instance.yml # here we assign variables to particular groups host_vars/ hostname1 # if systems need specific variables, put them here hostname2 # \"\" production/ instance/ hosts # inventory file for production environment group_vars/ instance.yml # here we assign variables to particular groups host_vars/ hostname1 # if systems need specific variables, put them here hostname2 # \"\" . ",
     "url": "/yoda/design/overview/deployment.html#environments",
     
     "relUrl": "/design/overview/deployment.html#environments"
-  },"68": {
+  },"71": {
     "doc": "Deposit space",
     "title": "Deposit space",
     "content": " ",
     "url": "/yoda/design/overview/deposit-space.html",
     
     "relUrl": "/design/overview/deposit-space.html"
-  },"69": {
+  },"72": {
     "doc": "Deposit space",
     "title": "Introduction",
     "content": "The deposit space is described in this document. The state diagram describes the possible states a folder in the deposit space can be in. In the sequence diagram the interactions between the actors in the research space are documented. ",
     "url": "/yoda/design/overview/deposit-space.html#introduction",
     
     "relUrl": "/design/overview/deposit-space.html#introduction"
-  },"70": {
+  },"73": {
     "doc": "Deposit space",
     "title": "State diagram",
     "content": ". ",
     "url": "/yoda/design/overview/deposit-space.html#state-diagram",
     
     "relUrl": "/design/overview/deposit-space.html#state-diagram"
-  },"71": {
+  },"74": {
     "doc": "Deposit space",
     "title": "Sequence diagram",
     "content": ". ",
     "url": "/yoda/design/overview/deposit-space.html#sequence-diagram",
     
     "relUrl": "/design/overview/deposit-space.html#sequence-diagram"
-  },"72": {
+  },"75": {
     "doc": "Deprovision users",
     "title": "Deprovision Users",
     "content": "Instructions for deprovisioning users. All the users of the Yoda instance that are not a member of any existing groups can be deprovisioned in the following steps: . Generate a list of users to be deprovisioned by using the following command: . irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/deprovision-users.r . The iRODS admin can then delete the enlisted users by using the following command: . iadmin rmuser ${USERNAME} . ",
     "url": "/yoda/administration/deprovision-users.html#deprovision-users",
     
     "relUrl": "/administration/deprovision-users.html#deprovision-users"
-  },"73": {
+  },"76": {
     "doc": "Deprovision users",
     "title": "Deprovision users",
     "content": " ",
     "url": "/yoda/administration/deprovision-users.html",
     
     "relUrl": "/administration/deprovision-users.html"
-  },"74": {
+  },"77": {
     "doc": "Development tips",
     "title": "Development tips",
     "content": "A collection of tips to make Yoda development easier. ",
     "url": "/yoda/development/development-tips.html",
     
     "relUrl": "/development/development-tips.html"
-  },"75": {
+  },"78": {
     "doc": "Development tips",
     "title": "General",
     "content": "Watch latest iRODS log without unnecessary noise (as user irods): . ls -t /var/lib/irods/log/rodsLog* | head -n1 | xargs -n 1 -- tail -f | grep -v \"{rods#tempZone} Agent process started from 127.0.0.1\" . Watch flake8 check on Python code: . watch flake8 . Run flake8 check on source file change (requires the entr package): . ls *py | entr flake8 . ",
     "url": "/yoda/development/development-tips.html#general",
     
     "relUrl": "/development/development-tips.html#general"
-  },"76": {
+  },"79": {
     "doc": "Development tips",
     "title": "Yoda portal",
     "content": "Reload Flask on project change (requires the entr package; run as root): . cd /var/www/yoda &amp;&amp; find /etc/irods/yoda-ruleset . \\( -path *.swp -o -path */node_modules/* -o -path ./venv -o -path ./.git \\) -prune -o -print | entr touch yoda_debug.wsgi . Yoda portal metadata form page . To change how the metadata form module looks and behaves (but not for changing a particular metadata or ui schema): . | Go into the metadata form folder: cd /var/www/yoda/metadata_form/src | Install npm: npm install | Make your changes to the js code | Run: npm run build-all. This will build the metadata forms for research, deposit, and vault modules, for production. | . Some other commands you can run with npm run in this directory: . | build-[module]: you can specify an individual module (research, deposit, or vault) to build the metadata form for, for example: build-research | build-[module]-dev: you can specify an individual module (research, deposit, or vault) to build the metadata form for, and to build it in development mode for easier debugging. | . Rebuild portal Javascript assets on source file change: ./node_modules/.bin/webpack -w --name all --mode development . ",
     "url": "/yoda/development/development-tips.html#yoda-portal",
     
     "relUrl": "/development/development-tips.html#yoda-portal"
-  },"77": {
+  },"80": {
     "doc": "Development tips",
     "title": "Mailpit",
     "content": "The development environments have Mailpit for testing email during development. In order to see what messages Yoda would have sent, browse to port 8025 on the iCAT or EUS server of the environment. ",
     "url": "/yoda/development/development-tips.html#mailpit",
     
     "relUrl": "/development/development-tips.html#mailpit"
-  },"78": {
+  },"81": {
     "doc": "Development tips",
     "title": "Datarequest module",
     "content": "Remove all existing data requests (to declutter your development environment): . icd /tempZone/home/datarequests-research &amp;&amp; ils | grep \\ \\ | sed 's/\\ \\ C-\\ //' | xargs -I COLLPATH sh -c \"ichmod -M -r own rods COLLPATH &amp;&amp; irm -r COLLPATH\" . ",
     "url": "/yoda/development/development-tips.html#datarequest-module",
     
     "relUrl": "/development/development-tips.html#datarequest-module"
-  },"79": {
+  },"82": {
     "doc": "Running Yoda using Docker Compose",
     "title": "Running Yoda using Docker Compose",
     "content": "Docker Compose configurations for running Yoda are available in the /docker directory. ",
     "url": "/yoda/development/docker-setup.html",
     
     "relUrl": "/development/docker-setup.html"
-  },"80": {
+  },"83": {
     "doc": "Running Yoda using Docker Compose",
     "title": "Intended use and limitations",
     "content": "These configurations are intended for local development and testing. Some components are not (yet) available in the containerized Yoda setup, most importantly: . | OpenSearch (used for searching in the deposit module) | The containerized version does not actually deliver emails sent by Yoda. Instead, it has Mailpit for testing email delivery. Mailpit provides a web interface that can be used to view email messages that would have been delivered by the application in a production configuration. | The Docker Compose configurations only have an iRODS provider; there is no consumer for data replication. | . ",
     "url": "/yoda/development/docker-setup.html#intended-use-and-limitations",
     
     "relUrl": "/development/docker-setup.html#intended-use-and-limitations"
-  },"81": {
+  },"84": {
     "doc": "Running Yoda using Docker Compose",
     "title": "Prerequisites",
     "content": "Running the containerized Yoda setup requires Docker. The Yoda Docker Compose configurations may not work on older versions of Docker / Docker Compose. Docker 20.10.x and newer is known to work. For generic Docker installation instructions, see e.g. the Docker Engine installation docs. MacOS users can install Colima and Docker using Homebrew. ",
     "url": "/yoda/development/docker-setup.html#prerequisites",
     
     "relUrl": "/development/docker-setup.html#prerequisites"
-  },"82": {
+  },"85": {
     "doc": "Running Yoda using Docker Compose",
     "title": "Starting the application",
     "content": "If you haven’t downloaded the Docker images yet, pull them first: . cd docker/compose docker-compose pull . Yoda has two Docker Compose configurations: . | The regular configuration. This is the most portable and fastest configuration. | A configuration with bind mounts for the application source code. This configuration enables editing the Yoda source code without having to work in the container, so that you can use your host system IDE, editor, as well as other tools. However, bind mounts can be tricky to get working on some container runtimes / host operating systems, and they can slow down the application significantly in some setups. | . In general, it is recommended to use the regular configuration, unless you need the bind mounts. Start the regular configuration by running the start script in the docker/compose directory: ../up.sh . Start the configuration with bind mounts by running the start script in the docker/compose-with-bind-mounts directory: . cd ../compose-with-bind-mounts ../up.sh . Removing and old instance of the application (including data): ../down.sh -v # And in the configuration with bind mounts: ./clean.sh . You need to have these entries in your /etc/hosts (or equivalent) file: . # Docker setup Yoda 127.0.0.1 portal.yoda eus.yoda data.yoda public.yoda . After the application is started, the web interfaces will be available on: . | Mailpit: http://localhost:8025 | Portal: https://portal.yoda:8443 | EUS (port with API enabled): https://eus.yoda:8444 | DavRODS: https://data.yoda:8445 | Public: https://public.yoda:8446 | . You can log in on the Yoda portal using any of the test account credentials, such as user name researcher and password test. A full list of test account credentials can be found in the test_users list in the defaults file of the Yoda test role. ",
     "url": "/yoda/development/docker-setup.html#starting-the-application",
     
     "relUrl": "/development/docker-setup.html#starting-the-application"
-  },"83": {
+  },"86": {
     "doc": "Running Yoda using Docker Compose",
     "title": "Jobs",
     "content": "Yoda uses jobs for various processes, such as creating revisions, archiving data in the vault, collecting statistics data, and processing data package publication changes. These jobs need to be started manually in the Docker Setup. The run-cronjob.sh shell script can be used as a convenient way to start jobs. For example, to asynchronously create revisions, run: ./run-cronjob.sh revision . After accepting a data package for archiving in the vault, it should automatically be copied to the vault. If a package has been in the ‘accepted’ state for some time, issues may have occurred during the process. To retry copy to vault, run: ./run-cronjob.sh copytovault . After accepting a data package for publication, run: ./run-cronjob.sh publication ./run-cronjob.sh moaiupdate . If you want to view the statistics, first run the statistics job: ./run-cronjob.sh statistics . ",
     "url": "/yoda/development/docker-setup.html#jobs",
     
     "relUrl": "/development/docker-setup.html#jobs"
-  },"84": {
+  },"87": {
     "doc": "Running Yoda using Docker Compose",
     "title": "Troubleshooting",
     "content": "Cannot create container for service […] : Conflict . The Docker setup currently has static container names so that we can easily start jobs on containers, etc. This can however cause conflicts after, for example, the container runtime has crashed. If you don’t have any other Docker containers running on your system, the easy way to resolve such conflicts is to just stop and remove all containers: . docker kill $(docker ps -q) docker rm $(docker ps -a -q) . Error: bind mount owned by root user. Cannot change application UID . Multiple situations can cause failures when preparing to change the application UID to match the host system user: . | One of the bind mount directories (docker/compose-with-bind-mounts/v_*) is owned by the root user, rather than a regular user. In this case: use chown to change ownership of this directory on the host system. | One of the bind mount directories (docker/compose-with-bind-mounts/v_*) is not present on the host system, which causes it to default to root permissions. In this case, the directory needs to be re-created with a .docker.gitkeep dummy file. | There is some kind of problem on the host system (e.g. SELinux denial, permission problem related to user mapping, etc.) that causes Docker to do something unexpected related to the bind mounts. Checking the host system logs for any clues could be a first step for troubleshooting in such a case. | . ",
     "url": "/yoda/development/docker-setup.html#troubleshooting",
     
     "relUrl": "/development/docker-setup.html#troubleshooting"
-  },"85": {
+  },"88": {
     "doc": "Running Yoda using Docker Compose",
     "title": "Building the images",
     "content": "Building a new image is only needed for development purposes. If you want to test an existing Dockerized version of Yoda, you can pull the images from the registry instead. Yoda provider . cd docker/images/yoda_irods_icat ./stage-uploads.sh ./build.sh . Mailpit . cd docker/images/mailpit ./build.sh development . Yoda portal . cd docker/images/yoda_portal ./build.sh . DavRODS . cd docker/images/davrods ./build.sh . External user service . cd docker/images/yoda_eus ./build.sh . Public . cd docker/images/yoda_public ./stage-uploads.sh ./build.sh . Yoda web mock . cd docker/images/yoda_web_mock ./build.sh . ",
     "url": "/yoda/development/docker-setup.html#building-the-images",
     
     "relUrl": "/development/docker-setup.html#building-the-images"
-  },"86": {
+  },"89": {
     "doc": "External User Service",
     "title": "External User Service",
     "content": " ",
     "url": "/yoda/design/overview/external-user-service.html",
     
     "relUrl": "/design/overview/external-user-service.html"
-  },"87": {
+  },"90": {
     "doc": "External User Service",
     "title": "Introduction",
     "content": "This technical design document describes an approach to implementing support for enrolling, removing, authenticating, and changing &amp; resetting the password of external users in Yoda. ",
     "url": "/yoda/design/overview/external-user-service.html#introduction",
     
     "relUrl": "/design/overview/external-user-service.html#introduction"
-  },"88": {
+  },"91": {
     "doc": "External User Service",
     "title": "Definitions",
     "content": ". | Internal user An internal user is either a user within the UU organisation or an administrative user such as rods. | External user An external user is a user that is not part of the UU organisation. External users must have an e-mail address as their username, that does not end in either @uu.nl or .uu.nl. Any username that is an e-mail address and does not match above pattern belongs to an external user. | . ",
     "url": "/yoda/design/overview/external-user-service.html#definitions",
     
     "relUrl": "/design/overview/external-user-service.html#definitions"
-  },"89": {
+  },"92": {
     "doc": "External User Service",
     "title": "Functional description",
     "content": "The supported workflows are as follows: . Enrolling an external user . A group manager must be able to enroll an external user. When a group manager adds a new external user to a group, an invite must be sent to the e-mail address belonging to the new user. The invite must contain a generated unique URL that links to a page allowing the user to create a password and activate their account. The link must be invalidated either after activation, or if the external user does not create a password within 5 days. Authenticating an external user . An external user must be able to authenticate themselves via any available iRODS interface that offers PAM login. Resetting or changing the password of an external user . An external user must be able to reset their password. When a user submits their e-mail address to the external user service, they will receive a password reset link. Password restrictions based on information security guidelines are applied. Removing external users . An Yoda admin can remove an external user. After user deletion the external user service is notified and deletes the user. ",
     "url": "/yoda/design/overview/external-user-service.html#functional-description",
     
     "relUrl": "/design/overview/external-user-service.html#functional-description"
-  },"90": {
+  },"93": {
     "doc": "External User Service",
     "title": "General architecture",
     "content": "Component view . ",
     "url": "/yoda/design/overview/external-user-service.html#general-architecture",
     
     "relUrl": "/design/overview/external-user-service.html#general-architecture"
-  },"91": {
+  },"94": {
     "doc": "External User Service",
     "title": "Components",
     "content": "External user database . The external user database must store the username, password, creator and creator zone of external users. Additionally, a hash can be stored to allow for either account activation or password reset. When an external user is no longer linked to user_zones the user can be deleted from the users table as well. This could be a fully automated process later. The external user database contains the following tables: . users: . | Col. name | Type | Description | . | id | SERIAL | Numerical (autoincremented) ID used for internal purposes | . | username | VARCHAR(64) NOT NULL | The e-mail address of the external user case-insensitive) | . | password | CHAR(60) NULL | A hashed password (NULL indicates non-activated account) | . | hash | CHAR(64) NULL | A unique hash, used for activation and password reset | . | hash_time | TIMESTAMP NULL | The creation time of the hash, used to invalidate hashes | . | creator_time | TIMESTAMP NOT NULL | The creation time of the user | . | creator_user | VARCHAR(255) NOT NULL | The username of the group manager that had this external user ‘created’ | . | creator_zone | VARCHAR(255) NOT NULL | The zone the groupmananger is inviting the user from | . | Index | Type | . | id | PRIMARY | . | username | UNIQUE | . | hash | UNIQUE | . The 64-char username limit is prescribed by the iCAT (DB_USERNAME_LEN). user_zones: . | Col. name | Type | Description | . | user_id | INTEGER | ID of the user involved | . | inviter_user | VARCHAR(255) NOT NULL | The groupmanager that invited the external user | . | inviter_zone | VARCHAR(255) NOT NULL | The zone the groupmanager invited the external user from | . | inviter_time | TIMESTAMP NOT NULL | The invitation time of the user | . | Index | Type | Description | . | (user_id, inviter_zone) | PRIMARY | A user can only be added to a certain zone once. | . ",
     "url": "/yoda/design/overview/external-user-service.html#components",
     
     "relUrl": "/design/overview/external-user-service.html#components"
-  },"92": {
+  },"95": {
     "doc": "External User Service",
     "title": "Yoda portal",
     "content": "The Yoda portal login page shows a “Forgot / change password” button. On click, the “Forgot password” page on the external user service for external users is displayed. When entering an internal email the internal user should be pointed to the correct location. Group manager . The Group manager portal module does not need to be changed to allow for external user creation. It currently allows creation of users with an e-mail address as their username. ",
     "url": "/yoda/design/overview/external-user-service.html#yoda-portal",
     
     "relUrl": "/design/overview/external-user-service.html#yoda-portal"
-  },"93": {
+  },"96": {
     "doc": "External User Service",
     "title": "Yoda iRODS service",
     "content": "Authentication . External users will authenticate to iRODS using PAM. A PAM rule must be added (after pam_unix) that will authenticate against the external user database. The PAM succeed_if module must be used in combination with “skip” actions to select the right authentication module based on a username glob. This will speed up authentication significantly. There is a PAM-pgsql module that would allow PAM to check credentials directly against the database, however, it has some drawbacks: . | This module does not exist in CentOS7 repos. We would need to compile it from source (and audit it). | The module does not seem to support a safe password hashing algorithm (only MD5, SHA1, clear, or a DB function (which would require a separate PostgreSQL package to support anything other than MD5)) | . Instead, the pam_exec module will be used together with curl to deliver a Basic-authed HTTPS POST request to the external user service, which will indicate success using the appropriate HTTP status code combined with an indicative response body text. This allows the external user database to be closed to outside connections, as the external user service is the only service that needs to access the database directly. The iRODS server will need a secret number (API key) to authenticate itself to the external service. This number must be stored as a local file on the server (not within iRODS), in a way that makes it accessible both to the PAM module and a Python Group manager rule. Addition: The external user service keeps track of the zones an external user is invited to. When authenticating, if a user is not registered within the eus for a zone, the user will not be able to log in to the corresponding Yoda instance. Group and user management . The Group manager rules will need to be able to instruct the external user service to create and remove external user accounts. These requests must be authenticated with an API key, which must be available to the iRODS service account, but not accessible to user-submitted rules. A Python rule is used to fetch the secret from a local file and make requests to the external user service. Since Python rules can be called from anywhere in iRODS, the rule itself will need to perform authorization checks, using existing Group manager policy check functions uuGroupPolicyCanGroupUserAdd and uuGroupPolicyCanGroupUserRemove. External users are removed when they are removed from the last Yoda instance. A periodic cleanup job may be implemented to automate external user removal. ",
     "url": "/yoda/design/overview/external-user-service.html#yoda-irods-service",
     
     "relUrl": "/design/overview/external-user-service.html#yoda-irods-service"
-  },"94": {
+  },"97": {
     "doc": "External User Service",
     "title": "External user service",
     "content": "The external user service is a HTTPS server that services requests to a user management API, used by iRODS; and provides an interface for external users to activate their account, and change or reset their password. The iRODS server, which is the client to the API provided by this service, is to be fully trusted, and is thus expected to perform all necessary authorization checks before making a request. The service will have exclusive access to the external user database. Additionally, the service must be able to send e-mails to external users and group managers. E-mails are used for invitations and password resets. ",
     "url": "/yoda/design/overview/external-user-service.html#external-user-service-1",
     
     "relUrl": "/design/overview/external-user-service.html#external-user-service-1"
-  },"95": {
+  },"98": {
     "doc": "External User Service",
     "title": "Sequence diagrams",
     "content": "Authentication of an external user . Enrollment of an external user not known to EUS . Invitation of external user known to EUS . Password reset . Deletion of an external user . ",
     "url": "/yoda/design/overview/external-user-service.html#sequence-diagrams",
     
     "relUrl": "/design/overview/external-user-service.html#sequence-diagrams"
-  },"96": {
+  },"99": {
     "doc": "External User Service",
     "title": "Interfaces",
     "content": "Yoda portal → iRODS . The interface between the Yoda portal and iRODS is unchanged. iRODS → HTTP API → External user service . The external user service's HTTP API is used by iRODS to authenticate external users and enroll and remove external users. All requests from iRODS to the external user service must contain the header X-Yoda-External-User-Secret, containing a secret API key. When the secret header is not present, the external user service will respond with a 400 HTTP status code on all API requests. Additionally, API requests will be restricted to client IP addresses matching the iRODS server. POST parameters, if any, are supplied in the request body in JSON format, for example: . { \"username\": \"piet@example.com\", \"creator_user\": \"gm@example.com\", \"creator_zone\": \"tempZone\" } . | Endpoint | Method | Description | . | /api/auth-check | POST | User authentication: Credentials supplied via HTTP Basic Authorization header.. Response: On failure: 401. On success: 200, with body text Authenticated | . | /api/user/add | POST | User creation: Creates the given user in the external user database. Generates and stores an activation hash for that username. Sends an invitation e-mail to the new user. Parameters are username, creator_user and creator_zone. | . | /api/user/delete | POST | User removal: Removes the given user from the external user database. Parameters are username and userzone. | . ",
     "url": "/yoda/design/overview/external-user-service.html#interfaces",
     
     "relUrl": "/design/overview/external-user-service.html#interfaces"
-  },"97": {
+  },"100": {
     "doc": "External User Service",
     "title": "External user → HTTP UI → External user service",
     "content": "The HTTP UI is used by the external user to activate their account, and to change or reset their password. All POST parameters are sent in x-www-form-urlencoded format. POST actions that require the use of a hash must fail if the hash is older than the specified time: . | For account creation: 5 days | For password reset: 15 minutes | . | Endpoint | Method | Description | . | /user/:username/activate/:hash | GET | User activation page. Allows the user confirm the creation of their account. | . | /user/:username/activate/:hash | POST | Confirms user activation, sets a password. Also sends an e-mail to the creator of the account. The user’s hash is cleared in the database upon use. The only parameter is password. | . | /user/forgot-password | GET | “Forgot password” page. Allows the user to request a password reset link by filling in their username | . | /user/:username/forgot-password | POST | Confirms “forgot password”. Generates a hash and sends a password reset link to the given username, if it exists. The only parameter is username. | . | /user/:username/reset-password/:hash | GET | Password reset page. Allows the user to enter a new password | . | /user/:username/reset-password/:hash | POST | Confirms password reset, sets a new password. The user’s hash is cleared in the database upon use. The only parameter is password. | . ",
     "url": "/yoda/design/overview/external-user-service.html#external-user--http-ui--external-user-service",
     
     "relUrl": "/design/overview/external-user-service.html#external-user--http-ui--external-user-service"
-  },"98": {
+  },"101": {
     "doc": "Group manager",
     "title": "Group manager",
     "content": "The Yoda group-manager is a central tool for all Yoda implementations. The group-manager is used to control access permissions of users based on group membership and the role inside a group. As this usecase is not fully anticipated in the iRODS ACL (Access Control List) system, the group-manager makes use of shadow groups and metadata to accomplish its goals. To understand the choices made in the group-manager you need to understand the limitations of iRODS. The main goal of the group-manager is to enable the distribution of access rights to data within Yoda with minimal aid of the Yoda administrators. All data within Yoda belongs to a group within a community and access is granted by group membership and roles. ",
     "url": "/yoda/design/overview/group-manager.html",
     
     "relUrl": "/design/overview/group-manager.html"
-  },"99": {
+  },"102": {
     "doc": "Group manager",
     "title": "Yoda roles",
     "content": "normal Has read and write access to the data of the group it belongs to. Most researchers will be assigned this role. reader Has read access to the data. This role could be assigned to users with interest in the data like master students. This role is often displayed in the portal as “viewer”. groupmanager Can add users to a group and assign them roles. Every group should have at least one groupmanager. This role is typically assigned to a principal investigator. datamanager Has read access to data belonging to his/her community and the ability to manage archival process and metadata quality. ",
     "url": "/yoda/design/overview/group-manager.html#yoda-roles",
     
     "relUrl": "/design/overview/group-manager.html#yoda-roles"
-  },"100": {
+  },"103": {
     "doc": "Group manager",
     "title": "Yoda workspaces",
     "content": "Within a Yoda community multiple workspaces can be created of different types. They are prefixed to indicate this type. Every workspace is located in the /{rodsZone}/home collection. Davrods and the research browser have this location as start location. research Collaboration workspace for a research group. No restrictions on the organization of data in folders. Metadata can be added to a folder. When all required metadata has been added a folder can be archived. intake A strict folder structure and filename structure is required to extract metadata and archive data in an intake workspace. grp Legacy workspaces are prefixed with grp-. They were created before the development of research workspaces. The current group-manager will prohibit the creation of new grp groups, but supports managing existing ones. ",
     "url": "/yoda/design/overview/group-manager.html#yoda-workspaces",
     
     "relUrl": "/design/overview/group-manager.html#yoda-workspaces"
-  },"101": {
+  },"104": {
     "doc": "Group manager",
     "title": "Category and subcategories",
     "content": "To allow different communities to share the same Yoda implementation the concept of categories and subcategories were introduced. Every group has a category and subcategory. Within the group-manager groups are grouped into a tree of categories and subcategories. ",
     "url": "/yoda/design/overview/group-manager.html#category-and-subcategories",
     
     "relUrl": "/design/overview/group-manager.html#category-and-subcategories"
-  },"102": {
+  },"105": {
     "doc": "Group manager",
     "title": "The iRODS permission system",
     "content": ". | iRODS has four user types: . | rodsuser, a normal user | rodsadmin, a superuser which can invoke commands in admin mode. | groupadmin, a user capable of adding other users to groups it belongs to. Not used by Yoda | rodsgroup, a group of users. Permissions granted to a rodsgroup apply to it’s members. | . | A Group is also a user. In the iRODS datamodel they share a table. Groups have a separate table to list members. | A group can not include another group. The hierarchy is flat. Groups have users as members, users can join multiple groups. | Permissions on Collections and DataObjects are either ‘own’, ‘write’ or ‘read’ set per user (a group is a user in this context). own has write, write implies read. | Group permissions set on collections only apply on subcollections if “inherit” is set. | iRODS allows federation of users between zones. To distinguish between local users and users from other zones, every query involving users should include the zone name. Users from different zones can be represented by appending a # and the zonename to the username. Example: myuser becomes myuser#myzone | . ",
     "url": "/yoda/design/overview/group-manager.html#the-irods-permission-system",
     
     "relUrl": "/design/overview/group-manager.html#the-irods-permission-system"
-  },"103": {
+  },"106": {
     "doc": "Group manager",
     "title": "The sudo microservices",
     "content": "To enable ordinary rodsusers to create groups and manage members in groups, without promoting them to rodsadmin, the sudo microservices have been developed. They give temporary admin privileges when an action meets all criteria set in policies. Technically this means that a sudo microservice will set the AUTH flags in the iRODS rei structure to run an action as admin. Care is taken to prevent the use of these services outside of the proper context. ",
     "url": "/yoda/design/overview/group-manager.html#the-sudo-microservices",
     
     "relUrl": "/design/overview/group-manager.html#the-sudo-microservices"
-  },"104": {
+  },"107": {
     "doc": "Group manager",
     "title": "How are the roles in Yoda implemented on top of the iRODS permission system?",
     "content": "Normal users are added to a group with the same name as its workspace. Example: normal users of research-breakthrough are added to the rodsgroup research-breakthrough. During group creation by the group-manager this group will get permission ‘own’ on the /{rodsZone}/home/research-breakthrough workspace and inheritance is enabled. A reader cannot be added to the main group, because that will grant them ‘own’ permissions. Instead a shadow group is created prefixed with ‘read-‘. This group gets read permissions on the ‘research-‘ or ‘intake-‘ group of the same basename. Inheritance is enabled. A group manager has all the same characteristics as a normal user but in addition metadata is set on the group to list managers. The attribute name is ‘manager’ and the attribute value is the username (including zone). There are three special groups under the System category to grant managers extra privileges. These are: . | priv-admin – Membership of this group is checked to determine if a user can perform administrative tasks using the Administration module. The Administration module is introduced as a new feature in Yoda version 1.10. | priv-group-add – Membership of this group is checked to determine if a user can create groups. The user also needs to be manager in one of the groups belonging to the same category. | priv-category-add – Members of this group can create new categories. This is done when a new group is created. Because categories are implemented as metadata on groups, removing all groups from a category removes that category. | . A datamanager is not a member of a group belonging to a workspace. Instead a special ‘datamanager-‘ group needs to be created per category. This group has to have the same name as that category. This group is given read access to every workspace in this category. This allows the datamanager to check the quality of data and metadata before archiving the work. ",
     "url": "/yoda/design/overview/group-manager.html#how-are-the-roles-in-yoda-implemented-on-top-of-the-irods-permission-system",
     
     "relUrl": "/design/overview/group-manager.html#how-are-the-roles-in-yoda-implemented-on-top-of-the-irods-permission-system"
-  },"105": {
+  },"108": {
     "doc": "Group manager",
     "title": "iRODS ruleset",
     "content": "The following files in the yoda-ruleset support the groupmanager. uuSudoPolicies Set of policies for every sudo action. Every action is denied by default. uuGroupPolicies Policies specific for actions related to the group manager. They have been specified seperately so the rules in uuSudoPolicies can be kept as simple as possible . uuGroupPolicyChecks Can be used by the portal and by rules. Queries related to policies . uuGroup Can be used by the portal and by policies. It contains the queries used directly by th Group Manager. Policies should not be used directly by the group manager. The files represent layers when calling functions. uuSudoPolicies -&gt; uuGroupPolicies -&gt; uuGroupPolicyChecks -&gt; uuGroup . uuGroup (Group manager portal functions) -&gt; uuGroupPolicyChecks . ",
     "url": "/yoda/design/overview/group-manager.html#irods-ruleset",
     
     "relUrl": "/design/overview/group-manager.html#irods-ruleset"
-  },"106": {
+  },"109": {
     "doc": "Group manager",
     "title": "Users and groups",
     "content": "Users and groups are in same namespace, so checks are in place to prevent creating a group with the same name as a user. ",
     "url": "/yoda/design/overview/group-manager.html#users-and-groups",
     
     "relUrl": "/design/overview/group-manager.html#users-and-groups"
-  },"107": {
+  },"110": {
     "doc": "Group manager",
     "title": "Vault",
     "content": "The vault group has only rods as member. The base group should get read-only access. Removal of a vault group through the group-manager is impossible. ",
     "url": "/yoda/design/overview/group-manager.html#vault",
     
     "relUrl": "/design/overview/group-manager.html#vault"
-  },"108": {
+  },"111": {
     "doc": "Hotfixing ruleset",
     "title": "Applying a local change to a ruleset",
     "content": "This page describes a method for making a temporary local change (hotfix) to a ruleset. Such a hotfix can be used temporarily for testing. If the change is to be kept permanently, it is advisable to deploy the change using Ansible. The commands below can be executed using the iRODS service account. | First clone another copy of the ruleset: cd /etc/irods git clone https://github.com/UtrechtUniversity/yoda-ruleset.git hotfix . | Make changes to the ruleset (for example, meta.py) and compile the ruleset: cd hotfix vim meta.py make install . | Change the symlink to the fixed ruleset: cd /etc/irods ln -sfn hotfix rules_uu . | . If the change does not have the desired result, revert to the old ruleset by changing the symlink back and compiling the ruleset: . cd /etc/irods ln -sfn yoda-ruleset rules_uu cd yoda-ruleset make install . ",
     "url": "/yoda/administration/hotfixing-ruleset.html#applying-a-local-change-to-a-ruleset",
     
     "relUrl": "/administration/hotfixing-ruleset.html#applying-a-local-change-to-a-ruleset"
-  },"109": {
+  },"112": {
     "doc": "Hotfixing ruleset",
     "title": "Hotfixing ruleset",
     "content": " ",
     "url": "/yoda/administration/hotfixing-ruleset.html",
     
     "relUrl": "/administration/hotfixing-ruleset.html"
-  },"110": {
+  },"113": {
     "doc": "Development",
     "title": "Development",
-    "content": ". | Overview of repositories | Setting up development environment | Running Yoda using Docker Compose | Running API and UI tests | Running unit and integration tests | Setting up YodaDrive development environment | Mock tape archive | Development tips | Wall of Fame | . ",
+    "content": ". | Overview of repositories | Setting up development environment | Running Yoda using Docker Compose | Running API and UI tests | Running unit and integration tests | Setting up YodaDrive development environment | Data Archive Mock | Development tips | Wall of Fame | . ",
     "url": "/yoda/development/",
     
     "relUrl": "/development/"
-  },"111": {
+  },"114": {
     "doc": "Release Notes",
     "title": "Release Notes",
     "content": ". | Release Notes - Yoda v2.0 (TBA) | Release Notes - Yoda v1.10 (October 2024) | Release Notes - Yoda v1.9 (February 2024) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
     "url": "/yoda/release-notes/",
     
     "relUrl": "/release-notes/"
-  },"112": {
+  },"115": {
     "doc": "Administration Tasks",
     "title": "Administration Tasks",
     "content": " ",
     "url": "/yoda/administration/",
     
     "relUrl": "/administration/"
-  },"113": {
+  },"116": {
     "doc": "Administration Tasks",
     "title": "Configuration and deployment",
     "content": "Main page: Configuring Yoda . Specific information: . | Configuring cleanup of temporary files | Configuring OIDC | Deploying Yoda | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Setting portal themes via Admin GUI | Rulesets changes: . | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | . | Working with the local Postfix MTA | Upgrading metadata schemas | Upgrading PostgreSQL | . ",
     "url": "/yoda/administration/#configuration-and-deployment",
     
     "relUrl": "/administration/#configuration-and-deployment"
-  },"114": {
+  },"117": {
     "doc": "Administration Tasks",
     "title": "Operations",
     "content": ". | Graciously stopping revision and replication jobs | Using Python-irodsclient | Setting a maintenance banner via Admin GUI | . ",
     "url": "/yoda/administration/#operations",
     
     "relUrl": "/administration/#operations"
-  },"115": {
+  },"118": {
     "doc": "Administration Tasks",
     "title": "Troubleshooting",
     "content": ". | Collecting portal technical support information | Restoring a collection | Troubleshooting email | Troubleshooting data package archival in the vault | Troubleshooting publication | Troubleshooting replication and revision creation | Troubleshooting data package metadata issues in the vault | Troubleshooting published data packages | . ",
     "url": "/yoda/administration/#troubleshooting",
     
     "relUrl": "/administration/#troubleshooting"
-  },"116": {
+  },"119": {
     "doc": "API",
     "title": "API",
     "content": "Core API . | Core API documentation | . Module API . | Datarequest API documentation | . ",
     "url": "/yoda/design/api/",
     
     "relUrl": "/design/api/"
-  },"117": {
+  },"120": {
     "doc": "Metadata",
     "title": "Metadata",
     "content": " ",
     "url": "/yoda/design/metadata/",
     
     "relUrl": "/design/metadata/"
-  },"118": {
+  },"121": {
     "doc": "Metadata",
     "title": "Overview",
     "content": "Yoda supports adding metadata to collections. This facilitates archiving and (especially) publishing a collection of data as a data package. Each community or group can have its own metadata schema, so that different departments or faculties can optionally adapt the metadata format to their field. This part of the documentation is about metadata in the context of Yoda data packages. iRODS metadata (AVUs) have a role in Yoda metadata, but can also be used for other purposes that are unrelated to Yoda data packages. Data request module metadata is also not in the scope of this page. Yoda metadata is primarily stored in data objects named yoda-metadata.json. ",
     "url": "/yoda/design/metadata/#overview",
     
     "relUrl": "/design/metadata/#overview"
-  },"119": {
+  },"122": {
     "doc": "Metadata",
     "title": "Metadata schemas",
     "content": "In Yoda, a metadata schema is used to validate the metadata of a data package. The schema also contains information regarding how the metadata should be displayed in the web portal. A Yoda metadata schema contains of two parts: . | A JSON schema file that is used to validate metadata of a data package. | A UI schema file that contains information for the web portal regarding how to display a metadata form for this schema, optionally including placeholders and help text for each field. | . Yoda environments have a default metadata schema. Additionally, specific metadata schemas can be configured for communities (also known as categories). As of Yoda 1.9, it is also possible to configure a metadata schema on a group level. For more information, see: . | Metadata schema configuration | Using JSON schema to define a metadata schema | . ",
     "url": "/yoda/design/metadata/#metadata-schemas",
     
     "relUrl": "/design/metadata/#metadata-schemas"
-  },"120": {
+  },"123": {
     "doc": "Metadata",
     "title": "Schema names and identifiers",
     "content": "Each schema has a globally unique identifier (URL) that is based on its name. For example, the default-2 schema is identified as https://yoda.uu.nl/schemas/default-2/metadata.json. For more information, see Architectural decision record schema identifier format . ",
     "url": "/yoda/design/metadata/#schema-names-and-identifiers",
     
     "relUrl": "/design/metadata/#schema-names-and-identifiers"
-  },"121": {
+  },"124": {
     "doc": "Metadata",
     "title": "Exporting of metadata during publication",
     "content": "When a data package is published, its metadata will be exported in three ways: . Landing page . The landing page HTML code is generated using a Jinja2 template. This template may need to be adapted in case of metadata schema changes. The template can be found in /etc/irods/yoda-ruleset/templates/landingpage.html.j2. The Ansible playbook activates this template by uploading it to the /zone/yoda/templates/ collection. JSON file for DataCite . A JSON file conforming to the DataCite v4 Schema is generated. The implementation can be found in /etc/irods/yoda-ruleset/json_datacite41.py. OAI-PMH data . The metadata will be copied to the OAI-PMH server (public server). Once there, it will be processed by MOAI so that it can be harvested using the OAI-PMH protocol by external systems. Only a subset of fields that map to Dublin core and DataCite are processed by MOAI. Any changes to these fields will result in the metadata being omitted from the stream. ",
     "url": "/yoda/design/metadata/#exporting-of-metadata-during-publication",
     
     "relUrl": "/design/metadata/#exporting-of-metadata-during-publication"
-  },"122": {
+  },"125": {
     "doc": "Metadata",
     "title": "Metadata transformation",
     "content": "As a general rule, metadata will have to comply with the latest version of a schema. For example, if a new version of Yoda has a new default-2 schema, all data packages using the default-1 schema will need to be updated to default-2.. Vault metadata is upgraded as a part of the upgrade process, as described in the release notes. Research metadata is updated when a user opens it. The transformation logic for updating to a newer version of a schema is defined in /etc/irods/yoda-ruleset/schema_transformations.py. ",
     "url": "/yoda/design/metadata/#metadata-transformation",
     
     "relUrl": "/design/metadata/#metadata-transformation"
-  },"123": {
+  },"126": {
     "doc": "Metadata",
     "title": "Further information",
     "content": ". | Information about metadata form implementation | Use of metadata in the vault | . ",
     "url": "/yoda/design/metadata/#further-information",
     
     "relUrl": "/design/metadata/#further-information"
-  },"124": {
+  },"127": {
     "doc": "System Overview",
     "title": "System overview",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
     "url": "/yoda/design/overview/#system-overview",
     
     "relUrl": "/design/overview/#system-overview"
-  },"125": {
+  },"128": {
     "doc": "System Overview",
     "title": "Core modules",
     "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     
     "relUrl": "/design/overview/#core-modules"
-  },"126": {
+  },"129": {
     "doc": "System Overview",
     "title": "Additional modules",
     "content": "Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
     "url": "/yoda/design/overview/#additional-modules",
     
     "relUrl": "/design/overview/#additional-modules"
-  },"127": {
+  },"130": {
     "doc": "System Overview",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/#overview",
     
     "relUrl": "/design/overview/#overview"
-  },"128": {
+  },"131": {
     "doc": "System Overview",
     "title": "System Overview",
     "content": " ",
     "url": "/yoda/design/overview/",
     
     "relUrl": "/design/overview/"
-  },"129": {
+  },"132": {
     "doc": "Processes",
     "title": "Processes",
     "content": " ",
     "url": "/yoda/design/processes/",
     
     "relUrl": "/design/processes/"
-  },"130": {
+  },"133": {
     "doc": "Other",
     "title": "Other",
     "content": " ",
     "url": "/yoda/design/other/",
     
     "relUrl": "/design/other/"
-  },"131": {
+  },"134": {
     "doc": "Software Design",
     "title": "Software Design",
     "content": " ",
     "url": "/yoda/design/",
     
     "relUrl": "/design/"
-  },"132": {
+  },"135": {
     "doc": "Software Design",
     "title": "API",
     "content": ". | API documentation | . ",
     "url": "/yoda/design/#api",
     
     "relUrl": "/design/#api"
-  },"133": {
+  },"136": {
     "doc": "Software Design",
     "title": "System",
     "content": ". | System overview | Research space | Vault space | Statistics module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
     "url": "/yoda/design/#system",
     
     "relUrl": "/design/#system"
-  },"134": {
+  },"137": {
     "doc": "Software Design",
     "title": "Metadata",
     "content": ". | Metadata design overview | Metadata schema definition | Metadata schema - JSON configuration | Metadata schema identifier format | Metadata: use in the vault | Metadata: form implementation | . ",
     "url": "/yoda/design/#metadata",
     
     "relUrl": "/design/#metadata"
-  },"135": {
+  },"138": {
     "doc": "Software Design",
     "title": "Processes",
     "content": ". | Asynchronous and privileged execution | Automatic Resource Balancing | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
     "url": "/yoda/design/#processes",
     
     "relUrl": "/design/#processes"
-  },"136": {
+  },"139": {
     "doc": "Software Design",
     "title": "Other",
     "content": ". | Python plugin | Yoda drive | . ",
     "url": "/yoda/design/#other",
     
     "relUrl": "/design/#other"
-  },"137": {
+  },"140": {
     "doc": "Home",
     "title": "Yoda technical documentation",
     "content": "On this website you can find release notes and technical documentation on software design and administration tasks of Yoda. ",
     "url": "/yoda/#yoda-technical-documentation",
     
     "relUrl": "/#yoda-technical-documentation"
-  },"138": {
+  },"141": {
     "doc": "Home",
     "title": "Get started now View it on GitHub",
     "content": " ",
     "url": "/yoda/#get-started-now-view-it-on-github",
     
     "relUrl": "/#get-started-now-view-it-on-github"
-  },"139": {
+  },"142": {
     "doc": "Home",
     "title": "What is this?",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. ",
     "url": "/yoda/#what-is-this",
     
     "relUrl": "/#what-is-this"
-  },"140": {
+  },"143": {
     "doc": "Home",
     "title": "Latest release",
     "content": ". | Release Notes - Yoda v1.9 (February 2024) | . ",
     "url": "/yoda/#latest-release",
     
     "relUrl": "/#latest-release"
-  },"141": {
+  },"144": {
     "doc": "Home",
     "title": "Documentation style",
     "content": "All documentation is styled using Markdown. All UML diagrams are generated with PlantUML. ",
     "url": "/yoda/#documentation-style",
     
     "relUrl": "/#documentation-style"
-  },"142": {
+  },"145": {
     "doc": "Home",
     "title": "Home",
     "content": " ",
     "url": "/yoda/",
     
     "relUrl": "/"
-  },"143": {
+  },"146": {
     "doc": "Installing datarequest module",
     "title": "Installing datarequest module",
     "content": " ",
     "url": "/yoda/administration/installing-datarequest-module.html",
     
     "relUrl": "/administration/installing-datarequest-module.html"
-  },"144": {
+  },"147": {
     "doc": "Installing datarequest module",
     "title": "Before deployment using Ansible",
     "content": "Enable the datarequest module in Ansible . Set enable_datarequest to true in configuration. enable_datarequest: true . Set Ansible parameters specific to the datarequest module . Users can contact a helpdesk email address for questions regarding the datarequest procedure. Set the fields below to specify the help contact. datarequest_help_contact_name: the data manager datarequest_help_contact_email: help@yoda.instance . ",
     "url": "/yoda/administration/installing-datarequest-module.html#before-deployment-using-ansible",
     
     "relUrl": "/administration/installing-datarequest-module.html#before-deployment-using-ansible"
-  },"145": {
+  },"148": {
     "doc": "Installing datarequest module",
     "title": "After deployment using Ansible",
     "content": "Creating and populating required groups . Ensure that the following groups exists, each with category datarequests, subcategory research and data classification unspecified: datarequests-research-datamanagers datarequests-research-project-managers datarequests-research-data-access-committee . Instructions: . | Log into an account on the server with permission to create new groups. sudo su irods . | Create the groups. # For Yoda versions prior to 1.9: irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd(\"datarequests-research-datamanagers\", \"datarequest\", \"research\", \"Datamanagers\", \"\", *status, *message);' null ruleExecOut irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd(\"datarequests-research-project-managers\", \"datarequest\", \"research\", \"Project managers\", \"\", *status, *message);' null ruleExecOut irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd(\"datarequests-research-data-access-committee\", \"datarequest\", \"research\", \"Data Access Committee\", \"\", *status, *message);' null ruleExecOut # For Yoda versions 1.9 and up: irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd(\"datarequests-research-datamanagers\", \"datarequest\", \"research\", \"\", \"\", \"Datamanagers\", \"\", \"\", *status, *message);' null ruleExecOut irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd(\"datarequests-research-project-managers\", \"datarequest\", \"research\", \"\", \"\", \"Project managers\", \"\", \"\", *status, *message);' null ruleExecOut irule -r irods_rule_engine_plugin-irods_rule_language-instance 'uuGroupAdd(\"datarequests-research-data-access-committee\", \"datarequest\", \"research\", \"\", \"\", \"Data Access Committee\", \"\", \"\", *status, *message);' null ruleExecOut . | Confirm that the groups exist. iadmin lg . | . Using the group manager, populate these groups with appropriate members. Updating the data request module schemas . If data request module schemas are already present, they will not be overwritten when the Ansible playbook is executed. The data request module schemas can be updated by executing /etc/irods/yoda-ruleset/tools/install-datarequest-schemas.sh $zoneName. ",
     "url": "/yoda/administration/installing-datarequest-module.html#after-deployment-using-ansible",
     
     "relUrl": "/administration/installing-datarequest-module.html#after-deployment-using-ansible"
-  },"146": {
+  },"149": {
     "doc": "Installing Licenses",
     "title": "Background",
     "content": "Researchers can specify the license of a data package in its metadata. They can either use a standard license (e.g. Creative Commons Attribution 4.0 International Public License), or use a custom license. If the metadata of a data package specifies the name of a standard license (i.e. any license other than Custom), Yoda will include the license text in a License.txt file in the root of the package when it is copied to the vault. The URI of the license will be included in the metadata. ",
     "url": "/yoda/administration/installing-licenses.html#background",
     
     "relUrl": "/administration/installing-licenses.html#background"
-  },"147": {
+  },"150": {
     "doc": "Installing Licenses",
     "title": "Installing licenses",
     "content": "This section explains how to upload license texts and URIs, so that Yoda can automatically include them in data packages. In the example commands below, replace ${RODSZONE} with the iRODS zone name. Replace ${LICENSE} with the name of the license, as defined in the metadata schema. Yoda will look for the license text in /${RODSZONE}/yoda/licenses/${LICENSE}.txt and for the license URI in /${RODSZONE}/yoda/licenses/${LICENSE}.uri. ",
     "url": "/yoda/administration/installing-licenses.html#installing-licenses",
     
     "relUrl": "/administration/installing-licenses.html#installing-licenses"
-  },"148": {
+  },"151": {
     "doc": "Installing Licenses",
     "title": "Installing default licenses",
     "content": "The files of the licenses included in the default metadata schema can be found in /etc/irods/yoda-ruleset/licenses. The command to upload these license files to Yoda is: . iput -r /etc/irods/yoda-ruleset/licenses /${RODSZONE}/yoda . ",
     "url": "/yoda/administration/installing-licenses.html#installing-default-licenses",
     
     "relUrl": "/administration/installing-licenses.html#installing-default-licenses"
-  },"149": {
+  },"152": {
     "doc": "Installing Licenses",
     "title": "Installing non-default licenses",
     "content": "Put the license text in a file named ${LICENSE}.txt. The {LICENSE}.txt file needs to be pure ASCII, in order to ensure it will be displayed correctly on every operating system and in every browser1. The license URI should be in a file named ${LICENSE}.uri. iput \"${LICENSE}.txt\" \"/${RODSZONE}/yoda/licenses/${LICENSE}.txt\" iput \"${LICENSE}.uri\" \"/${RODSZONE}/yoda/licenses/${LICENSE}.uri\" . ",
     "url": "/yoda/administration/installing-licenses.html#installing-non-default-licenses",
     
     "relUrl": "/administration/installing-licenses.html#installing-non-default-licenses"
-  },"150": {
+  },"153": {
     "doc": "Installing Licenses",
     "title": "Footnotes",
     "content": ". | UTF-8 is not an option, because browsers will display a .txt file with the windows-1252 encoding. The ANSI subset of the windows-1252 encoding is not an option, because Mac and linux will not correctly detect ANSI in a .txt file if opened from the web disk. &#8617; . | . ",
     "url": "/yoda/administration/installing-licenses.html#footnotes",
     
     "relUrl": "/administration/installing-licenses.html#footnotes"
-  },"151": {
+  },"154": {
     "doc": "Installing Licenses",
     "title": "Installing Licenses",
     "content": " ",
     "url": "/yoda/administration/installing-licenses.html",
     
     "relUrl": "/administration/installing-licenses.html"
-  },"152": {
+  },"155": {
     "doc": "Installing metadata schemas",
     "title": "Installing metadata schemas",
     "content": "For a fully functional research module, a metadata schema is required. All schemas can be found in the yoda-ruleset in schemas/. Below a description of the needed files per schema (using the default schema as example): . metadata.json A JSON file describing the metadata form. uischema.json A JSON file describing how a given data type should be rendered as a form input component. It provides information on how the form should be rendered. In the default situation the default schema is installed in /${RODSZONE}/yoda/schemas/default. Example to install (or update) schema ‘default-2’ as default for all categories: . irsync -Krv -R irodsResc /etc/irods/yoda-ruleset/schemas/default-2/ i:/${RODSZONE}/yoda/schemas/default/ . ",
     "url": "/yoda/administration/installing-metadata-schemas.html",
     
     "relUrl": "/administration/installing-metadata-schemas.html"
-  },"153": {
+  },"156": {
     "doc": "Installing metadata schemas",
     "title": "Yoda v1.8 and older",
     "content": "If you install the files in a directory with the same name as the name of a category it will become the schema for that category and that category alone, when the category is created afterwards. Existing categories without a specific schema will still use the default schema. Example to install (or update) schema ‘core-1’ for category ‘experimental’: . irsync -Krv -R irodsResc /etc/irods/yoda-ruleset/schemas/core-1/ i:/${RODSZONE}/yoda/schemas/experimental/ . The above is legal bash if you define RODSZONE environment variable, for example: . export RODSZONE=tempZone . Mistakes are easily made as the commands are so similar, but different. So please take care. ",
     "url": "/yoda/administration/installing-metadata-schemas.html#yoda-v18-and-older",
     
     "relUrl": "/administration/installing-metadata-schemas.html#yoda-v18-and-older"
-  },"154": {
+  },"157": {
     "doc": "Installing metadata schemas",
     "title": "Yoda v1.9 and later",
     "content": "From Yoda v1.9 and later it is possible to set metadata schemas on group level. For this a schema needs to be installed and marked selectable. Example to install (or update) schema ‘core-1’: . irsync -Krv -R irodsResc /etc/irods/yoda-ruleset/schemas/core-1/ i:/${RODSZONE}/yoda/schemas/core-1/ . Ensure the schema is selectable when creating a group in the group manager: . imeta set -C /${RODSZONE}/yoda/schemas/core-1 org_schema_user_selectable True . The above is legal bash if you define RODSZONE environment variable, for example: . export RODSZONE=tempZone . ",
     "url": "/yoda/administration/installing-metadata-schemas.html#yoda-v19-and-later",
     
     "relUrl": "/administration/installing-metadata-schemas.html#yoda-v19-and-later"
-  },"155": {
+  },"158": {
     "doc": "Installing lists of preservable file formats",
     "title": "Installing lists of preservable file formats",
     "content": "Preservable file formats are read from iRODS and presented to the user. It needs to be a JSON (.json) file which validates against the JSON schema below. The naming scheme is up to the administrator, the lists are presented alphabetically. In order for every user to be able to read the terms, a read ACL for public needs to be set. iput -r /etc/irods/yoda-ruleset/tools/file_formats /${RODSZONE}/yoda ichmod -rM inherit /${RODSZONE}/yoda/file_formats ichmod -rM read public /${RODSZONE}/yoda/file_formats . To add a new list of preservable file formats just put a JSON file in the /${RODSZONE}/yoda/file_formats collection with a new name. iput \"${FILE_FORMATS}.json\" \"/${RODSZONE}/yoda/file_formats/${FILE_FORMATS}.json\" . JSON schema for preservable file formats: . { \"definitions\": {}, \"$schema\": \"http://json-schema.org/draft-07/schema#\", \"$id\": \"preservable_file_formats.json\", \"type\": \"object\", \"title\": \"List of preservable file formats\", \"required\": [ \"name\", \"formats\" ], \"properties\": { \"name\": { \"$id\": \"#/properties/name\", \"type\": \"string\", \"title\": \"File formats list name\", \"default\": \"\", \"examples\": [ \"DANS Preferred formats\" ], \"pattern\": \"^(.*)$\" }, \"help\": { \"$id\": \"#/properties/help\", \"type\": \"string\", \"title\": \"File formats list help text\", \"default\": \"\", \"pattern\": \"^(.*)$\" }, \"advice\": { \"$id\": \"#/properties/advice\", \"type\": \"string\", \"title\": \"File formats list advice text\", \"default\": \"\", \"pattern\": \"^(.*)$\" }, \"formats\": { \"$id\": \"#/properties/formats\", \"type\": \"array\", \"title\": \"List of file formats\", \"default\": null, \"items\": { \"$id\": \"#/properties/formats/items\", \"type\": \"string\", \"title\": \"Preservable file formats\", \"default\": \"\", \"examples\": [ \"pdf\", \"txt\", \"xml\", \"html\", \"css\", \"ods\", \"csv\", \"sql\", \"jpg\", \"tiff\", \"png\", \"svg\" ], \"pattern\": \"^(.*)$\" } } } } . ",
     "url": "/yoda/administration/installing-preservable-file-formats.html",
     
     "relUrl": "/administration/installing-preservable-file-formats.html"
-  },"156": {
+  },"159": {
     "doc": "Installing Terms & Conditions",
     "title": "Installing Terms &amp; Conditions",
     "content": "Terms and conditions for publication are also read from iRODS and presented to the user. It needs to be an HTML snippet to be rendered correctly. The naming scheme is up to the administrator, the last .html file placed in /rodsZone/yoda/terms will become the text presented to the user. In order for every user to be able to read the terms, a read ACL for public needs to be set. iput -r /etc/irods/yoda-ruleset/tools/terms /${RODSZONE}/yoda ichmod -rM inherit /${RODSZONE}/yoda/terms ichmod -rM read public /${RODSZONE}/yoda/terms . To add a new terms file just put it in the /${RODSZONE}/yoda/terms collection with a new name, so the old terms are preserved. iput \"${TERMS}.txt\" \"/${RODSZONE}/yoda/terms/${TERMS}.html\" . From version 1.10, Yoda simplifies managing publication terms with a new GUI on the Admin page. This feature is accessible to administrators and members of the priv-admin group. Just enter and save terms directly in the GUI; they’re instantly updated and stored as an HTML page at /var/www/yoda/config/publication_terms.html. The system now checks this folder first before looking at the iRODS server for any terms. See the picture below for an example. Example of Installing Terms with GUI . All vault packages with an action log record “submitted for publication” from before the create time of the new terms file were accepted under the old terms. ",
     "url": "/yoda/administration/installing-terms.html#installing-terms--conditions",
     
     "relUrl": "/administration/installing-terms.html#installing-terms--conditions"
-  },"157": {
+  },"160": {
     "doc": "Installing Terms & Conditions",
     "title": "Installing Terms & Conditions",
     "content": " ",
     "url": "/yoda/administration/installing-terms.html",
     
     "relUrl": "/administration/installing-terms.html"
-  },"158": {
+  },"161": {
     "doc": "Local Postfix MTA",
     "title": "Working with the local Postfix MTA",
     "content": " ",
     "url": "/yoda/administration/local-postfix-mta.html#working-with-the-local-postfix-mta",
     
     "relUrl": "/administration/local-postfix-mta.html#working-with-the-local-postfix-mta"
-  },"159": {
+  },"162": {
     "doc": "Local Postfix MTA",
     "title": "Background",
     "content": "The Yoda External User Service (EUS) and the main ruleset send email messages to users. In the standard configuration, the EUS and ruleset send messages directly to a relay server, which would typically be your organization’s email server. Alternatively, the EUS and ruleset can be configured to send messages to a local Postfix Mail Transfer Agent. Postfix then takes care of delivering the messages to a relay host, such as your organization’s email server. ",
     "url": "/yoda/administration/local-postfix-mta.html#background",
     
     "relUrl": "/administration/local-postfix-mta.html#background"
-  },"160": {
+  },"163": {
     "doc": "Local Postfix MTA",
     "title": "Advantages",
     "content": "The main advantages of using Postfix rather than sending email messages directly to the organizational email server are: . | If Yoda delivers emails directly to the organizational email server, any connection or availability issues can result in user actions failing. For example, if a Yoda user creates a new external account by adding an email address of a new user to a research group, the user will see an error message if the email server is not available. If Yoda uses Postfix, account creation will succeed, and Postfix will take care of delivering the message asynchronously. | Postfix automatically retries delivering emails in case of transient errors, whereas Yoda and the EUS don’t have this capability in the default configuration. | Postfix has proper logging of email message delivery, whereas Yoda and the EUS have very limited email logging in the default configuration. Complete logging makes it possible to verify that emails have been sent, and to find the cause of any problems in case something has gone wrong. | Postfix can be configured to rewrite internal email addresses to public email addresses, making it possible to deliver email for Yoda accounts with nonexistent email addresses. | . In summary, using Postfix as a local MTA makes email delivery more resilient and helps with troubleshooting. ",
     "url": "/yoda/administration/local-postfix-mta.html#advantages",
     
     "relUrl": "/administration/local-postfix-mta.html#advantages"
-  },"161": {
+  },"164": {
     "doc": "Local Postfix MTA",
     "title": "Configuration",
     "content": "Configuration consists of up to four parts: . | Configure Postfix | Configure Yoda (ruleset) and EUS to send emails to the Postfix instance | Optionally configure canonical map entries for rewriting email addresses | . Postfix . In order to configure Postfix, you will need an account that can be used for sending email messages using Secure SMTP. Example configuration: . enable_postfix: true postfix_relayhost: smtp.myuniversity.nl postfix_myhostname: yoda.myuniversity.nl postfix_relayhost_username: smtpaccount@myuniversity.nl postfix_relayhost_password: myPassword . Yoda ruleset . Configure the Yoda ruleset and External User Service (EUS) to send email messages via the local Postfix instance: . smtp_server: smtp://localhost:25 smtp_auth: false smtp_starttls: false . Canonical map . If the Yoda instance has accounts with names that do not relate to real email addresses, the postfix_canonical_map dictionary can be used to make Postfix rewrite addresses. For example: . postfix_canonical_map: datamanager@yoda.test: a.admin@uu.nl researcher@yoda.test: a.admin@uu.nl . See also . | Troubleshooting email | . ",
     "url": "/yoda/administration/local-postfix-mta.html#configuration",
     
     "relUrl": "/administration/local-postfix-mta.html#configuration"
-  },"162": {
+  },"165": {
     "doc": "Local Postfix MTA",
     "title": "Local Postfix MTA",
     "content": " ",
     "url": "/yoda/administration/local-postfix-mta.html",
     
     "relUrl": "/administration/local-postfix-mta.html"
-  },"163": {
+  },"166": {
     "doc": "Local ruleset patches",
     "title": "Local ruleset patches",
     "content": "In some cases, you might want to make some local modifications to a ruleset in order to modify Yoda’s behaviour. This can be achieved by defining a patch parameter for a ruleset. You would usually create a patch value using a command like: git diff | sed 's/^/ /' on your modified ruleset. If patch is set to “” (empty string), no patch is applied. This effectively resets any earlier local changes deployed via Ansible. If you want to remove a local patch, you would first need to run the playbook with an empty patch value in order to reset earlier patches. After that, you can remove the patch value. ",
     "url": "/yoda/administration/local-ruleset-patch.html",
     
     "relUrl": "/administration/local-ruleset-patch.html"
-  },"164": {
+  },"167": {
     "doc": "Local ruleset patches",
     "title": "Example",
     "content": "This example patch changes the UUPRIMARYRESOURCES constant in the ruleset code. core_rulesets: - name: yoda-ruleset repo: https://github.com/UtrechtUniversity/yoda-ruleset.git ruleset_name: rules-uu version: \"\" patch: | diff --git a/uuConstants.r b/uuConstants.r index 5311d5c..aa44bad 100644 --- a/uuConstants.r +++ b/uuConstants.r @@ -36,7 +36,7 @@ UURESOURCETIERATTRNAME = UUORGMETADATAPREFIX ++ 'storage_tier'; UUMETADATASTORAGEMONTH = UUORGMETADATAPREFIX ++ 'storage_data_month'; # \\constant UUPRIMARYRESOURCES -UUPRIMARYRESOURCES = list(\"irodsResc\"); +UUPRIMARYRESOURCES = list(\"irodsResc3\"); # \\constant UUREPLICATIONRESOURCE UUREPLICATIONRESOURCE = \"irodsRescRepl\"; install_scripts: yes - name: core ruleset_name: core path: /etc/irods/core.re install_scripts: no . ",
     "url": "/yoda/administration/local-ruleset-patch.html#example",
     
     "relUrl": "/administration/local-ruleset-patch.html#example"
-  },"165": {
+  },"168": {
     "doc": "Local ruleset patches",
     "title": "Considerations",
     "content": ". | The playbook temporarily restores the original ruleset and then re-applies the patch. This could constitute a risk if the local modifications are related to safety or security. | You would need to verify for yourself that the patch is still compatible with the latest version of the ruleset before running the playbook. Having the playbook apply a patch that is no longer compatible with the ruleset code may cause Yoda to fail. | . ",
     "url": "/yoda/administration/local-ruleset-patch.html#considerations",
     
     "relUrl": "/administration/local-ruleset-patch.html#considerations"
-  },"166": {
+  },"169": {
     "doc": "Local ruleset patches",
     "title": "See also",
     "content": "This page is about making local changes to rulesets that can be deployed via Ansible. This method is typically used for long-term changes. If you want to make a short-term change (e.g. a temporary change for testing), you might want to consider using a hotfix instead. ",
     "url": "/yoda/administration/local-ruleset-patch.html#see-also",
     
     "relUrl": "/administration/local-ruleset-patch.html#see-also"
-  },"167": {
+  },"170": {
     "doc": "Folder Locking mechanism",
     "title": "Folder Locking mechanism",
     "content": "To prevent modification of a folder in the research area, a researcher can use the lock function. This will catch attempts to write or remove data to that folder until the folder is unlocked again. The same mechanism is used to prevent modification during the status transitions needed to put a folder in to the vault. The iRODS ACL system could not be used, because researcher should be able to lock/unlock a folder themselves and not rely on an administrator to do so. This document describes the technical implementation of the locking mechanism in the research ruleset. Locks are represented by metadata on the folder, its children and its parents. The lock consists of an AVU with org_lock (defined in iiConstants.r) as attribute name and the collection where the lock is started (rootCollection). Whenever a lock is set this AVU is put on every child using a treewalk and every parent using iteration until the /{rodsZone}/home/research-{groupName} collection is found. Every relevant static Policy Enforcement Point that could be triggered because of a modification in the research area is checked for the metadata and in general the following rules are enforced: . | if the root collection of the lock is on the current collection or a parent collection disallow the action. | if the root collection of the lock is on a child collection allow modification of data objects, but disallow renames of parent collections. | . In case there is a source and destination object, both need to be checked for locks and the following rules apply: . | if the source is locked, but the destination is not then disallow move operations, but allow copy operations. | if the destination is locked, disallow every action. | . msiOprDisallowed and msiDeleteDisallowed are used to stop the current operation and return an error to the clients. There is one unfortunate special case. There is no static PEP for preconditions on a file put operation, only a post PEP. To prevent users from putting new files into a locked collection the files are removed in the post condition acPostProcForPut. When using webDAV it may appear like the file is still there due to caching. ",
     "url": "/yoda/design/processes/locking-mechanism.html",
     
     "relUrl": "/design/processes/locking-mechanism.html"
-  },"168": {
+  },"171": {
     "doc": "Folder Locking mechanism",
     "title": "Setting and removing locks",
     "content": "The locks are set and removed with the iiFolderLockChange rule in the iiFolderStatusTransition.r file. This rule should not be directly run, but triggered from folder status transitions. Please refer to the folder status design document for details on which transition should lock the folder. The rules in iiFolderStatusTransitions.r called by the front-end to initiate a status change will attempt a metadata change on the org_status attribute. This will trigger a metadata PEP, which will run the lock change when the current user is allowed to. Every folder status transition is checked for preconditions by the iiCanModifyFolderStatus rule in iiPolicyChecks.r. When the locking fails, the modification of the org_status change will be interrupted by calling msiOprDisallowed. For the rules called by the front-end the errors are caught and returned with statusInfo. ",
     "url": "/yoda/design/processes/locking-mechanism.html#setting-and-removing-locks",
     
     "relUrl": "/design/processes/locking-mechanism.html#setting-and-removing-locks"
-  },"169": {
+  },"172": {
     "doc": "Metadata JSON schema",
     "title": "JSON schema structure for metadata",
     "content": "Yoda uses React for its configurable metadata forms. The content of the form is defined in a metadata schema, which can be configured on an environment, community or group level. ",
     "url": "/yoda/design/metadata/metadata-form-json.html#json-schema-structure-for-metadata",
     
     "relUrl": "/design/metadata/metadata-form-json.html#json-schema-structure-for-metadata"
-  },"170": {
+  },"173": {
     "doc": "Metadata JSON schema",
     "title": "$id",
     "content": "Each JSON schema starts with the id of the schema. This is used as a means to uniquely identify the schema. \"$id\": \"https://yoda.uu.nl/schemas/default-0/metadata.json\", . ",
     "url": "/yoda/design/metadata/metadata-form-json.html#id",
     
     "relUrl": "/design/metadata/metadata-form-json.html#id"
-  },"171": {
+  },"174": {
     "doc": "Metadata JSON schema",
     "title": "Definitions - General",
     "content": "JSON schema supports various field types. The rest of this section shows some examples. Strings . Yoda string type definitions: . \"stringNormal\": { \"type\": \"string\", \"maxLength\": 255 }, \"stringLong\": { \"type\": \"string\", \"maxLength\": 2700 }, . These definitions can be used for fields in the metadata form: . \"properties\": { \"Title\": { \"$ref\": \"#/definitions/stringNormal\", \"title\": \"Title\" }, \"Description\": { \"$ref\": \"#/definitions/stringLong\", \"title\": \"Description\" }, . Thus describing a ‘Title’ element of datatype stringNormal. And ‘Description’ of datatype stringLong. Enumerations . Example: . \"optionsLicense\": { \"type\": \"string\", \"enum\": [ \"Creative Commons Attribution 4.0 International Public License\", \"Creative Commons Attribution-ShareAlike 4.0 International Public License\", \"Open Data Commons Attribution License (ODC-By) v1.0\", \"Custom\" ] }, . Form element ‘License’ is described using optionsLicense: . \"License\": { \"$ref\": \"#/definitions/optionsLicense\", \"title\": \"License\" }, . Default values for elements . REACT form allows default values to be set. \"Discipline\": { \"type\": \"array\", \"items\": { \"$ref\": \"#/definitions/optionsDiscipline\", \"title\": \"Discipline\", \"default\": \"\" } . The default value is ‘’ - an empty string (which is not part of the selection list optionsDiscipline) . Multiplicity - type=’array’ . Giving a user the possibility to add specific data multiple times is achieved by using the type ‘array’. This is an indication that the element involved can be added multiple times. \"Discipline\": { \"type\": \"array\", \"items\": { \"$ref\": \"#/definitions/optionsDiscipline\", \"title\": \"Discipline\", \"default\": \"\" } }, . The above example will show a Selection field holding all present options for disciplines. ",
     "url": "/yoda/design/metadata/metadata-form-json.html#definitions---general",
     
     "relUrl": "/design/metadata/metadata-form-json.html#definitions---general"
-  },"172": {
+  },"175": {
     "doc": "Metadata JSON schema",
     "title": "Complex structures - type=’object’",
     "content": "In order to be able to serve the need to create structures of data the type ‘object’ is used. Object in fact constructs a structure that contains one or more other elements. The properties attribute contains the elements that constitute this structure. \"Collected\": { \"type\": \"object\", \"title\": \"Collection process\", \"yoda:structure\": \"compound\", \"properties\": { \"Start_Date\": { \"type\": \"string\", \"format\": \"date\", \"title\": \"Start date\" }, \"End_Date\": { \"type\": \"string\", \"format\": \"date\", \"title\": \"End date\" } }, }, . The above example shows a structure of data with title ‘Collection process’. It will show two elements ‘Start date’ and ‘End date’. The data itself is singular. I.e. only one start date and one end date can be added by the user. Dependencies between elements . Dependencies can be added between data. I.e. if data is present in one element, the other element becomes mandatory as well. \"Collected\": { \"type\": \"object\", \"title\": \"Collection process\", \"yoda:structure\": \"compound\", \"properties\": { \"Start_Date\": { \"type\": \"string\", \"format\": \"date\", \"title\": \"Start date\" }, \"End_Date\": { \"type\": \"string\", \"format\": \"date\", \"title\": \"End date\" } }, \"dependencies\": { \"Start_Date\": [\"End_Date\"], \"End_Date\": [\"Start_Date\"] } }, . In the example above, Start_Date and End_Date are dependent fields. I.e. if either one is holding data, the other field must hold data as well. ",
     "url": "/yoda/design/metadata/metadata-form-json.html#complex-structures---typeobject",
     
     "relUrl": "/design/metadata/metadata-form-json.html#complex-structures---typeobject"
-  },"173": {
+  },"176": {
     "doc": "Metadata JSON schema",
     "title": "Specific Yoda attributes",
     "content": "Yoda:structure attributes . | compound: A combination of form elements that can be regarded as one element. | subproperties: A subproperty structure consists of one main item and a properties section. This section can be an elaborate structure of form elements in itself. | . The “yoda:required” attribute specifies whether an element is mandatory. ",
     "url": "/yoda/design/metadata/metadata-form-json.html#specific-yoda-attributes",
     
     "relUrl": "/design/metadata/metadata-form-json.html#specific-yoda-attributes"
-  },"174": {
+  },"177": {
     "doc": "Metadata JSON schema",
     "title": "Example of complex structure",
     "content": "The following example shows a complex datastructure for a Contributor entity. Main structure Main structure is a subproperty structure. It consists of Name as leadpropery and the entire structure below as its subproperty. The entire Contributor structure can be duplicated. I.e. copied including the entire subpropery structure. Subproperty structure Consists of 2 elements (Contributor type and Affiliation) and 1 compound element Person identifier (holding 2 compound elements). Affiliation and Person Identifier can be added multiple times. When a Person identifier type is added, a corresponding identifier is required as well. This is arranged by setting dependencies between the two fields. JSON representation is as follows: . \"Contributor\": { \"type\": \"array\", \"items\": { \"type\": \"object\", \"yoda:structure\": \"subproperties\", \"properties\": { \"Name\": { \"$ref\": \"#/definitions/stringNormal\", \"title\": \"Contributor to datapackage\" }, \"Contributor_Type\": { \"$ref\": \"#/definitions/optionsContributorType\", \"title\": \"Contributor type\" }, \"Affiliation\": { \"type\": \"array\", \"default\": [\"Utrecht University\"], \"items\": { \"$ref\": \"#/definitions/stringNormal\", \"title\": \"Affiliation\", \"yoda:required\": true } }, \"Person_Identifier\": { \"type\": \"array\", \"items\": { \"type\": \"object\", \"title\": \"Person identifier\", \"yoda:structure\": \"compound\", \"properties\": { \"Name_Identifier_Scheme\": { \"$ref\": \"#/definitions/optionsNameIdentifierScheme\", \"title\": \"Type\" }, \"Name_Identifier\": { \"$ref\": \"#/definitions/stringNormal\", \"title\": \"Identifier\" } }, \"dependencies\": { \"Name_Identifier_Scheme\": [\"Name_Identifier\"], \"Name_Identifier\": [\"Name_Identifier_Scheme\"] } } } }, \"dependencies\": { \"Name\": [\"Contributor_Type\", \"Affiliation\"] } } }, . ",
     "url": "/yoda/design/metadata/metadata-form-json.html#example-of-complex-structure",
     
     "relUrl": "/design/metadata/metadata-form-json.html#example-of-complex-structure"
-  },"175": {
+  },"178": {
     "doc": "Metadata JSON schema",
     "title": "Metadata JSON schema",
     "content": " ",
     "url": "/yoda/design/metadata/metadata-form-json.html",
     
     "relUrl": "/design/metadata/metadata-form-json.html"
-  },"176": {
+  },"179": {
     "doc": "Metadata form implementation",
     "title": "Metadata form implementation",
     "content": "This page contains implementation information about the metadata form functionality. ",
     "url": "/yoda/design/metadata/metadata-form.html",
     
     "relUrl": "/design/metadata/metadata-form.html"
-  },"177": {
+  },"180": {
     "doc": "Metadata form implementation",
     "title": "Form functionality",
     "content": "The metadata form can be used in two ways. Firstly, regular users can use the form to view and edit the metadata of a data package. Secondly, the form can show data package metadata in readonly mode, if metadata cannot be edited by the present user. The form can be configured using metadata schemas (see schema configuration for details). Based on the configured schema, the form shows feedback to the user regarding the completeness and validity of entered metadata. If the metadata is complete and valid, the user can save it. In that case, it is stored in a user-editable yoda-metadata.json file, and also copied to iRODS metadata (AVUs) of the collection. After a user has entered metadata, the data package can optionally be submitted to the vault for archiving and/or publication. ",
     "url": "/yoda/design/metadata/metadata-form.html#form-functionality",
     
     "relUrl": "/design/metadata/metadata-form.html#form-functionality"
-  },"178": {
+  },"181": {
     "doc": "Metadata form implementation",
     "title": "Integration of React form within Yoda",
     "content": "The directories /metadata_form and /research/metadata-form/src in the Yoda-portal repository contains Yoda-specific JavaScript code for the React form. ",
     "url": "/yoda/design/metadata/metadata-form.html#integration-of-react-form-within-yoda",
     
     "relUrl": "/design/metadata/metadata-form.html#integration-of-react-form-within-yoda"
-  },"179": {
+  },"182": {
     "doc": "Metadata vault",
     "title": "Metadata of data packages in the vault",
     "content": " ",
     "url": "/yoda/design/metadata/metadata-vault.html#metadata-of-data-packages-in-the-vault",
     
     "relUrl": "/design/metadata/metadata-vault.html#metadata-of-data-packages-in-the-vault"
-  },"180": {
+  },"183": {
     "doc": "Metadata vault",
     "title": "Submit to vault",
     "content": "When a user submits a data package to the vault, its metadata will be validated first against the metadata schema. ",
     "url": "/yoda/design/metadata/metadata-vault.html#submit-to-vault",
     
     "relUrl": "/design/metadata/metadata-vault.html#submit-to-vault"
-  },"181": {
+  },"184": {
     "doc": "Metadata vault",
     "title": "Editing metadata in vault",
     "content": "The metadata form is also used for editing of metadata when the data package has already been accepted and copied to the vault. A data manager, a Yoda user that is member of a datamanager group for the same research group, can still edit metadata of a package in the vault. ",
     "url": "/yoda/design/metadata/metadata-vault.html#editing-metadata-in-vault",
     
     "relUrl": "/design/metadata/metadata-vault.html#editing-metadata-in-vault"
-  },"182": {
+  },"185": {
     "doc": "Metadata vault",
     "title": "Metadata form for the vault",
     "content": "The vault metadata form uses the same JSON schema as the research group. Therefore, the form layout and validation are identical to the research group metadata form. ",
     "url": "/yoda/design/metadata/metadata-vault.html#metadata-form-for-the-vault",
     
     "relUrl": "/design/metadata/metadata-vault.html#metadata-form-for-the-vault"
-  },"183": {
+  },"186": {
     "doc": "Metadata vault",
     "title": "Metadata versioning in the vault",
     "content": "In contrast to metadata in research groups, metadata in vault groups is versioned. That is, the original metadata when the data package was submitted is kept in the yoda-metadata.json file in the original collection of the data package. Metadata versions starting from the time the data package was submitted to the vault have a numeric suffix that indicates the version. This number can also be used to order the metadata version by date and time, so that Yoda can determine which version is the latest. Examples of metadata file names: . yoda-metadata[1554743001].json yoda-metadata[1554733000].json . ",
     "url": "/yoda/design/metadata/metadata-vault.html#metadata-versioning-in-the-vault",
     
     "relUrl": "/design/metadata/metadata-vault.html#metadata-versioning-in-the-vault"
-  },"184": {
+  },"187": {
     "doc": "Metadata vault",
     "title": "Metadata vault",
     "content": " ",
     "url": "/yoda/design/metadata/metadata-vault.html",
     
     "relUrl": "/design/metadata/metadata-vault.html"
-  },"185": {
-    "doc": "Mock tape archive",
-    "title": "Mock tape archive",
-    "content": "This page describes how to use the mock DMF tape storage. The mock DMF tape storage is installed in Yoda development environments. ",
-    "url": "/yoda/development/mock_tape_archive.html",
-    
-    "relUrl": "/development/mock_tape_archive.html"
-  },"186": {
-    "doc": "Mock tape archive",
-    "title": "Usage:",
-    "content": "Mock DMF tape storage is installed in a virtualenv, active to use it: . $ sudo su irods $ cd ~ $ . dms-archive-mock/tape_archive_venv/bin/activate . Example to add a data object to the tape archive and put it offline: . $ iput -R mockTapeArchive test.json $ dmattr /var/lib/irods/Vault3/home/rods/test.json $ dmput -r /var/lib/irods/Vault3/home/rods/test.json . ",
-    "url": "/yoda/development/mock_tape_archive.html#usage",
-    
-    "relUrl": "/development/mock_tape_archive.html#usage"
-  },"187": {
-    "doc": "Mock tape archive",
-    "title": "More information",
-    "content": "Several of the DMF commands are described here: https://www.nas.nasa.gov/hecc/support/kb/data-migration-facility-(dmf)-commands_250.html . ",
-    "url": "/yoda/development/mock_tape_archive.html#more-information",
-    
-    "relUrl": "/development/mock_tape_archive.html#more-information"
   },"188": {
     "doc": "Overview of repositories",
     "title": "Overview of source code repositories",
