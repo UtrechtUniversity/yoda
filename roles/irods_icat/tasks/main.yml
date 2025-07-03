@@ -226,20 +226,21 @@
     force: false
 
 
-- name: Ensure iRODS server is up
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command: 'ils /{{ irods_zone }}/home'
-  register: ils
-  ignore_errors: true
-  changed_when: ils is failed
+- name: Ensure iRODS is running
+  block:
+    - name: Check if iRODS server is up
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: 'ils /{{ irods_zone }}/home'
+      register: ils
+      ignore_errors: true
+      changed_when: ils is failed
 
-
-- name: Restart iRODS server
-  ansible.builtin.service:
-    name: irods
-    state: restarted
-  when: ils is failed
+    - name: Restart iRODS server if not up
+      ansible.builtin.service:
+        name: irods
+        state: restarted
+      when: ils is failed
 
 
 - name: Configure iRODS systemd service
@@ -282,20 +283,21 @@
 
 
 - name: Ensure all users have iRODS read access on /zone/home
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.shell: 'ils -A /{{ irods_zone }}/home | grep "g:public#"'
-  register: read_access
-  ignore_errors: true
-  changed_when: read_access is failed
+  block:
+    - name: Check if all users have iRODS read access on /zone/home
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.shell: 'ils -A /{{ irods_zone }}/home | grep "g:public#"'
+      register: read_access
+      ignore_errors: true
+      changed_when: read_access is failed
 
-
-- name: Provide iRODS read access for all users on /zone/home
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: 'ichmod -M read public /{{ irods_zone }}/home'
-  when: read_access is failed
+    - name: Provide iRODS read access for all users on /zone/home
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: # noqa no-changed-when
+        cmd: 'ichmod -M read public /{{ irods_zone }}/home'
+      when: read_access is failed
 
 
 - name: Enable ports for iCAT in firewall
@@ -485,37 +487,39 @@
 
 
 - name: Ensure anonymous user has iRODS read access on /zone/home
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.shell: 'ils -A /{{ irods_zone }}/home | grep "anonymous#"'
-  register: read_access
-  ignore_errors: true
-  changed_when: read_access is failed
+  block:
+    - name: Check if anonymous user has iRODS read access on /zone/home
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.shell: 'ils -A /{{ irods_zone }}/home | grep "anonymous#"'
+      register: read_access
+      ignore_errors: true
+      changed_when: read_access is failed
+
+    - name: Provide iRODS read access for anonymous user on /zone/home
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: # noqa no-changed-when
+        cmd: 'ichmod -M read anonymous /{{ irods_zone }}/home'
+      when: read_access is failed
 
 
-- name: Provide iRODS read access for anonymous user on /zone/home
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: 'ichmod -M read anonymous /{{ irods_zone }}/home'
-  when: read_access is failed
+- name: Ensure public collection does not exist on /zone/home
+  block:
+    - name: Check if public collection exists
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: 'ils /{{ irods_zone }}/home/public'
+      register: public_coll
+      changed_when: false
+      failed_when: false
 
-
-- name: Check if public collection exists
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command: 'ils /{{ irods_zone }}/home/public'
-  register: public_coll
-  changed_when: false
-  failed_when: false
-
-
-- name: Remove public collection provided that it is empty
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command: # noqa no-changed-when
-    cmd: 'irmdir /{{ irods_zone }}/home/public'
-  when: (not ansible_check_mode) and (public_coll.stdout.find('/home/public') >= 0)
+    - name: Remove public collection provided that it is empty
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: # noqa no-changed-when
+        cmd: 'irmdir /{{ irods_zone }}/home/public'
+      when: (not ansible_check_mode) and (public_coll.stdout.find('/home/public') >= 0)
 
 
 - name: Ensure default msiExecCmd binaries are absent
