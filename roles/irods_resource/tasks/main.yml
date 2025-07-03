@@ -129,20 +129,21 @@
     force: false
 
 
-- name: Ensure iRODS server is up
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command: 'ils /{{ irods_zone }}/home'
-  register: ils
-  ignore_errors: true
-  changed_when: ils is failed
+- name: Ensure iRODS is running
+  block:
+    - name: Check if iRODS server is up
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: 'ils /{{ irods_zone }}/home'
+      register: ils
+      ignore_errors: true
+      changed_when: ils is failed
 
-
-- name: Start iRODS server
-  ansible.builtin.service:
-    name: irods
-    state: started
-  when: ils is failed
+    - name: Restart iRODS server if not up
+      ansible.builtin.service:
+        name: irods
+        state: restarted
+      when: ils is failed
 
 
 - name: Configure iRODS systemd service
