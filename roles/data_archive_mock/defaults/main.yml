@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+enable_data_package_archive: false
+
+systemd_dir: /etc/systemd/system
+
+da_server:
+  user: irods

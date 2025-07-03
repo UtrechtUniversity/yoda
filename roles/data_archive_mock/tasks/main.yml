@@ -1,0 +1,84 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Ensure Data Archive mock service files are present
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.copy:
+    src: 'data-archive-mock'
+    dest: '/var/lib/irods/'
+    mode: '0644'
+  register: da_mock_changes
+
+
+- name: Install Data Archive mock service # noqa no-handler
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa no-changed-when
+  ansible.builtin.shell: |
+    cd /var/lib/irods/data-archive-mock
+    {{ data_archive_mock_python3_path }} -m venv data_archive_venv
+    . data_archive_venv/bin/activate
+    pip install .
+  when: da_mock_changes.changed
+
+
+- name: Ensure Data Archive mock service is configured
+  ansible.builtin.template:
+    src: "damock_server.json.j2"
+    dest: "/etc/damock_server.json"
+    mode: '0644'
+
+
+- name: Ensure mock Data Archive resource exist
+  become_user: "{{ irods_service_account }}"
+  become: true
+  # noqa fqcn[action]
+  irods_resource:
+    name: "mockDataArchive"
+    resource_type: "unixfilesystem"
+    host: "{{ irods_icat_fqdn | default('EMPTY_RESC_HOST') }}"
+    vault_path: "/var/lib/irods/Vault3"
+  when: not ansible_check_mode
+
+
+- name: Copy Data Archive scripts to msiExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.copy:
+    src: "data_archive/scripts/{{ item }}"
+    dest: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    mode: '0755'
+  with_items:
+    - daattr
+    - daget
+
+
+- name: Remove legacy DMF scripts to msiExecCmd dir
+  become_user: "{{ irods_service_account }}"
+  become: true
+  ansible.builtin.file:
+    path: "/var/lib/irods/msiExecCmd_bin/{{ item }}"
+    state: absent
+  with_items:
+    - dmattr
+    - dmget
+    - dmput
+
+
+- name: Create systemd service
+  ansible.builtin.template:
+    src: da_server.service
+    dest: '{{ systemd_dir }}/da_server.service'
+    mode: '0644'
+
+
+- name: Make sure Data Archive mock service is started
+  ansible.builtin.service:
+    name: da_server
+    state: started
+    enabled: true
