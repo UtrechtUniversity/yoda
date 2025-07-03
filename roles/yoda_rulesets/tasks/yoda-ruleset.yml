@@ -26,29 +26,30 @@
   when: priv_groups.stdout.find('priv-admin') == -1
 
 
-- name: Find out which system collections are present
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.command: 'ils /{{ irods_zone }}/yoda'
-  ignore_errors: true
-  register: system_collections
-  changed_when: false
-  check_mode: false
-
-
 - name: Ensure yoda system collections are present
-  become_user: "{{ irods_service_account }}"
-  become: true
-  ansible.builtin.command: >
-    irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
-    /etc/irods/yoda-ruleset/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'
-  register: create_system_collections
-  when: >
-    (system_collections.stderr.find('does not exist') >= 0)
-    or
-    (system_collections.stdout.find('revisions') == -1
-    and enable_revisions == 1)
-  changed_when: create_system_collections.stdout.find('Creating') >= 0
+  block:
+    - name: Find out which system collections are present
+      become_user: "{{ irods_service_account }}"
+      become: true
+      ansible.builtin.command: 'ils /{{ irods_zone }}/yoda'
+      ignore_errors: true
+      register: system_collections
+      changed_when: false
+      check_mode: false
+
+    - name: Create yoda system collections if not present
+      become_user: "{{ irods_service_account }}"
+      become: true
+      ansible.builtin.command: >
+        irule -r irods_rule_engine_plugin-irods_rule_language-instance -F
+        /etc/irods/yoda-ruleset/tools/create-system-collections.r '*enableRevisions={{ enable_revisions }}'
+      register: create_system_collections
+      when: >
+        (system_collections.stderr.find('does not exist') >= 0)
+        or
+        (system_collections.stdout.find('revisions') == -1
+        and enable_revisions == 1)
+      changed_when: create_system_collections.stdout.find('Creating') >= 0
 
 
 - name: Check for existence of storage statistics script

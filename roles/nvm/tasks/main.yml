@@ -12,29 +12,30 @@
     executable: /bin/bash
 
 
-- name: Check if NPM v18 is installed
-  become_user: "{{ yoda_deployment_user }}"
-  become: true
-  ansible.builtin.shell: |
-    set -o pipefail
-    source ~/.profile
-    source ~/.bashrc
-    nvm ls {{ npm_version }} | grep {{ npm_version }}
-  args:
-    executable: /bin/bash
-  register: npm_check
-  ignore_errors: true
-  changed_when: false
-
-
 - name: Ensure NPM v18 is installed
-  become_user: "{{ yoda_deployment_user }}"
-  become: true
-  # noqa no-changed-when
-  ansible.builtin.shell: |
-    source ~/.profile
-    source ~/.bashrc
-    nvm install {{ npm_version }}
-  args:
-    executable: /bin/bash
-  when: npm_check.stdout == ""
+  block:
+    - name: Check if NPM v18 is installed
+      become_user: "{{ yoda_deployment_user }}"
+      become: true
+      ansible.builtin.shell: |
+        set -o pipefail
+        source ~/.profile
+        source ~/.bashrc
+        nvm ls {{ npm_version }} | grep {{ npm_version }}
+      args:
+        executable: /bin/bash
+      register: npm_check
+      ignore_errors: true
+      changed_when: false
+
+    - name: Install NPM v18
+      become_user: "{{ yoda_deployment_user }}"
+      become: true
+      # noqa no-changed-when
+      ansible.builtin.shell: |
+        source ~/.profile
+        source ~/.bashrc
+        nvm install {{ npm_version }}
+      args:
+        executable: /bin/bash
+      when: npm_check.stdout == ""
