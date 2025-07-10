@@ -36,6 +36,7 @@
     - '{{ landingpages_root }}/static/css/'
     - '{{ landingpages_root }}/static/img/'
     - '{{ landingpages_root }}/static/js/'
+    - '{{ landingpages_root }}/static/lib/'
 
 
 - name: Ensure Yoda landingpage static files are present
@@ -67,4 +68,10 @@
       diff: false
     - src: 'js/leaflet-1.5.1.js'
       dest: '{{ landingpages_root }}/static/js/leaflet-1.5.1.js'
+      diff: false
+    - src: 'lib/client-zip-2.5.0/index.js'
+      dest: '{{ landingpages_root }}/static/lib/client-zip-2.5.0.js'
+      diff: false
+    - src: 'js/download.js'
+      dest: '{{ landingpages_root }}/static/js/download.js'
       diff: false
