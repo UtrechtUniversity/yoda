@@ -241,4 +241,6 @@ Listen {{ yoda_davrods_anonymous_port }}
     #   you've both a RSA and a DSA private key you can configure
     #   both in parallel (to also allow the use of DSA ciphers, etc.)
     SSLCertificateKeyFile   {{ openssl_private_dir }}/{{ openssl_key_signed }}
+
+    Header set Access-Control-Allow-Origin "https://{{ yoda_public_fqdn }}"
 </VirtualHost>
