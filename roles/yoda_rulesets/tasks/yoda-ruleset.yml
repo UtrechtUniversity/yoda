@@ -531,7 +531,7 @@
   become: true
   ansible.builtin.cron:
     name: 'asynchronous-revisions-{{ item }}'
-    minute: '6,16,26,36,46,56'
+    minute: '*/4'
     job: >
       /bin/python3 /etc/irods/yoda-ruleset/tools/async-data-revision.py
       --balance_id_min={{ (item * (64 / (async_revision_jobs | int)) - (64 / (async_revision_jobs | int))) | int + 1 }}
