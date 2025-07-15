@@ -22,10 +22,17 @@ document.body.addEventListener('click', async function (event) {
       if (!response.ok) throw new Error(`Error: ${response.status}`)
       const entries = await response.json()
 
-      const downloadEntries = entries.map(entry => ({
-        url: `${openAccessLink}/${entry.name}`,
-        name: entry.name
-      }))
+      const downloadEntries = entries.reduce((acc, entry) => {
+        if (entry.name.endsWith('/')) {
+          acc.push({ name: entry.name })
+        } else {
+          acc.push({
+            url: `${openAccessLink}/${entry.name}`,
+            name: entry.name
+          })
+        }
+        return acc
+      }, [])
 
       if (downloadEntries.length) {
         await downloadEntriesAsZip(downloadEntries)
