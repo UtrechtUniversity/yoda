@@ -314,3 +314,14 @@ footer .logo img {
     max-width: none;
     height: 111px;
 }
+.map {
+    height: 450px;
+    width: 600px;
+}
+a.leaflet-control-zoom-in,
+a.leaflet-control-zoom-out {
+    text-decoration: none !important;
+}
+.indented {
+    padding-left: 10px;
+}
