@@ -13,12 +13,12 @@ setup(
     include_package_data=False,
     zip_safe=False,
     install_requires=[
-        'Flask==3.0.2',
+        'Flask==3.1.1',
         'requests==2.32.4',
-        'numpy==2.0.2',
-        'typing-extensions==4.1.1',
-        'urllib3>=1.21.1,<2',
-        'Werkzeug==3.0.6'
+        'numpy==2.3.1',
+        'typing-extensions==4.14.1',
+        'urllib3==2.5.0',
+        'Werkzeug==3.1.3'
     ],
     entry_points={
         'console_scripts': [
