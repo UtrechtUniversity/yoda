@@ -56,14 +56,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After ensuring the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Check out the `development` tag of the Yoda Git repository:
+3. Check out the `v2.0.0-rc.0` tag of the Yoda Git repository:
 ```bash
-git checkout development
+git checkout v2.0.0-rc.0
 ```
 
-4. Set the Yoda version to `development` in the configuration:
+4. Set the Yoda version to `v2.0.0-rc.0` in the configuration:
 ```yaml
-yoda_version: development
+yoda_version: v2.0.0-rc.0
 ```
 
 5. Install all Ansible collections needed to deploy Yoda:
