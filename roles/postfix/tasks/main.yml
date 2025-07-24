@@ -144,39 +144,39 @@
   when: ansible_distribution == "RedHat" and ansible_selinux
 
 
-- name: Configure default Postfix AppArmor profile
+- name: Configure default Postfix AppArmor profiles
   ansible.builtin.copy:
     src: '/usr/share/apparmor/extra-profiles/{{ item }}'
     dest: '/etc/apparmor.d/{{ item }}'
     mode: '0644'
     remote_src: true
   with_items:
+    - postfix-anvil
+    - postfix-bounce
+    - postfix-cleanup
+    - postfix-discard
+    - postfix-error
+    - postfix-flush
+    - postfix-lmtp
+    - postfix-local
+    - postfix-master
+    - postfix-nqmgr
+    - postfix-oqmgr
+    - postfix-pickup
+    - postfix-pipe
+    - postfix-proxymap
+    - postfix-qmgr
+    - postfix-qmqpd
+    - postfix-scache
+    - postfix-showq
+    - postfix-smtp
+    - postfix-smtpd
+    - postfix-spawn
+    - postfix-tlsmgr
+    - postfix-trivial-rewrite
+    - postfix-verify
+    - postfix-virtual
     - usr.bin.procmail
-    - usr.lib.postfix.anvil
-    - usr.lib.postfix.bounce
-    - usr.lib.postfix.cleanup
-    - usr.lib.postfix.discard
-    - usr.lib.postfix.error
-    - usr.lib.postfix.flush
-    - usr.lib.postfix.lmtp
-    - usr.lib.postfix.local
-    - usr.lib.postfix.master
-    - usr.lib.postfix.nqmgr
-    - usr.lib.postfix.oqmgr
-    - usr.lib.postfix.pickup
-    - usr.lib.postfix.pipe
-    - usr.lib.postfix.proxymap
-    - usr.lib.postfix.qmgr
-    - usr.lib.postfix.qmqpd
-    - usr.lib.postfix.scache
-    - usr.lib.postfix.showq
-    - usr.lib.postfix.smtp
-    - usr.lib.postfix.smtpd
-    - usr.lib.postfix.spawn
-    - usr.lib.postfix.tlsmgr
-    - usr.lib.postfix.trivial-rewrite
-    - usr.lib.postfix.verify
-    - usr.lib.postfix.virtual
     - usr.sbin.postalias
     - usr.sbin.sendmail.postfix
   register: postfix_apparmor_default
@@ -184,7 +184,7 @@
   when: not ansible_check_mode and ansible_os_family == "Debian"
 
 
-- name: Configure Postfix custom AppArmor profiles
+- name: Configure custom Postfix AppArmor profiles
   ansible.builtin.template:
     src: '{{ item.src }}'
     dest: '/etc/apparmor.d/{{ item.dest }}'
