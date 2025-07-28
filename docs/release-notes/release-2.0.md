@@ -36,7 +36,7 @@ Released: TBA
 - GoCommands: update to v0.10.24
 - Flask and dependencies: update to v3.1.1
 - Bootstrap: update to v5.3.6
-- Mailpit: update to v1.27.1
+- Mailpit: update to v1.27.2
 
 ### Known issues
 - Collections with single apex "'" in the name do not work ([irods/irods#5727](https://github.com/irods/irods/issues/5727))
