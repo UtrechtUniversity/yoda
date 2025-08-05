@@ -13,7 +13,7 @@ Yoda entities such as collections, data objects, categories, groups, etc. have c
 
 System limitations to take into considerations:
 
-- iRODS has a maximum path length of 1024 characters (see: [iRODS maximum path length allowed](https://github.com/irods/irods/blob/4669cd6be829ed7bc3a4c6648b7eac408839e647/lib/core/include/irods/rodsDef.h#L42)).
+- iRODS has a maximum path length of 1024 bytes[^1] (see: [iRODS maximum path length allowed](https://github.com/irods/irods/blob/4669cd6be829ed7bc3a4c6648b7eac408839e647/lib/core/include/irods/rodsDef.h#L42)).
 - If any member of your group(s) use Windows native WebDAV, the WebDAV part of the paths of each data object and collection should be limited to 260 characters (due to [Windows systems maximum path length limitation](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry)).
 
 In addition to these, there are some known naming issues that should also be taken into consideration:
@@ -49,7 +49,10 @@ See: [iRODS rule](https://github.com/UtrechtUniversity/yoda-ruleset/blob/d9e8c8d
 Rules for category names are as follows:
 
 - must contain only lowercase characters, numbers, and hyphens;
-- must not start or end with a hyphen.
+- must not start or end with a hyphen;
+- must not exceed 2700 bytes[^1].
+
+Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module.
 
 See: [iRODS rule](https://github.com/UtrechtUniversity/yoda-ruleset/blob/d9e8c8d0699f692e11eed8e8aa6c8fb136461af3/uuGroupPolicyChecks.r#L57-L64), [Python rule](https://github.com/UtrechtUniversity/yoda-ruleset/blob/e61f7e088c2f046d2fbe7b1095ff608f229d19ae/util/yoda_names.py#L13-L20)
 
@@ -57,10 +60,17 @@ See: [iRODS rule](https://github.com/UtrechtUniversity/yoda-ruleset/blob/d9e8c8d
 
 Rules for subcategory names are as follows:
 
-- must contain only letters, numbers, spaces, commas, periods, parentheses, underscores, and hyphens.
+- must contain only letters, numbers, spaces, commas, periods, parentheses, underscores, and hyphens;
+- must not exceed 2700 bytes[^1].
+
+Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module.
 
 See: [iRODS rule](https://github.com/UtrechtUniversity/yoda-ruleset/blob/d9e8c8d0699f692e11eed8e8aa6c8fb136461af3/uuGroupPolicyChecks.r#L66-L75), [Python rule](https://github.com/UtrechtUniversity/yoda-ruleset/blob/e61f7e088c2f046d2fbe7b1095ff608f229d19ae/util/yoda_names.py#L23-L30)
 
 ## Licenses
 
 Detailed information regarding default and non-default licenses can be found in the [Installing licenses](/administration/installing-licenses.md) page.
+
+# Footnotes
+
+[^1]: Number of bytes directly translates to number of characters, only in case of single-byte characters.
