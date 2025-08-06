@@ -69,7 +69,7 @@ See: [iRODS rule](https://github.com/UtrechtUniversity/yoda-ruleset/blob/d9e8c8d
 
 ## Licenses
 
-Detailed information regarding default and non-default licenses can be found in the [Installing licenses](/administration/installing-licenses.md) page.
+Detailed information regarding default and non-default licenses can be found in the [Installing licenses](/../../administration/installing-licenses.md) page.
 
 # Footnotes
 
