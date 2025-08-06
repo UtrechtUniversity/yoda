@@ -295,6 +295,25 @@
 <p>Rebuild portal Javascript assets on source file change:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./node_modules/.bin/webpack <span class="nt">-w</span> <span class="nt">--name</span> all <span class="nt">--mode</span> development
 </code></pre></div></div>
+<h3 id="yoda-portal-datarequest-page">
+  
+  
+    <a href="#yoda-portal-datarequest-page" class="anchor-heading" aria-labelledby="yoda-portal-datarequest-page"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Yoda portal datarequest page
+  
+  
+</h3>
+    
+<p>To make changes to the Datarequest module in the portal:</p>
+<ol>
+  <li>Go to the Datarequest folder containing the JS code: <code class="language-plaintext highlighter-rouge">cd /var/www/yoda/datarequest/static/datarequest/js</code></li>
+  <li>Install npm: <code class="language-plaintext highlighter-rouge">npm install</code>
+    <ul>
+      <li>NOTE: The Datarequest module currently has a dependency conflict caused by the <code class="language-plaintext highlighter-rouge">react-bootstrap-table-next</code> package. To temporarily fix this in your <em>development</em> environment, you can downgrade packages <code class="language-plaintext highlighter-rouge">react</code> and <code class="language-plaintext highlighter-rouge">react-dom</code> to version 16.3.0 in the <code class="language-plaintext highlighter-rouge">package.json</code> file.</li>
+    </ul>
+  </li>
+  <li>Make your changes to the JS code</li>
+  <li>Run the webpack to rebuild the Datarequest module: <code class="language-plaintext highlighter-rouge">./node_modules/.bin/webpack</code></li>
+</ol>
 <h2 id="mailpit">
   
   
@@ -316,6 +335,7 @@ In order to see what messages Yoda would have sent, browse to port 8025 on the i
   
 </h2>
     
+
 <p>Remove all existing data requests (to declutter your <em>development</em> environment):</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>icd /tempZone/home/datarequests-research <span class="o">&amp;&amp;</span> ils | <span class="nb">grep</span> <span class="se">\ \ </span> | <span class="nb">sed</span> <span class="s1">'s/\ \ C-\ //'</span> | xargs <span class="nt">-I</span> COLLPATH sh <span class="nt">-c</span> <span class="s2">"ichmod -M -r own rods COLLPATH &amp;&amp; irm -r COLLPATH"</span>
 </code></pre></div></div>
