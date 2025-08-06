@@ -63,7 +63,7 @@ In order to see what messages Yoda would have sent, browse to port 8025 on the i
 
 ## Datarequest module
 
-To remove all existing data requests (to declutter your _development_ environment):
+Remove all existing data requests (to declutter your _development_ environment):
 ```bash
 icd /tempZone/home/datarequests-research && ils | grep \ \  | sed 's/\ \ C-\ //' | xargs -I COLLPATH sh -c "ichmod -M -r own rods COLLPATH && irm -r COLLPATH"
 ```
