@@ -46,6 +46,14 @@ Rebuild portal Javascript assets on source file change:
 ./node_modules/.bin/webpack -w --name all --mode development
 ```
 
+### Yoda portal datarequest page
+To make changes to the Datarequest module in the portal:
+1. Go to the Datarequest folder containing the JS code: `cd /var/www/yoda/datarequest/static/datarequest/js`
+2. Install npm: `npm install`
+   - NOTE: The Datarequest module currently has a dependency conflict caused by the `react-bootstrap-table-next` package. To temporarily fix this in your _development_ environment, you can downgrade packages `react` and `react-dom` to version 16.3.0 in the `package.json` file.
+3. Make your changes to the JS code
+4. Run the webpack to rebuild the Datarequest module: `./node_modules/.bin/webpack`
+
 ## Mailpit
 
 The development environments have [Mailpit](https://github.com/axllent/mailpit) for testing email during development.
@@ -54,13 +62,6 @@ In order to see what messages Yoda would have sent, browse to port 8025 on the i
 ![Mailpit screenshot](screenshot-mailpit.png)
 
 ## Datarequest module
-
-To make changes to the Datarequest module in the portal:
-1. Go to the Datarequest folder containing the JS code: `cd /var/www/yoda/datarequest/static/datarequest/js`
-2. Install npm: `npm install`
-   - NOTE: The Datarequest module currently has a dependency conflict caused by the `react-bootstrap-table-next` package. To temporary fix this in your _development_ environment, you can downgrade packages `react` and `react-dom` to version 16.3.0 in the `package.json` file.
-3. Make your changes to the JS code
-4. Run the webpack to rebuild the Datarequest module: `./node_modules/.bin/webpack`
 
 To remove all existing data requests (to declutter your _development_ environment):
 ```bash
