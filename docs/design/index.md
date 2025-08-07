@@ -39,6 +39,9 @@ has_toc: false
 - [Revision management](processes/revisions.md)
 - [Vault process](processes/vault-process.md)
 
+## Conventions
+- [Naming conventions](conventions/index.md)
+
 ## Other
 - [Python plugin](other/python-plugin.md)
 - [Yoda drive](other/yodadrive.md)
