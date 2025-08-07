@@ -15,10 +15,9 @@
   
 
     .site-nav > ul.nav-list:first-child > li > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li > a,
     
-    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(8)) > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li > ul > li a {
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(5)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
       background-image: none;
     }
 
@@ -27,16 +26,14 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(2) > ul > li:nth-child(8) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(5) > a {
       font-weight: 600;
       text-decoration: none;
     }.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(2) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(2) > ul > li:nth-child(8) > button svg {
+    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(5) > button svg {
       transform: rotate(-90deg);
     }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(2) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(2) > ul.nav-list > li.nav-list-item:nth-child(8) > ul.nav-list {
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(5) > ul.nav-list {
       display: block;
     }
   </style>
@@ -58,18 +55,18 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Vault archive | Yoda</title>
+<title>Naming conventions | Yoda</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Vault archive" />
+<meta property="og:title" content="Naming conventions" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:site_name" content="Yoda" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Vault archive" />
+<meta property="twitter:title" content="Naming conventions" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Vault archive","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/design/overview/vault-archive.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Naming conventions","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/design/conventions/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -224,8 +221,7 @@
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
     <li class="breadcrumb-nav-list-item"><a href="/yoda/design/">Software Design</a></li>
-    <li class="breadcrumb-nav-list-item"><a href="/yoda/design/overview/">System Overview</a></li>
-    <li class="breadcrumb-nav-list-item"><span>Vault archive</span></li>
+    <li class="breadcrumb-nav-list-item"><span>Naming conventions</span></li>
   </ol>
 </nav>
 
@@ -233,51 +229,145 @@
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="vault-archive">
+            <h1 id="naming-conventions">
   
   
-    <a href="#vault-archive" class="anchor-heading" aria-labelledby="vault-archive"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Vault archive
+    <a href="#naming-conventions" class="anchor-heading" aria-labelledby="naming-conventions"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Naming conventions
   
   
 </h1>
     
-<h2 id="introduction">
+
+<p>Yoda entities such as collections, data objects, categories, groups, etc. have certain naming requirements and restrictions. These exist either because of structural limitations of certain parts of the system, or to avoid errors and/or malfunctions of the system. This part of the documentation lists all the requirements and restrictions that should be followed when naming the Yoda entities.</p>
+<h2 id="collection-and-data-object-names">
   
   
-    <a href="#introduction" class="anchor-heading" aria-labelledby="introduction"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Introduction
+    <a href="#collection-and-data-object-names" class="anchor-heading" aria-labelledby="collection-and-data-object-names"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Collection and data object names
   
   
 </h2>
     
 
-<p>The vault archive is described in this document.
-The state diagram documents the states and transitions of a data package in the vault archive.
-The sequence diagram documents the interactions between the actors in the vault archive.</p>
-<h2 id="state-diagram">
+<p>System limitations to take into considerations:</p>
+
+<ul>
+  <li>iRODS has a maximum path length of 1024 bytes<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> (see: <a href="https://github.com/irods/irods/blob/4669cd6be829ed7bc3a4c6648b7eac408839e647/lib/core/include/irods/rodsDef.h#L42">iRODS maximum path length allowed</a>).</li>
+  <li>If any member of your group(s) use Windows native WebDAV, the WebDAV part of the paths of each data object and collection should be limited to 260 characters (due to <a href="https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry">Windows systems maximum path length limitation</a>).</li>
+</ul>
+
+<p>In addition to these, there are some known naming issues that should also be taken into consideration:</p>
+
+<ul>
+  <li>Collection names containing single apex quote <code class="language-plaintext highlighter-rouge">'</code> cause issues (see: <a href="https://github.com/irods/irods/issues/5727">irods/irods#5727</a>).</li>
+  <li>Renaming of collection names containing multi-byte characters mangles subcollection paths (see: <a href="https://github.com/irods/irods/issues/6239">irods/irods#6239</a>).</li>
+  <li>Data object names containing non-standard characters (such as control characters with ASCII codes 01 to 08, 11, 12, 14 to 31) cause encoding issues in XML (see: <a href="https://github.com/irods/irods/issues/4132#issuecomment-528786460">irods/irods#4132</a>).</li>
+</ul>
+<h2 id="user-names">
   
   
-    <a href="#state-diagram" class="anchor-heading" aria-labelledby="state-diagram"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> State diagram
+    <a href="#user-names" class="anchor-heading" aria-labelledby="user-names"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> User names
   
   
 </h2>
     
 
-<p><img src="/yoda/design/overview/img/vault-archive/vault-archive-state-diagram.png" alt="State diagram" /></p>
-<h2 id="sequence-diagram">
+<p>Rules for user names are as follows:</p>
+
+<ul>
+  <li>must contain zero or one ‘@’ symbol, but not at the beginning or the end of the name;</li>
+  <li>(if ‘@’ symbol is not present) must contain only lowercase letters, and dots;</li>
+  <li>(if ‘@’ symbol is present) must contain only lowercase letters, numbers, hyphens, underscores, and dots;</li>
+  <li>may contain a zone name after a ‘#’ symbol.</li>
+</ul>
+
+<p>See: <a href="https://github.com/UtrechtUniversity/yoda-ruleset/blob/d9e8c8d0699f692e11eed8e8aa6c8fb136461af3/uuGroupPolicyChecks.r#L23-L35">iRODS rule</a>, <a href="https://github.com/UtrechtUniversity/yoda-ruleset/blob/e61f7e088c2f046d2fbe7b1095ff608f229d19ae/util/yoda_names.py#L43-L50">Python rule</a></p>
+<h2 id="group-names">
   
   
-    <a href="#sequence-diagram" class="anchor-heading" aria-labelledby="sequence-diagram"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Sequence diagram
+    <a href="#group-names" class="anchor-heading" aria-labelledby="group-names"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Group names
   
   
 </h2>
     
 
-<p><img src="/yoda/design/overview/img/vault-archive/vault-archive-sequence-diagram.png" alt="Sequence diagram" /></p>
+<p>Rules for group names are as follows:</p>
+
+<ul>
+  <li>must be prefixed with ‘research-‘ or ‘deposit-‘;</li>
+  <li>must contain only lowercase characters, numbers, and hyphens;</li>
+  <li>must not start or end with a hyphen;</li>
+  <li>must not exceed 63 characters.</li>
+</ul>
+
+<p>See: <a href="https://github.com/UtrechtUniversity/yoda-ruleset/blob/d9e8c8d0699f692e11eed8e8aa6c8fb136461af3/uuGroupPolicyChecks.r#L37-L55">iRODS rule</a>, <a href="https://github.com/UtrechtUniversity/yoda-ruleset/blob/e61f7e088c2f046d2fbe7b1095ff608f229d19ae/util/yoda_names.py#L33-L40">Python rule</a></p>
+<h2 id="category-names">
+  
+  
+    <a href="#category-names" class="anchor-heading" aria-labelledby="category-names"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Category names
+  
+  
+</h2>
+    
+
+<p>Rules for category names are as follows:</p>
+
+<ul>
+  <li>must contain only lowercase characters, numbers, and hyphens;</li>
+  <li>must not start or end with a hyphen;</li>
+  <li>must not exceed 2700 bytes<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</li>
+</ul>
+
+<p>Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module.</p>
+
+<p>See: <a href="https://github.com/UtrechtUniversity/yoda-ruleset/blob/d9e8c8d0699f692e11eed8e8aa6c8fb136461af3/uuGroupPolicyChecks.r#L57-L64">iRODS rule</a>, <a href="https://github.com/UtrechtUniversity/yoda-ruleset/blob/e61f7e088c2f046d2fbe7b1095ff608f229d19ae/util/yoda_names.py#L13-L20">Python rule</a></p>
+<h2 id="subcategory-names">
+  
+  
+    <a href="#subcategory-names" class="anchor-heading" aria-labelledby="subcategory-names"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Subcategory names
+  
+  
+</h2>
+    
+
+<p>Rules for subcategory names are as follows:</p>
+
+<ul>
+  <li>must contain only letters, numbers, spaces, commas, periods, parentheses, underscores, and hyphens;</li>
+  <li>must not exceed 2700 bytes<sup id="fnref:1:2" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</li>
+</ul>
+
+<p>Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module.</p>
+
+<p>See: <a href="https://github.com/UtrechtUniversity/yoda-ruleset/blob/d9e8c8d0699f692e11eed8e8aa6c8fb136461af3/uuGroupPolicyChecks.r#L66-L75">iRODS rule</a>, <a href="https://github.com/UtrechtUniversity/yoda-ruleset/blob/e61f7e088c2f046d2fbe7b1095ff608f229d19ae/util/yoda_names.py#L23-L30">Python rule</a></p>
+<h2 id="licenses">
+  
+  
+    <a href="#licenses" class="anchor-heading" aria-labelledby="licenses"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Licenses
+  
+  
+</h2>
+    
+
+<p>Detailed information regarding default and non-default licenses can be found in the <a href="/yoda/administration/installing-licenses.html">Installing licenses</a> page.</p>
+<h1 id="footnotes">
+  
+  
+    <a href="#footnotes" class="anchor-heading" aria-labelledby="footnotes"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Footnotes
+  
+  
+</h1>
+    
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Number of bytes directly translates to number of characters, only in case of single-byte characters. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a> <a href="#fnref:1:2" class="reversefootnote" role="doc-backlink">&#8617;<sup>3</sup></a></p>
+    </li>
+  </ol>
+</div>
 
           
 
-          
-            
           
         </main>
         
@@ -293,7 +383,7 @@ The sequence diagram documents the interactions between the actors in the vault 
         
         
           <p class="text-small text-grey-dk-000 mb-0">
-            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/design/overview/vault-archive.md" id="edit-this-page">Edit this page on GitHub.</a>
+            <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/design/conventions/index.md" id="edit-this-page">Edit this page on GitHub.</a>
           </p>
         
       </div>
