@@ -5,8 +5,7 @@ on:
   push:
     branches:
       - 'development'
-      - 'release-1.9'
-      - 'release-1.10'
+      - 'release-[0-9]+.[0-9]+'
     paths:
       - '.github/workflows/build-push-image-web-mock.yml'
       - 'docker/images/yoda_web_mock/**'
