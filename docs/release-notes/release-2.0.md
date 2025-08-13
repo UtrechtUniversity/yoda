@@ -18,6 +18,7 @@ Released: TBA
 - **Vault archiving workflow**: enhanced support for the [vault archiving](../design/overview/vault-archive.md) workflow
 - **Secured status removal**: removed `Secured` status from the research space
 - **Intake module deprecation**: Deprecated the intake module
+- **Group manager**: Group managers can now change their role or remove themselves as long as there is another group manager in the group
 
 ### Changes affecting technical administrators
 - **Ubuntu and AlmaLinux support**: added [support](../administration/supported-distributions.md) for Ubuntu 24.04 and AlmaLinux 9
@@ -56,14 +57,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After ensuring the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Check out the `v2.0.0-rc.0` tag of the Yoda Git repository:
+3. Check out the `v2.0.0-rc.1` tag of the Yoda Git repository:
 ```bash
-git checkout v2.0.0-rc.0
+git checkout v2.0.0-rc.1
 ```
 
-4. Set the Yoda version to `v2.0.0-rc.0` in the configuration:
+4. Set the Yoda version to `v2.0.0-rc.1` in the configuration:
 ```yaml
-yoda_version: v2.0.0-rc.0
+yoda_version: v2.0.0-rc.1
 ```
 
 5. Install all Ansible collections needed to deploy Yoda:
