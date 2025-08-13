@@ -4,7 +4,7 @@
 # Zabbix agent rpm location and checksum
 zabbix_agent:
   package: zabbix-agent
-  package_version: 5.0.41-1~focal
+  package_version: 5.0.47-1~ubuntu24.04
   url: https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix/
-  filename: zabbix-agent_5.0.41-1%2Bfocal_amd64.deb
-  checksum: sha256:689532c84a5eddaea6d96eb6fa3fbc53bafa30478aa03e688ba7cedb7d412fda
+  filename: zabbix-agent_5.0.47-1%2Bubuntu24.04_amd64.deb
+  checksum: sha256:3c64432aaa979ba2f7075860abdcaae6b82a3d14360839fdd8f57033f12e6383
