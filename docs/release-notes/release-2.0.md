@@ -67,26 +67,45 @@ git checkout v2.0.0-rc.1
 yoda_version: v2.0.0-rc.1
 ```
 
-5. Install all Ansible collections needed to deploy Yoda:
+5. If the old configuration contained an iRODS authentication scheme setting, update it to use `pam_password`. Example:
+```yaml
+irods_authentication_scheme: pam_password
+```
+
+6. It is recommended to explicitly set the Ansible interpreter path in the `group_vars` (if the Yoda environment servers all
+have the same Linux distribution) or in the `host_vars` (if they have different Linux distributions) in order to prevent
+problems with Ansible using a different interpreter than expected.
+
+For EL 9 environments:
+```yaml
+ansible_python_interpreter: /usr/bin/python3.9
+```
+
+For Ubuntu 24.04 LTS environments:
+```yaml
+ansible_python_interpreter: /usr/bin/python3.12
+```
+
+7. Install all Ansible collections needed to deploy Yoda:
 ```bash
 ansible-galaxy collection install -r requirements.yml
 ```
 
-6. Run the Ansible playbook in check mode:
+8. Run the Ansible playbook in check mode:
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml --check
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml --check
 ```
 
-7. If the playbook has finished successfully in check mode, run the Ansible playbook normally:
+9. If the playbook has finished successfully in check mode, run the Ansible playbook normally:
 ```bash
 ansible-playbook -i <path-to-your-environment> playbook.yml
 ### EXAMPLE ###
 ansible-playbook -i /environments/development/allinone playbook.yml
 ```
 
-8. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
+10. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
