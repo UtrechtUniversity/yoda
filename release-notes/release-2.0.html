@@ -327,6 +327,24 @@ To view what files were changed from the defaults, run <code class="language-pla
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v2.0.0-rc.1</span>
 </code></pre></div>    </div>
   </li>
+  <li>If the old configuration contained an iRODS authentication scheme setting, update it to use <code class="language-plaintext highlighter-rouge">pam_password</code>. Example:
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">irods_authentication_scheme</span><span class="pi">:</span> <span class="s">pam_password</span>
+</code></pre></div>    </div>
+  </li>
+  <li>It is recommended to explicitly set the Ansible interpreter path in the <code class="language-plaintext highlighter-rouge">group_vars</code> (if the Yoda environment servers all
+have the same Linux distribution) or in the <code class="language-plaintext highlighter-rouge">host_vars</code> (if they have different Linux distributions) in order to prevent
+problems with Ansible using a different interpreter than expected.</li>
+</ol>
+
+<p>For EL 9 environments:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ansible_python_interpreter</span><span class="pi">:</span> <span class="s">/usr/bin/python3.9</span>
+</code></pre></div></div>
+
+<p>For Ubuntu 24.04 LTS environments:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ansible_python_interpreter</span><span class="pi">:</span> <span class="s">/usr/bin/python3.12</span>
+</code></pre></div></div>
+
+<ol>
   <li>Install all Ansible collections needed to deploy Yoda:
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-galaxy collection <span class="nb">install</span> <span class="nt">-r</span> requirements.yml
 </code></pre></div>    </div>
