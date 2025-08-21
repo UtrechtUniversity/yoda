@@ -89,10 +89,13 @@ Listen {{ yoda_davrods_port }}
 
         # Authentication type to use when connecting to iRODS.
         #
-        # Supported authentication types are 'Native' and 'Pam'.
+        # Supported authentication types are 'Native' and 'PAM'.
         # ('Native' corresponds to what was formerly called 'Standard' auth in iRODS).
-        #
-        DavRodsAuthScheme      {{ irods_authentication_scheme }}
+        # ('PAM' is replaced by 'pam_password' after iRODS 4.3.1).
+
+        # TEMP: Legacy auth required for DavRods compat (Native/PAM only)
+        # TODO: Revert to {{ irods_authentication_scheme }} after scheme/DavRods update
+        DavRodsAuthScheme      {{ yoda_davrods_authentication_scheme }}
 
         # Anonymous mode switch.
         #
