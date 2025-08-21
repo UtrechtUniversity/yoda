@@ -3,6 +3,7 @@
 
 openssl_private_dir: '/etc/ssl/private/'
 openssl_certs_dir: '/etc/ssl/certs'
+openssl_ca_certs_bundle: /etc/ssl/certs/ca-certificates.crt
 
 yoda_portal_python3_path: /usr/bin/python3
 yoda_portal_python3_include_path: /usr/include/python3.12

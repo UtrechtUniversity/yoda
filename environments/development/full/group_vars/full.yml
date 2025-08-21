@@ -85,6 +85,7 @@ irods_icat_fqdn: icat.yoda.test            # iRODS iCAT fully qualified domain n
 irods_database_fqdn: database.yoda.test    # iRODS database fully qualified domain name (FQDN)
 irods_resource_fqdn: resource.yoda.test    # iRODS resource fully qualified domain name (FQDN)
 irods_ssl_verify_server: none              # Verify TLS certificate, use 'cert' for acceptance and production
+irods_ca_certificate_file: "/etc/irods/{{ openssl_crt_signed_and_chain }}"
 irods_enable_gocommands: false
 irods_anonymous_account_permit_addresses: ['192.168.56.10']
 irods_resources:
