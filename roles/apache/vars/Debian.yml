@@ -5,6 +5,7 @@ apache_main_package: apache2
 apache_dev_package: apache2-dev
 apache_openssl_package: openssl
 
+apache_config_dir: /etc/apache2/conf-available
 apache_main_config_file: /etc/apache2/apache2.conf
 apache_main_config_template: main.conf.noble.j2
 apache_ssl_config_file: /etc/apache2/mods-available/ssl.conf

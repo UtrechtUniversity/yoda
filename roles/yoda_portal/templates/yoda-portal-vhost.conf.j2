@@ -17,7 +17,12 @@
 
     <Directory /var/www/yoda>
         AllowOverride All
-        Require all granted
+        <RequireAll>
+            Require all granted
+
+            # Block bad bots.
+            Require not env bad_bot
+        </RequireAll>
     </Directory>
 
     Alias "/static/" "/var/www/yoda/static/"
