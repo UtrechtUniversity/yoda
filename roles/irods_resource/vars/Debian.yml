@@ -3,6 +3,7 @@
 
 openssl_private_dir: '/etc/ssl/private/'
 openssl_certs_dir: '/etc/ssl/certs'
+openssl_ca_certs_bundle: /etc/ssl/certs/ca-certificates.crt
 
 irods_runtime_package_new: irods-runtime=4.3.4-0~noble
 irods_server_package_new: irods-server=4.3.4-0~noble

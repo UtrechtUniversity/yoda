@@ -34,13 +34,13 @@ IRODS_ICAT_HOSTNAME = '{{ irods_icat_fqdn }}'
 IRODS_ICAT_PORT     = '{{ irods_icat_port }}'
 IRODS_DEFAULT_ZONE  = '{{ irods_zone }}'
 IRODS_DEFAULT_RESC  = '{{ irods_default_resc }}'
-IRODS_SSL_CA_FILE   = '{{ openssl_certs_dir ~ "/" ~ openssl_crt_signed_and_chain }}'
+IRODS_SSL_CA_FILE   = '{{ irods_ca_certificate_file }}'
 IRODS_AUTH_SCHEME   = '{{ irods_authentication_scheme }}'
 IRODS_CLIENT_OPTIONS_FOR_SSL = {
     "irods_client_server_policy": "CS_NEG_REQUIRE",
     "irods_client_server_negotiation": "request_server_negotiation",
     "irods_ssl_ca_certificate_file": IRODS_SSL_CA_FILE,
-    "irods_ssl_verify_server": "cert",
+    "irods_ssl_verify_server": "{{ irods_ssl_verify_server }}",
     "irods_encryption_key_size": 16,
     "irods_encryption_salt_size": 8,
     "irods_encryption_num_hash_rounds": 16,

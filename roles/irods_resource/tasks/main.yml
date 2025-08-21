@@ -254,6 +254,8 @@
   with_items:
     - key: 'irods_ssl_certificate_chain_file'
       value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+    - key: 'irods_ssl_ca_certificate_file'
+      value: '{{ irods_ca_certificate_file }}'
     - key: 'irods_ssl_certificate_key_file'
       value: '/etc/irods/{{ openssl_key_signed }}'
     - key: 'irods_ssl_dh_params_file'
