@@ -62,9 +62,25 @@
   ansible.builtin.copy:
     src: ports.conf.noble
     dest: /etc/apache2/ports.conf
+    mode: '0600'
+  when: ansible_os_family == 'Debian'
+
+
+- name: Copy bad bots blocklist
+  ansible.builtin.template:
+    src: bad_bots.conf
+    dest: '{{ apache_config_dir }}/bad_bots.conf'
     owner: root
     group: root
     mode: '0644'
+
+
+- name: Ensure bad bots blocklist is loaded (Ubuntu)
+  ansible.builtin.file:
+    src: "/etc/apache2/conf-available/bad_bots.conf"
+    dest: "/etc/apache2/conf-enabled/bad_bots.conf"
+    state: link
+  notify: Restart Apache webserver
   when: ansible_os_family == 'Debian'
 
 
