@@ -3,6 +3,7 @@
 
 openssl_private_dir: '/etc/ssl/private/'
 openssl_certs_dir: '/etc/ssl/certs'
+openssl_ca_certs_bundle: /etc/ssl/certs/ca-certificates.crt
 
 pam_radius_package: libpam-radius-auth
 
