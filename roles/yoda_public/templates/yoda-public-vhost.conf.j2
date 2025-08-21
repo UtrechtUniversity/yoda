@@ -19,9 +19,15 @@ Listen {{ yoda_public_port }}
 <VirtualHost *:{{ yoda_public_port }}>
     DocumentRoot {{ landingpages_root }}
     ServerName {{ yoda_public_fqdn }}
+
     <Directory {{ landingpages_root }}>
         AllowOverride All
-        Require all granted
+        <RequireAll>
+            Require all granted
+
+            # Block bad bots.
+            Require not env bad_bot
+        </RequireAll>
     </Directory>
 
     WSGIDaemonProcess moai user={{ yoda_moai_user }} group={{ yoda_moai_user }} threads=5 python-home={{ yoda_moai_home }}/yoda-moai/venv
@@ -33,7 +39,12 @@ Listen {{ yoda_public_port }}
 
     <Directory {{ yoda_moai_home }}>
         AllowOverride All
-        Require all granted
+        <RequireAll>
+            Require all granted
+
+            # Block bad bots.
+            Require not env bad_bot
+        </RequireAll>
     </Directory>
 
     # intermediate TLS configuration

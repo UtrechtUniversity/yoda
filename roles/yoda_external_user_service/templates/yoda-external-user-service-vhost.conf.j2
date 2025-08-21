@@ -18,9 +18,15 @@ Listen {{ yoda_eus_port }}
 
 <VirtualHost *:{{ yoda_eus_port }}>
     ServerName {{ yoda_eus_fqdn }}
+
     <Directory /var/www/extuser>
         AllowOverride All
-        Require all granted
+        <RequireAll>
+            Require all granted
+
+            # Block bad bots.
+            Require not env bad_bot
+        </RequireAll>
     </Directory>
 
     WSGIDaemonProcess yoda_eus_noapi user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} threads=5 python-home=/var/www/extuser/yoda-external-user-service/venv

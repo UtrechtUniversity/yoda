@@ -42,9 +42,15 @@ Listen {{ yoda_davrods_anonymous_port }}
         # provide this instead.
         DirectoryIndex disabled
 
-        # Restrict access to authenticated users.
+        # No authentication needed.
         AuthType None
-        Require all granted
+
+        <RequireAll>
+            Require all granted
+
+            # Block bad bots.
+            Require not env bad_bot
+        </RequireAll>
 
         # The realm name that will be shown to clients upon authentication
         AuthName DAV
