@@ -1,0 +1,35 @@
+---
+# copyright Utrecht University
+
+- name: Set ACLs Davrods lock database directory
+  ansible.builtin.file:
+    path: '{{ yoda_davrods_lockdir }}'
+    state: directory
+    owner: '{{ yoda_davrods_user }}'
+    group: '{{ yoda_davrods_group }}'
+    mode: '0775'
+  when: not ansible_check_mode
+
+
+- name: Upload Davrods lock database initialization script
+  ansible.builtin.copy:
+    src: initialize-davrods-lockdb.py
+    dest: /usr/local/bin/initialize-davrods-lockdb.py
+    owner: root
+    group: root
+    mode: '0755'
+
+
+- name: Initialize Davrods lock database if needed
+  ansible.builtin.command:
+    cmd: '/usr/local/bin/initialize-davrods-lockdb.py  {{ yoda_davrods_lockdir }}'
+    creates: '{{ yoda_davrods_lockdir }}/lockdb_locallock'
+
+
+- name: Set permissions Davrods lock database
+  ansible.builtin.file:
+    path: '{{ yoda_davrods_lockdir }}/lockdb_locallock'
+    owner: '{{ yoda_davrods_user }}'
+    group: '{{ yoda_davrods_group }}'
+    mode: '0660'
+  when: not ansible_check_mode

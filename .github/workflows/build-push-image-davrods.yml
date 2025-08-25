@@ -9,6 +9,7 @@ on:
     paths:
       - '.github/workflows/build-push-image-davrods.yml'
       - 'docker/images/davrods/**'
+      - 'roles/yoda_davrods/files/initialize-davrods-lockdb.py'
 
 jobs:
   push-image:
@@ -36,6 +37,11 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Stage files for Docker image
+      run: |
+        cd yoda/docker/images/davrods
+        ./stage-uploads.sh
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v6

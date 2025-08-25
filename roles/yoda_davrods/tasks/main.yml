@@ -22,6 +22,11 @@
   when: ansible_os_family == 'Debian'
 
 
+- name: Set up lock database (Ubuntu)
+  ansible.builtin.import_tasks: setup-lockdatabase-ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+
 - name: Setup SELinux for DavRODS (EL)
   ansible.builtin.import_tasks: setup-selinux.yml
   when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"

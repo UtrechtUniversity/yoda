@@ -18,3 +18,4 @@ yoda_davrods_apache_log_dir: /var/log/httpd
 yoda_davrods_irods_dir: /etc/httpd/irods
 yoda_davrods_config_dir: /etc/httpd/irods
 yoda_davrods_user: apache
+yoda_davrods_group: apache
