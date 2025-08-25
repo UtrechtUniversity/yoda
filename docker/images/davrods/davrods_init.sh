@@ -47,6 +47,16 @@ install -m 0644 docker.key /etc/ssl/private/localhost.key
 install -m 0644 dhparam.pem /etc/ssl/private/dhparams.pem
 progress_update "Certificate data extracted"
 
+# Initialize lock database
+if [[ -f "/var/lib/irods/lockdb_locallock" ]]
+then progress_update "Lock database has already been initialized"
+else before_update "Initializing lock database"
+     /usr/local/bin/initialize-davrods-lockdb.py /var/lib/davrods
+     chown -R www-data:www-data /var/lib/davrods
+     chmod 0775 /var/lib/davrods
+     progress_update "Lock database initialized"
+fi
+
 # Start Apache
 touch /container_initialized
 before_update "Initialization complete. Starting Apache"

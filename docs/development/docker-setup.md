@@ -184,6 +184,7 @@ cd docker/images/yoda_portal
 
 ```bash
 cd docker/images/davrods
+./stage-uploads.sh
 ./build.sh
 ```
 

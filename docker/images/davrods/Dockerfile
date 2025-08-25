@@ -58,7 +58,7 @@ RUN apt-get -y install libboost-all-dev libjansson4 && \
     dpkg -i "/download/$DAVRODS_APT_PACKAGE"
 
 # Copy DavRODS VHost and iRODS configuration files
-COPY davrods-vhost.conf /etc/apache2/stes-available/davrods-vhost.conf
+COPY davrods-vhost.conf /etc/apache2/sites-available/davrods-vhost.conf
 COPY davrods-anonymous-vhost.conf /etc/apache2/sites-available/davrods-anonymous-vhost.conf
 RUN ln -s /etc/apache2/sites-available/davrods-vhost.conf /etc/apache2/sites-enabled/davrods-vhost.conf
 RUN ln -s /etc/apache2/sites-available/davrods-anonymous-vhost.conf /etc/apache2/sites-enabled/davrods-anonymous-vhost.conf
@@ -69,9 +69,12 @@ COPY header.html /etc/apache2/irods/header.html
 COPY head.html /etc/apache2/irods/head.html
 COPY footer.html /etc/apache2/irods/footer.html
 
+# Copy DavRODS DB initialization script
+COPY stage/initialize-davrods-lockdb.py /usr/local/bin/initialize-davrods-lockdb.py
+
 # Initialize
 VOLUME [ "/sys/fs/cgroup" ]
 COPY davrods_init.sh /var/lib/irods/scripts/davrods_init.sh
-RUN chmod 0755 /var/lib/irods/scripts/davrods_init.sh
+RUN chmod 0755 /var/lib/irods/scripts/davrods_init.sh /usr/local/bin/initialize-davrods-lockdb.py
 ENV TAG=${TAG}
 CMD exec /var/lib/irods/scripts/davrods_init.sh $TAG
