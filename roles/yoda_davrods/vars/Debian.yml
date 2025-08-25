@@ -20,3 +20,4 @@ yoda_davrods_anon_config_file: 006-davrods-anonymous-vhost.conf
 yoda_davrods_apache_log_dir: /var/log/apache2
 yoda_davrods_config_dir: /etc/apache2/irods
 yoda_davrods_user: www-data
+yoda_davrods_group: www-data
