@@ -1,64 +1,64 @@
 @startuml
 !include ../../../theme.puml
 
+left to right direction
 
 rectangle "Yoda instance" {
 
-    package "Yoda portal" {
-        rectangle "Apache webserver" as portalweb {
-            rectangle "Python" as python {
+    package "Yoda web server" {
+        rectangle "Apache web server" as portalweb {
+            rectangle "Yoda Portal (Python)" as python {
             }
-            rectangle "davrods" as davrods {
+            rectangle "Davrods" as davrods {
             }
 	}
 
-        rectangle "iRODS iCommands" as icommands {
-	}
-
-        portalweb .d.> provider
-        icommands .d.> provider
+        portalweb .d.> provider : Python-irodsclient
     }
 
-    package "Yoda database" {
+    package "iRODS iCAT database" {
         database "PostgreSQL" as icatdb{
             rectangle "iRODS database" as iCAT {
             }
         }
     }
 
-    package "Yoda iCAT" {
-        rectangle "iRODS iCAT" as provider {
-            rectangle "iRODS rules" as icatrules {
-            }
-            rectangle "iRODS microservices" as icatmicroservices {
+    package "Yoda provider" {
+        rectangle "iRODS server (provider)" as provider {
+            rectangle "iRODS server" as provider_server {
+                rectangle "iRODS rules" as provider_rules {
+                }
+                rectangle "iRODS microservices" as provider_microservices {
+                }
             }
         }
+
+        cloud "Storage P1" as sp1
+        cloud "Storage P2" as sp2
+
+        provider_server .d.> iCAT : use
+        provider_server .d.> sp1 : use
+        provider_server .d.> sp2 : use
+
     }
 
-    package "Yoda resource" {
-        rectangle "iRODS resource" as consumer {
-            rectangle "iRODS rules" as rescrules {
+    package "Yoda consumer" {
+        rectangle "iRODS server (consumer)" as consumer {
+            rectangle "iRODS server (consumer)" as consumer_server {
+                rectangle "iRODS rules" as consumer_rules {
+                }
+                rectangle "iRODS microservices" as consumer_microservices {
+                }
             }
-            rectangle "iRODS microservices" as rescmicroservices {
-            }
         }
 
-        cloud {
-          [Storage 1]
-        }
-
-        cloud {
-          [Storage 2]
-        }
-
-        cloud {
-          [Storage ...]
-        }
+        cloud "Storage C1" as sc1
+        cloud "Storage C2" as sc2
 
         consumer .r-- provider
-	consumer .d.> [Storage 1]
-	consumer .d.> [Storage 2]
-	consumer .d.> [Storage ...]
+        consumer_server .d.> sc1 : use
+        consumer_server .d.> sc2 : use
+
     }
 
     provider .d.> iCAT : use
@@ -83,14 +83,14 @@ rectangle "Yoda Public server" {
     moai .d.> [JSON storage]
 }
 
-rectangle "Yoda External User service" {
+rectangle "Yoda External User Service" {
     rectangle "Apache webserver" as extweb {
-        rectangle "PHP" as extphp {
+        rectangle "Python" as extpy {
         }
     }
 
     database "PostgreSQL" as extdb {
-        rectangle "External users" as extusers {
+        rectangle "EUS DB" as extusers {
         }
     }
 
@@ -100,12 +100,13 @@ rectangle "Yoda External User service" {
 HTTPS -- portalweb
 HTTPS -r- publicweb
 HTTPS -r- extweb
-iCommands -- icommands
+iCommands -- provider_server
+iCommands -- consumer_server
 provider .d.> [JSON storage] : SCP
 provider .d.> [Landingpages] : SCP
 provider .d.> extweb : HTTPS-ALT
 
 provider .d.> SMTP
-extphp .d.> SMTP
+extpy .d.> SMTP
 
 @enduml
