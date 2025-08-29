@@ -7,7 +7,7 @@ nav_order: 15
 
 The table below contains a list of supported distributions for each role:
 
-| role                 | CentOS 7   | EL8      | Ubuntu 20.04 LTS | EL 9      | Ubuntu 20.04 LTS  |
+| role                 | CentOS 7   | EL8      | Ubuntu 20.04 LTS | EL 9      | Ubuntu 24.04 LTS  |
 |----------------------|------------|----------|------------------|-----------|-------------------|
 | iCAT (provider)      | up to v1.9 |          | v1.10            | from v2.0 | from v2.0         |
 | Resource (consumer)  | up to v1.9 |          | v1.10            | from v2.0 | from v2.0         |
