@@ -71,4 +71,4 @@ enable_open_search: false                          # Enable OpenSearch module
 # PgBouncer configuration
 enable_pgbouncer: false
 
-python_irodsclient_version: 3.1.1
+python_irodsclient_version: 3.2.0
