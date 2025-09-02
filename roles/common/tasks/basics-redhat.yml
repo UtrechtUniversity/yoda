@@ -35,3 +35,8 @@
       - jq
       - curl
     state: present
+
+
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: rpm
