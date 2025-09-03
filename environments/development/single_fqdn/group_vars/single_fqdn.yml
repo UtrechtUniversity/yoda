@@ -6,6 +6,9 @@ ansible_user: vagrant                             # Administrative user on insta
 ansible_ssh_private_key_file: vagrant/ssh/vagrant # Path to private key file of administrative user
 ansible_python_interpreter: /usr/bin/python3      # Path to Python interpreter on the target host
 
+# This is a workaround for an issue with resource creation on EL 9 systems (see YDA-6324)
+common_custom_dns_enable: true
+
 pgsql_version: 15
 postgresql_perform_db_upgrade: true
 
