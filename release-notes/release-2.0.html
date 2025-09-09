@@ -233,18 +233,18 @@
 </h3>
     
 <ul>
-  <li><strong>Multi-file download</strong>: added support for downloading multiple files and folders as a ZIP directly from the portal</li>
-  <li><strong>Open data package download</strong>: added support for downloading an open data package as a ZIP from the landing page</li>
-  <li><strong>File browser navigation</strong>: implemented a feature to jump directly to files in file browsers during searches</li>
-  <li><strong>Keyword selector</strong>: introduced a new keyword selector in metadata forms, supporting controlled vocabularies</li>
+  <li><strong>Multi-file download</strong>: added support for downloading multiple files and folders directly from the portal as a zip file</li>
+  <li><strong>Open data package download</strong>: added support for downloading an open data package from the landing page as a zip file</li>
+  <li><strong>File browser navigation</strong>: when searching for data objects, the browser now navigates directly to the results page where the data object is located (this does not apply to collections with a large number of data objects).</li>
+  <li><strong>Keyword selector</strong>: introduced a new tree keyword selector for use in metadata forms, supporting controlled vocabularies. It is currently used in the <a href="https://github.com/UtrechtUniversity/yoda-ruleset/blob/development/schemas/epos-msl-0/metadata.json">EPOS-MSL metadata schema</a></li>
   <li><strong>SURF Portal theme</strong>: added a new theme for the SURF portal</li>
-  <li><strong>Multiple deposit groups</strong>: enhanced support for managing multiple deposit groups</li>
-  <li><strong>Landingpage themes</strong>: added support for customizable themes on landing pages</li>
-  <li><strong>Data Package archiving</strong>: improved the reliability of the data package archiving process (“copy to vault”)</li>
+  <li><strong>Multiple deposit groups</strong>: enhanced support for managing multiple deposit groups in the deposit module (previously, the deposit module supported only a single group per environment)</li>
+  <li><strong>Landing page themes</strong>: added support for technical administrators to configure a customizable theme for landing pages using the <code class="language-plaintext highlighter-rouge">landingpage_theme</code> and <code class="language-plaintext highlighter-rouge">landingpage_root</code> Ansible parameters. It works by configuring Yoda to generate landing pages that use a custom CSS file.</li>
+  <li><strong>Data package archiving</strong>: the data package archiving process will now automatically retry failed <em>copy to vault</em> operations, which improves the reliability of this process.</li>
   <li><strong>Vault archiving workflow</strong>: enhanced support for the <a href="/yoda/design/overview/vault-archive.html">vault archiving</a> workflow</li>
-  <li><strong>Secured status removal</strong>: removed <code class="language-plaintext highlighter-rouge">Secured</code> status from the research space</li>
-  <li><strong>Intake module deprecation</strong>: Deprecated the intake module</li>
-  <li><strong>Group manager</strong>: Group managers can now change their role or remove themselves as long as there is another group manager in the group</li>
+  <li><strong>Secured status removal</strong>: removed the <code class="language-plaintext highlighter-rouge">Secured</code> status from the research space</li>
+  <li><strong>Intake module removal</strong>: removed the intake module</li>
+  <li><strong>Group manager</strong>: Group managers and technical admins can now change their role or remove themselves from a group as long as there is another group manager in the group</li>
 </ul>
 <h3 id="changes-affecting-technical-administrators">
   
@@ -256,10 +256,10 @@
     
 <ul>
   <li><strong>Ubuntu and AlmaLinux support</strong>: added <a href="/yoda/administration/supported-distributions.html">support</a> for Ubuntu 24.04 and AlmaLinux 9</li>
-  <li><strong>New admin privilege group</strong>: introduced a new admin privilege group (<a href="../design/overview/group-manager.html#how-are-the-roles-in-yoda-implemented-on-top-of-the-irods-permission-system">priv-admin</a>)</li>
-  <li><strong>Functional administration page</strong>: added a new administration page for performing functional tasks via the portal</li>
+  <li><strong>New admin privilege group</strong>: introduced a new admin privilege group (<a href="/yoda/design/overview/group-manager.html#how-are-the-roles-in-yoda-implemented-on-top-of-the-irods-permission-system">priv-admin</a>), which allows users to perform administrative tasks</li>
+  <li><strong>Functional administration page</strong>: added a new administration page for performing functional tasks via the portal, such as <a href="/yoda/administration/setting-maintenance-banner.html">setting a maintenance banner in the portal</a></li>
   <li><strong>Ansible library for iRODS</strong>: added an Ansible library to modify iRODS resources</li>
-  <li><strong>NFS Shares Configuration</strong>: introduced an Ansible role for configuring NFS shares as iRODS resources</li>
+  <li><strong>NFS Shares Configuration</strong>: introduced an Ansible role for configuring NFS shares as iRODS storage resources</li>
   <li><strong>Rsyslog Support</strong>: added support for rsyslog to log iRODS messages in a readable format</li>
   <li><strong>RADIUS fallback removal</strong>: removed the RADIUS fallback option</li>
   <li><strong>Experimental caching</strong>: introduced experimental support for portal view and API caching</li>
@@ -294,6 +294,7 @@
   <li>Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python (<a href="https://github.com/irods/irods_rule_engine_plugin_python/issues/54">irods_rule_engine_plugin_python#54</a>)</li>
   <li>Deallocation of KeyValPair results in bad AVU or error (<a href="https://github.com/irods/irods/issues/8265">irods/irods#8265</a>)</li>
   <li>Renaming collection with multi-byte characters mangles subcollection paths (<a href="https://github.com/irods/irods/issues/6239">irods/irods#6239</a>)</li>
+  <li>Command completion for iCommands is not yet available on the servers.</li>
 </ul>
 <h2 id="upgrading-from-previous-release">
   
