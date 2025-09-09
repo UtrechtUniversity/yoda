@@ -6,26 +6,27 @@ Version: 2.0
 Released: TBA
 
 ## What's new
+
 ### Changes affecting functionality for data stewards and researchers
-- **Multi-file download**: added support for downloading multiple files and folders as a ZIP directly from the portal
-- **Open data package download**: added support for downloading an open data package as a ZIP from the landing page
-- **File browser navigation**: implemented a feature to jump directly to files in file browsers during searches
-- **Keyword selector**: introduced a new keyword selector in metadata forms, supporting controlled vocabularies
+- **Multi-file download**: added support for downloading multiple files and folders directly from the portal as a zip file
+- **Open data package download**: added support for downloading an open data package from the landing page as a zip file
+- **File browser navigation**: when searching for data objects, the browser now navigates directly to the results page where the data object is located (this does not apply to collections with a large number of data objects).
+- **Keyword selector**: introduced a new tree keyword selector for use in metadata forms, supporting controlled vocabularies. It is currently used in the [EPOS-MSL metadata schema](https://github.com/UtrechtUniversity/yoda-ruleset/blob/development/schemas/epos-msl-0/metadata.json)
 - **SURF Portal theme**: added a new theme for the SURF portal
-- **Multiple deposit groups**: enhanced support for managing multiple deposit groups
-- **Landingpage themes**: added support for customizable themes on landing pages
-- **Data Package archiving**: improved the reliability of the data package archiving process ("copy to vault")
+- **Multiple deposit groups**: enhanced support for managing multiple deposit groups in the deposit module (previously, the deposit module supported only a single group per environment)
+- **Landing page themes**: added support for technical administrators to configure a customizable theme for landing pages using the `landingpage_theme` and `landingpage_root` Ansible parameters. It works by configuring Yoda to generate landing pages that use a custom CSS file.
+- **Data package archiving**: the data package archiving process will now automatically retry failed _copy to vault_ operations, which improves the reliability of this process.
 - **Vault archiving workflow**: enhanced support for the [vault archiving](../design/overview/vault-archive.md) workflow
-- **Secured status removal**: removed `Secured` status from the research space
-- **Intake module deprecation**: Deprecated the intake module
-- **Group manager**: Group managers can now change their role or remove themselves as long as there is another group manager in the group
+- **Secured status removal**: removed the `Secured` status from the research space
+- **Intake module removal**: removed the intake module
+- **Group manager**: Group managers and technical admins can now change their role or remove themselves from a group as long as there is another group manager in the group
 
 ### Changes affecting technical administrators
 - **Ubuntu and AlmaLinux support**: added [support](../administration/supported-distributions.md) for Ubuntu 24.04 and AlmaLinux 9
-- **New admin privilege group**: introduced a new admin privilege group ([priv-admin](../design/overview/group-manager.html#how-are-the-roles-in-yoda-implemented-on-top-of-the-irods-permission-system))
-- **Functional administration page**: added a new administration page for performing functional tasks via the portal
+- **New admin privilege group**: introduced a new admin privilege group ([priv-admin](../design/overview/group-manager.md#how-are-the-roles-in-yoda-implemented-on-top-of-the-irods-permission-system)), which allows users to perform administrative tasks
+- **Functional administration page**: added a new administration page for performing functional tasks via the portal, such as [setting a maintenance banner in the portal](../administration/setting-maintenance-banner.md)
 - **Ansible library for iRODS**: added an Ansible library to modify iRODS resources
-- **NFS Shares Configuration**: introduced an Ansible role for configuring NFS shares as iRODS resources
+- **NFS Shares Configuration**: introduced an Ansible role for configuring NFS shares as iRODS storage resources
 - **Rsyslog Support**: added support for rsyslog to log iRODS messages in a readable format
 - **RADIUS fallback removal**: removed the RADIUS fallback option
 - **Experimental caching**: introduced experimental support for portal view and API caching
@@ -44,6 +45,7 @@ Released: TBA
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python ([irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54))
 - Deallocation of KeyValPair results in bad AVU or error ([irods/irods#8265](https://github.com/irods/irods/issues/8265))
 - Renaming collection with multi-byte characters mangles subcollection paths ([irods/irods#6239](https://github.com/irods/irods/issues/6239))
+- Command completion for iCommands is not yet available on the servers.
 
 ## Upgrading from previous release
 The playbook requires Ansible 2.16.x or higher.
