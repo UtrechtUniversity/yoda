@@ -62,14 +62,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After ensuring the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Check out the `v2.0.0-rc.1` tag of the Yoda Git repository:
+3. Check out the `v2.0.0-rc.2` tag of the Yoda Git repository:
 ```bash
-git checkout v2.0.0-rc.1
+git checkout v2.0.0-rc.2
 ```
 
-4. Set the Yoda version to `v2.0.0-rc.1` in the configuration:
+4. Set the Yoda version to `v2.0.0-rc.2` in the configuration:
 ```yaml
-yoda_version: v2.0.0-rc.1
+yoda_version: v2.0.0-rc.2
 ```
 
 5. If the old configuration contained an iRODS authentication scheme setting, update it to use `pam_password`. Example:
