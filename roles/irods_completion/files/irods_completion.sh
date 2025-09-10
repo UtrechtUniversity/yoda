@@ -18,7 +18,7 @@ then return
 fi
 
 # Irods command to auto-complete
-command_list="ibun icd ichksum ichmod icp iget ils imeta imkdir imv iphybun iphymv irm irmtrash irsync itrim iput itree"
+command_list=(ibun icd ichksum ichmod icp iget ils imeta imkdir imv iphybun iphymv irm irmtrash irsync itrim iput itree)
 
 # Completion function that gets the files list from irods
 _ils() {
@@ -171,4 +171,4 @@ _iadmin() {
 complete -o nospace -F _iadmin iadmin
 
 # Complete the specified commands
-complete -o nospace -F _ils "$command_list"
+complete -o nospace -F _ils "${command_list[@]}"
