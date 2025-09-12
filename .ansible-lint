@@ -14,6 +14,7 @@ mock_modules:
   - irods_mkuser
   - irods_postgres
   - irods_python
+  - irods_passwordttl
   - irods_resource
   - irods_rulesets
 

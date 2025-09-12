@@ -584,6 +584,6 @@
 - name: Configure minimum TTL of generated passwords
   become_user: '{{ irods_service_account }}'
   become: true
-  irods_rgridconfig:
+  irods_passwordttl:
     config_min_time: '{{ pam_password_min_time }}'
   notify: Restart iRODS
