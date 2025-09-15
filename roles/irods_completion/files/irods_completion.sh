@@ -18,7 +18,7 @@ then return
 fi
 
 # Irods command to auto-complete
-command_list=(ibun icd ichksum ichmod icp iget ils imeta imkdir imv iphybun iphymv irm irmtrash irsync itrim iput itree)
+command_list=(ibun icd ichksum ichmod icp iget ils imeta imkdir imv iphybun iphymv irm irmtrash irsync istream itrim iput itree)
 
 # Completion function that gets the files list from irods
 _ils() {
@@ -29,6 +29,12 @@ _ils() {
 
   # Set irods current directory (weird!!)
   #export irodsCwd=$(ipwd)
+
+  # For "istream", complete first argument as either "read" or "write"
+  if [ "$1" = "istream" -a "$COMP_CWORD" -eq 1 ] ; then
+    COMPREPLY=( $(compgen -W "read write" "$cur") )
+    return
+  fi
 
   # Generate the list of irods files
   if [[ $cur == "" ]] ; then
