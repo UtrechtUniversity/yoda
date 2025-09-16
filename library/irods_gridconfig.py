@@ -1,6 +1,17 @@
 #!/usr/bin/python
 # Copyright (c) 2021-2024 Utrecht University
 # GNU General Public License v3.0
+#
+# This module can be used for updating grid configuration
+# values in iRODS.
+#
+# Example:
+#
+# irods_gridconfig:
+#  namespace: authentication
+#  option_name: password_min_time
+#  value: 1209600
+
 
 ANSIBLE_METADATA = {
   'supported_by': 'community',
