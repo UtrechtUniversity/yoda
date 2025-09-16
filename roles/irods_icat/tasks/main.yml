@@ -579,3 +579,13 @@
 - name: Setup PAM
   ansible.builtin.include_tasks: setup_pam.yml
   when: irods_authentication_scheme == "pam_password"
+
+
+- name: Set grid configuration minimum TTL of generated passwords
+  become_user: '{{ irods_service_account }}'
+  become: true
+  irods_gridconfig:
+    namespace: 'authentication'
+    option_name: 'password_min_time'
+    value: '{{ pam_password_min_time }}'
+  notify: Restart iRODS

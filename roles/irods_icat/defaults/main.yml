@@ -36,6 +36,7 @@ irods_rum_job_minute: 0
 
 # PAM configuration.
 pam_fail_delay: 1000000                    # PAM fail delay in micro-seconds
+pam_password_min_time: 1209600
 
 # External Users configuration
 external_users: true
