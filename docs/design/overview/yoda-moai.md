@@ -4,42 +4,18 @@ parent: System Overview
 ---
 # Yoda MOAI service
 
-## Overview
-![Overview MOAI-CKAN](img/moai-ckan.png)
-
 ## Yoda MOAI
-MOAI offers harvesting functionality following the OAI-PMH standard with the flexibility to serve different metadata prefixes.
-Currently, Dublin Core and DataCite are implemented as a metadata prefix.
 
-## Provisioning MOAI database
-When publishing datasets from within Yoda, the corresponding yoda-metadata.json is put in a location where the Yoda MOAI service can read and process it.  
-Each 5 minutes (configurable) the indicated folder is scanned and newly published JSON files are provisioned to the internal SQLite database.  
-The data is prepared in the database as such that it is able to provide output in JSON form, on request of a harvester.
-Any OAI-PMH harvester able to read the Dublin Core and DataCite format is able to harvest Yoda through the endpoint serviced by MOAI.
+MOAI provides a harvesting interface based on the [OAI-PMH protocol](https://www.openarchives.org/pmh). Other software
+can use this harvesting interface to retrieve metadata of published Yoda data packages. MOAI can provide metadata to harvesters in different
+formats, which are specified using metadata prefixes. Currently, metadata prefixes are available for Dublin Core (`oai_dc`),
+Datacite (`datacite` or `oai_datacite`) and ISO 19139 (`iso19139`).
 
-## Yoda MOAI Technical
-### Provision from Yoda  
-*Python -> yoda.py*  
-The  script reads all yoda-metadata.json files that have been published and are placed in a specific folder.
-After processing it puts the found content into the Yoda MOAI SQLite database.
+## Architecture
 
-*'Collection name' as metadata for a dataset*  
-A collection name defines an umbrella for different datasets to belong together.  
-By exposing collection names through MOAI, it is possible for a harvester to draw conclusions regarding datasets from the same data supplier about datasets that belong together.  
-Thus, multiple datasets can setup a collection having the same 'purpose'.  
-The nature of this purpose can be defined by the researchers/datamanagers themselves.  
+When a data package is published in Yoda, the metadata combi file is copied from the provider or consumer server to the MOAI server
+using SCP. The `update_moai` job on the MOAI server scans the uploaded metadata combi files every five minutes and ingests the metadata into a local
+SQLite database. The MOAI web server provides a public OAI-PMH endpoint that can be used by harvesters. The web server
+uses the SQLite database as its source of information.
 
-In theory, equivalent collection names can exist over multiple Yoda instances.
-Even within the same Yoda instance.  
-No validation is performed by Yoda software itself.
-So there is no formal safeguarding/protection of the content of collection name.  
-Harvesters should be (made) aware of that.  
-Initially they should combine collections endpoint/collection
-
-
-select * from sets;  
-select * from records;
-
-### Deliver metadata in datacite format to harvesters  
-*python -> datacite.py*  
-Prepares the output data in such a way that the application data of Yoda, originally held in yoda-metadata.json files, can be outputted to an JSON response with DataCite as a metadata prefix.
+![Overview MOAI-CKAN](img/moai.png)
