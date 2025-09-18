@@ -1,0 +1,38 @@
+@startuml
+!include ../../../theme.puml
+
+top to bottom direction
+
+package "Yoda" {
+
+   file published_files [
+           combi metadata of published data packages
+   ]
+}
+
+
+package "MOAI" {
+
+   component "MOAI metadata directory" as moai_metadata_dir
+
+   database sqlite[
+      SQLite database MOAI
+   ]
+
+   component "MOAI webserver" as moai_webserver
+}
+
+together {
+   actor "Harvester 1" as harvester1
+   actor "Harvester 2" as harvester2
+   actor "Harvester 3" as harvester3
+}
+
+published_files -> moai_metadata_dir : File copy
+moai_metadata_dir -> sqlite : Ingest using update_moai
+moai_webserver -> sqlite : Database queries
+harvester1 -up-> moai_webserver : OAI-PMH
+harvester2 -up-> moai_webserver : OAI-PMH
+harvester3 -up-> moai_webserver : OAI-PMH
+
+@enduml
