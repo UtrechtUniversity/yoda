@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="977.0833px" preserveAspectRatio="none" style="width:2577px;height:977px;background:#282C34;" version="1.1" viewBox="0 0 2577 977" width="2577.0833px" zoomAndPan="magnify"><defs/><g><!--MD5=[8260d3c972ed96658081e94e5a892433]
+cluster Yoda--><polygon fill="#282C34" points="45.8333,265.625,143.75,265.625,158.3333,329.0211,795.8333,329.0211,795.8333,536.4583,45.8333,536.4583,45.8333,265.625" style="stroke: #61AFEF; stroke-width: 3.125;"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="45.8333" x2="158.3333" y1="329.0211" y2="329.0211"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="77.0833" x="58.3333" y="307.3648">Yoda</text><!--MD5=[b7f69952bad1ca127e3950e2ee9545b1]
+cluster MOAI--><polygon fill="#282C34" points="845.8333,256.25,954.1667,256.25,968.75,319.6461,2531.25,319.6461,2531.25,545.8333,845.8333,545.8333,845.8333,256.25" style="stroke: #61AFEF; stroke-width: 3.125;"/><line style="stroke: #61AFEF; stroke-width: 3.125;" x1="845.8333" x2="968.75" y1="319.6461" y2="319.6461"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="87.5" x="858.3333" y="297.9898">MOAI</text><!--MD5=[b37bdf05f21fbf4f2fb0f5c19f4357a7]
+entity published_files--><polygon fill="#424856" points="79.1667,411.4583,79.1667,504.0211,762.5,504.0211,762.5,432.2917,741.6667,411.4583,79.1667,411.4583" style="stroke: #61AFEF; stroke-width: 3.125;"/><path d="M741.6667,411.4583 L741.6667,432.2917 L762.5,432.2917 " fill="#424856" style="stroke: #61AFEF; stroke-width: 3.125;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="633.3333" x="104.1667" y="469.8648">combi metadata of published data packages</text><!--MD5=[6e0b47118aebcc4655c3a4a7099cc164]
+entity moai_metadata_dir--><rect fill="#424856" height="92.5628" style="stroke: #61AFEF; stroke-width: 3.125;" width="416.6667" x="1247.9167" y="411.4583"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="1237.5" y="421.875"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="1237.5" y="483.1878"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="366.6667" x="1272.9167" y="469.8648">MOAI metadata directory</text><!--MD5=[7a603111606425ec6ae263a7f93634a1]
+entity sqlite--><path d="M2122.9167,422.9167 C2122.9167,402.0833 2310.4167,402.0833 2310.4167,402.0833 C2310.4167,402.0833 2497.9167,402.0833 2497.9167,422.9167 L2497.9167,492.5628 C2497.9167,513.3961 2310.4167,513.3961 2310.4167,513.3961 C2310.4167,513.3961 2122.9167,513.3961 2122.9167,492.5628 L2122.9167,422.9167 " fill="#424856" style="stroke: #61AFEF; stroke-width: 3.125;"/><path d="M2122.9167,422.9167 C2122.9167,443.75 2310.4167,443.75 2310.4167,443.75 C2310.4167,443.75 2497.9167,443.75 2497.9167,422.9167 " fill="none" style="stroke: #61AFEF; stroke-width: 3.125;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="325" x="2147.9167" y="489.6565">SQLite database MOAI</text><!--MD5=[f9834b9dfc508e1ffee14c9c484dedc1]
+entity moai_webserver--><rect fill="#424856" height="92.5628" style="stroke: #61AFEF; stroke-width: 3.125;" width="293.75" x="880.2083" y="411.4583"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="869.7917" y="421.875"/><rect fill="#424856" height="10.4167" style="stroke: #61AFEF; stroke-width: 3.125;" width="20.8333" x="869.7917" y="483.1878"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="243.75" x="905.2083" y="469.8648">MOAI webserver</text><!--MD5=[14177ab4b3f79d8bdce7f795fa6a2f3f]
+entity harvester1--><ellipse cx="779.1667" cy="803.125" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 3.125;"/><path d="M779.1667,819.7917 L779.1667,876.0417 M752.0833,836.4583 L806.25,836.4583 M779.1667,876.0417 L752.0833,907.2917 M779.1667,876.0417 L806.25,907.2917 " fill="none" style="stroke: #61AFEF; stroke-width: 3.125;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="166.6667" x="695.8333" y="950.0732">Harvester 1</text><!--MD5=[32c258bece9bf7a493d26d4835efe870]
+entity harvester2--><ellipse cx="1027.0833" cy="803.125" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 3.125;"/><path d="M1027.0833,819.7917 L1027.0833,876.0417 M1000,836.4583 L1054.1667,836.4583 M1027.0833,876.0417 L1000,907.2917 M1027.0833,876.0417 L1054.1667,907.2917 " fill="none" style="stroke: #61AFEF; stroke-width: 3.125;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="166.6667" x="943.75" y="950.0732">Harvester 2</text><!--MD5=[de419b43b954dc678afe3577a29f6bfa]
+entity harvester3--><ellipse cx="1275" cy="803.125" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 3.125;"/><path d="M1275,819.7917 L1275,876.0417 M1247.9167,836.4583 L1302.0833,836.4583 M1275,876.0417 L1247.9167,907.2917 M1275,876.0417 L1302.0833,907.2917 " fill="none" style="stroke: #61AFEF; stroke-width: 3.125;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="166.6667" x="1191.6667" y="950.0732">Harvester 3</text><!--MD5=[e81d6749be386350dd75f9e8068c914a]
+link published_files to moai_metadata_dir--><path d="M481.4375,411.0625 C567.3958,349.6458 732.1667,246.7917 892.7083,229.1667 C1033.1458,213.75 1079.8333,185.6667 1210.4167,239.5833 C1294.4375,274.2917 1369.1875,350.2292 1413.5833,402.5625 " fill="none" id="published_files-&gt;moai_metadata_dir" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="1420.4583,410.7708,1414.7845,391.0524,1413.7605,402.793,1402.02,401.769,1420.4583,410.7708" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="127.0833" x="898.9583" y="208.4065">File copy</text><!--MD5=[7a9775e8bad809a0343ed8ff6e88f257]
+link moai_metadata_dir to sqlite--><path d="M1664.6667,457.2917 C1800.6042,457.2917 1977.0208,457.2917 2111.1042,457.2917 " fill="none" id="moai_metadata_dir-&gt;sqlite" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="2122.3125,457.2917,2103.5625,448.9583,2111.8958,457.2917,2103.5625,465.625,2122.3125,457.2917" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="372.9167" x="1707.2917" y="436.5315">Ingest using update_moai</text><!--MD5=[2519d9bca43eb329800792dcd46cfe15]
+link moai_webserver to sqlite--><path d="M1051.125,410.6458 C1081,358.2708 1137.3958,275.8333 1212.5,239.5833 C1438.9375,130.2917 1531.8333,178.6042 1778.125,229.1667 C1933.9583,261.1458 2100.5,340.75 2204.9792,396.875 " fill="none" id="moai_webserver-&gt;sqlite" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="2214.2708,401.8958,2201.7191,385.6643,2205.1012,396.9537,2193.8118,400.3358,2214.2708,401.8958" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="247.9167" x="1523.9583" y="208.4065">Database queries</text><!--MD5=[af0519c613d8c9e116456ed3b4cecdad]
+reverse link moai_webserver to harvester1--><path d="M934.6667,509.375 C907.3542,528.0833 879.6667,551.6042 860.4167,579.1667 C818.125,639.7083 797.7917,721.6458 788.0417,783.2708 " fill="none" id="moai_webserver&lt;-harvester1" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="943.8958,503.2292,923.6724,506.696,935.2286,509.0073,932.9174,520.5635,943.8958,503.2292" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="137.5" x="866.6667" y="618.8232">OAI-PMH</text><!--MD5=[00d8c5106ac84998182e7704c20c0522]
+reverse link moai_webserver to harvester2--><path d="M1027.0833,513.9792 C1027.0833,582.5417 1027.0833,701.0417 1027.0833,782.5625 " fill="none" id="moai_webserver&lt;-harvester2" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="1027.0833,503.4167,1018.75,522.1667,1027.0833,513.8333,1035.4167,522.1667,1027.0833,503.4167" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="137.5" x="1033.3333" y="618.8232">OAI-PMH</text><!--MD5=[bfd23ee2c3db238a28d5091ffed065b9]
+reverse link moai_webserver to harvester3--><path d="M1112.9792,509.4167 C1139.3542,528.375 1166.4167,552.0208 1185.4167,579.1667 C1227.9375,639.9375 1250.7292,721.4583 1262.6875,782.875 " fill="none" id="moai_webserver&lt;-harvester3" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><polygon fill="#61AFEF" points="1104.0625,503.1667,1114.6113,520.7658,1112.585,509.1562,1124.1946,507.1299,1104.0625,503.1667" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="137.5" x="1218.75" y="618.8232">OAI-PMH</text><!--MD5=[48cf6286fad7a44fee481506a23c3775]
+@startuml
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
+
+top to bottom direction
+
+package "Yoda" {
+
+   file published_files [
+           combi metadata of published data packages
+   ]
+}
+
+
+package "MOAI" {
+
+   component "MOAI metadata directory" as moai_metadata_dir
+
+   database sqlite[
+      SQLite database MOAI
+   ]
+
+   component "MOAI webserver" as moai_webserver
+}
+
+together {
+   actor "Harvester 1" as harvester1
+   actor "Harvester 2" as harvester2
+   actor "Harvester 3" as harvester3
+}
+
+published_files -> moai_metadata_dir : File copy
+moai_metadata_dir -> sqlite : Ingest using update_moai
+moai_webserver -> sqlite : Database queries
+harvester1 -up-> moai_webserver : OAI-PMH
+harvester2 -up-> moai_webserver : OAI-PMH
+harvester3 -up-> moai_webserver : OAI-PMH
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 21.0.8+9-Ubuntu-0ubuntu124.04.1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
