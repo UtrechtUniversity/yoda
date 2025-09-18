@@ -24,6 +24,7 @@
     src: "https://github.com/axllent/mailpit/releases/download/{{ mailpit_version }}/mailpit-linux-amd64.tar.gz"
     dest: /opt/mailpit
     remote_src: true
+  notify: Restart mailpit
 
 
 - name: Create mailpit systemd unit file
