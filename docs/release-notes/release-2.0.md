@@ -19,7 +19,7 @@ Released: TBA
 - **Vault archiving workflow**: enhanced support for the [vault archiving](../design/overview/vault-archive.md) workflow
 - **Secured status removal**: removed the `Secured` status from the research space
 - **Intake module removal**: removed the intake module
-- **Group manager**: Group managers and technical admins can now change their role or remove themselves from a group as long as there is another group manager in the group
+- **Group manager**: Group managers and technical admins can now change their own role to a normal member or remove themselves from a group as long as there is another group manager in the group.
 
 ### Changes affecting technical administrators
 - **Ubuntu and AlmaLinux support**: added [support](../administration/supported-distributions.md) for Ubuntu 24.04 and AlmaLinux 9
