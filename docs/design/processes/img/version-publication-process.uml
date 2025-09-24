@@ -1,4 +1,4 @@
-@startuml
+@startuml version_publication_process
 skinparam defaultFontName CMU Serif
 skinparam defaultFontSize 9
 skinparam shadowing false
@@ -100,6 +100,11 @@ if ('versionDOIMinted' key is not in publication state) then (yes)
   :Mint version DOI;
   if (If 'Update base DOI' variable is True) then (yes)
      :Mint base DOI;
+     if (If previous version exists in publication state) then (yes)
+        :Update base DOI mint status in previous publication;
+     else (no)
+     endif
+  else (no)
   endif
   if (Error during minting DOI) then (yes)
     #pink:Set publication status to 'Unrecoverable' or 'Retry';
