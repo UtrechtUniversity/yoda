@@ -44,9 +44,6 @@ Released: TBA
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python ([irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54))
 - Deallocation of KeyValPair results in bad AVU or error ([irods/irods#8265](https://github.com/irods/irods/issues/8265))
 - Renaming collection with multi-byte characters mangles subcollection paths ([irods/irods#6239](https://github.com/irods/irods/issues/6239))
-- PAM passwords for e.g. iCommands expire too soon (within minutes). As a workaround, technical administrators can [increase the password_min_time value manually](https://docs.irods.org/4.3.4/system_overview/troubleshooting/#users-are-forced-to-re-authenticate-after-a-few-minutes) (YDA-6547).
-- The group search function in the statistics module is unavailable (YDA-6548)
-- Dismissing notifications in the portal may fail under some circumstances (YDA-6549).
 
 ## Upgrading from previous release
 The playbook requires Ansible 2.16.x or higher.
