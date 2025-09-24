@@ -48,7 +48,6 @@ Released: TBA
 - PAM passwords for e.g. iCommands expire too soon (within minutes). As a workaround, technical administrators can [increase the password_min_time value manually](https://docs.irods.org/4.3.4/system_overview/troubleshooting/#users-are-forced-to-re-authenticate-after-a-few-minutes) (YDA-6547).
 - The group search function in the statistics module is unavailable (YDA-6548)
 - Dismissing notifications in the portal may fail under some circumstances (YDA-6549).
-- As a technical admin or group manager, changing your own role to viewer can fail under some circumstances (YDA-6550)
 
 ## Upgrading from previous release
 The playbook requires Ansible 2.16.x or higher.
@@ -81,15 +80,15 @@ irods_authentication_scheme: pam_password
 have the same Linux distribution) or in the `host_vars` (if they have different Linux distributions) in order to prevent
 problems with Ansible using a different interpreter than expected.
 
-For EL 9 environments:
-```yaml
-ansible_python_interpreter: /usr/bin/python3.9
-```
+  For EL 9 environments:
+  ```yaml
+  ansible_python_interpreter: /usr/bin/python3.9
+  ```
 
-For Ubuntu 24.04 LTS environments:
-```yaml
-ansible_python_interpreter: /usr/bin/python3.12
-```
+  For Ubuntu 24.04 LTS environments:
+  ```yaml
+  ansible_python_interpreter: /usr/bin/python3.12
+  ```
 
 7. Install all Ansible collections needed to deploy Yoda:
 ```bash
