@@ -11,6 +11,7 @@ yoda_davrods_anonymous_port: 443
 yoda_davrods_logo_link: https://www.uu.nl
 yoda_davrods_authentication_scheme: PAM     # Yoda Davrods authentication method: "Native" or "PAM"
 yoda_davrods_lockdir: /var/lib/davrods
+yoda_davrods_authentication_ttl_hours: 336  # Yoda Davrods TTL time (in hours), should be the same or higher as pam_password_min_time for iRODS
 
 yoda_portal_fqdn: portal.yoda.test          # Yoda Portal fully qualified domain name (FQDN)
 
