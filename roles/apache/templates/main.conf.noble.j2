@@ -111,6 +111,11 @@ MaxKeepAliveRequests 100
 #
 KeepAliveTimeout 5
 
+#
+# LimitRequestBody: Allow to set the limit on the allowed size of an HTTP
+# request message body within the server. This allows users to upload larger files
+# through webdav. Currently set to 10 GiB.
+LimitRequestBody 10737418240
 
 # These need to be set in /etc/apache2/envvars
 User ${APACHE_RUN_USER}
