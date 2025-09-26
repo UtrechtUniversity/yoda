@@ -102,6 +102,12 @@ Listen {{ yoda_davrods_port }}
         # TODO: Revert to {{ irods_authentication_scheme }} after scheme/DavRods update
         DavRodsAuthScheme      {{ yoda_davrods_authentication_scheme }}
 
+        # Time-to-live of the temporary password in hours (only applies to PAM currently)
+        #
+        # (default: 1)
+        #
+        DavRodsAuthTTLHours    {{ yoda_davrods_authentication_ttl_hours }}
+
         # Anonymous mode switch.
         #
         # (default: Off)
