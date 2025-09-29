@@ -3,8 +3,8 @@
 
 # Zabbix agent rpm location and checksum
 zabbix_agent:
-  package: zabbix-agent-4.0.45-1
-  url: https://repo.zabbix.com/zabbix/4.0/rhel/8/x86_64/
-  filename: zabbix-agent-4.0.45-1.el8.x86_64.rpm
-  checksum: sha256:0ec9b4368f6fe9dc20204694b7b30c64c951fb4c784a97c48e7a6284e97e10af
-  rpm_key_loc: https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-A14FE591
+  package: zabbix-agent2-7.4.5
+  url: https://repo.zabbix.com/zabbix/7.4/stable/rhel/8/x86_64
+  filename: zabbix-agent2-7.4.5-release2.el8.x86_64.rpm
+  checksum: sha256:f1e864322ae624603f1409e11b1dc03b32c937c936ba4bb54e739801544bc49e
+  rpm_key_loc: https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005
