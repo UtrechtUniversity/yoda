@@ -35,19 +35,35 @@
     state: absent
 
 
-- name: Install Zabbix package for Debian family
+- name: Check if legacy zabbix-agent systemd service is active
+  # noqa command-instead-of-module
+  ansible.builtin.command: "systemctl list-unit-files zabbix-agent"
+  register: yoda_zabbix_system_zabbix_agent_service_exists
+  failed_when: yoda_zabbix_system_zabbix_agent_service_exists.rc not in [0, 1]
+  changed_when: false
+
+
+- name: Disable and stop legacy zabbix-agent service
+  ansible.builtin.service:
+    name: zabbix-agent
+    enabled: false
+    state: stopped
+  when: '"0 unit files listed." not in yoda_zabbix_system_zabbix_agent_service_exists.stdout_lines'
+
+
+- name: Install Zabbix-agent2 package for Debian family
   ansible.builtin.include_tasks: install-debian.yml
   when: ansible_os_family == 'Debian'
 
 
-- name: Install Zabbix package for RedHat family
+- name: Install Zabbix-agent2 package for RedHat family
   ansible.builtin.include_tasks: install-redhat.yml
   when: ansible_os_family == 'RedHat'
 
 
-- name: Enable the Zabbix agent service
+- name: Enable the Zabbix-agent2 service
   ansible.builtin.service:
-    name: zabbix-agent
+    name: zabbix-agent2
     enabled: true
     use: service
 
@@ -82,14 +98,14 @@
     mode: '0600'
 
 
-- name: Configure Zabbix agent
+- name: Configure Zabbix agent2
   ansible.builtin.template:
-    src: zabbix_agentd.conf.j2
-    dest: /etc/zabbix/zabbix_agentd.conf
+    src: zabbix_agent2.conf.j2
+    dest: /etc/zabbix/zabbix_agent2.conf
     owner: zabbix
     group: zabbix
     mode: '0600'
-  notify: Restart Zabbix agent
+  notify: Restart Zabbix agent2
 
 
 - name: Configure Zabbix AppArmor profile
@@ -107,7 +123,7 @@
   ansible.builtin.shell: |
     aa-complain /usr/sbin/zabbix_agentd
     apparmor_parser -r /etc/apparmor.d/usr.sbin.zabbix_agentd
-  notify: Restart Zabbix agent
+  notify: Restart Zabbix agent2
   changed_when: true
   when: ansible_os_family == 'Debian' and zabbix_apparmor.changed
 
@@ -122,7 +138,7 @@
 - name: Ensure yoda_system.userparams.conf is present
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda_system.userparams.conf
-    dest: /etc/zabbix/zabbix_agentd.d/yoda_system.userparams.conf
+    dest: /etc/zabbix/zabbix_agent2.d/yoda_system.userparams.conf
     owner: zabbix
     group: zabbix
     mode: '0400'
@@ -149,10 +165,10 @@
 - name: Copy Yoda Zabbix scripts
   ansible.builtin.copy:
     src: "{{ item.path }}"
-    dest: /etc/zabbix/zabbix_agentd.d/
+    dest: /etc/zabbix/zabbix_agent2.d/
     remote_src: true
     owner: zabbix
     group: zabbix
     mode: '0500'
   with_items: "{{ system_script_files.files }}"
-  notify: Restart Zabbix agent
+  notify: Restart Zabbix agent2

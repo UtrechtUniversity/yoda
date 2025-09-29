@@ -1,8 +1,9 @@
 ---
 # copyright Utrecht University
 
-- name: Restart Zabbix agent
+- name: Restart Zabbix agent2
   ansible.builtin.service:
-    name: zabbix-agent
+    name: zabbix-agent2
     state: restarted
     enabled: true
+  when: not ansible_check_mode

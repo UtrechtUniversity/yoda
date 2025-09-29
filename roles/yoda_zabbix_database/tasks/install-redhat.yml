@@ -1,33 +1,36 @@
 ---
 # copyright Utrecht University
 
-- name: Check if Zabbix PostgreSQL monitoring RPM is installable from repository
+- name: Check if Zabbix agent2 PostgreSQL plugin is installable from repository
   ansible.builtin.dnf: # noqa fqcn[action-core]
-    list: '{{ zabbix_postgres.package }}'
-  register: zabbix_postgres_repo
+    list: '{{ zabbix_agent2_postgresql_plugin.package }}'
+  register: zabbix_pgsqlplugin_repo
 
 
-- name: Download Zabbix PostgreSQL monitoring RPM
+- name: Download Zabbix agent2 PostgreSQL plugin rpm
   ansible.builtin.get_url:
-    url: '{{ zabbix_postgres.url }}/{{ zabbix_postgres.filename }}'
-    dest: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
-    checksum: '{{ zabbix_postgres.checksum }}'
+    url: '{{ zabbix_agent2_postgresql_plugin.url }}/{{ zabbix_agent2_postgresql_plugin.filename }}'
+    dest: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent2_postgresql_plugin.filename }}'
+    checksum: '{{ zabbix_agent2_postgresql_plugin.checksum }}'
     mode: '0644'
-  when: not zabbix_postgres_repo.results and not repo_only
-  notify: Restart Zabbix agent
+  when: not zabbix_pgsqlplugin_repo.results and not repo_only
 
 
-- name: Install Zabbix PostgreSQL monitoring from downloaded RPM
-  ansible.builtin.dnf: # noqa fqcn[action-core]
-    name: '{{ rpm_dest_dir }}/{{ zabbix_postgres.filename }}'
+- name: Install Zabbix RPM key
+  ansible.builtin.rpm_key:
+    key: "{{ zabbix_agent2_postgresql_plugin.rpm_key_loc }}"
     state: present
-    disable_gpg_check: true
-  when: not zabbix_postgres_repo.results and not repo_only
 
 
-- name: Ensure Zabbix PostgreSQL monitoring RPM is installed
+- name: Install Zabbix agent2 PostgreSQL plugin from downloaded rpm
+  ansible.builtin.dnf:
+    name: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent2_postgresql_plugin.filename }}'
+    state: present
+  when: not zabbix_pgsqlplugin_repo.results and not repo_only and not ansible_check_mode
+
+
+- name: Ensure Zabbix agent2 PostgreSQL plugin package is installed
   ansible.builtin.package:
-    name: '{{ zabbix_postgres.package }}'
+    name: '{{ zabbix_agent2_postgresql_plugin.package }}'
     state: present
-  when: zabbix_postgres_repo.results
-  notify: Restart Zabbix agent
+  when: zabbix_pgsqlplugin_repo.results
