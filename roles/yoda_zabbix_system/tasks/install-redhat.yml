@@ -1,13 +1,19 @@
 ---
 # copyright Utrecht University
 
-- name: Check if Zabbix agent is installable from repository
+- name: Ensure legacy Zabbix agent package is not installed
+  ansible.builtin.package:
+    name: zabbix-agent
+    state: absent
+
+
+- name: Check if Zabbix agent2 is installable from repository
   ansible.builtin.dnf: # noqa fqcn[action-core]
     list: '{{ zabbix_agent.package }}'
   register: zabbix_agent_repo
 
 
-- name: Download Zabbix agent rpm
+- name: Download Zabbix agent2 rpm
   ansible.builtin.get_url:
     url: '{{ zabbix_agent.url }}/{{ zabbix_agent.filename }}'
     dest: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent.filename }}'
@@ -22,14 +28,14 @@
     state: present
 
 
-- name: Install Zabbix agent from downloaded rpm
-  ansible.builtin.package:
+- name: Install Zabbix agent2 from downloaded rpm
+  ansible.builtin.dnf:
     name: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent.filename }}'
     state: present
   when: not zabbix_agent_repo.results and not repo_only and not ansible_check_mode
 
 
-- name: Ensure Zabbix agent rpm is installed
+- name: Ensure Zabbix agent2 rpm is installed
   ansible.builtin.package:
     name: '{{ zabbix_agent.package }}'
     state: present

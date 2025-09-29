@@ -11,37 +11,39 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Install Zabbix PostgreSQL monitoring package for Debian family
-  ansible.builtin.include_tasks: install-debian.yml
-  when: ansible_os_family == 'Debian'
-
-
-- name: Install Zabbix PostgreSQL monitoring package for RedHat family
-  ansible.builtin.include_tasks: install-redhat.yml
-  when: ansible_os_family == 'RedHat'
-
-
 - name: Create Zabbix database user
   become_user: postgres
   become: true
   community.postgresql.postgresql_user:
-    db: "{{ zabbix_database_name }}"
     name: "{{ zabbix_database_user }}"
-    priv: "CONNECT"
+    password: "{{ zabbix_database_user_password }}"
     role_attr_flags: NOSUPERUSER,NOCREATEDB,NOCREATEROLE
 
 
-# This is needed for monitoring diskspace usage of tablespaces on newer
-# PostgreSQL versions.
-- name: Explicitly grant Zabbix users permissions on tablespaces
+- name: Grant pg_monitor role to Zabbix user
   become_user: postgres
   become: true
-  community.postgresql.postgresql_privs:
-    db: "{{ zabbix_database_name }}"
-    role: "{{ zabbix_database_user }}"
-    priv: "CREATE"
-    type: tablespace
-    objs: "{{ item }}"
+  community.postgresql.postgresql_membership:
+    group: pg_monitor
+    target_roles:
+      - "{{ zabbix_database_user }}"
+    state: present
+
+
+- name: Remove old libzbxpgsql plugin
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
   with_items:
-    - "pg_global"
-    - "pg_default"
+    - "/etc/zabbix/zabbix_agentd.d/libzbxpgsql.conf"
+    - "/usr/lib64/zabbix/modules/libzbxpgsql.so"
+
+
+- name: Install Zabbix-agent2 PostgreSQL plugin package for Debian family
+  ansible.builtin.include_tasks: install-debian.yml
+  when: ansible_os_family == 'Debian'
+
+
+- name: Install Zabbix-agent2 PostgreSQL plugin package for RedHat family
+  ansible.builtin.include_tasks: install-redhat.yml
+  when: ansible_os_family == 'RedHat'

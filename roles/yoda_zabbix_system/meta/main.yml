@@ -2,15 +2,17 @@
 # copyright Utrecht University
 
 galaxy_info:
-  author: Lazlo Westerhof
-  description: Install and configure Zabbix system monitoring
+  author: Lazlo Westerhof and Sietse Snel
+  description: Install and configure Zabbix system monitoring using zabbix-agent2
   license: GPLv3
   min_ansible_version: '2.16'
   platforms:
     - name: EL
-      version: 7
+      version:
+        - 8
+        - 9
     - name: Ubuntu
-      version: focal
+      version: noble
 
 
 dependencies:

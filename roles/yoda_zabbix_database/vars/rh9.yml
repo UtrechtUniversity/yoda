@@ -1,0 +1,9 @@
+---
+# copyright Utrecht University
+
+zabbix_agent2_postgresql_plugin:
+  package: zabbix-agent2-plugin-postgresql-7.4.5
+  url: https://repo.zabbix.com/zabbix/7.4/stable/rhel/9/x86_64
+  filename: zabbix-agent2-plugin-postgresql-7.4.5-release1.el9.x86_64.rpm
+  checksum: sha256:e896633d97013f448a78d337060608017737d9190dd405e4bb1410a934ff8e7a
+  rpm_key_loc: https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005
