@@ -1,14 +1,33 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure dependencies for Zabbix PostgreSQL monitoring package are present
-  ansible.builtin.package:
-    name:
-      - "libconfig-dev"
-    state: present
+- name: Check whether Zabbix agent2 PostgreSQL plugin has been installed
+  ansible.builtin.command:
+    cmd: "dpkg-query -W --showformat='${Status}\n' {{ zabbix_agent2_postgresql_plugin.package }}"
+  register: zabbix_psqlplugin_current_package_status
+  failed_when: zabbix_psqlplugin_current_package_status.rc not in [0, 1]
+  changed_when: false
 
 
-- name: Install Zabbix PostgreSQL monitoring package
+- name: Check current Zabbix agent2 PostgreSQL plugin version
+  ansible.builtin.command:
+    cmd: "dpkg-query -W --showformat='${Version}\n' {{ zabbix_agent2_postgresql_plugin.package }}"
+  register: zabbix_psqlplugin_current_package_version
+  changed_when: false
+  failed_when: zabbix_psqlplugin_current_package_version.rc not in [0, 1]
+
+
+- name: Download Zabbix agent2 PostgreSQL plugin package
+  ansible.builtin.get_url:
+    url: '{{ zabbix_agent2_postgresql_plugin.url }}/{{ zabbix_agent2_postgresql_plugin.filename }}'
+    dest: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent2_postgresql_plugin.filename }}'
+    checksum: '{{ zabbix_agent2_postgresql_plugin.checksum }}'
+    mode: '0644'
+  when: not ansible_check_mode and ('install ok installed' not in zabbix_psqlplugin_current_package_status.stdout or zabbix_psqlplugin_current_package_version.stdout != zabbix_agent2_postgresql_plugin.package_version)
+
+
+- name: Install Zabbix agent2 PostgreSQL plugin from package
   ansible.builtin.apt:
-    deb: "{{ zabbix_postgres.url }}"
-  when: not ansible_check_mode and ( zabbix_postgres.package not in ansible_facts.packages or zabbix_postgres.version != ansible_facts.packages[zabbix_postgres.package][0]['version'] )
+    deb: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent2_postgresql_plugin.filename }}'
+    state: present
+  when: not ansible_check_mode and ('install ok installed' not in zabbix_psqlplugin_current_package_status.stdout or zabbix_psqlplugin_current_package_version.stdout != zabbix_agent2_postgresql_plugin.package_version)

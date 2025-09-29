@@ -49,20 +49,11 @@
         msg: "Make sure your Yoda repository is on branch {{ yoda_version }} or a tag pointing at the current commit. (git checkout {{ yoda_version }})"
       when: check_git_bltags.rc != 0 and check_git_tags.rc != 0 and yoda_environment != "development"
 
-- name: Provision portal server with Zabbix agent
-  hosts: portals
+
+- name: Provision iRODS servers with Zabbix agent and Yoda monitoring
+  hosts: icats, resources
   become: true
   roles:
-    - yoda_zabbix_portal
-  tags:
-    - portal
-
-
-- name: Provision iCAT server with Zabbix agent and Yoda monitoring
-  hosts: icats
-  become: true
-  roles:
-    - yoda_zabbix_icat
     - yoda_zabbix_irodscommon
   tags:
     - zabbix
@@ -76,15 +67,6 @@
       zabbix_database_name: "{{ irods_database_name }}"
   tags:
     - database
-
-
-- name: Provision resource server with Zabbix agent
-  hosts: resources
-  become: true
-  roles:
-    - yoda_zabbix_irodscommon
-  tags:
-    - resource
 
 
 - name: Provision public server with Zabbix agent

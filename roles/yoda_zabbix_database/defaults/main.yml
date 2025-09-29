@@ -7,9 +7,7 @@ rpm_dest_dir: /tmp
 # Zabbix postgres database user (CREATE ROLE zabbix WITH LOGIN NOSUPERUSER, NOCREATEDB, NOCREATEROLE
 # and (GRANT CONNECT ON DATABASE "ICAT" TO zabbix)
 # Zabbix configuration
-zabbix_database_name: ICAT
-irods_database_name: ICAT
-eus_db_name: extuser
 zabbix_database_user: zabbix
+zabbix_database_user_password: PLACEHOLDER
 
 repo_only: false # Only download packages from repos.
