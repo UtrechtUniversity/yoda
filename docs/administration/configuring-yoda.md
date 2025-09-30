@@ -151,6 +151,7 @@ yoda_davrods_fqdn                 | Yoda Davrods WebDAV fully qualified domain n
 yoda_davrods_anonymous_fqdn       | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
 yoda_davrods_logo_path            | Path of the DavRODS logo on the portal. Defaults to the themed logo.
 yoda_davrods_logo_link            | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
+httpd_limit_request_body          | Maximum size of file to upload through DavRODS (bytes, default value: 10 GiB).
 yoda_enable_httpd                 | Whether to enable the httpd service (boolean, default value: true). Set to false if manual actions are needed before starting the web server (e.g. mounting encrypted volumes)
 tcp_keepalive_time                | IPv4 TCP keepalives: time until first keepalive (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
 tcp_keepalive_intvl               | IPv4 TCP keepalives: time between keepalives (kernel parameter). Can be useful to tune in order to prevent timeouts on long transfers.
