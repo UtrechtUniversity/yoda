@@ -10,8 +10,8 @@ ARG TAG=development
 ENV IRODS_PACKAGE_VERSION="4.3.4-0~noble"
 ENV APT_REPO_CONFIG="deb [arch=amd64] https://packages.irods.org/apt/ noble main"
 ENV APT_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
-ENV DAVRODS_APT_URL="https://github.com/UtrechtUniversity/davrods/releases/download/4.3.4_1.5.1"
-ENV DAVRODS_APT_PACKAGE="davrods-4.3.4-1.5.1.deb"
+ENV DAVRODS_APT_URL="https://github.com/UtrechtUniversity/davrods/releases/download/4.3.4_1.5.3"
+ENV DAVRODS_APT_PACKAGE="davrods-4.3.4-1.5.3.deb"
 ENV DEBIAN_FRONTEND="noninteractive"
 
 # Update packages

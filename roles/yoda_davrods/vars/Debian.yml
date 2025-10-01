@@ -7,8 +7,8 @@ openssl_certs_dir: '/etc/ssl/certs'
 yoda_davrods_boost_package: libboost-all-dev
 yoda_davrods_jansson_package: libjansson4
 
-yoda_davrods_version: 4.3.4-1.5.1
-yoda_davrods_checksum: sha256:81d4e54765a2e8b61593f832ecbd5a66e07beff5a081b83713c752ed3a134970
+yoda_davrods_version: 4.3.4-1.5.3
+yoda_davrods_checksum: sha256:e3f6436b789928f5719bc0a96dab3e3d1dad72ed483c61a76596f4ce4fb4ceed
 
 yoda_davrods_site_config_dir: /etc/apache2/sites-available
 yoda_davrods_site_enabled_config_dir: /etc/apache2/sites-enabled

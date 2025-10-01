@@ -7,9 +7,9 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 yoda_davrods_boost_package: boost
 yoda_davrods_jansson_package: jansson
 
-yoda_davrods_url: https://github.com/UtrechtUniversity/davrods/releases/download/4.3.4_1.5.1/davrods-4.3.4_1.5.1-1.rpm
-yoda_davrods_version: 4.3.4-1.5.1
-yoda_davrods_checksum: sha256:2a59b839b314697c03b308f47a6b4fd8ef956bfa57a2af412f3ca5a4f4c58bf3
+yoda_davrods_url: https://github.com/UtrechtUniversity/davrods/releases/download/4.3.4_1.5.3/davrods-4.3.4_1.5.3-1.rpm
+yoda_davrods_version: 4.3.4-1.5.3
+yoda_davrods_checksum: sha256:1b8cdd067202ffb34b0f5634b03969b5f1d8d12a839ba203219727f890c77752
 
 yoda_davrods_site_config_dir: /etc/httpd/conf.d
 yoda_davrods_config_file: davrods-vhost.conf
