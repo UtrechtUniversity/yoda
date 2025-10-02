@@ -62,3 +62,17 @@
     proto: tcp
     setype: http_port_t
     state: present
+
+
+- name: Allow Apache to access Davrods lock directory
+  community.general.sefcontext:
+    target: "/var/lib/davrods(/.*)?"
+    setype: httpd_sys_rw_content_t
+    state: present
+  register: davrodslockcontext
+
+
+- name: Ensure SELinux context is enforced on Davrods lock directory
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: restorecon -R /var/lib/davrods
+  when: davrodslockcontext is changed and ansible_selinux

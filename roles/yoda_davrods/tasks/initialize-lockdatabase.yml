@@ -1,0 +1,47 @@
+---
+# copyright Utrecht University
+
+- name: Set ACLs Davrods lock database directory
+  ansible.builtin.file:
+    path: '{{ yoda_davrods_lockdir }}'
+    state: directory
+    owner: '{{ yoda_davrods_user }}'
+    group: '{{ yoda_davrods_group }}'
+    mode: '0775'
+  when: not ansible_check_mode
+
+
+# This script is only used to generate the empty database on an
+# Ubuntu development environment.
+- name: Upload Davrods lock database initialization script
+  ansible.builtin.copy:
+    src: initialize-davrods-lockdb.py
+    dest: /usr/local/bin/initialize-davrods-lockdb.py
+    owner: root
+    group: root
+    mode: '0755'
+  when: ansible_os_family == 'Debian' and yoda_environment == "development"
+
+- name: Check whether Davrods lock database exists
+  ansible.builtin.stat:
+    path: '{{ yoda_davrods_lockdir }}/lockdb_locallock'
+  register: yoda_davrods_lockdb_status
+
+
+- name: Initialize Davrods lock database if it does not exist yet
+  ansible.builtin.shell: # noqa no-changed-when
+    cmd: |
+      set -o pipefail
+      echo "{{ yoda_davrods_empty_lock_database_data }}" | xxd -a -r > "{{ yoda_davrods_lockdir }}/lockdb_locallock"
+  args:
+    executable: /bin/bash
+  when: not yoda_davrods_lockdb_status.stat.exists
+
+
+- name: Set permissions on Davrods lock database
+  ansible.builtin.file:
+    path: '{{ yoda_davrods_lockdir }}/lockdb_locallock'
+    owner: '{{ yoda_davrods_user }}'
+    group: '{{ yoda_davrods_group }}'
+    mode: '0660'
+  when: not ansible_check_mode
