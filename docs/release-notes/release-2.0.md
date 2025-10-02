@@ -36,8 +36,8 @@ Released: TBA
 - Python-irodsclient: update to v3.2.0
 - GoCommands: update to v0.10.24
 - Flask and dependencies: update to v3.1.1
-- Bootstrap: update to v5.3.6
-- Mailpit: update to v1.27.8
+- Bootstrap: update to v5.3.8
+- Mailpit: update to v1.27.9
 
 ### Known issues
 - Collections with single apex "'" in the name do not work ([irods/irods#5727](https://github.com/irods/irods/issues/5727))
@@ -57,14 +57,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After ensuring the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Check out the `v2.0.0-rc.3` tag of the Yoda Git repository:
+3. Check out the `v2.0.0-rc.4` tag of the Yoda Git repository:
 ```bash
-git checkout v2.0.0-rc.3
+git checkout v2.0.0-rc.4
 ```
 
-4. Set the Yoda version to `v2.0.0-rc.3` in the configuration:
+4. Set the Yoda version to `v2.0.0-rc.4` in the configuration:
 ```yaml
-yoda_version: v2.0.0-rc.3
+yoda_version: v2.0.0-rc.4
 ```
 
 5. If the old configuration contained an iRODS authentication scheme setting, update it to use `pam_password`. Example:
