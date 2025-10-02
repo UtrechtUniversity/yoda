@@ -1,6 +1,13 @@
 #!/usr/bin/python3
 
-"""Initializes a Davrods lock database on an Ubuntu system."""
+"""Initializes a Davrods lock database on an Ubuntu system.
+
+   This does not work correctly on RHEL 9 systems because Python
+   has been compiled with a different DBM backend there. So we
+   use this script on an Ubuntu development environment to initialize
+   an empty DBM database. The playbook then uploads a copy of this
+   empty database on other environments.
+"""
 
 import argparse
 import dbm.ndbm
