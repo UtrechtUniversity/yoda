@@ -16,3 +16,4 @@
   ansible.builtin.command: # noqa no-changed-when
     cmd: "/usr/bin/dpkg -i /tmp/davrods-{{ yoda_davrods_version }}.deb"
   when: not ansible_check_mode and ( 'davrods' not in ansible_facts.packages or yoda_davrods_version != ansible_facts.packages['davrods'][0]['version'] )
+  notify: Restart Apache webserver

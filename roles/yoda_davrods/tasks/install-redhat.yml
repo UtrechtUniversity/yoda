@@ -14,3 +14,4 @@
     name: "/tmp/davrods-{{ yoda_davrods_version }}.rpm"
     disable_gpg_check: true
     state: present
+  notify: Restart Apache webserver

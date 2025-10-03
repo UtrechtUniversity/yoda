@@ -4,6 +4,8 @@
 openssl_private_dir: '/etc/ssl/private/'
 openssl_certs_dir: '/etc/ssl/certs'
 
+apache_service_name: apache2
+
 yoda_davrods_boost_package: libboost-all-dev
 yoda_davrods_jansson_package: libjansson4
 

@@ -1,0 +1,7 @@
+---
+# copyright Utrecht University
+
+- name: Restart Apache webserver
+  ansible.builtin.service:
+    name: "{{ apache_service_name }}"
+    state: restarted
