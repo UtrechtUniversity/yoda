@@ -28,6 +28,9 @@
     version: "{{ yoda_portal_version }}"
     force: "yes"
   register: portalchanges
+  notify:
+    - Restart Apache webserver
+    - Restart portal application
 
 
 - name: Ensure Yoda portal virtualenv exists
@@ -56,7 +59,9 @@
     virtualenv_python: python3.12
   environment:
     C_INCLUDE_PATH: "{{ yoda_portal_python3_include_path }}"
-  notify: Restart Apache webserver
+  notify:
+    - Restart Apache webserver
+    - Restart portal application
 
 
 - name: Install mod-wsgi
@@ -110,7 +115,9 @@
     owner: "{{ yoda_deployment_user }}"
     group: "{{ yoda_deployment_user }}"
   when: not ansible_check_mode
-  notify: Restart Apache webserver
+  notify:
+    - Restart Apache webserver
+    - Restart portal application
 
 
 - name: Copy Yoda Portal virtual host config for Apache

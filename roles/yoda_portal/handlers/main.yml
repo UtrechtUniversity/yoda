@@ -5,3 +5,8 @@
   ansible.builtin.service:
     name: "{{ apache_service_name }}"
     state: restarted
+
+
+- name: Restart portal application
+  ansible.builtin.command: # noqa no-changed-when
+    cmd: /bin/touch /var/www/yoda/yoda.wsgi /var/www/yoda/yoda_debug.wsgi
