@@ -215,7 +215,7 @@
 
 <p>Version: 2.0</p>
 
-<p>Released: TBA</p>
+<p>Released: 6 October 2025</p>
 <h2 id="whats-new">
   
   
@@ -319,12 +319,12 @@ To view what files were changed from the defaults, run <code class="language-pla
   <li>
     <p>After ensuring the configurations are stored safely in another folder, reset the Yoda folder using <code class="language-plaintext highlighter-rouge">git stash</code> or when you want to delete all changes made: <code class="language-plaintext highlighter-rouge">git reset --hard</code>.</p>
   </li>
-  <li>Check out the <code class="language-plaintext highlighter-rouge">v2.0.0-rc.4</code> tag of the Yoda Git repository:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout v2.0.0-rc.4
+  <li>Check out the <code class="language-plaintext highlighter-rouge">v2.0.0</code> tag of the Yoda Git repository:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout v2.0.0
 </code></pre></div>    </div>
   </li>
-  <li>Set the Yoda version to <code class="language-plaintext highlighter-rouge">v2.0.0-rc.4</code> in the configuration:
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v2.0.0-rc.4</span>
+  <li>Set the Yoda version to <code class="language-plaintext highlighter-rouge">v2.0.0</code> in the configuration:
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v2.0.0</span>
 </code></pre></div>    </div>
   </li>
   <li>If the old configuration contained an iRODS authentication scheme setting, update it to use <code class="language-plaintext highlighter-rouge">pam_password</code>. Example:
@@ -363,6 +363,24 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
   </li>
   <li>Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/update-publications.r
+</code></pre></div>    </div>
+  </li>
+  <li>Manually restart Apache on all portal and WebDAV servers</li>
+</ol>
+
+<p>On Ubuntu:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart apache2
+</code></pre></div></div>
+
+<p>On RHEL:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart httpd
+</code></pre></div></div>
+
+<ol>
+  <li>Manually restart the portal application on all portal servers
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo touch</span> /var/www/yoda/yoda.wsgi /var/www/yoda/yoda_debug.wsgi
 </code></pre></div>    </div>
   </li>
 </ol>
