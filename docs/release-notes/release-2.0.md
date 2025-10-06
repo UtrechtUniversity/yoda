@@ -3,7 +3,7 @@
 
 Version: 2.0
 
-Released: TBA
+Released: 6 October 2025
 
 ## What's new
 ### Changes affecting functionality for data stewards and researchers
@@ -57,14 +57,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After ensuring the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Check out the `v2.0.0-rc.4` tag of the Yoda Git repository:
+3. Check out the `v2.0.0` tag of the Yoda Git repository:
 ```bash
-git checkout v2.0.0-rc.4
+git checkout v2.0.0
 ```
 
-4. Set the Yoda version to `v2.0.0-rc.4` in the configuration:
+4. Set the Yoda version to `v2.0.0` in the configuration:
 ```yaml
-yoda_version: v2.0.0-rc.4
+yoda_version: v2.0.0
 ```
 
 5. If the old configuration contained an iRODS authentication scheme setting, update it to use `pam_password`. Example:
@@ -108,4 +108,23 @@ ansible-playbook -i /environments/development/allinone playbook.yml
 10. Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH):
 ```bash
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
+```
+
+11. Manually restart Apache on all portal and WebDAV servers
+
+On Ubuntu:
+
+```bash
+sudo systemctl restart apache2
+```
+
+On RHEL:
+
+```bash
+sudo systemctl restart httpd
+```
+
+12. Manually restart the portal application on all portal servers
+```bash
+sudo touch /var/www/yoda/yoda.wsgi /var/www/yoda/yoda_debug.wsgi
 ```
