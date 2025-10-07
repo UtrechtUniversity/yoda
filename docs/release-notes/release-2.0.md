@@ -1,4 +1,8 @@
 ---
+parent: Release Notes
+title: v2.0
+nav_order: 88
+---
 # Release Notes - Yoda v2.0
 
 Version: 2.0
