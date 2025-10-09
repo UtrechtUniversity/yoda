@@ -22,7 +22,6 @@ irods_vault_directory: /var/lib/irods/Vault
 irods_control_plane_port: 1248
 irods_schema_uri: file:///var/lib/irods/configuration_schemas
 irods_ssl_verify_server: cert
-irods_ca_certificate_file: "{{ openssl_ca_certs_bundle }}"
 
 irods_icat_caching_settings:
   advanced_settings/dns_cache/eviction_age_in_seconds: 3600

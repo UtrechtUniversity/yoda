@@ -157,6 +157,7 @@
     iput -f -r ~/testdata/{{ item }} /{{ irods_zone }}/home/grp-intake-initial
   with_items:
     - 'intake_testset_initial'
+  ignore_errors: true
 
 
 - name: Ensure Yoda metadata is present for geo publication test

@@ -1,4 +1,4 @@
 ---
 # copyright Utrecht University
 
-irods_resource_plugin_s3_package: irods-resource-plugin-s3=4.3.4.0-0~noble
+irods_resource_plugin_s3_package: irods-resource-plugin-s3=5.0.1-0+5.0.2~noble

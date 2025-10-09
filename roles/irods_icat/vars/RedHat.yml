@@ -3,15 +3,14 @@
 
 openssl_private_dir: '/etc/pki/tls/private'
 openssl_certs_dir: '/etc/pki/tls/certs'
-openssl_ca_certs_bundle: /etc/ssl/certs/ca-bundle.crt
 
 pam_radius_package: pam_radius
 
-irods_runtime_package_new: irods-runtime-4.3.4-0.el9
-irods_server_package_new: irods-server-4.3.4-0.el9
-irods_prep_package_new: irods-rule-engine-plugin-python-4.3.4.0-0.el9+4.3.4
-irods_pgp_package_new: irods-database-plugin-postgres-4.3.4-0.el9
-irods_idp_package_new: irods-rule-engine-plugin-indexing-4.3.4.0-0.el9+4.3.4
-irods_esp_package_new: irods-rule-engine-plugin-elasticsearch-4.3.4.0-0.el9+4.3.4
+irods_runtime_package_new: irods-runtime-5.0.2-0.el9
+irods_server_package_new: irods-server-5.0.2-0.el9
+irods_prep_package_new: irods-rule-engine-plugin-python-5.0.1-0.el9+5.0.2
+irods_pgp_package_new: irods-database-plugin-postgres-5.0.2-0.el9
+irods_idp_package_new: irods-rule-engine-plugin-indexing-5.0.1-0.el9+5.0.2
+irods_esp_package_new: irods-rule-engine-plugin-elasticsearch-5.0.1-0.el9+5.0.2
 
 sqlcipher3_venv_path: /var/lib/irods/sqlcipher3-venv/lib64/python3.9/site-packages/

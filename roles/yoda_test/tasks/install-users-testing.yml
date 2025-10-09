@@ -17,3 +17,4 @@
     option: 'type'
     value: '{{ item.type }}'
   with_items: '{{ eus_test_users }}'
+  ignore_errors: true

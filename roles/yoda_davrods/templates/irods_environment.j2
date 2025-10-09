@@ -14,15 +14,10 @@
     "irods_encryption_algorithm": "AES-256-CBC",
     "irods_default_hash_scheme": "SHA256",
     "irods_match_hash_policy": "compatible",
-    "irods_server_control_plane_port": 1248,
-    "irods_server_control_plane_key": "TEMPORARY__32byte_ctrl_plane_key",
-    "irods_server_control_plane_encryption_num_hash_rounds": 16,
-    "irods_server_control_plane_encryption_algorithm": "AES-256-CBC",
     "irods_maximum_size_for_single_buffer_in_megabytes": 32,
     "irods_default_number_of_transfer_threads": 4,
     "irods_transfer_buffer_size_for_parallel_transfer_in_megabytes": 4,
-    "irods_ssl_certificate_chain_file": "/etc/irods/{{ openssl_crt_signed_and_chain }}",
-    "irods_ssl_certificate_key_file": "/etc/irods/{{ openssl_key_signed }}",
-    "irods_ssl_dh_params_file": "/etc/irods/{{ openssl_dhparams }}",
+    "irods_ssl_ca_certificate_file": "/etc/irods/{{ openssl_crt_signed_and_chain }}",
+    "irods_ssl_ca_certificate_path": "{{ openssl_certs_dir }}",
     "irods_ssl_verify_server": "{{ irods_ssl_verify_server }}"
 }

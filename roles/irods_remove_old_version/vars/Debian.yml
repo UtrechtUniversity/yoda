@@ -10,5 +10,4 @@ irods_prep_package_old: irods-rule-engine-plugin-python=4.2.12.0-1~bionic
 irods_pgp_package_old: irods-database-plugin-postgres=4.2.12-1~bionic
 irods_idp_package_old: irods-rule-engine-plugin-indexing=4.2.12.0-1~bionic
 irods_esp_package_old: irods-rule-engine-plugin-elasticsearch=4.2.12.0-1~bionic
-irods_dtp_package_old: irods-rule-engine-plugin-document-type=4.2.12.0-1~bionic
 irods_davrods_package_old: davrods=4.2.12_1.5.1-1

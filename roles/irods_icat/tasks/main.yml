@@ -96,13 +96,6 @@
     creates: /etc/irods/service_account.config
 
 
-- name: Generate control plane key
-  ansible.builtin.command: 'openssl rand -hex 16'
-  register: server_control_plane_key
-  args:
-    creates: /etc/irods/service_account.config
-
-
 - name: Generate password salt
   ansible.builtin.command: 'openssl rand -hex 16'
   register: password_salt
@@ -118,8 +111,6 @@
       key: '{{ zone_key.stdout }}'
     - fact: irods_negotiation_key
       key: '{{ negotiation_key.stdout }}'
-    - fact: irods_control_plane_key
-      key: '{{ server_control_plane_key.stdout }}'
     - fact: irods_password_salt
       key: '{{ password_salt.stdout }}'
   when: not ansible_check_mode
@@ -388,18 +379,14 @@
     key: '{{ item.key }}'
     value: '{{ item.value }}'
   with_items:
-    - key: 'irods_ssl_certificate_chain_file'
-      value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
     - key: 'irods_ssl_ca_certificate_file'
-      value: '{{ irods_ca_certificate_file }}'
-    - key: 'irods_ssl_certificate_key_file'
-      value: '/etc/irods/{{ openssl_key_signed }}'
-    - key: 'irods_ssl_dh_params_file'
-      value: '/etc/irods/{{ openssl_dhparams }}'
-    - key: 'irods_client_server_policy'
-      value: 'CS_NEG_REQUIRE'
+      value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+    - key: 'irods_ssl_ca_certificate_path'
+      value: '{{ openssl_certs_dir }}'
     - key: 'irods_ssl_verify_server'
       value: '{{ irods_ssl_verify_server }}'
+    - key: 'irods_client_server_policy'
+      value: 'CS_NEG_REQUIRE'
 
 
 - name: Ensure iRODS is configured to use database
@@ -437,12 +424,6 @@
 - name: Retrieve iRODS server negotiation key
   ansible.builtin.set_fact:
     negotiation_key: "{{ (server_config['content'] | b64decode | from_json).negotiation_key }}"
-  when: not ansible_check_mode
-
-
-- name: Retrieve iRODS server control plane key
-  ansible.builtin.set_fact:
-    server_control_plane_key: "{{ (server_config['content'] | b64decode | from_json).server_control_plane_key }}"
   when: not ansible_check_mode
 
 

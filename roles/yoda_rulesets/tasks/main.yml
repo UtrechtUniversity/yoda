@@ -149,13 +149,18 @@
     config_path: "/etc/irods/server_config.json"
     rulesets: "{{ (extra_rulesets + core_rulesets) | map(attribute='ruleset_name') | list }}"
   when: not ansible_check_mode
+  notify: Restart iRODS
+
+
+- name: Flush handlers to restart iRODS if needed
+  ansible.builtin.meta: flush_handlers
 
 
 - name: Ensure Python rules are loaded
   become_user: "{{ irods_service_account }}"
   become: true
   ansible.builtin.copy:
-    src: "core.py.template"
+    src: "core.py"
     dest: "/etc/irods/core.py"
     mode: '0644'
 
