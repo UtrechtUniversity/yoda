@@ -24,6 +24,7 @@
     option: 'type'
     value: '{{ item.type }}'
   with_items: '{{ test_users + oidc_test_users + eus_test_users }}'
+  ignore_errors: true
 
 
 - name: Ensure Yoda test users have password

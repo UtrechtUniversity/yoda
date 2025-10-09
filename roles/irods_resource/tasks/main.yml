@@ -74,8 +74,6 @@
       key: "{{ hostvars[irods_icat]['zone_key'] }}"
     - fact: irods_negotiation_key
       key: "{{ hostvars[irods_icat]['negotiation_key'] }}"
-    - fact: irods_control_plane_key
-      key: "{{ hostvars[irods_icat]['server_control_plane_key'] }}"
   when: not ansible_check_mode
 
 
@@ -258,22 +256,18 @@
   become: true
   # noqa fqcn[action]
   irods_config:
-    path: "{{ irods_directory.stdout }}/.irods/irods_environment.json"
+    path: '{{ irods_directory.stdout }}/.irods/irods_environment.json'
     key: '{{ item.key }}'
     value: '{{ item.value }}'
   with_items:
-    - key: 'irods_ssl_certificate_chain_file'
-      value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
     - key: 'irods_ssl_ca_certificate_file'
-      value: '{{ irods_ca_certificate_file }}'
-    - key: 'irods_ssl_certificate_key_file'
-      value: '/etc/irods/{{ openssl_key_signed }}'
-    - key: 'irods_ssl_dh_params_file'
-      value: '/etc/irods/{{ openssl_dhparams }}'
-    - key: 'irods_client_server_policy'
-      value: 'CS_NEG_REQUIRE'
+      value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+    - key: 'irods_ssl_ca_certificate_path'
+      value: '{{ openssl_certs_dir }}'
     - key: 'irods_ssl_verify_server'
       value: '{{ irods_ssl_verify_server }}'
+    - key: 'irods_client_server_policy'
+      value: 'CS_NEG_REQUIRE'
 
 
 - name: Ensure iRODS server keys are synced
@@ -287,8 +281,6 @@
   with_items:
     - key: 'zone_key'
       value: "{{ irods_zone_key }}"
-    - key: 'server_control_plane_key'
-      value: "{{ irods_control_plane_key }}"
     - key: 'negotiation_key'
       value: "{{ irods_negotiation_key }}"
   when: not ansible_check_mode
