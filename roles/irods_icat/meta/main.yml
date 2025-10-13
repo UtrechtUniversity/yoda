@@ -15,7 +15,6 @@ galaxy_info:
 
 dependencies:
   - role: irods_remove_old_version
-  - role: irods_database
   - role: irods_icommands
   - role: python_irodsclient
   - role: sqlcipher
