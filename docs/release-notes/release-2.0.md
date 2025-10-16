@@ -51,11 +51,24 @@ Released: 6 October 2025
 - Renaming collection with multi-byte characters mangles subcollection paths ([irods/irods#6239](https://github.com/irods/irods/issues/6239))
 
 ## Upgrading from previous release
+
+### Software version requirements
+
 The playbook requires Ansible 2.16.x or higher.
 
 Version constraints:
 - Requires Yoda external user service to be on version 1.9.x or higher.
 - Requires Yoda public server to be on version 1.9.x or higher.
+- Although Yoda itself supports EL 8 systems (e.g. RHEL 8) as a database server, Ansible has dropped support for EL 8 in version 2.17.0. It is recommended to use EL 9 or Ubuntu 24.04 LTS for new database servers. For existing
+  EL 8 database servers, run Ansible 2.16.x in a virtual environment, and install Python 3.12 on the EL 8
+  server:
+
+```bash
+sudo yum install python3.12 python3.12-pip
+sudo /usr/bin/python3.12 -m pip install cryptography psycopg2-binary selinux
+```
+
+### Upgrade process
 
 1. Backup/copy custom configurations made to Yoda version 1.9.5 / 1.10.0
 To view what files were changed from the defaults, run `git diff`.
@@ -86,7 +99,7 @@ problems with Ansible using a different interpreter than expected.
   ansible_python_interpreter: /usr/bin/python3.9
   ```
 
-  For Ubuntu 24.04 LTS environments:
+  For EL 8 and Ubuntu 24.04 LTS environments (see also additional instructions above for EL 8 servers):
   ```yaml
   ansible_python_interpreter: /usr/bin/python3.12
   ```
