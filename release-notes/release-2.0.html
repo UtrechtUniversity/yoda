@@ -328,13 +328,37 @@
   
 </h2>
     
+<h3 id="software-version-requirements">
+  
+  
+    <a href="#software-version-requirements" class="anchor-heading" aria-labelledby="software-version-requirements"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Software version requirements
+  
+  
+</h3>
+    
+
 <p>The playbook requires Ansible 2.16.x or higher.</p>
 
 <p>Version constraints:</p>
 <ul>
   <li>Requires Yoda external user service to be on version 1.9.x or higher.</li>
   <li>Requires Yoda public server to be on version 1.9.x or higher.</li>
+  <li>Although Yoda itself supports EL 8 systems (e.g. RHEL 8) as a database server, Ansible has dropped support for EL 8 in version 2.17.0. It is recommended to use EL 9 or Ubuntu 24.04 LTS for new database servers. For existing
+EL 8 database servers, run Ansible 2.16.x in a virtual environment, and install Python 3.12 on the EL 8
+server:</li>
 </ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum <span class="nb">install </span>python3.12 python3.12-pip
+<span class="nb">sudo</span> /usr/bin/python3.12 <span class="nt">-m</span> pip <span class="nb">install </span>cryptography psycopg2-binary selinux
+</code></pre></div></div>
+<h3 id="upgrade-process">
+  
+  
+    <a href="#upgrade-process" class="anchor-heading" aria-labelledby="upgrade-process"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Upgrade process
+  
+  
+</h3>
+    
 
 <ol>
   <li>
@@ -365,7 +389,7 @@ problems with Ansible using a different interpreter than expected.</li>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">ansible_python_interpreter</span><span class="pi">:</span> <span class="s">/usr/bin/python3.9</span>
 </code></pre></div></div>
 
-<p>For Ubuntu 24.04 LTS environments:</p>
+<p>For EL 8 and Ubuntu 24.04 LTS environments (see also additional instructions above for EL 8 servers):</p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">ansible_python_interpreter</span><span class="pi">:</span> <span class="s">/usr/bin/python3.12</span>
 </code></pre></div></div>
 
