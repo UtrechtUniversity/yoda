@@ -1,19 +1,26 @@
 {
     "advanced_settings": {
+        "checksum_read_buffer_size_in_bytes": 1048576,
         "default_number_of_transfer_threads": 4,
         "default_temporary_password_lifetime_in_seconds": 120,
+        "delay_rule_executors": [],
+        "delay_server_sleep_time_in_seconds": 10,
         "dns_cache": {
+            "cache_clearer_sleep_time_in_seconds": 600,
             "eviction_age_in_seconds": 3600,
             "shared_memory_size_in_bytes": 5000000
         },
         "hostname_cache": {
+            "cache_clearer_sleep_time_in_seconds": 600,
             "eviction_age_in_seconds": 3600,
             "shared_memory_size_in_bytes": 2500000
         },
-        "maximum_number_of_concurrent_rule_engine_server_processes": 4,
         "maximum_size_for_single_buffer_in_megabytes": 32,
+        "maximum_size_of_delay_queue_in_bytes": 0,
         "maximum_temporary_password_lifetime_in_seconds": 1000,
-        "rule_engine_server_sleep_time_in_seconds": 10,
+        "migrate_delay_server_sleep_time_in_seconds": 5,
+        "number_of_concurrent_delay_rule_executors": 4,
+        "stacktrace_file_processor_sleep_time_in_seconds": 10,
         "transfer_buffer_size_for_parallel_transfer_in_megabytes": 4,
         "transfer_chunk_size_for_parallel_transfer_in_megabytes": 40
     },
@@ -22,6 +29,8 @@
     ],
     "catalog_service_role": "provider",
     "client_api_allowlist_policy": "enforce",
+    "client_server_policy": "CS_NEG_REFUSE",
+    "connection_pool_refresh_time_in_seconds": 300,
     "controlled_user_connection_list": {
         "control_type": "denylist",
         "users": []
@@ -30,14 +39,23 @@
     "default_file_mode": "0600",
     "default_hash_scheme": "SHA256",
     "default_resource_name": "irodsResc",
+    "encryption": {
+        "algorithm": "AES-256-CBC",
+        "key_size": 32,
+        "num_hash_rounds": 16,
+        "salt_size": 8
+    },
     "environment_variables": {},
     "federation": [],
+    "graceful_shutdown_timeout_in_seconds": 30,
+    "host": "provider.yoda",
     "host_access_control": {
         "access_entries": []
     },
     "host_resolution": {
         "host_entries": []
     },
+    "icat_host": "provider.yoda",
     "log_level": {
         "agent": "info",
         "agent_factory": "info",
@@ -45,26 +63,31 @@
         "authentication": "info",
         "database": "info",
         "delay_server": "info",
+        "genquery2": "info",
         "legacy": "info",
         "microservice": "info",
         "network": "info",
         "resource": "info",
         "rule_engine": "info",
-        "server": "debug"
+        "server": "debug",
+        "sql": "info"
     },
     "match_hash_policy": "compatible",
     "negotiation_key": "458ce56d4d4b631fac7c1a12b7a1f8a1",
     "plugin_configuration": {
         "authentication": {},
         "database": {
+            "host": "db.yoda",
+            "name": "ICAT",
+            "odbc_driver": "PostgreSQL",
+            "password": "yodadev",
+            "port": 5432,
             "postgres": {
                 "db_host": "db.yoda",
-                "db_name": "ICAT",
-                "db_odbc_driver": "PostgreSQL",
-                "db_password": "yodadev",
-                "db_port": 5432,
-                "db_username": "irodsdb"
-            }
+                "db_port": 5432
+            },
+            "technology": "postgres",
+            "username": "irodsdb"
         },
         "network": {},
         "resource": {},
@@ -86,7 +109,7 @@
                     "regexes_for_supported_peps": [
                         "ac[^ ]*",
                         "msi[^ ]*",
-                        "[^ ]*pep_[^ ]*_(pre|post)"
+                        "[^ ]*pep_[^ ]*_(pre|post|except|finally)"
                     ]
                 },
                 "shared_memory_instance": "irods_rule_language_rule_engine"
@@ -107,15 +130,20 @@
         ""
     ],
     "schema_name": "server_config",
-    "schema_validation_base_uri": "file:///var/lib/irods/configuration_schemas/",
-    "schema_version": "v4",
-    "server_control_plane_encryption_algorithm": "AES-256-CBC",
-    "server_control_plane_encryption_num_hash_rounds": 16,
-    "server_control_plane_key": "8273a89fbac6364eaa0a7af10d07feeb",
-    "server_control_plane_port": 1248,
-    "server_control_plane_timeout_milliseconds": 10000,
+    "schema_validation_base_uri": "file:///var/lib/irods/configuration_schemas",
+    "schema_version": "v5",
     "server_port_range_end": 20199,
     "server_port_range_start": 20000,
+    "tls_client": {
+        "ca_certificate_file": "/etc/irods/localhost_and_chain.crt",
+        "ca_certificate_path": "/etc/ssl/certs",
+        "verify_server": "cert"
+    },
+    "tls_server": {
+        "certificate_chain_file": "/etc/irods/localhost_and_chain.crt",
+        "certificate_key_file": "/etc/irods/localhost.key",
+        "dh_params_file": "/etc/irods/dhparams.pem"
+    },
     "zone_auth_scheme": "native",
     "zone_key": "bf68b8f4ada270902708a513fd339f0d",
     "zone_name": "tempZone",

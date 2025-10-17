@@ -27,11 +27,16 @@ function start_service {
   progress_update "Rsyslogd started"
 
   before_update "Starting iRODS"
-  sudo -u irods /var/lib/irods/irodsctl start || true
+  sudo su - irods -c 'irodsServer -d'
+  until nc -z provider.yoda 1247
+  do
+      sleep 1
+  done
   progress_update "iRODS started"
 
   before_update "Initializing authentication token"
   sudo -u irods bash -c "echo rods | iinit"
+
   progress_update "Authentication token initialized"
 
   progress_update "Container startup complete. iRODS is running."
@@ -91,19 +96,19 @@ export PGPASSWORD=yodadev
 gunzip -c "/download/${DATA_VERSION}.icat.sql.gz" | psql -U irodsdb -d ICAT -h db.yoda -p 5432
 progress_update "iCAT database data loaded"
 
-INSTALL_TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%S.000000Z')  
+INSTALL_TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%S.000000Z')
 cat > /var/lib/irods/version.json << VERSION
 {
-    "catalog_schema_version": 11,
-    "commit_id": "2ed549ca7fe455aaa7755becc6c14b233dcbc0b4",
-    "configuration_schema_version": 4,  
+    "catalog_schema_version": 12,
+    "commit_id": "e16f20424192f24db2dcc3dbaaa95cee0334a2b6",
     "installation_time": "$INSTALL_TIMESTAMP",
-    "irods_version": "4.3.4",
+    "irods_version": "5.0.2",
     "schema_name": "version",
-    "schema_version": "v4"
+    "schema_version": "v5"
 }
 VERSION
 chown irods:irods /var/lib/irods/version.json
+chown irods:irods /var/run/irods
 
 CURRENT_UID="$(id -u irods)"
 if [[ -f "/etc/irods/yoda-ruleset/.docker.gitkeep" ]]

@@ -3,18 +3,18 @@ LABEL maintainer="Yoda team <yoda@uu.nl>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Application settings
-ARG TAG=development
-ENV IRODS_VERSION "4.3.4-0~noble"
-ENV IRODS_PLUS_VERSION "4.3.4.0-0+4.3.4~noble"
-ENV IRODS_MSVC_IRODS_VERSION "4.3.4"
-ENV IRODS_SUDO_MSVC_VERSION "1.0.0"
-ENV IRODS_UU_MSVC_VERSION "1.2.1"
-ENV IRODS_UU_MSVC_VERSION_RELEASE "0"
+ARG TAG=irods-5
+ENV IRODS_VERSION="5.0.2-0~noble"
+ENV IRODS_PLUS_VERSION="5.0.1-0+5.0.2~noble"
+ENV IRODS_MSVC_IRODS_VERSION="5.0.2"
+ENV IRODS_SUDO_MSVC_VERSION="1.0.0"
+ENV IRODS_UU_MSVC_VERSION="1.3.1"
+ENV IRODS_UU_MSVC_VERSION_RELEASE="0"
 ENV APT_REPO_CONFIG="deb [arch=amd64] https://packages.irods.org/apt/ noble main"
 ENV APT_IRODS_REPO_SIGNING_KEY_LOC="https://packages.irods.org/irods-signing-key.asc"
-ENV YODA_RULESET_REPO "https://github.com/UtrechtUniversity/yoda-ruleset.git"
+ENV YODA_RULESET_REPO="https://github.com/UtrechtUniversity/yoda-ruleset.git"
 ENV YODA_RULESET_BRANCH="$TAG"
-ENV PRE_BUILD_RULESET_DEPENDENCIES "yes"
+ENV PRE_BUILD_RULESET_DEPENDENCIES="yes"
 ENV DEBIAN_FRONTEND="noninteractive"
 
 # Network settings

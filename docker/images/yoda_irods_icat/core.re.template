@@ -4,7 +4,7 @@
 # - CS_NEG_REFUSE - No SSL
 # - CS_NEG_DONT_CARE - Depends on the Client request
 # - CS_NEG_REQUIRE - Require SSL
-acPreConnect(*OUT) { *OUT="CS_NEG_REFUSE"; }
+acPreConnect(*OUT) { *OUT="CS_NEG_DONT_CARE"; }
 
 acCreateUser {
   acPreProcForCreateUser;
@@ -58,34 +58,6 @@ acRenameLocalZone(*oldZone, *newZone) {
 # special handling of GSI DNs.  See rsGsiAuthRequest.c.
 #acGetUserByDN(*arg,*OUT) {msiExecCmd("t","*arg","null","null","null",*OUT); }
 acGetUserByDN(*arg,*OUT) { }
-#
-# --------------------------------------------------------------------------
-# The following rule is for setting Access Control List (ACL) policy.
-# The possible modifiers are "STRICT", "STANDARD", or any other string,
-# in which case the "STANDARD" behavior will apply.
-#
-# "STANDARD" ACL policy permits permits rodsusers to see other
-# rodsusers' collections by allowing access to metadata which may
-# be sensitive, including data-object and sub-collection names in
-# other users' collections.
-#
-# "STRICT" ACL policy will apply the General Query Access Control to
-# collections and dataobject metadata. Thus, ils and other operations
-# will need 'read' access or higher to a collection to access the
-# collection contents (name of data-objects, sub-collections, etc).
-# With STRICT access control, a rodsadmin can still execute
-# microservices and queries to access system-wide information.
-#
-# This policy enforcement point (PEP) obviates the buildtime flag
-# GEN_QUERY_AC in config.mk
-#
-# In federated scenarios with "STRICT" ACLs enabled, you may wish to
-# permit rodsusers to access the root collection ("/") to list
-# available remote zones. The 'iadmin modzonecollacl' command was
-# written for this purpose. See 'iadmin h modzonecollacl' for
-# additional details.
-#
-acAclPolicy {msiAclPolicy("STRICT"); }
 #
 # --------------------------------------------------------------------------
 # This is a policy point for ticket-based access (added in iRODS 3.1),
@@ -153,14 +125,14 @@ acCheckPasswordStrength(*password) { }
 # applies to replication. All the micro-services for acSetRescSchemeForCreate
 # also apply to acSetRescSchemeForRepl
 #
-# acSetRescSchemeForCreate {msiSetNoDirectRescInp("xyz%demoResc8%abc"); msiSetDefaultResc("demoResc8","null"); msiSetRescSortScheme("default"); }
-# acSetRescSchemeForCreate {msiSetDefaultResc("demoResc","null"); msiSetRescSortScheme("random"); msiSetRescSortScheme("byRescClass"); }
-# acSetRescSchemeForCreate {msiSetDefaultResc("demoResc7%demoResc8","preferred"); }
+# acSetRescSchemeForCreate {msiSetNoDirectRescInp("xyz%irodsResc8%abc"); msiSetDefaultResc("irodsResc8","null"); msiSetRescSortScheme("default"); }
+# acSetRescSchemeForCreate {msiSetDefaultResc("irodsResc","null"); msiSetRescSortScheme("random"); msiSetRescSortScheme("byRescClass"); }
+# acSetRescSchemeForCreate {msiSetDefaultResc("irodsResc7%irodsResc8","preferred"); }
 # acSetRescSchemeForCreate {ON($objPath like "/tempZone/home/rods/protected/*") {msiOprDisallowed;} }
 acSetRescSchemeForCreate {msiSetDefaultResc("irodsResc","forced"); }
 acSetRescSchemeForRepl {msiSetDefaultResc("irodsResc","forced"); }
-# acSetRescSchemeForCreate {msiGetSessionVarValue("all","all"); msiSetDefaultResc("demoResc","null"); }
-# acSetRescSchemeForCreate {msiSetDefaultResc("demoResc","forced"); msiSetRescSortScheme("random"); msiSetRescSortScheme("byRescClass"); }
+# acSetRescSchemeForCreate {msiGetSessionVarValue("all","all"); msiSetDefaultResc("irodsResc","null"); }
+# acSetRescSchemeForCreate {msiSetDefaultResc("irodsResc","forced"); msiSetRescSortScheme("random"); msiSetRescSortScheme("byRescClass"); }
 #
 # 2) acPreprocForDataObjOpen - Preprocess rule for opening an existing
 # data object which is used by the get, copy and replicate operations.
@@ -178,7 +150,7 @@ acSetRescSchemeForRepl {msiSetDefaultResc("irodsResc","forced"); }
 #    for differentiating between open for read ($writeFlag == "0") and
 #    write ($writeFlag == "1"). e.g. :
 # acPreprocForDataObjOpen {ON($writeFlag == "1") { } }
-# acPreprocForDataObjOpen {msiSetDataObjPreferredResc("demoResc7%demoResc8"); }
+# acPreprocForDataObjOpen {msiSetDataObjPreferredResc("irodsResc7%irodsResc8"); }
 acPreprocForDataObjOpen { }
 # acPreprocForDataObjOpen {msiGetSessionVarValue("all","all"); }
 # acPreprocForDataObjOpen {ON($writeFlag == "0") {writeLine("serverLog",$objPath);} }
@@ -249,9 +221,9 @@ acSetNumThreads {msiSetNumThreads("default","16","default"); }
 #    acDataDeletePolicy {ON($objPath like "/foo/bar/*") {msiDeleteDisallowed; } }
 #      this rule prevents the deletion of any data objects or collections
 #      beneath the collection /foo/bar/
-#    acDataDeletePolicy {ON($KVPairs.rescName == "demoResc8") {msiDeleteDisallowed; } }
+#    acDataDeletePolicy {ON($KVPairs.rescName == "irodsResc8") {msiDeleteDisallowed; } }
 #      this rule prevents the deletion of any data objects that are stored
-#      in the demoResc8 resource.
+#      in the irodsResc8 resource.
 #acDataDeletePolicy {ON($objPath like "/tempZone/home/rods/*") {msiDeleteDisallowed; } }
 acDataDeletePolicy { }
 #
@@ -383,7 +355,7 @@ acPostProcForModifyUser(*UserName,*Option,*NewValue) { }
 # new values have the prefix n:, v:, u:, and "" means that that value remain unchanged
 # acPreProcForModifyAVUMetadata(*Option,*ItemType,*ItemName,*AName,*AValue,*AUnit, *NAName, *NAValue, *NAUnit) { }
 acPreProcForModifyAVUMetadata(*Option,*ItemType,*ItemName,*AName,*AValue,*AUnit, *NAName, *NAValue, *NAUnit) { }
-# add, adda, addw, set, rm, rmw, rmi
+# add, set, rm, rmi
 # acPreProcForModifyAVUMetadata(*Option,*ItemType,*ItemName,*AName,*AValue,*AUnit) { }
 acPreProcForModifyAVUMetadata(*Option,*ItemType,*ItemName,*AName,*AValue,*AUnit) { }
 # cp
