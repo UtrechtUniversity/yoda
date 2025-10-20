@@ -236,6 +236,31 @@
     force: false
 
 
+- name: Upgrade iRODS catalog to v5
+  block:
+    - name: Get iRODS major version
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: # noqa no-changed-when
+        cmd: 'python3 {{ irods_directory.stdout }}/scripts/get_irods_version.py major'
+      register: irods_major_version
+      ignore_errors: true
+      changed_when: false
+
+    - name: Upgrade iRODS catalog to v5
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: # noqa no-changed-when
+        cmd: 'python3 {{ irods_directory.stdout }}/scripts/upgrade_irods.py'
+      when: not ansible_check_mode and (irods_major_version.stdout | int) < 5
+      notify: Systemd daemon reload
+
+    - name: Reload systemd daemon
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+      when: not ansible_check_mode and (irods_major_version.stdout | int) < 5
+
+
 - name: Ensure iRODS is running
   block:
     - name: Check if iRODS server is up

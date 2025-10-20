@@ -106,7 +106,7 @@
 
 
 - name: Systemd daemon reload after changing Redis service file # noqa no-handler
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     daemon_reload: true
   when: redis_service_file.changed
 
