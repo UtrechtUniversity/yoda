@@ -43,8 +43,8 @@ RUN apt-get install -y wget git sudo netcat-traditional gcc vim
 # Install rsyslog and configure it for logging iRODS messages
 # hadolint ignore=DL3033
 RUN apt-get install -y rsyslog
-COPY stage/irods-log-transform.py /usr/local/sbin/irods-log-transform.py
-RUN chmod +x /usr/local/sbin/irods-log-transform.py
+COPY stage/irods-log-transform.py /usr/local/bin/irods-log-transform.py
+RUN chmod +x /usr/local/bin/irods-log-transform.py
 COPY rsyslogd-irods.conf /etc/rsyslog.d/40-irods.conf
 COPY rsyslog.conf /etc/rsyslog.conf
 RUN mkdir /var/lib/irods-log && chown syslog /var/lib/irods-log && chmod 0750 /var/lib/irods-log
