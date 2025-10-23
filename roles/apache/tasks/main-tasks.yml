@@ -81,7 +81,7 @@
     dest: "/etc/apache2/conf-enabled/bad_bots.conf"
     state: link
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and not ansible_check_mode
 
 
 - name: Ensure autoindex.conf is absent
