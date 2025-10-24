@@ -66,6 +66,17 @@
   when: ansible_os_family == 'Debian'
 
 
+- name: Copy Apache security configuration file (Ubuntu)
+  ansible.builtin.copy:
+    src: security.conf.noble
+    dest: /etc/apache2/conf-available/security.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache webserver
+  when: ansible_os_family == 'Debian'
+
+
 - name: Copy bad bots blocklist
   ansible.builtin.template:
     src: bad_bots.conf
