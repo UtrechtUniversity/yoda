@@ -9,8 +9,8 @@ apache_service_name: apache2
 yoda_davrods_boost_package: libboost-all-dev
 yoda_davrods_jansson_package: libjansson4
 
-yoda_davrods_version: 5.0.2-1.5.3
-yoda_davrods_checksum: sha256:d96b04fef045867b17a99d4a1241498ac2e13ebe92c664c55b5c10f22eee90fd
+yoda_davrods_version: 5.0.2-1.5.4
+yoda_davrods_checksum: sha256:2b0c32c4aea590933cb11d425a76c48bfaceb7ef946c5f4fdee859413b84b16b
 
 yoda_davrods_conf_avail_dir: /etc/apache2/conf-available
 yoda_davrods_enabled_config_dir: /etc/apache2/conf-enabled
