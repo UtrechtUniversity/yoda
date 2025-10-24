@@ -9,9 +9,9 @@ apache_service_name: httpd
 yoda_davrods_boost_package: boost
 yoda_davrods_jansson_package: jansson
 
-yoda_davrods_url: https://github.com/UtrechtUniversity/davrods/releases/download/5.0.2_1.5.3/davrods-5.0.2_1.5.3-1.rpm
-yoda_davrods_version: 5.0.2-1.5.3
-yoda_davrods_checksum: sha256:45a934becb6a33978e191e0d07cd9d56c031d9893be743c7e91c6942f319f632
+yoda_davrods_url: https://github.com/UtrechtUniversity/davrods/releases/download/5.0.2_1.5.4/davrods-5.0.2_1.5.4-1.rpm
+yoda_davrods_version: 5.0.2-1.5.4
+yoda_davrods_checksum: sha256:943111a8e7578a1c0a9b2d0de61dabb46f0de98947610943944ce5ed77209646
 
 yoda_davrods_site_config_dir: /etc/httpd/conf.d
 yoda_davrods_config_file: davrods-vhost.conf
