@@ -1,5 +1,6 @@
 # {{ ansible_managed }}
 
+$umask 0000
 $WorkDirectory {{ irods_log_directory }}
 $FileOwner {{ irods_service_account }}
 $FileGroup {{ irods_service_account }}
