@@ -55,6 +55,8 @@ test_groups:
   - {groupName: research-initial1,  category: test-automation, subcategory: initial, dataClassification: unspecified}
   - {groupName: research-revisions, category: test-automation, subcategory: initial, dataClassification: unspecified}
 
+  - {groupName: research-move-to-vault,  category: test-automation, subcategory: initial, dataClassification: unspecified}
+
   - {groupName: research-core-0,       category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: core-0}
   - {groupName: research-core-1,       category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: core-1}
   - {groupName: research-core-2,       category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: core-2}
@@ -112,6 +114,11 @@ test_group_users:
   - {groupName: research-revisions, user: researcher,                    role: normal}
   - {groupName: research-revisions, user: groupmanager,                  role: manager}
   - {groupName: research-revisions, user: functionaladminpriv,           role: manager}
+
+  - {groupName: research-move-to-vault, user: viewer,                        role: reader}
+  - {groupName: research-move-to-vault, user: researcher,                    role: normal}
+  - {groupName: research-move-to-vault, user: groupmanager,                  role: manager}
+  - {groupName: research-move-to-vault, user: functionaladminpriv,           role: manager}
 
   - {groupName: datamanager-test-automation, user: datamanager,                   role: normal}
   - {groupName: datamanager-test-automation, user: functionaladminpriv,           role: manager}
