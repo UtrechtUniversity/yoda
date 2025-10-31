@@ -7,6 +7,7 @@
     dest: "/tmp/davrods-{{ yoda_davrods_version }}.rpm"
     checksum: '{{ yoda_davrods_checksum }}'
     mode: "0644"
+  when: not ansible_check_mode
 
 
 - name: Install DavRODS
@@ -14,4 +15,5 @@
     name: "/tmp/davrods-{{ yoda_davrods_version }}.rpm"
     disable_gpg_check: true
     state: present
+  when: not ansible_check_mode
   notify: Restart Apache webserver
