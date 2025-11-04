@@ -97,6 +97,7 @@
     - admin-remove-orphan-vault-if-empty.sh
     - admin-vaultactions.sh
     - admin-vaultingest.sh
+    - admin-copy-to-research.sh
 
 
 - name: Ensure that indexing scripts are not present in ExecCmd dir
