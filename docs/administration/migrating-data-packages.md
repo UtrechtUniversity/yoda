@@ -9,7 +9,7 @@ This documentation explains the testing process for migrating Published and Depu
 
 
 **Requirements:**
-- iPump version 0.2.5 or later
+- iPump version 0.2.6 or later
 - Yoda version 1.10 or later
 - OpenJDK 21 or later
 
@@ -20,7 +20,7 @@ Set up iPump on source instance.
 1. Get snapshot jar of latest iPump code
 
 ```bash
-wget https://github.com/tsmeele/ipump/raw/refs/heads/main/target/ipump-0.2.5-SNAPSHOT.jar
+wget https://github.com/tsmeele/ipump/raw/refs/heads/main/target/ipump-0.2.6-SNAPSHOT.jar
 ```
 
 2. Install OpenJDK in source instance.
@@ -63,9 +63,11 @@ sudo keytool -importcert   -file /etc/ssl/certs/selfsigned_localhost.crt   -alia
 sudo keytool -importcert   -file /home/vagrant/selfsigned_localhost.crt   -alias selfsigned-cert-2   -keystore /usr/lib/jvm/java-21-openjdk-amd64/lib/security/cacerts   -storepass changeit
 ```
 
-## Code changes at destination instance
+## Description of code changes at destination instance
 
-1. Disable call to post status transition policy.
+1. Created utility file for migration that retrieves 'enable_migration' metadata. 
+
+2. Depending on 'enable_migration' value, disabled call to post status transition policy.
 
 In policies.py:
 
@@ -85,8 +87,11 @@ def py_acPostProcForModifyAVUMetadata(ctx: rule.Context,
         policies_folder_status.post_status_transition(ctx, obj_name, str(user.user_and_zone(ctx)), status)
 
     elif info.space is pathutil.Space.VAULT:
-        # if attr == constants.IIVAULTSTATUSATTRNAME:
-            # policies_datapackage_status.post_status_transition(ctx, obj_name, str(user.user_and_zone(ctx)), value)
+        if attr == constants.IIVAULTSTATUSATTRNAME:
+            if not migration.get_migration_config(ctx, obj_name):
+                policies_datapackage_status.post_status_transition(ctx, obj_name, str(user.user_and_zone(ctx)), value)
+            else:
+                return policy.succeed()
         if attr.startswith(constants.UUORGMETADATAPREFIX) and attr != constants.IIARCHIVEATTRNAME:
             vault.update_archive(ctx, obj_name, attr)
 
@@ -96,7 +101,7 @@ def py_acPostProcForModifyAVUMetadata(ctx: rule.Context,
 
 ```
 
-2. Modify status transition code to skip the policy check for Published and Depublished data packages.
+2. Modified status transition code to skip the policy check for Published and Depublished data packages.
 
 In policies_datapackage_status.py:
 
@@ -107,12 +112,11 @@ def can_transition_datapackage_status(ctx: rule.Context,
                                       status_from: str,
                                       status_to: str) -> policy.Succeed | policy.Fail:
 
-    provenance_log = provenance.get_provenance_log(ctx, coll)
     transition = (constants.vault_package_state(status_from),
                   constants.vault_package_state(status_to))
     if transition not in constants.datapackage_transitions:
-        if provenance_log[0][1] in ('published', 'depublication', 'publication updated'):
-            policy.succeed()
+        if migration.get_migration_config(ctx, coll):
+            return policy.succeed()
         else:
             return policy.fail('Illegal status transition')
 
@@ -129,12 +133,22 @@ def can_transition_datapackage_status(ctx: rule.Context,
 
 ## Copying data packages
 
-Copying research and vault spaces from source to destination instance. For example:
+Copying vault space from source to destination instance. For example:
 
 ```bash
-java -jar ipump-0.2.5-SNAPSHOT.jar -v -config ipump.ini /tempZone/home/research-initial /tempZone/home/research-initial
+java -jar ipump-0.2.6-SNAPSHOT.jar -v -config ipump.ini /tempZone/home/vault-initial /tempZone/home/vault-initial
 ```
 
+## Correct ACLs
+
+After successful migration of data packages, there might be a need to correct ACLs of data packages. As an admin, run the package-check script to fix ACLs of a data package. The script can be run in two modes: 'read' and 'write'. 'Read' mode informs the user that ACLs are missing/incorrect. 'Write' mode fixes incorrect ACLs of a data package. For example:
+
+### Read mode
 ```bash
-java -jar ipump-0.2.5-SNAPSHOT.jar -v -config ipump.ini /tempZone/home/vault-initial /tempZone/home/vault-initial
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/package-check.r '*coll=/tempZone/home/vault-initial/research-initial[123456789]' '*mode=read'
+```
+
+### Write mode
+```bash
+irule -r irods_rule_engine_plugin-python-instance -F /etc/irods/yoda-ruleset/tools/package-check.r '*coll=/tempZone/home/vault-initial/research-initial[123456789]' '*mode=write'
 ```
