@@ -129,7 +129,7 @@ COPY core.py.template /etc/irods/core.py
 COPY core.re.template /etc/irods/core.re
 RUN apt-get -y install sqlcipher libsqlcipher1 libsqlcipher-dev
 RUN for script in admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh \
-    admin-vaultingest.sh admin-datarequestactions.sh admin-datarequest-temp-write-permission.sh ; \
+    admin-vaultingest.sh admin-copy-to-research.sh admin-datarequestactions.sh admin-datarequest-temp-write-permission.sh ; \
     do install -m 0755 /etc/irods/yoda-ruleset/tools/admin/${script} /var/lib/irods/msiExecCmd_bin/${script} ; \
     done
 RUN for script in enable-indexing.sh disable-indexing.sh; \
