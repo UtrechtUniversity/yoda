@@ -24,6 +24,9 @@ services:
     environment:
       - TEST_USER_PASSWORD_HASH=${TEST_USER_PASSWORD_HASH}
     restart: unless-stopped
+    # To keep the iRODS Rule Language from failing and producing RE_UNABLE_TO_READ_SESSION_VAR,
+    # we bump the maximum amount of shared memory from 64mb to 100mb.
+    shm_size: 100mb
 
   db:
     container_name: db.yoda
