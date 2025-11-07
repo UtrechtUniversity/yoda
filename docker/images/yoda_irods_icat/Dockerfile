@@ -21,18 +21,6 @@ ENV DEBIAN_FRONTEND="noninteractive"
 EXPOSE 1247
 EXPOSE 20000-20199
 
-# Suggested base image configuration for systemd, as per
-# https://hub.docker.com/_/centos
-WORKDIR /lib/systemd/system/sysinit.target.wants/
-RUN (for i in *; do [ "$i" = "systemd-tmpfiles-setup.service" ] || rm -f "$i"; done); \
-rm -f /lib/systemd/system/multi-user.target.wants/*;\
-rm -f /etc/systemd/system/*.wants/*;\
-rm -f /lib/systemd/system/local-fs.target.wants/*; \
-rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
-rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-rm -f /lib/systemd/system/basic.target.wants/*;\
-rm -f /lib/systemd/system/anaconda.target.wants/*;
-
 # Update packages
 RUN apt-get update
 
@@ -125,8 +113,12 @@ RUN sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-pa
     sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages -r /etc/irods/yoda-ruleset/requirements.txt && \
     sudo -u irods python3 -m pip install --user --break-system-packages python-irodsclient==3.2.0 && \
     sudo -u irods python3 -m pip install --user --break-system-packages psutil==6.1.0
+
 COPY core.py.template /etc/irods/core.py
 COPY core.re.template /etc/irods/core.re
+COPY core.dvm.template /etc/irods/core.dvm
+COPY core.fnm.template /etc/irods/core.fnm
+
 RUN apt-get -y install sqlcipher libsqlcipher1 libsqlcipher-dev
 RUN for script in admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh \
     admin-vaultingest.sh admin-copy-to-research.sh admin-datarequestactions.sh admin-datarequest-temp-write-permission.sh ; \
