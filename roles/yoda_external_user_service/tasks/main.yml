@@ -31,6 +31,26 @@
     - /var/www/yoda
 
 
+- name: Create EUS session directory
+  ansible.builtin.file:
+    path: "{{ yoda_eus_session_dir }}"
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0750'
+
+
+- name: Configure cronjob to clean up EUS session directory
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'cleanup_eus_sessions'
+    minute: '0'
+    hour: '4'
+    day: '*'
+    job: '/bin/find "{{ yoda_eus_session_dir }}" -maxdepth 1 -type f -mtime +{{ ((yoda_eus_session_lifetime | int) / 86400 | round + 1) | int }} -delete'
+
+
 - name: Check out Yoda portal for themes used by External User Service
   become_user: "{{ yoda_deployment_user }}"
   become: true

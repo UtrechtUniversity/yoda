@@ -5,3 +5,6 @@ httpd_log_forwarded_for: false
 httpd_log_user_agent: false
 httpd_log_request_duration: false
 httpd_limit_request_body: 10737418240
+
+flask_session_file_dir: '/var/www/portal-sessions'   # Needs to be a dedicated directory
+yoda_eus_session_dir: '/var/www/extuser/sessions'    # Needs to be a dedicated directory

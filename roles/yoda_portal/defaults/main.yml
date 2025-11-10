@@ -57,7 +57,7 @@ openssl_crt_signed_and_chain: localhost_and_chain.crt
 # Flask configuration
 yoda_commit: '{{ portalchanges.after }}'
 flask_permanent_session_lifetime: 30 * 60       # in seconds, so 30 minutes
-flask_session_file_dir: '/tmp/flask_session/'   # default flask_session under current working dir
+flask_session_file_dir: '/var/www/portal-sessions'   # Needs to be a dedicated directory
 
 # portal customization
 portal_title_text: Yoda Portal                     # e.g. "Yoda - development"

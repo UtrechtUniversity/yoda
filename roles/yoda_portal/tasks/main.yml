@@ -19,6 +19,26 @@
     mode: '0711'
 
 
+- name: Create portal session directory
+  ansible.builtin.file:
+    path: "{{ flask_session_file_dir }}"
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0750'
+
+
+- name: Configure cronjob to clean up session directory
+  become_user: "{{ yoda_deployment_user }}"
+  become: true
+  ansible.builtin.cron:
+    name: 'cleanup_portal_sessions'
+    minute: '0'
+    hour: '4'
+    day: '*'
+    job: '/bin/find "{{ flask_session_file_dir }}" -maxdepth 1 -type f -mtime +{{ ((flask_permanent_session_lifetime | int) / 86400 | round + 1) | int }} -delete'
+
+
 - name: Checkout Yoda portal
   become_user: "{{ yoda_deployment_user }}"
   become: true

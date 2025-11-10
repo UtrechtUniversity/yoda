@@ -110,7 +110,7 @@ SESSION_COOKIE_SECURE       = True
 SESSION_COOKIE_SAMESITE     = 'Strict'
 PERMANENT_SESSION_LIFETIME  = 30 * 60
 SESSION_USE_SIGNER          = True
-SESSION_FILE_DIR            = '/tmp/flask_session/'
+SESSION_FILE_DIR            = '/var/www/portal-sessions'
 
 # iRODS authentication configuration
 IRODS_ICAT_HOSTNAME = 'provider.yoda'

@@ -50,8 +50,8 @@ RUN useradd yodadeployment && \
     chsh --shell /bin/bash yodadeployment && \
     mkdir /home/yodadeployment && \
     chown yodadeployment:yodadeployment /home/yodadeployment && \
-    mkdir /var/www/yoda /var/www/extuser && \
-    chown yodadeployment:yodadeployment /var/www/yoda /var/www/extuser && \
+    mkdir /var/www/yoda /var/www/extuser /var/www/extuser/sessions && \
+    chown yodadeployment:yodadeployment /var/www/yoda /var/www/extuser /var/www/extuser/sessions && \
     git clone --branch $YODA_EUS_BRANCH $YODA_EUS_REPO /var/www/extuser/yoda-external-user-service && \
     git clone --branch $YODA_PORTAL_BRANCH $YODA_PORTAL_REPO /var/www/yoda && \
     git config --global --add safe.directory /var/www/yoda && \
