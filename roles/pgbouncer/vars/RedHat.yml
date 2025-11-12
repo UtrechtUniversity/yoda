@@ -1,6 +1,9 @@
 ---
 # copyright Utrecht University
 
+pgbouncer_version: 1.25.0-45PGDG.rhel9
+pgbouncer_package: 'pgbouncer-{{ pgbouncer_version }}'
+
 pgbouncer_user: pgbouncer
 pgbouncer_config_path: "/etc/pgbouncer"
 pgbouncer_log_path: "/var/log/pgbouncer/pgbouncer.log"

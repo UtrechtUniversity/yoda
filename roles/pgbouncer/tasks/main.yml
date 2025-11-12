@@ -8,7 +8,7 @@
 - name: Ensure PgBouncer is installed
   ansible.builtin.package:
     name:
-      - pgbouncer
+      - '{{ pgbouncer_package }}'
     state: present
 
 
