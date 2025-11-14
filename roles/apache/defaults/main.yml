@@ -5,3 +5,5 @@ httpd_log_forwarded_for: false
 httpd_log_user_agent: false
 httpd_log_request_duration: false
 httpd_limit_request_body: 10737418240
+
+enable_anubis: false

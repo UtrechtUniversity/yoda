@@ -1,29 +1,97 @@
 # {{ ansible_managed }}
-# davrods-vhost.conf
+# davrods-anubis-vhost.conf
 #
 # davrods is a mod_dav WebDAV provider. Configuration directives for davrods
 # should be placed in a <Location> block.
 #
 # Below we provide an example vhost configuration that enables davrods
 # anonymous access using its default options.
+# This also includes web scrapping mitigations (Anubis).
 #
 
 <VirtualHost *:80>
     ServerName {{ yoda_davrods_anonymous_fqdn }}
 
     # Always redirect to https.
-{% if yoda_davrods_anonymous_port == 443 %}
-    Redirect / https://{{ yoda_davrods_anonymous_fqdn }}/
-{% else %}
-    Redirect / https://{{ yoda_davrods_anonymous_fqdn }}:{{ yoda_davrods_anonymous_port | string }}/
-{% endif %}
+    {% if yoda_davrods_anonymous_port == 443 %}
+        Redirect / https://{{ yoda_davrods_anonymous_fqdn }}/
+    {% else %}
+        Redirect / https://{{ yoda_davrods_anonymous_fqdn }}:{{ yoda_davrods_anonymous_port | string }}/
+    {% endif %}
 </VirtualHost>
 
 {% if yoda_davrods_anonymous_port != 443 %}
 Listen {{ yoda_davrods_anonymous_port }}
 {% endif %}
 
+# HTTPS listener that forwards to Anubis
+<IfModule mod_proxy.c>
 <VirtualHost *:{{ yoda_davrods_anonymous_port }}>
+        ServerName {{ yoda_davrods_anonymous_fqdn }}
+        DocumentRoot {{ anubis_yoda_static }}
+
+        # Logging
+        ErrorLog {{ yoda_davrods_apache_log_dir }}/anubis_error.log
+        CustomLog {{ yoda_davrods_apache_log_dir }}/anubis_access.log combined
+
+        # intermediate TLS configuration
+        SSLEngine               on
+        SSLProtocol             all -SSLv3 -TLSv1 -TLSv1.1
+        SSLCipherSuite          ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
+        SSLHonorCipherOrder     off
+        SSLCompression          off
+
+        #   Server Certificate:
+        SSLCertificateFile      {{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}
+        #   Server Private Key:
+        SSLCertificateKeyFile   {{ openssl_private_dir }}/{{ openssl_key_signed }}
+
+        # Prevent "Cross-Origin Request Blocked" complaints when opening links from public server
+        Header set Access-Control-Allow-Origin "https://{{ yoda_public_fqdn }}"
+
+        # These headers need to be set or else Anubis will
+        # throw an "admin misconfiguration" error.
+        RequestHeader set "X-Real-Ip" expr=%{REMOTE_ADDR}
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set "X-Http-Version" "%{SERVER_PROTOCOL}s"
+
+        ProxyPreserveHost On
+
+        ProxyRequests Off
+        ProxyVia Off
+
+        # The port Anubis listens on, this should not be 9000, that would conflict with S3
+        ProxyPass / http://[::1]:8923/
+        ProxyPassReverse / http://[::1]:8923/
+
+        # Anubis theme modifications
+        <Directory {{ anubis_yoda_static }}>
+            AllowOverride All
+            <RequireAll>
+                Require all granted
+
+                # Block bad bots.
+                Require not env bad_bot
+            </RequireAll>
+        </Directory>
+
+        # Replace images
+        RewriteEngine on
+        RewriteRule "/.within.website/x/cmd/anubis/static/img/pensive.webp" "{{ anubis_yoda_static }}/img/yoda.webp"
+        RewriteRule "/.within.website/x/cmd/anubis/static/img/happy.webp" "{{ anubis_yoda_static }}/img/yoda.webp"
+        RewriteRule "/.within.website/x/cmd/anubis/static/img/reject.webp" "{{ anubis_yoda_static }}/img/yoda.webp"
+
+        # Modify the text a bit
+        RequestHeader unset Accept-Encoding
+        AddOutputFilterByType SUBSTITUTE text/html
+        Substitute "s|the scourge of AI companies aggressively scraping websites|aggressive web scrapers|i"
+        Substitute "s|Mascot design by <a href=\"https://bsky.app/profile/celphase.bsky.social\">CELPHASE</a>.||i"
+</VirtualHost>
+</IfModule>
+
+
+# Actual anon davrods config
+<VirtualHost *:3001>
 
     # Enter your server name here.
     ServerName {{ yoda_davrods_anonymous_fqdn }}

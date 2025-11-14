@@ -1,0 +1,6 @@
+---
+# copyright Utrecht University
+
+# Anubis configuration
+enable_anubis: false                # Enable Anubis
+anubis_yoda_static: /etc/anubis/static-yoda
