@@ -1,0 +1,7 @@
+---
+# copyright Utrecht University
+
+- name: Restart Anubis
+  ansible.builtin.service:
+    name: anubis@yoda.service
+    state: restarted
