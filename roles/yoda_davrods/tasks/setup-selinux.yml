@@ -56,7 +56,16 @@
     state: present
 
 
-- name: Allow Apache to listen to anonymous davrods port
+- name: Allow Apache to listen to Anubis
+  community.general.seport:
+    ports: 3001
+    proto: tcp
+    setype: http_port_t
+    state: present
+  when: enable_anubis
+
+
+- name: Allow Apache to listen to anonymous Davrods port
   community.general.seport:
     ports: "{{ yoda_davrods_anonymous_port }}"
     proto: tcp

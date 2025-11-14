@@ -69,6 +69,7 @@
   hosts: portals
   become: true
   roles:
+    - anubis
     - apache
     - role: opensearch
       when: enable_open_search
