@@ -1,0 +1,84 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Install Anubis (EL)
+  ansible.builtin.import_tasks: install-redhat.yml
+  when: enable_anubis and ansible_os_family == 'RedHat'
+
+
+- name: Install Anubis (Ubuntu)
+  ansible.builtin.import_tasks: install-ubuntu.yml
+  when: enable_anubis and ansible_os_family == 'Debian'
+
+
+- name: Ensure Anubis env file is present
+  ansible.builtin.template:
+    src: yoda.env.j2
+    dest: /etc/anubis/yoda.env
+    mode: '0644'
+  notify: Restart Anubis
+  when: enable_anubis
+
+
+- name: Ensure Anubis bot policies file is present
+  ansible.builtin.template:
+    src: yoda.botPolicies.yaml.j2
+    dest: /etc/anubis/yoda.botPolicies.yaml
+    mode: '0644'
+  notify: Restart Anubis
+  when: enable_anubis
+
+
+- name: Allow Anubis to listen on port 8923
+  community.general.seport:
+    ports: 8923
+    proto: tcp
+    setype: http_port_t
+    state: present
+  notify: Restart Anubis
+  when: ansible_os_family == 'RedHat' and enable_anubis and ansible_selinux.status == "enabled"
+
+
+- name: Ensure Anubis is running
+  ansible.builtin.service:
+    name: anubis@yoda.service
+    state: started
+    enabled: true
+  when: enable_anubis
+
+
+- name: Ensure Anubis is disabled
+  ansible.builtin.service:
+    name: anubis@yoda.service
+    state: stopped
+    enabled: false
+  when: not enable_anubis
+  ignore_errors: true
+  register: ignore_errors_anubis
+
+
+- name: Ensure Anubis static directory for Yoda images is present
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    mode: '0755'
+    owner: '{{ yoda_davrods_user }}'
+    group: '{{ yoda_davrods_group }}'
+  with_items:
+    - '{{ anubis_yoda_static }}'
+    - '{{ anubis_yoda_static }}/img/'
+  when: enable_anubis
+
+
+- name: Ensure static files for Yoda theme for Anubis are present
+  ansible.builtin.copy:
+    src: yoda.webp
+    dest: '{{ anubis_yoda_static }}/img/yoda.webp'
+    owner: '{{ yoda_davrods_user }}'
+    group: '{{ yoda_davrods_group }}'
+    mode: '0644'
+  when: enable_anubis
