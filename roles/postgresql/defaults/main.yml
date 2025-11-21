@@ -19,21 +19,39 @@ openssl_dhparams: dhparams.pem
 
 # General PostgreSQL configuration
 postgresql_timezone: 'Europe/Amsterdam'
-postgresql_max_connections: 100
 postgresql_standard_conforming_strings: 'off'     # https://docs.irods.org/4.2.12/system_overview/configuration/#special-characters
 
-# PostgreSQL performance-related configuration
-postgresql_shared_buffers: 32MB
-postgresql_work_mem: 1MB
-postgresql_maintenance_work_mem: 16MB
-postgresql_effective_cache_size: 128MB
-postgresql_random_page_cost: "4.0"
+# PostgreSQL performance-related configuration (based on 2048MB RAM)
+# https://www.postgresql.org/docs/15/runtime-config-resource.html
+postgresql_max_connections: 100
+
+# Amount of memory the database server uses for shared memory buffers
+# ≈ RAM * 25%
+postgresql_shared_buffers: 512MB
+
+# maximum number of concurrent worker processes
+postgresql_max_worker_processes: 8
+
+# Maximum amount of memory used by a query operation before writing to temporary files
+# ≈ (RAM - shared_buffers) / ((max_connections + max_worker_processes) * 3)
+postgresql_work_mem: 4854kB
+
+# Maximum amount of memory to be used by maintenance operations
+# ≈ RAM * 6.25%
+postgresql_maintenance_work_mem: 128MB
+
+# Guideline for query planner, estimates how much memory is available for caching data
+# ≈ RAM - (shared_buffers + work_mem * max_connections * 2) * 1.1
+postgresql_effective_cache_size: 384MB
+
+# Planner's estimate of the cost of a non-sequentially-fetched disk page
+# Solid-state drives might be better modeled with a lower value e.g., "1.1"
+postgresql_random_page_cost: "1.1"
 
 # PostgreSQL logging configuration
 postgresql_log_line_prefix: '%m [%p] '
 postgresql_log_min_duration_statement: -1
 postgresql_log_autovacuum_min_duration: -1
-
 
 # PostgreSQL locale configuration
 icat_database_encoding: UTF-8
