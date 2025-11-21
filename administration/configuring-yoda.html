@@ -1128,7 +1128,7 @@ particular threshold.</p>
   <tbody>
     <tr>
       <td>pgsql_version</td>
-      <td>PostgreSQL version (default: 11)</td>
+      <td>PostgreSQL version (default: 15)</td>
     </tr>
     <tr>
       <td>postgresql_max_connections</td>
@@ -1136,23 +1136,23 @@ particular threshold.</p>
     </tr>
     <tr>
       <td>postgresql_shared_buffers</td>
-      <td>Amount of memory database should use for shared buffers. Rule of thumb: set to 25% of memory on dedicated database server; on a shared server, it should probably be lower. Default value: 32 MB.</td>
+      <td>Amount of memory the database server uses for shared memory buffers (≈ RAM * 25%). Default value: 512 MB.</td>
     </tr>
     <tr>
       <td>postgresql_work_mem</td>
-      <td>Maximum amount of worker memory. Rule of thumb: increasing worker memory can help with improving performance, but it is necessary to ensure that sufficient memory is available, considering the maximum number of database connections. Default value: 1 MB.</td>
+      <td>Maximum amount of memory used by a query operation before writing to temporary files (≈ (RAM - shared_buffers) / ((max_connections + max_worker_processes) * 3)) Default value: 4854 kB</td>
     </tr>
     <tr>
       <td>postgresql_maintenance_work_mem</td>
-      <td>Maximum amount of memory for maintenance processes, such as VACUUM. Default value: 16 MB.</td>
+      <td>Maximum amount of memory to be used by maintenance operations (≈ RAM * 6.25%). Default value: 128 MB.</td>
     </tr>
     <tr>
       <td>postgresql_effective_cache_size</td>
-      <td>Tells the query planner how much memory it can expect to be available for disk caching for the database. Rule of thumb: set to approximately 50-75% on dedicated database server. Default value: 128 MB.</td>
+      <td>Guideline for query planner, estimates how much memory is available for caching data (≈ RAM - (shared_buffers + work_mem * max_connections * 2) * 1.1) Default value: 384 MB</td>
     </tr>
     <tr>
       <td>postgresql_random_page_cost</td>
-      <td>Tells the query planner about the relative cost of random access versus sequential access. You could use a tool like fio to get an estimate, or use a ballpark estimate based on the type of storage of the database volume (e.g. 1.0 for SSD-based storage). Default value is 4.0.</td>
+      <td>Planner’s estimate of the cost of a non-sequentially-fetched disk page. Solid-state drives might be better modeled with a lower value e.g., “1.1”. Default value is 1.1.</td>
     </tr>
     <tr>
       <td>postgresql_log_line_prefix</td>
@@ -1200,6 +1200,10 @@ particular threshold.</p>
     <tr>
       <td>pgbouncer_max_client_conn</td>
       <td>Maximum number of client connections allowed (default: 200)</td>
+    </tr>
+    <tr>
+      <td>pgbouncer_max_db_connections</td>
+      <td>Less than or equal to PostgreSQL max_connections (default: 0 (unlimited))</td>
     </tr>
     <tr>
       <td>pgbouncer_default_pool_size</td>
