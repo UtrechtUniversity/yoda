@@ -108,6 +108,7 @@ researcher          | Researcher with read / write access to research groups
 groupmanager        | Groupmanager  with user management rights on research groups
 datamanager         | Datamanager of the research groups
 technicaladmin      | Technical administrator with rodsadmin access
+functionaladminpriv | User with certain admin rights: ability to create / delete groups, access to administration module
 
 Password for all test users is `test`.
 
