@@ -109,10 +109,15 @@ groupmanager        | Groupmanager  with user management rights on research grou
 datamanager         | Datamanager of the research groups
 technicaladmin      | Technical administrator with rodsadmin access
 functionaladminpriv | User with certain admin rights: ability to create / delete groups, access to administration module
+projectmanager      | Project manager in the [Data Request module](../design/overview/data-requests.md)
+dacmember           | Data Access Committee member in the [Data Request module](../design/overview/data-requests.md)
 
 Password for all test users is `test`.
 
 In research group `research-initial` a folder `testdata` is created with some example data.
+
+See also the [Group Manager documentation](../design/overview/group-manager.md) for additional information about
+these roles.
 
 # Surf development environment
 
