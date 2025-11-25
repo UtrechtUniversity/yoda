@@ -2073,7 +2073,7 @@
   },"296": {
     "doc": "Setting up development environment",
     "title": "Development environment test users and data",
-    "content": "When you have set up an Yoda development environment and provisioned it with test data the following users are created: . | User | Role | . | viewer | Viewer with read only access to research groups | . | researcher | Researcher with read / write access to research groups | . | groupmanager | Groupmanager with user management rights on research groups | . | datamanager | Datamanager of the research groups | . | technicaladmin | Technical administrator with rodsadmin access | . Password for all test users is test. In research group research-initial a folder testdata is created with some example data. ",
+    "content": "When you have set up an Yoda development environment and provisioned it with test data the following users are created: . | User | Role | . | viewer | Viewer with read only access to research groups | . | researcher | Researcher with read / write access to research groups | . | groupmanager | Groupmanager with user management rights on research groups | . | datamanager | Datamanager of the research groups | . | technicaladmin | Technical administrator with rodsadmin access | . | functionaladminpriv | User with certain admin rights: ability to create / delete groups, access to administration module | . Password for all test users is test. In research group research-initial a folder testdata is created with some example data. ",
     "url": "/yoda/development/setting-up-development-environment.html#development-environment-test-users-and-data",
     
     "relUrl": "/development/setting-up-development-environment.html#development-environment-test-users-and-data"
