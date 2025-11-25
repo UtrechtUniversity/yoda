@@ -62,8 +62,8 @@ jobs:
         bundle exec jekyll build --config _config_prod.yml
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@releases/v4
       with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: docs/_site
+        access_token: ${{ secrets.ACCESS_TOKEN }}
+        branch: gh-pages
+        folder: docs/_site
