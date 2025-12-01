@@ -50,6 +50,7 @@ irods_default_resc: irodsResc    # Default resource
 irods_repl_resc:                 # List of replication resources
   - irodsRescRepl
 irods_resc_trigger_pol: []
+irods_resc_repl_exempt: []
 
 # SURF config: separate resources for research and vault
 resource_research: "{{ irods_default_resc }}"
