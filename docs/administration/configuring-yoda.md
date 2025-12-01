@@ -193,6 +193,7 @@ irods_database_fqdn                  | iRODS database fully qualified domain nam
 irods_resource_fqdn                  | iRODS resource fully qualified domain name (FQDN). Don't define this variable if you have multiple resource servers.
 irods_default_resc                   | iRODS default resource name
 irods_resc_trigger_pol               | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
+irods_resc_repl_exempt               | List of text patterns for matching non-primary resources that should be exempt from replication policy. Example: ["^testResc$","^myResc$"]
 irods_ssl_verify_server              | Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources                      | Definition of iRODS resources of this Yoda instance
 irods_max_open_files                 | Maximum number of open files for iRODS service
