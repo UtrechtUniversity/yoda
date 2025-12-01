@@ -6,7 +6,7 @@
 # Configuration variables.
 VAGRANTFILE_API_VERSION = "2"
 
-BOX = 'alvistack/ubuntu-24.04'
+BOX = 'almalinux/9'
 GUI = false
 CPU = 2
 RAM = 4096
@@ -49,6 +49,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine.vm.synced_folder ".", "/vagrant", disabled: true
       machine.vm.provision "shell",
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
+      machine.vm.provision "shell",
+        inline: "sudo dnf -y install glibc-langpack-en"
+      machine.vm.provision "shell",
+        inline: "sudo localectl set-locale en_US.UTF-8"
       machine.vm.provision "shell",
         inline: "sudo echo \"192.168.56.20 api.eus.surfyoda.test\" | sudo tee -a /etc/hosts"
       machine.vm.provision "shell",
