@@ -14,3 +14,9 @@ yoda_public_port: 443
 openssl_crt_signed_and_chain: localhost_and_chain.crt
 openssl_key_signed: localhost.key
 openssl_crt_signed: localhost.crt
+
+# Anubis configuration
+enable_anubis: false                # Enable Anubis
+anubis_landingpages_bind_port: 8924
+anubis_landingpages_port: 3002
+anubis_yoda_static: /etc/anubis/static-yoda

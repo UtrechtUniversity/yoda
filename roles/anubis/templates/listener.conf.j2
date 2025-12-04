@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+# /etc/httpd/conf.d/listener-3001.conf
+
+{% if (yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled %}
+# Davrods
+#Listen [::1]:3001
+Listen {{ anubis_davrods_port }}
+{% endif %}
+
+# Landing pages
+Listen {{ anubis_landingpages_port }}

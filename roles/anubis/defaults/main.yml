@@ -4,3 +4,9 @@
 # Anubis configuration
 enable_anubis: false                # Enable Anubis
 anubis_yoda_static: /etc/anubis/static-yoda
+anubis_davrods_bind_port: 8923
+anubis_landingpages_bind_port: 8924
+anubis_davrods_port: 3001
+anubis_landingpages_port: 3002
+
+yoda_davrods_anonymous_enabled: true

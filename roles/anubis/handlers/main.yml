@@ -3,5 +3,8 @@
 
 - name: Restart Anubis
   ansible.builtin.service:
-    name: anubis@yoda.service
+    name: anubis@{{ item }}.service
     state: restarted
+  with_items:
+    - davrods
+    - landingpages
