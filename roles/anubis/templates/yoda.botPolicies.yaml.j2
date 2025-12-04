@@ -215,14 +215,14 @@ status_codes:
 # backends section of the docs for more information:
 #
 # https://anubis.techaro.lol/docs/admin/policies#storage-backends
-store:
-  backend: memory
-  parameters: {}
-
 # store:
-#   backend: valkey
-#   parameters:
-#     url: "redis://valkey.{{ yoda_public_fqdn }}:6379/2"
+#   backend: memory
+#   parameters: {}
+
+store:
+  backend: valkey
+  parameters:
+    url: "redis://localhost:6379/2"
 
 # The weight thresholds for when to trigger individual challenges. Any
 # CHALLENGE will take precedence over this.

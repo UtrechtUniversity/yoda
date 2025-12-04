@@ -11,3 +11,6 @@ galaxy_info:
       version: 9
     - name: Ubuntu
       version: noble
+
+dependencies:
+  - role: apache

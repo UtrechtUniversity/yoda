@@ -13,6 +13,18 @@
     group: root
     mode: '0644'
   notify: Restart Apache webserver
+  when: not enable_anubis
+
+
+- name: Copy Yoda Public Apache configuration (with Anubis)
+  ansible.builtin.template:
+    src: yoda-public-anubis-vhost.conf.j2
+    dest: "{{ yoda_public_site_config_dir }}/{{ yoda_public_site_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache webserver
+  when: enable_anubis
 
 
 - name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
