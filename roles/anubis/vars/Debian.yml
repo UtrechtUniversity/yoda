@@ -4,5 +4,13 @@
 # Latest stable version of Anubis: https://github.com/TecharoHQ/anubis/releases
 anubis_deb_url: https://github.com/TecharoHQ/anubis/releases/download/v1.23.1/anubis_1.23.1_amd64.deb
 anubis_deb_checksum: sha256:8947f969c770e85ad23da253ffa73e5ec47ecd55cb0c4fbb1f9928aa81ac490f
+apache_module_config_dir: /etc/apache2/mods-available
+apache_module_enabled_config_dir: /etc/apache2/mods-enabled
+apache_conf_avail_dir: /etc/apache2/conf-available
+apache_enabled_config_dir: /etc/apache2/conf-enabled
+apache_site_config_dir: /etc/apache2/sites-available
+
+# Davrods related
 yoda_davrods_user: www-data
 yoda_davrods_group: www-data
+anubis_listener_config_file: 008-anubis-listener.conf

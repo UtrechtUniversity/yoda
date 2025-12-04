@@ -15,12 +15,25 @@
   when: enable_anubis and ansible_os_family == 'Debian'
 
 
-- name: Ensure Anubis env file is present
+- name: Ensure Anubis env file is present for DavRods
   ansible.builtin.template:
-    src: yoda.env.j2
-    dest: /etc/anubis/yoda.env
+    src: '{{ item }}.j2'
+    dest: '/etc/anubis/{{ item }}'
     mode: '0644'
   notify: Restart Anubis
+  with_items:
+    - davrods.env
+  when: enable_anubis and ((yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled)
+
+
+- name: Ensure Anubis env file is present for landing pages
+  ansible.builtin.template:
+    src: '{{ item }}.j2'
+    dest: '/etc/anubis/{{ item }}'
+    mode: '0644'
+  notify: Restart Anubis
+  with_items:
+    - landingpages.env
   when: enable_anubis
 
 
@@ -33,19 +46,56 @@
   when: enable_anubis
 
 
-- name: Allow Anubis to listen on port 8923
+- name: Ensure Apache modules for Anubis are enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ apache_module_config_dir }}/{{ item }}.load"
+    dest: "{{ apache_module_enabled_config_dir }}/{{ item }}.load"
+    state: link
+  notify: Restart Apache webserver
+  with_items:
+    - "headers"
+    - "proxy"
+    - "proxy_http"
+    - "rewrite"
+    - "substitute"
+  when: ansible_os_family == 'Debian' and enable_anubis
+
+
+- name: Allow Anubis to listen on ports for DavRods
   community.general.seport:
-    ports: 8923
+    ports: '{{ item }}'
     proto: tcp
     setype: http_port_t
     state: present
   notify: Restart Anubis
+  with_items:
+    - '{{ anubis_davrods_bind_port }}'
+  when: ansible_os_family == 'RedHat' and enable_anubis and ansible_selinux.status == "enabled" and ((yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled)
+
+
+- name: Allow Anubis to listen on ports for the landing pages
+  community.general.seport:
+    ports: '{{ item }}'
+    proto: tcp
+    setype: http_port_t
+    state: present
+  notify: Restart Anubis
+  with_items:
+    - '{{ anubis_landingpages_bind_port }}'
   when: ansible_os_family == 'RedHat' and enable_anubis and ansible_selinux.status == "enabled"
 
 
-- name: Ensure Anubis is running
+- name: Ensure Anubis is running and enabled for Davrods
   ansible.builtin.service:
-    name: anubis@yoda.service
+    name: anubis@davrods.service
+    state: started
+    enabled: true
+  when: enable_anubis and ((yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled)
+
+
+- name: Ensure Anubis is running and enabled for landing pages
+  ansible.builtin.service:
+    name: anubis@landingpages.service
     state: started
     enabled: true
   when: enable_anubis
@@ -53,12 +103,48 @@
 
 - name: Ensure Anubis is disabled
   ansible.builtin.service:
-    name: anubis@yoda.service
+    name: 'anubis@{{ item }}.service'
     state: stopped
     enabled: false
   when: not enable_anubis
+  with_items:
+    - davrods
+    - landingpages
   ignore_errors: true
   register: ignore_errors_anubis
+
+
+- name: Copy Anubis listener configuration (Ubuntu)
+  when: enable_anubis and ansible_os_family == 'Debian'
+  ansible.builtin.template:
+    src: listener.conf.j2
+    dest: "{{ apache_conf_avail_dir }}/{{ anubis_listener_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache webserver
+
+
+- name: Copy Anubis listener configuration (EL)
+  when: enable_anubis and ansible_os_family == 'RedHat'
+  ansible.builtin.template:
+    src: listener.conf.j2
+    dest: "{{ apache_site_config_dir }}/{{ anubis_listener_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache webserver
+
+
+- name: Ensure apache listener config for Anubis is enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ apache_conf_avail_dir }}//{{ item }}"
+    dest: "{{ apache_enabled_config_dir }}//{{ item }}"
+    state: link
+  notify: Restart Apache webserver
+  with_items:
+    - "{{ anubis_listener_config_file }}"
+  when: enable_anubis and ansible_os_family == 'Debian'
 
 
 - name: Ensure Anubis static directory for Yoda images is present

@@ -12,8 +12,6 @@ yoda_davrods_jansson_package: libjansson4
 yoda_davrods_version: 4.3.4-1.5.3
 yoda_davrods_checksum: sha256:e3f6436b789928f5719bc0a96dab3e3d1dad72ed483c61a76596f4ce4fb4ceed
 
-yoda_davrods_conf_avail_dir: /etc/apache2/conf-available
-yoda_davrods_enabled_config_dir: /etc/apache2/conf-enabled
 yoda_davrods_site_config_dir: /etc/apache2/sites-available
 yoda_davrods_site_enabled_config_dir: /etc/apache2/sites-enabled
 yoda_davrods_module_config_dir: /etc/apache2/mods-available
@@ -21,7 +19,6 @@ yoda_davrods_module_enabled_config_dir: /etc/apache2/mods-enabled
 yoda_davrods_irods_dir: /etc/apache2/irods
 yoda_davrods_config_file: 005-davrods-vhost.conf
 yoda_davrods_anon_config_file: 006-davrods-anonymous-vhost.conf
-yoda_davrods_anon_anubis_listener_config_file: 008-anubis-listener.conf
 yoda_davrods_apache_log_dir: /var/log/apache2
 yoda_davrods_config_dir: /etc/apache2/irods
 yoda_davrods_user: www-data
