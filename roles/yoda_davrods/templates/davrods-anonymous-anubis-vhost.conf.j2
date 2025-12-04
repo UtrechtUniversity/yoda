@@ -61,8 +61,8 @@ Listen {{ yoda_davrods_anonymous_port }}
         ProxyVia Off
 
         # The port Anubis listens on, this should not be 9000, that would conflict with S3
-        ProxyPass / http://[::1]:8923/
-        ProxyPassReverse / http://[::1]:8923/
+        ProxyPass / http://[::1]:{{ anubis_davrods_bind_port }}/
+        ProxyPassReverse / http://[::1]:{{ anubis_davrods_bind_port }}/
 
         # Anubis theme modifications
         <Directory {{ anubis_yoda_static }}>
@@ -91,7 +91,7 @@ Listen {{ yoda_davrods_anonymous_port }}
 
 
 # Actual anon davrods config
-<VirtualHost *:3001>
+<VirtualHost *:{{ anubis_davrods_port }}>
 
     # Enter your server name here.
     ServerName {{ yoda_davrods_anonymous_fqdn }}
