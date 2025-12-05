@@ -15,6 +15,39 @@
   when: enable_anubis and ansible_os_family == 'Debian'
 
 
+- name: Generate key for Redis persist after restart for Anubis
+  ansible.builtin.command: 'openssl rand -hex 32'
+  register: priv_key
+  args:
+    creates: "{{ anubis_redis_priv_key_path }}"
+  when: enable_anubis
+
+
+- name: Store Anubis key in variable
+  ansible.builtin.set_fact:
+    '{{ item.fact }}': '{{ item.key }}'
+  with_items:
+    - fact: anubis_redis_priv_key
+      key: '{{ priv_key.stdout }}'
+  when: enable_anubis and not ansible_check_mode
+
+
+- name: Check if Anubis key file exists
+  ansible.builtin.stat:
+    path: '{{ anubis_redis_priv_key_path }}'
+  ignore_errors: true
+  register: anubis_key_exists
+  when: enable_anubis
+
+
+- name: Save key in file
+  ansible.builtin.copy:
+    content: '{{ anubis_redis_priv_key }}'
+    dest: '{{ anubis_redis_priv_key_path }}'
+    mode: '0644'
+  when: enable_anubis and not anubis_key_exists.stat.exists and not ansible_check_mode
+
+
 - name: Ensure Anubis env file is present for DavRods
   ansible.builtin.template:
     src: '{{ item }}.j2'
