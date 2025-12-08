@@ -15,9 +15,20 @@ the first bucket starts in the present.  For example, in strategy `A` (see table
 created in the last six hours, the second bucket refers to all revisions created in the twelve hours before that, and so forth.
 Yoda uses strategy `B` by default.
 
+Yoda supports four built-in strategies:
+
+* `A`
+* `B` (default)
+* `Simple`
+* `Fourweeks`
+
 If a data object has any revisions in a defined bucket, the cleanup job removes revisions that do not belong to any bucket. If a data object
-has no revisions in a defined bucket, the cleanup job removed all but the last revision. This ensures that at least one revision of data object
-is kept, so it can always be reverted to the previous version.
+has no revisions in defined buckets, the cleanup job decides what happens based on the `always_keep_one` parameter:
+
+* **True** – keep the single most recent revision outside the span.  This ensures that at least one revision of data object.  
+    (strategies `A`, `B`, `Simple`)
+* **False** – remove every revision that is older than the span  
+    (strategy `Fourweeks`)
 
 **Strategy A:**
 
@@ -58,3 +69,13 @@ time bucket | number of revisions
 time bucket | number of revisions
 ------------|---------------------
 16 weeks    | 16
+
+**Strategy Fourweeks:**
+
+time bucket | number of revisions
+------------|---------------------
+1 day       | 2
+6 days      | 2
+21 days     | 2
+
+`always_keep_one` for Fourweeks is **False**, meaning anything older than 28 days (the total span of the three buckets) is removed completely rather than retaining a final safety copy.
