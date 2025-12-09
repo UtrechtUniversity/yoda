@@ -1,10 +1,12 @@
 let downloadZip
 const downloadButton = document.getElementById('downloadZip')
-try {
-  downloadZip = (await import('../../static/lib/client-zip-2.5.0.js')).downloadZip
-  downloadButton.classList.remove('invisible')
-} catch (error) {
-  console.error('Download zip import failed:', error)
+if (downloadButton != null) {
+  try {
+    downloadZip = (await import('../../static/lib/client-zip-2.5.0.js')).downloadZip
+    downloadButton.classList.remove('invisible')
+  } catch (error) {
+    console.error('Download zip import failed:', error)
+  }
 }
 
 const openAccessLink = document.getElementById('viewContents').href
