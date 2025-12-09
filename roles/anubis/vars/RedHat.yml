@@ -5,9 +5,6 @@
 anubis_rpm_url: https://github.com/TecharoHQ/anubis/releases/download/v1.23.1/anubis-1.23.1-1.x86_64.rpm
 anubis_rpm_checksum: sha256:9966fad368757dac80bf7fed0539ff20f07ed8a2c6210ac38b36c55d6a89f39c
 
-apache_site_config_dir: /etc/httpd/conf.d
-
 # Davrods related
 yoda_davrods_user: apache
 yoda_davrods_group: apache
-anubis_listener_config_file: anubis-listener.conf
