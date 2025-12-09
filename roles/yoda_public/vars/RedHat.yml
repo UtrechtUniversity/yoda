@@ -6,6 +6,7 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 
 yoda_public_site_config_dir: /etc/httpd/conf.d
 yoda_public_site_config_file: yoda-public-vhost.conf
+yoda_public_anubis_listener_config_file: yoda-public-anubis-listener.conf
 yoda_public_apache_log_dir: /var/log/httpd
 
 apache_service_name: httpd

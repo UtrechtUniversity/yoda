@@ -222,7 +222,7 @@ status_codes:
 store:
   backend: valkey
   parameters:
-    url: "redis://localhost:6379/2"
+    url: "redis://{{ yoda_public_host }}:6379/2"
 
 # The weight thresholds for when to trigger individual challenges. Any
 # CHALLENGE will take precedence over this.
