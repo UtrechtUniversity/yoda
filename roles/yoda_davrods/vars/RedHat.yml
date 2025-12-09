@@ -16,6 +16,7 @@ yoda_davrods_checksum: sha256:1b8cdd067202ffb34b0f5634b03969b5f1d8d12a839ba20321
 yoda_davrods_site_config_dir: /etc/httpd/conf.d
 yoda_davrods_config_file: davrods-vhost.conf
 yoda_davrods_anon_config_file: davrods-anonymous-vhost.conf
+yoda_davrods_anon_anubis_listener_config_file: davrods-anubis-listener.conf
 yoda_davrods_apache_log_dir: /var/log/httpd
 yoda_davrods_irods_dir: /etc/httpd/irods
 yoda_davrods_config_dir: /etc/httpd/irods

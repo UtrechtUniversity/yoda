@@ -69,7 +69,6 @@
   hosts: portals
   become: true
   roles:
-    - anubis
     - apache
     - role: opensearch
       when: enable_open_search
@@ -91,6 +90,7 @@
   hosts: davrods
   become: true
   roles:
+    - anubis
     - apache
     - irods_icommands
     - irods_runtime
@@ -222,6 +222,9 @@
   hosts: publics
   become: true
   roles:
+    - anubis
+    - role: redis
+      when: enable_anubis
     - apache
     - yoda_moai
     - yoda_landingpages

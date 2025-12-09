@@ -73,6 +73,39 @@
   notify: Restart Apache webserver
 
 
+- name: Copy Anubis listener configuration (Ubuntu)
+  when: enable_anubis and ansible_os_family == 'Debian' and ((yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled)
+  ansible.builtin.template:
+    src: davrods-anubis-listener.conf.j2
+    dest: "{{ yoda_davrods_conf_avail_dir }}/{{ yoda_davrods_anon_anubis_listener_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache webserver
+
+
+- name: Copy Anubis listener configuration (EL)
+  when: enable_anubis and ansible_os_family == 'RedHat' and ((yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled)
+  ansible.builtin.template:
+    src: davrods-anubis-listener.conf.j2
+    dest: "{{ yoda_davrods_site_config_dir }}/{{ yoda_davrods_anon_anubis_listener_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache webserver
+
+
+- name: Ensure apache configs for Anubis are enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ yoda_davrods_conf_avail_dir }}//{{ item }}"
+    dest: "{{ yoda_davrods_enabled_config_dir }}//{{ item }}"
+    state: link
+  notify: Restart Apache webserver
+  with_items:
+    - "{{ yoda_davrods_anon_anubis_listener_config_file }}"
+  when: enable_anubis and ansible_os_family == 'Debian'
+
+
 - name: Ensure DavRODS virtual hosts are enabled (Ubuntu)
   ansible.builtin.file:
     src: "{{ yoda_davrods_site_config_dir }}//{{ item }}"

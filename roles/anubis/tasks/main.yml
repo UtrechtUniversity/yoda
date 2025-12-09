@@ -147,39 +147,6 @@
   register: ignore_errors_anubis
 
 
-- name: Copy Anubis listener configuration (Ubuntu)
-  when: enable_anubis and ansible_os_family == 'Debian'
-  ansible.builtin.template:
-    src: listener.conf.j2
-    dest: "{{ apache_conf_avail_dir }}/{{ anubis_listener_config_file }}"
-    owner: root
-    group: root
-    mode: '0644'
-  notify: Restart Apache webserver
-
-
-- name: Copy Anubis listener configuration (EL)
-  when: enable_anubis and ansible_os_family == 'RedHat'
-  ansible.builtin.template:
-    src: listener.conf.j2
-    dest: "{{ apache_site_config_dir }}/{{ anubis_listener_config_file }}"
-    owner: root
-    group: root
-    mode: '0644'
-  notify: Restart Apache webserver
-
-
-- name: Ensure apache listener config for Anubis is enabled (Ubuntu)
-  ansible.builtin.file:
-    src: "{{ apache_conf_avail_dir }}//{{ item }}"
-    dest: "{{ apache_enabled_config_dir }}//{{ item }}"
-    state: link
-  notify: Restart Apache webserver
-  with_items:
-    - "{{ anubis_listener_config_file }}"
-  when: enable_anubis and ansible_os_family == 'Debian'
-
-
 - name: Ensure Anubis static directory for Yoda images is present
   ansible.builtin.file:
     path: '{{ item }}'
