@@ -26,6 +26,14 @@ credential_files: PLACEHOLDER                      # Location of Yoda credential
 
 # Anubis configuration
 enable_anubis: false                               # Enable Anubis
+anubis_redis_password: PLACEHOLDER                 # Password for the Redis instance used by Anubis
+# Hex-encoded ed25519 private key used to sign Anubis responses. Required to
+# ensure challenges survive service restarts.
+#
+# This key is an "insecure" private key we offer for use in development instances.
+# If you use this instance for anything other than development, you should create your own key.
+# openssl rand -hex 32
+anubis_ed25519_private_key: 6df19fb7373c1582789d279218147adce2422b80c0fd3389f52d390490e338e9
 
 # Text file extensions configuration
 text_file_extensions: ['bash', 'csv', 'c', 'cpp', 'csharp', 'css', 'diff', 'fortran', 'gams', 'gauss', 'go', 'graphql', 'ini', 'irpf90', 'java', 'js', 'json', 'julia', 'julia-repl', 'kotlin', 'less', 'lua', 'makefile', 'markdown', 'md', 'mathematica', 'matlab', 'maxima', 'mizar', 'objectivec', 'openscad', 'perl', 'php', 'php-template', 'plaintext', 'txt', 'python', 'py', 'python-repl', 'r', 'ruby', 'rust', 'sas', 'scilab', 'scss', 'shell', 'sh', 'sql', 'stan', 'stata', 'swift', 'typescript', 'ts', 'vbnet', 'wasm', 'xml', 'yaml', 'html']
