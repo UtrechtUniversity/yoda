@@ -164,7 +164,6 @@ yoda_portal_wsgi_daemon_threads   | The number of threads to be created to handl
 yoda_portal_upload_part_files     | Whether the portal uploader function should upload multi-chunk files as .part files initially and rename them to their final name later (boolean value, default: true). It is generally recommended to keep this enabled, so that users can easily see when an upload failed and the result is partial. However, on storage systems where renaming data objects takes much time, such as S3 object storage in consistent mode, it may be necessary to switch use of .part files off.
 yoda_portal_monitor_signal_file   | Path to the signal file for the portal monitoring thread. If this file is present, the monitor thread will start logging technical support information to the directory configured in `yoda_portal_monitor_output_dir`. Set to empty string to disable the monitoring thread. Default value: /var/www/yoda/show-tech.sig
 yoda_portal_monitor_output_dir    | Path for the portal monitoring thread to log technical support information to if the signal file is present. Default value: /tmp. Note that the portal uses a private /tmp directory, rather than the global one.
-enable_anubis                     | Whether to enable Anubis, the web scraper blocker (currently only protects anonymous webdav)
 
 ### Generic logging configuration
 
@@ -452,6 +451,14 @@ Variable          | Description
 ------------------|--------------------------------
 landingpages_root | Root of landingpages on server
 landingpage_theme | Name of landingpage theme
+
+### Anubis configuration
+
+Variable                    | Description
+----------------------------|--------------------------------
+enable_anubis               | Whether to enable Anubis, the web scraper blocker (currently only protects anonymous webdav and landing pages)
+anubis_redis_password       | Password for the Redis instance that is used by Anubis. Only relevant if Anubis is enabled.
+anubis_ed25519_private_key  | Hex-encoded ed25519 private key used to sign Anubis responses. Required to ensure challenges survive service restarts.
 
 ### External user service configuration
 

@@ -1,10 +1,15 @@
 ---
 # copyright Utrecht University
 
-- name: Restart Anubis
+- name: Restart Anubis (davrods)
   ansible.builtin.service:
-    name: anubis@{{ item }}.service
+    name: anubis@davrods.service
     state: restarted
-  with_items:
-    - davrods
-    - landingpages
+  when: inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
+
+
+- name: Restart Anubis (landingpages)
+  ansible.builtin.service:
+    name: anubis@landingpages.service
+    state: restarted
+  when: (inventory_hostname in groups['publics'])

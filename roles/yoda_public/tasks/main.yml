@@ -87,6 +87,16 @@
   when: ansible_os_family == 'RedHat'
 
 
+- name: Allow public to port for Anubis Redis in firewall
+  ansible.posix.firewalld:
+    port: '6380/tcp'
+    permanent: true
+    state: enabled
+    immediate: true
+  notify: Restart firewall
+  when: enable_anubis
+
+
 - name: Allow Apache to listen to Anubis (for landing pages)
   community.general.seport:
     ports: "{{ anubis_landingpages_port }}"

@@ -3,7 +3,7 @@ const downloadButton = document.getElementById('downloadZip')
 if (downloadButton != null) {
   try {
     downloadZip = (await import('../../static/lib/client-zip-2.5.0.js')).downloadZip
-    downloadButton.classList.remove('invisible')
+    fetch('/.within.website/x/cmd/anubis/static/img/happy.webp').then(res => !res.ok && downloadButton.classList.remove('invisible'))
   } catch (error) {
     console.error('Download zip import failed:', error)
   }
@@ -60,7 +60,7 @@ async function downloadEntriesAsZip (entries) {
       const i = cursor++
       const { url, name } = entries[i]
 
-      if (!url) { 
+      if (!url) {
         results[i] = { name }
         continue
       }
