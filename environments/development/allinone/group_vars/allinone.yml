@@ -17,6 +17,7 @@ yoda_portal_fqdn: portal.yoda.test                 # Yoda Portal fully qualified
 yoda_davrods_fqdn: data.yoda.test                  # Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_enabled: true
 yoda_davrods_anonymous_fqdn: public.data.yoda.test # Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_anonymous_host: combined.yoda.test    # Yoda Davrods anonymous WebDav host (for Anubis)
 
 default_yoda_schema: default-3                     # Default Yoda metadata scheme: core-2 or default-3
 yoda_prefix: UU01                                  # Prefix for internal portion of persistent identifier

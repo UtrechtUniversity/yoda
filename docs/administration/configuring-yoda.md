@@ -149,6 +149,7 @@ yoda_environment                  | Yoda environment: development, testing, acce
 yoda_portal_fqdn                  | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn                 | Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn       | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_anonymous_host       | Yoda Davrods anonymous WebDAV hostname (for Anubis)
 yoda_davrods_logo_path            | Path of the DavRODS logo on the portal. Defaults to the themed logo.
 yoda_davrods_logo_link            | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
 httpd_limit_request_body          | Maximum size of file to upload through DavRODS (bytes, default value: 10 GiB).
