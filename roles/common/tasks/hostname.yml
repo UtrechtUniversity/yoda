@@ -28,3 +28,18 @@
     line: '127.0.0.1 {{ inventory_hostname }} # Added by Yoda Ansible playbook'
     state: present
   when: yoda_environment != "development" and check_etchosts.rc == 1
+
+
+- name: Fix FQDN entry in /etc/hosts
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.(1|2)\.1 {{ inventory_hostname }}'
+    line: "127.0.0.1 {{ inventory_hostname }} {{ inventory_hostname.split('.')[0] }}"
+    state: present
+  when: yoda_environment == "development"
+
+
+- name: Set Ansible FQDN fact for development
+  ansible.builtin.set_fact:
+    ansible_fqdn: "{{ inventory_hostname }}"
+  when: yoda_environment == "development"

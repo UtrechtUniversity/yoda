@@ -11,11 +11,48 @@
     state: present
 
 
-- name: Ensure Redis is configured
+- name: Check if default Redis service exists # noqa no-changed-when
+  ansible.builtin.command: "systemctl status {{ default_redis_service_name }}"
+  register: default_redis_service_check
+  ignore_errors: true
+
+
+- name: Disable default Redis service
+  ansible.builtin.service:
+    name: '{{ default_redis_service_name }}'
+    state: stopped
+    enabled: false
+  when: not ansible_check_mode and default_redis_service_check.rc == 0
+
+
+- name: Remove default Redis files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /usr/lib/systemd/system/redis-server.service
+    - /usr/lib/systemd/system/redis.service
+    - /usr/lib/systemd/system/redis-sentinel.service
+    - /etc/redis/redis.conf
+    - /etc/redis/sentinel.conf
+
+
+- name: Ensure the Redis directory exist
+  ansible.builtin.file:
+    path: /var/lib/redis
+    state: directory
+    owner: redis
+    group: redis
+    mode: '0750'
+
+
+- name: Ensure Redis is configured for instance on port {{ redis_port }}
   ansible.builtin.template:
     src: "{{ redis_config_template }}"
-    dest: "{{ redis_config_file }}"
+    dest: "/etc/redis/redis-{{ redis_port }}.conf"
     mode: "0644"
+    owner: redis
+    group: redis
   notify: Restart Redis
 
 
@@ -27,9 +64,9 @@
   notify: Restart Redis
 
 
-- name: Allow Redis to listen on port 6379
+- name: Allow Redis to listen on port {{ redis_port }}
   community.general.seport:
-    ports: 6379
+    ports: '{{ redis_port }}'
     proto: tcp
     setype: redis_port_t
     state: present
@@ -37,32 +74,46 @@
   when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
-# This patch works around an issue that causes Redis server service tasks
-# to hang.
-# See https://github.com/redis/redis/issues/7361#issuecomment-1136528254
-- name: Apply workaround for Redis service file issue (Ubuntu)
+- name: Upload custom SELinux module for Redis
+  ansible.builtin.copy:
+    src: redis_custom.pp
+    dest: /root/redis_custom.pp
+    owner: root
+    group: root
+    mode: '0644'
+  register: python_selinux
+  when: ansible_os_family == 'RedHat'
+
+
+# Running as task instead of handler in order to prevent ordering issues
+# with Redis restart handler.
+- name: Apply SELinux policy # noqa no-handler
+  ansible.builtin.command:
+    cmd: semodule -i /root/redis_custom.pp
+  changed_when: false
+  when: ansible_os_family == 'RedHat' and not ansible_check_mode and python_selinux.changed
+
+
+- name: Create Redis systemd service file for port {{ redis_port }}
   ansible.builtin.template:
     src: redis-server.service.j2
-    dest: /lib/systemd/system/redis-server.service
+    dest: '/lib/systemd/system/redis-server-{{ redis_port }}.service'
     mode: "0644"
     owner: root
     group: root
-  register: redis_patch_service_file
+  register: redis_service_file
   notify: Systemd daemon reload
-  when: ansible_os_family == 'Debian'
 
 
-# Using a task rather than a handler because we need the reload before
-# executing the next service task.
-- name: Systemd daemon reload after patching Redis service file (Ubuntu)
+- name: Systemd daemon reload after changing Redis service file # noqa no-handler
   ansible.builtin.systemd:
     daemon_reload: true
-  when: ansible_os_family == 'Debian' and redis_patch_service_file.changed
+  when: redis_service_file.changed
 
 
-- name: Ensure Redis is running and enabled on boot
+- name: Ensure Redis is running and enabled on boot for port {{ redis_port }}
   ansible.builtin.service:
-    name: redis
+    name: 'redis-server-{{ redis_port }}'
     state: started
     enabled: true
   when: not ansible_check_mode
