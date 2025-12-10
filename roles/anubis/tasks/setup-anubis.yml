@@ -15,56 +15,24 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Generate key for Redis persist after restart for Anubis
-  ansible.builtin.command: 'openssl rand -hex 32'
-  register: priv_key
-  args:
-    creates: "{{ anubis_redis_priv_key_path }}"
-
-
-- name: Store Anubis key in variable
-  ansible.builtin.set_fact:
-    '{{ item.fact }}': '{{ item.key }}'
-  with_items:
-    - fact: anubis_redis_priv_key
-      key: '{{ priv_key.stdout }}'
-  when: not ansible_check_mode
-
-
-- name: Check if Anubis key file exists
-  ansible.builtin.stat:
-    path: '{{ anubis_redis_priv_key_path }}'
-  ignore_errors: true
-  register: anubis_key_exists
-
-
-- name: Save key in file
-  ansible.builtin.copy:
-    content: '{{ anubis_redis_priv_key }}'
-    dest: '{{ anubis_redis_priv_key_path }}'
-    mode: '0644'
-  when: not anubis_key_exists.stat.exists and not ansible_check_mode
-
-
 - name: Ensure Anubis env file is present for DavRods
   ansible.builtin.template:
-    src: '{{ item }}.j2'
-    dest: '/etc/anubis/{{ item }}'
+    src: davrods.env.j2
+    dest: /etc/anubis/davrods.env
     mode: '0644'
-  notify: Restart Anubis
-  with_items:
-    - davrods.env
-  when: (yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled
+  notify: Restart Anubis (davrods)
+  when:
+    - inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
+    - yoda_davrods_anonymous_enabled is not defined or yoda_davrods_anonymous_enabled
 
 
 - name: Ensure Anubis env file is present for landing pages
   ansible.builtin.template:
-    src: '{{ item }}.j2'
-    dest: '/etc/anubis/{{ item }}'
+    src: landingpages.env.j2
+    dest: /etc/anubis/landingpages.env
     mode: '0644'
-  notify: Restart Anubis
-  with_items:
-    - landingpages.env
+  notify: Restart Anubis (landingpages)
+  when: (inventory_hostname in groups['publics'])
 
 
 - name: Ensure Anubis bot policies file is present
@@ -72,7 +40,9 @@
     src: yoda.botPolicies.yaml.j2
     dest: /etc/anubis/yoda.botPolicies.yaml
     mode: '0644'
-  notify: Restart Anubis
+  notify:
+    - Restart Anubis (davrods)
+    - Restart Anubis (landingpages)
 
 
 - name: Ensure Apache modules for Anubis are enabled (Ubuntu)
@@ -90,28 +60,37 @@
   when: ansible_os_family == 'Debian'
 
 
+- name: Allow Anubis to make network connections
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+
+
 - name: Allow Anubis to listen on ports for DavRods
   community.general.seport:
-    ports: '{{ item }}'
+    ports: '{{ anubis_davrods_bind_port }}'
     proto: tcp
     setype: http_port_t
     state: present
-  notify: Restart Anubis
-  with_items:
-    - '{{ anubis_davrods_bind_port }}'
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled" and ((yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled)
+  notify: Restart Anubis (davrods)
+  when:
+    - inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
+    - ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+    - yoda_davrods_anonymous_enabled is not defined or yoda_davrods_anonymous_enabled
 
 
 - name: Allow Anubis to listen on ports for the landing pages
   community.general.seport:
-    ports: '{{ item }}'
+    ports: '{{ anubis_landingpages_bind_port }}'
     proto: tcp
     setype: http_port_t
     state: present
-  notify: Restart Anubis
-  with_items:
-    - '{{ anubis_landingpages_bind_port }}'
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  notify: Restart Anubis (landingpages)
+  when:
+    - inventory_hostname in groups.get('publics', [])
+    - ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
 
 
 - name: Ensure Anubis is running and enabled for Davrods
@@ -119,7 +98,9 @@
     name: anubis@davrods.service
     state: started
     enabled: true
-  when: (yoda_davrods_anonymous_enabled is not defined) or yoda_davrods_anonymous_enabled
+  when:
+    - inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
+    - yoda_davrods_anonymous_enabled is not defined or yoda_davrods_anonymous_enabled
 
 
 - name: Ensure Anubis is running and enabled for landing pages
@@ -127,6 +108,7 @@
     name: anubis@landingpages.service
     state: started
     enabled: true
+  when: inventory_hostname in groups.get('publics', [])
 
 
 - name: Ensure Anubis static directory for Yoda images is present

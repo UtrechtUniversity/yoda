@@ -1,0 +1,21 @@
+# TE file included for information. It is not actually used by playbook
+
+module redis_custom 1.0;
+
+require {
+	type redis_t;
+	type init_t;
+	type unlabeled_t;
+	type redis_log_t;
+	class dir search;
+	class process2 nnp_transition;
+	class file append;
+}
+
+#============= init_t ==============
+allow init_t redis_log_t:file append;
+allow init_t redis_t:process2 nnp_transition;
+allow init_t unlabeled_t:file append;
+
+#============= redis_t ==============
+allow redis_t unlabeled_t:dir search;

@@ -4,14 +4,15 @@
 # See also https://github.com/redis/redis/issues/7361#issuecomment-1136528254
 
 [Unit]
-Description=Advanced key-value store
+Description=Advanced key-value store on port {{ redis_port }}
 After=network.target
 Documentation=http://redis.io/documentation, man:redis-server(1)
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/redis-server /etc/redis/redis.conf
-#PIDFile=/run/redis/redis-server.pid
+Type=notify
+ExecStart=/usr/bin/redis-server /etc/redis/redis-{{ redis_port }}.conf
+ExecStop=/usr/local/bin/redis-cli shutdown
+PIDFile=/var/run/redis/redis-server-{{ redis_port }}.pid
 TimeoutStopSec=0
 Restart=always
 User=redis
@@ -47,4 +48,4 @@ ReadWriteDirectories=-/etc/redis
 
 [Install]
 WantedBy=multi-user.target
-Alias=redis.service
+Alias=redis-{{ redis_port }}.service

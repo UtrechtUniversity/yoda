@@ -69,6 +69,8 @@
   hosts: portals
   become: true
   roles:
+    - role: anubis
+      when: "'davrods' not in group_names"
     - apache
     - role: opensearch
       when: enable_open_search
@@ -224,6 +226,8 @@
   roles:
     - anubis
     - role: redis
+      vars:
+        redis_port: 6380
       when: enable_anubis
     - apache
     - yoda_moai
