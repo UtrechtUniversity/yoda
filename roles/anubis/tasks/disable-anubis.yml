@@ -1,0 +1,13 @@
+---
+# copyright Utrecht University
+
+- name: Ensure Anubis is disabled
+  ansible.builtin.service:
+    name: 'anubis@{{ item }}.service'
+    state: stopped
+    enabled: false
+  with_items:
+    - davrods
+    - landingpages
+  ignore_errors: true
+  register: ignore_errors_anubis
