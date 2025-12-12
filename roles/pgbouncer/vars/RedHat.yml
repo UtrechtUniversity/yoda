@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-pgbouncer_version: 1.25.0-45PGDG.rhel9
+pgbouncer_version: 1.25.1-42PGDG.rhel9.7
 pgbouncer_package: 'pgbouncer-{{ pgbouncer_version }}'
 
 pgbouncer_user: pgbouncer
