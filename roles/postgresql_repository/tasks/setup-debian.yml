@@ -9,6 +9,9 @@
 
 - name: Ensure PostgreSQL packages APT repository is enabled
   ansible.builtin.apt_repository:
-    repo: "{{ postgresql_apt_repo }}"
+    repo: "{{ item }}"
     filename: pgdg
     state: present
+  with_items:
+    - "{{ postgresql_apt_repo }}"
+    - "{{ postgresql_apt_archive_repo }}"
