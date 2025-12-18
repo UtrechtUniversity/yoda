@@ -259,9 +259,24 @@ the first bucket starts in the present.  For example, in strategy <code class="l
 created in the last six hours, the second bucket refers to all revisions created in the twelve hours before that, and so forth.
 Yoda uses strategy <code class="language-plaintext highlighter-rouge">B</code> by default.</p>
 
+<p>Yoda supports four built-in strategies:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">A</code></li>
+  <li><code class="language-plaintext highlighter-rouge">B</code> (default)</li>
+  <li><code class="language-plaintext highlighter-rouge">Simple</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Fourweeks</code></li>
+</ul>
+
 <p>If a data object has any revisions in a defined bucket, the cleanup job removes revisions that do not belong to any bucket. If a data object
-has no revisions in a defined bucket, the cleanup job removed all but the last revision. This ensures that at least one revision of data object
-is kept, so it can always be reverted to the previous version.</p>
+has no revisions in defined buckets, the cleanup job decides what happens based on the <code class="language-plaintext highlighter-rouge">always_keep_one</code> parameter:</p>
+
+<ul>
+  <li><strong>True</strong> – keep the single most recent revision outside the span.  This ensures that at least one revision of data object.<br />
+  (strategies <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code>, <code class="language-plaintext highlighter-rouge">Simple</code>)</li>
+  <li><strong>False</strong> – remove every revision that is older than the span<br />
+  (strategy <code class="language-plaintext highlighter-rouge">Fourweeks</code>)</li>
+</ul>
 
 <p><strong>Strategy A:</strong></p>
 
@@ -401,6 +416,33 @@ is kept, so it can always be reverted to the previous version.</p>
     </tr>
   </tbody>
 </table></div>
+
+<p><strong>Strategy Fourweeks:</strong></p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>time bucket</th>
+      <th>number of revisions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1 day</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>6 days</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>21 days</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><code class="language-plaintext highlighter-rouge">always_keep_one</code> for Fourweeks is <strong>False</strong>, meaning anything older than 28 days (the total span of the three buckets) is removed completely rather than retaining a final safety copy.</p>
 
           
 
