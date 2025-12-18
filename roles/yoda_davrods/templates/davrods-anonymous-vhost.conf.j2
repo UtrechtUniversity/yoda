@@ -4,8 +4,8 @@
 # davrods is a mod_dav WebDAV provider. Configuration directives for davrods
 # should be placed in a <Location> block.
 #
-# Below we provide an example vhost configuration that enables davrods using
-# its default options.
+# Below we provide an example vhost configuration that enables davrods
+# anonymous access using its default options.
 #
 
 <VirtualHost *:80>
@@ -18,7 +18,6 @@
     Redirect / https://{{ yoda_davrods_anonymous_fqdn }}:{{ yoda_davrods_anonymous_port | string }}/
 {% endif %}
 </VirtualHost>
-
 
 {% if yoda_davrods_anonymous_port != 443 %}
 Listen {{ yoda_davrods_anonymous_port }}

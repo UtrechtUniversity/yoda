@@ -3,8 +3,8 @@
 
 - name: Restart Redis
   ansible.builtin.service:
-    name: redis
-    state: started
+    name: 'redis-server-{{ redis_port }}'
+    state: restarted
 
 
 - name: Systemd daemon reload

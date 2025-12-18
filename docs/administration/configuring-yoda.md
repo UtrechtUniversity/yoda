@@ -149,6 +149,7 @@ yoda_environment                  | Yoda environment: development, testing, acce
 yoda_portal_fqdn                  | Yoda Portal fully qualified domain name (FQDN)
 yoda_davrods_fqdn                 | Yoda Davrods WebDAV fully qualified domain name (FQDN)
 yoda_davrods_anonymous_fqdn       | Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)
+yoda_davrods_anonymous_host       | Yoda Davrods anonymous WebDAV hostname (for Anubis)
 yoda_davrods_logo_path            | Path of the DavRODS logo on the portal. Defaults to the themed logo.
 yoda_davrods_logo_link            | URL that the DavRODS logo is linked to (default:  https://www.uu.nl)
 httpd_limit_request_body          | Maximum size of file to upload through DavRODS (bytes, default value: 10 GiB).
@@ -193,6 +194,7 @@ irods_database_fqdn                  | iRODS database fully qualified domain nam
 irods_resource_fqdn                  | iRODS resource fully qualified domain name (FQDN). Don't define this variable if you have multiple resource servers.
 irods_default_resc                   | iRODS default resource name
 irods_resc_trigger_pol               | List of text patterns for matching non-primary resources where changes also need to trigger policies (e.g. asynchronous replication). Example: ["^testResc$","^myResc$"]
+irods_resc_repl_exempt               | List of text patterns for matching non-primary resources that should be exempt from replication policy. Example: ["^testResc$","^myResc$"]
 irods_ssl_verify_server              | Verify TLS certificate, use 'cert' for acceptance and production
 irods_resources                      | Definition of iRODS resources of this Yoda instance
 irods_max_open_files                 | Maximum number of open files for iRODS service
@@ -324,13 +326,13 @@ smtp_starttls                | Whether to force StartTLS on non-SMTP connections
 
 Variable                               | Description
 ---------------------------------------|---------------------------------------------
-pgsql_version                          | PostgreSQL version (default: 11)
+pgsql_version                          | PostgreSQL version (default: 15)
 postgresql_max_connections             | Maximum number of database connections (default: 100)
-postgresql_shared_buffers              | Amount of memory database should use for shared buffers. Rule of thumb: set to 25% of memory on dedicated database server; on a shared server, it should probably be lower. Default value: 32 MB.
-postgresql_work_mem                    | Maximum amount of worker memory. Rule of thumb: increasing worker memory can help with improving performance, but it is necessary to ensure that sufficient memory is available, considering the maximum number of database connections. Default value: 1 MB.
-postgresql_maintenance_work_mem        | Maximum amount of memory for maintenance processes, such as VACUUM. Default value: 16 MB.
-postgresql_effective_cache_size        | Tells the query planner how much memory it can expect to be available for disk caching for the database. Rule of thumb: set to approximately 50-75% on dedicated database server. Default value: 128 MB.
-postgresql_random_page_cost            | Tells the query planner about the relative cost of random access versus sequential access. You could use a tool like fio to get an estimate, or use a ballpark estimate based on the type of storage of the database volume (e.g. 1.0 for SSD-based storage). Default value is 4.0.
+postgresql_shared_buffers              | Amount of memory the database server uses for shared memory buffers (≈ RAM * 25%). Default value: 512 MB.
+postgresql_work_mem                    | Maximum amount of memory used by a query operation before writing to temporary files (≈ (RAM - shared_buffers) / ((max_connections + max_worker_processes) * 3)) Default value: 4854 kB
+postgresql_maintenance_work_mem        | Maximum amount of memory to be used by maintenance operations (≈ RAM * 6.25%). Default value: 128 MB.
+postgresql_effective_cache_size        | Guideline for query planner, estimates how much memory is available for caching data (≈ RAM - (shared_buffers + work_mem * max_connections * 2) * 1.1) Default value: 384 MB
+postgresql_random_page_cost            | Planner's estimate of the cost of a non-sequentially-fetched disk page. Solid-state drives might be better modeled with a lower value e.g., "1.1". Default value is 1.1.
 postgresql_log_line_prefix             | Format of log message prefix in the PostgreSQL log, for adding timestamps etc. to log messages. The default value adds a timestamp and process number, which is sufficient for most purposes. It might be useful to log additional information in specific situations, such as when troubleshooting database issues.
 postgresql_log_min_duration_statement  | Minimum number of milliseconds for slow query logging (default: -1 / disabled)
 postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled)
@@ -343,6 +345,7 @@ Variable                                     | Description
 enable_pgbouncer                             | Whether to enable PgBouncer (default: false)
 pgbouncer_pool_mode                          | Specifies when a server connection can be reused by other clients (default: session)
 pgbouncer_max_client_conn                    | Maximum number of client connections allowed (default: 200)
+pgbouncer_max_db_connections                 | Less than or equal to PostgreSQL max_connections (default: 0 (unlimited))
 pgbouncer_default_pool_size                  | How many server connections to allow per user/database pair (default: 50)
 pgbouncer_reserve_pool_size                  | How many additional connections to allow to a pool (default: 25)
 pgbouncer_reserve_pool_timeout               | If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2)
@@ -448,6 +451,14 @@ Variable          | Description
 ------------------|--------------------------------
 landingpages_root | Root of landingpages on server
 landingpage_theme | Name of landingpage theme
+
+### Anubis configuration
+
+Variable                    | Description
+----------------------------|--------------------------------
+enable_anubis               | Whether to enable Anubis, the web scraper blocker (currently only protects anonymous webdav and landing pages)
+anubis_redis_password       | Password for the Redis instance that is used by Anubis. Only relevant if Anubis is enabled.
+anubis_ed25519_private_key  | Hex-encoded ed25519 private key used to sign Anubis responses. Required to ensure challenges survive service restarts.
 
 ### External user service configuration
 

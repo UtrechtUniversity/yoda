@@ -1,23 +1,22 @@
 # {{ ansible_managed }}
-# Last Modified: Thu Feb 6 11:50:00 2025
-#include <tunables/global>
-
+# Last Modified: Mon Dec  1 16:01:27 2025
+include <tunables/global>
 # vim:syntax=apparmor
 # AppArmor policy for apache2
 # No template variables specified
 
 
 /usr/sbin/apache2 {
-  #include <abstractions/apache2-common>
-  #include <abstractions/base>
+  include <abstractions/apache2-common>
+  include <abstractions/base>
+  include <abstractions/ssl_keys>
+  include <abstractions/nameservice>
+  include <abstractions/openssl>
   #include <abstractions/bash>
   #include <abstractions/dovecot-common>
-  #include <abstractions/nameservice>
   #include <abstractions/nis>
-  #include <abstractions/openssl>
   #include <abstractions/postfix-common>
   #include <abstractions/python>
-  #include <abstractions/ssl_keys>
   #include <abstractions/user-tmp>
   #include <abstractions/web-data>
 
@@ -49,6 +48,9 @@
   {{ yoda_eus_session_dir }}/ rw,
   {{ yoda_eus_session_dir }}/* rw,
   owner /dev/shm/* mrwl,
+  {% if enable_anubis %}
+  owner /etc/anubis/static-yoda/img/yoda.webp r,
+  {% endif %}
   owner /etc/apache2/** r,
   owner /opt/irods-externals/** mr,
   owner /run/apache2/apache2.pid rw,

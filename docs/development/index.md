@@ -11,7 +11,6 @@ has_toc: false
 - [Running Yoda using Docker Compose](docker-setup.md)
 - [Running API and UI tests](running-api-ui-tests.md)
 - [Running unit and integration tests](running-unit-integration-tests.md)
-- [Setting up YodaDrive development environment](yodadrive-development-environment.md)
 - [Data Archive Mock](data_archive_mock.md)
 - [Development tips](development-tips.md)
 - [Wall of Fame](wall-of-fame.md)

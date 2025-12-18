@@ -1,6 +1,9 @@
 ---
 # copyright Utrecht University
 
+pgbouncer_version: 1.25.1-1.pgdg24.04+1
+pgbouncer_package: 'pgbouncer={{ pgbouncer_version }}'
+
 pgbouncer_user: postgres
 pgbouncer_config_path: "/etc/pgbouncer"
 pgbouncer_log_path: "/var/log/postgresql/pgbouncer.log"

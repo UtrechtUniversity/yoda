@@ -44,4 +44,3 @@ has_toc: false
 
 ## Other
 - [Python plugin](other/python-plugin.md)
-- [Yoda drive](other/yodadrive.md)

@@ -1,10 +1,12 @@
 let downloadZip
 const downloadButton = document.getElementById('downloadZip')
-try {
-  downloadZip = (await import('../../static/lib/client-zip-2.5.0.js')).downloadZip
-  downloadButton.classList.remove('invisible')
-} catch (error) {
-  console.error('Download zip import failed:', error)
+if (downloadButton != null) {
+  try {
+    downloadZip = (await import('../../static/lib/client-zip-2.5.0.js')).downloadZip
+    fetch('/.within.website/x/cmd/anubis/static/img/happy.webp').then(res => !res.ok && downloadButton.classList.remove('invisible'))
+  } catch (error) {
+    console.error('Download zip import failed:', error)
+  }
 }
 
 const openAccessLink = document.getElementById('viewContents').href
@@ -48,20 +50,35 @@ document.body.addEventListener('click', async function (event) {
 })
 
 async function downloadEntriesAsZip (entries) {
-  const zipEntries = await Promise.all(
-    entries.map(async ({ url, name }) => {
-      if (!url) return { name }
+  const MAX_PARALLEL = 2
+
+  const results = new Array(entries.length)
+  let cursor = 0
+
+  async function worker () {
+    while (cursor < entries.length) {
+      const i = cursor++
+      const { url, name } = entries[i]
+
+      if (!url) {
+        results[i] = { name }
+        continue
+      }
 
       const response = await fetch(url)
       if (!response.ok) {
         throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`)
       }
+      const blob = await response.blob()   // blocks until finished, this prevent more than MAX_PARALLEL threads running
 
-      return { name, lastModified: Date.now(), input: response }
-    })
-  )
+      results[i] = { name, lastModified: Date.now(), input: blob }
+    }
+  }
 
-  const zipBlob = await downloadZip(zipEntries).blob()
+  const workers = Array.from({ length: Math.min(MAX_PARALLEL, entries.length) }, worker)
+  await Promise.all(workers)
+
+  const zipBlob = await downloadZip(results).blob()
   const downloadLink = document.createElement('a')
   downloadLink.href = URL.createObjectURL(zipBlob)
   downloadLink.download = 'download.zip'

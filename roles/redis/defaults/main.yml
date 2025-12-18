@@ -1,0 +1,6 @@
+---
+# copyright Utrecht University
+
+anubis_redis_password: PLACEHOLDER  # Password for the Redis instance used by Anubis
+
+redis_port: 6379

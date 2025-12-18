@@ -13,6 +13,51 @@
     group: root
     mode: '0644'
   notify: Restart Apache webserver
+  when: not enable_anubis
+
+
+- name: Copy Yoda Public Apache configuration (with Anubis)
+  ansible.builtin.template:
+    src: yoda-public-anubis-vhost.conf.j2
+    dest: "{{ yoda_public_site_config_dir }}/{{ yoda_public_site_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache webserver
+  when: enable_anubis
+
+
+- name: Copy Anubis listener configuration for landing pages (Ubuntu)
+  when: enable_anubis and ansible_os_family == 'Debian'
+  ansible.builtin.template:
+    src: yoda-public-anubis-listener.conf.j2
+    dest: "{{ yoda_public_conf_avail_dir }}/{{ yoda_public_anubis_listener_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache webserver
+
+
+- name: Copy Anubis listener configuration (EL)
+  when: enable_anubis and ansible_os_family == 'RedHat'
+  ansible.builtin.template:
+    src: yoda-public-anubis-listener.conf.j2
+    dest: "{{ yoda_public_site_config_dir }}/{{ yoda_public_anubis_listener_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache webserver
+
+
+- name: Ensure apache configs for Anubis are enabled for landing pages (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ yoda_public_conf_avail_dir }}//{{ item }}"
+    dest: "{{ yoda_public_enabled_config_dir }}//{{ item }}"
+    state: link
+  notify: Restart Apache webserver
+  with_items:
+    - "{{ yoda_public_anubis_listener_config_file }}"
+  when: enable_anubis and ansible_os_family == 'Debian'
 
 
 - name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
@@ -40,3 +85,22 @@
     setype: http_port_t
     state: present
   when: ansible_os_family == 'RedHat'
+
+
+- name: Allow public to port for Anubis Redis in firewall
+  ansible.posix.firewalld:
+    port: '6380/tcp'
+    permanent: true
+    state: enabled
+    immediate: true
+  notify: Restart firewall
+  when: enable_anubis
+
+
+- name: Allow Apache to listen to Anubis (for landing pages)
+  community.general.seport:
+    ports: "{{ anubis_landingpages_port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+  when: enable_anubis and ansible_os_family == 'RedHat'

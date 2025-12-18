@@ -1,0 +1,19 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Download Anubis package
+  ansible.builtin.get_url:
+    url: '{{ anubis_deb_url }}'
+    dest: '/tmp/anubis.deb'
+    checksum: '{{ anubis_deb_checksum }}'
+    mode: '0644'
+
+
+- name: Ensure Anubis is installed from downloaded deb
+  ansible.builtin.apt:
+    deb: '/tmp/anubis.deb'
+    state: present

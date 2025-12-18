@@ -1,0 +1,20 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Download Anubis package
+  ansible.builtin.get_url:
+    url: '{{ anubis_rpm_url }}'
+    dest: '/tmp/anubis.rpm'
+    checksum: '{{ anubis_rpm_checksum }}'
+    mode: '0644'
+
+
+- name: Ensure Anubis is installed from downloaded RPM
+  ansible.builtin.dnf:
+    name: '/tmp/anubis.rpm'
+    disable_gpg_check: true
+    state: present

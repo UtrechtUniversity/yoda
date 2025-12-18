@@ -1,0 +1,132 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Install Anubis (EL)
+  ansible.builtin.import_tasks: install-redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Install Anubis (Ubuntu)
+  ansible.builtin.import_tasks: install-ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure Anubis env file is present for DavRods
+  ansible.builtin.template:
+    src: davrods.env.j2
+    dest: /etc/anubis/davrods.env
+    mode: '0644'
+  notify: Restart Anubis (davrods)
+  when:
+    - inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
+    - yoda_davrods_anonymous_enabled is not defined or yoda_davrods_anonymous_enabled
+
+
+- name: Ensure Anubis env file is present for landing pages
+  ansible.builtin.template:
+    src: landingpages.env.j2
+    dest: /etc/anubis/landingpages.env
+    mode: '0644'
+  notify: Restart Anubis (landingpages)
+  when: (inventory_hostname in groups['publics'])
+
+
+- name: Ensure Anubis bot policies file is present
+  ansible.builtin.template:
+    src: yoda.botPolicies.yaml.j2
+    dest: /etc/anubis/yoda.botPolicies.yaml
+    mode: '0644'
+  notify:
+    - Restart Anubis (davrods)
+    - Restart Anubis (landingpages)
+
+
+- name: Ensure Apache modules for Anubis are enabled (Ubuntu)
+  ansible.builtin.file:
+    src: "{{ apache_module_config_dir }}/{{ item }}.load"
+    dest: "{{ apache_module_enabled_config_dir }}/{{ item }}.load"
+    state: link
+  notify: Restart Apache webserver
+  with_items:
+    - "headers"
+    - "proxy"
+    - "proxy_http"
+    - "rewrite"
+    - "substitute"
+  when: ansible_os_family == 'Debian'
+
+
+- name: Allow Anubis to make network connections
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+
+
+- name: Allow Anubis to listen on ports for DavRods
+  community.general.seport:
+    ports: '{{ anubis_davrods_bind_port }}'
+    proto: tcp
+    setype: http_port_t
+    state: present
+  notify: Restart Anubis (davrods)
+  when:
+    - inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
+    - ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+    - yoda_davrods_anonymous_enabled is not defined or yoda_davrods_anonymous_enabled
+
+
+- name: Allow Anubis to listen on ports for the landing pages
+  community.general.seport:
+    ports: '{{ anubis_landingpages_bind_port }}'
+    proto: tcp
+    setype: http_port_t
+    state: present
+  notify: Restart Anubis (landingpages)
+  when:
+    - inventory_hostname in groups.get('publics', [])
+    - ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+
+
+- name: Ensure Anubis is running and enabled for Davrods
+  ansible.builtin.service:
+    name: anubis@davrods.service
+    state: started
+    enabled: true
+  when:
+    - inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
+    - yoda_davrods_anonymous_enabled is not defined or yoda_davrods_anonymous_enabled
+
+
+- name: Ensure Anubis is running and enabled for landing pages
+  ansible.builtin.service:
+    name: anubis@landingpages.service
+    state: started
+    enabled: true
+  when: inventory_hostname in groups.get('publics', [])
+
+
+- name: Ensure Anubis static directory for Yoda images is present
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    mode: '0755'
+    owner: '{{ yoda_davrods_user }}'
+    group: '{{ yoda_davrods_group }}'
+  with_items:
+    - '{{ anubis_yoda_static }}'
+    - '{{ anubis_yoda_static }}/img/'
+
+
+- name: Ensure static files for Yoda theme for Anubis are present
+  ansible.builtin.copy:
+    src: yoda.webp
+    dest: '{{ anubis_yoda_static }}/img/yoda.webp'
+    owner: '{{ yoda_davrods_user }}'
+    group: '{{ yoda_davrods_group }}'
+    mode: '0644'

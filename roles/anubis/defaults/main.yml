@@ -1,0 +1,21 @@
+---
+# copyright Utrecht University
+
+# Anubis configuration
+enable_anubis: false                # Enable Anubis
+anubis_redis_password: PLACEHOLDER  # Password for the Redis instance used by Anubis
+anubis_yoda_static: /etc/anubis/static-yoda
+anubis_davrods_bind_port: 8923
+anubis_landingpages_bind_port: 8924
+anubis_davrods_port: 3001
+anubis_landingpages_port: 3002
+
+# Hex-encoded ed25519 private key used to sign Anubis responses. Required to
+# ensure challenges survive service restarts.
+#
+# This key is an "insecure" private key we offer for use in development instances.
+# If you use this instance for anything other than development, you should create your own key.
+# openssl rand -hex 32
+anubis_ed25519_private_key: 6df19fb7373c1582789d279218147adce2422b80c0fd3389f52d390490e338e9
+
+yoda_davrods_anonymous_enabled: true

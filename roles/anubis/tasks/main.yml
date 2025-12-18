@@ -1,0 +1,11 @@
+---
+# copyright Utrecht University
+
+- name: Disable Anubis
+  ansible.builtin.import_tasks: disable-anubis.yml
+  when: not enable_anubis
+
+
+- name: Enable and setup Anubis
+  ansible.builtin.import_tasks: setup-anubis.yml
+  when: enable_anubis

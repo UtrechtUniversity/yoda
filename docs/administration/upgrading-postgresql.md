@@ -112,7 +112,7 @@ sudo systemctl disable postgresql
 
 11. Run the Ansible playbook. You should now have an environment where the new database server has been deployed, iRODS should now talk
     to the new database server. Verify that basic functionality of iRODS works (e.g. by examining the output of the `ils` command) and
-    check that iRODS is talking to the new database server (e.g. by viewing the number of transactions in the pgbouncer log file on the
+    check that iRODS is talking to the new database server (e.g. by viewing the number of transactions in the PgBouncer log file on the
     new database server). Disregard any PostgreSQL warning messages in the logs at this step.
 
 12. Check the database plugin configuration in the `/etc/irods/server_config.json` configuration file. Ensure that `db_odbc_driver` is
