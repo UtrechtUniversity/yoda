@@ -467,6 +467,10 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>Yoda Davrods anonymous WebDAV fully qualified domain name (FQDN)</td>
     </tr>
     <tr>
+      <td>yoda_davrods_anonymous_host</td>
+      <td>Yoda Davrods anonymous WebDAV hostname (for Anubis)</td>
+    </tr>
+    <tr>
       <td>yoda_davrods_logo_path</td>
       <td>Path of the DavRODS logo on the portal. Defaults to the themed logo.</td>
     </tr>
@@ -1619,6 +1623,37 @@ particular threshold.</p>
     <tr>
       <td>landingpage_theme</td>
       <td>Name of landingpage theme</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="anubis-configuration">
+  
+  
+    <a href="#anubis-configuration" class="anchor-heading" aria-labelledby="anubis-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Anubis configuration
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>enable_anubis</td>
+      <td>Whether to enable Anubis, the web scraper blocker (currently only protects anonymous webdav and landing pages)</td>
+    </tr>
+    <tr>
+      <td>anubis_redis_password</td>
+      <td>Password for the Redis instance that is used by Anubis. Only relevant if Anubis is enabled.</td>
+    </tr>
+    <tr>
+      <td>anubis_ed25519_private_key</td>
+      <td>Hex-encoded ed25519 private key used to sign Anubis responses. Required to ensure challenges survive service restarts.</td>
     </tr>
   </tbody>
 </table></div>
