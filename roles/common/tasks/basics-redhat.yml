@@ -1,18 +1,7 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure Ansible dependencies are installed (EL8)
-  ansible.builtin.package:
-    name:
-      - python3-libselinux
-      - python3-libsemanage
-      - python3-policycoreutils
-      - python3-dnf-plugin-versionlock
-    state: present
-  when: ansible_distribution_major_version == "8"
-
-
-- name: Ensure Ansible dependencies are installed (EL9)
+- name: Ensure Ansible dependencies are installed
   ansible.builtin.package:
     name:
       - python3-libselinux
