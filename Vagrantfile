@@ -60,7 +60,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine.vm.provision "shell",
         inline: "sudo echo \"192.168.56.10 sram-mock.yoda.test\" | sudo tee -a /etc/hosts"
       machine.vm.provision "shell",
-        inline: "sudo mv /etc/apt/sources.list.d/home-alvistack.sources /etc/apt/sources.list.d/home-alvistack.sources-disabled"
+        inline: "sudo rm /etc/apt/sources.list.d/home-alvistack.sources"
     end
   end
 
@@ -80,7 +80,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       controller.vm.provision "shell",
         inline: "sudo echo \"192.168.56.10 eus.yoda.test\" | sudo tee -a /etc/hosts"
       controller.vm.provision "shell",
-        inline: "sudo mv /etc/apt/sources.list.d/home-alvistack.sources /etc/apt/sources.list.d/home-alvistack.sources-disabled"
+        inline: "sudo rm /etc/apt/sources.list.d/home-alvistack.sources"
     end
   end
 end
