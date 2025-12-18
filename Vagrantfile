@@ -59,6 +59,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         inline: "sudo echo \"192.168.56.10 datacite-mock.yoda.test\" | sudo tee -a /etc/hosts"
       machine.vm.provision "shell",
         inline: "sudo echo \"192.168.56.10 sram-mock.yoda.test\" | sudo tee -a /etc/hosts"
+      machine.vm.provision "shell",
+        inline: "sudo rm /etc/apt/sources.list.d/home-alvistack.sources"
     end
   end
 
@@ -77,6 +79,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         inline: "sudo timedatectl set-timezone Europe/Amsterdam"
       controller.vm.provision "shell",
         inline: "sudo echo \"192.168.56.10 eus.yoda.test\" | sudo tee -a /etc/hosts"
+      controller.vm.provision "shell",
+        inline: "sudo rm /etc/apt/sources.list.d/home-alvistack.sources"
     end
   end
 end
