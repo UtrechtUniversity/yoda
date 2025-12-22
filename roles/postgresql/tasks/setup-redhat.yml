@@ -1,14 +1,6 @@
 ---
 # copyright Utrecht University
 
-# Not supported by DNF module, so just run the command instead.
-- name: "Disable RHEL PostgreSQL module (EL8)"
-  ansible.builtin.command:  # noqa no-changed-when
-    cmd: "dnf -qy module disable postgresql"
-  changed_when: false
-  when: ansible_distribution_major_version == "8"
-
-
 - name: Ensure PostgreSQL database and dependencies are installed
   ansible.builtin.package:
     name:
@@ -18,8 +10,8 @@
   when: not ansible_check_mode
 
 
-- name: Ensure PsycoPG2 is installed (EL8 and EL9)
+- name: Ensure PsycoPG2 is installed
   ansible.builtin.package:
     name: python3-psycopg2
     state: present
-  when: "(ansible_distribution_major_version == '8' or ansible_distribution_major_version == '9') and not ansible_check_mode"
+  when: not ansible_check_mode

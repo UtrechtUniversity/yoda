@@ -197,8 +197,6 @@ pool_mode = {{ pgbouncer_pool_mode }}
 ;; packet.  Newer JDBC versions require the extra_float_digits here.
 {% if pgbouncer_override_ignore_startup_parameters is defined %}
 ignore_startup_parameters = {{ pgbouncer_override_ignore_startup_parameters }}
-{% elif ansible_distribution_major_version == "8" %}
-ignore_startup_parameters = extra_float_digits, geqo
 {% else %}
 ignore_startup_parameters = extra_float_digits
 {% endif %}
