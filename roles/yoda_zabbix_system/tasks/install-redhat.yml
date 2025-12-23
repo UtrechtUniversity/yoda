@@ -40,3 +40,9 @@
     name: '{{ zabbix_agent.package }}'
     state: present
   when: zabbix_agent_repo.results
+
+
+- name: Ensure Zabbix agent2 package has version locks
+  community.general.dnf_versionlock:
+    name: '{{ zabbix_agent.package }}'
+    state: present

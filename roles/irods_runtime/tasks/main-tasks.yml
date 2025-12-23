@@ -19,7 +19,7 @@
     state: present
 
 
-- name: Ensure iRODS runtime is pinned
+- name: Ensure iRODS runtime package is pinned (Ubuntu)
   ansible.builtin.template:
     src: 'irods_runtime.pref.j2'
     dest: '/etc/apt/preferences.d/irods_runtime.pref'
@@ -29,7 +29,7 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Ensure iRODS runtime version is locked
+- name: Ensure iRODS runtime version is locked (EL)
   community.general.dnf_versionlock:
     name: "{{ irods_runtime_package_new }}"
     state: present
