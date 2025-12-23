@@ -29,7 +29,7 @@
   when: not ansible_check_mode
 
 
-- name: Ensure iRODS resource server is pinned
+- name: Ensure iRODS resource server is pinned (Ubuntu)
   ansible.builtin.template:
     src: 'irods_resource.pref.j2'
     dest: '/etc/apt/preferences.d/irods_resource.pref'
@@ -37,6 +37,16 @@
     owner: 'root'
     group: 'root'
   when: ansible_os_family == 'Debian'
+
+
+- name: Ensure iRODS packages have version locks (EL)
+  community.general.dnf_versionlock:
+    name:
+      - "{{ irods_server_package_new }}"
+      - "{{ irods_prep_package_new }}"
+      # irods-runtime package is locked by irods_runtime role instead
+    state: present
+  when: ansible_os_family == 'RedHat'
 
 
 - name: Flush handlers to restart iRODS if needed

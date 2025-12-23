@@ -18,7 +18,7 @@
   when: not irods_server.stat.exists and not ansible_check_mode
 
 
-- name: Ensure iRODS iCommands is pinned
+- name: Ensure iRODS iCommands is pinned (Ubuntu)
   ansible.builtin.template:
     src: 'irods_icommands.pref.j2'
     dest: '/etc/apt/preferences.d/irods_icommands.pref'
@@ -28,7 +28,7 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Ensure iRODS iCommands version is locked
+- name: Ensure iRODS iCommands version is locked (EL)
   community.general.dnf_versionlock:
     name: '{{ irods_icommands_package_new }}'
     state: present
