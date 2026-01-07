@@ -5,11 +5,11 @@
   ansible.builtin.service:
     name: anubis@davrods.service
     state: restarted
-  when: inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
+  when: not ansible_check_mode and (inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', []))
 
 
 - name: Restart Anubis (landingpages)
   ansible.builtin.service:
     name: anubis@landingpages.service
     state: restarted
-  when: (inventory_hostname in groups['publics'])
+  when: not ansible_check_mode and (inventory_hostname in groups['publics'])
