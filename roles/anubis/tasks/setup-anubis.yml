@@ -99,6 +99,7 @@
     state: started
     enabled: true
   when:
+    - not ansible_check_mode
     - inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
     - yoda_davrods_anonymous_enabled is not defined or yoda_davrods_anonymous_enabled
 
@@ -108,7 +109,7 @@
     name: anubis@landingpages.service
     state: started
     enabled: true
-  when: inventory_hostname in groups.get('publics', [])
+  when: not ansible_check_mode and inventory_hostname in groups.get('publics', [])
 
 
 - name: Ensure Anubis static directory for Yoda images is present
