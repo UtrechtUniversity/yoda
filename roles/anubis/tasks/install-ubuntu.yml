@@ -17,3 +17,4 @@
   ansible.builtin.apt:
     deb: '/tmp/anubis.deb'
     state: present
+  when: not ansible_check_mode

@@ -5,6 +5,7 @@
   ansible.builtin.service:
     name: 'redis-server-{{ redis_port }}'
     state: restarted
+  when: not ansible_check_mode
 
 
 - name: Systemd daemon reload
