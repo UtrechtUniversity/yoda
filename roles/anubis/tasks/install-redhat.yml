@@ -18,3 +18,4 @@
     name: '/tmp/anubis.rpm'
     disable_gpg_check: true
     state: present
+  when: not ansible_check_mode

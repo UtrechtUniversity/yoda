@@ -49,7 +49,7 @@
   notify: Restart Apache webserver
 
 
-- name: Ensure apache configs for Anubis are enabled for landing pages (Ubuntu)
+- name: Ensure Apache configs for Anubis are enabled for landing pages (Ubuntu)
   ansible.builtin.file:
     src: "{{ yoda_public_conf_avail_dir }}//{{ item }}"
     dest: "{{ yoda_public_enabled_config_dir }}//{{ item }}"
@@ -57,7 +57,7 @@
   notify: Restart Apache webserver
   with_items:
     - "{{ yoda_public_anubis_listener_config_file }}"
-  when: enable_anubis and ansible_os_family == 'Debian'
+  when: not ansible_check_mode and enable_anubis and ansible_os_family == 'Debian'
 
 
 - name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
