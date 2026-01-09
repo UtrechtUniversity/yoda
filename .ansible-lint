@@ -5,8 +5,6 @@ skip_list:
   - var-naming
   - yaml[line-length]
 
-parseable: true
-
 mock_modules:
   - irods_advanced
   - irods_config
