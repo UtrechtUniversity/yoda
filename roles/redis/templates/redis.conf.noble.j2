@@ -74,7 +74,7 @@
 # JUST COMMENT OUT THE FOLLOWING LINE.
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {% if redis_port == 6380 %}
-bind {{ ansible_eth0.ipv4.address }} 127.0.0.1
+bind {{ ansible_default_ipv4.address }} 127.0.0.1
 {% else %}
 bind 127.0.0.1
 {% endif %}
