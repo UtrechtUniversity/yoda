@@ -769,229 +769,229 @@
     
     "relUrl": "/administration/#troubleshooting"
   },"110": {
-    "doc": "Other",
-    "title": "Other",
-    "content": ". | Redis key-value store | Yoda and the iRODS Python Rule Engine Plugin | . ",
-    "url": "/yoda/design/other/",
-    
-    "relUrl": "/design/other/"
-  },"111": {
-    "doc": "Naming conventions",
-    "title": "Naming conventions",
-    "content": "Yoda entities such as collections, data objects, categories, groups, etc. have certain naming requirements and restrictions. These exist either because of structural limitations of certain parts of the system, or to avoid errors and/or malfunctions of the system. This part of the documentation lists all the requirements and restrictions that should be followed when naming the Yoda entities. ",
-    "url": "/yoda/design/conventions/",
-    
-    "relUrl": "/design/conventions/"
-  },"112": {
-    "doc": "Naming conventions",
-    "title": "Collection and data object names",
-    "content": "System limitations to take into considerations: . | iRODS has a maximum path length of 1024 bytes1 (see: iRODS maximum path length allowed). | If any member of your group(s) use Windows native WebDAV, the WebDAV part of the paths of each data object and collection should be limited to 260 characters (due to Windows systems maximum path length limitation). | . In addition to these, there are some known naming issues that should also be taken into consideration: . | Collection names containing single apex quote ' cause issues (see: irods/irods#5727). | Renaming of collection names containing multi-byte characters mangles subcollection paths (see: irods/irods#6239). | Data object names containing non-standard characters (such as control characters with ASCII codes 01 to 08, 11, 12, 14 to 31) cause encoding issues in XML (see: irods/irods#4132). | . ",
-    "url": "/yoda/design/conventions/#collection-and-data-object-names",
-    
-    "relUrl": "/design/conventions/#collection-and-data-object-names"
-  },"113": {
-    "doc": "Naming conventions",
-    "title": "User names",
-    "content": "Rules for user names are as follows: . | must contain zero or one ‘@’ symbol, but not at the beginning or the end of the name; | (if ‘@’ symbol is not present) must contain only lowercase letters, and dots; | (if ‘@’ symbol is present) must contain only lowercase letters, numbers, hyphens, underscores, and dots; | may contain a zone name after a ‘#’ symbol. | . See: iRODS rule, Python rule . ",
-    "url": "/yoda/design/conventions/#user-names",
-    
-    "relUrl": "/design/conventions/#user-names"
-  },"114": {
-    "doc": "Naming conventions",
-    "title": "Group names",
-    "content": "Rules for group names are as follows: . | must be prefixed with ‘research-‘ or ‘deposit-‘; | must contain only lowercase characters, numbers, and hyphens; | must not start or end with a hyphen; | must not exceed 63 characters. | . See: iRODS rule, Python rule . ",
-    "url": "/yoda/design/conventions/#group-names",
-    
-    "relUrl": "/design/conventions/#group-names"
-  },"115": {
-    "doc": "Naming conventions",
-    "title": "Category names",
-    "content": "Rules for category names are as follows: . | must contain only lowercase characters, numbers, and hyphens; | must not start or end with a hyphen; | must not exceed 2700 bytes1. | . Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module. See: iRODS rule, Python rule . ",
-    "url": "/yoda/design/conventions/#category-names",
-    
-    "relUrl": "/design/conventions/#category-names"
-  },"116": {
-    "doc": "Naming conventions",
-    "title": "Subcategory names",
-    "content": "Rules for subcategory names are as follows: . | must contain only letters, numbers, spaces, commas, periods, parentheses, underscores, and hyphens; | must not exceed 2700 bytes1. | . Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module. See: iRODS rule, Python rule . ",
-    "url": "/yoda/design/conventions/#subcategory-names",
-    
-    "relUrl": "/design/conventions/#subcategory-names"
-  },"117": {
-    "doc": "Naming conventions",
-    "title": "Licenses",
-    "content": "Detailed information regarding default and non-default licenses can be found in the Installing licenses page. ",
-    "url": "/yoda/design/conventions/#licenses",
-    
-    "relUrl": "/design/conventions/#licenses"
-  },"118": {
-    "doc": "Naming conventions",
-    "title": "Footnotes",
-    "content": ". | Number of bytes directly translates to number of characters, only in case of single-byte characters. &#8617; &#8617;2 &#8617;3 . | . ",
-    "url": "/yoda/design/conventions/#footnotes",
-    
-    "relUrl": "/design/conventions/#footnotes"
-  },"119": {
-    "doc": "System Overview",
-    "title": "System overview",
-    "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
-    "url": "/yoda/design/overview/#system-overview",
-    
-    "relUrl": "/design/overview/#system-overview"
-  },"120": {
-    "doc": "System Overview",
-    "title": "Core modules",
-    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
-    "url": "/yoda/design/overview/#core-modules",
-    
-    "relUrl": "/design/overview/#core-modules"
-  },"121": {
-    "doc": "System Overview",
-    "title": "Additional modules",
-    "content": "Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
-    "url": "/yoda/design/overview/#additional-modules",
-    
-    "relUrl": "/design/overview/#additional-modules"
-  },"122": {
-    "doc": "System Overview",
-    "title": "Overview",
-    "content": ". ",
-    "url": "/yoda/design/overview/#overview",
-    
-    "relUrl": "/design/overview/#overview"
-  },"123": {
-    "doc": "System Overview",
-    "title": "System Overview",
-    "content": " ",
-    "url": "/yoda/design/overview/",
-    
-    "relUrl": "/design/overview/"
-  },"124": {
-    "doc": "Processes",
-    "title": "Processes",
-    "content": " ",
-    "url": "/yoda/design/processes/",
-    
-    "relUrl": "/design/processes/"
-  },"125": {
-    "doc": "Metadata",
-    "title": "Metadata",
-    "content": " ",
-    "url": "/yoda/design/metadata/",
-    
-    "relUrl": "/design/metadata/"
-  },"126": {
-    "doc": "Metadata",
-    "title": "Overview",
-    "content": "Yoda supports adding metadata to collections. This facilitates archiving and (especially) publishing a collection of data as a data package. Each community or group can have its own metadata schema, so that different departments or faculties can optionally adapt the metadata format to their field. This part of the documentation is about metadata in the context of Yoda data packages. iRODS metadata (AVUs) have a role in Yoda metadata, but can also be used for other purposes that are unrelated to Yoda data packages. Data request module metadata is also not in the scope of this page. Yoda metadata is primarily stored in data objects named yoda-metadata.json. ",
-    "url": "/yoda/design/metadata/#overview",
-    
-    "relUrl": "/design/metadata/#overview"
-  },"127": {
-    "doc": "Metadata",
-    "title": "Metadata schemas",
-    "content": "In Yoda, a metadata schema is used to validate the metadata of a data package. The schema also contains information regarding how the metadata should be displayed in the web portal. A Yoda metadata schema contains of two parts: . | A JSON schema file that is used to validate metadata of a data package. | A UI schema file that contains information for the web portal regarding how to display a metadata form for this schema, optionally including placeholders and help text for each field. | . Yoda environments have a default metadata schema. Additionally, specific metadata schemas can be configured for communities (also known as categories). As of Yoda 1.9, it is also possible to configure a metadata schema on a group level. For more information, see: . | Metadata schema configuration | Using JSON schema to define a metadata schema | . ",
-    "url": "/yoda/design/metadata/#metadata-schemas",
-    
-    "relUrl": "/design/metadata/#metadata-schemas"
-  },"128": {
-    "doc": "Metadata",
-    "title": "Schema names and identifiers",
-    "content": "Each schema has a globally unique identifier (URL) that is based on its name. For example, the default-2 schema is identified as https://yoda.uu.nl/schemas/default-2/metadata.json. For more information, see Architectural decision record schema identifier format . ",
-    "url": "/yoda/design/metadata/#schema-names-and-identifiers",
-    
-    "relUrl": "/design/metadata/#schema-names-and-identifiers"
-  },"129": {
-    "doc": "Metadata",
-    "title": "Exporting of metadata during publication",
-    "content": "When a data package is published, its metadata will be exported in three ways: . Landing page . The landing page HTML code is generated using a Jinja2 template. This template may need to be adapted in case of metadata schema changes. The template can be found in /etc/irods/yoda-ruleset/templates/landingpage.html.j2. The Ansible playbook activates this template by uploading it to the /zone/yoda/templates/ collection. JSON file for DataCite . A JSON file conforming to the DataCite v4 Schema is generated. The implementation can be found in /etc/irods/yoda-ruleset/json_datacite41.py. OAI-PMH data . The metadata will be copied to the OAI-PMH server (public server). Once there, it will be processed by MOAI so that it can be harvested using the OAI-PMH protocol by external systems. Only a subset of fields that map to Dublin core and DataCite are processed by MOAI. Any changes to these fields will result in the metadata being omitted from the stream. ",
-    "url": "/yoda/design/metadata/#exporting-of-metadata-during-publication",
-    
-    "relUrl": "/design/metadata/#exporting-of-metadata-during-publication"
-  },"130": {
-    "doc": "Metadata",
-    "title": "Metadata transformation",
-    "content": "As a general rule, metadata will have to comply with the latest version of a schema. For example, if a new version of Yoda has a new default-2 schema, all data packages using the default-1 schema will need to be updated to default-2.. Vault metadata is upgraded as a part of the upgrade process, as described in the release notes. Research metadata is updated when a user opens it. The transformation logic for updating to a newer version of a schema is defined in /etc/irods/yoda-ruleset/schema_transformations.py. ",
-    "url": "/yoda/design/metadata/#metadata-transformation",
-    
-    "relUrl": "/design/metadata/#metadata-transformation"
-  },"131": {
-    "doc": "Metadata",
-    "title": "Further information",
-    "content": ". | Information about metadata form implementation | Use of metadata in the vault | . ",
-    "url": "/yoda/design/metadata/#further-information",
-    
-    "relUrl": "/design/metadata/#further-information"
-  },"132": {
-    "doc": "API",
-    "title": "API",
-    "content": "Core API . | Core API documentation | . Module API . | Datarequest API documentation | . ",
-    "url": "/yoda/design/api/",
-    
-    "relUrl": "/design/api/"
-  },"133": {
-    "doc": "Software Design",
-    "title": "Software Design",
-    "content": " ",
-    "url": "/yoda/design/",
-    
-    "relUrl": "/design/"
-  },"134": {
-    "doc": "Software Design",
-    "title": "API",
-    "content": ". | API documentation | . ",
-    "url": "/yoda/design/#api",
-    
-    "relUrl": "/design/#api"
-  },"135": {
-    "doc": "Software Design",
-    "title": "System",
-    "content": ". | System overview | Research space | Vault space | Statistics module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
-    "url": "/yoda/design/#system",
-    
-    "relUrl": "/design/#system"
-  },"136": {
-    "doc": "Software Design",
-    "title": "Metadata",
-    "content": ". | Metadata design overview | Metadata schema definition | Metadata schema - JSON configuration | Metadata schema identifier format | Metadata: use in the vault | Metadata: form implementation | . ",
-    "url": "/yoda/design/#metadata",
-    
-    "relUrl": "/design/#metadata"
-  },"137": {
-    "doc": "Software Design",
-    "title": "Processes",
-    "content": ". | Asynchronous and privileged execution | Automatic Resource Balancing | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
-    "url": "/yoda/design/#processes",
-    
-    "relUrl": "/design/#processes"
-  },"138": {
-    "doc": "Software Design",
-    "title": "Conventions",
-    "content": ". | Naming conventions | . ",
-    "url": "/yoda/design/#conventions",
-    
-    "relUrl": "/design/#conventions"
-  },"139": {
-    "doc": "Software Design",
-    "title": "Other",
-    "content": ". | Python plugin | . ",
-    "url": "/yoda/design/#other",
-    
-    "relUrl": "/design/#other"
-  },"140": {
-    "doc": "Release Notes",
-    "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v2.0 (October 2025) | Release Notes - Yoda v1.10 (October 2024) | Release Notes - Yoda v1.9 (February 2024) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
-    "url": "/yoda/release-notes/",
-    
-    "relUrl": "/release-notes/"
-  },"141": {
     "doc": "Development",
     "title": "Development",
     "content": ". | Overview of repositories | Setting up development environment | Running Yoda using Docker Compose | Running API and UI tests | Running unit and integration tests | Data Archive Mock | Development tips | Wall of Fame | . ",
     "url": "/yoda/development/",
     
     "relUrl": "/development/"
+  },"111": {
+    "doc": "Processes",
+    "title": "Processes",
+    "content": " ",
+    "url": "/yoda/design/processes/",
+    
+    "relUrl": "/design/processes/"
+  },"112": {
+    "doc": "API",
+    "title": "API",
+    "content": "Core API . | Core API documentation | . Module API . | Datarequest API documentation | . ",
+    "url": "/yoda/design/api/",
+    
+    "relUrl": "/design/api/"
+  },"113": {
+    "doc": "Other",
+    "title": "Other",
+    "content": ". | Redis key-value store | Yoda and the iRODS Python Rule Engine Plugin | . ",
+    "url": "/yoda/design/other/",
+    
+    "relUrl": "/design/other/"
+  },"114": {
+    "doc": "Metadata",
+    "title": "Metadata",
+    "content": " ",
+    "url": "/yoda/design/metadata/",
+    
+    "relUrl": "/design/metadata/"
+  },"115": {
+    "doc": "Metadata",
+    "title": "Overview",
+    "content": "Yoda supports adding metadata to collections. This facilitates archiving and (especially) publishing a collection of data as a data package. Each community or group can have its own metadata schema, so that different departments or faculties can optionally adapt the metadata format to their field. This part of the documentation is about metadata in the context of Yoda data packages. iRODS metadata (AVUs) have a role in Yoda metadata, but can also be used for other purposes that are unrelated to Yoda data packages. Data request module metadata is also not in the scope of this page. Yoda metadata is primarily stored in data objects named yoda-metadata.json. ",
+    "url": "/yoda/design/metadata/#overview",
+    
+    "relUrl": "/design/metadata/#overview"
+  },"116": {
+    "doc": "Metadata",
+    "title": "Metadata schemas",
+    "content": "In Yoda, a metadata schema is used to validate the metadata of a data package. The schema also contains information regarding how the metadata should be displayed in the web portal. A Yoda metadata schema contains of two parts: . | A JSON schema file that is used to validate metadata of a data package. | A UI schema file that contains information for the web portal regarding how to display a metadata form for this schema, optionally including placeholders and help text for each field. | . Yoda environments have a default metadata schema. Additionally, specific metadata schemas can be configured for communities (also known as categories). As of Yoda 1.9, it is also possible to configure a metadata schema on a group level. For more information, see: . | Metadata schema configuration | Using JSON schema to define a metadata schema | . ",
+    "url": "/yoda/design/metadata/#metadata-schemas",
+    
+    "relUrl": "/design/metadata/#metadata-schemas"
+  },"117": {
+    "doc": "Metadata",
+    "title": "Schema names and identifiers",
+    "content": "Each schema has a globally unique identifier (URL) that is based on its name. For example, the default-2 schema is identified as https://yoda.uu.nl/schemas/default-2/metadata.json. For more information, see Architectural decision record schema identifier format . ",
+    "url": "/yoda/design/metadata/#schema-names-and-identifiers",
+    
+    "relUrl": "/design/metadata/#schema-names-and-identifiers"
+  },"118": {
+    "doc": "Metadata",
+    "title": "Exporting of metadata during publication",
+    "content": "When a data package is published, its metadata will be exported in three ways: . Landing page . The landing page HTML code is generated using a Jinja2 template. This template may need to be adapted in case of metadata schema changes. The template can be found in /etc/irods/yoda-ruleset/templates/landingpage.html.j2. The Ansible playbook activates this template by uploading it to the /zone/yoda/templates/ collection. JSON file for DataCite . A JSON file conforming to the DataCite v4 Schema is generated. The implementation can be found in /etc/irods/yoda-ruleset/json_datacite41.py. OAI-PMH data . The metadata will be copied to the OAI-PMH server (public server). Once there, it will be processed by MOAI so that it can be harvested using the OAI-PMH protocol by external systems. Only a subset of fields that map to Dublin core and DataCite are processed by MOAI. Any changes to these fields will result in the metadata being omitted from the stream. ",
+    "url": "/yoda/design/metadata/#exporting-of-metadata-during-publication",
+    
+    "relUrl": "/design/metadata/#exporting-of-metadata-during-publication"
+  },"119": {
+    "doc": "Metadata",
+    "title": "Metadata transformation",
+    "content": "As a general rule, metadata will have to comply with the latest version of a schema. For example, if a new version of Yoda has a new default-2 schema, all data packages using the default-1 schema will need to be updated to default-2.. Vault metadata is upgraded as a part of the upgrade process, as described in the release notes. Research metadata is updated when a user opens it. The transformation logic for updating to a newer version of a schema is defined in /etc/irods/yoda-ruleset/schema_transformations.py. ",
+    "url": "/yoda/design/metadata/#metadata-transformation",
+    
+    "relUrl": "/design/metadata/#metadata-transformation"
+  },"120": {
+    "doc": "Metadata",
+    "title": "Further information",
+    "content": ". | Information about metadata form implementation | Use of metadata in the vault | . ",
+    "url": "/yoda/design/metadata/#further-information",
+    
+    "relUrl": "/design/metadata/#further-information"
+  },"121": {
+    "doc": "Naming conventions",
+    "title": "Naming conventions",
+    "content": "Yoda entities such as collections, data objects, categories, groups, etc. have certain naming requirements and restrictions. These exist either because of structural limitations of certain parts of the system, or to avoid errors and/or malfunctions of the system. This part of the documentation lists all the requirements and restrictions that should be followed when naming the Yoda entities. ",
+    "url": "/yoda/design/conventions/",
+    
+    "relUrl": "/design/conventions/"
+  },"122": {
+    "doc": "Naming conventions",
+    "title": "Collection and data object names",
+    "content": "System limitations to take into considerations: . | iRODS has a maximum path length of 1024 bytes1 (see: iRODS maximum path length allowed). | If any member of your group(s) use Windows native WebDAV, the WebDAV part of the paths of each data object and collection should be limited to 260 characters (due to Windows systems maximum path length limitation). | . In addition to these, there are some known naming issues that should also be taken into consideration: . | Collection names containing single apex quote ' cause issues (see: irods/irods#5727). | Renaming of collection names containing multi-byte characters mangles subcollection paths (see: irods/irods#6239). | Data object names containing non-standard characters (such as control characters with ASCII codes 01 to 08, 11, 12, 14 to 31) cause encoding issues in XML (see: irods/irods#4132). | . ",
+    "url": "/yoda/design/conventions/#collection-and-data-object-names",
+    
+    "relUrl": "/design/conventions/#collection-and-data-object-names"
+  },"123": {
+    "doc": "Naming conventions",
+    "title": "User names",
+    "content": "Rules for user names are as follows: . | must contain zero or one ‘@’ symbol, but not at the beginning or the end of the name; | (if ‘@’ symbol is not present) must contain only lowercase letters, and dots; | (if ‘@’ symbol is present) must contain only lowercase letters, numbers, hyphens, underscores, and dots; | may contain a zone name after a ‘#’ symbol. | . See: iRODS rule, Python rule . ",
+    "url": "/yoda/design/conventions/#user-names",
+    
+    "relUrl": "/design/conventions/#user-names"
+  },"124": {
+    "doc": "Naming conventions",
+    "title": "Group names",
+    "content": "Rules for group names are as follows: . | must be prefixed with ‘research-‘ or ‘deposit-‘; | must contain only lowercase characters, numbers, and hyphens; | must not start or end with a hyphen; | must not exceed 63 characters. | . See: iRODS rule, Python rule . ",
+    "url": "/yoda/design/conventions/#group-names",
+    
+    "relUrl": "/design/conventions/#group-names"
+  },"125": {
+    "doc": "Naming conventions",
+    "title": "Category names",
+    "content": "Rules for category names are as follows: . | must contain only lowercase characters, numbers, and hyphens; | must not start or end with a hyphen; | must not exceed 2700 bytes1. | . Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module. See: iRODS rule, Python rule . ",
+    "url": "/yoda/design/conventions/#category-names",
+    
+    "relUrl": "/design/conventions/#category-names"
+  },"126": {
+    "doc": "Naming conventions",
+    "title": "Subcategory names",
+    "content": "Rules for subcategory names are as follows: . | must contain only letters, numbers, spaces, commas, periods, parentheses, underscores, and hyphens; | must not exceed 2700 bytes1. | . Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module. See: iRODS rule, Python rule . ",
+    "url": "/yoda/design/conventions/#subcategory-names",
+    
+    "relUrl": "/design/conventions/#subcategory-names"
+  },"127": {
+    "doc": "Naming conventions",
+    "title": "Licenses",
+    "content": "Detailed information regarding default and non-default licenses can be found in the Installing licenses page. ",
+    "url": "/yoda/design/conventions/#licenses",
+    
+    "relUrl": "/design/conventions/#licenses"
+  },"128": {
+    "doc": "Naming conventions",
+    "title": "Footnotes",
+    "content": ". | Number of bytes directly translates to number of characters, only in case of single-byte characters. &#8617; &#8617;2 &#8617;3 . | . ",
+    "url": "/yoda/design/conventions/#footnotes",
+    
+    "relUrl": "/design/conventions/#footnotes"
+  },"129": {
+    "doc": "System Overview",
+    "title": "System overview",
+    "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
+    "url": "/yoda/design/overview/#system-overview",
+    
+    "relUrl": "/design/overview/#system-overview"
+  },"130": {
+    "doc": "System Overview",
+    "title": "Core modules",
+    "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements a FAIR data publication workflow. Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
+    "url": "/yoda/design/overview/#core-modules",
+    
+    "relUrl": "/design/overview/#core-modules"
+  },"131": {
+    "doc": "System Overview",
+    "title": "Additional modules",
+    "content": "Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
+    "url": "/yoda/design/overview/#additional-modules",
+    
+    "relUrl": "/design/overview/#additional-modules"
+  },"132": {
+    "doc": "System Overview",
+    "title": "Overview",
+    "content": ". ",
+    "url": "/yoda/design/overview/#overview",
+    
+    "relUrl": "/design/overview/#overview"
+  },"133": {
+    "doc": "System Overview",
+    "title": "System Overview",
+    "content": " ",
+    "url": "/yoda/design/overview/",
+    
+    "relUrl": "/design/overview/"
+  },"134": {
+    "doc": "Software Design",
+    "title": "Software Design",
+    "content": " ",
+    "url": "/yoda/design/",
+    
+    "relUrl": "/design/"
+  },"135": {
+    "doc": "Software Design",
+    "title": "API",
+    "content": ". | API documentation | . ",
+    "url": "/yoda/design/#api",
+    
+    "relUrl": "/design/#api"
+  },"136": {
+    "doc": "Software Design",
+    "title": "System",
+    "content": ". | System overview | Research space | Vault space | Statistics module | Datarequests module | Group manager | Authentication | Theme Packages | External User Service | Yoda OAI-PMH endpoint | . ",
+    "url": "/yoda/design/#system",
+    
+    "relUrl": "/design/#system"
+  },"137": {
+    "doc": "Software Design",
+    "title": "Metadata",
+    "content": ". | Metadata design overview | Metadata schema definition | Metadata schema - JSON configuration | Metadata schema identifier format | Metadata: use in the vault | Metadata: form implementation | . ",
+    "url": "/yoda/design/#metadata",
+    
+    "relUrl": "/design/#metadata"
+  },"138": {
+    "doc": "Software Design",
+    "title": "Processes",
+    "content": ". | Asynchronous and privileged execution | Automatic Resource Balancing | List of asynchronous processes | Locking mechanism | Publication process | Revision management | Vault process | . ",
+    "url": "/yoda/design/#processes",
+    
+    "relUrl": "/design/#processes"
+  },"139": {
+    "doc": "Software Design",
+    "title": "Conventions",
+    "content": ". | Naming conventions | . ",
+    "url": "/yoda/design/#conventions",
+    
+    "relUrl": "/design/#conventions"
+  },"140": {
+    "doc": "Software Design",
+    "title": "Other",
+    "content": ". | Python plugin | . ",
+    "url": "/yoda/design/#other",
+    
+    "relUrl": "/design/#other"
+  },"141": {
+    "doc": "Release Notes",
+    "title": "Release Notes",
+    "content": ". | Release Notes - Yoda v2.0 (October 2025) | Release Notes - Yoda v1.10 (October 2024) | Release Notes - Yoda v1.9 (February 2024) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "url": "/yoda/release-notes/",
+    
+    "relUrl": "/release-notes/"
   },"142": {
     "doc": "Home",
     "title": "Yoda technical documentation",
@@ -1807,7 +1807,7 @@
   },"258": {
     "doc": "v2.0",
     "title": "Upgrading from previous release",
-    "content": "Software version requirements . The playbook requires Ansible 2.16.x or higher. Version constraints: . | Requires Yoda external user service to be on version 1.9.x or higher. | Requires Yoda public server to be on version 1.9.x or higher. | Although Yoda itself supports EL 8 systems (e.g. RHEL 8) as a database server, Ansible has dropped support for EL 8 in version 2.17.0. It is recommended to use EL 9 or Ubuntu 24.04 LTS for new database servers. For existing EL 8 database servers, run Ansible 2.16.x in a virtual environment, and install Python 3.12 on the EL 8 server: | . sudo yum install python3.12 python3.12-pip sudo /usr/bin/python3.12 -m pip install cryptography psycopg2-binary selinux . Upgrade process . | Backup/copy custom configurations made to Yoda version 1.9.5 / 1.10.0 To view what files were changed from the defaults, run git diff. | After ensuring the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Check out the v2.0.1 tag of the Yoda Git repository: git checkout v2.0.1 . | Set the Yoda version to v2.0.1 in the configuration: yoda_version: v2.0.1 . | If the old configuration contained an iRODS authentication scheme setting, update it to use pam_password. Example: irods_authentication_scheme: pam_password . | It is recommended to explicitly set the Ansible interpreter path in the group_vars (if the Yoda environment servers all have the same Linux distribution) or in the host_vars (if they have different Linux distributions) in order to prevent problems with Ansible using a different interpreter than expected. | . For EL 9 environments: . ansible_python_interpreter: /usr/bin/python3.9 . For EL 8 and Ubuntu 24.04 LTS environments (see also additional instructions above for EL 8 servers): . ansible_python_interpreter: /usr/bin/python3.12 . | Install all Ansible collections needed to deploy Yoda: ansible-galaxy collection install -r requirements.yml . | Run the Ansible playbook in check mode: ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally: ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | Manually restart Apache on all portal and WebDAV servers | . On Ubuntu: . sudo systemctl restart apache2 . On RHEL: . sudo systemctl restart httpd . | Manually restart the portal application on all portal servers sudo touch /var/www/yoda/yoda.wsgi /var/www/yoda/yoda_debug.wsgi . | . ",
+    "content": "Software version requirements . The playbook requires Ansible 2.16.x or higher. Version constraints: . | Requires Yoda external user service to be on version 1.9.x or higher. | Requires Yoda public server to be on version 1.9.x or higher. | Although Yoda itself supports EL 8 systems (e.g. RHEL 8) as a database server, Ansible has dropped support for EL 8 in version 2.17.0. It is recommended to use EL 9 or Ubuntu 24.04 LTS for new database servers. For existing EL 8 database servers, run Ansible 2.16.x in a virtual environment, and install Python 3.12 on the EL 8 server: | . sudo yum install python3.12 python3.12-pip sudo /usr/bin/python3.12 -m pip install cryptography psycopg2-binary selinux . Upgrade process . | Backup/copy custom configurations made to Yoda version 1.9.5 / 1.10.0 To view what files were changed from the defaults, run git diff. | After ensuring the configurations are stored safely in another folder, reset the Yoda folder using git stash or when you want to delete all changes made: git reset --hard. | Check out the v2.0.2 tag of the Yoda Git repository: git checkout v2.0.2 . | Set the Yoda version to v2.0.2 in the configuration: yoda_version: v2.0.2 . | If the old configuration contained an iRODS authentication scheme setting, update it to use pam_password. Example: irods_authentication_scheme: pam_password . | It is recommended to explicitly set the Ansible interpreter path in the group_vars (if the Yoda environment servers all have the same Linux distribution) or in the host_vars (if they have different Linux distributions) in order to prevent problems with Ansible using a different interpreter than expected. | . For EL 9 environments: . ansible_python_interpreter: /usr/bin/python3.9 . For EL 8 and Ubuntu 24.04 LTS environments (see also additional instructions above for EL 8 servers): . ansible_python_interpreter: /usr/bin/python3.12 . | Install all Ansible collections needed to deploy Yoda: ansible-galaxy collection install -r requirements.yml . | Run the Ansible playbook in check mode: ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml --check ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml --check . | If the playbook has finished successfully in check mode, run the Ansible playbook normally: ansible-playbook -i &lt;path-to-your-environment&gt; playbook.yml ### EXAMPLE ### ansible-playbook -i /environments/development/allinone playbook.yml . | Update publication endpoints if there are published packages (DataCite, landingpages and OAI-PMH): irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r . | Manually restart Apache on all portal and WebDAV servers | . On Ubuntu: . sudo systemctl restart apache2 . On RHEL: . sudo systemctl restart httpd . | Manually restart the portal application on all portal servers sudo touch /var/www/yoda/yoda.wsgi /var/www/yoda/yoda_debug.wsgi . | . ",
     "url": "/yoda/release-notes/release-2.0.html#upgrading-from-previous-release",
     
     "relUrl": "/release-notes/release-2.0.html#upgrading-from-previous-release"

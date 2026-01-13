@@ -174,7 +174,7 @@
 </nav>
 
 
-<div class="d-md-block d-xs-none">
+<div class="d-md-block d-none">
   
   
     <footer class="site-footer">&copy; 2017-2026 <a href="https://www.uu.nl/" title="Utrecht University website">Utrecht University</a></footer>
@@ -371,12 +371,12 @@ To view what files were changed from the defaults, run <code class="language-pla
   <li>
     <p>After ensuring the configurations are stored safely in another folder, reset the Yoda folder using <code class="language-plaintext highlighter-rouge">git stash</code> or when you want to delete all changes made: <code class="language-plaintext highlighter-rouge">git reset --hard</code>.</p>
   </li>
-  <li>Check out the <code class="language-plaintext highlighter-rouge">v2.0.1</code> tag of the Yoda Git repository:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout v2.0.1
+  <li>Check out the <code class="language-plaintext highlighter-rouge">v2.0.2</code> tag of the Yoda Git repository:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout v2.0.2
 </code></pre></div>    </div>
   </li>
-  <li>Set the Yoda version to <code class="language-plaintext highlighter-rouge">v2.0.1</code> in the configuration:
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v2.0.1</span>
+  <li>Set the Yoda version to <code class="language-plaintext highlighter-rouge">v2.0.2</code> in the configuration:
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v2.0.2</span>
 </code></pre></div>    </div>
   </li>
   <li>If the old configuration contained an iRODS authentication scheme setting, update it to use <code class="language-plaintext highlighter-rouge">pam_password</code>. Example:
@@ -459,7 +459,7 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
         </p>
       
     </div>
-  <div class="d-xs-block d-md-none">
+  <div class="d-md-none">
     
     
       <footer class="site-footer">&copy; 2017-2026 <a href="https://www.uu.nl/" title="Utrecht University website">Utrecht University</a></footer>
