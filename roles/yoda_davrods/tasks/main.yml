@@ -103,7 +103,7 @@
   notify: Restart Apache webserver
   with_items:
     - "{{ yoda_davrods_anon_anubis_listener_config_file }}"
-  when: enable_anubis and ansible_os_family == 'Debian'
+  when: enable_anubis and ansible_os_family == 'Debian' and not ansible_check_mode
 
 
 - name: Ensure DavRODS virtual hosts are enabled (Ubuntu)
