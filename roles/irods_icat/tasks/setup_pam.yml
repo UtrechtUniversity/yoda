@@ -11,7 +11,7 @@
     state: absent
 
 
-- name: Ensure deprecated RADIUS fallback is not  is configured
+- name: Ensure RADIUS fallback is not configured
   ansible.builtin.file:
     path: /etc/pam_radius.conf
     state: absent
