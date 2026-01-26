@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-- name: Update systemd-resolved config to use Google DNS servers (Ubuntu)
+- name: Update systemd-resolved config to use custom DNS servers (Ubuntu)
   ansible.builtin.template:
     src: resolved.conf.j2
     dest: /etc/systemd/resolved.conf
@@ -12,7 +12,7 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Update resolv.conf to use Google DNS servers (EL9)
+- name: Update resolv.conf to use custom DNS servers (EL9)
   become: true
   when: ansible_os_family == 'RedHat'
   block:
@@ -38,6 +38,7 @@
         dest: /etc/resolv.conf
         state: link
         force: true
+
 
 - name: Flush handlers for immediate effect of changing DNS configuration
   ansible.builtin.meta: flush_handlers
