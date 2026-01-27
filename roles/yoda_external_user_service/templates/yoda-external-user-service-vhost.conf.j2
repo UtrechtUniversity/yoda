@@ -31,6 +31,7 @@ Listen {{ yoda_eus_port }}
 
     WSGIDaemonProcess yoda_eus_noapi user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} threads=5 python-home=/var/www/extuser/yoda-external-user-service/venv
     WSGIProcessGroup yoda_eus_noapi
+    WSGIApplicationGroup %{GLOBAL}
     WSGIScriptAlias / /var/www/extuser/yoda_eus_noapi.wsgi
     WSGIScriptReloading On
     WSGIPassAuthorization On
@@ -71,6 +72,7 @@ Listen {{ eus_api_port }}
     </Directory>
 
     WSGIDaemonProcess yoda_eus_api user={{ yoda_deployment_user }} group={{ yoda_deployment_user }} threads=5 python-home=/var/www/extuser/yoda-external-user-service/venv
+    WSGIApplicationGroup %{GLOBAL}
     WSGIProcessGroup yoda_eus_api
     WSGIScriptAlias / /var/www/extuser/yoda_eus_api.wsgi
     WSGIScriptReloading On
