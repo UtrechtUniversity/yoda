@@ -5,7 +5,7 @@
   become: true
   become_user: postgres
   community.postgresql.postgresql_idx:
-    db: '{{ irods_database_name }}'
+    login_db: '{{ irods_database_name }}'
     name: '{{ item }}'
     state: absent
   with_items:
@@ -23,14 +23,14 @@
   community.postgresql.postgresql_ext:
     state: '{{ "present" if irods_database_enable_yoda_indexes else "absent" }}'
     name: pg_trgm
-    db: '{{ irods_database_name }}'
+    login_db: '{{ irods_database_name }}'
 
 
 - name: Install Yoda-specific indexes on iCAT database
   become: true
   become_user: postgres
   community.postgresql.postgresql_idx:
-    db: '{{ irods_database_name }}'
+    login_db: '{{ irods_database_name }}'
     name: '{{ item.name }}'
     type: '{{ item.type }}'
     columns: '{{ item.columns }}'

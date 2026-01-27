@@ -28,10 +28,19 @@
   become_user: postgres
   become: true
   community.postgresql.postgresql_user:
-    db: "{{ irods_database_name }}"
+    login_db: "{{ irods_database_name }}"
     name: "{{ irods_database_user }}"
     password: "{{ irods_database_password }}"
-    priv: ALL
+
+
+- name: Grant privileges to iRODS database user
+  become_user: postgres
+  become: true
+  community.postgresql.postgresql_privs:
+    login_db: "{{ irods_database_name }}"
+    roles: "{{ irods_database_user }}"
+    privs: ALL
+    type: database
 
 
 # Needed because of change in default permissions public schema as of PostgreSQL 15
@@ -39,7 +48,7 @@
   become_user: postgres
   become: true
   community.postgresql.postgresql_privs:
-    database: "{{ irods_database_name }}"
+    login_db: "{{ irods_database_name }}"
     roles: "{{ irods_database_user }}"
     objs: public
     privs: CREATE

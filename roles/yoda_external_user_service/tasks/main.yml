@@ -143,10 +143,9 @@
   become_user: postgres
   become: true
   community.postgresql.postgresql_user:
-    db: "{{ eus_db_name }}"
+    login_db: "{{ eus_db_name }}"
     name: "{{ eus_db_user }}"
     password: "{{ eus_db_password }}"
-    priv: CREATE
   when: not ansible_check_mode
 
 
@@ -154,7 +153,7 @@
   become_user: postgres
   become: true
   community.postgresql.postgresql_privs:
-    database: "{{ eus_db_name }}"
+    login_db: "{{ eus_db_name }}"
     state: present
     privs: SELECT,INSERT,UPDATE,DELETE,REFERENCES
     type: table
@@ -169,7 +168,7 @@
   become_user: postgres
   become: true
   community.postgresql.postgresql_privs:
-    database: "{{ eus_db_name }}"
+    login_db: "{{ eus_db_name }}"
     roles: "{{ eus_db_user }}"
     objs: public
     privs: CREATE
