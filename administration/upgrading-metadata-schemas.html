@@ -241,20 +241,43 @@
 </h1>
     
 
-<p>Metadata schemas of an Yoda instance can be migrated to newer version or other metadata schema if a transformation exists.
-Only metadata in the vault space is upgraded using the steps below.
-For all metadata in the research space the systems requests the user to transform the metadata to the new metadata schema.</p>
+<p>When a newer version of a metadata schema becomes available, it can be necessary or useful to transform
+existing metadata of archived data packages to the new schema version. Yoda can usually handle such transformations
+(partially) automatically for the default metadata schemas. Details are typically provided
+in the release notes of the Yoda version that introduces the new schema.</p>
+
+<p>In general, you need to follow these steps:</p>
 
 <ol>
   <li>
-    <p>Upgrade default metadata schema using Ansible or <a href="/yoda/administration/installing-metadata-schemas.html">manually</a></p>
+    <p>First, configure the groups you want to upgrade to use the new metadata schema version. In Yoda, schemas can
+be configured on various levels (see <a href="/yoda/design/metadata/schema-configuration.html">the design documentation</a>
+for details. You need to ensure that the configuration at each level is correct. For example, if you want to update
+all vault groups to a new metadata schemas on an environment where some groups use a group-level setting whereas others
+use an environment-level setting, you need to update the settings at both levels.</p>
+
+    <p>For upgrading the environment or category default metadata schema,
+see <a href="/yoda/administration/installing-metadata-schemas.html">the instructions for installing metadata schemas</a>.</p>
+
+    <p>For updating group level schema settings, you can use the imeta command as a rodsadmin user. For example:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>imeta <span class="nb">set</span> <span class="nt">-u</span> research-foo schema_id default-3
+</code></pre></div>    </div>
   </li>
   <li>
-    <p>After the upgrade all metadata on the system needs to be migrated, this can be done by running the following command:</p>
+    <p>If you want to check all archived data packages on the environment for schema updates, use the generic rule:</p>
+
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r
 </code></pre></div>    </div>
-    <p>All metadata touched will be logged in the rodsLog.
-Adding the schema identifiers can take some time, the batch script adds 256 jobs per 60 seconds to the rule queue.</p>
+
+    <p>All metadata transformations will be logged in the rodsLog.  Adding the schema identifiers can take some time, as the
+job will use delays between checking data packages.</p>
+
+    <p>If you only want to check individual archived data packages for schema updates, use the rule
+for checking individual data packages. For example:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-python-instance <span class="nt">-F</span> tools/check-single-dp-metadata-for-schema-updates.r <span class="s1">'*collection="/tempZone/home/vault-foo/datapackage[123456789]"'</span>
+</code></pre></div>    </div>
   </li>
 </ol>
 
