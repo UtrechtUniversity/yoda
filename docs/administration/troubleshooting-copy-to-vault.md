@@ -70,7 +70,7 @@ data packages to a new vault folder.
 Example command:
 
 ```
-imeta set -C /tempZone/home/vault-collection/data-package[1234567890] org_cronjob_copy_to_vault CRONJOB_RETRY
+imeta set -C /tempZone/home/research-collection/data-package org_cronjob_copy_to_vault CRONJOB_RETRY
 ```
 
 Afterwards, you will need to remove the vault collection that was created on the first try manually.
