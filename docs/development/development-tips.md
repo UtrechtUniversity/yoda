@@ -67,3 +67,11 @@ Remove all existing data requests (to declutter your _development_ environment):
 ```bash
 icd /tempZone/home/datarequests-research && ils | grep \ \  | sed 's/\ \ C-\ //' | xargs -I COLLPATH sh -c "ichmod -M -r own rods COLLPATH && irm -r COLLPATH"
 ```
+
+## Real DataCite environment
+
+By default, the development VM uses an internal mock DataCite server. To enable and work with a real DataCite environment, you need to provide the DataCite server name and credentials when deploying the VM:
+
+```bash
+ansible-playbook -i environments/development/allinone playbook.yml --extra-vars 'datacite_rest_api_url=api.test.datacite.org datacite_username=USERNAME datacite_password=PASSWORD' -D
+```
