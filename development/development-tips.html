@@ -342,6 +342,19 @@ In order to see what messages Yoda would have sent, browse to port 8025 on the i
 <p>Remove all existing data requests (to declutter your <em>development</em> environment):</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>icd /tempZone/home/datarequests-research <span class="o">&amp;&amp;</span> ils | <span class="nb">grep</span> <span class="se">\ \ </span> | <span class="nb">sed</span> <span class="s1">'s/\ \ C-\ //'</span> | xargs <span class="nt">-I</span> COLLPATH sh <span class="nt">-c</span> <span class="s2">"ichmod -M -r own rods COLLPATH &amp;&amp; irm -r COLLPATH"</span>
 </code></pre></div></div>
+<h2 id="real-datacite-environment">
+  
+  
+    <a href="#real-datacite-environment" class="anchor-heading" aria-labelledby="real-datacite-environment"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Real DataCite environment
+  
+  
+</h2>
+    
+
+<p>By default, the development VM uses an internal mock DataCite server. To enable and work with a real DataCite environment, you need to provide the DataCite server name and credentials when deploying the VM:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook <span class="nt">-i</span> environments/development/allinone playbook.yml <span class="nt">--extra-vars</span> <span class="s1">'datacite_rest_api_url=api.test.datacite.org datacite_username=USERNAME datacite_password=PASSWORD'</span> <span class="nt">-D</span>
+</code></pre></div></div>
 
           
 
