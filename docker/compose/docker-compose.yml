@@ -21,6 +21,8 @@ services:
     volumes:
       - public_metadata:/public/var/www/moai/metadata
       - public_landingpages:/public/var/www/landingpages
+    environment:
+      - TEST_USER_PASSWORD_HASH=${TEST_USER_PASSWORD_HASH}
     restart: unless-stopped
 
   db:

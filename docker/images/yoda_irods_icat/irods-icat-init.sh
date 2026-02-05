@@ -39,6 +39,13 @@ function start_service {
   sleep infinity
 }
 
+# Override test user passwords with user-defined values
+before_update "Setting test user passwords"
+for user in researcher viewer groupmanager datamanager functionaladmingroup functionaladmincategory functionaladminpriv technicaladmin projectmanager dacmember ; \
+do usermod -p "$TEST_USER_PASSWORD_HASH" "$user"
+done
+progress_update "Setting test user passwords complete"
+
 if [ -f "/container_initialized" ]
 then echo "Container has already been initialized. Starting service."
      start_service
