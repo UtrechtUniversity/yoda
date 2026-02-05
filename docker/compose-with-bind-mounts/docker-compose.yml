@@ -21,6 +21,8 @@ services:
     build:
       context: ../images/yoda_irods_icat
     restart: unless-stopped
+    environment:
+      - TEST_USER_PASSWORD_HASH=${TEST_USER_PASSWORD_HASH}
     volumes:
       - type: bind
         source: ./v_yoda_ruleset
