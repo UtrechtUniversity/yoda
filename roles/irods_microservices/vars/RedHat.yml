@@ -11,6 +11,6 @@ irods_microservices_data:
   irods_uu_microservices:
     package: irods-uu-microservices
     version: 4.3.4-1.2.0-0
-    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v1.2.0/irods-uu-microservices-4.3.4_1.2.0-0.rpm
-    filename: irods-uu-microservices-4.3.4-1.2.0-0.rpm
-    checksum: sha256:0281ffdf4d4f51455a70141d2a8029742b73a8c162ff6243c3a3d273a36a0fbe
+    url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v1.2.1/irods-uu-microservices-4.3.4_1.2.1-0.rpm
+    filename: irods-uu-microservices-4.3.4-1.2.1-0.rpm
+    checksum: sha256:77ec3a4a8da73491b63936f4537f5c42f57c5b5bc548f5f966f8bfe9d12f2bc1
