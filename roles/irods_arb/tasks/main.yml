@@ -32,3 +32,9 @@
     name: "psutil==5.9.5"
     executable: "{{ irods_arb_pip3_location }}"
   when: ansible_os_family == 'RedHat'
+
+
+- name: Ensure cryptography module for certificate verification is installed
+  ansible.builtin.package:
+    name: python3-cryptography
+    state: present
