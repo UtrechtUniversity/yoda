@@ -57,6 +57,14 @@ case "$1" in
     docker exec "$EXEC_OPTIONS" provider.yoda sudo -iu irods /usr/local/bin/python3 /etc/irods/yoda-ruleset/tools/arb-update-resources.py -v
     ;;
 
+  portalcleanupsessions)
+    docker exec "$EXEC_OPTIONS" portal.yoda sudo -iu yodadeployment /bin/find /var/www/portal-sessions -maxdepth 1 -type f -mtime +1 -delete
+    ;;
+
+  euscleanupsessions)
+    docker exec "$EXEC_OPTIONS" eus.yoda sudo -iu yodadeployment /bin/find /var/www/extuser/sessions -maxdepth 1 -type f -mtime +1 -delete
+    ;;
+
   *)
     echo "No cronjob or invalid cronjob provided."
     ;;

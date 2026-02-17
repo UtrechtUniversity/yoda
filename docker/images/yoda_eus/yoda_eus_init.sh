@@ -113,6 +113,7 @@ CSRF_TOKENS_ENABLED = 'true'
 API_SECRET          = 'PLACEHOLDER'
 EUS_TITLE_TEXT      = 'Yoda External User Service'
 SESSION_TYPE        = 'filesystem'
+SESSION_FILE_DIR    = '/var/www/extuser/sessions'
 
 # Theming configuration
 YODA_THEME_PATH     = '/var/www/yoda/themes' # Path to location of themes

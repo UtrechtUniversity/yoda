@@ -39,8 +39,8 @@ RUN useradd yodadeployment && \
     chsh --shell /bin/bash yodadeployment && \
     mkdir /home/yodadeployment && \
     chown yodadeployment:yodadeployment /home/yodadeployment && \
-    mkdir /var/www/yoda && \
-    chown yodadeployment:yodadeployment /var/www/yoda && \
+    mkdir /var/www/yoda /var/www/portal-sessions && \
+    chown yodadeployment:yodadeployment /var/www/yoda /var/www/portal-sessions && \
     git clone --branch $YODA_PORTAL_BRANCH $YODA_PORTAL_REPO /var/www/yoda && \
     git config --global --add safe.directory /var/www/yoda
 
