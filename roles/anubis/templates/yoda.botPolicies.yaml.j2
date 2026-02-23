@@ -9,7 +9,7 @@
 ## Import paths can either be prefixed with (data) to import from the common/shared
 ## rules in the data folder in the Anubis source tree or will point to absolute/relative
 ## paths in your filesystem. If you don't have access to the Anubis source tree, check
-## /usr/share/doc/anubis/data or in the tarball you extracted Anubis from.
+## /usr/share/docs/anubis/data or in the tarball you extracted Anubis from.
 
 bots:
   # You can import the entire default config with this macro:
@@ -51,8 +51,7 @@ bots:
   #   user_agent_regex: (?i:bot|crawler)
   #   action: CHALLENGE
   #   challenge:
-  #     difficulty: 16  # impossible
-  #     report_as: 4    # lie to the operator
+  #     difficulty: 16 # impossible
   #     algorithm: slow # intentionally waste CPU cycles and time
 
   # # Requires a subscription to Thoth to use, see
@@ -97,50 +96,6 @@ bots:
   #   weight:
   #     adjust: -10
 
-  # Assert behaviour that only genuine browsers display. This ensures that Chrome
-  # or Firefox versions
-  # - name: realistic-browser-catchall
-  #   expression:
-  #     all:
-  #       - '"User-Agent" in headers'
-  #       - '( userAgent.contains("Firefox") ) || ( userAgent.contains("Chrome") ) || ( userAgent.contains("Safari") )'
-  #       - '"Accept" in headers'
-  #       - '"Sec-Fetch-Dest" in headers'
-  #       - '"Sec-Fetch-Mode" in headers'
-  #       - '"Sec-Fetch-Site" in headers'
-  #       - '"Accept-Encoding" in headers'
-  #       - '( headers["Accept-Encoding"].contains("zstd") || headers["Accept-Encoding"].contains("br") )'
-  #       - '"Accept-Language" in headers'
-  #   action: WEIGH
-  #   weight:
-  #     adjust: -10
-
-  # The Upgrade-Insecure-Requests header is typically sent by browsers, but not always
-  # - name: upgrade-insecure-requests
-  #   expression: '"Upgrade-Insecure-Requests" in headers'
-  #   action: WEIGH
-  #   weight:
-  #     adjust: -2
-
-  # Chrome should behave like Chrome
-  # - name: chrome-is-proper
-  #   expression:
-  #     all:
-  #       - userAgent.contains("Chrome")
-  #       - '"Sec-Ch-Ua" in headers'
-  #       - 'headers["Sec-Ch-Ua"].contains("Chromium")'
-  #       - '"Sec-Ch-Ua-Mobile" in headers'
-  #       - '"Sec-Ch-Ua-Platform" in headers'
-  #   action: WEIGH
-  #   weight:
-  #     adjust: -5
-
-  # - name: should-have-accept
-  #   expression: '!("Accept" in headers)'
-  #   action: WEIGH
-  #   weight:
-  #     adjust: 5
-
   # Generic catchall rule
   - name: generic-browser
     user_agent_regex: >-
@@ -151,6 +106,7 @@ bots:
 
 dnsbl: false
 
+# #
 # impressum:
 #   # Displayed at the bottom of every page rendered by Anubis.
 #   footer: >-
@@ -218,7 +174,6 @@ status_codes:
 # store:
 #   backend: memory
 #   parameters: {}
-
 store:
   backend: valkey
   parameters:
@@ -254,7 +209,6 @@ thresholds:
       # https://anubis.techaro.lol/docs/admin/configuration/challenges/metarefresh
       algorithm: metarefresh
       difficulty: 1
-      report_as: 1
   # For clients that are browser-like but have either gained points from custom rules or
   # report as a standard browser.
   - name: moderate-suspicion
@@ -266,8 +220,7 @@ thresholds:
     challenge:
       # https://anubis.techaro.lol/docs/admin/configuration/challenges/proof-of-work
       algorithm: fast
-      difficulty: 4 # two leading zeros, very fast for most clients
-      report_as: 4
+      difficulty: 2 # two leading zeros, very fast for most clients
   - name: mild-proof-of-work
     expression:
       all:
@@ -278,7 +231,6 @@ thresholds:
       # https://anubis.techaro.lol/docs/admin/configuration/challenges/proof-of-work
       algorithm: fast
       difficulty: 4
-      report_as: 4
   # For clients that are browser like and have gained many points from custom rules
   - name: extreme-suspicion
     expression: weight >= 30
@@ -287,4 +239,3 @@ thresholds:
       # https://anubis.techaro.lol/docs/admin/configuration/challenges/proof-of-work
       algorithm: fast
       difficulty: 6
-      report_as: 6

@@ -2,8 +2,8 @@
 # copyright Utrecht University
 
 # Latest stable version of Anubis: https://github.com/TecharoHQ/anubis/releases
-anubis_rpm_url: https://github.com/TecharoHQ/anubis/releases/download/v1.23.1/anubis-1.23.1-1.x86_64.rpm
-anubis_rpm_checksum: sha256:9966fad368757dac80bf7fed0539ff20f07ed8a2c6210ac38b36c55d6a89f39c
+anubis_rpm_url: https://github.com/TecharoHQ/anubis/releases/download/v1.25.0/anubis-1.25.0-1.x86_64.rpm
+anubis_rpm_checksum: sha256:d27657eeb91de09f3b466f81c333343f84d269977ebe685a262ef63fe7e39eae
 
 # Davrods related
 yoda_davrods_user: apache
