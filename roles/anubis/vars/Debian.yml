@@ -2,8 +2,8 @@
 # copyright Utrecht University
 
 # Latest stable version of Anubis: https://github.com/TecharoHQ/anubis/releases
-anubis_deb_url: https://github.com/TecharoHQ/anubis/releases/download/v1.23.1/anubis_1.23.1_amd64.deb
-anubis_deb_checksum: sha256:8947f969c770e85ad23da253ffa73e5ec47ecd55cb0c4fbb1f9928aa81ac490f
+anubis_deb_url: https://github.com/TecharoHQ/anubis/releases/download/v1.25.0/anubis_1.25.0_amd64.deb
+anubis_deb_checksum: sha256:93e083461f43c8fd92b95a9d6b2a88a80131ecfbef15e894a3fd576cdc5749f3
 apache_module_config_dir: /etc/apache2/mods-available
 apache_module_enabled_config_dir: /etc/apache2/mods-enabled
 
