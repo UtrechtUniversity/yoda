@@ -17,6 +17,7 @@
   ansible.builtin.package:
     name: "{{ irods_runtime_package_new }}"
     state: present
+  when: not ansible_check_mode
 
 
 - name: Ensure iRODS runtime package is pinned (Ubuntu)

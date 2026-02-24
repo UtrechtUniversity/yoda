@@ -1,13 +1,13 @@
 ---
 # copyright Utrecht University
 
-irods_uu_microservices_package_old: irods-uu-microservices=4.2.12-1.2.0-0
-irods_sudo_microservices_package_old: irods-sudo-microservices=4.2.12_1.0.0-1
-irods_runtime_package_old: irods-runtime=4.2.12-1~bionic
-irods_server_package_old: irods-server=4.2.12-1~bionic
-irods_icommands_package_old: irods-icommands=4.2.12-1~bionic
-irods_prep_package_old: irods-rule-engine-plugin-python=4.2.12.0-1~bionic
-irods_pgp_package_old: irods-database-plugin-postgres=4.2.12-1~bionic
-irods_idp_package_old: irods-rule-engine-plugin-indexing=4.2.12.0-1~bionic
-irods_esp_package_old: irods-rule-engine-plugin-elasticsearch=4.2.12.0-1~bionic
-irods_davrods_package_old: davrods=4.2.12_1.5.1-1
+irods_uu_microservices_package_old: irods-uu-microservices=4.3.4-1.2.1-0
+irods_sudo_microservices_package_old: irods-sudo-microservices=4.3.4-1.0.0-1
+irods_runtime_package_old: irods-runtime=4.3.4-0~noble
+irods_server_package_old: irods-server=4.3.4-0~noble
+irods_icommands_package_old: irods-icommands=4.3.4-0~noble
+irods_prep_package_old: irods-rule-engine-plugin-python=4.3.4.0-0+4.3.4~noble
+irods_pgp_package_old: irods-database-plugin-postgres=4.3.4-0~noble
+irods_idp_package_old: irods-rule-engine-plugin-indexing=4.3.4.0-0+4.3.4~noble
+irods_esp_package_old: irods-rule-engine-plugin-elasticsearch=4.3.4.0-0+4.3.4~noble
+irods_davrods_package_old: davrods=4.3.4-1.5.3

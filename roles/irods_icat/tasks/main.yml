@@ -213,6 +213,8 @@
   with_items:
     - path: /var/lib/irods
       recurse: true
+    - path: /var/run/irods
+      recurse: true
     - path: /etc/irods
       recurse: false
 

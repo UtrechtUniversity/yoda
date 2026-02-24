@@ -9,6 +9,7 @@
   ansible.builtin.package:
     name: "{{ irods_resource_plugin_s3_package }}"
     state: present
+  when: not ansible_check_mode
 
 
 - name: Ensure iRODS resource plugin S3 is pinned
