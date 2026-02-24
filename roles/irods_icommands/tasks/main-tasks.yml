@@ -5,17 +5,11 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
-- name: Find out if we need to install iRODS iCommands rpm
-  ansible.builtin.stat:
-    path: '/etc/irods'
-  register: irods_server
-
-
 - name: Ensure iRODS iCommands is installed
   ansible.builtin.package:
     name: '{{ irods_icommands_package_new }}'
     state: present
-  when: not irods_server.stat.exists and not ansible_check_mode
+  when: not ansible_check_mode
 
 
 - name: Ensure iRODS iCommands is pinned (Ubuntu)

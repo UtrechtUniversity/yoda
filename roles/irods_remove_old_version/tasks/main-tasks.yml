@@ -5,6 +5,23 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
+- name: Ensure iRODS package versions are unlocked (EL)
+  community.general.dnf_versionlock:
+    name:
+      - "{{ irods_uu_microservices_package_old }}"
+      - "{{ irods_sudo_microservices_package_old }}"
+      - "{{ irods_davrods_package_old }}"
+      - "{{ irods_runtime_package_old }}"
+      - "{{ irods_server_package_old }}"
+      - "{{ irods_pgp_package_old }}"
+      - "{{ irods_prep_package_old }}"
+      - "{{ irods_icommands_package_old }}"
+      - "{{ irods_idp_package_old }}"
+      - "{{ irods_esp_package_old }}"
+    state: absent
+  when: ansible_os_family == 'RedHat'
+
+
 - name: Ensure old iRODS packages are absent
   ansible.builtin.package:
     name:
