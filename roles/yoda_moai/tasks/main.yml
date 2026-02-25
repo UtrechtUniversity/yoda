@@ -60,17 +60,36 @@
   become: true
   ansible.builtin.pip:
     name:
-      - pip==25.0
+      - pip==26.0.1
       - virtualenv==20.28.0
     executable: /var/www/moai/yoda-moai/venv/bin/pip3
 
 
-- name: Ensure Yoda MOAI virtualenv exists
+# We're installing pyoai dependencies manually, because we need to
+# disable build isolation (see below).
+- name: Manually install dependencies of pyoai
   become_user: '{{ yoda_moai_user }}'
   become: true
-  ansible.builtin.command: "{{ yoda_moai_home }}/yoda-moai/venv/bin/python3 -m virtualenv {{ yoda_moai_home }}/yoda-moai/venv"
-  args:
-    creates: "{{ yoda_moai_home }}/yoda-moai/venv/bin/activate_this.py"
+  ansible.builtin.pip:
+    name:
+      - wheel==0.46.3
+      - setuptools==81.0.0
+      - lxml==6.0.2
+      - six==1.17.0
+    executable: /var/www/moai/yoda-moai/venv/bin/pip3
+
+
+# Build isolation is disabled in order to be able to work around
+# pyoai still depending on pkg_resources, which needs an older
+# setuptools version (see ticket YDA-6847)
+- name: Manually install pyoai dependency
+  become_user: '{{ yoda_moai_user }}'
+  become: true
+  ansible.builtin.pip:
+    name:
+      - "pyoai @ git+https://github.com/infrae/pyoai.git@2.5.1"
+    extra_args: --no-build-isolation
+    executable: /var/www/moai/yoda-moai/venv/bin/pip3
 
 
 # We use the PySqlite3 dialect to avoid compatibility issues between SQLAlchemy
