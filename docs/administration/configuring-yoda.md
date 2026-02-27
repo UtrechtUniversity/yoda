@@ -524,6 +524,7 @@ irods_consistency_check_version | iRODS consistency checker (ichk) version
 enable_icat_database_checker    | Install iCAT database checker
 icat_database_checker_version   | iCAT database checker version
 yoda_rulesets_measure_coverage  | Enable code coverage measurements in the ruleset. This is meant for use on development or test environments. Default: false
+enable_yoda_clienttools         | Install yoda-clienttools
 
 ### Multithreading
 
