@@ -152,6 +152,8 @@
       when: enable_mailpit
     - role: irods_gocommands
       when: irods_enable_gocommands
+    - role: yoda_clienttools
+      when: enable_yoda_clienttools
   tags:
     - icat
   vars:

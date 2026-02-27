@@ -280,3 +280,6 @@ oidc_verify_iss: true                                                # Check tha
 enable_mailpit: true
 enable_postfix: false
 enable_yoda_report: false
+
+# yoda-clienttools
+enable_yoda_clienttools: false

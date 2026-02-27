@@ -1,0 +1,34 @@
+---
+# copyright Utrecht University
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Check out yoda_clienttools
+  ansible.builtin.git:
+    repo: "{{ yoda_clienttools_repo }}"
+    dest: "{{ yoda_clienttools_path }}"
+    version: "v{{ yoda_clienttools_version }}"
+  become: true
+  become_user: "{{ irods_service_account }}"
+  register: repochanges
+
+
+- name: Ensure yoda-clienttools virtualenv exists
+  ansible.builtin.command: "{{ yoda_clienttools_python3_path }} -m venv {{ yoda_clienttools_path }}/venv"
+  args:
+    creates: "{{ yoda_clienttools_path }}/venv/bin/activate"
+  become: true
+  become_user: "{{ irods_service_account }}"
+
+
+- name: Ensure yoda-clienttools is installed/updated in venv
+  ansible.builtin.pip:
+    name: "git+https://github.com/UtrechtUniversity/yoda-clienttools.git@v{{ yoda_clienttools_version }}"
+    virtualenv: "{{ yoda_clienttools_path }}/venv"
+    virtualenv_python: python3
+    state: present
+    extra_args: --upgrade
+  become: true
+  become_user: "{{ irods_service_account }}"
