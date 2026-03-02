@@ -1,6 +1,14 @@
 ---
 # copyright Utrecht University
 
+- name: Fail if clienttools is not enabled
+  ansible.builtin.fail:
+    msg: "enable_yoda_report=true requires enable_yoda_clienttools=true"
+  when:
+    - enable_yoda_report | default(false)
+    - not enable_yoda_clienttools | default(false)
+
+
 - name: Install yoda reporting private key
   become_user: '{{ irods_service_account }}'
   become: true
@@ -43,6 +51,16 @@
   ansible.builtin.file:
     path: /var/yoda-financial-data/gather-group-statistics.py
     state: absent
+  when: enable_yoda_report
+
+
+- name: Copy file for gathering and sending group stats to remote /var directory
+  ansible.builtin.copy:
+    src: gather-group-stats.sh
+    dest: /var/yoda-financial-data/gather-group-stats.sh
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    mode: '0700'
   when: enable_yoda_report
 
 
@@ -90,31 +108,20 @@
   when: inventory_hostname in groups['icats']
 
 
-- name: Add cron job to generate Yoda old vs new data stats for financial report
+- name: Gather and transfer group stats for billing (weekly)
   ansible.builtin.cron:
-    name: "yoda-report-old-vs-new-data"
+    name: "yoda-report-gather-and-send-group-stats"
     minute: 0
     hour: 1
+    weekday: 6
     user: "{{ irods_service_account }}"
     job: >
-      /var/lib/irods/yoda-clienttools/venv/bin/yreport_oldvsnewdata
-      -q --use-create-time
-      -e {{ instance }} -y 2.0
-      > /var/yoda-financial-data/stats.csv 2>&1
-    state: "{{ 'present' if enable_yoda_report else 'absent' }}"
-  when: inventory_hostname in groups['icats']
-
-
-- name: Add cron job to transfer financial group statistics to reporting server
-  ansible.builtin.cron:
-    name: "yoda-report-copy-group-statistics"
-    minute: 0
-    hour: 3
-    job: >
-      scp -i {{ yoda_report_server_priv_key_loc }}
-      /var/yoda-financial-data/stats.yaml
-      {{ yoda_report_server_user_account }}@{{ yoda_report_server_host }}:{{ yoda_report_server_financial_data_dir }}/{{ instance }}.stats.yml
-    user: "{{ irods_service_account }}"
+      INSTANCE="{{ instance }}"
+      YODA_REPORT_SERVER_PRIV_KEY_LOC="{{ yoda_report_server_priv_key_loc }}"
+      YODA_REPORT_SERVER_USER_ACCOUNT="{{ yoda_report_server_user_account }}"
+      YODA_REPORT_SERVER_HOST="{{ yoda_report_server_host }}"
+      YODA_REPORT_SERVER_FINANCIAL_DATA_DIR="{{ yoda_report_server_financial_data_dir }}"
+      /bin/bash /var/yoda-financial-data/gather-group-stats.sh
     state: "{{ 'present' if enable_yoda_report else 'absent' }}"
   when: inventory_hostname in groups['icats']
 
