@@ -537,4 +537,4 @@ yoda_rulesets_vault_copy_multithread_enabled | Enable multithreading when copyin
 
 Variable            | Description
 --------------------|-----------------------------------------------------------
-enable_yoda_report  | Enable installation of yoda report for financial reporting
+enable_yoda_report  | Enable installation of yoda report for financial reporting. Requires `enable_yoda_clienttools=true`.
