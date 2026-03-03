@@ -7,10 +7,10 @@ irods_microservices_data:
     version: 5.0.2-1.0.0-1
     url: https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/5.0.2_1.0.0/irods-sudo-microservices-5.0.2_1.0.0-1.rpm
     filename: irods-sudo-microservices-5.0.2-1.0.0-1.rpm
-    checksum: sha256:48398e6fbbbf8da310946b0b65e8642056f6c8b26ba7a98e482d588a6bf70880
+    checksum: sha256:e94c11657608bc1b8a52dac19ac27a1b6de6e90219c28f4303d49f4e955af1e4
   irods_uu_microservices:
     package: irods-uu-microservices
     version: 5.0.2-1.3.1-0
     url: https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v1.3.1/irods-uu-microservices-5.0.2_1.3.1-0.rpm
     filename: irods-uu-microservices-5.0.2_1.3.1-0.rpm
-    checksum: sha256:fbae330df574931f2a2dfbe7ab5170efa0ec11b757d89ddcf7f7f5dcbbc65368
+    checksum: sha256:c6a1466ec9235f4dece79e366f7625b3561595365070f05d92276781e116d22e
