@@ -24,6 +24,12 @@
     state: absent
 
 
+- name: Ensure Python 3 requests is installed
+  ansible.builtin.package:
+    name: python3-requests
+    state: present
+
+
 - name: Ensure external user authentication is present
   ansible.builtin.template:
     src: external-auth.py.j2
