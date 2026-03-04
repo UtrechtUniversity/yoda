@@ -39,7 +39,7 @@ RUN mkdir /var/lib/irods-log && chown syslog /var/lib/irods-log && chmod 0750 /v
 
 # Install Python 3.12
 # hadolint ignore=DL3033
-RUN apt-get install -y gcc python3 python3-dev python3-pip python3.12-venv python3-virtualenv python3-wheel python3-magic
+RUN apt-get install -y gcc python3 python3-dev python3-pip python3.12-venv python3-virtualenv python3-wheel python3-magic python3-requests
 
 # Upload PAM Python library
 COPY stage/pam_python3.so /tmp/pam_python3.so
