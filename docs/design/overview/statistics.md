@@ -67,3 +67,9 @@ The corresponding category is registered on group level as well as a group could
 ## Collecting data for reporting
 To find all latest and historic data for a category metadata can be matched against `‘[\“’ ++ *cat ++ ‘\”%%’`.
 This will bring up all metadata storage metadata for this category.
+
+## Pre-generated statistics export data
+
+The statistics cronjob also pregenerates statistics export data each day, since generating export data on large environments
+can take too long to generate it synchronously on request. This data is stored in the pregenerated data directory
+(Ansible parameter: `yoda_rulesets_pregen_data_dir`).
