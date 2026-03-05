@@ -140,6 +140,9 @@ COPY cronjob-revision-cleanup.sh /tmp/cronjob-revision-cleanup.sh
 RUN install -o irods -g irods -m 0755 /tmp/cronjob-revision-cleanup.sh /var/lib/irods/.irods/cronjob-revision-cleanup.sh
 COPY service_account.config /tmp/service_account.config
 RUN install -o irods -g irods -m 0644 /tmp/service_account.config /etc/irods/service_account.config
+RUN mkdir /var/lib/irods/yoda-pregenerated-data && \
+    chown irods:irods /var/lib/irods/yoda-pregenerated-data && \
+    chmod 0750 /var/lib/irods/yoda-pregenerated-data
 
 # Install configuration
 COPY odbc.ini /var/lib/irods/.odbc.ini
