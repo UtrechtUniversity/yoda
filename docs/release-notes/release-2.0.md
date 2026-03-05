@@ -146,3 +146,11 @@ sudo systemctl restart httpd
 ```bash
 sudo touch /var/www/yoda/yoda.wsgi /var/www/yoda/yoda_debug.wsgi
 ```
+
+13. When updating from a version before v2.0.4 to v2.0.4 or later, the statistics export function
+    performance improvements will become effective after completion of the first storage statistics job run
+    after the upgrade. Either wait one or two days for the scheduled job to complete, or manually run a
+    statistics update job after the upgrade:
+```bash
+/bin/irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/storage-statistics.r
+```

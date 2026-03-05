@@ -256,3 +256,5 @@ vault_copy_max_retries: 5              # How many times to retry copy to vault o
 
 # Coverage measurements for development environments
 yoda_rulesets_measure_coverage: false
+
+yoda_rulesets_pregen_data_dir: /var/lib/irods/yoda-pregenerated-data

@@ -84,6 +84,16 @@
   when: not ansible_check_mode
 
 
+- name: Ensure that pregenerated data directory exists
+  ansible.builtin.file:
+    path: '{{ yoda_rulesets_pregen_data_dir }}'
+    owner: '{{ irods_service_account }}'
+    group: '{{ irods_service_account }}'
+    mode: '0750'
+    state: directory
+  when: not ansible_check_mode
+
+
 - name: Copy scripts to ExecCmd dir
   become_user: "{{ irods_service_account }}"
   become: true
