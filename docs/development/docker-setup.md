@@ -39,7 +39,7 @@ If you haven't downloaded the Docker images yet, pull them first:
 
 ```bash
 cd docker/compose
-docker-compose pull
+docker compose pull
 ```
 
 Yoda has two Docker Compose configurations:
