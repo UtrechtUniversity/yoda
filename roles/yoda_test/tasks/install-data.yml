@@ -35,7 +35,18 @@
   when: yoda_environment == "development"
 
 
-- name: Ensure Yoda users are added to groups
+- name: Ensure Yoda OIDC users are added to groups
+  become_user: '{{ irods_service_account }}'
+  become: true
+  yoda_addgroupuser:
+    groupName: '{{ item.groupName }}'
+    user: '{{ item.user }}'
+    role: '{{ item.role }}'
+  with_items: '{{ test_group_oidc_users }}'
+  when: yoda_environment == "development" or yoda_environment == "testing"
+
+
+- name: Ensure Yoda EUS users are added to groups
   become_user: '{{ irods_service_account }}'
   become: true
   yoda_addgroupuser:

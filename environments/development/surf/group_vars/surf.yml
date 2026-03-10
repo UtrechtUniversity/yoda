@@ -250,6 +250,7 @@ oidc_verify_aud: true                                                # Check tha
 oidc_verify_iat: false                                               # Check that iat (issued at) claim value is an integer
 oidc_verify_exp: true                                                # Check that exp (expiration) claim value is OK
 oidc_verify_iss: true                                                # Check that iss (issue) claim is as expected
+portal_session_cookie_samesite: Lax                                  # 'Strict' (no OIDC, or OIDC IDP in same domain) or 'Lax'
 
 # Mail configuration
 enable_mailpit: true
