@@ -19,4 +19,4 @@ irods_log_settings_levels:
   network: info
   resource: info
   rule_engine: info
-  server: debug  # Debug level is needed to print log output from rule code
+  server: info

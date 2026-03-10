@@ -69,7 +69,7 @@
         "network": "info",
         "resource": "info",
         "rule_engine": "info",
-        "server": "debug",
+        "server": "info",
         "sql": "info"
     },
     "match_hash_policy": "compatible",
