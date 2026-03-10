@@ -351,6 +351,18 @@ and total = 600</p>
     
 <p>To find all latest and historic data for a category metadata can be matched against <code class="language-plaintext highlighter-rouge">‘[\“’ ++ *cat ++ ‘\”%%’</code>.
 This will bring up all metadata storage metadata for this category.</p>
+<h2 id="pre-generated-statistics-export-data">
+  
+  
+    <a href="#pre-generated-statistics-export-data" class="anchor-heading" aria-labelledby="pre-generated-statistics-export-data"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Pre-generated statistics export data
+  
+  
+</h2>
+    
+
+<p>The statistics cronjob also pregenerates statistics export data each day, since generating export data on large environments
+can take too long to generate it synchronously on request. This data is stored in the pregenerated data directory
+(Ansible parameter: <code class="language-plaintext highlighter-rouge">yoda_rulesets_pregen_data_dir</code>).</p>
 
           
 
