@@ -3,11 +3,11 @@ grand_parent: Software Design
 parent: System Overview
 nav_order: 8
 ---
-# Vault archive
+# Vault archive workflow
 
 ## Introduction
 
-The vault archive is described in this document.
+The vault archive workflow is described in this document.
 The state diagram documents the states and transitions of a data package in the vault archive.
 The sequence diagram documents the interactions between the actors in the vault archive.
 

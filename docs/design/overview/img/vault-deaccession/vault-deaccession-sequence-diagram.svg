@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="2120.8333px" preserveAspectRatio="none" style="width:1239px;height:2120px;background:#282C34;" version="1.1" viewBox="0 0 1239 2120" width="1239.5833px" zoomAndPan="magnify"><defs/><g><rect fill="#282C34" height="1302.7342" style="stroke: #ABB2BF; stroke-width: 4.166666666666667;" width="1166.6667" x="27.0833" y="585.7307"/><rect fill="#282C34" height="307.7512" style="stroke: none; stroke-width: 2.0833333333333335;" width="1166.6667" x="27.0833" y="1272.9625"/><rect fill="#282C34" height="307.7512" style="stroke: none; stroke-width: 2.0833333333333335;" width="1166.6667" x="27.0833" y="1580.7137"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="156.25" x2="156.25" y1="188.3961" y2="1923.8816"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="412.5" x2="412.5" y1="188.3961" y2="1923.8816"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 5.0,5.0;" x1="956.25" x2="956.25" y1="188.3961" y2="1923.8816"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="195.8333" x="52.0833" y="175.0732">Datamanager</text><ellipse cx="156.25" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M156.25,43.75 L156.25,100 M129.1667,60.4167 L183.3333,60.4167 M156.25,100 L129.1667,131.25 M156.25,100 L183.3333,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="195.8333" x="52.0833" y="1959.3714">Datamanager</text><ellipse cx="156.25" cy="1993.5277" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M156.25,2010.1944 L156.25,2066.4444 M129.1667,2026.861 L183.3333,2026.861 M156.25,2066.4444 L129.1667,2097.6944 M156.25,2066.4444 L183.3333,2097.6944 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="233.3333" x="289.5833" y="175.0732">Technical admin</text><ellipse cx="412.5" cy="27.0833" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M412.5,43.75 L412.5,100 M385.4167,60.4167 L439.5833,60.4167 M412.5,100 L385.4167,131.25 M412.5,100 L439.5833,131.25 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="233.3333" x="289.5833" y="1959.3714">Technical admin</text><ellipse cx="412.5" cy="1993.5277" fill="#424856" rx="16.6667" ry="16.6667" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><path d="M412.5,2010.1944 L412.5,2066.4444 M385.4167,2026.861 L439.5833,2026.861 M412.5,2066.4444 L385.4167,2097.6944 M412.5,2066.4444 L439.5833,2097.6944 " fill="none" style="stroke: #61AFEF; stroke-width: 4.166666666666667;"/><rect fill="#424856" height="80.0628" style="stroke: #61AFEF; stroke-width: 3.125;" width="108.3333" x="902.0833" y="106.25"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="70.8333" x="920.8333" y="158.4065">Yoda</text><rect fill="#424856" height="80.0628" style="stroke: #61AFEF; stroke-width: 3.125;" width="108.3333" x="902.0833" y="1921.7982"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="70.8333" x="920.8333" y="1973.9547">Yoda</text><rect fill="#424856" height="6.25" style="stroke: #424856; stroke-width: 2.0833333333333335;" width="1208.3333" x="6.25" y="261.7609"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1214.5833" y1="261.7609" y2="261.7609"/><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;" x1="6.25" x2="1214.5833" y1="268.0109" y2="268.0109"/><rect fill="#424856" height="67.5628" style="stroke: #ABB2BF; stroke-width: 4.166666666666667;" width="445.8333" x="387.5" y="230.0628"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="400" x="404.1667" y="275.9693">Deaccession data package</text><polygon fill="#61AFEF" points="931.25,373.5217,952.0833,381.8551,931.25,390.1884,939.5833,381.8551" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="156.25" x2="943.75" y1="381.8551" y2="381.8551"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="281.25" x="175" y="364.3654">Request deaccession</text><path d="M733.3333,408.9384 L733.3333,479.7717 L1179.1667,479.7717 L1179.1667,429.7717 L1158.3333,408.9384 L733.3333,408.9384 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M1158.3333,408.9384 L1158.3333,429.7717 L1179.1667,429.7717 L1158.3333,408.9384 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="393.75" x="750" y="456.9282">DEACCESSION_REQUESTED</text><polygon fill="#61AFEF" points="435.4167,546.1473,414.5833,554.4807,435.4167,562.814,427.0833,554.4807" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="422.9167" x2="954.1667" y1="554.4807" y2="554.4807"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="485.4167" x="452.0833" y="536.991">Deaccession requested notification</text><path d="M27.0833,585.7307 L172.9167,585.7307 L172.9167,619.064 L152.0833,639.8973 L27.0833,639.8973 L27.0833,585.7307 " fill="#424856" style="stroke: #ABB2BF; stroke-width: 2.0833333333333335;"/><rect fill="none" height="1302.7342" style="stroke: #ABB2BF; stroke-width: 4.166666666666667;" width="1166.6667" x="27.0833" y="585.7307"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43.75" x="62.5" y="625.3871">alt</text><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="247.9167" x="208.3333" y="627.4705">[Approval path]</text><polygon fill="#61AFEF" points="931.25,715.5024,952.0833,723.8357,931.25,732.1691,939.5833,723.8357" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="412.5" x2="943.75" y1="723.8357" y2="723.8357"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="289.5833" x="431.25" y="706.3461">Approve deaccession</text><polygon fill="#61AFEF" points="179.1667,795.5652,158.3333,803.8985,179.1667,812.2319,170.8333,803.8985" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="166.6667" x2="954.1667" y1="803.8985" y2="803.8985"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="479.1667" x="195.8333" y="786.4089">Deaccession approved notification</text><path d="M739.5833,830.9819 L739.5833,901.8152 L1172.9167,901.8152 L1172.9167,851.8152 L1152.0833,830.9819 L739.5833,830.9819 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M1152.0833,830.9819 L1152.0833,851.8152 L1172.9167,851.8152 L1152.0833,830.9819 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="381.25" x="756.25" y="878.9717">DEACCESSION_APPROVED</text><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="956.25" x2="1043.75" y1="976.5241" y2="976.5241"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="1043.75" x2="1043.75" y1="976.5241" y2="1003.6075"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="958.3333" x2="1043.75" y1="1003.6075" y2="1003.6075"/><polygon fill="#61AFEF" points="979.1667,995.2741,958.3333,1003.6075,979.1667,1011.9408,970.8333,1003.6075" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="162.5" x="975" y="959.0345">Deaccession</text><path d="M739.5833,1030.6908 L739.5833,1101.5241 L1170.8333,1101.5241 L1170.8333,1051.5241 L1150,1030.6908 L739.5833,1030.6908 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M1150,1030.6908 L1150,1051.5241 L1170.8333,1051.5241 L1150,1030.6908 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="379.1667" x="756.25" y="1078.6806">DEACCESSION_COMPLETE</text><polygon fill="#61AFEF" points="179.1667,1167.8997,158.3333,1176.233,179.1667,1184.5664,170.8333,1176.233" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="166.6667" x2="954.1667" y1="1176.233" y2="1176.233"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="475" x="195.8333" y="1158.7434">Deaccession complete notification</text><polygon fill="#61AFEF" points="435.4167,1247.9625,414.5833,1256.2958,435.4167,1264.6292,427.0833,1256.2958" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="422.9167" x2="954.1667" y1="1256.2958" y2="1256.2958"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="475" x="452.0833" y="1238.8062">Deaccession complete notification</text><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="27.0833" x2="1193.75" y1="1275.0458" y2="1275.0458"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="210.4167" x="41.6667" y="1312.619">[Cancel path]</text><polygon fill="#61AFEF" points="931.25,1383.0881,952.0833,1391.4214,931.25,1399.7548,939.5833,1391.4214" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="156.25" x2="943.75" y1="1391.4214" y2="1391.4214"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="260.4167" x="175" y="1373.9318">Cancel deaccession</text><path d="M879.1667,1418.5048 L879.1667,1489.3381 L1033.3333,1489.3381 L1033.3333,1439.3381 L1012.5,1418.5048 L879.1667,1418.5048 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M1012.5,1418.5048 L1012.5,1439.3381 L1033.3333,1439.3381 L1012.5,1418.5048 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="102.0833" x="895.8333" y="1466.4946">ACTIVE</text><polygon fill="#61AFEF" points="435.4167,1555.7137,414.5833,1564.047,435.4167,1572.3804,427.0833,1564.047" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="422.9167" x2="954.1667" y1="1564.047" y2="1564.047"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="466.6667" x="452.0833" y="1546.5574">Deaccession canceled notification</text><line style="stroke: #ABB2BF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="27.0833" x2="1193.75" y1="1582.797" y2="1582.797"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="318.75" x="41.6667" y="1620.3702">[Cancel / deny path]</text><polygon fill="#61AFEF" points="931.25,1690.8393,952.0833,1699.1726,931.25,1707.506,939.5833,1699.1726" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335;" x1="412.5" x2="943.75" y1="1699.1726" y2="1699.1726"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="379.1667" x="431.25" y="1681.683">Cancel or deny deaccession</text><path d="M879.1667,1726.256 L879.1667,1797.0893 L1033.3333,1797.0893 L1033.3333,1747.0893 L1012.5,1726.256 L879.1667,1726.256 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><path d="M1012.5,1726.256 L1012.5,1747.0893 L1033.3333,1747.0893 L1012.5,1726.256 " fill="#E5C07B" style="stroke: #282C34; stroke-width: 2.0833333333333335;"/><text fill="#282C34" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="102.0833" x="895.8333" y="1774.2458">ACTIVE</text><polygon fill="#61AFEF" points="179.1667,1863.4649,158.3333,1871.7982,179.1667,1880.1316,170.8333,1871.7982" style="stroke: #61AFEF; stroke-width: 2.0833333333333335;"/><line style="stroke: #61AFEF; stroke-width: 2.0833333333333335; stroke-dasharray: 2.0,2.0;" x1="166.6667" x2="954.1667" y1="1871.7982" y2="1871.7982"/><text fill="#ABB2BF" font-family="CMU Serif" font-size="31.25" lengthAdjust="spacingAndGlyphs" textLength="466.6667" x="195.8333" y="1854.3086">Deaccession canceled notification</text><!--MD5=[580198a267462a4b51fd1520370036a8]
+@startuml
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+
+  ActivityEndColor               #e06c75
+
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontSize 15
+
+  DefaultFontName CMU Serif
+
+  Dpi 200
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+
+  NoteFontColor         #282c34
+
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  Padding 2
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+
+  SequenceGroupBackgroundColor       #424856
+
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+
+  StateStartColor         #98c379
+
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+
+  SwimlaneBorderColor            #abb2bf
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+}
+
+
+actor       Datamanager as datamanager
+actor       "Technical admin" as technicaladmin
+participant Yoda        as yoda
+
+== Deaccession data package ==
+datamanager  -> yoda        : Request deaccession
+note over yoda              : DEACCESSION_REQUESTED
+yoda     - -> technicaladmin : Deaccession requested notification
+alt Approval path
+  technicaladmin  -> yoda     : Approve deaccession
+  yoda     - -> datamanager    : Deaccession approved notification
+  note over yoda              : DEACCESSION_APPROVED
+  yoda      -> yoda           : Deaccession
+  note over yoda              : DEACCESSION_COMPLETE
+  yoda     - -> datamanager    : Deaccession complete notification
+  yoda     - -> technicaladmin : Deaccession complete notification
+else Cancel path
+  datamanager  -> yoda        : Cancel deaccession
+  note over yoda              : ACTIVE
+  yoda     - -> technicaladmin : Deaccession canceled notification
+else Cancel / deny path
+  technicaladmin  -> yoda     : Cancel or deny deaccession
+  note over yoda              : ACTIVE
+  yoda     - -> datamanager    : Deaccession canceled notification
+end
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.18+8-Debian-1deb12u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

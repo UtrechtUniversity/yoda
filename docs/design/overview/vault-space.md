@@ -3,11 +3,11 @@ grand_parent: Software Design
 parent: System Overview
 nav_order: 2
 ---
-# Vault space
+# Vault FAIR publication workflow
 
 ## Introduction
 
-The vault space is described in this document.
+The vault FAIR publication workflow is described in this document.
 The state diagram documents the states and transitions of a folder in the vault space.
 The sequence diagram documents the interactions between the actors in the vault space.
 
