@@ -1,0 +1,18 @@
+@startuml
+!include ../../../../theme.puml
+
+state VaultDeaccession as "Vault Deaccession" {
+  ACTIVE: Active
+  DEACCESSION_REQUESTED: Deaccession requested
+  DEACCESSION_APPROVED: Deaccession approved
+  DEACCESSION_COMPLETE: Deaccession complete
+
+  [*] --> ACTIVE
+  ACTIVE --> DEACCESSION_REQUESTED: Request deaccession\n[vault status: UNPUBLISHED | PUBLISHED | DEPUBLISHED]
+  DEACCESSION_REQUESTED --> DEACCESSION_APPROVED: Approve deaccession
+  DEACCESSION_REQUESTED --> ACTIVE: Cancel deaccession
+  DEACCESSION_APPROVED --> DEACCESSION_COMPLETE: Deaccession complete
+  DEACCESSION_COMPLETE --> [*]
+}
+
+@enduml

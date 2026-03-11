@@ -19,9 +19,16 @@ The research space implements a data deposit workflow to the vault space.
 [Technical design](research-space.md){: .btn }
 
 ### Vault space
-The vault space implements a FAIR data publication workflow.
+The vault space implements three workflows:
 
+Vault FAIR publication workflow:
 [Technical design](vault-space.md){: .btn }
+
+Vault archive workflow:
+[Technical design](vault-archive.md){: .btn }
+
+Vault deaccession workflow:
+[Technical design](vault-deaccession.md){: .btn }
 
 ### Statistics
 The statistics module provides insight in research groups storage usage.

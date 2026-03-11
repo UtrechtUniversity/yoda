@@ -1,0 +1,29 @@
+@startuml
+!include ../../../../theme.puml
+
+actor       Datamanager as datamanager
+actor       "Technical admin" as technicaladmin
+participant Yoda        as yoda
+
+== Deaccession data package ==
+datamanager  -> yoda        : Request deaccession
+note over yoda              : DEACCESSION_REQUESTED
+yoda     --> technicaladmin : Deaccession requested notification
+alt Approval path
+  technicaladmin  -> yoda     : Approve deaccession
+  yoda     --> datamanager    : Deaccession approved notification
+  note over yoda              : DEACCESSION_APPROVED
+  yoda      -> yoda           : Deaccession
+  note over yoda              : DEACCESSION_COMPLETE
+  yoda     --> datamanager    : Deaccession complete notification
+  yoda     --> technicaladmin : Deaccession complete notification
+else Cancel path
+  datamanager  -> yoda        : Cancel deaccession
+  note over yoda              : ACTIVE
+  yoda     --> technicaladmin : Deaccession canceled notification
+else Cancel / deny path
+  technicaladmin  -> yoda     : Cancel or deny deaccession
+  note over yoda              : ACTIVE
+  yoda     --> datamanager    : Deaccession canceled notification
+end
+@enduml
