@@ -41,6 +41,9 @@ RUN useradd yodadeployment && \
     chown yodadeployment:yodadeployment /home/yodadeployment && \
     mkdir -p /var/www/webmock/log && \
     chown yodadeployment:yodadeployment /var/www/webmock /var/www/webmock/log && \
+    mkdir -p /var/www/webmock/sram && \
+    chown yodadeployment:yodadeployment /var/www/webmock /var/www/webmock/sram && \
+    echo '{"collaborations": [], "members": [], "invitations": []}' > /var/www/webmock/sram/sram_mock.json && \
     git clone --branch $YODA_MOCK_BRANCH $YODA_MOCK_REPO /var/www/webmock/yoda-web-mock && \
     git config --global --add safe.directory /var/www/webmock/yoda-web-mock
 COPY yoda-web-mock-vhost.conf /etc/apache2/sites-available/yoda-web-mock-vhost.conf
