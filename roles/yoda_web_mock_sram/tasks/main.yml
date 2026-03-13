@@ -5,6 +5,29 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
+- name: Ensure directory for SRAM mock database is accessible
+  ansible.builtin.file:
+    path: "/var/www/webmock/sram"
+    state: directory
+    owner: "{{ yoda_deployment_user }}"
+    group: "{{ yoda_deployment_user }}"
+    mode: '0755'
+
+
+- name: Check if SRAM mock database exists
+  ansible.builtin.stat:
+    path: "/var/www/webmock/sram/sram_mock.json"
+  register: sram_mock_db
+
+
+- name: Ensure SRAM mock database is present
+  ansible.builtin.template:
+    src: "sram_mock.json.j2"
+    dest: "/var/www/webmock/sram/sram_mock.json"
+    mode: '0644'
+  when: not sram_mock_db.stat.exists
+
+
 - name: Copy Yoda Web Mock for SRAM virtual host config for Apache
   ansible.builtin.template:
     src: "yoda-web-mock-sram-vhost.conf.j2"
