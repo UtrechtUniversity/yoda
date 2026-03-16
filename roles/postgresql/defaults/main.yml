@@ -48,6 +48,10 @@ postgresql_effective_cache_size: 384MB
 # Solid-state drives might be better modeled with a lower value e.g., "1.1"
 postgresql_random_page_cost: "1.1"
 
+# Maximum number of autovacuum worker processes. May need to be increased
+# if autovacuum isn't able to keep up with changes.
+postgresql_autovacuum_max_workers: 3
+
 # PostgreSQL logging configuration
 postgresql_log_line_prefix: '%m [%p] '
 postgresql_log_min_duration_statement: -1

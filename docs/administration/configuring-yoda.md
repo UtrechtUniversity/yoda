@@ -337,6 +337,7 @@ postgresql_random_page_cost            | Planner's estimate of the cost of a non
 postgresql_log_line_prefix             | Format of log message prefix in the PostgreSQL log, for adding timestamps etc. to log messages. The default value adds a timestamp and process number, which is sufficient for most purposes. It might be useful to log additional information in specific situations, such as when troubleshooting database issues.
 postgresql_log_min_duration_statement  | Minimum number of milliseconds for slow query logging (default: -1 / disabled)
 postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled)
+postgresql_autovacuum_max_workers      | Maximum number of autovacuum worker processes (default: 3)
 postgresql_timezone                    | Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam.
 
 ### PgBouncer configuration
