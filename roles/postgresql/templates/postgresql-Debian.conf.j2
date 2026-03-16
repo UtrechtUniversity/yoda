@@ -645,7 +645,8 @@ cluster_name = '{{ pgsql_version }}/main'			# added to process titles if nonempt
 
 #autovacuum = on			# Enable autovacuum subprocess?  'on'
 					# requires track_counts to also be on.
-#autovacuum_max_workers = 3		# max number of autovacuum subprocesses
+autovacuum_max_workers = {{ postgresql_autovacuum_max_workers }}
+					# max number of autovacuum subprocesses
 					# (change requires restart)
 #autovacuum_naptime = 1min		# time between autovacuum runs
 #autovacuum_vacuum_threshold = 50	# min number of row updates before
