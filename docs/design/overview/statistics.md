@@ -11,7 +11,7 @@ From this release storage is broken down in research, revision and vault storage
 In all [previous](statistics_1.8.md) Yoda versions the storage consumption was related to resource tiers.
 This approach has been discarded following up requests made from within the Yoda community.
 
-In order to enable this new way of registering storage amounts two the following had the be taken care of:
+In order to enable this new way of registering storage amounts the following had to be taken care of:
 
 1. the storage collection job had to be redesigned
 2. preservation of the already present (tier based) storage history
