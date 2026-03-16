@@ -2059,7 +2059,7 @@
   },"294": {
     "doc": "Statistics module",
     "title": "Change in focus of statistics module",
-    "content": "Starting from Yoda release 1.8 the statistics module gives deeper insight in storage consumption. From this release storage is broken down in research, revision and vault storage. In all previous Yoda versions the storage consumption was related to resource tiers. This approach has been discarded following up requests made from within the Yoda community. In order to enable this new way of registering storage amounts two the following had the be taken care of: . | the storage collection job had to be redesigned | preservation of the already present (tier based) storage history | . ",
+    "content": "Starting from Yoda release 1.8 the statistics module gives deeper insight in storage consumption. From this release storage is broken down in research, revision and vault storage. In all previous Yoda versions the storage consumption was related to resource tiers. This approach has been discarded following up requests made from within the Yoda community. In order to enable this new way of registering storage amounts the following had to be taken care of: . | the storage collection job had to be redesigned | preservation of the already present (tier based) storage history | . ",
     "url": "/yoda/design/overview/statistics.html#change-in-focus-of-statistics-module",
     
     "relUrl": "/design/overview/statistics.html#change-in-focus-of-statistics-module"
