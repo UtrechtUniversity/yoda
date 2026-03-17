@@ -9,6 +9,7 @@ KillMode=mixed
 Restart=on-failure
 User={{ irods_service_account }}
 Group={{ irods_service_account }}
+RuntimeDirectory=irods
 WorkingDirectory=/var/lib/irods
 RestartPreventExitStatus=255
 LimitNOFILE={{ irods_max_open_files | string }}
