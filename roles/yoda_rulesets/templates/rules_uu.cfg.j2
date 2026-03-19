@@ -105,6 +105,7 @@ sram_tls_verify                = '{{ ["false", "true"][sram_tls_verify|int] }}'
 sram_co_default_label          = '{{ sram_co_default_label }}'
 sram_co_logo                   = '{{ sram_co_logo }}'
 sram_co_default_admins         = '{{ sram_co_default_admins | join (" ") }}'
+sram_external_users_co         = '{{ sram_external_users_co }}'
 {% endif %}
 
 arb_enabled                    = '{{ ["false", "true"][irods_arb_enabled|int] }}'
