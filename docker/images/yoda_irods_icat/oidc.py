@@ -1,40 +1,44 @@
 #!/usr/bin/env python3
-# If you change this, change oidc.py.j2 in the ansible as well!
+# Sync with roles/irods_icat/templates/oidc.py.j2.
 
 import requests
 
 
-USERINFO_URI = "https://oauth.mocklab.io/userinfo"
-EMAIL_FIELD = "email"
+OIDC_USERINFO_URI = "https://oauth.wiremockapi.cloud/userinfo"
+OIDC_EMAIL_FIELD = "email"
+
+SRAM_USERINFO_URI = "https://oauth.wiremockapi.cloud/userinfo"
+SRAM_EMAIL_FIELD = "email"
+
+TOKEN_PREFIX_OIDC = '++oidc_token++'
+TOKEN_PREFIX_SRAM = '++sram_token++'
+SUB_DELIMITER = 'end_sub'
 
 
-def unescape_irods_pam_password(password):
-    return password.replace('\\@', '@')
-
-
-def validate_token(username, token, sub):
+def validate_token(userinfo_uri, email_field, username, token, sub):
     # Send token validation request.
-    headers = {"Authorization": "Bearer {}".format(token)}
-    r = requests.get(USERINFO_URI, headers=headers)
+    headers = {"Authorization": f"Bearer {token}"}
+    try:
+        r = requests.get(userinfo_uri, headers=headers, timeout=5)
+    except requests.RequestException as e:
+        print(f'Failed to connect to userinfo endpoint for {username}: {e}')
+        return False
 
     # Check http status.
     if r.status_code != 200:
-        print('Failed to get a successful userinfo response '
-              '\n{}\n{}'
-              .format(r.status_code, r.text.encode(r.encoding)))
+        print(f"Failed to get userinfo response for {username}\n{r.status_code}\n{r.text}")
         return False
 
     # Retrieve token email.
     try:
-        email = r.json()[EMAIL_FIELD]
+        email = r.json()[email_field]
         if not isinstance(email, list):
             email = [email]
         email = [x.lower() for x in email]
         userinfo_sub = r.json()['sub']
-    except Exception:
-        print('Unable to extract data from the userinfo  '
-              'response.\nKey: {}\nUserinfo:\n{}'
-              .format(EMAIL_FIELD, r.text))
+    except Exception as e:
+        print(f"Unable to extract data from the userinfo response for {username}.")
+        print(f"Key: {email_field}\nError: {e}")
         return False
 
     # Check if token email corresponds with username.
@@ -44,38 +48,46 @@ def validate_token(username, token, sub):
     return False
 
 
+def parse_token_with_sub(token_data):
+    try:
+        sub_ix = token_data.index(SUB_DELIMITER)
+        sub = token_data[0:sub_ix]
+        token = token_data[sub_ix + len(SUB_DELIMITER):]
+        return sub, token
+    except ValueError:
+        return '', token_data
+
+
 def pam_sm_authenticate(pamh, flags, argv):
     # Get the username.
     try:
         username = pamh.get_user()
     except Exception:
-        print('User unknown')
+        print("User unknown")
         return pamh.PAM_USER_UNKNOWN
 
     # Get the token.
     token = pamh.authtok
     if token is None:
-        print('Missing token')
+        print(f"Missing token for user {username}")
         return pamh.PAM_AUTH_ERR
 
-    token = unescape_irods_pam_password(token)
+    # Determine token type and validate.
+    if token.startswith(TOKEN_PREFIX_OIDC):
+        token_data = token[len(TOKEN_PREFIX_OIDC):]
+        sub, actual_token = parse_token_with_sub(token_data)
+        if validate_token(OIDC_USERINFO_URI, OIDC_EMAIL_FIELD, username, actual_token, sub):
+            return pamh.PAM_SUCCESS
 
-    # Remove the prefix from the portal.
-    if token[0:14] == '++oidc_token++':
-         token = token[14:]
-         try:
-             sub_ix = token.index('end_sub')
-             sub = token[0:sub_ix]
-             token = token[sub_ix + 7:]
-         except:
-             sub = ''
+    elif token.startswith(TOKEN_PREFIX_SRAM):
+        token_data = token[len(TOKEN_PREFIX_SRAM):]
+        sub, actual_token = parse_token_with_sub(token_data)
+        if validate_token(SRAM_USERINFO_URI, SRAM_EMAIL_FIELD, username, actual_token, sub):
+            return pamh.PAM_SUCCESS
+
     else:
-        print('Not an oidc token')
+        print(f"Not an OIDC token for user {username}")
         return pamh.PAM_PERM_DENIED
 
-    # Validate the token.
-    if(validate_token(username, token, sub)):
-        return pamh.PAM_SUCCESS
-
-    print('Validation failed')
+    print(f"Validation failed for user {username}")
     return pamh.PAM_AUTH_ERR
