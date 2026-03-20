@@ -113,7 +113,7 @@ This is an indication that the element involved can be added multiple times.
 The above example will show a Selection field holding all present options for disciplines.
 
 ## Complex structures - type='object'
-In order to be able to serve the need to create structures of data the type 'object' is used.
+In order to be able to serve the need to create data structures the type 'object' is used.
 Object in fact constructs a structure that contains one or more other elements. The properties attribute contains
 the elements that constitute this structure.
 
@@ -183,15 +183,15 @@ The "yoda:required" attribute specifies whether an element is mandatory.
 
 ## Example of complex structure
 
-The following example shows a complex datastructure for a Contributor entity.
+The following example shows a complex data structure for a Contributor entity.
 
 ![Contributor data structure](img/metadata-contributor.png)
 
 *Main structure*
 Main structure is a subproperty structure.
-It consists of Name as leadpropery and the entire structure below  as its subproperty.
+It consists of Name as leadproperty and the entire structure below  as its subproperty.
 
-The entire Contributor structure can be duplicated. I.e. copied including the entire subpropery structure.
+The entire Contributor structure can be duplicated. I.e. copied including the entire subproperty structure.
 
 *Subproperty structure*
 Consists of 2 elements (Contributor type and Affiliation) and 1 compound element Person identifier (holding 2 compound elements).
