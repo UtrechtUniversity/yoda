@@ -91,6 +91,36 @@ OIDC_JWT_OPTIONS     = {
 }
 {% endif %}
 
+{% if enable_sram is sameas true %}
+{%
+    set sram_oidc_callback_uri =  "https://" ~ yoda_portal_fqdn ~ "/user/callback_sram"
+%}
+# SRAM OIDC configuration
+SRAM_OIDC_CLIENT_ID       = '{{ sram_oidc_client_id     | default("") }}'
+SRAM_OIDC_CLIENT_SECRET   = '{{ sram_oidc_client_secret | default("") }}'
+SRAM_OIDC_CALLBACK_URI    = '{{ sram_oidc_callback_uri | default("") }}'
+SRAM_OIDC_AUTH_BASE_URI   = '{{ sram_oidc_auth_base_uri | default("") }}'
+SRAM_OIDC_AUTH_URI        = '{{ sram_oidc_auth_base_uri ~ "?response_type=code&client_id=" ~ sram_oidc_client_id ~ "&redirect_uri=" ~ sram_oidc_callback_uri ~ "&scope=" ~ sram_oidc_scopes ~ "&acr_values=" ~ sram_oidc_acr_values | default("") }}'
+SRAM_OIDC_LOGIN_HINT      = {{ sram_oidc_login_hint | default(True) }}
+SRAM_OIDC_TOKEN_URI       = '{{ sram_oidc_token_uri     | default("") }}'
+SRAM_OIDC_SCOPES          = '{{ sram_oidc_scopes        | default("openid") }}'
+SRAM_OIDC_ACR_VALUES      = '{{ sram_oidc_acr_values    | default("") }}'
+SRAM_OIDC_USERINFO_URI    = '{{ sram_oidc_userinfo_uri  | default("") }}'
+SRAM_OIDC_EMAIL_FIELD     = '{{ sram_oidc_email_field   | default("email") }}'
+SRAM_OIDC_JWKS_URI        = '{{ sram_oidc_jwks_uri      | default("") }}'
+SRAM_OIDC_JWT_ISSUER      = '{{ sram_oidc_jwt_issuer    | default("") }}'
+SRAM_OIDC_JWT_OPTIONS     = {
+    "require_exp": {{ sram_oidc_req_exp | default(True) }},      #check that exp (expiration) claim is present
+    "require_iat": {{ sram_oidc_req_iat | default(False) }},     #check that iat (issued at) claim is present
+    "require_nbf": {{ sram_oidc_req_nbf | default(False) }},     #check that nbf (not before) claim is present
+    "verify_aud": {{ sram_oidc_verify_aud | default(True) }},    #check that aud (audience) claim matches audience
+    "verify_iat": {{ sram_oidc_verify_iat | default(False) }},   #check that iat (issued at) claim value is an integer
+    "verify_exp": {{ sram_oidc_verify_exp | default(True) }},    #check that exp (expiration) claim value is OK
+    "verify_iss": {{ sram_oidc_verify_iss | default(True) }},    #check that iss (issuer) claim matches issuer
+    "verify_signature": True                                #verify the JWT cryptographic signature
+}
+{% endif %}
+
 # Portal configuration
 YODA_PORTAL_PATH = '{{ yoda_portal_path | default("/var/www/yoda") }}'                 # Path to location of portal
 YODA_CONFIG_PATH = '{{ yoda_config_path | default("/var/www/yoda/config") }}'  # Path to portal's shared configuration
