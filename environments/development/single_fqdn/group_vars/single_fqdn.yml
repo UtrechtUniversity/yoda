@@ -278,6 +278,7 @@ enable_sram: true                                                    # Enable SR
 sram_rest_api_url: sram-mock.yoda.test                               # SRAM Rest API URL
 sram_api_key: PLACEHOLDER                                            # SRAM Rest API key
 sram_service_entity_id: PLACEHOLDER                                  # SRAM Service Entity ID
+sram_auto_external_users_co_sync: false                              # Automatic SRAM external users CO sync
 sram_auto_group_sync: false                                          # Automatic SRAM group sync
 sram_verbose_logging: true                                           # SRAM verbose logging
 sram_tls_verify: false                                               # Enable TLS verification for SRAM API calls. Enabled by default.
