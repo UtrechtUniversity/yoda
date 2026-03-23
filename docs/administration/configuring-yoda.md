@@ -391,19 +391,20 @@ inactivity_cutoff_months       | Number of months a research group has to be ina
 
 ### SRAM configuration
 
-Variable                     | Description
------------------------------|---------------------------------------------
-enable_sram                  | Enable SRAM configuration
-sram_rest_api_url            | SRAM Rest API URL
-sram_api_key                 | SRAM Rest API key
-sram_service_entity_id       | SRAM Service Entity ID
-sram_flow                    | SRAM flow to use, 'join_request' or 'invitation'
-sram_auto_group_sync         | Automatic SRAM group sync
-sram_verbose_logging         | SRAM verbose logging
-sram_tls_verify              | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
-sram_co_default_label        | Default label for created COs
-sram_co_logo                 | Base64 encoded image used as default SRAM CO logo (by default it has an image of the Yoda logo; see the default value for the exact format)
-sram_co_default_admins       | List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email
+Variable                         | Description
+---------------------------------|---------------------------------------------
+enable_sram                      | Enable SRAM configuration
+sram_rest_api_url                | SRAM Rest API URL
+sram_api_key                     | SRAM Rest API key
+sram_service_entity_id           | SRAM Service Entity ID
+sram_flow                        | SRAM flow to use, 'join_request' or 'invitation'
+sram_auto_external_users_co_sync | Automatic SRAM external users CO sync
+sram_auto_group_sync             | Automatic SRAM group sync
+sram_verbose_logging             | SRAM verbose logging
+sram_tls_verify                  | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
+sram_co_default_label            | Default label for created COs
+sram_co_logo                     | Base64 encoded image used as default SRAM CO logo (by default it has an image of the Yoda logo; see the default value for the exact format)
+sram_co_default_admins           | List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email
 
 ### EPIC PID Configuration
 
