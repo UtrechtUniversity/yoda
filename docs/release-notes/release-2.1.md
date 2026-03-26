@@ -1,7 +1,7 @@
 ---
 parent: Release Notes
 title: v2.1
-nav_order: 88
+nav_order: 87
 ---
 # Release Notes - Yoda v2.1
 
@@ -12,10 +12,13 @@ Released: TBA
 ## What's new
 
 ### Changes affecting functionality for data stewards and researchers
--
+- **Folder templates**: new feature to create folder structure from a template in the research space
+- **SRAM integration**: improved [SRAM workflow](../development/img/yoda-sram.png) for external users
+
 
 ### Changes affecting technical administrators
--
+- **SRAM integration**: improved SRAM support for external users with seperate [OIDC configuration](../administration/configuring-yoda.md)
+
 
 ### Other changes
 - iRODS: upgrade to v5.0.2

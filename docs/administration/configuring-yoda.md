@@ -405,6 +405,23 @@ sram_tls_verify                  | Enable TLS verification for SRAM API calls. E
 sram_co_default_label            | Default label for created COs
 sram_co_logo                     | Base64 encoded image used as default SRAM CO logo (by default it has an image of the Yoda logo; see the default value for the exact format)
 sram_co_default_admins           | List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email
+sram_oidc_client_id              | SRAM OIDC Client Id
+sram_oidc_client_secret          | SRAM OIDC Client Secret/Password
+sram_oidc_auth_base_uri          | SRAM OIDC Authorization URI without parameters
+sram_oidc_token_uri              | SRAM OIDC Token URI
+sram_oidc_userinfo_uri           | SRAM OIDC Userinfo URI
+sram_oidc_scopes                 | SRAM OIDC Scopes
+sram_oidc_acr_values             | SRAM OIDC Authentication Context Class Reference Values
+sram_oidc_email_field            | The identifier of the JSON field in the id_token containing the email address (default: email)
+sram_oidc_jwks_uri               | The url where the JWKS can be found (Java web key sets)
+sram_oidc_jwt_issuer             | The issuer of the JWT tokens ('iss' value in JWT, for verification)
+sram_oidc_req_exp                | Check that exp (expiration) claim is present
+sram_oidc_req_iat                | Check that iat (issued at) claim is present
+sram_oidc_req_nbf                | Check that nbf (not before) claim is present
+sram_oidc_verify_aud             | Check that aud (audience) claim matches audience
+sram_oidc_verify_iat             | Check that iat (issued at) claim value is an integer
+sram_oidc_verify_exp             | Check that exp (expiration) claim value is OK
+sram_oidc_verify_iss             | Check that iss (issue) claim is as expected
 
 ### EPIC PID Configuration
 
