@@ -53,6 +53,7 @@ def main():
     dataClassification = module.params["dataClassification"]
     state = module.params["state"]
     co_identifier = ''
+    sram_co = 'False'
 
     if IRODSCLIENT_AVAILABLE:
         try:
@@ -68,7 +69,7 @@ def main():
 
     # Rule to add a group to Yoda.
     rule_file = io.StringIO(u'''a {{
-                       uuGroupAdd(*groupName, *category, *subcategory, *schema_id, *retention_period, *description, *dataClassification, *co_identifier, *status, *message);
+                       uuGroupAdd(*groupName, *category, *subcategory, *schema_id, *retention_period, *description, *dataClassification, *co_identifier, *sram_co, *status, *message);
                      }}
                 ''')
 
@@ -81,7 +82,8 @@ def main():
         '*retention_period': '"{retention_period}"'.format(**locals()),
         '*description': '"{description}"'.format(**locals()),
         '*dataClassification': '"{dataClassification}"'.format(**locals()),
-        '*co_identifier': '"{co_identifier}"'.format(**locals())
+        '*co_identifier': '"{co_identifier}"'.format(**locals()),
+        '*sram_co': '"{sram_co}"'.format(**locals())
     }
 
     # Execute rule.
