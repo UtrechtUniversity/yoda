@@ -157,7 +157,7 @@
   
     <ul class="nav-list"><li class="nav-list-item"><a href="/yoda/" class="nav-list-link">Home</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Release Notes submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/yoda/release-notes/" class="nav-list-link">Release Notes</a><ul class="nav-list"><li class="nav-list-item"><a href="/yoda/release-notes/release-2.0.html" class="nav-list-link">v2.0</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-2.1.html" class="nav-list-link">v2.1</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.9.html" class="nav-list-link">v1.9</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.8.html" class="nav-list-link">v1.8</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.7.html" class="nav-list-link">v1.7</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.6.html" class="nav-list-link">v1.6</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.5.html" class="nav-list-link">v1.5</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.4.html" class="nav-list-link">v1.4</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.3.html" class="nav-list-link">v1.3</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.2.html" class="nav-list-link">v1.2</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.1.html" class="nav-list-link">v1.1</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.0.html" class="nav-list-link">v1.0</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-0.9.7.html" class="nav-list-link">v0.9.7</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Software Design submenu" aria-expanded="false">
+      </button><a href="/yoda/release-notes/" class="nav-list-link">Release Notes</a><ul class="nav-list"><li class="nav-list-item"><a href="/yoda/release-notes/release-2.1.html" class="nav-list-link">v2.1</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-2.0.html" class="nav-list-link">v2.0</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.9.html" class="nav-list-link">v1.9</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.8.html" class="nav-list-link">v1.8</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.7.html" class="nav-list-link">v1.7</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.6.html" class="nav-list-link">v1.6</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.5.html" class="nav-list-link">v1.5</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.4.html" class="nav-list-link">v1.4</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.3.html" class="nav-list-link">v1.3</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.2.html" class="nav-list-link">v1.2</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.1.html" class="nav-list-link">v1.1</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-1.0.html" class="nav-list-link">v1.0</a></li><li class="nav-list-item"><a href="/yoda/release-notes/release-0.9.7.html" class="nav-list-link">v0.9.7</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Software Design submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/yoda/design/" class="nav-list-link">Software Design</a><ul class="nav-list"><li class="nav-list-item"><a href="/yoda/design/api/" class="nav-list-link">API</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="System Overview submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
@@ -1421,6 +1421,10 @@ particular threshold.</p>
       <td>SRAM flow to use, ‘join_request’ or ‘invitation’</td>
     </tr>
     <tr>
+      <td>sram_auto_external_users_co_sync</td>
+      <td>Automatic SRAM external users CO sync</td>
+    </tr>
+    <tr>
       <td>sram_auto_group_sync</td>
       <td>Automatic SRAM group sync</td>
     </tr>
@@ -1443,6 +1447,74 @@ particular threshold.</p>
     <tr>
       <td>sram_co_default_admins</td>
       <td>List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_client_id</td>
+      <td>SRAM OIDC Client Id</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_client_secret</td>
+      <td>SRAM OIDC Client Secret/Password</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_auth_base_uri</td>
+      <td>SRAM OIDC Authorization URI without parameters</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_token_uri</td>
+      <td>SRAM OIDC Token URI</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_userinfo_uri</td>
+      <td>SRAM OIDC Userinfo URI</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_scopes</td>
+      <td>SRAM OIDC Scopes</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_acr_values</td>
+      <td>SRAM OIDC Authentication Context Class Reference Values</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_email_field</td>
+      <td>The identifier of the JSON field in the id_token containing the email address (default: email)</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_jwks_uri</td>
+      <td>The url where the JWKS can be found (Java web key sets)</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_jwt_issuer</td>
+      <td>The issuer of the JWT tokens (‘iss’ value in JWT, for verification)</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_req_exp</td>
+      <td>Check that exp (expiration) claim is present</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_req_iat</td>
+      <td>Check that iat (issued at) claim is present</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_req_nbf</td>
+      <td>Check that nbf (not before) claim is present</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_verify_aud</td>
+      <td>Check that aud (audience) claim matches audience</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_verify_iat</td>
+      <td>Check that iat (issued at) claim value is an integer</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_verify_exp</td>
+      <td>Check that exp (expiration) claim value is OK</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_verify_iss</td>
+      <td>Check that iss (issue) claim is as expected</td>
     </tr>
   </tbody>
 </table></div>
