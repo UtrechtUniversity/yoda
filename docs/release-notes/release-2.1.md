@@ -12,13 +12,15 @@ Released: TBA
 ## What's new
 
 ### Changes affecting functionality for data stewards and researchers
+- **Data package archiving**: add option to move rather than copy data to the vault
 - **Folder templates**: new feature to create folder structure from a template in the research space
 - **SRAM integration**: improved [SRAM workflow](../development/img/yoda-sram.png) for external users
-
+- **Vault checksums**: add option to request a checksum report for all data packages in a vault group
+- **Checksum report**: report is improved with a summary of the collection
 
 ### Changes affecting technical administrators
 - **SRAM integration**: improved SRAM support for external users with seperate [OIDC configuration](../administration/configuring-yoda.md)
-
+- **Copy to research**: improved retry logic and configurable multithreading parameter (vault_copy_multithread_enabled)
 
 ### Other changes
 - iRODS: upgrade to v5.0.2
