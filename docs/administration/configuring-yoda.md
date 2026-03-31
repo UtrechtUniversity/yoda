@@ -397,7 +397,6 @@ enable_sram                      | Enable SRAM configuration
 sram_rest_api_url                | SRAM Rest API URL
 sram_api_key                     | SRAM Rest API key
 sram_service_entity_id           | SRAM Service Entity ID
-sram_flow                        | SRAM flow to use, 'join_request' or 'invitation'
 sram_auto_external_users_co_sync | Automatic SRAM external users CO sync
 sram_auto_group_sync             | Automatic SRAM group sync
 sram_verbose_logging             | SRAM verbose logging
