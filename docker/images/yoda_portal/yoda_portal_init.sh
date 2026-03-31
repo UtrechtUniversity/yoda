@@ -96,7 +96,7 @@ DEPOSIT_ENABLED     = True
 DATAREQUEST_ENABLED = True
 TOKENS_ENABLED      = True
 TOKEN_LIFETIME      = 72
-SRAM_ENABLED        = False
+SRAM_ENABLED        = True
 CACHING_ENABLED     = False
 
 # Logging configuration
@@ -169,10 +169,34 @@ OIDC_JWT_OPTIONS     = {
     "verify_signature": True  #verify the JWT cryptographic signature
 }
 
+# SRAM OIDC configuration
+SRAM_OIDC_CLIENT_ID       = 'myClientId'
+SRAM_OIDC_CLIENT_SECRET   = 'myClientPassword'
+SRAM_OIDC_CALLBACK_URI    = 'https://portal.yoda.test/user/callback_sram'
+SRAM_OIDC_AUTH_BASE_URI   = 'https://oauth.wiremockapi.cloud/oauth/authorize'
+SRAM_OIDC_AUTH_URI        = 'https://oauth.wiremockapi.cloud/oauth/authorize?response_type=code&client_id=myClientId&redirect_uri=https://portal.yoda.test/user/callback_sram&scope=openid&acr_values='
+SRAM_OIDC_LOGIN_HINT      = True
+SRAM_OIDC_TOKEN_URI       = 'https://oauth.wiremockapi.cloud/oauth/token'
+SRAM_OIDC_SCOPES          = 'openid'
+SRAM_OIDC_ACR_VALUES      = ''
+SRAM_OIDC_USERINFO_URI    = 'https://oauth.wiremockapi.cloud/userinfo'
+SRAM_OIDC_EMAIL_FIELD     = 'email'
+SRAM_OIDC_JWKS_URI        = 'https://oauth.wiremockapi.cloud/.well-known/jwks.json'
+SRAM_OIDC_JWT_ISSUER      = 'https://oauth.wiremockapi.cloud'
+SRAM_OIDC_JWT_OPTIONS     = {
+    "require_exp": True,      #check that exp (expiration) claim is present
+    "require_iat": False,     #check that iat (issued at) claim is present
+    "require_nbf": False,     #check that nbf (not before) claim is present
+    "verify_aud": True,       #check that aud (audience) claim matches audience
+    "verify_iat": False,      #check that iat (issued at) claim value is an integer
+    "verify_exp": True,       #check that exp (expiration) claim value is OK
+    "verify_iss": True,       #check that iss (issuer) claim matches issuer
+    "verify_signature": True  #verify the JWT cryptographic signature
+}
+
 # Portal configuration
 YODA_PORTAL_PATH = '/var/www/yoda'         # Path to location of portal
 YODA_CONFIG_PATH = '/var/www/yoda/config'  # Path to portal's shared configuration
-
 
 # Portal theme configuration
 YODA_THEME_PATH     = '/var/www/yoda/themes' # Path to location of themes
