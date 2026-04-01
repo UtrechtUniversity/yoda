@@ -120,3 +120,7 @@ measure_coverage               = '{{ ["false", "true"][yoda_rulesets_measure_cov
 text_file_extensions           = '{{ text_file_extensions | join (" ") }}'
 notifications_enabled          = '{{ ["false", "true"][send_notifications|int] }}'
 pregenerated_data_dir          = '{{ yoda_rulesets_pregen_data_dir }}'
+
+matomo_tracking_enabled        = '{{ ["false", "true"][yoda_matomo_tracking_enabled|int] }}'
+matomo_server_fqdn             = '{{ yoda_matomo_server_fqdn }}'
+matomo_site_id                 = '{{ yoda_matomo_site_id }}'

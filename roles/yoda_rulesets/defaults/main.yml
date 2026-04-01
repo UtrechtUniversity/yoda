@@ -259,3 +259,8 @@ vault_copy_max_retries: 5              # How many times to retry copy to vault o
 yoda_rulesets_measure_coverage: false
 
 yoda_rulesets_pregen_data_dir: /var/lib/irods/yoda-pregenerated-data
+
+# Parameters for Matomo web statistics collection on landing pages
+yoda_matomo_tracking_enabled: false
+yoda_matomo_server_fqdn: www.matomo.test
+yoda_matomo_site_id: 1
