@@ -471,6 +471,17 @@ Variable          | Description
 landingpages_root | Root of landingpages on server
 landingpage_theme | Name of landingpage theme
 
+### Web statistics configuration
+
+The web statistics parameters are used during publication endpoint updates (more specifically, during landing page
+updates). So changes in these parameters only take effect after updating publication endpoints.
+
+Variable                     | Description
+-----------------------------|--------------------------------
+yoda_matomo_tracking_enabled | Enable collection of web statistics for landing pages using [Matomo](https://matomo.org). This requires a separate Matomo environment. By default, collection of web statistics is disabled.
+yoda_matomo_server_fqdn      | Fully-qualified domain name of Matomo web statistics server (for collection of web statistics)
+yoda_matomo_site_id          | Site ID of the landing page domain on the Matomo server. The Site ID is assigned when a website is configured in Matomo. The default site ID is "1".
+
 ### Anubis configuration
 
 Variable                    | Description

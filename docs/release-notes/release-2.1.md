@@ -21,6 +21,7 @@ Released: TBA
 ### Changes affecting technical administrators
 - **SRAM integration**: improved support for external users with separate [OIDC configuration](../administration/configuring-yoda.md)
 - **Copy to research**: improved retry logic and configurable multithreading parameter (vault_copy_multithread_enabled)
+- **Web statistics collection for landing pages**: added functionality to collect web statistics for landing pages using [Matomo](https://matomo.org)
 
 ### Other changes
 - iRODS: upgrade to v5.0.2
