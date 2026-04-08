@@ -3,8 +3,8 @@ GEM
   specs:
     activesupport (3.1.12)
       multi_json (~> 1.0)
-    addressable (2.8.1)
-      public_suffix (>= 2.0.2, < 6.0)
+    addressable (2.9.0)
+      public_suffix (>= 2.0.2, < 8.0)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
