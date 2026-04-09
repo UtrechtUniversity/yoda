@@ -248,4 +248,5 @@ Listen {{ yoda_davrods_anonymous_port }}
     SSLCertificateKeyFile   {{ openssl_private_dir }}/{{ openssl_key_signed }}
 
     Header set Access-Control-Allow-Origin "https://{{ yoda_public_fqdn }}"
+    Header set Access-Control-Allow-Headers "X-Requested-With"
 </VirtualHost>

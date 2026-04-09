@@ -3,7 +3,7 @@ const downloadButton = document.getElementById('downloadZip')
 if (downloadButton != null) {
   try {
     downloadZip = (await import('../../static/lib/client-zip-2.5.0.js')).downloadZip
-    fetch('/.within.website/x/cmd/anubis/static/img/happy.webp').then(res => !res.ok && downloadButton.classList.remove('invisible'))
+    downloadButton.classList.remove('invisible')
   } catch (error) {
     console.error('Download zip import failed:', error)
   }
@@ -65,7 +65,13 @@ async function downloadEntriesAsZip (entries) {
         continue
       }
 
-      const response = await fetch(url)
+      // Fetch headers need to match the Anubis allow-anonymous-zip-downloads policy.
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
       if (!response.ok) {
         throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`)
       }
