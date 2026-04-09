@@ -45,6 +45,7 @@
 
         # Prevent "Cross-Origin Request Blocked" complaints when opening links from public server
         Header set Access-Control-Allow-Origin "https://{{ yoda_public_fqdn }}"
+        Header set Access-Control-Allow-Headers "X-Requested-With"
 
         # These headers need to be set or else Anubis will
         # throw an "admin misconfiguration" error.
@@ -313,4 +314,5 @@
     SSLCertificateKeyFile   {{ openssl_private_dir }}/{{ openssl_key_signed }}
 
     Header set Access-Control-Allow-Origin "https://{{ yoda_public_fqdn }}"
+    Header set Access-Control-Allow-Headers "X-Requested-With"
 </VirtualHost>

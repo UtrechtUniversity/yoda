@@ -35,14 +35,26 @@
   when: (inventory_hostname in groups['publics'])
 
 
-- name: Ensure Anubis bot policies file is present
+- name: Ensure Anubis bot policies file for landingpages is present
   ansible.builtin.template:
-    src: yoda.botPolicies.yaml.j2
-    dest: /etc/anubis/yoda.botPolicies.yaml
+    src: yoda.landingpages.botPolicies.yaml.j2
+    dest: /etc/anubis/yoda.landingpages.botPolicies.yaml
     mode: '0644'
-  notify:
-    - Restart Anubis (davrods)
-    - Restart Anubis (landingpages)
+  notify: Restart Anubis (landingpages)
+
+
+- name: Ensure Anubis bot policies file for davrods is present
+  ansible.builtin.template:
+    src: yoda.davrods.botPolicies.yaml.j2
+    dest: /etc/anubis/yoda.davrods.botPolicies.yaml
+    mode: '0644'
+  notify: Restart Anubis (davrods)
+
+
+- name: Remove old generic Anubis bot policies file
+  ansible.builtin.file:
+    path: /etc/anubis/yoda.botPolicies.yaml
+    state: absent
 
 
 - name: Ensure Apache modules for Anubis are enabled (Ubuntu)
