@@ -389,39 +389,6 @@ Variable                       | Description
 enable_inactivity_notification | Enable notifications to datamanager groups of inactive research groups
 inactivity_cutoff_months       | Number of months a research group has to be inactive for datamanagers to be notified
 
-### SRAM configuration
-
-Variable                         | Description
----------------------------------|---------------------------------------------
-enable_sram                      | Enable SRAM configuration
-sram_rest_api_url                | SRAM Rest API URL
-sram_api_key                     | SRAM Rest API key
-sram_service_entity_id           | SRAM Service Entity ID
-sram_auto_external_users_co_sync | Automatic SRAM external users CO sync
-sram_auto_group_sync             | Automatic SRAM group sync
-sram_verbose_logging             | SRAM verbose logging
-sram_tls_verify                  | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
-sram_co_default_label            | Default label for created COs
-sram_co_logo                     | Base64 encoded image used as default SRAM CO logo (by default it has an image of the Yoda logo; see the default value for the exact format)
-sram_co_default_admins           | List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email
-sram_oidc_client_id              | SRAM OIDC Client Id
-sram_oidc_client_secret          | SRAM OIDC Client Secret/Password
-sram_oidc_auth_base_uri          | SRAM OIDC Authorization URI without parameters
-sram_oidc_token_uri              | SRAM OIDC Token URI
-sram_oidc_userinfo_uri           | SRAM OIDC Userinfo URI
-sram_oidc_scopes                 | SRAM OIDC Scopes
-sram_oidc_acr_values             | SRAM OIDC Authentication Context Class Reference Values
-sram_oidc_email_field            | The identifier of the JSON field in the id_token containing the email address (default: email)
-sram_oidc_jwks_uri               | The url where the JWKS can be found (Java web key sets)
-sram_oidc_jwt_issuer             | The issuer of the JWT tokens ('iss' value in JWT, for verification)
-sram_oidc_req_exp                | Check that exp (expiration) claim is present
-sram_oidc_req_iat                | Check that iat (issued at) claim is present
-sram_oidc_req_nbf                | Check that nbf (not before) claim is present
-sram_oidc_verify_aud             | Check that aud (audience) claim matches audience
-sram_oidc_verify_iat             | Check that iat (issued at) claim value is an integer
-sram_oidc_verify_exp             | Check that exp (expiration) claim value is OK
-sram_oidc_verify_iss             | Check that iss (issue) claim is as expected
-
 ### EPIC PID Configuration
 
 Variable                     | Description
@@ -534,6 +501,40 @@ oidc_verify_aud      | Check that aud (audience) claim matches audience
 oidc_verify_iat      | Check that iat (issued at) claim value is an integer
 oidc_verify_exp      | Check that exp (expiration) claim value is OK
 oidc_verify_iss      | Check that iss (issue) claim is as expected
+
+### SRAM configuration
+
+Variable                         | Description
+---------------------------------|---------------------------------------------
+enable_sram                      | Enable SRAM configuration
+sram_rest_api_url                | SRAM Rest API URL
+sram_api_key                     | SRAM Rest API key
+sram_service_entity_id           | SRAM Service Entity ID
+sram_auto_external_users_co_sync | Automatic SRAM external users CO sync
+sram_auto_group_sync             | Automatic SRAM group sync
+sram_verbose_logging             | SRAM verbose logging
+sram_tls_verify                  | Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.
+sram_co_default_label            | Default label for created COs
+sram_co_logo                     | Base64 encoded image used as default SRAM CO logo (by default it has an image of the Yoda logo; see the default value for the exact format)
+sram_co_default_admins           | List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email
+sram_external_users_co           | CO identifier of SRAM external users collaboration
+sram_oidc_client_id              | SRAM OIDC Client Id
+sram_oidc_client_secret          | SRAM OIDC Client Secret/Password
+sram_oidc_auth_base_uri          | SRAM OIDC Authorization URI without parameters
+sram_oidc_token_uri              | SRAM OIDC Token URI
+sram_oidc_userinfo_uri           | SRAM OIDC Userinfo URI
+sram_oidc_scopes                 | SRAM OIDC Scopes
+sram_oidc_acr_values             | SRAM OIDC Authentication Context Class Reference Values
+sram_oidc_email_field            | The identifier of the JSON field in the id_token containing the email address (default: email)
+sram_oidc_jwks_uri               | The url where the JWKS can be found (Java web key sets)
+sram_oidc_jwt_issuer             | The issuer of the JWT tokens ('iss' value in JWT, for verification)
+sram_oidc_req_exp                | Check that exp (expiration) claim is present
+sram_oidc_req_iat                | Check that iat (issued at) claim is present
+sram_oidc_req_nbf                | Check that nbf (not before) claim is present
+sram_oidc_verify_aud             | Check that aud (audience) claim matches audience
+sram_oidc_verify_iat             | Check that iat (issued at) claim value is an integer
+sram_oidc_verify_exp             | Check that exp (expiration) claim value is OK
+sram_oidc_verify_iss             | Check that iss (issue) claim is as expected
 
 ### Mailpit configuration
 
