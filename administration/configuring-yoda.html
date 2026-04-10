@@ -1383,137 +1383,6 @@ particular threshold.</p>
     </tr>
   </tbody>
 </table></div>
-<h3 id="sram-configuration">
-  
-  
-    <a href="#sram-configuration" class="anchor-heading" aria-labelledby="sram-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> SRAM configuration
-  
-  
-</h3>
-    
-
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>Variable</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>enable_sram</td>
-      <td>Enable SRAM configuration</td>
-    </tr>
-    <tr>
-      <td>sram_rest_api_url</td>
-      <td>SRAM Rest API URL</td>
-    </tr>
-    <tr>
-      <td>sram_api_key</td>
-      <td>SRAM Rest API key</td>
-    </tr>
-    <tr>
-      <td>sram_service_entity_id</td>
-      <td>SRAM Service Entity ID</td>
-    </tr>
-    <tr>
-      <td>sram_auto_external_users_co_sync</td>
-      <td>Automatic SRAM external users CO sync</td>
-    </tr>
-    <tr>
-      <td>sram_auto_group_sync</td>
-      <td>Automatic SRAM group sync</td>
-    </tr>
-    <tr>
-      <td>sram_verbose_logging</td>
-      <td>SRAM verbose logging</td>
-    </tr>
-    <tr>
-      <td>sram_tls_verify</td>
-      <td>Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.</td>
-    </tr>
-    <tr>
-      <td>sram_co_default_label</td>
-      <td>Default label for created COs</td>
-    </tr>
-    <tr>
-      <td>sram_co_logo</td>
-      <td>Base64 encoded image used as default SRAM CO logo (by default it has an image of the Yoda logo; see the default value for the exact format)</td>
-    </tr>
-    <tr>
-      <td>sram_co_default_admins</td>
-      <td>List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_client_id</td>
-      <td>SRAM OIDC Client Id</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_client_secret</td>
-      <td>SRAM OIDC Client Secret/Password</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_auth_base_uri</td>
-      <td>SRAM OIDC Authorization URI without parameters</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_token_uri</td>
-      <td>SRAM OIDC Token URI</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_userinfo_uri</td>
-      <td>SRAM OIDC Userinfo URI</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_scopes</td>
-      <td>SRAM OIDC Scopes</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_acr_values</td>
-      <td>SRAM OIDC Authentication Context Class Reference Values</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_email_field</td>
-      <td>The identifier of the JSON field in the id_token containing the email address (default: email)</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_jwks_uri</td>
-      <td>The url where the JWKS can be found (Java web key sets)</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_jwt_issuer</td>
-      <td>The issuer of the JWT tokens (‘iss’ value in JWT, for verification)</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_req_exp</td>
-      <td>Check that exp (expiration) claim is present</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_req_iat</td>
-      <td>Check that iat (issued at) claim is present</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_req_nbf</td>
-      <td>Check that nbf (not before) claim is present</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_verify_aud</td>
-      <td>Check that aud (audience) claim matches audience</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_verify_iat</td>
-      <td>Check that iat (issued at) claim value is an integer</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_verify_exp</td>
-      <td>Check that exp (expiration) claim value is OK</td>
-    </tr>
-    <tr>
-      <td>sram_oidc_verify_iss</td>
-      <td>Check that iss (issue) claim is as expected</td>
-    </tr>
-  </tbody>
-</table></div>
 <h3 id="epic-pid-configuration">
   
   
@@ -1959,6 +1828,141 @@ updates). So changes in these parameters only take effect after updating publica
     </tr>
     <tr>
       <td>oidc_verify_iss</td>
+      <td>Check that iss (issue) claim is as expected</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="sram-configuration">
+  
+  
+    <a href="#sram-configuration" class="anchor-heading" aria-labelledby="sram-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> SRAM configuration
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>enable_sram</td>
+      <td>Enable SRAM configuration</td>
+    </tr>
+    <tr>
+      <td>sram_rest_api_url</td>
+      <td>SRAM Rest API URL</td>
+    </tr>
+    <tr>
+      <td>sram_api_key</td>
+      <td>SRAM Rest API key</td>
+    </tr>
+    <tr>
+      <td>sram_service_entity_id</td>
+      <td>SRAM Service Entity ID</td>
+    </tr>
+    <tr>
+      <td>sram_auto_external_users_co_sync</td>
+      <td>Automatic SRAM external users CO sync</td>
+    </tr>
+    <tr>
+      <td>sram_auto_group_sync</td>
+      <td>Automatic SRAM group sync</td>
+    </tr>
+    <tr>
+      <td>sram_verbose_logging</td>
+      <td>SRAM verbose logging</td>
+    </tr>
+    <tr>
+      <td>sram_tls_verify</td>
+      <td>Enable TLS verification for SRAM API calls. Enabled by default, but disabled on development environments because these use a mock service with a self-signed certificate.</td>
+    </tr>
+    <tr>
+      <td>sram_co_default_label</td>
+      <td>Default label for created COs</td>
+    </tr>
+    <tr>
+      <td>sram_co_logo</td>
+      <td>Base64 encoded image used as default SRAM CO logo (by default it has an image of the Yoda logo; see the default value for the exact format)</td>
+    </tr>
+    <tr>
+      <td>sram_co_default_admins</td>
+      <td>List of SRAM CO default administrators, used as fallback when CO is created by user without a valid email</td>
+    </tr>
+    <tr>
+      <td>sram_external_users_co</td>
+      <td>CO identifier of SRAM external users collaboration</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_client_id</td>
+      <td>SRAM OIDC Client Id</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_client_secret</td>
+      <td>SRAM OIDC Client Secret/Password</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_auth_base_uri</td>
+      <td>SRAM OIDC Authorization URI without parameters</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_token_uri</td>
+      <td>SRAM OIDC Token URI</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_userinfo_uri</td>
+      <td>SRAM OIDC Userinfo URI</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_scopes</td>
+      <td>SRAM OIDC Scopes</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_acr_values</td>
+      <td>SRAM OIDC Authentication Context Class Reference Values</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_email_field</td>
+      <td>The identifier of the JSON field in the id_token containing the email address (default: email)</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_jwks_uri</td>
+      <td>The url where the JWKS can be found (Java web key sets)</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_jwt_issuer</td>
+      <td>The issuer of the JWT tokens (‘iss’ value in JWT, for verification)</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_req_exp</td>
+      <td>Check that exp (expiration) claim is present</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_req_iat</td>
+      <td>Check that iat (issued at) claim is present</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_req_nbf</td>
+      <td>Check that nbf (not before) claim is present</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_verify_aud</td>
+      <td>Check that aud (audience) claim matches audience</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_verify_iat</td>
+      <td>Check that iat (issued at) claim value is an integer</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_verify_exp</td>
+      <td>Check that exp (expiration) claim value is OK</td>
+    </tr>
+    <tr>
+      <td>sram_oidc_verify_iss</td>
       <td>Check that iss (issue) claim is as expected</td>
     </tr>
   </tbody>
