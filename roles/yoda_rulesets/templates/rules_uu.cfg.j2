@@ -70,9 +70,11 @@ async_replication_max_rss      = '{{ async_replication_max_rss }}'
 async_revision_delay_time      = '{{ async_revision_delay_time }}'
 async_revision_max_rss         = '{{ async_revision_max_rss }}'
 
-vault_copy_backoff_time              = '{{ vault_copy_backoff_time }}'
-vault_copy_max_retries               = '{{ vault_copy_max_retries }}'
+vault_copy_backoff_time        = '{{ vault_copy_backoff_time }}'
+vault_copy_max_retries         = '{{ vault_copy_max_retries }}'
 vault_copy_multithread_enabled = '{{ ["false", "true"][yoda_rulesets_vault_copy_multithread_enabled|int] }}'
+
+deaccession_cooldown           = '{{ deaccession_cooldown }}'
 
 enable_inactivity_notification = '{{ ["false", "true"][enable_inactivity_notification|int] }}'
 {% if enable_inactivity_notification %}
