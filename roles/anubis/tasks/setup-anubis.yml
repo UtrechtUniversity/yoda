@@ -124,6 +124,28 @@
   when: not ansible_check_mode and inventory_hostname in groups.get('publics', [])
 
 
+- name: Ensure systemd override directory for Anubis exists
+  ansible.builtin.file:
+    path: /etc/systemd/system/anubis@.service.d
+    state: directory
+    mode: '0755'
+  when: inventory_hostname in groups['publics']
+
+
+- name: Ensure Redis is started before Anubis
+  ansible.builtin.copy:
+    content: |
+      [Unit]
+      After=redis-server-6380.service
+      Wants=redis-server-6380.service
+    dest: /etc/systemd/system/anubis@.service.d/override.conf
+    mode: '0644'
+  when: inventory_hostname in groups['publics']
+  notify:
+    - Restart Anubis (davrods)
+    - Restart Anubis (landingpages)
+
+
 - name: Ensure Anubis static directory for Yoda images is present
   ansible.builtin.file:
     path: '{{ item }}'
