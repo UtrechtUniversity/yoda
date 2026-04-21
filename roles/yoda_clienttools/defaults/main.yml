@@ -4,5 +4,5 @@
 enable_yoda_clienttools: false
 irods_service_account: irods
 yoda_clienttools_repo: "https://github.com/UtrechtUniversity/yoda-clienttools"
-yoda_clienttools_version: "2.3.1"
+yoda_clienttools_version: "3.0.1"
 yoda_clienttools_path: "/var/lib/irods/yoda-clienttools"
