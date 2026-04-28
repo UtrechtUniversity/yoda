@@ -66,6 +66,7 @@ test_groups:
   - {groupName: research-default-2,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: default-2}
   - {groupName: research-default-3,    category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: default-3}
   - {groupName: research-epos-msl-0,   category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: epos-msl-0}
+  - {groupName: research-epos-msl-1,   category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: epos-msl-1}
   - {groupName: research-hptlab-0,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: hptlab-0}
   - {groupName: research-hptlab-1,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: hptlab-1}
   - {groupName: research-teclab-0,     category: test-automation, subcategory: metadata-schemas, dataClassification: unspecified, schema_id: teclab-0}
@@ -144,6 +145,9 @@ test_group_users:
 
   - {groupName: research-epos-msl-0, user: researcher,                  role: normal}
   - {groupName: research-epos-msl-0, user: functionaladminpriv,         role: manager}
+
+  - {groupName: research-epos-msl-1, user: researcher,                  role: normal}
+  - {groupName: research-epos-msl-1, user: functionaladminpriv,         role: manager}
 
   - {groupName: research-hptlab-0, user: researcher,                    role: normal}
   - {groupName: research-hptlab-0, user: functionaladminpriv,           role: manager}
@@ -313,6 +317,7 @@ deletion_research_groups:
   - research: default-2
   - research: default-3
   - research: epos-msl-0
+  - research: epos-msl-1
   - research: hptlab-0
   - research: hptlab-1
   - research: teclab-0

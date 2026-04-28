@@ -103,6 +103,9 @@ metadata_schemas:
   - name: epos-msl-0
     install: true
     active: true
+  - name: epos-msl-1
+    install: true
+    active: true
 
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 

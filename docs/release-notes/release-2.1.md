@@ -18,6 +18,7 @@ Released: TBA
 - **SRAM integration**: improved [workflow](../development/img/yoda-sram.png) for external users
 - **Vault checksums**: request checksum reports for all data packages in a vault group
 - **Checksum report**: report is improved with a summary of the collection
+- **EPOS-MSL metadata**: improvements to the EPOS-MSL metadata schema (`epos-msl-1`)
 
 ### Changes affecting technical administrators
 - **SRAM integration**: improved support for external users with separate [OIDC configuration](../administration/configuring-yoda.md)
