@@ -1,0 +1,21 @@
+
+module da_server_custom 1.0;
+
+require {
+	type var_lib_t;
+	type NetworkManager_dispatcher_chronyc_t;
+	type init_t;
+	class file { execute execute_no_trans };
+	class capability { dac_override dac_read_search };
+}
+
+#============= NetworkManager_dispatcher_chronyc_t ==============
+
+#!!!! This avc is allowed in the current policy
+allow NetworkManager_dispatcher_chronyc_t self:capability { dac_override dac_read_search };
+
+#============= init_t ==============
+
+#!!!! This avc is allowed in the current policy
+allow init_t var_lib_t:file execute;
+allow init_t var_lib_t:file execute_no_trans;
