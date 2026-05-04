@@ -372,7 +372,7 @@
   },"53": {
     "doc": "Data Archive Mock",
     "title": "Usage:",
-    "content": "The Data Archive mock is installed in a virtualenv, active to use it: . $ sudo su irods $ cd ~ $ . data-archive-mock/data_archive_venv/bin/activate . Example to add a data object to the tape archive and put it offline: . $ iput -R mockDataArchive test.json $ daattr /var/lib/irods/Vault3/home/rods/test.json $ darelease /var/lib/irods/Vault3/home/rods/test.json . ",
+    "content": "The Data Archive mock is installed in a virtualenv; activate it to use it: . $ sudo su irods $ cd ~ $ . data-archive-mock/data_archive_venv/bin/activate . Example to add a data object to the tape archive and put it offline: . $ iput -R mockDataArchive test.json $ daattr /var/lib/irods/Vault3/home/rods/test.json $ darelease /var/lib/irods/Vault3/home/rods/test.json . ",
     "url": "/yoda/development/data_archive_mock.html#usage",
     
     "relUrl": "/development/data_archive_mock.html#usage"
