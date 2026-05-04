@@ -8,7 +8,7 @@ This page describes how to use the Data Archive mock (tape storage).
 The Data Archive mock is installed in Yoda development environments.
 
 ## Usage:
-The Data Archive mock is installed in a virtualenv, active to use it:
+The Data Archive mock is installed in a virtualenv; activate it to use it:
 ```bash
 $ sudo su irods
 $ cd ~
