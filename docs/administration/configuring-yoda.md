@@ -474,11 +474,13 @@ landingpage_theme | Name of landingpage theme
 ### Web statistics configuration
 
 The web statistics parameters are used during publication endpoint updates (more specifically, during landing page
-updates). So changes in these parameters only take effect after updating publication endpoints.
+updates). So changes in these parameters only take effect after updating publication endpoints. See also
+[the Matomo integration documentation](../design/other/matomo-integration.md).
 
 Variable                     | Description
 -----------------------------|--------------------------------
 yoda_matomo_tracking_enabled | Enable collection of web statistics for landing pages using [Matomo](https://matomo.org). This requires a separate Matomo environment. By default, collection of web statistics is disabled.
+yoda_matomo_counter_enabled  | Enable visit counters on landing pages using [Matomo](https://matomo.org). This requires a separate Matomo environment. By default, visit counters are disabled. If this is enabled, you probably want to enable `yoda_matomo_tracking_enabled` as well, otherwise no new page visits will be displayed on the counters.
 yoda_matomo_server_fqdn      | Fully-qualified domain name of Matomo web statistics server (for collection of web statistics)
 yoda_matomo_site_id          | Site ID of the landing page domain on the Matomo server. The Site ID is assigned when a website is configured in Matomo. The default site ID is "1".
 
