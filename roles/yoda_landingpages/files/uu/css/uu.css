@@ -285,6 +285,63 @@ header .header-title h1 {
     padding: 0;
 }
 
+.statistics {
+    margin-top: 75px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 4%;
+    background: #ffcd00;
+}
+.statistics h2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 32;
+}
+
+.statistics .list .group {
+    padding-bottom: 60px;
+}
+.statistics .list .group:last-child {
+    padding-bottom: 20px;
+}
+.statistics .list .group .row:first-child {
+    border-top: 2px solid #797979;
+}
+.statistics .list label {
+    font-family: 'Merriweather', serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 18px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 1;
+    margin: 0;
+}
+.statistics .list span {
+    width: 100%;
+    display: block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 1;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+}
+.statistics .list span a {
+    color: #333333;
+    text-decoration: underline;
+}
+.statistics .list .group .row {
+    border-bottom: 1px solid #797979;
+    margin: 0;
+}
+.statistics .list .group .row div {
+    padding: 0;
+}
+
 .questions {
     margin-top: 60px;
 }
