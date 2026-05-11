@@ -141,7 +141,7 @@
     name: httpd_can_sendmail
     state: true
     persistent: true
-  when: ansible_distribution == "RedHat" and ansible_selinux
+  when: ansible_distribution == "RedHat" and ansible_selinux.status == "enabled"
 
 
 - name: Configure default Postfix AppArmor profiles
