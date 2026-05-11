@@ -12,7 +12,7 @@
 - name: Ensure selinux context is enforced on davrods module
   ansible.builtin.command: # noqa no-changed-when
     cmd: restorecon /etc/httpd/modules/{{ item.target }}
-  when: filecontext is changed and ansible_selinux
+  when: filecontext is changed and ansible_selinux.status == "enabled"
   with_items:
     - {index: 0, target: 'mod_davrods.so'}
 
@@ -40,7 +40,7 @@
 - name: Ensure selinux context is enforced on iRODS network plugins
   ansible.builtin.command: # noqa no-changed-when
     cmd: restorecon /usr/lib64/irods/plugins/network/{{ item.target }}
-  when: filecontext.results[item.index] is changed and ansible_selinux
+  when: filecontext.results[item.index] is changed and ansible_selinux.status == "enabled"
   with_items:
     - {index: 0, target: 'libtcp_client.so'}
     - {index: 1, target: 'libssl_client.so'}
@@ -84,4 +84,4 @@
 - name: Ensure SELinux context is enforced on Davrods lock directory
   ansible.builtin.command: # noqa no-changed-when
     cmd: restorecon -R /var/lib/davrods
-  when: davrodslockcontext is changed and ansible_selinux
+  when: davrodslockcontext is changed and ansible_selinux.status == "enabled"
