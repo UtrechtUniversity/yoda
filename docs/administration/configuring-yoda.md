@@ -351,6 +351,7 @@ pgbouncer_max_db_connections                 | Less than or equal to PostgreSQL 
 pgbouncer_default_pool_size                  | How many server connections to allow per user/database pair (default: 50)
 pgbouncer_reserve_pool_size                  | How many additional connections to allow to a pool (default: 25)
 pgbouncer_reserve_pool_timeout               | If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2)
+pgbouncer_server_idle_timeout                | Close server connection if its not been used in this time (default: 600)
 pgbouncer_override_ignore_startup_parameters | Adjust ignore_startup_parameters setting of PGbouncer (default: undefined / use OS default value)
 
 ### Postfix configuration

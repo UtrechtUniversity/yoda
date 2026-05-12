@@ -4,12 +4,13 @@
 enable_pgbouncer: false
 
 # PgBouncer configuration
-pgbouncer_pool_mode: session       # Specifies when a server connection can be reused by other clients (default: session)
-pgbouncer_max_client_conn: 200     # Maximum number of client connections allowed (default: 200)
-pgbouncer_max_db_connections: 90   # Less than or equal to PostgreSQL max_connections (default: 90)
-pgbouncer_default_pool_size: 50    # How many server connections to allow per user/database pair (default: 50)
-pgbouncer_reserve_pool_size: 25    # How many additional connections to allow to a pool (default: 25)
-pgbouncer_reserve_pool_timeout: 2  # If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2)
+pgbouncer_pool_mode: session        # Specifies when a server connection can be reused by other clients (default: session)
+pgbouncer_max_client_conn: 200      # Maximum number of client connections allowed (default: 200)
+pgbouncer_max_db_connections: 90    # Less than or equal to PostgreSQL max_connections (default: 90)
+pgbouncer_default_pool_size: 50     # How many server connections to allow per user/database pair (default: 50)
+pgbouncer_reserve_pool_size: 25     # How many additional connections to allow to a pool (default: 25)
+pgbouncer_reserve_pool_timeout: 2   # If a client has not been serviced in this time, use additional connections from the reserve pool (default: 2)
+pgbouncer_server_idle_timeout: 600  # Close server connection if its not been used in this time.
 
 # This override can be used to set different ignore startup parameters
 # as needed for a particular software version.
