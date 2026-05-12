@@ -282,7 +282,7 @@ log_disconnections = 0
 
 ;; Close server connection if its not been used in this time.  Allows
 ;; to clean unnecessary connections from pool after peak.
-;server_idle_timeout = 600
+server_idle_timeout = {{ pgbouncer_server_idle_timeout }}
 
 ;; Cancel connection attempt if server does not answer takes longer.
 ;server_connect_timeout = 15
