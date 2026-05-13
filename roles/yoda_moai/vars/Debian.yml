@@ -4,6 +4,8 @@
 openssl_private_dir: '/etc/ssl/private/'
 openssl_certs_dir: '/etc/ssl/certs'
 
+apache_service_name: apache2
+
 yoda_moai_python3_path: /usr/bin/python3
 yoda_moai_python3_include_path: /usr/include/python3.12
 
