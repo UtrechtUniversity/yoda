@@ -59,12 +59,7 @@ RUN /var/www/moai/yoda-moai/venv/bin/pip3 install pysqlite3==0.5.0
 
 ## Install MOAI itself
 ENV C_INCLUDE_PATH /usr/include/python3.12
-RUN /var/www/moai/yoda-moai/venv/bin/pip3 install wheel==0.46.3 && \
-    /var/www/moai/yoda-moai/venv/bin/pip3 install setuptools==81.0.0 && \
-    /var/www/moai/yoda-moai/venv/bin/pip3 install lxml==6.0.2 && \
-    /var/www/moai/yoda-moai/venv/bin/pip3 install six==1.17.0 && \
-    /var/www/moai/yoda-moai/venv/bin/pip3 install --no-build-isolation "pyoai @ git+https://github.com/infrae/pyoai.git@2.5.1" && \
-    /var/www/moai/yoda-moai/venv/bin/pip3 install -e /var/www/moai/yoda-moai
+RUN /var/www/moai/yoda-moai/venv/bin/pip3 install -e /var/www/moai/yoda-moai
 
 ## Configure and initialize MOAI
 COPY moai-settings.ini /var/www/moai/settings.ini
