@@ -1,9 +1,7 @@
 ---
 # copyright Utrecht University
 
-nfs_client_mount_volumes_on_boot: true
-
-nfs_mounts:
+nfs_mounts: []
 
 # Example configuration for development environment.
 # nfs_mounts:
@@ -16,3 +14,10 @@ nfs_mounts:
 #  - host: combined.yoda.test
 #    src: "{{ ansible_host }}:/var/nfs/Vault2_1"
 #    path: "/nfs/Vault2_1"
+
+nfs_mount_options:
+  - nfsvers=3
+  - rw
+  - sync
+  - hard
+  - intr
