@@ -1588,7 +1588,8 @@ particular threshold.</p>
     
 
 <p>The web statistics parameters are used during publication endpoint updates (more specifically, during landing page
-updates). So changes in these parameters only take effect after updating publication endpoints.</p>
+updates). So changes in these parameters only take effect after updating publication endpoints. See also
+<a href="/yoda/design/other/matomo-integration.html">the Matomo integration documentation</a>.</p>
 
 <div class="table-wrapper"><table>
   <thead>
@@ -1601,6 +1602,10 @@ updates). So changes in these parameters only take effect after updating publica
     <tr>
       <td>yoda_matomo_tracking_enabled</td>
       <td>Enable collection of web statistics for landing pages using <a href="https://matomo.org">Matomo</a>. This requires a separate Matomo environment. By default, collection of web statistics is disabled.</td>
+    </tr>
+    <tr>
+      <td>yoda_matomo_counter_enabled</td>
+      <td>Enable visit counters on landing pages using <a href="https://matomo.org">Matomo</a>. This requires a separate Matomo environment. By default, visit counters are disabled. If this is enabled, you probably want to enable <code class="language-plaintext highlighter-rouge">yoda_matomo_tracking_enabled</code> as well, otherwise no new page visits will be displayed on the counters.</td>
     </tr>
     <tr>
       <td>yoda_matomo_server_fqdn</td>

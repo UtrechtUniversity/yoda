@@ -36,18 +36,18 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Other | Yoda</title>
+<title>Matomo integration | Yoda</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Other" />
+<meta property="og:title" content="Matomo integration" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:description" content="On this website you can find release notes and technical documentation on software design and administration tasks of Yoda" />
 <meta property="og:site_name" content="Yoda" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Other" />
+<meta property="twitter:title" content="Matomo integration" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Other","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/design/other/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"On this website you can find release notes and technical documentation on software design and administration tasks of Yoda","headline":"Matomo integration","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/yoda/yoda.svg"}},"url":"/yoda/design/other/matomo-integration.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -204,7 +204,7 @@
     <div class="main-content-wrap">
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
-    <li class="breadcrumb-nav-list-item"><span>Other</span></li>
+    <li class="breadcrumb-nav-list-item"><span>Matomo integration</span></li>
   </ol>
 </nav>
 
@@ -212,20 +212,45 @@
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="other">
+            <h1 id="matomo-integration">
   
   
-    <a href="#other" class="anchor-heading" aria-labelledby="other"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Other
+    <a href="#matomo-integration" class="anchor-heading" aria-labelledby="matomo-integration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Matomo integration
   
   
 </h1>
     
 
+<p>Yoda supports tracking web statistics for visits to data package landing
+pages using <a href="https://matomo.org">Matomo</a>, an open source web analytics application.</p>
+
+<p>Yoda has two Matomo-related configuration options:</p>
 <ul>
-  <li><a href="/yoda/design/other/matomo-integration.html">Matomo integration</a></li>
-  <li><a href="/yoda/design/other/redis-data-store.html">Redis key-value store</a></li>
-  <li><a href="/yoda/design/other/python-plugin.html">Yoda and the iRODS Python Rule Engine Plugin</a></li>
+  <li>Tracking using Matomo (Ansible parameter: <code class="language-plaintext highlighter-rouge">yoda_matomo_tracking_enabled</code>): tracks
+visits to landing pages. By itself, tracking visits does not expose any web analytics
+data to Yoda users. Only Matomo users can see web analytics information.</li>
+  <li>Visit counter (Ansible parameter: <code class="language-plaintext highlighter-rouge">yoda_matomo_counter_enabled</code>): when this feature is
+enabled, a visit counter will be shown to visitors on all Yoda landing pages.</li>
 </ul>
+
+<p>See the <a href="/yoda/administration/configuring-yoda.html">Yoda configuration guide</a> for further
+information about configuration parameters.</p>
+
+<p>After changing these configuration options, a publication endpoint update is needed
+to effectuate the changes:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
+</code></pre></div></div>
+
+<p>Matomo itself is not part of Yoda, but an associated
+<a href="https://github.com/utrechtUniversity/matomo-ansible">Ansible playbook</a> is provided
+to deploy a Matomo environment that can be used in combination with Yoda. The visit counter
+feature requires Matomo to have the <a href="https://github.com/UtrechtUniversity/matomo-plugin-pageviewcounter">Page View Counter Plugin</a>
+installed, and the plugin needs to be configured using the Matomo web interface to make visit
+data of the landing page site publicly available by setting the “Allowed Site IDs” plugin parameter.
+Furthermore, it is necessary to add the landing page domain to the list of Cross-Origin Resource Sharing (CORS) domains
+in the general settings of Matomo, so that browsers permit the front-end page view counter code to access
+the page view counter plugin API.</p>
 
           
 
@@ -245,7 +270,7 @@
       
       
         <p class="text-small mb-0">
-          <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/design/other/index.md" id="edit-this-page">Edit this page on GitHub.</a>
+          <a href="https://github.com/UtrechtUniversity/yoda/tree/development/docs/design/other/matomo-integration.md" id="edit-this-page">Edit this page on GitHub.</a>
         </p>
       
     </div>
