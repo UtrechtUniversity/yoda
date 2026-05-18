@@ -50,8 +50,8 @@ Listen {{ yoda_public_port }}
         ProxyVia Off
 
         # The port Anubis listens on, this should not be 9000, that would conflict with S3
-        ProxyPass / http://[::1]:{{ anubis_landingpages_bind_port }}/
-        ProxyPassReverse / http://[::1]:{{ anubis_landingpages_bind_port }}/
+        ProxyPass / http://127.0.0.1:{{ anubis_landingpages_bind_port }}/
+        ProxyPassReverse / http://127.0.0.1:{{ anubis_landingpages_bind_port }}/
 
         # Anubis theme modifications
         <Directory {{ anubis_yoda_static }}>
