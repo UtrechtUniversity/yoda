@@ -20,7 +20,6 @@
     {% endif %}
 </VirtualHost>
 
-
 # HTTPS listener that forwards to Anubis
 <IfModule mod_proxy.c>
 <VirtualHost *:{{ yoda_davrods_anonymous_port }}>
@@ -59,8 +58,8 @@
         ProxyVia Off
 
         # The port Anubis listens on, this should not be 9000, that would conflict with S3
-        ProxyPass / http://[::1]:{{ anubis_davrods_bind_port }}/
-        ProxyPassReverse / http://[::1]:{{ anubis_davrods_bind_port }}/
+        ProxyPass / http://127.0.0.1:{{ anubis_davrods_bind_port }}/
+        ProxyPassReverse / http://127.0.0.1:{{ anubis_davrods_bind_port }}/
 
         # Anubis theme modifications
         <Directory {{ anubis_yoda_static }}>
