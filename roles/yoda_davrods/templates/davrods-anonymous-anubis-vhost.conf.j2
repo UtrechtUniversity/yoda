@@ -20,6 +20,10 @@
     {% endif %}
 </VirtualHost>
 
+{% if yoda_davrods_anonymous_port != 443 %}
+Listen {{ yoda_davrods_anonymous_port }}
+{% endif %}
+
 # HTTPS listener that forwards to Anubis
 <IfModule mod_proxy.c>
 <VirtualHost *:{{ yoda_davrods_anonymous_port }}>
