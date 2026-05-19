@@ -19,6 +19,7 @@ Released: TBA
 - **Vault checksums**: request checksum reports for all data packages in a vault group
 - **Checksum report**: report is improved with a summary of the collection
 - **EPOS-MSL metadata**: improvements to the EPOS-MSL metadata schema (`epos-msl-1`)
+- **Vault module**: removed functionality to download data package as a BagIt file
 
 ### Changes affecting technical administrators
 - **SRAM integration**: improved support for external users with separate [OIDC configuration](../administration/configuring-yoda.md)
