@@ -65,31 +65,15 @@
     executable: /var/www/moai/yoda-moai/venv/bin/pip3
 
 
-# We're installing pyoai dependencies manually, because we need to
-# disable build isolation (see below).
-- name: Manually install dependencies of pyoai
+- name: Ensure that legacy pyoai version is no longer installed
   become_user: '{{ yoda_moai_user }}'
   become: true
   ansible.builtin.pip:
-    name:
-      - wheel==0.46.3
-      - setuptools==81.0.0
-      - lxml==6.0.2
-      - six==1.17.0
+    name: pyoai
+    state: absent
+    extra_args: "-y"
     executable: /var/www/moai/yoda-moai/venv/bin/pip3
-
-
-# Build isolation is disabled in order to be able to work around
-# pyoai still depending on pkg_resources, which needs an older
-# setuptools version (see ticket YDA-6847)
-- name: Manually install pyoai dependency
-  become_user: '{{ yoda_moai_user }}'
-  become: true
-  ansible.builtin.pip:
-    name:
-      - "pyoai @ git+https://github.com/infrae/pyoai.git@2.5.1"
-    extra_args: --no-build-isolation
-    executable: /var/www/moai/yoda-moai/venv/bin/pip3
+  notify: Restart Apache webserver
 
 
 # We use the PySqlite3 dialect to avoid compatibility issues between SQLAlchemy
@@ -114,7 +98,10 @@
   ansible.builtin.pip:
     name: '{{ yoda_moai_home }}/yoda-moai'
     virtualenv: '{{ yoda_moai_home }}/yoda-moai/venv'
-    extra_args: "-e"
+    # We need the force parameter for the transition from the pyoai library (in Yoda
+    # 2.0.x) to the oaipmh library (Yoda 2.1.x). Can be removed when this is no longer
+    # relevant.
+    extra_args: "--force"
   environment:
     C_INCLUDE_PATH: "{{ yoda_moai_python3_include_path }}"
   changed_when: false
