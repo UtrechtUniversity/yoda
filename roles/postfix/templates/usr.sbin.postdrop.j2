@@ -13,7 +13,6 @@
 # ------------------------------------------------------------------
 # vim:syntax=apparmor
 
-
 /usr/sbin/postdrop {
   #include <abstractions/base>
   #include <abstractions/kerberosclient>
@@ -35,4 +34,6 @@
   /var/spool/postfix/public/pickup rw,
   @{PROC}/net/if_inet6 r,
 
+  # Allow socket inheritance with sendmail.
+  unix (send receive) peer=(label="/usr/sbin/sendmail"),
 }

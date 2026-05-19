@@ -91,4 +91,6 @@
   @{PROC}/loadavg r,
   @{PROC}/net/if_inet6 r,
 
+  # Allow socket inheritance with postdrop.
+  unix (send receive) peer=(label="/usr/sbin/postdrop"),
 }
