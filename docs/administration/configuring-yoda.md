@@ -415,7 +415,6 @@ token_expiration_notification | Send notification before token expiration (in ho
 Variable                      | Description
 ------------------------------|------------------------------------------
 enable_data_package_archive   | Enable data package archive functionality
-enable_data_package_download  | Enable data package download functionality
 data_package_archive_fqdn     | Fully qualified domain name (FQDN) of iRODS server connected to data archive
 data_package_archive_minimum  | Minimum data package archive size (1 GB), -1 for no limit
 data_package_archive_maximum  | Maximum data package archive size (100 GB), -1 for no limit
