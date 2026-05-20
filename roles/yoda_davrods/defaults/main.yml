@@ -36,6 +36,12 @@ openssl_dhparams: dhparams.pem
 
 repo_only: false  # Only download packages from repos.
 
+# Ports of other services. Needed to determine whether anything else
+# is already listening on the anonymous DavRODS port.
+yoda_eus_port: 443
+eus_api_port: 8443
+yoda_public_port: 443
+
 # This is the contents of an empty Davrods lock database. It is generated
 # by creating a lock database using the initialize-davrods-lockdb.py script,
 # and making a hexdump of the file using "xxd -a"
