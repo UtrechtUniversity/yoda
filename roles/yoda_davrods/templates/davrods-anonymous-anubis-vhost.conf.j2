@@ -20,7 +20,11 @@
     {% endif %}
 </VirtualHost>
 
-{% if yoda_davrods_anonymous_port != 443 %}
+{% if not (yoda_davrods_anonymous_port == 443 or
+          (inventory_hostname in groups['eus'] and yoda_davrods_anonymous_port == yoda_eus_port) or
+          (inventory_hostname in groups['eus'] and yoda_davrods_anonymous_port == eus_api_port) or
+          (inventory_hostname in groups['publics'] and yoda_davrods_anonymous_port == yoda_public_port) or
+          yoda_davrods_port == yoda_davrods_anonymous_port) %}
 Listen {{ yoda_davrods_anonymous_port }}
 {% endif %}
 
