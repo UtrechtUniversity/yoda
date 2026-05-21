@@ -137,6 +137,40 @@
     force: false
 
 
+- name: Get iRODS home directory
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command: echo ~
+  register: irods_directory
+  changed_when: false
+  check_mode: false
+
+
+- name: Upgrade iRODS resource to v5
+  block:
+    - name: Get iRODS major version
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: # noqa no-changed-when
+        cmd: 'python3 {{ irods_directory.stdout }}/scripts/get_irods_version.py major'
+      register: irods_major_version
+      ignore_errors: true
+      changed_when: false
+
+    - name: Upgrade iRODS resource to v5
+      become_user: '{{ irods_service_account }}'
+      become: true
+      ansible.builtin.command: # noqa no-changed-when
+        cmd: 'python3 {{ irods_directory.stdout }}/scripts/upgrade_irods.py'
+      when: not ansible_check_mode and (irods_major_version.stdout | int) < 5
+      notify: Systemd daemon reload
+
+    - name: Reload systemd daemon
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+      when: not ansible_check_mode and (irods_major_version.stdout | int) < 5
+
+
 - name: Ensure iRODS is running
   block:
     - name: Check if iRODS server is up
@@ -240,15 +274,6 @@
     - src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
       dest: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
   when: not ansible_check_mode
-
-
-- name: Get iRODS home directory
-  become_user: '{{ irods_service_account }}'
-  become: true
-  ansible.builtin.command: echo ~
-  register: irods_directory
-  changed_when: false
-  check_mode: false
 
 
 - name: Ensure iRODS is configured to use SSL
