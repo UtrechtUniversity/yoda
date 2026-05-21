@@ -270,3 +270,8 @@ yoda_matomo_tracking_enabled: false
 yoda_matomo_counter_enabled: false
 yoda_matomo_server_fqdn: www.matomo.test
 yoda_matomo_site_id: 1
+
+# This parameter is needed for the integration tests, since some of the
+# microservice integration tests check the physical path of replicas, which is different
+# when a development environment uses NFS-based storage resources.
+enable_nfs_resource: false
