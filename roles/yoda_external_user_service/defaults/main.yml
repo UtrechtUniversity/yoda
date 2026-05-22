@@ -29,6 +29,8 @@ eus_db_name: extuser
 eus_db_user: extuser
 eus_db_password: PLACEHOLDER
 eus_db_users_id_seq: users_id_seq
+eus_db_lc_collate: en_US.UTF-8
+eus_db_lc_ctype: en_US.UTF-8
 
 smtp_server: PLACEHOLDER                      # SMTP server to send mail to
                                               # (smtp://server.name:port or smtps://server.name:port,
