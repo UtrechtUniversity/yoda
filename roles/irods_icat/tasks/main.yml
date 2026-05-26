@@ -182,14 +182,19 @@
   check_mode: false
 
 
-- name: Ensure iRODS host is defined
+- name: Ensure iRODS host and default resource is defined
   become_user: '{{ irods_service_account }}'
   become: true
   # noqa fqcn[action]
   irods_config:
     path: '{{ irods_directory.stdout }}/.irods/irods_environment.json'
-    key: 'irods_host'
-    value: '{{ irods_icat_fqdn }}'
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_items:
+    - key: 'irods_host'
+      value: '{{ irods_icat_fqdn }}'
+    - key: 'irods_default_resource'
+      value: '{{ irods_default_resc }}'
 
 
 - name: Set delayed rule sleep time
@@ -259,6 +264,16 @@
       ansible.builtin.systemd_service:
         daemon_reload: true
       when: not ansible_check_mode and (irods_major_version.stdout | int) < 5
+
+
+- name: Ensure iRODS default resource is set in server_config.json
+  become_user: '{{ irods_service_account }}'
+  become: true
+  # noqa fqcn[action]
+  irods_config:
+    path: '/etc/irods/server_config.json'
+    key: 'default_resource_name'
+    value: '{{ irods_default_resc }}'
 
 
 - name: Ensure iRODS is running
