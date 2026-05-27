@@ -26,6 +26,7 @@ Released: TBA
 - **SRAM integration**: improved support for external users with separate [OIDC configuration](../administration/configuring-yoda.md)
 - **Copy to research**: improved retry logic and configurable multithreading parameter (vault_copy_multithread_enabled)
 - **Web statistics collection for landing pages**: added functionality to optionally collect web statistics for landing pages using [Matomo](https://matomo.org) and to show visit count information to landing page visitors. See [the Matomo integration documentation](../design/other/matomo-integration.md) for details.
+- **Async checksums**: added functionality to asynchronously generate and verify data object checksums using the delay server
 
 ### Other changes
 - iRODS: upgrade to v5.0.2

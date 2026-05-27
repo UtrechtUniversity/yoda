@@ -209,6 +209,8 @@ irods_gocommands_archive_checksum    | MD5 checksum of the GoCommands archive fo
 irods_anonymous_account_permit_addresses  | List of network addresses that can log in on the anonymous account using the iRODS protocol. Localhost (127.0.0.1) is always allowed.
 irods_user_max_connections_enabled   | Limit the number of iRODS connections per user (default: false)
 irods_user_max_connections_number    | Maximum number of iRODS connections per user (default: 4). This limit does not apply to the rods and anonymous user. This setting only has an effect if `irods_user_max_connections_enabled` is `true`.
+irods_delay_server_sleep_time_in_seconds        | Amount of time the delay server sleeps between checking for queued, delayed rules that are ready to run (default: 10)
+irods_number_of_concurrent_delay_rule_executors | Maximum number of asynchronous rules that can be processed in parallel by the delay server queue (default: 4)
 
 ### S3 configuration - for iRODS S3 resource plugin and s3cmd utilities
 
@@ -245,6 +247,13 @@ update_schemas                 | Update already installed schemas, formelements 
 credential_files               | Location of Yoda credentials files
 temporary_files                | List of temporary files for cleanup functionality
 metadata_schemas               | List of metadata schemas to install on the system
+
+### Checksum configuration
+
+Variable                       | Description
+-------------------------------|---------------------------------------------
+enable_async_checksum          | Enable asynchronous checksums (default: true)
+async_checksum_delay_time      | Delay after last modification to data object before checksum job can process it (sec)
 
 ### Replication configuration
 
