@@ -197,16 +197,21 @@
       value: '{{ irods_default_resc }}'
 
 
-- name: Set delayed rule sleep time
+- name: Set delay server configuration
   become_user: '{{ irods_service_account }}'
   become: true
   # noqa fqcn[action]
   irods_config:
     path: '/etc/irods/server_config.json'
-    key: 'advanced_settings/delay_server_sleep_time_in_seconds'
+    key: '{{ item.key }}'
     key_separator: '/'
-    value: '10'
+    value: '{{ item.value }}'
     convert_int: 'yes'
+  with_items:
+    - key: 'advanced_settings/delay_server_sleep_time_in_seconds'
+      value: "{{ irods_delay_server_sleep_time_in_seconds }}"
+    - key: 'advanced_settings/number_of_concurrent_delay_rule_executors'
+      value: "{{ irods_number_of_concurrent_delay_rule_executors }}"
 
 
 - name: Ensure iRODS service account is owner of iRODS directories

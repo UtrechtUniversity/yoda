@@ -35,7 +35,7 @@
       "default_number_of_transfer_threads": 4,
       "default_temporary_password_lifetime_in_seconds": 120,
       "delay_rule_executors": [],
-      "delay_server_sleep_time_in_seconds": 30,
+      "delay_server_sleep_time_in_seconds": {{ irods_delay_server_sleep_time_in_seconds }},
       "dns_cache": {
           "cache_clearer_sleep_time_in_seconds": 600,
           "eviction_age_in_seconds": 3600,
@@ -50,7 +50,7 @@
       "maximum_size_of_delay_queue_in_bytes": 0,
       "maximum_temporary_password_lifetime_in_seconds": 1000,
       "migrate_delay_server_sleep_time_in_seconds": 5,
-      "number_of_concurrent_delay_rule_executors": 4,
+      "number_of_concurrent_delay_rule_executors": {{ irods_number_of_concurrent_delay_rule_executors }},
       "stacktrace_file_processor_sleep_time_in_seconds": 10,
       "transfer_buffer_size_for_parallel_transfer_in_megabytes": 4,
       "transfer_chunk_size_for_parallel_transfer_in_megabytes": 40

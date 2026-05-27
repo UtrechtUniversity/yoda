@@ -65,6 +65,9 @@ token_lifetime                 = '{{ token_lifetime }}'
 token_expiration_notification  = '{{ token_expiration_notification }}'
 {% endif %}
 
+enable_async_checksum         = '{{ ["false", "true"][enable_async_checksum|int] }}'
+async_checksum_delay_time     = '{{ async_checksum_delay_time }}'
+
 async_replication_delay_time   = '{{ async_replication_delay_time }}'
 async_replication_max_rss      = '{{ async_replication_max_rss }}'
 async_revision_delay_time      = '{{ async_revision_delay_time }}'

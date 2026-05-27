@@ -23,6 +23,9 @@ irods_resource_caching_settings:
   advanced_settings/hostname_cache/eviction_age_in_seconds: 3600
   advanced_settings/hostname_cache/shared_memory_size_in_bytes: 2500000
 
+irods_delay_server_sleep_time_in_seconds: 10
+irods_number_of_concurrent_delay_rule_executors: 4
+
 # OpenSSL configuration
 openssl_dhparams: dhparams.pem
 openssl_key_signed: localhost.key
