@@ -703,6 +703,14 @@ The configuration is split in several parts. Below an overview of these parts an
       <td>irods_user_max_connections_number</td>
       <td>Maximum number of iRODS connections per user (default: 4). This limit does not apply to the rods and anonymous user. This setting only has an effect if <code class="language-plaintext highlighter-rouge">irods_user_max_connections_enabled</code> is <code class="language-plaintext highlighter-rouge">true</code>.</td>
     </tr>
+    <tr>
+      <td>irods_delay_server_sleep_time_in_seconds</td>
+      <td>Amount of time the delay server sleeps between checking for queued, delayed rules that are ready to run (default: 10)</td>
+    </tr>
+    <tr>
+      <td>irods_number_of_concurrent_delay_rule_executors</td>
+      <td>Maximum number of asynchronous rules that can be processed in parallel by the delay server queue (default: 4)</td>
+    </tr>
   </tbody>
 </table></div>
 <h3 id="s3-configuration---for-irods-s3-resource-plugin-and-s3cmd-utilities">
@@ -831,6 +839,33 @@ particular threshold.</p>
     <tr>
       <td>metadata_schemas</td>
       <td>List of metadata schemas to install on the system</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="checksum-configuration">
+  
+  
+    <a href="#checksum-configuration" class="anchor-heading" aria-labelledby="checksum-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Checksum configuration
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>enable_async_checksum</td>
+      <td>Enable asynchronous checksums (default: true)</td>
+    </tr>
+    <tr>
+      <td>async_checksum_delay_time</td>
+      <td>Delay after last modification to data object before checksum job can process it (sec)</td>
     </tr>
   </tbody>
 </table></div>
