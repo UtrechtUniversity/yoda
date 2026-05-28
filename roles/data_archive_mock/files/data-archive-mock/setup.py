@@ -6,7 +6,7 @@ Data Archive mock server: daattr daget dals darelease
 
 setup(
     name='da-mock',
-    version='0.9.0',
+    version='0.9.1',
     long_description=DOC,
     long_description_content_type='text/plain',
     packages=find_packages(),
@@ -14,10 +14,10 @@ setup(
     zip_safe=False,
     install_requires=[
         'Flask==3.1.3',
-        'requests==2.32.4',
+        'requests==2.34.2',
         'numpy==2.3.1',
         'typing-extensions==4.14.1',
-        'urllib3==2.6.3',
+        'urllib3==2.7.0',
         'Werkzeug==3.1.6'
     ],
     entry_points={
