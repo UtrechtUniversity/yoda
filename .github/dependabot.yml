@@ -5,5 +5,7 @@ updates:
     schedule:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
+    allow:
+      - update-types: ["version-update:semver-major"]
     cooldown:
       default-days: 7
