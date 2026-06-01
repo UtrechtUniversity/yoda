@@ -385,11 +385,11 @@ have the same Linux distribution) or in the <code class="language-plaintext high
 problems with Ansible using a different interpreter than expected.</p>
 
     <p>For EL 9 environments:</p>
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ansible_python_interpreter</span><span class="pi">:</span> <span class="s">/usr/bin/python3.9</span>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">ansible_python_interpreter</span><span class="pi">:</span> <span class="s">/usr/bin/python3.9</span>
 </code></pre></div>    </div>
 
     <p>For Ubuntu 24.04 LTS environments:</p>
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ansible_python_interpreter</span><span class="pi">:</span> <span class="s">/usr/bin/python3.12</span>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">ansible_python_interpreter</span><span class="pi">:</span> <span class="s">/usr/bin/python3.12</span>
 </code></pre></div>    </div>
   </li>
   <li>Install all Ansible collections needed to deploy Yoda:
@@ -412,18 +412,17 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irule <span class="nt">-r</span> irods_rule_engine_plugin-irods_rule_language-instance <span class="nt">-F</span> /etc/irods/yoda-ruleset/tools/update-publications.r
 </code></pre></div>    </div>
   </li>
-  <li>Manually restart Apache on all portal and WebDAV servers</li>
-</ol>
+  <li>
+    <p>Manually restart Apache on all portal and WebDAV servers</p>
 
-<p>On Ubuntu:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">sudo </span>systemctl restart apache2
-</code></pre></div></div>
+    <p>On Ubuntu:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart apache2
+</code></pre></div>    </div>
 
-<p>On RHEL:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">sudo </span>systemctl restart httpd
-</code></pre></div></div>
-
-<ol>
+    <p>On RHEL:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart httpd
+</code></pre></div>    </div>
+  </li>
   <li>Manually restart the portal application on all portal servers
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo touch</span> /var/www/yoda/yoda.wsgi /var/www/yoda/yoda_debug.wsgi
 </code></pre></div>    </div>
