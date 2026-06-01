@@ -31,9 +31,9 @@ Released: TBA
 ### Other changes
 - iRODS: upgrade to v5.0.2
 - Python-irodsclient: update to v3.3.0
-- GoCommands: update to v0.11.8
+- GoCommands: update to v0.11.13
 - Flask and dependencies: update to v3.1.3
-- Mailpit: update to v1.29.7
+- Mailpit: update to v1.30.1
 
 ### Known issues
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python ([irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54))
@@ -65,14 +65,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After ensuring the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Check out the `v2.1.0-beta.0` tag of the Yoda Git repository:
+3. Check out the `v2.1.0-rc.0` tag of the Yoda Git repository:
 ```bash
-git checkout v2.1.0-beta.0
+git checkout v2.1.0-rc.0
 ```
 
-4. Set the Yoda version to `v2.1.0-beta.0` in the configuration:
+4. Set the Yoda version to `v2.1.0-rc.0` in the configuration:
 ```yaml
-yoda_version: v2.1.0-beta.0
+yoda_version: v2.1.0-rc.0
 ```
 
 5. If the old configuration contained an iRODS authentication scheme setting, update it to use `pam_password`. Example:
@@ -84,15 +84,15 @@ irods_authentication_scheme: pam_password
 have the same Linux distribution) or in the `host_vars` (if they have different Linux distributions) in order to prevent
 problems with Ansible using a different interpreter than expected.
 
-  For EL 9 environments:
-  ```yaml
-  ansible_python_interpreter: /usr/bin/python3.9
-  ```
+    For EL 9 environments:
+    ```yaml
+    ansible_python_interpreter: /usr/bin/python3.9
+    ```
 
-  For Ubuntu 24.04 LTS environments:
-  ```yaml
-  ansible_python_interpreter: /usr/bin/python3.12
-  ```
+    For Ubuntu 24.04 LTS environments:
+    ```yaml
+    ansible_python_interpreter: /usr/bin/python3.12
+    ```
 
 7. Install all Ansible collections needed to deploy Yoda:
 ```bash
@@ -118,19 +118,18 @@ ansible-playbook -i /environments/development/allinone playbook.yml
 irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/update-publications.r
 ```
 
-11. Manually restart Apache on all portal and WebDAV servers
+11. Manually restart Apache on all portal and WebDAV servers,
+example:
 
-On Ubuntu:
+    On Ubuntu:
+    ```bash
+    sudo systemctl restart apache2
+    ```
 
-```bash
-sudo systemctl restart apache2
-```
-
-On RHEL:
-
-```bash
-sudo systemctl restart httpd
-```
+    On RHEL:
+    ```bash
+    sudo systemctl restart httpd
+    ```
 
 12. Manually restart the portal application on all portal servers
 ```bash
