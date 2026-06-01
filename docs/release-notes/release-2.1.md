@@ -48,6 +48,16 @@ Version constraints:
 - Requires Yoda external user service to be on version 2.0.x or higher.
 - Requires Yoda public server to be on version 2.0.x or higher.
 
+### Prerequisites for SRAM enabled instances
+
+Before the first run of SRAM migration script, set the following configuration in the Ansible playbook:
+```yaml
+sram_auto_external_users_co_sync: false
+sram_auto_group_sync: false
+```
+
+Refer to [SRAM Configuration](../administration/configuring-yoda.md#sram-configuration) for further information.
+
 ### Upgrade process
 
 1. Backup/copy custom configurations made to Yoda version 2.0.4
@@ -125,4 +135,15 @@ sudo systemctl restart httpd
 12. Manually restart the portal application on all portal servers
 ```bash
 sudo touch /var/www/yoda/yoda.wsgi /var/www/yoda/yoda_debug.wsgi
+```
+
+13. If there are SRAM groups on the system that need to be migrated to non-SRAM groups, run the migration script. Example:
+```yaml
+python3 /etc/irods/yoda-ruleset/tools/sram/sram-migration-script.py -t non-sram -l -f list-of-sram-groups.csv
+```
+
+14. If SRAM is enabled, re-enable the SRAM syncs. Example:
+```yaml
+sram_auto_external_users_co_sync: true
+sram_auto_group_sync: true
 ```
