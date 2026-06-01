@@ -335,6 +335,21 @@
   <li>Requires Yoda external user service to be on version 2.0.x or higher.</li>
   <li>Requires Yoda public server to be on version 2.0.x or higher.</li>
 </ul>
+<h3 id="prerequisites-for-sram-enabled-instances">
+  
+  
+    <a href="#prerequisites-for-sram-enabled-instances" class="anchor-heading" aria-labelledby="prerequisites-for-sram-enabled-instances"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Prerequisites for SRAM enabled instances
+  
+  
+</h3>
+    
+
+<p>Before the first run of SRAM migration script, set the following configuration in the Ansible playbook:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sram_auto_external_users_co_sync</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">sram_auto_group_sync</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<p>Refer to <a href="/yoda/administration/configuring-yoda.html#sram-configuration">SRAM Configuration</a> for further information.</p>
 <h3 id="upgrade-process">
   
   
@@ -414,6 +429,15 @@ ansible-playbook <span class="nt">-i</span> /environments/development/allinone p
 <ol>
   <li>Manually restart the portal application on all portal servers
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo touch</span> /var/www/yoda/yoda.wsgi /var/www/yoda/yoda_debug.wsgi
+</code></pre></div>    </div>
+  </li>
+  <li>If there are SRAM groups on the system that need to be migrated to non-SRAM groups, run the migration script. Example:
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">python3 /etc/irods/yoda-ruleset/tools/sram/sram-migration-script.py -t non-sram -l -f list-of-sram-groups.csv</span>
+</code></pre></div>    </div>
+  </li>
+  <li>If SRAM is enabled, re-enable the SRAM syncs. Example:
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sram_auto_external_users_co_sync</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">sram_auto_group_sync</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div>    </div>
   </li>
 </ol>
