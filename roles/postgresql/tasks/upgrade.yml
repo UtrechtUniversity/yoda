@@ -7,99 +7,157 @@
   when: not postgresql_perform_db_upgrade
 
 
-- name: Stop PostgreSQL 9 service
-  ansible.builtin.service:
-    name: postgresql
-    enabled: false
+- name: Stop all PostgreSQL services
+  # noqa ignore-errors
+  ansible.builtin.systemd:
+    name: "{{ item }}"
     state: stopped
+  loop:
+    - "{{ postgresql_daemon_old }}"
+    - "{{ postgresql_daemon }}"
+  ignore_errors: true
+  when: postgresql_package_old in ansible_facts.packages
 
 
-- name: Create PostgreSQL 9 shim directory
+- name: Enable checksums on old PostgreSQL database (v{{ pgsql_version_old }})
+  become_user: postgres
+  become: true
+  # noqa no-changed-when
+  ansible.builtin.command: "{{ postgresql_bin_path_old }}/pg_checksums \
+    -D {{ postgresql_data_dir_old }} \
+    --enable"
+  when:
+    - not ansible_check_mode
+    - postgresql_package_old in ansible_facts.packages
+  failed_when:
+    - pg_checksums_result.rc != 0
+    - "'already enabled' not in pg_checksums_result.stderr"
+  register: pg_checksums_result
+
+
+- name: Ensure old PostgreSQL directories still exist (v{{ pgsql_version_old }})
   ansible.builtin.file:
-    path: /var/lib/pgsql/shim
+    path: "{{ item }}"
     owner: postgres
     group: postgres
     state: directory
-    mode: '0700'
-
-
-- name: Install PostgreSQL 9 shims
-  ansible.builtin.file:
-    src: "/usr/bin/{{ item }}"
-    dest: "/var/lib/pgsql/shim/{{ item }}"
-    owner: postgres
-    group: postgres
-    state: link
+    mode: "{{ '0700' if 'main' in item else '0750' }}"
   with_items:
-    - clusterdb
-    - createdb
-    - createuser
-    - dropdb
-    - dropuser
-    - initdb
-    - oid2name
-    - pg_archivecleanup
-    - pg_basebackup
-    - pgbench
-    - pg_config
-    - pg_controldata
-    - pg_dump
-    - pg_dumpall
-    - pg_receivexlog
-    - pg_resetxlog
-    - pg_restore
-    - pg_standby
-    - pg_test_fsync
-    - pg_test_timing
-    - postgres
-    - postgresql-check-db-dir
-    - postgresql-setup
-    - postmaster
-    - psql
-    - reindexdb
-    - vacuumdb
-    - vacuumlo
+    - "{{ postgresql_data_dir_old }}"
+    - "{{ postgresql_config_path_old }}"
 
 
-- name: Install PostgreSQL 9 shim script
+- name: Copy old PostgreSQL config files to data directory for upgrade (v{{ pgsql_version_old }})
   ansible.builtin.copy:
-    src: "pg_ctl"
-    dest: /var/lib/pgsql/shim/pg_ctl
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     owner: postgres
     group: postgres
-    mode: '0755'
+    mode: "{{ item.mode }}"
+    remote_src: true
+  with_items:
+    - src: "{{ postgresql_config_path_old }}/postgresql.conf"
+      dest: "{{ postgresql_config_path }}/postgresql.conf"
+      mode: "0600"
+    - src: "{{ postgresql_config_path_old }}/postgresql.conf"
+      dest: "{{ postgresql_data_dir_old }}/postgresql.conf"
+      mode: "0600"
+    - src: "{{ postgresql_config_path_old }}/pg_hba.conf"
+      dest: "{{ postgresql_config_path }}/pg_hba.conf"
+      mode: "0640"
+    - src: "{{ postgresql_config_path_old }}/pg_ident.conf"
+      dest: "{{ postgresql_config_path }}/pg_ident.conf"
+      mode: "0640"
+    - src: "{{ postgresql_config_path_old }}/conf.d"
+      dest: "{{ postgresql_data_dir_old }}/conf.d"
+      mode: "0755"
+  when:
+    - ansible_os_family == 'Debian'
+    - postgresql_package_old in ansible_facts.packages
+
+
+- name: Copy old PostgreSQL config files to data directory for upgrade (v{{ pgsql_version_old }})
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: postgres
+    group: postgres
+    mode: "{{ item.mode }}"
+    remote_src: true
+  with_items:
+    - src: "{{ postgresql_config_path_old }}/postgresql.conf"
+      dest: "{{ postgresql_config_path }}/postgresql.conf"
+      mode: "0600"
+    - src: "{{ postgresql_config_path_old }}/pg_hba.conf"
+      dest: "{{ postgresql_config_path }}/pg_hba.conf"
+      mode: "0640"
+    - src: "{{ postgresql_config_path_old }}/pg_ident.conf"
+      dest: "{{ postgresql_config_path }}/pg_ident.conf"
+      mode: "0640"
+  when:
+    - not ansible_check_mode
+    - ansible_os_family == 'RedHat'
+    - postgresql_package_old in ansible_facts.packages
+
+
+- name: Check PostgreSQL upgrade compatibility
+  become_user: postgres
+  become: true
+  # noqa no-changed-when
+  ansible.builtin.command: "{{ postgresql_bin_path }}/pg_upgrade \
+    --old-bindir={{ postgresql_bin_path_old }} \
+    --new-bindir={{ postgresql_bin_path }} \
+    --old-datadir={{ postgresql_data_dir_old }} \
+    --new-datadir={{ postgresql_data_dir }} \
+    --check"
+  args:
+    chdir: "{{ postgresql_data_dir }}"
+  when: "postgresql_package_old in ansible_facts.packages"
+  register: pg_upgrade_check
 
 
 - name: Upgrade PostgreSQL database
   become_user: postgres
   become: true
   # noqa no-changed-when
-  ansible.builtin.command: "/usr/pgsql-{{ pgsql_version }}/bin/pg_upgrade \
-			   -b /var/lib/pgsql/shim \
-			   -B /usr/pgsql-{{ pgsql_version }}/bin \
-			   -d /var/lib/pgsql/data \
-			   -D /var/lib/pgsql/{{ pgsql_version }}/data"
+  ansible.builtin.command: "{{ postgresql_bin_path }}/pg_upgrade \
+    --old-bindir={{ postgresql_bin_path_old }} \
+    --new-bindir={{ postgresql_bin_path }} \
+    --old-datadir={{ postgresql_data_dir_old }} \
+    --new-datadir={{ postgresql_data_dir }} \
+    --jobs=4"
   args:
-    chdir: "/var/lib/pgsql"
-  when: "'postgresql-server' in ansible_facts.packages"
+    chdir: "{{ postgresql_data_dir }}"
+  when:
+    - postgresql_package_old in ansible_facts.packages
+    - pg_upgrade_check.rc == 0
 
 
-- name: Remove PostgreSQL 9 service
+- name: Copy new PostgreSQL config files to config directory after upgrade (v{{ pgsql_version }})
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: postgres
+    group: postgres
+    mode: "{{ item.mode }}"
+    remote_src: true
+  with_items:
+    - src: "{{ postgresql_data_dir }}/postgresql.conf"
+      dest: "{{ postgresql_config_path }}/postgresql.conf"
+      mode: "0600"
+    - src: "{{ postgresql_data_dir }}/pg_hba.conf"
+      dest: "{{ postgresql_config_path }}/pg_hba.conf"
+      mode: "0640"
+    - src: "{{ postgresql_data_dir }}/pg_ident.conf"
+      dest: "{{ postgresql_config_path }}/pg_ident.conf"
+      mode: "0640"
+  when:
+    - not ansible_check_mode
+    - postgresql_package_old in ansible_facts.packages
+
+
+- name: Remove old PostgreSQL package (v{{ pgsql_version_old }})
   ansible.builtin.package:
     name:
-      - postgresql
-      - postgresql-contrib
-      - postgresql-libs
-      - postgresql-server
+      - "{{ postgresql_package_old }}"
     state: absent
-
-
-- name: Remove PostgreSQL 9 data and shim
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: absent
-  with_items:
-    - /var/lib/pgsql/data
-    - /var/lib/pgsql/shim
-    - /var/lib/pgsql/initdb.log
-  when: postgresql_remove_old_data_after_upgrade
