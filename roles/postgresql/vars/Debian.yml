@@ -4,9 +4,16 @@
 openssl_private_dir: '/etc/ssl/private/'
 openssl_certs_dir: '/etc/ssl/certs'
 
+postgresql_package_old: 'postgresql-{{ pgsql_version_old }}'
+
 postgresql_data_dir: "/var/lib/postgresql/{{ pgsql_version }}/main"
-postgresql_bin_path: "/usr/lib/postgresql/{{ __postgresql_version }}/bin"
+postgresql_bin_path: "/usr/lib/postgresql/{{ pgsql_version }}/bin"
 postgresql_config_path: "/etc/postgresql/{{ pgsql_version }}/main"
-postgresql_daemon: 'postgresql'
+postgresql_daemon: 'postgresql@{{ pgsql_version }}-main'
+
+postgresql_data_dir_old: "/var/lib/postgresql/{{ pgsql_version_old }}/main"
+postgresql_bin_path_old: "/usr/lib/postgresql/{{ pgsql_version_old }}/bin"
+postgresql_config_path_old: "/etc/postgresql/{{ pgsql_version_old }}/main"
+postgresql_daemon_old: 'postgresql@{{ pgsql_version_old }}-main'
 
 postgresqltuner_dir: "/var/lib/postgresql"

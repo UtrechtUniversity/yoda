@@ -20,13 +20,16 @@
   when: ansible_os_family == 'Debian'
 
 
-- name: Ensure PostgreSQL data directory exists
+- name: Ensure PostgreSQL directories exist
   ansible.builtin.file:
-    path: "{{ postgresql_data_dir }}"
+    path: "{{ item }}"
     owner: postgres
     group: postgres
     state: directory
-    mode: '0700'
+    mode: "{{ '0700' if 'main' in item else '0750' }}"
+  with_items:
+    - "{{ postgresql_data_dir }}"
+    - "{{ postgresql_config_path }}"
 
 
 - name: Check if PostgreSQL database is initialized
@@ -48,6 +51,44 @@
          "--lc-collate={{ icat_database_lc_collate }}"
          "--locale={{ icat_database_locale }}"
   when: not pg_version.stat.exists
+
+
+- name: Check if PostgreSQL upgrade has been completed
+  ansible.builtin.stat:
+    path: "{{ postgresql_data_dir }}/.upgrade_completed"
+  register: upgrade_completed
+
+
+- name: Upgrade PostgreSQL
+  ansible.builtin.include_tasks: upgrade.yml
+  when:
+    - postgresql_package_old in ansible_facts.packages
+    - postgresql_perform_db_upgrade
+    - not upgrade_completed.stat.exists
+    - pgsql_version_old == 15 and pgsql_version == 18
+
+
+- name: Create upgrade completion flag
+  ansible.builtin.file:
+    path: "{{ postgresql_data_dir }}/.upgrade_completed"
+    state: touch
+    owner: postgres
+    group: postgres
+    mode: '0600'
+  when:
+    - postgresql_perform_db_upgrade
+    - not upgrade_completed.stat.exists
+    - pgsql_version_old == 15 and pgsql_version == 18
+
+
+- name: Remove old PostgreSQL data (v{{ pgsql_version_old }})
+  ansible.builtin.file:
+    path: "{{ postgresql_data_dir_old }}"
+    state: absent
+  when:
+    - postgresql_remove_old_data_after_upgrade
+    - upgrade_completed.stat.exists
+    - pgsql_version_old == 15 and pgsql_version == 18
 
 
 - name: Password protect loopback IPv4 connections
@@ -108,11 +149,6 @@
     group: postgres
     mode: '0600'
   notify: Restart PostgreSQL
-
-
-- name: Upgrade PostgreSQL for RedHat family
-  ansible.builtin.include_tasks: upgrade.yml
-  when: "'postgresql-server' in ansible_facts.packages and postgresql_perform_db_upgrade"
 
 
 - name: Ensure PostgreSQL is enabled and started
