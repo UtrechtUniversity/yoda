@@ -23,3 +23,14 @@
     msg: 'Invalid ruleset name {{ item.name }}'
   with_items: "{{ extra_rulesets + core_rulesets }}"
   when: "'/' in item.name or '..' in item.name"
+
+
+- name: Check insecure config check setting
+  ansible.builtin.fail:
+    msg: 'Invalid insecure configuration check setting'
+  when: common_insecure_config_check not in ['auto', 'disabled', 'enabled']
+
+
+- name: Configuration checks
+  ansible.builtin.import_tasks: insecure-config-checks.yml
+  when: common_insecure_config_check == 'enabled' or (common_insecure_config_check == 'auto' and yoda_environment != 'development')
