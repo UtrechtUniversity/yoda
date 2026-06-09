@@ -9,3 +9,52 @@ commons_default_umask: "0027"
 common_custom_dns_enable: false
 common_custom_dns_primary: 9.9.9.9
 common_custom_dns_secondary: 149.112.112.112
+
+# Insecure config check can be set to:
+# "disabled"
+# "auto" - meaning it is disabled in development mode but otherwise enabled
+# "enabled"
+common_insecure_config_check: "auto"
+
+yoda_version: development
+yoda_eus_version: "{{ yoda_version }}"
+yoda_portal_version: "{{ yoda_version }}"
+
+# Ruleset configuration.
+yoda_ruleset_version: "{{ yoda_version }}"
+core_rulesets:
+  - name: yoda-ruleset
+    repo: https://github.com/UtrechtUniversity/yoda-ruleset.git
+    ruleset_name: rules-uu
+    version: "{{ yoda_ruleset_version }}"
+    install_scripts: true
+  - name: core
+    ruleset_name: core
+    path: /etc/irods/core.re
+    install_scripts: false
+
+extra_rulesets: []
+
+irods_password: rods                       # iRODS admin password
+irods_database_password: irodsdev
+
+# Data Access Tokens
+enable_tokens: false                    # Enable data access tokens for webDAV and iCommands
+token_database_password: PLACEHOLDER                    # Token database password
+
+# SRAM Configuration
+enable_sram: false                                 # Enable SRAM configuration
+sram_rest_api_url: sram-mock.yoda.test
+
+# External User Service configuration
+eus_api_secret: PLACEHOLDER
+eus_db_password: PLACEHOLDER
+
+# Anubis configuration
+enable_anubis: false                # Enable Anubis
+anubis_redis_password: PLACEHOLDER  # Password for the Redis instance used by Anubis
+
+# This key is an "insecure" private key we offer for use in development instances.
+# If you use this instance for anything other than development, you should create your own key.
+# openssl rand -hex 32
+anubis_ed25519_private_key: 6df19fb7373c1582789d279218147adce2422b80c0fd3389f52d390490e338e9

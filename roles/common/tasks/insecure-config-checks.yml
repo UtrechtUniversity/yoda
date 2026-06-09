@@ -1,0 +1,62 @@
+---
+# copyright Utrecht University
+
+
+- name: Check for default iRODS admin password
+  ansible.builtin.fail:
+    msg: 'Insecure configuration: default iRODS admin password.'
+  when: irods_password == "rods" and (groups.get('icats', []) != [] or
+                                      groups.get('resources', []) != [] )
+
+
+- name: Check for default iRODS database password
+  ansible.builtin.fail:
+    msg: 'Insecure configuration: iRODS database password.'
+  when: irods_database_password == "irodsdev" and groups.get('icats', []) != []
+
+
+- name: Check for EUS enabled with placeholder secret
+  ansible.builtin.fail:
+    msg: 'Insecure configuration: EUS enabled, but EUS secret not set.'
+  when: groups.get('eus', []) != [] and eus_api_secret == "PLACEHOLDER"
+
+
+- name: Check for EUS enabled with placeholder database password
+  ansible.builtin.fail:
+    msg: 'Insecure configuration: EUS enabled, but EUS database password not set.'
+  when: groups.get('eus', []) != [] and eus_db_password == "PLACEHOLDER"
+
+
+- name: Check for data access tokens enabled but database password not set
+  ansible.builtin.fail:
+    msg: 'Insecure configuration: Data access tokens enabled, but database password not set.'
+  when: enable_tokens and token_database_password == "PLACEHOLDER"
+
+
+- name: Check for Anubis enabled but Redis password not set
+  ansible.builtin.fail:
+    msg: 'Insecure configuration: Anubis enabled, but Redis password not set.'
+  when: enable_anubis and anubis_redis_password == "PLACEHOLDER"
+
+
+- name: Check for Anubis with insecure default key
+  ansible.builtin.fail:
+    msg: 'Insecure configuration: Anubis enabled with insecure default key.'
+  when: enable_anubis and anubis_ed25519_private_key == "6df19fb7373c1582789d279218147adce2422b80c0fd3389f52d390490e338e9"
+
+
+- name: Check for SRAM running against mock service
+  ansible.builtin.fail:
+    msg: 'Insecure configuration: SRAM is configured to run against the Mock service.'
+  when: enable_sram and sram_rest_api_url == "sram-mock.yoda.test"
+
+
+- name: Check for SRAM running against Wiremock
+  ansible.builtin.fail:
+    msg: 'Insecure configuration: SRAM is configured to run against WireMock'
+  when: enable_sram and (
+        "https://oauth.wiremockapi.cloud" in (sram_oidc_auth_base_uri | default("")) or
+        "https://oauth.wiremockapi.cloud" in (sram_oidc_token_uri | default("")) or
+        "https://oauth.wiremockapi.cloud" in (sram_oidc_userinfo_uri | default("")) or
+        "https://oauth.wiremockapi.cloud" in (sram_oidc_jwks_uri | default("")) or
+        "https://oauth.wiremockapi.cloud" in (sram_oidc_jwt_issuer | default("")))
