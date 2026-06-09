@@ -134,6 +134,7 @@ centos_sclo_rh_repository    | Name of the CentOS SCLO-RH repository
 common_custom_dns_enable     | Set custom DNS servers (default: false, only supported only on Ubuntu)
 common_custom_dns_primary    | Primary custom DNS server (default: Google DNS servers, only supported on Ubuntu)
 common_custom_dns_secondary  | Secondary custom DNS server (default: Google DNS servers, only supported on Ubuntu)
+common_insecure_config_check | Check configuration for insecure settings. 'auto' (the default value) enables the checks if and only if `yoda_environment` is set to a value other than "development". Other valid values are: "enabled" and "disabled".
 
 Note: if one of these variables are different for a host then define them in the corresponding host specific variables file (host_vars).
 
