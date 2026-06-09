@@ -5,13 +5,6 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
-- name: Sanity check ruleset names
-  ansible.builtin.fail:
-    msg: 'Invalid ruleset name {{ item.name }}'
-  with_items: "{{ extra_rulesets + core_rulesets }}"
-  when: "'/' in item.name or '..' in item.name"
-
-
 - name: Check out rulesets without local patches from Github
   become_user: "{{ irods_service_account }}"
   become: true
