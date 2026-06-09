@@ -9,6 +9,7 @@ has_toc: false
 - [Overview of repositories](overview-repositories.md)
 - [Setting up development environment](setting-up-development-environment.md)
 - [Running Yoda using Docker Compose](docker-setup.md)
+- [Running the Vagrant VM on Apple Silicon (QEMU)](apple-silicon-qemu.md)
 - [Running API and UI tests](running-api-ui-tests.md)
 - [Running unit and integration tests](running-unit-integration-tests.md)
 - [Data Archive Mock](data_archive_mock.md)

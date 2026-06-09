@@ -1,0 +1,111 @@
+# coding: utf-8
+# copyright Utrecht University
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+#
+# All-in-one Yoda development environment for QEMU.
+#
+# This environment exists so that the Ansible-provisioned Yoda development VM
+# can be run on Apple Silicon (arm64) Macs, where neither VirtualBox nor
+# libvirt/KVM is available. It runs an *x86_64* guest under QEMU emulation
+# (TCG), because Yoda's core dependency iRODS is only published for x86_64
+# (see https://packages.irods.org/apt and .../yum). The guest is therefore
+# emulated, not virtualised: provisioning works but is slow.
+#
+# Usage (from the repository root):
+#
+#   brew install qemu
+#   vagrant plugin install vagrant-qemu
+#   cp vagrant/environments/qemu/Vagrantfile .
+#   vagrant up
+#   ansible-playbook -i environments/development/allinone/ \
+#     -e ansible_host=127.0.0.1 -e ansible_port=50022 playbook.yml
+#
+# See docs/development/apple-silicon-qemu.md for the full walkthrough,
+# including the host /etc/hosts entries needed to reach the portal.
+
+# Configuration variables.
+VAGRANTFILE_API_VERSION = "2"
+ENV['VAGRANT_DEFAULT_PROVIDER'] = "qemu"
+
+# A libvirt-format (qcow2) amd64 box, which is the format the vagrant-qemu
+# plugin consumes. Override with an environment variable if you prefer
+# another libvirt/qemu amd64 box (e.g. generic/ubuntu2404).
+BOX = ENV.fetch("YODA_QEMU_BOX", "cloud-image/ubuntu-24.04")
+
+# Emulating x86_64 on Apple Silicon is CPU-bound; tune to taste. More vCPUs
+# mainly help parallel provisioning steps, more RAM helps OpenSearch.
+SMP    = ENV.fetch("YODA_QEMU_SMP", "2")
+RAM    = ENV.fetch("YODA_QEMU_RAM", "4096")
+DISK   = ENV.fetch("YODA_QEMU_DISK", "32G")
+
+DOMAIN = ".yoda.test"
+
+# QEMU user-mode networking does not support static private-network IPs, so
+# services are reached from the host through forwarded ports instead. SSH is
+# forwarded to 50022 (the vagrant-qemu default); HTTP/HTTPS to unprivileged
+# host ports so that no root is required to bring the VM up.
+SSH_PORT   = Integer(ENV.fetch("YODA_QEMU_SSH_PORT", "50022"))
+HTTP_PORT  = Integer(ENV.fetch("YODA_QEMU_HTTP_PORT", "8080"))
+HTTPS_PORT = Integer(ENV.fetch("YODA_QEMU_HTTPS_PORT", "8443"))
+
+# All Yoda FQDNs of the all-in-one instance. They are mapped to 127.0.0.1
+# inside the guest (every service runs on this single host), and you should
+# map them to 127.0.0.1 in the *host* /etc/hosts as well to reach them
+# through the forwarded HTTPS port from your browser.
+FQDNS = %w[
+  combined.yoda.test
+  portal.yoda.test
+  data.yoda.test
+  public.data.yoda.test
+  public.yoda.test
+  eus.yoda.test
+  api.eus.yoda.test
+  datacite-mock.yoda.test
+  sram-mock.yoda.test
+]
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.ssh.insert_key = false
+
+  config.vm.define "combined" do |machine|
+    machine.vm.box = BOX
+    machine.vm.hostname = "combined" + DOMAIN
+
+    # vagrant-qemu does not use the default rsync/virtualbox synced folder.
+    machine.vm.synced_folder ".", "/vagrant", disabled: true
+
+    # Reach the guest's web services from the host through forwarded ports.
+    machine.vm.network "forwarded_port", guest: 80, host: HTTP_PORT
+    machine.vm.network "forwarded_port", guest: 443, host: HTTPS_PORT
+
+    machine.vm.provider "qemu" do |qe|
+      # Emulate an x86_64 guest regardless of host architecture.
+      qe.arch        = "x86_64"
+      qe.machine     = "q35"
+      qe.cpu         = "max"
+      qe.net_device  = "virtio-net-pci"
+      qe.smp         = SMP
+      qe.memory      = RAM
+      qe.disk_resize = DISK
+      qe.ssh_port    = SSH_PORT
+    end
+
+    # Set the fully qualified hostname.
+    machine.vm.provision "shell" do |s|
+      s.inline = "sudo hostnamectl hostname $1"
+      s.args   = "combined" + DOMAIN
+    end
+
+    machine.vm.provision "shell",
+      inline: "sudo timedatectl set-timezone Europe/Amsterdam"
+
+    # Resolve all Yoda FQDNs to the loopback interface inside the guest. On
+    # the all-in-one instance every service runs on this host, so loopback is
+    # correct and does not depend on the (NAT) address QEMU assigns.
+    FQDNS.each do |fqdn|
+      machine.vm.provision "shell",
+        inline: "grep -q '#{fqdn}' /etc/hosts || echo '127.0.0.1 #{fqdn}' | sudo tee -a /etc/hosts"
+    end
+  end
+end
