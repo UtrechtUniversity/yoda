@@ -1,6 +1,9 @@
 ---
 # copyright Utrecht University
 
+- name: Configuration checks
+  ansible.builtin.import_tasks: config-checks.yml
+
 - name: Setup hostname
   ansible.builtin.import_tasks: hostname.yml
 
