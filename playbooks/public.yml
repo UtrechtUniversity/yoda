@@ -1,0 +1,19 @@
+---
+# copyright Utrecht University
+# This playbook provisions the Yoda public server.
+
+- name: Provision public server
+  hosts: publics
+  become: true
+  roles:
+    - anubis
+    - role: redis
+      vars:
+        redis_port: 6380
+      when: enable_anubis
+    - apache
+    - yoda_moai
+    - yoda_landingpages
+    - yoda_public
+  tags:
+    - public

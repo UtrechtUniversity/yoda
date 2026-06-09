@@ -1,0 +1,25 @@
+---
+# copyright Utrecht University
+# This playbook provisions the Yoda portal server.
+
+- name: Provision portal server
+  hosts: portals
+  become: true
+  roles:
+    - role: anubis
+      when: "'davrods' not in group_names"
+    - apache
+    - role: opensearch
+      when: enable_open_search
+    - python3
+    - yoda_portal
+    - role: irods_icommands
+      when: "'davrods' not in group_names"
+    - role: irods_runtime
+      when: "'davrods' not in group_names"
+    - role: yoda_davrods
+      when: "'davrods' not in group_names"
+    - role: nvm
+      when: yoda_environment == "development"
+  tags:
+    - portal

@@ -1,0 +1,14 @@
+---
+# copyright Utrecht University
+# This playbook provisions the Yoda-specific database indexes.
+#
+# Note: this must run after the iCAT server has been provisioned (icat.yml),
+# because the indexes are created on the iCAT database schema.
+
+- name: Provision Yoda-specific database indexes
+  hosts: databases
+  become: true
+  roles:
+    - role: yoda_database_indexes
+  tags:
+    - database

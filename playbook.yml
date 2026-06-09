@@ -1,253 +1,53 @@
 ---
 # copyright Utrecht University
 # This playbook deploys a complete Yoda instance.
+#
+# It is composed of smaller playbooks in the playbooks/ directory. Each of
+# those can also be run individually (from the repository root) to deploy or
+# iterate on a single component, for example:
+#
+#   ansible-playbook playbooks/portal.yml -i environments/development/allinone
+#
+# The order of the imports below matters: the configuration is validated
+# first, the database indexes require a provisioned iCAT server, and the
+# composable iRODS resources and rulesets require provisioned iCAT and
+# resource servers.
 
-- name: Check Ansible version
-  hosts: localhost
-  gather_facts: false
-  pre_tasks:
-    - name: Verify Ansible (core) version meets requirements
-      ansible.builtin.assert:
-        that: "ansible_version.full is version('2.16', '>=')"
-        msg: >
-          "You must update Ansible (core) to at least 2.16 to deploy Yoda."
+- name: Validate configuration
+  import_playbook: playbooks/validate.yml
 
-
-- name: Check repository branches
-  hosts: databases,davrods,development,eus,icats,portals,publics,resources
-  gather_facts: false
-  pre_tasks:
-    - name: Determine whether yoda version matches playbook version (branch or lightweight tag)
-      ansible.builtin.shell: |
-        set -o pipefail
-        git show-ref | grep "^$(git rev-parse HEAD) " | \
-        grep -E "refs/(heads|tags)/" | cut -d '/' -f 3 | grep "^{{ yoda_version }}$"
-      delegate_to: localhost
-      register: check_git_bltags
-      changed_when: false
-      failed_when: check_git_bltags.rc > 1
-      check_mode: false
-      args:
-        executable: /bin/bash
-
-
-    - name: Determine whether yoda version matches playbook version (annotated or lightweight tag)
-      ansible.builtin.shell: |
-        set -o pipefail
-        git tag --points-at HEAD | grep "^{{ yoda_version }}$"
-      delegate_to: localhost
-      register: check_git_tags
-      changed_when: false
-      failed_when: check_git_tags.rc > 1
-      check_mode: false
-      args:
-        executable: /bin/bash
-
-
-    - name: Abort if Yoda repository is not on correct branch or tag
-      ansible.builtin.fail:
-        msg: "Make sure your Yoda repository is on branch {{ yoda_version }} or a tag pointing at the current commit. (git checkout {{ yoda_version }})"
-      when: check_git_bltags.rc != 0 and check_git_tags.rc != 0 and yoda_environment != "development"
-
-
-- name: Add hosts entries to development instances
-  hosts: development
-  become: true
-  roles:
-    - hostentries
-
+- name: Run preflight checks
+  import_playbook: playbooks/preflight.yml
 
 - name: Provision common software and certificates
-  hosts: databases,davrods,development,eus,icats,portals,publics,resources
-  become: true
-  roles:
-    - common
-    - certificates
-
+  import_playbook: playbooks/common.yml
 
 - name: Provision portal server
-  hosts: portals
-  become: true
-  roles:
-    - role: anubis
-      when: "'davrods' not in group_names"
-    - apache
-    - role: opensearch
-      when: enable_open_search
-    - python3
-    - yoda_portal
-    - role: irods_icommands
-      when: "'davrods' not in group_names"
-    - role: irods_runtime
-      when: "'davrods' not in group_names"
-    - role: yoda_davrods
-      when: "'davrods' not in group_names"
-    - role: nvm
-      when: yoda_environment == "development"
-  tags:
-    - portal
-
+  import_playbook: playbooks/portal.yml
 
 - name: Provision davrods server
-  hosts: davrods
-  become: true
-  roles:
-    - anubis
-    - apache
-    - irods_icommands
-    - irods_runtime
-    - yoda_davrods
-  tags:
-    - davrods
-
+  import_playbook: playbooks/davrods.yml
 
 - name: Provision database server
-  hosts: databases
-  become: true
-  roles:
-    - postgresql
-    - role: pgbouncer
-      when: enable_pgbouncer
-    - irods_database
-  tags:
-    - database
-
+  import_playbook: playbooks/database.yml
 
 - name: Provision iCAT server
-  hosts: icats
-  become: true
-  roles:
-    - pam_python
-    - postgresql_odbc
-    - irods_icat
-    - irods_log
-    - irods_runtime
-    - role: irods_resource_plugin_s3
-      when: enable_s3_resource
-    - role: minio
-      when: enable_s3_resource and yoda_environment == "development"
-    - role: nfs_server
-      when: enable_nfs_resource_playbook and yoda_environment == "development"
-    - role: nfs_client
-      when: enable_nfs_resource_playbook
-    - irods_microservices
-    - irods_completion
-    - irods_rodsadmin
-    - irods_arb
-    - role: irods_consistency_check
-      when: enable_irods_consistency_check
-    - role: icat_database_checker
-      when: enable_icat_database_checker
-    - role: data_archive_mock
-      when: enable_data_package_archive and yoda_environment == "development"
-    - role: data_archive
-      when: enable_data_package_archive and yoda_environment != "development"
-    - role: yoda_web_mock_datacite
-      when: yoda_environment == "development"
-    - role: yoda_web_mock_sram
-      when: yoda_environment == "development"
-    - role: postfix
-      when: enable_postfix
-    - role: mailpit
-      when: enable_mailpit
-    - role: irods_gocommands
-      when: irods_enable_gocommands
-    - role: yoda_clienttools
-      when: enable_yoda_clienttools
-  tags:
-    - icat
-  vars:
-    enable_nfs_resource_playbook: "{{ enable_nfs_resource | default(false) }}"
-
+  import_playbook: playbooks/icat.yml
 
 - name: Provision Yoda-specific database indexes
-  hosts: databases
-  become: true
-  roles:
-    - role: yoda_database_indexes
-  tags:
-    - database
-
+  import_playbook: playbooks/database_indexes.yml
 
 - name: Provision resource server
-  hosts: resources
-  become: true
-  roles:
-    - irods_resource
-    - irods_log
-    - role: irods_resource_plugin_s3
-      when: enable_s3_resource
-    - role: nfs_client
-      when: enable_nfs_resource_playbook
-    - irods_runtime
-    - irods_microservices
-    - irods_completion
-    - irods_arb
-    - role: irods_gocommands
-      when: irods_enable_gocommands
-    - role: irods_consistency_check
-      when: enable_irods_consistency_check
-  tags:
-    - resource
-  vars:
-    enable_nfs_resource_playbook: "{{ enable_nfs_resource | default(false) }}"
-
+  import_playbook: playbooks/resource.yml
 
 - name: Provision iRODS resources
-  hosts: icats
-  become: true
-  roles:
-    - composable_resources
-  tags:
-    - icat
+  import_playbook: playbooks/irods_resources.yml
 
-
-- name: Provision rulesets on iCAT server
-  hosts: icats
-  become: true
-  roles:
-    - role: yoda_rulesets
-    - role: yoda_report
-  tags:
-    - icat
-
-
-- name: Provision rulesets on resource server
-  hosts: resources
-  become: true
-  roles:
-    - role: yoda_rulesets
-    - role: yoda_report
-  tags:
-    - resource
-
+- name: Provision rulesets
+  import_playbook: playbooks/rulesets.yml
 
 - name: Provision public server
-  hosts: publics
-  become: true
-  roles:
-    - anubis
-    - role: redis
-      vars:
-        redis_port: 6380
-      when: enable_anubis
-    - apache
-    - yoda_moai
-    - yoda_landingpages
-    - yoda_public
-  tags:
-    - public
-
+  import_playbook: playbooks/public.yml
 
 - name: Provision external user service server
-  hosts: eus
-  become: true
-  roles:
-    - apache
-    - yoda_external_user_service
-    - role: postfix
-      when: enable_postfix
-    - role: mailpit
-      when: enable_mailpit
-  tags:
-    - eus
+  import_playbook: playbooks/eus.yml

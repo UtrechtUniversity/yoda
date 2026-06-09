@@ -1,0 +1,14 @@
+---
+# copyright Utrecht University
+# This playbook provisions the composable iRODS resources.
+#
+# Note: this must run after the iCAT server (icat.yml) and the resource
+# servers (resource.yml) have been provisioned.
+
+- name: Provision iRODS resources
+  hosts: icats
+  become: true
+  roles:
+    - composable_resources
+  tags:
+    - icat

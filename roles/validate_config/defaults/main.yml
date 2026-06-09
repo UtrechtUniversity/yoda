@@ -1,0 +1,88 @@
+---
+# copyright Utrecht University
+
+# Valid values for yoda_environment.
+validate_config_environments:
+  - development
+  - testing
+  - acceptance
+  - production
+
+# Regular expression that FQDN settings must match.
+validate_config_fqdn_regex: '^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$'
+
+# FQDN settings that are validated against validate_config_fqdn_regex when defined.
+validate_config_fqdn_settings:
+  - yoda_portal_fqdn
+  - yoda_davrods_fqdn
+  - yoda_davrods_anonymous_fqdn
+  - yoda_public_fqdn
+  - yoda_eus_fqdn
+  - eus_api_fqdn
+  - irods_icat_fqdn
+  - irods_database_fqdn
+  - irods_resource_fqdn
+
+# Feature toggles that must be booleans (true/false) when defined.
+validate_config_boolean_flags:
+  - enable_anubis
+  - enable_data_package_archive
+  - enable_data_package_reference
+  - enable_datarequest
+  - enable_deposit
+  - enable_icat_database_checker
+  - enable_irods_consistency_check
+  - enable_mailpit
+  - enable_nfs_resource
+  - enable_open_search
+  - enable_pgbouncer
+  - enable_postfix
+  - enable_research
+  - enable_s3_resource
+  - enable_sram
+  - enable_tokens
+  - enable_yoda_clienttools
+  - enable_yoda_report
+  - irods_enable_gocommands
+  - yoda_davrods_anonymous_enabled
+
+# Variables that must be defined when a feature toggle is enabled.
+validate_config_feature_requirements:
+  - feature: enable_postfix
+    required:
+      - postfix_relayhost
+  - feature: enable_open_search
+    required:
+      - opensearch_server
+  - feature: enable_data_package_archive
+    required:
+      - data_package_archive_fqdn
+      - data_package_archive_resource
+
+# Variables that may not be left at PLACEHOLDER. Each entry can be limited to
+# a feature toggle (feature), a host group (group) and a list of environments
+# (environments, default: testing, acceptance and production).
+validate_config_required_secrets:
+  - vars:
+      - credential_files
+  - feature: enable_anubis
+    vars:
+      - anubis_redis_password
+  - feature: enable_s3_resource
+    vars:
+      - s3_access_key
+      - s3_secret_key
+  - feature: enable_sram
+    vars:
+      - sram_api_key
+      - sram_service_entity_id
+      - sram_co_default_label
+  - group: eus
+    vars:
+      - eus_api_secret
+      - eus_db_password
+  - environments:
+      - production
+    vars:
+      - datacite_username
+      - datacite_password

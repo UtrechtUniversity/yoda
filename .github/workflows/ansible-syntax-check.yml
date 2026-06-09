@@ -1,0 +1,45 @@
+name: Ansible Syntax and Configuration Check
+
+on:
+  push:
+    paths-ignore:
+    - 'README.md'
+    - 'Vagrantfile'
+    - 'docs/**'
+    - 'docker/**'
+    - '.github/workflows/documentation.yml'
+  pull_request:
+    paths-ignore:
+    - 'README.md'
+    - 'Vagrantfile'
+    - 'docker/**'
+    - 'docs/**'
+    - '.github/workflows/documentation.yml'
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        environment: [allinone, full, single_fqdn, surf]
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Ansible
+        run: pip install ansible-core
+
+      - name: Install collection dependencies
+        run: ansible-galaxy collection install -r requirements.yml
+
+      - name: Check playbook syntax
+        run: |
+          for playbook in playbook.yml test.yml zabbix.yml; do
+            ansible-playbook --syntax-check \
+              -i "environments/development/${{ matrix.environment }}/hosts" "$playbook"
+          done
+
+      - name: Validate configuration
+        run: |
+          ansible-playbook playbooks/validate.yml --connection local \
+            -i "environments/development/${{ matrix.environment }}/hosts"

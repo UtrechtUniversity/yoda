@@ -1,0 +1,49 @@
+---
+# copyright Utrecht University
+# This playbook provisions the Yoda iCAT server.
+
+- name: Provision iCAT server
+  hosts: icats
+  become: true
+  roles:
+    - pam_python
+    - postgresql_odbc
+    - irods_icat
+    - irods_log
+    - irods_runtime
+    - role: irods_resource_plugin_s3
+      when: enable_s3_resource
+    - role: minio
+      when: enable_s3_resource and yoda_environment == "development"
+    - role: nfs_server
+      when: enable_nfs_resource_playbook and yoda_environment == "development"
+    - role: nfs_client
+      when: enable_nfs_resource_playbook
+    - irods_microservices
+    - irods_completion
+    - irods_rodsadmin
+    - irods_arb
+    - role: irods_consistency_check
+      when: enable_irods_consistency_check
+    - role: icat_database_checker
+      when: enable_icat_database_checker
+    - role: data_archive_mock
+      when: enable_data_package_archive and yoda_environment == "development"
+    - role: data_archive
+      when: enable_data_package_archive and yoda_environment != "development"
+    - role: yoda_web_mock_datacite
+      when: yoda_environment == "development"
+    - role: yoda_web_mock_sram
+      when: yoda_environment == "development"
+    - role: postfix
+      when: enable_postfix
+    - role: mailpit
+      when: enable_mailpit
+    - role: irods_gocommands
+      when: irods_enable_gocommands
+    - role: yoda_clienttools
+      when: enable_yoda_clienttools
+  tags:
+    - icat
+  vars:
+    enable_nfs_resource_playbook: "{{ enable_nfs_resource | default(false) }}"

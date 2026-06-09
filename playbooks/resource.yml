@@ -1,0 +1,26 @@
+---
+# copyright Utrecht University
+# This playbook provisions the Yoda resource servers.
+
+- name: Provision resource server
+  hosts: resources
+  become: true
+  roles:
+    - irods_resource
+    - irods_log
+    - role: irods_resource_plugin_s3
+      when: enable_s3_resource
+    - role: nfs_client
+      when: enable_nfs_resource_playbook
+    - irods_runtime
+    - irods_microservices
+    - irods_completion
+    - irods_arb
+    - role: irods_gocommands
+      when: irods_enable_gocommands
+    - role: irods_consistency_check
+      when: enable_irods_consistency_check
+  tags:
+    - resource
+  vars:
+    enable_nfs_resource_playbook: "{{ enable_nfs_resource | default(false) }}"

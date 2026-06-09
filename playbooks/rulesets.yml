@@ -1,0 +1,22 @@
+---
+# copyright Utrecht University
+# This playbook provisions the Yoda rulesets on the iCAT and resource servers.
+
+- name: Provision rulesets on iCAT server
+  hosts: icats
+  become: true
+  roles:
+    - role: yoda_rulesets
+    - role: yoda_report
+  tags:
+    - icat
+
+
+- name: Provision rulesets on resource server
+  hosts: resources
+  become: true
+  roles:
+    - role: yoda_rulesets
+    - role: yoda_report
+  tags:
+    - resource

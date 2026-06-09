@@ -1,0 +1,77 @@
+---
+# copyright Utrecht University
+#
+# This role only runs assertions: it validates the configuration of a Yoda
+# instance and fails before any host is changed. It never needs a connection
+# to the managed hosts, so configuration errors are caught even when the
+# hosts are unreachable.
+
+- name: Verify that core Yoda settings are valid
+  ansible.builtin.assert:
+    that:
+      - yoda_environment is defined
+      - yoda_environment in validate_config_environments
+      - yoda_version is defined
+      - yoda_version | length > 0
+      - instance is defined
+    fail_msg: >-
+      Core Yoda settings are missing or invalid: yoda_environment must be one
+      of {{ validate_config_environments | join(', ') }}, and yoda_version and
+      instance must be set in the group variables of this environment.
+    quiet: true
+
+
+- name: Verify that FQDN settings are well-formed
+  ansible.builtin.assert:
+    that:
+      - lookup('vars', item) is match(validate_config_fqdn_regex)
+    fail_msg: >-
+      {{ item }} ('{{ lookup('vars', item) }}') is not a valid fully
+      qualified domain name.
+    quiet: true
+  when: lookup('vars', item, default='') | length > 0
+  loop: "{{ validate_config_fqdn_settings }}"
+
+
+- name: Verify that feature toggles are booleans
+  ansible.builtin.assert:
+    that:
+      - lookup('vars', item) | type_debug == 'bool'
+    fail_msg: >-
+      {{ item }} must be a boolean (true/false), but is of type
+      {{ lookup('vars', item) | type_debug }}
+      (value: '{{ lookup('vars', item) }}').
+    quiet: true
+  when: lookup('vars', item, default='__undefined__') != '__undefined__'
+  loop: "{{ validate_config_boolean_flags }}"
+
+
+- name: Verify that required variables are set for enabled features
+  ansible.builtin.assert:
+    that:
+      - lookup('vars', item.1, default='__undefined__') != '__undefined__'
+    fail_msg: >-
+      {{ item.1 }} must be configured when {{ item.0.feature }} is enabled.
+    quiet: true
+  when: lookup('vars', item.0.feature, default=false) | bool
+  loop: "{{ validate_config_feature_requirements | subelements('required') }}"
+  loop_control:
+    label: "{{ item.0.feature }}: {{ item.1 }}"
+
+
+- name: Verify that secrets are no longer set to PLACEHOLDER
+  ansible.builtin.assert:
+    that:
+      - lookup('vars', item.1, default='PLACEHOLDER') != 'PLACEHOLDER'
+    fail_msg: >-
+      {{ item.1 }} is still set to PLACEHOLDER; configure it before deploying
+      a {{ yoda_environment }} environment.
+    quiet: true
+  when:
+    - yoda_environment is defined
+    - yoda_environment in item.0.environments | default(['testing', 'acceptance', 'production'])
+    - item.0.feature is not defined or lookup('vars', item.0.feature, default=false) | bool
+    - item.0.group is not defined or item.0.group in group_names
+  loop: "{{ validate_config_required_secrets | subelements('vars') }}"
+  loop_control:
+    label: "{{ item.1 }}"

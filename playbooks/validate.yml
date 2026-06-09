@@ -1,0 +1,14 @@
+---
+# copyright Utrecht University
+# This playbook validates the Yoda configuration before any host is changed.
+# It only runs assertions and never connects to or modifies managed hosts,
+# so configuration errors are caught early and cheaply.
+
+- name: Validate Yoda configuration
+  hosts: all
+  gather_facts: false
+  tags:
+    - always
+    - validate
+  roles:
+    - validate_config

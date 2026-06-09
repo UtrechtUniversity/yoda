@@ -1,0 +1,18 @@
+---
+# copyright Utrecht University
+# This playbook provisions software and certificates common to all servers
+# of a Yoda instance.
+
+- name: Add hosts entries to development instances
+  hosts: development
+  become: true
+  roles:
+    - hostentries
+
+
+- name: Provision common software and certificates
+  hosts: databases,davrods,development,eus,icats,portals,publics,resources
+  become: true
+  roles:
+    - common
+    - certificates

@@ -1,0 +1,15 @@
+---
+# copyright Utrecht University
+# This playbook provisions the Yoda Davrods (WebDAV) server.
+
+- name: Provision davrods server
+  hosts: davrods
+  become: true
+  roles:
+    - anubis
+    - apache
+    - irods_icommands
+    - irods_runtime
+    - yoda_davrods
+  tags:
+    - davrods

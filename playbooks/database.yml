@@ -1,0 +1,18 @@
+---
+# copyright Utrecht University
+# This playbook provisions the Yoda database server.
+#
+# Note: the Yoda-specific database indexes are provisioned by
+# database_indexes.yml, which must run after the iCAT server has been
+# provisioned (see playbook.yml for the full ordering).
+
+- name: Provision database server
+  hosts: databases
+  become: true
+  roles:
+    - postgresql
+    - role: pgbouncer
+      when: enable_pgbouncer
+    - irods_database
+  tags:
+    - database

@@ -1,0 +1,16 @@
+---
+# copyright Utrecht University
+# This playbook provisions the Yoda external user service server.
+
+- name: Provision external user service server
+  hosts: eus
+  become: true
+  roles:
+    - apache
+    - yoda_external_user_service
+    - role: postfix
+      when: enable_postfix
+    - role: mailpit
+      when: enable_mailpit
+  tags:
+    - eus
