@@ -1,14 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Fail if clienttools is not enabled
-  ansible.builtin.fail:
-    msg: "enable_yoda_report=true requires enable_yoda_clienttools=true"
-  when:
-    - enable_yoda_report | default(false)
-    - not enable_yoda_clienttools | default(false)
-
-
 - name: Install yoda reporting private key
   become_user: '{{ irods_service_account }}'
   become: true

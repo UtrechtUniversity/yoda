@@ -1,0 +1,25 @@
+---
+# copyright Utrecht University
+
+- name: Check for Yoda reporting without client tools
+  ansible.builtin.fail:
+    msg: "Configuration error: enable_yoda_report=true requires enable_yoda_clienttools=true"
+  when:
+    - enable_yoda_report | default(false)
+    - not enable_yoda_clienttools | default(false)
+
+
+# EUS depends on the Yoda portal for theming information. So running mismatched versions
+# can result in unexpected errors.
+- name: Check whether Yoda portal version matches EUS version
+  ansible.builtin.fail: # noqa ignore-errors
+    msg: "Warning: mismatched EUS and portal version can result in EUS theming problems."
+  when: "yoda_portal_version != yoda_eus_version"
+  ignore_errors: true
+
+
+- name: Sanity check ruleset names
+  ansible.builtin.fail:
+    msg: 'Invalid ruleset name {{ item.name }}'
+  with_items: "{{ extra_rulesets + core_rulesets }}"
+  when: "'/' in item.name or '..' in item.name"
