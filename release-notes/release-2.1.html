@@ -270,6 +270,7 @@
   <li><strong>EPOS-MSL metadata</strong>: improvements to the EPOS-MSL metadata schema (<code class="language-plaintext highlighter-rouge">epos-msl-1</code>)</li>
   <li><strong>Vault module</strong>: removed functionality to download data package as a BagIt file</li>
   <li><strong>Notifications</strong>: default setting has changed to immediately receive notification emails</li>
+  <li><strong>Data transfer</strong>: data transfer page now includes configuration for iBridges</li>
 </ul>
 <h3 id="changes-affecting-technical-administrators">
   
@@ -296,7 +297,7 @@
 <ul>
   <li>iRODS: upgrade to v5.0.2</li>
   <li>Python-irodsclient: update to v3.3.0</li>
-  <li>GoCommands: update to v0.11.13</li>
+  <li>GoCommands: update to v0.12.0</li>
   <li>Flask and dependencies: update to v3.1.3</li>
   <li>Mailpit: update to v1.30.1</li>
 </ul>
@@ -367,12 +368,12 @@ To view what files were changed from the defaults, run <code class="language-pla
   <li>
     <p>After ensuring the configurations are stored safely in another folder, reset the Yoda folder using <code class="language-plaintext highlighter-rouge">git stash</code> or when you want to delete all changes made: <code class="language-plaintext highlighter-rouge">git reset --hard</code>.</p>
   </li>
-  <li>Check out the <code class="language-plaintext highlighter-rouge">v2.1.0-rc.0</code> tag of the Yoda Git repository:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout v2.1.0-rc.0
+  <li>Check out the <code class="language-plaintext highlighter-rouge">v2.1.0-rc.1</code> tag of the Yoda Git repository:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout v2.1.0-rc.1
 </code></pre></div>    </div>
   </li>
-  <li>Set the Yoda version to <code class="language-plaintext highlighter-rouge">v2.1.0-rc.0</code> in the configuration:
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v2.1.0-rc.0</span>
+  <li>Set the Yoda version to <code class="language-plaintext highlighter-rouge">v2.1.0-rc.1</code> in the configuration:
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">yoda_version</span><span class="pi">:</span> <span class="s">v2.1.0-rc.1</span>
 </code></pre></div>    </div>
   </li>
   <li>If the old configuration contained an iRODS authentication scheme setting, update it to use <code class="language-plaintext highlighter-rouge">pam_password</code>. Example:
