@@ -19,3 +19,4 @@ anubis_landingpages_port: 3002
 anubis_ed25519_private_key: 6df19fb7373c1582789d279218147adce2422b80c0fd3389f52d390490e338e9
 
 yoda_davrods_anonymous_enabled: true
+yoda_davrods_anonymous_port: 443
