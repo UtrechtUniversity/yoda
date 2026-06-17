@@ -62,6 +62,7 @@ The test suite accepts the following custom options:
   --intake              Run intake tests
   --archive             Run vault archive tests
   --sram                Run group SRAM tests
+  --webdav              Run WebDAV tests
   --skip-ui             Skip UI tests
   --skip-api            Skip API tests
   --all                 Run all tests
