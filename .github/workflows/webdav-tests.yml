@@ -1,0 +1,143 @@
+---
+name: "Run WebDAV tests"
+
+on:
+  push:
+    branches:
+    - development
+    - 'release-[0-9]+.[0-9]+'
+    paths:
+    - '.github/workflows/webdav-tests.yml'
+    - 'docker/images/davrods/**'
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    if: |
+      ${{ ! contains(github.event.head_commit.message, '#nowebdavtests') &&
+            ( github.event_name == 'push' ||
+              github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name
+            )
+       }}
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: 3.9
+
+    - name: Extract branch name
+      shell: bash
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: extract_branch
+
+    # For release branches, we use the WebDAV tests of that release.
+    # For other branches, we use the tests of the development branch.
+    - name: Determine Yoda ruleset repository branch
+      shell: bash
+      run: |
+        if [[ "${{ steps.extract_branch.outputs.branch }}" =~ ^"release-" ]]; then
+          echo "branch=${{ steps.extract_branch.outputs.branch }}" >> $GITHUB_OUTPUT
+        else
+          echo "branch=development" >> $GITHUB_OUTPUT
+        fi
+      id: yoda_repo_branch
+
+    - name: Clone Yoda repo for Docker Setup
+      run: |
+        git clone -b "${{ steps.extract_branch.outputs.branch }}" --single-branch https://github.com/UtrechtUniversity/yoda.git
+
+    - name: Clone Yoda ruleset repo for tests
+      run: |
+        git clone -b "${{ steps.yoda_repo_branch.outputs.branch }}" --single-branch https://github.com/UtrechtUniversity/yoda-ruleset.git
+
+    - name: Prepare hosts file for API tests
+      run: |
+        sudo echo "127.0.0.1 portal.yoda eus.yoda data.yoda public.yoda" | sudo tee -a /etc/hosts
+
+    - name: Install test dependencies
+      run: |
+        sudo apt install -y docker-compose
+        cd yoda-ruleset/tests
+        python3 -m venv venv
+        source venv/bin/activate
+        pip3 install -r requirements.txt
+
+    - name: Pull Docker images
+      run: |
+        cd yoda/docker/compose
+        docker-compose pull
+
+    - name: Build local Davrods image
+      shell: bash
+      run: |
+        cd yoda/docker/images/davrods
+        if [[ -f stage-uploads.sh ]]; then bash ./stage-uploads.sh ; fi
+        ./build.sh
+
+    - name: Start Dockerized Yoda
+      run: |
+        cd yoda/docker/compose
+        ../up.sh -d
+
+    - name: Wait until Dockerized setup is ready
+      shell: bash
+      run: |
+        echo "Waiting for portal to be available ..."
+        until curl -k --output /dev/null --silent --head --fail https://portal.yoda:8443; do printf '.' ; sleep 1; done
+        echo "Waiting for EUS to be available ..."
+        until curl -k --output /dev/null --silent --head --fail https://eus.yoda:8444; do printf '.' ; sleep 1; done
+        docker exec provider.yoda sh -c 'until sudo -u irods ils /tempZone > /dev/null  2>&1 ; do echo Waiting for iRODS to start ...  ; sleep 1; done'
+
+    - name: Pull and install latest version of ruleset
+      shell: bash
+      run: |
+        cd yoda/docker/compose
+        docker exec provider.yoda sh -c 'set -x ; find /etc/irods/yoda-ruleset -print0 2>/dev/null | sudo xargs -0 -r -I{} bash -c "chown -v irods:irods \"{}\" || true"'
+        docker exec provider.yoda sh -c 'set -x ; cd /etc/irods/yoda-ruleset && sudo -u irods git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && sudo -u irods git pull && sudo -u irods git status'
+        docker exec provider.yoda sh -c "set -x ; cd /etc/irods/yoda-ruleset && sudo -u irods git checkout ${{ steps.yoda_repo_branch.outputs.branch }} && sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages -r /etc/irods/yoda-ruleset/requirements.txt && sudo -u irods make && sudo -u irods make install"
+        docker exec provider.yoda sh -c 'kill -HUP $(cat /var/run/irods/irods-server.pid)'
+
+    - name: Wait until iRODS is ready for tests
+      shell: bash
+      run: |
+        cd yoda/docker/compose
+        docker exec provider.yoda sh -c 'until sudo -u irods ils /tempZone > /dev/null  2>&1 ; do echo Waiting for iRODS to start ...  ; sleep 1; done'
+        docker exec data.yoda sh -c 'until nc -vz provider.yoda 1247 > /dev/null 2>&1; do echo "Waiting until iRODS provider is reachable from Davrods container ..."; sleep 1; done'
+        echo "iRODS is ready for tests."
+
+    - name: Run WebDAV tests
+      run: |
+        cd yoda-ruleset/tests
+        source venv/bin/activate
+        python3 -m pytest --webdav -o cache_dir=mycache --environment environments/docker.json step_defs/webdav/test_webdav.py
+
+    - name: Output rodsLogs
+      if: failure()
+      run: |
+        docker exec provider.yoda sh -c 'cat /var/lib/irods-log/rodsLog*'
+
+    - name: Output EUS server logs
+      if: failure()
+      run: |
+        docker exec eus.yoda sh -c 'set -x ; for log in error.log access.log ; do echo "${log}:" ; cat "/var/log/apache2/$log" ; echo; done'
+
+    - name: Output portal web server logs
+      if: failure()
+      run: |
+        docker exec portal.yoda sh -c 'set -x ; for log in error.log portal_access.log ; do echo "${log}:" ; cat "/var/log/apache2/$log" ; echo; done'
+
+    - name: Output DavRODS server logs
+      if: failure()
+      run: |
+        docker exec data.yoda sh -c 'set -x ; for log in error.log webdav_access.log webdav_anon_access.log; do echo "${log}:" ; cat "/var/log/apache2/$log" ; echo; done'
+
+# Uncomment section below when needed for debugging.
+#
+#    - name: Setup tmate session for debugging
+#      uses: mxschmitt/action-tmate@v3
+#      if: ${{ failure() }}
+#      with:
+#        limit-access-to-actor: true
