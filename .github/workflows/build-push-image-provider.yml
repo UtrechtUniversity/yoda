@@ -27,7 +27,7 @@ jobs:
       id: extract_branch
 
     - name: Check out Yoda repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         path: yoda
         repository: UtrechtUniversity/yoda
