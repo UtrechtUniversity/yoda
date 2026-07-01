@@ -4,5 +4,5 @@
 irods_service_account: irods
 
 irods_enable_gocommands: false
-irods_gocommands_version: 0.12.0
-irods_gocommands_archive_checksum: "sha256:5db31bf15ded35ccaaf1e6c1bc46329d5b258f5b923eeacb8a617b51503ae674"
+irods_gocommands_version: 0.12.2
+irods_gocommands_archive_checksum: "sha256:fd1aa8fc4d281b12be40cec1f32dcf1fa5abcea87d70baf3efed3ceee05c2f79"
