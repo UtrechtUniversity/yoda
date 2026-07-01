@@ -34,7 +34,7 @@ Released: TBA
 - Python-irodsclient: update to v3.3.0
 - GoCommands: update to v0.12.2
 - Flask and dependencies: update to v3.1.3
-- Mailpit: update to v1.30.1
+- Mailpit: update to v1.30.3
 
 ### Known issues
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python ([irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54))
