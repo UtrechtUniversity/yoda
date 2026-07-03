@@ -314,6 +314,7 @@
   <li>When inactive group notifications are enabled, data managers may receive notifications for groups that are actually active (issue YDA-7082). We recommend to disable inactive group notifications by setting <code class="language-plaintext highlighter-rouge">enable_inactivity_notification</code> to <code class="language-plaintext highlighter-rouge">false</code> before upgrading. A fix is expected in Yoda v2.1.1</li>
   <li>The “copy to research” functionality fails for paths that contain single quotes or spaces (issues YDA-7000 and YDA-7001). A fix is expected in Yoda v2.1.1</li>
   <li>The irm iCommand fails for collection names with single quotes (<a href="https://github.com/irods/irods/issues/9019">irods/irods#9019</a>)</li>
+  <li>Removing a collection via WebDAV fails if the collection name contains a single quote (YDA-7086)</li>
 </ul>
 <h2 id="upgrading-from-previous-release">
   
