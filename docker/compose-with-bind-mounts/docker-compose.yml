@@ -1,5 +1,3 @@
-version: "3"
-
 volumes:
   extuser_pg_data:
   icat_pg_data:
