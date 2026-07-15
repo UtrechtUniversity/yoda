@@ -50,16 +50,16 @@ RUN mkdir -p /var/www/moai /var/www/moai/metadata && \
     chmod 0755 /var/www/moai /var/www/moai/metadata && \
     chown -R yodadeployment:yodadeployment /var/www/moai && \
     virtualenv --python /usr/bin/python3 /var/www/moai/yoda-moai/venv && \
-    /var/www/moai/yoda-moai/venv/bin/pip3 install pip==26.0.1
+    /var/www/moai/yoda-moai/venv/bin/pip3 install --no-cache-dir pip==26.0.1
 
 ## Install PySQLite3 for MOAI
 ENV C_INCLUDE_PATH /usr/include/python3.12:/usr/include
 ENV LIBRARY_PATH /usr/lib/x86_64-linux-gnu
-RUN /var/www/moai/yoda-moai/venv/bin/pip3 install pysqlite3==0.5.0
+RUN /var/www/moai/yoda-moai/venv/bin/pip3 install --no-cache-dir pysqlite3==0.5.0
 
 ## Install MOAI itself
 ENV C_INCLUDE_PATH /usr/include/python3.12
-RUN /var/www/moai/yoda-moai/venv/bin/pip3 install -e /var/www/moai/yoda-moai
+RUN /var/www/moai/yoda-moai/venv/bin/pip3 install --no-cache-dir -e /var/www/moai/yoda-moai
 
 ## Configure and initialize MOAI
 COPY moai-settings.ini /var/www/moai/settings.ini
