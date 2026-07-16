@@ -134,6 +134,7 @@
     mode: '0644'
     owner: "{{ yoda_deployment_user }}"
     group: "{{ yoda_deployment_user }}"
+  no_log: true
   when: not ansible_check_mode
   notify:
     - Restart Apache webserver
