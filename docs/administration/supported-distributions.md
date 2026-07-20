@@ -3,7 +3,7 @@ parent: Administration Tasks
 title: Supported distributions
 nav_order: 15
 ---
-# Configuring Yoda
+# Supported distributions
 
 The table below contains a list of supported distributions for each role:
 
