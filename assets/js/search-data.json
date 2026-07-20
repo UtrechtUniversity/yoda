@@ -755,159 +755,159 @@
     
     "relUrl": "/design/other/"
   },"108": {
-    "doc": "Processes",
-    "title": "Processes",
-    "content": " ",
-    "url": "/yoda/design/processes/",
-    
-    "relUrl": "/design/processes/"
-  },"109": {
-    "doc": "Naming conventions",
-    "title": "Naming conventions",
-    "content": "Yoda entities such as collections, data objects, categories, groups, etc. have certain naming requirements and restrictions. These exist either because of structural limitations of certain parts of the system, or to avoid errors and/or malfunctions of the system. This part of the documentation lists all the requirements and restrictions that should be followed when naming the Yoda entities. ",
-    "url": "/yoda/design/conventions/",
-    
-    "relUrl": "/design/conventions/"
-  },"110": {
-    "doc": "Naming conventions",
-    "title": "Collection and data object names",
-    "content": "System limitations to take into considerations: . | iRODS has a maximum path length of 1024 bytes1 (see: iRODS maximum path length allowed). | If any member of your group(s) use Windows native WebDAV, the WebDAV part of the paths of each data object and collection should be limited to 260 characters (due to Windows systems maximum path length limitation). | . In addition to these, there are some known naming issues that should also be taken into consideration: . | Collection names containing single apex quote ' cause issues (see: irods/irods#5727). | Renaming of collection names containing multi-byte characters mangles subcollection paths (see: irods/irods#6239). | Data object names containing non-standard characters (such as control characters with ASCII codes 01 to 08, 11, 12, 14 to 31) cause encoding issues in XML (see: irods/irods#4132). | . ",
-    "url": "/yoda/design/conventions/#collection-and-data-object-names",
-    
-    "relUrl": "/design/conventions/#collection-and-data-object-names"
-  },"111": {
-    "doc": "Naming conventions",
-    "title": "User names",
-    "content": "Rules for user names are as follows: . | must contain zero or one ‘@’ symbol, but not at the beginning or the end of the name; | (if ‘@’ symbol is not present) must contain only lowercase letters, and dots; | (if ‘@’ symbol is present) must contain only lowercase letters, numbers, hyphens, underscores, and dots; | may contain a zone name after a ‘#’ symbol. | . See: iRODS rule, Python rule . ",
-    "url": "/yoda/design/conventions/#user-names",
-    
-    "relUrl": "/design/conventions/#user-names"
-  },"112": {
-    "doc": "Naming conventions",
-    "title": "Group names",
-    "content": "Rules for group names are as follows: . | must be prefixed with ‘research-‘ or ‘deposit-‘; | must contain only lowercase characters, numbers, and hyphens; | must not start or end with a hyphen; | must not exceed 63 characters. | . See: iRODS rule, Python rule . ",
-    "url": "/yoda/design/conventions/#group-names",
-    
-    "relUrl": "/design/conventions/#group-names"
-  },"113": {
-    "doc": "Naming conventions",
-    "title": "Category names",
-    "content": "Rules for category names are as follows: . | must contain only lowercase characters, numbers, and hyphens; | must not start or end with a hyphen; | must not exceed 2700 bytes1. | . Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module. See: iRODS rule, Python rule . ",
-    "url": "/yoda/design/conventions/#category-names",
-    
-    "relUrl": "/design/conventions/#category-names"
-  },"114": {
-    "doc": "Naming conventions",
-    "title": "Subcategory names",
-    "content": "Rules for subcategory names are as follows: . | must contain only letters, numbers, spaces, commas, periods, parentheses, underscores, and hyphens; | must not exceed 2700 bytes1. | . Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module. See: iRODS rule, Python rule . ",
-    "url": "/yoda/design/conventions/#subcategory-names",
-    
-    "relUrl": "/design/conventions/#subcategory-names"
-  },"115": {
-    "doc": "Naming conventions",
-    "title": "Licenses",
-    "content": "Detailed information regarding default and non-default licenses can be found in the Installing licenses page. ",
-    "url": "/yoda/design/conventions/#licenses",
-    
-    "relUrl": "/design/conventions/#licenses"
-  },"116": {
-    "doc": "Naming conventions",
-    "title": "Footnotes",
-    "content": ". | Number of bytes directly translates to number of characters, only in case of single-byte characters. &#8617; &#8617;2 &#8617;3 . | . ",
-    "url": "/yoda/design/conventions/#footnotes",
-    
-    "relUrl": "/design/conventions/#footnotes"
-  },"117": {
     "doc": "Metadata",
     "title": "Metadata",
     "content": " ",
     "url": "/yoda/design/metadata/",
     
     "relUrl": "/design/metadata/"
-  },"118": {
+  },"109": {
     "doc": "Metadata",
     "title": "Overview",
     "content": "Yoda supports adding metadata to collections. This facilitates archiving and (especially) publishing a collection of data as a data package. Each community or group can have its own metadata schema, so that different departments or faculties can optionally adapt the metadata format to their field. This part of the documentation is about metadata in the context of Yoda data packages. iRODS metadata (AVUs) have a role in Yoda metadata, but can also be used for other purposes that are unrelated to Yoda data packages. Data request module metadata is also not in the scope of this page. Yoda metadata is primarily stored in data objects named yoda-metadata.json. ",
     "url": "/yoda/design/metadata/#overview",
     
     "relUrl": "/design/metadata/#overview"
-  },"119": {
+  },"110": {
     "doc": "Metadata",
     "title": "Metadata schemas",
     "content": "In Yoda, a metadata schema is used to validate the metadata of a data package. The schema also contains information regarding how the metadata should be displayed in the web portal. A Yoda metadata schema contains of two parts: . | A JSON schema file that is used to validate metadata of a data package. | A UI schema file that contains information for the web portal regarding how to display a metadata form for this schema, optionally including placeholders and help text for each field. | . Yoda environments have a default metadata schema. Additionally, specific metadata schemas can be configured for communities (also known as categories). As of Yoda 1.9, it is also possible to configure a metadata schema on a group level. For more information, see: . | Metadata schema configuration | Using JSON schema to define a metadata schema | . ",
     "url": "/yoda/design/metadata/#metadata-schemas",
     
     "relUrl": "/design/metadata/#metadata-schemas"
-  },"120": {
+  },"111": {
     "doc": "Metadata",
     "title": "Schema names and identifiers",
     "content": "Each schema has a globally unique identifier (URL) that is based on its name. For example, the default-2 schema is identified as https://yoda.uu.nl/schemas/default-2/metadata.json. For more information, see Architectural decision record schema identifier format . ",
     "url": "/yoda/design/metadata/#schema-names-and-identifiers",
     
     "relUrl": "/design/metadata/#schema-names-and-identifiers"
-  },"121": {
+  },"112": {
     "doc": "Metadata",
     "title": "Exporting of metadata during publication",
     "content": "When a data package is published, its metadata will be exported in three ways: . Landing page . The landing page HTML code is generated using a Jinja2 template. This template may need to be adapted in case of metadata schema changes. The template can be found in /etc/irods/yoda-ruleset/templates/landingpage.html.j2. The Ansible playbook activates this template by uploading it to the /zone/yoda/templates/ collection. JSON file for DataCite . A JSON file conforming to the DataCite v4 Schema is generated. The implementation can be found in /etc/irods/yoda-ruleset/json_datacite41.py. OAI-PMH data . The metadata will be copied to the OAI-PMH server (public server). Once there, it will be processed by MOAI so that it can be harvested using the OAI-PMH protocol by external systems. Only a subset of fields that map to Dublin core and DataCite are processed by MOAI. Any changes to these fields will result in the metadata being omitted from the stream. ",
     "url": "/yoda/design/metadata/#exporting-of-metadata-during-publication",
     
     "relUrl": "/design/metadata/#exporting-of-metadata-during-publication"
-  },"122": {
+  },"113": {
     "doc": "Metadata",
     "title": "Metadata transformation",
     "content": "As a general rule, metadata will have to comply with the latest version of a schema. For example, if a new version of Yoda has a new default-2 schema, all data packages using the default-1 schema will need to be updated to default-2.. Vault metadata is upgraded as a part of the upgrade process, as described in the release notes. Research metadata is updated when a user opens it. The transformation logic for updating to a newer version of a schema is defined in /etc/irods/yoda-ruleset/schema_transformations.py. ",
     "url": "/yoda/design/metadata/#metadata-transformation",
     
     "relUrl": "/design/metadata/#metadata-transformation"
-  },"123": {
+  },"114": {
     "doc": "Metadata",
     "title": "Further information",
     "content": ". | Information about metadata form implementation | Use of metadata in the vault | . ",
     "url": "/yoda/design/metadata/#further-information",
     
     "relUrl": "/design/metadata/#further-information"
-  },"124": {
+  },"115": {
     "doc": "API",
     "title": "API",
     "content": "Core API . | Core API documentation | . Module API . | Datarequest API documentation | . ",
     "url": "/yoda/design/api/",
     
     "relUrl": "/design/api/"
-  },"125": {
+  },"116": {
+    "doc": "Naming conventions",
+    "title": "Naming conventions",
+    "content": "Yoda entities such as collections, data objects, categories, groups, etc. have certain naming requirements and restrictions. These exist either because of structural limitations of certain parts of the system, or to avoid errors and/or malfunctions of the system. This part of the documentation lists all the requirements and restrictions that should be followed when naming the Yoda entities. ",
+    "url": "/yoda/design/conventions/",
+    
+    "relUrl": "/design/conventions/"
+  },"117": {
+    "doc": "Naming conventions",
+    "title": "Collection and data object names",
+    "content": "System limitations to take into considerations: . | iRODS has a maximum path length of 1024 bytes1 (see: iRODS maximum path length allowed). | If any member of your group(s) use Windows native WebDAV, the WebDAV part of the paths of each data object and collection should be limited to 260 characters (due to Windows systems maximum path length limitation). | . In addition to these, there are some known naming issues that should also be taken into consideration: . | Collection names containing single apex quote ' cause issues (see: irods/irods#5727). | Renaming of collection names containing multi-byte characters mangles subcollection paths (see: irods/irods#6239). | Data object names containing non-standard characters (such as control characters with ASCII codes 01 to 08, 11, 12, 14 to 31) cause encoding issues in XML (see: irods/irods#4132). | . ",
+    "url": "/yoda/design/conventions/#collection-and-data-object-names",
+    
+    "relUrl": "/design/conventions/#collection-and-data-object-names"
+  },"118": {
+    "doc": "Naming conventions",
+    "title": "User names",
+    "content": "Rules for user names are as follows: . | must contain zero or one ‘@’ symbol, but not at the beginning or the end of the name; | (if ‘@’ symbol is not present) must contain only lowercase letters, and dots; | (if ‘@’ symbol is present) must contain only lowercase letters, numbers, hyphens, underscores, and dots; | may contain a zone name after a ‘#’ symbol. | . See: iRODS rule, Python rule . ",
+    "url": "/yoda/design/conventions/#user-names",
+    
+    "relUrl": "/design/conventions/#user-names"
+  },"119": {
+    "doc": "Naming conventions",
+    "title": "Group names",
+    "content": "Rules for group names are as follows: . | must be prefixed with ‘research-‘ or ‘deposit-‘; | must contain only lowercase characters, numbers, and hyphens; | must not start or end with a hyphen; | must not exceed 63 characters. | . See: iRODS rule, Python rule . ",
+    "url": "/yoda/design/conventions/#group-names",
+    
+    "relUrl": "/design/conventions/#group-names"
+  },"120": {
+    "doc": "Naming conventions",
+    "title": "Category names",
+    "content": "Rules for category names are as follows: . | must contain only lowercase characters, numbers, and hyphens; | must not start or end with a hyphen; | must not exceed 2700 bytes1. | . Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module. See: iRODS rule, Python rule . ",
+    "url": "/yoda/design/conventions/#category-names",
+    
+    "relUrl": "/design/conventions/#category-names"
+  },"121": {
+    "doc": "Naming conventions",
+    "title": "Subcategory names",
+    "content": "Rules for subcategory names are as follows: . | must contain only letters, numbers, spaces, commas, periods, parentheses, underscores, and hyphens; | must not exceed 2700 bytes1. | . Despite the 2700-byte length limitation, it is strongly advised not to exceed 63 characters as longer names would be hard to read in the Group Manager module. See: iRODS rule, Python rule . ",
+    "url": "/yoda/design/conventions/#subcategory-names",
+    
+    "relUrl": "/design/conventions/#subcategory-names"
+  },"122": {
+    "doc": "Naming conventions",
+    "title": "Licenses",
+    "content": "Detailed information regarding default and non-default licenses can be found in the Installing licenses page. ",
+    "url": "/yoda/design/conventions/#licenses",
+    
+    "relUrl": "/design/conventions/#licenses"
+  },"123": {
+    "doc": "Naming conventions",
+    "title": "Footnotes",
+    "content": ". | Number of bytes directly translates to number of characters, only in case of single-byte characters. &#8617; &#8617;2 &#8617;3 . | . ",
+    "url": "/yoda/design/conventions/#footnotes",
+    
+    "relUrl": "/design/conventions/#footnotes"
+  },"124": {
     "doc": "System Overview",
     "title": "System overview",
     "content": "Yoda is a research data management service that enables researchers and their partners to securely deposit, share, publish and preserve large amounts of research data during all stages of a research project. Yoda consists of several core modules and has several additional modules providing additional functionality. ",
     "url": "/yoda/design/overview/#system-overview",
     
     "relUrl": "/design/overview/#system-overview"
-  },"126": {
+  },"125": {
     "doc": "System Overview",
     "title": "Core modules",
     "content": "Research space . The research space implements a data deposit workflow to the vault space. Technical design . Vault space . The vault space implements three workflows: . Vault FAIR publication workflow: Technical design . Vault archive workflow: Technical design . Vault deaccession workflow: Technical design . Statistics . The statistics module provides insight in research groups storage usage. Technical design . Group manager . The group-manager is used to control access permissions of users based on group membership and the role inside a group. It enables the distribution of access rights to data within Yoda with minimal aid of administrators. Technical design . User . The user module provides settings and notifications. ",
     "url": "/yoda/design/overview/#core-modules",
     
     "relUrl": "/design/overview/#core-modules"
-  },"127": {
+  },"126": {
     "doc": "System Overview",
     "title": "Additional modules",
     "content": "Datarequest . Module adding support for the submission, review and approval of requests to obtain research data stored in Yoda. Technical design . Deposit space . The deposit space implements a data deposit workflow to the vault space. Technical design . ",
     "url": "/yoda/design/overview/#additional-modules",
     
     "relUrl": "/design/overview/#additional-modules"
-  },"128": {
+  },"127": {
     "doc": "System Overview",
     "title": "Overview",
     "content": ". ",
     "url": "/yoda/design/overview/#overview",
     
     "relUrl": "/design/overview/#overview"
-  },"129": {
+  },"128": {
     "doc": "System Overview",
     "title": "System Overview",
     "content": " ",
     "url": "/yoda/design/overview/",
     
     "relUrl": "/design/overview/"
+  },"129": {
+    "doc": "Processes",
+    "title": "Processes",
+    "content": " ",
+    "url": "/yoda/design/processes/",
+    
+    "relUrl": "/design/processes/"
   },"130": {
     "doc": "Software Design",
     "title": "Software Design",
@@ -958,47 +958,47 @@
     
     "relUrl": "/design/#other"
   },"137": {
-    "doc": "Release Notes",
-    "title": "Release Notes",
-    "content": ". | Release Notes - Yoda v2.1 (July 2026) | Release Notes - Yoda v2.0 (October 2025) | Release Notes - Yoda v1.10 (October 2024) | Release Notes - Yoda v1.9 (February 2024) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
-    "url": "/yoda/release-notes/",
-    
-    "relUrl": "/release-notes/"
-  },"138": {
     "doc": "Development",
     "title": "Development",
     "content": ". | Overview of repositories | Setting up development environment | Running Yoda using Docker Compose | Running API and UI tests | Running unit and integration tests | Data Archive Mock | Development tips | Wall of Fame | . ",
     "url": "/yoda/development/",
     
     "relUrl": "/development/"
-  },"139": {
+  },"138": {
     "doc": "Administration Tasks",
     "title": "Administration Tasks",
     "content": " ",
     "url": "/yoda/administration/",
     
     "relUrl": "/administration/"
-  },"140": {
+  },"139": {
     "doc": "Administration Tasks",
     "title": "Configuration and deployment",
     "content": "Main page: Configuring Yoda . Specific information: . | Configuring cleanup of temporary files | Configuring OIDC | Deploying Yoda | Installing licenses | Installing terms | Installing preservable file formats | Installing metadata schemas | Installing datarequest module | Setting portal themes via Admin GUI | Rulesets changes: . | Applying a temporary local change to a ruleset | Applying a permanent local change to a ruleset | . | Working with the local Postfix MTA | Upgrading metadata schemas | Upgrading PostgreSQL | . ",
     "url": "/yoda/administration/#configuration-and-deployment",
     
     "relUrl": "/administration/#configuration-and-deployment"
-  },"141": {
+  },"140": {
     "doc": "Administration Tasks",
     "title": "Operations",
     "content": ". | Graciously stopping revision and replication jobs | Using Python-irodsclient | Setting a maintenance banner via Admin GUI | . ",
     "url": "/yoda/administration/#operations",
     
     "relUrl": "/administration/#operations"
-  },"142": {
+  },"141": {
     "doc": "Administration Tasks",
     "title": "Troubleshooting",
     "content": ". | Collecting portal technical support information | Restoring a collection | Troubleshooting email | Troubleshooting data package archival in the vault | Troubleshooting publication | Troubleshooting replication and revision creation | Troubleshooting data package metadata issues in the vault | Troubleshooting published data packages | . ",
     "url": "/yoda/administration/#troubleshooting",
     
     "relUrl": "/administration/#troubleshooting"
+  },"142": {
+    "doc": "Release Notes",
+    "title": "Release Notes",
+    "content": ". | Release Notes - Yoda v2.1 (July 2026) | Release Notes - Yoda v2.0 (October 2025) | Release Notes - Yoda v1.10 (October 2024) | Release Notes - Yoda v1.9 (February 2024) | Release Notes - Yoda v1.8 (July 2022) | Release Notes - Yoda v1.7 (May 2021) | Release Notes - Yoda v1.6 (May 2020) | Release Notes - Yoda v1.5 (July 2019) | Release Notes - Yoda v1.4 (December 2018) | Release Notes - Yoda v1.3 (November 2018) | Release Notes - Yoda v1.2 (May 2018) | Release Notes - Yoda v1.1 (March 2018) | Release Notes - Yoda v1.0 (November 2017) | Release Notes - Yoda v0.9.7 (August 2017) | . ",
+    "url": "/yoda/release-notes/",
+    
+    "relUrl": "/release-notes/"
   },"143": {
     "doc": "Home",
     "title": "Yoda technical documentation",
@@ -2177,460 +2177,453 @@
     "relUrl": "/design/overview/statistics_1.8.html#which-month-does-registered-data-belong-to"
   },"311": {
     "doc": "Supported distributions",
-    "title": "Configuring Yoda",
-    "content": "The table below contains a list of supported distributions for each role: . | role | CentOS 7 | Ubuntu 20.04 LTS | EL 9 | Ubuntu 24.04 LTS | . | iCAT (provider) | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | Resource (consumer) | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | Database | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | EUS | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | Portal | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | DavRODS | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | Public | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . EL9 refers to either RHEL 9 or AlmaLinux 9 . ",
-    "url": "/yoda/administration/supported-distributions.html#configuring-yoda",
-    
-    "relUrl": "/administration/supported-distributions.html#configuring-yoda"
-  },"312": {
-    "doc": "Supported distributions",
     "title": "Supported distributions",
-    "content": " ",
+    "content": "The table below contains a list of supported distributions for each role: . | role | CentOS 7 | Ubuntu 20.04 LTS | EL 9 | Ubuntu 24.04 LTS | . | iCAT (provider) | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | Resource (consumer) | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | Database | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | EUS | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | Portal | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | DavRODS | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . | Public | up to v1.9 | v1.10 | from v2.0 | from v2.0 | . EL9 refers to either RHEL 9 or AlmaLinux 9 . ",
     "url": "/yoda/administration/supported-distributions.html",
     
     "relUrl": "/administration/supported-distributions.html"
-  },"313": {
+  },"312": {
     "doc": "Theme packaging",
     "title": "Theme packaging",
     "content": " ",
     "url": "/yoda/design/overview/theme-packages.html",
     
     "relUrl": "/design/overview/theme-packages.html"
-  },"314": {
+  },"313": {
     "doc": "Theme packaging",
     "title": "Overriding the default templates and static files with user defined themes",
     "content": "Yoda allows for developers to add themes to the default (Utrecht University) theme. Thus adding the possibility for developers to tweak a Yoda instance to their own look and feel. Adding themes can be accomplished by overriding the default templates and static files that are supplied within the default (Utrecht University) Yoda. Overriding can be done on two levels: 1) Template (HTML) overriding 2) Static (css/img/js) overriding . ",
     "url": "/yoda/design/overview/theme-packages.html#overriding-the-default-templates-and-static-files-with-user-defined-themes",
     
     "relUrl": "/design/overview/theme-packages.html#overriding-the-default-templates-and-static-files-with-user-defined-themes"
-  },"315": {
+  },"314": {
     "doc": "Theme packaging",
     "title": "Templates in Yoda",
     "content": "In the default setup, based on a modularly constructed flask environment, the required html templates are organized as follows: . /var/www/yoda     /general/templates/general/*.html     /module_name/templates/module_name/*.html . in which the general directory holds all basic html files, for instance the foundation of the application, in which the modules can reside. ",
     "url": "/yoda/design/overview/theme-packages.html#templates-in-yoda",
     
     "relUrl": "/design/overview/theme-packages.html#templates-in-yoda"
-  },"316": {
+  },"315": {
     "doc": "Theme packaging",
     "title": "Overriding templates (HTML)",
     "content": "flask.cfg holds the yoda theme (filled by ansible but can be manually overridden): e.g. YODA_THEME = ‘vu’ YODA_THEME_PATH = ‘/var/www/yoda/themes’ . When building a webpage yoda software first looks into the yoda/themes/vu directory whether a requested template is placed at that location. If so, this will be used (thus overriding the default supplied template). If not, the software will use the default template as supplied in the default (Utrecht University) situation. The structure under yoda/themes/vu must be the same as the default structure as well as the template names must be the same. E.g.: . /var/yoda/themes     /uu1         /general/base.html         /research/browse.html     … .     /uu2         /research/revision.html         /vault/browse.html     … . In the above example following default HTML files will be overridden when uu1 or uu2 is selected as a theme: . For uu1: /var/www/yoda/general/templates/general/base.html /var/www/yoda/research/templates/research/browse.html . For uu2: /var/www/yoda/research/templates/research/revision.html /var/www/yoda/vault/templates/vault/browse.html . ",
     "url": "/yoda/design/overview/theme-packages.html#overriding-templates-html",
     
     "relUrl": "/design/overview/theme-packages.html#overriding-templates-html"
-  },"317": {
+  },"316": {
     "doc": "Theme packaging",
     "title": "Override static files (js, img, css)",
     "content": "To change the appearance or user experience on the frontend it is necessary to be able to override static files as supplied with yoda. This is only possible when the blueprint files are equipped with a different static_url_path . stats_bp = Blueprint(‘stats_bp’, __name__,                                   template_folder=’templates’,                                   static_folder=’static/stats’,                                   static_url_path=’/assets’) . On application level, in app.py, the static folder is set to ‘assets’ as well: app = Flask(__name__, static_folder=’assets’) . When the frontend requests for url’s holding the keyword ‘assets’ it will check whether the set theme holds the requested static file according to following structure: . /var/yoda/themes      /uu1         /static/css             /js/…         /research/static                 /css/..                 /js/..         /vault/static/img/…     /uu2         /static/css/         /research/static/js/ . If the requested file is not found, the default (Utrecht University) static file will be used. General level url request: requested url = /assets/css/yoda-portal.css . When present, /yoda/themes/uu1/static/css/yoda-portal.css is returned. If not present fall back to default, /yoda/static/css/yoda-portal.css is returned . Modular level url request: requested url = /research/assets/css/research.css . When present, /yoda/themes/uu1/research/static/css/yoda-portal.css is returned. If not present fall back to default /yoda/research/static/research/css/yoda-portal.css is returned . ",
     "url": "/yoda/design/overview/theme-packages.html#override-static-files-js-img-css",
     
     "relUrl": "/design/overview/theme-packages.html#override-static-files-js-img-css"
-  },"318": {
+  },"317": {
     "doc": "Theme packaging",
     "title": "Resulting theme package structure",
     "content": "Putting templates and css together results in following theme package structure . /uu1     /static/css/…     /research         /template.html         /static/css/…             /js/…             /img/…     … /uu2     /static/css/…     /research         /template.html         /static/css/…             /js/…             /img/…     … /vu     /static/css/…     /research         /template.html         /static/css/…             /js/…             /img/…     … . ",
     "url": "/yoda/design/overview/theme-packages.html#resulting-theme-package-structure",
     
     "relUrl": "/design/overview/theme-packages.html#resulting-theme-package-structure"
-  },"319": {
+  },"318": {
     "doc": "Theme packaging",
     "title": "Compiling theme CSS",
     "content": "Building theme CSS: . sudo su yodadeployment cd /var/www/yoda/static/src/ # Install npm nvm install v18 # Install sass compiler npm install npm install -g sass # Build (default) UU theme sass --style compressed build_uu.scss ../../static/css/yoda-portal.css # Build (custom) VU theme sass --style compressed build_vu.scss ../../themes/vu/static/css/yoda-portal.css . Select2 theming in the group manager . To match the select2 fields in the group-manager with the colors of the main theme, the select2 theme must be compiled. Assuming that the steps to compile the main theme CSS for all of Yoda have already been followed, the following can be run to compile the select2 bootstrap theme, for example for the (default) uu theme: . sudo su yodadeployment cd /var/www/yoda/static/src/select2-bootstrap-5-theme/src sass --style compressed select2-theme-uu.scss ../../../../group_manager/static/group_manager/lib/select2-bootstrap-5-theme/select2-bootstrap-5-theme.css . For other themes the css is similarly an override of the default select2 uu theme. For the vu theme: . sass --style compressed select2-theme-vu.scss ../../../../themes/vu/group_manager/static/group_manager/lib/select2-bootstrap-5-theme/select2-bootstrap-5-theme.css . To create another select2 theme first copy the select2-theme-uu.scss file, and then change “uu” to the name of your theme in this line: . @import \"../../uu/variables\"; . The theming is based on this select2 bootstrap 5 theme fork. ",
     "url": "/yoda/design/overview/theme-packages.html#compiling-theme-css",
     
     "relUrl": "/design/overview/theme-packages.html#compiling-theme-css"
-  },"320": {
+  },"319": {
     "doc": "Theme packaging",
     "title": "Theme change via Admin GUI",
     "content": "From version 1.10 onward, Yoda supports changing themes through the Admin GUI. This feature is accessible to administrators and members of the priv-admin group. To make themes available, add their packages (including templates and static files) to /var/www/yoda/themes, where the Admin GUI recognizes available themes by reading the folder names—as Flask scans this directory for themes. Once you select a new theme, it updates the theme configuration in /var/www/yoda/config/admin_settings.json under the YODA_THEME key (e.g., “YODA_THEME”: “uu”). ",
     "url": "/yoda/design/overview/theme-packages.html#theme-change-via-admin-gui",
     
     "relUrl": "/design/overview/theme-packages.html#theme-change-via-admin-gui"
-  },"321": {
+  },"320": {
     "doc": "Theme packaging",
     "title": "DavRODS theming",
     "content": "DavRODS uses different theming logic than the portal. By default, it uses the themed logo of the portal. The logo is linked to the UU website. Use the yoda_davrods_logo_path and yoda_davrods_logo_link parameters to change this behaviour. For more advanced changes, it will be necessary to customize the DavRODS layout templates. ",
     "url": "/yoda/design/overview/theme-packages.html#davrods-theming",
     
     "relUrl": "/design/overview/theme-packages.html#davrods-theming"
-  },"322": {
+  },"321": {
     "doc": "Troubleshooting data package archival in the vault",
     "title": "Troubleshooting data package archival in the vault",
     "content": "After a data manager approves a data package for archiving in the vault, the copy-to-vault.r script asynchronously archives all data packages that are in status PENDING or RETRY. This involves copying its data from the research collection to the vault collection, among other things. When the script fails to archive a data package part way, the copy to vault cronjob status is set to RETRY. At a later time the copy-to-vault.r cronjob is run to try to finish archiving all data packages that are in status PENDING or RETRY. By default, this whole process happens automatically. Please consult the vault process design documentation for more details. Note that in Yoda versions 1.9 and older the process is slightly different. The script copy-accepted-folders-to-vault.r asynchronously archives the data package, and if the archival fails in certain situations the status is set to RETRY. The retry-copy-to-vault.r cronjob runs periodically to try to archive any data packages with such a RETRY status. This page contains an explanation of how to troubleshoot the process if something goes wrong. ",
     "url": "/yoda/administration/troubleshooting-copy-to-vault.html",
     
     "relUrl": "/administration/troubleshooting-copy-to-vault.html"
-  },"323": {
+  },"322": {
     "doc": "Troubleshooting data package archival in the vault",
     "title": "Detecting failed archiving jobs",
     "content": "Archival jobs that have failed can be detected using the data package status report tool, which is part of the Yoda client tools. You can also run this tool in a cronjob to send a report of data packages that are in the process of being archived or published for a long time, which suggests that something might have gone wrong. Example command for compiling a list of data packages that have been in the process of being archived or published for more than approximately four hours, and sending the list to an administrator if there are any: . yreport_datapackagestatus --pending --stale --email a.admin@uu.nl . This will also report data packages that are waiting for approval to be archived or published. In such cases, no technical troubleshooting is needed. ",
     "url": "/yoda/administration/troubleshooting-copy-to-vault.html#detecting-failed-archiving-jobs",
     
     "relUrl": "/administration/troubleshooting-copy-to-vault.html#detecting-failed-archiving-jobs"
-  },"324": {
+  },"323": {
     "doc": "Troubleshooting data package archival in the vault",
     "title": "Finding the cause",
     "content": "If the data package has been approved for archiving in the vault (status ACCEPTED), first see if the cause of the problem can be found in the rodsLog files. Find the copy_to_vault or folder_secure message for the data package in the rodsLog. In Yoda versions 1.9 or lower look for the message iiCopyFolderToVault. Then grep for other messages by the same pid on the same day, and look for error messages. Possible causes include: . | An issue with one of the source data objects in the research collection results in a failure when copying it. For example: a data object that is in an intermediate state cannot be copied. | A restart of the iRODS service while the copy-to-vault process was running. | A storage issue, such as a storage resource without free space available. | . If the root cause is not transient, it needs to be resolved first. Otherwise restarting the process would just result in the same problem occurring again. ",
     "url": "/yoda/administration/troubleshooting-copy-to-vault.html#finding-the-cause",
     
     "relUrl": "/administration/troubleshooting-copy-to-vault.html#finding-the-cause"
-  },"325": {
+  },"324": {
     "doc": "Troubleshooting data package archival in the vault",
     "title": "Restart options",
     "content": "There are two ways to restart the transfer: . Trigger a complete restart of the copy-to-vault process for the data package . Signal the copy-to-vault job to retry the archiving operation by setting the org_cronjob_copy_to_vault AVU to CRONJOB_RETRY. The job will then copy the data packages to a new vault folder. Example command: . imeta set -C /tempZone/home/research-collection/data-package org_cronjob_copy_to_vault CRONJOB_RETRY . Afterwards, you will need to remove the vault collection that was created on the first try manually. Finish the archiving process manually . If the error occurred during copying the contents of the data packages, it is also possible to finish the copy job manually. This can be useful if the data package is large and retrying the complete transfer would take a lot of time. First, complete the synchronization process using the irsync command in a tmux session. For example: . irsync -r -V -s \"i:/zoneName/home/research-groupname/data-package\" \"i:/zoneName/home/vault-groupname/data-package[1234567890]/original\" . After irsync has finished, complete the copy-to-vault process manually using the secure-in-vault rule. Example command: . irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/secure-in-vault.r '*researchCollection=\"'\"\"/zoneName/home/research-groupname/data-package'\"' '*vaultCollection=\"'\"/zoneName/home/vault-groupname/data-package[1234567890]\"'\"' . Finally, check in the portal that the status of the data package in the research collection is Secured, the publication status is Unpublished, and the metadata of the vault package can be viewed. Also check the rodsLog for errors. ",
     "url": "/yoda/administration/troubleshooting-copy-to-vault.html#restart-options",
     
     "relUrl": "/administration/troubleshooting-copy-to-vault.html#restart-options"
-  },"326": {
+  },"325": {
     "doc": "Troubleshooting email",
     "title": "How to troubleshoot email-related issues",
     "content": "In order to verify that sending email messages from Yoda works as expected, an email test script is included in the yoda-ruleset repository. It can be called from the command line as the irods user. For example: . /etc/irods/yoda-ruleset/tools/mail/mail-test.sh \"a.admin@uu.nl\" . The expected output is: . Successfully executed rule for testing email with destination &lt;a.admin@uu.nl&gt; . You should shortly receive an email message on the provided address with subject [Yoda] Test mail. ",
     "url": "/yoda/administration/troubleshooting-email.html#how-to-troubleshoot-email-related-issues",
     
     "relUrl": "/administration/troubleshooting-email.html#how-to-troubleshoot-email-related-issues"
-  },"327": {
+  },"326": {
     "doc": "Troubleshooting email",
     "title": "Postfix",
     "content": "If you have configured Yoda to use Postfix for email delivery, additional information is logged for troubleshooting. In that case, email delivery log data can be found in /var/log/maillog. The current contents of the Postfix mail queue can be viewed using the sudo postqueue -p command. ",
     "url": "/yoda/administration/troubleshooting-email.html#postfix",
     
     "relUrl": "/administration/troubleshooting-email.html#postfix"
-  },"328": {
+  },"327": {
     "doc": "Troubleshooting email",
     "title": "Troubleshooting email",
     "content": " ",
     "url": "/yoda/administration/troubleshooting-email.html",
     
     "relUrl": "/administration/troubleshooting-email.html"
-  },"329": {
+  },"328": {
     "doc": "Troubleshooting publication",
     "title": "How to deal with hanging publications",
     "content": "When a publication stays in Approved status for an extended period of time (longer than cronjob interval) something probably went wrong. Here are some troubleshooting hints. First look for process_publication (v1.8.5 or earlier) or [publication] (v1.9.0 or later) in /var/lib/irods/log/rodsLog. It will show the processing of the publication. | When a publication succeeds it will return status OK. | When the publication process has caught an error, but has no recovery process it will return Unrecoverable as status. | When the whole process was interrupted at a time the error could not be caught, the status will stay at Processing. | When the publication process encountered a DOI collision it will set status to Retry and reset the generated random ID. | When the publication process encounters connectivity problems with DataCite or the public server it will set the status to Retry. | . Then look at the rodsLog around the time of the problem. Error messages could give you a hint on the root cause. The publication process saves its state in metadata on the vault package. You can use imeta to list the details. See an example below. imeta lsw -C /tempZone/home/vault-test/research-test[123456789] org_publication% . When the problem is caused by invalid metadata, check the value of org_publication_combiJsonPath and org_publication_dataCiteJsonPath. You can use iget to download the generated metadata at these paths and check for JSON related problems. When the org_publication_status is Retry the publication process will be retried until success. Check status.datacite.org if you suspect a DataCite problem. Publications will fail if the API servers are down. Check the ability of the rods user to set up a ssh connection with the inbox user on the public Yoda server. When troubleshooting was successful the publication process will skip the subtasks before the failure and continue. When the org_publication_status is Processing and the root cause of the crash looks to be incidental, you could set the status to Retry with imeta on the org_publication_status. The publication will be retried the next time the cronjob runs. imeta set -C /tempZone/home/vault-test/research-test[123456789] org_publication_status Retry . The publication rule can be set to verbose mode so that it logs additional information for troubleshooting purposes. In order to enable this, set the org_publication_verbose_mode AVU on the system collection: . imeta set -C /tempZone/yoda org_publication_verbose_mode yes . After troubleshooting, verbose mode can be disabled by removing the org_publication_verbose_mode AVU. When the org_publication_status is Unrecoverable then one of JSON conversion steps have produced invalid metadata. You could use a third party JSON processor on the metadata in the previously mentioned source JSON files with the used JSON schemas from the current category / research group. This could tell you the problem. If the metadata generation succeeds but is still invalid according to the DataCite API, you could use an JSON validator on the DataCite JSON using the version 4 schemas found at schema.datacite.org. ",
     "url": "/yoda/administration/troubleshooting-publication.html#how-to-deal-with-hanging-publications",
     
     "relUrl": "/administration/troubleshooting-publication.html#how-to-deal-with-hanging-publications"
-  },"330": {
+  },"329": {
     "doc": "Troubleshooting publication",
     "title": "Troubleshooting publication",
     "content": " ",
     "url": "/yoda/administration/troubleshooting-publication.html",
     
     "relUrl": "/administration/troubleshooting-publication.html"
-  },"331": {
+  },"330": {
     "doc": "Troubleshooting published data packages",
     "title": "How to troubleshoot published data packages",
     "content": "This documentation explains how users can diagnose issues with all existing published data packages using our new troubleshooting tool. The tool performs a series of checks to verify the integrity and compliance of data packages. The scope of this tool includes both data packages that have been successfully published and those that have failed to publish (packages that initiated the publication process but did not succeed). Specifically, it targets data packages with their Attribute-Value Units (AVUs) including org_publication_status of OK, Retry, Unrecoverable, or Unknown. Note, the org_ prefix is defined by the constant variable of UUORGMETADATAPREFIX stored in constants.py in the ruleset. Alternatively, the tool can diagnose a specific data package when provided with its name. Requirements: . | Python 3 or higher | Yoda version 1.10 or later | Script must be run as rodsadmin user | . ",
     "url": "/yoda/administration/troubleshooting-published-data-packages.html#how-to-troubleshoot-published-data-packages",
     
     "relUrl": "/administration/troubleshooting-published-data-packages.html#how-to-troubleshoot-published-data-packages"
-  },"332": {
+  },"331": {
     "doc": "Troubleshooting published data packages",
     "title": "Check Steps",
     "content": "The tool performs the following checks: . Metadata Schema Conformance . This step verifies that the metadata of the data package conforms to the associated schema. System AVUs Verification . This step checks whether the data package has the expected system Attribute-Value Units (AVUs). It does this by comparing AVUs that start with org_publication against the expected AVU keys (ground truth). The check results reveal if there are missing or unexpected AVUs, which will be printed to the terminal and the log file. DOI Registration Status . This step checks the registration status of both versionDOI (if available) and baseDOI using the DataCite API. It retrieves the DOIs from the package’s metadata AVUs and sends API requests to DataCite to verify if these DOIs are registered. Landing Page Integrity . This step compares the contents of the local landing page file with the remote landing page to ensure they match. It does this by sending a URL request to download the HTML of the data package’s landing page and comparing it with the local HTML file. Note that if there is no internet connection, you should enable the offline mode. In offline mode, this step checks if the local landing page file exists but does not verify the correctness of its content. Combined JSON Integrity . This step checks the integrity of the combined JSON file by verifying its URL online and confirming the existence of the file. It accomplishes this by checking if the metadata JSON sent to OAI-PMH server can be found in the OAI-PMH repository. In offline mode, it only checks whether package’s -combi.json file exists locally . ",
     "url": "/yoda/administration/troubleshooting-published-data-packages.html#check-steps",
     
     "relUrl": "/administration/troubleshooting-published-data-packages.html#check-steps"
-  },"333": {
+  },"332": {
     "doc": "Troubleshooting published data packages",
     "title": "Commands Execution Guide",
     "content": "The tool can be used with various options as detailed below. Ensure you are logged in as an irodsadmin user for the necessary permissions and navigate to the ‘yoda-ruleset/tools’ directory before running any commands, e.g., . cd /etc/irods/yoda-ruleset/tools . 1. General Check . To perform checks on all published data packages: . python3 troubleshoot-published-data.py . 2. Specific Package Check . To inspect a single data package: . python3 troubleshoot-published-data.py -p &lt;package-name&gt; . The package can either be specified as the short name (the name of the folder that you see in the vault), for example research-core-0[1722266819], or the path to the package, for example: vault-core-0/research-core-0[1722266819]. Be aware that if the package short name contains spaces then the package must be specified in quotes. 3. Log results and offline mode . By default, the results are displayed to terminal (stdout). Furthermore, to save the detailed output to a log file execute: . python3 troubleshoot-published-data.py -l . | The -l option enables logging mode. This saves the log to /var/lib/irods/log/troubleshoot_publications.log | The -o option enables offline mode, which skips several tests related to connecting to remote servers, but does not skip the datacite test. This is useful when testing on a local development environment. | The -n option enables no datacite mode, which skips the datacite checks. This is also useful when testing on a local development environment. | The -m option specifies output format: ‘human’ for readable text (default) or ‘csv’ for spreadsheet-ready data. | . ",
     "url": "/yoda/administration/troubleshooting-published-data-packages.html#commands-execution-guide",
     
     "relUrl": "/administration/troubleshooting-published-data-packages.html#commands-execution-guide"
-  },"334": {
+  },"333": {
     "doc": "Troubleshooting published data packages",
     "title": "Example output",
     "content": "When checking a single data package, the output containing successful and failed checks displayed in the terminal is as follows. | In human-readable mode: | . Troubleshooting Results for: /tempZone/home/vault-default-3/research-default-3[1744029023] Package FAILED one or more tests: Schema Check: Pass Missing AVUs Check: Pass Unexpected AVUs Check: Pass Version DOI Check: Fail Landing Page Check: Pass Combi JSON Check: Pass . | In csv mode: | . Package,Schema Check,Missing AVUs Check,Unexpected AVUs Check,Version DOI Check,Base DOI Check,Landing Page Check,Combi JSON Check /tempZone/home/vault-default-3/research-default-3[1744029023],Pass,Pass,Pass,Fail,N/A,Pass,Pass . Note: “N/A” indicates checks skipped due to irrelevance (e.g., base DOI validation for packages without prior versions). And for checks involving multiple data packages, the output for each package is aggregated, displaying the results consecutively in the terminal. This allows for a comprehensive view of the results across different packages. ",
     "url": "/yoda/administration/troubleshooting-published-data-packages.html#example-output",
     
     "relUrl": "/administration/troubleshooting-published-data-packages.html#example-output"
-  },"335": {
+  },"334": {
     "doc": "Troubleshooting published data packages",
     "title": "Troubleshooting published data packages",
     "content": " ",
     "url": "/yoda/administration/troubleshooting-published-data-packages.html",
     
     "relUrl": "/administration/troubleshooting-published-data-packages.html"
-  },"336": {
+  },"335": {
     "doc": "Troubleshooting replication and revision creation",
     "title": "Troubleshooting replication and revision creation",
     "content": "Revision creation and replication of data objects are handled asynchronously. Policies add metadata attributes to data objects that need to be replicated or have a new revision. The replication and revision creation cronjobs process these data objects asynchronously. Generic information about these background jobs can be found on the page about background processes. This page contains advice regarding how to troubleshoot these processes. In Yoda 1.9 and higher, the revision and replication jobs run in verbose mode by default, which means the rodsLog typically has information regarding which data objects are being processed by these jobs. A good first step is to look up in the rodsLog what the relevant job is doing and whether the jobs show any errors, in particular permission errors (which are a common cause of replication/revision errors). When in doubt about whether permissions are correct, you can use the iget command to verify that a data object is accessible to the rods account. If a job is not configured to run in verbose mode, you can run it in verbose mode manually (see below). ",
     "url": "/yoda/administration/troubleshooting-replication-revisions.html",
     
     "relUrl": "/administration/troubleshooting-replication-revisions.html"
-  },"337": {
+  },"336": {
     "doc": "Troubleshooting replication and revision creation",
     "title": "Running a job in verbose mode manually",
     "content": "If a data object is not replicated or does not get a new revision, first check whether this behaviour is caused by configured delay parameters (async_replication_delay_time and async_revision_delay_time). If this is not the case, consider stopping and temporarily disabling the background process cronjob for troubleshooting. This can be done by temporarily setting the background process stop flag (/ZONE/yoda/flags/stop_replication or /ZONE/yoda/flags/stop_revisions) and waiting for the job to finish. See the page about setting job flags for more information. The iquest command can be used to print a list of data objects that are queued for replication or revision creation. Example for replication: . iquest \"%s/%s\" --no-page \"SELECT COLL_NAME, DATA_NAME where META_DATA_ATTR_NAME = 'org_replication_scheduled'\" . If it seems that the background job is failing, or a data object is not getting processed despite having the expected metadata attribute, you could run the background job in verbose mode. Remember to remove the stop flag of the process first; otherwise the background job will not start. If many data objects (or large data objects) are queued for replication or revision creation it may be advisable to run the job in a tmux session. Running the jobs in verbose mode will log additional information about data objects being processed to the rodsLog. Example command for the replication job: . /bin/python /etc/irods/yoda-ruleset/tools/async-data-replicate.py -v . ",
     "url": "/yoda/administration/troubleshooting-replication-revisions.html#running-a-job-in-verbose-mode-manually",
     
     "relUrl": "/administration/troubleshooting-replication-revisions.html#running-a-job-in-verbose-mode-manually"
-  },"338": {
+  },"337": {
     "doc": "Troubleshooting replication and revision creation",
     "title": "Running a job in dry run mode",
     "content": "Both the replication and revision creation jobs can be run in dry run mode, which means that they will not create any replications or revisions, but simulate what would happen if they did. The parameters are async_replication_dry_run and ` async_revision_dry_run` for replication and revision, respectively. ",
     "url": "/yoda/administration/troubleshooting-replication-revisions.html#running-a-job-in-dry-run-mode",
     
     "relUrl": "/administration/troubleshooting-replication-revisions.html#running-a-job-in-dry-run-mode"
-  },"339": {
+  },"338": {
     "doc": "Troubleshooting problems with vault metadata",
     "title": "Troubleshooting problems with updating vault metadata",
     "content": "The vault module in the Yoda portal includes functionality to view metadata of a data package using the Metadata button. Users with datamanager permissions on the vault group’s category can also update metadata of a data package using the vault module. There are some situations where this standard functionality cannot be used: . | The vault group has no data managers, for instance if it belongs to a category that has no datamanager group. | The vault group no longer has a research group associated with it. | The data package metadata no longer matches the active metadata schema. This can happen after something went wrong with a schema upgrade, for example. | . In such cases, a technical admin will need to update the metadata. In older versions of Yoda, this was done manually. In Yoda 1.10.0 and later, the edit-vault-metadata tool can be used to partially automate such updates. The sections below describe how to apply this tool in various situations. ",
     "url": "/yoda/administration/troubleshooting-vault-metadata.html#troubleshooting-problems-with-updating-vault-metadata",
     
     "relUrl": "/administration/troubleshooting-vault-metadata.html#troubleshooting-problems-with-updating-vault-metadata"
-  },"340": {
+  },"339": {
     "doc": "Troubleshooting problems with vault metadata",
     "title": "Updating metadata if the group has no data managers",
     "content": "If the vault group does not have a research group anymore or the research group category has no datamanager group, the metadata generally can’t be updated by a datamanager. If an update of the metadata is needed, it will have to be performed by a technical admin. You will have to use the edit-vault-metadata tool in direct mode. This bypasses the normal process by which metadata is updated by (or on behalf of) a datamanager. Example usage: . $ /etc/irods/yoda-ruleset/tools/edit-vault-metadata.py --direct /tempZone/home/vault-default-3/testpackage[1722869873] . ",
     "url": "/yoda/administration/troubleshooting-vault-metadata.html#updating-metadata-if-the-group-has-no-data-managers",
     
     "relUrl": "/administration/troubleshooting-vault-metadata.html#updating-metadata-if-the-group-has-no-data-managers"
-  },"341": {
+  },"340": {
     "doc": "Troubleshooting problems with vault metadata",
     "title": "Updating metadata that does not match the schema",
     "content": "It is possible to end up with metadata that no longer matches the metadata schema in some situations, for example if something went wrong during a metadata schema upgrade. In such cases, the metadata form in the vault module can’t be edited using the vault module anymore. However, when a person who has access to the metadata (such as a data manager) tries to open the metadata, the portal will typically provide an error message that indicate what fields do not match the schema. For example: . After checking in the portal to see what fields need to be updated, a technical admin can fix these validation errors by editing the metadata. If the vault group has a research group and data manager group, the edit tool can be used in default mode (without the --direct option), otherwise you need to provide the --direct option. For example, if the vault group’s category has a datamanager group: . $ /etc/irods/yoda-ruleset/tools/edit-vault-metadata.py /tempZone/home/vault-default-3/testpackage[1722869873] . After any schema validation issues have been resolved by the technical admin, data managers will again be able to update the metadata themselves using the vault module. ",
     "url": "/yoda/administration/troubleshooting-vault-metadata.html#updating-metadata-that-does-not-match-the-schema",
     
     "relUrl": "/administration/troubleshooting-vault-metadata.html#updating-metadata-that-does-not-match-the-schema"
-  },"342": {
+  },"341": {
     "doc": "Troubleshooting problems with vault metadata",
     "title": "Troubleshooting problems with vault metadata",
     "content": " ",
     "url": "/yoda/administration/troubleshooting-vault-metadata.html",
     
     "relUrl": "/administration/troubleshooting-vault-metadata.html"
-  },"343": {
+  },"342": {
     "doc": "Upgrading metadata schemas",
     "title": "Upgrading metadata schemas",
     "content": "When a newer version of a metadata schema becomes available, it can be necessary or useful to transform existing metadata of archived data packages to the new schema version. Yoda can usually handle such transformations (partially) automatically for the default metadata schemas. Details are typically provided in the release notes of the Yoda version that introduces the new schema. In general, you need to follow these steps: . | First, configure the groups you want to upgrade to use the new metadata schema version. In Yoda, schemas can be configured on various levels (see the design documentation for details. You need to ensure that the configuration at each level is correct. For example, if you want to update all vault groups to a new metadata schemas on an environment where some groups use a group-level setting whereas others use an environment-level setting, you need to update the settings at both levels. For upgrading the environment or category default metadata schema, see the instructions for installing metadata schemas. For updating group level schema settings, you can use the imeta command as a rodsadmin user. For example: . imeta set -u research-foo schema_id default-3 . | If you want to check all archived data packages on the environment for schema updates, use the generic rule: . irule -r irods_rule_engine_plugin-irods_rule_language-instance -F /etc/irods/yoda-ruleset/tools/check-metadata-for-schema-updates.r . All metadata transformations will be logged in the rodsLog. Adding the schema identifiers can take some time, as the job will use delays between checking data packages. If you only want to check individual archived data packages for schema updates, use the rule for checking individual data packages. For example: . irule -r irods_rule_engine_plugin-python-instance -F tools/check-single-dp-metadata-for-schema-updates.r '*collection=\"/tempZone/home/vault-foo/datapackage[123456789]\"' . | . ",
     "url": "/yoda/administration/upgrading-metadata-schemas.html",
     
     "relUrl": "/administration/upgrading-metadata-schemas.html"
-  },"344": {
+  },"343": {
     "doc": "Upgrading PostgreSQL",
     "title": "Upgrading PostgreSQL",
     "content": "This page has information about how to upgrade the PostgreSQL database in Yoda to a newer version. ",
     "url": "/yoda/administration/upgrading-postgresql.html",
     
     "relUrl": "/administration/upgrading-postgresql.html"
-  },"345": {
+  },"344": {
     "doc": "Upgrading PostgreSQL",
     "title": "Background",
     "content": "Yoda uses PostgreSQL, an open source relational database system, as the iRODS internal database (iCAT database), and for storing External User Service (EUS) data. Yoda versions up to and including 1.8.6 work with PostgreSQL 9.2. Yoda 1.8.7 and later 1.8.x versions work with PostgreSQL 9.2 by default, with an optional upgrade to PostgreSQL 15. Yoda 1.9 uses PostgreSQL 15 by default. Although Yoda 1.9 should work with PostgreSQL 9.2, it is recommended to upgrade to PostgreSQL 15 either before/during the upgrade to Yoda 1.9, or immediately afterwards. ",
     "url": "/yoda/administration/upgrading-postgresql.html#background",
     
     "relUrl": "/administration/upgrading-postgresql.html#background"
-  },"346": {
+  },"345": {
     "doc": "Upgrading PostgreSQL",
     "title": "Upgrade methods",
     "content": "Existing Yoda environments can be upgraded to PostgreSQL 15 by either starting the upgrade from Ansible, or by dumping and restoring the database manually onto a new server. Regardless of which method you choose, the following advice applies: . | Ensure that that you have a recent database backup before starting the upgrade process. | First perform the upgrade process on an (acceptance) test environment that resembles your production environments. This also helps with estimating how much time and diskspace you will need for upgrading the production environment. | A database upgrade is a good opportunity to review the Yoda configuration parameters for PostgreSQL, and to see if any improvements can be made in areas such as performance tuning. | . ",
     "url": "/yoda/administration/upgrading-postgresql.html#upgrade-methods",
     
     "relUrl": "/administration/upgrading-postgresql.html#upgrade-methods"
-  },"347": {
+  },"346": {
     "doc": "Upgrading PostgreSQL",
     "title": "Upgrading the database using Ansible",
     "content": "The Ansible playbook contains an option for upgrading the database automatically. Note that upgrading the database may take a significant time on large environments. In Yoda 1.8.7 and later 1.8.x versions, use the following configuration parameters: . enable_pgbouncer: true postgresql_use_native_packages: false pgsql_version: 15 postgresql_perform_db_upgrade: true postgresql_remove_old_data_after_upgrade: false . In Yoda 1.9.x, use just the following configuration parameters: . postgresql_perform_db_upgrade: true postgresql_remove_old_data_after_upgrade: false . ",
     "url": "/yoda/administration/upgrading-postgresql.html#upgrading-the-database-using-ansible",
     
     "relUrl": "/administration/upgrading-postgresql.html#upgrading-the-database-using-ansible"
-  },"348": {
+  },"347": {
     "doc": "Upgrading PostgreSQL",
     "title": "Upgrading (and migrating) the database manually",
     "content": "It is also possible to manually upgrade the database. This can be useful if you want to, for example, combine the database upgrade with a migration to a new server. The steps are: . | Deploy a new database server using Ansible. You can do this by adding the server that is to be the new database server to the database group in Ansible. Don’t remove the current database server yet. If the environment is not yet on Yoda 1.9.x, you will have to set the database version explicitly in the host_vars of the new database server (not the group_vars), like so: | . enable_pgbouncer: true postgresql_use_native_packages: false pgsql_version: 15 . Ensure that locale settings for the old and new database server are identical, and that basic performance tuning has been configured (e.g. setting effective_cache_size). | Verify that locale of the old and new database are identical, using the \\l command in psql. | Disable iRODS on the consumer (sudo systemctl stop irods), disable DavRODS and the portal on the portal/DavRODS/combi servers (sudo systemctl stop httpd) and disable iRODS on the provider (sudo systemctl stop irods). | Dump the present ICAT database on the old database server (you may want to do this in a tmux session on large environments). For example: . | . sudo -iu postgres pg_dump ICAT | gzip | sudo tee /var/dbbackup/icat-migration.sql.gz &gt; /dev/null . | Transfer the dump file to the new database server. | Load the dump file on the new database server: . | . sudo gunzip -c /var/dbbackup/icat-migration.sql.gz | sudo -iu postgres psql ICAT . | Disable the old database: | . sudo systemctl stop postgresql sudo systemctl disable postgresql . | Move the new database configuration to the group_vars, and remove the old database server from the database group. It is generally also recommended to enable Yoda-specific database indexes at this point (irods_database_enable_yoda_indexes: true), unless there is a specific reason not to use them on the environment. Adjust irods_database_fqdn to point to the new database server. | Adjust the /etc/irods/server_config.json Postgres database plugin configuration by setting db_host and db_port to the values for the new database server. The port is typically 6432 if PgBouncer is enabled, otherwise 5432. | Restart iRODS. | Run the Ansible playbook. You should now have an environment where the new database server has been deployed, iRODS should now talk to the new database server. Verify that basic functionality of iRODS works (e.g. by examining the output of the ils command) and check that iRODS is talking to the new database server (e.g. by viewing the number of transactions in the PgBouncer log file on the new database server). Disregard any PostgreSQL warning messages in the logs at this step. | Check the database plugin configuration in the /etc/irods/server_config.json configuration file. Ensure that db_odbc_driver is set to \"PostgreSQL\". If the database plugin still has a db_odbc_type parameter, remove it. Restart iRODS if any manual changes were needed in this step. | Verify that Yoda works as expected. | Remember to update database backup and monitoring scripts so that they point to the new database. | . ",
     "url": "/yoda/administration/upgrading-postgresql.html#upgrading-and-migrating-the-database-manually",
     
     "relUrl": "/administration/upgrading-postgresql.html#upgrading-and-migrating-the-database-manually"
-  },"349": {
+  },"348": {
     "doc": "Using the python-irodsclient API",
     "title": "Using the python-irodsclient API",
     "content": "iRODS has a Python API named python-irodsclient. It can be used to automate operations on iRODS entities such as data objects, collections, users and groups, as well as associated metadata. It is also commonly used to query iRODS using the GenQuery functionality. This page shows how to run a demo Python script that connects to iRODS using python-irodsclient and performs a GenQuery. For further information about python-irodsclient, see the python-irodsclient README. The test cases in the python-irodsclient repository also can be used to see examples of how functionality can be used. ",
     "url": "/yoda/administration/using-python-irodsclient.html",
     
     "relUrl": "/administration/using-python-irodsclient.html"
-  },"350": {
+  },"349": {
     "doc": "Using the python-irodsclient API",
     "title": "Prerequisites",
     "content": "In order to use the Python-irodsclient you would need to have Python installed on your PC/laptop (preferably version 3.6 or higher, although some older versions can also be made to work), as well as pip. Use of virtualenv is recommended, in order to isolate python-irodsclient’s dependencies from those of other Python software on your system. You also need a CA bundle. A common choice is to either use your system’s CA bundle or to download the curl CA bundle. Finally, you need an account on a Yoda environment and a yoda_environment.json file containing the environment configuration. Python-irodsclient is most commonly used on Linux, but works on Windows and macOS as well. ",
     "url": "/yoda/administration/using-python-irodsclient.html#prerequisites",
     
     "relUrl": "/administration/using-python-irodsclient.html#prerequisites"
-  },"351": {
+  },"350": {
     "doc": "Using the python-irodsclient API",
     "title": "Preparation",
     "content": ". | Download the example script and put it in a local directory. | Adjust the ca_file (or equivalent) parameters to point to your OS CA Bundle. Alternatively, download the curl CA bundle and put the cacert.pem file in the same directory as the script. | Put the irods_environment.json file of the environment in the same directory as the script. | Create and activate a virtualenv for the script that has python-irodsclient (on Windows, replace source venv/bin/activate with venv\\scripts\\Activate): | . virtualenv venv source venv/bin/activate python -m pip install python-irodsclient==1.1.5 . | If you are on Linux or MacOS, ensure the script is executable: | . chmod +x demo-python-api.py . | The example script is configured for Yoda 1.8 and higher. If you still use Yoda 1.7, set require_ssl to False in the script. | . ",
     "url": "/yoda/administration/using-python-irodsclient.html#preparation",
     
     "relUrl": "/administration/using-python-irodsclient.html#preparation"
-  },"352": {
+  },"351": {
     "doc": "Using the python-irodsclient API",
     "title": "Running the script",
     "content": "You can now run the script. It will first prompt for your password. If you have enabled data access passwords, enter a valid data access password here. Otherwise enter your account password. After entering the password, the script should perform a GenQuery to retrieve a list of group collections that you have access to and show the results, for example: . /testZone/home/research-test /testZone/home/vault-test . ",
     "url": "/yoda/administration/using-python-irodsclient.html#running-the-script",
     
     "relUrl": "/administration/using-python-irodsclient.html#running-the-script"
-  },"353": {
+  },"352": {
     "doc": "Vault archive workflow",
     "title": "Vault archive workflow",
     "content": " ",
     "url": "/yoda/design/overview/vault-archive.html",
     
     "relUrl": "/design/overview/vault-archive.html"
-  },"354": {
+  },"353": {
     "doc": "Vault archive workflow",
     "title": "Introduction",
     "content": "The vault archive workflow is described in this document. The state diagram documents the states and transitions of a data package in the vault archive. The sequence diagram documents the interactions between the actors in the vault archive. ",
     "url": "/yoda/design/overview/vault-archive.html#introduction",
     
     "relUrl": "/design/overview/vault-archive.html#introduction"
-  },"355": {
+  },"354": {
     "doc": "Vault archive workflow",
     "title": "State diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-archive.html#state-diagram",
     
     "relUrl": "/design/overview/vault-archive.html#state-diagram"
-  },"356": {
+  },"355": {
     "doc": "Vault archive workflow",
     "title": "Sequence diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-archive.html#sequence-diagram",
     
     "relUrl": "/design/overview/vault-archive.html#sequence-diagram"
-  },"357": {
+  },"356": {
     "doc": "Vault deaccession workflow",
     "title": "Vault deaccession workflow",
     "content": " ",
     "url": "/yoda/design/overview/vault-deaccession.html",
     
     "relUrl": "/design/overview/vault-deaccession.html"
-  },"358": {
+  },"357": {
     "doc": "Vault deaccession workflow",
     "title": "Introduction",
     "content": "The vault deaccession workflow is described in this document. The state diagram documents the states and transitions of a data package in the vault when deaccessioning. The sequence diagram documents the interactions between the actors in the vault when deaccessioning. ",
     "url": "/yoda/design/overview/vault-deaccession.html#introduction",
     
     "relUrl": "/design/overview/vault-deaccession.html#introduction"
-  },"359": {
+  },"358": {
     "doc": "Vault deaccession workflow",
     "title": "State diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-deaccession.html#state-diagram",
     
     "relUrl": "/design/overview/vault-deaccession.html#state-diagram"
-  },"360": {
+  },"359": {
     "doc": "Vault deaccession workflow",
     "title": "Sequence diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-deaccession.html#sequence-diagram",
     
     "relUrl": "/design/overview/vault-deaccession.html#sequence-diagram"
-  },"361": {
+  },"360": {
     "doc": "To vault process in research module",
     "title": "To vault process in research module",
     "content": "This document does not fully describe the process to push datapackages to the vault. Only the technical choices made to implement the process are described here. The process is described in the architectural state model. ",
     "url": "/yoda/design/processes/vault-process.html",
     
     "relUrl": "/design/processes/vault-process.html"
-  },"362": {
+  },"361": {
     "doc": "To vault process in research module",
     "title": "Folder status",
     "content": "Each folder in the research area is initialized without any status information. This is regarded as the folder status Folder. Every other status is defined by the metadata field org_status on the collection. The valid statuses and transitions are defined in iiConstant like below. # \\brief All research folder states. FOLDER = \"\"; LOCKED = \"LOCKED\"; SUBMITTED = \"SUBMITTED\"; ACCEPTED = \"ACCEPTED\"; REJECTED = \"REJECTED\"; SECURED = \"SECURED\"; # \\constant IIFOLDERTRANSITIONS IIFOLDERTRANSITIONS = list((FOLDER, LOCKED), (FOLDER, SUBMITTED), (LOCKED, FOLDER), (LOCKED, SUBMITTED), (SUBMITTED, FOLDER), (SUBMITTED, ACCEPTED), (SUBMITTED, REJECTED), (REJECTED, LOCKED), (REJECTED, FOLDER), (REJECTED, SUBMITTED), (ACCEPTED, FOLDER), (SECURED, LOCKED), (SECURED, FOLDER), (SECURED, SUBMITTED)) . ",
     "url": "/yoda/design/processes/vault-process.html#folder-status",
     
     "relUrl": "/design/processes/vault-process.html#folder-status"
-  },"363": {
+  },"362": {
     "doc": "To vault process in research module",
     "title": "Status Policies",
     "content": "All the status transitions are handled by rules in iiFolderStatusTransistions.r. Basically they set the org_status of the folder to the new status and PEP’s in iiPolicies.r will check if the transition is legal and call pre and post procedures for each transition. The checks if a status transition is allowed are found in iiPolicyChecks.r. The pre and post conditions are run based on the manipulation of the org_status metadata. This means every status transition can be triggered with the imeta command. Illegal transitions will be blocked with msiOprDisallowed. ",
     "url": "/yoda/design/processes/vault-process.html#status-policies",
     
     "relUrl": "/design/processes/vault-process.html#status-policies"
-  },"364": {
+  },"363": {
     "doc": "To vault process in research module",
     "title": "Datamanager approval",
     "content": "When a datamanager is present, a datapackage submitted to the vault by a researcher will remain in the submitted state. The datamanager can approve or reject the package for further processing. A researcher also has the opportunity to unsubmit the package. Because a datamanager only has read access to the research area, he/she cannot edit the org_status directly. To work around this issue the sudo microservices are used to temporarily enable the datamanager to set the org_status to ‘ACCEPTED’ or ‘REJECTED’. The rules can be found in iiDatamanagerPolicies.r and iiSudoPolicies.r. A research group without a datamanager can submit packages to the vault directly. Any submitted folder will be transitioned to ‘ACCEPTED’ state immediately after submission. ",
     "url": "/yoda/design/processes/vault-process.html#datamanager-approval",
     
     "relUrl": "/design/processes/vault-process.html#datamanager-approval"
-  },"365": {
+  },"364": {
     "doc": "To vault process in research module",
     "title": "Copy to vault",
     "content": "The copy-to-vault.r cronjob in the tools directory of the research ruleset will copy any folder with a ‘PENDING’ or ‘RETRY’ cronjob copy state to the vault and set it to ‘SECURED’ state when successful. For Yoda version 1.10 or higher, the state will be set to ‘FOLDER’ upon success. In Yoda versions 1.9 or lower this is only done with folders with a ‘RETRY’ state. The copy uses irsync in versions 1.9.5 and higher. The metadata is copied as well. Folders with ‘RETRY’ status have previously failed to copy. See Copy to vault diagrams for diagrams of the copy to vault process. ",
     "url": "/yoda/design/processes/vault-process.html#copy-to-vault",
     
     "relUrl": "/design/processes/vault-process.html#copy-to-vault"
-  },"366": {
+  },"365": {
     "doc": "To vault process in research module",
     "title": "Research vault",
     "content": "For each research group a vault group with a vault collection is created. Only the rodsadmin will be a member. This folder is read-only for managers and normal users of the research group. When a datamanager group for the category is present it will get read-only access as well. Inheritance is switched off. This makes it possible to manage permissions for each vault package separately. A datamanager gets control over it. ",
     "url": "/yoda/design/processes/vault-process.html#research-vault",
     
     "relUrl": "/design/processes/vault-process.html#research-vault"
-  },"367": {
+  },"366": {
     "doc": "To vault process in research module",
     "title": "Granting and revoking read access to the vault for the research group",
     "content": "The datamanager is allowed to use the sudo microservice msiSudoObjAclSet to grant and revoke read access to packages in the vault. This is configured in iiSudoPolicies.r and iiDatamanagerPolicies.r to not interfere with existing sudo policies in the yoda-ruleset. The only action the datamanager is allowed to do is set permissions starting from the root of a vault package to read for the research group with the same basename as the vault. ",
     "url": "/yoda/design/processes/vault-process.html#granting-and-revoking-read-access-to-the-vault-for-the-research-group",
     
     "relUrl": "/design/processes/vault-process.html#granting-and-revoking-read-access-to-the-vault-for-the-research-group"
-  },"368": {
+  },"367": {
     "doc": "To vault process in research module",
     "title": "No datamanager",
     "content": "When there is no datamanager present the permissions can only be managed by the rodsadmin. Read-only for the research group by default could be implemented. ",
     "url": "/yoda/design/processes/vault-process.html#no-datamanager",
     
     "relUrl": "/design/processes/vault-process.html#no-datamanager"
-  },"369": {
+  },"368": {
     "doc": "Vault FAIR publication workflow",
     "title": "Vault FAIR publication workflow",
     "content": " ",
     "url": "/yoda/design/overview/vault-space.html",
     
     "relUrl": "/design/overview/vault-space.html"
-  },"370": {
+  },"369": {
     "doc": "Vault FAIR publication workflow",
     "title": "Introduction",
     "content": "The vault FAIR publication workflow is described in this document. The state diagram documents the states and transitions of a folder in the vault space. The sequence diagram documents the interactions between the actors in the vault space. ",
     "url": "/yoda/design/overview/vault-space.html#introduction",
     
     "relUrl": "/design/overview/vault-space.html#introduction"
-  },"371": {
+  },"370": {
     "doc": "Vault FAIR publication workflow",
     "title": "State diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-space.html#state-diagram",
     
     "relUrl": "/design/overview/vault-space.html#state-diagram"
-  },"372": {
+  },"371": {
     "doc": "Vault FAIR publication workflow",
     "title": "Sequence diagram",
     "content": ". ",
     "url": "/yoda/design/overview/vault-space.html#sequence-diagram",
     
     "relUrl": "/design/overview/vault-space.html#sequence-diagram"
-  },"373": {
+  },"372": {
     "doc": "Wall of Fame",
     "title": "Wall of Fame",
     "content": "This is a list (in alphabetic order and not complete) of contributors to Yoda. Thanks goes to these wonderful people! . | Jurgen AlebregtseUntil 11/2018 | Felix A. Croes Until 07/2019 | Roy van Elk Active | Paul Frederiks Until 01/2018 | . | Rick van de Hoef Active | Hans Kleinloog Until 07/2019 | Jan de Mooij Until 08/2016 | Harm de Raaff Active | . | Chris Smeele Until 08/2020 | Ton Smeele Until 03/2021 | Lazlo Westerhof Active | . ",
     "url": "/yoda/development/wall-of-fame.html",
     
     "relUrl": "/development/wall-of-fame.html"
-  },"374": {
+  },"373": {
     "doc": "Yoda MOAI service",
     "title": "Yoda MOAI service",
     "content": " ",
     "url": "/yoda/design/overview/yoda-moai.html",
     
     "relUrl": "/design/overview/yoda-moai.html"
-  },"375": {
+  },"374": {
     "doc": "Yoda MOAI service",
     "title": "Yoda MOAI",
     "content": "MOAI provides a harvesting interface based on the OAI-PMH protocol. Other software can use this harvesting interface to retrieve metadata of published Yoda data packages. MOAI can provide metadata to harvesters in different formats, which are specified using metadata prefixes. Currently, metadata prefixes are available for Dublin Core (oai_dc), Datacite (datacite or oai_datacite) and ISO 19139 (iso19139). ",
     "url": "/yoda/design/overview/yoda-moai.html#yoda-moai",
     
     "relUrl": "/design/overview/yoda-moai.html#yoda-moai"
-  },"376": {
+  },"375": {
     "doc": "Yoda MOAI service",
     "title": "Architecture",
     "content": "When a data package is published in Yoda, the metadata combi file is copied from the provider or consumer server to the MOAI server using SCP. The update_moai job on the MOAI server scans the uploaded metadata combi files every five minutes and ingests the metadata into a local SQLite database. The MOAI web server provides a public OAI-PMH endpoint that can be used by harvesters. The web server uses the SQLite database as its source of information. ",
