@@ -9,7 +9,7 @@ nav_order: 5
 
 The deposit space is described in this document.
 The state diagram describes the possible states a folder in the deposit space can be in.
-In the sequence diagram the interactions between the actors in the research space are documented.
+The interactions between the actors in the deposit space are documented in the sequence diagram.
 
 ## State diagram
 
