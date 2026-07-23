@@ -254,10 +254,7 @@
 <p>Yoda uses PostgreSQL, an open source relational database system, as the iRODS internal database (iCAT database),
 and for storing External User Service (EUS) data.</p>
 
-<p>Yoda versions up to and including 1.8.6 work with PostgreSQL 9.2. Yoda 1.8.7 and later 1.8.x versions work with PostgreSQL
-9.2 by default, with an optional upgrade to PostgreSQL 15. Yoda 1.9 uses PostgreSQL 15 by default. Although Yoda 1.9
-should work with PostgreSQL 9.2, it is recommended to upgrade to PostgreSQL 15 either before/during the upgrade to Yoda 1.9, or
-immediately afterwards.</p>
+<p>Yoda versions 2.0 and onwards work with PostgreSQL 15 by default. Starting from Yoda 2.1, it is possible to upgrade to PostgreSQL 18.</p>
 <h2 id="upgrade-methods">
   
   
@@ -267,122 +264,105 @@ immediately afterwards.</p>
 </h2>
     
 
-<p>Existing Yoda environments can be upgraded to PostgreSQL 15 by either starting the upgrade from Ansible, or by dumping and restoring
-the database manually onto a new server.</p>
+<p>Existing Yoda environments can be upgraded to PostgreSQL 18 by either starting the upgrade from Ansible, or by dumping and restoring the database
+manually onto a new upgraded server.</p>
 
 <p>Regardless of which method you choose, the following advice applies:</p>
 <ul>
-  <li>Ensure that that you have a recent database backup before starting the upgrade process.</li>
-  <li>First perform the upgrade process on an (acceptance) test environment that resembles your production
-environments. This also helps with estimating how much time and diskspace you will need for upgrading the
-production environment.</li>
-  <li>A database upgrade is a good opportunity to review the Yoda <a href="/yoda/administration/configuring-yoda.html">configuration parameters</a> for
-PostgreSQL, and to see if any improvements can be made in areas such as performance tuning.</li>
+  <li>Ensure that you have a recent database backup before starting the upgrade process.</li>
+  <li>First perform the upgrade process on an (acceptance) test environment that resembles your production environments. This also helps with estimating
+how much time and diskspace you will need for upgrading the production environment.</li>
+  <li>A database upgrade is a good opportunity to review the Yoda <a href="/yoda/administration/configuring-yoda.html">configuration parameters</a> for PostgreSQL, and to see if any
+improvements can be made in areas such as performance tuning.</li>
 </ul>
-<h2 id="upgrading-the-database-using-ansible">
+<h2 id="upgrading-the-database-on-the-same-server-upgrade-with-ansible">
   
   
-    <a href="#upgrading-the-database-using-ansible" class="anchor-heading" aria-labelledby="upgrading-the-database-using-ansible"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Upgrading the database using Ansible
-  
-  
-</h2>
-    
-
-<p>The Ansible playbook contains an option for upgrading the database automatically. Note that upgrading the database may
-take a significant time on large environments.</p>
-
-<p>In Yoda 1.8.7 and later 1.8.x versions, use the following configuration parameters:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">enable_pgbouncer</span><span class="pi">:</span> <span class="no">true</span>
-<span class="na">postgresql_use_native_packages</span><span class="pi">:</span> <span class="no">false</span>
-<span class="na">pgsql_version</span><span class="pi">:</span> <span class="m">15</span>
-
-<span class="na">postgresql_perform_db_upgrade</span><span class="pi">:</span> <span class="no">true</span>
-<span class="na">postgresql_remove_old_data_after_upgrade</span><span class="pi">:</span> <span class="no">false</span>
-</code></pre></div></div>
-
-<p>In Yoda 1.9.x, use just the following configuration parameters:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">postgresql_perform_db_upgrade</span><span class="pi">:</span> <span class="no">true</span>
-<span class="na">postgresql_remove_old_data_after_upgrade</span><span class="pi">:</span> <span class="no">false</span>
-</code></pre></div></div>
-<h2 id="upgrading-and-migrating-the-database-manually">
-  
-  
-    <a href="#upgrading-and-migrating-the-database-manually" class="anchor-heading" aria-labelledby="upgrading-and-migrating-the-database-manually"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Upgrading (and migrating) the database manually
+    <a href="#upgrading-the-database-on-the-same-server-upgrade-with-ansible" class="anchor-heading" aria-labelledby="upgrading-the-database-on-the-same-server-upgrade-with-ansible"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Upgrading the database on the same server: upgrade with Ansible
   
   
 </h2>
     
 
-<p>It is also possible to manually upgrade the database. This can be useful if you want to, for example,
-combine the database upgrade with a migration to a new server.</p>
+<p>The Ansible playbook contains an option for upgrading the database automatically. Please note: upgrading the database may take a significant time on
+large environments.</p>
+
+<p>For Yoda 2.1.x and later, use the following configuration parameters:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="na">pgsql_version</span><span class="pi">:</span> <span class="m">18</span>
+
+   <span class="na">postgresql_perform_db_upgrade</span><span class="pi">:</span> <span class="no">true</span>
+   <span class="na">postgresql_remove_old_data_after_upgrade</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+<h2 id="upgrading-and-migrating-the-database-on-a-new-server-upgrade-manually">
+  
+  
+    <a href="#upgrading-and-migrating-the-database-on-a-new-server-upgrade-manually" class="anchor-heading" aria-labelledby="upgrading-and-migrating-the-database-on-a-new-server-upgrade-manually"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Upgrading (and migrating) the database on a new server: upgrade manually
+  
+  
+</h2>
+    
+
+<p>If you want to combine the database upgrade with a migration to a new server, it is possible to upgrade the database manually.</p>
 
 <p>The steps are:</p>
 <ol>
-  <li>Deploy a new database server using Ansible. You can do this by adding the server that is to be the new
-database server to the database group in Ansible. Don’t remove the current database server yet. If the
-environment is not yet on Yoda 1.9.x, you will have to set the database version explicitly in the <code class="language-plaintext highlighter-rouge">host_vars</code>
-of the new database server (not the <code class="language-plaintext highlighter-rouge">group_vars</code>), like so:</li>
-</ol>
+  <li>
+    <p>Deploy a new database server using Ansible. You can do this by adding the server that is to be the new
+database server to the database group in your <code class="language-plaintext highlighter-rouge">hosts</code> file in Ansible. Do not remove the current database server yet. If the
+environment is not on Yoda 2.1.x yet, you will have to set the database version explicitly in the <code class="language-plaintext highlighter-rouge">host_vars</code>
+of the new database server (not the <code class="language-plaintext highlighter-rouge">group_vars</code>), like so:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">enable_pgbouncer</span><span class="pi">:</span> <span class="no">true</span>
-<span class="na">postgresql_use_native_packages</span><span class="pi">:</span> <span class="no">false</span>
-<span class="na">pgsql_version</span><span class="pi">:</span> <span class="m">15</span>
-</code></pre></div></div>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">enable_pgbouncer</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">pgsql_version</span><span class="pi">:</span> <span class="m">18</span>
+</code></pre></div>    </div>
 
-<p>Ensure that locale settings for the old and new database server are identical, and that basic performance
-   tuning has been configured (e.g. setting <code class="language-plaintext highlighter-rouge">effective_cache_size</code>).</p>
-
-<ol>
+    <p>Ensure that locale settings for the old and new database server are identical, and that basic performance
+tuning has been configured (e.g. setting <code class="language-plaintext highlighter-rouge">effective_cache_size</code>).</p>
+  </li>
   <li>
     <p>Verify that locale of the old and new database are identical, using the <code class="language-plaintext highlighter-rouge">\l</code> command in <code class="language-plaintext highlighter-rouge">psql</code>.</p>
   </li>
   <li>
-    <p>Disable iRODS on the consumer (<code class="language-plaintext highlighter-rouge">sudo systemctl stop irods</code>), disable DavRODS and the portal on the portal/DavRODS/combi servers
-(<code class="language-plaintext highlighter-rouge">sudo systemctl stop httpd</code>) and disable iRODS on the provider (<code class="language-plaintext highlighter-rouge">sudo systemctl stop irods</code>).</p>
+    <p>Stop iRODS on the consumer (<code class="language-plaintext highlighter-rouge">sudo systemctl stop irods</code>), stop DavRODS and the portal on the portal/DavRODS/combi servers
+(<code class="language-plaintext highlighter-rouge">sudo systemctl stop apache2</code> for Debian, <code class="language-plaintext highlighter-rouge">sudo systemctl stop httpd</code> for RedHat), and stop iRODS on the provider (<code class="language-plaintext highlighter-rouge">sudo systemctl stop irods</code>).</p>
   </li>
-  <li>
-    <p>Dump the present ICAT database on the old database server (you may want to do this in a tmux session on large environments). For example:</p>
+  <li>Dump the present ICAT database on the old database server (you may want to do this in a tmux session on large environments). For example:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo -iu postgres pg_dump ICAT | gzip | sudo tee /var/dbbackup/icat-migration.sql.gz &gt; /dev/null
+</code></pre></div>    </div>
   </li>
-</ol>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo -iu postgres pg_dump ICAT | gzip | sudo tee /var/dbbackup/icat-migration.sql.gz &gt; /dev/null
-</code></pre></div></div>
-
-<ol>
   <li>
     <p>Transfer the dump file to the new database server.</p>
   </li>
-  <li>
-    <p>Load the dump file on the new database server:</p>
+  <li>Load the dump file on the new database server:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gunzip -c /var/dbbackup/icat-migration.sql.gz | sudo -iu postgres psql ICAT
+</code></pre></div>    </div>
   </li>
-</ol>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gunzip -c /var/dbbackup/icat-migration.sql.gz | sudo -iu postgres psql ICAT
-</code></pre></div></div>
-
-<ol>
-  <li>Disable the old database:</li>
-</ol>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl stop postgresql
+  <li>If the old database is no longer in use by anything else, it can be disabled:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl stop postgresql
 sudo systemctl disable postgresql
-</code></pre></div></div>
-
-<ol>
-  <li>
-    <p>Move the new database configuration to the <code class="language-plaintext highlighter-rouge">group_vars</code>, and remove the old database server from the database group. It is
-generally also recommended to enable Yoda-specific database indexes at this point (<code class="language-plaintext highlighter-rouge">irods_database_enable_yoda_indexes: true</code>),
-unless there is a specific reason not to use them on the environment. Adjust <code class="language-plaintext highlighter-rouge">irods_database_fqdn</code> to point to the new
-database server.</p>
+</code></pre></div>    </div>
+    <p>If it is still in use (for example, as an EUS database), then it can be upgraded separately.</p>
   </li>
   <li>
-    <p>Adjust the <code class="language-plaintext highlighter-rouge">/etc/irods/server_config.json</code> Postgres database plugin configuration by setting <code class="language-plaintext highlighter-rouge">db_host</code> and <code class="language-plaintext highlighter-rouge">db_port</code> to the values
-for the new database server. The port is typically 6432 if PgBouncer is enabled, otherwise 5432.</p>
+    <p>If the old database server needs to be upgraded as well, move the new database configuration to the <code class="language-plaintext highlighter-rouge">group_vars</code>. Otherwise, leave it in the <code class="language-plaintext highlighter-rouge">host_vars</code>.</p>
   </li>
   <li>
-    <p>Restart iRODS.</p>
+    <p>Adjust <code class="language-plaintext highlighter-rouge">irods_database_fqdn</code> in the <code class="language-plaintext highlighter-rouge">group_vars</code> to point to the new database server. It is generally also recommended to enable Yoda-specific database
+indexes at this point (<code class="language-plaintext highlighter-rouge">irods_database_enable_yoda_indexes: true</code>), unless there is a specific reason not to use them on the environment.</p>
+  </li>
+  <li>
+    <p>Remove the old database server from the database group in the <code class="language-plaintext highlighter-rouge">hosts</code> file.</p>
+  </li>
+  <li>
+    <p>On the provider, adjust the <code class="language-plaintext highlighter-rouge">/etc/irods/server_config.json</code> database plugin configuration by setting <code class="language-plaintext highlighter-rouge">host</code> and <code class="language-plaintext highlighter-rouge">port</code> to the new database
+   server values. The port is typically 6432 if PgBouncer is enabled, otherwise 5432. If the database plugin configuration still has Postgres
+   values <code class="language-plaintext highlighter-rouge">db_host</code> and <code class="language-plaintext highlighter-rouge">db_post</code>, you can remove them as they are outdated.</p>
+  </li>
+  <li>
+    <p>As iRODS user, ensure the ODBC connection details (<code class="language-plaintext highlighter-rouge">~/.odbc.ini</code>) point to the new database server.</p>
+  </li>
+  <li>
+    <p>Restart iRODS on all servers, then ensure PgBouncer is connecting properly (you can do so by checking the PgBouncer log).</p>
   </li>
   <li>
     <p>Run the Ansible playbook. You should now have an environment where the new database server has been deployed, iRODS should now talk
@@ -391,17 +371,28 @@ check that iRODS is talking to the new database server (e.g. by viewing the numb
 new database server). Disregard any PostgreSQL warning messages in the logs at this step.</p>
   </li>
   <li>
-    <p>Check the database plugin configuration in the <code class="language-plaintext highlighter-rouge">/etc/irods/server_config.json</code> configuration file. Ensure that <code class="language-plaintext highlighter-rouge">db_odbc_driver</code> is
-set to <code class="language-plaintext highlighter-rouge">"PostgreSQL"</code>. If the database plugin still has a <code class="language-plaintext highlighter-rouge">db_odbc_type</code> parameter, remove it. Restart iRODS if any manual changes
-were needed in this step.</p>
+    <p>Check the database plugin configuration in the <code class="language-plaintext highlighter-rouge">/etc/irods/server_config.json</code> configuration file and ensure that <code class="language-plaintext highlighter-rouge">odbc_driver</code> is
+set to <code class="language-plaintext highlighter-rouge">"PostgreSQL"</code>. If the database plugin configuration still has a <code class="language-plaintext highlighter-rouge">db_odbc_driver</code> or a <code class="language-plaintext highlighter-rouge">db_odbc_type</code> parameter, you can remove 
+them as they are outdated. Restart iRODS if any manual changes were needed in this step.</p>
   </li>
   <li>
     <p>Verify that Yoda works as expected.</p>
   </li>
-  <li>
-    <p>Remember to update database backup and monitoring scripts so that they point to the new database.</p>
-  </li>
+  <li>Remember to update database backup and monitoring scripts so that they point to the new database.</li>
 </ol>
+<h2 id="cleanup-after-upgrade">
+  
+  
+    <a href="#cleanup-after-upgrade" class="anchor-heading" aria-labelledby="cleanup-after-upgrade"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Cleanup after upgrade
+  
+  
+</h2>
+    
+
+<p>If you wish to clean up the data of the old PostgreSQL version after the upgrade, you can use the following configuration parameter and then
+re-run the Ansible playbook:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="na">postgresql_remove_old_data_after_upgrade</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
 
           
 
