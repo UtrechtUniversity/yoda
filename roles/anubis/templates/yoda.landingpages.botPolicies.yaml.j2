@@ -42,6 +42,9 @@ bots:
   # Challenge Firefox AI previews
   - import: (data)/clients/x-firefox-ai.yaml
 
+  # x.ai has a scraper that is killing gitlab instances
+  - import: (data)/crawlers/xai.yaml
+
   # Allow common "keeping the internet working" routes (well-known, favicon, robots.txt)
   - import: (data)/common/keep-internet-working.yaml
 
@@ -106,6 +109,14 @@ bots:
 
 dnsbl: false
 
+## Honeypot configuration
+honeypot:
+  ## If not set, Anubis will assume you meant `true`.
+  enabled: true
+  ## Currently the only supported implementation is the naive method.
+  ## See https://anubis.techaro.lol/docs/admin/honeypot/overview#implementation-notes for more information
+  implementation: naive
+
 # #
 # impressum:
 #   # Displayed at the bottom of every page rendered by Anubis.
@@ -166,6 +177,36 @@ openGraph:
 status_codes:
   CHALLENGE: 200
   DENY: 200
+
+# # Configuration for the metrics server. See the docs for more information:
+# #
+# # https://anubis.techaro.lol/docs/admin/policies#metrics-server
+# #
+# # This is commented out by default so that command line flags take precedence.
+# metrics:
+#   bind: ":9090"
+#   network: "tcp"
+#
+# # To protect your metrics server with basic auth, set credentials below:
+# #
+# # https://anubis.techaro.lol/docs/admin/policies#http-basic-authentication
+#   basicAuth:
+#     username: ""
+#     password: ""
+#
+# # To serve metrics over TLS, set the path to the right TLS certificate and key
+# # here. When the files change on disk, they will automatically be reloaded.
+# #
+# # https://anubis.techaro.lol/docs/admin/policies#tls
+#   tls:
+#     certificate: /path/to/tls.crt
+#     key: /path/to/tls.key
+#
+#     # If you want to secure your metrics endpoint using mutual TLS (mTLS), set
+#     # the path to a certificate authority public certificate here.
+#     #
+#     # https://anubis.techaro.lol/docs/admin/policies#mtls
+#     ca: /path/to/ca.crt
 
 # Anubis can store temporary data in one of a few backends. See the storage
 # backends section of the docs for more information:
