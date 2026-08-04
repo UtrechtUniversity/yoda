@@ -1,2 +1,2 @@
 #!/bin/sh
-printf "%q " "$@" | xargs daattr -a state -d ":"
+printf '%s\0' "$@" | xargs -0 daattr -a state -d ":"

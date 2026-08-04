@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "$@" | xargs daget -a
+printf '%s\0' "$@" | xargs -0 daget -a
