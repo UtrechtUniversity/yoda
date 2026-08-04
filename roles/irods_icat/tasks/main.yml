@@ -472,15 +472,13 @@
   when: not ansible_check_mode
 
 
-- name: Retrieve iRODS server zone key
+# These facts are set earlier in this role, from newly generated keys. However, we need
+# to re-set them from the server_config.json file to be able to pass these keys to the
+# consumer (if any) on existing environments.
+- name: Retrieve iRODS server zone key and negotiation key
   ansible.builtin.set_fact:
-    zone_key: "{{ (server_config['content'] | b64decode | from_json).zone_key }}"
-  when: not ansible_check_mode
-
-
-- name: Retrieve iRODS server negotiation key
-  ansible.builtin.set_fact:
-    negotiation_key: "{{ (server_config['content'] | b64decode | from_json).negotiation_key }}"
+    irods_zone_key: "{{ (server_config['content'] | b64decode | from_json).zone_key }}"
+    irods_negotiation_key: "{{ (server_config['content'] | b64decode | from_json).negotiation_key }}"
   when: not ansible_check_mode
 
 

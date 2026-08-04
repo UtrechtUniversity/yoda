@@ -77,6 +77,16 @@
   when: not ansible_check_mode
 
 
+- name: Ensure iRODS server keys were retrieved from the iCAT server
+  ansible.builtin.assert:
+    that:
+      - irods_zone_key | default('', true) | length > 0
+      - irods_negotiation_key | default('', true) | length > 0
+    fail_msg: >-
+      Unable to retrieve the zone key and negotiation key from the provider.
+  when: not ansible_check_mode
+
+
 - name: Check if iRODS config file exists
   ansible.builtin.stat:
     path: /etc/irods/service_account.config
@@ -319,6 +329,7 @@
     - key: 'negotiation_key'
       value: "{{ irods_negotiation_key }}"
   when: not ansible_check_mode
+  notify: Restart iRODS
 
 
 - name: Ensure iRODS .ssh directory has strict permissions
