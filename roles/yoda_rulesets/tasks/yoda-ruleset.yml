@@ -211,7 +211,7 @@
       delay: 5
       retries: 25
       with_items: "{{ schema_update.results }}"
-      when: not ansible_check_mode
+      when: not ansible_check_mode and item.ansible_job_id is defined
 
 
     - name: Clean up async files for metadata schema checks
@@ -221,7 +221,7 @@
         jid: "{{ item.ansible_job_id }}"
         mode: cleanup
       with_items: "{{ schema_update.results }}"
-      when: not ansible_check_mode
+      when: not ansible_check_mode and item.ansible_job_id is defined
 
 
     - name: Set configuration AVUs for metadata schemas
