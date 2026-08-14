@@ -100,18 +100,41 @@ jobs:
         docker exec provider.yoda sh -c "set -x ; cd /etc/irods/yoda-ruleset && sudo -u irods git checkout ${{ steps.yoda_repo_branch.outputs.branch }} && sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages -r /etc/irods/yoda-ruleset/requirements.txt && sudo -u irods make && sudo -u irods make install"
         docker exec provider.yoda sh -c 'kill -HUP $(cat /var/run/irods/irods-server.pid)'
 
-    - name: Wait until iRODS is ready for tests
+    - name: Wait until iRODS and Davrods are ready for tests
       shell: bash
       run: |
         cd yoda/docker/compose
-        docker exec provider.yoda sh -c 'until sudo -u irods ils /tempZone > /dev/null  2>&1 ; do echo Waiting for iRODS to start ...  ; sleep 1; done'
-        docker exec data.yoda sh -c 'until nc -vz provider.yoda 1247 > /dev/null 2>&1; do echo "Waiting until iRODS provider is reachable from Davrods container ..."; sleep 1; done'
-        echo "iRODS is ready for tests."
+        until [ "$(curl -k --output /dev/null -w '%{http_code}' --silent https://data.yoda:8445)" != "000" ] ; do printf '.' ; sleep 1; done
+        # Wait a bit until the iRODS connection looks stable enough, and the restart is
+        # apparently finished.
+        docker exec data.yoda sh -c '
+          responses=0
+          responsesneeded=8
+          while [ "$responses" -lt "$responsesneeded" ]; do
+            if nc -z provider.yoda 1247 2>/dev/null;
+                then responses=$((responses+1));
+                echo "Response number ${responses}/${responsesneeded} from iRODS"
+            else responses=0;
+                 echo "No response from iRODS."
+            fi
+            sleep 0.5
+          done'
+        # Wait for Davrods to be available too
+        echo "Waiting for Davrods to be available ..."
+        until [ "$(curl -k --output /dev/null -w '%{http_code}' --silent https://data.yoda:8445)" != "000" ] ; do printf '.' ; sleep 1; done
+        docker exec data.yoda sh -c '
+            until nc -vz provider.yoda 1247 > /dev/null 2>&1;
+            do echo "Waiting until iRODS provider is reachable from Davrods container ...";
+                sleep 1;
+            done'
+        # iRODS connections appears to be stable and Davrods is online: ready to start tests.
+        echo "Ready to start WebDAV tests."
 
     - name: Run WebDAV tests
       run: |
         cd yoda-ruleset/tests
         source venv/bin/activate
+        echo "WebDAV tests starting now."
         python3 -m pytest --webdav -o cache_dir=mycache --environment environments/docker.json step_defs/webdav/test_webdav.py
 
     - name: Output rodsLogs
