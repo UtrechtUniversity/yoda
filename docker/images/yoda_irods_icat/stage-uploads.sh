@@ -17,3 +17,4 @@ fi
 cp ../../../roles/pam_python/files/Debian/pam_python3.so stage
 cp ../../../roles/irods_completion/files/irods_completion.sh stage
 cp ../../../roles/irods_log/files/irods-log-transform.py stage
+cp ../../../roles/irods_icat/files/genquery.py stage

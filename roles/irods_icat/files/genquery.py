@@ -3,6 +3,7 @@ import re
 from collections import OrderedDict
 from enum import Enum
 from irods_errors import END_OF_RESULTSET
+from tstrings import Template
 
 def AUTO_CLOSE_QUERIES(): return True
 
@@ -56,7 +57,7 @@ class Query(object):
 
     :param callback:       iRODS callback
     :param columns:        a list of SELECT column names, or columns as a comma-separated string.
-    :param conditions:     (optional) where clause, as a string
+    :param conditions:     (optional) where clause, as a string or Template
     :param output:         (optional) [default=AS_TUPLE] either AS_DICT/AS_LIST/AS_TUPLE
     :param offset:         (optional) starting row (0-based), can be used for pagination
     :param limit:          (optional) maximum amount of results, can be used for pagination
@@ -115,7 +116,8 @@ class Query(object):
     """
 
     __parameter_names = tuple('columns,conditions,output,offset,limit,case_sensitive,options,parser,order_by'.split(','))
-    __non_whitespace = re.compile('\S+')
+    __non_whitespace = re.compile(r'\S+')
+    _like_pattern = re.compile(r'\bLIKE\s*$', re.IGNORECASE)
 
     def __init__(self,
                  callback,
@@ -140,6 +142,9 @@ class Query(object):
 
         if not isinstance (columns, list):
             raise GenQuery_Columns_Type_Error("'columns' could not be coerced to list type")
+
+        if isinstance(conditions, Template):
+            conditions = self.escape_conditions_params(conditions)
 
         if parser not in [Parser.GENQUERY1, Parser.GENQUERY2]:
             raise ValueError('Invalid value for [parser]. Expected Parser.GENQUERY1 or Parser.GENQUERY2.')
@@ -397,6 +402,37 @@ class Query(object):
             break
         self._close()
         return result
+
+    def escape_conditions_params(self, conditions):
+        """Escape single quotes and LIKE wildcards (% and _) in parameter values that follow LIKE clauses.
+
+        :param conditions: Conditions template alternating between static strings and parameter values
+
+        :returns: Escaped conditions string with all parts joined.
+        """
+        parts = []
+        last_sql = ""
+
+        for item in conditions:
+            if isinstance(item, str):
+                # Static template string.
+                parts.append(item)
+                last_sql = item
+            else:
+                # Template value.
+                value = str(getattr(item, 'value', item))
+
+                # Escape LIKE wildcards if last SQL fragment ends with LIKE.
+                if self._like_pattern.search(last_sql):
+                    value = value.replace("\\", "\\\\").replace("%", r"\%").replace("_", r"\_")
+
+                # Escape single quotes.
+                value = value.replace("'", "''")
+
+                parts.append(value)
+                last_sql = ""
+
+        return "".join(parts)
 
     def __str__(self):
         projections = ', '.join(self.columns)
