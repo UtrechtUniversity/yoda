@@ -100,6 +100,8 @@ COPY irods.pam /tmp/irods.pam
 COPY oidc.py /tmp/oidc.py
 RUN install -m 0644 /tmp/irods.pam /etc/pam.d/irods && \
     install -m 0644 -o irods -g irods /tmp/oidc.py /var/lib/irods/msiExecCmd_bin/oidc.py
+COPY stage/genquery.py /tmp/genquery.py
+RUN install -m 0644 -o irods -g irods /tmp/genquery.py /etc/irods/genquery.py
 
 # Configure iRODS
 COPY server_config.json /etc/irods/server_config.json
