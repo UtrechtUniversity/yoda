@@ -3,7 +3,7 @@ LABEL maintainer="Yoda team <yoda@uu.nl>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Application settings
-ARG TAG=irods-5
+ARG TAG=development
 ENV IRODS_VERSION="5.0.2-0~noble"
 ENV IRODS_PLUS_VERSION="5.0.1-0+5.0.2~noble"
 ENV IRODS_MSVC_IRODS_VERSION="5.0.2"
