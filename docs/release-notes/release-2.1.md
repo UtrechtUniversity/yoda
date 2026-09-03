@@ -38,8 +38,6 @@ Released: 3 July 2026
 
 ### Known issues
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python ([irods/irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54))
-- When inactive group notifications are enabled, data managers may receive notifications for groups that are actually active (issue YDA-7082). We recommend to disable inactive group notifications by setting `enable_inactivity_notification` to `false` before upgrading. A fix is expected in Yoda v2.1.1
-- The "copy to research" functionality fails for paths that contain single quotes or spaces (issues YDA-7000 and YDA-7001). A fix is expected in Yoda v2.1.1
 - The irm iCommand fails for collection names with single quotes ([irods/irods#9019](https://github.com/irods/irods/issues/9019))
 - Removing a collection via WebDAV fails if the collection name contains a single quote (YDA-7086)
 
@@ -70,14 +68,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After ensuring the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Check out the `v2.1.1` tag of the Yoda Git repository:
+3. Check out the `v2.1.2` tag of the Yoda Git repository:
 ```bash
-git checkout v2.1.1
+git checkout v2.1.2
 ```
 
-4. Set the Yoda version to `v2.1.1` in the configuration:
+4. Set the Yoda version to `v2.1.2` in the configuration:
 ```yaml
-yoda_version: v2.1.1
+yoda_version: v2.1.2
 ```
 
 5. If the old configuration contained an iRODS authentication scheme setting, update it to use `pam_password`. Example:
