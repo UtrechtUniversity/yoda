@@ -12,6 +12,10 @@
 ## /usr/share/docs/anubis/data or in the tarball you extracted Anubis from.
 
 bots:
+  - name: f-uji-data-harvester
+    user_agent_regex: F-UJI/4\.0 \(\+https\://github\.com/pangaea-data-publisher/fuji\)
+    action: ALLOW
+
   # You can import the entire default config with this macro:
   # - import: (data)/meta/default-config.yaml
 
@@ -39,7 +43,7 @@ bots:
   #   - Marginalia
   #   - Mojeek
   #   - Arquivo.pt
-  # - import: (data)/crawlers/_allow-good.yaml
+  - import: (data)/crawlers/_allow-good.yaml
   # Challenge Firefox AI previews
   - import: (data)/clients/x-firefox-ai.yaml
 
