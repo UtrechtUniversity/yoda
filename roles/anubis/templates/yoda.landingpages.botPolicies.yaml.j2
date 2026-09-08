@@ -12,6 +12,10 @@
 ## /usr/share/docs/anubis/data or in the tarball you extracted Anubis from.
 
 bots:
+  - name: f-uji-data-harvester
+    user_agent_regex: F-UJI/4\.0 \(\+https\://github\.com/pangaea-data-publisher/fuji\)
+    action: ALLOW
+
   # You can import the entire default config with this macro:
   # - import: (data)/meta/default-config.yaml
 
@@ -38,7 +42,8 @@ bots:
   #   - Kagi
   #   - Marginalia
   #   - Mojeek
-  # - import: (data)/crawlers/_allow-good.yaml
+  #   - Arquivo.pt
+  - import: (data)/crawlers/_allow-good.yaml
   # Challenge Firefox AI previews
   - import: (data)/clients/x-firefox-ai.yaml
 
@@ -116,6 +121,10 @@ honeypot:
   ## Currently the only supported implementation is the naive method.
   ## See https://anubis.techaro.lol/docs/admin/honeypot/overview#implementation-notes for more information
   implementation: naive
+  ## Setting ip_log_file makes Anubis log IP addresses that hit honeypot URLs to a file.
+  ## Anubis writes to this file either once per minute or after Anubis records 32
+  ## kilobytes of IP addresses, whichever happens first.
+  #ip_log_file: ./var/honeypot.addrs
 
 # #
 # impressum:
