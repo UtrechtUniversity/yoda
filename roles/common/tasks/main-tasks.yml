@@ -34,6 +34,10 @@
   ansible.builtin.import_tasks: basics-debian.yml
   when: ansible_os_family == 'Debian'
 
+- name: Disable unattended upgrades
+  ansible.builtin.import_tasks: disable-unattended-upgrades.yml
+  when: ansible_os_family == 'Debian'
+
 - name: Setup kernel parameters
   ansible.builtin.import_tasks: kernel.yml
 
