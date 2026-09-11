@@ -1,0 +1,8 @@
+---
+# copyright Utrecht University
+
+- name: Ensure unattended-upgraded service has been stopped and disabled
+  ansible.builtin.service:
+    name: unattended-upgrades
+    state: stopped
+    enabled: false
