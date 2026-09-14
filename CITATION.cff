@@ -57,8 +57,8 @@ abstract: >-
 keywords:
   - rdm
 license: GPL-3.0-only
-version: 1.9.0
-date-released: '2024-02-15'
+version: 2.1.2
+date-released: '2026-09-03'
 
 contact:
   - name: Utrecht University Yoda Team
