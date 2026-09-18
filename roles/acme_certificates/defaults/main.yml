@@ -22,3 +22,9 @@ openssl_locality_name: 'Utrecht'
 certificate_domain: "{{ ansible_fqdn }}"
 
 acme_certificates_email_contact: l.r.westerhof@uu.nl
+
+enable_acme_certificates: true
+
+# Pinned the latest stable ACME version
+acme_certificates_certbot_version: '5.8.0'
+acme_certificates_certbot_venv_dir: '/opt/certbot'

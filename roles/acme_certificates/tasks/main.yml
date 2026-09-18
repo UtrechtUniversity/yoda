@@ -5,59 +5,28 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
-- name: Ensure Certbot for Let's Encrypt is installed
-  ansible.builtin.package:
-    name: "{{ acme_certificates_certbot_package }}"
-    state: present
+- name: Install pinned Certbot in a virtual environment
+  when: ansible_os_family == 'Debian'
+  block:
+    - name: Ensure OS-packaged Certbot is absent
+      ansible.builtin.package:
+        name: certbot
+        state: absent
 
+    - name: Ensure python3-venv is installed
+      ansible.builtin.package:
+        name: python3-venv
+        state: present
 
-- name: Check if certificate already exists
-  ansible.builtin.stat:
-    path: "/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem"
-  register: letsencrypt_fullchain
+    - name: Ensure pinned Certbot version is installed
+      ansible.builtin.pip:
+        name: "certbot=={{ acme_certificates_certbot_version }}"
+        virtualenv: "{{ acme_certificates_certbot_venv_dir }}"
+        virtualenv_command: python3 -m venv
 
-
-- name: Ensure Apache is stopped
-  ansible.builtin.service:
-    name: "{{ apache_service_name }}"
-    state: stopped
-  when: not letsencrypt_fullchain.stat.exists
-
-
-- name: Generate certificate if it  doesn't exist yet # noqa no-changed-when
-  ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email {{ acme_certificates_email_contact }} -d {{ yoda_portal_fqdn }}"
-  when: not letsencrypt_fullchain.stat.exists
-
-
-- name: Ensure Apache is started
-  ansible.builtin.service:
-    name: "{{ apache_service_name }}"
-    state: started
-  when: not letsencrypt_fullchain.stat.exists
-
-
-- name: Add cronjob for Certbot renewal
-  ansible.builtin.cron:
-    name: Certbot automatic renewal
-    job: "sudo certbot renew --quiet --pre-hook 'systemctl stop {{ apache_service_name }}' --post-hook 'systemctl start {{ apache_service_name }}'"
-    minute: 25
-    hour: 0,12
-
-
-- name: Ensure new certificate is used
-  ansible.builtin.copy:
-    src: '{{ item.src }}'
-    dest: '{{ item.dest }}'
-    mode: '{{ item.mode }}'
-    remote_src: true
-  with_items:
-    - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem'
-      dest: '{{ openssl_certs_dir }}/localhost_and_chain.crt'
-      mode: '0644'
-    - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem'
-      dest: '{{ openssl_certs_dir }}/localhost.crt'
-      mode: '0644'
-    - src: '/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/privkey.pem'
-      dest: '{{ openssl_private_dir }}/localhost.key'
-      mode: '0600'
-  when: not ansible_check_mode
+    - name: Ensure the Certbot binary is available on the system PATH
+      ansible.builtin.file:
+        src: "{{ acme_certificates_certbot_venv_dir }}/bin/certbot"
+        dest: /usr/local/bin/certbot
+        state: link
+        force: true
