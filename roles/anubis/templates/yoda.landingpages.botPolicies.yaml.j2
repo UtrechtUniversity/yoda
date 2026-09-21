@@ -12,6 +12,10 @@
 ## /usr/share/docs/anubis/data or in the tarball you extracted Anubis from.
 
 bots:
+  - name: allow-index-for-monitoring
+    path_regex: ^/$
+    action: ALLOW
+
   - name: f-uji-data-harvester
     user_agent_regex: F-UJI/4\.0 \(\+https\://github\.com/pangaea-data-publisher/fuji\)
     action: ALLOW
