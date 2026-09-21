@@ -155,33 +155,44 @@
 - name: Find out if metadata schemas system collection exists
   become_user: "{{ irods_service_account }}"
   become: true
-  ansible.builtin.command: 'ils /{{ irods_zone }}/yoda/schemas'
+  ansible.builtin.command: 'ils /{{ irods_zone }}/yoda/{{ item }}'
   ignore_errors: true
   register: schemas_installed
   changed_when: false
+  loop:
+    - schemas
+    - metadata_schemas
 
 
 - name: Ensure that Yoda metadata schema collection exists
   become_user: "{{ irods_service_account }}"
   become: true
-  # noqa no-changed-when
   ansible.builtin.shell: |
-    imkdir /{{ irods_zone }}/yoda/schemas
-    ichmod -rM inherit /{{ irods_zone }}/yoda/schemas
-    ichmod -rM read public /{{ irods_zone }}/yoda/schemas
-  when: not ansible_check_mode and schemas_installed.stderr.find('does not exist') >= 0
+    imkdir /{{ irods_zone }}/yoda/{{ item.item }}
+    ichmod -rM inherit /{{ irods_zone }}/yoda/{{ item.item }}
+    ichmod -rM read public /{{ irods_zone }}/yoda/{{ item.item }}
+  when:
+    - not ansible_check_mode
+    - item.stderr is search('does not exist')
+  loop: "{{ schemas_installed.results }}"
+  changed_when: true
 
 
 - name: Ensure each metadata schema collection exists
   become_user: "{{ irods_service_account }}"
   become: true
-  # noqa no-changed-when
   ansible.builtin.shell: |
-    imkdir /{{ irods_zone }}/yoda/schemas/{{ item.name }}
-    ichmod -rM inherit /{{ irods_zone }}/yoda/schemas/{{ item.name }}
-    ichmod -rM read public /{{ irods_zone }}/yoda/schemas/{{ item.name }}
-  when: not ansible_check_mode and update_schemas == 1 and item.install and schemas_installed.stdout.find(item.name) == -1
-  with_items: "{{ metadata_schemas }}"
+    imkdir /{{ irods_zone }}/yoda/{{ item.path }}/{{ item.name }}
+    ichmod -rM inherit /{{ irods_zone }}/yoda/{{ item.path }}/{{ item.name }}
+    ichmod -rM read public /{{ irods_zone }}/yoda/{{ item.path }}/{{ item.name }}
+  when:
+    - not ansible_check_mode
+    - update_schemas == 1
+    - item.install
+    - item.name is not search(schemas_installed.results[0].stdout)
+    - item.name is not search(schemas_installed.results[1].stdout)
+  loop: "{{ metadata_schemas }}"
+  changed_when: true
 
 
 - name: Install metadata schemas
@@ -190,7 +201,7 @@
       become_user: "{{ irods_service_account }}"
       become: true
       ansible.builtin.command: |
-        /etc/irods/yoda-ruleset/tools/update-schema.py --default-resource  {{ irods_default_resc }} /etc/irods/yoda-ruleset/schemas/{{ item.name }} /{{ irods_zone }}/yoda/schemas/{{ item.name }}
+        /etc/irods/yoda-ruleset/tools/metadata/update-schema.py --default-resource  {{ irods_default_resc }} /etc/irods/yoda-ruleset/{{ item.path }}/{{ item.name }} /{{ irods_zone }}/yoda/{{ item.path }}/{{ item.name }}
       register: schema_update
       when: not ansible_check_mode and update_schemas == 1 and item.install
       with_items: "{{ metadata_schemas }}"
@@ -229,7 +240,7 @@
       become: true
       # noqa fqcn[action]
       irods_setavu:
-        name: "/{{ irods_zone }}/yoda/schemas/{{ item.name }}"
+        name: "/{{ irods_zone }}/yoda/{{ item.path }}/{{ item.name }}"
         irods_type: Collection
         attribute: "org_schema_user_selectable"
         value: "{{ item.active }}"

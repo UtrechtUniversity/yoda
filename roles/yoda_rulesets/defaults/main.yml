@@ -68,48 +68,96 @@ metadata_schemas:
   - name: core-0
     install: true
     active: true
+    path: schemas
   - name: core-1
     install: true
     active: true
+    path: schemas
   - name: core-2
     install: true
     active: true
+    path: schemas
   - name: default-0
     install: true
     active: true
+    path: schemas
   - name: default-1
     install: true
     active: true
+    path: schemas
   - name: default-2
     install: true
     active: true
+    path: schemas
   - name: default-3
     install: true
     active: true
+    path: schemas
   - name: hptlab-0
     install: true
     active: true
+    path: schemas
   - name: hptlab-1
     install: true
     active: true
+    path: schemas
   - name: teclab-0
     install: true
     active: true
+    path: schemas
   - name: teclab-1
     install: true
     active: true
+    path: schemas
   - name: dag-0
     install: true
     active: true
+    path: schemas
   - name: vollmer-0
     install: true
     active: true
+    path: schemas
   - name: epos-msl-0
     install: true
     active: true
+    path: schemas
   - name: epos-msl-1
     install: true
     active: true
+    path: schemas
+    # Modular metadata
+  - name: access-rights_1-0-0
+    install: true
+    active: true
+    path: metadata_schemas
+  - name: citation_1-0-0
+    install: true
+    active: true
+    path: metadata_schemas
+  - name: descriptive_1-0-0
+    install: true
+    active: true
+    path: metadata_schemas
+  - name: funding_1-0-0
+    install: true
+    active: true
+    path: metadata_schemas
+  - name: preservation_1-0-0
+    install: true
+    active: true
+    path: metadata_schemas
+  - name: related-resources_1-0-0
+    install: true
+    active: true
+    path: metadata_schemas
+  - name: spatial-coverage_1-0-0
+    install: true
+    active: true
+    path: metadata_schemas
+  - name: temporal-coverage_1-0-0
+    install: true
+    active: true
+    path: metadata_schemas
 
 send_notifications: 0               # Enable notifications: yes (1) or no (0)
 
