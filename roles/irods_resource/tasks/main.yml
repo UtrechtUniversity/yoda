@@ -236,6 +236,11 @@
   when: not ansible_check_mode
 
 
+- name: Install custom genquery.py for iRODS
+  ansible.builtin.include_role:
+    name: irods_genquery
+
+
 - name: Enable ports for resource in firewall
   ansible.posix.firewalld:
     port: '{{ item }}'
