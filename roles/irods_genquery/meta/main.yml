@@ -1,0 +1,17 @@
+---
+# copyright Utrecht University
+#
+# This role installs the customized genquery.py file. It is meant
+# to be included from an irods server role (irods_icat or irods_resource)
+# once iRODS has been installed.
+
+galaxy_info:
+  author: Sietse Snel
+  description: Install genquery.py file for iRODS
+  license: GPLv3
+  min_ansible_version: '2.16'
+  platforms:
+    - name: EL
+      version: 9
+    - name: Ubuntu
+      version: noble
