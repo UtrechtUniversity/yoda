@@ -1,0 +1,13 @@
+---
+# copyright Utrecht University
+
+# Patched genquery for https://github.com/irods/irods_rule_engine_plugin_python/issues/258
+- name: Ensure patched genquery.py is present
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.copy:
+    src: genquery.py
+    dest: /etc/irods/genquery.py
+    owner: "{{ irods_service_account }}"
+    group: "{{ irods_service_account }}"
+    mode: "0644"
