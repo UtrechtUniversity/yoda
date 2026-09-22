@@ -148,7 +148,7 @@
     "tls_client": {
       "ca_certificate_file": "/etc/irods/{{ openssl_crt_signed_and_chain }}",
       "ca_certificate_path": "{{ openssl_certs_dir }}",
-      "verify_server": "cert"
+      "verify_server": "{{ irods_ssl_verify_server }}"
     },
     "tls_server": {
       "certificate_chain_file": "/etc/irods/{{ openssl_crt_signed_and_chain }}",
