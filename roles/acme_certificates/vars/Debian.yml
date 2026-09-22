@@ -5,3 +5,7 @@ openssl_private_dir: '/etc/ssl/private'
 openssl_certs_dir: '/etc/ssl/certs'
 
 apache_service_name: apache2
+
+acme_certificates_python_packages:
+  - python3-venv
+acme_certificates_python: python3

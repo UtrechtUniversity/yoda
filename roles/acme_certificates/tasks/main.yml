@@ -6,15 +6,7 @@
 
 
 - name: Install pinned Certbot in a virtual environment
-  ansible.builtin.include_tasks: install_Debian.yml
-  when: ansible_os_family == 'Debian'
-
-
-- name: Ensure Certbot for Let's Encrypt is installed
-  ansible.builtin.package:
-    name: "{{ acme_certificates_certbot_package }}"
-    state: present
-  when: ansible_os_family != 'Debian'
+  ansible.builtin.include_tasks: install_certbot.yml
 
 
 - name: Check if certificate already exists

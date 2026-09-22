@@ -7,9 +7,9 @@
     state: absent
 
 
-- name: Ensure python3-venv is installed
+- name: Ensure Python for the Certbot virtual environment is installed
   ansible.builtin.package:
-    name: python3-venv
+    name: "{{ acme_certificates_python_packages }}"
     state: present
 
 
@@ -17,12 +17,12 @@
   ansible.builtin.pip:
     name: "certbot=={{ acme_certificates_certbot_version }}"
     virtualenv: "{{ acme_certificates_certbot_venv_dir }}"
-    virtualenv_command: python3 -m venv
+    virtualenv_command: "{{ acme_certificates_python }} -m venv"
 
 
 - name: Ensure the Certbot binary is available on the system PATH
   ansible.builtin.file:
     src: "{{ acme_certificates_certbot_venv_dir }}/bin/certbot"
-    dest: /usr/local/bin/certbot
+    dest: /usr/bin/certbot
     state: link
     force: true
