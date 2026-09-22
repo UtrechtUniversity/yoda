@@ -6,4 +6,6 @@ openssl_certs_dir: '/etc/ssl/certs'
 
 apache_service_name: apache2
 
-acme_certificates_certbot_package: certbot
+acme_certificates_python_packages:
+  - python3-venv
+acme_certificates_python: python3
