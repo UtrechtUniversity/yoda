@@ -116,6 +116,54 @@
   when: not ansible_check_mode
 
 
+- name: Ensure private key file is available for iRODS
+  ansible.builtin.command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
+  args:
+    chdir: '/etc/irods'
+    creates: '{{ openssl_key_signed }}'
+
+
+- name: Ensure CA chain with signed certificate is present
+  ansible.builtin.file:
+    src: "{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}"
+    dest: "/etc/irods/{{ openssl_crt_signed_and_chain }}"
+    state: link
+
+
+- name: Ensure Diffie-Hellman parameters are present
+  ansible.builtin.command: openssl dhparam -2 -out {{ openssl_dhparams }} 2048
+  args:
+    chdir: '/etc/irods'
+    creates: '{{ openssl_dhparams }}'
+
+
+- name: Ensure iRODS has access to certificate files
+  ansible.builtin.file:
+    path: '{{ item }}'
+    mode: '0644'
+    group: 'root'
+    owner: 'root'
+    state: file
+  with_items:
+    - '/etc/irods/{{ openssl_key_signed }}'
+    - '/etc/irods/{{ openssl_dhparams }}'
+  when: not ansible_check_mode
+
+
+- name: Ensure iRODS has access to certificate files
+  ansible.builtin.file:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: '0644'
+    group: 'root'
+    owner: 'root'
+    state: link
+  with_items:
+    - src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
+      dest: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+  when: not ansible_check_mode
+
+
 - name: Check if iRODS config file exists
   ansible.builtin.stat:
     path: /etc/irods/service_account.config
@@ -379,54 +427,6 @@
   notify: Restart firewall
 
 
-- name: Ensure private key file is available for iRODS
-  ansible.builtin.command: 'cp {{ openssl_private_dir }}/{{ openssl_key_signed }} {{ openssl_key_signed }}'
-  args:
-    chdir: '/etc/irods'
-    creates: '{{ openssl_key_signed }}'
-
-
-- name: Ensure CA chain with signed certificate is present
-  ansible.builtin.file:
-    src: "{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}"
-    dest: "/etc/irods/{{ openssl_crt_signed_and_chain }}"
-    state: link
-
-
-- name: Ensure Diffie-Hellman parameters are present
-  ansible.builtin.command: openssl dhparam -2 -out {{ openssl_dhparams }} 2048
-  args:
-    chdir: '/etc/irods'
-    creates: '{{ openssl_dhparams }}'
-
-
-- name: Ensure iRODS has access to PKI files
-  ansible.builtin.file:
-    path: '{{ item }}'
-    mode: '0600'
-    group: '{{ irods_service_account }}'
-    owner: '{{ irods_service_account }}'
-    state: file
-  with_items:
-    - '/etc/irods/{{ openssl_key_signed }}'
-    - '/etc/irods/{{ openssl_dhparams }}'
-  when: not ansible_check_mode
-
-
-- name: Ensure iRODS has access to PKI files
-  ansible.builtin.file:
-    src: '{{ item.src }}'
-    dest: '{{ item.dest }}'
-    mode: '0644'
-    group: 'root'
-    owner: 'root'
-    state: link
-  with_items:
-    - src: '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
-      dest: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
-  when: not ansible_check_mode
-
-
 - name: Ensure iRODS is configured to use SSL
   become_user: '{{ irods_service_account }}'
   become: true
@@ -444,6 +444,25 @@
       value: '{{ irods_ssl_verify_server }}'
     - key: 'irods_client_server_policy'
       value: 'CS_NEG_REQUIRE'
+
+
+- name: Ensure iRODS server is configured to use TLS for server-to-server connections
+  become_user: '{{ irods_service_account }}'
+  become: true
+  # noqa fqcn[action]
+  irods_config:
+    path: '/etc/irods/server_config.json'
+    key: '{{ item.key }}'
+    key_separator: '/'
+    value: '{{ item.value }}'
+  with_items:
+    - key: 'tls_client/ca_certificate_file'
+      value: '/etc/irods/{{ openssl_crt_signed_and_chain }}'
+    - key: 'tls_client/ca_certificate_path'
+      value: '{{ openssl_certs_dir }}'
+    - key: 'tls_client/verify_server'
+      value: '{{ irods_ssl_verify_server }}'
+  notify: Restart iRODS
 
 
 - name: Ensure iRODS is configured to use database
