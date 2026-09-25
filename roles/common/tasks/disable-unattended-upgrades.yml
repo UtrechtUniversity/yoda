@@ -1,11 +1,6 @@
 ---
 # copyright Utrecht University
 
-- name: Collect package facts
-  ansible.builtin.package_facts:
-    manager: auto
-
-
 - name: Ensure unattended-upgrades service has been stopped and disabled
   ansible.builtin.service:
     name: unattended-upgrades
