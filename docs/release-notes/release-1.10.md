@@ -1,4 +1,9 @@
 ---
+parent: Release Notes
+title: v1.10
+nav_order: 88
+---
+
 # Release Notes - Yoda v1.10
 
 Version: 1.10

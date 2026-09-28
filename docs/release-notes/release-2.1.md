@@ -1,7 +1,7 @@
 ---
 parent: Release Notes
 title: v2.1
-nav_order: 87
+nav_order: 86
 ---
 # Release Notes - Yoda v2.1
 
