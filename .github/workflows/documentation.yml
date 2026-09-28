@@ -3,7 +3,7 @@ name: Documentation
 on:
   push:
     branches:
-    - development
+    - '*'
     paths:
     - 'docs/**'
     - '.github/workflows/documentation.yml'
@@ -67,3 +67,4 @@ jobs:
         access_token: ${{ secrets.ACCESS_TOKEN }}
         branch: gh-pages
         folder: docs/_site
+      if: github.ref == 'refs/heads/development'
