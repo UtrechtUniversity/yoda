@@ -10,3 +10,8 @@ development_credentials.yml
 # Vagrant stuff
 /.vagrant
 vagrant/ssh/ssh - Shortcut.lnk
+
+# Documentation temporary files
+docs/lc.config
+docs/linkchecker.ini
+docs/_site
