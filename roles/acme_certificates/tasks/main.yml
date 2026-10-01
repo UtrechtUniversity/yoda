@@ -5,6 +5,10 @@
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 
+- name: Determine the DNS names this host's certificate must cover
+  ansible.builtin.include_tasks: san-names.yml
+
+
 - name: Install pinned Certbot in a virtual environment
   ansible.builtin.include_tasks: install_certbot.yml
 
@@ -26,7 +30,7 @@
 
 
 - name: Generate certificate if it  doesn't exist yet # noqa no-changed-when
-  ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email {{ acme_certificates_email_contact }} -d {{ yoda_portal_fqdn }}"
+  ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email {{ acme_certificates_email_contact }} -d {{ acme_certificates_san_names | join(' -d ') }}"
   when:
     - acme_certificates_issue_certificate | bool
     - not letsencrypt_fullchain.stat.exists
