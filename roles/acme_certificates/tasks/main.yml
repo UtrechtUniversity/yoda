@@ -25,7 +25,7 @@
 
 
 - name: Generate certificate if it  doesn't exist yet # noqa no-changed-when
-  ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email {{ acme_certificates_email_contact }} -d {{ yoda_portal_fqdn }}"
+  ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email {{ acme_certificates_email_contact }} -d {{ yoda_portal_fqdn }} --eab-kid {{eab_kid}} --eab-hmac-key {{eab_hmac_key}}"
   when: not letsencrypt_fullchain.stat.exists
 
 
