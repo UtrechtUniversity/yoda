@@ -1,8 +1,10 @@
 ---
 # copyright Utrecht University
 
-# Derive the list of DNS names this host's certificate must cover.
-# UU security policy IS 20.001 forbids wildcard certificates.
+# Derive the list of DNS names (SANs) this host's certificate must cover.
+# UU security policy IS 20.001 forbids wildcard certificates. Hence we use
+# constants derived from ansible variable 'group_names'. And the group_names
+# are derived from the hosts file per each playbook (e.g, allinone, full)
 
 
 - name: Derive the SANs the certificate must cover

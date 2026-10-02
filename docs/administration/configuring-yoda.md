@@ -172,7 +172,7 @@ yoda_rulesets_pregen_data_dir     | Path for storing pregenerated data for Yoda.
 
 Variable                           | Description
 -----------------------------------|---------------------------------------------
-enable_acme_certificates           | Whether to install Certbot for ACME certificate (boolean, default value: true).
+enable_acme_certificates           | Whether to install Certbot and use ACME certificate (boolean, default value: false).
 acme_certificates_certbot_version  | Version of Certbot to install (default: 5.8.0). 
 
 ### Generic logging configuration
