@@ -56,7 +56,7 @@ _ils() {
   else
       ilspath="$(ipwd)/${dirname}"
   fi
-  list=$(ils "$ilspath" | sed '/^[^ ]/d; s/^\s*//; s@^C.*/\(.*\)@\1/@' 2>/dev/null)
+  list=$(ils "$ilspath" | sed '/^[^ ]/d; s/^\s*//; s@^C.*/\(.*\)@\1/@' 2>/dev/null | _escape_compgen_words)
 
   # Count the number of arguments that are not options
   # (that do not begin by a dash)
@@ -87,13 +87,22 @@ _ils() {
   fi
 }
 
+# Escapes each line of standard input, so that it can be safely passed as
+# to "compgen -W" without shell expansion.
+_escape_compgen_words() {
+  local line
+  while IFS= read -r line; do
+    printf '%q\n' "$line"
+  done
+}
+
 _complete_user() {
   local cur prev tmp
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE != 'rodsgroup'")
+  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE != 'rodsgroup'" | _escape_compgen_words)
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -104,7 +113,7 @@ _complete_group() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE = 'rodsgroup'")
+  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE = 'rodsgroup'" | _escape_compgen_words)
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -115,7 +124,7 @@ _complete_resource() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=$(iquest --no-page "%s" "SELECT RESC_NAME")
+  tmp=$(iquest --no-page "%s" "SELECT RESC_NAME" | _escape_compgen_words)
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
@@ -126,7 +135,7 @@ _complete_zone() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=$(iquest --no-page '%s' 'SELECT ZONE_NAME')
+  tmp=$(iquest --no-page '%s' 'SELECT ZONE_NAME' | _escape_compgen_words)
 
   COMPREPLY=( $(compgen -W "$tmp" "$cur") )
 }
