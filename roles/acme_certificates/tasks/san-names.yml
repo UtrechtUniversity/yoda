@@ -1,0 +1,38 @@
+---
+# copyright Utrecht University
+
+# Derive the list of DNS names (SANs) this host's certificate must cover.
+# UU security policy IS 20.001 forbids wildcard certificates. Hence we use
+# constants derived from ansible variable 'group_names'. And the group_names
+# are derived from the hosts file per each playbook (e.g, allinone, full)
+
+
+- name: Derive the SANs the certificate must cover
+  ansible.builtin.set_fact:
+    acme_certificates_san_names: >-
+      {{
+        (
+            ( [yoda_portal_fqdn]    if 'portals'   in group_names else [] )
+          + ( [yoda_public_fqdn]    if 'publics'   in group_names else [] )
+          + ( [yoda_eus_fqdn,
+               eus_api_fqdn]        if 'eus'       in group_names else [] )
+          + ( [irods_icat_fqdn]     if 'icats'     in group_names else [] )
+          + ( [irods_resource_fqdn | default('')]
+                                      if 'resources' in group_names else [] )
+          + ( [yoda_davrods_fqdn,
+               yoda_davrods_anonymous_fqdn]
+                if ('davrods' in group_names)
+                   or ('portals' in group_names
+                       and 'davrods' not in group_names)
+                else [] )
+        )
+        | reject('equalto', '') | unique | sort
+      }}
+  when: acme_certificates_san_names | default([]) | length == 0
+
+
+- name: Report the derived certificate names
+  ansible.builtin.debug:
+    msg: >-
+      {{ inventory_hostname }} needs {{ acme_certificates_san_names | length }}
+      name(s): {{ acme_certificates_san_names | join(', ') | default('(none)', true) }}
