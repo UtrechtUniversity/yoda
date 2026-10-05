@@ -18,7 +18,7 @@ Released: TBA
 -
 
 ### Other changes
-- GoCommands: update to v0.12.4
+- GoCommands: update to v0.12.5
 - Mailpit: update to v1.31.1
 
 ### Known issues
