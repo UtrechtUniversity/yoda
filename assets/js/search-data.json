@@ -1898,7 +1898,7 @@
   },"271": {
     "doc": "v2.2",
     "title": "What’s new",
-    "content": "Changes affecting functionality for data stewards and researchers . - . Changes affecting technical administrators . - . Other changes . | GoCommands: update to v0.12.4 | Mailpit: update to v1.31.1 | . Known issues . | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python (irods/irods_rule_engine_plugin_python#54) | . ",
+    "content": "Changes affecting functionality for data stewards and researchers . - . Changes affecting technical administrators . - . Other changes . | GoCommands: update to v0.12.5 | Mailpit: update to v1.31.1 | . Known issues . | Deadlock in msiDataObjRepl &amp; msiDataObjCopy when called from Python (irods/irods_rule_engine_plugin_python#54) | . ",
     "url": "/yoda/release-notes/release-2.2.html#whats-new",
     
     "relUrl": "/release-notes/release-2.2.html#whats-new"
