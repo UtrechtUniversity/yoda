@@ -19,7 +19,7 @@ Released: TBA
 
 ### Other changes
 - GoCommands: update to v0.12.5
-- Mailpit: update to v1.31.1
+- Mailpit: update to v1.31.4
 
 ### Known issues
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python ([irods/irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54))
