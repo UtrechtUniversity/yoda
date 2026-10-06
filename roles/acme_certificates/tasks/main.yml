@@ -45,10 +45,19 @@
     - not letsencrypt_fullchain.stat.exists
 
 
+- name: Install the certificate deploy hook
+  ansible.builtin.template:
+    src: renew-deploy-hook.sh.j2
+    dest: "{{ acme_certificates_deploy_hook }}"
+    owner: root
+    group: root
+    mode: '0750'
+
+
 - name: Add cronjob for Certbot renewal
   ansible.builtin.cron:
     name: Certbot automatic renewal
-    job: "sudo certbot renew --quiet --pre-hook 'systemctl stop {{ apache_service_name }}' --post-hook 'systemctl start {{ apache_service_name }}'"
+    job: "sudo certbot renew --quiet --pre-hook 'systemctl stop {{ apache_service_name }}' --post-hook 'systemctl start {{ apache_service_name }}' --deploy-hook {{ acme_certificates_deploy_hook }}"
     minute: 25
     hour: 0,12
   when: acme_certificates_issue_certificate | bool

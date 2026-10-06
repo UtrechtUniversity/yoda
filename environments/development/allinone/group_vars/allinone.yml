@@ -88,6 +88,7 @@ enable_portal_caching: true
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
 irods_database_password: irodsdev          # The password for the iRODS database username
+enable_pgbouncer: true                     # Use PgBouncer connection pooling in front of PostgreSQL
 irods_zone: tempZone                       # The name of the iRODS Zone
 irods_icat_fqdn: combined.yoda.test        # iRODS iCAT fully qualified domain name (FQDN)
 irods_database_fqdn: combined.yoda.test    # iRODS database fully qualified domain name (FQDN)

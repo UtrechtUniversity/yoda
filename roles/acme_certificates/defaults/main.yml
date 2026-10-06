@@ -32,3 +32,6 @@ acme_certificates_certbot_venv_dir: '/opt/certbot'
 
 # The DNS names the certificate must cover.
 acme_certificates_san_names: []
+
+# Script that Certbot runs to restart services after a successful cert renewal.
+acme_certificates_deploy_hook: /usr/local/sbin/yoda-cert-deploy

@@ -1,0 +1,84 @@
+#!/bin/bash
+# {{ ansible_managed }}
+#
+# Certbot deploy hook: the hook is used to trigger actions after the renewal 
+# of the ACME certificates. 
+# 
+# In summary
+# service             copy actions              signal       
+# apache              None                      reload
+# Postgrasql          cert and key              reload
+# pgbouncer           cert and key              reload
+# irods               key                       nothing (and the new connection works)
+ 
+# Not -e: some cmds such as cmp return non-zero.
+set -uo pipefail
+
+LEAF='{{ openssl_certs_dir }}/{{ openssl_crt_signed }}'
+KEY='{{ openssl_private_dir }}/{{ openssl_key_signed }}'
+rc=0
+
+# Log into stdout and stderr
+log()  { printf '%s\n' "$*"; }
+fail() { rc=1; printf 'ERROR: %s\n' "$*" >&2; }
+
+[ -r "$LEAF" ] || { fail "no certificate at $LEAF"; exit 1; }
+[ -r "$KEY" ]  || { fail "no private key at $KEY"; exit 1; }
+
+# Copy, while keeping the destination's existing owner and mode.
+sync_file() {
+    local src="$1" dst="$2" owner mode
+    [ -e "$dst" ] || return 0
+    cmp -s "$src" "$dst" && return 0
+    owner="$(stat -c '%U:%G' "$dst")"
+    mode="$(stat -c '%a' "$dst")"
+    if install -m "$mode" -o "${owner%%:*}" -g "${owner##*:}" "$src" "$dst"; then
+        log "refreshed $dst"
+    else
+        fail "could not refresh $dst"
+    fi
+}
+
+# Apache was down before the hook which is expected.
+reload_unit() {
+    local unit="$1"
+    systemctl is-active --quiet "$unit" || { log "skipped $unit (not running)"; return 0; }
+    systemctl reload "$unit" && log "reloaded $unit" || fail "could not reload $unit"
+}
+
+log "certificate replaced; refreshing services on $(hostname -f)"
+
+# Certbot writes into /etc/letsencrypt, but Yoda reads own private directory
+# The RENEWED_LINEAGE is unset when the manual replacement of certificate
+# was done. Hence, below is the guard in case of manual replacement.
+if [ -n "${RENEWED_LINEAGE:-}" ]; then
+    sync_file "$RENEWED_LINEAGE/fullchain.pem" '{{ openssl_certs_dir }}/{{ openssl_crt_signed_and_chain }}'
+    sync_file "$RENEWED_LINEAGE/fullchain.pem" "$LEAF"
+    sync_file "$RENEWED_LINEAGE/chain.pem"     '{{ openssl_certs_dir }}/{{ openssl_chain }}'
+    sync_file "$RENEWED_LINEAGE/privkey.pem"   "$KEY"
+fi
+
+# PostgreSQL's cofig directory
+# Ubuntu: /etc/postgresql/<version>/main
+# RHEL: /var/lib/pgsql/<version>/data.
+for dir in /etc/postgresql/*/main /var/lib/pgsql/*/data; do
+    [ -d "$dir" ] || continue
+    sync_file "$LEAF" "$dir/{{ openssl_crt_signed }}"
+    sync_file "$KEY"  "$dir/{{ openssl_key_signed }}"
+done
+
+sync_file "$LEAF" '/etc/pgbouncer/{{ openssl_crt_signed }}'
+sync_file "$KEY"  '/etc/pgbouncer/{{ openssl_key_signed }}'
+
+# Somehow iRODS only needs the key.
+sync_file "$KEY" '/etc/irods/{{ openssl_key_signed }}'
+
+reload_unit '{{ apache_service_name }}'
+
+for unit in $(systemctl list-units --plain --no-legend 'postgresql@*' 'postgresql-*' | awk '{print $1}'); do
+    reload_unit "$unit"
+done
+
+reload_unit pgbouncer
+
+exit "$rc"
