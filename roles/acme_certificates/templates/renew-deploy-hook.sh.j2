@@ -1,16 +1,16 @@
 #!/bin/bash
 # {{ ansible_managed }}
 #
-# Certbot deploy hook: the hook is used to trigger actions after the renewal 
-# of the ACME certificates. 
-# 
+# Certbot deploy hook: the hook is used to trigger actions after the renewal
+# of the ACME certificates.
+#
 # In summary
-# service             copy actions              signal       
+# service             copy actions              signal
 # apache              None                      reload
 # Postgrasql          cert and key              reload
 # pgbouncer           cert and key              reload
 # irods               key                       nothing (and the new connection works)
- 
+
 # Not -e: some cmds such as cmp return non-zero.
 set -uo pipefail
 
@@ -39,7 +39,7 @@ sync_file() {
     fi
 }
 
-# Apache was down before the hook which is expected.
+# Reload services, and for apache,  the renewal cron stops Apache so Certbot can bind port 80
 reload_unit() {
     local unit="$1"
     systemctl is-active --quiet "$unit" || { log "skipped $unit (not running)"; return 0; }
@@ -58,7 +58,7 @@ if [ -n "${RENEWED_LINEAGE:-}" ]; then
     sync_file "$RENEWED_LINEAGE/privkey.pem"   "$KEY"
 fi
 
-# PostgreSQL's cofig directory
+# PostgreSQL's config directory
 # Ubuntu: /etc/postgresql/<version>/main
 # RHEL: /var/lib/pgsql/<version>/data.
 for dir in /etc/postgresql/*/main /var/lib/pgsql/*/data; do
