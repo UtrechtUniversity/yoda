@@ -17,32 +17,30 @@
   ansible.builtin.stat:
     path: "/etc/letsencrypt/live/{{ yoda_portal_fqdn }}/fullchain.pem"
   register: letsencrypt_fullchain
-  when: acme_certificates_issue_certificate | bool
+
+
+- name: Determine whether a certificate must be requested
+  ansible.builtin.set_fact:
+    acme_certificates_must_issue: "{{ acme_certificates_issue_certificate | bool and not letsencrypt_fullchain.stat.exists }}"
 
 
 - name: Ensure Apache is stopped
   ansible.builtin.service:
     name: "{{ apache_service_name }}"
     state: stopped
-  when:
-    - acme_certificates_issue_certificate | bool
-    - not letsencrypt_fullchain.stat.exists
+  when: acme_certificates_must_issue
 
 
 - name: Generate certificate if it  doesn't exist yet # noqa no-changed-when
   ansible.builtin.command: "certbot certonly --standalone --noninteractive --agree-tos --email {{ acme_certificates_email_contact }} -d {{ acme_certificates_san_names | join(' -d ') }}"
-  when:
-    - acme_certificates_issue_certificate | bool
-    - not letsencrypt_fullchain.stat.exists
+  when: acme_certificates_must_issue
 
 
 - name: Ensure Apache is started
   ansible.builtin.service:
     name: "{{ apache_service_name }}"
     state: started
-  when:
-    - acme_certificates_issue_certificate | bool
-    - not letsencrypt_fullchain.stat.exists
+  when: acme_certificates_must_issue
 
 
 - name: Install the certificate deploy hook
