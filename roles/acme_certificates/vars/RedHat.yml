@@ -6,4 +6,8 @@ openssl_certs_dir: '/etc/pki/tls/certs'
 
 apache_service_name: httpd
 
-acme_certificates_certbot_package: python-certbot-apache
+# Certbot 5 requires Python >= 3.10; Alma9's default python is 3.9
+acme_certificates_python_packages:
+  - python3.12
+  - python3-packaging
+acme_certificates_python: python3.12
