@@ -28,6 +28,22 @@
     mode: '0750'
 
 
+- name: Set SELinux context for session dir
+  community.general.sefcontext:
+    target: "{{ flask_session_file_dir }}"
+    setype: httpd_sys_rw_content_t
+    state: present
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+
+
+# Only running when context changed works unreliably, so just
+# run always when SELinux is enabled.
+- name: Ensure selinux context is enforced on session files
+  ansible.builtin.command: "restorecon -r '{{ flask_session_file_dir }}'"
+  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  changed_when: false
+
+
 - name: Configure cronjob to clean up session directory
   become_user: "{{ yoda_deployment_user }}"
   become: true
