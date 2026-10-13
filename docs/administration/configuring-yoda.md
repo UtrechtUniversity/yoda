@@ -168,6 +168,15 @@ yoda_portal_monitor_signal_file   | Path to the signal file for the portal monit
 yoda_portal_monitor_output_dir    | Path for the portal monitoring thread to log technical support information to if the signal file is present. Default value: /tmp. Note that the portal uses a private /tmp directory, rather than the global one.
 yoda_rulesets_pregen_data_dir     | Path for storing pregenerated data for Yoda. It needs to be accessible to the irods user. Default value: /var/lib/irods/yoda-pregenerated-data
 
+### ACME certificate configuration
+
+Variable                           | Description
+-----------------------------------|---------------------------------------------
+enable_acme_certificates           | Whether to install Certbot for ACME certificate (boolean, default value: true).
+acme_certificates_certbot_version  | Version of Certbot to install (default: 5.8.0). 
+eab_kid                            | Key identifier of External Account Binding
+eab_hmac_key                       | HMAC key of External Account Binding (Format: base64url)
+
 ### Generic logging configuration
 
 Variable                           | Description
