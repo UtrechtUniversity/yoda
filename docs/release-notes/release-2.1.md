@@ -32,9 +32,9 @@ Released: 3 July 2026
 ### Other changes
 - iRODS: upgrade to v5.0.2
 - Python-irodsclient: update to v3.3.0
-- GoCommands: update to v0.12.3
+- GoCommands: update to v0.12.4
 - Flask and dependencies: update to v3.1.3
-- Mailpit: update to v1.30.6
+- Mailpit: update to v1.31.4
 
 ### Known issues
 - Deadlock in msiDataObjRepl & msiDataObjCopy when called from Python ([irods/irods_rule_engine_plugin_python#54](https://github.com/irods/irods_rule_engine_plugin_python/issues/54))
@@ -68,14 +68,14 @@ To view what files were changed from the defaults, run `git diff`.
 
 2. After ensuring the configurations are stored safely in another folder, reset the Yoda folder using `git stash` or when you want to delete all changes made: `git reset --hard`.
 
-3. Check out the `v2.1.2` tag of the Yoda Git repository:
+3. Check out the `v2.1.3` tag of the Yoda Git repository:
 ```bash
-git checkout v2.1.2
+git checkout v2.1.3
 ```
 
-4. Set the Yoda version to `v2.1.2` in the configuration:
+4. Set the Yoda version to `v2.1.3` in the configuration:
 ```yaml
-yoda_version: v2.1.2
+yoda_version: v2.1.3
 ```
 
 5. If the old configuration contained an iRODS authentication scheme setting, update it to use `pam_password`. Example:
