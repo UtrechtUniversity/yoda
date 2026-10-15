@@ -12,6 +12,41 @@
     state: present
 
 
+- name: Upload custom pg_hba.conf file for PGBouncer
+  ansible.builtin.copy:
+    src: pg_hba.conf
+    dest: "{{ pgbouncer_config_path }}/pg_hba.conf"
+    owner: postgres
+    group: postgres
+    mode: '0644'
+  notify: Restart PgBouncer
+
+
+- name: Check whether PgBouncer user list exists
+  ansible.builtin.stat:
+    path: "{{ pgbouncer_config_path }}/userlist.txt"
+  register: pgbouncer_userlist_stat
+
+
+- name: Retrieve current PgBouncer user list
+  ansible.builtin.slurp:
+    src: "{{ pgbouncer_config_path }}/userlist.txt"
+  register: pgbouncer_userlist
+  when: pgbouncer_userlist_stat.stat.exists
+
+
+# Keep the existing postgres password if userlist.txt already has an entry for it,
+# otherwise generate a random 128-bit hexadecimal password.
+- name: Determine PgBouncer postgres user password
+  ansible.builtin.set_fact:
+    pgbouncer_postgres_password: >-
+      {{ pgbouncer_userlist.content | default('') | b64decode
+         | regex_findall('^"postgres"[ \t]+"([^"]*)"', multiline=True)
+         | first
+         | default(lookup('ansible.builtin.password', '/dev/null', chars=['0123456789abcdef'], length=32), true) }}
+  no_log: true
+
+
 - name: Ensure PgBouncer user list configuration is present
   ansible.builtin.template:
     src: userlist.txt.j2
