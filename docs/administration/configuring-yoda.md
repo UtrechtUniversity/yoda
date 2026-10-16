@@ -349,6 +349,13 @@ postgresql_log_line_prefix             | Format of log message prefix in the Pos
 postgresql_log_min_duration_statement  | Minimum number of milliseconds for slow query logging (default: -1 / disabled)
 postgresql_log_autovacuum_min_duration | Minimum number of milliseconds for logging slow autovacuum actions (default: -1 / disabled)
 postgresql_autovacuum_max_workers      | Maximum number of autovacuum worker processes (default: 3)
+postgresql_autovacuum_vacuum_cost_limit | Cost limit for autovacuum, shared by all autovacuum workers. Higher values let autovacuum process tables faster, at the expense of more I/O load. A value of -1 means that the regular vacuum_cost_limit (200) is used. Default value: -1
+postgresql_autovacuum_vacuum_scale_factor | Fraction of table size that needs to be updated or deleted (in addition to a fixed threshold) before autovacuum vacuums a table. Large databases may need a lower value. Default value: 0.2
+postgresql_autovacuum_vacuum_insert_scale_factor | Fraction of table size that needs to be inserted (in addition to a fixed threshold) before autovacuum vacuums a table. Large databases may need a lower value. Default value: 0.2
+postgresql_autovacuum_analyze_scale_factor | Fraction of table size that needs to be changed (in addition to a fixed threshold) before autovacuum analyzes a table to update query planner statistics. Large databases may need a lower value. Default value: 0.1
+postgresql_max_parallel_workers        | Maximum number of worker processes that can be used for parallel operations, such as parallel queries and parallel index builds. Cannot be higher than max_worker_processes. Default value: same as postgresql_max_worker_processes (8)
+postgresql_max_wal_size                | Maximum size that the write-ahead log can grow to between automatic checkpoints. Write-heavy environments may need a higher value to avoid frequent checkpoints. Default value: 1GB
+postgresql_min_wal_size                | Minimum size of the write-ahead log. As long as WAL disk usage stays below this value, old WAL files are recycled rather than removed. Default value: 80MB
 postgresql_timezone                    | Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam.
 
 ### PgBouncer configuration
