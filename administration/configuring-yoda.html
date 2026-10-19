@@ -1229,6 +1229,34 @@ particular threshold.</p>
       <td>Maximum number of autovacuum worker processes (default: 3)</td>
     </tr>
     <tr>
+      <td>postgresql_autovacuum_vacuum_cost_limit</td>
+      <td>Cost limit for autovacuum, shared by all autovacuum workers. Higher values let autovacuum process tables faster, at the expense of more I/O load. A value of -1 means that the regular vacuum_cost_limit (200) is used. Default value: -1</td>
+    </tr>
+    <tr>
+      <td>postgresql_autovacuum_vacuum_scale_factor</td>
+      <td>Fraction of table size that needs to be updated or deleted (in addition to a fixed threshold) before autovacuum vacuums a table. Large databases may need a lower value. Default value: 0.2</td>
+    </tr>
+    <tr>
+      <td>postgresql_autovacuum_vacuum_insert_scale_factor</td>
+      <td>Fraction of table size that needs to be inserted (in addition to a fixed threshold) before autovacuum vacuums a table. Large databases may need a lower value. Default value: 0.2</td>
+    </tr>
+    <tr>
+      <td>postgresql_autovacuum_analyze_scale_factor</td>
+      <td>Fraction of table size that needs to be changed (in addition to a fixed threshold) before autovacuum analyzes a table to update query planner statistics. Large databases may need a lower value. Default value: 0.1</td>
+    </tr>
+    <tr>
+      <td>postgresql_max_parallel_workers</td>
+      <td>Maximum number of worker processes that can be used for parallel operations, such as parallel queries and parallel index builds. Cannot be higher than max_worker_processes. Default value: same as postgresql_max_worker_processes (8)</td>
+    </tr>
+    <tr>
+      <td>postgresql_max_wal_size</td>
+      <td>Maximum size that the write-ahead log can grow to between automatic checkpoints. Write-heavy environments may need a higher value to avoid frequent checkpoints. Default value: 1GB</td>
+    </tr>
+    <tr>
+      <td>postgresql_min_wal_size</td>
+      <td>Minimum size of the write-ahead log. As long as WAL disk usage stays below this value, old WAL files are recycled rather than removed. Default value: 80MB</td>
+    </tr>
+    <tr>
       <td>postgresql_timezone</td>
       <td>Timezone that PostgreSQL uses. Defaults to Europe/Amsterdam.</td>
     </tr>
