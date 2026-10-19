@@ -46,12 +46,12 @@ COPY stage/pam_python3.so /tmp/pam_python3.so
 RUN mkdir /usr/lib/security
 RUN install -m 0755 -o root -g root /tmp/pam_python3.so  /usr/lib/security/pam_python3.so
 
-# Install PostgreSQL 15 for ODBC drivers, checks whether database container is up, as well as troubleshooting
+# Install PostgreSQL 18 for ODBC drivers, checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
 RUN apt-get update
-RUN apt-get -y install postgresql-15 unixodbc unixodbc-dev odbcinst python3-psycopg2 acl
+RUN apt-get -y install postgresql-18 unixodbc unixodbc-dev odbcinst python3-psycopg2 acl
 COPY odbc-settings.txt /tmp/odbc-settings.txt
 RUN odbcinst -i -d -r < /tmp/odbc-settings.txt
 

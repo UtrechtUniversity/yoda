@@ -22,12 +22,12 @@ RUN apt-get update
 # hadolint ignore=DL3033
 RUN apt-get install -y wget git netcat-traditional gnupg vim sudo
 
-# Install PostgreSQL 15 for checks whether database container is up, as well as troubleshooting
+# Install PostgreSQL 18 for checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
 RUN apt-get update
-RUN apt-get -y install postgresql-15 libpq-dev python3-psycopg2 acl
+RUN apt-get -y install postgresql-18 libpq-dev python3-psycopg2 acl
 
 # Install Python 3
 # hadolint ignore=DL3033
