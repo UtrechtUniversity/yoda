@@ -16,6 +16,8 @@ services:
     depends_on:
       - db
       - mailpit
+      - sram_mock
+      - datacite_mock
     build:
       context: ../images/yoda_irods_icat
     volumes:
@@ -131,6 +133,18 @@ services:
     environment:
       - MOCKNAME=datacite
       - MOCKFQDN=datacite-mock.yoda
+    build:
+      context: ../images/yoda_web_mock
+    restart: unless-stopped
+
+  sram_mock:
+    container_name: sram-mock.yoda
+    platform: linux/amd64
+    hostname: sram-mock.yoda
+    image: ghcr.io/utrechtuniversity/yoda-web-mock:development
+    environment:
+      - MOCKNAME=sram
+      - MOCKFQDN=sram-mock.yoda
     build:
       context: ../images/yoda_web_mock
     restart: unless-stopped
