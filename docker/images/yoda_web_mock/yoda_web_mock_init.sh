@@ -50,8 +50,8 @@ progress_update "Certificate data extracted"
 
 # Configure Vhost with right mock name and FQDN
 before_update "Configuring Vhost."
-perl -pi.bak -e '$mockname=$ENV{MOCKNAME}; s/MOCKNAME/$mockname/gee' /etc/apache2/sites-available/yoda-web-mock-vhost.conf
-perl -pi.bak -e '$mockfqdn=$ENV{MOCKNAME}; s/MOCKFQDN/$mockfqdn/gee' /etc/apache2/sites-available/yoda-web-mock-vhost.conf
+perl -pi.bak -e '$mockname=$ENV{MOCKNAME}; s/MOCKNAME/$mockname/g' /etc/apache2/sites-available/yoda-web-mock-vhost.conf
+perl -pi.bak -e '$mockfqdn=$ENV{MOCKFQDN}; s/MOCKFQDN/$mockfqdn/g' /etc/apache2/sites-available/yoda-web-mock-vhost.conf
 progress_update "Vhost configured."
 
 CURRENT_UID="$(id -u yodadeployment)"
