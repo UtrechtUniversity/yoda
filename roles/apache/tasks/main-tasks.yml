@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Ensure Apache webserver is installed
@@ -18,7 +18,7 @@
   ansible.builtin.package:
     name: mod_ssl
     state: present
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Allow public to ports for Apache in firewall
@@ -55,7 +55,7 @@
     dest: /etc/apache2/conf-available/other-vhosts-access-log.conf
     mode: '0644'
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Copy Apache ports configuration file (Ubuntu)
@@ -63,7 +63,7 @@
     src: ports.conf.noble
     dest: /etc/apache2/ports.conf
     mode: '0600'
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Copy Apache security configuration file (Ubuntu)
@@ -74,7 +74,7 @@
     group: root
     mode: '0644'
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Copy bad bots blocklist
@@ -92,7 +92,7 @@
     dest: "/etc/apache2/conf-enabled/bad_bots.conf"
     state: link
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian' and not ansible_check_mode
+  when: ansible_facts['os_family'] == 'Debian' and not ansible_check_mode
 
 
 - name: Ensure autoindex.conf is absent
@@ -102,7 +102,7 @@
   notify: Restart Apache webserver
   with_items:
     - /etc/httpd/conf.d/autoindex.conf
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Ensure unused Apache configurations are removed
@@ -114,7 +114,7 @@
     - /etc/httpd/conf.modules.d/00-lua.conf
     - /etc/httpd/conf.modules.d/01-cgi.conf
     - /etc/httpd/conf.modules.d/15-php.conf
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
@@ -127,7 +127,7 @@
     - headers
     - ssl
     - socache_shmcb
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Ensure Apache global SSL configuration is loaded (Ubuntu)
@@ -136,7 +136,7 @@
     dest: "/etc/apache2/mods-enabled/ssl.conf"
     state: link
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Configure Apache apparmor profile
@@ -147,7 +147,7 @@
     group: root
     mode: '0644'
   register: apache_apparmor
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Put Apache in AppArmor enforce mode
@@ -156,7 +156,7 @@
     apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
   notify: Restart Apache webserver
   changed_when: true
-  when: ansible_os_family == 'Debian' and apache_apparmor.changed
+  when: ansible_facts['os_family'] == 'Debian' and apache_apparmor.changed
 
 
 - name: Ensure Apache service is configured

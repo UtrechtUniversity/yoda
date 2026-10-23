@@ -39,7 +39,7 @@
   when: yoda_environment == "development"
 
 
-- name: Set Ansible FQDN fact for development
+- name: Set FQDN for development
   ansible.builtin.set_fact:
-    ansible_fqdn: "{{ inventory_hostname }}"
+    yoda_fqdn: "{{ inventory_hostname }}"
   when: yoda_environment == "development"

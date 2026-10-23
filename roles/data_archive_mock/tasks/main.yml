@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 # Next three tasks needed, otherwise selinux blocks running the service
@@ -11,7 +11,7 @@
     name: domain_can_mmap_files
     state: true
     persistent: true
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Upload custom SELinux module for data archive mock
@@ -22,7 +22,7 @@
     group: root
     mode: '0644'
   register: python_selinux
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 # Running as task instead of handler in order to prevent ordering issues
@@ -31,7 +31,7 @@
   ansible.builtin.command:
     cmd: semodule -i /root/da_server_custom.pp
   changed_when: false
-  when: ansible_os_family == 'RedHat' and not ansible_check_mode and python_selinux.changed
+  when: ansible_facts['os_family'] == 'RedHat' and not ansible_check_mode and python_selinux.changed
 
 
 - name: Ensure Data Archive mock service files are present

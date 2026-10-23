@@ -1,7 +1,7 @@
 # Copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Configure cronjob to update resource storage data
@@ -22,7 +22,7 @@
     name: "psutil==5.9.5"
     executable: "{{ irods_arb_pip3_location }}"
     extra_args: --user --break-system-packages
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Ensure psutil is installed
@@ -31,7 +31,7 @@
   ansible.builtin.pip:
     name: "psutil==5.9.5"
     executable: "{{ irods_arb_pip3_location }}"
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Ensure cryptography module for certificate verification is installed
