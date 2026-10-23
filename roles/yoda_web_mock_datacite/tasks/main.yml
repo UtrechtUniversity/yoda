@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Copy Yoda Web Mock for Datacite virtual host config for Apache
@@ -19,4 +19,4 @@
     dest: "{{ yoda_web_mock_datacite_site_enabled_config_dir }}//{{ yoda_web_mock_datacite_site_config_file }}"
     state: link
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'

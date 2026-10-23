@@ -72,7 +72,7 @@
       dest: "{{ postgresql_data_dir_old }}/conf.d"
       mode: "0755"
   when:
-    - ansible_os_family == 'Debian'
+    - ansible_facts['os_family'] == 'Debian'
     - postgresql_package_old in ansible_facts.packages
 
 
@@ -96,7 +96,7 @@
       mode: "0640"
   when:
     - not ansible_check_mode
-    - ansible_os_family == 'RedHat'
+    - ansible_facts['os_family'] == 'RedHat'
     - postgresql_package_old in ansible_facts.packages
 
 

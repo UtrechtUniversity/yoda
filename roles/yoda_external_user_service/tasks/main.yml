@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Ensure yodadeployment user exists
@@ -79,7 +79,7 @@
     name: httpd_unified
     state: true
     persistent: true
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Checkout Yoda External User Service source
@@ -127,7 +127,7 @@
     proto: tcp
     setype: http_port_t
     state: present
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
 
 
 - name: Allow public to API port for External User Service in firewall
@@ -267,12 +267,12 @@
     dest: "{{ yoda_external_user_service_site_enabled_config_dir }}//{{ yoda_external_user_service_site_config_file }}"
     state: link
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Restore SELinux contexts on EUS files
   ansible.builtin.command: 'restorecon -r /var/www/extuser'
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
   changed_when: false
 
 
@@ -283,4 +283,4 @@
     name: httpd_can_network_connect
     state: true
     persistent: true
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"

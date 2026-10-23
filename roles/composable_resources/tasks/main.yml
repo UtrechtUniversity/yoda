@@ -16,7 +16,7 @@
     and not enable_nfs_resource
     and 'vault_path' in item
     and 'host' in item
-    and item.host == ansible_fqdn
+    and item.host == ansible_facts['fqdn']
 
 
 - name: Ensure all resources exist

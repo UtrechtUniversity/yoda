@@ -5,14 +5,14 @@
   ansible.builtin.package:
     name: nfs-common
     state: present
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Ensure NFS utilities are installed (RedHat)
   ansible.builtin.package:
     name: nfs-utils
     state: present
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Ensure NFS mount points exist
@@ -23,7 +23,7 @@
     group: irods
     mode: '0755'
   loop: "{{ nfs_mounts | default([]) }}"
-  when: item.host == ansible_fqdn
+  when: item.host == ansible_facts['fqdn']
 
 
 - name: Ensure NFS shares are mounted and present in /etc/fstab
@@ -36,4 +36,4 @@
     dump: 0
     passno: 0
   loop: "{{ nfs_mounts | default([]) }}"
-  when: item.host == ansible_fqdn
+  when: item.host == ansible_facts['fqdn']
