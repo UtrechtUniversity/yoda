@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Ensure iRODS package versions are unlocked (EL)
@@ -19,7 +19,7 @@
       - "{{ irods_idp_package_old }}"
       - "{{ irods_esp_package_old }}"
     state: absent
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Ensure old iRODS packages are absent
