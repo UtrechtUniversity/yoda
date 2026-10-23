@@ -42,4 +42,5 @@
 - name: Set Ansible FQDN fact for development
   ansible.builtin.set_fact:
     ansible_fqdn: "{{ inventory_hostname }}"
+    cacheable: true
   when: yoda_environment == "development"

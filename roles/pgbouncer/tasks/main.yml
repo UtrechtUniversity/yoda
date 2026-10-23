@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}-pgsql{{ pgsql_version }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}-pgsql{{ pgsql_version }}.yml"
 
 
 - name: Ensure PgBouncer is installed
@@ -81,7 +81,7 @@
 
 - name: Ensure PgBouncer is configured
   ansible.builtin.template:
-    src: pgbouncer-{{ ansible_os_family }}.ini.j2
+    src: pgbouncer-{{ ansible_facts['os_family'] }}.ini.j2
     dest: "{{ pgbouncer_config_path }}/pgbouncer.ini"
     group: '{{ pgbouncer_user }}'
     owner: '{{ pgbouncer_user }}'
