@@ -5,14 +5,14 @@
   ansible.builtin.package:
     name: perl-DBD-Pg
     state: present
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Ensure postgresqltuner.pl dependencies are present
   ansible.builtin.package:
     name: libdbd-pg-perl
     state: present
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Ensure postgresqltuner.pl is present
