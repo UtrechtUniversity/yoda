@@ -51,7 +51,7 @@
       value: '0'
     - name: 'net.ipv4.conf.default.send_redirects'
       value: '0'
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Set parameters for kernel self-protection hardening
@@ -74,7 +74,7 @@
       value: '1'
     - name: 'net.core.bpf_jit_harden'
       value: '2'
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Set SUID parameter for kernel hardening
@@ -83,7 +83,7 @@
     value: '0'
     sysctl_set: true
     reload: true
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Set protected fifos parameter for kernel hardening
@@ -92,7 +92,7 @@
     value: '2'
     sysctl_set: true
     reload: true
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Blacklist unused file systems

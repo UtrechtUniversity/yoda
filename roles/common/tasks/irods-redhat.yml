@@ -8,4 +8,4 @@
     baseurl: https://packages.irods.org/yum/pool/el9/x86_64/
     gpgkey: https://packages.irods.org/irods-signing-key.asc
     gpgcheck: true
-  when: ansible_distribution_major_version == "9"
+  when: ansible_facts['distribution_major_version'] == "9"

@@ -9,7 +9,7 @@
       - python3-policycoreutils
       - python3-dnf-plugin-versionlock
     state: present
-  when: ansible_distribution_major_version == "9"
+  when: ansible_facts['distribution_major_version'] == "9"
 
 
 - name: Ensure basics (vim, bind-utils, etc.) are installed

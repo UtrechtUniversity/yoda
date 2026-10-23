@@ -7,17 +7,17 @@
 
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Setup PostgreSQL for RedHat family
   ansible.builtin.include_tasks: setup-redhat.yml
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Setup PostgreSQL for Debian family
   ansible.builtin.include_tasks: setup-debian.yml
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Ensure PostgreSQL directories exist
@@ -116,7 +116,7 @@
     state: enabled
     immediate: true
   notify: Restart firewall
-  when: (ansible_fqdn != irods_icat_fqdn)
+  when: (yoda_fqdn | default(ansible_facts['fqdn'])) != irods_icat_fqdn
 
 
 - name: Ensure private key file is available for PostgreSQL
@@ -143,7 +143,7 @@
 
 - name: Ensure PostgreSQL is configured
   ansible.builtin.template:
-    src: postgresql-{{ ansible_os_family }}.conf.j2
+    src: postgresql-{{ ansible_facts['os_family'] }}.conf.j2
     dest: "{{ postgresql_config_path }}/postgresql.conf"
     owner: postgres
     group: postgres

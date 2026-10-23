@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Check out rulesets without local patches from Github
@@ -100,7 +100,7 @@
     requirements: /etc/irods/yoda-ruleset/requirements.txt
     extra_args: --user --break-system-packages
     executable: "{{ yoda_rulesets_pip3_path }}"
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Install requirements for ruleset
@@ -109,7 +109,7 @@
   ansible.builtin.pip:
     requirements: /etc/irods/yoda-ruleset/requirements.txt
     executable: "{{ yoda_rulesets_pip3_path }}"
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Link ruleset directory

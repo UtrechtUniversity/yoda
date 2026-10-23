@@ -19,6 +19,6 @@ openssl_o: 'Utrecht University'
 openssl_c: 'NL'
 openssl_locality_name: 'Utrecht'
 
-certificate_domain: "{{ ansible_fqdn }}"
+certificate_domain: "{{ yoda_fqdn | default(ansible_facts['fqdn']) }}"
 
 acme_certificates_email_contact: l.r.westerhof@uu.nl

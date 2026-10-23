@@ -4,7 +4,7 @@
 - name: Install Mod-WSGI for Python (Ubuntu)
   ansible.builtin.apt:
     name: libapache2-mod-wsgi-py3
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Install Mod-WSGI for Python (EL)
@@ -12,7 +12,7 @@
     name:
       - mod-wsgi==5.0.2
     executable: /usr/bin/pip3.12
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Configure WSGI module in Apache
@@ -23,7 +23,7 @@
     group: root
     mode: '0644'
   notify: Restart Apache webserver
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Remove old WSGI configurations in Apache
@@ -31,7 +31,7 @@
     path: '{{ item }}'
     state: absent
   notify: Restart Apache webserver
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
   with_items:
     - /etc/httpd/conf.modules.d/10-wsgi.conf
     - /etc/httpd/conf.modules.d/10-wsgi-python3.conf
@@ -45,7 +45,7 @@
     group: root
     mode: '0644'
   register: python_selinux
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 # Running as task instead of handler in order to prevent ordering issues
@@ -54,4 +54,4 @@
   ansible.builtin.command:
     cmd: semodule -i /root/my-httpd.pp
   changed_when: false
-  when: ansible_os_family == 'RedHat' and not ansible_check_mode and python_selinux.changed
+  when: ansible_facts['os_family'] == 'RedHat' and not ansible_check_mode and python_selinux.changed

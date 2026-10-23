@@ -3,9 +3,9 @@
 
 - name: Install Python 3 for RedHat family
   ansible.builtin.include_tasks: install-redhat.yml
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Install Python 3 for Debian family
   ansible.builtin.include_tasks: install-debian.yml
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
