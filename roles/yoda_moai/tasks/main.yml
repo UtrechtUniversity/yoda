@@ -55,13 +55,20 @@
     creates: "{{ yoda_moai_home }}/yoda-moai/venv/bin/activate_this.py"
 
 
-- name: Upgrade pip and virtualenv in Yoda MOAI environment
+- name: Upgrade pip in Yoda MOAI environment
   become_user: '{{ yoda_moai_user }}'
   become: true
   ansible.builtin.pip:
-    name:
-      - pip==26.0.1
-      - virtualenv==20.28.0
+    requirements: "{{ python3_venv_pip_requirements }}"
+    extra_args: --require-hashes
+    executable: /var/www/moai/yoda-moai/venv/bin/pip3
+
+
+- name: Ensure virtualenv is installed in Yoda MOAI environment
+  become_user: '{{ yoda_moai_user }}'
+  become: true
+  ansible.builtin.pip:
+    name: virtualenv==20.28.0
     executable: /var/www/moai/yoda-moai/venv/bin/pip3
 
 

@@ -49,9 +49,9 @@ COPY --chown=yodadeployment:yodadeployment sram_mock.json /var/www/webmock/sram/
 COPY yoda-web-mock-vhost.conf /etc/apache2/sites-available/yoda-web-mock-vhost.conf
 RUN ln -s /etc/apache2/sites-available/yoda-web-mock-vhost.conf /etc/apache2/sites-enabled/yoda-web-mock-vhost.conf
 RUN virtualenv --python /usr/bin/python3 /var/www/webmock/venv && \
-    /var/www/webmock/venv/bin/pip3 install --no-cache-dir pip==25.0 && \
     /var/www/webmock/venv/bin/pip3 install --no-cache-dir virtualenv==20.28.0 && \
     /var/www/webmock/venv/bin/python3 -m virtualenv /var/www/webmock/venv && \
+    /var/www/webmock/venv/bin/pip3 install --no-cache-dir pip==26.2.2 && \
     /var/www/webmock/venv/bin/pip3 install --no-cache-dir -e /var/www/webmock/yoda-web-mock
 
 # Make copy of data on volumes that can optionally be bind mounted, so the container init script

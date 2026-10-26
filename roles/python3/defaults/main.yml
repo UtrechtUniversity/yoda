@@ -1,0 +1,7 @@
+---
+# copyright Utrecht University
+
+# pip version to use for Yoda virtual environments, we need to use a hash
+# because certificate validation may be compromised in older pip versions.
+python3_venv_pip_version: "26.2.2 --hash=sha256:fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70"
+python3_venv_pip_requirements: /usr/local/share/yoda/venv-pip-requirements.txt
