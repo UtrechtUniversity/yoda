@@ -81,8 +81,8 @@
   become_user: "{{ yoda_deployment_user }}"
   become: true
   ansible.builtin.pip:
-    name:
-      - pip==25.0
+    requirements: "{{ python3_venv_pip_requirements }}"
+    extra_args: --require-hashes
     executable: /var/www/yoda/venv/bin/pip3.12
 
 

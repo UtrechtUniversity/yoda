@@ -207,13 +207,11 @@
     creates: "/var/www/extuser/yoda-external-user-service/venv/bin/activate_this.py"
 
 
-- name: Upgrade pip and virtualenv in Yoda EUS virtual environment
+- name: Ensure virtualenv is installed in Yoda EUS virtual environment
   become_user: '{{ yoda_deployment_user }}'
   become: true
   ansible.builtin.pip:
-    name:
-      - pip==25.0
-      - virtualenv==20.28.0
+    name: virtualenv==20.28.0
     executable: /var/www/extuser/yoda-external-user-service/venv/bin/pip3
 
 
@@ -223,6 +221,16 @@
   ansible.builtin.command: "/var/www/extuser/yoda-external-user-service/venv/bin/python3 -m virtualenv /var/www/extuser/yoda-external-user-service/venv"
   args:
     creates: "/var/www/extuser/yoda-external-user-service/venv/bin/activate_this.py"
+
+
+# Upgrade pip after seeding, because virtualenv installs its own bundled pip version.
+- name: Upgrade pip in Yoda EUS virtual environment
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.pip:
+    requirements: "{{ python3_venv_pip_requirements }}"
+    extra_args: --require-hashes
+    executable: /var/www/extuser/yoda-external-user-service/venv/bin/pip3
 
 
 # Change detection in git repositories is unreliable in some Ansible versions, so we always

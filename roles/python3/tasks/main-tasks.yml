@@ -9,3 +9,22 @@
 - name: Install Python 3 for Debian family
   ansible.builtin.include_tasks: install-debian.yml
   when: ansible_facts['os_family'] == 'Debian'
+
+
+- name: Ensure directory for Yoda Python requirements exists
+  ansible.builtin.file:
+    path: "{{ python3_venv_pip_requirements | dirname }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+
+- name: Ensure hash-pinned pip requirements for virtual environments are present
+  ansible.builtin.copy:
+    content: |
+      pip=={{ python3_venv_pip_version }}
+    dest: "{{ python3_venv_pip_requirements }}"
+    owner: root
+    group: root
+    mode: '0644'
