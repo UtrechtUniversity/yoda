@@ -52,13 +52,11 @@
     creates: "/var/www/webmock/venv"
 
 
-- name: Upgrade pip and virtualenv in Yoda web mock environment
+- name: Ensure virtualenv is installed in Yoda web mock environment
   become_user: '{{ yoda_deployment_user }}'
   become: true
   ansible.builtin.pip:
-    name:
-      - pip==25.0
-      - virtualenv==20.28.0
+    name: virtualenv==20.28.0
     executable: /var/www/webmock/venv/bin/pip3.12
   when: not ansible_check_mode
 
@@ -69,6 +67,17 @@
   ansible.builtin.command: "/var/www/webmock/venv/bin/python3.12 -m virtualenv /var/www/webmock/venv"
   args:
     creates: "/var/www/webmock/venv/bin/activate_this.py"
+
+
+# Upgrade pip after seeding, because virtualenv installs its own bundled pip version.
+- name: Upgrade pip in Yoda web mock environment
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.pip:
+    requirements: "{{ python3_venv_pip_requirements }}"
+    extra_args: --require-hashes
+    executable: /var/www/webmock/venv/bin/pip3.12
+  when: not ansible_check_mode
 
 
 # Change detection in git repositories is unreliable in some Ansible versions, so we always
