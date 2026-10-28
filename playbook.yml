@@ -63,6 +63,8 @@
   roles:
     - common
     - certificates
+    - role: acme_certificates
+      when: enable_acme_certificates
 
 
 - name: Provision portal server
