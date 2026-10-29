@@ -127,7 +127,7 @@ RUN for script in admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh ad
 RUN for script in enable-indexing.sh disable-indexing.sh; \
     do install -m 0755 /etc/irods/yoda-ruleset/tools/${script} /var/lib/irods/msiExecCmd_bin/${script} ; \
     done && \
-    /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db test
+    bash -c 'echo test | /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db'
 COPY cronjob-revision-cleanup.sh /tmp/cronjob-revision-cleanup.sh
 RUN install -o irods -g irods -m 0755 /tmp/cronjob-revision-cleanup.sh /var/lib/irods/.irods/cronjob-revision-cleanup.sh
 COPY service_account.config /tmp/service_account.config
