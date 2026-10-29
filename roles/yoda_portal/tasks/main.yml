@@ -147,7 +147,7 @@
   ansible.builtin.template:
     src: "flask.cfg.j2"
     dest: "/var/www/yoda/flask.cfg"
-    mode: '0644'
+    mode: '0600'
     owner: "{{ yoda_deployment_user }}"
     group: "{{ yoda_deployment_user }}"
   no_log: true
