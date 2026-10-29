@@ -235,6 +235,10 @@ MONITOR_OUTPUT_DIR  = "/tmp"
 MONITOR_SIGNAL_FILE = "/var/www/yoda/show-tech.sig"
 
 FLASKCFG
+# Fix permissions
+chown yodadeployment:yodadeployment /var/www/yoda/flask.cfg
+chmod 600 /var/www/yoda/flask.cfg
+
 progress_update "Portal configured"
 
 # Start Apache
