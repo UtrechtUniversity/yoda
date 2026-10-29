@@ -123,12 +123,14 @@
   ansible.builtin.slurp:
     src: /var/www/yoda/flask_secret_key
   register: secret_key
+  no_log: true
   when: not ansible_check_mode
 
 
 - name: Store Flask secret key in variable
   ansible.builtin.set_fact:
     flask_secret_key: "{{ secret_key['content'] }}"
+  no_log: true
   when: not ansible_check_mode
 
 

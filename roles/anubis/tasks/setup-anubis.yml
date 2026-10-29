@@ -32,6 +32,7 @@
     dest: /etc/anubis/landingpages.env
     mode: '0644'
   notify: Restart Anubis (landingpages)
+  no_log: true
   when: (inventory_hostname in groups['publics'])
 
 
@@ -40,6 +41,7 @@
     src: yoda.landingpages.botPolicies.yaml.j2
     dest: /etc/anubis/yoda.landingpages.botPolicies.yaml
     mode: '0644'
+  no_log: true
   notify: Restart Anubis (landingpages)
 
 

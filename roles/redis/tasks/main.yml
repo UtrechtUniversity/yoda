@@ -53,6 +53,7 @@
     mode: "0644"
     owner: redis
     group: redis
+  no_log: true
   notify: Restart Redis
 
 
