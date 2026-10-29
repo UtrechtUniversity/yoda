@@ -173,7 +173,7 @@ from yoda_eus import app
 application = app.create_app(config_filename="/var/www/extuser/flask.cfg", enable_api=True)
 YODA_EUS_API
 # Fix permissions
-chown yodadeployment:yodadeployment /var/www/extuser/flask.cfg
+chown -R yodadeployment:yodadeployment /var/www/extuser
 chmod 600 /var/www/extuser/flask.cfg
 
 progress_update "Portal configured"
