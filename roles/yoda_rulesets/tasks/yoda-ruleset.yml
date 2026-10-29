@@ -757,6 +757,7 @@
   ansible.builtin.command: '/etc/irods/yoda-ruleset/tools/setup_tokens.sh {{ token_database }} {{ token_database_password }}'
   args:
     creates: "{{ token_database }}"
+  no_log: true
   when: enable_tokens
 
 
