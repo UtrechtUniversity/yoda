@@ -173,7 +173,7 @@ from yoda_eus import app
 application = app.create_app(config_filename="/var/www/extuser/flask.cfg", enable_api=True)
 YODA_EUS_API
 
-progress_update "Portal configured"
+progress_update "EUS configured"
 
 # Start Apache
 touch /container_initialized
