@@ -102,7 +102,6 @@ before_update "Configuring the EUS"
 cd /var/www/yoda
 YODA_COMMIT=$(git rev-parse HEAD)
 cd /var/www/extuser/yoda-external-user-service
-git config --global --add safe.directory /var/www/extuser/yoda-external-user-service
 EXTUSER_COMMIT=$(git rev-parse HEAD)
 SECRET_KEY=$(openssl rand -base64 32)
 cat << FLASKCFG > /var/www/extuser/flask.cfg
