@@ -42,7 +42,8 @@ RUN useradd yodadeployment && \
     mkdir /var/www/yoda /var/www/portal-sessions && \
     chown yodadeployment:yodadeployment /var/www/yoda /var/www/portal-sessions && \
     git clone --branch $YODA_PORTAL_BRANCH $YODA_PORTAL_REPO /var/www/yoda && \
-    git config --global --add safe.directory /var/www/yoda
+    git config --global --add safe.directory /var/www/yoda && \
+    chown -R yodadeployment:yodadeployment /var/www/yoda
 
 # Create Yoda Portal config folder
 RUN mkdir -p /var/www/yoda/config && \

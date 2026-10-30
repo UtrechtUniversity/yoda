@@ -102,6 +102,7 @@ before_update "Configuring the EUS"
 cd /var/www/yoda
 YODA_COMMIT=$(git rev-parse HEAD)
 cd /var/www/extuser/yoda-external-user-service
+git config --global --add safe.directory /var/www/extuser/yoda-external-user-service
 EXTUSER_COMMIT=$(git rev-parse HEAD)
 SECRET_KEY=$(openssl rand -base64 32)
 cat << FLASKCFG > /var/www/extuser/flask.cfg
@@ -173,7 +174,7 @@ from yoda_eus import app
 application = app.create_app(config_filename="/var/www/extuser/flask.cfg", enable_api=True)
 YODA_EUS_API
 # Fix permissions
-chown -R yodadeployment:yodadeployment /var/www/extuser
+chown yodadeployment:yodadeployment /var/www/extuser/flask.cfg
 chmod 600 /var/www/extuser/flask.cfg
 
 progress_update "Portal configured"

@@ -54,8 +54,8 @@ RUN useradd yodadeployment && \
     chown yodadeployment:yodadeployment /var/www/yoda /var/www/extuser /var/www/extuser/sessions && \
     git clone --branch $YODA_EUS_BRANCH $YODA_EUS_REPO /var/www/extuser/yoda-external-user-service && \
     git clone --branch $YODA_PORTAL_BRANCH $YODA_PORTAL_REPO /var/www/yoda && \
-    git config --global --add safe.directory /var/www/yoda && \
-    git config --global --add safe.directory /var/www/yoda-external-user-service
+    chown -R yodadeployment:yodadeployment /var/www/extuser /var/www/yoda && \
+    git config --global --add safe.directory /var/www/yoda
 COPY yoda-external-user-service-vhost.conf /etc/apache2/sites-available/003-yoda-eus-vhost.conf
 RUN ln -s /etc/apache2/sites-available/003-yoda-eus-vhost.conf /etc/apache2/sites-enabled/003-yoda-eus-vhost.conf
 RUN virtualenv --python /usr/bin/python3  /var/www/extuser/yoda-external-user-service/venv && \

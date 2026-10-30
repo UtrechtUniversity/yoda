@@ -236,7 +236,7 @@ MONITOR_SIGNAL_FILE = "/var/www/yoda/show-tech.sig"
 
 FLASKCFG
 # Fix permissions
-chown -R yodadeployment:yodadeployment /var/www/yoda
+chown yodadeployment:yodadeployment /var/www/yoda/flask.cfg
 chmod 600 /var/www/yoda/flask.cfg
 
 progress_update "Portal configured"
