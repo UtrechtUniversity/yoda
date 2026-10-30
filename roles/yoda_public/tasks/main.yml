@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Copy Yoda Public Apache configuration
@@ -28,7 +28,7 @@
 
 
 - name: Copy Anubis listener configuration for landing pages (Ubuntu)
-  when: enable_anubis and ansible_os_family == 'Debian'
+  when: enable_anubis and ansible_facts['os_family'] == 'Debian'
   ansible.builtin.template:
     src: yoda-public-anubis-listener.conf.j2
     dest: "{{ yoda_public_conf_avail_dir }}/{{ yoda_public_anubis_listener_config_file }}"
@@ -39,7 +39,7 @@
 
 
 - name: Copy Anubis listener configuration (EL)
-  when: enable_anubis and ansible_os_family == 'RedHat'
+  when: enable_anubis and ansible_facts['os_family'] == 'RedHat'
   ansible.builtin.template:
     src: yoda-public-anubis-listener.conf.j2
     dest: "{{ yoda_public_site_config_dir }}/{{ yoda_public_anubis_listener_config_file }}"
@@ -57,7 +57,7 @@
   notify: Restart Apache webserver
   with_items:
     - "{{ yoda_public_anubis_listener_config_file }}"
-  when: not ansible_check_mode and enable_anubis and ansible_os_family == 'Debian'
+  when: not ansible_check_mode and enable_anubis and ansible_facts['os_family'] == 'Debian'
 
 
 - name: Ensure Apache modules used by Yoda are enabled (Ubuntu)
@@ -66,7 +66,7 @@
     dest: "{{ yoda_public_site_enabled_config_dir }}//{{ yoda_public_site_config_file }}"
     state: link
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Allow public to port for Yoda Public in firewall
@@ -84,7 +84,7 @@
     proto: tcp
     setype: http_port_t
     state: present
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Allow public to port for Anubis Redis in firewall
@@ -103,4 +103,4 @@
     proto: tcp
     setype: http_port_t
     state: present
-  when: enable_anubis and ansible_os_family == 'RedHat'
+  when: enable_anubis and ansible_facts['os_family'] == 'RedHat'

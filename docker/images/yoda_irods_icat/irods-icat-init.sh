@@ -146,7 +146,7 @@ sudo -u irods bash -c "source /var/lib/irods/sqlcipher3-venv/bin/activate; pip3 
 progress_update "Installing pysqlcipher3 for token authentication script"
 
 before_update "Creating DAP token database"
-sudo -iu irods /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db test
+sudo -iu irods bash -c "echo test | /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db"
 progress_update "Creating DAP token database"
 
 before_update "Building ruleset"

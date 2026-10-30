@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Ensure iRODS resource plugin S3 is installed
@@ -19,7 +19,7 @@
     mode: '0644'
     owner: 'root'
     group: 'root'
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Ensure S3 credentials file is present
@@ -29,3 +29,4 @@
     owner: '{{ irods_service_account }}'
     group: '{{ irods_service_account }}'
     mode: '0600'
+  no_log: true

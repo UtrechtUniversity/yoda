@@ -16,6 +16,8 @@ services:
     depends_on:
       - db
       - mailpit
+      - datacite_mock
+      - sram_mock
     build:
       context: ../images/yoda_irods_icat
     restart: unless-stopped
@@ -35,27 +37,27 @@ services:
     container_name: db.yoda
     platform: linux/amd64
     hostname: db.yoda
-    image: postgres:15
+    image: postgres:18
     command: postgres -c standard_conforming_strings=off
     environment:
       - POSTGRES_DB=ICAT
       - POSTGRES_USER=irodsdb
       - POSTGRES_PASSWORD=yodadev
     volumes:
-      - icat_pg_data:/var/lib/postgresql/data
+      - icat_pg_data:/var/lib/postgresql
     restart: unless-stopped
 
   extuserdb:
     container_name: extuserdb.yoda
     platform: linux/amd64
     hostname: extuserdb.yoda
-    image: postgres:15
+    image: postgres:18
     environment:
       - POSTGRES_DB=extuser
       - POSTGRES_USER=extuser
       - POSTGRES_PASSWORD=yodadev
     volumes:
-      - extuser_pg_data:/var/lib/postgresql/data
+      - extuser_pg_data:/var/lib/postgresql
     restart: unless-stopped
 
   portal:
@@ -153,5 +155,21 @@ services:
     volumes:
       - type: bind
         source: ./v_yoda_web_mock_datacite
+        target: /var/www/webmock/yoda-web-mock
+    restart: unless-stopped
+
+  sram_mock:
+    container_name: sram-mock.yoda
+    platform: linux/amd64
+    hostname: sram-mock.yoda
+    image: ghcr.io/utrechtuniversity/yoda-web-mock:development
+    environment:
+      - MOCKNAME=sram
+      - MOCKFQDN=sram-mock.yoda
+    build:
+      context: ../images/yoda_web_mock
+    volumes:
+      - type: bind
+        source: ./v_yoda_web_mock_sram
         target: /var/www/webmock/yoda-web-mock
     restart: unless-stopped

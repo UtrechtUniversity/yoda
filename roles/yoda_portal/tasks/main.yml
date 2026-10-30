@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Ensure yodadeployment user exists
@@ -33,14 +33,14 @@
     target: "{{ flask_session_file_dir }}"
     setype: httpd_sys_rw_content_t
     state: present
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
 
 
 # Only running when context changed works unreliably, so just
 # run always when SELinux is enabled.
 - name: Ensure selinux context is enforced on session files
   ansible.builtin.command: "restorecon -r '{{ flask_session_file_dir }}'"
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
   changed_when: false
 
 
@@ -81,8 +81,8 @@
   become_user: "{{ yoda_deployment_user }}"
   become: true
   ansible.builtin.pip:
-    name:
-      - pip==25.0
+    requirements: "{{ python3_venv_pip_requirements }}"
+    extra_args: --require-hashes
     executable: /var/www/yoda/venv/bin/pip3.12
 
 
@@ -109,7 +109,7 @@
     exit
   args:
     creates: /etc/httpd/conf.modules.d/02-wsgi.conf
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Generate Flask secret key
@@ -123,12 +123,14 @@
   ansible.builtin.slurp:
     src: /var/www/yoda/flask_secret_key
   register: secret_key
+  no_log: true
   when: not ansible_check_mode
 
 
 - name: Store Flask secret key in variable
   ansible.builtin.set_fact:
     flask_secret_key: "{{ secret_key['content'] }}"
+  no_log: true
   when: not ansible_check_mode
 
 
@@ -171,7 +173,7 @@
     dest: "{{ yoda_portal_site_enabled_config_dir }}//{{ yoda_portal_site_config_file }}"
     state: link
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Set SELinux context for shared libraries
@@ -180,7 +182,7 @@
     setype: httpd_sys_script_exec_t
     state: present
   register: filescontext
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
 
 
 - name: Ensure Yoda portal wsgi files are accessible
@@ -199,7 +201,7 @@
 # run always when SELinux is enabled.
 - name: Ensure selinux context is enforced on shared libraries
   ansible.builtin.command: 'restorecon -r /var/www/yoda/venv'
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
   changed_when: false
 
 
@@ -208,4 +210,4 @@
     name: httpd_can_network_connect
     state: true
     persistent: true
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled" and enable_open_search
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled" and enable_open_search

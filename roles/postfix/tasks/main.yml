@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
 
 
 - name: Check required parameters Postfix role
@@ -141,7 +141,7 @@
     name: httpd_can_sendmail
     state: true
     persistent: true
-  when: ansible_distribution == "RedHat" and ansible_selinux.status == "enabled"
+  when: ansible_facts['distribution'] == "RedHat" and ansible_facts['selinux']['status'] == "enabled"
 
 
 - name: Configure default Postfix AppArmor profiles
@@ -181,7 +181,7 @@
     - usr.sbin.sendmail.postfix
   register: postfix_apparmor_default
   notify: Reload Apparmor
-  when: not ansible_check_mode and ansible_os_family == "Debian"
+  when: not ansible_check_mode and ansible_facts['os_family'] == "Debian"
 
 
 - name: Configure custom Postfix AppArmor profiles
@@ -204,7 +204,7 @@
       dest: 'usr.sbin.sendmail'
   register: postfix_apparmor_custom
   notify: Reload Apparmor
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 
 - name: Enforce Postfix AppArmor profiles
@@ -215,7 +215,7 @@
     aa-enforce /etc/apparmor.d/usr.sbin.sendmail
   notify: Restart Postfix
   changed_when: false
-  when: ansible_os_family == "Debian" and (postfix_apparmor_default.changed or postfix_apparmor_custom.changed)
+  when: ansible_facts['os_family'] == "Debian" and (postfix_apparmor_default.changed or postfix_apparmor_custom.changed)
 
 
 - name: Map Postfix relayhost credentials file

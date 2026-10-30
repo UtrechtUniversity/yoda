@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Ensure yodadeployment user exists
@@ -57,6 +57,7 @@
   ansible.builtin.shell: openssl rand -base64 32 > /var/www/extuser/flask_secret_key
   args:
     creates: /var/www/extuser/flask_secret_key
+  no_log: true
   when: not ansible_check_mode and flask_secret_key is not defined
 
 
@@ -64,6 +65,7 @@
   ansible.builtin.slurp:
     src: /var/www/extuser/flask_secret_key
   register: secret_key
+  no_log: true
   when: not ansible_check_mode and flask_secret_key is not defined
 
 
@@ -79,7 +81,7 @@
     name: httpd_unified
     state: true
     persistent: true
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Checkout Yoda External User Service source
@@ -127,7 +129,7 @@
     proto: tcp
     setype: http_port_t
     state: present
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
 
 
 - name: Allow public to API port for External User Service in firewall
@@ -207,13 +209,11 @@
     creates: "/var/www/extuser/yoda-external-user-service/venv/bin/activate_this.py"
 
 
-- name: Upgrade pip and virtualenv in Yoda EUS virtual environment
+- name: Ensure virtualenv is installed in Yoda EUS virtual environment
   become_user: '{{ yoda_deployment_user }}'
   become: true
   ansible.builtin.pip:
-    name:
-      - pip==25.0
-      - virtualenv==20.28.0
+    name: virtualenv==20.28.0
     executable: /var/www/extuser/yoda-external-user-service/venv/bin/pip3
 
 
@@ -223,6 +223,16 @@
   ansible.builtin.command: "/var/www/extuser/yoda-external-user-service/venv/bin/python3 -m virtualenv /var/www/extuser/yoda-external-user-service/venv"
   args:
     creates: "/var/www/extuser/yoda-external-user-service/venv/bin/activate_this.py"
+
+
+# Upgrade pip after seeding, because virtualenv installs its own bundled pip version.
+- name: Upgrade pip in Yoda EUS virtual environment
+  become_user: '{{ yoda_deployment_user }}'
+  become: true
+  ansible.builtin.pip:
+    requirements: "{{ python3_venv_pip_requirements }}"
+    extra_args: --require-hashes
+    executable: /var/www/extuser/yoda-external-user-service/venv/bin/pip3
 
 
 # Change detection in git repositories is unreliable in some Ansible versions, so we always
@@ -267,12 +277,12 @@
     dest: "{{ yoda_external_user_service_site_enabled_config_dir }}//{{ yoda_external_user_service_site_config_file }}"
     state: link
   notify: Restart Apache webserver
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Restore SELinux contexts on EUS files
   ansible.builtin.command: 'restorecon -r /var/www/extuser'
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
   changed_when: false
 
 
@@ -283,4 +293,4 @@
     name: httpd_can_network_connect
     state: true
     persistent: true
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"

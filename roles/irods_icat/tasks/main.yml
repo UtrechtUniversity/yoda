@@ -2,7 +2,7 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Populate service facts
@@ -37,7 +37,7 @@
     mode: '0644'
     owner: 'root'
     group: 'root'
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Ensure iRODS packages have version locks (EL)
@@ -48,7 +48,7 @@
       - "{{ irods_prep_package_new }}"
       # irods-runtime package is locked by irods_runtime role instead
     state: present
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Ensure iRODS indexing plugins are present
@@ -67,7 +67,7 @@
     mode: '0644'
     owner: 'root'
     group: 'root'
-  when: ansible_os_family == 'Debian' and enable_open_search
+  when: ansible_facts['os_family'] == 'Debian' and enable_open_search
 
 
 - name: Ensure iRODS indexing plugin packages have version locks (EL)
@@ -75,7 +75,7 @@
     name:
       - "{{ irods_idp_package_new }}"
       - "{{ irods_esp_package_new }}"
-  when: not ansible_check_mode and enable_open_search and ansible_os_family == 'RedHat'
+  when: not ansible_check_mode and enable_open_search and ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Flush handlers to restart iRODS if needed
@@ -85,6 +85,7 @@
 - name: Generate zone key
   ansible.builtin.command: 'openssl rand -hex 16'
   register: zone_key
+  no_log: true
   args:
     creates: /etc/irods/service_account.config
 
@@ -92,6 +93,7 @@
 - name: Generate negotiation key
   ansible.builtin.command: 'openssl rand -hex 16'
   register: negotiation_key
+  no_log: true
   args:
     creates: /etc/irods/service_account.config
 
@@ -99,6 +101,7 @@
 - name: Generate password salt
   ansible.builtin.command: 'openssl rand -hex 16'
   register: password_salt
+  no_log: true
   args:
     creates: /etc/irods/service_account.config
 
@@ -113,6 +116,7 @@
       key: '{{ negotiation_key.stdout }}'
     - fact: irods_password_salt
       key: '{{ password_salt.stdout }}'
+  no_log: true
   when: not ansible_check_mode
 
 
@@ -177,6 +181,7 @@
     dest: /etc/irods/setup_irods_provider.json
     mode: '0644'
     force: false
+  no_log: true
   when: not irods_config.stat.exists and not ansible_check_mode
 
 
@@ -491,6 +496,7 @@
   ansible.builtin.set_fact:
     irods_zone_key: "{{ (server_config['content'] | b64decode | from_json).zone_key }}"
     irods_negotiation_key: "{{ (server_config['content'] | b64decode | from_json).negotiation_key }}"
+  no_log: true
   when: not ansible_check_mode
 
 
@@ -541,7 +547,7 @@
   become: true
   ansible.builtin.pip:
     name: "python_irodsclient=={{ python_irodsclient_version }}"
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Ensure Yoda anonymous user exists

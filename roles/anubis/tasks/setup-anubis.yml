@@ -2,17 +2,17 @@
 # copyright Utrecht University
 
 - name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 
 - name: Install Anubis (EL)
   ansible.builtin.import_tasks: install-redhat.yml
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 
 - name: Install Anubis (Ubuntu)
   ansible.builtin.import_tasks: install-ubuntu.yml
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Ensure Anubis env file is present for DavRods
@@ -32,6 +32,7 @@
     dest: /etc/anubis/landingpages.env
     mode: '0644'
   notify: Restart Anubis (landingpages)
+  no_log: true
   when: (inventory_hostname in groups['publics'])
 
 
@@ -40,6 +41,7 @@
     src: yoda.landingpages.botPolicies.yaml.j2
     dest: /etc/anubis/yoda.landingpages.botPolicies.yaml
     mode: '0644'
+  no_log: true
   notify: Restart Anubis (landingpages)
 
 
@@ -69,7 +71,7 @@
     - "proxy_http"
     - "rewrite"
     - "substitute"
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 
 - name: Allow Anubis to make network connections
@@ -77,7 +79,7 @@
     name: httpd_can_network_connect
     state: true
     persistent: true
-  when: ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
 
 
 - name: Allow Anubis to listen on ports for DavRods
@@ -89,7 +91,7 @@
   notify: Restart Anubis (davrods)
   when:
     - inventory_hostname in groups.get('portals', []) or inventory_hostname in groups.get('davrods', [])
-    - ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+    - ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
     - yoda_davrods_anonymous_enabled is not defined or yoda_davrods_anonymous_enabled
 
 
@@ -102,7 +104,7 @@
   notify: Restart Anubis (landingpages)
   when:
     - inventory_hostname in groups.get('publics', [])
-    - ansible_os_family == 'RedHat' and ansible_selinux.status == "enabled"
+    - ansible_facts['os_family'] == 'RedHat' and ansible_facts['selinux']['status'] == "enabled"
 
 
 - name: Ensure Anubis is running and enabled for Davrods

@@ -46,12 +46,12 @@ COPY stage/pam_python3.so /tmp/pam_python3.so
 RUN mkdir /usr/lib/security
 RUN install -m 0755 -o root -g root /tmp/pam_python3.so  /usr/lib/security/pam_python3.so
 
-# Install PostgreSQL 15 for ODBC drivers, checks whether database container is up, as well as troubleshooting
+# Install PostgreSQL 18 for ODBC drivers, checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
 RUN apt-get update
-RUN apt-get -y install postgresql-15 unixodbc unixodbc-dev odbcinst python3-psycopg2 acl
+RUN apt-get -y install postgresql-18 unixodbc unixodbc-dev odbcinst python3-psycopg2 acl
 COPY odbc-settings.txt /tmp/odbc-settings.txt
 RUN odbcinst -i -d -r < /tmp/odbc-settings.txt
 
@@ -109,7 +109,7 @@ COPY irods_environment.json /var/lib/irods/.irods/irods_environment.json
 # Install and configure rulesets
 RUN git clone -b ${YODA_RULESET_BRANCH} ${YODA_RULESET_REPO} /etc/irods/yoda-ruleset
 # hadolint ignore=DL3004
-RUN sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages pip==25.0 && \
+RUN sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages pip==26.2.2 && \
     sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages -r /etc/irods/yoda-ruleset/requirements.txt && \
     sudo -u irods python3 -m pip install --user --break-system-packages python-irodsclient==3.3.0 && \
     sudo -u irods python3 -m pip install --user --break-system-packages psutil==6.1.0
@@ -127,7 +127,7 @@ RUN for script in admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh ad
 RUN for script in enable-indexing.sh disable-indexing.sh; \
     do install -m 0755 /etc/irods/yoda-ruleset/tools/${script} /var/lib/irods/msiExecCmd_bin/${script} ; \
     done && \
-    /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db test
+    bash -c 'echo test | /etc/irods/yoda-ruleset/tools/setup_tokens.sh /etc/irods/yoda-ruleset/accesstokens.db'
 COPY cronjob-revision-cleanup.sh /tmp/cronjob-revision-cleanup.sh
 RUN install -o irods -g irods -m 0755 /tmp/cronjob-revision-cleanup.sh /var/lib/irods/.irods/cronjob-revision-cleanup.sh
 COPY service_account.config /tmp/service_account.config

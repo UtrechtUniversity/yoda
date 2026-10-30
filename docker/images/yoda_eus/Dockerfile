@@ -22,12 +22,12 @@ RUN apt-get update
 # hadolint ignore=DL3033
 RUN apt-get install -y wget git netcat-traditional gnupg vim sudo
 
-# Install PostgreSQL 15 for checks whether database container is up, as well as troubleshooting
+# Install PostgreSQL 18 for checks whether database container is up, as well as troubleshooting
 # hadolint ignore=DL3033
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
 RUN apt-get update
-RUN apt-get -y install postgresql-15 libpq-dev python3-psycopg2 acl
+RUN apt-get -y install postgresql-18 libpq-dev python3-psycopg2 acl
 
 # Install Python 3
 # hadolint ignore=DL3033
@@ -59,9 +59,9 @@ RUN useradd yodadeployment && \
 COPY yoda-external-user-service-vhost.conf /etc/apache2/sites-available/003-yoda-eus-vhost.conf
 RUN ln -s /etc/apache2/sites-available/003-yoda-eus-vhost.conf /etc/apache2/sites-enabled/003-yoda-eus-vhost.conf
 RUN virtualenv --python /usr/bin/python3  /var/www/extuser/yoda-external-user-service/venv && \
-    /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir pip==25.0 && \
     /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir virtualenv==20.28.0 && \
     /var/www/extuser/yoda-external-user-service/venv/bin/python3 -m virtualenv /var/www/extuser/yoda-external-user-service/venv && \
+    /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir pip==26.2.2 && \
     /var/www/extuser/yoda-external-user-service/venv/bin/pip3 install --no-cache-dir /var/www/extuser/yoda-external-user-service
 
 # Make copy of data on volumes that can optionally be bind mounted, so the container init script
