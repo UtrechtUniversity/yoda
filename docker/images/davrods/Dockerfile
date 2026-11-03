@@ -14,29 +14,35 @@ ENV DAVRODS_APT_URL="https://github.com/UtrechtUniversity/davrods/releases/downl
 ENV DAVRODS_APT_PACKAGE="davrods-5.0.2-1.5.4.deb"
 ENV DEBIAN_FRONTEND="noninteractive"
 
-# Update packages
-RUN apt-get update
+# Install packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+                    wget \
+                    vim \
+                    sudo \
+                    netcat-openbsd \
+                    gcc \
+                    python3 \
+                    python3-dev \
+                    python3-pip \
+                    python3-virtualenv \
+                    python3-wheel \
+                    python3.12-venv \
+                    apache2 \
+                    apache2-dev \
+                    gnupg \
+                    openssl && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install common tools
-# hadolint ignore=DL3033
-RUN apt-get install -y wget vim sudo netcat-openbsd
-
-# Install Python 3
-# hadolint ignore=DL3033
-RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
-                       python3-wheel python3.12-venv
-
-# Install and configure Apache
-# hadolint ignore=DL3033
-RUN apt-get install -y apache2 apache2-dev openssl
+# Set up Apache
 RUN ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 COPY apache2.conf /etc/apache2/apache2.conf
 COPY ssl.conf /etc/apache2/mods-available/ssl.conf
-RUN ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
-RUN ln -s /etc/apache2/mods-available/dav.load /etc/apache2/mods-enabled/dav.load
-RUN ln -s /etc/apache2/mods-available/dav_fs.load /etc/apache2/mods-enabled/dav_fs.load
-RUN ln -s /etc/apache2/mods-available/dav_lock.load /etc/apache2/mods-enabled/dav_lock.load
-RUN ln -s /etc/apache2/mods-available/davrods.load /etc/apache2/mods-enabled/davrods.load
+RUN ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load && \
+    ln -s /etc/apache2/mods-available/dav.load /etc/apache2/mods-enabled/dav.load && \
+    ln -s /etc/apache2/mods-available/dav_fs.load /etc/apache2/mods-enabled/dav_fs.load && \
+    ln -s /etc/apache2/mods-available/dav_lock.load /etc/apache2/mods-enabled/dav_lock.load && \
+    ln -s /etc/apache2/mods-available/davrods.load /etc/apache2/mods-enabled/davrods.load
 
 # Install iRODS components: iCommands and runtime
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -46,14 +52,15 @@ RUN useradd -d /var/lib/irods irods && \
     wget -qO - "$APT_IRODS_REPO_SIGNING_KEY_LOC" | apt-key add - && \
     echo "$APT_REPO_CONFIG" | tee /etc/apt/sources.list.d/irods.list && \
     apt-get update && \
-    apt-cache policy irods-runtime && \
-    apt-cache policy irods-icommands && \
-    apt-get -y install irods-runtime=${IRODS_PACKAGE_VERSION} irods-icommands=${IRODS_PACKAGE_VERSION}
+    apt-get install -y --no-install-recommends \
+                       irods-runtime=${IRODS_PACKAGE_VERSION} \
+                       irods-icommands=${IRODS_PACKAGE_VERSION} \
+                       libjansson4 \
+                       libboost-all-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install DavRODS and its dependencies
-# hadolint ignore=DL3033
-RUN apt-get -y install libboost-all-dev libjansson4 && \
-    mkdir /download && \
+RUN mkdir /download && \
     wget -q "$DAVRODS_APT_URL/$DAVRODS_APT_PACKAGE" -O "/download/$DAVRODS_APT_PACKAGE" && \
     dpkg -i "/download/$DAVRODS_APT_PACKAGE"
 

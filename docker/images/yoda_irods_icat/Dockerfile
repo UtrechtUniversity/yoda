@@ -21,59 +21,75 @@ ENV DEBIAN_FRONTEND="noninteractive"
 EXPOSE 1247
 EXPOSE 20000-20199
 
-# Update packages
-RUN apt-get update
-
-# Install common tools
-# hadolint ignore=DL3033
-RUN apt-get install -y wget git sudo netcat-traditional gcc vim
+# Install packages
+RUN apt-get update && \
+    apt-get -y --no-install-recommends --upgrade install gnupg wget ca-certificates && \
+    bash -c "wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -" && \
+    bash -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list' && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+                    git \
+                    sudo \
+                    netcat-traditional \
+                    gcc \
+                    make \
+                    vim \
+                    rsyslog \
+                    python3 \
+                    python3-dev \
+                    python3-pip \
+                    python3.12-venv \
+                    python3-virtualenv \
+                    python3-wheel \
+                    python3-magic \
+                    python3-requests \
+                    postgresql-client-18 \
+                    unixodbc \
+                    unixodbc-dev \
+                    odbcinst \
+                    python3-psycopg2 \
+                    acl \
+                    libcurl4t64 \
+                    sqlcipher \
+                    libsqlcipher1 \
+                    libsqlcipher-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install rsyslog and configure it for logging iRODS messages
-# hadolint ignore=DL3033
-RUN apt-get install -y rsyslog
 COPY stage/irods-log-transform.py /usr/local/bin/irods-log-transform.py
 RUN chmod +x /usr/local/bin/irods-log-transform.py
 COPY rsyslogd-irods.conf /etc/rsyslog.d/40-irods.conf
 COPY rsyslog.conf /etc/rsyslog.conf
 RUN mkdir /var/lib/irods-log && chown syslog /var/lib/irods-log && chmod 0750 /var/lib/irods-log
 
-# Install Python 3.12
-# hadolint ignore=DL3033
-RUN apt-get install -y gcc python3 python3-dev python3-pip python3.12-venv python3-virtualenv python3-wheel python3-magic python3-requests
-
 # Upload PAM Python library
 COPY stage/pam_python3.so /tmp/pam_python3.so
 RUN mkdir /usr/lib/security
 RUN install -m 0755 -o root -g root /tmp/pam_python3.so  /usr/lib/security/pam_python3.so
 
-# Install PostgreSQL 18 for ODBC drivers, checks whether database container is up, as well as troubleshooting
-# hadolint ignore=DL3033
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
-RUN apt-get update
-RUN apt-get -y install postgresql-18 unixodbc unixodbc-dev odbcinst python3-psycopg2 acl
+# Configure PostgreSQL 18
 COPY odbc-settings.txt /tmp/odbc-settings.txt
 RUN odbcinst -i -d -r < /tmp/odbc-settings.txt
 
 # Install iRODS
 # hadolint ignore=DL3033,DL3047
 RUN useradd -d /var/lib/irods irods && \
-    wget -qO - "$APT_IRODS_REPO_SIGNING_KEY_LOC" | apt-key add - && \
-    echo "$APT_REPO_CONFIG" | tee /etc/apt/sources.list.d/irods.list && \
+    bash -c 'wget -qO - "$APT_IRODS_REPO_SIGNING_KEY_LOC" | apt-key add -' && \
+    bash -c 'echo "$APT_REPO_CONFIG" | tee /etc/apt/sources.list.d/irods.list' && \
     apt-get update && \
     for package in irods-runtime irods-icommands irods-server irods-database-plugin-postgres; \
     do echo "Installing package ${package} and its dependencies ..."; \
-       apt-get -y install "$package=${IRODS_VERSION}" ; \
+       apt-get -y install --no-install-recommends "$package=${IRODS_VERSION}" ; \
     done && \
     for package in irods-rule-engine-plugin-python irods-rule-engine-plugin-indexing irods-rule-engine-plugin-elasticsearch; \
     do echo "Installing package ${package} and its dependencies ..."; \
-       apt-get -y install "$package=${IRODS_PLUS_VERSION}";  \
-       done
+       apt-get -y install --no-install-recommends "$package=${IRODS_PLUS_VERSION}";  \
+       done && \
+    apt-get -y --no-install-recommends install libc++1 libjansson4 && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install iRODS microservices for Yoda
-# hadolint ignore=DL3033
-RUN apt-get -y install libc++1 libjansson4 && \
-    wget -q "https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/${IRODS_MSVC_IRODS_VERSION}_${IRODS_SUDO_MSVC_VERSION}/irods-sudo-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_SUDO_MSVC_VERSION}-1.deb" && \
+RUN wget -q "https://github.com/UtrechtUniversity/irods-sudo-microservices/releases/download/${IRODS_MSVC_IRODS_VERSION}_${IRODS_SUDO_MSVC_VERSION}/irods-sudo-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_SUDO_MSVC_VERSION}-1.deb" && \
     dpkg -i irods-sudo-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_SUDO_MSVC_VERSION}-1.deb && \
     rm irods-sudo-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_SUDO_MSVC_VERSION}-1.deb && \
     wget -q "https://github.com/UtrechtUniversity/irods-uu-microservices/releases/download/v${IRODS_UU_MSVC_VERSION}/irods-uu-microservices-${IRODS_MSVC_IRODS_VERSION}-${IRODS_UU_MSVC_VERSION}-${IRODS_UU_MSVC_VERSION_RELEASE}.deb" && \
@@ -90,7 +106,6 @@ COPY stage/irods_completion.sh /tmp/irods_completion.sh
 RUN install -m 0644 -o root -g root /tmp/irods_completion.sh /etc/profile.d/irods_completion.sh
 
 # Set up PAM authentication
-# hadolint ignore=DL3033
 COPY external-auth.py /tmp/external-auth.py
 COPY token-auth.py /tmp/token-auth.py
 RUN install -m 0750 -o root -g irods /tmp/external-auth.py /usr/local/bin/external-auth.py && \
@@ -113,15 +128,14 @@ RUN git clone -b ${YODA_RULESET_BRANCH} ${YODA_RULESET_REPO} /etc/irods/yoda-rul
 # hadolint ignore=DL3004
 RUN sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages pip==26.2.2 && \
     sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages -r /etc/irods/yoda-ruleset/requirements.txt && \
-    sudo -u irods python3 -m pip install --user --break-system-packages python-irodsclient==3.3.0 && \
-    sudo -u irods python3 -m pip install --user --break-system-packages psutil==6.1.0
+    sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages python-irodsclient==3.3.0 && \
+    sudo -u irods python3 -m pip --no-cache-dir install --user --break-system-packages psutil==6.1.0
 
 COPY core.py.template /etc/irods/core.py
 COPY core.re.template /etc/irods/core.re
 COPY core.dvm.template /etc/irods/core.dvm
 COPY core.fnm.template /etc/irods/core.fnm
 
-RUN apt-get -y install sqlcipher libsqlcipher1 libsqlcipher-dev
 RUN for script in admin-remove-orphan-vault-if-empty.sh admin-vaultactions.sh admin-vault-deaccession.sh \
     admin-vaultingest.sh admin-copy-to-research.sh admin-datarequestactions.sh admin-datarequest-temp-write-permission.sh ; \
     do install -m 0755 /etc/irods/yoda-ruleset/tools/admin/${script} /var/lib/irods/msiExecCmd_bin/${script} ; \
@@ -149,9 +163,9 @@ RUN chown -R irods:irods /var/lib/irods /etc/irods
 # Pre-build ruleset dependencies
 RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && git clone --branch "$YODA_RULESET_BRANCH" "$YODA_RULESET_REPO" /var/lib/irods/yoda-ruleset
 # hadolint ignore=DL3004
-RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && sudo -u irods pip3 install --user --break-system-packages attrs==24.2.0
+RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && sudo -u irods pip3 install --no-cache-dir --user --break-system-packages attrs==24.2.0
 # hadolint ignore=DL3004
-RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && sudo -u irods pip3 install --user --break-system-packages -r /var/lib/irods/yoda-ruleset/requirements.txt
+RUN test "$PRE_BUILD_RULESET_DEPENDENCIES" = "yes" && sudo -u irods pip3 install --no-cache-dir --user --break-system-packages -r /var/lib/irods/yoda-ruleset/requirements.txt
 
 # Create test accounts
 # hadolint ignore=SC2016
@@ -172,7 +186,6 @@ RUN install -m 0755 -o irods -g irods /var/lib/irods/securecopy.sh /var/lib/irod
 RUN chsh --shell /bin/bash irods
 
 # Install init script
-# hadolint ignore=DL3033
 COPY irods-icat-init.sh /var/lib/irods/scripts/irods-icat-init.sh
 RUN chmod 0755 /var/lib/irods/scripts/irods-icat-init.sh
 

@@ -11,37 +11,40 @@ ENV DEBIAN_FRONTEND="noninteractive"
 EXPOSE 80
 EXPOSE 443
 
-# Update packages
-RUN apt-get update
+# Install packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+                    wget \
+                    git \
+                    netcat-traditional \
+                    sudo \
+                    vim \
+                    gcc \
+                    python3 \
+                    python3-dev \
+                    python3-pip \
+                    python3-virtualenv \
+                    python3-wheel \
+                    python3.12-venv \
+                    virtualenv \
+                    apache2 \
+                    apache2-dev \
+                    openssl \
+                    libapache2-mod-wsgi-py3 \
+                    sqlite3 \
+                    libsqlite3-dev && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install common tools
-# hadolint ignore=DL3033
-RUN apt-get install -y wget git netcat-traditional sudo vim
-
-# Install Python 3
-# hadolint ignore=DL3033
-RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
-                       python3-wheel python3.12-venv virtualenv
-
-# Install and configure Apache
-# hadolint ignore=DL3033
-RUN apt-get install -y apache2 apache2-dev openssl
+# Configure Apache
 RUN ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 COPY apache2.conf /etc/apache2/apache2.conf
 COPY ssl.conf /etc/apache2/mods-available/ssl.conf
 RUN ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
 
-# Install Apache ModWSGI
-RUN apt-get install -y libapache2-mod-wsgi-py3
-
 # Install account for MOAI and landing pages
 # hadolint ignore=DL3059
 RUN useradd yodadeployment -d /var/www/moai && \
     chsh --shell /bin/bash yodadeployment
-
-# Install MOAI dependencies
-# hadolint ignore=DL3033
-RUN apt-get -y install sqlite3 libsqlite3-dev
 
 ## Setup MOAI virtual environment and directory structure
 RUN mkdir -p /var/www/moai /var/www/moai/metadata && \
