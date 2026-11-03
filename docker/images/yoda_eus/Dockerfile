@@ -15,35 +15,40 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 EXPOSE 80
 EXPOSE 443
 
-# Update packages
-RUN apt-get update
+# Install packages
+RUN apt-get update && \
+    apt-get -y --no-install-recommends --upgrade install gnupg wget ca-certificates && \
+    bash -c "wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -" && \
+    bash -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list' && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+                    git \
+                    netcat-traditional \
+                    vim \
+                    sudo \
+                    gcc \
+                    python3 \
+                    python3-dev \
+                    python3-pip \
+                    python3-virtualenv \
+                    python3-wheel \
+                    python3.12-venv \
+                    virtualenv \
+                    postgresql-client-18 \
+                    libpq-dev \
+                    python3-psycopg2 \
+                    acl \
+                    apache2 \
+                    apache2-dev \
+                    libapache2-mod-wsgi-py3 \
+                    openssl && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install common tools (PostgreSQL is needed for psql commands in init script)
-# hadolint ignore=DL3033
-RUN apt-get install -y wget git netcat-traditional gnupg vim sudo
-
-# Install PostgreSQL 18 for checks whether database container is up, as well as troubleshooting
-# hadolint ignore=DL3033
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
-RUN apt-get update
-RUN apt-get -y install postgresql-18 libpq-dev python3-psycopg2 acl
-
-# Install Python 3
-# hadolint ignore=DL3033
-RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
-                       python3-wheel python3.12-venv virtualenv
-
-# Install and configure Apache
-# hadolint ignore=DL3033
-RUN apt-get install -y apache2 apache2-dev openssl
+# Configure Apache
 RUN ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 COPY apache2.conf /etc/apache2/apache2.conf
 COPY ssl.conf /etc/apache2/mods-available/ssl.conf
 RUN ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
-
-# Install Apache ModWSGI
-RUN apt-get install -y libapache2-mod-wsgi-py3
 
 # Yoda EUS (and portal for theming data)
 RUN useradd yodadeployment && \

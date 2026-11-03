@@ -11,28 +11,30 @@ ENV DEBIAN_FRONTEND="noninteractive"
 EXPOSE 80
 EXPOSE 443
 
-# Update packages
-RUN apt-get update
-
-# Install common tools
-# hadolint ignore=DL3033
-RUN apt-get install -y wget git vim sudo
-
-# Install Python 3
-# hadolint ignore=DL3033
-RUN apt-get install -y gcc python3 python3-dev python3-pip python3-virtualenv \
-                       python3-wheel python3.12-venv virtualenv
-
-# Install and configure Apache
-# hadolint ignore=DL3033
-RUN apt-get install -y apache2 apache2-dev openssl
+# Install packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+                    wget \
+                    git \
+                    vim \
+                    sudo \
+                    gcc \
+                    python3 \
+                    python3-dev \
+                    python3-pip \
+                    python3-virtualenv \
+                    python3-wheel \
+                    python3.12-venv \
+                    virtualenv \
+                    apache2 \
+                    apache2-dev \
+                    openssl \
+                    libapache2-mod-wsgi-py3 && \
+    rm -rf /var/lib/apt/lists/*
 RUN ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 COPY apache2.conf /etc/apache2/apache2.conf
 COPY ssl.conf /etc/apache2/mods-available/ssl.conf
 RUN ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
-
-# Install Apache ModWSGI
-RUN apt-get install -y libapache2-mod-wsgi-py3
 
 # Yoda Portal
 RUN useradd yodadeployment && \
