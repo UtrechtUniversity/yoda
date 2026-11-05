@@ -9,6 +9,7 @@ anubis_davrods_bind_port: 8923
 anubis_landingpages_bind_port: 8924
 anubis_davrods_port: 3001
 anubis_landingpages_port: 3002
+anubis_enable_honeypot: true
 
 # Hex-encoded ed25519 private key used to sign Anubis responses. Required to
 # ensure challenges survive service restarts.

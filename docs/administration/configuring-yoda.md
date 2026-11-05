@@ -476,6 +476,7 @@ Variable                    | Description
 enable_anubis               | Whether to enable Anubis, the web scraper blocker (currently only protects anonymous webdav and landing pages)
 anubis_redis_password       | Password for the Redis instance that is used by Anubis. Only relevant if Anubis is enabled.
 anubis_ed25519_private_key  | Hex-encoded ed25519 private key used to sign Anubis responses. Required to ensure challenges survive service restarts.
+anubis_enable_honeypot      | Whether the Anubis honeypot feature is enabled (default: true)
 
 ### External user service configuration
 
