@@ -298,7 +298,6 @@ Listen {{ yoda_davrods_anonymous_port }}
     SSLCompression          off
 
     # Logging of access to webdav
-    SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
     SetEnvIf Request_URI "^/favicon\.ico$" dontlog
     SetEnvIf Request_Method "^OPTIONS$" dontlog
     CustomLog {{ yoda_davrods_apache_log_dir }}/webdav_anon_access.log common env=!dontlog
