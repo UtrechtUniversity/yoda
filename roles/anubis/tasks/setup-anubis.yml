@@ -69,6 +69,7 @@
     - "headers"
     - "proxy"
     - "proxy_http"
+    - "remoteip"
     - "rewrite"
     - "substitute"
   when: ansible_facts['os_family'] == 'Debian'

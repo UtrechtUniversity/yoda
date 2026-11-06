@@ -38,6 +38,15 @@ Listen {{ yoda_public_port }}
         #   Server Private Key:
         SSLCertificateKeyFile   {{ openssl_private_dir }}/{{ openssl_key_signed }}
 
+{% if anubis_load_balancer_addresses | length > 0 %}
+        # Requests are routed via a load balancer. Use the client address from the
+        # X-Forwarded-For header set by the load balancer, so that Anubis (via the
+        # X-Real-Ip header below) and the logs see the actual client rather than
+        # the load balancer. The header is only trusted for the load balancer.
+        RemoteIPHeader X-Forwarded-For
+        RemoteIPInternalProxy {{ anubis_load_balancer_addresses | join(' ') }}
+
+{% endif %}
         # These headers need to be set or else Anubis will
         # throw an "admin misconfiguration" error.
         RequestHeader set "X-Real-Ip" expr=%{REMOTE_ADDR}
@@ -99,6 +108,14 @@ Listen {{ yoda_public_port }}
     WSGIProcessGroup moai
     WSGIScriptAlias /oai {{ yoda_moai_home }}/moai.wsgi
     WSGIScriptReloading On
+
+    # Requests reach this virtual host through Anubis, so the connecting address
+    # is that of Anubis. Use the client address from the X-Real-IP header (set by
+    # the Anubis frontend virtual host above and passed on by Anubis) instead, so
+    # that logs and access rules see the actual client. The header is only trusted
+    # for connections from Anubis.
+    RemoteIPHeader X-Real-IP
+    RemoteIPInternalProxy {{ yoda_public_anubis_trusted_proxies | join(' ') }}
 
     CustomLog {{ yoda_public_apache_log_dir }}/public_access.log common
 

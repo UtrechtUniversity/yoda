@@ -21,6 +21,17 @@ anubis_yoda_static: /etc/anubis/static-yoda
 anubis_davrods_bind_port: 8923
 anubis_davrods_port: 3001
 
+# Addresses Anubis may connect from to the anonymous DavRODS backend. The client
+# IP address in the X-Real-IP header is only trusted for requests from these
+# addresses. Anubis connects to the hostname in yoda_davrods_anonymous_host,
+# which can resolve to a loopback address or to one of the server's own addresses.
+yoda_davrods_anubis_trusted_proxies: "{{ (['127.0.0.1', '::1'] + ansible_facts['all_ipv4_addresses'] | default([]) + ansible_facts['all_ipv6_addresses'] | default([])) | unique | list }}"
+
+# Addresses of load balancers in front of the Anubis-protected virtual host.
+# If set, the client address in the X-Forwarded-For header is trusted for
+# requests from these addresses. Leave empty if there is no load balancer.
+anubis_load_balancer_addresses: []
+
 # iRODS configuration.
 irods_icat_fqdn: icat.yoda.test
 irods_authentication_scheme: PAM           # iRODS authentication method: "Native" or "PAM"
