@@ -54,6 +54,15 @@ Listen {{ yoda_davrods_anonymous_port }}
         Header set Access-Control-Allow-Origin "https://{{ yoda_public_fqdn }}"
         Header set Access-Control-Allow-Headers "X-Requested-With"
 
+{% if anubis_load_balancer_addresses | length > 0 %}
+        # Requests are routed via a load balancer. Use the client address from the
+        # X-Forwarded-For header set by the load balancer, so that Anubis (via the
+        # X-Real-Ip header below) and the logs see the actual client rather than
+        # the load balancer. The header is only trusted for the load balancer.
+        RemoteIPHeader X-Forwarded-For
+        RemoteIPInternalProxy {{ anubis_load_balancer_addresses | join(' ') }}
+
+{% endif %}
         # These headers need to be set or else Anubis will
         # throw an "admin misconfiguration" error.
         RequestHeader set "X-Real-Ip" expr=%{REMOTE_ADDR}
@@ -296,6 +305,14 @@ Listen {{ yoda_davrods_anonymous_port }}
     SSLCipherSuite          ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
     SSLHonorCipherOrder     off
     SSLCompression          off
+
+    # Requests reach this virtual host through Anubis, so the connecting address
+    # is that of Anubis. Use the client address from the X-Real-IP header (set by
+    # the Anubis frontend virtual host above and passed on by Anubis) instead, so
+    # that logs and access rules see the actual client. The header is only trusted
+    # for connections from Anubis.
+    RemoteIPHeader X-Real-IP
+    RemoteIPInternalProxy {{ yoda_davrods_anubis_trusted_proxies | join(' ') }}
 
     # Logging of access to webdav
     SetEnvIf Request_URI "^/favicon\.ico$" dontlog
