@@ -477,6 +477,9 @@ enable_anubis               | Whether to enable Anubis, the web scraper blocker 
 anubis_redis_password       | Password for the Redis instance that is used by Anubis. Only relevant if Anubis is enabled.
 anubis_ed25519_private_key  | Hex-encoded ed25519 private key used to sign Anubis responses. Required to ensure challenges survive service restarts.
 anubis_enable_honeypot      | Whether the Anubis honeypot feature is enabled (default: true)
+anubis_load_balancer_addresses | List of addresses of load balancers in front of the Anubis-protected anonymous WebDAV and landing pages hosts (default: empty list). If set, the client address in the X-Forwarded-For header is trusted for requests from these addresses, so that Anubis and the Apache logs see the actual client address instead of that of the load balancer. Only relevant if Anubis is enabled.
+yoda_davrods_anubis_trusted_proxies | List of addresses that Anubis can use to connect to the anonymous DavRODS backend. The client address that Anubis passes on is only trusted for these addresses. Default: the loopback addresses and all addresses of the DavRODS server. Only relevant if Anubis is enabled.
+yoda_public_anubis_trusted_proxies | List of addresses that Anubis can use to connect to the landing pages backend. The client address that Anubis passes on is only trusted for these addresses. Default: the loopback addresses and all addresses of the public server. Only relevant if Anubis is enabled.
 
 ### External user service configuration
 
