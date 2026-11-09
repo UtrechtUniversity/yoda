@@ -98,6 +98,7 @@ TOKENS_ENABLED      = True
 TOKEN_LIFETIME      = 72
 SRAM_ENABLED        = True
 CACHING_ENABLED     = False
+METADATA_SCHEMA_COMPOSER_ENABLED = True
 
 # Logging configuration
 LOG_API_CALL_DURATION       = True

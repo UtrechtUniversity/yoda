@@ -41,10 +41,11 @@ eus_api_port                   = '{{ eus_api_port }}'
 eus_api_secret                 = '{{ eus_api_secret }}'
 eus_api_tls_verify             = '{{ ["false", "true"][eus_api_tls_verify|int] }}'
 
-enable_deposit                 = '{{ ["false", "true"][enable_deposit|int] }}'
-enable_open_search             = '{{ ["false", "true"][enable_open_search|int] }}'
-enable_datarequest             = '{{ ["false", "true"][enable_datarequest|int] }}'
-yoda_portal_fqdn               = '{{ yoda_portal_fqdn }}'
+enable_deposit                  = '{{ ["false", "true"][enable_deposit|int] }}'
+enable_open_search              = '{{ ["false", "true"][enable_open_search|int] }}'
+enable_datarequest              = '{{ ["false", "true"][enable_datarequest|int] }}'
+enable_metadata_schema_composer = '{{ ["false", "true"][enable_metadata_schema_composer|int] }}'
+yoda_portal_fqdn                = '{{ yoda_portal_fqdn }}'
 
 epic_pid_enabled               = '{{ ["false", "true"][epic_pid_enabled|int] }}'
 {% if epic_pid_enabled %}

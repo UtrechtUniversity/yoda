@@ -92,6 +92,9 @@ yoda_portal_timeout: 60
 # Experimental response and API caching
 enable_portal_caching: false
 
+# Metadata schema composer (experimental: DO NOT USE IN PRODUCTION!)
+enable_metadata_schema_composer: true              # Enable the metadata schema composer
+
 # Monitor thread configuration for extracting tech support information
 yoda_portal_monitor_output_dir: /tmp
 yoda_portal_monitor_signal_file: /var/www/yoda/show-tech.sig
