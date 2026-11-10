@@ -1717,6 +1717,18 @@ updates). So changes in these parameters only take effect after updating publica
       <td>anubis_enable_honeypot</td>
       <td>Whether the Anubis honeypot feature is enabled (default: true)</td>
     </tr>
+    <tr>
+      <td>anubis_load_balancer_addresses</td>
+      <td>List of addresses of load balancers in front of the Anubis-protected anonymous WebDAV and landing pages hosts (default: empty list). If set, the client address in the X-Forwarded-For header is trusted for requests from these addresses, so that Anubis and the Apache logs see the actual client address instead of that of the load balancer. Only relevant if Anubis is enabled.</td>
+    </tr>
+    <tr>
+      <td>yoda_davrods_anubis_trusted_proxies</td>
+      <td>List of addresses that Anubis can use to connect to the anonymous DavRODS backend. The client address that Anubis passes on is only trusted for these addresses. Default: the loopback addresses and all addresses of the DavRODS server. Only relevant if Anubis is enabled.</td>
+    </tr>
+    <tr>
+      <td>yoda_public_anubis_trusted_proxies</td>
+      <td>List of addresses that Anubis can use to connect to the landing pages backend. The client address that Anubis passes on is only trusted for these addresses. Default: the loopback addresses and all addresses of the public server. Only relevant if Anubis is enabled.</td>
+    </tr>
   </tbody>
 </table></div>
 <h3 id="external-user-service-configuration">
