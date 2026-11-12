@@ -1,8 +1,8 @@
 ---
 # copyright Utrecht University
 
-pgbouncer_version: 1.25.2-43PGDG.rhel9.8
-pgbouncer_package: 'pgbouncer-{{ pgbouncer_version }}'
+pgbouncer_minimum_version: 1.25.2-43PGDG.rhel9.8
+pgbouncer_package: 'pgbouncer >= {{ pgbouncer_minimum_version }}'
 
 pgbouncer_user: pgbouncer
 pgbouncer_config_path: "/etc/pgbouncer"

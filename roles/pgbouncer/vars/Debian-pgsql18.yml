@@ -1,8 +1,8 @@
 ---
 # copyright Utrecht University
 
-pgbouncer_version: 1.26.0-1.pgdg24.04+1
-pgbouncer_package: 'pgbouncer={{ pgbouncer_version }}'
+pgbouncer_minimum_version: 1.26.0-1.pgdg24.04+1
+pgbouncer_package: 'pgbouncer>={{ pgbouncer_minimum_version }}'
 
 pgbouncer_user: postgres
 pgbouncer_config_path: "/etc/pgbouncer"
