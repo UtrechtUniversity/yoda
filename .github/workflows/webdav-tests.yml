@@ -107,21 +107,14 @@ jobs:
       timeout-minutes: 10
       run: |
         cd yoda/docker/compose
-        until [ "$(curl -k --output /dev/null -w '%{http_code}' --silent https://data.yoda:8445)" != "000" ] ; do printf '.' ; sleep 1; done
-        # Wait a bit until the iRODS connection looks stable enough, and the restart is
-        # apparently finished.
-        docker exec data.yoda sh -c '
-          responses=0
-          responsesneeded=8
-          while [ "$responses" -lt "$responsesneeded" ]; do
-            if nc -z provider.yoda 1247 2>/dev/null;
-                then responses=$((responses+1));
-                echo "Response number ${responses}/${responsesneeded} from iRODS"
-            else responses=0;
-                 echo "No response from iRODS."
-            fi
-            sleep 0.5
-          done'
+        # Wait for iRODS to be available
+        echo "Waiting for iRODS provider container to complete initialization ..."
+        until docker logs provider.yoda 2>&1 | grep -q "Container startup complete" ; do printf '.'; sleep 2; done
+        echo ""
+        echo "Waiting for iRODS response ..."
+        until docker exec provider.yoda sudo -iu irods ils /tempZone >& /dev/null ; do printf '.'; sleep 1; done
+        echo ""
+        echo "iRODS is ready for WebDAV tests."
         # Wait for Davrods to be available too
         echo "Waiting for Davrods to be available ..."
         until [ "$(curl -k --output /dev/null -w '%{http_code}' --silent https://data.yoda:8445)" != "000" ] ; do printf '.' ; sleep 1; done
