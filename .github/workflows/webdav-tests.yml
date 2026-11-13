@@ -15,6 +15,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    timeout-minutes: 45
     if: |
       ${{ ! contains(github.event.head_commit.message, '#nowebdavtests') &&
             ( github.event_name == 'push' ||
@@ -85,6 +86,7 @@ jobs:
 
     - name: Wait until Dockerized setup is ready
       shell: bash
+      timeout-minutes: 15
       run: |
         echo "Waiting for portal to be available ..."
         until curl -k --output /dev/null --silent --head --fail https://portal.yoda:8443; do printf '.' ; sleep 1; done
@@ -103,6 +105,7 @@ jobs:
 
     - name: Wait until iRODS and Davrods are ready for tests
       shell: bash
+      timeout-minutes: 10
       run: |
         cd yoda/docker/compose
         until [ "$(curl -k --output /dev/null -w '%{http_code}' --silent https://data.yoda:8445)" != "000" ] ; do printf '.' ; sleep 1; done
