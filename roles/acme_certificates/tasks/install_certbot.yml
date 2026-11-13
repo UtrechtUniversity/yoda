@@ -1,0 +1,28 @@
+---
+# copyright Utrecht University
+
+- name: Ensure OS-packaged Certbot is absent
+  ansible.builtin.package:
+    name: certbot
+    state: absent
+
+
+- name: Ensure Python for the Certbot virtual environment is installed
+  ansible.builtin.package:
+    name: "{{ acme_certificates_python_packages }}"
+    state: present
+
+
+- name: Ensure pinned Certbot version is installed
+  ansible.builtin.pip:
+    name: "certbot=={{ acme_certificates_certbot_version }}"
+    virtualenv: "{{ acme_certificates_certbot_venv_dir }}"
+    virtualenv_command: "{{ acme_certificates_python }} -m venv"
+
+
+- name: Ensure the Certbot binary is available on the system PATH
+  ansible.builtin.file:
+    src: "{{ acme_certificates_certbot_venv_dir }}/bin/certbot"
+    dest: /usr/bin/certbot
+    state: link
+    force: true
