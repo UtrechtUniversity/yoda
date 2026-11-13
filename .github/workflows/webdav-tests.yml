@@ -61,7 +61,6 @@ jobs:
 
     - name: Install test dependencies
       run: |
-        sudo apt install -y docker-compose
         cd yoda-ruleset/tests
         python3 -m venv venv
         source venv/bin/activate
@@ -70,7 +69,7 @@ jobs:
     - name: Pull Docker images
       run: |
         cd yoda/docker/compose
-        docker-compose pull
+        docker compose pull
 
     - name: Build local Davrods image
       shell: bash
