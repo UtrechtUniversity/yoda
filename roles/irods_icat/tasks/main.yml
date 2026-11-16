@@ -334,7 +334,7 @@
   notify: Systemd daemon reload
 
 
-- name: Reload systemd daemon
+- name: Reload systemd daemon # noqa no-handler
   ansible.builtin.systemd_service:
     daemon_reload: true
   when: irods_upgrade is changed
