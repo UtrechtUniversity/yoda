@@ -53,6 +53,8 @@ created_by_ta_users:
 test_groups:
   - {groupName: datamanager-test-automation, category: test-automation, subcategory: test-automation, dataClassification: ""}
 
+  - {groupName: datamanager-tqstestcat, category: tqstestcat, subcategory: tqstestsubcat, dataClassification: ""}
+
   - {groupName: research-initial,   category: test-automation, subcategory: initial, dataClassification: unspecified}
   - {groupName: research-initial1,  category: test-automation, subcategory: initial, dataClassification: unspecified}
   - {groupName: research-revisions, category: test-automation, subcategory: initial, dataClassification: unspecified}
@@ -118,6 +120,9 @@ test_group_users:
 
   - {groupName: datamanager-test-automation, user: datamanager,                   role: normal}
   - {groupName: datamanager-test-automation, user: functionaladminpriv,           role: manager}
+
+  - {groupName: datamanager-tqstestcat, user: functionaladminpriv,    role: manager}
+  - {groupName: datamanager-tqstestcat, user: datamanager,            role: manager}
 
   - {groupName: research-core-0, user: researcher,                    role: normal}
   - {groupName: research-core-0, user: functionaladminpriv,           role: manager}
