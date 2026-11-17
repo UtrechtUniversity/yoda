@@ -19,7 +19,7 @@
     dest: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent.filename }}'
     checksum: '{{ zabbix_agent.checksum }}'
     mode: '0644'
-  when: not zabbix_agent_repo.results and not repo_only
+  when: zabbix_agent_repo.results | length == 0 and not repo_only
 
 
 - name: Install Zabbix RPM key
@@ -32,14 +32,14 @@
   ansible.builtin.dnf:
     name: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent.filename }}'
     state: present
-  when: not zabbix_agent_repo.results and not repo_only and not ansible_check_mode
+  when: zabbix_agent_repo.results | length == 0 and not repo_only and not ansible_check_mode
 
 
 - name: Ensure Zabbix agent2 rpm is installed
   ansible.builtin.package:
     name: '{{ zabbix_agent.package }}'
     state: present
-  when: zabbix_agent_repo.results
+  when: zabbix_agent_repo.results | length > 0
 
 
 - name: Ensure Zabbix agent2 package has version locks

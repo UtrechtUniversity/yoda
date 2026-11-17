@@ -13,7 +13,7 @@
     dest: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent2_postgresql_plugin.filename }}'
     checksum: '{{ zabbix_agent2_postgresql_plugin.checksum }}'
     mode: '0644'
-  when: not zabbix_pgsqlplugin_repo.results and not repo_only
+  when: zabbix_pgsqlplugin_repo.results | length == 0 and not repo_only
 
 
 - name: Install Zabbix RPM key
@@ -26,11 +26,11 @@
   ansible.builtin.dnf:
     name: '{{ yoda_zabbix_package_dir }}/{{ zabbix_agent2_postgresql_plugin.filename }}'
     state: present
-  when: not zabbix_pgsqlplugin_repo.results and not repo_only and not ansible_check_mode
+  when: zabbix_pgsqlplugin_repo.results | length == 0 and not repo_only and not ansible_check_mode
 
 
 - name: Ensure Zabbix agent2 PostgreSQL plugin package is installed
   ansible.builtin.package:
     name: '{{ zabbix_agent2_postgresql_plugin.package }}'
     state: present
-  when: zabbix_pgsqlplugin_repo.results
+  when: zabbix_pgsqlplugin_repo.results | length > 0
