@@ -451,10 +451,13 @@ yoda_inbox_authorized_keys   | Path of inbox user SSH authorized keys file (may 
 
 ### Landingpages configuration
 
-Variable          | Description
-------------------|--------------------------------
-landingpages_root | Root of landingpages on server
-landingpage_theme | Name of landingpage theme
+Variable                 | Description
+-------------------------|--------------------------------
+landingpages_root        | Root of landingpages on server
+landingpage_theme        | Name of landingpage theme
+landingpage_publisher    | Publisher of landingage. Defaults to the value of `datacite_publisher`.
+landingpage_contact_name | Name of landingage contact
+landingpage_contact_url  | URL of landingpage contact
 
 ### Web statistics configuration
 
