@@ -78,7 +78,7 @@ You need to have these entries in your /etc/hosts (or equivalent) file:
 
 ```
 # Docker setup Yoda
-127.0.0.1 portal.yoda eus.yoda data.yoda public.yoda
+127.0.0.1 portal.yoda eus.yoda data.yoda public.yoda public.data.yoda
 ```
 
 After the application is started, the web interfaces will be available on:
@@ -86,6 +86,7 @@ After the application is started, the web interfaces will be available on:
 - Portal: https://portal.yoda:8443
 - EUS (port with API enabled): https://eus.yoda:8444
 - DavRODS: https://data.yoda:8445
+- DavRODS (public interface): https://public.data.yoda:8445
 - Public: https://public.yoda:8446
 
 You can log in on the Yoda portal using any of the test account credentials, such as user name `researcher`
