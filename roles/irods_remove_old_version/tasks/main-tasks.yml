@@ -36,7 +36,7 @@
     state: absent
 
 
-- name: Ensure old iRODS indexing plugins are present
+- name: Ensure old iRODS indexing plugins are absent
   ansible.builtin.package:
     name:
       - "{{ irods_idp_package_old }}"
