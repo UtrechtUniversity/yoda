@@ -78,7 +78,7 @@ You need to have these entries in your /etc/hosts (or equivalent) file:
 
 ```
 # Docker setup Yoda
-127.0.0.1 portal.yoda eus.yoda data.yoda public.yoda
+127.0.0.1 portal.yoda eus.yoda data.yoda public.yoda public.data.yoda
 ```
 
 After the application is started, the web interfaces will be available on:
