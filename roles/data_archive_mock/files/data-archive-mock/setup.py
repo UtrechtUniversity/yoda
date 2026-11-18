@@ -17,7 +17,7 @@ setup(
         'requests==2.34.2',
         'numpy==2.3.1',
         'typing-extensions==4.14.1',
-        'urllib3==2.7.0',
+        'urllib3==2.8.0',
         'Werkzeug==3.1.6'
     ],
     entry_points={
