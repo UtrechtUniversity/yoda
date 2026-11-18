@@ -299,29 +299,45 @@
     force: false
 
 
-- name: Upgrade iRODS catalog to v5
-  block:
-    - name: Get iRODS major version
-      become_user: '{{ irods_service_account }}'
-      become: true
-      ansible.builtin.command: # noqa no-changed-when
-        cmd: 'python3 {{ irods_directory.stdout }}/scripts/get_irods_version.py major'
-      register: irods_major_version
-      ignore_errors: true
-      changed_when: false
+# A fresh deployment will also have the version.json, which is created by setup_irods.py
+- name: Check whether an iRODS upgrade is pending
+  ansible.builtin.stat:
+    path: '{{ irods_directory.stdout }}/version.json'
+  register: irods_version_json
 
-    - name: Upgrade iRODS catalog to v5
-      become_user: '{{ irods_service_account }}'
-      become: true
-      ansible.builtin.command: # noqa no-changed-when
-        cmd: 'python3 {{ irods_directory.stdout }}/scripts/upgrade_irods.py'
-      when: not ansible_check_mode and (irods_major_version.stdout | int) < 5
-      notify: Systemd daemon reload
 
-    - name: Reload systemd daemon
-      ansible.builtin.systemd_service:
-        daemon_reload: true
-      when: not ansible_check_mode and (irods_major_version.stdout | int) < 5
+# Running upgrade_irods.py up to iRODS 5.1 as we have only tested it until 5.1.
+# For further upgrades (e.g. 5.1 - 5.2), check the necessity and update the irods_upgrade_up_to
+- name: Stop an iRODS upgrade beyond the required version
+  vars:
+    irods_upgrade_up_to: '5.1'
+    # Example irods_server_package_new: 5.1.0-0~noble
+    irods_target_version: "{{ irods_server_package_new | regex_search('[0-9]+[.][0-9]+') }}"
+  ansible.builtin.fail:
+    msg: >-
+      This playbook upgrades iRODS to {{ irods_target_version }}, but upgrades are only tested up to
+      {{ irods_upgrade_up_to }}. The new packages are installed, but iRODS will not start until
+      upgrade_irods.py has run.
+  when: not irods_version_json.stat.exists and irods_target_version is version(irods_upgrade_up_to, '>')
+
+
+# Every iRODS package upgrade moves version.json aside and upgrade_irods.py creates a new one.
+# https://github.com/irods/irods/blob/5.1.0/preinst#L38-L40
+- name: Upgrade iRODS catalog after a package upgrade
+  become_user: '{{ irods_service_account }}'
+  become: true
+  ansible.builtin.command:
+    cmd: 'python3 {{ irods_directory.stdout }}/scripts/upgrade_irods.py'
+    creates: '{{ irods_directory.stdout }}/version.json'
+  register: irods_upgrade
+  when: not ansible_check_mode
+  notify: Systemd daemon reload
+
+
+- name: Reload systemd daemon # noqa no-handler
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+  when: irods_upgrade is changed
 
 
 - name: Ensure iRODS default resource is set in server_config.json
