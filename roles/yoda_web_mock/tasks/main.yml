@@ -52,11 +52,12 @@
     creates: "/var/www/webmock/venv"
 
 
+# The latest virtualenv is blocking the fresh deployment of EL9, pining it to 21.14.8 temporarily fix it.
 - name: Ensure virtualenv is installed in Yoda web mock environment
   become_user: '{{ yoda_deployment_user }}'
   become: true
   ansible.builtin.pip:
-    name: virtualenv==21.15.5
+    name: virtualenv==21.14.8
     executable: /var/www/webmock/venv/bin/pip3.12
   when: not ansible_check_mode
 

@@ -209,11 +209,12 @@
     creates: "/var/www/extuser/yoda-external-user-service/venv/bin/activate_this.py"
 
 
+# The latest virtualenv is blocking the fresh deployment of EL9, pining it to 21.14.8 temporarily fix it.
 - name: Ensure virtualenv is installed in Yoda EUS virtual environment
   become_user: '{{ yoda_deployment_user }}'
   become: true
   ansible.builtin.pip:
-    name: virtualenv==21.15.5
+    name: virtualenv==21.14.8
     executable: /var/www/extuser/yoda-external-user-service/venv/bin/pip3
 
 
