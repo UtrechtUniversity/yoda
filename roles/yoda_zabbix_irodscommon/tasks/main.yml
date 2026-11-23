@@ -5,9 +5,9 @@
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-irodscommon/yoda_irodscommon.userparams.conf
     dest: /etc/zabbix/zabbix_agent2.d/yoda_irodscommon.userparams.conf
-    owner: zabbix
-    group: zabbix
-    mode: '0400'
+    owner: root
+    group: root
+    mode: '0644'
     remote_src: true
   when: not ansible_check_mode
 
@@ -34,9 +34,9 @@
     src: "{{ item.path }}"
     dest: /etc/zabbix/zabbix_agent2.d/
     remote_src: true
-    owner: zabbix
-    group: zabbix
-    mode: '0500'
+    owner: root
+    group: root
+    mode: '0755'
   with_items: "{{ zabbix_irodscommon_scripts.files }}"
   notify: Restart Zabbix agent2
   when: not ansible_check_mode

@@ -139,9 +139,9 @@
   ansible.builtin.copy:
     src: /etc/zabbix/yoda-zabbix/zabbix-system/yoda_system.userparams.conf
     dest: /etc/zabbix/zabbix_agent2.d/yoda_system.userparams.conf
-    owner: zabbix
-    group: zabbix
-    mode: '0400'
+    owner: root
+    group: root
+    mode: '0644'
     remote_src: true
 
 
@@ -167,8 +167,8 @@
     src: "{{ item.path }}"
     dest: /etc/zabbix/zabbix_agent2.d/
     remote_src: true
-    owner: zabbix
-    group: zabbix
-    mode: '0500'
+    owner: root
+    group: root
+    mode: '0755'
   with_items: "{{ system_script_files.files }}"
   notify: Restart Zabbix agent2
