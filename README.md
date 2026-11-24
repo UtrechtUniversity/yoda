@@ -43,7 +43,7 @@ Documentation is hosted on: https://utrechtuniversity.github.io/yoda/
 
 ## Contributing
 ### Code
-Instructions on how to setup your development environment and other useful instructions for development can be found in the [documentation](https://utrechtuniversity.github.io/yoda/development/setting-up-development-environment.html).
+Please see the [contributing page](CONTRIBUTING.md) for more information.
 
 ### Bug reports
 We use GitHub for bug tracking.
