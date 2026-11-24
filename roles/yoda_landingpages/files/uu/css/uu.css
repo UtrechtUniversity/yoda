@@ -1,4 +1,4 @@
-/* Fonts */
+﻿/* Fonts */
 
 /* latin-ext */
 @font-face {
@@ -152,13 +152,13 @@ header .header-title h1 {
     text-align: left;
 }
 .content .meta label {
-	font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 14px;
 }
 .content .meta span {
-	margin-right: 35px;
+    margin-right: 35px;
     font-family: 'Merriweather', serif;
     font-weight: 400;
     font-style: normal;
