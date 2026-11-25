@@ -94,13 +94,13 @@ irods_anonymous_account_permit_addresses: ['192.168.56.21']
 irods_resources:
   - name: dev001_1
     host: "{{ yoda_davrods_fqdn }}"
-    vault_path: /var/lib/irods/Vault1_1
+    vault_path: /data/Vault1_1
     resource_type: unixfilesystem
 
   - name: dev001_2
     resource_type: unixfilesystem
     host: "{{ yoda_davrods_fqdn }}"
-    vault_path: /var/lib/irods/Vault1_2
+    vault_path: /data/Vault1_2
 
   - name: dev001_p1
     resource_type: passthru

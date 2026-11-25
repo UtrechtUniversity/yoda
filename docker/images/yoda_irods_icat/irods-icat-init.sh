@@ -68,8 +68,11 @@ progress_update "Downloaded certificate bundle."
 
 # Extract vault test data
 before_update "Extracting vault data"
-cd /var/lib/irods
-sudo -iu irods tar xfz "/download/${DATA_VERSION}.vault.tar.gz"
+# Vault data is stored in /data since iRODS 5.1, as it protects /var/lib/irods,
+# see https://docs.irods.org/5.1.0/release_notes/
+mkdir -p /data
+chown irods:irods /data
+sudo -u irods tar xfz "/download/${DATA_VERSION}.vault.tar.gz" -C /data
 progress_update "Vault data extracted"
 
 # Extract certificate bundle

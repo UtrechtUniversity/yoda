@@ -31,6 +31,29 @@
   when: common_insecure_config_check not in ['auto', 'disabled', 'enabled']
 
 
+# Previously, development vaults were stored in /var/lib/irods, which has been protected since iRODS 5.1.
+# Hence, we relocate them to /data, see https://docs.irods.org/5.1.0/release_notes/
+# A development VM with vaults in the old location must be redeployed.
+# Only finds vaults when NFS is not used.
+- name: Find development vaults in old location
+  ansible.builtin.find:
+    paths: /var/lib/irods
+    patterns: "Vault[0-9]*"
+    file_type: directory
+  register: old_vaults_exist
+  when: yoda_environment == "development"
+
+
+- name: Check for development vaults in old location
+  ansible.builtin.fail:
+    msg: >-
+      Error: found {{ old_vaults_exist.files | map(attribute='path') | join(', ') }}.
+      Development vaults are now in /data. Redeploy this development environment freshly.
+  when:
+    - yoda_environment == "development"
+    - old_vaults_exist.matched > 0
+
+
 - name: Configuration checks
   ansible.builtin.import_tasks: insecure-config-checks.yml
   when: common_insecure_config_check == 'enabled' or (common_insecure_config_check == 'auto' and yoda_environment != 'development')
