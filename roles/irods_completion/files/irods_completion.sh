@@ -98,8 +98,8 @@ _ils() {
   fi
 }
 
-# Escapes each line of standard input, so that it can be safely passed as
-# to "compgen -W" without shell expansion.
+# Escapes each line of standard input using "printf %q", so that
+# completion candidates do not get expanded.
 _irods_escape_compgen_words() {
   local line
   while IFS= read -r line; do
