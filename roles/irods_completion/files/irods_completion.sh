@@ -21,7 +21,7 @@ fi
 command_list=(ibun icd ichksum ichmod icp iget ils imeta imkdir imv iphybun iphymv irm irmtrash irsync istream itrim iput itree)
 
 # Match iRODS commands literally, without shell expansion.
-_safe_match() {
+_irods_completion_safe_match() {
   local typed="$1" addp="$2" item
   COMPREPLY=()
   while IFS= read -r item; do
@@ -67,7 +67,7 @@ _ils() {
   else
       ilspath="$(ipwd)/${dirname}"
   fi
-  list=$(ils "$ilspath" | sed '/^[^ ]/d; s/^\s*//; s@^C.*/\(.*\)@\1/@' 2>/dev/null | _escape_compgen_words)
+  list=$(ils "$ilspath" | sed '/^[^ ]/d; s/^\s*//; s@^C.*/\(.*\)@\1/@' 2>/dev/null | _irods_escape_compgen_words)
 
   # Count the number of arguments that are not options
   # (that do not begin by a dash)
@@ -76,82 +76,82 @@ _ils() {
 
   # Case of "iput", first arg is a local file
   if [ "$1" = "iput" -a "$COMP_CWORD" -eq 1 ]; then
-    mapfile -t COMPREPLY < <(compgen -o default -- "${cur}" | _escape_compgen_words)
+    mapfile -t COMPREPLY < <(compgen -o default -- "${cur}" | _irods_escape_compgen_words)
 
   # Case of "iget", second arg is a local file
   elif [ "$1" = "iget" -a "$COMP_CWORD" -eq 2 ]; then
-    mapfile -t COMPREPLY < <(compgen -o default -- "${cur}" | _escape_compgen_words)
+    mapfile -t COMPREPLY < <(compgen -o default -- "${cur}" | _irods_escape_compgen_words)
 
   # Case of "irsync", manage i: prefix
   elif [ "$1" = "irsync" ]; then
     if [[ $cur == i:* ]]; then
       base=${cur:2}
-      _safe_match "${base}" "" "$list"
+      _irods_completion_safe_match "${base}" "" "$list"
     else
-      _safe_match "${cur}" "i:" "$list"
-      mapfile -t -O "${#COMPREPLY[@]}" COMPREPLY < <(compgen -o default -- "${cur}" | _escape_compgen_words)
+      _irods_completion_safe_match "${cur}" "i:" "$list"
+      mapfile -t -O "${#COMPREPLY[@]}" COMPREPLY < <(compgen -o default -- "${cur}" | _irods_escape_compgen_words)
     fi
 
   # General case
   else
-    _safe_match "${basename}" "${dirname}" "$list"
+    _irods_completion_safe_match "${basename}" "${dirname}" "$list"
   fi
 }
 
 # Escapes each line of standard input, so that it can be safely passed as
 # to "compgen -W" without shell expansion.
-_escape_compgen_words() {
+_irods_escape_compgen_words() {
   local line
   while IFS= read -r line; do
     printf '%q\n' "$line"
   done
 }
 
-_complete_user() {
+_irods_complete_user() {
   local cur prev tmp
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE != 'rodsgroup'" | _escape_compgen_words)
+  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE != 'rodsgroup'" | _irods_escape_compgen_words)
 
-  _safe_match "${cur}" "" "$tmp"
+  _irods_completion_safe_match "${cur}" "" "$tmp"
 }
 
-_complete_group() {
+_irods_complete_group() {
   local cur prev tmp
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE = 'rodsgroup'" | _escape_compgen_words)
+  tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE = 'rodsgroup'" | _irods_escape_compgen_words)
 
-  _safe_match "${cur}" "" "$tmp"
+  _irods_completion_safe_match "${cur}" "" "$tmp"
 }
 
-_complete_resource() {
+_irods_complete_resource() {
   local cur prev tmp
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=$(iquest --no-page "%s" "SELECT RESC_NAME" | _escape_compgen_words)
+  tmp=$(iquest --no-page "%s" "SELECT RESC_NAME" | _irods_escape_compgen_words)
 
-  _safe_match "${cur}" "" "$tmp"
+  _irods_completion_safe_match "${cur}" "" "$tmp"
 }
 
-_complete_zone() {
+_irods_complete_zone() {
   local cur prev tmp
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  tmp=$(iquest --no-page '%s' 'SELECT ZONE_NAME' | _escape_compgen_words)
+  tmp=$(iquest --no-page '%s' 'SELECT ZONE_NAME' | _irods_escape_compgen_words)
 
-  _safe_match "${cur}" "" "$tmp"
+  _irods_completion_safe_match "${cur}" "" "$tmp"
 }
 
-_complete_user_type() {
+_irods_complete_user_type() {
   local cur prev
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
@@ -160,7 +160,7 @@ _complete_user_type() {
   COMPREPLY=( $(compgen -W "rodsuser rodsgroup rodsadmin" "$cur") )
 }
 
-_complete_user_prop() {
+_irods_complete_user_prop() {
   local cur prev
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
@@ -180,13 +180,13 @@ _iadmin() {
 
   if   [[ $COMP_CWORD == 1 ]]; then COMPREPLY=( $(compgen -W "$cmds" "$cur") )
   else
-      if [[ $cmd =~ ^lz|modzone|rmzone$ && $COMP_CWORD == 2 ]]; then _complete_zone
-    elif [[ $cmd =~ ^lu|lua|luan|moduser|aua|rua|rpp|rmuser|suq$ && $COMP_CWORD == 2 ]]; then _complete_user
-    elif [[ $cmd =~ ^lg|atg|rfg|sgq$ && $COMP_CWORD == 2 ]]; then _complete_group
-    elif [[ $cmd =~ ^moduser$        && $COMP_CWORD == 3 ]]; then _complete_user_prop
-    elif [[ $cmd =~ ^atg|rfg$        && $COMP_CWORD == 3 ]]; then _complete_user
-    elif [[ $cmd =~ ^lr|modresc|rmresc|addchildtoresc|rmchildfromresc$ && $COMP_CWORD == 2 ]]; then _complete_resource
-    elif [[ $cmd =~ ^suq|sgq|addchildtoresc|rmchildfromresc$ && $COMP_CWORD == 3 ]]; then _complete_resource
+      if [[ $cmd =~ ^lz|modzone|rmzone$ && $COMP_CWORD == 2 ]]; then _irods_complete_zone
+    elif [[ $cmd =~ ^lu|lua|luan|moduser|aua|rua|rpp|rmuser|suq$ && $COMP_CWORD == 2 ]]; then _irods_complete_user
+    elif [[ $cmd =~ ^lg|atg|rfg|sgq$ && $COMP_CWORD == 2 ]]; then _irods_complete_group
+    elif [[ $cmd =~ ^moduser$        && $COMP_CWORD == 3 ]]; then _irods_complete_user_prop
+    elif [[ $cmd =~ ^atg|rfg$        && $COMP_CWORD == 3 ]]; then _irods_complete_user
+    elif [[ $cmd =~ ^lr|modresc|rmresc|addchildtoresc|rmchildfromresc$ && $COMP_CWORD == 2 ]]; then _irods_complete_resource
+    elif [[ $cmd =~ ^suq|sgq|addchildtoresc|rmchildfromresc$ && $COMP_CWORD == 3 ]]; then _irods_complete_resource
     #elif [[ $cmd =~ ^moduser$        && $COMP_CWORD == 4 ]]; then
     #  if [[ $prev == "zone" ]]; then
     #  fi
