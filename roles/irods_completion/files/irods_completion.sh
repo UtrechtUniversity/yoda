@@ -20,6 +20,17 @@ fi
 # Irods command to auto-complete
 command_list=(ibun icd ichksum ichmod icp iget ils imeta imkdir imv iphybun iphymv irm irmtrash irsync istream itrim iput itree)
 
+# Match iRODS commands literally, without shell expansion.
+_safe_match() {
+  local typed="$1" addp="$2" item
+  COMPREPLY=()
+  while IFS= read -r item; do
+    if [[ -n $item && $item == "$typed"* ]]; then
+      COMPREPLY+=("${addp}${item}")
+    fi
+  done <<< "$3"
+}
+
 # Completion function that gets the files list from irods
 _ils() {
   local cur prev dirname basename base list ilspath
@@ -75,15 +86,15 @@ _ils() {
   elif [ "$1" = "irsync" ]; then
     if [[ $cur == i:* ]]; then
       base=${cur:2}
-      COMPREPLY=( $(compgen -W "$list \ " "${base}" ) )
+      _safe_match "${base}" "" "$list"
     else
-      COMPREPLY=( $(compgen -P i: -W "$list \ " "${cur}" ) )
+      _safe_match "${cur}" "i:" "$list"
       COMPREPLY+=( $(compgen -o default "${cur}") )
     fi
 
   # General case
   else
-    COMPREPLY=( $(compgen -P "$dirname" -W "$list" "${basename}") )
+    _safe_match "${basename}" "${dirname}" "$list"
   fi
 }
 
@@ -95,7 +106,7 @@ _complete_user() {
 
   tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE != 'rodsgroup'")
 
-  COMPREPLY=( $(compgen -W "$tmp" "$cur") )
+  _safe_match "${cur}" "" "$tmp"
 }
 
 _complete_group() {
@@ -106,7 +117,7 @@ _complete_group() {
 
   tmp=$(iquest --no-page "%s" "SELECT USER_NAME where USER_TYPE = 'rodsgroup'")
 
-  COMPREPLY=( $(compgen -W "$tmp" "$cur") )
+  _safe_match "${cur}" "" "$tmp"
 }
 
 _complete_resource() {
@@ -117,7 +128,7 @@ _complete_resource() {
 
   tmp=$(iquest --no-page "%s" "SELECT RESC_NAME")
 
-  COMPREPLY=( $(compgen -W "$tmp" "$cur") )
+  _safe_match "${cur}" "" "$tmp"
 }
 
 _complete_zone() {
@@ -128,7 +139,7 @@ _complete_zone() {
 
   tmp=$(iquest --no-page '%s' 'SELECT ZONE_NAME')
 
-  COMPREPLY=( $(compgen -W "$tmp" "$cur") )
+  _safe_match "${cur}" "" "$tmp"
 }
 
 _complete_user_type() {
