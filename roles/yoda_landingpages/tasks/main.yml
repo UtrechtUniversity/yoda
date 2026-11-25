@@ -75,3 +75,6 @@
     - src: 'js/download.js'
       dest: '{{ landingpages_root }}/static/js/download.js'
       diff: false
+    - src: 'licenses/img/'
+      dest: '{{ landingpages_root }}/static/img'
+      diff: false
