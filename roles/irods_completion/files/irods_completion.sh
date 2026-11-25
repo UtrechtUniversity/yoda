@@ -89,7 +89,7 @@ _ils() {
       _safe_match "${base}" "" "$list"
     else
       _safe_match "${cur}" "i:" "$list"
-      COMPREPLY+=( $(compgen -o default "${cur}") )
+      mapfile -t -O "${#COMPREPLY[@]}" COMPREPLY < <(compgen -o default -- "${cur}" | _escape_compgen_words)
     fi
 
   # General case
