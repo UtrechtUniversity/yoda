@@ -76,11 +76,11 @@ _ils() {
 
   # Case of "iput", first arg is a local file
   if [ "$1" = "iput" -a "$COMP_CWORD" -eq 1 ]; then
-    COMPREPLY=( $(compgen -o default "${cur}") )
+    mapfile -t COMPREPLY < <(compgen -o default -- "${cur}" | _escape_compgen_words)
 
   # Case of "iget", second arg is a local file
   elif [ "$1" = "iget" -a "$COMP_CWORD" -eq 2 ]; then
-    COMPREPLY=( $(compgen -o default "${cur}") )
+    mapfile -t COMPREPLY < <(compgen -o default -- "${cur}" | _escape_compgen_words)
 
   # Case of "irsync", manage i: prefix
   elif [ "$1" = "irsync" ]; then
