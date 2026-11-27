@@ -18,8 +18,8 @@ $ . data-archive-mock/data_archive_venv/bin/activate
 Example to add a data object to the tape archive and put it offline:
 ```bash
 $ iput -R mockDataArchive test.json
-$ daattr /var/lib/irods/Vault3/home/rods/test.json
-$ darelease /var/lib/irods/Vault3/home/rods/test.json
+$ daattr /data/Vault3/home/rods/test.json
+$ darelease /data/Vault3/home/rods/test.json
 ```
 
 ## More information
