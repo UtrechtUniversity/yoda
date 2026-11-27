@@ -80,6 +80,9 @@ yoda_theme: uu                                     # Yoda theme: uu or vu (defau
 portal_title_text: Yoda - SURF test environment
 yoda_portal_log_api_call_duration: true
 
+# Metadata schema composer (experimental: DO NOT USE IN PRODUCTION!)
+enable_metadata_schema_composer: true      # Enable the metadata schema composer
+
 # iRODS configuration
 irods_password: rods                       # iRODS admin password
 irods_database_password: irodsdev          # The password for the iRODS database username
