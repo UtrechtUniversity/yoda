@@ -1,21 +1,50 @@
 #!/usr/bin/env python3
 # {{ ansible_managed }}
 
+import jwt
 import requests
 
 
 OIDC_USERINFO_URI = "{{ oidc_userinfo_uri | default('') }}"
 OIDC_EMAIL_FIELD = "{{ oidc_email_field | default('email') }}"
+OIDC_CLIENT_ID = "{{ oidc_client_id | default('') }}"
+OIDC_JWKS_URI = "{{ oidc_jwks_uri | default('') }}"
+OIDC_JWT_ISSUER = "{{ oidc_jwt_issuer | default('') }}"
 
 SRAM_USERINFO_URI = "{{ sram_oidc_userinfo_uri | default('') }}"
 SRAM_EMAIL_FIELD = "{{ sram_oidc_email_field | default('email') }}"
+SRAM_CLIENT_ID = "{{ sram_oidc_client_id | default('') }}"
+SRAM_JWKS_URI = "{{ sram_oidc_jwks_uri | default('') }}"
+SRAM_JWT_ISSUER = "{{ sram_oidc_jwt_issuer | default('') }}"
 
 TOKEN_PREFIX_OIDC = '++oidc_token++'
 TOKEN_PREFIX_SRAM = '++sram_token++'
 SUB_DELIMITER = 'end_sub'
+IDT_DELIMITER = 'end_idt'
 
 
-def validate_token(userinfo_uri, email_field, username, token, sub):
+def verify_id_token(jwks_uri, issuer, client_id, id_token):
+    jwks_client = jwt.PyJWKClient(jwks_uri)
+    signing_key = jwks_client.get_signing_key_from_jwt(id_token)
+    return jwt.decode(
+        id_token,
+        signing_key.key,
+        algorithms=['RS256'],
+        audience=client_id,
+        issuer=issuer
+    )
+
+
+def validate_token(userinfo_uri, email_field, jwks_uri, issuer, client_id, username, token, id_token, sub):
+    try:
+        payload = verify_id_token(jwks_uri, issuer, client_id, id_token)
+    except jwt.PyJWTError as e:
+        print(f"ID token verification failed for {username}: {e}")
+        return False
+    if payload.get('sub') != sub:
+        print(f"Subject mismatch for {username}")
+        return False
+
     # Send token validation request.
     headers = {"Authorization": f"Bearer {token}"}
     try:
@@ -52,10 +81,14 @@ def parse_token_with_sub(token_data):
     try:
         sub_ix = token_data.index(SUB_DELIMITER)
         sub = token_data[0:sub_ix]
-        token = token_data[sub_ix + len(SUB_DELIMITER):]
-        return sub, token
+        rest = token_data[sub_ix + len(SUB_DELIMITER):]
     except ValueError:
-        return '', token_data
+        return '', token_data, ''
+    try:
+        idt_ix = rest.index(IDT_DELIMITER)
+        return sub, rest[0:idt_ix], rest[idt_ix + len(IDT_DELIMITER):]
+    except ValueError:
+        return sub, rest, ''
 
 
 def pam_sm_authenticate(pamh, flags, argv):
@@ -75,14 +108,14 @@ def pam_sm_authenticate(pamh, flags, argv):
     # Determine token type and validate.
     if token.startswith(TOKEN_PREFIX_OIDC):
         token_data = token[len(TOKEN_PREFIX_OIDC):]
-        sub, actual_token = parse_token_with_sub(token_data)
-        if validate_token(OIDC_USERINFO_URI, OIDC_EMAIL_FIELD, username, actual_token, sub):
+        sub, actual_token, id_token = parse_token_with_sub(token_data)
+        if validate_token(OIDC_USERINFO_URI, OIDC_EMAIL_FIELD, OIDC_JWKS_URI, OIDC_JWT_ISSUER, OIDC_CLIENT_ID, username, actual_token, id_token, sub):
             return pamh.PAM_SUCCESS
 
     elif token.startswith(TOKEN_PREFIX_SRAM):
         token_data = token[len(TOKEN_PREFIX_SRAM):]
-        sub, actual_token = parse_token_with_sub(token_data)
-        if validate_token(SRAM_USERINFO_URI, SRAM_EMAIL_FIELD, username, actual_token, sub):
+        sub, actual_token, id_token = parse_token_with_sub(token_data)
+        if validate_token(SRAM_USERINFO_URI, SRAM_EMAIL_FIELD, SRAM_JWKS_URI, SRAM_JWT_ISSUER, SRAM_CLIENT_ID, username, actual_token, id_token, sub):
             return pamh.PAM_SUCCESS
 
     else:
