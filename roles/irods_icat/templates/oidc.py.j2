@@ -2,7 +2,6 @@
 # {{ ansible_managed }}
 
 import base64
-import binascii
 import json
 import jwt
 import requests
@@ -39,7 +38,7 @@ def verify_id_token(jwks_uri, issuer, client_id, id_token):
 def validate_token(userinfo_uri, email_field, jwks_uri, issuer, client_id, username, token, id_token, sub):
     try:
         payload = verify_id_token(jwks_uri, issuer, client_id, id_token)
-    except jwt.PyJWTError as e:
+    except Exception as e:
         print(f"ID token verification failed for {username}: {e}")
         return False
     if payload.get('sub') != sub:
@@ -56,16 +55,17 @@ def validate_token(userinfo_uri, email_field, jwks_uri, issuer, client_id, usern
 
     # Check http status.
     if r.status_code != 200:
-        print(f"Failed to get userinfo response for {username}\n{r.status_code}\n{r.text}")
+        print(f"Failed to get userinfo response for {username}\n{r.status_code}")
         return False
 
     # Retrieve token email.
     try:
-        email = r.json()[email_field]
+        userinfo = r.json()
+        email = userinfo[email_field]
         if not isinstance(email, list):
             email = [email]
         email = [x.lower() for x in email]
-        userinfo_sub = r.json()['sub']
+        userinfo_sub = userinfo['sub']
     except Exception as e:
         print(f"Unable to extract data from the userinfo response for {username}.")
         print(f"Key: {email_field}\nError: {e}")
@@ -127,7 +127,7 @@ def pam_sm_authenticate(pamh, flags, argv):
         token_data = token[len(TOKEN_PREFIX_SRAM):]
         try:
             sub, actual_token, id_token = _parse_token_data(token_data)
-        except ValueError:
+        except ValueError as e:
             print(f"Could not parse token data for user {username}: {e}")
             return pamh.PAM_AUTH_ERR
         if validate_token(SRAM_USERINFO_URI, SRAM_EMAIL_FIELD, SRAM_JWKS_URI, SRAM_JWT_ISSUER, SRAM_CLIENT_ID, username, actual_token, id_token, sub):
